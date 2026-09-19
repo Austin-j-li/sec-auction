@@ -1,0 +1,121 @@
+{
+  "case_id": "price_24_correct",
+  "request_sha256": "38566119289334b02fee91666b9cdf0def7ddc70fc2175ade6990034c97e75e8",
+  "request": {
+    "model": "jev-1.13.0",
+    "state": {
+      "passage": [
+        {
+          "paragraph_id": "311",
+          "text": "Early in the day on December 12, 2014, the Buyer Group requested permission to work more closely with Longview in order to include a rollover of a portion of the Company shares managed by Longview in the Buyer Group's bid. The Buyer Group informed J.P. Morgan that the Buyer Group was working to achieve a higher price, and that Longview participation with the Buyer Group might enhance the Buyer Group's ability to do so. Bidder 2 indicated to J.P. Morgan that accommodation of a Longview rollover would not affect Bidder 2's price, and that Bidder 2 would consider accommodating a Longview rollover only after execution of a merger agreement between the Company and Bidder 2. After consultation with the Company's financial and legal advisors, the ad hoc committee approved the Buyer Group's request, and,"
+        },
+        {
+          "paragraph_id": "312",
+          "text": "later that day, Longview and the Buyer Group entered into a confidentiality agreement permitting the exchange of detailed information between them, including bid price, which had not previously been shared with Longview. The ad hoc committee also instructed Wachtell Lipton to provide a form of voting agreement to Longview to secure Longview's commitment to vote for the merger subject to certain exceptions, including a change of recommendation by the board."
+        },
+        {
+          "paragraph_id": "313",
+          "text": "During the evening of December 12, 2014, Bidder 2 submitted an offer of $81.50 per share, in cash. Representatives of J.P. Morgan confirmed via a conversation with Bidder 2 on the evening of December 12, 2014 that $81.50 per share was its best and final offer. The Buyer Group initially submitted an oral offer of $82.50 per share, in cash, but stated that it was working to increase the offer within the next few hours. Later in the evening, the Buyer Group submitted a best and final offer of $83.00 per share, in cash. In addition, each bidder submitted a revised draft of the merger agreement and other transaction agreements, and copies of their respective financing commitment documents. The versions submitted by the Buyer Group were, with few exceptions, in substantially executable form."
+        },
+        {
+          "paragraph_id": "314",
+          "text": "On December 13, 2014, the board met in person, together with the members of management and representatives of J.P. Morgan and Wachtell Lipton, to discuss and review the final bids and to consider the proposed transaction. Representatives of J.P. Morgan reviewed the respective bids as well as the recent progression of the sale process. Representatives of Wachtell Lipton reviewed the terms of the draft merger agreement and other transaction documents and reviewed the financing commitments that had been provided by the Buyer Group. Representatives of J.P. Morgan made a financial presentation concerning the proposed transaction with the Buyer Group, as well as the Company's alternatives to a sale of the Company, including a leveraged share repurchase. J.P. Morgan then rendered its oral opinion, which was subsequently confirmed in writing, to the board that, as of that date, and based upon and subject to the factors, assumptions and limitations set forth in its opinion, the merger consideration of $83.00 in cash to be paid to the holders of the Company's common stock in the merger was fair, from a financial point of view, to such holders. Following extensive discussion, the board unanimously determined that the merger agreement and the transactions contemplated thereby, including the merger, were advisable and in the best interests of PetSmart and its stockholders, and to recommend that the Company's stockholders approve the adoption of the merger agreement. The board's determination was subject, however, to confirmation that the remaining open points in the merger agreement had been satisfactorily resolved, and the board determined to reconvene, if deemed necessary by the ad hoc committee or the chairman of the board."
+        },
+        {
+          "paragraph_id": "315",
+          "text": "Following the board meeting, the parties completed negotiations on terms satisfactory to both parties, and finalized the terms of the Longview voting agreement. On December 14, 2014, the parties executed the merger agreement, the voting agreement and related transaction agreements and issued a press release announcing the transaction."
+        }
+      ]
+    },
+    "questions": {
+      "legacy": {
+        "type": "noul",
+        "instructions": "Does the passage state that \"Bidder 2\" offered, proposed or indicated a price of $81.50 per share (the same number may be written without trailing zeros)?",
+        "criteria": {
+          "true": "The per-share figure $81.50 appears in the passage as this party's price.",
+          "false": "The passage gives a different figure for this party, or no figure."
+        }
+      },
+      "scoped": {
+        "type": "choice",
+        "instructions": "For Bidder 2, evaluate the claim that the price at the event \"best and final offer evening December 12, 2014\" was $81.50 per share. Use only the source and bind the entire range, bidder, event and price basis together.",
+        "criteria": {
+          "supported": "The source explicitly supports the claimed price for this bidder at this exact event.",
+          "contradicted": "The source gives a different price for the same bidder and event, or explicitly denies that submission. A different date, bidder or price component cannot support the claim.",
+          "insufficient": "The supplied source does not establish the price at the specified event. Missing evidence is not contradiction; do not infer a carried-forward price."
+        }
+      },
+      "low": {
+        "type": "choice",
+        "instructions": "For Bidder 2 at the event \"best and final offer evening December 12, 2014\", select the explicitly reported total per-share offer price, or lower endpoint if a range. Include attributed noncash package value. Exclude a component, equity total, rival price, or another offer by the same bidder. Select none when not established.",
+        "criteria": {
+          "$81.50": "Verbatim monetary amount found in source.",
+          "$82.50": "Verbatim monetary amount found in source.",
+          "$83.00": "Verbatim monetary amount found in source.",
+          "none": "No amount in the candidates is explicitly established for this endpoint at this event."
+        }
+      },
+      "high": {
+        "type": "choice",
+        "instructions": "For Bidder 2 at the event \"best and final offer evening December 12, 2014\", select the explicitly reported total per-share offer price, or upper endpoint if a range. Include attributed noncash package value. Exclude a component, equity total, rival price, or another offer by the same bidder. Select none when not established.",
+        "criteria": {
+          "$81.50": "Verbatim monetary amount found in source.",
+          "$82.50": "Verbatim monetary amount found in source.",
+          "$83.00": "Verbatim monetary amount found in source.",
+          "none": "No amount in the candidates is explicitly established for this endpoint at this event."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "legacy": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "scoped": {
+        "type": "choice",
+        "choice": "supported",
+        "confidence": 0.96,
+        "probabilities": {
+          "insufficient": 0.01,
+          "contradicted": 0.02,
+          "supported": 0.97
+        }
+      },
+      "low": {
+        "type": "choice",
+        "choice": "$81.50",
+        "confidence": 1.0,
+        "probabilities": {
+          "$83.00": 0.0,
+          "$82.50": 0.0,
+          "none": 0.0,
+          "$81.50": 1.0
+        }
+      },
+      "high": {
+        "type": "choice",
+        "choice": "$81.50",
+        "confidence": 0.99,
+        "probabilities": {
+          "$83.00": 0.0,
+          "$82.50": 0.0,
+          "none": 0.0,
+          "$81.50": 1.0
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 1892,
+      "output_tokens": 187
+    }
+  },
+  "attempts": [
+    {
+      "status": 200,
+      "latency_s": 0.9743511859996943
+    }
+  ]
+}

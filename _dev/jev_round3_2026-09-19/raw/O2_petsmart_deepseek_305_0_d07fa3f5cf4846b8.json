@@ -1,0 +1,64 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "unintended public disclosure. Accordingly, the Company set the evening of Wednesday, December 10 (five days, rather than 10 days prior to the anticipated December 15 completion date) as the deadline for submission of final bids, and at the same time asked the bidders to submit mark-ups of the draft merger agreement and the other transaction documents and financing commitments, if possible, in advance.",
+   "target_sentence": "Accordingly, the Company set the evening of Wednesday, December 10 (five days, rather than 10 days prior to the anticipated December 15 completion date) as the deadline for submission of final bids, and at the same time asked the bidders to submit mark-ups of the draft merger agreement and the other transaction documents and financing commitments, if possible, in advance."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_17": "10/30/2014 | PetSmart | Deadline | Six of the potentially interested parties submitted indications of interest.",
+     "row_18": "10/30/2014 | Buyer Group | Bid | price 81-83 | Preliminary non-binding indication; range $81.00\u2013$83.00; consideration not stated.",
+     "row_19": "10/30/2014 | Unnamed financial bidder 1 | Bid | price 80-85 | Another of the six submitters; non-binding range $80.00\u2013$85.00; not individually named.",
+     "row_21": "10/30/2014 | 3 unnamed indication submitters | Bid | Remainder of the six submitters; no individual detail or prices; one later advanced, two eliminated 11/03 (#24).",
+     "row_23": "10/30\u201311/02/2014 | Bidder 2 | Bid | price 81-84 | Raised after J.P. Morgan's 10/30\u201311/02 calls; range $81.00\u2013$84.00; made it one of four at or above $80.00.",
+     "row_24": "11/03/2014 | PetSmart | Round opened | Final round opened by the 11/03 advancement of four bidders at or above $80.00; merger-agreement form circulated in November; updated FY2014 projections given to all finalists.",
+     "row_25": "11/03/2014 | 2 unnamed indication submitters | Dropped by target | 6 submitters \u2212 4 advanced = 2 notified as eliminated; none could remain above their initial indications.",
+     "row_27": "12/04\u201312/05/2014 | PetSmart | Deadline set | Set evening 12/10 for final bids, replacing the initial 12/05 plan; mark-ups and financing commitments requested in advance.",
+     "row_28": "12/10/2014 | PetSmart | Deadline | Final bids due; Buyer Group and Bidder 2 submitted; Bidder 3 no written offer.",
+     "row_29": "12/10/2014 | Buyer Group | Bid | price 80.7 | Final bid letter with revised merger agreement; financing commitment documents provided 12/06; committee required improvement (#31).",
+     "row_30": "12/10/2014 | Bidder 2 | Bid | price 80.35 | Final bid letter with revised merger agreement; financing commitments not stated at this stage.",
+     "row_31": "12/10/2014 | Bidder 3 | Did not submit | No written offer: verbal valuation not above ~$78 stock price; J.P. Morgan said unlikely to be competitive.",
+     "row_32": "12/10/2014 | PetSmart | Deadline revised | After 12/10 bids, required improvements by 12/12; J.P. Morgan informed bidders and contacted Longview 12/11.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_27",
+    "confidence": 0.98,
+    "probabilities": {
+     "row_17": 0.0,
+     "row_23": 0.0,
+     "none": 0.0,
+     "row_19": 0.0,
+     "row_27": 0.99,
+     "row_25": 0.0,
+     "row_32": 0.0,
+     "row_30": 0.0,
+     "row_18": 0.0,
+     "not_an_event": 0.0,
+     "row_28": 0.01,
+     "row_31": 0.0,
+     "row_21": 0.0,
+     "row_24": 0.0,
+     "row_29": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1498,
+   "output_tokens": 166
+  }
+ },
+ "latency_s": 0.287
+}

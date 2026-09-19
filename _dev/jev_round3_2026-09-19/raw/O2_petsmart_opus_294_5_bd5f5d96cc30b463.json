@@ -1,0 +1,64 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "During the weeks following the August 13 board meeting, members of the ad hoc committee continued to discuss among themselves, with fellow directors and with J.P. Morgan, the timing and process for the exploration of strategic alternatives, including issues relating to Industry Participant. In light of the risks discussed at the August 13 meeting and in these subsequent discussions, the ad hoc committee directed J.P. Morgan to communicate to Industry Participant the board's concerns as a result of which Industry Participant would not be invited to participate in the exploratory process. On August 22, 2014, a representative of J.P. Morgan contacted by telephone the representative of Industry Participant with whom the J.P. Morgan representative had spoken to on August 7. During this call, Industry Participant confirmed that it was aware of the Company's August 19 announcement and the J.P Morgan representative informed the Industry Participant representative of the board's concerns regarding Industry Participant's participation. The parties agreed to speak again in a few days. On August 27, 2014, representatives of Industry Participant contacted by telephone the representative of J.P. Morgan. During this call, the Industry Participant representatives stated that Industry Participant would have interest in discussing the possibility of a combination of the two companies. The J.P. Morgan representative reiterated the concerns identified by the board that engaging with Industry Participant was unlikely to maximize value for PetSmart's stockholders. The J.P. Morgan representative stated that Industry Participant would not be invited into the exploratory process, but that if Industry Participant were to wish to submit a proposal or other communication to the Company, the board would consider it. There has been no contact between PetSmart and Industry Participant (or between any of their respective representatives) since August 27, 2014.",
+   "target_sentence": "On August 27, 2014, representatives of Industry Participant contacted by telephone the representative of J.P. Morgan."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_5": "07/03/2014 | JANA Partners | Activist | 13D at 9.9%; sought review of alternatives including a sale. Further 13D amendments and public letters in July\u2013August advocating a sale; met the Company 07/10/2014 advocating a sale.",
+     "row_6": "07/07/2014 | Longview | Activist | Shareholder; public letter urging board to consider a sale; would consider rolling some or all holdings into buyer equity. Met board in May without advocating; reiterated sale advocacy 07/10/2014.",
+     "row_7": "July 2014 | J.P. Morgan | Adviser | Target\u2019s sole financial adviser, retained after interviews; engagement letter effective 08/21/2014; fee up to about $39 million; gave fairness opinion 12/13/2014.",
+     "row_8": "08/07/2014 | Industry Participant | Bidder interest | Privately-held industry competitor; contacted J.P. Morgan after rumours, may revisit spring 2014 talks (PetSmart-initiated merger/acquisition discussions, which IP rebuffed citing antitrust). No price.",
+     "row_9": "08/13/2014 | PetSmart board | Target sale decision | Board decided to explore alternatives incl. a sale, with Profit Improvement Plan as standalone fallback; ad hoc committee to oversee; J.P. Morgan outreach deferred to late Sept/early Oct; public announcement planned.",
+     "row_10": "mid-August \u2013 10/03/2014 | 24 financial participants | Contact | Parties contacted J.P. Morgan (inbound); includes potential lead buyers and large equity suppliers. All 27 reported to board by 10/03. Reasons section: Company \u201ccontacted or were contacted by more than 25\u201d.",
+     "row_11": "mid-August \u2013 10/03/2014 | 3 strategic parties | Contact | Inbound contacts to J.P. Morgan, excluding Industry Participant. None signed a confidentiality agreement (all 15 signers were financial).",
+     "row_12": "08/19/2014 | PetSmart | Sale process announced | Press release with Q2 earnings; intended to let parties not contacted approach J.P. Morgan on their own initiative.",
+     "row_13": "08/27/2014 | Industry Participant | Other material event | Target refused admission: on ad hoc committee direction, J.P. Morgan conveyed concerns (08/22), then said IP not invited (antitrust, information, delay risks); proposals would be considered. Reaffirmed 10/03. No later contact; never entered",
+     "row_14": "first week of October 2014 | PetSmart / J.P. Morgan | Round opened | Round 1 opened by the NDA wave (buyers came to target; no outreach wave reported). Board told 10/03 about 15 parties interested.",
+     "row_15": "first week of October 2014 | 15 financial NDA signers | NDA signed | Confidentiality and standstill agreements. All 15 did diligence in October, had senior-management presentations and detailed business-plan and Profit Improvement Plan information. Includes Buyer Group, Bidder 2 and all IOI submitters.",
+     "row_16": "during October 2014 | PetSmart / J.P. Morgan | Deadline set | Non-binding preliminary IOIs due 10/30. Bidders told Longview would roll over up to 7.5 million shares if bidder wished; asked to indicate interest, not a condition.",
+     "row_22": "10/30/2014 | PetSmart | Deadline | Due date for non-binding preliminary indications of interest.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_13",
+    "confidence": 0.96,
+    "probabilities": {
+     "row_10": 0.0,
+     "row_8": 0.01,
+     "row_12": 0.0,
+     "row_13": 0.97,
+     "row_22": 0.0,
+     "row_6": 0.0,
+     "row_15": 0.0,
+     "none": 0.02,
+     "row_16": 0.0,
+     "row_11": 0.0,
+     "row_7": 0.0,
+     "row_5": 0.0,
+     "row_14": 0.0,
+     "not_an_event": 0.0,
+     "row_9": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1855,
+   "output_tokens": 161
+  }
+ },
+ "latency_s": 0.459
+}

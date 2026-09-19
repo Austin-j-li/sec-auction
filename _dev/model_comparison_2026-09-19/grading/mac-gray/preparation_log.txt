@@ -1,0 +1,1 @@
+{"deal": "mac-gray", "labels": ["Candidate-A", "Candidate-B", "Candidate-C"], "reference_sha256": "ed8cae3f94fd058218e185b25f41546e7a54ca4f4d864de212960a75fb457fad"}

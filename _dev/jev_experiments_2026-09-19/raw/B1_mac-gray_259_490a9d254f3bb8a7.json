@@ -1,0 +1,85 @@
+{
+ "request": {
+  "state": {
+   "previous_paragraph": "local and regional operators, the impact of general economic and market trends on Mac-Gray's sales and the general risks of market conditions that could reduce Mac-Gray's stock price). The Special Committee also again discussed the potential opportunities if Mac-Gray were able to execute its strategic plan as an independent, stand-alone company (including the ability to improve profitability and EBITDA margins by increasing scale and density through organic growth and/or strategic acquisitions as well as the ability to increase revenue through vend increases and the conversion from coin-operated technology to card-based technology). The Special Committee also discussed the risks involved if Mac-Gray did not execute on its strategic business plan, including the difficulties with increasing the Company's stock price without a significant or transformative transaction, such as a major acquisition or restructuring. The Special Committee then considered the Projections in light of the revised indications of interest. Representatives from Goodwin Procter again reviewed the Special Committee's fiduciary duties in the context of a sale of the company. The Special Committee then discussed each of the three revised proposals, including their advantages and disadvantages. The Special Committee discussed the risks and complexities of the Party B options, including their contingent and deferred nature and the uncertainties associated with how Mac-Gray's performance would be measured, especially in light of the fact that current Mac-Gray management would not be in control of the surviving corporation to monitor or drive the growth necessary to trigger payment under the Party B options.",
+   "paragraph": "The representatives from BofA Merrill Lynch were then excused from the meeting and the Special Committee continued its discussion. The Special Committee noted that the indication of interest submitted by Party B, including the Party B options, was on its face higher than the CSC/Pamplona proposal but further discussed the risks and complexities involved with measuring and achieving the performance required to vest the Party B options. The Special Committee also noted that Party B would likely be financing the transaction with a combination of equity from affiliated funds and third party debt capital, which would involve more risk than the Pamplona-funded CSC/Pamplona proposal, which did not require any third party financing. Following a discussion, the Special Committee concluded that the revised indication of interest submitted by CSC/Pamplona had the potential of delivering the most value to stockholders, provided greater certainty and involved less potential risk than the other indications. However, the Special Committee also concluded that, primarily in view of potential synergies between Mac-Gray and CSC, CSC/Pamplona should be in a position to increase their offer price above $20.75. The Special Committee then authorized the Transaction Committee to inform CSC/Pamplona that the Special Committee would be prepared to move into exclusivity at a price of $21.25 per share and authorized the Transaction Committee and Goodwin Procter to negotiate the terms of such exclusivity based on guidance provided by the Special Committee. In addition, at this meeting Mr. MacDonald indicated that he would be supportive of a price of $21.25 per share."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "bid": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "nda_access": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "exit": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a potential buyer withdraws, declines to bid, is told it will not advance, or is otherwise excluded from the process? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "deadline": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "exclusivity": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that exclusivity is requested, authorised, granted, signed or extended? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "agreements": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "bid": {
+    "type": "noul",
+    "noul": 0.7
+   },
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "exit": {
+    "type": "noul",
+    "noul": 0.21
+   },
+   "deadline": {
+    "type": "noul",
+    "noul": 0.3
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.24
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.61
+   },
+   "exclusivity": {
+    "type": "noul",
+    "noul": 0.74
+   },
+   "agreements": {
+    "type": "noul",
+    "noul": 0.4
+   }
+  },
+  "usage": {
+   "input_tokens": 1339,
+   "output_tokens": 138
+  }
+ },
+ "latency_s": 0.252
+}

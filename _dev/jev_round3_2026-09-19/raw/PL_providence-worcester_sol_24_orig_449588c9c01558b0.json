@@ -1,0 +1,67 @@
+{
+ "request": {
+  "state": {
+   "passage": {
+    "before": [
+     "On March 24, 2016, the Transaction Committee met by telephone conference to discuss the results of management's meeting with Party A and to discuss next steps in the process. Members of management and representatives of each of GHF and the Company's legal counsel, Hinckley, Allen & Snyder LLP (which we refer to as \"Hinckley Allen\"), participated in all meetings of the Transaction Committee, except as otherwise indicated. At this meeting, Mr. Noreck reported that he and other members of the senior management team had met with various representatives of Party A on March 22 and 23, 2016 and had informed Party A of GHF's engagement. The Transaction Committee authorized GHF to contact Party A as well as other potential buyers to determine their level of interest in a change in control transaction. During the week of March 28, 2016, in accordance with the Transaction Committee's directives, representatives of GHF contacted 11 potential strategic buyers (including Party A) and 18 potential financial buyers. Each of the potential strategic buyers and 14 potential financial buyers subsequently executed confidentiality agreements. The confidentiality agreements did not contain any \"standstill\" or similar provision that would prohibit a potential buyer from submitting a proposal or making an offer to acquire the Company.",
+     "Between April 3, 2016 and April 6, 2016, representatives of GHF and members of the Company's management held a series of introductory meetings with five potential strategic buyers (including G&W) at the American Short Line and Regional Railroad Association's 2016 Connections Convention (\"2016 Connections Convention\").",
+     "On April 7, 2016, the Transaction Committee met by telephone conference and discussed the process to date with representatives of GHF. Representatives of GHF reported that they and Company management had held a series of introductory meetings with five potential strategic buyers (including G&W) at the 2016 Connections Convention. Mr. Noreck reported that the Company had also approached two additional Class I railroads to determine their interest in a possible transaction. After discussion, the Transaction Committee authorized representatives of GHF, on behalf of the Company, to contact each of the five interested parties with whom management had met at the 2016 Connections Convention, as well as other potential strategic buyers (including certain Class I railroads) and private equity firms who had entered into confidentiality agreements with the Company to confirm their continuing interest. Subsequently, on April 21, 2016, the Company and representatives of GHF held an introductory meeting with another potential strategic buyer (\"Party B\").",
+     "With the assistance of GHF, the Company prepared a memorandum concerning the Company and its prospects, which was distributed to the potential buyers, including Party A, Party B and G&W, that had executed confidentiality agreements. The Transaction Committee met with representatives of GHF by telephone conference on April 22, 2016 and discussed the status of discussions with potential buyers. On April 27, 2016,",
+     "the Board met in executive session (without Mr. Eder present) with representatives of GHF and discussed the status of the process, including that each potential buyer had been advised to submit a non-binding indication of interest by May 10, 2016 (which deadline was subsequently postponed to May 19, 2016 to ensure the potential buyers had sufficient time to formulate their most compelling offers).",
+     "Between May 19, 2016 and June 1, 2016, the Company received nine written indications of interest (\"IOIs\") from potential buyers, with offer prices per share ranging from $17.93 to $26.50 (assuming the conversion of preferred stock into common stock), implying equity values of $90 million to $134 million. The Transaction Committee met by telephone conference on May 23, 2016 and again on June 1, 2016 to consider the IOIs. In view of the substantial amount of management time that would be required for management presentations, the Transaction Committee concluded that the two low bidders should be excluded from that process. The Transaction Committee authorized representatives of GHF to schedule in-person management presentations with the remaining seven potential buyers and allow these parties to conduct additional due diligence. These potential buyers were given access to an internet data site to conduct legal and financial due diligence.",
+     "In mid-June 2016, at the direction of the Transaction Committee, representatives of GHF instructed all potential buyers to submit non-binding letters of intent (\"LOIs\") by July 20, 2016, together with mark-ups of the forms of merger agreement, disclosure letter and voting agreement, which GHF indicated would be posted to the internet data site. Potential buyers were instructed to provide a valuation for the Company based on the purchase of 100% of the outstanding common stock on a dollar per share basis (assuming conversion of the preferred stock into common stock) or the financial terms of any non-cash proposal.",
+     "On June 29, 2016, the Company posted an initial draft of merger agreement to the internet data site, and on June 30, 2016, the Company posted an initial draft of voting agreement with respect to the common stock and preferred stock held by the Eder Trusts. On July 11, 2016, the Company posted an initial draft of disclosure letter to the internet data site."
+    ],
+    "cited_paragraph": "Over the course of June and July 2016, each of the potential buyers and their respective advisors engaged in due diligence of the Company's business and financial condition, including holding meetings with certain members of the Company's management team. The Transaction Committee met on June 30, 2016 to receive a status update on the management presentations and due diligence efforts of the potential buyers. In early July 2016, a potential strategic buyer that had not previously been part of the process (\"Party C\") approached the Company's management and expressed interest in acquiring the Company. After executing a confidentiality agreement, Party C was provided the memorandum concerning the Company provided to the other potential buyers. On July 12, 2016, Party C submitted an IOI with an offer price per share of $21.00 (implying an equity value of $108 million). Subsequently, Party C was provided access to the internet data site and the Company's management held a management presentation with Party C by telephone on July 14, 2016.",
+    "after": [
+     "In late July 2016, the Company received six LOIs with offer prices per share ranging from $19.20 to $24.00 (implying equity values of $96 million to $121 million). Party B, G&W and another bidder (\"Party D\") also provided mark-ups of the draft merger agreement and voting agreement. One bidder (\"Party E\") provided a summary of material issues and proposed changes to the merger agreement and voting agreement with respect to those issues.",
+     "Party B submitted an LOI to acquire the Company for a price of $24.00 per share (subject to an expedited diligence review)."
+    ]
+   }
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "scoped": {
+    "type": "choice",
+    "criteria": {
+     "supported": "The source states this price (or range) for this party at this specific event. Trailing zeros and wording may differ.",
+     "contradicted": "The source describes this specific event by this party and gives a different price or range for it, or the claimed figure belongs to another party, another event, or only one component of the package.",
+     "insufficient": "The source does not state a price for this specific event, for example because a standing earlier price is merely confirmed without being restated."
+    },
+    "instructions": "A research ledger claims that at the event recorded as \"Bid\" by \"Party C\", dated 07/12/2016 (priced proposal 1 of 2 by this party over the whole process, in date order), the total per-share value of the proposal was $21.00. Judge this claim against `passage` only. Bind party, date, event and price together: a figure that the passage gives for a different party, a different date or proposal, or for only the cash part of a package does not support the claim."
+   },
+   "actor_only": {
+    "type": "noul",
+    "instructions": "Does the passage state that \"Party C\" offered, proposed or indicated a price of $21.00 per share (the same number may be written without trailing zeros)?",
+    "criteria": {
+     "true": "The per-share figure $21.00 appears in the passage as this party's price.",
+     "false": "The passage gives a different figure for this party, or no figure."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "scoped": {
+    "type": "choice",
+    "choice": "supported",
+    "confidence": 1.0,
+    "probabilities": {
+     "insufficient": 0.0,
+     "supported": 1.0,
+     "contradicted": 0.0
+    }
+   },
+   "actor_only": {
+    "type": "noul",
+    "noul": 0.99
+   }
+  },
+  "usage": {
+   "input_tokens": 2203,
+   "output_tokens": 63
+  }
+ },
+ "latency_s": 0.401
+}

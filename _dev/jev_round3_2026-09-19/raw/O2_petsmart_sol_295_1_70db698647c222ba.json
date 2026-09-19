@@ -1,0 +1,84 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "During the period from the middle of August through the end of October, the Company developed the Profit Improvement Plan and prepared for a sale process. During this period, J.P. Morgan was contacted by 27 potential participants in a sale process, including three strategic parties (not counting Industry Participant) and 24 financial participants (including potential lead buyers as well as large suppliers of equity capital to lead buyers).",
+   "target_sentence": "During this period, J.P. Morgan was contacted by 27 potential participants in a sale process, including three strategic parties (not counting Industry Participant) and 24 financial participants (including potential lead buyers as well as large suppliers of equity capital to lead buyers)."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_5": "07/03/2014 | JANA Partners | Activist | Disclosed a 9.9% stake and sought review of strategic alternatives, including a sale.",
+     "row_6": "07/07/2014 | Longview | Activist | Publicly urged the board to consider a sale and offered a possible rollover.",
+     "row_8": "08/07/2014 | Industry Participant | Bidder interest | Initiating approach: said it might revisit a possible combination if PetSmart pursued alternatives.",
+     "row_9": "mid-August\u201310/31/2014 | 3 strategic potential participants | Contact | Inbound contacts to J.P. Morgan; part of 27 potential participants, excluding Industry Participant.",
+     "row_10": "mid-August\u201310/31/2014 | 24 financial potential participants | Contact | Inbound contacts to J.P. Morgan; included possible lead buyers and large equity suppliers.",
+     "row_11": "08/13/2014 | PetSmart | Target sale decision | Board decided to explore alternatives, including a possible sale, and planned outreach for late September or early October.",
+     "row_12": "08/19/2014 | PetSmart | Sale process announced | Publicly announced exploration of strategic alternatives, including a possible sale.",
+     "row_13": "08/27/2014 | PetSmart | Other material event | Excluded Industry Participant from the organized process over antitrust, delay and information risks; unsolicited proposals would still be considered.",
+     "row_14": "first week of October 2014 | PetSmart | Round opened | Admitted 15 financial buyers through NDAs; all received diligence, senior-management presentations and detailed plan information.",
+     "row_15": "first week of October 2014 | Buyer Group | NDA signed | Part of the 15-buyer NDA cohort; later submitted a first-round indication.",
+     "row_16": "first week of October 2014 | Bidder 2 | NDA signed | Part of the 15-buyer NDA cohort; later submitted a first-round indication.",
+     "row_17": "first week of October 2014 | 4 other first-round bidders | NDA signed | Part of the 15-buyer NDA cohort; all four later submitted first-round indications.",
+     "row_18": "first week of October 2014 | 9 other financial buyers | NDA signed | Residual of the 15-buyer cohort after the six later submitters: 15 \u2212 6 = 9.",
+     "row_19": "during October 2014 | PetSmart | Deadline set | Set 10/30/2014 for non-binding preliminary indications of interest.",
+     "row_20": "during October 2014 | Longview | Other material event | Offered all bidders optional rollover support of up to 7.5 million shares; it was not a participation condition.",
+     "row_21": "10/30/2014 | PetSmart | Deadline | Preliminary-indication deadline; six parties submitted and the board selected four on 11/03/2014.",
+     "row_22": "10/30/2014 | Buyer Group | Bid | price 81-83 | Non-binding preliminary indication; later advanced.",
+     "row_23": "10/30/2014 | Unnamed $80\u2013$85 bidder | Bid | price 80-85 | Non-binding preliminary indication; treated as one later Bidder 3 precursor under Q4.",
+     "row_24": "10/30/2014 | Unnamed other \u2265$80 bidder | Bid | Its range reached at least $80; endpoints undisclosed. Treated as the other Bidder 3 precursor under Q4.",
+     "row_25": "10/30/2014 | Bidder 2 | Bid | price 78 | Initial non-binding preliminary indication; revised after discussions with J.P. Morgan.",
+     "row_26": "10/30/2014 | 2 other first-round bidders | Bid | Residual submitters; the filing gives no individual prices. Under Q4 they were the bidders eliminated on 11/03/2014.",
+     "row_27": "10/30/2014 | 9 other financial buyers | Did not submit | 15 NDA signers \u2212 6 reported submitters = 9; this cohort may be affected by the five-groups summary.",
+     "row_28": "10/30/2014\u201311/02/2014 | Bidder 2 | Bid | price 81-84 | Raised its preliminary indication after discussions with J.P. Morgan.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_9",
+    "confidence": 0.53,
+    "probabilities": {
+     "row_11": 0.0,
+     "row_26": 0.0,
+     "row_24": 0.0,
+     "row_27": 0.0,
+     "row_12": 0.0,
+     "row_16": 0.0,
+     "row_18": 0.0,
+     "row_28": 0.0,
+     "row_6": 0.0,
+     "row_8": 0.0,
+     "row_25": 0.0,
+     "row_14": 0.0,
+     "row_10": 0.33,
+     "row_13": 0.0,
+     "row_9": 0.56,
+     "row_22": 0.0,
+     "row_20": 0.0,
+     "row_15": 0.0,
+     "row_17": 0.0,
+     "row_5": 0.0,
+     "row_19": 0.0,
+     "row_23": 0.0,
+     "not_an_event": 0.0,
+     "row_21": 0.0,
+     "none": 0.1
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1906,
+   "output_tokens": 261
+  }
+ },
+ "latency_s": 0.386
+}

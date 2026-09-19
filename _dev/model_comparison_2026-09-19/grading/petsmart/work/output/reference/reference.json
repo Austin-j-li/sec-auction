@@ -1,0 +1,2062 @@
+{
+  "deal": "PetSmart, Inc. / Argos Holdings Inc. (Buyer Group), signed December 14, 2014",
+  "stage": 1,
+  "status": "Frozen pre-candidate reference; no candidates supplied or inspected",
+  "source_files": [
+    {
+      "path": "RUBRIC.md",
+      "sha256": "8ed4069a31f6623324ce0299f9dff1f7968a6cd14544c75ab20bd732af0f34c2"
+    },
+    {
+      "path": "SEC_Deal_Ledger_Extraction_Instruction.md",
+      "sha256": "f7e73a6673166597f2bd7c8c0457f72ba996585f1351595d00cd653f7a37009d"
+    },
+    {
+      "path": "raw_filing/petsmart_2015-02-02_DEFM14A.htm",
+      "sha256": "52c93afa5897d1878441e76050f3c9607972624ea1e4105c29be815f4bf04ca9"
+    }
+  ],
+  "source_policy": "Only supplied mounted files. Entire background pp21–26 read, other full-filing sections inspected for parties, reasons, projections, financing, dates and advisers. Quotations use rendered text, HTML entities decoded and whitespace collapsed, never spliced. Page labels are printed pages.",
+  "scoring_policy": {
+    "credits": {
+      "pass": 1,
+      "partial": 0.5,
+      "fail": 0
+    },
+    "partial_rule": "Only a specifically identified correct and useful part; missing row/evidence not pass. Enumerated accepted alternatives receive full credit. Keep field-level misses.",
+    "denominators_frozen": true,
+    "critical_errors_separate": true,
+    "upstream_errors": "Identify common cause and affected practical fields/tests, not multiple independent incidents.",
+    "amendments": "Never silently modify reference; source-backed proposed amendment and both original/amended scoring applied equally to all candidates.",
+    "mechanics_separate": "Report workbook layout, controlled strings, real-date cells, note/quote lengths, empty reviewer notes, flags and review burden separately. Style/brevity do not earn primary points."
+  },
+  "deal_facts": {
+    "target": "PetSmart, Inc.",
+    "acquirer": "Argos Holdings Inc. / Argos Merger Sub Inc.; Buyer Group",
+    "acquirer_type": "Financial",
+    "buyer_members": "BC Partners-advised funds, La Caisse de dépôt et placement du Québec, affiliates of GIC Special Investments and StepStone; Longview shareholder rollover support",
+    "agreed_price": 83,
+    "consideration": "USD cash per ordinary cash-out share; rollover separate",
+    "signed": "2014-12-14",
+    "announced": "2014-12-14",
+    "filing": "DEFM14A, February 2, 2015",
+    "background_pages": [
+      "21",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26"
+    ],
+    "initiation": "Activist-influenced / mixed",
+    "processes": 1,
+    "auction_screen": "Met: 15 financial buyer confidentiality/standstill agreements",
+    "whole_company_bids": true,
+    "currency_units": "USD per share",
+    "target_financial_adviser": "J.P. Morgan; separate unnamed June advisor not proved identical",
+    "target_legal_adviser": "Wachtell, Lipton, Rosen & Katz",
+    "buyer_legal_adviser": "Simpson Thacher and Bartlett LLP, inferred from agreement notice provision",
+    "sources": [
+      {
+        "page": "1",
+        "quote": "the “Buyer Group” refers to a consortium of funds advised by BC Partners, Inc."
+      },
+      {
+        "page": "1",
+        "quote": "“Parent” refers to Argos Holdings Inc., a Delaware corporation and “Merger Sub” refers to Argos Merger Sub Inc., a Delaware corporation;"
+      },
+      {
+        "page": "28",
+        "quote": "as of February 2, 2015, the date of this proxy statement"
+      }
+    ]
+  },
+  "inventory_note": "Finite numbered inventory covers required material events, C12 offers and explicit contextual exclusions. Not a demand for one ledger row per item: notes identify permitted consolidation, separate-row obligations and conditional inferences. All classifications are instruction judgments, not source labels. Optional actual same-evening reaffirmation is addressed in A7; no mandatory synthetic reaffirmation.",
+  "inventory": [
+    {
+      "id": "E01",
+      "when": "March–spring 2014",
+      "who": "PetSmart / Industry Participant",
+      "event": "Scope exclusion",
+      "supported_fact": "PetSmart explored acquiring or combining with Industry Participant; it was not for sale and raised antitrust concerns.",
+      "instruction_judgment": "C1: contextual history, not an offer to acquire PetSmart or a separate abandoned sale process.",
+      "sources": [
+        {
+          "page": "21",
+          "quote": "Industry Participant was not for sale"
+        }
+      ]
+    },
+    {
+      "id": "E02",
+      "when": "May–June 2014",
+      "who": "Stockholders / Longview",
+      "event": "Activist",
+      "supported_fact": "After May 21 earnings, communications urged alternatives including sale; Longview met management in May without advocating a particular alternative.",
+      "instruction_judgment": "Consolidate early initiation context; no independent bidder entry.",
+      "sources": [
+        {
+          "page": "21",
+          "quote": "Among the alternatives suggested were a levered return of capital to stockholders and a sale of the Company."
+        },
+        {
+          "page": "21",
+          "quote": "but did not advocate for any specific transactions or alternatives."
+        }
+      ]
+    },
+    {
+      "id": "E03",
+      "when": "06/18/2014",
+      "who": "Wachtell Lipton / PetSmart",
+      "event": "Adviser",
+      "supported_fact": "Wachtell, Lipton, Rosen & Katz acting as target legal adviser.",
+      "instruction_judgment": "First seen acting June 18; no disclosed appointment date. One relationship row.",
+      "sources": [
+        {
+          "page": "21",
+          "quote": "with Wachtell, Lipton, Rosen & Katz (“Wachtell Lipton”), its legal advisor"
+        }
+      ]
+    },
+    {
+      "id": "E04",
+      "when": "06/18/2014",
+      "who": "Unnamed financial advisor / PetSmart",
+      "event": "Adviser",
+      "supported_fact": "Unnamed financial advisor attended June 18 review.",
+      "instruction_judgment": "Record first seen acting, or cover uncertainty with named-adviser note. Do not assert this was J.P. Morgan or invent an ended mandate.",
+      "sources": [
+        {
+          "page": "21",
+          "quote": "together with a financial advisor"
+        }
+      ]
+    },
+    {
+      "id": "E05",
+      "when": "06/18/2014",
+      "who": "PetSmart",
+      "event": "Other material event",
+      "supported_fact": "Board focused on capital return, created ad hoc committee and authorized vetting a financial adviser.",
+      "instruction_judgment": "Preparatory alternatives review, not Round 1 or unconditional sale decision; may be consolidated into initiation/adviser note.",
+      "sources": [
+        {
+          "page": "21",
+          "quote": "with a focus on returning capital to stockholders"
+        },
+        {
+          "page": "22",
+          "quote": "the board authorized the vetting and retention of a financial advisor"
+        }
+      ]
+    },
+    {
+      "id": "E06",
+      "when": "July 2014",
+      "who": "J.P. Morgan / PetSmart",
+      "event": "Adviser",
+      "supported_fact": "Retained in July; engagement letter effective August 21.",
+      "instruction_judgment": "One relationship at earliest July retention, with August 21 in note, not two mandates.",
+      "sources": [
+        {
+          "page": "22",
+          "quote": "In July, after interviewing several potential financial advisors, the Company retained J.P. Morgan as financial advisor"
+        },
+        {
+          "page": "30",
+          "quote": "Pursuant to an engagement letter effective as of August 21, 2014"
+        }
+      ]
+    },
+    {
+      "id": "E07",
+      "when": "07/03/2014",
+      "who": "JANA Partners",
+      "event": "Activist",
+      "supported_fact": "Disclosed 9.9% holding and advocacy for review including sale; continued advocacy July–August.",
+      "instruction_judgment": "Activist, not acquirer or NDA entrant.",
+      "sources": [
+        {
+          "page": "22",
+          "quote": "On July 3, 2014, JANA Partners filed a Schedule 13D"
+        },
+        {
+          "page": "22",
+          "quote": "JANA had acquired 9.9% of the Company’s outstanding common stock"
+        }
+      ]
+    },
+    {
+      "id": "E08",
+      "when": "07/07/2014; reiterated 07/10/2014",
+      "who": "Longview",
+      "event": "Activist",
+      "supported_fact": "Public letter urged consideration of sale and offered potential rollover depending on parties and terms.",
+      "instruction_judgment": "One compact advocacy/support note sufficient. Not an independent bidder.",
+      "sources": [
+        {
+          "page": "22",
+          "quote": "On July 7, 2014, Longview made public a letter to the board"
+        },
+        {
+          "page": "22",
+          "quote": "rolling part or all of its holdings into equity of the acquiring entity rather than receive cash consideration"
+        }
+      ]
+    },
+    {
+      "id": "E09",
+      "when": "07/10/2014",
+      "who": "JANA Partners",
+      "event": "Activist",
+      "supported_fact": "Met company and advocated sale.",
+      "instruction_judgment": "May consolidate as continued advocacy on July 3 row.",
+      "sources": [
+        {
+          "page": "22",
+          "quote": "At this meeting, the JANA representatives presented their perspectives on the Company and advocated for a sale of the Company."
+        }
+      ]
+    },
+    {
+      "id": "E10",
+      "when": "08/07/2014",
+      "who": "Industry Participant",
+      "event": "Bidder interest",
+      "supported_fact": "Approached J.P. Morgan about possible combination if PetSmart pursued alternatives.",
+      "instruction_judgment": "Strategic; Round 0 interest, no price, admission, NDA or bid.",
+      "sources": [
+        {
+          "page": "22",
+          "quote": "On August 7, 2014, a representative of Industry Participant contacted a representative of J.P. Morgan."
+        }
+      ]
+    },
+    {
+      "id": "E11",
+      "when": "08/13/2014",
+      "who": "PetSmart",
+      "event": "Target sale decision",
+      "supported_fact": "Board decided to explore alternatives including sale, directed Profit Improvement Plan, delegated oversight; outreach expected late September/early October.",
+      "instruction_judgment": "One continuing sale process. Not Round 1: outreach deferred.",
+      "sources": [
+        {
+          "page": "22",
+          "quote": "determined to explore strategic alternatives (including a possible sale of the Company)"
+        },
+        {
+          "page": "22",
+          "quote": "which was expected to be during the second half of September or early October"
+        }
+      ]
+    },
+    {
+      "id": "E12",
+      "when": "08/19/2014",
+      "who": "PetSmart",
+      "event": "Sale process announced",
+      "supported_fact": "Publicly announced alternatives exploration including sale.",
+      "instruction_judgment": "Separate from board decision; no acquisition bid.",
+      "sources": [
+        {
+          "page": "23",
+          "quote": "On August 19, 2014, concurrent with its second quarter earnings announcement, the Company issued a press release"
+        }
+      ]
+    },
+    {
+      "id": "E13",
+      "when": "After 08/13; communicated 08/22 and 08/27; reaffirmed 10/03/2014",
+      "who": "Industry Participant / PetSmart",
+      "event": "Other material event",
+      "supported_fact": "Refused invitation due to antitrust, delay and competitive-information concerns; unsolicited proposal would be considered; no further contact after August 27.",
+      "instruction_judgment": "Non-admission, not Dropped by target: never entered. Keep final refusal, consolidate reiterations.",
+      "sources": [
+        {
+          "page": "23",
+          "quote": "Industry Participant would not be invited into the exploratory process"
+        },
+        {
+          "page": "23",
+          "quote": "There has been no contact between PetSmart and Industry Participant (or between any of their respective representatives) since August 27, 2014."
+        }
+      ]
+    },
+    {
+      "id": "E14",
+      "when": "Middle of August–end of October 2014",
+      "who": "27 prospective participants",
+      "event": "Contact",
+      "supported_fact": "J.P. Morgan received approaches from 27: three strategic excluding Industry Participant, 24 financial including buyers and equity suppliers.",
+      "instruction_judgment": "Contact does not equal entry. Split by type/net named rows; unsplit cohort Unknown. October 3 report already mentions all 27 since August 13: prefer tightened bounds, retain broader period wording and note tension.",
+      "sources": [
+        {
+          "page": "23",
+          "quote": "J.P. Morgan was contacted by 27 potential participants in a sale process"
+        },
+        {
+          "page": "23",
+          "quote": "including three strategic parties (not counting Industry Participant) and 24 financial participants"
+        }
+      ],
+      "count": 27,
+      "type_split": {
+        "Financial": 24,
+        "Strategic": 3
+      }
+    },
+    {
+      "id": "E15",
+      "when": "10/03/2014",
+      "who": "PetSmart",
+      "event": "Other material event",
+      "supported_fact": "Approximately 15 parties had expressed interest; board reviewed completed planning for Profit Improvement Plan.",
+      "instruction_judgment": "Consolidate preparation. Approximate interest count does not replace exactly 15 executed NDAs.",
+      "sources": [
+        {
+          "page": "23",
+          "quote": "approximately 15 parties had expressed interest in participating in the process"
+        }
+      ]
+    },
+    {
+      "id": "E16",
+      "when": "First week of October 2014",
+      "who": "PetSmart / 15 financial buyers",
+      "event": "Round opened",
+      "supported_fact": "Organized wave of confidentiality/standstill agreements; all received substantive management/diligence access in October.",
+      "instruction_judgment": "C8 incoming-buyer rule: Round 1, Not final. Bounds October 1–7, sort October 1 for wave (October 4 midpoint acceptable for undated opening).",
+      "sources": [
+        {
+          "page": "23",
+          "quote": "In the first week of October 2014, the Company entered into confidentiality and standstill agreements with 15 potentially interested financial buyers"
+        }
+      ],
+      "process": 1,
+      "round": 1
+    },
+    {
+      "id": "E17",
+      "when": "First week of October 2014",
+      "who": "15 financial buyers",
+      "event": "NDA signed",
+      "supported_fact": "Exactly 15 financial potential buyers signed; all received diligence and detailed financial/business information during October.",
+      "instruction_judgment": "NDA separate from Contact and opening. Residual plus named rows must total 15, not 15 plus named parties. Auction screen Met (15).",
+      "sources": [
+        {
+          "page": "23",
+          "quote": "15 potentially interested financial buyers, all 15 of which, during the month of October engaged in due diligence"
+        }
+      ],
+      "count": 15
+    },
+    {
+      "id": "E18",
+      "when": "During October, by 10/30/2014",
+      "who": "PetSmart",
+      "event": "Deadline set",
+      "supported_fact": "Preliminary nonbinding indications due October 30.",
+      "instruction_judgment": "Communication window October 1–30, not exact due day. Round 1.",
+      "sources": [
+        {
+          "page": "23",
+          "quote": "During October, the potential bidders were informed that non-binding preliminary indications of interest would be due on October 30, 2014."
+        }
+      ]
+    },
+    {
+      "id": "E19",
+      "when": "During October 2014",
+      "who": "Longview / potential bidders",
+      "event": "Other material event",
+      "supported_fact": "Potential rollover up to 7.5 million shares communicated; bidder interest requested, not mandatory.",
+      "instruction_judgment": "Fold support availability into admission/deadline note if concise. No independent bid, NDA entrant or group change.",
+      "sources": [
+        {
+          "page": "23",
+          "quote": "willing to “roll-over” up to 7.5 million shares on terms and price acceptable to Longview"
+        },
+        {
+          "page": "24",
+          "quote": "such interest was not a condition to participation in the process."
+        }
+      ]
+    },
+    {
+      "id": "E20",
+      "when": "10/30/2014",
+      "who": "PetSmart",
+      "event": "Deadline",
+      "supported_fact": "Six parties submitted indications on October 30.",
+      "instruction_judgment": "Reached deadline; Enforced by November 3 advancement. Subsequent improvement is not a late initial bid or disclosed extension.",
+      "sources": [
+        {
+          "page": "24",
+          "quote": "On October 30, six of the potentially interested parties submitted indications of interest."
+        }
+      ]
+    },
+    {
+      "id": "E21",
+      "when": "10/30/2014",
+      "who": "Buyer Group",
+      "event": "Bid",
+      "supported_fact": "Initial $81–83 per share range.",
+      "instruction_judgment": "Informal; Conditions Unclear: substantive access already supplied, no attached condition disclosed. Initial consideration not stated.",
+      "sources": [
+        {
+          "page": "24",
+          "quote": "including the Buyer Group, which indicated a range of $81.00 to $83.00 per share"
+        }
+      ],
+      "offer_id": "B01",
+      "price_low": 81,
+      "price_high": 83,
+      "all_cash": "Not stated",
+      "formality": "Informal",
+      "conditions": "Unclear",
+      "round": 1,
+      "count": 1
+    },
+    {
+      "id": "E22",
+      "when": "10/30/2014",
+      "who": "Unnamed financial bidder with $80–85 range",
+      "event": "Bid",
+      "supported_fact": "Initial $80–85 per share range.",
+      "instruction_judgment": "Individually distinguishable slot, no proved link to Bidder 3. Informal / Unclear; initial cash form not disclosed.",
+      "sources": [
+        {
+          "page": "24",
+          "quote": "another bidder, which suggested a range of $80.00 to $85.00 per share"
+        }
+      ],
+      "offer_id": "B02",
+      "price_low": 80,
+      "price_high": 85,
+      "all_cash": "Not stated",
+      "formality": "Informal",
+      "conditions": "Unclear",
+      "round": 1,
+      "count": 1
+    },
+    {
+      "id": "E23",
+      "when": "10/30/2014",
+      "who": "Other qualifying unnamed financial bidder",
+      "event": "Bid",
+      "supported_fact": "Third initial bidder had range reaching at least $80; endpoints undisclosed.",
+      "instruction_judgment": "No exact endpoints. Upper endpoint reaching at least $80 is not a lower bound on entire offered range. Do not invent $80 point bid.",
+      "sources": [
+        {
+          "page": "24",
+          "quote": "Three bidders initially indicated price ranges that reached at least $80.00 per share"
+        }
+      ],
+      "offer_id": "B03",
+      "price_low": null,
+      "price_high": null,
+      "all_cash": "Not stated",
+      "formality": "Informal",
+      "conditions": "Unclear",
+      "round": 1,
+      "count": 1
+    },
+    {
+      "id": "E24",
+      "when": "10/30/2014",
+      "who": "Bidder 2",
+      "event": "Bid",
+      "supported_fact": "Initial $78 per share.",
+      "instruction_judgment": "Informal / Unclear. Initial consideration not disclosed; separate from subsequent range revision.",
+      "sources": [
+        {
+          "page": "24",
+          "quote": "which had initially indicated a price of $78.00"
+        }
+      ],
+      "offer_id": "B04",
+      "price_low": 78,
+      "price_high": 78,
+      "all_cash": "Not stated",
+      "formality": "Informal",
+      "conditions": "Unclear",
+      "round": 1,
+      "count": 1
+    },
+    {
+      "id": "E25",
+      "when": "10/30/2014",
+      "who": "Two residual initial financial submitters",
+      "event": "Bid",
+      "supported_fact": "Two additional indications required to reach six initial submissions; prices undisclosed.",
+      "instruction_judgment": "Required C12 unpriced offers; Count 2 cohort with inferred arithmetic, no manufactured identities, endpoints or common terms.",
+      "sources": [
+        {
+          "page": "24",
+          "quote": "On October 30, six of the potentially interested parties submitted indications of interest."
+        }
+      ],
+      "offer_id": "B05",
+      "price_low": null,
+      "price_high": null,
+      "all_cash": "Not stated",
+      "formality": "Informal",
+      "conditions": "Unclear",
+      "round": 1,
+      "count": 2
+    },
+    {
+      "id": "E26",
+      "when": "by 10/30/2014",
+      "who": "Nine financial NDA signers",
+      "event": "Did not submit",
+      "supported_fact": "15 signers less 6 initial submitters leaves 9.",
+      "instruction_judgment": "Required C16 inference: Count 9, Inferred Y, Exit reason Not stated; anonymous residual. Later group members not assigned by arithmetic.",
+      "sources": [
+        {
+          "page": "23",
+          "quote": "15 potentially interested financial buyers"
+        },
+        {
+          "page": "24",
+          "quote": "including those that did not submit an indication of interest"
+        }
+      ],
+      "count": 9,
+      "inferred": true,
+      "exit_reason": "Not stated"
+    },
+    {
+      "id": "E27",
+      "when": "10/30–11/02/2014",
+      "who": "Bidder 2",
+      "event": "Bid",
+      "supported_fact": "Increased indication from $78 to $81–84 after banker calls.",
+      "instruction_judgment": "Round 1, Informal / Unclear; before November 3 advancement. Sort October 30 under response/due-date rule after initial bid; bounds remain interval.",
+      "sources": [
+        {
+          "page": "24",
+          "quote": "From October 30 to November 2, 2014"
+        },
+        {
+          "page": "24",
+          "quote": "increased its indication to a range of $81.00 to $84.00 per share."
+        }
+      ],
+      "offer_id": "B06",
+      "price_low": 81,
+      "price_high": 84,
+      "all_cash": "Not stated",
+      "formality": "Informal",
+      "conditions": "Unclear",
+      "round": 1,
+      "count": 1
+    },
+    {
+      "id": "E28",
+      "when": "11/03/2014 decision; subsequently notified",
+      "who": "Two non-advancing initial submitters",
+      "event": "Dropped by target",
+      "supported_fact": "Four of six advanced; eliminated parties subsequently notified and expressed no interest/ability to remain above initial levels.",
+      "instruction_judgment": "Count 2 by subtraction; inferred cohort, decision sort November 3. Would not improve earlier offer preferred; Lower offer than rivals accepted with selection rationale. No names invented.",
+      "sources": [
+        {
+          "page": "24",
+          "quote": "allow the four bidders that had indicated a price or range at or above $80.00 per share to proceed"
+        },
+        {
+          "page": "24",
+          "quote": "none of which indicated any interest or ability to remain in the process at price levels above their respective initial indications."
+        }
+      ],
+      "count": 2,
+      "inferred": true
+    },
+    {
+      "id": "E29",
+      "when": "11/03/2014",
+      "who": "PetSmart / four selected bidders",
+      "event": "Round opened",
+      "supported_fact": "Four qualifying bidders admitted to final round, followed by November diligence and request for comments with final bids.",
+      "instruction_judgment": "Round 2, Announced as final; later process letter/draft adds no round. Selection/notification opens stage.",
+      "sources": [
+        {
+          "page": "24",
+          "quote": "to proceed to the final round of the sale process."
+        },
+        {
+          "page": "24",
+          "quote": "with instructions that the bidders submit any proposed comments on the merger agreement together with their final bids."
+        }
+      ],
+      "process": 1,
+      "round": 2
+    },
+    {
+      "id": "E30",
+      "when": "After recorded exit, before Bidder 3 formation; conditional on A2/A3",
+      "who": "Returning anonymous financial constituent",
+      "event": "Re-entered",
+      "supported_fact": "Second constituent participated in Bidder 3 after a prior cohort exit if the selected reconstruction places it among those previously eliminated or not submitting.",
+      "instruction_judgment": "Conditional required C16 inference, Count 1, Inferred Y; link prior cohort exit without claiming specific original identity. Not required under A1, where both constituents were still live.",
+      "sources": [
+        {
+          "page": "24",
+          "quote": "the ad hoc committee authorized these two bidders to work together."
+        }
+      ],
+      "conditional": true,
+      "inferred": true,
+      "count": 1
+    },
+    {
+      "id": "E31",
+      "when": "After 11/03, before 12/03/2014; narrative November",
+      "who": "Two unnamed financial bidders / Bidder 3",
+      "event": "Bidding group changed",
+      "supported_fact": "Two authorized to work together: one selected finalist wanted equity partner; other threatened to drop out unless permitted to team. Joint unit called Bidder 3.",
+      "instruction_judgment": "Actual joint unit established. No proved member names or second-member advancement status. Alternatives A1–A3 require explicit accounting; reduce independent units on grouping.",
+      "sources": [
+        {
+          "page": "24",
+          "quote": "the ad hoc committee authorized these two bidders to work together."
+        },
+        {
+          "page": "24",
+          "quote": "We refer to these two bidders together as “Bidder 3.”"
+        }
+      ]
+    },
+    {
+      "id": "E32",
+      "when": "November 2014, following third-quarter release",
+      "who": "PetSmart / bidders",
+      "event": "Other material event",
+      "supported_fact": "Updated FY2014 projections provided after bidding began.",
+      "instruction_judgment": "Required information update; no invented unequal treatment among finalists. Common November diligence belongs with admission note.",
+      "sources": [
+        {
+          "page": "24",
+          "quote": "representatives of J.P. Morgan provided the bidders with updates to the Company’s fiscal year 2014 financial projections."
+        }
+      ]
+    },
+    {
+      "id": "E33",
+      "when": "Undated, by final evaluation 12/13/2014",
+      "who": "PetSmart / J.P. Morgan / Buyer Group",
+      "event": "Other material event",
+      "supported_fact": "Some projections and 2020–2024 extrapolations remained internal; sensitivities supplied only to board.",
+      "instruction_judgment": "Consolidated withholding/access distinction or projection note acceptable. No dated denial or differential access among rivals invented; C2 board-versus-buyer row consolidation is open.",
+      "sources": [
+        {
+          "page": "39",
+          "quote": "but were not made available to Parent, Merger Sub or members of the Buyer Group"
+        },
+        {
+          "page": "39",
+          "quote": "The sensitivities assessment was provided to the board in its evaluation of the proposed merger, and was not provided to Parent, Merger Sub or any other party."
+        }
+      ]
+    },
+    {
+      "id": "E34",
+      "when": "By 12/03/2014",
+      "who": "PetSmart",
+      "event": "Deadline set",
+      "supported_fact": "Initially final bids due December 5, completion targeted December 15.",
+      "instruction_judgment": "Communication day unknown. By December 3 contextual bound preferred; conservative by December 4 acceptable. December 15 is not bid deadline.",
+      "sources": [
+        {
+          "page": "24",
+          "quote": "had initially set Friday, December 5 as the date for submission of bids"
+        }
+      ]
+    },
+    {
+      "id": "E35",
+      "when": "12/04–12/05/2014",
+      "who": "PetSmart",
+      "event": "Deadline revised",
+      "supported_fact": "Moved final bids to December 10 evening, asked for markups and financing commitments earlier if possible.",
+      "instruction_judgment": "Sort December 4 midpoint rounded earlier; December 5 superseded/reached ambiguity A4. No new round.",
+      "sources": [
+        {
+          "page": "24",
+          "quote": "on December 4 and December 5, 2014"
+        },
+        {
+          "page": "25",
+          "quote": "the Company set the evening of Wednesday, December 10"
+        },
+        {
+          "page": "25",
+          "quote": "as the deadline for submission of final bids"
+        }
+      ]
+    },
+    {
+      "id": "E36",
+      "when": "12/06/2014",
+      "who": "Buyer Group / Bidder 2",
+      "event": "Other material event",
+      "supported_fact": "Both supplied document comments; Buyer Group supplied financing commitments.",
+      "instruction_judgment": "Annotate commitment/formality evidence; not automatic priced Bid reaffirmed. No selection/finalization with chosen bidder on standing price; comments alone not necessarily markup.",
+      "sources": [
+        {
+          "page": "25",
+          "quote": "On December 6, 2014, the Buyer Group and Bidder 2 submitted their respective comments"
+        },
+        {
+          "page": "25",
+          "quote": "the Buyer Group provided its financing commitment documents."
+        }
+      ]
+    },
+    {
+      "id": "E37",
+      "when": "12/09/2014",
+      "who": "Longview / Buyer Group / Bidder 2",
+      "event": "Other material event",
+      "supported_fact": "Introductory meetings after confidentiality agreement; intended bid prices could not be shared.",
+      "instruction_judgment": "May fold into support/access note. Not a sixteenth buyer NDA or Longview entry.",
+      "sources": [
+        {
+          "page": "25",
+          "quote": "the bidders were prohibited at this time from disclosing to Longview the respective prices that the bidders intended to bid."
+        }
+      ]
+    },
+    {
+      "id": "E38",
+      "when": "12/10/2014",
+      "who": "PetSmart",
+      "event": "Deadline",
+      "supported_fact": "Two final written bids and Bidder 3 verbal indication received.",
+      "instruction_judgment": "Reached revised final deadline; Extended to December 12 by same-day request, still Round 2.",
+      "sources": [
+        {
+          "page": "25",
+          "quote": "On December 10, PetSmart received final bid letters along with revised versions of the merger agreement"
+        }
+      ]
+    },
+    {
+      "id": "E39",
+      "when": "12/10/2014",
+      "who": "Buyer Group",
+      "event": "Bid",
+      "supported_fact": "Offered $80.70 cash, with revised merger agreement and transaction documents.",
+      "instruction_judgment": "Formal / Light: financing commitments supplied December 6, no substantive diligence condition reported. Lower than initial range is new offer, not exit.",
+      "sources": [
+        {
+          "page": "25",
+          "quote": "The Buyer Group offered $80.70 per share, in cash"
+        },
+        {
+          "page": "25",
+          "quote": "final bid letters along with revised versions of the merger agreement and other transaction documents"
+        },
+        {
+          "page": "25",
+          "quote": "Each bidder indicated that its bid was not dependent on a rollover by Longview"
+        }
+      ],
+      "offer_id": "B07",
+      "price_low": 80.7,
+      "price_high": 80.7,
+      "all_cash": "Yes",
+      "formality": "Formal",
+      "conditions": "Light",
+      "round": 2,
+      "count": 1
+    },
+    {
+      "id": "E40",
+      "when": "12/10/2014",
+      "who": "Bidder 2",
+      "event": "Bid",
+      "supported_fact": "Offered $80.35 cash, with revised documents; Buyer Group documentation comparatively less conditional.",
+      "instruction_judgment": "Formal / Unclear preferred; Light acceptable with final-documentation-context rationale. Comparative conditionality alone does not establish Heavy trigger or absent financing.",
+      "sources": [
+        {
+          "page": "25",
+          "quote": "Bidder 2 offered $80.35 per share, in cash."
+        },
+        {
+          "page": "25",
+          "quote": "including because they were less conditional and more likely to be completed"
+        },
+        {
+          "page": "25",
+          "quote": "Each bidder indicated that its bid was not dependent on a rollover by Longview"
+        }
+      ],
+      "offer_id": "B08",
+      "price_low": 80.35,
+      "price_high": 80.35,
+      "all_cash": "Yes",
+      "formality": "Formal",
+      "conditions": "Unclear",
+      "round": 2,
+      "count": 1
+    },
+    {
+      "id": "E41",
+      "when": "12/10/2014",
+      "who": "Bidder 3",
+      "event": "Did not submit",
+      "supported_fact": "Valuation would not exceed current stock price approximately $78; told unlikely competitive, did not submit written offer.",
+      "instruction_judgment": "Prefer valuation in exit note, not Bid. Reason Value at or below market price; Count 1. Explained Withdrew/Dropped by target allowed given joint causation. A5 allows questioned verbal-bid reading.",
+      "sources": [
+        {
+          "page": "25",
+          "quote": "their valuation would not be above the current stock price of approximately $78 per share."
+        },
+        {
+          "page": "25",
+          "quote": "accordingly Bidder 3 did not submit a written offer."
+        }
+      ],
+      "count": 1,
+      "exit_reason": "Value at or below market price"
+    },
+    {
+      "id": "E42",
+      "when": "by 12/10/2014, conditional on A2/A3",
+      "who": "Unidentified fourth finalist",
+      "event": "Did not submit",
+      "supported_fact": "Final responses identify Buyer Group, Bidder 2 and Bidder 3 only.",
+      "instruction_judgment": "Conditional inferred residual Count 1, reason Not stated, if one finalist teams with non-finalist. No such exit if two of four finalists merged under A1.",
+      "sources": [
+        {
+          "page": "25",
+          "quote": "from the Buyer Group and from Bidder 2 and a verbal indication from Bidder 3."
+        }
+      ],
+      "conditional": true
+    },
+    {
+      "id": "E43",
+      "when": "12/10/2014",
+      "who": "PetSmart",
+      "event": "Deadline revised",
+      "supported_fact": "Told the two bidders to improve by December 12.",
+      "instruction_judgment": "Extension of existing final round under patched C8/C11, not Round 3; Bidder 3 out.",
+      "sources": [
+        {
+          "page": "25",
+          "quote": "to instruct the bidders to submit improved bids on December 12, 2014."
+        }
+      ]
+    },
+    {
+      "id": "E44",
+      "when": "12/12/2014 early, then later that day",
+      "who": "Buyer Group / Longview",
+      "event": "Other material event",
+      "supported_fact": "Closer work permitted toward higher price; detailed price sharing through NDA authorized later that day. Bidder 2 said rollover would not affect price.",
+      "instruction_judgment": "One support/access formation row, not Bidding group changed. Buyer Group unchanged as independent unit; no Longview entry or exit.",
+      "sources": [
+        {
+          "page": "25",
+          "quote": "the ad hoc committee approved the Buyer Group’s request"
+        },
+        {
+          "page": "26",
+          "quote": "including bid price, which had not previously been shared with Longview."
+        }
+      ]
+    },
+    {
+      "id": "E45",
+      "when": "12/12/2014",
+      "who": "PetSmart",
+      "event": "Deadline",
+      "supported_fact": "Improved bids received evening of due day.",
+      "instruction_judgment": "Enforced by December 13 selection and December 14 signing; no late bids or new round.",
+      "sources": [
+        {
+          "page": "26",
+          "quote": "During the evening of December 12, 2014, Bidder 2 submitted an offer of $81.50 per share, in cash."
+        }
+      ]
+    },
+    {
+      "id": "E46",
+      "when": "12/12/2014 evening",
+      "who": "Bidder 2",
+      "event": "Bid",
+      "supported_fact": "Offered $81.50 cash, confirmed best and final in conversation same evening; revised documents and financing commitments submitted.",
+      "instruction_judgment": "Formal / Light. Fold confirmation into bid or distinct actual reaffirmation, not duplicate economic revision; A7.",
+      "sources": [
+        {
+          "page": "26",
+          "quote": "Bidder 2 submitted an offer of $81.50 per share, in cash."
+        },
+        {
+          "page": "26",
+          "quote": "$81.50 per share was its best and final offer."
+        },
+        {
+          "page": "26",
+          "quote": "copies of their respective financing commitment documents."
+        }
+      ],
+      "offer_id": "B09",
+      "price_low": 81.5,
+      "price_high": 81.5,
+      "all_cash": "Yes",
+      "formality": "Formal",
+      "conditions": "Light",
+      "round": 2,
+      "count": 1
+    },
+    {
+      "id": "E47",
+      "when": "12/12/2014 evening, before $83",
+      "who": "Buyer Group",
+      "event": "Bid",
+      "supported_fact": "Orally offered $82.50 cash, working to increase within hours.",
+      "instruction_judgment": "Required separate same-day offer. Formal continuing final-stage bidder despite oral communication; Light, existing financing commitments.",
+      "sources": [
+        {
+          "page": "26",
+          "quote": "The Buyer Group initially submitted an oral offer of $82.50 per share, in cash"
+        }
+      ],
+      "offer_id": "B10",
+      "price_low": 82.5,
+      "price_high": 82.5,
+      "all_cash": "Yes",
+      "formality": "Formal",
+      "conditions": "Light",
+      "round": 2,
+      "count": 1
+    },
+    {
+      "id": "E48",
+      "when": "12/12/2014 later evening",
+      "who": "Buyer Group",
+      "event": "Bid",
+      "supported_fact": "Best-and-final $83 cash, revised documents and financing commitments; documents substantially executable with few exceptions.",
+      "instruction_judgment": "Formal / Light preferred. None accepted as explicitly reasoned ready-to-sign inference with remaining minor points recognized. No synthetic later reaffirmation.",
+      "sources": [
+        {
+          "page": "26",
+          "quote": "the Buyer Group submitted a best and final offer of $83.00 per share, in cash."
+        },
+        {
+          "page": "26",
+          "quote": "The versions submitted by the Buyer Group were, with few exceptions, in substantially executable form."
+        }
+      ],
+      "offer_id": "B11",
+      "price_low": 83,
+      "price_high": 83,
+      "all_cash": "Yes",
+      "formality": "Formal",
+      "conditions": "Light",
+      "round": 2,
+      "count": 1
+    },
+    {
+      "id": "E49",
+      "when": "12/13/2014",
+      "who": "PetSmart / J.P. Morgan",
+      "event": "Other material event",
+      "supported_fact": "Board approved after fairness opinion, subject to remaining points; terms subsequently finalized.",
+      "instruction_judgment": "Selection/approval material; no separate routine draft rows. No executed exclusivity, new round or December 13 signing.",
+      "sources": [
+        {
+          "page": "26",
+          "quote": "The board’s determination was subject, however, to confirmation that the remaining open points in the merger agreement had been satisfactorily resolved"
+        },
+        {
+          "page": "26",
+          "quote": "J.P. Morgan then rendered its oral opinion"
+        }
+      ]
+    },
+    {
+      "id": "E50",
+      "when": "By 12/14/2014",
+      "who": "Simpson Thacher and Bartlett LLP / Parent and Merger Sub",
+      "event": "Adviser",
+      "supported_fact": "Agreement notice provision identifies firm as copy recipient for Parent/Merger Sub.",
+      "instruction_judgment": "Buyer legal-adviser relationship inferred from notice provision; first seen acting by signing, not fictitious appointment day. Flag client/role if needed.",
+      "sources": [
+        {
+          "page": "A-46",
+          "quote": "To Parent or Merger Sub: Argos Holdings Inc."
+        },
+        {
+          "page": "A-46",
+          "quote": "with a copy to: Simpson Thacher and Bartlett LLP"
+        }
+      ]
+    },
+    {
+      "id": "E51",
+      "when": "12/14/2014",
+      "who": "Longview / Parent",
+      "event": "Other material event",
+      "supported_fact": "Executed rollover of 3,012,050 shares ($250 million) and voting support covering 7,424,591 shares.",
+      "instruction_judgment": "Resolution of support relationship; consolidate voting agreement. Does not change ordinary cash-out price or whole-company scope.",
+      "sources": [
+        {
+          "page": "41",
+          "quote": "Longview has agreed to contribute 3,012,050 shares"
+        },
+        {
+          "page": "40",
+          "quote": "Longview’s contribution to Parent of $250 million worth of the Company’s common stock"
+        },
+        {
+          "page": "45",
+          "quote": "to vote or cause to be voted 7,424,591 shares of common stock"
+        }
+      ]
+    },
+    {
+      "id": "E52",
+      "when": "12/14/2014",
+      "who": "Bidder 2",
+      "event": "Not selected at signing",
+      "supported_fact": "Competing best-and-final $81.50 stood when target signed with Buyer Group.",
+      "instruction_judgment": "Count 1, reason Would not improve earlier offer preferred. No invented withdrawal or exclusivity. Inferred December 13 selection exit accepted if explained and consistent.",
+      "sources": [
+        {
+          "page": "27",
+          "quote": "Bidder 2 had informed the Company’s representatives that $81.50 per share was its best and final offer."
+        },
+        {
+          "page": "26",
+          "quote": "On December 14, 2014, the parties executed the merger agreement"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "id": "E53",
+      "when": "12/14/2014",
+      "who": "PetSmart / Buyer Group",
+      "event": "Merger agreement signed",
+      "supported_fact": "Agreement executed; ordinary cash-out shares receive $83 cash.",
+      "instruction_judgment": "Separate from Bid and announcement; economics in Note, price/formality/conditions cells empty.",
+      "sources": [
+        {
+          "page": "26",
+          "quote": "On December 14, 2014, the parties executed the merger agreement"
+        },
+        {
+          "page": "21",
+          "quote": "will be converted into the right to receive $83.00 in cash."
+        }
+      ]
+    },
+    {
+      "id": "E54",
+      "when": "12/14/2014",
+      "who": "PetSmart / Buyer Group",
+      "event": "Merger announced",
+      "supported_fact": "Press release announced transaction same day.",
+      "instruction_judgment": "Separate row from signing; not Process terminated.",
+      "sources": [
+        {
+          "page": "26",
+          "quote": "and issued a press release announcing the transaction."
+        }
+      ]
+    },
+    {
+      "id": "E55",
+      "when": "As of 02/02/2015",
+      "who": "PetSmart",
+      "event": "Scope exclusion",
+      "supported_fact": "No unsolicited acquisition offers by proxy date; unsolicited alternatives permitted but no go-shop reported.",
+      "instruction_judgment": "No invented post-signing bid or Go-shop changed event; filing fact need not become routine post-signing row.",
+      "sources": [
+        {
+          "page": "28",
+          "quote": "as of February 2, 2015, the date of this proxy statement, no person has made an unsolicited offer or proposal to acquire PetSmart."
+        }
+      ]
+    },
+    {
+      "id": "E56",
+      "when": "Retrospective reasons summary; compare 10/30/2014",
+      "who": "PetSmart",
+      "event": "Source reconciliation",
+      "supported_fact": "Detailed background reports six initial parties; reasons summary reports five initial bidder groups, 15 NDAs and final negotiation with three groups.",
+      "instruction_judgment": "A9: possible retrospective grouping, not proved identity reconciliation. Quote discrepancy and ask; do not silently replace six with five.",
+      "sources": [
+        {
+          "page": "24",
+          "quote": "On October 30, six of the potentially interested parties submitted indications of interest."
+        },
+        {
+          "page": "27",
+          "quote": "received first round indications of interest from 5 bidder groups"
+        },
+        {
+          "page": "27",
+          "quote": "ultimately negotiated with the Buyer Group as well as two other bidding groups"
+        }
+      ]
+    }
+  ],
+  "date_adjudications": [
+    {
+      "event": "July J.P. Morgan retention",
+      "date_from": "2014-07-01",
+      "date_to": "2014-07-31",
+      "sort_rule": "Midpoint July 16 unless sequence requires a nearer admissible date; do not claim actual July 16 retention.",
+      "pages": [
+        "22",
+        "30"
+      ]
+    },
+    {
+      "event": "Aggregate incoming contact wave",
+      "date_from": "2014-08-13",
+      "date_to": "2014-10-03",
+      "sort_rule": "Preferred tightened span: October 3 board report refers to communications with 27 parties since August 13. Sort August 13 for span, not exact first contact. Broader middle-August–end-October period can remain if this contextual tension is expressly flagged.",
+      "pages": [
+        "23"
+      ]
+    },
+    {
+      "event": "October NDA/admission wave",
+      "date_from": "2014-10-01",
+      "date_to": "2014-10-07",
+      "sort_rule": "Wave sort October 1; undated single opening midpoint October 4 allowed. October 3 board update does not prove no NDA before October 3.",
+      "pages": [
+        "23"
+      ]
+    },
+    {
+      "event": "Initial bid deadline communication",
+      "date_from": "2014-10-01",
+      "date_to": "2014-10-30",
+      "sort_rule": "Undated communication midpoint October 15, tightened to follow admission if needed; due date stays October 30.",
+      "pages": [
+        "23"
+      ]
+    },
+    {
+      "event": "Initial offers",
+      "date_from": "2014-10-30",
+      "date_to": "2014-10-30",
+      "sort_rule": "Reported day October 30. Residual offer count is inferred, not offer arrival date.",
+      "pages": [
+        "24"
+      ]
+    },
+    {
+      "event": "Bidder 2 revision",
+      "date_from": "2014-10-30",
+      "date_to": "2014-11-02",
+      "sort_rule": "Response/due-date key October 30 after initial $78; interval retained.",
+      "pages": [
+        "24"
+      ]
+    },
+    {
+      "event": "Nine initial non-submitters",
+      "date_from": null,
+      "date_to": "2014-10-30",
+      "sort_rule": "Inferred by-date exit, key October 30; not an exact reported withdrawal day.",
+      "pages": [
+        "23",
+        "24"
+      ]
+    },
+    {
+      "event": "Two non-advancers",
+      "date_from": null,
+      "date_to": "2014-11-03",
+      "sort_rule": "Inferred by-date closure at advancement decision. Actual later notifications are not proven November 3; if separate notification record use after-November-3 bounds instead.",
+      "pages": [
+        "24"
+      ]
+    },
+    {
+      "event": "Bidder 3 authorization",
+      "date_from": "2014-11-03",
+      "date_to": "2014-12-03",
+      "sort_rule": "Dated surrounding narrative bounds, midpoint November 18. Narrative-November narrowing to November 30 acceptable if explicit (midpoint November 16); always after selection and any needed re-entry, not an exact reported authorization day.",
+      "pages": [
+        "24",
+        "25"
+      ]
+    },
+    {
+      "event": "Initial final-bid deadline communication",
+      "date_from": null,
+      "date_to": "2014-12-03",
+      "sort_rule": "By-date bound preferred; conservative by December 4 accepted. Do not backdate precisely to November 3 without source.",
+      "pages": [
+        "24"
+      ]
+    },
+    {
+      "event": "Final deadline extension to December 10",
+      "date_from": "2014-12-04",
+      "date_to": "2014-12-05",
+      "sort_rule": "Midpoint December 4; preserve uncertainty whether December 5 was reached.",
+      "pages": [
+        "24",
+        "25"
+      ]
+    },
+    {
+      "event": "Simpson Thacher first evidenced role",
+      "date_from": null,
+      "date_to": "2014-12-14",
+      "sort_rule": "By signing, key December 14; no appointment date asserted.",
+      "pages": [
+        "A-46"
+      ]
+    }
+  ],
+  "alternatives": [
+    {
+      "id": "A1",
+      "topic": "Bidder 3 combines two advanced bidders",
+      "recommendation": "Accept as parsimonious explicit inference, not established identity.",
+      "analysis": "Six initial submitters minus two non-advancers leaves four. If two of these four become Bidder 3, one grouping exit reduces independent units to three; no re-entry or anonymous fourth-finalist exit. Do not assign initial offer slots to constituents.",
+      "live_path": "15 → 6 → 4 → 3 → 2 → 1",
+      "source_pages": [
+        "24",
+        "25",
+        "27"
+      ]
+    },
+    {
+      "id": "A2",
+      "topic": "Bidder 3 combines selected bidder and eliminated initial submitter",
+      "recommendation": "Equally accept if uncertainty flagged and arithmetic reconciled.",
+      "analysis": "15−9=6; 6−2=4. One previously dropped anonymous bidder returns: separate inferred Re-entered +1 before grouping −1. Four groups remain. Infer one anonymous final non-submitter by December 10, alongside Bidder 3 exit, leaving two. This can explain six initial parties versus five retrospectively described groups, but is not proved.",
+      "live_path": "15 → 6 → 4 → 5 → 4 → 3 (residual exit) → 2 (Bidder 3 exit) → 1",
+      "source_pages": [
+        "24",
+        "25",
+        "27"
+      ]
+    },
+    {
+      "id": "A3",
+      "topic": "Second constituent from October non-submitters / origin unresolved",
+      "recommendation": "Accept qualified cohort model without invented identity.",
+      "analysis": "If second member was in nine October non-submitters, it also needs separate Re-entered +1, then grouping −1 and later one anonymous final non-submitter as in A2. If source cannot locate origin, describe conditional accounting and range rather than invent membership; raise Question. No new NDA inferred.",
+      "live_path": "After grouping 3–4 independent units; exactly 2 after December 10 responses/exits.",
+      "source_pages": [
+        "23",
+        "24",
+        "25",
+        "27"
+      ]
+    },
+    {
+      "id": "A4",
+      "topic": "Was December 5 deadline reached?",
+      "recommendation": "Prefer superseded, no reached Deadline row, retain due-date history.",
+      "analysis": "Revision December 4–5 straddles original due date. Accept December 5 reached Deadline with Extended outcome and explicit Question explaining timing ambiguity. December 10 Extended and December 12 Enforced either way. Do not label exact December 4 or 5 revision as reported.",
+      "source_pages": [
+        "24",
+        "25"
+      ]
+    },
+    {
+      "id": "A5",
+      "topic": "Bidder 3 verbal valuation versus offer",
+      "recommendation": "Prefer no Bid; valuation ceiling at approximately $78 belongs in exit note.",
+      "analysis": "Filing calls this verbal indication but describes valuation and no written offer. Accept explicitly questioned verbal whole-company indication as Bid: low empty, high approximately 78 with approximation in note; All cash Not stated. Informal preferred because no response on requested definitive basis; Formal accepted with reasoned final-solicitation interpretation. Conditions Unclear. One possible third response, not additional entrant.",
+      "source_pages": [
+        "25"
+      ]
+    },
+    {
+      "id": "A6",
+      "topic": "Offer conditions",
+      "recommendation": "October Unclear; December 10 Buyer Group Light, Bidder 2 Unclear; December 12 Light.",
+      "analysis": "October already had substantive access; preliminary or nonbinding alone not Heavy. No expressly uncommitted financing. Bidder 2 December 10 Light acceptable as final-documentation-context inference, flagged; comparative conditionality alone not Heavy. Buyer Group December 12 $83 None acceptable as ready-to-sign inference, recognizing remaining minor points. Silence cannot establish None or uncommitted financing.",
+      "source_pages": [
+        "23",
+        "24",
+        "25",
+        "26"
+      ]
+    },
+    {
+      "id": "A7",
+      "topic": "Same-evening Bidder 2 confirmation",
+      "recommendation": "Fold December 12 best-and-final confirmation into $81.50 Bid; accept separate sourced Bid reaffirmed without extra economic revision.",
+      "analysis": "No mandatory synthetic December 6 or December 13/14 reaffirmation. December 6 has comments and Buyer Group financing but no selected-buyer definitive finalization on standing price. December 12 already provides Formal final-stage bids; subsequent drafts do not trigger C12 late reconfirmation.",
+      "source_pages": [
+        "25",
+        "26"
+      ]
+    },
+    {
+      "id": "A8",
+      "topic": "Round opening timing",
+      "recommendation": "One process, two rounds; first week October and November 3.",
+      "analysis": "October 1 sort for a wave or October 4 midpoint for undated opening accepted, keeping October 1–7 bounds. Round 2 may use ensuing notification window if explicit honest bounds. November final-bid instructions corroborate opening, not third round. August deferred decision, October update alone and December improvement do not create extra rounds.",
+      "source_pages": [
+        "22",
+        "23",
+        "24",
+        "25"
+      ]
+    },
+    {
+      "id": "A9",
+      "topic": "Six initial parties versus five bidding groups",
+      "recommendation": "Use detailed October 30 six-party narrative for arithmetic; cite five-group summary and raise Question.",
+      "analysis": "Page 27 may aggregate the two later partners retrospectively, but source does not identify both initial constituents. Five-group display receives full credit only preserving six underlying initial parties/offers and explicit grouping reconciliation, without silently reducing residual exits or inventing identities.",
+      "source_pages": [
+        "24",
+        "27"
+      ]
+    },
+    {
+      "id": "A10",
+      "topic": "Bidder 2 closure",
+      "recommendation": "Not selected at signing December 14, reason Would not improve earlier offer.",
+      "analysis": "Accept inferred Dropped by target December 13 if explicitly grounded in winner selection, without invented exclusivity. Bare Withdrew unsupported. Lower offer than rivals acceptable if note preserves actual best-and-final refusal to increase, rather than losing valuation information.",
+      "source_pages": [
+        "26",
+        "27"
+      ]
+    }
+  ],
+  "participation_checkpoints": [
+    {
+      "boundary": "Contact wave",
+      "live": null,
+      "fact": "27 contacts (24 financial, 3 strategic), Industry Participant separate; not entrant count",
+      "source_pages": [
+        "23"
+      ]
+    },
+    {
+      "boundary": "First week October admissions",
+      "live": 15,
+      "fact": "15 financial NDA signers",
+      "source_pages": [
+        "23"
+      ]
+    },
+    {
+      "boundary": "October 30 first solicitation",
+      "live": 6,
+      "inference": "15 − 9 non-submitters = 6",
+      "source_pages": [
+        "23",
+        "24"
+      ]
+    },
+    {
+      "boundary": "November 3 selection before grouping",
+      "live": 4,
+      "inference": "6 − 2 non-advancers = 4",
+      "source_pages": [
+        "24"
+      ]
+    },
+    {
+      "boundary": "After Bidder 3 formation",
+      "live_min": 3,
+      "live_max": 4,
+      "inference": "A1: 4−1=3. A2/A3: 4+1 re-entry−1 grouping=4. Constituent origin not proved.",
+      "source_pages": [
+        "24",
+        "27"
+      ]
+    },
+    {
+      "boundary": "After December 10 responses/exits; December 12 competition",
+      "live": 2,
+      "fact": "Buyer Group and Bidder 2",
+      "inference": "Close Bidder 3; in four-group model also anonymous final non-submitter.",
+      "source_pages": [
+        "25",
+        "26"
+      ]
+    },
+    {
+      "boundary": "December 14 signing",
+      "live": 1,
+      "fact": "Buyer Group winner; Bidder 2 not selected",
+      "source_pages": [
+        "26",
+        "27"
+      ]
+    }
+  ],
+  "rounds": [
+    {
+      "process": 1,
+      "round": 1,
+      "opened_window": [
+        "2014-10-01",
+        "2014-10-07"
+      ],
+      "opened_sort_preferred": "2014-10-01",
+      "finality": "Not final",
+      "who_was_in": "15 financial buyers",
+      "due_dates": [
+        "2014-10-30"
+      ],
+      "deadline_outcomes": [
+        "Enforced"
+      ],
+      "bids_received": "6 initial parties: Buyer Group, Bidder 2 and four anonymous financial bidders; Bidder 2 also revises",
+      "ended": "Four advance November 3",
+      "source_pages": [
+        "23",
+        "24"
+      ]
+    },
+    {
+      "process": 1,
+      "round": 2,
+      "opened_sort_preferred": "2014-11-03",
+      "finality": "Announced as final",
+      "who_was_in": "Four selected financial bidders; 3–4 independent groups after Bidder 3 formation, then two after December 10",
+      "due_dates": [
+        "2014-12-05",
+        "2014-12-10",
+        "2014-12-12"
+      ],
+      "deadline_outcomes": [
+        "December 5 superseded; optionally reached and Extended under A4",
+        "Extended",
+        "Enforced"
+      ],
+      "bids_received": "Two definitive priced bidders (Buyer Group, Bidder 2); Bidder 3 valuation response optionally a verbal bid under A5",
+      "ended": "Buyer Group selected December 13, signing December 14",
+      "source_pages": [
+        "24",
+        "25",
+        "26"
+      ]
+    }
+  ],
+  "required_questions": [
+    {
+      "topic": "Process/round map",
+      "recommendation": "One process, two rounds; contrast actual NDA opening with deferred August decision, and final extension with a new round.",
+      "alternatives": [
+        "A8"
+      ]
+    },
+    {
+      "topic": "Deadline outcomes",
+      "recommendation": "October 30 Enforced; December 10 Extended; December 12 Enforced; December 5 possibly superseded.",
+      "alternatives": [
+        "A4"
+      ]
+    },
+    {
+      "topic": "Participation reconciliation",
+      "recommendation": "Keep six initial parties versus five-group summary explicit; do not invent Bidder 3 membership. Re-entry and residual exits depend on disclosed reconstruction.",
+      "alternatives": [
+        "A1",
+        "A2",
+        "A3",
+        "A9"
+      ]
+    },
+    {
+      "topic": "Bidder 3 status",
+      "recommendation": "Valuation in exit note preferred; explain who ended participation.",
+      "alternatives": [
+        "A5"
+      ]
+    },
+    {
+      "topic": "Thin conditions evidence if divergent",
+      "recommendation": "Explain offered-date judgment for Bidder 2 December 10 and Buyer Group December 12; no inferred absence of financing.",
+      "alternatives": [
+        "A6"
+      ]
+    }
+  ],
+  "critical_error_watchlist": [
+    "Invented independent Longview bidder, additional acquirer NDA, or Mixed type caused by shareholder rollover.",
+    "Invented exact identities of anonymous offers or Bidder 3 constituents, represented as source facts.",
+    "Invented executed exclusivity, uncommitted financing, go-shop, Industry Participant acquisition offer or undisclosed exact price.",
+    "Double-counting contact, NDA, first bid, consortium investors or acquisition shells as independent entries; exiting a declined contact.",
+    "Extra numbered round solely for December 12 improvement after final solicitation; retrospective Formal labels from later documents.",
+    "Silent revival of an exited constituent without Re-entered under the chosen participation model.",
+    "Missing intermediate $82.50 oral bid or fabricated price reaffirmation from routine draft exchanges/signing."
+  ],
+  "tests": [
+    {
+      "id": "P01",
+      "category": "participation",
+      "weight": 3,
+      "expected": "27 inbound contacts = 24 financial + 3 strategic, excluding Industry Participant; contact is not entry. Exactly 15 financial buyer NDAs; auction screen Met. No 27-live or 16-NDA count.",
+      "accepted_alternatives": [
+        "Net named/residual rows summing to stated totals."
+      ],
+      "source_pages": [
+        "23",
+        "28"
+      ]
+    },
+    {
+      "id": "P02",
+      "category": "participation",
+      "weight": 3,
+      "expected": "Industry Participant never entered: interest then refusal, no NDA, bid or admission. Longview activism/rollover never independent live entry.",
+      "accepted_alternatives": [
+        "Refusal in Other material event or concise initial interest note."
+      ],
+      "source_pages": [
+        "21",
+        "22",
+        "23",
+        "25",
+        "26"
+      ]
+    },
+    {
+      "id": "P03",
+      "category": "participation",
+      "weight": 3,
+      "expected": "15 live financial buyers before initial solicitation, 6 submitters after; close 9 anonymous inferred Did not submit. No duplicate contact/NDA/first-bid entry counts.",
+      "accepted_alternatives": [
+        "A9 grouped display preserving six underlying submitters, 15 parties and nine non-submitters."
+      ],
+      "source_pages": [
+        "23",
+        "24",
+        "27"
+      ]
+    },
+    {
+      "id": "P04",
+      "category": "participation",
+      "weight": 3,
+      "expected": "November 3 four qualifying bidders advance, including revised Bidder 2; close two of six, with no invented named identities. Eliminated bidders out unless subsequent return accounted.",
+      "accepted_alternatives": [
+        "Count 2 Dropped by target cohort with by-date/inferred arithmetic, actual non-improvement explanation."
+      ],
+      "source_pages": [
+        "24"
+      ]
+    },
+    {
+      "id": "P05",
+      "category": "participation",
+      "weight": 3,
+      "expected": "Bidder 3 is real two-party financial joint unit. Reduce independent bidders when formed; disclose second-member ambiguity, no asserted link to specific anonymous price slots.",
+      "accepted_alternatives": [
+        "A1/A2/A3 with coherent counts and targeted Question."
+      ],
+      "source_pages": [
+        "24",
+        "25",
+        "27"
+      ]
+    },
+    {
+      "id": "P06",
+      "category": "participation",
+      "weight": 3,
+      "expected": "Previously exited constituent returning under chosen model has separate Re-entered before grouping/new Bid. No unlabelled resurrection; no re-entry required in two-live-finalists model.",
+      "accepted_alternatives": [
+        "A1 no re-entry; A2/A3 inferred anonymous returning constituent without invented origin. Explicit conditional model/range acceptable."
+      ],
+      "source_pages": [
+        "24",
+        "25",
+        "27"
+      ]
+    },
+    {
+      "id": "P07",
+      "category": "participation",
+      "weight": 3,
+      "expected": "After grouping 3–4 units per membership model, reaching exactly Buyer Group and Bidder 2 for December 12. Four-unit model needs inferred anonymous final non-submitter; three-unit model must not add that exit.",
+      "accepted_alternatives": [
+        "Complete A1 or A2/A3 path; uncertain range reconciled at next certain boundary."
+      ],
+      "source_pages": [
+        "24",
+        "25"
+      ]
+    },
+    {
+      "id": "P08",
+      "category": "participation",
+      "weight": 3,
+      "expected": "Bidder 3 exits December 10 with valuation at or below market approximately $78; not live December 12; actor/process ambiguity preserved.",
+      "accepted_alternatives": [
+        "Did not submit preferred; explained Withdrew or Dropped by target; A5 optional verbal Bid plus exit."
+      ],
+      "source_pages": [
+        "25"
+      ]
+    },
+    {
+      "id": "P09",
+      "category": "participation",
+      "weight": 3,
+      "expected": "Two live rivals December 12 despite rollover. Buyer Group remains one Financial bidder; shell, investors and Longview not independent entrants.",
+      "accepted_alternatives": [
+        "Names of consortium and supporter in note without additional counts."
+      ],
+      "source_pages": [
+        "1",
+        "25",
+        "26",
+        "40",
+        "41"
+      ]
+    },
+    {
+      "id": "P10",
+      "category": "participation",
+      "weight": 3,
+      "expected": "Bidder 2 closed at signing (or reasoned December 13 selection); one winner. No phantom exclusivity, duplicate residual exit, unclosed losing entrants or process termination at signing.",
+      "accepted_alternatives": [
+        "A10 with all losing independent participants reconciled under chosen membership model."
+      ],
+      "source_pages": [
+        "26",
+        "27"
+      ]
+    },
+    {
+      "id": "R01",
+      "category": "rounds",
+      "weight": 5,
+      "expected": "One continuing target sale process. Spring acquisition exploration not a separate target sale process. August decision deferred outreach; R0 interest precedes R1 first-week-October organized NDA admission.",
+      "accepted_alternatives": [
+        "A8 date-key variants preserving substantive opening."
+      ],
+      "source_pages": [
+        "21",
+        "22",
+        "23"
+      ]
+    },
+    {
+      "id": "R02",
+      "category": "rounds",
+      "weight": 5,
+      "expected": "R1 Not final: six October 30 initial offers and October 30–November 2 Bidder 2 revision; due October 30, four advance.",
+      "accepted_alternatives": [
+        "A9 display retaining six underlying initial parties/offers."
+      ],
+      "source_pages": [
+        "23",
+        "24",
+        "27"
+      ]
+    },
+    {
+      "id": "R03",
+      "category": "rounds",
+      "weight": 5,
+      "expected": "R2 opens November 3 advancement, Announced as final, corroborated by November request for final bids/comments. All December 10/12 bids remain R2, no new round for improvement, selection or final documentation.",
+      "accepted_alternatives": [
+        "A8 honest ensuing-notification window, not additional numbered stage."
+      ],
+      "source_pages": [
+        "24",
+        "25",
+        "26"
+      ]
+    },
+    {
+      "id": "R04",
+      "category": "rounds",
+      "weight": 5,
+      "expected": "Distinguish setting, revision and reached deadlines: October 30; December 5 → 10 → 12. December 4–5 revision and December 10 improvement request included. December 15 completion target not bid deadline.",
+      "accepted_alternatives": [
+        "A4 optional reached December 5; opening may absorb setting only if simultaneous."
+      ],
+      "source_pages": [
+        "23",
+        "24",
+        "25",
+        "26"
+      ]
+    },
+    {
+      "id": "R05",
+      "category": "rounds",
+      "weight": 5,
+      "expected": "Rounds reconcile ledger: October 30 Enforced; December 10 Extended; December 12 Enforced; December 5 superseded or A4 Extended. Two definitive priced final bidders, possible third verbal response distinguished. Map and deadline Questions with recommendations.",
+      "accepted_alternatives": [
+        "A4/A5/A9; signing ends final round without new process."
+      ],
+      "source_pages": [
+        "24",
+        "25",
+        "26"
+      ]
+    },
+    {
+      "id": "F01",
+      "category": "formality_conditions",
+      "weight": 2,
+      "expected": "All six October 30 preliminary indications Informal; no definitive terms signal.",
+      "accepted_alternatives": [
+        "Unpriced qualifying slot plus Count 2 residual instead of invented identities."
+      ],
+      "source_pages": [
+        "23",
+        "24"
+      ],
+      "subdimension": "formality"
+    },
+    {
+      "id": "F02",
+      "category": "formality_conditions",
+      "weight": 2,
+      "expected": "Bidder 2 $81–84 revision remains Informal R1; later documents do not retrospectively upgrade $78 or revision.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "24",
+        "25"
+      ],
+      "subdimension": "formality"
+    },
+    {
+      "id": "F03",
+      "category": "formality_conditions",
+      "weight": 2,
+      "expected": "December 10 Buyer Group $80.70 and Bidder 2 $80.35 Formal: final solicitation and revised definitive documents. Conditional character cannot override.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "24",
+        "25"
+      ],
+      "subdimension": "formality"
+    },
+    {
+      "id": "F04",
+      "category": "formality_conditions",
+      "weight": 2,
+      "expected": "December 12 Bidder 2 $81.50, Buyer Group oral $82.50 and $83 Formal; oral revision by continuing formal bidder does not reset label.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "25",
+        "26"
+      ],
+      "subdimension": "formality"
+    },
+    {
+      "id": "F05",
+      "category": "formality_conditions",
+      "weight": 2,
+      "expected": "No synthetic December 6 or December 13/14 priced reaffirmation; signing not Bid. Bidder 3 valuation not automatically Formal offer.",
+      "accepted_alternatives": [
+        "A5 reasoned verbal-bid formality; A7 actual same-evening Bidder 2 confirmation. December 6 unpriced document/commitment evidence okay."
+      ],
+      "source_pages": [
+        "25",
+        "26"
+      ],
+      "subdimension": "formality"
+    },
+    {
+      "id": "C01",
+      "category": "formality_conditions",
+      "weight": 2,
+      "expected": "October initial Conditions Unclear: substantive diligence access already supplied, no offer-specific financing/diligence condition disclosed. No Heavy solely for nonbinding/range or None/Light solely from progress.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "23",
+        "24"
+      ],
+      "subdimension": "conditions"
+    },
+    {
+      "id": "C02",
+      "category": "formality_conditions",
+      "weight": 2,
+      "expected": "Bidder 2 October revision Unclear; no invented financing contingency, rollover requirement or substantive diligence period. Bidder 3 optional verbal bid Unclear.",
+      "accepted_alternatives": [
+        "Residual offer conditions Unclear recognizing possible differences among members."
+      ],
+      "source_pages": [
+        "24",
+        "25"
+      ],
+      "subdimension": "conditions"
+    },
+    {
+      "id": "C03",
+      "category": "formality_conditions",
+      "weight": 2,
+      "expected": "December 10 Buyer Group Light from December 6 financing commitments and remaining documentation. Do not use December 14 equity commitments retrospectively to prove earlier unconditional readiness.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "25",
+        "26",
+        "40"
+      ],
+      "subdimension": "conditions"
+    },
+    {
+      "id": "C04",
+      "category": "formality_conditions",
+      "weight": 2,
+      "expected": "December 10 Bidder 2 Unclear preferred; relatively less-favorable/more-conditional documents not reported absent financing or specific Heavy trigger.",
+      "accepted_alternatives": [
+        "Light as explicitly reasoned final-documentation context under A6."
+      ],
+      "source_pages": [
+        "25",
+        "26"
+      ],
+      "subdimension": "conditions"
+    },
+    {
+      "id": "C05",
+      "category": "formality_conditions",
+      "weight": 2,
+      "expected": "December 12 reassess: Bidder 2 Light; Buyer Group $82.50 Light and $83 Light preferred, citing commitments/executable documents. Longview not mandatory.",
+      "accepted_alternatives": [
+        "Buyer Group $83 None with A6 readiness reasoning and remaining points recognized; no unsupported None on Bidder 2."
+      ],
+      "source_pages": [
+        "24",
+        "25",
+        "26"
+      ],
+      "subdimension": "conditions"
+    },
+    {
+      "id": "D01",
+      "category": "chronology",
+      "weight": 2,
+      "expected": "Broad timing retained but tightened where supported: 27 contacts reported October 3 since August 13 despite broader middle-August–end-October paragraph; NDA October 1–7, adviser July retention. No fictitious exact dates from sort keys or replacement by August 21 letter.",
+      "accepted_alternatives": [
+        "Retain broad contact-period window with explicit note of October 3 report and uncertainty; do not assert first contact precisely on an assigned sort day."
+      ],
+      "source_pages": [
+        "22",
+        "23",
+        "30"
+      ]
+    },
+    {
+      "id": "D02",
+      "category": "chronology",
+      "weight": 2,
+      "expected": "October 30 Bidder 2 $78 precedes bounded October 30–November 2 revision, before November 3 advancement. Due date not proof revision arrived that day.",
+      "accepted_alternatives": [
+        "Sort October 30 after initial offer, with interval bounds per C10."
+      ],
+      "source_pages": [
+        "24"
+      ]
+    },
+    {
+      "id": "D03",
+      "category": "chronology",
+      "weight": 2,
+      "expected": "Elimination notices after November 3 honestly bounded; group formation after advancement, narrated before December 3 meeting, without reported-exact November 3 execution/identity. Needed re-entry precedes grouping/new bid.",
+      "accepted_alternatives": [
+        "November narrative window as inference or conservative November 3–December 3 contextual bounds; sort after selection."
+      ],
+      "source_pages": [
+        "24",
+        "25"
+      ]
+    },
+    {
+      "id": "D04",
+      "category": "chronology",
+      "weight": 2,
+      "expected": "Setting not due date: initial December 5 deadline communicated by early December, revised December 4–5; December 10 request due December 12. Sort dates nondecreasing and inside honest bounds.",
+      "accepted_alternatives": [
+        "A4 and conservative by-December-4 initial-setting bound; not exact November 3 without qualification."
+      ],
+      "source_pages": [
+        "24",
+        "25"
+      ]
+    },
+    {
+      "id": "D05",
+      "category": "chronology",
+      "weight": 2,
+      "expected": "December 12 support permission precedes detailed price sharing/final bids; Buyer Group $82.50 before $83; December 13 conditional approval before December 14 signing and announcement.",
+      "accepted_alternatives": [
+        "No forced precise ordering between bidders same-evening submissions."
+      ],
+      "source_pages": [
+        "25",
+        "26"
+      ]
+    },
+    {
+      "id": "B01",
+      "category": "bids_prices",
+      "weight": 2,
+      "expected": "Initial Buyer Group $81–83, unnamed $80–85 and third qualifying indication covered. Third range endpoints undisclosed; reaching at least $80 is not a point bid or entire-range floor.",
+      "accepted_alternatives": [
+        "Upper-end inequality in note with blank numeric cells."
+      ],
+      "source_pages": [
+        "24"
+      ]
+    },
+    {
+      "id": "B02",
+      "category": "bids_prices",
+      "weight": 2,
+      "expected": "Two residual initial unpriced offers, Bidder 2 $78 and separate $81–84 revision included. Six initial parties plus one revision, not five with missing offers.",
+      "accepted_alternatives": [
+        "Count 2 residual; A9 grouped display preserving submissions."
+      ],
+      "source_pages": [
+        "24",
+        "27"
+      ]
+    },
+    {
+      "id": "B03",
+      "category": "bids_prices",
+      "weight": 2,
+      "expected": "December 10 Buyer Group 80.70/80.70 and Bidder 2 80.35/80.35 cash. Bidder 3 approximately $78 valuation ceiling in exit note, not exact $78 cash bid.",
+      "accepted_alternatives": [
+        "A5 ceiling-only verbal indication with explicit approximation/ambiguity."
+      ],
+      "source_pages": [
+        "25"
+      ]
+    },
+    {
+      "id": "B04",
+      "category": "bids_prices",
+      "weight": 2,
+      "expected": "December 12 Bidder 2 81.50/81.50, Buyer Group oral 82.50/82.50 then 83/83; all cash. Intermediate same-day offer preserved.",
+      "accepted_alternatives": [
+        "A7 separate actual same-price confirmation as reaffirmation, not extra economic revision."
+      ],
+      "source_pages": [
+        "26"
+      ]
+    },
+    {
+      "id": "B05",
+      "category": "bids_prices",
+      "weight": 2,
+      "expected": "Whole-company USD per-share bids; initial cash Not stated absent evidence, December cash Yes. Rollover not mixed ordinary consideration or partial company. Signing economics only in note; no invented prices/proposals.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "1",
+        "21",
+        "24",
+        "25",
+        "26",
+        "41"
+      ]
+    },
+    {
+      "id": "O01",
+      "category": "other_material_coverage",
+      "weight": 1,
+      "expected": "Initiation covers JANA/Longview advocacy, August 7 strategic interest, August 13 qualified exploration decision and August 19 publicity; activist-influenced or mixed.",
+      "accepted_alternatives": [
+        "Consolidate repeated activism, prep reviews and refusal reaffirmations."
+      ],
+      "source_pages": [
+        "21",
+        "22",
+        "23"
+      ]
+    },
+    {
+      "id": "O02",
+      "category": "other_material_coverage",
+      "weight": 1,
+      "expected": "Target Wachtell first seen June 18; J.P. Morgan July retention, August 21 letter note; unnamed June financial advisor uncertainty; buyer Simpson Thacher from A-46, no invented early appointment.",
+      "accepted_alternatives": [
+        "Unnamed adviser in uncertainty note; buyer legal role explicitly inferred. Do not add lenders or prior unrelated deal mandates as sale advisers."
+      ],
+      "source_pages": [
+        "21",
+        "22",
+        "30",
+        "A-46"
+      ]
+    },
+    {
+      "id": "O03",
+      "category": "other_material_coverage",
+      "weight": 1,
+      "expected": "November FY2014 projection update covered after bidding began, common admission/diligence information noted. No invented unequal access among rivals. Internal-versus-buyer withholding recognized where material.",
+      "accepted_alternatives": [
+        "Consolidated projection/withholding note instead of separate stage/row."
+      ],
+      "source_pages": [
+        "23",
+        "24",
+        "37",
+        "38",
+        "39"
+      ]
+    },
+    {
+      "id": "O04",
+      "category": "other_material_coverage",
+      "weight": 1,
+      "expected": "Longview support formation December 12 and resolution December 14 covered; no bid dependence. December 13 approval/opinion distinct from execution.",
+      "accepted_alternatives": [
+        "Availability and December 9 introductory NDA in notes; one formation and resolution avoids excessive support rows."
+      ],
+      "source_pages": [
+        "25",
+        "26",
+        "40",
+        "41",
+        "45"
+      ]
+    },
+    {
+      "id": "O05",
+      "category": "other_material_coverage",
+      "weight": 1,
+      "expected": "Separate December 14 signing/announcement; facts: PetSmart, Argos/Buyer Group Financial, $83 cash, February 2 2015 DEFM14A, background pp21–26, one process. No invented go-shop or subsequent offers.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "1",
+        "21",
+        "26",
+        "28"
+      ]
+    }
+  ],
+  "validation": {
+    "test_count": 40,
+    "inventory_count": 56,
+    "category_totals": {
+      "participation": 30,
+      "rounds": 25,
+      "formality_conditions": 20,
+      "chronology": 10,
+      "bids_prices": 10,
+      "other_material_coverage": 5
+    },
+    "total_weight": 100,
+    "formality_weight": 10,
+    "conditions_weight": 10,
+    "within_category_equal_weights": true,
+    "source_quotes_exact_after_whitespace_normalization": true,
+    "no_candidate_grading_performed": true
+  }
+}

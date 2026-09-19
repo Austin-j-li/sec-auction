@@ -1,0 +1,954 @@
+SHEET 'Deal ledger'; state=visible; rows=53; columns=22
+EXCEL ROW 1
+  A1 [#]: #
+  B1 [When]: When
+  C1 [Who]: Who
+  D1 [Type]: Type
+  E1 [Event]: Event
+  F1 [Process]: Process
+  G1 [Round]: Round
+  H1 [Price low]: Price low
+  I1 [Price high]: Price high
+  J1 [All cash]: All cash
+  K1 [Formality]: Formality
+  L1 [Conditions]: Conditions
+  M1 [Count]: Count
+  N1 [Exit reason]: Exit reason
+  O1 [Inferred]: Inferred
+  P1 [Note]: Note
+  Q1 [Quote and page]: Quote and page
+  R1 [Flag]: Flag
+  S1 [Reviewer note]: Reviewer note
+  T1 [Sort date]: Sort date
+  U1 [Date from]: Date from
+  V1 [Date to]: Date to
+EXCEL ROW 2
+  A2 [#]: 1
+  B2 [When]: fourth quarter of 2015
+  C2 [Who]: Party A
+  D2 [Type]: Strategic
+  E2 [Event]: Bidder interest
+  F2 [Process]: 1
+  G2 [Round]: 0
+  M2 [Count]: 1
+  P2 [Note]: First step: Class I rail partner raised possible joint ventures and interest in acquiring equity during a commercial meeting; no price. Led to Board review of strategic options.
+  Q2 [Quote and page]: During the meeting, Party A suggested possible joint venture arrangements and expressed some interest in acquiring equity in the Company to further develop strategic opportunities and enhance regional connectivity. (p. 27)
+  T2 [Sort date]: 2015-11-15T00:00:00
+  U2 [Date from]: 2015-10-01T00:00:00
+  V2 [Date to]: 2015-12-31T00:00:00
+EXCEL ROW 3
+  A3 [#]: 2
+  B3 [When]: fourth quarter of 2015
+  C3 [Who]: PWRR Board
+  E3 [Event]: Target sale decision
+  F3 [Process]: 1
+  G3 [Round]: 0
+  P3 [Note]: Board appointed the subcommittee after Party A's approach, to interview bankers and evaluate options including a change in control; exploratory, no sale decision yet.
+  Q3 [Quote and page]: the Board appointed a subcommittee of two independent directors, Frank W. Barrett and Richard W. Anderson, to interview potential investment bankers (p. 27)
+  T3 [Sort date]: 2015-11-15T00:00:00
+  U3 [Date from]: 2015-10-01T00:00:00
+  V3 [Date to]: 2015-12-31T00:00:00
+EXCEL ROW 4
+  A4 [#]: 3
+  B4 [When]: 01/27/2016
+  C4 [Who]: Greene Holcomb & Fisher LLC (GHF)
+  E4 [Event]: Adviser
+  F4 [Process]: 1
+  G4 [Round]: 0
+  P4 [Note]: Target's investment banker; subcommittee recommended and Board engaged GHF. GHF acquired by BMO Capital Markets Corp. 08/01/2016 - one adviser, renamed, no new row.
+  Q4 [Quote and page]: Following this presentation, the Board approved the subcommittee’s recommendation and the Company engaged GHF. (p. 27)
+  T4 [Sort date]: 2016-01-27T00:00:00
+  U4 [Date from]: 2016-01-27T00:00:00
+  V4 [Date to]: 2016-01-27T00:00:00
+EXCEL ROW 5
+  A5 [#]: 4
+  B5 [When]: 03/14/2016
+  C5 [Who]: PWRR Board
+  E5 [Event]: Target sale decision
+  F5 [Process]: 1
+  G5 [Round]: 0
+  P5 [Note]: Board concluded to proceed with GHF's proposed strategy - discussions with Party A plus solicitation of other buyers; appointed Transaction Committee (no authority to approve a transaction).
+  Q5 [Quote and page]: concluded, based upon its examination of these and other factors, that it was in the best interest of the Company (p. 27)
+  T5 [Sort date]: 2016-03-14T00:00:00
+  U5 [Date from]: 2016-03-14T00:00:00
+  V5 [Date to]: 2016-03-14T00:00:00
+EXCEL ROW 6
+  A6 [#]: 5
+  B6 [When]: 03/24/2016
+  C6 [Who]: Hinckley, Allen & Snyder LLP
+  E6 [Event]: Adviser
+  F6 [Process]: 1
+  G6 [Round]: 0
+  P6 [Note]: Target's legal counsel; first seen acting at the 03/24 Transaction Committee meeting and participated in all of its meetings.
+  Q6 [Quote and page]: the Company’s legal counsel, Hinckley, Allen & Snyder LLP (which we refer to as “Hinckley Allen”), participated in all meetings of the Transaction Committee (p. 28)
+  T6 [Sort date]: 2016-03-24T00:00:00
+  U6 [Date from]: 2016-03-24T00:00:00
+  V6 [Date to]: 2016-03-24T00:00:00
+EXCEL ROW 7
+  A7 [#]: 6
+  B7 [When]: week of March 28, 2016
+  C7 [Who]: PWRR
+  E7 [Event]: Round opened
+  F7 [Process]: 1
+  G7 [Round]: 1
+  P7 [Note]: Round 1 opened on the first outreach wave; the Transaction Committee had authorized GHF on 03/24 to contact Party A and other potential buyers.
+  Q7 [Quote and page]: During the week of March 28, 2016, in accordance with the Transaction Committee’s directives, representatives of GHF contacted 11 potential strategic buyers (including Party A) and 18 potential financial buyers. (p. 28)
+  R7 [Flag]: Q1
+  T7 [Sort date]: 2016-03-28T00:00:00
+  U7 [Date from]: 2016-03-28T00:00:00
+  V7 [Date to]: 2016-04-03T00:00:00
+EXCEL ROW 8
+  A8 [#]: 7
+  B8 [When]: week of March 28, 2016
+  C8 [Who]: 29 potential buyers (11 strategic, 18 financial)
+  D8 [Type]: Unknown
+  E8 [Event]: Contact
+  F8 [Process]: 1
+  G8 [Round]: 1
+  M8 [Count]: 29
+  P8 [Note]: GHF contacted 11 strategic (incl. Party A) and 18 financial prospects; direction target to buyers. Aggregate step; 25 of them later signed NDAs.
+  Q8 [Quote and page]: representatives of GHF contacted 11 potential strategic buyers (including Party A) and 18 potential financial buyers. (p. 28)
+  T8 [Sort date]: 2016-03-28T00:00:00
+  U8 [Date from]: 2016-03-28T00:00:00
+  V8 [Date to]: 2016-04-03T00:00:00
+EXCEL ROW 9
+  A9 [#]: 8
+  B9 [When]: by 04/07/2016
+  C9 [Who]: 11 strategic NDA signers
+  D9 [Type]: Strategic
+  E9 [Event]: NDA signed
+  F9 [Process]: 1
+  G9 [Round]: 1
+  M9 [Count]: 11
+  P9 [Note]: All 11 contacted strategic prospects signed, including Party A, Party B and G&W; no standstill provisions; received the Company memorandum.
+  Q9 [Quote and page]: Each of the potential strategic buyers and 14 potential financial buyers subsequently executed confidentiality agreements. (p. 28)
+  T9 [Sort date]: 2016-04-02T00:00:00
+  U9 [Date from]: 2016-03-28T00:00:00
+  V9 [Date to]: 2016-04-07T00:00:00
+EXCEL ROW 10
+  A10 [#]: 9
+  B10 [When]: by 04/07/2016
+  C10 [Who]: 14 financial NDA signers
+  D10 [Type]: Financial
+  E10 [Event]: NDA signed
+  F10 [Process]: 1
+  G10 [Round]: 1
+  M10 [Count]: 14
+  P10 [Note]: 14 of 18 contacted financial prospects signed; with the 11 strategic signers, 25 confidentiality agreements in total.
+  Q10 [Quote and page]: Each of the potential strategic buyers and 14 potential financial buyers subsequently executed confidentiality agreements. (p. 28)
+  T10 [Sort date]: 2016-04-02T00:00:00
+  U10 [Date from]: 2016-03-28T00:00:00
+  V10 [Date to]: 2016-04-07T00:00:00
+EXCEL ROW 11
+  A11 [#]: 10
+  B11 [When]: by 04/07/2016
+  C11 [Who]: Two additional Class I railroads
+  D11 [Type]: Strategic
+  E11 [Event]: Contact
+  F11 [Process]: 1
+  G11 [Round]: 1
+  M11 [Count]: 2
+  P11 [Note]: Company (Noreck) approached these two separately to gauge interest; no response or outcome reported; they never entered the process.
+  Q11 [Quote and page]: Mr. Noreck reported that the Company had also approached two additional Class I railroads to determine their interest in a possible transaction. (p. 28)
+  T11 [Sort date]: 2016-04-07T00:00:00
+  V11 [Date to]: 2016-04-07T00:00:00
+EXCEL ROW 12
+  A12 [#]: 11
+  B12 [When]: by 04/27/2016
+  C12 [Who]: PWRR
+  E12 [Event]: Deadline set
+  F12 [Process]: 1
+  G12 [Round]: 1
+  P12 [Note]: Potential buyers advised to submit non-binding indications of interest by 05/10/2016; communicated before the 04/27 Board meeting.
+  Q12 [Quote and page]: each potential buyer had been advised to submit a non-binding indication of interest by May 10, 2016 (p. 29)
+  R12 [Flag]: Q2
+  T12 [Sort date]: 2016-04-27T00:00:00
+  V12 [Date to]: 2016-04-27T00:00:00
+EXCEL ROW 13
+  A13 [#]: 12
+  B13 [When]: by 05/19/2016
+  C13 [Who]: PWRR
+  E13 [Event]: Deadline revised
+  F13 [Process]: 1
+  G13 [Round]: 1
+  P13 [Note]: IOI deadline postponed to 05/19/2016 to let buyers formulate compelling offers; revision itself undated, only bound is the new date.
+  Q13 [Quote and page]: which deadline was subsequently postponed to May 19, 2016 to ensure the potential buyers had sufficient time to formulate their most compelling offers). (p. 29)
+  R13 [Flag]: Q2
+  T13 [Sort date]: 2016-05-19T00:00:00
+  V13 [Date to]: 2016-05-19T00:00:00
+EXCEL ROW 14
+  A14 [#]: 13
+  B14 [When]: 05/19/2016
+  C14 [Who]: PWRR
+  E14 [Event]: Deadline
+  F14 [Process]: 1
+  G14 [Round]: 1
+  P14 [Note]: IOI due date reached; nine IOIs followed; the Transaction Committee evaluated them on 05/23 and 06/01.
+  Q14 [Quote and page]: which deadline was subsequently postponed to May 19, 2016 (p. 29)
+  R14 [Flag]: Q2
+  T14 [Sort date]: 2016-05-19T00:00:00
+  U14 [Date from]: 2016-05-19T00:00:00
+  V14 [Date to]: 2016-05-19T00:00:00
+EXCEL ROW 15
+  A15 [#]: 14
+  B15 [When]: between 05/19/2016 and 06/01/2016
+  C15 [Who]: 9 IOI bidders
+  D15 [Type]: Unknown
+  E15 [Event]: Bid
+  F15 [Process]: 1
+  G15 [Round]: 1
+  H15 [Price low]: 17.93
+  I15 [Price high]: 26.5
+  J15 [All cash]: Not stated
+  K15 [Formality]: Informal
+  L15 [Conditions]: Heavy
+  M15 [Count]: 9
+  P15 [Note]: Aggregate of nine IOIs (equity values $90-134M); individual prices, types and terms not reported; made before substantive diligence access.
+  Q15 [Quote and page]: Between May 19, 2016 and June 1, 2016, the Company received nine written indications of interest (“IOIs”) from potential buyers, with offer prices per share ranging from $17.93 to $26.50 (p. 29)
+  T15 [Sort date]: 2016-05-19T00:00:00
+  U15 [Date from]: 2016-05-19T00:00:00
+  V15 [Date to]: 2016-06-01T00:00:00
+EXCEL ROW 16
+  A16 [#]: 15
+  B16 [When]: by 05/19/2016
+  C16 [Who]: 16 NDA signers (no IOI submitted)
+  D16 [Type]: Unknown
+  E16 [Event]: Did not submit
+  F16 [Process]: 1
+  G16 [Round]: 1
+  M16 [Count]: 16
+  N16 [Exit reason]: Not stated
+  O16 [Inferred]: Y
+  P16 [Note]: 25 NDA signers minus 9 IOI submitters = 16 with no submission reported; may include Party A. Inferred close at the due date.
+  Q16 [Quote and page]: Between May 19, 2016 and June 1, 2016, the Company received nine written indications of interest (“IOIs”) from potential buyers, with offer prices per share ranging from $17.93 to $26.50 (p. 29)
+  R16 [Flag]: Q4
+  T16 [Sort date]: 2016-05-19T00:00:00
+  V16 [Date to]: 2016-05-19T00:00:00
+EXCEL ROW 17
+  A17 [#]: 16
+  B17 [When]: 06/01/2016
+  C17 [Who]: Two low bidders
+  D17 [Type]: Unknown
+  E17 [Event]: Dropped by target
+  F17 [Process]: 1
+  G17 [Round]: 1
+  M17 [Count]: 2
+  N17 [Exit reason]: Lower offer than rivals
+  P17 [Note]: Excluded after IOI review as the lowest of the nine offers; decision made at the 05/23 and 06/01 Committee meetings.
+  Q17 [Quote and page]: the Transaction Committee concluded that the two low bidders should be excluded from that process. (p. 29)
+  T17 [Sort date]: 2016-06-01T00:00:00
+  U17 [Date from]: 2016-06-01T00:00:00
+  V17 [Date to]: 2016-06-01T00:00:00
+EXCEL ROW 18
+  A18 [#]: 17
+  B18 [When]: 06/01/2016
+  C18 [Who]: PWRR (Transaction Committee)
+  E18 [Event]: Round opened
+  F18 [Process]: 1
+  G18 [Round]: 2
+  P18 [Note]: Round 2 opened: Committee advanced seven after excluding two, opening management presentations and data-site diligence; LOIs later sought by 07/20.
+  Q18 [Quote and page]: authorized representatives of GHF to schedule in-person management presentations with the remaining seven potential buyers and allow these parties to conduct additional due diligence. (p. 29)
+  R18 [Flag]: Q1
+  T18 [Sort date]: 2016-06-01T00:00:00
+  U18 [Date from]: 2016-06-01T00:00:00
+  V18 [Date to]: 2016-06-01T00:00:00
+EXCEL ROW 19
+  A19 [#]: 18
+  B19 [When]: mid-June 2016
+  C19 [Who]: PWRR
+  E19 [Event]: Deadline set
+  F19 [Process]: 1
+  G19 [Round]: 2
+  P19 [Note]: GHF instructed all potential buyers to submit LOIs by 07/20/2016 with mark-ups of merger agreement, disclosure letter and voting agreement.
+  Q19 [Quote and page]: In mid-June 2016, at the direction of the Transaction Committee, representatives of GHF instructed all potential buyers to submit non-binding letters of intent (“LOIs”) by July 20, 2016 (p. 29)
+  R19 [Flag]: Q2
+  T19 [Sort date]: 2016-06-15T00:00:00
+  U19 [Date from]: 2016-06-11T00:00:00
+  V19 [Date to]: 2016-06-19T00:00:00
+EXCEL ROW 20
+  A20 [#]: 19
+  B20 [When]: early July 2016
+  C20 [Who]: Party C
+  D20 [Type]: Strategic
+  E20 [Event]: Bidder interest
+  F20 [Process]: 1
+  G20 [Round]: 2
+  M20 [Count]: 1
+  P20 [Note]: Unsolicited approach to management; no price; new late entrant, not among the original 25 signers.
+  Q20 [Quote and page]: a potential strategic buyer that had not previously been part of the process (“Party C”) approached the Company’s management and expressed interest in acquiring the Company. (p. 29)
+  T20 [Sort date]: 2016-07-05T00:00:00
+  U20 [Date from]: 2016-07-01T00:00:00
+  V20 [Date to]: 2016-07-10T00:00:00
+EXCEL ROW 21
+  A21 [#]: 20
+  B21 [When]: by 07/12/2016
+  C21 [Who]: Party C
+  D21 [Type]: Strategic
+  E21 [Event]: NDA signed
+  F21 [Process]: 1
+  G21 [Round]: 2
+  M21 [Count]: 1
+  P21 [Note]: Signed a confidentiality agreement and received the same memorandum as other buyers; no standstill.
+  Q21 [Quote and page]: After executing a confidentiality agreement, Party C was provided the memorandum concerning the Company provided to the other potential buyers. (p. 29)
+  T21 [Sort date]: 2016-07-06T00:00:00
+  U21 [Date from]: 2016-07-01T00:00:00
+  V21 [Date to]: 2016-07-12T00:00:00
+EXCEL ROW 22
+  A22 [#]: 21
+  B22 [When]: 07/12/2016
+  C22 [Who]: Party C
+  D22 [Type]: Strategic
+  E22 [Event]: Bid
+  F22 [Process]: 1
+  G22 [Round]: 2
+  H22 [Price low]: 21
+  I22 [Price high]: 21
+  J22 [All cash]: Not stated
+  K22 [Formality]: Informal
+  L22 [Conditions]: Heavy
+  M22 [Count]: 1
+  P22 [Note]: IOI; equity value $108M; no diligence or financing terms stated; made before data-site and management access.
+  Q22 [Quote and page]: On July 12, 2016, Party C submitted an IOI with an offer price per share of $21.00 (implying an equity value of $108 million). (p. 29)
+  T22 [Sort date]: 2016-07-12T00:00:00
+  U22 [Date from]: 2016-07-12T00:00:00
+  V22 [Date to]: 2016-07-12T00:00:00
+EXCEL ROW 23
+  A23 [#]: 22
+  B23 [When]: 07/14/2016
+  C23 [Who]: Party C
+  D23 [Type]: Strategic
+  E23 [Event]: Other material event
+  F23 [Process]: 1
+  G23 [Round]: 2
+  M23 [Count]: 1
+  P23 [Note]: Provided catch-up access for late entrant: data-site access plus telephone management presentation after its 07/12 IOI.
+  Q23 [Quote and page]: Subsequently, Party C was provided access to the internet data site and the Company’s management held a management presentation with Party C by telephone on July 14, 2016. (p. 29)
+  T23 [Sort date]: 2016-07-14T00:00:00
+  U23 [Date from]: 2016-07-12T00:00:00
+  V23 [Date to]: 2016-07-14T00:00:00
+EXCEL ROW 24
+  A24 [#]: 23
+  B24 [When]: late July 2016
+  C24 [Who]: Party B
+  D24 [Type]: Strategic
+  E24 [Event]: Bid
+  F24 [Process]: 1
+  G24 [Round]: 2
+  H24 [Price low]: 24
+  I24 [Price high]: 24
+  J24 [All cash]: Not stated
+  K24 [Formality]: Formal
+  L24 [Conditions]: Light
+  M24 [Count]: 1
+  P24 [Note]: LOI with mark-ups of merger and voting agreements; expedited diligence; highest of the six LOIs.
+  Q24 [Quote and page]: Party B submitted an LOI to acquire the Company for a price of $24.00 per share (subject to an expedited diligence review). (p. 29)
+  T24 [Sort date]: 2016-07-20T00:00:00
+  U24 [Date from]: 2016-07-20T00:00:00
+  V24 [Date to]: 2016-07-31T00:00:00
+EXCEL ROW 25
+  A25 [#]: 24
+  B25 [When]: late July 2016
+  C25 [Who]: Party E
+  D25 [Type]: Strategic
+  E25 [Event]: Bid
+  F25 [Process]: 1
+  G25 [Round]: 2
+  H25 [Price low]: 21.26
+  I25 [Price high]: 21.26
+  J25 [All cash]: Not stated
+  K25 [Formality]: Informal
+  L25 [Conditions]: Heavy
+  M25 [Count]: 1
+  P25 [Note]: LOI; 60-day exclusive diligence and documentation period requested; issues list only, no markup.
+  Q25 [Quote and page]: Party E (a strategic buyer) submitted an LOI to acquire the Company for a price of $21.26 per share (p. 30)
+  T25 [Sort date]: 2016-07-20T00:00:00
+  U25 [Date from]: 2016-07-20T00:00:00
+  V25 [Date to]: 2016-07-31T00:00:00
+EXCEL ROW 26
+  A26 [#]: 25
+  B26 [When]: late July 2016
+  C26 [Who]: Party D
+  D26 [Type]: Financial
+  E26 [Event]: Bid
+  F26 [Process]: 1
+  G26 [Round]: 2
+  H26 [Price low]: 21
+  I26 [Price high]: 21
+  J26 [All cash]: Not stated
+  K26 [Formality]: Formal
+  L26 [Conditions]: Heavy
+  M26 [Count]: 1
+  P26 [Note]: LOI with mark-ups of merger and voting agreements; four-week diligence period.
+  Q26 [Quote and page]: Party D (a financial buyer) submitted an LOI to acquire the Company for a price of $21.00 per share (subject to a four-week diligence period). (p. 30)
+  T26 [Sort date]: 2016-07-20T00:00:00
+  U26 [Date from]: 2016-07-20T00:00:00
+  V26 [Date to]: 2016-07-31T00:00:00
+EXCEL ROW 27
+  A27 [#]: 26
+  B27 [When]: late July 2016
+  C27 [Who]: Party C
+  D27 [Type]: Strategic
+  E27 [Event]: Bid
+  F27 [Process]: 1
+  G27 [Round]: 2
+  H27 [Price low]: 19.3
+  I27 [Price high]: 19.3
+  J27 [All cash]: Not stated
+  K27 [Formality]: Informal
+  L27 [Conditions]: Heavy
+  M27 [Count]: 1
+  P27 [Note]: LOI; 30-day diligence period; no markup.
+  Q27 [Quote and page]: Party C submitted an LOI to acquire the Company for a price of $19.30 per share (subject to a 30-day diligence period). (p. 30)
+  T27 [Sort date]: 2016-07-20T00:00:00
+  U27 [Date from]: 2016-07-20T00:00:00
+  V27 [Date to]: 2016-07-31T00:00:00
+EXCEL ROW 28
+  A28 [#]: 27
+  B28 [When]: late July 2016
+  C28 [Who]: Party F
+  D28 [Type]: Strategic
+  E28 [Event]: Bid
+  F28 [Process]: 1
+  G28 [Round]: 2
+  H28 [Price low]: 19.2
+  I28 [Price high]: 19.2
+  J28 [All cash]: Not stated
+  K28 [Formality]: Informal
+  L28 [Conditions]: Heavy
+  M28 [Count]: 1
+  P28 [Note]: LOI; 30-day due diligence period; no markup.
+  Q28 [Quote and page]: Party F (a strategic buyer) submitted an LOI to acquire the Company for a price of $19.20 per share (subject to a 30-day due diligence period). (p. 30)
+  T28 [Sort date]: 2016-07-20T00:00:00
+  U28 [Date from]: 2016-07-20T00:00:00
+  V28 [Date to]: 2016-07-31T00:00:00
+EXCEL ROW 29
+  A29 [#]: 28
+  B29 [When]: 07/20/2016
+  C29 [Who]: One strategic buyer (unnamed)
+  D29 [Type]: Strategic
+  E29 [Event]: Did not submit
+  F29 [Process]: 1
+  G29 [Round]: 2
+  M29 [Count]: 1
+  N29 [Exit reason]: Not stated
+  P29 [Note]: Elected not to submit an LOI after being advanced; one of the seven; not necessarily permanent.
+  Q29 [Quote and page]: One strategic buyer and one financial buyer elected not to submit an LOI. (p. 30)
+  T29 [Sort date]: 2016-07-20T00:00:00
+  V29 [Date to]: 2016-07-20T00:00:00
+EXCEL ROW 30
+  A30 [#]: 29
+  B30 [When]: 07/20/2016
+  C30 [Who]: One financial buyer (unnamed)
+  D30 [Type]: Financial
+  E30 [Event]: Did not submit
+  F30 [Process]: 1
+  G30 [Round]: 2
+  M30 [Count]: 1
+  N30 [Exit reason]: Not stated
+  P30 [Note]: Elected not to submit an LOI after being advanced; one of the seven; not necessarily permanent.
+  Q30 [Quote and page]: One strategic buyer and one financial buyer elected not to submit an LOI. (p. 30)
+  T30 [Sort date]: 2016-07-20T00:00:00
+  V30 [Date to]: 2016-07-20T00:00:00
+EXCEL ROW 31
+  A31 [#]: 30
+  B31 [When]: 07/21/2016
+  C31 [Who]: G&W
+  D31 [Type]: Strategic
+  E31 [Event]: Bid
+  F31 [Process]: 1
+  G31 [Round]: 2
+  H31 [Price low]: 21.15
+  I31 [Price high]: 21.15
+  J31 [All cash]: Yes
+  K31 [Formality]: Formal
+  L31 [Conditions]: Heavy
+  M31 [Count]: 1
+  P31 [Note]: LOI: $20.02 cash at closing plus $1.13 CVR on South Quay property sale; three-week exclusive diligence requested; mark-ups provided.
+  Q31 [Quote and page]: G&W submitted an LOI on July 21, 2016 to acquire the Company for a price of $21.15 per share (subject to a three-week exclusive diligence period). (p. 29)
+  R31 [Flag]: Q2
+  T31 [Sort date]: 2016-07-21T00:00:00
+  U31 [Date from]: 2016-07-21T00:00:00
+  V31 [Date to]: 2016-07-21T00:00:00
+EXCEL ROW 32
+  A32 [#]: 31
+  B32 [When]: 07/26/2016
+  C32 [Who]: G&W
+  D32 [Type]: Strategic
+  E32 [Event]: Bid
+  F32 [Process]: 1
+  G32 [Round]: 2
+  H32 [Price low]: 22.15
+  I32 [Price high]: 22.15
+  J32 [All cash]: Yes
+  K32 [Formality]: Formal
+  L32 [Conditions]: Heavy
+  M32 [Count]: 1
+  P32 [Note]: Raised after GHF said price and CVR structure were not competitive; $21.02 cash plus $1.13 CVR; exclusive diligence request stands.
+  Q32 [Quote and page]: G&W submitted a revised LOI, which increased its offer to $22.15 per share (including $21.02 in cash and $1.13 CVR). (p. 29)
+  T32 [Sort date]: 2016-07-26T00:00:00
+  U32 [Date from]: 2016-07-26T00:00:00
+  V32 [Date to]: 2016-07-26T00:00:00
+EXCEL ROW 33
+  A33 [#]: 32
+  B33 [When]: 07/27/2016
+  C33 [Who]: PWRR (Transaction Committee)
+  E33 [Event]: Round opened
+  F33 [Process]: 1
+  G33 [Round]: 3
+  P33 [Note]: Round 3 opened: Committee advanced G&W and Party B for confirmatory diligence and negotiations and directed that other bidders be told they were out.
+  Q33 [Quote and page]: concluded that the Company should proceed with confirmatory due diligence and negotiations with G&W and Party B because of the higher offers made by each (p. 30)
+  R33 [Flag]: Q1
+  T33 [Sort date]: 2016-07-27T00:00:00
+  U33 [Date from]: 2016-07-27T00:00:00
+  V33 [Date to]: 2016-07-27T00:00:00
+EXCEL ROW 34
+  A34 [#]: 33
+  B34 [When]: by 07/27/2016
+  C34 [Who]: Party E
+  D34 [Type]: Strategic
+  E34 [Event]: Dropped by target
+  F34 [Process]: 1
+  G34 [Round]: 2
+  M34 [Count]: 1
+  N34 [Exit reason]: Lower offer than rivals
+  O34 [Inferred]: Y
+  P34 [Note]: Not among the two advanced; included in remaining bidders told they were no longer involved; last bid $21.26 (07/20).
+  Q34 [Quote and page]: representatives of GHF subsequently contacted the remaining bidders to inform them that they were no longer involved in the process. (p. 30)
+  R34 [Flag]: Q5
+  T34 [Sort date]: 2016-07-27T00:00:00
+  V34 [Date to]: 2016-07-27T00:00:00
+EXCEL ROW 35
+  A35 [#]: 34
+  B35 [When]: by 07/27/2016
+  C35 [Who]: Party D
+  D35 [Type]: Financial
+  E35 [Event]: Dropped by target
+  F35 [Process]: 1
+  G35 [Round]: 2
+  M35 [Count]: 1
+  N35 [Exit reason]: Lower offer than rivals
+  O35 [Inferred]: Y
+  P35 [Note]: Not among the two advanced; included in remaining bidders told out; last bid $21.00 (07/20); returned 07/29.
+  Q35 [Quote and page]: representatives of GHF subsequently contacted the remaining bidders to inform them that they were no longer involved in the process. (p. 30)
+  R35 [Flag]: Q5
+  T35 [Sort date]: 2016-07-27T00:00:00
+  V35 [Date to]: 2016-07-27T00:00:00
+EXCEL ROW 36
+  A36 [#]: 35
+  B36 [When]: by 07/27/2016
+  C36 [Who]: Party C
+  D36 [Type]: Strategic
+  E36 [Event]: Dropped by target
+  F36 [Process]: 1
+  G36 [Round]: 2
+  M36 [Count]: 1
+  N36 [Exit reason]: Lower offer than rivals
+  O36 [Inferred]: Y
+  P36 [Note]: Not among the two advanced; included in remaining bidders told out; last bid $19.30 (07/20); no later activity.
+  Q36 [Quote and page]: representatives of GHF subsequently contacted the remaining bidders to inform them that they were no longer involved in the process. (p. 30)
+  R36 [Flag]: Q5
+  T36 [Sort date]: 2016-07-27T00:00:00
+  V36 [Date to]: 2016-07-27T00:00:00
+EXCEL ROW 37
+  A37 [#]: 36
+  B37 [When]: by 07/27/2016
+  C37 [Who]: Party F
+  D37 [Type]: Strategic
+  E37 [Event]: Dropped by target
+  F37 [Process]: 1
+  G37 [Round]: 2
+  M37 [Count]: 1
+  N37 [Exit reason]: Lower offer than rivals
+  O37 [Inferred]: Y
+  P37 [Note]: Not among the two advanced; included in remaining bidders told out; last bid $19.20 (07/20); no later activity.
+  Q37 [Quote and page]: representatives of GHF subsequently contacted the remaining bidders to inform them that they were no longer involved in the process. (p. 30)
+  R37 [Flag]: Q5
+  T37 [Sort date]: 2016-07-27T00:00:00
+  V37 [Date to]: 2016-07-27T00:00:00
+EXCEL ROW 38
+  A38 [#]: 37
+  B38 [When]: 07/29/2016
+  C38 [Who]: Party D
+  D38 [Type]: Financial
+  E38 [Event]: Re-entered
+  F38 [Process]: 1
+  G38 [Round]: 3
+  M38 [Count]: 1
+  P38 [Note]: Returned after exit #34; expressed interest in reengaging and enhancing its offer; revised bid followed 08/01.
+  Q38 [Quote and page]: During those calls, Party D and Party E both expressed interest in reengaging and enhancing their offers. (p. 30)
+  T38 [Sort date]: 2016-07-29T00:00:00
+  U38 [Date from]: 2016-07-29T00:00:00
+  V38 [Date to]: 2016-07-29T00:00:00
+EXCEL ROW 39
+  A39 [#]: 38
+  B39 [When]: 07/29/2016
+  C39 [Who]: Party E
+  D39 [Type]: Strategic
+  E39 [Event]: Re-entered
+  F39 [Process]: 1
+  G39 [Round]: 3
+  M39 [Count]: 1
+  P39 [Note]: Returned after exit #33; expressed interest in reengaging and enhancing its offer; revised bid followed 08/01.
+  Q39 [Quote and page]: During those calls, Party D and Party E both expressed interest in reengaging and enhancing their offers. (p. 30)
+  T39 [Sort date]: 2016-07-29T00:00:00
+  U39 [Date from]: 2016-07-29T00:00:00
+  V39 [Date to]: 2016-07-29T00:00:00
+EXCEL ROW 40
+  A40 [#]: 39
+  B40 [When]: 08/01/2016
+  C40 [Who]: Party D
+  D40 [Type]: Financial
+  E40 [Event]: Bid
+  F40 [Process]: 1
+  G40 [Round]: 3
+  H40 [Price low]: 24
+  I40 [Price high]: 24
+  J40 [All cash]: Not stated
+  K40 [Formality]: Formal
+  L40 [Conditions]: Heavy
+  M40 [Count]: 1
+  P40 [Note]: Revised up from $21.00; 30-day diligence period retained; on 08/02 asked the Company not to sign with a rival during diligence.
+  Q40 [Quote and page]: On August 1, 2016, Party D submitted a revised LOI at a price of $24.00 per share (p. 30)
+  T40 [Sort date]: 2016-08-01T00:00:00
+  U40 [Date from]: 2016-08-01T00:00:00
+  V40 [Date to]: 2016-08-01T00:00:00
+EXCEL ROW 41
+  A41 [#]: 40
+  B41 [When]: 08/01/2016
+  C41 [Who]: Party E
+  D41 [Type]: Strategic
+  E41 [Event]: Bid
+  F41 [Process]: 1
+  G41 [Round]: 3
+  H41 [Price low]: 23.81
+  I41 [Price high]: 23.81
+  J41 [All cash]: Not stated
+  K41 [Formality]: Informal
+  L41 [Conditions]: Heavy
+  M41 [Count]: 1
+  P41 [Note]: Raised from $21.26 with financing support from Party F; 30-day diligence period.
+  Q41 [Quote and page]: Party E submitted a revised LOI, along with financing support, from Party F, at a price of $23.81 per share (p. 30)
+  T41 [Sort date]: 2016-08-01T00:00:00
+  U41 [Date from]: 2016-08-01T00:00:00
+  V41 [Date to]: 2016-08-01T00:00:00
+EXCEL ROW 42
+  A42 [#]: 41
+  B42 [When]: 08/01/2016
+  C42 [Who]: Party F
+  D42 [Type]: Strategic
+  E42 [Event]: Other material event
+  F42 [Process]: 1
+  G42 [Round]: 3
+  M42 [Count]: 1
+  P42 [Note]: Provided financing support for Party E's revised $23.81 bid; F had already exited on 07/27 (last bid $19.20); relationship formed.
+  Q42 [Quote and page]: Party E submitted a revised LOI, along with financing support, from Party F, at a price of $23.81 per share (p. 30)
+  T42 [Sort date]: 2016-08-01T00:00:00
+  U42 [Date from]: 2016-08-01T00:00:00
+  V42 [Date to]: 2016-08-01T00:00:00
+EXCEL ROW 43
+  A43 [#]: 42
+  B43 [When]: 08/02/2016
+  C43 [Who]: Party E
+  D43 [Type]: Strategic
+  E43 [Event]: Bid
+  F43 [Process]: 1
+  G43 [Round]: 3
+  H43 [Price low]: 21.26
+  I43 [Price high]: 21.26
+  J43 [All cash]: Not stated
+  K43 [Formality]: Informal
+  L43 [Conditions]: Heavy
+  M43 [Count]: 1
+  P43 [Note]: Reversion: withdrew the $23.81 proposal while confirming its original $21.26 offer; stays in the process.
+  Q43 [Quote and page]: Party E withdrew its revised proposal on August 2, 2016 (but confirmed its original proposal of $21.26 per share) (p. 30)
+  T43 [Sort date]: 2016-08-02T00:00:00
+  U43 [Date from]: 2016-08-02T00:00:00
+  V43 [Date to]: 2016-08-02T00:00:00
+EXCEL ROW 44
+  A44 [#]: 43
+  B44 [When]: 08/02/2016
+  C44 [Who]: Party D
+  D44 [Type]: Financial
+  E44 [Event]: Withdrew
+  F44 [Process]: 1
+  G44 [Round]: 3
+  M44 [Count]: 1
+  N44 [Exit reason]: Terms or process
+  P44 [Note]: Declined to shorten diligence and sought a no-sign commitment; Company refused; filing's words: would not proceed with further diligence 'at that time'.
+  Q44 [Quote and page]: Party D indicated that it would not proceed with further due diligence at that time. (p. 30)
+  T44 [Sort date]: 2016-08-02T00:00:00
+  U44 [Date from]: 2016-08-02T00:00:00
+  V44 [Date to]: 2016-08-02T00:00:00
+EXCEL ROW 45
+  A45 [#]: 44
+  B45 [When]: 08/04/2016
+  C45 [Who]: PWRR (Transaction Committee)
+  E45 [Event]: Other material event
+  F45 [Process]: 1
+  G45 [Round]: 3
+  P45 [Note]: Prioritized Party B as preferred bidder at its $24.00 offer and directed completing the merger agreement negotiation with it; G&W talks continued.
+  Q45 [Quote and page]: given the higher price offered by Party B, to prioritize Party B and proceed to complete the negotiation of the merger agreement with Party B (p. 31)
+  T45 [Sort date]: 2016-08-04T00:00:00
+  U45 [Date from]: 2016-08-04T00:00:00
+  V45 [Date to]: 2016-08-04T00:00:00
+EXCEL ROW 46
+  A46 [#]: 45
+  B46 [When]: 08/04/2016
+  C46 [Who]: Party B
+  D46 [Type]: Strategic
+  E46 [Event]: Bid reaffirmed
+  F46 [Process]: 1
+  G46 [Round]: 3
+  H46 [Price low]: 24
+  I46 [Price high]: 24
+  J46 [All cash]: Not stated
+  K46 [Formality]: Formal
+  L46 [Conditions]: Light
+  M46 [Count]: 1
+  P46 [Note]: Reaffirmed by returned draft; $24.00 carried from #23; expedited diligence condition as of this date.
+  Q46 [Quote and page]: On August 4, 2016, legal counsel for Party B provided a revised draft of the merger agreement (p. 31)
+  R46 [Flag]: Q3
+  T46 [Sort date]: 2016-08-04T00:00:00
+  U46 [Date from]: 2016-08-04T00:00:00
+  V46 [Date to]: 2016-08-04T00:00:00
+EXCEL ROW 47
+  A47 [#]: 46
+  B47 [When]: 08/09/2016
+  C47 [Who]: G&W
+  D47 [Type]: Strategic
+  E47 [Event]: Other material event
+  F47 [Process]: 1
+  G47 [Round]: 3
+  M47 [Count]: 1
+  P47 [Note]: Granted continued diligence 08/10-08/11 after the Company told G&W it intended to sign with another bidder; G&W's $25.00 offer followed 08/12.
+  Q47 [Quote and page]: G&W requested that it be allowed to continue its due diligence, including physical due diligence on August 10 and August 11, 2016, to potentially facilitate an improved offer (p. 31)
+  T47 [Sort date]: 2016-08-09T00:00:00
+  U47 [Date from]: 2016-08-09T00:00:00
+  V47 [Date to]: 2016-08-11T00:00:00
+EXCEL ROW 48
+  A48 [#]: 47
+  B48 [When]: 08/10/2016
+  C48 [Who]: Simpson Thacher & Bartlett LLP
+  E48 [Event]: Adviser
+  F48 [Process]: 1
+  G48 [Round]: 3
+  P48 [Note]: G&W's legal counsel; first seen acting 08/10/2016 discussing merger agreement provisions with Hinckley Allen.
+  Q48 [Quote and page]: Simpson Thacher & Bartlett LLP (which we refer to as “Simpson Thacher”), G&W’s legal counsel (p. 31)
+  T48 [Sort date]: 2016-08-10T00:00:00
+  U48 [Date from]: 2016-08-10T00:00:00
+  V48 [Date to]: 2016-08-10T00:00:00
+EXCEL ROW 49
+  A49 [#]: 48
+  B49 [When]: 08/12/2016
+  C49 [Who]: G&W
+  D49 [Type]: Strategic
+  E49 [Event]: Bid
+  F49 [Process]: 1
+  G49 [Round]: 3
+  H49 [Price low]: 25
+  I49 [Price high]: 25
+  J49 [All cash]: Yes
+  K49 [Formality]: Formal
+  L49 [Conditions]: Light
+  M49 [Count]: 1
+  P49 [Note]: Raised from $22.15; all cash, CVR dropped; mark-ups with the offer; offer expired 6:00 p.m. 08/13; completed physical diligence first.
+  Q49 [Quote and page]: G&W submitted a revised LOI to acquire the Company for a price of $25.00 per share in cash, which excluded the previously proposed CVR (p. 31)
+  T49 [Sort date]: 2016-08-12T00:00:00
+  U49 [Date from]: 2016-08-12T00:00:00
+  V49 [Date to]: 2016-08-12T00:00:00
+EXCEL ROW 50
+  A50 [#]: 49
+  B50 [When]: 08/12/2016
+  C50 [Who]: Party B
+  D50 [Type]: Strategic
+  E50 [Event]: Not selected at signing
+  F50 [Process]: 1
+  G50 [Round]: 3
+  M50 [Count]: 1
+  N50 [Exit reason]: Would not improve earlier offer
+  P50 [Note]: Asked on 08/12 whether it would increase its $24.00; declined; Board then chose G&W's $25.00 as the superior proposal.
+  Q50 [Quote and page]: Party B indicated that it would not increase its price. (p. 32)
+  T50 [Sort date]: 2016-08-12T00:00:00
+  U50 [Date from]: 2016-08-12T00:00:00
+  V50 [Date to]: 2016-08-12T00:00:00
+EXCEL ROW 51
+  A51 [#]: 50
+  B51 [When]: by 08/12/2016
+  C51 [Who]: Party E
+  D51 [Type]: Strategic
+  E51 [Event]: Not selected at signing
+  F51 [Process]: 1
+  G51 [Round]: 3
+  M51 [Count]: 1
+  N51 [Exit reason]: Not stated
+  O51 [Inferred]: Y
+  P51 [Note]: Last seen confirming a standing $21.26 on 08/02; not included when the Board chose G&W at $25.00.
+  Q51 [Quote and page]: The Board determined that the G&W offer represented the superior proposal. (p. 32)
+  T51 [Sort date]: 2016-08-12T00:00:00
+  V51 [Date to]: 2016-08-12T00:00:00
+EXCEL ROW 52
+  A52 [#]: 51
+  B52 [When]: 08/12/2016
+  C52 [Who]: PWRR / G&W
+  E52 [Event]: Merger agreement signed
+  F52 [Process]: 1
+  G52 [Round]: 3
+  M52 [Count]: 1
+  P52 [Note]: Agreed price $25.00 per share in cash; preferred converts into 100 common shares; termination fee $3.785M; board approved and parties signed same day; voting agreement with Eder Trusts.
+  Q52 [Quote and page]: the Company and G&W executed the merger agreement, and the Company, G&W and the Eder Trusts executed the voting agreement (p. 32)
+  T52 [Sort date]: 2016-08-12T00:00:00
+  U52 [Date from]: 2016-08-12T00:00:00
+  V52 [Date to]: 2016-08-12T00:00:00
+EXCEL ROW 53
+  A53 [#]: 52
+  B53 [When]: 08/15/2016
+  C53 [Who]: PWRR / G&W
+  E53 [Event]: Merger announced
+  F53 [Process]: 1
+  G53 [Round]: post
+  P53 [Note]: Press release before NASDAQ opened; signed merger agreement announced publicly.
+  Q53 [Quote and page]: The Company issued a press release publicly announcing the transaction on Monday, August 15, 2016 prior to the opening of trading of the Company’s common stock on the NASDAQ. (p. 32)
+  T53 [Sort date]: 2016-08-15T00:00:00
+  U53 [Date from]: 2016-08-15T00:00:00
+  V53 [Date to]: 2016-08-15T00:00:00
+SHEET 'Rounds'; state=visible; rows=4; columns=10
+EXCEL ROW 1
+  A1 [Process]: Process
+  B1 [Round]: Round
+  C1 [Opened]: Opened
+  D1 [How opened]: How opened
+  E1 [Who was in]: Who was in
+  F1 [Due dates]: Due dates
+  G1 [Deadline outcome]: Deadline outcome
+  H1 [Finality]: Finality
+  I1 [Bids received]: Bids received
+  J1 [How it ended]: How it ended
+EXCEL ROW 2
+  A2 [Process]: 1
+  B2 [Round]: 1
+  C2 [Opened]: 2016-03-28T00:00:00
+  D2 [How opened]: Transaction Committee authorized contacts on 03/24; GHF began outreach week of 03/28 to 29 potential buyers (11 strategic, 18 financial)
+  E2 [Who was in]: 25 admitted by NDA: 11 strategic (incl. Party A, Party B, G&W) + 14 financial
+  F2 [Due dates]: 05/10/2016 → 05/19/2016
+  G2 [Deadline outcome]: Extended; Enforced
+  H2 [Finality]: Not final
+  I2 [Bids received]: 9 bidders (unnamed): IOIs $17.93-$26.50
+  J2 [How it ended]: two low bidders excluded; seven advanced on 06/01
+EXCEL ROW 3
+  A3 [Process]: 1
+  B3 [Round]: 2
+  C3 [Opened]: 2016-06-01T00:00:00
+  D3 [How opened]: Committee excluded two low bidders and advanced seven to management presentations and data-site diligence; LOIs with mark-ups due 07/20
+  E3 [Who was in]: 7 advanced (5 strategic incl. B, G&W, E, F; 2 financial incl. D) + Party C (strategic late entrant)
+  F3 [Due dates]: 07/20/2016
+  G3 [Deadline outcome]: Late bids accepted
+  H3 [Finality]: Not final
+  I3 [Bids received]: 6: Party B $24.00, G&W $21.15→$22.15, Party E $21.26, Party D $21.00, Party C $19.30, Party F $19.20 (Party C also IOI $21.00 on 07/12)
+  J3 [How it ended]: two advanced (G&W, Party B); Party D, E, C, F told out; two had not submitted
+EXCEL ROW 4
+  A4 [Process]: 1
+  B4 [Round]: 3
+  C4 [Opened]: 2016-07-27T00:00:00
+  D4 [How opened]: Committee advanced G&W and Party B for confirmatory diligence and negotiations; other bidders told out
+  E4 [Who was in]: 2 admitted (G&W, Party B; both strategic); Party D and Party E re-entered 07/29-08/01
+  F4 [Due dates]: none stated
+  G4 [Deadline outcome]: No deadline stated
+  H4 [Finality]: Inferred final
+  I4 [Bids received]: Party D $24.00 (08/01); Party E $23.81 then $21.26 (08/01-08/02); Party B $24.00 reaffirmed (08/04); G&W $25.00 (08/12)
+  J4 [How it ended]: signing 08/12/2016
+SHEET 'Questions'; state=visible; rows=6; columns=7
+EXCEL ROW 1
+  A1 [Q]: Q
+  B1 [Question]: Question
+  C1 [Recommended answer]: Recommended answer
+  D1 [Why, with page]: Why, with page
+  E1 [Rows affected]: Rows affected
+  F1 [What changes if answered differently]: What changes if answered differently
+  G1 [Reviewer note]: Reviewer note
+EXCEL ROW 2
+  A2 [Q]: Q1
+  B2 [Question]: Is the round map right: Round 1 = outreach through IOIs (opened with the week of 03/28 outreach); Round 2 opens 06/01 when the Committee excludes two and advances seven to presentations and diligence; Round 3 opens 07/27 when G&W and Party B advance to confirmatory negotiation? Alternatives: Round 1 opens 03/24 (authorizing decision) or Round 2 opens mid-June (LOI instruction).
+  C2 [Recommended answer]: Keep three rounds. 06/01 selected the advancing set and opened a diligence stage tied to the 07/20 LOIs; 07/27 moved to definitive negotiation. Date Round 1 from the first outreach wave (week of 03/28), not the 03/24 authorization.
+  D2 [Why, with page]: pp. 28 (03/24 authorization; week of 03/28 outreach), 29 (06/01 advancement to presentations and diligence; mid-June LOI instruction), 30 (07/27 advancement and notices to the other bidders).
+  E2 [Rows affected]: #6, #17, #32; a mid-June Round 2 boundary would renumber rows #18-#31 (Party C and LOI rows).
+  F2 [What changes if answered differently]: Round numbers on the affected rows and the Opened dates on the Rounds sheet; live-bidder counts at each stage are unchanged.
+EXCEL ROW 3
+  A3 [Q]: Q2
+  B3 [Question]: Deadline outcomes: was Round 1's 05/10 due date reached before the postponement to 05/19 (dated only 'subsequently'), and should the revision sort at 05/19? Was Round 2's 07/20 outcome Enforced or Late bids accepted - G&W's LOI is dated 07/21?
+  C3 [Recommended answer]: 05/10 = Extended, 05/19 = Enforced (next step: the 06/01 selection). The revision is undated with only the new date as a bound, sorted 05/19. Round 2 = Late bids accepted: G&W's dated 07/21 LOI was considered and eventually won.
+  D3 [Why, with page]: pp. 29 (advising by 05/10; postponement; nine IOIs), 29-30 (LOIs due 07/20; G&W dated 07/21; selection 07/27).
+  E3 [Rows affected]: #11, #12, #13, #18, #30.
+  F3 [What changes if answered differently]: The Deadline revised row's date and the deadline-outcome values in the Rounds sheet; if G&W's lateness counts as late-bid acceptance, Round 2 reads Late bids accepted, otherwise Enforced.
+EXCEL ROW 4
+  A4 [Q]: Q3
+  B4 [Question]: Party B's Bid reaffirmed (#45): the Committee directed completing the merger agreement with B on 08/04 and B's counsel returned a revised draft the same day. Does C12 support one reaffirmation row, or should B have no final-round row?
+  C4 [Recommended answer]: Keep it: (a) a decision to complete the agreement on the standing $24.00, (b) B's latest priced row (#23) sits in Round 2, which is Not final, (c) the returned draft is B's first reported act. Flagged per C12.
+  D4 [Why, with page]: p. 31 (08/04 direction to prioritize Party B and complete negotiations; Party B's revised draft the same day).
+  E4 [Rows affected]: #45; carries the price from #23.
+  F4 [What changes if answered differently]: Without it, Party B's $24.00 rests in a Not-final round with no reaffirmation, and the final stage would show only G&W's formal bids.
+EXCEL ROW 5
+  A5 [Q]: Q4
+  B5 [Question]: The 16-signer Did-not-submit residual (#15) is 25 NDA signers minus nine IOI submitters; Party A, the initial mover, never appears after April. Is Party A properly left inside this residual with no separate exit row?
+  C5 [Recommended answer]: Yes - C16 gives a named party that is never mentioned again no individual exit row; it is noted in the residual and raised here. The 25 base is the filing's stated signer count.
+  D5 [Why, with page]: p. 28 (25 signers; Party A last seen with the memorandum distribution), p. 29 (nine IOIs; seven advanced).
+  E5 [Rows affected]: #15, #1.
+  F5 [What changes if answered differently]: If Party A actually submitted an IOI, the residual is 15 and one excluded or advanced bidder identity changes; live counts after 05/19 are unaffected.
+EXCEL ROW 6
+  A6 [Q]: Q5
+  B6 [Question]: The 07/27 exits of Party E, D, C and F (#33-#36) are inferred from 'the remaining bidders' being told they were no longer involved; the filing names none of them. Is that the right participant set?
+  C6 [Recommended answer]: Yes: the six LOI submitters less the two advanced (G&W, Party B); each kept its last bid, and D and E returned on 07/29. Party C and Party F never reappear.
+  D6 [Why, with page]: p. 30 (advancement because of higher offers; 'remaining bidders' contacted; six LOIs received).
+  E6 [Rows affected]: #33-#36, #37-#38.
+  F6 [What changes if answered differently]: The number of live bidders after 07/27 (6 to 2) and whether re-entries #37-#38 follow recorded exits.
+SHEET 'Deal facts'; state=visible; rows=17; columns=2
+EXCEL ROW 1
+  A1 [Field]: Field
+  B1 [Value]: Value
+EXCEL ROW 2
+  A2 [Field]: Target
+  B2 [Value]: Providence and Worcester Railroad Company (PWRR), a Rhode Island regional freight railroad; NASDAQ: PWX
+EXCEL ROW 3
+  A3 [Field]: Acquirer
+  B3 [Value]: Genesee & Wyoming Inc. (G&W), through its wholly-owned subsidiary Pullman Acquisition Sub Inc.
+EXCEL ROW 4
+  A4 [Field]: Acquirer type
+  B4 [Value]: Strategic - G&W is an operating rail company (owns or leases 121 freight railroads worldwide)
+EXCEL ROW 5
+  A5 [Field]: Agreed price and consideration
+  B5 [Value]: $25.00 per share in cash, without interest, for each share of common stock; each preferred share converts into 100 common shares; termination fee $3.785 million (about 3% of transaction value); no financing condition
+EXCEL ROW 6
+  A6 [Field]: Merger agreement signed
+  B6 [Value]: 2016-08-12T00:00:00
+EXCEL ROW 7
+  A7 [Field]: Merger announced
+  B7 [Value]: 2016-08-15T00:00:00
+EXCEL ROW 8
+  A8 [Field]: Filing type and date
+  B8 [Value]: DEFM14A, filed 09/20/2016; proxy statement dated 09/19/2016, first mailed on or about 09/21/2016
+EXCEL ROW 9
+  A9 [Field]: Background pages
+  B9 [Value]: 27-32
+EXCEL ROW 10
+  A10 [Field]: Initiation (target-led, bidder-led, activist-influenced, mixed or unclear)
+  B10 [Value]: Bidder-led - Party A (a Class I rail partner) raised acquisition interest in Q4 2015; the Board then organized a banker-run process
+EXCEL ROW 11
+  A11 [Field]: Number of processes
+  B11 [Value]: 1
+EXCEL ROW 12
+  A12 [Field]: Auction screen (C1)
+  B12 [Value]: Met - 25 independent prospective acquirers executed confidentiality agreements with the Company (11 strategic, 14 financial); Party C signed later as a late entrant
+EXCEL ROW 13
+  A13 [Field]: Whole-company bids (Yes, or No with what was bid for)
+  B13 [Value]: Yes
+EXCEL ROW 14
+  A14 [Field]: Currency and units of bid prices
+  B14 [Value]: US dollars, per share of common stock (assuming conversion of preferred stock into common stock)
+EXCEL ROW 15
+  A15 [Field]: Target financial advisers
+  B15 [Value]: Greene Holcomb & Fisher LLC (GHF), acquired by BMO Capital Markets Corp. on 08/01/2016; BMO thereafter (one adviser)
+EXCEL ROW 16
+  A16 [Field]: Target legal advisers
+  B16 [Value]: Hinckley, Allen & Snyder LLP
+EXCEL ROW 17
+  A17 [Field]: Account
+  B17 [Value]: In the fourth quarter of 2015 Party A, one of PWRR's Class I rail partners, raised an interest in acquiring equity in a commercial meeting, prompting the Board to appoint a subcommittee, engage Greene Holcomb & Fisher (later BMO) as its banker on 01/27/2016 and, on 03/14/2016, approve a process combining talks with Party A and a broad solicitation of other buyers. GHF contacted 29 potential buyers in the week of 03/28/2016; 25 signed confidentiality agreements and nine non-binding IOIs arrived after the deadline moved from 05/10 to 05/19, ranging from $17.93 to $26.50 per share. On 06/01 the Transaction Committee excluded the two low bidders and advanced seven to management presentations and data-room diligence, seeking LOIs with mark-ups by 07/20; six LOIs arrived, and late entrant Party C signed an NDA in early July and bid $21.00, then $19.30. On 07/27 the Committee advanced G&W and Party B for confirmatory diligence and negotiation and told the other bidders they were out; Party D and Party E returned on 07/29-08/01, but D withdrew on 08/02 and E reverted to $21.26. Negotiations with Party B and G&W continued, and G&W's 08/12 revised $25.00 all-cash LOI, dropping the CVR, beat Party B's standing $24.00. The Board approved and signed the merger agreement that day, and the transaction was announced on 08/15/2016.

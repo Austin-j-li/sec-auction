@@ -1,0 +1,51 @@
+{
+  "case_id": "ablation_finance_07",
+  "request_sha256": "9dd3891dc1e2249229cf16f9675f564cc0eb4401fd80813128f437629f7c7a18",
+  "request": {
+    "model": "jev-1.13.0",
+    "state": {
+      "source": [
+        {
+          "paragraph_id": "217",
+          "text": "On June 21, 2013, Party A submitted an unsolicited proposal to the Mac-Gray Board of Directors offering to purchase Mac-Gray for an all-cash purchase price of $17.00 to $19.00 per share, which we refer to as the Party A June 21 proposal."
+        }
+      ]
+    },
+    "questions": {
+      "financing": {
+        "type": "choice",
+        "instructions": "For Party A at \"June 21, 2013 proposal\", what does the supplied source explicitly report about financing commitment? Judge only financing; do not import another bidder or date, or infer commitment from all-cash consideration.",
+        "criteria": {
+          "committed": "Financing commitment provided, capital expressly committed, or financing not needed.",
+          "missing": "Explicitly no firm commitment, uncommitted financing, or financing contingency.",
+          "silent": "No explicit statement establishing either commitment or absence for this bidder at this event. Silence is not missing financing."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "financing": {
+        "type": "choice",
+        "choice": "silent",
+        "confidence": 0.98,
+        "probabilities": {
+          "missing": 0.01,
+          "silent": 0.99,
+          "committed": 0.0
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 508,
+      "output_tokens": 41
+    }
+  },
+  "attempts": [
+    {
+      "status": 200,
+      "latency_s": 2.116074485995341
+    }
+  ]
+}

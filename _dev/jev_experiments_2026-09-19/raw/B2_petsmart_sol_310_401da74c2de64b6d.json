@@ -1,0 +1,114 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On December 10, 2014, the ad hoc committee discussed the bids and the draft merger agreements with representatives of J.P. Morgan and Wachtell Lipton. The ad hoc committee was of the view that there could be no assurance that the board would approve either bid unless improved. In light of the closeness of the bids, recent positive developments identified at the board meeting on December 3, and the view shared by the ad hoc committee and J.P. Morgan that neither of the bids represented the bidders' respective best offers, the ad hoc committee instructed J.P. Morgan to inform each bidder that it would need to increase its bid, and to instruct the bidders to submit improved bids on December 12, 2014. On the evening of December 11, 2014, representatives of J.P. Morgan contacted Longview to inform Longview that the bidders have been asked to submit revised and improved bids, and to confirm that Longview continued to be interested and willing to participate in a potential transaction by rolling over a portion of its Company common stock, so long as Longview's participation was desired and approved by the ad hoc committee.",
+   "ledger_rows": [
+    {
+     "When": "12/10/2014",
+     "Who": "PetSmart",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Final-bid deadline reached; the target received two written final bids and Bidder 3\u2019s verbal indication."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "Buyer Group",
+     "Event": "Bid",
+     "Price low": 80.7,
+     "Price high": 80.7,
+     "Note": "Final cash bid with revised transaction documents; committed financing had been provided on 12/06; documentation was less conditional than Bidder 2\u2019s."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "Bidder 2",
+     "Event": "Bid",
+     "Price low": 80.35,
+     "Price high": 80.35,
+     "Note": "Final cash bid with a revised merger agreement; its documentation was comparatively more conditional than Buyer Group\u2019s."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "Bidder 3",
+     "Event": "Bid",
+     "Price low": null,
+     "Price high": 78,
+     "Note": "Verbal whole-company indication; ceiling was approximately the current stock price, not a written final offer."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "Bidder 3",
+     "Event": "Withdrew",
+     "Price low": null,
+     "Price high": null,
+     "Note": "J.P. Morgan said the valuation was unlikely to compete; Bidder 3 then did not submit the requested written offer. Attribution is flagged."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "PetSmart",
+     "Event": "Deadline revised",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Required the two remaining bidders to improve by 12/12; treated as an extension within the already announced final round."
+    },
+    {
+     "When": "early 12/12/2014",
+     "Who": "Buyer Group / Longview",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Approved Buyer Group\u2019s request to work with Longview; they formed a rollover-support relationship but not a separate bidding group."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "deadline": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "deadline": {
+    "type": "noul",
+    "noul": 0.49
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.29
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.32
+   }
+  },
+  "usage": {
+   "input_tokens": 1477,
+   "output_tokens": 54
+  }
+ },
+ "latency_s": 0.261
+}

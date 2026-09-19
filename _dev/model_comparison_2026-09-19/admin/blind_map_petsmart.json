@@ -1,0 +1,20 @@
+{
+  "Candidate-A": {
+    "model": "sol",
+    "original": "/home/uctpiaj/Projects/Sec_extraction_new/_dev/model_comparison_2026-09-19/runs/sol_petsmart/extraction/petsmart.xlsx",
+    "original_sha256": "0db5afd35cb026e723dd8d3a115e087f785a9fe26a9f38ed3f16d4076dd9ef26",
+    "neutral_sha256": "20d0934e906f7ff8ff2c40206e0f3f74eec66e4653b4445f6183bf76c4b4f60d"
+  },
+  "Candidate-B": {
+    "model": "deepseek",
+    "original": "/home/uctpiaj/Projects/Sec_extraction_new/_dev/model_comparison_2026-09-19/runs/deepseek_petsmart/work/extraction/petsmart.xlsx",
+    "original_sha256": "b60385871d6c81ffd3c37009260776610a9e975ce7b40a907d2cb62ab28e9ea9",
+    "neutral_sha256": "bb2ab1a97ea1e51f60e551900dc20cd8cd8130bcb7f056bd37d168baa850b1e8"
+  },
+  "Candidate-C": {
+    "model": "opus",
+    "original": "/home/uctpiaj/Projects/Sec_extraction_new/_dev/model_comparison_2026-09-19/runs/opus_petsmart/extraction/petsmart.xlsx",
+    "original_sha256": "67a23b67bd66da2b84a1672ef85d8a37e6b79ebb2ff01432aceb591a5e8af4cb",
+    "neutral_sha256": "e4a38fd754a002b572b7b464832230bbb3892d8d13943d6b5d932397c536abfd"
+  }
+}

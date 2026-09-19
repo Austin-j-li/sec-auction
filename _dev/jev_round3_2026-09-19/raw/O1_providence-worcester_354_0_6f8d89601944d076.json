@@ -1,0 +1,85 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Party E (a strategic buyer) submitted an LOI to acquire the Company for a price of $21.26 per share (subject to a 60-day exclusivity period for due diligence and negotiation of definitive documentation).",
+   "sentence": "Party E (a strategic buyer) submitted an LOI to acquire the Company for a price of $21.26 per share (subject to a 60-day exclusivity period for due diligence and negotiation of definitive documentation)."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "bid": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "nda_access": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "exit": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a potential buyer withdraws, declines to bid, is told it will not advance, or is otherwise excluded from the process? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "deadline": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "exclusivity": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that exclusivity is requested, authorised, granted, signed or extended? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "agreements": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed? Judge `sentence` only; `paragraph` is context for names and dates."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "bid": {
+    "type": "noul",
+    "noul": 0.97
+   },
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "exit": {
+    "type": "noul",
+    "noul": 0.02
+   },
+   "deadline": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.07
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.01
+   },
+   "exclusivity": {
+    "type": "noul",
+    "noul": 0.42
+   },
+   "agreements": {
+    "type": "noul",
+    "noul": 0.01
+   }
+  },
+  "usage": {
+   "input_tokens": 796,
+   "output_tokens": 138
+  }
+ },
+ "latency_s": 0.299
+}

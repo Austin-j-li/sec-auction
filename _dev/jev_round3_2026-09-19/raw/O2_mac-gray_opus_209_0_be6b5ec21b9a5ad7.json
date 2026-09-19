@@ -1,0 +1,44 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On May 15, 2013, Mac-Gray sent a letter to BofA Merrill Lynch terminating their engagement in connection with the 2011-2012 Discussions.",
+   "target_sentence": "On May 15, 2013, Mac-Gray sent a letter to BofA Merrill Lynch terminating their engagement in connection with the 2011-2012 Discussions."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_5": "05/15/2013 | BofA Merrill Lynch | Adviser ended | The Transaction Committee decided on 05/14 to end the 2011-2012 mandate, since BofA was being invited to pitch for the sale-review role.",
+     "row_6": "05/30/2013 | BofA Merrill Lynch | Adviser | Re-engaged as the target's sole financial adviser for the strategic review and possible sale, chosen from three banks. Engagement letter 05/31; no buyer financing without consent.",
+     "row_7": "05/30/2013 | Moab Partners, L.P. | Activist | Moab (about 9% holder) won a proxy contest; Rothenberg and Hyman replaced incumbents. The filing does not say Moab pressed for a sale. Rothenberg was later excluded over Moab's rollover interest.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_5",
+    "confidence": 0.89,
+    "probabilities": {
+     "not_an_event": 0.0,
+     "none": 0.09,
+     "row_7": 0.0,
+     "row_5": 0.91,
+     "row_6": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 805,
+   "output_tokens": 62
+  }
+ },
+ "latency_s": 0.304
+}

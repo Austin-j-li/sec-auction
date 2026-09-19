@@ -1,0 +1,114 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On September 3, 2013, members of Mac-Gray management, representatives from BofA Merrill Lynch and representatives of Party A participated in a telephone conference call for Party A to conduct follow-up and confirmatory due diligence.",
+   "ledger_rows": [
+    {
+     "When": "07/25/2013",
+     "Who": "Mac-Gray",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Staged disclosure: Party B and Party C (financial) to get broad data-site access; Party A and CSC/Pamplona (strategic) limited access, customer data withheld until later."
+    },
+    {
+     "When": "08/27/2013",
+     "Who": "BofA Merrill Lynch",
+     "Event": "Deadline set",
+     "Price low": null,
+     "Price high": null,
+     "Note": "BofA letter instructed revised written proposals by 09/09/2013 to continue to in-depth evaluation; covered valuation, financing, approvals and diligence focus."
+    },
+    {
+     "When": "09/09/2013",
+     "Who": "Mac-Gray",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Round 2 due date reached; CSC/Pamplona and Party B submitted; Party A and Party C submitted late and were reviewed on 09/11/2013."
+    },
+    {
+     "When": "09/09/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Bid",
+     "Price low": 19.5,
+     "Price high": 19.5,
+     "Note": "Pamplona committed to 100% of required capital; requested two-week exclusive negotiations; no financing contingency reported."
+    },
+    {
+     "When": "09/09/2013",
+     "Who": "Party B",
+     "Event": "Bid",
+     "Price low": 18.5,
+     "Price high": 18.5,
+     "Note": "Equity from affiliated funds plus third-party debt; no firm financing commitment reported."
+    },
+    {
+     "When": "09/10/2013",
+     "Who": "Party A",
+     "Event": "Bid",
+     "Price low": 18,
+     "Price high": 19,
+     "Note": "Financed by outstanding credit facilities or affiliated equity sources; no firm financing commitment reported."
+    },
+    {
+     "When": "09/10/2013",
+     "Who": "Party C",
+     "Event": "Bid",
+     "Price low": 16,
+     "Price high": 17,
+     "Note": "Oral revised indication; no firm financing commitment reported."
+    },
+    {
+     "When": "09/11/2013",
+     "Who": "MacDonald",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Transaction Committee gave MacDonald a limited process overview so he could consider a rollover; he decided he was not interested in rolling over any shares."
+    },
+    {
+     "When": "09/11/2013",
+     "Who": "Mac-Gray",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Round 3 opened: SC instructed BofA to request final indications by 09/18/2013, signaling possible short exclusivity depending on price and deal certainty."
+    },
+    {
+     "When": "09/18/2013",
+     "Who": "Mac-Gray",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Round 3 final due date reached; CSC/Pamplona, Party B and Party A responded; Party C did not submit."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "nda_access": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.22
+   }
+  },
+  "usage": {
+   "input_tokens": 1328,
+   "output_tokens": 21
+  }
+ },
+ "latency_s": 0.236
+}

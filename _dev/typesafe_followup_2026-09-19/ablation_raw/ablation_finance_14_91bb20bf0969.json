@@ -1,0 +1,51 @@
+{
+  "case_id": "ablation_finance_14",
+  "request_sha256": "91bb20bf0969311ccb146a9201024b5a1325569614f60eb3a78627e8de5467fc",
+  "request": {
+    "model": "jev-1.13.0",
+    "state": {
+      "source": [
+        {
+          "paragraph_id": "313",
+          "text": "During the evening of December 12, 2014, Bidder 2 submitted an offer of $81.50 per share, in cash. Representatives of J.P. Morgan confirmed via a conversation with Bidder 2 on the evening of December 12, 2014 that $81.50 per share was its best and final offer. The Buyer Group initially submitted an oral offer of $82.50 per share, in cash, but stated that it was working to increase the offer within the next few hours. Later in the evening, the Buyer Group submitted a best and final offer of $83.00 per share, in cash. In addition, each bidder submitted a revised draft of the merger agreement and other transaction agreements, and copies of their respective financing commitment documents. The versions submitted by the Buyer Group were, with few exceptions, in substantially executable form."
+        }
+      ]
+    },
+    "questions": {
+      "financing": {
+        "type": "choice",
+        "instructions": "For Buyer Group at \"December 12, 2014 final bid\", what does the supplied source explicitly report about financing commitment? Judge only financing; do not import another bidder or date, or infer commitment from all-cash consideration.",
+        "criteria": {
+          "committed": "Financing commitment provided, capital expressly committed, or financing not needed.",
+          "missing": "Explicitly no firm commitment, uncommitted financing, or financing contingency.",
+          "silent": "No explicit statement establishing either commitment or absence for this bidder at this event. Silence is not missing financing."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "financing": {
+        "type": "choice",
+        "choice": "committed",
+        "confidence": 0.74,
+        "probabilities": {
+          "missing": 0.0,
+          "silent": 0.17,
+          "committed": 0.83
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 626,
+      "output_tokens": 42
+    }
+  },
+  "attempts": [
+    {
+      "status": 200,
+      "latency_s": 6.2193664600054035
+    }
+  ]
+}

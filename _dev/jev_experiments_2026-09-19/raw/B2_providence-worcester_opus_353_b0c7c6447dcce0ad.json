@@ -1,0 +1,86 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "G&W submitted an LOI on July 21, 2016 to acquire the Company for a price of $21.15 per share (subject to a three-week exclusive diligence period). The price included $20.02 cash at closing and $1.13 in the form of a contingent value right, the value of which was based on the subsequent sale of the Company's South Quay property (\"CVR\"). G&W also provided a mark-up of the disclosure letter. On July 26, 2016, in response to feedback from representatives of GHF indicating its price and CVR structure were not competitive, G&W submitted a revised LOI, which increased its offer to $22.15 per share (including $21.02 in cash and $1.13 CVR).",
+   "ledger_rows": [
+    {
+     "When": "late July 2016",
+     "Who": "Party B",
+     "Event": "Bid",
+     "Price low": 24,
+     "Price high": 24,
+     "Note": "Non-binding LOI with mark-ups of the merger and voting agreements (Formal by markup); subject to expedited diligence review. Highest LOI."
+    },
+    {
+     "When": "late July 2016",
+     "Who": "Party E",
+     "Event": "Bid",
+     "Price low": 21.26,
+     "Price high": 21.26,
+     "Note": "LOI asking for a 60-day exclusivity period for diligence and documentation. Sent an issues list on the merger and voting agreements, not a markup, so recorded Informal."
+    },
+    {
+     "When": "late July 2016",
+     "Who": "Party D",
+     "Event": "Bid",
+     "Price low": 21,
+     "Price high": 21,
+     "Note": "LOI with mark-ups of the merger and voting agreements; four-week diligence period."
+    },
+    {
+     "When": "07/21/2016",
+     "Who": "G&W",
+     "Event": "Bid",
+     "Price low": 21.15,
+     "Price high": 21.15,
+     "Note": "$20.02 cash + $1.13 CVR tied to sale of South Quay property (payment form not stated). Asked for a three-week exclusive diligence period. Marked up merger agreement, voting agreement and disclosure letter. Arrived after 07/20 due date."
+    },
+    {
+     "When": "07/26/2016",
+     "Who": "G&W",
+     "Event": "Bid",
+     "Price low": 22.15,
+     "Price high": 22.15,
+     "Note": "Revised after GHF said its price and CVR structure were not competitive: $21.02 cash + $1.13 CVR. Diligence terms not restated; assumed unchanged from #31."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "bid": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "exclusivity": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that exclusivity is requested, authorised, granted, signed or extended. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "bid": {
+    "type": "noul",
+    "noul": 0.95
+   },
+   "exclusivity": {
+    "type": "noul",
+    "noul": 0.77
+   }
+  },
+  "usage": {
+   "input_tokens": 1173,
+   "output_tokens": 38
+  }
+ },
+ "latency_s": 0.299
+}

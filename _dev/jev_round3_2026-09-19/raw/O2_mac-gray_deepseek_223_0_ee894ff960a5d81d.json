@@ -1,0 +1,48 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "During the next several weeks, in accordance with the directives of the Special Committee, BofA Merrill Lynch contacted the strategic and financial parties identified at the June 24th Special Committee meeting. Over the next two months a total of 20 potential bidders, including two strategic bidders (Party A and CSC/Pamplona) and 18 financial bidders (including Party B and Party C), entered into confidentiality agreements with Mac-Gray on a form provided by Mac-Gray, the terms of which were individually negotiated with potential bidders, but did not vary materially from the form provided. The confidentiality agreements contained customary non-disclosure provisions and a customary standstill provision that either expired or permitted the potential bidder to make confidential proposals to Mac-Gray (a so-called \"sunset\" provision) upon announcement of a business combination between Mac-Gray and a third party, and, in some instances upon announcement of a change in control. Parties that had entered into confidentiality and standstill agreements with Mac-Gray were furnished an informational package for the purpose of providing potential bidders with data to formulate a preliminary indication of interest, which they were instructed to submit by July 23, 2013. Parties that had entered into confidentiality and standstill agreements with Mac-Gray were furnished an informational package for the purpose of providing potential bidders with data to formulate a preliminary indication of interest, which they were instructed to submit by July 23, 2013. The letter requested that the proposals address, among other things, valuation, sources and structures of financing, material conditions, including required approvals, and focus areas for due diligence.",
+   "target_sentence": "During the next several weeks, in accordance with the directives of the Special Committee, BofA Merrill Lynch contacted the strategic and financial parties identified at the June 24th Special Committee meeting."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_9": "06/24/2013 | Mac-Gray | Target sale decision | Special Committee of six independent directors formed; MacDonald and Rothenberg excluded from sale deliberations over potential rollover conflicts; sale seen as best path versus remaining standalone.",
+     "row_11": "06/24/2013\u201308/24/2013 | 16 financial NDA signers (cohort) | NDA signed | Filing reports 20 NDA signers (2 strategic, 18 financial); Party A, CSC/Pamplona, Party B and Party C recorded individually; residual 16 financial bidders.",
+     "row_12": "06/28/2013 | Party B | NDA signed | Signed confidentiality and standstill agreement and received an informational package; instructed to submit a preliminary indication by 07/23/2013.",
+     "row_13": "06/30/2013 | Party C | NDA signed | Signed confidentiality and standstill agreement and received an informational package; instructed to submit a preliminary indication by 07/23/2013.",
+     "row_16": "07/23/2013 | Mac-Gray | Deadline | Round 1 due date reached; CSC/Pamplona submitted an indication; Party B and Party C submitted late and were reviewed on 07/25/2013.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "none",
+    "confidence": 0.64,
+    "probabilities": {
+     "row_9": 0.0,
+     "row_12": 0.01,
+     "not_an_event": 0.02,
+     "none": 0.7,
+     "row_11": 0.27,
+     "row_16": 0.0,
+     "row_13": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1221,
+   "output_tokens": 82
+  }
+ },
+ "latency_s": 0.273
+}

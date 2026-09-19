@@ -1,0 +1,44 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On April 8, 2013, representatives of BofA Merrill Lynch, as instructed by the Board, telephoned a representative of Party A to discuss generally a possible business combination between Party A and Mac-Gray. During this call, the representative of Party A indicated that Party A might consider a business combination with Mac-Gray.",
+   "target_sentence": "On April 8, 2013, representatives of BofA Merrill Lynch, as instructed by the Board, telephoned a representative of Party A to discuss generally a possible business combination between Party A and Mac-Gray."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_2": "04/05/2013 | BofA Merrill Lynch | Adviser | Target financial adviser; first seen acting in this sale exploration. Its earlier mandate concerned Mac-Gray's contemplated acquisition of CSC.",
+     "row_3": "04/08/2013 | Party A | Target interest | Target-initiated approach; Party A said it might consider a business combination.",
+     "row_4": "05/09/2013 | Goodwin Procter LLP | Adviser | Mac-Gray outside legal counsel; first seen acting in the relevant review.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_3",
+    "confidence": 0.42,
+    "probabilities": {
+     "row_3": 0.53,
+     "not_an_event": 0.11,
+     "none": 0.33,
+     "row_4": 0.0,
+     "row_2": 0.03
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 756,
+   "output_tokens": 62
+  }
+ },
+ "latency_s": 0.736
+}

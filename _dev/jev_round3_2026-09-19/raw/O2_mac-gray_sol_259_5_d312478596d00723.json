@@ -1,0 +1,50 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "The representatives from BofA Merrill Lynch were then excused from the meeting and the Special Committee continued its discussion. The Special Committee noted that the indication of interest submitted by Party B, including the Party B options, was on its face higher than the CSC/Pamplona proposal but further discussed the risks and complexities involved with measuring and achieving the performance required to vest the Party B options. The Special Committee also noted that Party B would likely be financing the transaction with a combination of equity from affiliated funds and third party debt capital, which would involve more risk than the Pamplona-funded CSC/Pamplona proposal, which did not require any third party financing. Following a discussion, the Special Committee concluded that the revised indication of interest submitted by CSC/Pamplona had the potential of delivering the most value to stockholders, provided greater certainty and involved less potential risk than the other indications. However, the Special Committee also concluded that, primarily in view of potential synergies between Mac-Gray and CSC, CSC/Pamplona should be in a position to increase their offer price above $20.75. The Special Committee then authorized the Transaction Committee to inform CSC/Pamplona that the Special Committee would be prepared to move into exclusivity at a price of $21.25 per share and authorized the Transaction Committee and Goodwin Procter to negotiate the terms of such exclusivity based on guidance provided by the Special Committee. In addition, at this meeting Mr. MacDonald indicated that he would be supportive of a price of $21.25 per share.",
+   "target_sentence": "The Special Committee then authorized the Transaction Committee to inform CSC/Pamplona that the Special Committee would be prepared to move into exclusivity at a price of $21.25 per share and authorized the Transaction Committee and Goodwin Procter to negotiate the terms of such exclusivity based on guidance provided by the Special Committee."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_38": "09/18/2013 | CSC/Pamplona | Bid | price 20.75 | Pamplona committed 100% of capital; two-week exclusivity requested; no further diligence condition reported.",
+     "row_39": "09/18/2013 | Party A | Bid reaffirmed | price 18-19 | Reaffirms #32 as best and final in response to final solicitation; prior lack of firm financing remains.",
+     "row_40": "09/18/2013 | Party B | Bid | price 21.5 | Package: $19.00 cash at closing plus options Party B valued at $2.50; options vested on five-year performance. Third-party debt anticipated.",
+     "row_41": "09/18/2013 | Party C | Did not submit | No final indication or reaffirmation; no reason stated.",
+     "row_42": "09/19/2013 | Mac-Gray | Other material event | Preferred CSC/Pamplona for certainty and sought $21.25 before exclusivity.",
+     "row_43": "09/21/2013 | CSC/Pamplona | Bid | price 21.25 | Last-and-best offer; conditioned on two-week exclusivity and requested MacDonald-family voting agreements; full funding and no financing contingency were agreed by September 23.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that exclusivity is requested, authorised, granted, signed or extended. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_42",
+    "confidence": 0.25,
+    "probabilities": {
+     "row_43": 0.2,
+     "row_39": 0.0,
+     "row_38": 0.01,
+     "row_40": 0.0,
+     "row_42": 0.35,
+     "row_41": 0.0,
+     "none": 0.33,
+     "not_an_event": 0.11
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1249,
+   "output_tokens": 96
+  }
+ },
+ "latency_s": 0.437
+}

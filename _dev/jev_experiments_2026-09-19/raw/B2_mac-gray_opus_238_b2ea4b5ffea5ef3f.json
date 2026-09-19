@@ -1,0 +1,66 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Discussions with Party A resumed on July 27, 2103 and Party A and the Transaction Committee agreed to the terms of the customer and employee non-solicitation provisions. On August 5, 2013, Party A entered into a confidentiality and standstill agreement with Mac-Gray and was provided with an informational package for the purpose of providing Party A with data to potentially improve the terms of the Party A June 21 proposal.",
+   "ledger_rows": [
+    {
+     "When": "07/23/2013",
+     "Who": "16 other financial NDA signers",
+     "Event": "Did not submit",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Inferred. 20 signers \u2212 Party A (no NDA until 08/05) \u2212 3 submitters = 16. On 07/25 the target named only four interested bidders. Some may have signed after 07/23."
+    },
+    {
+     "When": "07/25/2013",
+     "Who": "Mac-Gray (Special Committee)",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Committee finds IOIs lower than expected. Advances four: Party A (subject to NDA), Party B, Party C, CSC/Pamplona. Staged disclosure; management meetings for all, synergy information for strategics; revised IOIs to follow."
+    },
+    {
+     "When": "07/25/2013",
+     "Who": "Party C",
+     "Event": "Bid",
+     "Price low": 16,
+     "Price high": 16.5,
+     "Note": "Written IOI after the 07/25 meeting; revises #22 (oral $15.00-$17.00). Answers the round-1 request. Based on the informational package only (Heavy by context)."
+    },
+    {
+     "When": "08/05/2013",
+     "Who": "Party A",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Talks resumed 07/27 and non-solicit terms agreed. Received the informational package so it could improve its 06/21 proposal (#7)."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "nda_access": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.94
+   }
+  },
+  "usage": {
+   "input_tokens": 940,
+   "output_tokens": 21
+  }
+ },
+ "latency_s": 0.243
+}

@@ -1,0 +1,142 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On August 13, 2014, the board met in person, together with members of management and representatives of J.P. Morgan and Wachtell Lipton, to complete its initial review of strategic and financial alternatives potentially available to the Company and to receive an update on communications from stockholders and other interested parties, including Industry Participant. As a result of this meeting, the board (1) determined to explore strategic alternatives (including a possible sale of the Company) for the Company to maximize value for stockholders including by commencing a process to determine the potential value that could be achieved via a sale of the Company; (2) instructed management to commence intensive planning for a cost-reduction and profit-improvement plan (which we refer to collectively as the \"Profit Improvement Plan\") to potentially increase the value of the Company, whether in a sale of the Company or on a standalone basis should no sale materialize; and (3) authorized the ad hoc committee to oversee the sale exploration process, and, in between meetings of the full board, to give direction to the Company's financial and legal advisors, to lead on behalf of the Company (or to give guidance to the Company's representatives in connection with) any negotiations with potentially interested parties and periodically to brief the full board on the status of the sale exploration process. Together with the Company's financial and legal advisors, the board also considered and discussed alternative formats and timing for the conduct of the exploratory sale process, and determined that at the appropriate time, which was expected to be during the second half of September or early October, J.P. Morgan should contact financial and strategic parties deemed likely to be interested and capable of completing a transaction. In addition, the board determined that the Company would issue a public announcement of its intention to explore strategic alternatives, which would ensure that interested parties not contacted would become aware of the process and could contact J.P. Morgan on their own initiative. In connection with this discussion, after deliberation and consultation with its financial and legal advisors, the board reviewed the potential benefits and risks of inviting Industry Participant to participate in the exploratory sale process. In this regard, the board considered, among other things, in addition to the communications with Industry Representative in the Spring and on August 7, the very high risk that an acquisition by or a combination with Industry Participant would not receive antitrust clearances, or would receive such clearances only with the imposition by governmental authorities of unacceptable conditions; the near certainty that the process of seeking such clearances would result in the receipt of a so-called \"second request\" from governmental",
+   "ledger_rows": [
+    {
+     "When": "late May\u2013June 2014",
+     "Who": "Some stockholders and interested parties",
+     "Event": "Activist",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Communications after the 05/21 earnings release urged strategic/financial alternatives, including a sale or a levered return of capital."
+    },
+    {
+     "When": "06/18/2014",
+     "Who": "PetSmart",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Board formed the ad hoc committee (Josefowicz, Gangwal, Stemberg) and authorized vetting and retention of a financial advisor; focus on capital-structure alternatives."
+    },
+    {
+     "When": "07/03/2014",
+     "Who": "JANA Partners",
+     "Event": "Activist",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Filed Schedule 13D disclosing a 9.9% stake; advocated a sale in amendments and letters through August; met the Company on 07/10."
+    },
+    {
+     "When": "07/07/2014",
+     "Who": "Longview",
+     "Event": "Activist",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Public letter urged the board to consider a sale; offered to roll over part of its holdings if needed; met directors and management in May."
+    },
+    {
+     "When": "July 2014",
+     "Who": "J.P. Morgan",
+     "Event": "Adviser",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Company's financial advisor; retained in July after interviews; engagement letter effective 08/21/2014."
+    },
+    {
+     "When": "08/07/2014",
+     "Who": "Industry Participant",
+     "Event": "Bidder interest",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Called J.P. Morgan: might revisit a combination if the Company pursued alternatives; reported to the ad hoc committee."
+    },
+    {
+     "When": "08/13/2014",
+     "Who": "PetSmart",
+     "Event": "Target sale decision",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Board determined to explore strategic alternatives including a possible sale; Profit Improvement Plan; ad hoc committee to oversee; J.P. Morgan to contact parties later."
+    },
+    {
+     "When": "08/19/2014",
+     "Who": "PetSmart",
+     "Event": "Sale process announced",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Press release announced exploration of strategic alternatives including a possible sale; uncontacted parties could approach J.P. Morgan."
+    },
+    {
+     "When": "08/27/2014",
+     "Who": "PetSmart",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Not invited: told 08/22 and 08/27 the board would not invite it; may still submit a proposal; no contact since 08/27."
+    },
+    {
+     "When": "mid-August\u2013October 2014",
+     "Who": "27 potential participants",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Contacts: 27 parties (3 strategic not counting Industry Participant; 24 financial) approached J.P. Morgan mid-August\u2013end October; ~15 expressed interest by the 10/03 board update."
+    },
+    {
+     "When": "first week of October 2014",
+     "Who": "PetSmart",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Round 1 opened by the first-week-of-October confidentiality wave; the 10/30 indication due date was set later."
+    },
+    {
+     "When": "first week of October 2014",
+     "Who": "15 potentially interested financial buyers",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "All 15 received October due diligence, management presentations and detailed financial and business-plan information."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "contact": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "contact": {
+    "type": "noul",
+    "noul": 0.62
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.57
+   }
+  },
+  "usage": {
+   "input_tokens": 2143,
+   "output_tokens": 38
+  }
+ },
+ "latency_s": 0.265
+}

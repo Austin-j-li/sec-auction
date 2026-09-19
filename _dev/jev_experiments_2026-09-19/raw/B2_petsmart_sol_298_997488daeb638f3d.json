@@ -1,0 +1,154 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "During October, the potential bidders were informed that non-binding preliminary indications of interest would be due on October 30, 2014. The potential bidders were also informed that Longview had informed the Company that it would be willing to \"roll-over\" up to 7.5 million shares on terms and price acceptable to Longview, meaning that such shares would not receive cash merger consideration but would",
+   "ledger_rows": [
+    {
+     "When": "first week of October 2014",
+     "Who": "PetSmart",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Admitted 15 financial buyers through NDAs; all received diligence, senior-management presentations and detailed plan information."
+    },
+    {
+     "When": "first week of October 2014",
+     "Who": "Buyer Group",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Part of the 15-buyer NDA cohort; later submitted a first-round indication."
+    },
+    {
+     "When": "first week of October 2014",
+     "Who": "Bidder 2",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Part of the 15-buyer NDA cohort; later submitted a first-round indication."
+    },
+    {
+     "When": "first week of October 2014",
+     "Who": "4 other first-round bidders",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Part of the 15-buyer NDA cohort; all four later submitted first-round indications."
+    },
+    {
+     "When": "first week of October 2014",
+     "Who": "9 other financial buyers",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Residual of the 15-buyer cohort after the six later submitters: 15 \u2212 6 = 9."
+    },
+    {
+     "When": "during October 2014",
+     "Who": "PetSmart",
+     "Event": "Deadline set",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Set 10/30/2014 for non-binding preliminary indications of interest."
+    },
+    {
+     "When": "during October 2014",
+     "Who": "Longview",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Offered all bidders optional rollover support of up to 7.5 million shares; it was not a participation condition."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "PetSmart",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Preliminary-indication deadline; six parties submitted and the board selected four on 11/03/2014."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "Buyer Group",
+     "Event": "Bid",
+     "Price low": 81,
+     "Price high": 83,
+     "Note": "Non-binding preliminary indication; later advanced."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "Unnamed $80\u2013$85 bidder",
+     "Event": "Bid",
+     "Price low": 80,
+     "Price high": 85,
+     "Note": "Non-binding preliminary indication; treated as one later Bidder 3 precursor under Q4."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "Unnamed other \u2265$80 bidder",
+     "Event": "Bid",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Its range reached at least $80; endpoints undisclosed. Treated as the other Bidder 3 precursor under Q4."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "Bidder 2",
+     "Event": "Bid",
+     "Price low": 78,
+     "Price high": 78,
+     "Note": "Initial non-binding preliminary indication; revised after discussions with J.P. Morgan."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "2 other first-round bidders",
+     "Event": "Bid",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Residual submitters; the filing gives no individual prices. Under Q4 they were the bidders eliminated on 11/03/2014."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "9 other financial buyers",
+     "Event": "Did not submit",
+     "Price low": null,
+     "Price high": null,
+     "Note": "15 NDA signers \u2212 6 reported submitters = 9; this cohort may be affected by the five-groups summary."
+    },
+    {
+     "When": "10/30/2014\u201311/02/2014",
+     "Who": "Bidder 2",
+     "Event": "Bid",
+     "Price low": 81,
+     "Price high": 84,
+     "Note": "Raised its preliminary indication after discussions with J.P. Morgan."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "deadline": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "deadline": {
+    "type": "noul",
+    "noul": 0.91
+   }
+  },
+  "usage": {
+   "input_tokens": 1715,
+   "output_tokens": 20
+  }
+ },
+ "latency_s": 0.277
+}

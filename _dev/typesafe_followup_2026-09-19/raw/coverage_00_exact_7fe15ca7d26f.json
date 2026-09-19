@@ -1,0 +1,65 @@
+{
+  "case_id": "coverage_00_exact",
+  "request_sha256": "7fe15ca7d26fe740f5f2522dec704a85f6e27fa928fa37e01c1939d2ea48c834",
+  "request": {
+    "model": "jev-1.13.0",
+    "state": {
+      "source": [
+        {
+          "paragraph_id": "267",
+          "text": "Between September 24, 2013 and September 27, 2013, Kirkland and outside counsel to Mr. MacDonald negotiated the terms of the MacDonald voting agreements, which were entered into by Mr. MacDonald, his wife and one of his trusts on September 27, 2013, and which became effective upon entry into the merger agreement."
+        }
+      ],
+      "target_event": "MacDonald, his wife and trust entered voting agreements on September 27, 2013.",
+      "ledger_rows": {
+        "row_0": "MacDonald, his wife and trust entered voting agreements on September 27, 2013."
+      }
+    },
+    "questions": {
+      "covered": {
+        "type": "noul",
+        "instructions": "Is the target_event recorded in ledger_rows? Match the actual event, including its bidder, date, action and material terms, not just topic overlap.",
+        "criteria": {
+          "true": "At least one row records this same event.",
+          "false": "No supplied row records this event."
+        }
+      },
+      "match": {
+        "type": "choice",
+        "instructions": "Select the ledger row that records target_event. A related event with a different date, bidder, amount or action does not count. Match by meaning, allowing paraphrase. Select none if absent.",
+        "criteria": {
+          "row_0": "MacDonald, his wife and trust entered voting agreements on September 27, 2013.",
+          "none": "None of the supplied ledger rows records the target event with the same actors, date, action and material terms."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "covered": {
+        "type": "noul",
+        "noul": 0.98
+      },
+      "match": {
+        "type": "choice",
+        "choice": "row_0",
+        "confidence": 1.0,
+        "probabilities": {
+          "none": 0.0,
+          "row_0": 1.0
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 635,
+      "output_tokens": 51
+    }
+  },
+  "attempts": [
+    {
+      "status": 200,
+      "latency_s": 1.3195026469911681
+    }
+  ]
+}

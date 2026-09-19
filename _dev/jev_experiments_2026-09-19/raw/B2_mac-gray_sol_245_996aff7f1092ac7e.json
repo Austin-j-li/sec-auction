@@ -1,0 +1,70 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On August 27, 2013, BofA Merrill Lynch, as instructed by the Special Committee, sent a letter to each of Party A, Party B, Party C and CSC/Pamplona instructing such bidders to submit revised written proposals no later than September 9, 2013 if such bidders wished to proceed further in the process to pursue an in-depth evaluation of Mac-Gray with the objective of making a revised offer. The letter requested that the revised proposals address, among other things, valuation, sources and structures of financing, regulatory approvals and other post-signing covenants and focus areas for due diligence.",
+   "ledger_rows": [
+    {
+     "When": "08/06/2013\u201308/27/2013",
+     "Who": "Mac-Gray",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Granted B/C broad data-site access; limited A/CSC access and withheld customer data from the strategic bidders."
+    },
+    {
+     "When": "08/27/2013",
+     "Who": "Mac-Gray",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Four bidders invited; revised written bids due September 9."
+    },
+    {
+     "When": "09/09/2013",
+     "Who": "Mac-Gray",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Revised bids due; Party A and Party C submitted one day late and were considered."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "deadline": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "deadline": {
+    "type": "noul",
+    "noul": 0.86
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.9
+   }
+  },
+  "usage": {
+   "input_tokens": 884,
+   "output_tokens": 36
+  }
+ },
+ "latency_s": 0.233
+}

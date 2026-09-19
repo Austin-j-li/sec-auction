@@ -1,0 +1,44 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Following the adjournment of the Special Committee meeting, a meeting of the Mac-Gray Board of Directors convened. All members of the Board participated. Representatives from Goodwin Procter led a discussion on the terms of the merger agreement and advised the Board regarding the likely timing for execution of a definitive agreement and public announcement of the transaction and a projected closing timetable should the Board approve the merger. After discussion, the Board (upon the recommendation of the Special Committee) unanimously determined that the merger agreement and the merger were advisable and in the best interests of Mac-Gray's stockholders, approved the merger on the terms and subject to the conditions set forth in the merger agreement, adopted the merger agreement and recommended that the Mac-Gray stockholders adopt and approve the merger agreement.",
+   "target_sentence": "After discussion, the Board (upon the recommendation of the Special Committee) unanimously determined that the merger agreement and the merger were advisable and in the best interests of Mac-Gray's stockholders, approved the merger on the terms and subject to the conditions set forth in the merger agreement, adopted the merger agreement and recommended that the Mac-Gray stockholders adopt and approve the merger agreement."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_44": "10/12/2013 | CSC/Pamplona | Exclusivity changed | Letter agreement extended exclusivity to 11:59 p.m. ET 10/15/2013 after CSC/Pamplona agreed to an $11M Mac-Gray termination fee.",
+     "row_45": "10/14/2013 | Mac-Gray and CSC | Merger agreement signed | Agreed $21.25 per share all cash; no financing contingency; Pamplona committed $594 million; Moab and MacDonald voting agreements delivered.",
+     "row_46": "10/15/2013 | Mac-Gray and CSC | Merger announced | Announced before the U.S. stock markets opened.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "none",
+    "confidence": 0.86,
+    "probabilities": {
+     "none": 0.89,
+     "row_44": 0.0,
+     "row_46": 0.0,
+     "not_an_event": 0.01,
+     "row_45": 0.1
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 927,
+   "output_tokens": 63
+  }
+ },
+ "latency_s": 0.406
+}

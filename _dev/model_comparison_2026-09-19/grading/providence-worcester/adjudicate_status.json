@@ -1,0 +1,14 @@
+{
+  "model": "gpt-6-astra",
+  "effort": "high",
+  "stage": "adjudicate",
+  "state": "finished",
+  "started_utc": "2026-09-19T16:51:31.446410+00:00",
+  "pid": 813167,
+  "exit_code": 0,
+  "elapsed_seconds": 227.66,
+  "outputs": {
+    "output/adjudicate/adjudication.json": "4639ceb79a0d3290867e9ca3a033018989f765a2b6db4971b4e9a83178f11d3d",
+    "output/adjudicate/adjudication.md": "4a6f3989d3cd34e30f3ea92b139b21b3c30d356c9b1b60c37fd2de1fc9e66c4a"
+  }
+}

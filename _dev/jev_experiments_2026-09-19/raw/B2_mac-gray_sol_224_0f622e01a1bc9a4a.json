@@ -1,0 +1,106 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On June 28, 2013, the members of the Transaction Committee participated in a telephone conference call with representatives of BofA Merrill Lynch and Goodwin Procter. BofA Merrill Lynch summarized the contacts they had had with certain of the potential bidders. In particular, BofA Merrill Lynch reported that they had spoken with representatives of Party A, as instructed by the Special Committee, who had expressed the view that there would be considerable synergies if Party A were to acquire Mac-Gray and that Party A would be speaking with certain financing sources with respect to funding such a transaction. BofA Merrill Lynch also reported that they had spoken with representatives of Pamplona, as instructed by the Special Committee, who expressed interest in a transaction, including an acquisition of Mac-Gray by its portfolio company, CSC. Pamplona emphasized that business and legal due diligence would be minimal given its familiarity with Mac-Gray and the industry generally.",
+   "ledger_rows": [
+    {
+     "When": "06/24/2013",
+     "Who": "Mac-Gray",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Committee launched outreach to 50 parties: 15 strategic and 35 financial."
+    },
+    {
+     "When": "next several weeks after 06/24/2013",
+     "Who": "13 other potential strategic buyers",
+     "Event": "Contact",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Residual of 15 strategic outreach targets less Party A and CSC/Pamplona; total outreach was 50."
+    },
+    {
+     "When": "next several weeks after 06/24/2013",
+     "Who": "35 potential financial buyers",
+     "Event": "Contact",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Includes Party B and Party C; total outreach was 35 financial parties."
+    },
+    {
+     "When": "over two months after 06/24/2013",
+     "Who": "16 other financial NDA signers",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Residual of 18 financial NDA signers less Party B and Party C; 20 total signers included two strategic bidders."
+    },
+    {
+     "When": "by 06/28/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Contact",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Target-directed first contact; Pamplona expressed interest through portfolio company CSC."
+    },
+    {
+     "When": "06/28/2013",
+     "Who": "Party B",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Confidentiality and standstill agreement; informational package provided."
+    },
+    {
+     "When": "06/30/2013",
+     "Who": "Party C",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Confidentiality and standstill agreement; informational package provided."
+    },
+    {
+     "When": "by 07/23/2013",
+     "Who": "Mac-Gray",
+     "Event": "Deadline set",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Due date was communicated with informational packages; exact communication date not stated."
+    },
+    {
+     "When": "07/23/2013",
+     "Who": "Mac-Gray",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Initial indications due; later July 24-25 submissions were accepted."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "contact": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "contact": {
+    "type": "noul",
+    "noul": 0.31
+   }
+  },
+  "usage": {
+   "input_tokens": 1308,
+   "output_tokens": 20
+  }
+ },
+ "latency_s": 0.287
+}

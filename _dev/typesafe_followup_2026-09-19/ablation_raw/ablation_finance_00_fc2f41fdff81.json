@@ -1,0 +1,51 @@
+{
+  "case_id": "ablation_finance_00",
+  "request_sha256": "fc2f41fdff81b6b90534b0cf9419b6a3905b06c3054151104af12eae0517d66c",
+  "request": {
+    "model": "jev-1.13.0",
+    "state": {
+      "source": [
+        {
+          "paragraph_id": "249",
+          "text": "On September 9, 2013, CSC/Pamplona submitted a revised indication of interest with an all-cash purchase price of $19.50 per share, indicating that Pamplona was committed to provide 100% of the capital required to consummate the transaction and requesting that CSC/Pamplona and Mac-Gray agree to exclusive negotiations for two weeks. On September 9, 2013, Party B also submitted a revised indication of interest with an all-cash purchase price of $18.50 per share and proposed to finance the transaction with a combination of equity from affiliated funds and third party debt. Party B's revised indication of interest did not include a firm financing commitment."
+        }
+      ]
+    },
+    "questions": {
+      "financing": {
+        "type": "choice",
+        "instructions": "For CSC/Pamplona at \"September 9, 2013 revised indication\", what does the supplied source explicitly report about financing commitment? Judge only financing; do not import another bidder or date, or infer commitment from all-cash consideration.",
+        "criteria": {
+          "committed": "Financing commitment provided, capital expressly committed, or financing not needed.",
+          "missing": "Explicitly no firm commitment, uncommitted financing, or financing contingency.",
+          "silent": "No explicit statement establishing either commitment or absence for this bidder at this event. Silence is not missing financing."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "financing": {
+        "type": "choice",
+        "choice": "committed",
+        "confidence": 0.96,
+        "probabilities": {
+          "missing": 0.0,
+          "committed": 0.98,
+          "silent": 0.02
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 592,
+      "output_tokens": 42
+    }
+  },
+  "attempts": [
+    {
+      "status": 200,
+      "latency_s": 10.815922959998716
+    }
+  ]
+}

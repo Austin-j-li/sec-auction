@@ -1,0 +1,52 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On July 3, 2013, Mr. Rothenberg called a representative of Goodwin Procter to indicate that he had spoken with representatives of Pamplona about Moab's desire to maintain the flexibility to consider a possible equity rollover if Pamplona were to participate in a business combination with Mac-Gray. Mr. Rothenberg also informed Goodwin Procter that Pamplona would be requesting that any confidentiality agreement CSC/Pamplona execute with Mac-Gray permit CSC and Pamplona to discuss their bid and evaluation material with Moab, with Moab agreeing to exclusively engage with CSC/Pamplona.",
+   "target_sentence": "Mr. Rothenberg also informed Goodwin Procter that Pamplona would be requesting that any confidentiality agreement CSC/Pamplona execute with Mac-Gray permit CSC and Pamplona to discuss their bid and evaluation material with Moab, with Moab agreeing to exclusively engage with CSC/Pamplona."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_11": "06/24/2013\u201308/24/2013 | 16 financial NDA signers (cohort) | NDA signed | Filing reports 20 NDA signers (2 strategic, 18 financial); Party A, CSC/Pamplona, Party B and Party C recorded individually; residual 16 financial bidders.",
+     "row_12": "06/28/2013 | Party B | NDA signed | Signed confidentiality and standstill agreement and received an informational package; instructed to submit a preliminary indication by 07/23/2013.",
+     "row_13": "06/30/2013 | Party C | NDA signed | Signed confidentiality and standstill agreement and received an informational package; instructed to submit a preliminary indication by 07/23/2013.",
+     "row_14": "07/06/2013 | Mac-Gray | Other material event | Denied Moab's request to partner exclusively with CSC/Pamplona for a rollover at this stage, permitting later-stage discussions so Moab's equity could be available to other bidders.",
+     "row_15": "07/11/2013 | CSC/Pamplona | NDA signed | Signed confidentiality and standstill agreement and received an informational package to formulate a preliminary indication of interest.",
+     "row_16": "07/23/2013 | Mac-Gray | Deadline | Round 1 due date reached; CSC/Pamplona submitted an indication; Party B and Party C submitted late and were reviewed on 07/25/2013.",
+     "row_17": "07/23/2013 | CSC/Pamplona | Bid | price 18.5 | Preliminary indication at the round-1 due date; no substantive diligence access yet (management meetings began in August).",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that exclusivity is requested, authorised, granted, signed or extended. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "not_an_event",
+    "confidence": 0.5,
+    "probabilities": {
+     "row_16": 0.0,
+     "row_15": 0.03,
+     "none": 0.32,
+     "row_12": 0.01,
+     "not_an_event": 0.56,
+     "row_13": 0.0,
+     "row_17": 0.0,
+     "row_14": 0.07,
+     "row_11": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1150,
+   "output_tokens": 105
+  }
+ },
+ "latency_s": 0.402
+}

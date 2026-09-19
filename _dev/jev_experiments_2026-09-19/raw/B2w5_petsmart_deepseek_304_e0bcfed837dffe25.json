@@ -1,0 +1,142 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On December 3, 2014, the board met in-person for a regularly scheduled meeting. In addition to regular business, significant portions of this meeting were devoted to a further review and financial analysis of the Company's strategic and financial alternatives, particularly in light of positive indications about the Company's operating results based on preliminary information from the Fall and Thanksgiving season and indications that the Profit Improvement Plan would likely be successful in achieving at least $200 million in annual incremental profit. During these portions of the meeting, which were attended by members of management and representatives of J.P. Morgan and Wachtell Lipton, the board considered the values for the Company that might be achieved on a standalone basis, with and without a leveraged return of capital to stockholders. Because the board did not have bids in hand at this time, no decisions were made. The board had initially targeted Monday, December 15 for completion of the sale process, and had initially set Friday, December 5 as the date for submission of bids so as to allow sufficient time for the Company to receive and analyze the bids, conduct further rounds of bidding, if necessary, to negotiate final documentation, and to permit the winning bidder a short period of time to discuss and negotiate a Longview rollover, if desired by the winning bidder. However, on December 4 and December 5, 2014, after consultation with the Company's financial and legal advisors, the ad hoc committee concluded that these matters could be accomplished in a shorter period of time, which would reduce the risk of leaks or",
+   "ledger_rows": [
+    {
+     "When": "10/30/2014",
+     "Who": "PetSmart",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Six of the potentially interested parties submitted indications of interest."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "Buyer Group",
+     "Event": "Bid",
+     "Price low": 81,
+     "Price high": 83,
+     "Note": "Preliminary non-binding indication; range $81.00\u2013$83.00; consideration not stated."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "Unnamed financial bidder 1",
+     "Event": "Bid",
+     "Price low": 80,
+     "Price high": 85,
+     "Note": "Another of the six submitters; non-binding range $80.00\u2013$85.00; not individually named."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "3 unnamed indication submitters",
+     "Event": "Bid",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Remainder of the six submitters; no individual detail or prices; one later advanced, two eliminated 11/03 (#24)."
+    },
+    {
+     "When": "10/30\u201311/02/2014",
+     "Who": "Bidder 2",
+     "Event": "Bid",
+     "Price low": 81,
+     "Price high": 84,
+     "Note": "Raised after J.P. Morgan's 10/30\u201311/02 calls; range $81.00\u2013$84.00; made it one of four at or above $80.00."
+    },
+    {
+     "When": "11/03/2014",
+     "Who": "PetSmart",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Final round opened by the 11/03 advancement of four bidders at or above $80.00; merger-agreement form circulated in November; updated FY2014 projections given to all finalists."
+    },
+    {
+     "When": "11/03/2014",
+     "Who": "2 unnamed indication submitters",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "6 submitters \u2212 4 advanced = 2 notified as eliminated; none could remain above their initial indications."
+    },
+    {
+     "When": "12/04\u201312/05/2014",
+     "Who": "PetSmart",
+     "Event": "Deadline set",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Set evening 12/10 for final bids, replacing the initial 12/05 plan; mark-ups and financing commitments requested in advance."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "PetSmart",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Final bids due; Buyer Group and Bidder 2 submitted; Bidder 3 no written offer."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "Buyer Group",
+     "Event": "Bid",
+     "Price low": 80.7,
+     "Price high": 80.7,
+     "Note": "Final bid letter with revised merger agreement; financing commitment documents provided 12/06; committee required improvement (#31)."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "Bidder 2",
+     "Event": "Bid",
+     "Price low": 80.35,
+     "Price high": 80.35,
+     "Note": "Final bid letter with revised merger agreement; financing commitments not stated at this stage."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "Bidder 3",
+     "Event": "Did not submit",
+     "Price low": null,
+     "Price high": null,
+     "Note": "No written offer: verbal valuation not above ~$78 stock price; J.P. Morgan said unlikely to be competitive."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "deadline": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "deadline": {
+    "type": "noul",
+    "noul": 0.65
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.37
+   }
+  },
+  "usage": {
+   "input_tokens": 1910,
+   "output_tokens": 38
+  }
+ },
+ "latency_s": 0.305
+}

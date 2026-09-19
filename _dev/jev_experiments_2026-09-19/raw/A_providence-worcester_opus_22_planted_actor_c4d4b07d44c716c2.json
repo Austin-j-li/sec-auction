@@ -1,0 +1,66 @@
+{
+ "request": {
+  "state": {
+   "passage": {
+    "before": [
+     "In mid-June 2016, at the direction of the Transaction Committee, representatives of GHF instructed all potential buyers to submit non-binding letters of intent (\"LOIs\") by July 20, 2016, together with mark-ups of the forms of merger agreement, disclosure letter and voting agreement, which GHF indicated would be posted to the internet data site. Potential buyers were instructed to provide a valuation for the Company based on the purchase of 100% of the outstanding common stock on a dollar per share basis (assuming conversion of the preferred stock into common stock) or the financial terms of any non-cash proposal.",
+     "On June 29, 2016, the Company posted an initial draft of merger agreement to the internet data site, and on June 30, 2016, the Company posted an initial draft of voting agreement with respect to the common stock and preferred stock held by the Eder Trusts. On July 11, 2016, the Company posted an initial draft of disclosure letter to the internet data site."
+    ],
+    "cited_paragraph": "Over the course of June and July 2016, each of the potential buyers and their respective advisors engaged in due diligence of the Company's business and financial condition, including holding meetings with certain members of the Company's management team. The Transaction Committee met on June 30, 2016 to receive a status update on the management presentations and due diligence efforts of the potential buyers. In early July 2016, a potential strategic buyer that had not previously been part of the process (\"Party C\") approached the Company's management and expressed interest in acquiring the Company. After executing a confidentiality agreement, Party C was provided the memorandum concerning the Company provided to the other potential buyers. On July 12, 2016, Party C submitted an IOI with an offer price per share of $21.00 (implying an equity value of $108 million). Subsequently, Party C was provided access to the internet data site and the Company's management held a management presentation with Party C by telephone on July 14, 2016.",
+    "after": [
+     "In late July 2016, the Company received six LOIs with offer prices per share ranging from $19.20 to $24.00 (implying equity values of $96 million to $121 million). Party B, G&W and another bidder (\"Party D\") also provided mark-ups of the draft merger agreement and voting agreement. One bidder (\"Party E\") provided a summary of material issues and proposed changes to the merger agreement and voting agreement with respect to those issues.",
+     "Party B submitted an LOI to acquire the Company for a price of $24.00 per share (subject to an expedited diligence review)."
+    ]
+   }
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "actor": {
+    "type": "noul",
+    "instructions": "Does `passage.cited_paragraph` describe something done by, done to, or decided about the party called \"Party B\" (or a group that the passage shows includes it)?",
+    "criteria": {
+     "true": "That party, or a cohort clearly containing it, is a subject of the cited paragraph.",
+     "false": "The cited paragraph concerns other parties only."
+    }
+   },
+   "event": {
+    "type": "noul",
+    "instructions": "A research ledger records an event labelled \"Bid\" for \"Party B\". Does the passage report facts that fit the label \"Bid\" for that party?",
+    "criteria": {
+     "true": "The passage reports such an event, or facts from which it directly follows.",
+     "false": "The passage reports a different kind of event, or nothing of that kind."
+    }
+   },
+   "price": {
+    "type": "noul",
+    "instructions": "Does the passage state that \"Party B\" offered, proposed or indicated a price of $21.00 per share (the same number may be written without trailing zeros)?",
+    "criteria": {
+     "true": "The per-share figure $21.00 appears in the passage as this party's price.",
+     "false": "The passage gives a different figure for this party, or no figure."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "actor": {
+    "type": "noul",
+    "noul": 0.11
+   },
+   "event": {
+    "type": "noul",
+    "noul": 0.94
+   },
+   "price": {
+    "type": "noul",
+    "noul": 0.03
+   }
+  },
+  "usage": {
+   "input_tokens": 1158,
+   "output_tokens": 52
+  }
+ },
+ "latency_s": 0.373
+}

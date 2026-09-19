@@ -1,0 +1,98 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On March 24, 2016, the Transaction Committee met by telephone conference to discuss the results of management's meeting with Party A and to discuss next steps in the process. Members of management and representatives of each of GHF and the Company's legal counsel, Hinckley, Allen & Snyder LLP (which we refer to as \"Hinckley Allen\"), participated in all meetings of the Transaction Committee, except as otherwise indicated. At this meeting, Mr. Noreck reported that he and other members of the senior management team had met with various representatives of Party A on March 22 and 23, 2016 and had informed Party A of GHF's engagement. The Transaction Committee authorized GHF to contact Party A as well as other potential buyers to determine their level of interest in a change in control transaction. During the week of March 28, 2016, in accordance with the Transaction Committee's directives, representatives of GHF contacted 11 potential strategic buyers (including Party A) and 18 potential financial buyers. Each of the potential strategic buyers and 14 potential financial buyers subsequently executed confidentiality agreements. The confidentiality agreements did not contain any \"standstill\" or similar provision that would prohibit a potential buyer from submitting a proposal or making an offer to acquire the Company.",
+   "ledger_rows": [
+    {
+     "When": "week of March 28, 2016",
+     "Who": "PWRR",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Round 1 opened on the first outreach wave; the Transaction Committee had authorized GHF on 03/24 to contact Party A and other potential buyers."
+    },
+    {
+     "When": "week of March 28, 2016",
+     "Who": "29 potential buyers (11 strategic, 18 financial)",
+     "Event": "Contact",
+     "Price low": null,
+     "Price high": null,
+     "Note": "GHF contacted 11 strategic (incl. Party A) and 18 financial prospects; direction target to buyers. Aggregate step; 25 of them later signed NDAs."
+    },
+    {
+     "When": "by 04/07/2016",
+     "Who": "11 strategic NDA signers",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "All 11 contacted strategic prospects signed, including Party A, Party B and G&W; no standstill provisions; received the Company memorandum."
+    },
+    {
+     "When": "by 04/07/2016",
+     "Who": "14 financial NDA signers",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "14 of 18 contacted financial prospects signed; with the 11 strategic signers, 25 confidentiality agreements in total."
+    },
+    {
+     "When": "by 04/07/2016",
+     "Who": "Two additional Class I railroads",
+     "Event": "Contact",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Company (Noreck) approached these two separately to gauge interest; no response or outcome reported; they never entered the process."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "nda_access": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.79
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.72
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.25
+   }
+  },
+  "usage": {
+   "input_tokens": 1376,
+   "output_tokens": 55
+  }
+ },
+ "latency_s": 0.39
+}

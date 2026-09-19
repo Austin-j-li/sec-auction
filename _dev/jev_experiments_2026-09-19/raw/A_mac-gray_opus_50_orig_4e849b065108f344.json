@@ -1,0 +1,54 @@
+{
+ "request": {
+  "state": {
+   "passage": {
+    "before": [
+     "Following the adjournment of the Special Committee meeting, a meeting of the Mac-Gray Board of Directors convened. All members of the Board participated. Representatives from Goodwin Procter led a discussion on the terms of the merger agreement and advised the Board regarding the likely timing for execution of a definitive agreement and public announcement of the transaction and a projected closing timetable should the Board approve the merger. After discussion, the Board (upon the recommendation of the Special Committee) unanimously determined that the merger agreement and the merger were advisable and in the best interests of Mac-Gray's stockholders, approved the merger on the terms and subject to the conditions set forth in the merger agreement, adopted the merger agreement and recommended that the Mac-Gray stockholders adopt and approve the merger agreement.",
+     "Later in the day, on October 14, 2013, the merger agreement was executed, the Pamplona commitment letter was delivered, Moab and Parent executed the Moab voting agreement and the Mac-Donald voting agreements became effective."
+    ],
+    "cited_paragraph": "On October 15, 2013, before the U.S. stock markets opened, Mac-Gray and CSC jointly announced the execution of the merger agreement.",
+    "after": [
+     "Reasons for the Merger and Recommendation of our Board of Directors",
+     "Reasons for the Merger"
+    ]
+   }
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "actor": {
+    "type": "noul",
+    "instructions": "Does `passage.cited_paragraph` describe something done by, done to, or decided about the party called \"Mac-Gray and CSC\" (or a group that the passage shows includes it)?",
+    "criteria": {
+     "true": "That party, or a cohort clearly containing it, is a subject of the cited paragraph.",
+     "false": "The cited paragraph concerns other parties only."
+    }
+   },
+   "event": {
+    "type": "noul",
+    "instructions": "A research ledger records an event labelled \"Merger announced\" for \"Mac-Gray and CSC\". Does the passage report facts that fit the label \"Merger announced\" for that party?",
+    "criteria": {
+     "true": "The passage reports such an event, or facts from which it directly follows.",
+     "false": "The passage reports a different kind of event, or nothing of that kind."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "actor": {
+    "type": "noul",
+    "noul": 0.97
+   },
+   "event": {
+    "type": "noul",
+    "noul": 0.97
+   }
+  },
+  "usage": {
+   "input_tokens": 750,
+   "output_tokens": 36
+  }
+ },
+ "latency_s": 0.246
+}

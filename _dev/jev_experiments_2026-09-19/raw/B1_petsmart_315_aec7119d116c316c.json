@@ -1,0 +1,85 @@
+{
+ "request": {
+  "state": {
+   "previous_paragraph": "On December 13, 2014, the board met in person, together with the members of management and representatives of J.P. Morgan and Wachtell Lipton, to discuss and review the final bids and to consider the proposed transaction. Representatives of J.P. Morgan reviewed the respective bids as well as the recent progression of the sale process. Representatives of Wachtell Lipton reviewed the terms of the draft merger agreement and other transaction documents and reviewed the financing commitments that had been provided by the Buyer Group. Representatives of J.P. Morgan made a financial presentation concerning the proposed transaction with the Buyer Group, as well as the Company's alternatives to a sale of the Company, including a leveraged share repurchase. J.P. Morgan then rendered its oral opinion, which was subsequently confirmed in writing, to the board that, as of that date, and based upon and subject to the factors, assumptions and limitations set forth in its opinion, the merger consideration of $83.00 in cash to be paid to the holders of the Company's common stock in the merger was fair, from a financial point of view, to such holders. Following extensive discussion, the board unanimously determined that the merger agreement and the transactions contemplated thereby, including the merger, were advisable and in the best interests of PetSmart and its stockholders, and to recommend that the Company's stockholders approve the adoption of the merger agreement. The board's determination was subject, however, to confirmation that the remaining open points in the merger agreement had been satisfactorily resolved, and the board determined to reconvene, if deemed necessary by the ad hoc committee or the chairman of the board.",
+   "paragraph": "Following the board meeting, the parties completed negotiations on terms satisfactory to both parties, and finalized the terms of the Longview voting agreement. On December 14, 2014, the parties executed the merger agreement, the voting agreement and related transaction agreements and issued a press release announcing the transaction."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "bid": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "nda_access": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "exit": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a potential buyer withdraws, declines to bid, is told it will not advance, or is otherwise excluded from the process? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "deadline": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "exclusivity": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that exclusivity is requested, authorised, granted, signed or extended? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "agreements": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "bid": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.02
+   },
+   "exit": {
+    "type": "noul",
+    "noul": 0.02
+   },
+   "deadline": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.02
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "exclusivity": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "agreements": {
+    "type": "noul",
+    "noul": 0.98
+   }
+  },
+  "usage": {
+   "input_tokens": 1127,
+   "output_tokens": 138
+  }
+ },
+ "latency_s": 0.24
+}

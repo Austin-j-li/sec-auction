@@ -1,0 +1,44 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "After BofA Merrill Lynch and management left the meeting, a representative of Goodwin Procter provided an overview of the Board's fiduciary duties and the Board discussed engaging a financial advisor to assist the Board in considering strategic alternatives, including a sale process. To assist in the administration of the strategic alternatives review, the Board formed a transaction committee at this meeting, which we refer to as the Transaction Committee, and appointed Thomas Bullock and Paul Daoust, both independent directors, to serve as its members. Mr. Daoust was appointed because of his knowledge of and experience with mergers and acquisitions, including as president, chief executive officer and board member of Salary.com when it was sold in 2010. Mr. Bullock was appointed because of his knowledge of Mac-Gray and our business, given his tenure on the Board (since November 2000) and his chairmanship role. Further, both Mr. Daoust and Mr. Bullock indicated that they would be able to commit sufficient time to undertake the responsibilities associated with membership on the Transaction Committee. The Transaction Committee was charged with recommending to the Board the selection and engagement of a financial advisor to assist the Board in seeking and considering strategic alternatives, including but not limited to a merger, consolidation, business combination, recapitalization, restructuring, going-private or other strategic transaction or alternative that might be available to Mac-Gray in lieu of pursuing any of the foregoing. The Board also delegated to the Transaction Committee authority to take any administrative actions in connection with the Board's exploration of strategic alternatives. The Board concluded that it would discuss the review of strategic alternatives, including engaging in a potential sale process, at its next meeting so that the Board would have additional time to consider the risks and benefits of the various alternatives discussed.",
+   "target_sentence": "To assist in the administration of the strategic alternatives review, the Board formed a transaction committee at this meeting, which we refer to as the Transaction Committee, and appointed Thomas Bullock and Paul Daoust, both independent directors, to serve as its members."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_3": "04/08/2013 | Party A | Target interest | Board authorized this on 04/05 as part of exploring opportunities. Party A said it might consider a combination. Party A is a laundry facilities management company.",
+     "row_4": "05/09/2013 | Goodwin Procter LLP | Adviser | Target's outside legal counsel, first seen acting here. Later also advised the Special Committee.",
+     "row_5": "05/15/2013 | BofA Merrill Lynch | Adviser ended | The Transaction Committee decided on 05/14 to end the 2011-2012 mandate, since BofA was being invited to pitch for the sale-review role.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "none",
+    "confidence": 0.72,
+    "probabilities": {
+     "row_3": 0.08,
+     "row_4": 0.02,
+     "not_an_event": 0.13,
+     "none": 0.76,
+     "row_5": 0.01
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1096,
+   "output_tokens": 60
+  }
+ },
+ "latency_s": 0.305
+}

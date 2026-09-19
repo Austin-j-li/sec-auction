@@ -1,0 +1,52 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On July 11, 2013, CSC/Pamplona entered into a confidentiality and standstill agreement with Mac-Gray and were provided with an informational package for the purpose of providing CSC/Pamplona with data to formulate a preliminary indication of interest.",
+   "target_sentence": "On July 11, 2013, CSC/Pamplona entered into a confidentiality and standstill agreement with Mac-Gray and were provided with an informational package for the purpose of providing CSC/Pamplona with data to formulate a preliminary indication of interest."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_15": "06/28/2013 | Party B | NDA signed | Confidentiality and standstill agreement; received the informational package.",
+     "row_16": "06/30/2013 | Party C | NDA signed | Confidentiality and standstill agreement; received the informational package.",
+     "row_17": "07/06/2013 | Mac-Gray (Special Committee) | Other material event | Refuses rollover partnership: denies the request (relayed by Rothenberg 07/03) for Moab to partner exclusively with CSC/Pamplona on a rollover. Such talks allowed only later.",
+     "row_18": "07/11/2013 | CSC/Pamplona | NDA signed | Agreement with Pamplona Capital Management LLC, reused in the merger agreement (s. 6.17). Received the informational package. Party A's NDA talks stalled on non-solicit terms 07/11-07/23.",
+     "row_19": "07/23/2013 | CSC/Pamplona | Bid | price 18.5 | Preliminary IOI based only on the informational package, with no data room or management access (Heavy by context).",
+     "row_22": "07/24/2013 | Party B | Bid | price 17-18 | Written preliminary IOI, one day after the due date. Based on the informational package only (Heavy by context).",
+     "row_23": "07/24/2013 | Party C | Bid | price 15-17 | Oral preliminary IOI to BofA, one day after the due date. Based on the informational package only (Heavy by context).",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_18",
+    "confidence": 0.96,
+    "probabilities": {
+     "row_15": 0.0,
+     "row_16": 0.0,
+     "row_18": 0.97,
+     "row_22": 0.0,
+     "not_an_event": 0.0,
+     "row_23": 0.0,
+     "row_19": 0.0,
+     "row_17": 0.0,
+     "none": 0.03
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1048,
+   "output_tokens": 106
+  }
+ },
+ "latency_s": 0.269
+}

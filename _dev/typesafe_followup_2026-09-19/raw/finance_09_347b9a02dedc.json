@@ -1,0 +1,73 @@
+{
+  "case_id": "finance_09",
+  "request_sha256": "347b9a02dedc62d2747045aefbd1e0214662c4295011e611cfe0ecaee6968343",
+  "request": {
+    "model": "jev-1.13.0",
+    "state": {
+      "source": [
+        {
+          "paragraph_id": "352",
+          "text": "Party B submitted an LOI to acquire the Company for a price of $24.00 per share (subject to an expedited diligence review)."
+        }
+      ],
+      "conditions_rule": "**Conditions** measures what the bid itself carries when made or reaffirmed: financing, further diligence required, and any other material condition attached.\n\n- **None** \u2014 the filing reports the bidder ready to sign: no further diligence required, financing committed or not needed, no other material condition.\n- **Light** \u2014 no Heavy trigger, and the bid is subject only to confirmatory, expedited or limited diligence or to final documentation; or the filing reports committed financing and attaches no diligence condition.\n- **Heavy** \u2014 any one of: the filing reports that financing is not committed or is a contingency; the bid is subject to a further substantive diligence period (a stated multi-week or exclusive diligence period counts); another material stated condition, such as a right to reprice, an unresolved commercial requirement or an identified obstacle to completion.\n- **Unclear** \u2014 the filing gives nothing about financing, diligence or other conditions and the stage supplies no context; or a cohort's members differ.\n\nA preliminary non-binding indication made before the bidder has had substantive diligence access \u2014 a data room or management access, not merely a teaser or memorandum \u2014 is Heavy by context, whatever its wording. \u201cNon-binding\u201d, or a price range, does not alone establish Heavy. **Silence about financing neither raises nor lowers the level: only a reported absence of commitment supports Heavy**, and None needs affirmative support, not silence or the passage of time. Always record a reported absence of committed financing; it matters more than its presence. Reassess at each new bid or reaffirmation. The Note states the condition that drives the level (\u201csix-week diligence period; financing not committed\u201d) and any exclusivity request."
+    },
+    "questions": {
+      "financing": {
+        "type": "choice",
+        "instructions": "For Party B at \"late July 2016 LOI\", what does the supplied source explicitly report about financing commitment? Judge only financing; do not import another bidder or date, or infer commitment from all-cash consideration.",
+        "criteria": {
+          "committed": "Financing commitment provided, capital expressly committed, or financing not needed.",
+          "missing": "Explicitly no firm commitment, uncommitted financing, or financing contingency.",
+          "silent": "No explicit statement establishing either commitment or absence for this bidder at this event. Silence is not missing financing."
+        }
+      },
+      "conditions": {
+        "type": "choice",
+        "instructions": "What Conditions label under conditions_rule applies to Party B at \"late July 2016 LOI\" based on the supplied source? Use Unclear if necessary context is missing.",
+        "criteria": {
+          "None": "Affirmative readiness to sign and no remaining material conditions.",
+          "Light": "Only limited confirmatory diligence or final documentation; or committed financing without diligence condition.",
+          "Heavy": "Any Heavy trigger under conditions_rule.",
+          "Unclear": "Insufficient evidence/context."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "financing": {
+        "type": "choice",
+        "choice": "silent",
+        "confidence": 0.99,
+        "probabilities": {
+          "missing": 0.01,
+          "silent": 0.99,
+          "committed": 0.0
+        }
+      },
+      "conditions": {
+        "type": "choice",
+        "choice": "Light",
+        "confidence": 0.65,
+        "probabilities": {
+          "Heavy": 0.19,
+          "None": 0.0,
+          "Unclear": 0.07,
+          "Light": 0.74
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 965,
+      "output_tokens": 85
+    }
+  },
+  "attempts": [
+    {
+      "status": 200,
+      "latency_s": 16.137367247996735
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On August 13, 2014, the board met in person, together with members of management and representatives of J.P. Morgan and Wachtell Lipton, to complete its initial review of strategic and financial alternatives potentially available to the Company and to receive an update on communications from stockholders and other interested parties, including Industry Participant. As a result of this meeting, the board (1) determined to explore strategic alternatives (including a possible sale of the Company) for the Company to maximize value for stockholders including by commencing a process to determine the potential value that could be achieved via a sale of the Company; (2) instructed management to commence intensive planning for a cost-reduction and profit-improvement plan (which we refer to collectively as the \"Profit Improvement Plan\") to potentially increase the value of the Company, whether in a sale of the Company or on a standalone basis should no sale materialize; and (3) authorized the ad hoc committee to oversee the sale exploration process, and, in between meetings of the full board, to give direction to the Company's financial and legal advisors, to lead on behalf of the Company (or to give guidance to the Company's representatives in connection with) any negotiations with potentially interested parties and periodically to brief the full board on the status of the sale exploration process. Together with the Company's financial and legal advisors, the board also considered and discussed alternative formats and timing for the conduct of the exploratory sale process, and determined that at the appropriate time, which was expected to be during the second half of September or early October, J.P. Morgan should contact financial and strategic parties deemed likely to be interested and capable of completing a transaction. In addition, the board determined that the Company would issue a public announcement of its intention to explore strategic alternatives, which would ensure that interested parties not contacted would become aware of the process and could contact J.P. Morgan on their own initiative. In connection with this discussion, after deliberation and consultation with its financial and legal advisors, the board reviewed the potential benefits and risks of inviting Industry Participant to participate in the exploratory sale process. In this regard, the board considered, among other things, in addition to the communications with Industry Representative in the Spring and on August 7, the very high risk that an acquisition by or a combination with Industry Participant would not receive antitrust clearances, or would receive such clearances only with the imposition by governmental authorities of unacceptable conditions; the near certainty that the process of seeking such clearances would result in the receipt of a so-called \"second request\" from governmental",
+   "target_sentence": "Together with the Company's financial and legal advisors, the board also considered and discussed alternative formats and timing for the conduct of the exploratory sale process, and determined that at the appropriate time, which was expected to be during the second half of September or early October, J.P. Morgan should contact financial and strategic parties deemed likely to be interested and capable of completing a transaction."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_2": "late May\u2013June 2014 | Unnamed stockholders and interested parties | Activist | After weak Q1 results (05/21/2014), some stockholders and interested parties urged strategic or financial alternatives, including a levered return of capital and a sale of the Company.",
+     "row_3": "06/18/2014 | Wachtell Lipton | Adviser | Target legal adviser; first seen acting at 06/18 board meeting, which chose to focus on capital return and formed ad hoc committee (Josefowicz, Gangwal, Stemberg).",
+     "row_4": "06/18/2014 | Unnamed financial advisor | Adviser | Unnamed financial advisor to the board, first seen acting 06/18; board then authorized vetting and retention of a financial advisor. Not mentioned again.",
+     "row_5": "07/03/2014 | JANA Partners | Activist | 13D at 9.9%; sought review of alternatives including a sale. Further 13D amendments and public letters in July\u2013August advocating a sale; met the Company 07/10/2014 advocating a sale.",
+     "row_6": "07/07/2014 | Longview | Activist | Shareholder; public letter urging board to consider a sale; would consider rolling some or all holdings into buyer equity. Met board in May without advocating; reiterated sale advocacy 07/10/2014.",
+     "row_7": "July 2014 | J.P. Morgan | Adviser | Target\u2019s sole financial adviser, retained after interviews; engagement letter effective 08/21/2014; fee up to about $39 million; gave fairness opinion 12/13/2014.",
+     "row_8": "08/07/2014 | Industry Participant | Bidder interest | Privately-held industry competitor; contacted J.P. Morgan after rumours, may revisit spring 2014 talks (PetSmart-initiated merger/acquisition discussions, which IP rebuffed citing antitrust). No price.",
+     "row_9": "08/13/2014 | PetSmart board | Target sale decision | Board decided to explore alternatives incl. a sale, with Profit Improvement Plan as standalone fallback; ad hoc committee to oversee; J.P. Morgan outreach deferred to late Sept/early Oct; public announcement planned.",
+     "row_10": "mid-August \u2013 10/03/2014 | 24 financial participants | Contact | Parties contacted J.P. Morgan (inbound); includes potential lead buyers and large equity suppliers. All 27 reported to board by 10/03. Reasons section: Company \u201ccontacted or were contacted by more than 25\u201d.",
+     "row_11": "mid-August \u2013 10/03/2014 | 3 strategic parties | Contact | Inbound contacts to J.P. Morgan, excluding Industry Participant. None signed a confidentiality agreement (all 15 signers were financial).",
+     "row_12": "08/19/2014 | PetSmart | Sale process announced | Press release with Q2 earnings; intended to let parties not contacted approach J.P. Morgan on their own initiative.",
+     "row_13": "08/27/2014 | Industry Participant | Other material event | Target refused admission: on ad hoc committee direction, J.P. Morgan conveyed concerns (08/22), then said IP not invited (antitrust, information, delay risks); proposals would be considered. Reaffirmed 10/03. No later contact; never entered",
+     "row_14": "first week of October 2014 | PetSmart / J.P. Morgan | Round opened | Round 1 opened by the NDA wave (buyers came to target; no outreach wave reported). Board told 10/03 about 15 parties interested.",
+     "row_15": "first week of October 2014 | 15 financial NDA signers | NDA signed | Confidentiality and standstill agreements. All 15 did diligence in October, had senior-management presentations and detailed business-plan and Profit Improvement Plan information. Includes Buyer Group, Bidder 2 and all IOI submitters.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_9",
+    "confidence": 0.46,
+    "probabilities": {
+     "row_9": 0.51,
+     "row_6": 0.0,
+     "row_15": 0.0,
+     "row_3": 0.0,
+     "row_7": 0.0,
+     "none": 0.07,
+     "row_11": 0.0,
+     "row_5": 0.0,
+     "row_10": 0.02,
+     "row_13": 0.0,
+     "row_12": 0.01,
+     "not_an_event": 0.37,
+     "row_14": 0.02,
+     "row_4": 0.0,
+     "row_2": 0.0,
+     "row_8": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 2182,
+   "output_tokens": 167
+  }
+ },
+ "latency_s": 0.368
+}

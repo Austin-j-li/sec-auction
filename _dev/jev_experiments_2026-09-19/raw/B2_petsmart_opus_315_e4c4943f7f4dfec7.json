@@ -1,0 +1,90 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Following the board meeting, the parties completed negotiations on terms satisfactory to both parties, and finalized the terms of the Longview voting agreement. On December 14, 2014, the parties executed the merger agreement, the voting agreement and related transaction agreements and issued a press release announcing the transaction.",
+   "ledger_rows": [
+    {
+     "When": "12/12/2014 (evening)",
+     "Who": "Bidder 2",
+     "Event": "Bid",
+     "Price low": 81.5,
+     "Price high": 81.5,
+     "Note": "Revises #30. Confirmed to J.P. Morgan as best and final; with revised merger agreement drafts and financing commitment documents."
+    },
+    {
+     "When": "12/12/2014 (evening)",
+     "Who": "Buyer Group",
+     "Event": "Bid",
+     "Price low": 82.5,
+     "Price high": 82.5,
+     "Note": "Revises #29. Oral offer; said it was working to raise it within hours. Financing commitments already provided."
+    },
+    {
+     "When": "12/12/2014 (later evening)",
+     "Who": "Buyer Group",
+     "Event": "Bid",
+     "Price low": 83,
+     "Price high": 83,
+     "Note": "Revises #36. Best and final; revised drafts \u201cwith few exceptions\u201d in executable form, plus financing commitments. Longview\u2019s $250 million rollover support helped reach $83.00; members unwilling or unable to go higher."
+    },
+    {
+     "When": "12/12/2014",
+     "Who": "PetSmart",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Due date for improved bids; both remaining bidders submitted that evening."
+    },
+    {
+     "When": "12/13/2014",
+     "Who": "Buyer Group",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Board selected Buyer Group: approved merger at $83.00 cash, subject to resolving remaining open points in the agreement; J.P. Morgan gave fairness opinion."
+    },
+    {
+     "When": "12/14/2014",
+     "Who": "Buyer Group",
+     "Event": "Merger agreement signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "$83.00 per share in cash. Parent Argos Holdings (BC Partners-affiliated). Equity up to $1.83bn plus Longview rollover (3,012,050 shares, $250m); debt up to $6.95bn (Citi-led); Longview voting agreement. No go-shop."
+    },
+    {
+     "When": "12/14/2014",
+     "Who": "PetSmart",
+     "Event": "Merger announced",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Press release announcing the transaction on the signing date."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "agreements": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "agreements": {
+    "type": "noul",
+    "noul": 0.76
+   }
+  },
+  "usage": {
+   "input_tokens": 1137,
+   "output_tokens": 21
+  }
+ },
+ "latency_s": 0.293
+}

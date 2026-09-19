@@ -1,0 +1,118 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Mr. Rothenberg was then excused and the Board meeting proceeded as a meeting of the Special Committee. By invitation of the Special Committee, Mr. Shea and Mr. Emma and representatives of BofA Merrill Lynch and Goodwin Procter were present for all or portions of the meeting. Mr. Shea and Mr. Emma presented Mac-Gray's five-year strategic business plan and projections, including the with acquisitions case and the without acquisitions case (see \"-Projected Financial Information\" below), which we refer to as the Projections. Following the management presentation, representatives of BofA Merrill Lynch discussed potential strategic alternatives and the structure and timing of a potential sale process. The Special Committee reviewed Mac-Gray's short and long-term business strategies and discussed the five-year strategic business plan, including Mac-Gray's ability to identify, acquire and successfully integrate laundry facilities management businesses, establish new and/or renew existing laundry facility management leases and penetrate markets historically dominated by smaller local and regional operators, the impact of general economic and market trends on Mac-Gray's sales and the general risks of market conditions that could reduce Mac-Gray's stock price. The Special Committee also discussed the risks involved if Mac-Gray did not execute on its strategic business plan, including the difficulties with increasing the Company's stock price without a significant or transformative transaction, such as a major acquisition or restructuring.",
+   "ledger_rows": [
+    {
+     "When": "05/30/2013",
+     "Who": "Moab Partners, L.P.",
+     "Event": "Activist",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Moab (about 9% holder) won a proxy contest; Rothenberg and Hyman replaced incumbents. The filing does not say Moab pressed for a sale. Rothenberg was later excluded over Moab's rollover interest."
+    },
+    {
+     "When": "06/21/2013",
+     "Who": "Party A",
+     "Event": "Bid",
+     "Price low": 17,
+     "Price high": 19,
+     "Note": "Unsolicited proposal to the board, made before any NDA or diligence (Heavy by context). It was still standing when round 1 was evaluated on 07/25."
+    },
+    {
+     "When": "06/24/2013",
+     "Who": "Mac-Gray (Special Committee)",
+     "Event": "Target sale decision",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Board forms a Special Committee of six independent directors, excluding CEO MacDonald and Moab's Rothenberg. The committee will weigh a sale against staying stand-alone and approach 50 parties."
+    },
+    {
+     "When": "06/24/2013 to 06/28/2013",
+     "Who": "Mac-Gray (BofA Merrill Lynch)",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "BofA's outreach carries out the 06/24 decision; contacts reported by 06/28. NDA signers get an informational package, with preliminary IOIs due 07/23/2013 (no separate Deadline set row)."
+    },
+    {
+     "When": "by 06/28/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Contact",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Target-initiated. Pamplona is interested, including an acquisition by its portfolio company CSC (acquired May 2013), and says diligence would be minimal."
+    },
+    {
+     "When": "during the next several weeks after 06/24/2013",
+     "Who": "13 other strategic parties",
+     "Event": "Contact",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Target outreach. Of 50 contacted (15 strategic, 35 financial), Party A (#2) and CSC/Pamplona (#10) are recorded separately, leaving 13 strategic parties."
+    },
+    {
+     "When": "during the next several weeks after 06/24/2013",
+     "Who": "35 financial parties",
+     "Event": "Contact",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Target outreach to all 35 financial parties (including private equity), among them Party B and Party C. 50 contacted in total."
+    },
+    {
+     "When": "over the two months after late June 2013",
+     "Who": "16 other financial NDA signers",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "20 NDAs in total (2 strategic, 18 financial). Party A, CSC/Pamplona, Party B and Party C have their own rows, leaving 16 financial. Signing dates not given; each got an informational package."
+    },
+    {
+     "When": "07/23/2013",
+     "Who": "Mac-Gray",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Due date for preliminary IOIs. CSC/Pamplona bid on time; Party B and Party C bid on 07/24 and were considered on 07/25 (late bids accepted)."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "nda_access": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.34
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.43
+   }
+  },
+  "usage": {
+   "input_tokens": 1758,
+   "output_tokens": 39
+  }
+ },
+ "latency_s": 0.634
+}

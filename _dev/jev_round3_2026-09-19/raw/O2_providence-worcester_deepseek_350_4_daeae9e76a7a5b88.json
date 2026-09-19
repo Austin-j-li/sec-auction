@@ -1,0 +1,64 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Over the course of June and July 2016, each of the potential buyers and their respective advisors engaged in due diligence of the Company's business and financial condition, including holding meetings with certain members of the Company's management team. The Transaction Committee met on June 30, 2016 to receive a status update on the management presentations and due diligence efforts of the potential buyers. In early July 2016, a potential strategic buyer that had not previously been part of the process (\"Party C\") approached the Company's management and expressed interest in acquiring the Company. After executing a confidentiality agreement, Party C was provided the memorandum concerning the Company provided to the other potential buyers. On July 12, 2016, Party C submitted an IOI with an offer price per share of $21.00 (implying an equity value of $108 million). Subsequently, Party C was provided access to the internet data site and the Company's management held a management presentation with Party C by telephone on July 14, 2016.",
+   "target_sentence": "On July 12, 2016, Party C submitted an IOI with an offer price per share of $21.00 (implying an equity value of $108 million)."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_12": "by 04/27/2016 | PWRR | Deadline set | Potential buyers advised to submit non-binding indications of interest by 05/10/2016; communicated before the 04/27 Board meeting.",
+     "row_13": "by 05/19/2016 | PWRR | Deadline revised | IOI deadline postponed to 05/19/2016 to let buyers formulate compelling offers; revision itself undated, only bound is the new date.",
+     "row_14": "05/19/2016 | PWRR | Deadline | IOI due date reached; nine IOIs followed; the Transaction Committee evaluated them on 05/23 and 06/01.",
+     "row_17": "06/01/2016 | Two low bidders | Dropped by target | Excluded after IOI review as the lowest of the nine offers; decision made at the 05/23 and 06/01 Committee meetings.",
+     "row_18": "06/01/2016 | PWRR (Transaction Committee) | Round opened | Round 2 opened: Committee advanced seven after excluding two, opening management presentations and data-site diligence; LOIs later sought by 07/20.",
+     "row_21": "by 07/12/2016 | Party C | NDA signed | Signed a confidentiality agreement and received the same memorandum as other buyers; no standstill.",
+     "row_22": "07/12/2016 | Party C | Bid | price 21 | IOI; equity value $108M; no diligence or financing terms stated; made before data-site and management access.",
+     "row_23": "07/14/2016 | Party C | Other material event | Provided catch-up access for late entrant: data-site access plus telephone management presentation after its 07/12 IOI.",
+     "row_24": "late July 2016 | Party B | Bid | price 24 | LOI with mark-ups of merger and voting agreements; expedited diligence; highest of the six LOIs.",
+     "row_25": "late July 2016 | Party E | Bid | price 21.26 | LOI; 60-day exclusive diligence and documentation period requested; issues list only, no markup.",
+     "row_26": "late July 2016 | Party D | Bid | price 21 | LOI with mark-ups of merger and voting agreements; four-week diligence period.",
+     "row_31": "07/21/2016 | G&W | Bid | price 21.15 | LOI: $20.02 cash at closing plus $1.13 CVR on South Quay property sale; three-week exclusive diligence requested; mark-ups provided.",
+     "row_32": "07/26/2016 | G&W | Bid | price 22.15 | Raised after GHF said price and CVR structure were not competitive; $21.02 cash plus $1.13 CVR; exclusive diligence request stands.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_22",
+    "confidence": 1.0,
+    "probabilities": {
+     "row_18": 0.0,
+     "row_23": 0.0,
+     "none": 0.0,
+     "row_32": 0.0,
+     "row_25": 0.0,
+     "row_26": 0.0,
+     "row_22": 1.0,
+     "not_an_event": 0.0,
+     "row_14": 0.0,
+     "row_31": 0.0,
+     "row_13": 0.0,
+     "row_12": 0.0,
+     "row_21": 0.0,
+     "row_24": 0.0,
+     "row_17": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1574,
+   "output_tokens": 166
+  }
+ },
+ "latency_s": 0.407
+}

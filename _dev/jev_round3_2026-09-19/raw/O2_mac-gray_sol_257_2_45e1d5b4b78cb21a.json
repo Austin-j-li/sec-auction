@@ -1,0 +1,54 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On September 19, 2013, the Special Committee held an in-person meeting. By invitation of the Special Committee, Mr. MacDonald and Mr. Shea, as well as representatives from BofA Merrill Lynch and Goodwin Procter, were also present for all or portions of the meeting. At this meeting, BofA Merrill Lynch updated the Special Committee as to the current status of the revised indications of interest submitted by Party A, Party B and CSC/Pamplona and reported that Party C did not submit a revised indication of interest or reiterate its prior indication of interest. BofA Merrill Lynch also reported to the Special Committee on Mr. MacDonald's general support for continuing with the process and his view that Mac-Gray should continue to seek a higher value for stockholders. Mr. Shea again reviewed the Projections with the Special Committee and BofA Merrill Lynch. The Special Committee again discussed the Projections, including the risks relating to Mac-Gray's ability to execute its strategic plan as an independent, stand-alone company (including Mac-Gray's ability to identify, acquire and successfully integrate laundry facilities management businesses, establish new and/or renew existing laundry facility management leases and penetrate markets historically dominated by smaller",
+   "target_sentence": "At this meeting, BofA Merrill Lynch updated the Special Committee as to the current status of the revised indications of interest submitted by Party A, Party B and CSC/Pamplona and reported that Party C did not submit a revised indication of interest or reiterate its prior indication of interest."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_36": "09/11/2013 | Mac-Gray | Round opened | Final indications requested from four bidders; due September 18; possible short exclusivity with one bidder.",
+     "row_37": "09/18/2013 | Mac-Gray | Deadline | Final indications due; three bidders responded and Party C did not.",
+     "row_38": "09/18/2013 | CSC/Pamplona | Bid | price 20.75 | Pamplona committed 100% of capital; two-week exclusivity requested; no further diligence condition reported.",
+     "row_39": "09/18/2013 | Party A | Bid reaffirmed | price 18-19 | Reaffirms #32 as best and final in response to final solicitation; prior lack of firm financing remains.",
+     "row_40": "09/18/2013 | Party B | Bid | price 21.5 | Package: $19.00 cash at closing plus options Party B valued at $2.50; options vested on five-year performance. Third-party debt anticipated.",
+     "row_41": "09/18/2013 | Party C | Did not submit | No final indication or reaffirmation; no reason stated.",
+     "row_42": "09/19/2013 | Mac-Gray | Other material event | Preferred CSC/Pamplona for certainty and sought $21.25 before exclusivity.",
+     "row_43": "09/21/2013 | CSC/Pamplona | Bid | price 21.25 | Last-and-best offer; conditioned on two-week exclusivity and requested MacDonald-family voting agreements; full funding and no financing contingency were agreed by September 23.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company; or a potential buyer withdraws, declines to bid, is told it will not advance, or is otherwise excluded from the process. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_41",
+    "confidence": 0.75,
+    "probabilities": {
+     "row_42": 0.01,
+     "row_40": 0.0,
+     "row_43": 0.0,
+     "row_38": 0.0,
+     "row_41": 0.78,
+     "not_an_event": 0.01,
+     "row_36": 0.0,
+     "none": 0.13,
+     "row_37": 0.07,
+     "row_39": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1313,
+   "output_tokens": 116
+  }
+ },
+ "latency_s": 0.27
+}

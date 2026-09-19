@@ -1,0 +1,54 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On June 21, 2013, Party A submitted an unsolicited proposal to the Mac-Gray Board of Directors offering to purchase Mac-Gray for an all-cash purchase price of $17.00 to $19.00 per share, which we refer to as the Party A June 21 proposal.",
+   "ledger_rows": [
+    {
+     "When": "06/21/2013",
+     "Who": "Party A",
+     "Event": "Bid",
+     "Price low": 17,
+     "Price high": 19,
+     "Note": "Unsolicited; no NDA or substantive diligence access yet; reviewed with the round-1 indications on 07/25/2013."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "bid": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "bid": {
+    "type": "noul",
+    "noul": 0.95
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.91
+   }
+  },
+  "usage": {
+   "input_tokens": 669,
+   "output_tokens": 36
+  }
+ },
+ "latency_s": 0.3
+}

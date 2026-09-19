@@ -1,0 +1,85 @@
+{
+ "request": {
+  "state": {
+   "previous_paragraph": "The Special Committee, in follow up to the considerations introduced at the May 9 th Board meeting, then further considered whether it might be advisable to approach and discuss a potential sale transaction with third parties, including Party A, at this time. The Special Committee discussed the potential risks and benefits of commencing a process in which parties would be invited to review confidential information and submit indications of interest with respect to a potential business combination involving Mac-Gray, focusing again on the potential disruptions to Mac-Gray's business, the risk of leaks that might arise from approaching potential acquirors within the industry and the resulting impact on Mac-Gray's business and the need to disclose during such process sensitive, proprietary and confidential information to competitors and potential competitors. The members of the Special Committee also discussed with BofA Merrill Lynch the likelihood that strategic parties, including CSC and Party A, should be able to pay a higher price for Mac-Gray because of the benefit of synergies, and noted their collective belief that Party A would likely increase the Party A June 21 proposal in light of such synergies if Party A were given the opportunity to conduct business and legal due diligence on a potential acquisition of Mac-Gray. The Special Committee then discussed the other strategic alternatives, including a significant share repurchase program and an extraordinary dividend, and determined that these options were not likely to maximize value for Mac-Gray's stockholders as compared to execution of Mac-Gray's strategic business plan or undertaking a sale of the company. In light of the factors discussed at this meeting, the Special Committee concluded that it would be in the best interests of stockholders to consider a potential sale of Mac-Gray and to review this alternative as compared to Mac-Gray's continuing as a stand-alone company and the risks and opportunities associated with execution of Mac-Gray's strategic business plan.",
+   "paragraph": "The Special Committee, with the assistance of BofA Merrill Lynch and management, also discussed the general and specific universe of potential acquirors who might be contacted, including those parties the Special Committee believed had the strongest potential to have an interest in engaging in a strategic transaction with Mac-Gray. In its evaluation of potential likely acquirors, the Special Committee considered such parties' financial strength, their experience in acquiring companies in Mac-Gray's industry, such parties' perceived potential interest in Mac-Gray and potential synergies based on such parties' businesses and legal considerations. The Special Committee and BofA Merrill Lynch also discussed that although potential strategic buyers should be able to pay a higher purchase price because of synergies, it was important to solicit interest from financial buyers, including private equity firms, to maximize the competitive dynamics in the sale process. This perspective was based on the fact that many financial buyers had engaged in transactions with companies in industries similar to Mac-Gray and could be in a position to recognize value competitive with potential strategic buyers. Guided by the foregoing principles, the Special Committee determined to approach a total of"
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "bid": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "nda_access": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "exit": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a potential buyer withdraws, declines to bid, is told it will not advance, or is otherwise excluded from the process? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "deadline": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "exclusivity": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that exclusivity is requested, authorised, granted, signed or extended? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "agreements": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "bid": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "exit": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "deadline": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.5
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.65
+   },
+   "exclusivity": {
+    "type": "noul",
+    "noul": 0.02
+   },
+   "agreements": {
+    "type": "noul",
+    "noul": 0.16
+   }
+  },
+  "usage": {
+   "input_tokens": 1325,
+   "output_tokens": 138
+  }
+ },
+ "latency_s": 0.261
+}

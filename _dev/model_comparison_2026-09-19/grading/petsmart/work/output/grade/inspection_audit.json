@@ -1,0 +1,231 @@
+{
+  "Candidate-A": {
+    "sheets": [
+      {
+        "sheet": "Deal ledger",
+        "data_rows": 48,
+        "freeze": "A2",
+        "filter": "A1:V49",
+        "merged": [],
+        "unwrapped_nonempty": []
+      },
+      {
+        "sheet": "Rounds",
+        "data_rows": 2,
+        "freeze": "A2",
+        "filter": "A1:J3",
+        "merged": [],
+        "unwrapped_nonempty": []
+      },
+      {
+        "sheet": "Questions",
+        "data_rows": 5,
+        "freeze": "A2",
+        "filter": "A1:G6",
+        "merged": [],
+        "unwrapped_nonempty": []
+      },
+      {
+        "sheet": "Deal facts",
+        "data_rows": 16,
+        "freeze": "A2",
+        "filter": "A1:B17",
+        "merged": [],
+        "unwrapped_nonempty": []
+      }
+    ],
+    "words_by_sheet": {
+      "Deal ledger": 2426,
+      "Rounds": 108,
+      "Questions": 456,
+      "Deal facts": 235
+    },
+    "notes_over_40": [],
+    "quotes_over_30": [],
+    "quote_not_on_cited_page": [],
+    "questions_words": [
+      [
+        2,
+        99
+      ],
+      [
+        3,
+        84
+      ],
+      [
+        4,
+        88
+      ],
+      [
+        5,
+        100
+      ],
+      [
+        6,
+        80
+      ]
+    ],
+    "txt_characters": 36139,
+    "transcript_missing_values": [],
+    "sort_nondecreasing": true,
+    "date_formats": [
+      "mm/dd/yyyy"
+    ],
+    "date_bounds_errors": [],
+    "formulas": []
+  },
+  "Candidate-B": {
+    "sheets": [
+      {
+        "sheet": "Deal ledger",
+        "data_rows": 42,
+        "freeze": "A2",
+        "filter": "A1:V43",
+        "merged": [],
+        "unwrapped_nonempty": []
+      },
+      {
+        "sheet": "Rounds",
+        "data_rows": 2,
+        "freeze": "A2",
+        "filter": "A1:J3",
+        "merged": [],
+        "unwrapped_nonempty": []
+      },
+      {
+        "sheet": "Questions",
+        "data_rows": 5,
+        "freeze": "A2",
+        "filter": "A1:G6",
+        "merged": [],
+        "unwrapped_nonempty": []
+      },
+      {
+        "sheet": "Deal facts",
+        "data_rows": 16,
+        "freeze": "A2",
+        "filter": "A1:B17",
+        "merged": [],
+        "unwrapped_nonempty": []
+      }
+    ],
+    "words_by_sheet": {
+      "Deal ledger": 2326,
+      "Rounds": 116,
+      "Questions": 307,
+      "Deal facts": 383
+    },
+    "notes_over_40": [],
+    "quotes_over_30": [],
+    "quote_not_on_cited_page": [],
+    "questions_words": [
+      [
+        2,
+        69
+      ],
+      [
+        3,
+        49
+      ],
+      [
+        4,
+        63
+      ],
+      [
+        5,
+        60
+      ],
+      [
+        6,
+        61
+      ]
+    ],
+    "txt_characters": 33707,
+    "transcript_missing_values": [],
+    "sort_nondecreasing": true,
+    "date_formats": [
+      "MM/DD/YYYY"
+    ],
+    "date_bounds_errors": [],
+    "formulas": []
+  },
+  "Candidate-C": {
+    "sheets": [
+      {
+        "sheet": "Deal ledger",
+        "data_rows": 43,
+        "freeze": "A2",
+        "filter": "A1:V44",
+        "merged": [],
+        "unwrapped_nonempty": []
+      },
+      {
+        "sheet": "Rounds",
+        "data_rows": 2,
+        "freeze": "A2",
+        "filter": "A1:J3",
+        "merged": [],
+        "unwrapped_nonempty": []
+      },
+      {
+        "sheet": "Questions",
+        "data_rows": 6,
+        "freeze": "A2",
+        "filter": "A1:G7",
+        "merged": [],
+        "unwrapped_nonempty": []
+      },
+      {
+        "sheet": "Deal facts",
+        "data_rows": 16,
+        "freeze": "A2",
+        "filter": "A1:B17",
+        "merged": [],
+        "unwrapped_nonempty": []
+      }
+    ],
+    "words_by_sheet": {
+      "Deal ledger": 2765,
+      "Rounds": 198,
+      "Questions": 609,
+      "Deal facts": 325
+    },
+    "notes_over_40": [],
+    "quotes_over_30": [],
+    "quote_not_on_cited_page": [],
+    "questions_words": [
+      [
+        2,
+        134
+      ],
+      [
+        3,
+        113
+      ],
+      [
+        4,
+        114
+      ],
+      [
+        5,
+        74
+      ],
+      [
+        6,
+        87
+      ],
+      [
+        7,
+        81
+      ]
+    ],
+    "txt_characters": 38936,
+    "transcript_missing_values": [],
+    "sort_nondecreasing": true,
+    "date_formats": [
+      "MM/DD/YYYY"
+    ],
+    "date_bounds_errors": [],
+    "formulas": []
+  }
+}

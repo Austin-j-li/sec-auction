@@ -1,0 +1,54 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On October 12, 2013, CSC, Pamplona and Mac-Gray executed a letter agreement extending exclusivity until 11:59 p.m. ET on October 15, 2013.",
+   "ledger_rows": [
+    {
+     "When": "10/12/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Exclusivity changed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Exclusivity extended from October 12 through October 15."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "deadline": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "exclusivity": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that exclusivity is requested, authorised, granted, signed or extended. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "deadline": {
+    "type": "noul",
+    "noul": 0.71
+   },
+   "exclusivity": {
+    "type": "noul",
+    "noul": 0.85
+   }
+  },
+  "usage": {
+   "input_tokens": 622,
+   "output_tokens": 38
+  }
+ },
+ "latency_s": 0.29
+}

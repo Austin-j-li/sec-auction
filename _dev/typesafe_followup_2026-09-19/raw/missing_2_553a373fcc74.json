@@ -1,0 +1,51 @@
+{
+  "case_id": "missing_2",
+  "request_sha256": "553a373fcc7443836f03ca5661e0d23a5e6df9f71c7e81d080ab7a3d1308c2ee",
+  "request": {
+    "model": "jev-1.13.0",
+    "state": {
+      "passage": [
+        {
+          "paragraph_id": "306",
+          "text": "On December 6, 2014, the Buyer Group and Bidder 2 submitted their respective comments on the draft merger agreement and other transaction documents, and the Buyer Group provided its financing commitment documents."
+        }
+      ]
+    },
+    "questions": {
+      "scoped": {
+        "type": "choice",
+        "instructions": "For Bidder 2, does the supplied passage explicitly state a price of $80.35 per share at \"comments submitted December 6, 2014\"? Do not infer a standing price.",
+        "criteria": {
+          "supported": "The source explicitly supports the claimed price for this bidder at this exact event.",
+          "contradicted": "The source gives a different price for the same bidder and event, or explicitly denies that submission. A different date, bidder or price component cannot support the claim.",
+          "insufficient": "The supplied source does not establish the price at the specified event. Missing evidence is not contradiction; do not infer a carried-forward price."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "scoped": {
+        "type": "choice",
+        "choice": "insufficient",
+        "confidence": 1.0,
+        "probabilities": {
+          "supported": 0.0,
+          "contradicted": 0.0,
+          "insufficient": 1.0
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 502,
+      "output_tokens": 48
+    }
+  },
+  "attempts": [
+    {
+      "status": 200,
+      "latency_s": 1.1291971820028266
+    }
+  ]
+}

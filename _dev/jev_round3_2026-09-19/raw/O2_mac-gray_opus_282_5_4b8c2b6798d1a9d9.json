@@ -1,0 +1,44 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On October 14, 2013, the Special Committee held a meeting via teleconference to discuss the final terms of the transaction and the proposed definitive merger agreement and related documents. By invitation of the Special Committee, Mr. Rothenberg and representatives of BofA Merrill Lynch and Goodwin Procter were also present for all or portions of the meeting. The members of the Transaction Committee reported to the Special Committee on the negotiations that had taken place since the meeting of the Special Committee held on October 11, 2013, and in particular that the Transaction Committee and CSC had come to an agreement on the remaining open business points, including the post-signing covenants and the termination fees. Goodwin Procter again reviewed with the Special Committee its fiduciary duties and provided a summary of the terms of the proposed merger agreement and the Pamplona capital commitment letter, copies of which were provided to the directors prior to the meeting. Also at this meeting, BofA Merrill Lynch reviewed with the Special Committee its financial analysis of the consideration and delivered to the Special Committee an oral opinion, which was confirmed by delivery of a written opinion dated, October 14, 2013, to the effect that, as of that date and based on and subject to the assumptions and limitations described in its opinion, the consideration to be received by holders of Mac-Gray common stock was fair, from a financial point of view, to such holders. Following these presentations, the Special Committee went into an executive session that excluded BofA Merrill Lynch and, after discussion, the Special Committee unanimously determined to recommend to the Board that the merger agreement and the merger were advisable and in the best interests of Mac-Gray's stockholders and that the Board approve the merger on the terms and subject to the conditions set forth in the merger agreement, adopt the merger agreement and recommend that the Mac-Gray stockholders adopt and approve the merger agreement. The Special Committee meeting then adjourned.",
+   "target_sentence": "Following these presentations, the Special Committee went into an executive session that excluded BofA Merrill Lynch and, after discussion, the Special Committee unanimously determined to recommend to the Board that the merger agreement and the merger were advisable and in the best interests of Mac-Gray's stockholders and that the Board approve the merger on the terms and subject to the conditions set forth in the merger agreement, adopt the merger agreement and recommend that the Mac-Gray stockholders adopt and approve the merger agreement."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_48": "10/12/2013 | CSC/Pamplona | Exclusivity changed | Extended to 11:59 p.m. 10/15/2013. CSC/Pamplona asked 10/09; the committee required a termination fee of at most $11 million, agreed 10/11.",
+     "row_49": "10/14/2013 | CSC/Pamplona | Merger agreement signed | $21.25 per share in cash. Pamplona commitment letter ($594m, no financing condition); $11m target fee; $15m reverse fee; MacDonald and Moab voting agreements.",
+     "row_50": "10/15/2013 | Mac-Gray and CSC | Merger announced | Joint announcement before the market opened. No post-signing competing proposals reported.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "none",
+    "confidence": 0.86,
+    "probabilities": {
+     "none": 0.89,
+     "row_49": 0.03,
+     "row_50": 0.0,
+     "row_48": 0.0,
+     "not_an_event": 0.08
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1229,
+   "output_tokens": 63
+  }
+ },
+ "latency_s": 0.789
+}

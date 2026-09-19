@@ -1,0 +1,60 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On June 28, 2013, the members of the Transaction Committee participated in a telephone conference call with representatives of BofA Merrill Lynch and Goodwin Procter. BofA Merrill Lynch summarized the contacts they had had with certain of the potential bidders. In particular, BofA Merrill Lynch reported that they had spoken with representatives of Party A, as instructed by the Special Committee, who had expressed the view that there would be considerable synergies if Party A were to acquire Mac-Gray and that Party A would be speaking with certain financing sources with respect to funding such a transaction. BofA Merrill Lynch also reported that they had spoken with representatives of Pamplona, as instructed by the Special Committee, who expressed interest in a transaction, including an acquisition of Mac-Gray by its portfolio company, CSC. Pamplona emphasized that business and legal due diligence would be minimal given its familiarity with Mac-Gray and the industry generally.",
+   "target_sentence": "In particular, BofA Merrill Lynch reported that they had spoken with representatives of Party A, as instructed by the Special Committee, who had expressed the view that there would be considerable synergies if Party A were to acquire Mac-Gray and that Party A would be speaking with certain financing sources with respect to funding such a transaction."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_9": "06/24/2013 | Mac-Gray | Target sale decision | Special Committee chose to consider a potential company sale against remaining independent.",
+     "row_10": "06/24/2013 | Mac-Gray | Round opened | Committee launched outreach to 50 parties: 15 strategic and 35 financial.",
+     "row_11": "next several weeks after 06/24/2013 | 13 other potential strategic buyers | Contact | Residual of 15 strategic outreach targets less Party A and CSC/Pamplona; total outreach was 50.",
+     "row_12": "next several weeks after 06/24/2013 | 35 potential financial buyers | Contact | Includes Party B and Party C; total outreach was 35 financial parties.",
+     "row_13": "over two months after 06/24/2013 | 16 other financial NDA signers | NDA signed | Residual of 18 financial NDA signers less Party B and Party C; 20 total signers included two strategic bidders.",
+     "row_14": "by 06/28/2013 | CSC/Pamplona | Contact | Target-directed first contact; Pamplona expressed interest through portfolio company CSC.",
+     "row_15": "06/28/2013 | Party B | NDA signed | Confidentiality and standstill agreement; informational package provided.",
+     "row_16": "06/30/2013 | Party C | NDA signed | Confidentiality and standstill agreement; informational package provided.",
+     "row_17": "07/06/2013 | Moab | Other material event | Denied exclusive rollover discussions with CSC/Pamplona; Moab's shares remained potential capital for other bidders.",
+     "row_19": "by 07/23/2013 | Mac-Gray | Deadline set | Due date was communicated with informational packages; exact communication date not stated.",
+     "row_20": "07/23/2013 | Mac-Gray | Deadline | Initial indications due; later July 24-25 submissions were accepted.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "none",
+    "confidence": 0.89,
+    "probabilities": {
+     "not_an_event": 0.02,
+     "row_17": 0.0,
+     "row_14": 0.06,
+     "row_12": 0.0,
+     "row_15": 0.0,
+     "row_20": 0.0,
+     "none": 0.91,
+     "row_16": 0.0,
+     "row_10": 0.0,
+     "row_11": 0.01,
+     "row_19": 0.0,
+     "row_13": 0.0,
+     "row_9": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1328,
+   "output_tokens": 142
+  }
+ },
+ "latency_s": 0.42
+}

@@ -1,0 +1,106 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "At a special meeting of the Board held on March 14, 2016, representatives of GHF discussed their evaluation of the Company's business operations and strategy for improving operational and financial performance, as well as railroad industry dynamics more generally and their impact on current railroad valuations. Representatives of GHF then proposed a process pursuant to which the Company would proceed with discussions with Party A and also solicit interest from other potential third parties regarding a change in control transaction. The Board considered various factors, including the marketplace, the risks attendant to engaging in the process discussed with representatives of GHF, the Company's overall strategic position, and the challenges attendant to improving the Company's financial performance in order to maximize shareholder value and concluded, based upon its examination of these and other factors, that it was in the best interest of the Company",
+   "ledger_rows": [
+    {
+     "When": "fourth quarter of 2015",
+     "Who": "Party A",
+     "Event": "Bidder interest",
+     "Price low": null,
+     "Price high": null,
+     "Note": "First step: Class I rail partner raised possible joint ventures and interest in acquiring equity during a commercial meeting; no price. Led to Board review of strategic options."
+    },
+    {
+     "When": "fourth quarter of 2015",
+     "Who": "PWRR Board",
+     "Event": "Target sale decision",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Board appointed the subcommittee after Party A's approach, to interview bankers and evaluate options including a change in control; exploratory, no sale decision yet."
+    },
+    {
+     "When": "01/27/2016",
+     "Who": "Greene Holcomb & Fisher LLC (GHF)",
+     "Event": "Adviser",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Target's investment banker; subcommittee recommended and Board engaged GHF. GHF acquired by BMO Capital Markets Corp. 08/01/2016 - one adviser, renamed, no new row."
+    },
+    {
+     "When": "03/14/2016",
+     "Who": "PWRR Board",
+     "Event": "Target sale decision",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Board concluded to proceed with GHF's proposed strategy - discussions with Party A plus solicitation of other buyers; appointed Transaction Committee (no authority to approve a transaction)."
+    },
+    {
+     "When": "week of March 28, 2016",
+     "Who": "PWRR",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Round 1 opened on the first outreach wave; the Transaction Committee had authorized GHF on 03/24 to contact Party A and other potential buyers."
+    },
+    {
+     "When": "week of March 28, 2016",
+     "Who": "29 potential buyers (11 strategic, 18 financial)",
+     "Event": "Contact",
+     "Price low": null,
+     "Price high": null,
+     "Note": "GHF contacted 11 strategic (incl. Party A) and 18 financial prospects; direction target to buyers. Aggregate step; 25 of them later signed NDAs."
+    },
+    {
+     "When": "by 04/07/2016",
+     "Who": "11 strategic NDA signers",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "All 11 contacted strategic prospects signed, including Party A, Party B and G&W; no standstill provisions; received the Company memorandum."
+    },
+    {
+     "When": "by 04/07/2016",
+     "Who": "14 financial NDA signers",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "14 of 18 contacted financial prospects signed; with the 11 strategic signers, 25 confidentiality agreements in total."
+    },
+    {
+     "When": "by 04/07/2016",
+     "Who": "Two additional Class I railroads",
+     "Event": "Contact",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Company (Noreck) approached these two separately to gauge interest; no response or outcome reported; they never entered the process."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "contact": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "contact": {
+    "type": "noul",
+    "noul": 0.72
+   }
+  },
+  "usage": {
+   "input_tokens": 1431,
+   "output_tokens": 20
+  }
+ },
+ "latency_s": 0.262
+}

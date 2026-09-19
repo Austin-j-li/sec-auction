@@ -1,0 +1,56 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "At a meeting on June 18, 2014, the board reviewed, together with a financial advisor and with Wachtell, Lipton, Rosen & Katz (\"Wachtell Lipton\"), its legal advisor, the various strategic and financial alternatives potentially available to the Company and determined to explore more intensively potential changes to the Company's capital structure, with a focus on returning capital to stockholders. The board also established an ad hoc advisory subcommittee (the \"ad hoc committee\") with respect to, among other",
+   "target_sentence": "The board also established an ad hoc advisory subcommittee (the \"ad hoc committee\") with respect to, among other."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_2": "late May\u2013June 2014 | Stockholders and interested parties | Activist | Suggested strategic or financial alternatives, including a sale of PetSmart.",
+     "row_3": "06/18/2014 | Unnamed financial adviser | Adviser | PetSmart financial adviser; first seen acting at the board meeting. The filing does not identify it or describe a later role.",
+     "row_4": "06/18/2014 | Wachtell, Lipton, Rosen & Katz | Adviser | PetSmart legal adviser; first seen acting with the board.",
+     "row_5": "07/03/2014 | JANA Partners | Activist | Disclosed a 9.9% stake and sought review of strategic alternatives, including a sale.",
+     "row_6": "07/07/2014 | Longview | Activist | Publicly urged the board to consider a sale and offered a possible rollover.",
+     "row_7": "July 2014 | J.P. Morgan | Adviser | PetSmart financial adviser; retained after interviews. Engagement letter later stated effective 08/21/2014.",
+     "row_8": "08/07/2014 | Industry Participant | Bidder interest | Initiating approach: said it might revisit a possible combination if PetSmart pursued alternatives.",
+     "row_11": "08/13/2014 | PetSmart | Target sale decision | Board decided to explore alternatives, including a possible sale, and planned outreach for late September or early October.",
+     "row_12": "08/19/2014 | PetSmart | Sale process announced | Publicly announced exploration of strategic alternatives, including a possible sale.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "none",
+    "confidence": 0.8,
+    "probabilities": {
+     "row_6": 0.0,
+     "row_4": 0.0,
+     "none": 0.83,
+     "row_3": 0.0,
+     "row_5": 0.0,
+     "row_7": 0.0,
+     "row_12": 0.0,
+     "row_8": 0.0,
+     "row_11": 0.0,
+     "not_an_event": 0.17,
+     "row_2": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1089,
+   "output_tokens": 116
+  }
+ },
+ "latency_s": 0.475
+}

@@ -1,0 +1,85 @@
+{
+ "request": {
+  "state": {
+   "previous_paragraph": "50 parties, including CSC and Pamplona, who together we refer to as CSC/Pamplona, and Party A, to solicit potential interest in a transaction with Mac-Gray, 15 of which were potential strategic buyers and 35 of which were potential financial buyers, including private equity firms.",
+   "paragraph": "During the next several weeks, in accordance with the directives of the Special Committee, BofA Merrill Lynch contacted the strategic and financial parties identified at the June 24th Special Committee meeting. Over the next two months a total of 20 potential bidders, including two strategic bidders (Party A and CSC/Pamplona) and 18 financial bidders (including Party B and Party C), entered into confidentiality agreements with Mac-Gray on a form provided by Mac-Gray, the terms of which were individually negotiated with potential bidders, but did not vary materially from the form provided. The confidentiality agreements contained customary non-disclosure provisions and a customary standstill provision that either expired or permitted the potential bidder to make confidential proposals to Mac-Gray (a so-called \"sunset\" provision) upon announcement of a business combination between Mac-Gray and a third party, and, in some instances upon announcement of a change in control. Parties that had entered into confidentiality and standstill agreements with Mac-Gray were furnished an informational package for the purpose of providing potential bidders with data to formulate a preliminary indication of interest, which they were instructed to submit by July 23, 2013. Parties that had entered into confidentiality and standstill agreements with Mac-Gray were furnished an informational package for the purpose of providing potential bidders with data to formulate a preliminary indication of interest, which they were instructed to submit by July 23, 2013. The letter requested that the proposals address, among other things, valuation, sources and structures of financing, material conditions, including required approvals, and focus areas for due diligence."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "bid": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "nda_access": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "exit": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a potential buyer withdraws, declines to bid, is told it will not advance, or is otherwise excluded from the process? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "deadline": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "exclusivity": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that exclusivity is requested, authorised, granted, signed or extended? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "agreements": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "bid": {
+    "type": "noul",
+    "noul": 0.17
+   },
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.95
+   },
+   "exit": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "deadline": {
+    "type": "noul",
+    "noul": 0.94
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.93
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.59
+   },
+   "exclusivity": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "agreements": {
+    "type": "noul",
+    "noul": 0.33
+   }
+  },
+  "usage": {
+   "input_tokens": 1126,
+   "output_tokens": 138
+  }
+ },
+ "latency_s": 0.223
+}

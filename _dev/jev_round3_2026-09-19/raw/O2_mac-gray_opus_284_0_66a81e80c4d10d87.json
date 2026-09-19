@@ -1,0 +1,44 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Later in the day, on October 14, 2013, the merger agreement was executed, the Pamplona commitment letter was delivered, Moab and Parent executed the Moab voting agreement and the Mac-Donald voting agreements became effective.",
+   "target_sentence": "Later in the day, on October 14, 2013, the merger agreement was executed, the Pamplona commitment letter was delivered, Moab and Parent executed the Moab voting agreement and the Mac-Donald voting agreements became effective."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_48": "10/12/2013 | CSC/Pamplona | Exclusivity changed | Extended to 11:59 p.m. 10/15/2013. CSC/Pamplona asked 10/09; the committee required a termination fee of at most $11 million, agreed 10/11.",
+     "row_49": "10/14/2013 | CSC/Pamplona | Merger agreement signed | $21.25 per share in cash. Pamplona commitment letter ($594m, no financing condition); $11m target fee; $15m reverse fee; MacDonald and Moab voting agreements.",
+     "row_50": "10/15/2013 | Mac-Gray and CSC | Merger announced | Joint announcement before the market opened. No post-signing competing proposals reported.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_49",
+    "confidence": 0.99,
+    "probabilities": {
+     "none": 0.0,
+     "not_an_event": 0.0,
+     "row_49": 1.0,
+     "row_50": 0.0,
+     "row_48": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 820,
+   "output_tokens": 66
+  }
+ },
+ "latency_s": 0.843
+}

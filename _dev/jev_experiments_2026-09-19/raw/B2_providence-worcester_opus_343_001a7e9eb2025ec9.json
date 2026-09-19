@@ -1,0 +1,102 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Between April 3, 2016 and April 6, 2016, representatives of GHF and members of the Company's management held a series of introductory meetings with five potential strategic buyers (including G&W) at the American Short Line and Regional Railroad Association's 2016 Connections Convention (\"2016 Connections Convention\").",
+   "ledger_rows": [
+    {
+     "When": "03/24/2016",
+     "Who": "Hinckley, Allen & Snyder LLP",
+     "Event": "Adviser",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Target's legal counsel; first seen acting 03/24/2016, attending Transaction Committee meetings."
+    },
+    {
+     "When": "week of 03/28/2016",
+     "Who": "Target (GHF)",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "GHF outreach wave began, executing the Committee's 03/24 authorization to contact Party A and other buyers (management had told Party A of GHF's engagement on 03/22-23)."
+    },
+    {
+     "When": "week of 03/28/2016",
+     "Who": "10 strategic buyers contacted",
+     "Event": "Contact",
+     "Price low": null,
+     "Price high": null,
+     "Note": "GHF contacted 11 potential strategic buyers; Party A (#1) is the eleventh. All 11 later signed NDAs."
+    },
+    {
+     "When": "week of 03/28/2016",
+     "Who": "18 financial buyers contacted",
+     "Event": "Contact",
+     "Price low": null,
+     "Price high": null,
+     "Note": "GHF contacted 18 potential financial buyers; 14 later signed NDAs, 4 did not."
+    },
+    {
+     "When": "after week of 03/28/2016",
+     "Who": "11 strategic NDA signers",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "All 11 contacted strategic buyers; no standstills. Includes Party A and G&W (NDA dated 04/03/2016). Parties E and F, and probably B, are members but the filing does not say so. Memorandum later sent to signers."
+    },
+    {
+     "When": "after week of 03/28/2016",
+     "Who": "14 financial NDA signers",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "14 of the 18 contacted financial buyers; no standstills. Party D is presumably a member (only financial signers before July). Filing's total: 25 NDAs."
+    },
+    {
+     "When": "by 04/07/2016",
+     "Who": "2 additional Class I railroads",
+     "Event": "Contact",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Company management approached them about a possible transaction; filing reports no response and no NDA."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "nda_access": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.52
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.36
+   }
+  },
+  "usage": {
+   "input_tokens": 1277,
+   "output_tokens": 37
+  }
+ },
+ "latency_s": 0.22
+}

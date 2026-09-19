@@ -1,0 +1,130 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Later on June 28, 2013, Party B, entered into a confidentiality and standstill agreement with Mac-Gray and was provided with an informational package for the purpose of providing Party B with data to formulate a preliminary indication of interest.",
+   "ledger_rows": [
+    {
+     "When": "06/24/2013",
+     "Who": "Mac-Gray",
+     "Event": "Target sale decision",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Special Committee chose to consider a potential company sale against remaining independent."
+    },
+    {
+     "When": "06/24/2013",
+     "Who": "Mac-Gray",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Committee launched outreach to 50 parties: 15 strategic and 35 financial."
+    },
+    {
+     "When": "next several weeks after 06/24/2013",
+     "Who": "13 other potential strategic buyers",
+     "Event": "Contact",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Residual of 15 strategic outreach targets less Party A and CSC/Pamplona; total outreach was 50."
+    },
+    {
+     "When": "next several weeks after 06/24/2013",
+     "Who": "35 potential financial buyers",
+     "Event": "Contact",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Includes Party B and Party C; total outreach was 35 financial parties."
+    },
+    {
+     "When": "over two months after 06/24/2013",
+     "Who": "16 other financial NDA signers",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Residual of 18 financial NDA signers less Party B and Party C; 20 total signers included two strategic bidders."
+    },
+    {
+     "When": "by 06/28/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Contact",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Target-directed first contact; Pamplona expressed interest through portfolio company CSC."
+    },
+    {
+     "When": "06/28/2013",
+     "Who": "Party B",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Confidentiality and standstill agreement; informational package provided."
+    },
+    {
+     "When": "06/30/2013",
+     "Who": "Party C",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Confidentiality and standstill agreement; informational package provided."
+    },
+    {
+     "When": "07/06/2013",
+     "Who": "Moab",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Denied exclusive rollover discussions with CSC/Pamplona; Moab's shares remained potential capital for other bidders."
+    },
+    {
+     "When": "07/11/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Confidentiality and standstill agreement; informational package provided."
+    },
+    {
+     "When": "by 07/23/2013",
+     "Who": "Mac-Gray",
+     "Event": "Deadline set",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Due date was communicated with informational packages; exact communication date not stated."
+    },
+    {
+     "When": "07/23/2013",
+     "Who": "Mac-Gray",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Initial indications due; later July 24-25 submissions were accepted."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "nda_access": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.95
+   }
+  },
+  "usage": {
+   "input_tokens": 1399,
+   "output_tokens": 21
+  }
+ },
+ "latency_s": 0.255
+}

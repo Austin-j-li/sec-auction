@@ -1,0 +1,58 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "As part of its ongoing review of strategic alternatives, at an in-person meeting of the Board on April 5, 2013, the Board discussed the sale of CSC to Pamplona as well as industry-wide merger and acquisition activity and dynamics, and authorized Mac-Gray management to work with BofA Merrill Lynch to explore transactional opportunities that might be available to Mac-Gray, including opportunities with another strategic party, whom we refer to as Party A, in the laundry facilities management industry. The Board also determined to further consider Mac-Gray's strategic alternatives at its meeting scheduled for May 9, 2013.",
+   "ledger_rows": [
+    {
+     "When": "04/05/2013",
+     "Who": "BofA Merrill Lynch",
+     "Event": "Adviser",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Target financial adviser; first seen acting in this sale exploration. Its earlier mandate concerned Mac-Gray's contemplated acquisition of CSC."
+    },
+    {
+     "When": "04/08/2013",
+     "Who": "Party A",
+     "Event": "Target interest",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Target-initiated approach; Party A said it might consider a business combination."
+    },
+    {
+     "When": "05/09/2013",
+     "Who": "Goodwin Procter LLP",
+     "Event": "Adviser",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Mac-Gray outside legal counsel; first seen acting in the relevant review."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "adviser": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "adviser": {
+    "type": "noul",
+    "noul": 0.67
+   }
+  },
+  "usage": {
+   "input_tokens": 759,
+   "output_tokens": 22
+  }
+ },
+ "latency_s": 0.261
+}

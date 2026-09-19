@@ -1,0 +1,78 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "G&W was $1.00 more per share; (2) the termination fee payable by the Company in the event the Board exercised its \"fiduciary out\" in order to accept a superior proposal was less under the G&W draft agreement than the Party B draft agreement; and (3) the STB approval process for G&W and Party B would be different since G&W owned connecting railroads. The Board arranged a telephone call with the Company's STB counsel to discuss the process for obtaining the required regulatory approval or exemption for the transaction, the risks associated with each process, the use of a voting trust to enable an earlier closing of the transaction (as contemplated by the G&W merger agreement) and the likely timeframe for obtaining any regulatory clearance for a transaction with either Party B or G&W. Based upon that discussion, the Board determined that the timeframe for, and the likelihood of, obtaining the required regulatory approval was not materially different for a transaction with G&W versus a transaction with Party B. At the request of the Board, representatives of BMO then contacted Party B to determine if it would increase its offer price. Party B indicated that it would not increase its price.",
+   "ledger_rows": [
+    {
+     "When": "08/12/2016",
+     "Who": "Party B",
+     "Event": "Not selected at signing",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Asked on 08/12 whether it would increase its $24.00; declined; Board then chose G&W's $25.00 as the superior proposal."
+    },
+    {
+     "When": "by 08/12/2016",
+     "Who": "Party E",
+     "Event": "Not selected at signing",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Last seen confirming a standing $21.26 on 08/02; not included when the Board chose G&W at $25.00."
+    },
+    {
+     "When": "08/12/2016",
+     "Who": "PWRR / G&W",
+     "Event": "Merger agreement signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Agreed price $25.00 per share in cash; preferred converts into 100 common shares; termination fee $3.785M; board approved and parties signed same day; voting agreement with Eder Trusts."
+    },
+    {
+     "When": "08/15/2016",
+     "Who": "PWRR / G&W",
+     "Event": "Merger announced",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Press release before NASDAQ opened; signed merger agreement announced publicly."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "bid": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "bid": {
+    "type": "noul",
+    "noul": 0.73
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.65
+   }
+  },
+  "usage": {
+   "input_tokens": 1133,
+   "output_tokens": 36
+  }
+ },
+ "latency_s": 0.259
+}

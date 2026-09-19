@@ -1,0 +1,74 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Between August 6, 2013 and August 27, 2013, the four bidders conducted business and legal due diligence. During this time, Party B and Party C, in light of the fact that they were financial bidders, were given broad access to an electronic data site, and Party A and CSC/Pamplona, in light of the fact that they were strategic bidders, were given somewhat limited access to this electronic data site, with access to customer data, including customer locations, being reserved until later in the process as part of the staging discussed at the July 25 th Special Committee meeting. During this time, both Party A and CSC/Pamplona participated in discussions with members of Mac-Gray management around synergies.",
+   "ledger_rows": [
+    {
+     "When": "08/06/2013 to 08/27/2013",
+     "Who": "Mac-Gray",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Information access differs by bidder type: B and C (financial) get broad data-room access; A and CSC/Pamplona (strategic) get limited access, customer data withheld, plus synergy talks. All four had management presentations 08/06-08/14."
+    },
+    {
+     "When": "08/27/2013",
+     "Who": "Mac-Gray (BofA Merrill Lynch)",
+     "Event": "Deadline set",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Letter to all four (authorized 08/15): revised written proposals due 09/09/2013 to go on to in-depth evaluation. Proposals to cover valuation, financing, approvals, covenants and diligence."
+    },
+    {
+     "When": "09/09/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Bid",
+     "Price low": 19.5,
+     "Price high": 19.5,
+     "Note": "Revised IOI, up from $18.50 (#18). Pamplona commits 100% of the capital. Requests 2-week exclusivity. Heavy: customer data still withheld and further in-depth diligence expected."
+    },
+    {
+     "When": "09/09/2013",
+     "Who": "Party B",
+     "Event": "Bid",
+     "Price low": 18.5,
+     "Price high": 18.5,
+     "Note": "Revised IOI, up from $17.00-$18.00 (#21). Financing from affiliated-fund equity plus third-party debt; no firm financing commitment (Heavy)."
+    },
+    {
+     "When": "09/09/2013",
+     "Who": "Mac-Gray",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Due date for revised written proposals. CSC/Pamplona and Party B bid on time; Party A and Party C bid on 09/10 and were reviewed on 09/11 (late bids accepted)."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "nda_access": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.81
+   }
+  },
+  "usage": {
+   "input_tokens": 1132,
+   "output_tokens": 21
+  }
+ },
+ "latency_s": 0.237
+}

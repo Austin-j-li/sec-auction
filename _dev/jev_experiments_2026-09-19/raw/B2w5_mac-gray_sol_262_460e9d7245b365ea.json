@@ -1,0 +1,90 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "committing to fund 100% of the capital needed for closing, which, together with the all-cash per share purchase price of $21.25, we refer to as the CSC/Pamplona final proposal. The parties also agreed that the exclusivity agreement would automatically terminate if CSC or Pamplona adversely changed any of the terms of the CSC/Pamplona final proposal.",
+   "ledger_rows": [
+    {
+     "When": "09/19/2013",
+     "Who": "Mac-Gray",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Preferred CSC/Pamplona for certainty and sought $21.25 before exclusivity."
+    },
+    {
+     "When": "09/21/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Bid",
+     "Price low": 21.25,
+     "Price high": 21.25,
+     "Note": "Last-and-best offer; conditioned on two-week exclusivity and requested MacDonald-family voting agreements; full funding and no financing contingency were agreed by September 23."
+    },
+    {
+     "When": "09/24/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Exclusivity changed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Executed exclusive negotiations through October 12, conditioned on no adverse change to final proposal."
+    },
+    {
+     "When": "09/24/2013",
+     "Who": "Party A",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Inferred displaced when rival exclusivity executed. Party A had said #38 was best and final."
+    },
+    {
+     "When": "09/24/2013",
+     "Who": "Party B",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Inferred displaced when rival exclusivity executed; target preferred CSC/Pamplona's certainty over Party B's contingent options and financing risk."
+    },
+    {
+     "When": "09/25/2013",
+     "Who": "Kirkland & Ellis LLP",
+     "Event": "Adviser",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Outside legal counsel to CSC/Pamplona; first named while receiving Mac-Gray's initial merger-agreement draft."
+    },
+    {
+     "When": "09/25/2013\u201310/07/2013",
+     "Who": "Moab",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Resolved rollover relationship: talks permitted September 23 ended with no Moab rollover."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "bid": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "bid": {
+    "type": "noul",
+    "noul": 0.68
+   }
+  },
+  "usage": {
+   "input_tokens": 1092,
+   "output_tokens": 20
+  }
+ },
+ "latency_s": 0.232
+}

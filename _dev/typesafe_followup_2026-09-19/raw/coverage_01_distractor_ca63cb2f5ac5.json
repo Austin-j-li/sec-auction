@@ -1,0 +1,65 @@
+{
+  "case_id": "coverage_01_distractor",
+  "request_sha256": "ca63cb2f5ac50824b20ccb91fddc799b415d3a0a98ebd967895791528d43faef",
+  "request": {
+    "model": "jev-1.13.0",
+    "state": {
+      "source": [
+        {
+          "paragraph_id": "245",
+          "text": "On August 27, 2013, BofA Merrill Lynch, as instructed by the Special Committee, sent a letter to each of Party A, Party B, Party C and CSC/Pamplona instructing such bidders to submit revised written proposals no later than September 9, 2013 if such bidders wished to proceed further in the process to pursue an in-depth evaluation of Mac-Gray with the objective of making a revised offer. The letter requested that the revised proposals address, among other things, valuation, sources and structures of financing, regulatory approvals and other post-signing covenants and focus areas for due diligence."
+        }
+      ],
+      "target_event": "Bidders were instructed on August 27 to submit revised written proposals by September 9, 2013.",
+      "ledger_rows": {
+        "row_0": "July 23 deadline for preliminary indications of interest."
+      }
+    },
+    "questions": {
+      "covered": {
+        "type": "noul",
+        "instructions": "Is the target_event recorded in ledger_rows? Match the actual event, including its bidder, date, action and material terms, not just topic overlap.",
+        "criteria": {
+          "true": "At least one row records this same event.",
+          "false": "No supplied row records this event."
+        }
+      },
+      "match": {
+        "type": "choice",
+        "instructions": "Select the ledger row that records target_event. A related event with a different date, bidder, amount or action does not count. Match by meaning, allowing paraphrase. Select none if absent.",
+        "criteria": {
+          "row_0": "July 23 deadline for preliminary indications of interest.",
+          "none": "None of the supplied ledger rows records the target event with the same actors, date, action and material terms."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "covered": {
+        "type": "noul",
+        "noul": 0.03
+      },
+      "match": {
+        "type": "choice",
+        "choice": "none",
+        "confidence": 1.0,
+        "probabilities": {
+          "none": 1.0,
+          "row_0": 0.0
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 666,
+      "output_tokens": 49
+    }
+  },
+  "attempts": [
+    {
+      "status": 200,
+      "latency_s": 2.2791496139980154
+    }
+  ]
+}

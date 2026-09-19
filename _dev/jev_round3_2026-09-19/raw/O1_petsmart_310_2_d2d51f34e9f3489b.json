@@ -1,0 +1,85 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On December 10, 2014, the ad hoc committee discussed the bids and the draft merger agreements with representatives of J.P. Morgan and Wachtell Lipton. The ad hoc committee was of the view that there could be no assurance that the board would approve either bid unless improved. In light of the closeness of the bids, recent positive developments identified at the board meeting on December 3, and the view shared by the ad hoc committee and J.P. Morgan that neither of the bids represented the bidders' respective best offers, the ad hoc committee instructed J.P. Morgan to inform each bidder that it would need to increase its bid, and to instruct the bidders to submit improved bids on December 12, 2014. On the evening of December 11, 2014, representatives of J.P. Morgan contacted Longview to inform Longview that the bidders have been asked to submit revised and improved bids, and to confirm that Longview continued to be interested and willing to participate in a potential transaction by rolling over a portion of its Company common stock, so long as Longview's participation was desired and approved by the ad hoc committee.",
+   "sentence": "In light of the closeness of the bids, recent positive developments identified at the board meeting on December 3, and the view shared by the ad hoc committee and J.P. Morgan that neither of the bids represented the bidders' respective best offers, the ad hoc committee instructed J.P. Morgan to inform each bidder that it would need to increase its bid, and to instruct the bidders to submit improved bids on December 12, 2014."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "bid": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "nda_access": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "exit": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a potential buyer withdraws, declines to bid, is told it will not advance, or is otherwise excluded from the process? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "deadline": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "exclusivity": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that exclusivity is requested, authorised, granted, signed or extended? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "agreements": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed? Judge `sentence` only; `paragraph` is context for names and dates."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "bid": {
+    "type": "noul",
+    "noul": 0.07
+   },
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.02
+   },
+   "exit": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "deadline": {
+    "type": "noul",
+    "noul": 0.95
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.55
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.24
+   },
+   "exclusivity": {
+    "type": "noul",
+    "noul": 0.02
+   },
+   "agreements": {
+    "type": "noul",
+    "noul": 0.07
+   }
+  },
+  "usage": {
+   "input_tokens": 1045,
+   "output_tokens": 138
+  }
+ },
+ "latency_s": 0.483
+}

@@ -1,0 +1,82 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On December 8, 2014, the board met telephonically, together with members of management and representatives of J.P. Morgan and Wachtell Lipton, to receive an update and review and discuss the comments from the bidders on the draft merger agreement and other transaction documents. Later on December 8, 2014, Wachtell Lipton sent to the Buyer Group and Bidder 2 revised versions of the form of merger agreement and other transaction documents, reflecting the Company's positions and reactions to the bidders' respective comments.",
+   "ledger_rows": [
+    {
+     "When": "12/04/2014\u201312/05/2014",
+     "Who": "PetSmart",
+     "Event": "Deadline revised",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Moved final-bid deadline from 12/05 to the evening of 12/10 and requested agreement markups and financing commitments in advance if possible."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "PetSmart",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Final-bid deadline reached; the target received two written final bids and Bidder 3\u2019s verbal indication."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "Buyer Group",
+     "Event": "Bid",
+     "Price low": 80.7,
+     "Price high": 80.7,
+     "Note": "Final cash bid with revised transaction documents; committed financing had been provided on 12/06; documentation was less conditional than Bidder 2\u2019s."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "Bidder 2",
+     "Event": "Bid",
+     "Price low": 80.35,
+     "Price high": 80.35,
+     "Note": "Final cash bid with a revised merger agreement; its documentation was comparatively more conditional than Buyer Group\u2019s."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "Bidder 3",
+     "Event": "Bid",
+     "Price low": null,
+     "Price high": 78,
+     "Note": "Verbal whole-company indication; ceiling was approximately the current stock price, not a written final offer."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "Bidder 3",
+     "Event": "Withdrew",
+     "Price low": null,
+     "Price high": null,
+     "Note": "J.P. Morgan said the valuation was unlikely to compete; Bidder 3 then did not submit the requested written offer. Attribution is flagged."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "adviser": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "adviser": {
+    "type": "noul",
+    "noul": 0.25
+   }
+  },
+  "usage": {
+   "input_tokens": 1048,
+   "output_tokens": 22
+  }
+ },
+ "latency_s": 0.314
+}

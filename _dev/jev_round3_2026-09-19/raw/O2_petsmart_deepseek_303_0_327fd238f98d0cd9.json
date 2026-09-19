@@ -1,0 +1,56 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "During November, the bidders engaged in further extensive due diligence investigations of the Company, including further detailed management presentations. Also during November, the Company circulated a form of merger agreement to the bidders with instructions that the bidders submit any proposed comments on the merger agreement together with their final bids. Following the Company's third quarter earnings announcement and, at the request of bidders and the direction of the board and the Company, representatives of J.P. Morgan provided the bidders with updates to the Company's fiscal year 2014 financial projections.",
+   "target_sentence": "During November, the bidders engaged in further extensive due diligence investigations of the Company, including further detailed management presentations."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_15": "October 2014 | PetSmart | Deadline set | Set non-binding preliminary indication due date of 10/30; communicated to the potential bidders during October.",
+     "row_17": "10/30/2014 | PetSmart | Deadline | Six of the potentially interested parties submitted indications of interest.",
+     "row_18": "10/30/2014 | Buyer Group | Bid | price 81-83 | Preliminary non-binding indication; range $81.00\u2013$83.00; consideration not stated.",
+     "row_19": "10/30/2014 | Unnamed financial bidder 1 | Bid | price 80-85 | Another of the six submitters; non-binding range $80.00\u2013$85.00; not individually named.",
+     "row_21": "10/30/2014 | 3 unnamed indication submitters | Bid | Remainder of the six submitters; no individual detail or prices; one later advanced, two eliminated 11/03 (#24).",
+     "row_23": "10/30\u201311/02/2014 | Bidder 2 | Bid | price 81-84 | Raised after J.P. Morgan's 10/30\u201311/02 calls; range $81.00\u2013$84.00; made it one of four at or above $80.00.",
+     "row_24": "11/03/2014 | PetSmart | Round opened | Final round opened by the 11/03 advancement of four bidders at or above $80.00; merger-agreement form circulated in November; updated FY2014 projections given to all finalists.",
+     "row_25": "11/03/2014 | 2 unnamed indication submitters | Dropped by target | 6 submitters \u2212 4 advanced = 2 notified as eliminated; none could remain above their initial indications.",
+     "row_27": "12/04\u201312/05/2014 | PetSmart | Deadline set | Set evening 12/10 for final bids, replacing the initial 12/05 plan; mark-ups and financing commitments requested in advance.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "none",
+    "confidence": 0.68,
+    "probabilities": {
+     "row_24": 0.21,
+     "row_17": 0.0,
+     "row_25": 0.0,
+     "row_27": 0.0,
+     "row_18": 0.0,
+     "row_15": 0.0,
+     "none": 0.71,
+     "row_23": 0.01,
+     "row_21": 0.0,
+     "row_19": 0.0,
+     "not_an_event": 0.07
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1232,
+   "output_tokens": 123
+  }
+ },
+ "latency_s": 0.524
+}

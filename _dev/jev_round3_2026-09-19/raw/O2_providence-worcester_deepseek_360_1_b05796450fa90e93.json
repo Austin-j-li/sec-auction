@@ -1,0 +1,80 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On July 29, 2016, representatives of GHF had calls with Party D and Party E. During those calls, Party D and Party E both expressed interest in reengaging and enhancing their offers. On August 1, 2016, Party D submitted a revised LOI at a price of $24.00 per share and Party E submitted a revised LOI, along with financing support, from Party F, at a price of $23.81 per share. Both revised proposals contained a 30-day due diligence period. The Transaction Committee convened by telephone conference on August 1, 2016, to consider the revised LOIs submitted by Party D and Party E and subsequently directed representatives of BMO (which acquired the business of GHF on August 1, 2016) to clarify certain elements of the revised proposals and the bidders' respective due diligence requirements. Party E withdrew its revised proposal on August 2, 2016 (but confirmed its original proposal of $21.26 per share) and Party D declined to shorten its due diligence period and requested that the Company commit that it would not enter into an agreement with another bidder during its 30-day due diligence period. In light of the active interest of Party B and G&W, the Company declined to make such a commitment, at which point Party D indicated that it would not proceed with further due diligence at that time.",
+   "target_sentence": "On August 1, 2016, Party D submitted a revised LOI at a price of $24.00 per share and Party E submitted a revised LOI, along with financing support, from Party F, at a price of $23.81 per share."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_26": "late July 2016 | Party D | Bid | price 21 | LOI with mark-ups of merger and voting agreements; four-week diligence period.",
+     "row_27": "late July 2016 | Party C | Bid | price 19.3 | LOI; 30-day diligence period; no markup.",
+     "row_28": "late July 2016 | Party F | Bid | price 19.2 | LOI; 30-day due diligence period; no markup.",
+     "row_29": "07/20/2016 | One strategic buyer (unnamed) | Did not submit | Elected not to submit an LOI after being advanced; one of the seven; not necessarily permanent.",
+     "row_30": "07/20/2016 | One financial buyer (unnamed) | Did not submit | Elected not to submit an LOI after being advanced; one of the seven; not necessarily permanent.",
+     "row_33": "07/27/2016 | PWRR (Transaction Committee) | Round opened | Round 3 opened: Committee advanced G&W and Party B for confirmatory diligence and negotiations and directed that other bidders be told they were out.",
+     "row_34": "by 07/27/2016 | Party E | Dropped by target | Not among the two advanced; included in remaining bidders told they were no longer involved; last bid $21.26 (07/20).",
+     "row_35": "by 07/27/2016 | Party D | Dropped by target | Not among the two advanced; included in remaining bidders told out; last bid $21.00 (07/20); returned 07/29.",
+     "row_36": "by 07/27/2016 | Party C | Dropped by target | Not among the two advanced; included in remaining bidders told out; last bid $19.30 (07/20); no later activity.",
+     "row_37": "by 07/27/2016 | Party F | Dropped by target | Not among the two advanced; included in remaining bidders told out; last bid $19.20 (07/20); no later activity.",
+     "row_38": "07/29/2016 | Party D | Re-entered | Returned after exit #34; expressed interest in reengaging and enhancing its offer; revised bid followed 08/01.",
+     "row_39": "07/29/2016 | Party E | Re-entered | Returned after exit #33; expressed interest in reengaging and enhancing its offer; revised bid followed 08/01.",
+     "row_40": "08/01/2016 | Party D | Bid | price 24 | Revised up from $21.00; 30-day diligence period retained; on 08/02 asked the Company not to sign with a rival during diligence.",
+     "row_41": "08/01/2016 | Party E | Bid | price 23.81 | Raised from $21.26 with financing support from Party F; 30-day diligence period.",
+     "row_42": "08/01/2016 | Party F | Other material event | Provided financing support for Party E's revised $23.81 bid; F had already exited on 07/27 (last bid $19.20); relationship formed.",
+     "row_43": "08/02/2016 | Party E | Bid | price 21.26 | Reversion: withdrew the $23.81 proposal while confirming its original $21.26 offer; stays in the process.",
+     "row_44": "08/02/2016 | Party D | Withdrew | Declined to shorten diligence and sought a no-sign commitment; Company refused; filing's words: would not proceed with further diligence 'at that time'.",
+     "row_45": "08/04/2016 | PWRR (Transaction Committee) | Other material event | Prioritized Party B as preferred bidder at its $24.00 offer and directed completing the merger agreement negotiation with it; G&W talks continued.",
+     "row_46": "08/04/2016 | Party B | Bid reaffirmed | price 24 | Reaffirmed by returned draft; $24.00 carried from #23; expedited diligence condition as of this date.",
+     "row_47": "08/09/2016 | G&W | Other material event | Granted continued diligence 08/10-08/11 after the Company told G&W it intended to sign with another bidder; G&W's $25.00 offer followed 08/12.",
+     "row_49": "08/12/2016 | G&W | Bid | price 25 | Raised from $22.15; all cash, CVR dropped; mark-ups with the offer; offer expired 6:00 p.m. 08/13; completed physical diligence first.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_40",
+    "confidence": 0.45,
+    "probabilities": {
+     "row_49": 0.0,
+     "row_40": 0.48,
+     "row_47": 0.0,
+     "row_30": 0.0,
+     "row_41": 0.37,
+     "row_29": 0.0,
+     "row_46": 0.0,
+     "row_33": 0.0,
+     "row_28": 0.0,
+     "row_39": 0.0,
+     "row_26": 0.0,
+     "row_34": 0.0,
+     "row_44": 0.0,
+     "row_43": 0.0,
+     "row_42": 0.0,
+     "row_38": 0.0,
+     "row_36": 0.0,
+     "row_27": 0.0,
+     "not_an_event": 0.0,
+     "row_35": 0.0,
+     "row_45": 0.0,
+     "row_37": 0.0,
+     "none": 0.15
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 2215,
+   "output_tokens": 246
+  }
+ },
+ "latency_s": 0.649
+}

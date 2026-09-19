@@ -1,0 +1,62 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On December 3, 2014, the board met in-person for a regularly scheduled meeting. In addition to regular business, significant portions of this meeting were devoted to a further review and financial analysis of the Company's strategic and financial alternatives, particularly in light of positive indications about the Company's operating results based on preliminary information from the Fall and Thanksgiving season and indications that the Profit Improvement Plan would likely be successful in achieving at least $200 million in annual incremental profit. During these portions of the meeting, which were attended by members of management and representatives of J.P. Morgan and Wachtell Lipton, the board considered the values for the Company that might be achieved on a standalone basis, with and without a leveraged return of capital to stockholders. Because the board did not have bids in hand at this time, no decisions were made. The board had initially targeted Monday, December 15 for completion of the sale process, and had initially set Friday, December 5 as the date for submission of bids so as to allow sufficient time for the Company to receive and analyze the bids, conduct further rounds of bidding, if necessary, to negotiate final documentation, and to permit the winning bidder a short period of time to discuss and negotiate a Longview rollover, if desired by the winning bidder. However, on December 4 and December 5, 2014, after consultation with the Company's financial and legal advisors, the ad hoc committee concluded that these matters could be accomplished in a shorter period of time, which would reduce the risk of leaks or",
+   "target_sentence": "The board had initially targeted Monday, December 15 for completion of the sale process, and had initially set Friday, December 5 as the date for submission of bids so as to allow sufficient time for the Company to receive and analyze the bids, conduct further rounds of bidding, if necessary, to negotiate final documentation, and to permit the winning bidder a short period of time to discuss and negotiate a Longview rollover, if desired by the winning bidder."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_17": "10/30/2014 | PetSmart | Deadline | Six of the potentially interested parties submitted indications of interest.",
+     "row_18": "10/30/2014 | Buyer Group | Bid | price 81-83 | Preliminary non-binding indication; range $81.00\u2013$83.00; consideration not stated.",
+     "row_19": "10/30/2014 | Unnamed financial bidder 1 | Bid | price 80-85 | Another of the six submitters; non-binding range $80.00\u2013$85.00; not individually named.",
+     "row_21": "10/30/2014 | 3 unnamed indication submitters | Bid | Remainder of the six submitters; no individual detail or prices; one later advanced, two eliminated 11/03 (#24).",
+     "row_23": "10/30\u201311/02/2014 | Bidder 2 | Bid | price 81-84 | Raised after J.P. Morgan's 10/30\u201311/02 calls; range $81.00\u2013$84.00; made it one of four at or above $80.00.",
+     "row_24": "11/03/2014 | PetSmart | Round opened | Final round opened by the 11/03 advancement of four bidders at or above $80.00; merger-agreement form circulated in November; updated FY2014 projections given to all finalists.",
+     "row_25": "11/03/2014 | 2 unnamed indication submitters | Dropped by target | 6 submitters \u2212 4 advanced = 2 notified as eliminated; none could remain above their initial indications.",
+     "row_27": "12/04\u201312/05/2014 | PetSmart | Deadline set | Set evening 12/10 for final bids, replacing the initial 12/05 plan; mark-ups and financing commitments requested in advance.",
+     "row_28": "12/10/2014 | PetSmart | Deadline | Final bids due; Buyer Group and Bidder 2 submitted; Bidder 3 no written offer.",
+     "row_29": "12/10/2014 | Buyer Group | Bid | price 80.7 | Final bid letter with revised merger agreement; financing commitment documents provided 12/06; committee required improvement (#31).",
+     "row_30": "12/10/2014 | Bidder 2 | Bid | price 80.35 | Final bid letter with revised merger agreement; financing commitments not stated at this stage.",
+     "row_31": "12/10/2014 | Bidder 3 | Did not submit | No written offer: verbal valuation not above ~$78 stock price; J.P. Morgan said unlikely to be competitive.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_27",
+    "confidence": 0.61,
+    "probabilities": {
+     "row_27": 0.64,
+     "row_19": 0.0,
+     "row_31": 0.0,
+     "none": 0.31,
+     "row_18": 0.0,
+     "row_21": 0.0,
+     "row_25": 0.0,
+     "row_17": 0.0,
+     "row_30": 0.0,
+     "row_28": 0.0,
+     "row_29": 0.0,
+     "row_24": 0.0,
+     "row_23": 0.0,
+     "not_an_event": 0.05
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1677,
+   "output_tokens": 156
+  }
+ },
+ "latency_s": 0.492
+}

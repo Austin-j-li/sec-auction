@@ -1,0 +1,192 @@
+{
+  "checker": "patched-v1.8-lean-mechanical",
+  "checker_version": "1.0",
+  "workbook": "/home/uctpiaj/Projects/Sec_extraction_new/_dev/model_comparison_2026-09-19/grading/mac-gray/work/candidates/Candidate-B.xlsx",
+  "filing": "/home/uctpiaj/Projects/Sec_extraction_new/_dev/model_comparison_2026-09-19/grading/mac-gray/work/raw_filing/mac-gray_2013-12-04_DEFM14A.htm",
+  "status": "fail",
+  "scope_note": "Mechanical checks only. Quote occurrence proves source occurrence, not semantic support. No bidder-population arithmetic or substantive extraction grading is performed.",
+  "summary": {
+    "errors": 21,
+    "warnings": 1,
+    "information": 0,
+    "total_issues": 22
+  },
+  "issues": [
+    {
+      "severity": "error",
+      "code": "controlled.flag",
+      "sheet": "Deal ledger",
+      "row": 38,
+      "column": "Flag",
+      "message": "Flag must be one question id such as Q1; found 'Q4; Q5'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #8, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #25, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #26, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #27, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 3,
+      "column": "Rows affected",
+      "message": "Rows affected cites #21, but that ledger row is flagged None rather than 'Q2'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 3,
+      "column": "Rows affected",
+      "message": "Rows affected cites #22, but that ledger row is flagged None rather than 'Q2'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 3,
+      "column": "Rows affected",
+      "message": "Rows affected cites #31, but that ledger row is flagged None rather than 'Q2'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 3,
+      "column": "Rows affected",
+      "message": "Rows affected cites #32, but that ledger row is flagged None rather than 'Q2'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 5,
+      "column": "Rows affected",
+      "message": "Rows affected cites #37, but that ledger row is flagged None rather than 'Q4'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 6,
+      "column": "Rows affected",
+      "message": "Rows affected cites #37, but that ledger row is flagged None rather than 'Q5'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 6,
+      "column": "Rows affected",
+      "message": "Rows affected cites #44, but that ledger row is flagged None rather than 'Q5'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 7,
+      "column": "Rows affected",
+      "message": "Rows affected cites #10, but that ledger row is flagged None rather than 'Q6'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 7,
+      "column": "Rows affected",
+      "message": "Rows affected cites #17, but that ledger row is flagged None rather than 'Q6'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 7,
+      "column": "Rows affected",
+      "message": "Rows affected cites #18, but that ledger row is flagged None rather than 'Q6'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 7,
+      "column": "Rows affected",
+      "message": "Rows affected cites #28, but that ledger row is flagged None rather than 'Q6'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 7,
+      "column": "Rows affected",
+      "message": "Rows affected cites #35, but that ledger row is flagged 'Q4' rather than 'Q6'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 7,
+      "column": "Rows affected",
+      "message": "Rows affected cites #41, but that ledger row is flagged 'Q4' rather than 'Q6'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 7,
+      "column": "Rows affected",
+      "message": "Rows affected cites #42, but that ledger row is flagged None rather than 'Q6'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 7,
+      "column": "Rows affected",
+      "message": "Rows affected cites #47, but that ledger row is flagged None rather than 'Q6'."
+    },
+    {
+      "severity": "error",
+      "code": "controlled.acquirer_type",
+      "sheet": "Deal facts",
+      "row": 4,
+      "column": "Value",
+      "message": "Acquirer type 'Strategic (sponsor-owned operating company)' is not allowed."
+    },
+    {
+      "severity": "warning",
+      "code": "facts.account_sentences",
+      "sheet": "Deal facts",
+      "row": 17,
+      "column": "Value",
+      "message": "Account appears to have 7 sentences; the instruction asks for five or six."
+    }
+  ]
+}

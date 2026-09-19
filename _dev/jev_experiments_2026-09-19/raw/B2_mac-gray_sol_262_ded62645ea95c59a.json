@@ -1,0 +1,42 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "committing to fund 100% of the capital needed for closing, which, together with the all-cash per share purchase price of $21.25, we refer to as the CSC/Pamplona final proposal. The parties also agreed that the exclusivity agreement would automatically terminate if CSC or Pamplona adversely changed any of the terms of the CSC/Pamplona final proposal.",
+   "ledger_rows": [
+    {
+     "When": "09/21/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Bid",
+     "Price low": 21.25,
+     "Price high": 21.25,
+     "Note": "Last-and-best offer; conditioned on two-week exclusivity and requested MacDonald-family voting agreements; full funding and no financing contingency were agreed by September 23."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "bid": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "bid": {
+    "type": "noul",
+    "noul": 0.68
+   }
+  },
+  "usage": {
+   "input_tokens": 578,
+   "output_tokens": 20
+  }
+ },
+ "latency_s": 0.316
+}

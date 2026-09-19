@@ -1,0 +1,54 @@
+{
+ "request": {
+  "state": {
+   "passage": {
+    "before": [
+     "On August 13, 2014, the board met in person, together with members of management and representatives of J.P. Morgan and Wachtell Lipton, to complete its initial review of strategic and financial alternatives potentially available to the Company and to receive an update on communications from stockholders and other interested parties, including Industry Participant. As a result of this meeting, the board (1) determined to explore strategic alternatives (including a possible sale of the Company) for the Company to maximize value for stockholders including by commencing a process to determine the potential value that could be achieved via a sale of the Company; (2) instructed management to commence intensive planning for a cost-reduction and profit-improvement plan (which we refer to collectively as the \"Profit Improvement Plan\") to potentially increase the value of the Company, whether in a sale of the Company or on a standalone basis should no sale materialize; and (3) authorized the ad hoc committee to oversee the sale exploration process, and, in between meetings of the full board, to give direction to the Company's financial and legal advisors, to lead on behalf of the Company (or to give guidance to the Company's representatives in connection with) any negotiations with potentially interested parties and periodically to brief the full board on the status of the sale exploration process. Together with the Company's financial and legal advisors, the board also considered and discussed alternative formats and timing for the conduct of the exploratory sale process, and determined that at the appropriate time, which was expected to be during the second half of September or early October, J.P. Morgan should contact financial and strategic parties deemed likely to be interested and capable of completing a transaction. In addition, the board determined that the Company would issue a public announcement of its intention to explore strategic alternatives, which would ensure that interested parties not contacted would become aware of the process and could contact J.P. Morgan on their own initiative. In connection with this discussion, after deliberation and consultation with its financial and legal advisors, the board reviewed the potential benefits and risks of inviting Industry Participant to participate in the exploratory sale process. In this regard, the board considered, among other things, in addition to the communications with Industry Representative in the Spring and on August 7, the very high risk that an acquisition by or a combination with Industry Participant would not receive antitrust clearances, or would receive such clearances only with the imposition by governmental authorities of unacceptable conditions; the near certainty that the process of seeking such clearances would result in the receipt of a so-called \"second request\" from governmental",
+     "authorities and would take eight months to a year, or longer, to pursue, with no assurance of success even after such a delay; the risk that Industry Participant would obtain competitively advantageous information in the course of due diligence even if it were not the winning bidder or indeed never bid; and the risk that participation by Industry Participant in the sale process would disrupt or negatively impact the sale process or impose an unacceptable time delay, in either case which would not advance the goal of maximizing shareholder value. On August 19, 2014, concurrent with its second quarter earnings announcement, the Company issued a press release announcing that it determined to explore strategic alternatives for the Company to maximize value for stockholders, including a possible sale of the Company."
+    ],
+    "cited_paragraph": "During the weeks following the August 13 board meeting, members of the ad hoc committee continued to discuss among themselves, with fellow directors and with J.P. Morgan, the timing and process for the exploration of strategic alternatives, including issues relating to Industry Participant. In light of the risks discussed at the August 13 meeting and in these subsequent discussions, the ad hoc committee directed J.P. Morgan to communicate to Industry Participant the board's concerns as a result of which Industry Participant would not be invited to participate in the exploratory process. On August 22, 2014, a representative of J.P. Morgan contacted by telephone the representative of Industry Participant with whom the J.P. Morgan representative had spoken to on August 7. During this call, Industry Participant confirmed that it was aware of the Company's August 19 announcement and the J.P Morgan representative informed the Industry Participant representative of the board's concerns regarding Industry Participant's participation. The parties agreed to speak again in a few days. On August 27, 2014, representatives of Industry Participant contacted by telephone the representative of J.P. Morgan. During this call, the Industry Participant representatives stated that Industry Participant would have interest in discussing the possibility of a combination of the two companies. The J.P. Morgan representative reiterated the concerns identified by the board that engaging with Industry Participant was unlikely to maximize value for PetSmart's stockholders. The J.P. Morgan representative stated that Industry Participant would not be invited into the exploratory process, but that if Industry Participant were to wish to submit a proposal or other communication to the Company, the board would consider it. There has been no contact between PetSmart and Industry Participant (or between any of their respective representatives) since August 27, 2014.",
+    "after": [
+     "During the period from the middle of August through the end of October, the Company developed the Profit Improvement Plan and prepared for a sale process. During this period, J.P. Morgan was contacted by 27 potential participants in a sale process, including three strategic parties (not counting Industry Participant) and 24 financial participants (including potential lead buyers as well as large suppliers of equity capital to lead buyers).",
+     "On October 3, 2014, the board met, together with members of management and representatives of J.P. Morgan and Wachtell Lipton, to conduct regularly scheduled business and to receive an update on the status of the Profit Improvement Plan, the planning for which had been completed, and on the sale process, including an update on communications with the 27 potentially interested parties as well as Industry Participant that had occurred since the August 13 board meeting. Among other things, the board was informed that approximately 15 parties had expressed interest in participating in the process. In addition, at this meeting, in consultation with its financial and legal advisors, the board reviewed and, for the reasons discussed in August, reaffirmed the determination not to invite Industry Participant to participate in the sale process."
+    ]
+   }
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "actor": {
+    "type": "noul",
+    "instructions": "Does `passage.cited_paragraph` describe something done by, done to, or decided about the party called \"PetSmart\" (or a group that the passage shows includes it)?",
+    "criteria": {
+     "true": "That party, or a cohort clearly containing it, is a subject of the cited paragraph.",
+     "false": "The cited paragraph concerns other parties only."
+    }
+   },
+   "event": {
+    "type": "noul",
+    "instructions": "A research ledger records an event labelled \"Other material event\" for \"PetSmart\". Does the passage report facts that fit the label \"Other material event\" for that party?",
+    "criteria": {
+     "true": "The passage reports such an event, or facts from which it directly follows.",
+     "false": "The passage reports a different kind of event, or nothing of that kind."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "actor": {
+    "type": "noul",
+    "noul": 0.87
+   },
+   "event": {
+    "type": "noul",
+    "noul": 0.76
+   }
+  },
+  "usage": {
+   "input_tokens": 1794,
+   "output_tokens": 36
+  }
+ },
+ "latency_s": 0.258
+}

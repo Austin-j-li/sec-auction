@@ -1,0 +1,85 @@
+{
+ "request": {
+  "state": {
+   "previous_paragraph": "On May 21, 2014, the Company released its first quarter earnings announcement, which disclosed quarterly performance below Wall Street expectations and weaker-than-expected guidance for its second quarter and full year. Following this release, in late May and June 2014, the Company received written or verbal communications from some stockholders and from interested parties suggesting that the Company engage in various strategic or financial alternatives. Among the alternatives suggested were a levered return of capital to stockholders and a sale of the Company. Also during May 2014, representatives of Longview met with certain members of the board and senior management. At those meetings, representatives of Longview presented their views on the business and strategic direction of the Company, but did not advocate for any specific transactions or alternatives.",
+   "paragraph": "At a meeting on June 18, 2014, the board reviewed, together with a financial advisor and with Wachtell, Lipton, Rosen & Katz (\"Wachtell Lipton\"), its legal advisor, the various strategic and financial alternatives potentially available to the Company and determined to explore more intensively potential changes to the Company's capital structure, with a focus on returning capital to stockholders. The board also established an ad hoc advisory subcommittee (the \"ad hoc committee\") with respect to, among other"
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "bid": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "nda_access": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "exit": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a potential buyer withdraws, declines to bid, is told it will not advance, or is otherwise excluded from the process? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "deadline": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "exclusivity": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that exclusivity is requested, authorised, granted, signed or extended? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "agreements": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "bid": {
+    "type": "noul",
+    "noul": 0.02
+   },
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "exit": {
+    "type": "noul",
+    "noul": 0.02
+   },
+   "deadline": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.7
+   },
+   "exclusivity": {
+    "type": "noul",
+    "noul": 0.02
+   },
+   "agreements": {
+    "type": "noul",
+    "noul": 0.71
+   }
+  },
+  "usage": {
+   "input_tokens": 997,
+   "output_tokens": 138
+  }
+ },
+ "latency_s": 0.265
+}

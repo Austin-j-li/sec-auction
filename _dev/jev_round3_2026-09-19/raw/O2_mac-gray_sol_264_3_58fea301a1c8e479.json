@@ -1,0 +1,52 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Later on September 23, 2013, the Special Committee held a telephonic meeting, the purpose of which was to receive an update on the negotiations from the Transaction Committee and Goodwin Procter regarding the CSC/Pamplona final proposal and request for exclusivity. Representatives from Goodwin Procter reviewed the terms of the CSC/Pamplona final proposal with the Special Committee, including the $21.25 per share cash consideration, the $15 million CSC reverse termination fee, certain post-signing covenants, the fact that there would be no financing contingency and that Pamplona was committing to fund 100% of the capital needed for closing. After discussion, the Special Committee authorized Mac-Gray to enter into an exclusivity agreement providing for exclusive negotiations until 5 p.m. ET on October 12, 2013 on the terms included in the CSC/Pamplona final proposal and authorized the Transaction Committee and Goodwin Procter to continue negotiations with CSC/Pamplona based on guidance provided by the Special Committee at this meeting.",
+   "target_sentence": "ET on October 12, 2013 on the terms included in the CSC/Pamplona final proposal and authorized the Transaction Committee and Goodwin Procter to continue negotiations with CSC/Pamplona based on guidance provided by the Special Committee at this meeting."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_42": "09/19/2013 | Mac-Gray | Other material event | Preferred CSC/Pamplona for certainty and sought $21.25 before exclusivity.",
+     "row_43": "09/21/2013 | CSC/Pamplona | Bid | price 21.25 | Last-and-best offer; conditioned on two-week exclusivity and requested MacDonald-family voting agreements; full funding and no financing contingency were agreed by September 23.",
+     "row_44": "09/24/2013 | CSC/Pamplona | Exclusivity changed | Executed exclusive negotiations through October 12, conditioned on no adverse change to final proposal.",
+     "row_45": "09/24/2013 | Party A | Dropped by target | Inferred displaced when rival exclusivity executed. Party A had said #38 was best and final.",
+     "row_46": "09/24/2013 | Party B | Dropped by target | Inferred displaced when rival exclusivity executed; target preferred CSC/Pamplona's certainty over Party B's contingent options and financing risk.",
+     "row_47": "09/25/2013 | Kirkland & Ellis LLP | Adviser | Outside legal counsel to CSC/Pamplona; first named while receiving Mac-Gray's initial merger-agreement draft.",
+     "row_48": "09/25/2013\u201310/07/2013 | Moab | Other material event | Resolved rollover relationship: talks permitted September 23 ended with no Moab rollover.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that exclusivity is requested, authorised, granted, signed or extended. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_44",
+    "confidence": 0.64,
+    "probabilities": {
+     "row_45": 0.0,
+     "row_46": 0.0,
+     "row_44": 0.67,
+     "row_43": 0.01,
+     "row_48": 0.0,
+     "not_an_event": 0.01,
+     "none": 0.3,
+     "row_42": 0.01,
+     "row_47": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1190,
+   "output_tokens": 106
+  }
+ },
+ "latency_s": 0.485
+}

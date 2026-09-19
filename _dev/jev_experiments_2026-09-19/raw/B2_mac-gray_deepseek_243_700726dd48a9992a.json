@@ -1,0 +1,82 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On August 15, 2013, the Special Committee held a telephonic meeting for the purpose of reviewing the on-going strategic alternatives process. By invitation of the Special Committee, representatives from BofA Merrill Lynch and Goodwin Procter were also in attendance. BofA Merrill Lynch updated the Special Committee as to the current status of the strategic alternatives process, including the due diligence process and the management presentations with Party A, Party B, Party C and CSC/Pamplona. After discussion and as discussed at the July 25 th Special Committee meeting, the Special Committee authorized and instructed BofA Merrill Lynch to send a letter to each of Party A, Party B, Party C and CSC/Pamplona once all four of the bidders' due diligence was substantially complete requesting that, in light of the results of the respective party's due diligence, such party submit a revised written proposal in order to continue in the process, including to engage in more in-depth and confirmatory due diligence of Mac-Gray.",
+   "ledger_rows": [
+    {
+     "When": "07/25/2013",
+     "Who": "Mac-Gray",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Staged disclosure: Party B and Party C (financial) to get broad data-site access; Party A and CSC/Pamplona (strategic) limited access, customer data withheld until later."
+    },
+    {
+     "When": "08/27/2013",
+     "Who": "BofA Merrill Lynch",
+     "Event": "Deadline set",
+     "Price low": null,
+     "Price high": null,
+     "Note": "BofA letter instructed revised written proposals by 09/09/2013 to continue to in-depth evaluation; covered valuation, financing, approvals and diligence focus."
+    },
+    {
+     "When": "09/09/2013",
+     "Who": "Mac-Gray",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Round 2 due date reached; CSC/Pamplona and Party B submitted; Party A and Party C submitted late and were reviewed on 09/11/2013."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "deadline": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "agreements": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "deadline": {
+    "type": "noul",
+    "noul": 0.41
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.31
+   },
+   "agreements": {
+    "type": "noul",
+    "noul": 0.18
+   }
+  },
+  "usage": {
+   "input_tokens": 1129,
+   "output_tokens": 53
+  }
+ },
+ "latency_s": 0.296
+}

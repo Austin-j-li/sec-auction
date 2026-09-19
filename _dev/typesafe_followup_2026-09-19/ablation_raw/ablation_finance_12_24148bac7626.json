@@ -1,0 +1,51 @@
+{
+  "case_id": "ablation_finance_12",
+  "request_sha256": "24148bac7626d66c4463d92941f030b9642f5d4dc5eacab5a1179799141ebb2b",
+  "request": {
+    "model": "jev-1.13.0",
+    "state": {
+      "source": [
+        {
+          "paragraph_id": "306",
+          "text": "On December 6, 2014, the Buyer Group and Bidder 2 submitted their respective comments on the draft merger agreement and other transaction documents, and the Buyer Group provided its financing commitment documents."
+        }
+      ]
+    },
+    "questions": {
+      "financing": {
+        "type": "choice",
+        "instructions": "For Buyer Group at \"December 6, 2014 document submission\", what does the supplied source explicitly report about financing commitment? Judge only financing; do not import another bidder or date, or infer commitment from all-cash consideration.",
+        "criteria": {
+          "committed": "Financing commitment provided, capital expressly committed, or financing not needed.",
+          "missing": "Explicitly no firm commitment, uncommitted financing, or financing contingency.",
+          "silent": "No explicit statement establishing either commitment or absence for this bidder at this event. Silence is not missing financing."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "financing": {
+        "type": "choice",
+        "choice": "committed",
+        "confidence": 0.98,
+        "probabilities": {
+          "committed": 0.99,
+          "silent": 0.01,
+          "missing": 0.0
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 479,
+      "output_tokens": 42
+    }
+  },
+  "attempts": [
+    {
+      "status": 200,
+      "latency_s": 0.8900111179973464
+    }
+  ]
+}

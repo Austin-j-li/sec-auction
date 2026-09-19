@@ -1,0 +1,122 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Between September 21, 2013 and September 23, 2013, the parties negotiated the terms of the exclusivity agreement, including an expiration date of October 12, 2013, the inclusion of a $15 million \"reverse\" termination fee payable by CSC/Pamplona to Mac-Gray in the event regulatory clearance is not obtained, which we refer to as the CSC reverse termination fee, agreements regarding certain post-signing covenants, the fact that there would be no financing contingency and that Pamplona was",
+   "ledger_rows": [
+    {
+     "When": "09/18/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Bid",
+     "Price low": 20.75,
+     "Price high": 20.75,
+     "Note": "Pamplona committed 100% of capital; two-week exclusivity requested; no further diligence condition reported."
+    },
+    {
+     "When": "09/18/2013",
+     "Who": "Party A",
+     "Event": "Bid reaffirmed",
+     "Price low": 18,
+     "Price high": 19,
+     "Note": "Reaffirms #32 as best and final in response to final solicitation; prior lack of firm financing remains."
+    },
+    {
+     "When": "09/18/2013",
+     "Who": "Party B",
+     "Event": "Bid",
+     "Price low": 21.5,
+     "Price high": 21.5,
+     "Note": "Package: $19.00 cash at closing plus options Party B valued at $2.50; options vested on five-year performance. Third-party debt anticipated."
+    },
+    {
+     "When": "09/18/2013",
+     "Who": "Party C",
+     "Event": "Did not submit",
+     "Price low": null,
+     "Price high": null,
+     "Note": "No final indication or reaffirmation; no reason stated."
+    },
+    {
+     "When": "09/19/2013",
+     "Who": "Mac-Gray",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Preferred CSC/Pamplona for certainty and sought $21.25 before exclusivity."
+    },
+    {
+     "When": "09/21/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Bid",
+     "Price low": 21.25,
+     "Price high": 21.25,
+     "Note": "Last-and-best offer; conditioned on two-week exclusivity and requested MacDonald-family voting agreements; full funding and no financing contingency were agreed by September 23."
+    },
+    {
+     "When": "09/24/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Exclusivity changed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Executed exclusive negotiations through October 12, conditioned on no adverse change to final proposal."
+    },
+    {
+     "When": "09/24/2013",
+     "Who": "Party A",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Inferred displaced when rival exclusivity executed. Party A had said #38 was best and final."
+    },
+    {
+     "When": "09/24/2013",
+     "Who": "Party B",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Inferred displaced when rival exclusivity executed; target preferred CSC/Pamplona's certainty over Party B's contingent options and financing risk."
+    },
+    {
+     "When": "09/25/2013",
+     "Who": "Kirkland & Ellis LLP",
+     "Event": "Adviser",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Outside legal counsel to CSC/Pamplona; first named while receiving Mac-Gray's initial merger-agreement draft."
+    },
+    {
+     "When": "09/25/2013\u201310/07/2013",
+     "Who": "Moab",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Resolved rollover relationship: talks permitted September 23 ended with no Moab rollover."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "exclusivity": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that exclusivity is requested, authorised, granted, signed or extended. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "exclusivity": {
+    "type": "noul",
+    "noul": 0.51
+   }
+  },
+  "usage": {
+   "input_tokens": 1466,
+   "output_tokens": 22
+  }
+ },
+ "latency_s": 0.265
+}

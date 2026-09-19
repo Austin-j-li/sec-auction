@@ -1,0 +1,3117 @@
+{
+  "deal": "Providence and Worcester Railroad Company / Genesee & Wyoming Inc. (2016)",
+  "reference_sha256": {
+    "reference.json": "5d6bcc6d33d43581f611415ea2698b7c00154c932a70b931fbde8fcc5dcd29a9",
+    "reference.md": "1394c4a07ebc3eb485fb5440a23619a3f1cb72709d6cdbb86a450d2da9a9c1f7",
+    "SHA256SUMS": "0d030fbc9da641d75d81478fc2b56f0ee31315284e26f02cce511e0754351d25"
+  },
+  "evaluation_protocol": {
+    "stage": 2,
+    "instruction": "v1.8 lean, patched, 19 September 2026",
+    "primary_score_basis": "Original 33 locked tests, unchanged weights; 1/0.5/0 credit; no extra mechanical/style/Alex penalties.",
+    "row_convention": "Sheet!N means physical Excel row N; Deal ledger event # is N-1. Row ranges in narrative are inclusive.",
+    "source_policy": "Supplied workspace files only; full filing used for factual verification; all four sheets of all three workbooks inspected; TXT transcripts matched cell-for-cell; checks treated as leads; Alex used only for compatibility. No identities sought or inferred.",
+    "scope_limitation": "AI-assigned grades for this single supplied development deal, one candidate artifact per label. These scores do not establish generalization or a stable statistical ranking.",
+    "adjudication_status": "Original grading complete. One factual reference clarification is proposed, unadjudicated. No independent reviewer invoked because the user prohibited subagents/external files. No adjudicated score is claimed."
+  },
+  "input_sha256": {
+    "RUBRIC.md": "8ed4069a31f6623324ce0299f9dff1f7968a6cd14544c75ab20bd732af0f34c2",
+    "SEC_Deal_Ledger_Extraction_Instruction.md": "f7e73a6673166597f2bd7c8c0457f72ba996585f1351595d00cd653f7a37009d",
+    "output/reference/reference.json": "5d6bcc6d33d43581f611415ea2698b7c00154c932a70b931fbde8fcc5dcd29a9",
+    "output/reference/reference.md": "1394c4a07ebc3eb485fb5440a23619a3f1cb72709d6cdbb86a450d2da9a9c1f7",
+    "output/reference/SHA256SUMS": "0d030fbc9da641d75d81478fc2b56f0ee31315284e26f02cce511e0754351d25",
+    "candidates/Candidate-C.txt": "04402c66f698b129e11255401f99a30ed03bec4de9def0c831ff9f20169a9272",
+    "candidates/Candidate-C.xlsx": "2fa9339ab9c1e10cf88a9ea72b393361349d54cfbd8eaf01ae0ffa1b70e72925",
+    "candidates/Candidate-B.txt": "fa56ff5195207061d85f8ae2ee025d7fd8f6b7ed2d0e628f063ca7db88dd9749",
+    "candidates/Candidate-B.xlsx": "f518cbbb7f8cc57fc5de63487f216773e06fa1fe94f761cda35733b9cdf9c9c3",
+    "candidates/Candidate-A.xlsx": "bb895f86eb1fec926838e0b9d5f093771458888ac50e9be239bc38c5d558171c",
+    "candidates/Candidate-A.txt": "189b156d4ef2540126347d41c9686292265889b9347c8471f7bdbc9a4d573fd6",
+    "raw_filing/providence-worcester_2016-09-20_DEFM14A.htm": "32d7a2738c95c29fa98fccc6a874a5e2acbfd0b7fc87a1f3e9145c60f627378a"
+  },
+  "candidates": {
+    "Candidate-A": {
+      "tests": [
+        {
+          "id": "P01",
+          "credit": 0.5,
+          "reason": "The March outreach is correctly 11 Strategic/18 Financial and is not treated as NDA entry. The separate two-Class-I contact step reported by April 7 is missing. Party A is also inside the Count 11 Contact cohort despite its initiating contact row; net the cohort to 10 and preserve the reported total in the note (C3/C9).",
+          "rows": [
+            "Deal ledger!2 (event #1)",
+            "Deal ledger!7 (event #6)",
+            "Deal ledger!8 (event #7)"
+          ],
+          "source_pages": [
+            "27",
+            "28"
+          ]
+        },
+        {
+          "id": "P02",
+          "credit": 0.5,
+          "reason": "Initial NDA rows correctly net A/B/G&W plus eight other strategic and 14 financial signers to 25; C separately enters and the screen is Met. Q3 discusses B membership, but neither it nor Deal facts identifies the page-33 overall-25 versus background-26 conflict required by this test.",
+          "rows": [
+            "Deal ledger!9 (event #8)",
+            "Deal ledger!10 (event #9)",
+            "Deal ledger!11 (event #10)",
+            "Deal ledger!12 (event #11)",
+            "Deal ledger!13 (event #12)",
+            "Deal ledger!23 (event #22)",
+            "Questions!4",
+            "Deal facts!12"
+          ],
+          "source_pages": [
+            "28",
+            "29",
+            "33"
+          ]
+        },
+        {
+          "id": "P03",
+          "credit": 1,
+          "reason": "Count 16 = 25 minus nine is an anonymous Unknown residual, Inferred Y, reason Not stated; Party A may be included and has no duplicate exit. Nine IOI submitters remain (C16).",
+          "rows": [
+            "Deal ledger!17 (event #16)",
+            "Deal ledger!18 (event #17)",
+            "Questions!4"
+          ],
+          "source_pages": [
+            "28",
+            "29"
+          ]
+        },
+        {
+          "id": "P04",
+          "credit": 1,
+          "reason": "Two unnamed low bidders are reported Dropped by target, Lower offer than rivals; seven advance without invented individual prices or identities.",
+          "rows": [
+            "Deal ledger!19 (event #18)",
+            "Deal ledger!20 (event #19)",
+            "Rounds!2",
+            "Rounds!3"
+          ],
+          "source_pages": [
+            "29"
+          ]
+        },
+        {
+          "id": "P05",
+          "credit": 1,
+          "reason": "C is a new Strategic NDA entrant; seven advance first, then C increases eligibility to eight. The IOI and catch-up access do not add more entrants. Rounds explicitly states eight; its incomplete type split is separately noted.",
+          "rows": [
+            "Deal ledger!20 (event #19)",
+            "Deal ledger!22 (event #21)",
+            "Deal ledger!23 (event #22)",
+            "Deal ledger!24 (event #23)",
+            "Deal ledger!25 (event #24)",
+            "Rounds!3"
+          ],
+          "source_pages": [
+            "29",
+            "30"
+          ]
+        },
+        {
+          "id": "P06",
+          "credit": 1,
+          "reason": "Eight participants yield six named LOI bidders and two reported Did not submit exits, one Strategic and one Financial. The notes preserve uncertainty over Party A rather than assigning it a separate exit.",
+          "rows": [
+            "Deal ledger!26 (event #25)",
+            "Deal ledger!27 (event #26)",
+            "Deal ledger!28 (event #27)",
+            "Deal ledger!29 (event #28)",
+            "Deal ledger!30 (event #29)",
+            "Deal ledger!32 (event #31)",
+            "Deal ledger!33 (event #32)",
+            "Deal ledger!34 (event #33)",
+            "Rounds!3"
+          ],
+          "source_pages": [
+            "29",
+            "30"
+          ]
+        },
+        {
+          "id": "P07",
+          "credit": 1,
+          "reason": "All four C/D/E/F exits are reported Dropped by target from Round 2, Lower offer than rivals, leaving B/G&W. Notifications use bounds and the decision-day sort rather than an invented exact notification date.",
+          "rows": [
+            "Deal ledger!36 (event #35)",
+            "Deal ledger!37 (event #36)",
+            "Deal ledger!38 (event #37)",
+            "Deal ledger!39 (event #38)",
+            "Deal ledger!40 (event #39)",
+            "Rounds!3",
+            "Rounds!4"
+          ],
+          "source_pages": [
+            "30"
+          ]
+        },
+        {
+          "id": "P08",
+          "credit": 1,
+          "reason": "D and E have separate July 29 Re-entered rows before their August bids; two becomes four. F support is explicitly neither a joint bid nor renewed independent participation.",
+          "rows": [
+            "Deal ledger!41 (event #40)",
+            "Deal ledger!42 (event #41)",
+            "Deal ledger!43 (event #42)",
+            "Deal ledger!44 (event #43)",
+            "Deal ledger!45 (event #44)",
+            "Rounds!4"
+          ],
+          "source_pages": [
+            "30"
+          ]
+        },
+        {
+          "id": "P09",
+          "credit": 1,
+          "reason": "D Withdrew for Terms or process; E reverts in a Bid without withdrawing, then has a separate inferred by-August-4 exclusion with Not stated reason. This yields 4 to 3 to 2. The missing material Question on E is separately a Part D compliance issue.",
+          "rows": [
+            "Deal ledger!46 (event #45)",
+            "Deal ledger!47 (event #46)",
+            "Deal ledger!48 (event #47)",
+            "Deal ledger!49 (event #48)"
+          ],
+          "source_pages": [
+            "30",
+            "31"
+          ]
+        },
+        {
+          "id": "P10",
+          "credit": 0.5,
+          "reason": "B/G&W correctly remain active through the final contest and no exclusivity or extra participant is invented. B has the correct refusal reason but Event is Dropped by target rather than Not selected at signing (C16), also repeated in Rounds.",
+          "rows": [
+            "Deal ledger!48 (event #47)",
+            "Deal ledger!50 (event #49)",
+            "Deal ledger!52 (event #51)",
+            "Deal ledger!53 (event #52)",
+            "Deal ledger!54 (event #53)",
+            "Rounds!4"
+          ],
+          "source_pages": [
+            "21",
+            "30",
+            "31",
+            "32"
+          ]
+        },
+        {
+          "id": "R01",
+          "credit": 1,
+          "reason": "One process; exploratory/preparatory events in Round 0. One March 24 opening with Not final is the expressly accepted launch-decision alternative A03.",
+          "rows": [
+            "Deal ledger!2 (event #1)",
+            "Deal ledger!3 (event #2)",
+            "Deal ledger!4 (event #3)",
+            "Deal ledger!5 (event #4)",
+            "Deal ledger!6 (event #5)",
+            "Rounds!2",
+            "Questions!2"
+          ],
+          "source_pages": [
+            "27",
+            "28",
+            "30"
+          ]
+        },
+        {
+          "id": "R02",
+          "credit": 1,
+          "reason": "June 1 selection/access opens Round 2, Not final, with July 20 LOIs; C joins it. June 1 is an accepted contextual selection date, not a separate invented final solicitation.",
+          "rows": [
+            "Deal ledger!20 (event #19)",
+            "Deal ledger!21 (event #20)",
+            "Deal ledger!22 (event #21)",
+            "Deal ledger!23 (event #22)",
+            "Deal ledger!24 (event #23)",
+            "Rounds!3"
+          ],
+          "source_pages": [
+            "29"
+          ]
+        },
+        {
+          "id": "R03",
+          "credit": 1,
+          "reason": "Exactly one July 27 Round 3 opening, Inferred final, no stated target deadline, and no extra rounds for August preference or signing.",
+          "rows": [
+            "Deal ledger!36 (event #35)",
+            "Deal ledger!48 (event #47)",
+            "Deal ledger!52 (event #51)",
+            "Deal ledger!54 (event #53)",
+            "Rounds!4"
+          ],
+          "source_pages": [
+            "30",
+            "31",
+            "32"
+          ]
+        },
+        {
+          "id": "R04",
+          "credit": 0.5,
+          "reason": "Existing bids are placed consistently in the three correct stages; Round 2 has six distinct bidders. Required August 4 B reaffirmation is absent, leaving Rounds with three updated bidders instead of four. The Round-2 type summary also leaves two known-type non-submitters Unknown.",
+          "rows": [
+            "Deal ledger!18 (event #17)",
+            "Deal ledger!24 (event #23)",
+            "Deal ledger!26 (event #25)",
+            "Deal ledger!27 (event #26)",
+            "Deal ledger!28 (event #27)",
+            "Deal ledger!29 (event #28)",
+            "Deal ledger!30 (event #29)",
+            "Deal ledger!34 (event #33)",
+            "Deal ledger!35 (event #34)",
+            "Deal ledger!43 (event #42)",
+            "Deal ledger!44 (event #43)",
+            "Deal ledger!46 (event #45)",
+            "Deal ledger!52 (event #51)",
+            "Rounds!2",
+            "Rounds!3",
+            "Rounds!4"
+          ],
+          "source_pages": [
+            "29",
+            "30",
+            "31"
+          ]
+        },
+        {
+          "id": "R05",
+          "credit": 0.5,
+          "reason": "Set/revised/May-19-reached and July-20-reached rows exist; May 19 Enforced, July 20 Late bids accepted, and offer expiry is correctly not a target deadline. Rounds lists Extended; Enforced for two reached dates but only one R1 Deadline exists, and Q2 does not address whether May 10 was reached before revision. Reconcile the superseded-versus-reached choice (C11).",
+          "rows": [
+            "Deal ledger!14 (event #13)",
+            "Deal ledger!15 (event #14)",
+            "Deal ledger!16 (event #15)",
+            "Deal ledger!21 (event #20)",
+            "Deal ledger!31 (event #30)",
+            "Deal ledger!52 (event #51)",
+            "Rounds!2",
+            "Rounds!3",
+            "Rounds!4",
+            "Questions!3"
+          ],
+          "source_pages": [
+            "29",
+            "31"
+          ]
+        },
+        {
+          "id": "F01",
+          "credit": 1,
+          "reason": "Initial IOI cohort and C July 12 IOI are Informal; no backdated formality.",
+          "rows": [
+            "Deal ledger!18 (event #17)",
+            "Deal ledger!24 (event #23)"
+          ],
+          "source_pages": [
+            "29"
+          ]
+        },
+        {
+          "id": "F02",
+          "credit": 1,
+          "reason": "B/D July markups and both G&W July proposals are Formal. Multi-week conditions remain independently Heavy.",
+          "rows": [
+            "Deal ledger!26 (event #25)",
+            "Deal ledger!28 (event #27)",
+            "Deal ledger!34 (event #33)",
+            "Deal ledger!35 (event #34)"
+          ],
+          "source_pages": [
+            "29",
+            "30"
+          ]
+        },
+        {
+          "id": "F03",
+          "credit": 1,
+          "reason": "All three E proposal states and C/F July LOIs are Informal; D August revision retains Formal. Q4 properly distinguishes an issues list from a returned markup.",
+          "rows": [
+            "Deal ledger!27 (event #26)",
+            "Deal ledger!29 (event #28)",
+            "Deal ledger!30 (event #29)",
+            "Deal ledger!43 (event #42)",
+            "Deal ledger!44 (event #43)",
+            "Deal ledger!46 (event #45)",
+            "Questions!5"
+          ],
+          "source_pages": [
+            "29",
+            "30"
+          ]
+        },
+        {
+          "id": "F04",
+          "credit": 0.5,
+          "reason": "G&W final offer is Formal with markups and no spurious reaffirmations are added. B first qualifying August 4 returned-draft reaffirmation and its flag are missing (C12).",
+          "rows": [
+            "Deal ledger!26 (event #25)",
+            "Deal ledger!48 (event #47)",
+            "Deal ledger!50 (event #49)",
+            "Deal ledger!52 (event #51)",
+            "Rounds!4"
+          ],
+          "source_pages": [
+            "31",
+            "32"
+          ]
+        },
+        {
+          "id": "C01",
+          "credit": 1,
+          "reason": "Both initial IOIs and C IOI are Heavy because substantive access follows; no financing contingency invented.",
+          "rows": [
+            "Deal ledger!18 (event #17)",
+            "Deal ledger!24 (event #23)",
+            "Deal ledger!25 (event #24)"
+          ],
+          "source_pages": [
+            "28",
+            "29"
+          ]
+        },
+        {
+          "id": "C02",
+          "credit": 1,
+          "reason": "B July is Light for expedited diligence; G&W July 21 and 26 are Heavy for the standing three-week exclusive-diligence request. Requests are not coded as executed exclusivity.",
+          "rows": [
+            "Deal ledger!26 (event #25)",
+            "Deal ledger!34 (event #33)",
+            "Deal ledger!35 (event #34)"
+          ],
+          "source_pages": [
+            "29",
+            "30"
+          ]
+        },
+        {
+          "id": "C03",
+          "credit": 1,
+          "reason": "D/E/C/F initial multi-week requests and D/E revisions/reversion are Heavy with useful driving terms. F support is not treated as financing commitment or removal of diligence.",
+          "rows": [
+            "Deal ledger!27 (event #26)",
+            "Deal ledger!28 (event #27)",
+            "Deal ledger!29 (event #28)",
+            "Deal ledger!30 (event #29)",
+            "Deal ledger!43 (event #42)",
+            "Deal ledger!44 (event #43)",
+            "Deal ledger!45 (event #44)",
+            "Deal ledger!46 (event #45)"
+          ],
+          "source_pages": [
+            "29",
+            "30"
+          ]
+        },
+        {
+          "id": "C04",
+          "credit": 0.5,
+          "reason": "G&W final offer is acceptably Light after physical diligence with final documentation remaining. B August 4 row is missing, so there is no date-specific conditions assessment for it; original B Light does not replace that row.",
+          "rows": [
+            "Deal ledger!26 (event #25)",
+            "Deal ledger!48 (event #47)",
+            "Deal ledger!52 (event #51)"
+          ],
+          "source_pages": [
+            "29",
+            "31",
+            "34",
+            "A-22"
+          ]
+        },
+        {
+          "id": "T01",
+          "credit": 0.5,
+          "reason": "Q4, January adviser, March decision/authorization/outreach are ordered correctly with coarse bounds and no exact cohort NDA execution date invented. The by-April-7 additional contacts are absent, leaving that required chronology unrepresented. G&W individual NDA bounds can additionally be tightened using A-48 (proposed reference clarification).",
+          "rows": [
+            "Deal ledger!2 (event #1)",
+            "Deal ledger!3 (event #2)",
+            "Deal ledger!4 (event #3)",
+            "Deal ledger!5 (event #4)",
+            "Deal ledger!6 (event #5)",
+            "Deal ledger!7 (event #6)",
+            "Deal ledger!8 (event #7)",
+            "Deal ledger!9 (event #8)",
+            "Deal ledger!10 (event #9)",
+            "Deal ledger!11 (event #10)",
+            "Deal ledger!12 (event #11)",
+            "Deal ledger!13 (event #12)"
+          ],
+          "source_pages": [
+            "27",
+            "28",
+            "A-48"
+          ]
+        },
+        {
+          "id": "T02",
+          "credit": 1,
+          "reason": "Initial IOIs retain May 19-June 1 bounds and May 19 sort; June 1 advancement is accepted by A09; mid-June is June 11-19. Extension is a bounded event, not an invented exact communication day. Minor When/bound wording and inferred closure precision are logged separately.",
+          "rows": [
+            "Deal ledger!14 (event #13)",
+            "Deal ledger!15 (event #14)",
+            "Deal ledger!17 (event #16)",
+            "Deal ledger!18 (event #17)",
+            "Deal ledger!19 (event #18)",
+            "Deal ledger!20 (event #19)",
+            "Deal ledger!21 (event #20)"
+          ],
+          "source_pages": [
+            "29"
+          ]
+        },
+        {
+          "id": "T03",
+          "credit": 1,
+          "reason": "C approach/NDA/IOI/access precede LOIs; G&W July 21 and July 26 are fixed; exits precede re-entries. July 20-22 bounds use the earlier LOI-review meeting, a reasonable narrower A09 reading, while actual receipt is not asserted to be July 22. C NDA upper bound merits widening to July 12 as a field refinement.",
+          "rows": [
+            "Deal ledger!22 (event #21)",
+            "Deal ledger!23 (event #22)",
+            "Deal ledger!24 (event #23)",
+            "Deal ledger!25 (event #24)",
+            "Deal ledger!26 (event #25)",
+            "Deal ledger!27 (event #26)",
+            "Deal ledger!28 (event #27)",
+            "Deal ledger!29 (event #28)",
+            "Deal ledger!30 (event #29)",
+            "Deal ledger!34 (event #33)",
+            "Deal ledger!35 (event #34)",
+            "Deal ledger!36 (event #35)",
+            "Deal ledger!37 (event #36)",
+            "Deal ledger!38 (event #37)",
+            "Deal ledger!39 (event #38)",
+            "Deal ledger!40 (event #39)",
+            "Deal ledger!41 (event #40)",
+            "Deal ledger!42 (event #41)"
+          ],
+          "source_pages": [
+            "29",
+            "30"
+          ]
+        },
+        {
+          "id": "T04",
+          "credit": 0.5,
+          "reason": "August revisions, E reversion, preference, continuing G&W access, final bid/refusal/signing and August 15 announcement are ordered correctly with monotonic sort keys. The required August 4 returned-draft reaffirmation is missing from that sequence. D August 2 context is an expressly accepted E39 interpretation.",
+          "rows": [
+            "Deal ledger!43 (event #42)",
+            "Deal ledger!44 (event #43)",
+            "Deal ledger!46 (event #45)",
+            "Deal ledger!47 (event #46)",
+            "Deal ledger!48 (event #47)",
+            "Deal ledger!49 (event #48)",
+            "Deal ledger!50 (event #49)",
+            "Deal ledger!52 (event #51)",
+            "Deal ledger!53 (event #52)",
+            "Deal ledger!54 (event #53)",
+            "Deal ledger!55 (event #54)"
+          ],
+          "source_pages": [
+            "30",
+            "31",
+            "32"
+          ]
+        },
+        {
+          "id": "B01",
+          "credit": 1,
+          "reason": "Nine-IOI cohort range $17.93-$26.50 and C $21 then $19.30 are present, without individual cohort prices or invented conversions.",
+          "rows": [
+            "Deal ledger!18 (event #17)",
+            "Deal ledger!24 (event #23)",
+            "Deal ledger!29 (event #28)"
+          ],
+          "source_pages": [
+            "29",
+            "30"
+          ]
+        },
+        {
+          "id": "B02",
+          "credit": 1,
+          "reason": "All six July bidder prices are present with point endpoints and correct units; unspecified B/C/D/E/F consideration is Not stated, and no aggregate seventh bid is added. G&W CVR consideration is evaluated separately in B03.",
+          "rows": [
+            "Deal ledger!26 (event #25)",
+            "Deal ledger!27 (event #26)",
+            "Deal ledger!28 (event #27)",
+            "Deal ledger!29 (event #28)",
+            "Deal ledger!30 (event #29)",
+            "Deal ledger!34 (event #33)",
+            "Deal facts!14"
+          ],
+          "source_pages": [
+            "29",
+            "30"
+          ]
+        },
+        {
+          "id": "B03",
+          "credit": 0.5,
+          "reason": "All three G&W prices and cash/CVR components are correct, with $25 cash and CVR removal. Both July All cash cells say No solely on the CVR package, contrary to C15/A07; the South Quay sale trigger is also missing. Use explained Yes or Not stated, not unsupported noncash classification.",
+          "rows": [
+            "Deal ledger!34 (event #33)",
+            "Deal ledger!35 (event #34)",
+            "Deal ledger!52 (event #51)",
+            "Deal facts!14"
+          ],
+          "source_pages": [
+            "29",
+            "31"
+          ]
+        },
+        {
+          "id": "B04",
+          "credit": 0.5,
+          "reason": "D $24, E $23.81 and $21.26 reversion are present; no invented whole-company A offer and signing price cells are blank. B August 4 carried-$24 reaffirmation is missing.",
+          "rows": [
+            "Deal ledger!2 (event #1)",
+            "Deal ledger!43 (event #42)",
+            "Deal ledger!44 (event #43)",
+            "Deal ledger!46 (event #45)",
+            "Deal ledger!48 (event #47)",
+            "Deal ledger!54 (event #53)"
+          ],
+          "source_pages": [
+            "27",
+            "30",
+            "31",
+            "32"
+          ]
+        },
+        {
+          "id": "M01",
+          "credit": 1,
+          "reason": "Exploratory initiation, March sale strategy, one continuing GHF/BMO relationship, target legal counsel, buyer counsel and Strategic winner are captured.",
+          "rows": [
+            "Deal ledger!2 (event #1)",
+            "Deal ledger!3 (event #2)",
+            "Deal ledger!4 (event #3)",
+            "Deal ledger!5 (event #4)",
+            "Deal ledger!51 (event #50)",
+            "Deal facts!4",
+            "Deal facts!10",
+            "Deal facts!15",
+            "Deal facts!16"
+          ],
+          "source_pages": [
+            "21",
+            "27",
+            "28",
+            "30",
+            "31"
+          ]
+        },
+        {
+          "id": "M02",
+          "credit": 1,
+          "reason": "Separate August 12 signing and August 15 announcement, $25 cash/preferred conversion, C catch-up access, B preference with continuing G&W access and F support are present; no invented go-shop/public auction/executed exclusivity.",
+          "rows": [
+            "Deal ledger!25 (event #24)",
+            "Deal ledger!45 (event #44)",
+            "Deal ledger!48 (event #47)",
+            "Deal ledger!50 (event #49)",
+            "Deal ledger!54 (event #53)",
+            "Deal ledger!55 (event #54)",
+            "Deal facts!5",
+            "Deal facts!6",
+            "Deal facts!7"
+          ],
+          "source_pages": [
+            "27",
+            "29",
+            "30",
+            "31",
+            "32"
+          ]
+        }
+      ],
+      "score_100": 83.0,
+      "category_scores": {
+        "participation": 25.5,
+        "rounds": 20.0,
+        "formality_conditions": 17.5,
+        "chronology": 7.5,
+        "bids_prices": 7.5,
+        "other_material_coverage": 5.0
+      },
+      "critical_errors": [
+        {
+          "id": "A-CE1",
+          "description": "Both July G&W offers are classified noncash (All cash=No), although a CVR alone does not establish noncash settlement. Full package prices are correct; this changes the consideration research field, not the price. No extra negative weight added.",
+          "rows": [
+            "Deal ledger!34 (event #33)",
+            "Deal ledger!35 (event #34)"
+          ],
+          "source_pages": [
+            "29"
+          ],
+          "instruction_sections": [
+            "C15"
+          ],
+          "related_tests": [
+            "B03"
+          ],
+          "root_cause": "Treating existence of a CVR as noncash consideration."
+        },
+        {
+          "id": "A-CE2",
+          "description": "Party B is coded Dropped by target when it remained a bidding rival at signing and refused to increase. Correct Event to Not selected at signing; preserve the existing correct refusal reason. This changes the exit-mechanism field.",
+          "rows": [
+            "Deal ledger!53 (event #52)",
+            "Rounds!4"
+          ],
+          "source_pages": [
+            "31",
+            "32"
+          ],
+          "instruction_sections": [
+            "C16"
+          ],
+          "related_tests": [
+            "P10"
+          ]
+        }
+      ],
+      "other_errors": [
+        {
+          "id": "A-E1",
+          "description": "Contact Count 11 includes Party A already recorded as initiating contact. Net to 10 other strategics with reported 11 total in note; do not confuse this contact duplication with a duplicate NDA, which the candidate avoids.",
+          "rows": [
+            "Deal ledger!2 (event #1)",
+            "Deal ledger!7 (event #6)"
+          ],
+          "source_pages": [
+            "27",
+            "28"
+          ],
+          "instruction_sections": [
+            "C3",
+            "C9"
+          ],
+          "related_tests": [
+            "P01"
+          ]
+        },
+        {
+          "id": "A-E2",
+          "description": "Rounds R2 says 5 Strategic/1 Financial/2 Unknown after C. The two non-submitter types are known, so eight are 6 Strategic/2 Financial; the ledger exits already contain that information.",
+          "rows": [
+            "Rounds!3",
+            "Deal ledger!32 (event #31)",
+            "Deal ledger!33 (event #32)"
+          ],
+          "source_pages": [
+            "29",
+            "30"
+          ],
+          "instruction_sections": [
+            "C3",
+            "B3"
+          ],
+          "related_tests": [
+            "R04"
+          ]
+        },
+        {
+          "id": "A-E3",
+          "description": "Two R1 deadline outcomes appear against one reached row; Q2 does not distinguish extension before versus after the original due date. Choose a coherent superseded or reached-with-uncertainty treatment. No exact extension day need be invented.",
+          "rows": [
+            "Deal ledger!15 (event #14)",
+            "Deal ledger!16 (event #15)",
+            "Rounds!2",
+            "Questions!3"
+          ],
+          "source_pages": [
+            "29"
+          ],
+          "instruction_sections": [
+            "C11",
+            "D"
+          ],
+          "related_tests": [
+            "R05"
+          ]
+        },
+        {
+          "id": "A-E4",
+          "description": "G&W individual NDA row has March 28-April 22 bounds and April 10 sort. Annex A-48 gives April 3 explicitly; tighten this individually recorded row. Original locked test did not require a known G&W date; proposal AM01 clarifies the reference without adding a new scored requirement.",
+          "rows": [
+            "Deal ledger!10 (event #9)"
+          ],
+          "source_pages": [
+            "A-48"
+          ],
+          "instruction_sections": [
+            "C10"
+          ]
+        },
+        {
+          "id": "A-E5",
+          "description": "C NDA upper bound July 10 is imported from its early-July approach; the NDA need only precede the July 12 IOI. Widen Date to to July 12 unless explicitly defending a narrower reading. Actual sequence is correct.",
+          "rows": [
+            "Deal ledger!23 (event #22)"
+          ],
+          "source_pages": [
+            "29"
+          ],
+          "instruction_sections": [
+            "C10"
+          ]
+        },
+        {
+          "id": "A-E6",
+          "description": "Use When by rather than a purported reported exact day on inferred May-19 non-submission closure. July non-submitters similarly use a solicitation sort, not a known choice date. Revision When by May 19 versus Date to May 18 should be harmonized.",
+          "rows": [
+            "Deal ledger!15 (event #14)",
+            "Deal ledger!17 (event #16)",
+            "Deal ledger!32 (event #31)",
+            "Deal ledger!33 (event #32)"
+          ],
+          "source_pages": [
+            "29",
+            "30"
+          ],
+          "instruction_sections": [
+            "C10",
+            "C16"
+          ]
+        },
+        {
+          "id": "A-E7",
+          "description": "Q1 alternative of keeping definitive negotiation in R2 fails to explain the lost distinct final-stage transition; selected three-round map is correct. Q3 alternative initial 26/total27 is speculative and omits the more relevant page-33 conflict.",
+          "rows": [
+            "Questions!2",
+            "Questions!4"
+          ],
+          "source_pages": [
+            "28",
+            "29",
+            "30",
+            "31",
+            "33"
+          ],
+          "instruction_sections": [
+            "C3",
+            "C8",
+            "D"
+          ]
+        }
+      ],
+      "omissions": [
+        {
+          "id": "A-O1",
+          "description": "Required August 4 B $24 Bid reaffirmed row is absent. Add Formal, Light, carried from event #25, returned-draft basis and a Question/flag; update R3 Bids received from three to four. Its omission has linked consequences across round coverage, formality, conditions, chronology and proposal inventory, not five independent incidents.",
+          "rows": [
+            "Deal ledger!26 (event #25)",
+            "Deal ledger!48 (event #47)",
+            "Deal ledger!49 (event #48)",
+            "Deal ledger!50 (event #49)",
+            "Rounds!4"
+          ],
+          "source_pages": [
+            "29",
+            "31"
+          ],
+          "instruction_sections": [
+            "C12",
+            "C13",
+            "C14",
+            "D"
+          ],
+          "related_tests": [
+            "R04",
+            "F04",
+            "C04",
+            "T04",
+            "B04"
+          ],
+          "root_cause": "Missing first qualifying final-stage reaffirmation."
+        },
+        {
+          "id": "A-O2",
+          "description": "Two additional Class I contact actions reported by April 7 are missing. Add Strategic Contact Count 2, When by 04/07, without presuming NDA entry or distinct identities beyond the reported action.",
+          "rows": [
+            "Deal ledger!7 (event #6)",
+            "Deal ledger!8 (event #7)",
+            "Deal ledger!9 (event #8)",
+            "Rounds!2"
+          ],
+          "source_pages": [
+            "28"
+          ],
+          "instruction_sections": [
+            "C3",
+            "C9",
+            "C10"
+          ],
+          "related_tests": [
+            "P01",
+            "T01"
+          ]
+        },
+        {
+          "id": "A-O3",
+          "description": "Page-33 25-overall NDA summary conflict is missing from Q3/auction screen. Keep 25 initial plus new C; flag 25 versus 26 overall rather than silently fixing the source.",
+          "rows": [
+            "Questions!4",
+            "Deal facts!12"
+          ],
+          "source_pages": [
+            "28",
+            "29",
+            "33"
+          ],
+          "instruction_sections": [
+            "C3",
+            "D"
+          ],
+          "related_tests": [
+            "P02"
+          ]
+        },
+        {
+          "id": "A-O4",
+          "description": "No material Question addresses E final closure/live-count alternative, despite inferred by-August-4 exit. Add a concise question and link the exit.",
+          "rows": [
+            "Deal ledger!49 (event #48)",
+            "Questions!2",
+            "Questions!3",
+            "Questions!4",
+            "Questions!5"
+          ],
+          "source_pages": [
+            "30",
+            "31"
+          ],
+          "instruction_sections": [
+            "C16",
+            "D"
+          ]
+        },
+        {
+          "id": "A-O5",
+          "description": "South Quay sale trigger of the July CVR is omitted; amounts are retained.",
+          "rows": [
+            "Deal ledger!34 (event #33)",
+            "Deal ledger!35 (event #34)"
+          ],
+          "source_pages": [
+            "29"
+          ],
+          "instruction_sections": [
+            "C15"
+          ],
+          "related_tests": [
+            "B03"
+          ]
+        },
+        {
+          "id": "A-O-CAVEAT",
+          "description": "The collective caveat that LOI prices used different transaction-expense and change-in-control-payment assumptions, potentially affecting ultimate prices, is absent. Add a compact cohort-context note without assigning unknown bidder-specific amounts or changing reported per-share prices. The locked tests do not create a separate weighted item for this caveat.",
+          "rows": [
+            "Deal ledger!26 (event #25)",
+            "Deal ledger!27 (event #26)",
+            "Deal ledger!28 (event #27)",
+            "Deal ledger!29 (event #28)",
+            "Deal ledger!30 (event #29)",
+            "Deal ledger!34 (event #33)"
+          ],
+          "source_pages": [
+            "30"
+          ],
+          "instruction_sections": [
+            "C2",
+            "C15"
+          ]
+        }
+      ],
+      "compliance_observations": [
+        {
+          "status": "verified",
+          "detail": "All four prescribed sheets, order, headers, visibility, A2 freeze panes, filters, wrapping and no merged cells checked in XLSX. Ledger # sequential; sort dates real Excel dates, nondecreasing and within populated bounds; controlled event/offer fields populated appropriately; reviewer-note columns empty. Every ledger quotation occurs verbatim after whitespace normalization on its cited filing page. Every ledger Note is <=40 words and quotation <=30 words. TXT transcripts match every nonempty XLSX cell; no formula cells."
+        },
+        {
+          "status": "checker_adjudication",
+          "detail": "Raw error counts are not scores. A quotation match proves occurrence, not all semantic claims in its row. Broad Questions Rows affected lists do not require every downstream ledger row to carry the same single flag: Part D prohibits indiscriminate flags. Thus checker flag_mismatch reports are navigation leads rather than independent substantive failures."
+        },
+        {
+          "status": "question_length",
+          "detail": "Part D/B4 asks about 60 words per entry; measured across Question, Recommended answer, Why, Rows affected and What changes. Overlength affects review burden/compliance only.",
+          "words_per_entry": [
+            97,
+            101,
+            107,
+            104
+          ]
+        },
+        {
+          "status": "confirmed",
+          "rows": [
+            "Deal facts!10",
+            "Deal facts!13"
+          ],
+          "detail": "Two Field labels include parenthetical instructional text instead of the exact short labels Initiation and Whole-company bids. Order/content are correct; format-only."
+        },
+        {
+          "status": "confirmed",
+          "rows": [
+            "Rounds!2",
+            "Deal ledger!16 (event #15)"
+          ],
+          "detail": "R1 reached-date/outcome mismatch is real, evaluated once within R05; not an additional mechanical deduction."
+        },
+        {
+          "status": "rejected_checker_flag",
+          "rows": [
+            "Questions!3"
+          ],
+          "detail": "Checker says no deadline-outcome Question; Q2 expressly asks and recommends outcomes. False positive."
+        },
+        {
+          "status": "missing_questions",
+          "rows": [
+            "Deal ledger!49 (event #48)",
+            "Questions!2",
+            "Questions!3",
+            "Questions!4",
+            "Questions!5"
+          ],
+          "detail": "Add E live-count closure question and B late-reaffirmation question; refocus count question on the actual page-33 conflict."
+        },
+        {
+          "status": "delivery_scope",
+          "detail": "Supplied TXT is a workbook transcript, not a separate delivery message. No unavailable delivery narrative or neutralized filename is graded."
+        }
+      ],
+      "review_burden": {
+        "measurement_method": "Whitespace-delimited words in text-valued workbook cells excluding header rows; Excel numeric/date cells excluded. Includes narrative field names, textual When cells, quote page tokens and repeated descriptions. A reproducible volume proxy, not a human-time estimate.",
+        "text_words_total": 3159,
+        "text_words_by_sheet": {
+          "Deal ledger": 2298,
+          "Rounds": 190,
+          "Questions": 413,
+          "Deal facts": 258
+        },
+        "ledger_event_rows": 54,
+        "round_rows": 3,
+        "question_rows": 4,
+        "ledger_note_words": 782,
+        "ledger_quote_words_excluding_page": 898,
+        "question_words_per_entry": [
+          97,
+          101,
+          107,
+          104
+        ],
+        "actual_human_review_time": "Not measured and not estimated.",
+        "useful_questions": "Q1 map, Q2 deadline outcomes and Q4 E issues-list formality address useful research calls. Q3 explains cohort membership but misses the main full-filing count conflict.",
+        "noisy_or_misleading_questions": "Q1 alternative would erase the final-stage distinction; Q3 entertains an extra B signer without resolving the stated 25 total. E closure and B reaffirmation require new focused review entries.",
+        "ease_of_checking": "Smallest text volume; short notes and exact quotes aid checking, but omitted mandatory events require going back to the source and changing linked summaries.",
+        "edits_required": "Add two material ledger rows (Class-I contacts and B reaffirmation), correct B exit label and two G&W cash flags/CVR trigger, update R3 bidder total and R2 types, reconcile deadlines, add/refocus Questions, tighten G&W NDA date and minor bounds/labels. Inserting rows requires updating event references."
+      },
+      "alex_compatibility": {
+        "included_in_primary_score": false,
+        "sources_read": [
+          "alex/alex_hand_rows.txt",
+          "alex/alex_voice_notes.txt",
+          "alex/alex_closing_summary.txt"
+        ],
+        "shared_differences": [
+          {
+            "source": "alex/alex_voice_notes.txt, Providence items 3-8 and 13; alex/alex_closing_summary.txt items 2A/B/J/K",
+            "finding": "All candidates separate contact/NDA/bid concepts, keep one GHF/BMO mandate and one process/three rounds, and distinguish signing from public announcement. These align with the voice-note priorities; their specific omissions and counts remain assessed under the current instruction."
+          },
+          {
+            "source": "alex/alex_hand_rows.txt lines 6037,6041,6050; alex/alex_voice_notes.txt item 10",
+            "finding": "All candidates code D July/August and G&W July 21 Formal plus Heavy, differing from hand-row Informal values but matching the later voice-note separate formality/conditionality approach and current C13/C14. No compatibility penalty."
+          },
+          {
+            "source": "alex/alex_hand_rows.txt lines 6039,6049,6051-6052; filing p.30; current C3/C4",
+            "finding": "All candidates correctly make F Strategic and retain E as the bidder receiving financing support, rather than hand-row F Financial and Party E/F bidding-unit labels. Current instruction and filing govern."
+          },
+          {
+            "source": "alex/alex_hand_rows.txt lines 6042-6043; alex/alex_voice_notes.txt item 11; current C16",
+            "finding": "Hand rows name an A departure; voice notes conjecture A did not clear R1. All candidate ledgers avoid an unsupported named A exit. That restraint complies with the current rule even when researcher heuristics differ."
+          },
+          {
+            "source": "alex/alex_hand_rows.txt lines 6032,6040,6045,6058; alex/alex_voice_notes.txt item 12; current C8/C11",
+            "finding": "Hand rows have several final-round markers and a July-27 deadline suggestion appears in voice item 9. Current instruction instead gives three target-organized stages with R3 Inferred final and no target deadline. No penalty for not copying hand markers or treating selection as a deadline."
+          }
+        ],
+        "candidate_specific": [
+          {
+            "source": "voice item 14; hand line 6054",
+            "rows": [
+              "Deal ledger!26 (event #25)",
+              "Deal ledger!48 (event #47)",
+              "Rounds!4"
+            ],
+            "finding": "Misses the August 4 B confirmation requested by the voice note and represented in the hand rows. This also violates current C12; that primary deduction is already accounted for, not an extra compatibility deduction."
+          },
+          {
+            "source": "voice item 9",
+            "rows": [
+              "Deal ledger!26 (event #25)",
+              "Deal ledger!27 (event #26)",
+              "Deal ledger!28 (event #27)",
+              "Deal ledger!29 (event #28)",
+              "Deal ledger!30 (event #29)"
+            ],
+            "finding": "July 20-22 LOI bounds match the voice-note first-review interpretation; accepted here as an A09 narrower-window reading supported by p.30. The current reference also accepts July 20-27."
+          },
+          {
+            "source": "hand lines 6041,6044",
+            "rows": [
+              "Deal ledger!34 (event #33)",
+              "Deal ledger!35 (event #34)"
+            ],
+            "finding": "July All cash=No differs from hand all_cash=1. Current C15 independently makes solely-CVR-based No inappropriate; it is not penalized merely for differing from hand rows."
+          },
+          {
+            "source": "hand line 6057; current C16",
+            "rows": [
+              "Deal ledger!49 (event #48)"
+            ],
+            "finding": "E by-August-4 inferred closure is earlier than hand signing exit. The selected earlier closure follows current C16 and receives full P09 credit."
+          }
+        ]
+      }
+    },
+    "Candidate-B": {
+      "tests": [
+        {
+          "id": "P01",
+          "credit": 1,
+          "reason": "The combined Contact row preserves the exact 11 Strategic/18 Financial split and 29 total; the two additional Class I contacts are separate and are not treated as entrants. Required splitting into type-specific contact rows and the categorical never-entered wording are separate compliance/evidence corrections.",
+          "rows": [
+            "Deal ledger!2 (event #1)",
+            "Deal ledger!8 (event #7)",
+            "Deal ledger!11 (event #10)"
+          ],
+          "source_pages": [
+            "27",
+            "28"
+          ]
+        },
+        {
+          "id": "P02",
+          "credit": 0.5,
+          "reason": "Initial entry base is correctly 11+14=25, C is separately admitted, and screen is Met without duplicate NDA rows. Page-33 total conflict is neither identified nor raised; Deal facts says 25 while also adding C.",
+          "rows": [
+            "Deal ledger!9 (event #8)",
+            "Deal ledger!10 (event #9)",
+            "Deal ledger!21 (event #20)",
+            "Deal facts!12",
+            "Questions!5"
+          ],
+          "source_pages": [
+            "28",
+            "29",
+            "33"
+          ]
+        },
+        {
+          "id": "P03",
+          "credit": 1,
+          "reason": "Ledger correctly infers an anonymous 16 residual with Not stated reason and possible Party A overlap, leaving nine. Q4 counterfactual arithmetic is wrong but is not the selected ledger coding; it is separately logged.",
+          "rows": [
+            "Deal ledger!15 (event #14)",
+            "Deal ledger!16 (event #15)",
+            "Questions!5"
+          ],
+          "source_pages": [
+            "28",
+            "29"
+          ]
+        },
+        {
+          "id": "P04",
+          "credit": 1,
+          "reason": "Two low bidders are Dropped by target for Lower offer than rivals, seven advance, identities stay anonymous.",
+          "rows": [
+            "Deal ledger!17 (event #16)",
+            "Deal ledger!18 (event #17)",
+            "Rounds!2",
+            "Rounds!3"
+          ],
+          "source_pages": [
+            "29"
+          ]
+        },
+        {
+          "id": "P05",
+          "credit": 1,
+          "reason": "New Strategic C signs separately after seven advance; Rounds gives 7+C and the correct retrospective 5S/2F before C. IOI/access do not double-enter C.",
+          "rows": [
+            "Deal ledger!18 (event #17)",
+            "Deal ledger!20 (event #19)",
+            "Deal ledger!21 (event #20)",
+            "Deal ledger!22 (event #21)",
+            "Deal ledger!23 (event #22)",
+            "Rounds!3"
+          ],
+          "source_pages": [
+            "29",
+            "30"
+          ]
+        },
+        {
+          "id": "P06",
+          "credit": 1,
+          "reason": "Six named LOI bidders and reported one-Strategic/one-Financial non-submitters reconcile eight to six; no named identity assigned to the residual.",
+          "rows": [
+            "Deal ledger!24 (event #23)",
+            "Deal ledger!25 (event #24)",
+            "Deal ledger!26 (event #25)",
+            "Deal ledger!27 (event #26)",
+            "Deal ledger!28 (event #27)",
+            "Deal ledger!29 (event #28)",
+            "Deal ledger!30 (event #29)",
+            "Deal ledger!31 (event #30)",
+            "Rounds!3"
+          ],
+          "source_pages": [
+            "29",
+            "30"
+          ]
+        },
+        {
+          "id": "P07",
+          "credit": 0.5,
+          "reason": "Correct four identities, Round 2 exit labels, reasons and 6-to-2 count. All four are wrongly marked Inferred Y although the filing expressly reports remaining bidders were told out. Q5 incorrectly treats anonymous collective reporting as absence of a reported exit (C16).",
+          "rows": [
+            "Deal ledger!33 (event #32)",
+            "Deal ledger!34 (event #33)",
+            "Deal ledger!35 (event #34)",
+            "Deal ledger!36 (event #35)",
+            "Deal ledger!37 (event #36)",
+            "Questions!6"
+          ],
+          "source_pages": [
+            "30"
+          ]
+        },
+        {
+          "id": "P08",
+          "credit": 1,
+          "reason": "D/E Re-entered precedes their August 1 bids, restoring four live; F support is separately recorded after its exit without an independent return or joint bid.",
+          "rows": [
+            "Deal ledger!38 (event #37)",
+            "Deal ledger!39 (event #38)",
+            "Deal ledger!40 (event #39)",
+            "Deal ledger!41 (event #40)",
+            "Deal ledger!42 (event #41)",
+            "Rounds!4"
+          ],
+          "source_pages": [
+            "30"
+          ]
+        },
+        {
+          "id": "P09",
+          "credit": 0.5,
+          "reason": "D withdrawal and Terms or process are correct; E reversion correctly stays a Bid. E is carried to a signing exit on August 12 instead of inferred exclusion by the first named continuation set, so the ledger retains three live after August 4. No Question justifies a permitted earlier-boundary alternative.",
+          "rows": [
+            "Deal ledger!43 (event #42)",
+            "Deal ledger!44 (event #43)",
+            "Deal ledger!45 (event #44)",
+            "Deal ledger!51 (event #50)",
+            "Rounds!4"
+          ],
+          "source_pages": [
+            "30",
+            "31"
+          ]
+        },
+        {
+          "id": "P10",
+          "credit": 1,
+          "reason": "Both actual finalists remain live through the contest; B correctly Not selected at signing with Would not improve earlier offer, G&W wins, and no exclusivity/shell/supporter entry is invented. E over-retention is the distinct P09 error.",
+          "rows": [
+            "Deal ledger!45 (event #44)",
+            "Deal ledger!47 (event #46)",
+            "Deal ledger!49 (event #48)",
+            "Deal ledger!50 (event #49)",
+            "Deal ledger!51 (event #50)",
+            "Deal ledger!52 (event #51)"
+          ],
+          "source_pages": [
+            "21",
+            "30",
+            "31",
+            "32"
+          ]
+        },
+        {
+          "id": "R01",
+          "credit": 1,
+          "reason": "One process, preparatory Round 0, one March outreach Round 1 opening and Not final; D/E returns do not create a restart.",
+          "rows": [
+            "Deal ledger!2 (event #1)",
+            "Deal ledger!3 (event #2)",
+            "Deal ledger!4 (event #3)",
+            "Deal ledger!5 (event #4)",
+            "Deal ledger!6 (event #5)",
+            "Deal ledger!7 (event #6)",
+            "Rounds!2",
+            "Questions!2"
+          ],
+          "source_pages": [
+            "27",
+            "28",
+            "30"
+          ]
+        },
+        {
+          "id": "R02",
+          "credit": 1,
+          "reason": "June 1 admission/information stage opens Not-final Round 2 with July 20 LOI due date; C participates in that round.",
+          "rows": [
+            "Deal ledger!18 (event #17)",
+            "Deal ledger!19 (event #18)",
+            "Deal ledger!20 (event #19)",
+            "Deal ledger!21 (event #20)",
+            "Deal ledger!22 (event #21)",
+            "Rounds!3"
+          ],
+          "source_pages": [
+            "29"
+          ]
+        },
+        {
+          "id": "R03",
+          "credit": 1,
+          "reason": "July 27 selected negotiations opens the only final round, Inferred final with no target deadline; no extra preference/signing round.",
+          "rows": [
+            "Deal ledger!33 (event #32)",
+            "Deal ledger!45 (event #44)",
+            "Deal ledger!46 (event #45)",
+            "Deal ledger!49 (event #48)",
+            "Rounds!4"
+          ],
+          "source_pages": [
+            "30",
+            "31",
+            "32"
+          ]
+        },
+        {
+          "id": "R04",
+          "credit": 1,
+          "reason": "IOIs R1; C and six LOI bidders including G&W revision R2; D/E revisions/reversion, B reaffirmation and G&W $25 R3. Rounds lists the four distinct R3 bidders consistently; an explicit numeral would improve B3 compliance.",
+          "rows": [
+            "Deal ledger!15 (event #14)",
+            "Deal ledger!22 (event #21)",
+            "Deal ledger!24 (event #23)",
+            "Deal ledger!25 (event #24)",
+            "Deal ledger!26 (event #25)",
+            "Deal ledger!27 (event #26)",
+            "Deal ledger!28 (event #27)",
+            "Deal ledger!31 (event #30)",
+            "Deal ledger!32 (event #31)",
+            "Deal ledger!40 (event #39)",
+            "Deal ledger!41 (event #40)",
+            "Deal ledger!43 (event #42)",
+            "Deal ledger!46 (event #45)",
+            "Deal ledger!49 (event #48)",
+            "Rounds!2",
+            "Rounds!3",
+            "Rounds!4"
+          ],
+          "source_pages": [
+            "29",
+            "30",
+            "31"
+          ]
+        },
+        {
+          "id": "R05",
+          "credit": 0.5,
+          "reason": "Due dates, IOI revision, May 19 reached row, July lateness outcome, final no-deadline and offer expiry are correctly understood; Q2 explicitly discusses May 10 uncertainty. However no July 20 Deadline row exists and two R1 outcomes are listed against one reached row. C11 set/reached reconciliation is incomplete.",
+          "rows": [
+            "Deal ledger!12 (event #11)",
+            "Deal ledger!13 (event #12)",
+            "Deal ledger!14 (event #13)",
+            "Deal ledger!19 (event #18)",
+            "Deal ledger!31 (event #30)",
+            "Deal ledger!49 (event #48)",
+            "Rounds!2",
+            "Rounds!3",
+            "Rounds!4",
+            "Questions!3"
+          ],
+          "source_pages": [
+            "29",
+            "31"
+          ]
+        },
+        {
+          "id": "F01",
+          "credit": 1,
+          "reason": "Both IOI stages are Informal without backdating.",
+          "rows": [
+            "Deal ledger!15 (event #14)",
+            "Deal ledger!22 (event #21)"
+          ],
+          "source_pages": [
+            "29"
+          ]
+        },
+        {
+          "id": "F02",
+          "credit": 1,
+          "reason": "B, D and both G&W July bids are Formal from markups, independently of Heavy diligence.",
+          "rows": [
+            "Deal ledger!24 (event #23)",
+            "Deal ledger!26 (event #25)",
+            "Deal ledger!31 (event #30)",
+            "Deal ledger!32 (event #31)"
+          ],
+          "source_pages": [
+            "29",
+            "30"
+          ]
+        },
+        {
+          "id": "F03",
+          "credit": 1,
+          "reason": "E three states, C and F July LOIs are Informal; D revision stays Formal. Missing material E interpretation flag is separately reported under compliance, not a wrong formality cell.",
+          "rows": [
+            "Deal ledger!25 (event #24)",
+            "Deal ledger!27 (event #26)",
+            "Deal ledger!28 (event #27)",
+            "Deal ledger!40 (event #39)",
+            "Deal ledger!41 (event #40)",
+            "Deal ledger!43 (event #42)"
+          ],
+          "source_pages": [
+            "29",
+            "30"
+          ]
+        },
+        {
+          "id": "F04",
+          "credit": 1,
+          "reason": "August 4 B Formal reaffirmation carries $24 from its previous event, says returned draft and is flagged Q3; G&W final offer is Formal with markups, no invented reaffirmations.",
+          "rows": [
+            "Deal ledger!45 (event #44)",
+            "Deal ledger!46 (event #45)",
+            "Deal ledger!49 (event #48)",
+            "Questions!4"
+          ],
+          "source_pages": [
+            "31",
+            "32"
+          ]
+        },
+        {
+          "id": "C01",
+          "credit": 1,
+          "reason": "Initial cohort and C IOI are Heavy before substantive access; no uncommitted-financing assertion.",
+          "rows": [
+            "Deal ledger!15 (event #14)",
+            "Deal ledger!22 (event #21)",
+            "Deal ledger!23 (event #22)"
+          ],
+          "source_pages": [
+            "28",
+            "29"
+          ]
+        },
+        {
+          "id": "C02",
+          "credit": 1,
+          "reason": "B Light expedited review and both G&W July bids Heavy under requested three-week exclusive diligence; no executed exclusivity invented.",
+          "rows": [
+            "Deal ledger!24 (event #23)",
+            "Deal ledger!31 (event #30)",
+            "Deal ledger!32 (event #31)"
+          ],
+          "source_pages": [
+            "29",
+            "30"
+          ]
+        },
+        {
+          "id": "C03",
+          "credit": 1,
+          "reason": "All required multi-week bids and revisions/reversion are Heavy; original E conditions are recoverable from the linked original offer, and F support is not treated as committed financing.",
+          "rows": [
+            "Deal ledger!25 (event #24)",
+            "Deal ledger!26 (event #25)",
+            "Deal ledger!27 (event #26)",
+            "Deal ledger!28 (event #27)",
+            "Deal ledger!40 (event #39)",
+            "Deal ledger!41 (event #40)",
+            "Deal ledger!42 (event #41)",
+            "Deal ledger!43 (event #42)"
+          ],
+          "source_pages": [
+            "29",
+            "30"
+          ]
+        },
+        {
+          "id": "C04",
+          "credit": 1,
+          "reason": "B reaffirmation Light with expedited diligence retained; G&W final Light after completed physical diligence while documentation remains, without back-clearing July.",
+          "rows": [
+            "Deal ledger!46 (event #45)",
+            "Deal ledger!49 (event #48)"
+          ],
+          "source_pages": [
+            "29",
+            "31",
+            "34",
+            "A-22"
+          ]
+        },
+        {
+          "id": "T01",
+          "credit": 1,
+          "reason": "Core Q4/January/March sequence and week bounds are correct; NDA rows are bounded, not false exact execution days, and additional contacts honestly use by April 7. The unsupported Q4 subcommittee timing is separately logged because not a locked initiation milestone.",
+          "rows": [
+            "Deal ledger!2 (event #1)",
+            "Deal ledger!3 (event #2)",
+            "Deal ledger!4 (event #3)",
+            "Deal ledger!5 (event #4)",
+            "Deal ledger!6 (event #5)",
+            "Deal ledger!7 (event #6)",
+            "Deal ledger!8 (event #7)",
+            "Deal ledger!9 (event #8)",
+            "Deal ledger!10 (event #9)",
+            "Deal ledger!11 (event #10)"
+          ],
+          "source_pages": [
+            "27",
+            "28"
+          ]
+        },
+        {
+          "id": "T02",
+          "credit": 1,
+          "reason": "IOI May 19-June 1 receipt window differs from its sort; June 1 advancement is accepted, mid-June June 11-19, revision communication expressly undated. Due-date reconciliation is separately R05.",
+          "rows": [
+            "Deal ledger!12 (event #11)",
+            "Deal ledger!13 (event #12)",
+            "Deal ledger!15 (event #14)",
+            "Deal ledger!16 (event #15)",
+            "Deal ledger!17 (event #16)",
+            "Deal ledger!18 (event #17)",
+            "Deal ledger!19 (event #18)"
+          ],
+          "source_pages": [
+            "29"
+          ]
+        },
+        {
+          "id": "T03",
+          "credit": 0.5,
+          "reason": "C sequence, exact G&W dates, selection and exits before re-entry are correct. Five undated LOI Date to cells remain July 31 despite July 27 selection; bounds therefore permit submission after the bidder was dropped. Tighten to July 27 (C10/A09).",
+          "rows": [
+            "Deal ledger!20 (event #19)",
+            "Deal ledger!21 (event #20)",
+            "Deal ledger!22 (event #21)",
+            "Deal ledger!23 (event #22)",
+            "Deal ledger!24 (event #23)",
+            "Deal ledger!25 (event #24)",
+            "Deal ledger!26 (event #25)",
+            "Deal ledger!27 (event #26)",
+            "Deal ledger!28 (event #27)",
+            "Deal ledger!31 (event #30)",
+            "Deal ledger!32 (event #31)",
+            "Deal ledger!33 (event #32)",
+            "Deal ledger!34 (event #33)",
+            "Deal ledger!35 (event #34)",
+            "Deal ledger!36 (event #35)",
+            "Deal ledger!37 (event #36)",
+            "Deal ledger!38 (event #37)",
+            "Deal ledger!39 (event #38)"
+          ],
+          "source_pages": [
+            "29",
+            "30"
+          ]
+        },
+        {
+          "id": "T04",
+          "credit": 1,
+          "reason": "August revisions/reversion, B preference and returned draft, retained G&W access, final bid/refusal/signing and later announcement are ordered, monotonic and bounded. Exact August 2 D withdrawal is explicitly accepted by E39; E late closure is scored P09.",
+          "rows": [
+            "Deal ledger!40 (event #39)",
+            "Deal ledger!41 (event #40)",
+            "Deal ledger!43 (event #42)",
+            "Deal ledger!44 (event #43)",
+            "Deal ledger!45 (event #44)",
+            "Deal ledger!46 (event #45)",
+            "Deal ledger!47 (event #46)",
+            "Deal ledger!49 (event #48)",
+            "Deal ledger!50 (event #49)",
+            "Deal ledger!51 (event #50)",
+            "Deal ledger!52 (event #51)",
+            "Deal ledger!53 (event #52)"
+          ],
+          "source_pages": [
+            "30",
+            "31",
+            "32"
+          ]
+        },
+        {
+          "id": "B01",
+          "credit": 1,
+          "reason": "Initial cohort range and both C prices are correct; no individual anonymous prices or synthetic conversion.",
+          "rows": [
+            "Deal ledger!15 (event #14)",
+            "Deal ledger!22 (event #21)",
+            "Deal ledger!27 (event #26)"
+          ],
+          "source_pages": [
+            "29",
+            "30"
+          ]
+        },
+        {
+          "id": "B02",
+          "credit": 1,
+          "reason": "Six July prices have correct point endpoints and USD/common-share basis; other bidders retain Not stated consideration; no duplicate six-LOI aggregate Bid. G&W settlement qualification is separately B03.",
+          "rows": [
+            "Deal ledger!24 (event #23)",
+            "Deal ledger!25 (event #24)",
+            "Deal ledger!26 (event #25)",
+            "Deal ledger!27 (event #26)",
+            "Deal ledger!28 (event #27)",
+            "Deal ledger!31 (event #30)",
+            "Deal facts!14"
+          ],
+          "source_pages": [
+            "29",
+            "30"
+          ]
+        },
+        {
+          "id": "B03",
+          "credit": 0.5,
+          "reason": "Three G&W offers, full prices, CVR components, sale trigger and removal are correct. July All cash=Yes is unqualified: neither notes nor Questions identifies cash settlement as an inference, as required by accepted A07. Cash-sale interpretation is reasonable, but should be labelled rather than asserted; or use Not stated.",
+          "rows": [
+            "Deal ledger!31 (event #30)",
+            "Deal ledger!32 (event #31)",
+            "Deal ledger!49 (event #48)"
+          ],
+          "source_pages": [
+            "29",
+            "31"
+          ]
+        },
+        {
+          "id": "B04",
+          "credit": 1,
+          "reason": "D/E August revisions, E reversion and required B reaffirmation all exist; exploratory A is not a whole-company bid and signing is not another priced bid.",
+          "rows": [
+            "Deal ledger!2 (event #1)",
+            "Deal ledger!40 (event #39)",
+            "Deal ledger!41 (event #40)",
+            "Deal ledger!43 (event #42)",
+            "Deal ledger!46 (event #45)",
+            "Deal ledger!52 (event #51)"
+          ],
+          "source_pages": [
+            "27",
+            "30",
+            "31",
+            "32"
+          ]
+        },
+        {
+          "id": "M01",
+          "credit": 1,
+          "reason": "Initiation, March decision, continuing GHF/BMO adviser relationship, Hinckley Allen, Simpson Thacher and Strategic winner are captured. Preliminary subcommittee row is explicitly exploratory despite its event-label problem.",
+          "rows": [
+            "Deal ledger!2 (event #1)",
+            "Deal ledger!3 (event #2)",
+            "Deal ledger!4 (event #3)",
+            "Deal ledger!5 (event #4)",
+            "Deal ledger!6 (event #5)",
+            "Deal ledger!48 (event #47)",
+            "Deal facts!4",
+            "Deal facts!10",
+            "Deal facts!15",
+            "Deal facts!16"
+          ],
+          "source_pages": [
+            "21",
+            "27",
+            "28",
+            "30",
+            "31"
+          ]
+        },
+        {
+          "id": "M02",
+          "credit": 1,
+          "reason": "Separate signing/announcement and common/preferred consideration, C catch-up access, B preference with retained G&W access, and F support are present without invented material auction/exclusivity events.",
+          "rows": [
+            "Deal ledger!23 (event #22)",
+            "Deal ledger!42 (event #41)",
+            "Deal ledger!45 (event #44)",
+            "Deal ledger!47 (event #46)",
+            "Deal ledger!52 (event #51)",
+            "Deal ledger!53 (event #52)",
+            "Deal facts!5",
+            "Deal facts!6",
+            "Deal facts!7"
+          ],
+          "source_pages": [
+            "27",
+            "29",
+            "30",
+            "31",
+            "32"
+          ]
+        }
+      ],
+      "score_100": 90.5,
+      "category_scores": {
+        "participation": 25.5,
+        "rounds": 22.5,
+        "formality_conditions": 20.0,
+        "chronology": 8.75,
+        "bids_prices": 8.75,
+        "other_material_coverage": 5.0
+      },
+      "critical_errors": [
+        {
+          "id": "B-CE1",
+          "description": "Party E is retained as an independent live competitor until August 12, producing three rather than two live bidders after the August 4 named continuation set. Replace signing exit with an earlier inferred Dropped by target exit and Question under C16/A05. E reversion and D withdrawal are otherwise correct.",
+          "rows": [
+            "Deal ledger!43 (event #42)",
+            "Deal ledger!45 (event #44)",
+            "Deal ledger!51 (event #50)",
+            "Rounds!4"
+          ],
+          "source_pages": [
+            "30",
+            "31"
+          ],
+          "instruction_sections": [
+            "C16",
+            "D"
+          ],
+          "related_tests": [
+            "P09"
+          ],
+          "root_cause": "Applying the signing fallback despite an earlier named advancement/continuation set."
+        }
+      ],
+      "other_errors": [
+        {
+          "id": "B-E1",
+          "description": "July C/D/E/F exits are reported, not inferred. Clear Inferred Y on all four and revise Q5. The July 27 decision sort is valid, but subsequent notifications need not have occurred by that day.",
+          "rows": [
+            "Deal ledger!34 (event #33)",
+            "Deal ledger!35 (event #34)",
+            "Deal ledger!36 (event #35)",
+            "Deal ledger!37 (event #36)",
+            "Questions!6"
+          ],
+          "source_pages": [
+            "30"
+          ],
+          "instruction_sections": [
+            "C10",
+            "C16"
+          ],
+          "related_tests": [
+            "P07"
+          ]
+        },
+        {
+          "id": "B-E2",
+          "description": "Five undated LOIs allow receipt through July 31 although selection occurred July 27. Tighten Date to; notes on the exits should not call the July 20 solicitation sort an actual last-bid receipt date.",
+          "rows": [
+            "Deal ledger!24 (event #23)",
+            "Deal ledger!25 (event #24)",
+            "Deal ledger!26 (event #25)",
+            "Deal ledger!27 (event #26)",
+            "Deal ledger!28 (event #27)",
+            "Deal ledger!34 (event #33)",
+            "Deal ledger!35 (event #34)",
+            "Deal ledger!36 (event #35)",
+            "Deal ledger!37 (event #36)"
+          ],
+          "source_pages": [
+            "29",
+            "30"
+          ],
+          "instruction_sections": [
+            "C10"
+          ],
+          "related_tests": [
+            "T03"
+          ]
+        },
+        {
+          "id": "B-E3",
+          "description": "Q4 says that if A submitted an IOI the 16 residual becomes 15 while live counts remain unchanged. That is false: 25 minus nine stays 16; only anonymous subgroup membership changes.",
+          "rows": [
+            "Questions!5",
+            "Deal ledger!16 (event #15)"
+          ],
+          "source_pages": [
+            "28",
+            "29"
+          ],
+          "instruction_sections": [
+            "C3",
+            "C16"
+          ]
+        },
+        {
+          "id": "B-E4",
+          "description": "All cash=Yes on July G&W offers lacks the explicit cash-settlement inference qualification required by locked A07. Label the reasonable South Quay cash-sale interpretation or use Not stated; do not change prices.",
+          "rows": [
+            "Deal ledger!31 (event #30)",
+            "Deal ledger!32 (event #31)"
+          ],
+          "source_pages": [
+            "29"
+          ],
+          "instruction_sections": [
+            "C15"
+          ],
+          "related_tests": [
+            "B03"
+          ]
+        },
+        {
+          "id": "B-E5",
+          "description": "Rounds lists May 10 Extended plus May 19 Enforced but ledger has only May 19 reached. Q2 discusses uncertainty, so complete its selected reached-date treatment or choose the superseded alternative consistently.",
+          "rows": [
+            "Deal ledger!13 (event #12)",
+            "Deal ledger!14 (event #13)",
+            "Rounds!2",
+            "Questions!3"
+          ],
+          "source_pages": [
+            "29"
+          ],
+          "instruction_sections": [
+            "C11"
+          ],
+          "related_tests": [
+            "R05"
+          ]
+        },
+        {
+          "id": "B-E6",
+          "description": "Party C NDA note imports no standstill from initial agreements without C-specific evidence. Two additional railroad contacts are described as never entered; source only supplies no reported entry. Qualify both statements.",
+          "rows": [
+            "Deal ledger!11 (event #10)",
+            "Deal ledger!21 (event #20)"
+          ],
+          "source_pages": [
+            "28",
+            "29"
+          ],
+          "instruction_sections": [
+            "C3",
+            "C9"
+          ]
+        },
+        {
+          "id": "B-E7",
+          "description": "Preliminary subcommittee row says Target sale decision while its note says no sale decision yet. Use Other material event or fold into initiation; its Q4 date is not established merely by the prior Q4 meeting.",
+          "rows": [
+            "Deal ledger!3 (event #2)"
+          ],
+          "source_pages": [
+            "27"
+          ],
+          "instruction_sections": [
+            "B2",
+            "C2",
+            "C6",
+            "C10"
+          ]
+        },
+        {
+          "id": "B-E8",
+          "description": "F exit says no later activity and Q5 says F never reappears, contradicted by F support on row 42. Say no later independent bid.",
+          "rows": [
+            "Deal ledger!37 (event #36)",
+            "Deal ledger!42 (event #41)",
+            "Questions!6"
+          ],
+          "source_pages": [
+            "30"
+          ],
+          "instruction_sections": [
+            "C4",
+            "D"
+          ]
+        },
+        {
+          "id": "B-E9",
+          "description": "Q1 says moving R2 opening to mid-June would renumber C and July offers; they stay in R2 under that accepted alternative. Q3 says removing B reaffirmation leaves only G&W formal final bids, overlooking D Formal August 1. These are counterfactual explanations, not the selected ledger coding.",
+          "rows": [
+            "Questions!2",
+            "Questions!4",
+            "Deal ledger!40 (event #39)"
+          ],
+          "source_pages": [
+            "29",
+            "30",
+            "31"
+          ],
+          "instruction_sections": [
+            "C8",
+            "C12",
+            "D"
+          ]
+        }
+      ],
+      "omissions": [
+        {
+          "id": "B-O1",
+          "description": "July 20 reached Deadline row is absent, although Deadline set and Rounds report it. Add one; keep Late bids accepted.",
+          "rows": [
+            "Deal ledger!19 (event #18)",
+            "Deal ledger!29 (event #28)",
+            "Deal ledger!30 (event #29)",
+            "Deal ledger!31 (event #30)",
+            "Rounds!3"
+          ],
+          "source_pages": [
+            "29"
+          ],
+          "instruction_sections": [
+            "C11"
+          ],
+          "related_tests": [
+            "R05"
+          ]
+        },
+        {
+          "id": "B-O2",
+          "description": "No Question identifies initial 25 plus new C versus page-33 25-overall summary; Deal facts must qualify its total.",
+          "rows": [
+            "Deal ledger!9 (event #8)",
+            "Deal ledger!10 (event #9)",
+            "Deal ledger!21 (event #20)",
+            "Deal facts!12"
+          ],
+          "source_pages": [
+            "28",
+            "29",
+            "33"
+          ],
+          "instruction_sections": [
+            "C3",
+            "D"
+          ],
+          "related_tests": [
+            "P02"
+          ]
+        },
+        {
+          "id": "B-O3",
+          "description": "E issues-list formality and its final exit timing lack focused Questions. Existing Q5 instead questions a reported collective exit; rework question priorities.",
+          "rows": [
+            "Deal ledger!25 (event #24)",
+            "Deal ledger!41 (event #40)",
+            "Deal ledger!43 (event #42)",
+            "Deal ledger!51 (event #50)",
+            "Questions!6"
+          ],
+          "source_pages": [
+            "29",
+            "30",
+            "31"
+          ],
+          "instruction_sections": [
+            "C13",
+            "C16",
+            "D"
+          ]
+        },
+        {
+          "id": "B-O-CAVEAT",
+          "description": "The collective caveat that LOI prices used different transaction-expense and change-in-control-payment assumptions, potentially affecting ultimate prices, is absent. Add a compact cohort-context note without assigning unknown bidder-specific amounts or changing reported per-share prices. The locked tests do not create a separate weighted item for this caveat.",
+          "rows": [
+            "Deal ledger!24 (event #23)",
+            "Deal ledger!25 (event #24)",
+            "Deal ledger!26 (event #25)",
+            "Deal ledger!27 (event #26)",
+            "Deal ledger!28 (event #27)",
+            "Deal ledger!31 (event #30)"
+          ],
+          "source_pages": [
+            "30"
+          ],
+          "instruction_sections": [
+            "C2",
+            "C15"
+          ]
+        }
+      ],
+      "compliance_observations": [
+        {
+          "status": "verified",
+          "detail": "All four prescribed sheets, order, headers, visibility, A2 freeze panes, filters, wrapping and no merged cells checked in XLSX. Ledger # sequential; sort dates real Excel dates, nondecreasing and within populated bounds; controlled event/offer fields populated appropriately; reviewer-note columns empty. Every ledger quotation occurs verbatim after whitespace normalization on its cited filing page. Every ledger Note is <=40 words and quotation <=30 words. TXT transcripts match every nonempty XLSX cell; no formula cells."
+        },
+        {
+          "status": "checker_adjudication",
+          "detail": "Raw error counts are not scores. A quotation match proves occurrence, not all semantic claims in its row. Broad Questions Rows affected lists do not require every downstream ledger row to carry the same single flag: Part D prohibits indiscriminate flags. Thus checker flag_mismatch reports are navigation leads rather than independent substantive failures."
+        },
+        {
+          "status": "question_length",
+          "detail": "Part D/B4 asks about 60 words per entry; measured across Question, Recommended answer, Why, Rows affected and What changes. Overlength affects review burden/compliance only.",
+          "words_per_entry": [
+            164,
+            130,
+            125,
+            114,
+            99
+          ]
+        },
+        {
+          "status": "confirmed",
+          "rows": [
+            "Deal ledger!8 (event #7)"
+          ],
+          "detail": "C3 requests type-specific cohorts when split known: split 29 Contact into 11 Strategic/18 Financial. Existing note preserves counts, so P01 full credit is retained."
+        },
+        {
+          "status": "confirmed",
+          "rows": [
+            "Deal facts!4",
+            "Deal facts!10",
+            "Deal facts!12",
+            "Deal facts!13"
+          ],
+          "detail": "Normalize Field labels to Initiation, Auction screen, Whole-company bids and acquirer type to Strategic. Explanatory text is factually useful but not the exact controlled value."
+        },
+        {
+          "status": "confirmed",
+          "rows": [
+            "Deal facts!7"
+          ],
+          "detail": "Actual Excel announcement date is correct but B7 format is yyyy-mm-dd instead of MM/DD/YYYY, independently detected; no chronology-score penalty."
+        },
+        {
+          "status": "confirmed",
+          "rows": [
+            "Rounds!2",
+            "Rounds!3",
+            "Deal ledger!14 (event #13)",
+            "Deal ledger!19 (event #18)",
+            "Deal ledger!31 (event #30)"
+          ],
+          "detail": "Deadline-row/outcome mismatches are real (missing July 20 reached row; two R1 outcomes/one reached row), already reflected in R05."
+        },
+        {
+          "status": "minor",
+          "rows": [
+            "Rounds!4"
+          ],
+          "detail": "Bids received lists four bidder names but omits the explicit number requested in B3; its substantive count is unambiguous."
+        },
+        {
+          "status": "rejected_checker_flag",
+          "rows": [
+            "Deal facts!11",
+            "Deal facts!12"
+          ],
+          "detail": "String 1 agrees with one process; checker numeric-type complaint is not a factual count error. Auction screen value starts Met and supplies a number; missing-field warning stems from parenthetical Field label, not an absent screen."
+        },
+        {
+          "status": "manual_review_of_warning",
+          "rows": [
+            "Questions!2"
+          ],
+          "detail": "Q1 clearly reviews round map; single continuing process is explicit in ledger/facts. Add a short one-process statement for Part D completeness, but do not treat the wording detector as proof the map was omitted."
+        },
+        {
+          "status": "missing_questions",
+          "detail": "Prioritize actual NDA-total conflict and E final closure, and flag issues-list formality; Q5 currently adds work by doubting correctly identifiable reported exits."
+        }
+      ],
+      "review_burden": {
+        "measurement_method": "Whitespace-delimited words in text-valued workbook cells excluding header rows; Excel numeric/date cells excluded. Includes narrative field names, textual When cells, quote page tokens and repeated descriptions. A reproducible volume proxy, not a human-time estimate.",
+        "text_words_total": 3883,
+        "text_words_by_sheet": {
+          "Deal ledger": 2601,
+          "Rounds": 196,
+          "Questions": 637,
+          "Deal facts": 449
+        },
+        "ledger_event_rows": 52,
+        "round_rows": 3,
+        "question_rows": 5,
+        "ledger_note_words": 948,
+        "ledger_quote_words_excluding_page": 1075,
+        "question_words_per_entry": [
+          164,
+          130,
+          125,
+          114,
+          99
+        ],
+        "actual_human_review_time": "Not measured and not estimated.",
+        "useful_questions": "Q1 map, Q2 original-deadline timing and Q3 B reaffirmation are substantive; Q4 correctly raises Party A ambiguity in its chosen answer.",
+        "noisy_or_misleading_questions": "Q4 false 15-residual counterfactual and Q5 uncertainty about reported exits require correction. Neither addresses E surviving until signing or the page-33 count discrepancy. Each question is substantially over the approximate length target.",
+        "ease_of_checking": "All required offers/reaffirmation are visible, but reviewers must reconcile live counts and source/inference flags. Five overlong questions and long Account increase text to inspect.",
+        "edits_required": "Move/recode E final exit and update its Question; clear four reported-exit inference flags; tighten five LOI bounds; add July-20 Deadline; reconcile May-10 outcomes; qualify two cash-settlement inferences; correct Question counterfactuals, cohort split, field labels and one date display."
+      },
+      "alex_compatibility": {
+        "included_in_primary_score": false,
+        "sources_read": [
+          "alex/alex_hand_rows.txt",
+          "alex/alex_voice_notes.txt",
+          "alex/alex_closing_summary.txt"
+        ],
+        "shared_differences": [
+          {
+            "source": "alex/alex_voice_notes.txt, Providence items 3-8 and 13; alex/alex_closing_summary.txt items 2A/B/J/K",
+            "finding": "All candidates separate contact/NDA/bid concepts, keep one GHF/BMO mandate and one process/three rounds, and distinguish signing from public announcement. These align with the voice-note priorities; their specific omissions and counts remain assessed under the current instruction."
+          },
+          {
+            "source": "alex/alex_hand_rows.txt lines 6037,6041,6050; alex/alex_voice_notes.txt item 10",
+            "finding": "All candidates code D July/August and G&W July 21 Formal plus Heavy, differing from hand-row Informal values but matching the later voice-note separate formality/conditionality approach and current C13/C14. No compatibility penalty."
+          },
+          {
+            "source": "alex/alex_hand_rows.txt lines 6039,6049,6051-6052; filing p.30; current C3/C4",
+            "finding": "All candidates correctly make F Strategic and retain E as the bidder receiving financing support, rather than hand-row F Financial and Party E/F bidding-unit labels. Current instruction and filing govern."
+          },
+          {
+            "source": "alex/alex_hand_rows.txt lines 6042-6043; alex/alex_voice_notes.txt item 11; current C16",
+            "finding": "Hand rows name an A departure; voice notes conjecture A did not clear R1. All candidate ledgers avoid an unsupported named A exit. That restraint complies with the current rule even when researcher heuristics differ."
+          },
+          {
+            "source": "alex/alex_hand_rows.txt lines 6032,6040,6045,6058; alex/alex_voice_notes.txt item 12; current C8/C11",
+            "finding": "Hand rows have several final-round markers and a July-27 deadline suggestion appears in voice item 9. Current instruction instead gives three target-organized stages with R3 Inferred final and no target deadline. No penalty for not copying hand markers or treating selection as a deadline."
+          }
+        ],
+        "candidate_specific": [
+          {
+            "source": "voice item 14; hand line 6054",
+            "rows": [
+              "Deal ledger!46 (event #45)"
+            ],
+            "finding": "Includes B August 4 $24 Formal confirmation as requested. Light rather than unconditional preserves ongoing diligence under current C14; the voice-note unconditional wording is not controlling."
+          },
+          {
+            "source": "hand line 6057",
+            "rows": [
+              "Deal ledger!51 (event #50)"
+            ],
+            "finding": "E signing exit resembles the hand row, but conflicts with current C16 first named continuing-set closure. The primary penalty follows current instruction, not a compatibility preference."
+          },
+          {
+            "source": "voice item 9",
+            "rows": [
+              "Deal ledger!24 (event #23)",
+              "Deal ledger!25 (event #24)",
+              "Deal ledger!26 (event #25)",
+              "Deal ledger!27 (event #26)",
+              "Deal ledger!28 (event #27)"
+            ],
+            "finding": "July 31 bounds conflict with the voice emphasis on tightening to neighboring meetings as well as current C10; a July 27 upper bound is sufficient under the locked reference."
+          },
+          {
+            "source": "hand lines 6041,6044",
+            "rows": [
+              "Deal ledger!31 (event #30)",
+              "Deal ledger!32 (event #31)"
+            ],
+            "finding": "July All cash=Yes aligns with hand coding. Current locked A07 still requires distinguishing reasonable cash-settlement inference from reported settlement terms."
+          }
+        ]
+      }
+    },
+    "Candidate-C": {
+      "tests": [
+        {
+          "id": "P01",
+          "credit": 1,
+          "reason": "Initial contacts are netted as 10 strategic plus earlier A, preserving 11 total in the note, and 18 financial; two additional Class I contact actions are separate, with no assumed entry.",
+          "rows": [
+            "Deal ledger!2 (event #1)",
+            "Deal ledger!7 (event #6)",
+            "Deal ledger!8 (event #7)",
+            "Deal ledger!11 (event #10)"
+          ],
+          "source_pages": [
+            "27",
+            "28"
+          ]
+        },
+        {
+          "id": "P02",
+          "credit": 1,
+          "reason": "25 initial NDAs split 11S/14F, separate C entry, no double counting, Met screen. Q3 expressly cites page 33 and flags 25-versus-26. Speculative alternatives about B are not adopted.",
+          "rows": [
+            "Deal ledger!9 (event #8)",
+            "Deal ledger!10 (event #9)",
+            "Deal ledger!21 (event #20)",
+            "Questions!4",
+            "Deal facts!12"
+          ],
+          "source_pages": [
+            "28",
+            "29",
+            "33"
+          ]
+        },
+        {
+          "id": "P03",
+          "credit": 1,
+          "reason": "Anonymous Unknown 16 residual = 25 minus nine, Inferred Y and Not stated reason; A may be included without a separate exit. Unsupported narrowing of A possibilities in Q7 is a separate note issue, not adopted cohort allocation.",
+          "rows": [
+            "Deal ledger!15 (event #14)",
+            "Deal ledger!16 (event #15)",
+            "Deal ledger!17 (event #16)",
+            "Questions!8"
+          ],
+          "source_pages": [
+            "28",
+            "29"
+          ]
+        },
+        {
+          "id": "P04",
+          "credit": 1,
+          "reason": "Two unnamed low bidders Dropped by target, Lower offer than rivals, leave seven for presentations/data room.",
+          "rows": [
+            "Deal ledger!17 (event #16)",
+            "Deal ledger!18 (event #17)",
+            "Rounds!2",
+            "Rounds!3"
+          ],
+          "source_pages": [
+            "29"
+          ]
+        },
+        {
+          "id": "P05",
+          "credit": 1,
+          "reason": "C new Strategic NDA raises seven to eight; Rounds gives correct retrospective type composition and does not double-enter on offer/access.",
+          "rows": [
+            "Deal ledger!18 (event #17)",
+            "Deal ledger!20 (event #19)",
+            "Deal ledger!21 (event #20)",
+            "Deal ledger!22 (event #21)",
+            "Deal ledger!23 (event #22)",
+            "Rounds!3"
+          ],
+          "source_pages": [
+            "29",
+            "30"
+          ]
+        },
+        {
+          "id": "P06",
+          "credit": 1,
+          "reason": "Eight to six reconciles with two reported type-specific non-submission exits and six distinct LOI bidders; anonymous residuals remain unnamed.",
+          "rows": [
+            "Deal ledger!25 (event #24)",
+            "Deal ledger!26 (event #25)",
+            "Deal ledger!27 (event #26)",
+            "Deal ledger!28 (event #27)",
+            "Deal ledger!29 (event #28)",
+            "Deal ledger!30 (event #29)",
+            "Deal ledger!31 (event #30)",
+            "Deal ledger!32 (event #31)",
+            "Rounds!3"
+          ],
+          "source_pages": [
+            "29",
+            "30"
+          ]
+        },
+        {
+          "id": "P07",
+          "credit": 1,
+          "reason": "C/D/E/F four reported exits from R2 for lower offers leave B/G&W. Notes distinguish subsequent notices from the July 27 decision sort.",
+          "rows": [
+            "Deal ledger!34 (event #33)",
+            "Deal ledger!35 (event #34)",
+            "Deal ledger!36 (event #35)",
+            "Deal ledger!37 (event #36)",
+            "Deal ledger!38 (event #37)",
+            "Rounds!3",
+            "Rounds!4"
+          ],
+          "source_pages": [
+            "30"
+          ]
+        },
+        {
+          "id": "P08",
+          "credit": 1,
+          "reason": "Separate D/E July 29 Re-entered rows precede revisions, four live; E stays Strategic, D Financial, F financing support is not independent re-entry or a joint bidding group.",
+          "rows": [
+            "Deal ledger!38 (event #37)",
+            "Deal ledger!39 (event #38)",
+            "Deal ledger!40 (event #39)",
+            "Deal ledger!41 (event #40)",
+            "Deal ledger!42 (event #41)",
+            "Rounds!4"
+          ],
+          "source_pages": [
+            "30"
+          ]
+        },
+        {
+          "id": "P09",
+          "credit": 1,
+          "reason": "D Withdrew for Terms or process with honest August 1-4 bounds; E reversion is a Bid followed by separately inferred by-August-4 exit, Not stated reason. Q6 expressly identifies the alternative live-count path.",
+          "rows": [
+            "Deal ledger!43 (event #42)",
+            "Deal ledger!44 (event #43)",
+            "Deal ledger!45 (event #44)",
+            "Deal ledger!46 (event #45)",
+            "Questions!7"
+          ],
+          "source_pages": [
+            "30",
+            "31"
+          ]
+        },
+        {
+          "id": "P10",
+          "credit": 1,
+          "reason": "Two actual finalists stay live through continued G&W access and final contest; B Not selected at signing for Would not improve earlier offer; no fictitious exclusivity/participant transition.",
+          "rows": [
+            "Deal ledger!45 (event #44)",
+            "Deal ledger!48 (event #47)",
+            "Deal ledger!50 (event #49)",
+            "Deal ledger!51 (event #50)",
+            "Deal ledger!52 (event #51)",
+            "Deal ledger!53 (event #52)"
+          ],
+          "source_pages": [
+            "21",
+            "30",
+            "31",
+            "32"
+          ]
+        },
+        {
+          "id": "R01",
+          "credit": 1,
+          "reason": "One process, exploratory/preparatory Round 0, exactly one first-outreach R1 opening, Not final.",
+          "rows": [
+            "Deal ledger!2 (event #1)",
+            "Deal ledger!3 (event #2)",
+            "Deal ledger!4 (event #3)",
+            "Deal ledger!5 (event #4)",
+            "Deal ledger!6 (event #5)",
+            "Rounds!2",
+            "Questions!2"
+          ],
+          "source_pages": [
+            "27",
+            "28",
+            "30"
+          ]
+        },
+        {
+          "id": "R02",
+          "credit": 1,
+          "reason": "Bounded May 23-June 1 admission opens Not-final Round 2 with accepted midpoint May 27; July 20 request belongs to it and C enters it.",
+          "rows": [
+            "Deal ledger!18 (event #17)",
+            "Deal ledger!19 (event #18)",
+            "Deal ledger!20 (event #19)",
+            "Deal ledger!21 (event #20)",
+            "Deal ledger!22 (event #21)",
+            "Rounds!3"
+          ],
+          "source_pages": [
+            "29"
+          ]
+        },
+        {
+          "id": "R03",
+          "credit": 1,
+          "reason": "July 27 selected negotiation opens Round 3, Inferred final, no target deadline; August preference/signing do not create new rounds. Q1 hypothetical fourth round is not the selected map and is separately discouraged.",
+          "rows": [
+            "Deal ledger!34 (event #33)",
+            "Deal ledger!45 (event #44)",
+            "Deal ledger!50 (event #49)",
+            "Deal ledger!53 (event #52)",
+            "Rounds!4"
+          ],
+          "source_pages": [
+            "30",
+            "31",
+            "32"
+          ]
+        },
+        {
+          "id": "R04",
+          "credit": 1,
+          "reason": "All mandatory offer states are in correct rounds; R2 has six distinct LOI bidders, R3 four including B reaffirmation; ledger and Rounds reconcile.",
+          "rows": [
+            "Deal ledger!15 (event #14)",
+            "Deal ledger!22 (event #21)",
+            "Deal ledger!25 (event #24)",
+            "Deal ledger!26 (event #25)",
+            "Deal ledger!27 (event #26)",
+            "Deal ledger!28 (event #27)",
+            "Deal ledger!29 (event #28)",
+            "Deal ledger!32 (event #31)",
+            "Deal ledger!33 (event #32)",
+            "Deal ledger!41 (event #40)",
+            "Deal ledger!42 (event #41)",
+            "Deal ledger!43 (event #42)",
+            "Deal ledger!47 (event #46)",
+            "Deal ledger!50 (event #49)",
+            "Rounds!2",
+            "Rounds!3",
+            "Rounds!4"
+          ],
+          "source_pages": [
+            "29",
+            "30",
+            "31"
+          ]
+        },
+        {
+          "id": "R05",
+          "credit": 1,
+          "reason": "Set/revision/reached rows include May 19 and July 20; outcomes Enforced and Late bids accepted. Q2 explicitly elects superseded May 10 and gives the alternative if reached; R3 none and August 13 is only offer expiry. This is accepted A04, not a missing May 10 row.",
+          "rows": [
+            "Deal ledger!12 (event #11)",
+            "Deal ledger!13 (event #12)",
+            "Deal ledger!14 (event #13)",
+            "Deal ledger!19 (event #18)",
+            "Deal ledger!24 (event #23)",
+            "Deal ledger!50 (event #49)",
+            "Rounds!2",
+            "Rounds!3",
+            "Rounds!4",
+            "Questions!3"
+          ],
+          "source_pages": [
+            "29",
+            "31"
+          ]
+        },
+        {
+          "id": "F01",
+          "credit": 1,
+          "reason": "Both initial IOIs and C pre-access IOI Informal, with no backdating.",
+          "rows": [
+            "Deal ledger!15 (event #14)",
+            "Deal ledger!22 (event #21)"
+          ],
+          "source_pages": [
+            "29"
+          ]
+        },
+        {
+          "id": "F02",
+          "credit": 1,
+          "reason": "B/D and both G&W July bid states Formal from markups, with Heavy kept as a separate axis where applicable.",
+          "rows": [
+            "Deal ledger!25 (event #24)",
+            "Deal ledger!27 (event #26)",
+            "Deal ledger!32 (event #31)",
+            "Deal ledger!33 (event #32)"
+          ],
+          "source_pages": [
+            "29",
+            "30"
+          ]
+        },
+        {
+          "id": "F03",
+          "credit": 1,
+          "reason": "E three states and C/F July LOIs Informal, D August Formal by continuity; Q5 flags issues-list and continuity calls.",
+          "rows": [
+            "Deal ledger!26 (event #25)",
+            "Deal ledger!28 (event #27)",
+            "Deal ledger!29 (event #28)",
+            "Deal ledger!41 (event #40)",
+            "Deal ledger!42 (event #41)",
+            "Deal ledger!43 (event #42)",
+            "Questions!6"
+          ],
+          "source_pages": [
+            "29",
+            "30"
+          ]
+        },
+        {
+          "id": "F04",
+          "credit": 1,
+          "reason": "Required B August 4 Formal carried-$24 returned-draft reaffirmation has Q4; G&W final Formal has markups; no invented offer on August 11 or from target drafts.",
+          "rows": [
+            "Deal ledger!45 (event #44)",
+            "Deal ledger!47 (event #46)",
+            "Deal ledger!48 (event #47)",
+            "Deal ledger!50 (event #49)",
+            "Questions!5"
+          ],
+          "source_pages": [
+            "31",
+            "32"
+          ]
+        },
+        {
+          "id": "C01",
+          "credit": 1,
+          "reason": "Initial and C IOIs Heavy from pre-substantive-access context; subsequent access is kept separate, no financing invention.",
+          "rows": [
+            "Deal ledger!15 (event #14)",
+            "Deal ledger!22 (event #21)",
+            "Deal ledger!23 (event #22)"
+          ],
+          "source_pages": [
+            "28",
+            "29"
+          ]
+        },
+        {
+          "id": "C02",
+          "credit": 1,
+          "reason": "B Light expedited diligence; G&W both July bids Heavy with three-week exclusive diligence requested, not executed.",
+          "rows": [
+            "Deal ledger!25 (event #24)",
+            "Deal ledger!32 (event #31)",
+            "Deal ledger!33 (event #32)"
+          ],
+          "source_pages": [
+            "29",
+            "30"
+          ]
+        },
+        {
+          "id": "C03",
+          "credit": 1,
+          "reason": "All multi-week initial/revised D/E/C/F proposals and E original-terms reversion Heavy; financing support does not lower E conditions or create a commitment.",
+          "rows": [
+            "Deal ledger!26 (event #25)",
+            "Deal ledger!27 (event #26)",
+            "Deal ledger!28 (event #27)",
+            "Deal ledger!29 (event #28)",
+            "Deal ledger!41 (event #40)",
+            "Deal ledger!42 (event #41)",
+            "Deal ledger!43 (event #42)"
+          ],
+          "source_pages": [
+            "29",
+            "30"
+          ]
+        },
+        {
+          "id": "C04",
+          "credit": 1,
+          "reason": "B reaffirmation Light with ongoing diligence. G&W final None is accepted A06: note gives completed physical diligence, same-day signing/no financing condition; full filing pp.31,34 and A-22 affirm readiness/funds. No back-projection into July.",
+          "rows": [
+            "Deal ledger!47 (event #46)",
+            "Deal ledger!50 (event #49)"
+          ],
+          "source_pages": [
+            "29",
+            "31",
+            "34",
+            "A-22"
+          ]
+        },
+        {
+          "id": "T01",
+          "credit": 1,
+          "reason": "Correct Q4/January/March sequence; cohort NDA sort is an earliest ordering key with lower bound, not an exact execution claim; extra contacts use by April 7. G&W April 3 note is independently supported in A-48 despite E08 reference wording.",
+          "rows": [
+            "Deal ledger!2 (event #1)",
+            "Deal ledger!3 (event #2)",
+            "Deal ledger!4 (event #3)",
+            "Deal ledger!5 (event #4)",
+            "Deal ledger!6 (event #5)",
+            "Deal ledger!7 (event #6)",
+            "Deal ledger!8 (event #7)",
+            "Deal ledger!9 (event #8)",
+            "Deal ledger!10 (event #9)",
+            "Deal ledger!11 (event #10)"
+          ],
+          "source_pages": [
+            "27",
+            "28",
+            "A-48"
+          ]
+        },
+        {
+          "id": "T02",
+          "credit": 1,
+          "reason": "IOI window, due-date sort, bounded advancement and May 27 midpoint, mid-June June 11-19, and uncertain extension date are preserved; extension lower-bound assumption is disclosed.",
+          "rows": [
+            "Deal ledger!12 (event #11)",
+            "Deal ledger!13 (event #12)",
+            "Deal ledger!15 (event #14)",
+            "Deal ledger!16 (event #15)",
+            "Deal ledger!17 (event #16)",
+            "Deal ledger!18 (event #17)",
+            "Deal ledger!19 (event #18)"
+          ],
+          "source_pages": [
+            "29"
+          ]
+        },
+        {
+          "id": "T03",
+          "credit": 1,
+          "reason": "C approach/NDA before IOI, catch-up access afterwards; July LOIs narrowed to July 27, exact G&W July 21/26, July 27 selection followed by exits then re-entry. Notification notes distinguish sort from later act. Minor missing access upper bound is separately logged.",
+          "rows": [
+            "Deal ledger!20 (event #19)",
+            "Deal ledger!21 (event #20)",
+            "Deal ledger!22 (event #21)",
+            "Deal ledger!23 (event #22)",
+            "Deal ledger!25 (event #24)",
+            "Deal ledger!26 (event #25)",
+            "Deal ledger!27 (event #26)",
+            "Deal ledger!28 (event #27)",
+            "Deal ledger!29 (event #28)",
+            "Deal ledger!32 (event #31)",
+            "Deal ledger!33 (event #32)",
+            "Deal ledger!34 (event #33)",
+            "Deal ledger!35 (event #34)",
+            "Deal ledger!36 (event #35)",
+            "Deal ledger!37 (event #36)",
+            "Deal ledger!38 (event #37)",
+            "Deal ledger!39 (event #38)",
+            "Deal ledger!40 (event #39)"
+          ],
+          "source_pages": [
+            "29",
+            "30"
+          ]
+        },
+        {
+          "id": "T04",
+          "credit": 1,
+          "reason": "All August proposal/participation/returned-draft/final-offer/refusal/signing/announcement events follow source order; D date is bounded, sort keys monotonic and inside bounds; Q4 discloses unknown same-day ordering.",
+          "rows": [
+            "Deal ledger!41 (event #40)",
+            "Deal ledger!42 (event #41)",
+            "Deal ledger!43 (event #42)",
+            "Deal ledger!44 (event #43)",
+            "Deal ledger!45 (event #44)",
+            "Deal ledger!46 (event #45)",
+            "Deal ledger!47 (event #46)",
+            "Deal ledger!48 (event #47)",
+            "Deal ledger!50 (event #49)",
+            "Deal ledger!51 (event #50)",
+            "Deal ledger!52 (event #51)",
+            "Deal ledger!53 (event #52)",
+            "Deal ledger!54 (event #53)",
+            "Questions!5"
+          ],
+          "source_pages": [
+            "30",
+            "31",
+            "32"
+          ]
+        },
+        {
+          "id": "B01",
+          "credit": 1,
+          "reason": "Nine IOI aggregate range and C $21/$19.30 both present, without fabricated individual prices.",
+          "rows": [
+            "Deal ledger!15 (event #14)",
+            "Deal ledger!22 (event #21)",
+            "Deal ledger!28 (event #27)"
+          ],
+          "source_pages": [
+            "29",
+            "30"
+          ]
+        },
+        {
+          "id": "B02",
+          "credit": 1,
+          "reason": "All six July LOI prices/point endpoints and units correct; other consideration Not stated and no duplicate aggregate bid.",
+          "rows": [
+            "Deal ledger!25 (event #24)",
+            "Deal ledger!26 (event #25)",
+            "Deal ledger!27 (event #26)",
+            "Deal ledger!28 (event #27)",
+            "Deal ledger!29 (event #28)",
+            "Deal ledger!32 (event #31)",
+            "Deal facts!14"
+          ],
+          "source_pages": [
+            "29",
+            "30"
+          ]
+        },
+        {
+          "id": "B03",
+          "credit": 1,
+          "reason": "G&W three full-package prices, cash components, $1.13 South Quay CVR and removal correct. July Not stated expressly acknowledges settlement ambiguity, accepted A07; final Yes explicit.",
+          "rows": [
+            "Deal ledger!32 (event #31)",
+            "Deal ledger!33 (event #32)",
+            "Deal ledger!50 (event #49)"
+          ],
+          "source_pages": [
+            "29",
+            "31"
+          ]
+        },
+        {
+          "id": "B04",
+          "credit": 1,
+          "reason": "D/E revisions, E reversion and B reaffirmation complete; signing fields blank and exploratory A/intention to bid not invented as whole-company offers.",
+          "rows": [
+            "Deal ledger!2 (event #1)",
+            "Deal ledger!41 (event #40)",
+            "Deal ledger!42 (event #41)",
+            "Deal ledger!43 (event #42)",
+            "Deal ledger!47 (event #46)",
+            "Deal ledger!48 (event #47)",
+            "Deal ledger!53 (event #52)"
+          ],
+          "source_pages": [
+            "27",
+            "30",
+            "31",
+            "32"
+          ]
+        },
+        {
+          "id": "M01",
+          "credit": 1,
+          "reason": "Initiation, March strategy, continuing GHF/BMO, target/buyer legal advisers and Strategic G&W are present. Subcommittee folded into initiation note.",
+          "rows": [
+            "Deal ledger!2 (event #1)",
+            "Deal ledger!3 (event #2)",
+            "Deal ledger!4 (event #3)",
+            "Deal ledger!5 (event #4)",
+            "Deal ledger!49 (event #48)",
+            "Deal facts!4",
+            "Deal facts!10",
+            "Deal facts!15",
+            "Deal facts!16"
+          ],
+          "source_pages": [
+            "21",
+            "27",
+            "28",
+            "30",
+            "31"
+          ]
+        },
+        {
+          "id": "M02",
+          "credit": 1,
+          "reason": "Separate signing and announcement, $25 common-share cash and preferred conversion, C catch-up access, B priority/G&W continued access and E/F support are all captured without invented process events.",
+          "rows": [
+            "Deal ledger!23 (event #22)",
+            "Deal ledger!42 (event #41)",
+            "Deal ledger!45 (event #44)",
+            "Deal ledger!48 (event #47)",
+            "Deal ledger!53 (event #52)",
+            "Deal ledger!54 (event #53)",
+            "Deal facts!5",
+            "Deal facts!6",
+            "Deal facts!7"
+          ],
+          "source_pages": [
+            "27",
+            "29",
+            "30",
+            "31",
+            "32"
+          ]
+        }
+      ],
+      "score_100": 100.0,
+      "category_scores": {
+        "participation": 30.0,
+        "rounds": 25.0,
+        "formality_conditions": 20.0,
+        "chronology": 10.0,
+        "bids_prices": 10.0,
+        "other_material_coverage": 5.0
+      },
+      "critical_errors": [],
+      "other_errors": [
+        {
+          "id": "C-E1",
+          "description": "Residual note and Q7 say Party A is never mentioned after March, although the later memorandum distribution on page 28 names it. Q7 also says if A bid it must be one of the two low IOIs; it could instead be the unnamed strategic LOI non-submitter. Keep membership unresolved without a named exit.",
+          "rows": [
+            "Deal ledger!16 (event #15)",
+            "Deal ledger!17 (event #16)",
+            "Deal ledger!30 (event #29)",
+            "Questions!8"
+          ],
+          "source_pages": [
+            "28",
+            "29",
+            "30"
+          ],
+          "instruction_sections": [
+            "C3",
+            "C16",
+            "D"
+          ]
+        },
+        {
+          "id": "C-E2",
+          "description": "Q1 proposes adding an August 4 fourth round after the July 27 final round; A03 instead permits moving the third boundary to August 4 with consistent bid placement. Selected three-round map is correct.",
+          "rows": [
+            "Questions!2"
+          ],
+          "source_pages": [
+            "30",
+            "31"
+          ],
+          "instruction_sections": [
+            "C8",
+            "D"
+          ]
+        },
+        {
+          "id": "C-E3",
+          "description": "Q3 alternatives entertain extra B/Class-I NDA signers without observed agreements. The adopted initial 25 plus C and page-33 conflict are correct; narrow the question to the actual total conflict and preserve uncertain identities.",
+          "rows": [
+            "Deal ledger!9 (event #8)",
+            "Deal ledger!10 (event #9)",
+            "Deal ledger!11 (event #10)",
+            "Questions!4"
+          ],
+          "source_pages": [
+            "28",
+            "29",
+            "33"
+          ],
+          "instruction_sections": [
+            "C3",
+            "D"
+          ]
+        },
+        {
+          "id": "C-E4",
+          "description": "Q5 calls D Formal on July 20, a solicitation sort rather than known receipt date. Use late July/by July 27. The actual ledger correctly retains bounds.",
+          "rows": [
+            "Questions!6",
+            "Deal ledger!27 (event #26)"
+          ],
+          "source_pages": [
+            "29",
+            "30"
+          ],
+          "instruction_sections": [
+            "C10",
+            "D"
+          ]
+        },
+        {
+          "id": "C-E5",
+          "description": "G&W final bid note says physical diligence done August 11; agreement signed that day. The row date, signing row and facts correctly say August 12, so clarify that day as August 12 to avoid an apparent August 11 signing claim.",
+          "rows": [
+            "Deal ledger!50 (event #49)",
+            "Deal ledger!53 (event #52)",
+            "Deal facts!6"
+          ],
+          "source_pages": [
+            "31",
+            "32"
+          ],
+          "instruction_sections": [
+            "C10",
+            "D"
+          ]
+        }
+      ],
+      "omissions": [
+        {
+          "id": "C-O1",
+          "description": "Catch-up access row lacks Date to despite the bounded July 12-14 access/presentation sequence. Supply July 14 upper bound and retain the July 14 presentation date; offer/access order is already correct.",
+          "rows": [
+            "Deal ledger!23 (event #22)"
+          ],
+          "source_pages": [
+            "29"
+          ],
+          "instruction_sections": [
+            "C10"
+          ]
+        },
+        {
+          "id": "C-O-CAVEAT",
+          "description": "The collective caveat that LOI prices used different transaction-expense and change-in-control-payment assumptions, potentially affecting ultimate prices, is absent. Add a compact cohort-context note without assigning unknown bidder-specific amounts or changing reported per-share prices. The locked tests do not create a separate weighted item for this caveat.",
+          "rows": [
+            "Deal ledger!25 (event #24)",
+            "Deal ledger!26 (event #25)",
+            "Deal ledger!27 (event #26)",
+            "Deal ledger!28 (event #27)",
+            "Deal ledger!29 (event #28)",
+            "Deal ledger!32 (event #31)"
+          ],
+          "source_pages": [
+            "30"
+          ],
+          "instruction_sections": [
+            "C2",
+            "C15"
+          ]
+        }
+      ],
+      "compliance_observations": [
+        {
+          "status": "verified",
+          "detail": "All four prescribed sheets, order, headers, visibility, A2 freeze panes, filters, wrapping and no merged cells checked in XLSX. Ledger # sequential; sort dates real Excel dates, nondecreasing and within populated bounds; controlled event/offer fields populated appropriately; reviewer-note columns empty. Every ledger quotation occurs verbatim after whitespace normalization on its cited filing page. Every ledger Note is <=40 words and quotation <=30 words. TXT transcripts match every nonempty XLSX cell; no formula cells."
+        },
+        {
+          "status": "checker_adjudication",
+          "detail": "Raw error counts are not scores. A quotation match proves occurrence, not all semantic claims in its row. Broad Questions Rows affected lists do not require every downstream ledger row to carry the same single flag: Part D prohibits indiscriminate flags. Thus checker flag_mismatch reports are navigation leads rather than independent substantive failures."
+        },
+        {
+          "status": "question_length",
+          "detail": "Part D/B4 asks about 60 words per entry; measured across Question, Recommended answer, Why, Rows affected and What changes. Overlength affects review burden/compliance only.",
+          "words_per_entry": [
+            122,
+            105,
+            123,
+            105,
+            91,
+            67,
+            101
+          ]
+        },
+        {
+          "status": "confirmed",
+          "rows": [
+            "Deal ledger!16 (event #15)"
+          ],
+          "detail": "Flag Q3; Q7 violates the single-ID format; select a primary Question and cross-reference the other in Questions."
+        },
+        {
+          "status": "confirmed",
+          "rows": [
+            "Deal facts!4",
+            "Deal facts!10"
+          ],
+          "detail": "Normalize controlled values to Strategic and mixed; preserve explanatory prose elsewhere. Semantic classifications are correct."
+        },
+        {
+          "status": "rejected_checker_flag",
+          "rows": [
+            "Deal facts!11"
+          ],
+          "detail": "String 1 equals the single ledger process; not a factual process-count error."
+        },
+        {
+          "status": "navigation_refinement",
+          "rows": [
+            "Deal ledger!43 (event #42)",
+            "Questions!7"
+          ],
+          "detail": "Q6 logically concerns E reversion and closure, but Rows affected only cites closure. Add event #42 for a useful reverse link; this is not a separate participation failure."
+        },
+        {
+          "status": "confirmed",
+          "rows": [
+            "Questions!2",
+            "Questions!3",
+            "Questions!4",
+            "Questions!5",
+            "Questions!6",
+            "Questions!8"
+          ],
+          "detail": "Six question entries are 91-123 words; Q6 is 67. Shorten speculative alternatives and avoid redundant B membership discussion while retaining the actual page-33 count conflict."
+        }
+      ],
+      "review_burden": {
+        "measurement_method": "Whitespace-delimited words in text-valued workbook cells excluding header rows; Excel numeric/date cells excluded. Includes narrative field names, textual When cells, quote page tokens and repeated descriptions. A reproducible volume proxy, not a human-time estimate.",
+        "text_words_total": 4140,
+        "text_words_by_sheet": {
+          "Deal ledger": 2871,
+          "Rounds": 252,
+          "Questions": 721,
+          "Deal facts": 296
+        },
+        "ledger_event_rows": 53,
+        "round_rows": 3,
+        "question_rows": 7,
+        "ledger_note_words": 1163,
+        "ledger_quote_words_excluding_page": 1105,
+        "question_words_per_entry": [
+          122,
+          105,
+          123,
+          105,
+          91,
+          67,
+          101
+        ],
+        "actual_human_review_time": "Not measured and not estimated.",
+        "useful_questions": "Covers map, due-date outcomes, actual 25-versus-26 conflict, B reaffirmation, E/D formality, E closure and Party A residual. Q6 clearly states the two-versus-three-live implication.",
+        "noisy_or_misleading_questions": "Q1 fourth-round alternative and Q3 unsupported extra signer possibilities should be pruned; Q7 overstates what can be inferred about A. These affect explanation quality without changing the selected correct ledger coding.",
+        "ease_of_checking": "Largest text volume, but explicit event links and complete 14 mandatory offer units reduce reconstruction. Full filing validates G&W exact NDA and final None; source occurrence alone would not settle those checks.",
+        "edits_required": "No required offer, re-entry or final-exit reconstruction under the locked tests. Correct A-last-seen/residual speculation, improve alternative-round wording, fill access upper bound, clarify signing-note pronoun, shorten questions and normalize three controlled cells/navigation."
+      },
+      "alex_compatibility": {
+        "included_in_primary_score": false,
+        "sources_read": [
+          "alex/alex_hand_rows.txt",
+          "alex/alex_voice_notes.txt",
+          "alex/alex_closing_summary.txt"
+        ],
+        "shared_differences": [
+          {
+            "source": "alex/alex_voice_notes.txt, Providence items 3-8 and 13; alex/alex_closing_summary.txt items 2A/B/J/K",
+            "finding": "All candidates separate contact/NDA/bid concepts, keep one GHF/BMO mandate and one process/three rounds, and distinguish signing from public announcement. These align with the voice-note priorities; their specific omissions and counts remain assessed under the current instruction."
+          },
+          {
+            "source": "alex/alex_hand_rows.txt lines 6037,6041,6050; alex/alex_voice_notes.txt item 10",
+            "finding": "All candidates code D July/August and G&W July 21 Formal plus Heavy, differing from hand-row Informal values but matching the later voice-note separate formality/conditionality approach and current C13/C14. No compatibility penalty."
+          },
+          {
+            "source": "alex/alex_hand_rows.txt lines 6039,6049,6051-6052; filing p.30; current C3/C4",
+            "finding": "All candidates correctly make F Strategic and retain E as the bidder receiving financing support, rather than hand-row F Financial and Party E/F bidding-unit labels. Current instruction and filing govern."
+          },
+          {
+            "source": "alex/alex_hand_rows.txt lines 6042-6043; alex/alex_voice_notes.txt item 11; current C16",
+            "finding": "Hand rows name an A departure; voice notes conjecture A did not clear R1. All candidate ledgers avoid an unsupported named A exit. That restraint complies with the current rule even when researcher heuristics differ."
+          },
+          {
+            "source": "alex/alex_hand_rows.txt lines 6032,6040,6045,6058; alex/alex_voice_notes.txt item 12; current C8/C11",
+            "finding": "Hand rows have several final-round markers and a July-27 deadline suggestion appears in voice item 9. Current instruction instead gives three target-organized stages with R3 Inferred final and no target deadline. No penalty for not copying hand markers or treating selection as a deadline."
+          }
+        ],
+        "candidate_specific": [
+          {
+            "source": "voice item 14; hand line 6054",
+            "rows": [
+              "Deal ledger!47 (event #46)"
+            ],
+            "finding": "Includes the requested B August 4 Formal $24 reaffirmation. Light conditions preserve the date-specific diligence context despite voice-note unconditional terminology."
+          },
+          {
+            "source": "voice item 9",
+            "rows": [
+              "Deal ledger!25 (event #24)",
+              "Deal ledger!26 (event #25)",
+              "Deal ledger!27 (event #26)",
+              "Deal ledger!28 (event #27)",
+              "Deal ledger!29 (event #28)"
+            ],
+            "finding": "July 20-27 bounds are wider than the voice-note initial July 20-22 reading but incorporate the July 27 final evaluation and satisfy current reference A09."
+          },
+          {
+            "source": "hand lines 6041,6044; current C15/A07",
+            "rows": [
+              "Deal ledger!32 (event #31)",
+              "Deal ledger!33 (event #32)"
+            ],
+            "finding": "Not stated cash status differs from hand all_cash=1 and is expressly accepted because CVR settlement mechanics are not stated."
+          },
+          {
+            "source": "hand line 6057; current C16",
+            "rows": [
+              "Deal ledger!46 (event #45)",
+              "Questions!7"
+            ],
+            "finding": "E inferred by-August-4 closure differs from hand signing exit; Q6 explicitly shows the live-count alternative and current instruction favors the chosen earlier closure."
+          },
+          {
+            "source": "hand line 6028; filing A-48",
+            "rows": [
+              "Deal ledger!9 (event #8)"
+            ],
+            "finding": "The April 3 G&W NDA note differs from the hand-row April 13 date and is supported by the agreement definition. No hand-row date is used to override the filing."
+          }
+        ]
+      }
+    }
+  },
+  "proposed_reference_amendments": [
+    {
+      "id": "AM01",
+      "status": "Proposed factual clarification; pending fresh identity-blind review; not silently applied to locked reference.",
+      "affected_reference_items": [
+        "inventory E08",
+        "reference.md event 8",
+        "T01 explanatory evidence only"
+      ],
+      "original_statement": "E08: Exact individual execution dates absent.",
+      "proposed_text": "Exact individual NDA execution dates are generally absent from Background, but the merger agreement defines the Company-G&W Confidentiality Agreement as dated April 3, 2016 (A-48). Accept this date and do not call a candidate note inventing it. If G&W is given its own NDA row, C10 supports using the exact date; cohort representation remains allowed.",
+      "source_pages": [
+        "A-48"
+      ],
+      "source_quote": "the Confidentiality Agreement between the Company and Parent dated April 3, 2016.",
+      "source_context": "Annex A definitions: Parent is G&W; this is the target-buyer confidentiality agreement, not an adviser/lender agreement.",
+      "why_needed": "Full-filing verification disproves the unqualified E08 statement. Candidate C Deal ledger row 9 contains a supported April 3 note; A has a separate G&W row whose broad bounds can be tightened. B uses cohorts.",
+      "scoring_rule_under_amendment": "Clarify factual evidence only; retain all 33 tests, weights and cohort alternatives. Original T01 tests coarse chronology/date honesty, not mandatory separate dated G&W coverage. No new requirement or denominator is introduced after seeing candidates.",
+      "original_scores_100": {
+        "Candidate-A": 83.0,
+        "Candidate-B": 90.5,
+        "Candidate-C": 100.0
+      },
+      "proposed_amended_scores_100": {
+        "Candidate-A": 83.0,
+        "Candidate-B": 90.5,
+        "Candidate-C": 100.0
+      },
+      "candidate_effects": {
+        "Candidate-A": "T01 remains partial for missing additional-contact chronology; tighten individual NDA row as a correction. No further credit change.",
+        "Candidate-B": "T01 remains pass; NDA cohort representation and bounds include April 3. No credit change.",
+        "Candidate-C": "T01 remains pass; April 3 note is supported, no invented-date error."
+      },
+      "adjudicated_scores_100": null,
+      "review_request": "Fresh identity-blind reviewer should confirm A-48 definition and unchanged-weight treatment. Not performed in this run because the user prohibited subagents/external material."
+    }
+  ],
+  "ranking_with_reasons": [
+    {
+      "rank": 1,
+      "candidate": "Candidate-C",
+      "score_100": 100.0,
+      "reason": "All 33 locked substantive tests pass, including NDA-total conflict, final-stage B reaffirmation, E timely closure and date bounds. This is full locked-test credit, not an error-free-workbook claim: speculative question alternatives, minor bounds/notes and controlled-value formatting still need edits."
+    },
+    {
+      "rank": 2,
+      "candidate": "Candidate-B",
+      "score_100": 90.5,
+      "reason": "Captures all mandatory offer units and the round map. Loses credit for missing NDA-total conflict, reported exits marked inferred, E carried to signing, deadline-row reconciliation, July-31 LOI bounds and unqualified CVR cash inference."
+    },
+    {
+      "rank": 3,
+      "candidate": "Candidate-A",
+      "score_100": 83.0,
+      "reason": "Correct broad process and most bidder arithmetic/formality/conditions, but omits two additional contacts and B final-stage reaffirmation, miscoded B final exit and G&W CVR consideration, and misses the total-count conflict/deadline reconciliation. Reaffirmation consequences are one shared omission across several tests."
+    }
+  ],
+  "score_verification": {
+    "method": "Python decimal arithmetic, recomputed from the locked reference weights and all 99 test credits after assembling the judgments. Category denominators and total 100 asserted; matrix, category sums and totals cross-checked.",
+    "test_count": 33,
+    "judgment_count": 99,
+    "category_denominators": {
+      "participation": 30,
+      "rounds": 25,
+      "formality_conditions": 20,
+      "chronology": 10,
+      "bids_prices": 10,
+      "other_material_coverage": 5
+    },
+    "original_scores_100": {
+      "Candidate-A": 83.0,
+      "Candidate-B": 90.5,
+      "Candidate-C": 100.0
+    },
+    "proposed_amended_scores_100": {
+      "Candidate-A": 83.0,
+      "Candidate-B": 90.5,
+      "Candidate-C": 100.0
+    },
+    "adjudicated_scores_100": null
+  }
+}

@@ -1,0 +1,85 @@
+{
+ "request": {
+  "state": {
+   "previous_paragraph": "G&W was $1.00 more per share; (2) the termination fee payable by the Company in the event the Board exercised its \"fiduciary out\" in order to accept a superior proposal was less under the G&W draft agreement than the Party B draft agreement; and (3) the STB approval process for G&W and Party B would be different since G&W owned connecting railroads. The Board arranged a telephone call with the Company's STB counsel to discuss the process for obtaining the required regulatory approval or exemption for the transaction, the risks associated with each process, the use of a voting trust to enable an earlier closing of the transaction (as contemplated by the G&W merger agreement) and the likely timeframe for obtaining any regulatory clearance for a transaction with either Party B or G&W. Based upon that discussion, the Board determined that the timeframe for, and the likelihood of, obtaining the required regulatory approval was not materially different for a transaction with G&W versus a transaction with Party B. At the request of the Board, representatives of BMO then contacted Party B to determine if it would increase its offer price. Party B indicated that it would not increase its price.",
+   "paragraph": "The Board determined that the G&W offer represented the superior proposal. At the request of the Board, representatives of BMO reviewed BMO's financial analyses supporting its opinion to the Board as to the fairness, from a financial point of view, to the holders of our common stock of the consideration to be received by those holders (other than the Eder Trusts) in the merger pursuant to the merger agreement as of August 12, 2016. At the request of the Board, BMO confirmed that it did not have any existing or contemplated material relationships with G&W in connection with the provision of any financial advisory or financing services to G&W. BMO then rendered an oral opinion to the Board, subsequently confirmed by delivery of a written opinion, dated August 12, 2016 to the effect that, as of that date, and based upon and subject to the various assumptions made, procedures followed, matters considered and qualifications and limitations on the scope of review undertaken by BMO as set forth in its written opinion, the merger consideration to be received by the holders of our common stock in the merger pursuant to the merger agreement was fair, from a financial point of view, to those holders (other than the Eder Trusts). Following a discussion of the terms of the merger agreement and related matters, the Board (other than Director Smith, who recused himself from the August 12, 2016 meeting) (i) determined that the merger agreement, the plan of merger and the merger and other transactions contemplated by the merger agreement are fair to, advisable and in the best interests of the Company and its shareholders, (ii) approved and declared advisable the merger agreement and the transactions contemplated thereby, including the merger and the plan of merger, (iii) directed that the merger agreement be submitted to the Company's shareholders for approval and (iv) resolved to recommend that the Company's shareholders approve the merger agreement and the transactions contemplated thereby, including the merger and the plan of merger."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "bid": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "nda_access": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "exit": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a potential buyer withdraws, declines to bid, is told it will not advance, or is otherwise excluded from the process? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "deadline": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "exclusivity": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that exclusivity is requested, authorised, granted, signed or extended? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "agreements": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "bid": {
+    "type": "noul",
+    "noul": 0.11
+   },
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "exit": {
+    "type": "noul",
+    "noul": 0.24
+   },
+   "deadline": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.13
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.83
+   },
+   "exclusivity": {
+    "type": "noul",
+    "noul": 0.02
+   },
+   "agreements": {
+    "type": "noul",
+    "noul": 0.9
+   }
+  },
+  "usage": {
+   "input_tokens": 1371,
+   "output_tokens": 138
+  }
+ },
+ "latency_s": 0.315
+}

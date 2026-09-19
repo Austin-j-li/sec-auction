@@ -1,0 +1,42 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On May 14, 2013, the Transaction Committee and representatives of Goodwin Procter held a meeting by telephone conference call. The Transaction Committee discussed further the process for hiring a financial advisor for a review of strategic alternatives. Given that BofA Merrill Lynch was one of the investment banks to be invited to submit a proposal and that the CSC sale process had ended, the Transaction Committee determined to terminate BofA Merrill Lynch's engagement letter entered into for purposes of the 2011-2012 Discussions.",
+   "target_sentence": "Given that BofA Merrill Lynch was one of the investment banks to be invited to submit a proposal and that the CSC sale process had ended, the Transaction Committee determined to terminate BofA Merrill Lynch's engagement letter entered into for purposes of the 2011-2012 Discussions."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_5": "05/15/2013 | BofA Merrill Lynch | Adviser ended | Transaction Committee determined on 05/14/2013 to terminate the engagement letter for the 2011-2012 Discussions; termination letter sent 05/15/2013.",
+     "row_6": "05/30/2013 | BofA Merrill Lynch | Adviser | Board approved engaging BofA Merrill Lynch as financial advisor for the strategic-alternatives review; engagement letter entered 05/31/2013.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_5",
+    "confidence": 0.94,
+    "probabilities": {
+     "not_an_event": 0.0,
+     "none": 0.04,
+     "row_6": 0.0,
+     "row_5": 0.96
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 808,
+   "output_tokens": 53
+  }
+ },
+ "latency_s": 0.321
+}

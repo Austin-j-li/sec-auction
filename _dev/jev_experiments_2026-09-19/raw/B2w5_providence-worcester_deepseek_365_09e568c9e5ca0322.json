@@ -1,0 +1,166 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On the afternoon of August 12, 2016, following the meeting of the Transaction Committee, the Board held a special meeting to review and consider the recommendation of the Transaction Committee with respect to a potential sale transaction. All directors were present in person or by telephone other than Director Smith. The Transaction Committee reported on the process and the status of the negotiations with Party B and G&W. Drafts of the Party B merger agreement, voting agreement and disclosure letter and drafts of the G&W merger agreement, voting agreement and disclosure letter were provided to the directors at the meeting. Hinckley Allen reviewed the material terms of the draft merger agreements provided by Party B and G&W, and the differences between the G&W draft merger agreement and the Party B draft merger agreement. Hinckley Allen also reviewed the Board's fiduciary obligations in connection with the proposed transaction and responded to questions from the directors. Hinckley Allen advised the Board that both Party B's and G&W's draft merger agreements restricted the Company from soliciting a competing proposal, subject to a \"fiduciary out\" for an unsolicited superior proposal, which required the Company to pay a termination fee equal to 3% of the transaction value in the case of G&W (which the Company had negotiated down from 3.85%) and 3% plus Party B's transaction expenses (capped at 1% of transaction value) in the case of Party B, in the event the merger agreement was terminated as a result of the Board's decision to pursue such a proposal.",
+   "ledger_rows": [
+    {
+     "When": "07/29/2016",
+     "Who": "Party D",
+     "Event": "Re-entered",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Returned after exit #34; expressed interest in reengaging and enhancing its offer; revised bid followed 08/01."
+    },
+    {
+     "When": "07/29/2016",
+     "Who": "Party E",
+     "Event": "Re-entered",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Returned after exit #33; expressed interest in reengaging and enhancing its offer; revised bid followed 08/01."
+    },
+    {
+     "When": "08/01/2016",
+     "Who": "Party D",
+     "Event": "Bid",
+     "Price low": 24,
+     "Price high": 24,
+     "Note": "Revised up from $21.00; 30-day diligence period retained; on 08/02 asked the Company not to sign with a rival during diligence."
+    },
+    {
+     "When": "08/01/2016",
+     "Who": "Party E",
+     "Event": "Bid",
+     "Price low": 23.81,
+     "Price high": 23.81,
+     "Note": "Raised from $21.26 with financing support from Party F; 30-day diligence period."
+    },
+    {
+     "When": "08/01/2016",
+     "Who": "Party F",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Provided financing support for Party E's revised $23.81 bid; F had already exited on 07/27 (last bid $19.20); relationship formed."
+    },
+    {
+     "When": "08/02/2016",
+     "Who": "Party E",
+     "Event": "Bid",
+     "Price low": 21.26,
+     "Price high": 21.26,
+     "Note": "Reversion: withdrew the $23.81 proposal while confirming its original $21.26 offer; stays in the process."
+    },
+    {
+     "When": "08/02/2016",
+     "Who": "Party D",
+     "Event": "Withdrew",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Declined to shorten diligence and sought a no-sign commitment; Company refused; filing's words: would not proceed with further diligence 'at that time'."
+    },
+    {
+     "When": "08/04/2016",
+     "Who": "PWRR (Transaction Committee)",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Prioritized Party B as preferred bidder at its $24.00 offer and directed completing the merger agreement negotiation with it; G&W talks continued."
+    },
+    {
+     "When": "08/04/2016",
+     "Who": "Party B",
+     "Event": "Bid reaffirmed",
+     "Price low": 24,
+     "Price high": 24,
+     "Note": "Reaffirmed by returned draft; $24.00 carried from #23; expedited diligence condition as of this date."
+    },
+    {
+     "When": "08/09/2016",
+     "Who": "G&W",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Granted continued diligence 08/10-08/11 after the Company told G&W it intended to sign with another bidder; G&W's $25.00 offer followed 08/12."
+    },
+    {
+     "When": "08/12/2016",
+     "Who": "G&W",
+     "Event": "Bid",
+     "Price low": 25,
+     "Price high": 25,
+     "Note": "Raised from $22.15; all cash, CVR dropped; mark-ups with the offer; offer expired 6:00 p.m. 08/13; completed physical diligence first."
+    },
+    {
+     "When": "08/12/2016",
+     "Who": "Party B",
+     "Event": "Not selected at signing",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Asked on 08/12 whether it would increase its $24.00; declined; Board then chose G&W's $25.00 as the superior proposal."
+    },
+    {
+     "When": "by 08/12/2016",
+     "Who": "Party E",
+     "Event": "Not selected at signing",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Last seen confirming a standing $21.26 on 08/02; not included when the Board chose G&W at $25.00."
+    },
+    {
+     "When": "08/12/2016",
+     "Who": "PWRR / G&W",
+     "Event": "Merger agreement signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Agreed price $25.00 per share in cash; preferred converts into 100 common shares; termination fee $3.785M; board approved and parties signed same day; voting agreement with Eder Trusts."
+    },
+    {
+     "When": "08/15/2016",
+     "Who": "PWRR / G&W",
+     "Event": "Merger announced",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Press release before NASDAQ opened; signed merger agreement announced publicly."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "adviser": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "exclusivity": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that exclusivity is requested, authorised, granted, signed or extended. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "adviser": {
+    "type": "noul",
+    "noul": 0.17
+   },
+   "exclusivity": {
+    "type": "noul",
+    "noul": 0.32
+   }
+  },
+  "usage": {
+   "input_tokens": 2246,
+   "output_tokens": 40
+  }
+ },
+ "latency_s": 0.295
+}

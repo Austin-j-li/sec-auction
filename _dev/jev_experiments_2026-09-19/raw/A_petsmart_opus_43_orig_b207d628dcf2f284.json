@@ -1,0 +1,120 @@
+{
+ "request": {
+  "state": {
+   "passage": {
+    "before": [
+     "Attractive Value. The board considered the current and historical market prices of the common stock, including the market performance of the common stock relative to those of other participants in the Company's industry and general market indices, and the fact that the merger consideration of $83.00 per share in cash represents an attractive premium to estimates of the Company's unaffected stock price, including a premium of 38.8% to the Company's stock price on July 2, 2014, the date on which a PetSmart stockholder disclosed its acquisition of a 9.9% stake in the Company and advocated publicly for the Company to explore strategic alternatives, including a sale of the Company.",
+     "Best Alternative for Maximizing Shareholder Value / Thorough and Well Publicized Sale Process. The board considered that the merger consideration of $83.00 in cash per share was more favorable to the Company's stockholders than the potential value that might result from other alternatives reasonably available to the Company, including, but not limited to, a merger with a different buyer, a leveraged recapitalization, extraordinary dividends, stock repurchases and the continued operation of the Company on a stand-alone basis in light of a number of factors, including the following:"
+    ],
+    "cited_paragraph": "The board considered that the Company had conducted a lengthy and thorough process, directed by the board and the ad hoc committee, which consisted solely of independent directors, during which representatives of the Company contacted or were contacted by more than 25 potential participants, entered into non-disclosure agreements with and engaged in due diligence or provided management presentation to 15 potential bidders, received first round indications of interest from 5 bidder groups, and ultimately negotiated with the Buyer Group as well as two other bidding groups, neither of which was willing to make a definitive offer at a price above $81.50, which was lower than the $83.00 price offered by the Buyer Group. The board noted that Bidder 2 had informed the Company's representatives that $81.50 per share was its best and final offer. The board also noted that, based on conversations with, and based on the course of negotiations with, the Buyer Group, $83.00 per share appeared to be the highest price the Buyer Group could offer. Among other things, the Buyer Group informed representatives of the Company that after increasing its offer from $82.50 to $83.00 per share, some members of the group, or all of them, were unwilling or unable to offer additional consideration. The Buyer Group also informed representatives of the Company that Longview's willingness to participate in the Buyer Group with respect to $250 million of the common stock was helpful in achieving an $83.00 per share price.",
+    "after": [
+     "The board noted that the Company's receptiveness to a sale transaction was well publicized, including as a result of the Company's public announcement on August 19, 2014 of its intent to explore a possible sale of the Company.",
+     "On several occasions in 2014, including in-person meetings in June, August, October and December, the board evaluated carefully, with the assistance of financial advisors, the risks and potential benefits associated with other strategic or financial alternatives and the potential for shareholder value creation associated with those alternatives, including the alternative of returning significant cash to stockholders via a leveraged a recapitalization, as well as the alternative of not engaging in a strategic or financial transaction and executing on the Company's business plans and the Profit Improvement Plan. As part of these evaluations, the board considered:"
+    ]
+   }
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "actor": {
+    "type": "noul",
+    "instructions": "Does `passage.cited_paragraph` describe something done by, done to, or decided about the party called \"Bidder 2\" (or a group that the passage shows includes it)?",
+    "criteria": {
+     "true": "That party, or a cohort clearly containing it, is a subject of the cited paragraph.",
+     "false": "The cited paragraph concerns other parties only."
+    }
+   },
+   "event": {
+    "type": "noul",
+    "instructions": "A research ledger records an event labelled \"Not selected at signing\" for \"Bidder 2\". Does the passage report facts that fit the label \"Not selected at signing\" for that party?",
+    "criteria": {
+     "true": "The passage reports such an event, or facts from which it directly follows.",
+     "false": "The passage reports a different kind of event, or nothing of that kind."
+    }
+   },
+   "exit_label": {
+    "type": "choice",
+    "instructions": "How does the passage describe \"Bidder 2\" leaving or losing the sale process?",
+    "criteria": {
+     "Dropped by target": "The target excluded the bidder, refused it the next stage, or signed exclusivity with a rival.",
+     "Withdrew": "The bidder itself said it was ending its participation.",
+     "Did not submit": "The bidder was invited to bid by a deadline and did not submit a bid.",
+     "Not selected at signing": "The bidder was still bidding or still in the process when the target signed with someone else.",
+     "No exit described": "The passage does not describe this party leaving or losing the process."
+    }
+   },
+   "exit_reason": {
+    "type": "choice",
+    "instructions": "What reason does the passage give for \"Bidder 2\" leaving the sale process or not continuing?",
+    "criteria": {
+     "Value below market price": "Bidder indicated its valuation was below the current share price.",
+     "Value at or below market price": "Bidder indicated it could not pay a premium to the share price.",
+     "Value below earlier offer": "Bidder indicated it could now pay only less than its own earlier offer.",
+     "Value at earlier offer": "Bidder's value stayed at its earlier offer.",
+     "Would not improve earlier offer": "Bidder was unable or unwilling to raise its earlier offer.",
+     "Lower offer than rivals": "Bidder's offer was lower than competing offers.",
+     "Terms or process": "Exit due to contract terms, conditions, financing, timing, diligence or process issues, not price.",
+     "Other stated reason": "Another reason is stated (strategy change, other priorities, etc.).",
+     "Not stated": "The passage gives no reason for this party's exit."
+    }
+   },
+   "exit_express": {
+    "type": "noul",
+    "instructions": "Does the passage expressly report that \"Bidder 2\" left, was excluded from, was told it was out of, or declined to continue in the process?",
+    "criteria": {
+     "true": "An exit, exclusion or notification is stated in words.",
+     "false": "The exit can only be inferred, for example because the party is simply not mentioned among those continuing."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "actor": {
+    "type": "noul",
+    "noul": 0.97
+   },
+   "event": {
+    "type": "noul",
+    "noul": 0.8
+   },
+   "exit_label": {
+    "type": "choice",
+    "choice": "No exit described",
+    "confidence": 0.34,
+    "probabilities": {
+     "Not selected at signing": 0.35,
+     "Withdrew": 0.16,
+     "Did not submit": 0.01,
+     "Dropped by target": 0.0,
+     "No exit described": 0.48
+    }
+   },
+   "exit_reason": {
+    "type": "choice",
+    "choice": "Would not improve earlier offer",
+    "confidence": 0.51,
+    "probabilities": {
+     "Would not improve earlier offer": 0.57,
+     "Other stated reason": 0.0,
+     "Terms or process": 0.0,
+     "Lower offer than rivals": 0.31,
+     "Value at earlier offer": 0.01,
+     "Not stated": 0.11,
+     "Value at or below market price": 0.0,
+     "Value below market price": 0.0,
+     "Value below earlier offer": 0.0
+    }
+   },
+   "exit_express": {
+    "type": "noul",
+    "noul": 0.1
+   }
+  },
+  "usage": {
+   "input_tokens": 1788,
+   "output_tokens": 227
+  }
+ },
+ "latency_s": 0.24
+}

@@ -1,0 +1,98 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On August 29, 2013, members of Mac-Gray management, representatives from BofA Merrill Lynch and representatives of Party C participated in an in-person session for Party C to conduct follow-up and confirmatory due diligence.",
+   "ledger_rows": [
+    {
+     "When": "08/06/2013\u201308/27/2013",
+     "Who": "Mac-Gray",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Granted B/C broad data-site access; limited A/CSC access and withheld customer data from the strategic bidders."
+    },
+    {
+     "When": "08/27/2013",
+     "Who": "Mac-Gray",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Four bidders invited; revised written bids due September 9."
+    },
+    {
+     "When": "09/09/2013",
+     "Who": "Mac-Gray",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Revised bids due; Party A and Party C submitted one day late and were considered."
+    },
+    {
+     "When": "09/09/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Bid",
+     "Price low": 19.5,
+     "Price high": 19.5,
+     "Note": "Pamplona committed 100% of capital; two-week exclusivity requested. Further in-depth diligence remained contemplated."
+    },
+    {
+     "When": "09/09/2013",
+     "Who": "Party B",
+     "Event": "Bid",
+     "Price low": 18.5,
+     "Price high": 18.5,
+     "Note": "No firm financing commitment; proposed affiliated equity and third-party debt."
+    },
+    {
+     "When": "09/10/2013",
+     "Who": "Party A",
+     "Event": "Bid",
+     "Price low": 18,
+     "Price high": 19,
+     "Note": "No firm financing commitment; funding proposed from credit facilities or affiliated equity."
+    },
+    {
+     "When": "09/10/2013",
+     "Who": "Party C",
+     "Event": "Bid",
+     "Price low": 16,
+     "Price high": 17,
+     "Note": "Oral proposal; no firm financing commitment."
+    },
+    {
+     "When": "09/11/2013",
+     "Who": "Stewart MacDonald",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Declined any equity rollover; bidders reportedly required his express support, not his rollover."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "nda_access": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.16
+   }
+  },
+  "usage": {
+   "input_tokens": 1079,
+   "output_tokens": 21
+  }
+ },
+ "latency_s": 0.273
+}

@@ -1,0 +1,44 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Certain potential strategic transactions have been discussed from time to time between Mac-Gray and CSC and other participants in the laundry facilities management industry, including discussions between Mac-Gray and CSC in the winter of 2011 and into 2012 regarding the possible acquisition of CSC by Mac-Gray. In connection with Mac-Gray's consideration of a possible acquisition of CSC, which we refer to as the 2011-2012 Discussions, Mac-Gray engaged BofA Merrill Lynch on October 23, 2012. During the fall and winter of 2012, CSC engaged in a sale process and, ultimately, CSC was purchased by Pamplona in May 2013.",
+   "target_sentence": "In connection with Mac-Gray's consideration of a possible acquisition of CSC, which we refer to as the 2011-2012 Discussions, Mac-Gray engaged BofA Merrill Lynch on October 23, 2012."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_2": "10/23/2012 | BofA Merrill Lynch | Adviser | Target's financial adviser, hired for Mac-Gray's possible purchase of CSC (2011-2012 Discussions), not for a sale. On 04/05/2013 the board had it explore opportunities, including with Party A.",
+     "row_3": "04/08/2013 | Party A | Target interest | Board authorized this on 04/05 as part of exploring opportunities. Party A said it might consider a combination. Party A is a laundry facilities management company.",
+     "row_4": "05/09/2013 | Goodwin Procter LLP | Adviser | Target's outside legal counsel, first seen acting here. Later also advised the Special Committee.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_2",
+    "confidence": 0.89,
+    "probabilities": {
+     "none": 0.08,
+     "row_3": 0.0,
+     "not_an_event": 0.0,
+     "row_4": 0.0,
+     "row_2": 0.92
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 898,
+   "output_tokens": 62
+  }
+ },
+ "latency_s": 0.422
+}

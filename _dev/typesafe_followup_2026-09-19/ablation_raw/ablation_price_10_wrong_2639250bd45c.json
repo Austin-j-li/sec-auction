@@ -1,0 +1,60 @@
+{
+  "case_id": "ablation_price_10_wrong",
+  "request_sha256": "2639250bd45c99bef37bada0d80f7025bc4c1c3bb9ac9ebc7c2ba8b2c2370537",
+  "request": {
+    "model": "jev-1.13.0",
+    "state": {
+      "passage": [
+        {
+          "paragraph_id": "235",
+          "text": "The Special Committee discussed that the preliminary indications of interest were lower than expected and suggested that additional due diligence, including with regard to the potential synergies, should result in improved offers by the strategic parties. The Special Committee then discussed the highly competitive nature of Mac-Gray's industry and expressed concern over permitting access to and the potential misuse of sensitive and competitive information, including customer terms and locations, especially by strategic bidders. Accordingly, the Special Committee concluded that it would be advisable to stage the disclosure of such information to each of the bidders to the extent that a bidder's indication of interest and other actions demonstrated its seriousness in acquiring Mac-Gray on terms viewed favorably by the Special Committee. Based on this discussion, BofA Merrill Lynch discussed with the Special Committee a proposed process for the second stage of the on-going sale process. As part of this review, BofA Merrill Lynch recommended that management meetings be arranged between members of Mac-Gray management (other than Mr. MacDonald) and each of Party A (if Party A"
+        },
+        {
+          "paragraph_id": "236",
+          "text": "agreed to enter into a confidentiality agreement), Party B, Party C and CSC/Pamplona to provide these parties with access to high level information concerning Mac-Gray's technology, pipeline, management team, regional operations, contracts, operations and growth initiatives, and in the case of CSC/Pamplona and Party A, synergies, and to then request that each of these parties submit a revised indication of interest. After discussion and in an effort to drive offers with increased value, the Special Committee authorized and instructed BofA Merrill Lynch to proceed with the staged disclosure as discussed at this meeting and to reach out to each of the four interested bidders and arrange management meetings."
+        },
+        {
+          "paragraph_id": "237",
+          "text": "Later on July 25, 2013, Party C submitted a written indication of interest at an all-cash purchase price of $16.00 to $16.50 per share."
+        },
+        {
+          "paragraph_id": "238",
+          "text": "Discussions with Party A resumed on July 27, 2103 and Party A and the Transaction Committee agreed to the terms of the customer and employee non-solicitation provisions. On August 5, 2013, Party A entered into a confidentiality and standstill agreement with Mac-Gray and was provided with an informational package for the purpose of providing Party A with data to potentially improve the terms of the Party A June 21 proposal."
+        },
+        {
+          "paragraph_id": "239",
+          "text": "On August 6, 2013, representatives of Party B attended a management presentation at the Boston office of Goodwin Procter with members of Mac-Gray management, representatives of BofA Merrill Lynch and a member of the Transaction Committee."
+        }
+      ]
+    },
+    "questions": {
+      "scoped_noul": {
+        "type": "noul",
+        "instructions": "For Party C, evaluate the claim that the price at the event \"written indication July 25, 2013\" was $15.00 to $17.00 per share. Use only the source and bind the entire range, bidder, event and price basis together. Is that exact claim supported?",
+        "criteria": {
+          "true": "The source explicitly supports the entire price/range for this bidder at this event and price basis.",
+          "false": "The price is different, belongs to another event/bidder/component, or evidence is missing."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "scoped_noul": {
+        "type": "noul",
+        "noul": 0.04
+      }
+    },
+    "usage": {
+      "input_tokens": 1041,
+      "output_tokens": 23
+    }
+  },
+  "attempts": [
+    {
+      "status": 200,
+      "latency_s": 2.04324366999208
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On September 21, 2013, the members of the Transaction Committee called the representative of CSC/Pamplona to propose that Mac-Gray was prepared to move forward with CSC/Pamplona on an exclusive basis for two weeks subject to CSC/Pamplona increasing their all-cash purchase price to $21.25 per share. Later that same day, the representative of CSC/Pamplona called the members of the Transaction Committee to confirm that CSC/Pamplona were willing to increase their all-cash purchase price to $21.25 per share as a last and best offer, provided that Mac-Gray agree to a two week period of exclusive negotiations. The representative of CSC/Pamplona also requested that shares of Mac-Gray common stock owned beneficially and of record by Mr. MacDonald and his immediate family be subject to a customary voting agreement, which we refer to as the MacDonald voting agreements.",
+   "target_sentence": "On September 21, 2013, the members of the Transaction Committee called the representative of CSC/Pamplona to propose that Mac-Gray was prepared to move forward with CSC/Pamplona on an exclusive basis for two weeks subject to CSC/Pamplona increasing their all-cash purchase price to $21.25 per share."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_38": "09/18/2013 | CSC/Pamplona | Bid | price 20.75 | Pamplona committed 100% of capital; two-week exclusivity requested; no further diligence condition reported.",
+     "row_39": "09/18/2013 | Party A | Bid reaffirmed | price 18-19 | Reaffirms #32 as best and final in response to final solicitation; prior lack of firm financing remains.",
+     "row_40": "09/18/2013 | Party B | Bid | price 21.5 | Package: $19.00 cash at closing plus options Party B valued at $2.50; options vested on five-year performance. Third-party debt anticipated.",
+     "row_41": "09/18/2013 | Party C | Did not submit | No final indication or reaffirmation; no reason stated.",
+     "row_42": "09/19/2013 | Mac-Gray | Other material event | Preferred CSC/Pamplona for certainty and sought $21.25 before exclusivity.",
+     "row_43": "09/21/2013 | CSC/Pamplona | Bid | price 21.25 | Last-and-best offer; conditioned on two-week exclusivity and requested MacDonald-family voting agreements; full funding and no financing contingency were agreed by September 23.",
+     "row_44": "09/24/2013 | CSC/Pamplona | Exclusivity changed | Executed exclusive negotiations through October 12, conditioned on no adverse change to final proposal.",
+     "row_45": "09/24/2013 | Party A | Dropped by target | Inferred displaced when rival exclusivity executed. Party A had said #38 was best and final.",
+     "row_46": "09/24/2013 | Party B | Dropped by target | Inferred displaced when rival exclusivity executed; target preferred CSC/Pamplona's certainty over Party B's contingent options and financing risk.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted; or exclusivity is requested, authorised, granted, signed or extended. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_43",
+    "confidence": 0.7,
+    "probabilities": {
+     "row_45": 0.0,
+     "row_40": 0.0,
+     "none": 0.27,
+     "row_38": 0.0,
+     "row_39": 0.0,
+     "row_43": 0.73,
+     "row_44": 0.0,
+     "row_42": 0.0,
+     "not_an_event": 0.0,
+     "row_41": 0.0,
+     "row_46": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1326,
+   "output_tokens": 126
+  }
+ },
+ "latency_s": 0.382
+}

@@ -1,0 +1,70 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On May 15, 2013, Mac-Gray sent a letter to BofA Merrill Lynch terminating their engagement in connection with the 2011-2012 Discussions.",
+   "ledger_rows": [
+    {
+     "When": "05/15/2013",
+     "Who": "BofA Merrill Lynch",
+     "Event": "Adviser ended",
+     "Price low": null,
+     "Price high": null,
+     "Note": "The Transaction Committee decided on 05/14 to end the 2011-2012 mandate, since BofA was being invited to pitch for the sale-review role."
+    },
+    {
+     "When": "05/30/2013",
+     "Who": "BofA Merrill Lynch",
+     "Event": "Adviser",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Re-engaged as the target's sole financial adviser for the strategic review and possible sale, chosen from three banks. Engagement letter 05/31; no buyer financing without consent."
+    },
+    {
+     "When": "05/30/2013",
+     "Who": "Moab Partners, L.P.",
+     "Event": "Activist",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Moab (about 9% holder) won a proxy contest; Rothenberg and Hyman replaced incumbents. The filing does not say Moab pressed for a sale. Rothenberg was later excluded over Moab's rollover interest."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "exit": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a potential buyer withdraws, declines to bid, is told it will not advance, or is otherwise excluded from the process. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "exit": {
+    "type": "noul",
+    "noul": 0.86
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.67
+   }
+  },
+  "usage": {
+   "input_tokens": 869,
+   "output_tokens": 38
+  }
+ },
+ "latency_s": 0.715
+}

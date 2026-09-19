@@ -1,0 +1,72 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "In mid-June 2016, at the direction of the Transaction Committee, representatives of GHF instructed all potential buyers to submit non-binding letters of intent (\"LOIs\") by July 20, 2016, together with mark-ups of the forms of merger agreement, disclosure letter and voting agreement, which GHF indicated would be posted to the internet data site. Potential buyers were instructed to provide a valuation for the Company based on the purchase of 100% of the outstanding common stock on a dollar per share basis (assuming conversion of the preferred stock into common stock) or the financial terms of any non-cash proposal.",
+   "target_sentence": "In mid-June 2016, at the direction of the Transaction Committee, representatives of GHF instructed all potential buyers to submit non-binding letters of intent (\"LOIs\") by July 20, 2016, together with mark-ups of the forms of merger agreement, disclosure letter and voting agreement, which GHF indicated would be posted to the internet data site."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_11": "by 04/07/2016 | 2 additional Class I railroads | Contact | Company management approached them about a possible transaction; filing reports no response and no NDA.",
+     "row_12": "by 04/27/2016 | Target (GHF) | Deadline set | Every potential buyer told to submit a non-binding IOI by 05/10/2016; memorandum already sent to NDA signers.",
+     "row_13": "after 04/27/2016 | Target (GHF) | Deadline revised | IOI due date moved from 05/10 to 05/19/2016. Day not given; Date from assumes 05/10 was still operative at the 04/27 Board discussion.",
+     "row_14": "05/19/2016 | Target | Deadline | IOI due date reached. IOIs arrived 05/19 to 06/01.",
+     "row_15": "05/19/2016 - 06/01/2016 | 9 IOI bidders | Bid | price 17.93-26.5 | Range for the group; $/share assumes preferred converts; equity $90M-$134M. Made before data-site access. By later events includes B, G&W, D, E, F and the two LOI non-submitters (#29-30): 5 strategic, 2 financial, 2 unknown.",
+     "row_16": "by 06/01/2016 | 16 NDA signers without IOI | Did not submit | 25 NDA signers (#8-9) \u2212 9 IOI bidders (#14) = 16. None reappears. May include Party A, which the filing never mentions after March.",
+     "row_17": "05/23/2016 - 06/01/2016 | 2 low IOI bidders | Dropped by target | Transaction Committee excluded the two lowest IOIs from management presentations to save management time. Identities and types not disclosed; may include Party A.",
+     "row_18": "05/23/2016 - 06/01/2016 | Target (Transaction Committee) | Round opened | Committee advanced the other seven IOI bidders to in-person management presentations and further diligence; all seven got internet data-site access.",
+     "row_19": "mid-June 2016 | Target (GHF) | Deadline set | Non-binding LOIs due 07/20/2016 with mark-ups of the merger agreement, disclosure letter and voting agreement; price per share for 100% of common. Drafts posted 06/29, 06/30, 07/11.",
+     "row_20": "early July 2016 | Party C | Bidder interest | New strategic buyer approached management unsolicited, expressing interest in acquiring the Company; late entrant during the LOI stage.",
+     "row_21": "early July 2016 | Party C | NDA signed | Signed after its approach and before its 07/12 IOI; then received the memorandum. It may not be counted in the filing's 25-NDA total.",
+     "row_22": "07/12/2016 | Party C | Bid | price 21 | IOI; equity value $108M. Made before data-site access (Heavy by context).",
+     "row_23": "after 07/12/2016; call 07/14/2016 | Party C | Other material event | Catch-up access for late entrant: Party C got data-site access and a telephone management presentation (07/14); the seven others had in-person presentations.",
+     "row_24": "07/20/2016 | Target | Deadline | LOI due date reached; six LOIs arrived in late July, G&W's on 07/21.",
+     "row_25": "late July 2016 | Party B | Bid | price 24 | Non-binding LOI with mark-ups of the merger and voting agreements (Formal by markup); subject to expedited diligence review. Highest LOI.",
+     "row_32": "07/21/2016 | G&W | Bid | price 21.15 | $20.02 cash + $1.13 CVR tied to sale of South Quay property (payment form not stated). Asked for a three-week exclusive diligence period. Marked up merger agreement, voting agreement and disclosure letter. Arrived after 07/20 due date.",
+     "row_33": "07/26/2016 | G&W | Bid | price 22.15 | Revised after GHF said its price and CVR structure were not competitive: $21.02 cash + $1.13 CVR. Diligence terms not restated; assumed unchanged from #31.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers; or the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_19",
+    "confidence": 1.0,
+    "probabilities": {
+     "row_21": 0.0,
+     "row_23": 0.0,
+     "row_17": 0.0,
+     "row_33": 0.0,
+     "row_11": 0.0,
+     "row_25": 0.0,
+     "row_19": 1.0,
+     "row_22": 0.0,
+     "row_16": 0.0,
+     "row_15": 0.0,
+     "not_an_event": 0.0,
+     "row_24": 0.0,
+     "row_14": 0.0,
+     "row_18": 0.0,
+     "row_13": 0.0,
+     "row_12": 0.0,
+     "none": 0.0,
+     "row_20": 0.0,
+     "row_32": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 2007,
+   "output_tokens": 206
+  }
+ },
+ "latency_s": 0.462
+}

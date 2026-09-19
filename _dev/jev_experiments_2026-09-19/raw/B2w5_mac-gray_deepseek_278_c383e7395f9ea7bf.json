@@ -1,0 +1,42 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "termination fee. Following such agreement, Goodwin Procter delivered Kirkland revised drafts of the merger agreement and the Pamplona commitment letter.",
+   "ledger_rows": [
+    {
+     "When": "10/12/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Exclusivity changed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Letter agreement extended exclusivity to 11:59 p.m. ET 10/15/2013 after CSC/Pamplona agreed to an $11M Mac-Gray termination fee."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "agreements": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "agreements": {
+    "type": "noul",
+    "noul": 0.28
+   }
+  },
+  "usage": {
+   "input_tokens": 528,
+   "output_tokens": 21
+  }
+ },
+ "latency_s": 0.28
+}

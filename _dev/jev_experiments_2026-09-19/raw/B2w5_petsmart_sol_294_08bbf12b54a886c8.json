@@ -1,0 +1,186 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "During the weeks following the August 13 board meeting, members of the ad hoc committee continued to discuss among themselves, with fellow directors and with J.P. Morgan, the timing and process for the exploration of strategic alternatives, including issues relating to Industry Participant. In light of the risks discussed at the August 13 meeting and in these subsequent discussions, the ad hoc committee directed J.P. Morgan to communicate to Industry Participant the board's concerns as a result of which Industry Participant would not be invited to participate in the exploratory process. On August 22, 2014, a representative of J.P. Morgan contacted by telephone the representative of Industry Participant with whom the J.P. Morgan representative had spoken to on August 7. During this call, Industry Participant confirmed that it was aware of the Company's August 19 announcement and the J.P Morgan representative informed the Industry Participant representative of the board's concerns regarding Industry Participant's participation. The parties agreed to speak again in a few days. On August 27, 2014, representatives of Industry Participant contacted by telephone the representative of J.P. Morgan. During this call, the Industry Participant representatives stated that Industry Participant would have interest in discussing the possibility of a combination of the two companies. The J.P. Morgan representative reiterated the concerns identified by the board that engaging with Industry Participant was unlikely to maximize value for PetSmart's stockholders. The J.P. Morgan representative stated that Industry Participant would not be invited into the exploratory process, but that if Industry Participant were to wish to submit a proposal or other communication to the Company, the board would consider it. There has been no contact between PetSmart and Industry Participant (or between any of their respective representatives) since August 27, 2014.",
+   "ledger_rows": [
+    {
+     "When": "07/03/2014",
+     "Who": "JANA Partners",
+     "Event": "Activist",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Disclosed a 9.9% stake and sought review of strategic alternatives, including a sale."
+    },
+    {
+     "When": "07/07/2014",
+     "Who": "Longview",
+     "Event": "Activist",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Publicly urged the board to consider a sale and offered a possible rollover."
+    },
+    {
+     "When": "July 2014",
+     "Who": "J.P. Morgan",
+     "Event": "Adviser",
+     "Price low": null,
+     "Price high": null,
+     "Note": "PetSmart financial adviser; retained after interviews. Engagement letter later stated effective 08/21/2014."
+    },
+    {
+     "When": "08/07/2014",
+     "Who": "Industry Participant",
+     "Event": "Bidder interest",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Initiating approach: said it might revisit a possible combination if PetSmart pursued alternatives."
+    },
+    {
+     "When": "mid-August\u201310/31/2014",
+     "Who": "3 strategic potential participants",
+     "Event": "Contact",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Inbound contacts to J.P. Morgan; part of 27 potential participants, excluding Industry Participant."
+    },
+    {
+     "When": "mid-August\u201310/31/2014",
+     "Who": "24 financial potential participants",
+     "Event": "Contact",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Inbound contacts to J.P. Morgan; included possible lead buyers and large equity suppliers."
+    },
+    {
+     "When": "08/13/2014",
+     "Who": "PetSmart",
+     "Event": "Target sale decision",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Board decided to explore alternatives, including a possible sale, and planned outreach for late September or early October."
+    },
+    {
+     "When": "08/19/2014",
+     "Who": "PetSmart",
+     "Event": "Sale process announced",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Publicly announced exploration of strategic alternatives, including a possible sale."
+    },
+    {
+     "When": "08/27/2014",
+     "Who": "PetSmart",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Excluded Industry Participant from the organized process over antitrust, delay and information risks; unsolicited proposals would still be considered."
+    },
+    {
+     "When": "first week of October 2014",
+     "Who": "PetSmart",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Admitted 15 financial buyers through NDAs; all received diligence, senior-management presentations and detailed plan information."
+    },
+    {
+     "When": "first week of October 2014",
+     "Who": "Buyer Group",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Part of the 15-buyer NDA cohort; later submitted a first-round indication."
+    },
+    {
+     "When": "first week of October 2014",
+     "Who": "Bidder 2",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Part of the 15-buyer NDA cohort; later submitted a first-round indication."
+    },
+    {
+     "When": "first week of October 2014",
+     "Who": "4 other first-round bidders",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Part of the 15-buyer NDA cohort; all four later submitted first-round indications."
+    },
+    {
+     "When": "first week of October 2014",
+     "Who": "9 other financial buyers",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Residual of the 15-buyer cohort after the six later submitters: 15 \u2212 6 = 9."
+    },
+    {
+     "When": "during October 2014",
+     "Who": "PetSmart",
+     "Event": "Deadline set",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Set 10/30/2014 for non-binding preliminary indications of interest."
+    },
+    {
+     "When": "during October 2014",
+     "Who": "Longview",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Offered all bidders optional rollover support of up to 7.5 million shares; it was not a participation condition."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "exit": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a potential buyer withdraws, declines to bid, is told it will not advance, or is otherwise excluded from the process. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "exit": {
+    "type": "noul",
+    "noul": 0.79
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.47
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.61
+   }
+  },
+  "usage": {
+   "input_tokens": 2289,
+   "output_tokens": 54
+  }
+ },
+ "latency_s": 0.287
+}

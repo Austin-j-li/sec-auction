@@ -1,0 +1,85 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On July 3, 2014, JANA Partners filed a Schedule 13D with the SEC disclosing that JANA had acquired 9.9% of the Company's outstanding common stock and that JANA intended to engage in discussions with management and the board with respect to a review of strategic alternatives, including a sale of the Company. On July 7, 2014, Longview made public a letter to the board in which Longview stated that the board should consider the a sale of the Company (as well as other strategic alternatives) and that should the board determine a sale transaction to be in the interests of all stockholders, Longview would consider, depending on the parties and terms involved, rolling part or all of its holdings into equity of the acquiring entity rather than receive cash consideration, should doing so prove necessary in order to enable the Company to complete a transaction. Over the course of July and August, JANA Partners filed several amendments to its Schedule 13D and publicly disclosed letters to the board, advocating for a sale of PetSmart. On July 10, 2014, representatives of JANA met in person with representatives of the Company. At this meeting, the JANA representatives presented their perspectives on the Company and advocated for a sale of the Company. On July 10, 2014, representatives of the Company also spoke to representatives of Longview and Longview reiterated its advocacy for a sale of the Company.",
+   "sentence": "On July 10, 2014, representatives of JANA met in person with representatives of the Company."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "bid": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "nda_access": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "exit": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a potential buyer withdraws, declines to bid, is told it will not advance, or is otherwise excluded from the process? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "deadline": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "exclusivity": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that exclusivity is requested, authorised, granted, signed or extended? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "agreements": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed? Judge `sentence` only; `paragraph` is context for names and dates."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "bid": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.18
+   },
+   "exit": {
+    "type": "noul",
+    "noul": 0.02
+   },
+   "deadline": {
+    "type": "noul",
+    "noul": 0.02
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.36
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.02
+   },
+   "exclusivity": {
+    "type": "noul",
+    "noul": 0.01
+   },
+   "agreements": {
+    "type": "noul",
+    "noul": 0.02
+   }
+  },
+  "usage": {
+   "input_tokens": 1034,
+   "output_tokens": 138
+  }
+ },
+ "latency_s": 0.478
+}

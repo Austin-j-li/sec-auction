@@ -1,0 +1,134 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On November 3, 2014, the board met in person, together with members of management and representatives of J.P. Morgan and Wachtell Lipton, to continue its review of strategic alternatives, including a review of the indications of interest. The board determined to allow the four bidders that had indicated a price or range at or above $80.00 per share to proceed to the final round of the sale process. Following this meeting, representatives of J.P. Morgan notified the eliminated parties, none of which indicated any interest or ability to remain in the process at price levels above their respective initial indications.",
+   "ledger_rows": [
+    {
+     "When": "first week of October 2014",
+     "Who": "PetSmart",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Round 1 opened by the first-week-of-October confidentiality wave; the 10/30 indication due date was set later."
+    },
+    {
+     "When": "first week of October 2014",
+     "Who": "15 potentially interested financial buyers",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "All 15 received October due diligence, management presentations and detailed financial and business-plan information."
+    },
+    {
+     "When": "October 2014",
+     "Who": "PetSmart",
+     "Event": "Deadline set",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Set non-binding preliminary indication due date of 10/30; communicated to the potential bidders during October."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "PetSmart",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Six of the potentially interested parties submitted indications of interest."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "Buyer Group",
+     "Event": "Bid",
+     "Price low": 81,
+     "Price high": 83,
+     "Note": "Preliminary non-binding indication; range $81.00\u2013$83.00; consideration not stated."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "Unnamed financial bidder 1",
+     "Event": "Bid",
+     "Price low": 80,
+     "Price high": 85,
+     "Note": "Another of the six submitters; non-binding range $80.00\u2013$85.00; not individually named."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "3 unnamed indication submitters",
+     "Event": "Bid",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Remainder of the six submitters; no individual detail or prices; one later advanced, two eliminated 11/03 (#24)."
+    },
+    {
+     "When": "10/30\u201311/02/2014",
+     "Who": "Bidder 2",
+     "Event": "Bid",
+     "Price low": 81,
+     "Price high": 84,
+     "Note": "Raised after J.P. Morgan's 10/30\u201311/02 calls; range $81.00\u2013$84.00; made it one of four at or above $80.00."
+    },
+    {
+     "When": "11/03/2014",
+     "Who": "PetSmart",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Final round opened by the 11/03 advancement of four bidders at or above $80.00; merger-agreement form circulated in November; updated FY2014 projections given to all finalists."
+    },
+    {
+     "When": "11/03/2014",
+     "Who": "2 unnamed indication submitters",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "6 submitters \u2212 4 advanced = 2 notified as eliminated; none could remain above their initial indications."
+    },
+    {
+     "When": "12/04\u201312/05/2014",
+     "Who": "PetSmart",
+     "Event": "Deadline set",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Set evening 12/10 for final bids, replacing the initial 12/05 plan; mark-ups and financing commitments requested in advance."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "exit": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a potential buyer withdraws, declines to bid, is told it will not advance, or is otherwise excluded from the process. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "exit": {
+    "type": "noul",
+    "noul": 0.81
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.37
+   }
+  },
+  "usage": {
+   "input_tokens": 1632,
+   "output_tokens": 38
+  }
+ },
+ "latency_s": 0.234
+}

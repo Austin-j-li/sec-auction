@@ -1,0 +1,61 @@
+{
+  "case_id": "coverage_07_empty",
+  "request_sha256": "24ac737e51d5a7759ca638025e2efa6d11bb8d633e1e01c070ab033057e55665",
+  "request": {
+    "model": "jev-1.13.0",
+    "state": {
+      "source": [
+        {
+          "paragraph_id": "309",
+          "text": "On December 10, PetSmart received final bid letters along with revised versions of the merger agreement and other transaction documents from the Buyer Group and from Bidder 2 and a verbal indication from Bidder 3. The Buyer Group offered $80.70 per share, in cash, and Bidder 2 offered $80.35 per share, in cash. Bidder 3 verbally communicated to J.P. Morgan that their valuation would not be above the current stock price of approximately $78 per share. J.P. Morgan communicated to Bidder 3 that it was unlikely to be competitive and accordingly Bidder 3 did not submit a written offer. The form of merger agreement and other transaction documentation submitted by the Buyer Group were more favorable to the Company (including because they were less conditional and more likely to be completed and because they offered more certainty of protection for the Company in the unlikely event of non-completion of the transaction) and reflected substantially more acceptance of the Company's positions. Each bidder indicated that its bid was not dependent on a rollover by Longview, but neither the Buyer Group nor Bidder 2 ruled out the possibility of partnering with Longview in a transaction, though Bidder 2 indicated that any partnering with Longview would only occur after completion of bidding and execution of a definitive merger agreement with the Company."
+        }
+      ],
+      "target_event": "Bidder 3 communicated valuation no higher than approximately $78 and did not submit a written offer on December 10.",
+      "ledger_rows": {}
+    },
+    "questions": {
+      "covered": {
+        "type": "noul",
+        "instructions": "Is the target_event recorded in ledger_rows? Match the actual event, including its bidder, date, action and material terms, not just topic overlap.",
+        "criteria": {
+          "true": "At least one row records this same event.",
+          "false": "No supplied row records this event."
+        }
+      },
+      "match": {
+        "type": "choice",
+        "instructions": "Select the ledger row that records target_event. A related event with a different date, bidder, amount or action does not count. Match by meaning, allowing paraphrase. Select none if absent.",
+        "criteria": {
+          "none": "None of the supplied ledger rows records the target event with the same actors, date, action and material terms."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "covered": {
+        "type": "noul",
+        "noul": 0.03
+      },
+      "match": {
+        "type": "choice",
+        "choice": "none",
+        "confidence": 1.0,
+        "probabilities": {
+          "none": 1.0
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 762,
+      "output_tokens": 40
+    }
+  },
+  "attempts": [
+    {
+      "status": 200,
+      "latency_s": 6.627675687006558
+    }
+  ]
+}

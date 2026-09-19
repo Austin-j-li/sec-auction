@@ -1,0 +1,72 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "unintended public disclosure. Accordingly, the Company set the evening of Wednesday, December 10 (five days, rather than 10 days prior to the anticipated December 15 completion date) as the deadline for submission of final bids, and at the same time asked the bidders to submit mark-ups of the draft merger agreement and the other transaction documents and financing commitments, if possible, in advance.",
+   "target_sentence": "Accordingly, the Company set the evening of Wednesday, December 10 (five days, rather than 10 days prior to the anticipated December 15 completion date) as the deadline for submission of final bids, and at the same time asked the bidders to submit mark-ups of the draft merger agreement and the other transaction documents and financing commitments, if possible, in advance."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_17": "10/30/2014 | Buyer Group | Bid | price 81-83 | Preliminary non-binding IOI; range. Consortium led by BC Partners funds (later with CDPQ, GIC, StepStone). Terms beyond price not reported.",
+     "row_18": "10/30/2014 | Unnamed financial bidder 1 | Bid | price 80-85 | Preliminary non-binding IOI; range. Advanced 11/03; on recommended reading, later part of Bidder 3.",
+     "row_19": "10/30/2014 | Unnamed financial bidder 2 | Bid | Third of three IOIs whose range \u201creached at least $80.00\u201d; endpoints not disclosed, so price cells blank. Advanced 11/03; on recommended reading, later part of Bidder 3.",
+     "row_20": "10/30/2014 | Bidder 2 | Bid | price 78 | Preliminary non-binding IOI at a point price.",
+     "row_21": "10/30/2014 | 2 other IOI submitters | Bid | Six IOIs in total; the remaining two, prices undisclosed but below the $80.00 cut-off (inferred from the board\u2019s advancement rule). Reasons section says IOIs came from 5 bidder groups.",
+     "row_23": "by 10/30/2014 | 9 NDA signers without IOI | Did not submit | 15 signers \u2212 6 submitters = 9. J.P. Morgan heard their rationales for not submitting (10/30\u201311/02); rationales not disclosed. Would be 10 if only 5 IOIs (Q4).",
+     "row_24": "10/30\u201311/02/2014 | Bidder 2 | Bid | price 81-84 | Revises #19 after J.P. Morgan calls on rationales for price levels; raised $78.00 to a range, bringing it above the $80.00 cut-off.",
+     "row_25": "11/03/2014 | PetSmart board | Round opened | Board advanced four bidders at or above $80.00 (Buyer Group, Bidder 2, Unnamed financial bidders 1 and 2) to the \u201cfinal round\u201d; November diligence, management presentations, updated FY2014 projections for all.",
+     "row_26": "11/03/2014 | 2 other IOI submitters | Dropped by target | Below board\u2019s $80.00 cut-off; notified after the meeting. None indicated interest or ability to go above its initial indication.",
+     "row_27": "November 2014 (by 12/04/2014) | PetSmart board | Deadline set | Final bids initially due Friday 12/05/2014, with completion targeted 12/15. In November form merger agreement circulated with instruction to submit comments together with final bids.",
+     "row_28": "November 2014 (after 11/03) | Bidder 3 (Unnamed financial bidders 1 and 2) | Bidding group changed | Ad hoc committee let two bidders work together: one (final-round invitee) wanted an equity partner given deal size; other would drop out otherwise. Members inferred as bidders 1 and 2. Count = net reduction.",
+     "row_29": "12/04\u201312/05/2014 | PetSmart (ad hoc committee) | Deadline revised | Final-bid due date moved from 12/05 to evening of 12/10 to shorten post-bid period and leak risk; bidders asked to send markups and financing commitments in advance.",
+     "row_30": "12/10/2014 | Buyer Group | Bid | price 80.7 | Final bid letter with revised merger agreement and transaction documents. Financing commitment documents supplied 12/06. Documents less conditional than Bidder 2\u2019s. Not dependent on Longview rollover.",
+     "row_31": "12/10/2014 | Bidder 2 | Bid | price 80.35 | Final bid letter with revised merger agreement and transaction documents; documents more conditional than Buyer Group\u2019s; financing status not reported until 12/12. Would partner with Longview only after signing.",
+     "row_32": "12/10/2014 | PetSmart | Deadline | Final-bid due date (evening). Two written bids received; Bidder 3 gave only a verbal valuation.",
+     "row_33": "12/10/2014 | Bidder 3 | Did not submit | Verbal valuation not above the ~$78 stock price; J.P. Morgan said it was unlikely to be competitive, so no written offer. Both sides contributed. Not mentioned again.",
+     "row_34": "12/10/2014 | PetSmart (ad hoc committee) | Deadline revised | Neither bid acceptable unless improved: J.P. Morgan told both bidders to raise their bids, improved bids due 12/12. Treated as an extension within the final round, not a new round.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_29",
+    "confidence": 0.99,
+    "probabilities": {
+     "row_31": 0.0,
+     "row_26": 0.0,
+     "row_25": 0.0,
+     "row_20": 0.0,
+     "row_34": 0.0,
+     "row_19": 0.0,
+     "row_17": 0.0,
+     "row_29": 1.0,
+     "row_33": 0.0,
+     "row_32": 0.0,
+     "row_21": 0.0,
+     "row_18": 0.0,
+     "row_24": 0.0,
+     "row_23": 0.0,
+     "row_28": 0.0,
+     "not_an_event": 0.0,
+     "row_30": 0.0,
+     "none": 0.0,
+     "row_27": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1999,
+   "output_tokens": 206
+  }
+ },
+ "latency_s": 0.408
+}

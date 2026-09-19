@@ -1,0 +1,776 @@
+{
+  "created_utc": "2026-09-19T16:51:07.251396+00:00",
+  "scores": {
+    "mac-gray": {
+      "Candidate-A": {
+        "recomputed_score_100": 90.75,
+        "reported_score_100": 90.75,
+        "category_scores": {
+          "participation": 27.0,
+          "rounds": 23.75,
+          "formality_conditions": 20.0,
+          "chronology": 7.0,
+          "bids_prices": 10.0,
+          "other_material_coverage": 3.0
+        },
+        "critical_errors": [],
+        "omissions": [
+          {
+            "root_cause_id": "A-ADVISERS",
+            "rows": [
+              "Deal ledger (absent; inspect entire sheet)",
+              "Deal facts 15\u201316"
+            ],
+            "test_or_event": "O02/D05",
+            "wrong_or_missing_field": "Buyer-bank Adviser events and date bounds",
+            "source_pages": [
+              "A-30"
+            ],
+            "unsupported_assertion": null,
+            "correction_needed": "Add Morgan Stanley & Co. LLC, Deutsche Bank Securities Inc., Evercore Group L.L.C. as buyer-group bankers/brokers known by October 14, with Date from empty and no invented mandate/client specificity."
+          },
+          {
+            "root_cause_id": "A-VOTING",
+            "rows": [
+              "Deal ledger 45"
+            ],
+            "test_or_event": "O04",
+            "wrong_or_missing_field": "MacDonald-family support formation date",
+            "source_pages": [
+              "39",
+              "41"
+            ],
+            "unsupported_assertion": null,
+            "correction_needed": "Record/fold September 27 voting-agreement entry and effectiveness at October 14 signing; C2 does not require routine negotiation rows."
+          },
+          {
+            "root_cause_id": "A-CONTACT",
+            "rows": [
+              "Deal ledger 10; actual Contact row absent"
+            ],
+            "test_or_event": "P01/D02",
+            "wrong_or_missing_field": "Aggregate Contact step and span",
+            "source_pages": [
+              "32"
+            ],
+            "unsupported_assertion": null,
+            "correction_needed": "Add actual multi-week outreach Contact representation, split/netted to 15 Strategic and 35 Financial; do not add 50 live entrants."
+          },
+          {
+            "root_cause_id": "A-ADVISERS",
+            "rows": [
+              "Deal ledger (absent)",
+              "Deal facts 16"
+            ],
+            "test_or_event": "O02",
+            "wrong_or_missing_field": "Goodwin and Kirkland ledger relationships",
+            "source_pages": [
+              "27",
+              "38"
+            ],
+            "unsupported_assertion": null,
+            "correction_needed": "Add Goodwin first seen May 9 and Kirkland first seen September 25; retain target/buyer clients."
+          },
+          {
+            "root_cause_id": "A-ACCESS",
+            "rows": [
+              "Deal ledger 40 (no access note)"
+            ],
+            "test_or_event": "O03/D05",
+            "wrong_or_missing_field": "CSC full-access phase",
+            "source_pages": [
+              "38"
+            ],
+            "unsupported_assertion": null,
+            "correction_needed": "Fold full data-site/management access and confirmatory work September 25\u2013October 7 into exclusivity note or a material access row."
+          },
+          {
+            "root_cause_id": "A-AUTHORIZATION",
+            "rows": [
+              "Deal ledger 40,44"
+            ],
+            "test_or_event": "D04",
+            "wrong_or_missing_field": "Approval-versus-execution history",
+            "source_pages": [
+              "38",
+              "40",
+              "41"
+            ],
+            "unsupported_assertion": null,
+            "correction_needed": "Fold September 23 authorization and October 9/11 extension approvals into execution notes."
+          },
+          {
+            "root_cause_id": "A-MOAB-PERMISSION",
+            "rows": [
+              "Deal ledger 14,43"
+            ],
+            "test_or_event": "O04",
+            "wrong_or_missing_field": "September 23 permission",
+            "source_pages": [
+              "38"
+            ],
+            "unsupported_assertion": null,
+            "correction_needed": "Fold renewed permission into compact rollover relationship history."
+          }
+        ]
+      },
+      "Candidate-B": {
+        "recomputed_score_100": 93.25,
+        "reported_score_100": 93.25,
+        "category_scores": {
+          "participation": 28.5,
+          "rounds": 23.75,
+          "formality_conditions": 19.0,
+          "chronology": 8.0,
+          "bids_prices": 10.0,
+          "other_material_coverage": 4.0
+        },
+        "critical_errors": [],
+        "omissions": [
+          {
+            "root_cause_id": "B-ADVISERS",
+            "rows": [
+              "Deal ledger (absent; inspect entire sheet)",
+              "Deal facts 15\u201316"
+            ],
+            "test_or_event": "O02/D05",
+            "wrong_or_missing_field": "Buyer-bank Adviser events and date bounds",
+            "source_pages": [
+              "A-30"
+            ],
+            "unsupported_assertion": null,
+            "correction_needed": "Add Morgan Stanley & Co. LLC, Deutsche Bank Securities Inc., Evercore Group L.L.C. as buyer-group bankers/brokers known by October 14, with Date from empty and no invented mandate/client specificity."
+          },
+          {
+            "root_cause_id": "B-VOTING",
+            "rows": [
+              "Deal ledger 49"
+            ],
+            "test_or_event": "O04",
+            "wrong_or_missing_field": "MacDonald-family support formation date",
+            "source_pages": [
+              "39",
+              "41"
+            ],
+            "unsupported_assertion": null,
+            "correction_needed": "Record/fold September 27 voting-agreement entry and effectiveness at October 14 signing; C2 does not require routine negotiation rows."
+          }
+        ]
+      },
+      "Candidate-C": {
+        "recomputed_score_100": 87.25,
+        "reported_score_100": 87.25,
+        "category_scores": {
+          "participation": 28.5,
+          "rounds": 18.75,
+          "formality_conditions": 19.0,
+          "chronology": 8.0,
+          "bids_prices": 10.0,
+          "other_material_coverage": 3.0
+        },
+        "critical_errors": [
+          {
+            "root_cause_id": "C-ROUND",
+            "rows": [
+              "Deal ledger 29\u201350",
+              "Rounds 3\u20135",
+              "Questions 2"
+            ],
+            "test_or_event": "R01/R05/R06/R09",
+            "wrong_or_missing_field": "Process-stage segmentation and bid-round variable",
+            "source_pages": [
+              "34",
+              "35",
+              "36"
+            ],
+            "unsupported_assertion": "August 27 opens a fourth-map stage separate from the July 25 information/rebid stage.",
+            "correction_needed": "Convert ledger row 29 to Deadline set in Round 2; merge current Rounds 3/4 (Excel rows) into one July 25 round; renumber current final Round 4 to 3. Keep all economic bids and September 11 final opening. One root cause, several scored outputs."
+          }
+        ],
+        "omissions": [
+          {
+            "root_cause_id": "C-ADVISERS",
+            "rows": [
+              "Deal ledger (absent; inspect entire sheet)",
+              "Deal facts 15\u201316"
+            ],
+            "test_or_event": "O02/D05",
+            "wrong_or_missing_field": "Buyer-bank Adviser events and date bounds",
+            "source_pages": [
+              "A-30"
+            ],
+            "unsupported_assertion": null,
+            "correction_needed": "Add Morgan Stanley & Co. LLC, Deutsche Bank Securities Inc., Evercore Group L.L.C. as buyer-group bankers/brokers known by October 14, with Date from empty and no invented mandate/client specificity."
+          },
+          {
+            "root_cause_id": "C-VOTING",
+            "rows": [
+              "Deal ledger 50"
+            ],
+            "test_or_event": "O04",
+            "wrong_or_missing_field": "MacDonald-family support formation date",
+            "source_pages": [
+              "39",
+              "41"
+            ],
+            "unsupported_assertion": null,
+            "correction_needed": "Record/fold September 27 voting-agreement entry and effectiveness at October 14 signing; C2 does not require routine negotiation rows."
+          },
+          {
+            "root_cause_id": "C-INITIATION",
+            "rows": [
+              "Deal ledger 9"
+            ],
+            "test_or_event": "O01",
+            "wrong_or_missing_field": "Committee formation and rollover conflicts",
+            "source_pages": [
+              "30",
+              "31"
+            ],
+            "unsupported_assertion": null,
+            "correction_needed": "Fold June 24 special committee and MacDonald/Rothenberg exclusions into sale-decision note."
+          },
+          {
+            "root_cause_id": "C-ACCESS",
+            "rows": [
+              "Deal ledger 44 (no access note)"
+            ],
+            "test_or_event": "O03",
+            "wrong_or_missing_field": "CSC catch-up/full access",
+            "source_pages": [
+              "38"
+            ],
+            "unsupported_assertion": null,
+            "correction_needed": "Record/fold September 25\u2013October 7 full access and confirmatory work."
+          },
+          {
+            "root_cause_id": "C-AUTHORIZATION",
+            "rows": [
+              "Deal ledger 44,49"
+            ],
+            "test_or_event": "D04",
+            "wrong_or_missing_field": "Approval-versus-execution history",
+            "source_pages": [
+              "38",
+              "40",
+              "41"
+            ],
+            "unsupported_assertion": null,
+            "correction_needed": "Fold September 23 authorization and October 9/11 extension approvals into executed-exclusivity notes."
+          }
+        ]
+      }
+    },
+    "petsmart": {
+      "Candidate-A": {
+        "recomputed_score_100": 91.0,
+        "reported_score_100": 91.0,
+        "category_scores": {
+          "participation": 28.5,
+          "rounds": 22.5,
+          "formality_conditions": 20.0,
+          "chronology": 6.0,
+          "bids_prices": 10.0,
+          "other_material_coverage": 4.0
+        },
+        "critical_errors": [],
+        "omissions": [
+          {
+            "id": "A-O1",
+            "finding": "No November FY2014 update event or internal-only projection/extrapolation/sensitivity disclosure; only a generic later-projections note.",
+            "rows": [
+              "Deal ledger rows 14, 29"
+            ],
+            "source_pages": [
+              "24",
+              "37",
+              "38",
+              "39"
+            ],
+            "instruction_sections": "C2"
+          },
+          {
+            "id": "A-O2",
+            "finding": "No later-December-12 bid-price-sharing detail, explicit December 14 rollover resolution/terms, or December 13 fairness opinion.",
+            "rows": [
+              "Deal ledger rows 40, 45, 48"
+            ],
+            "source_pages": [
+              "25",
+              "26",
+              "40",
+              "41",
+              "45"
+            ],
+            "instruction_sections": "C2, C4"
+          }
+        ]
+      },
+      "Candidate-B": {
+        "recomputed_score_100": 78.5,
+        "reported_score_100": 78.5,
+        "category_scores": {
+          "participation": 19.5,
+          "rounds": 20.0,
+          "formality_conditions": 20.0,
+          "chronology": 6.0,
+          "bids_prices": 9.0,
+          "other_material_coverage": 4.0
+        },
+        "critical_errors": [
+          {
+            "id": "B-CR1",
+            "finding": "Bidder 3 is one joint bidding unit but its December 10 Did not submit row has Count 2. Even reading formation as two constituents becoming one, 15-9-2-1=3 live units before that exit; subtracting 2 leaves 1 rather than the 2 rivals actually bidding on December 12, and subtracting Bidder 2 at signing leaves 0 rather than the winner. Correct M31 to 1. This is one serious unit-count error propagated through P07-P10, not four independent incidents.",
+            "rows": [
+              "Deal ledger rows 26, 31, 42",
+              "Rounds row 3",
+              "Questions row 6"
+            ],
+            "source_pages": [
+              "24",
+              "25",
+              "26"
+            ],
+            "instruction_sections": "C3-C4, C16",
+            "root_cause": "Constituent count reused for joint-unit exit"
+          }
+        ],
+        "omissions": [
+          {
+            "id": "B-O1",
+            "finding": "Third initially qualifying range-reaching-$80 indication lacks its distinguishing price-bound fact inside the three-person residual. Separate it from two residual offers, or preserve the distinction clearly in the cohort note.",
+            "rows": [
+              "Deal ledger row 21",
+              "Rounds row 2"
+            ],
+            "source_pages": [
+              "24"
+            ],
+            "instruction_sections": "C3, C12, C15"
+          },
+          {
+            "id": "B-O2",
+            "finding": "Unnamed June financial adviser omitted.",
+            "rows": [
+              "Deal ledger rows 3-4",
+              "Deal facts row 15"
+            ],
+            "source_pages": [
+              "21"
+            ],
+            "instruction_sections": "C5"
+          },
+          {
+            "id": "B-O3",
+            "finding": "No dated November FY2014 update event and no internal-versus-buyer projection withholding detail.",
+            "rows": [
+              "Deal ledger rows 14, 24"
+            ],
+            "source_pages": [
+              "24",
+              "37",
+              "38",
+              "39"
+            ],
+            "instruction_sections": "C2"
+          }
+        ]
+      },
+      "Candidate-C": {
+        "recomputed_score_100": 96.0,
+        "reported_score_100": 96.0,
+        "category_scores": {
+          "participation": 28.5,
+          "rounds": 25.0,
+          "formality_conditions": 20.0,
+          "chronology": 8.0,
+          "bids_prices": 10.0,
+          "other_material_coverage": 4.5
+        },
+        "critical_errors": [],
+        "omissions": [
+          {
+            "id": "C-O1",
+            "finding": "No dated November FY2014 projection update event and no internal-only projections, 2020-2024 extrapolations or sensitivities information. Admission note gives useful partial coverage.",
+            "rows": [
+              "Deal ledger rows 15, 25"
+            ],
+            "source_pages": [
+              "24",
+              "37",
+              "38",
+              "39"
+            ],
+            "instruction_sections": "C2"
+          }
+        ]
+      }
+    },
+    "providence-worcester": {
+      "Candidate-A": {
+        "recomputed_score_100": 83.0,
+        "reported_score_100": 83.0,
+        "category_scores": {
+          "participation": 25.5,
+          "rounds": 20.0,
+          "formality_conditions": 17.5,
+          "chronology": 7.5,
+          "bids_prices": 7.5,
+          "other_material_coverage": 5.0
+        },
+        "critical_errors": [
+          {
+            "id": "A-CE1",
+            "description": "Both July G&W offers are classified noncash (All cash=No), although a CVR alone does not establish noncash settlement. Full package prices are correct; this changes the consideration research field, not the price. No extra negative weight added.",
+            "rows": [
+              "Deal ledger!34 (event #33)",
+              "Deal ledger!35 (event #34)"
+            ],
+            "source_pages": [
+              "29"
+            ],
+            "instruction_sections": [
+              "C15"
+            ],
+            "related_tests": [
+              "B03"
+            ],
+            "root_cause": "Treating existence of a CVR as noncash consideration."
+          },
+          {
+            "id": "A-CE2",
+            "description": "Party B is coded Dropped by target when it remained a bidding rival at signing and refused to increase. Correct Event to Not selected at signing; preserve the existing correct refusal reason. This changes the exit-mechanism field.",
+            "rows": [
+              "Deal ledger!53 (event #52)",
+              "Rounds!4"
+            ],
+            "source_pages": [
+              "31",
+              "32"
+            ],
+            "instruction_sections": [
+              "C16"
+            ],
+            "related_tests": [
+              "P10"
+            ]
+          }
+        ],
+        "omissions": [
+          {
+            "id": "A-O1",
+            "description": "Required August 4 B $24 Bid reaffirmed row is absent. Add Formal, Light, carried from event #25, returned-draft basis and a Question/flag; update R3 Bids received from three to four. Its omission has linked consequences across round coverage, formality, conditions, chronology and proposal inventory, not five independent incidents.",
+            "rows": [
+              "Deal ledger!26 (event #25)",
+              "Deal ledger!48 (event #47)",
+              "Deal ledger!49 (event #48)",
+              "Deal ledger!50 (event #49)",
+              "Rounds!4"
+            ],
+            "source_pages": [
+              "29",
+              "31"
+            ],
+            "instruction_sections": [
+              "C12",
+              "C13",
+              "C14",
+              "D"
+            ],
+            "related_tests": [
+              "R04",
+              "F04",
+              "C04",
+              "T04",
+              "B04"
+            ],
+            "root_cause": "Missing first qualifying final-stage reaffirmation."
+          },
+          {
+            "id": "A-O2",
+            "description": "Two additional Class I contact actions reported by April 7 are missing. Add Strategic Contact Count 2, When by 04/07, without presuming NDA entry or distinct identities beyond the reported action.",
+            "rows": [
+              "Deal ledger!7 (event #6)",
+              "Deal ledger!8 (event #7)",
+              "Deal ledger!9 (event #8)",
+              "Rounds!2"
+            ],
+            "source_pages": [
+              "28"
+            ],
+            "instruction_sections": [
+              "C3",
+              "C9",
+              "C10"
+            ],
+            "related_tests": [
+              "P01",
+              "T01"
+            ]
+          },
+          {
+            "id": "A-O3",
+            "description": "Page-33 25-overall NDA summary conflict is missing from Q3/auction screen. Keep 25 initial plus new C; flag 25 versus 26 overall rather than silently fixing the source.",
+            "rows": [
+              "Questions!4",
+              "Deal facts!12"
+            ],
+            "source_pages": [
+              "28",
+              "29",
+              "33"
+            ],
+            "instruction_sections": [
+              "C3",
+              "D"
+            ],
+            "related_tests": [
+              "P02"
+            ]
+          },
+          {
+            "id": "A-O4",
+            "description": "No material Question addresses E final closure/live-count alternative, despite inferred by-August-4 exit. Add a concise question and link the exit.",
+            "rows": [
+              "Deal ledger!49 (event #48)",
+              "Questions!2",
+              "Questions!3",
+              "Questions!4",
+              "Questions!5"
+            ],
+            "source_pages": [
+              "30",
+              "31"
+            ],
+            "instruction_sections": [
+              "C16",
+              "D"
+            ]
+          },
+          {
+            "id": "A-O5",
+            "description": "South Quay sale trigger of the July CVR is omitted; amounts are retained.",
+            "rows": [
+              "Deal ledger!34 (event #33)",
+              "Deal ledger!35 (event #34)"
+            ],
+            "source_pages": [
+              "29"
+            ],
+            "instruction_sections": [
+              "C15"
+            ],
+            "related_tests": [
+              "B03"
+            ]
+          },
+          {
+            "id": "A-O-CAVEAT",
+            "description": "The collective caveat that LOI prices used different transaction-expense and change-in-control-payment assumptions, potentially affecting ultimate prices, is absent. Add a compact cohort-context note without assigning unknown bidder-specific amounts or changing reported per-share prices. The locked tests do not create a separate weighted item for this caveat.",
+            "rows": [
+              "Deal ledger!26 (event #25)",
+              "Deal ledger!27 (event #26)",
+              "Deal ledger!28 (event #27)",
+              "Deal ledger!29 (event #28)",
+              "Deal ledger!30 (event #29)",
+              "Deal ledger!34 (event #33)"
+            ],
+            "source_pages": [
+              "30"
+            ],
+            "instruction_sections": [
+              "C2",
+              "C15"
+            ]
+          }
+        ]
+      },
+      "Candidate-B": {
+        "recomputed_score_100": 90.5,
+        "reported_score_100": 90.5,
+        "category_scores": {
+          "participation": 25.5,
+          "rounds": 22.5,
+          "formality_conditions": 20.0,
+          "chronology": 8.75,
+          "bids_prices": 8.75,
+          "other_material_coverage": 5.0
+        },
+        "critical_errors": [
+          {
+            "id": "B-CE1",
+            "description": "Party E is retained as an independent live competitor until August 12, producing three rather than two live bidders after the August 4 named continuation set. Replace signing exit with an earlier inferred Dropped by target exit and Question under C16/A05. E reversion and D withdrawal are otherwise correct.",
+            "rows": [
+              "Deal ledger!43 (event #42)",
+              "Deal ledger!45 (event #44)",
+              "Deal ledger!51 (event #50)",
+              "Rounds!4"
+            ],
+            "source_pages": [
+              "30",
+              "31"
+            ],
+            "instruction_sections": [
+              "C16",
+              "D"
+            ],
+            "related_tests": [
+              "P09"
+            ],
+            "root_cause": "Applying the signing fallback despite an earlier named advancement/continuation set."
+          }
+        ],
+        "omissions": [
+          {
+            "id": "B-O1",
+            "description": "July 20 reached Deadline row is absent, although Deadline set and Rounds report it. Add one; keep Late bids accepted.",
+            "rows": [
+              "Deal ledger!19 (event #18)",
+              "Deal ledger!29 (event #28)",
+              "Deal ledger!30 (event #29)",
+              "Deal ledger!31 (event #30)",
+              "Rounds!3"
+            ],
+            "source_pages": [
+              "29"
+            ],
+            "instruction_sections": [
+              "C11"
+            ],
+            "related_tests": [
+              "R05"
+            ]
+          },
+          {
+            "id": "B-O2",
+            "description": "No Question identifies initial 25 plus new C versus page-33 25-overall summary; Deal facts must qualify its total.",
+            "rows": [
+              "Deal ledger!9 (event #8)",
+              "Deal ledger!10 (event #9)",
+              "Deal ledger!21 (event #20)",
+              "Deal facts!12"
+            ],
+            "source_pages": [
+              "28",
+              "29",
+              "33"
+            ],
+            "instruction_sections": [
+              "C3",
+              "D"
+            ],
+            "related_tests": [
+              "P02"
+            ]
+          },
+          {
+            "id": "B-O3",
+            "description": "E issues-list formality and its final exit timing lack focused Questions. Existing Q5 instead questions a reported collective exit; rework question priorities.",
+            "rows": [
+              "Deal ledger!25 (event #24)",
+              "Deal ledger!41 (event #40)",
+              "Deal ledger!43 (event #42)",
+              "Deal ledger!51 (event #50)",
+              "Questions!6"
+            ],
+            "source_pages": [
+              "29",
+              "30",
+              "31"
+            ],
+            "instruction_sections": [
+              "C13",
+              "C16",
+              "D"
+            ]
+          },
+          {
+            "id": "B-O-CAVEAT",
+            "description": "The collective caveat that LOI prices used different transaction-expense and change-in-control-payment assumptions, potentially affecting ultimate prices, is absent. Add a compact cohort-context note without assigning unknown bidder-specific amounts or changing reported per-share prices. The locked tests do not create a separate weighted item for this caveat.",
+            "rows": [
+              "Deal ledger!24 (event #23)",
+              "Deal ledger!25 (event #24)",
+              "Deal ledger!26 (event #25)",
+              "Deal ledger!27 (event #26)",
+              "Deal ledger!28 (event #27)",
+              "Deal ledger!31 (event #30)"
+            ],
+            "source_pages": [
+              "30"
+            ],
+            "instruction_sections": [
+              "C2",
+              "C15"
+            ]
+          }
+        ]
+      },
+      "Candidate-C": {
+        "recomputed_score_100": 100.0,
+        "reported_score_100": 100.0,
+        "category_scores": {
+          "participation": 30.0,
+          "rounds": 25.0,
+          "formality_conditions": 20.0,
+          "chronology": 10.0,
+          "bids_prices": 10.0,
+          "other_material_coverage": 5.0
+        },
+        "critical_errors": [],
+        "omissions": [
+          {
+            "id": "C-O1",
+            "description": "Catch-up access row lacks Date to despite the bounded July 12-14 access/presentation sequence. Supply July 14 upper bound and retain the July 14 presentation date; offer/access order is already correct.",
+            "rows": [
+              "Deal ledger!23 (event #22)"
+            ],
+            "source_pages": [
+              "29"
+            ],
+            "instruction_sections": [
+              "C10"
+            ]
+          },
+          {
+            "id": "C-O-CAVEAT",
+            "description": "The collective caveat that LOI prices used different transaction-expense and change-in-control-payment assumptions, potentially affecting ultimate prices, is absent. Add a compact cohort-context note without assigning unknown bidder-specific amounts or changing reported per-share prices. The locked tests do not create a separate weighted item for this caveat.",
+            "rows": [
+              "Deal ledger!25 (event #24)",
+              "Deal ledger!26 (event #25)",
+              "Deal ledger!27 (event #26)",
+              "Deal ledger!28 (event #27)",
+              "Deal ledger!29 (event #28)",
+              "Deal ledger!32 (event #31)"
+            ],
+            "source_pages": [
+              "30"
+            ],
+            "instruction_sections": [
+              "C2",
+              "C15"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "validation_problems": [],
+  "locks": {
+    "mac-gray": {
+      "reference_sha256": "ed8cae3f94fd058218e185b25f41546e7a54ca4f4d864de212960a75fb457fad",
+      "scores_sha256": "50794977043978ebff21b143d58c3bc3a6dcef9ec32ba6f866309aa6d607452d",
+      "notes_sha256": "72d0a25754093a69691b9aea934eafe2fa88d2f4cf82f3be01b4691dfd0bb133"
+    },
+    "petsmart": {
+      "reference_sha256": "2467fc445dd085e2014227a90b1ab3da40e0655ce871ec0818d75136123b64e7",
+      "scores_sha256": "fbd162b084fd3b5b6390cea6d0cb6cee7c7fac0986542ae330ae32ddc73b1556",
+      "notes_sha256": "1fe7139a988a18e75916da1bca308a03203e35c1e5e770f64b842aa22f9c8cc2"
+    },
+    "providence-worcester": {
+      "reference_sha256": "5d6bcc6d33d43581f611415ea2698b7c00154c932a70b931fbde8fcc5dcd29a9",
+      "scores_sha256": "264213a77e69162032ff8a1e3485bcb2e2621cd9dd896bb473976e1699163692",
+      "notes_sha256": "ce9ea492d1e8746dde6e1560678cffd70ddabc5324cb0efe5d05d6f689df95c5"
+    }
+  },
+  "identities_revealed": false
+}

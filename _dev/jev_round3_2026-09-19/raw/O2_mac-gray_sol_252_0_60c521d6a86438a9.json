@@ -1,0 +1,60 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Later on September 11, 2013, the Special Committee held a telephonic meeting to review the revised indications of interest submitted by Party A, Party B, Party C and CSC/Pamplona. By invitation of the Special Committee, Mr. Shea and Mr. Emma, as well as representatives from BofA Merrill Lynch and Goodwin Procter, were present for all or portions of the meeting. BofA Merrill Lynch reviewed with the Special Committee the current status of the revised indications of interest. The Special Committee also reviewed and discussed the Projections, including the risks and opportunities relating to Mac-Gray's ability to execute its strategic plan as an independent, stand-alone company. The Special Committee also considered the Projections in light of the revised indications of interest. BofA Merrill Lynch then indicated that, based on conversations with Party A, Party B, Party C and CSC/Pamplona, it was unlikely that any of these parties would move forward in the process without the express support of Mr. MacDonald. The Transaction Committee reported that Mr. MacDonald had",
+   "target_sentence": "Later on September 11, 2013, the Special Committee held a telephonic meeting to review the revised indications of interest submitted by Party A, Party B, Party C and CSC/Pamplona."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_31": "09/09/2013 | CSC/Pamplona | Bid | price 19.5 | Pamplona committed 100% of capital; two-week exclusivity requested. Further in-depth diligence remained contemplated.",
+     "row_32": "09/09/2013 | Party B | Bid | price 18.5 | No firm financing commitment; proposed affiliated equity and third-party debt.",
+     "row_33": "09/10/2013 | Party A | Bid | price 18-19 | No firm financing commitment; funding proposed from credit facilities or affiliated equity.",
+     "row_34": "09/10/2013 | Party C | Bid | price 16-17 | Oral proposal; no firm financing commitment.",
+     "row_35": "09/11/2013 | Stewart MacDonald | Other material event | Declined any equity rollover; bidders reportedly required his express support, not his rollover.",
+     "row_36": "09/11/2013 | Mac-Gray | Round opened | Final indications requested from four bidders; due September 18; possible short exclusivity with one bidder.",
+     "row_37": "09/18/2013 | Mac-Gray | Deadline | Final indications due; three bidders responded and Party C did not.",
+     "row_38": "09/18/2013 | CSC/Pamplona | Bid | price 20.75 | Pamplona committed 100% of capital; two-week exclusivity requested; no further diligence condition reported.",
+     "row_39": "09/18/2013 | Party A | Bid reaffirmed | price 18-19 | Reaffirms #32 as best and final in response to final solicitation; prior lack of firm financing remains.",
+     "row_40": "09/18/2013 | Party B | Bid | price 21.5 | Package: $19.00 cash at closing plus options Party B valued at $2.50; options vested on five-year performance. Third-party debt anticipated.",
+     "row_41": "09/18/2013 | Party C | Did not submit | No final indication or reaffirmation; no reason stated.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "not_an_event",
+    "confidence": 0.53,
+    "probabilities": {
+     "row_40": 0.0,
+     "row_41": 0.0,
+     "row_33": 0.02,
+     "row_32": 0.0,
+     "row_39": 0.0,
+     "row_31": 0.0,
+     "row_35": 0.02,
+     "row_36": 0.01,
+     "none": 0.37,
+     "row_38": 0.0,
+     "row_34": 0.0,
+     "row_37": 0.0,
+     "not_an_event": 0.5700000000000001
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1379,
+   "output_tokens": 145
+  }
+ },
+ "latency_s": 0.282
+}

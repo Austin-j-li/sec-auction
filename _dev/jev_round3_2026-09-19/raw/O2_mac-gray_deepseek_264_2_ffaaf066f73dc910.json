@@ -1,0 +1,48 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Later on September 23, 2013, the Special Committee held a telephonic meeting, the purpose of which was to receive an update on the negotiations from the Transaction Committee and Goodwin Procter regarding the CSC/Pamplona final proposal and request for exclusivity. Representatives from Goodwin Procter reviewed the terms of the CSC/Pamplona final proposal with the Special Committee, including the $21.25 per share cash consideration, the $15 million CSC reverse termination fee, certain post-signing covenants, the fact that there would be no financing contingency and that Pamplona was committing to fund 100% of the capital needed for closing. After discussion, the Special Committee authorized Mac-Gray to enter into an exclusivity agreement providing for exclusive negotiations until 5 p.m. ET on October 12, 2013 on the terms included in the CSC/Pamplona final proposal and authorized the Transaction Committee and Goodwin Procter to continue negotiations with CSC/Pamplona based on guidance provided by the Special Committee at this meeting.",
+   "target_sentence": "After discussion, the Special Committee authorized Mac-Gray to enter into an exclusivity agreement providing for exclusive negotiations until 5 p.m."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_38": "09/19/2013 | Mac-Gray | Other material event | SC concluded CSC/Pamplona offered most value and certainty but should raise its price above $20.75; authorized exclusivity at $21.25; MacDonald supported that price.",
+     "row_39": "09/21/2013 | CSC/Pamplona | Bid | price 21.25 | Raised to $21.25 as last and best offer, conditioned on two-week exclusive negotiations; requested MacDonald voting agreement; confirmed by telephone.",
+     "row_40": "09/24/2013 | CSC/Pamplona | Exclusivity changed | Executed with CSC and Pamplona until 5 p.m. ET 10/12/2013; included $15M CSC reverse termination fee and no financing contingency; Pamplona funding 100%.",
+     "row_41": "by 09/24/2013 | Party A | Dropped by target | Inferred: exclusivity with CSC/Pamplona displaced the two live rivals; Party A had declared $18.00\u2013$19.00 its best and final offer.",
+     "row_42": "by 09/24/2013 | Party B | Dropped by target | Inferred: exclusivity displaced the two live rivals; SC preferred CSC/Pamplona's certainty over Party B's debt-funded, option-heavy package.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that exclusivity is requested, authorised, granted, signed or extended. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_40",
+    "confidence": 0.61,
+    "probabilities": {
+     "row_42": 0.0,
+     "row_41": 0.0,
+     "row_39": 0.01,
+     "row_38": 0.18,
+     "none": 0.15,
+     "row_40": 0.66,
+     "not_an_event": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1114,
+   "output_tokens": 86
+  }
+ },
+ "latency_s": 0.373
+}

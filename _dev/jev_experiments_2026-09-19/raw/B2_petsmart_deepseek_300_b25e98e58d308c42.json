@@ -1,0 +1,122 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On October 30, six of the potentially interested parties submitted indications of interest. From October 30 to November 2, 2014, representatives of J.P. Morgan spoke by telephone with all of the potentially interested parties, including those that did not submit an indication of interest, to hear the parties' respective rationales for the price levels suggested in their indications or rationales for not submitting an indication. Three bidders initially indicated price ranges that reached at least $80.00 per share, including the Buyer Group, which indicated a range of $81.00 to $83.00 per share, and another bidder, which suggested a range of $80.00 to $85.00 per share. As a result of its discussions with J.P. Morgan, another bidder (which we refer to as \"Bidder 2\"), which had initially indicated a price of $78.00, increased its indication to a range of $81.00 to $84.00 per share.",
+   "ledger_rows": [
+    {
+     "When": "October 2014",
+     "Who": "PetSmart",
+     "Event": "Deadline set",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Set non-binding preliminary indication due date of 10/30; communicated to the potential bidders during October."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "PetSmart",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Six of the potentially interested parties submitted indications of interest."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "Buyer Group",
+     "Event": "Bid",
+     "Price low": 81,
+     "Price high": 83,
+     "Note": "Preliminary non-binding indication; range $81.00\u2013$83.00; consideration not stated."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "Unnamed financial bidder 1",
+     "Event": "Bid",
+     "Price low": 80,
+     "Price high": 85,
+     "Note": "Another of the six submitters; non-binding range $80.00\u2013$85.00; not individually named."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "3 unnamed indication submitters",
+     "Event": "Bid",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Remainder of the six submitters; no individual detail or prices; one later advanced, two eliminated 11/03 (#24)."
+    },
+    {
+     "When": "10/30\u201311/02/2014",
+     "Who": "Bidder 2",
+     "Event": "Bid",
+     "Price low": 81,
+     "Price high": 84,
+     "Note": "Raised after J.P. Morgan's 10/30\u201311/02 calls; range $81.00\u2013$84.00; made it one of four at or above $80.00."
+    },
+    {
+     "When": "11/03/2014",
+     "Who": "PetSmart",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Final round opened by the 11/03 advancement of four bidders at or above $80.00; merger-agreement form circulated in November; updated FY2014 projections given to all finalists."
+    },
+    {
+     "When": "11/03/2014",
+     "Who": "2 unnamed indication submitters",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "6 submitters \u2212 4 advanced = 2 notified as eliminated; none could remain above their initial indications."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "bid": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "bid": {
+    "type": "noul",
+    "noul": 0.71
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.44
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.41
+   }
+  },
+  "usage": {
+   "input_tokens": 1576,
+   "output_tokens": 54
+  }
+ },
+ "latency_s": 0.251
+}

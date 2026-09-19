@@ -1,0 +1,50 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "unintended public disclosure. Accordingly, the Company set the evening of Wednesday, December 10 (five days, rather than 10 days prior to the anticipated December 15 completion date) as the deadline for submission of final bids, and at the same time asked the bidders to submit mark-ups of the draft merger agreement and the other transaction documents and financing commitments, if possible, in advance.",
+   "ledger_rows": [
+    {
+     "When": "by 12/03/2014",
+     "Who": "PetSmart",
+     "Event": "Deadline set",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Initially set 12/05/2014 for final bids, targeting completion by 12/15/2014."
+    },
+    {
+     "When": "12/04/2014\u201312/05/2014",
+     "Who": "PetSmart",
+     "Event": "Deadline revised",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Moved final-bid deadline from 12/05 to the evening of 12/10 and requested agreement markups and financing commitments in advance if possible."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "deadline": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "deadline": {
+    "type": "noul",
+    "noul": 0.77
+   }
+  },
+  "usage": {
+   "input_tokens": 668,
+   "output_tokens": 20
+  }
+ },
+ "latency_s": 0.358
+}

@@ -1,0 +1,4 @@
+Reading additional input from stdin...
+2026-09-19T14:42:44.568193Z ERROR codex_models_manager::manager: failed to write models cache: Read-only file system (os error 30)
+2026-09-19T14:42:53.207015Z ERROR codex_core::tools::router: error=failed to spawn code-mode host /home/uctpiaj/.codex/packages/standalone/releases/0.155.1-x86_64-unknown-linux-musl/bin/codex-code-mode-host: No such file or directory (os error 2)
+2026-09-19T14:43:01.113366Z ERROR codex_core::tools::router: error=failed to spawn code-mode host /home/uctpiaj/.codex/packages/standalone/releases/0.155.1-x86_64-unknown-linux-musl/bin/codex-code-mode-host: No such file or directory (os error 2)

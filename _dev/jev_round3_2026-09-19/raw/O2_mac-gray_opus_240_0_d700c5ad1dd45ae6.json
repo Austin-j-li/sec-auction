@@ -1,0 +1,52 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On August 8, 2013, representatives of Party C attended a management presentation at the Boston office of Goodwin Procter with members of Mac-Gray management, representatives of BofA Merrill Lynch and a member of the Transaction Committee.",
+   "target_sentence": "On August 8, 2013, representatives of Party C attended a management presentation at the Boston office of Goodwin Procter with members of Mac-Gray management, representatives of BofA Merrill Lynch and a member of the Transaction Committee."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_21": "07/23/2013 | 16 other financial NDA signers | Did not submit | Inferred. 20 signers \u2212 Party A (no NDA until 08/05) \u2212 3 submitters = 16. On 07/25 the target named only four interested bidders. Some may have signed after 07/23.",
+     "row_24": "07/25/2013 | Mac-Gray (Special Committee) | Round opened | Committee finds IOIs lower than expected. Advances four: Party A (subject to NDA), Party B, Party C, CSC/Pamplona. Staged disclosure; management meetings for all, synergy information for strategics; revised IOIs to follow.",
+     "row_25": "07/25/2013 | Party C | Bid | price 16-16.5 | Written IOI after the 07/25 meeting; revises #22 (oral $15.00-$17.00). Answers the round-1 request. Based on the informational package only (Heavy by context).",
+     "row_26": "08/05/2013 | Party A | NDA signed | Talks resumed 07/27 and non-solicit terms agreed. Received the informational package so it could improve its 06/21 proposal (#7).",
+     "row_27": "08/06/2013 to 08/27/2013 | Mac-Gray | Other material event | Information access differs by bidder type: B and C (financial) get broad data-room access; A and CSC/Pamplona (strategic) get limited access, customer data withheld, plus synergy talks. All four had management presentations 08/06-08/14.",
+     "row_28": "08/27/2013 | Mac-Gray (BofA Merrill Lynch) | Deadline set | Letter to all four (authorized 08/15): revised written proposals due 09/09/2013 to go on to in-depth evaluation. Proposals to cover valuation, financing, approvals, covenants and diligence.",
+     "row_31": "09/09/2013 | Mac-Gray | Deadline | Due date for revised written proposals. CSC/Pamplona and Party B bid on time; Party A and Party C bid on 09/10 and were reviewed on 09/11 (late bids accepted).",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_27",
+    "confidence": 0.75,
+    "probabilities": {
+     "row_27": 0.78,
+     "row_25": 0.0,
+     "row_21": 0.0,
+     "row_31": 0.0,
+     "row_26": 0.0,
+     "not_an_event": 0.01,
+     "row_28": 0.0,
+     "none": 0.2,
+     "row_24": 0.01
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1211,
+   "output_tokens": 106
+  }
+ },
+ "latency_s": 0.295
+}

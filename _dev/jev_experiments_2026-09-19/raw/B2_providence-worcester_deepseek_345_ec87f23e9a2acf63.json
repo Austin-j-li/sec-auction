@@ -1,0 +1,94 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "With the assistance of GHF, the Company prepared a memorandum concerning the Company and its prospects, which was distributed to the potential buyers, including Party A, Party B and G&W, that had executed confidentiality agreements. The Transaction Committee met with representatives of GHF by telephone conference on April 22, 2016 and discussed the status of discussions with potential buyers. On April 27, 2016,",
+   "ledger_rows": [
+    {
+     "When": "by 04/07/2016",
+     "Who": "Two additional Class I railroads",
+     "Event": "Contact",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Company (Noreck) approached these two separately to gauge interest; no response or outcome reported; they never entered the process."
+    },
+    {
+     "When": "by 04/27/2016",
+     "Who": "PWRR",
+     "Event": "Deadline set",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Potential buyers advised to submit non-binding indications of interest by 05/10/2016; communicated before the 04/27 Board meeting."
+    },
+    {
+     "When": "by 05/19/2016",
+     "Who": "PWRR",
+     "Event": "Deadline revised",
+     "Price low": null,
+     "Price high": null,
+     "Note": "IOI deadline postponed to 05/19/2016 to let buyers formulate compelling offers; revision itself undated, only bound is the new date."
+    },
+    {
+     "When": "05/19/2016",
+     "Who": "PWRR",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "IOI due date reached; nine IOIs followed; the Transaction Committee evaluated them on 05/23 and 06/01."
+    },
+    {
+     "When": "06/01/2016",
+     "Who": "Two low bidders",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Excluded after IOI review as the lowest of the nine offers; decision made at the 05/23 and 06/01 Committee meetings."
+    },
+    {
+     "When": "06/01/2016",
+     "Who": "PWRR (Transaction Committee)",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Round 2 opened: Committee advanced seven after excluding two, opening management presentations and data-site diligence; LOIs later sought by 07/20."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "nda_access": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.15
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.29
+   }
+  },
+  "usage": {
+   "input_tokens": 1159,
+   "output_tokens": 37
+  }
+ },
+ "latency_s": 0.279
+}

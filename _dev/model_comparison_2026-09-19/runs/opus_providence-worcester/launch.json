@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "/home/uctpiaj/miniforge3/bin/python3",
+    "/home/uctpiaj/Projects/Sec_extraction_new/_dev/model_comparison_2026-09-19/run_model.py",
+    "worker",
+    "--provider",
+    "opus",
+    "--run-dir",
+    "/home/uctpiaj/Projects/Sec_extraction_new/_dev/model_comparison_2026-09-19/runs/opus_providence-worcester"
+  ],
+  "launched_at": "2026-09-19T16:13:55.111196+00:00",
+  "launcher_pid": 784899
+}

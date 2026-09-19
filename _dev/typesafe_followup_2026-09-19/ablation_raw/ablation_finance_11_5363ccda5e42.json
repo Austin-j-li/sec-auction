@@ -1,0 +1,51 @@
+{
+  "case_id": "ablation_finance_11",
+  "request_sha256": "5363ccda5e429f23f7920b9a4547dc9ad485850559e6671fb2211ad6ab308e03",
+  "request": {
+    "model": "jev-1.13.0",
+    "state": {
+      "source": [
+        {
+          "paragraph_id": "355",
+          "text": "Party D (a financial buyer) submitted an LOI to acquire the Company for a price of $21.00 per share (subject to a four-week diligence period)."
+        }
+      ]
+    },
+    "questions": {
+      "financing": {
+        "type": "choice",
+        "instructions": "For Party D at \"late July 2016 LOI\", what does the supplied source explicitly report about financing commitment? Judge only financing; do not import another bidder or date, or infer commitment from all-cash consideration.",
+        "criteria": {
+          "committed": "Financing commitment provided, capital expressly committed, or financing not needed.",
+          "missing": "Explicitly no firm commitment, uncommitted financing, or financing contingency.",
+          "silent": "No explicit statement establishing either commitment or absence for this bidder at this event. Silence is not missing financing."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "financing": {
+        "type": "choice",
+        "choice": "silent",
+        "confidence": 0.97,
+        "probabilities": {
+          "silent": 0.98,
+          "committed": 0.0,
+          "missing": 0.02
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 470,
+      "output_tokens": 41
+    }
+  },
+  "attempts": [
+    {
+      "status": 200,
+      "latency_s": 0.895536202006042
+    }
+  ]
+}

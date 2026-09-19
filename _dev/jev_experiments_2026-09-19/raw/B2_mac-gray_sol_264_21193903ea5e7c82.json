@@ -1,0 +1,98 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Later on September 23, 2013, the Special Committee held a telephonic meeting, the purpose of which was to receive an update on the negotiations from the Transaction Committee and Goodwin Procter regarding the CSC/Pamplona final proposal and request for exclusivity. Representatives from Goodwin Procter reviewed the terms of the CSC/Pamplona final proposal with the Special Committee, including the $21.25 per share cash consideration, the $15 million CSC reverse termination fee, certain post-signing covenants, the fact that there would be no financing contingency and that Pamplona was committing to fund 100% of the capital needed for closing. After discussion, the Special Committee authorized Mac-Gray to enter into an exclusivity agreement providing for exclusive negotiations until 5 p.m. ET on October 12, 2013 on the terms included in the CSC/Pamplona final proposal and authorized the Transaction Committee and Goodwin Procter to continue negotiations with CSC/Pamplona based on guidance provided by the Special Committee at this meeting.",
+   "ledger_rows": [
+    {
+     "When": "09/24/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Exclusivity changed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Executed exclusive negotiations through October 12, conditioned on no adverse change to final proposal."
+    },
+    {
+     "When": "09/24/2013",
+     "Who": "Party A",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Inferred displaced when rival exclusivity executed. Party A had said #38 was best and final."
+    },
+    {
+     "When": "09/24/2013",
+     "Who": "Party B",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Inferred displaced when rival exclusivity executed; target preferred CSC/Pamplona's certainty over Party B's contingent options and financing risk."
+    },
+    {
+     "When": "09/25/2013",
+     "Who": "Kirkland & Ellis LLP",
+     "Event": "Adviser",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Outside legal counsel to CSC/Pamplona; first named while receiving Mac-Gray's initial merger-agreement draft."
+    },
+    {
+     "When": "09/25/2013\u201310/07/2013",
+     "Who": "Moab",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Resolved rollover relationship: talks permitted September 23 ended with no Moab rollover."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "deadline": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "exclusivity": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that exclusivity is requested, authorised, granted, signed or extended. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "agreements": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "deadline": {
+    "type": "noul",
+    "noul": 0.4
+   },
+   "exclusivity": {
+    "type": "noul",
+    "noul": 0.37
+   },
+   "agreements": {
+    "type": "noul",
+    "noul": 0.28
+   }
+  },
+  "usage": {
+   "input_tokens": 1273,
+   "output_tokens": 55
+  }
+ },
+ "latency_s": 0.286
+}

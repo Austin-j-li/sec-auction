@@ -1,0 +1,759 @@
+{
+  "price_correct": {
+    "legacy": {
+      "correct": 27,
+      "total": 27,
+      "confidence_ge_09_correct": 0,
+      "confidence_ge_09_total": 0
+    },
+    "scoped": {
+      "correct": 27,
+      "total": 27,
+      "confidence_ge_09_correct": 27,
+      "confidence_ge_09_total": 27
+    },
+    "selection": {
+      "correct": 27,
+      "total": 27
+    }
+  },
+  "price_wrong": {
+    "legacy": {
+      "correct": 17,
+      "total": 27,
+      "confidence_ge_09_correct": 0,
+      "confidence_ge_09_total": 0
+    },
+    "scoped": {
+      "correct": 27,
+      "total": 27,
+      "confidence_ge_09_correct": 26,
+      "confidence_ge_09_total": 26
+    },
+    "selection": {
+      "correct": 27,
+      "total": 27
+    }
+  },
+  "missing": {
+    "correct": 4,
+    "total": 4,
+    "confidence_ge_09_correct": 4,
+    "confidence_ge_09_total": 4
+  },
+  "coverage": {
+    "exact": {
+      "binary": {
+        "correct": 10,
+        "total": 10,
+        "confidence_ge_09_correct": 0,
+        "confidence_ge_09_total": 0
+      },
+      "selection": {
+        "correct": 10,
+        "total": 10,
+        "confidence_ge_09_correct": 9,
+        "confidence_ge_09_total": 9
+      }
+    },
+    "paraphrase": {
+      "binary": {
+        "correct": 10,
+        "total": 10,
+        "confidence_ge_09_correct": 0,
+        "confidence_ge_09_total": 0
+      },
+      "selection": {
+        "correct": 10,
+        "total": 10,
+        "confidence_ge_09_correct": 10,
+        "confidence_ge_09_total": 10
+      }
+    },
+    "distractor": {
+      "binary": {
+        "correct": 10,
+        "total": 10,
+        "confidence_ge_09_correct": 0,
+        "confidence_ge_09_total": 0
+      },
+      "selection": {
+        "correct": 10,
+        "total": 10,
+        "confidence_ge_09_correct": 9,
+        "confidence_ge_09_total": 9
+      }
+    },
+    "empty": {
+      "binary": {
+        "correct": 10,
+        "total": 10,
+        "confidence_ge_09_correct": 0,
+        "confidence_ge_09_total": 0
+      },
+      "selection": {
+        "correct": 10,
+        "total": 10,
+        "confidence_ge_09_correct": 10,
+        "confidence_ge_09_total": 10
+      }
+    }
+  },
+  "financing": {
+    "correct": 15,
+    "total": 16,
+    "confidence_ge_09_correct": 14,
+    "confidence_ge_09_total": 14
+  },
+  "financing_breakdown": {
+    "committed": {
+      "correct": 5,
+      "total": 6,
+      "confidence_ge_09_correct": 4,
+      "confidence_ge_09_total": 4
+    },
+    "missing": {
+      "correct": 3,
+      "total": 3,
+      "confidence_ge_09_correct": 3,
+      "confidence_ge_09_total": 3
+    },
+    "silent": {
+      "correct": 7,
+      "total": 7,
+      "confidence_ge_09_correct": 7,
+      "confidence_ge_09_total": 7
+    }
+  },
+  "conditions_unscored": [
+    {
+      "case_id": "finance_00",
+      "financing_expected": "committed",
+      "answer": {
+        "type": "choice",
+        "choice": "Heavy",
+        "confidence": 0.88,
+        "probabilities": {
+          "Heavy": 0.91,
+          "None": 0.0,
+          "Unclear": 0.01,
+          "Light": 0.08
+        }
+      }
+    },
+    {
+      "case_id": "finance_01",
+      "financing_expected": "missing",
+      "answer": {
+        "type": "choice",
+        "choice": "Heavy",
+        "confidence": 0.99,
+        "probabilities": {
+          "Light": 0.0,
+          "Heavy": 1.0,
+          "Unclear": 0.0,
+          "None": 0.0
+        }
+      }
+    },
+    {
+      "case_id": "finance_02",
+      "financing_expected": "missing",
+      "answer": {
+        "type": "choice",
+        "choice": "Heavy",
+        "confidence": 0.99,
+        "probabilities": {
+          "Unclear": 0.0,
+          "Heavy": 1.0,
+          "None": 0.0,
+          "Light": 0.0
+        }
+      }
+    },
+    {
+      "case_id": "finance_03",
+      "financing_expected": "missing",
+      "answer": {
+        "type": "choice",
+        "choice": "Heavy",
+        "confidence": 0.99,
+        "probabilities": {
+          "Heavy": 0.99,
+          "Light": 0.0,
+          "Unclear": 0.01,
+          "None": 0.0
+        }
+      }
+    },
+    {
+      "case_id": "finance_04",
+      "financing_expected": "committed",
+      "answer": {
+        "type": "choice",
+        "choice": "Heavy",
+        "confidence": 0.86,
+        "probabilities": {
+          "None": 0.01,
+          "Light": 0.08,
+          "Heavy": 0.9,
+          "Unclear": 0.01
+        }
+      }
+    },
+    {
+      "case_id": "finance_05",
+      "financing_expected": "silent",
+      "answer": {
+        "type": "choice",
+        "choice": "Heavy",
+        "confidence": 0.34,
+        "probabilities": {
+          "Unclear": 0.42,
+          "Light": 0.06,
+          "None": 0.01,
+          "Heavy": 0.51
+        }
+      }
+    },
+    {
+      "case_id": "finance_06",
+      "financing_expected": "committed",
+      "answer": {
+        "type": "choice",
+        "choice": "Light",
+        "confidence": 0.45,
+        "probabilities": {
+          "Heavy": 0.29,
+          "Light": 0.58,
+          "Unclear": 0.01,
+          "None": 0.12
+        }
+      }
+    },
+    {
+      "case_id": "finance_07",
+      "financing_expected": "silent",
+      "answer": {
+        "type": "choice",
+        "choice": "Unclear",
+        "confidence": 0.65,
+        "probabilities": {
+          "Unclear": 0.74,
+          "Light": 0.0,
+          "Heavy": 0.26,
+          "None": 0.0
+        }
+      }
+    },
+    {
+      "case_id": "finance_08",
+      "financing_expected": "silent",
+      "answer": {
+        "type": "choice",
+        "choice": "Heavy",
+        "confidence": 0.52,
+        "probabilities": {
+          "None": 0.0,
+          "Heavy": 0.64,
+          "Unclear": 0.36,
+          "Light": 0.0
+        }
+      }
+    },
+    {
+      "case_id": "finance_09",
+      "financing_expected": "silent",
+      "answer": {
+        "type": "choice",
+        "choice": "Light",
+        "confidence": 0.65,
+        "probabilities": {
+          "Heavy": 0.19,
+          "None": 0.0,
+          "Unclear": 0.07,
+          "Light": 0.74
+        }
+      }
+    },
+    {
+      "case_id": "finance_10",
+      "financing_expected": "silent",
+      "answer": {
+        "type": "choice",
+        "choice": "Heavy",
+        "confidence": 1.0,
+        "probabilities": {
+          "None": 0.0,
+          "Heavy": 1.0,
+          "Light": 0.0,
+          "Unclear": 0.0
+        }
+      }
+    },
+    {
+      "case_id": "finance_11",
+      "financing_expected": "silent",
+      "answer": {
+        "type": "choice",
+        "choice": "Heavy",
+        "confidence": 0.94,
+        "probabilities": {
+          "None": 0.0,
+          "Light": 0.01,
+          "Unclear": 0.03,
+          "Heavy": 0.96
+        }
+      }
+    },
+    {
+      "case_id": "finance_12",
+      "financing_expected": "committed",
+      "answer": {
+        "type": "choice",
+        "choice": "Light",
+        "confidence": 0.79,
+        "probabilities": {
+          "Unclear": 0.15,
+          "Heavy": 0.0,
+          "Light": 0.84,
+          "None": 0.01
+        }
+      }
+    },
+    {
+      "case_id": "finance_13",
+      "financing_expected": "silent",
+      "answer": {
+        "type": "choice",
+        "choice": "Unclear",
+        "confidence": 0.94,
+        "probabilities": {
+          "None": 0.0,
+          "Heavy": 0.0,
+          "Unclear": 0.96,
+          "Light": 0.04
+        }
+      }
+    },
+    {
+      "case_id": "finance_14",
+      "financing_expected": "committed",
+      "answer": {
+        "type": "choice",
+        "choice": "Light",
+        "confidence": 0.71,
+        "probabilities": {
+          "Light": 0.79,
+          "None": 0.13,
+          "Heavy": 0.0,
+          "Unclear": 0.08
+        }
+      }
+    },
+    {
+      "case_id": "finance_15",
+      "financing_expected": "committed",
+      "answer": {
+        "type": "choice",
+        "choice": "Light",
+        "confidence": 0.61,
+        "probabilities": {
+          "None": 0.09,
+          "Heavy": 0.01,
+          "Unclear": 0.19,
+          "Light": 0.71
+        }
+      }
+    }
+  ],
+  "service": {
+    "logical_calls": 114,
+    "http_attempts": 114,
+    "input_tokens": 154771,
+    "estimated_cost_usd": 0.006500382,
+    "median_latency_s": 3.0051026525034104,
+    "p95_latency_s": 11.134059650998097,
+    "wall_seconds": 126.22168696500012,
+    "models": {
+      "jev-1.13.0": 114
+    }
+  },
+  "failures": [
+    {
+      "case_id": "price_00_wrong",
+      "question": "legacy",
+      "predicted": true,
+      "expected": false,
+      "answer": {
+        "type": "noul",
+        "noul": 0.98
+      }
+    },
+    {
+      "case_id": "price_01_wrong",
+      "question": "legacy",
+      "predicted": true,
+      "expected": false,
+      "answer": {
+        "type": "noul",
+        "noul": 0.99
+      }
+    },
+    {
+      "case_id": "price_04_wrong",
+      "question": "legacy",
+      "predicted": true,
+      "expected": false,
+      "answer": {
+        "type": "noul",
+        "noul": 0.98
+      }
+    },
+    {
+      "case_id": "price_05_wrong",
+      "question": "legacy",
+      "predicted": true,
+      "expected": false,
+      "answer": {
+        "type": "noul",
+        "noul": 0.97
+      }
+    },
+    {
+      "case_id": "price_16_wrong",
+      "question": "legacy",
+      "predicted": true,
+      "expected": false,
+      "answer": {
+        "type": "noul",
+        "noul": 0.82
+      }
+    },
+    {
+      "case_id": "price_18_wrong",
+      "question": "legacy",
+      "predicted": true,
+      "expected": false,
+      "answer": {
+        "type": "noul",
+        "noul": 0.66
+      }
+    },
+    {
+      "case_id": "price_20_wrong",
+      "question": "legacy",
+      "predicted": true,
+      "expected": false,
+      "answer": {
+        "type": "noul",
+        "noul": 0.99
+      }
+    },
+    {
+      "case_id": "price_21_wrong",
+      "question": "legacy",
+      "predicted": true,
+      "expected": false,
+      "answer": {
+        "type": "noul",
+        "noul": 0.98
+      }
+    },
+    {
+      "case_id": "price_25_wrong",
+      "question": "legacy",
+      "predicted": true,
+      "expected": false,
+      "answer": {
+        "type": "noul",
+        "noul": 0.99
+      }
+    },
+    {
+      "case_id": "price_26_wrong",
+      "question": "legacy",
+      "predicted": true,
+      "expected": false,
+      "answer": {
+        "type": "noul",
+        "noul": 0.99
+      }
+    },
+    {
+      "case_id": "finance_15",
+      "question": "financing",
+      "predicted": "silent",
+      "expected": "committed",
+      "answer": {
+        "type": "choice",
+        "choice": "silent",
+        "confidence": 0.26,
+        "probabilities": {
+          "silent": 0.51,
+          "missing": 0.01,
+          "committed": 0.48
+        }
+      }
+    }
+  ],
+  "amount_only_baseline": {
+    "correct": {
+      "accepted": 27,
+      "total": 27
+    },
+    "wrong": {
+      "accepted": 24,
+      "total": 27
+    }
+  },
+  "ablation": {
+    "scoped_noul_correct": {
+      "correct": 27,
+      "total": 27
+    },
+    "scoped_noul_wrong": {
+      "correct": 27,
+      "total": 27
+    },
+    "source_only_financing": {
+      "correct": 16,
+      "total": 16,
+      "details": [
+        {
+          "case_id": "ablation_finance_00",
+          "expected": "committed",
+          "answer": {
+            "type": "choice",
+            "choice": "committed",
+            "confidence": 0.96,
+            "probabilities": {
+              "missing": 0.0,
+              "committed": 0.98,
+              "silent": 0.02
+            }
+          }
+        },
+        {
+          "case_id": "ablation_finance_01",
+          "expected": "missing",
+          "answer": {
+            "type": "choice",
+            "choice": "missing",
+            "confidence": 1.0,
+            "probabilities": {
+              "committed": 0.0,
+              "missing": 1.0,
+              "silent": 0.0
+            }
+          }
+        },
+        {
+          "case_id": "ablation_finance_02",
+          "expected": "missing",
+          "answer": {
+            "type": "choice",
+            "choice": "missing",
+            "confidence": 1.0,
+            "probabilities": {
+              "silent": 0.0,
+              "committed": 0.0,
+              "missing": 1.0
+            }
+          }
+        },
+        {
+          "case_id": "ablation_finance_03",
+          "expected": "missing",
+          "answer": {
+            "type": "choice",
+            "choice": "missing",
+            "confidence": 0.98,
+            "probabilities": {
+              "missing": 0.99,
+              "silent": 0.01,
+              "committed": 0.0
+            }
+          }
+        },
+        {
+          "case_id": "ablation_finance_04",
+          "expected": "committed",
+          "answer": {
+            "type": "choice",
+            "choice": "committed",
+            "confidence": 1.0,
+            "probabilities": {
+              "committed": 1.0,
+              "missing": 0.0,
+              "silent": 0.0
+            }
+          }
+        },
+        {
+          "case_id": "ablation_finance_05",
+          "expected": "silent",
+          "answer": {
+            "type": "choice",
+            "choice": "silent",
+            "confidence": 0.98,
+            "probabilities": {
+              "missing": 0.01,
+              "committed": 0.0,
+              "silent": 0.99
+            }
+          }
+        },
+        {
+          "case_id": "ablation_finance_06",
+          "expected": "committed",
+          "answer": {
+            "type": "choice",
+            "choice": "committed",
+            "confidence": 1.0,
+            "probabilities": {
+              "committed": 1.0,
+              "missing": 0.0,
+              "silent": 0.0
+            }
+          }
+        },
+        {
+          "case_id": "ablation_finance_07",
+          "expected": "silent",
+          "answer": {
+            "type": "choice",
+            "choice": "silent",
+            "confidence": 0.98,
+            "probabilities": {
+              "missing": 0.01,
+              "silent": 0.99,
+              "committed": 0.0
+            }
+          }
+        },
+        {
+          "case_id": "ablation_finance_08",
+          "expected": "silent",
+          "answer": {
+            "type": "choice",
+            "choice": "silent",
+            "confidence": 0.97,
+            "probabilities": {
+              "missing": 0.01,
+              "silent": 0.98,
+              "committed": 0.01
+            }
+          }
+        },
+        {
+          "case_id": "ablation_finance_09",
+          "expected": "silent",
+          "answer": {
+            "type": "choice",
+            "choice": "silent",
+            "confidence": 0.97,
+            "probabilities": {
+              "silent": 0.98,
+              "missing": 0.02,
+              "committed": 0.0
+            }
+          }
+        },
+        {
+          "case_id": "ablation_finance_10",
+          "expected": "silent",
+          "answer": {
+            "type": "choice",
+            "choice": "silent",
+            "confidence": 0.98,
+            "probabilities": {
+              "committed": 0.01,
+              "silent": 0.98,
+              "missing": 0.01
+            }
+          }
+        },
+        {
+          "case_id": "ablation_finance_11",
+          "expected": "silent",
+          "answer": {
+            "type": "choice",
+            "choice": "silent",
+            "confidence": 0.97,
+            "probabilities": {
+              "silent": 0.98,
+              "committed": 0.0,
+              "missing": 0.02
+            }
+          }
+        },
+        {
+          "case_id": "ablation_finance_12",
+          "expected": "committed",
+          "answer": {
+            "type": "choice",
+            "choice": "committed",
+            "confidence": 0.98,
+            "probabilities": {
+              "committed": 0.99,
+              "silent": 0.01,
+              "missing": 0.0
+            }
+          }
+        },
+        {
+          "case_id": "ablation_finance_13",
+          "expected": "silent",
+          "answer": {
+            "type": "choice",
+            "choice": "silent",
+            "confidence": 0.99,
+            "probabilities": {
+              "committed": 0.0,
+              "missing": 0.0,
+              "silent": 1.0
+            }
+          }
+        },
+        {
+          "case_id": "ablation_finance_14",
+          "expected": "committed",
+          "answer": {
+            "type": "choice",
+            "choice": "committed",
+            "confidence": 0.74,
+            "probabilities": {
+              "missing": 0.0,
+              "silent": 0.17,
+              "committed": 0.83
+            }
+          }
+        },
+        {
+          "case_id": "ablation_finance_15",
+          "expected": "committed",
+          "answer": {
+            "type": "choice",
+            "choice": "committed",
+            "confidence": 0.66,
+            "probabilities": {
+              "silent": 0.22,
+              "committed": 0.78,
+              "missing": 0.0
+            }
+          }
+        }
+      ]
+    }
+  },
+  "combined_service": {
+    "logical_calls": 184,
+    "http_attempts": 184,
+    "input_tokens": 234300,
+    "estimated_cost_usd": 0.009840600000000001,
+    "median_latency_s": 2.1389965405032854,
+    "p95_latency_s": 12.404966172995046,
+    "api_run_wall_seconds": 190.4140517969936
+  }
+}

@@ -1,0 +1,85 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On October 10, 2013, the members of the Transaction Committee and the representative of CSC/Pamplona engaged in various discussions regarding the open issues, including certain post-signing covenants and the amounts of the termination fees. While the parties reached a compromise on the post-signing covenants, no agreement was reached on the amount of the Mac-Gray termination fee. On October 11, 2013, the Special Committee held a telephonic meeting to discuss the proposed terms of the transaction and the status of discussions with CSC/Pamplona. By invitation of the Special Committee, Mr. Rothenberg and representatives of Goodwin Procter were also present. The members of the Transaction Committee reviewed with the Special Committee the negotiations that had taken place with representatives from CSC/Pamplona since the October 9 th Special Committee meeting. The Transaction Committee reported that CSC/Pamplona, on the one hand, and the Transaction Committee (as authorized by the Special Committee at the October 9 th meeting), on the other hand, had come to an agreement on certain post-signing covenants but that the parties had not reached agreement on the amount of the Mac-Gray termination fee. The Special Committee also discussed the fact that the exclusivity agreement would be expiring at 5 p.m. ET on October 12, 2013 and that CSC/Pamplona had requested an extension of exclusivity until the end of the day on October 15, 2013. After discussions, the Special Committee determined that the members of the Transaction Committee and representatives of Goodwin Procter should communicate to the representative of CSC/Pamplona and representatives at Kirkland, respectively, that the Special Committee continued to object to the $15 million Mac-Gray termination fee proposed by CSC/Pamplona and would not be willing to extend exclusivity unless a lower amount were agreed to. The Special Committee confirmed that the Transaction Committee and representatives of Mac-Gray were authorized to extend the exclusivity agreement until 11:59 p.m. on ET on October 15, 2013 if CSC/Pamplona would agree to a Mac-Gray termination fee of not more than $11 million, which represented approximately 3.2% of the total equity value of the transaction.",
+   "sentence": "On October 10, 2013, the members of the Transaction Committee and the representative of CSC/Pamplona engaged in various discussions regarding the open issues, including certain post-signing covenants and the amounts of the termination fees."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "bid": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "nda_access": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "exit": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a potential buyer withdraws, declines to bid, is told it will not advance, or is otherwise excluded from the process? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "deadline": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "exclusivity": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that exclusivity is requested, authorised, granted, signed or extended? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "agreements": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed? Judge `sentence` only; `paragraph` is context for names and dates."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "bid": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.01
+   },
+   "exit": {
+    "type": "noul",
+    "noul": 0.02
+   },
+   "deadline": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.08
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "exclusivity": {
+    "type": "noul",
+    "noul": 0.02
+   },
+   "agreements": {
+    "type": "noul",
+    "noul": 0.03
+   }
+  },
+  "usage": {
+   "input_tokens": 1245,
+   "output_tokens": 138
+  }
+ },
+ "latency_s": 0.426
+}

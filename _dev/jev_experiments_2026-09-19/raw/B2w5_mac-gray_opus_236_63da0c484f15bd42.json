@@ -1,0 +1,114 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "agreed to enter into a confidentiality agreement), Party B, Party C and CSC/Pamplona to provide these parties with access to high level information concerning Mac-Gray's technology, pipeline, management team, regional operations, contracts, operations and growth initiatives, and in the case of CSC/Pamplona and Party A, synergies, and to then request that each of these parties submit a revised indication of interest. After discussion and in an effort to drive offers with increased value, the Special Committee authorized and instructed BofA Merrill Lynch to proceed with the staged disclosure as discussed at this meeting and to reach out to each of the four interested bidders and arrange management meetings.",
+   "ledger_rows": [
+    {
+     "When": "07/23/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Bid",
+     "Price low": 18.5,
+     "Price high": 18.5,
+     "Note": "Preliminary IOI based only on the informational package, with no data room or management access (Heavy by context)."
+    },
+    {
+     "When": "07/23/2013",
+     "Who": "16 other financial NDA signers",
+     "Event": "Did not submit",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Inferred. 20 signers \u2212 Party A (no NDA until 08/05) \u2212 3 submitters = 16. On 07/25 the target named only four interested bidders. Some may have signed after 07/23."
+    },
+    {
+     "When": "07/24/2013",
+     "Who": "Party B",
+     "Event": "Bid",
+     "Price low": 17,
+     "Price high": 18,
+     "Note": "Written preliminary IOI, one day after the due date. Based on the informational package only (Heavy by context)."
+    },
+    {
+     "When": "07/24/2013",
+     "Who": "Party C",
+     "Event": "Bid",
+     "Price low": 15,
+     "Price high": 17,
+     "Note": "Oral preliminary IOI to BofA, one day after the due date. Based on the informational package only (Heavy by context)."
+    },
+    {
+     "When": "07/25/2013",
+     "Who": "Mac-Gray (Special Committee)",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Committee finds IOIs lower than expected. Advances four: Party A (subject to NDA), Party B, Party C, CSC/Pamplona. Staged disclosure; management meetings for all, synergy information for strategics; revised IOIs to follow."
+    },
+    {
+     "When": "07/25/2013",
+     "Who": "Party C",
+     "Event": "Bid",
+     "Price low": 16,
+     "Price high": 16.5,
+     "Note": "Written IOI after the 07/25 meeting; revises #22 (oral $15.00-$17.00). Answers the round-1 request. Based on the informational package only (Heavy by context)."
+    },
+    {
+     "When": "08/05/2013",
+     "Who": "Party A",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Talks resumed 07/27 and non-solicit terms agreed. Received the informational package so it could improve its 06/21 proposal (#7)."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "nda_access": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.44
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.39
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.23
+   }
+  },
+  "usage": {
+   "input_tokens": 1473,
+   "output_tokens": 55
+  }
+ },
+ "latency_s": 0.262
+}

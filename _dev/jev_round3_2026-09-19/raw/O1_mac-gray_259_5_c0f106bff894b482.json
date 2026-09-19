@@ -1,0 +1,85 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "The representatives from BofA Merrill Lynch were then excused from the meeting and the Special Committee continued its discussion. The Special Committee noted that the indication of interest submitted by Party B, including the Party B options, was on its face higher than the CSC/Pamplona proposal but further discussed the risks and complexities involved with measuring and achieving the performance required to vest the Party B options. The Special Committee also noted that Party B would likely be financing the transaction with a combination of equity from affiliated funds and third party debt capital, which would involve more risk than the Pamplona-funded CSC/Pamplona proposal, which did not require any third party financing. Following a discussion, the Special Committee concluded that the revised indication of interest submitted by CSC/Pamplona had the potential of delivering the most value to stockholders, provided greater certainty and involved less potential risk than the other indications. However, the Special Committee also concluded that, primarily in view of potential synergies between Mac-Gray and CSC, CSC/Pamplona should be in a position to increase their offer price above $20.75. The Special Committee then authorized the Transaction Committee to inform CSC/Pamplona that the Special Committee would be prepared to move into exclusivity at a price of $21.25 per share and authorized the Transaction Committee and Goodwin Procter to negotiate the terms of such exclusivity based on guidance provided by the Special Committee. In addition, at this meeting Mr. MacDonald indicated that he would be supportive of a price of $21.25 per share.",
+   "sentence": "The Special Committee then authorized the Transaction Committee to inform CSC/Pamplona that the Special Committee would be prepared to move into exclusivity at a price of $21.25 per share and authorized the Transaction Committee and Goodwin Procter to negotiate the terms of such exclusivity based on guidance provided by the Special Committee."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "bid": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "nda_access": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "exit": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a potential buyer withdraws, declines to bid, is told it will not advance, or is otherwise excluded from the process? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "deadline": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "exclusivity": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that exclusivity is requested, authorised, granted, signed or extended? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "agreements": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed? Judge `sentence` only; `paragraph` is context for names and dates."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "bid": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.02
+   },
+   "exit": {
+    "type": "noul",
+    "noul": 0.07
+   },
+   "deadline": {
+    "type": "noul",
+    "noul": 0.2
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.29
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.39
+   },
+   "exclusivity": {
+    "type": "noul",
+    "noul": 0.65
+   },
+   "agreements": {
+    "type": "noul",
+    "noul": 0.29
+   }
+  },
+  "usage": {
+   "input_tokens": 1096,
+   "output_tokens": 138
+  }
+ },
+ "latency_s": 0.457
+}

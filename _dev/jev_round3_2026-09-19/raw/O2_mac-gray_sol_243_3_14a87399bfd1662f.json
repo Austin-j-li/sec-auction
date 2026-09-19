@@ -1,0 +1,46 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On August 15, 2013, the Special Committee held a telephonic meeting for the purpose of reviewing the on-going strategic alternatives process. By invitation of the Special Committee, representatives from BofA Merrill Lynch and Goodwin Procter were also in attendance. BofA Merrill Lynch updated the Special Committee as to the current status of the strategic alternatives process, including the due diligence process and the management presentations with Party A, Party B, Party C and CSC/Pamplona. After discussion and as discussed at the July 25 th Special Committee meeting, the Special Committee authorized and instructed BofA Merrill Lynch to send a letter to each of Party A, Party B, Party C and CSC/Pamplona once all four of the bidders' due diligence was substantially complete requesting that, in light of the results of the respective party's due diligence, such party submit a revised written proposal in order to continue in the process, including to engage in more in-depth and confirmatory due diligence of Mac-Gray.",
+   "target_sentence": "After discussion and as discussed at the July 25 th Special Committee meeting, the Special Committee authorized and instructed BofA Merrill Lynch to send a letter to each of Party A, Party B, Party C and CSC/Pamplona once all four of the bidders' due diligence was substantially complete requesting that, in light of the results of the respective party's due diligence, such party submit a revised written proposal in order to continue in the process, including to engage in more in-depth and confirmatory due diligence of Mac-Gray."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_27": "08/05/2013 | Party A | NDA signed | Agreement followed resumed negotiations; informational package provided to support a possible improvement of #7.",
+     "row_28": "08/06/2013\u201308/27/2013 | Mac-Gray | Other material event | Granted B/C broad data-site access; limited A/CSC access and withheld customer data from the strategic bidders.",
+     "row_29": "08/27/2013 | Mac-Gray | Round opened | Four bidders invited; revised written bids due September 9.",
+     "row_30": "09/09/2013 | Mac-Gray | Deadline | Revised bids due; Party A and Party C submitted one day late and were considered.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers; or the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "none",
+    "confidence": 0.44,
+    "probabilities": {
+     "not_an_event": 0.04,
+     "none": 0.53,
+     "row_30": 0.02,
+     "row_28": 0.0,
+     "row_29": 0.4,
+     "row_27": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1040,
+   "output_tokens": 73
+  }
+ },
+ "latency_s": 0.27
+}

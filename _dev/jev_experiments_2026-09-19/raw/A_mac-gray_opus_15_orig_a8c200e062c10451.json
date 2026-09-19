@@ -1,0 +1,54 @@
+{
+ "request": {
+  "state": {
+   "passage": {
+    "before": [
+     "During the next several weeks, in accordance with the directives of the Special Committee, BofA Merrill Lynch contacted the strategic and financial parties identified at the June 24th Special Committee meeting. Over the next two months a total of 20 potential bidders, including two strategic bidders (Party A and CSC/Pamplona) and 18 financial bidders (including Party B and Party C), entered into confidentiality agreements with Mac-Gray on a form provided by Mac-Gray, the terms of which were individually negotiated with potential bidders, but did not vary materially from the form provided. The confidentiality agreements contained customary non-disclosure provisions and a customary standstill provision that either expired or permitted the potential bidder to make confidential proposals to Mac-Gray (a so-called \"sunset\" provision) upon announcement of a business combination between Mac-Gray and a third party, and, in some instances upon announcement of a change in control. Parties that had entered into confidentiality and standstill agreements with Mac-Gray were furnished an informational package for the purpose of providing potential bidders with data to formulate a preliminary indication of interest, which they were instructed to submit by July 23, 2013. Parties that had entered into confidentiality and standstill agreements with Mac-Gray were furnished an informational package for the purpose of providing potential bidders with data to formulate a preliminary indication of interest, which they were instructed to submit by July 23, 2013. The letter requested that the proposals address, among other things, valuation, sources and structures of financing, material conditions, including required approvals, and focus areas for due diligence.",
+     "On June 28, 2013, the members of the Transaction Committee participated in a telephone conference call with representatives of BofA Merrill Lynch and Goodwin Procter. BofA Merrill Lynch summarized the contacts they had had with certain of the potential bidders. In particular, BofA Merrill Lynch reported that they had spoken with representatives of Party A, as instructed by the Special Committee, who had expressed the view that there would be considerable synergies if Party A were to acquire Mac-Gray and that Party A would be speaking with certain financing sources with respect to funding such a transaction. BofA Merrill Lynch also reported that they had spoken with representatives of Pamplona, as instructed by the Special Committee, who expressed interest in a transaction, including an acquisition of Mac-Gray by its portfolio company, CSC. Pamplona emphasized that business and legal due diligence would be minimal given its familiarity with Mac-Gray and the industry generally."
+    ],
+    "cited_paragraph": "Later on June 28, 2013, Party B, entered into a confidentiality and standstill agreement with Mac-Gray and was provided with an informational package for the purpose of providing Party B with data to formulate a preliminary indication of interest.",
+    "after": [
+     "On June 30, 2013, Party C entered into a confidentiality and standstill agreement with Mac-Gray and was provided with an informational package for the purpose of providing Party C with data to formulate a preliminary indication of interest.",
+     "On July 3, 2013, Mr. Rothenberg called a representative of Goodwin Procter to indicate that he had spoken with representatives of Pamplona about Moab's desire to maintain the flexibility to consider a possible equity rollover if Pamplona were to participate in a business combination with Mac-Gray. Mr. Rothenberg also informed Goodwin Procter that Pamplona would be requesting that any confidentiality agreement CSC/Pamplona execute with Mac-Gray permit CSC and Pamplona to discuss their bid and evaluation material with Moab, with Moab agreeing to exclusively engage with CSC/Pamplona."
+    ]
+   }
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "actor": {
+    "type": "noul",
+    "instructions": "Does `passage.cited_paragraph` describe something done by, done to, or decided about the party called \"Party B\" (or a group that the passage shows includes it)?",
+    "criteria": {
+     "true": "That party, or a cohort clearly containing it, is a subject of the cited paragraph.",
+     "false": "The cited paragraph concerns other parties only."
+    }
+   },
+   "event": {
+    "type": "noul",
+    "instructions": "A research ledger records an event labelled \"NDA signed\" for \"Party B\". Does the passage report facts that fit the label \"NDA signed\" for that party?",
+    "criteria": {
+     "true": "The passage reports such an event, or facts from which it directly follows.",
+     "false": "The passage reports a different kind of event, or nothing of that kind."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "actor": {
+    "type": "noul",
+    "noul": 0.99
+   },
+   "event": {
+    "type": "noul",
+    "noul": 0.91
+   }
+  },
+  "usage": {
+   "input_tokens": 1251,
+   "output_tokens": 36
+  }
+ },
+ "latency_s": 0.744
+}

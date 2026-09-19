@@ -1,0 +1,42 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On October 15, 2013, before the U.S. stock markets opened, Mac-Gray and CSC jointly announced the execution of the merger agreement.",
+   "target_sentence": "On October 15, 2013, before the U.S. stock markets opened, Mac-Gray and CSC jointly announced the execution of the merger agreement."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_49": "10/14/2013 | CSC/Pamplona | Merger agreement signed | $21.25 per share in cash. Pamplona commitment letter ($594m, no financing condition); $11m target fee; $15m reverse fee; MacDonald and Moab voting agreements.",
+     "row_50": "10/15/2013 | Mac-Gray and CSC | Merger announced | Joint announcement before the market opened. No post-signing competing proposals reported.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_50",
+    "confidence": 0.95,
+    "probabilities": {
+     "none": 0.03,
+     "row_49": 0.0,
+     "row_50": 0.97,
+     "not_an_event": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 690,
+   "output_tokens": 56
+  }
+ },
+ "latency_s": 1.117
+}

@@ -1,0 +1,82 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On September 24, 2013, CSC, Pamplona and Mac-Gray executed the exclusivity agreement providing for exclusive negotiations until 5 p.m. ET on October 12, 2013, subject to certain conditions, including that CSC and Pamplona not adversely change or modify the terms of the CSC/Pamplona final proposal.",
+   "ledger_rows": [
+    {
+     "When": "09/21/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Bid",
+     "Price low": 21.25,
+     "Price high": 21.25,
+     "Note": "Last-and-best offer; conditioned on two-week exclusivity and requested MacDonald-family voting agreements; full funding and no financing contingency were agreed by September 23."
+    },
+    {
+     "When": "09/24/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Exclusivity changed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Executed exclusive negotiations through October 12, conditioned on no adverse change to final proposal."
+    },
+    {
+     "When": "09/24/2013",
+     "Who": "Party A",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Inferred displaced when rival exclusivity executed. Party A had said #38 was best and final."
+    },
+    {
+     "When": "09/24/2013",
+     "Who": "Party B",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Inferred displaced when rival exclusivity executed; target preferred CSC/Pamplona's certainty over Party B's contingent options and financing risk."
+    },
+    {
+     "When": "09/25/2013",
+     "Who": "Kirkland & Ellis LLP",
+     "Event": "Adviser",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Outside legal counsel to CSC/Pamplona; first named while receiving Mac-Gray's initial merger-agreement draft."
+    },
+    {
+     "When": "09/25/2013\u201310/07/2013",
+     "Who": "Moab",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Resolved rollover relationship: talks permitted September 23 ended with no Moab rollover."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "exclusivity": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that exclusivity is requested, authorised, granted, signed or extended. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "exclusivity": {
+    "type": "noul",
+    "noul": 0.81
+   }
+  },
+  "usage": {
+   "input_tokens": 993,
+   "output_tokens": 22
+  }
+ },
+ "latency_s": 0.258
+}

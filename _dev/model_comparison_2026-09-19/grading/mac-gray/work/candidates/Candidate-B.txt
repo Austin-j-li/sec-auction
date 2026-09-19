@@ -1,0 +1,900 @@
+SHEET 'Deal ledger'; state=visible; rows=50; columns=22
+EXCEL ROW 1
+  A1 [#]: #
+  B1 [When]: When
+  C1 [Who]: Who
+  D1 [Type]: Type
+  E1 [Event]: Event
+  F1 [Process]: Process
+  G1 [Round]: Round
+  H1 [Price low]: Price low
+  I1 [Price high]: Price high
+  J1 [All cash]: All cash
+  K1 [Formality]: Formality
+  L1 [Conditions]: Conditions
+  M1 [Count]: Count
+  N1 [Exit reason]: Exit reason
+  O1 [Inferred]: Inferred
+  P1 [Note]: Note
+  Q1 [Quote and page]: Quote and page
+  R1 [Flag]: Flag
+  S1 [Reviewer note]: Reviewer note
+  T1 [Sort date]: Sort date
+  U1 [Date from]: Date from
+  V1 [Date to]: Date to
+EXCEL ROW 2
+  A2 [#]: 1
+  B2 [When]: 10/23/2012
+  C2 [Who]: BofA Merrill Lynch
+  E2 [Event]: Adviser
+  F2 [Process]: 1
+  G2 [Round]: 0
+  P2 [Note]: Target's financial adviser, hired for Mac-Gray's possible purchase of CSC (2011-2012 Discussions), not for a sale. On 04/05/2013 the board had it explore opportunities, including with Party A.
+  Q2 [Quote and page]: “In connection with Mac-Gray's consideration of a possible acquisition of CSC, which we refer to as the 2011-2012 Discussions, Mac-Gray engaged BofA Merrill Lynch on October 23, 2012.” (p. 27)
+  T2 [Sort date]: 2012-10-23T00:00:00
+  U2 [Date from]: 2012-10-23T00:00:00
+  V2 [Date to]: 2012-10-23T00:00:00
+EXCEL ROW 3
+  A3 [#]: 2
+  B3 [When]: 04/08/2013
+  C3 [Who]: Party A
+  D3 [Type]: Strategic
+  E3 [Event]: Target interest
+  F3 [Process]: 1
+  G3 [Round]: 0
+  M3 [Count]: 1
+  P3 [Note]: Board authorized this on 04/05 as part of exploring opportunities. Party A said it might consider a combination. Party A is a laundry facilities management company.
+  Q3 [Quote and page]: “representatives of BofA Merrill Lynch, as instructed by the Board, telephoned a representative of Party A to discuss generally a possible business combination between Party A and Mac-Gray.” (p. 27)
+  T3 [Sort date]: 2013-04-08T00:00:00
+  U3 [Date from]: 2013-04-08T00:00:00
+  V3 [Date to]: 2013-04-08T00:00:00
+EXCEL ROW 4
+  A4 [#]: 3
+  B4 [When]: 05/09/2013
+  C4 [Who]: Goodwin Procter LLP
+  E4 [Event]: Adviser
+  F4 [Process]: 1
+  G4 [Round]: 0
+  P4 [Note]: Target's outside legal counsel, first seen acting here. Later also advised the Special Committee.
+  Q4 [Quote and page]: “representatives from BofA Merrill Lynch and Goodwin Procter LLP, outside legal counsel to Mac-Gray, were also in attendance” (p. 27)
+  T4 [Sort date]: 2013-05-09T00:00:00
+  U4 [Date from]: 2013-05-09T00:00:00
+  V4 [Date to]: 2013-05-09T00:00:00
+EXCEL ROW 5
+  A5 [#]: 4
+  B5 [When]: 05/15/2013
+  C5 [Who]: BofA Merrill Lynch
+  E5 [Event]: Adviser ended
+  F5 [Process]: 1
+  G5 [Round]: 0
+  P5 [Note]: The Transaction Committee decided on 05/14 to end the 2011-2012 mandate, since BofA was being invited to pitch for the sale-review role.
+  Q5 [Quote and page]: “Mac-Gray sent a letter to BofA Merrill Lynch terminating their engagement in connection with the 2011-2012 Discussions.” (p. 29)
+  T5 [Sort date]: 2013-05-15T00:00:00
+  U5 [Date from]: 2013-05-15T00:00:00
+  V5 [Date to]: 2013-05-15T00:00:00
+EXCEL ROW 6
+  A6 [#]: 5
+  B6 [When]: 05/30/2013
+  C6 [Who]: BofA Merrill Lynch
+  E6 [Event]: Adviser
+  F6 [Process]: 1
+  G6 [Round]: 0
+  P6 [Note]: Re-engaged as the target's sole financial adviser for the strategic review and possible sale, chosen from three banks. Engagement letter 05/31; no buyer financing without consent.
+  Q6 [Quote and page]: “the Board unanimously approved the engagement of BofA Merrill Lynch on the terms discussed at this meeting.” (p. 29)
+  T6 [Sort date]: 2013-05-30T00:00:00
+  U6 [Date from]: 2013-05-30T00:00:00
+  V6 [Date to]: 2013-05-30T00:00:00
+EXCEL ROW 7
+  A7 [#]: 6
+  B7 [When]: 05/30/2013
+  C7 [Who]: Moab Partners, L.P.
+  E7 [Event]: Activist
+  F7 [Process]: 1
+  G7 [Round]: 0
+  P7 [Note]: Moab (about 9% holder) won a proxy contest; Rothenberg and Hyman replaced incumbents. The filing does not say Moab pressed for a sale. Rothenberg was later excluded over Moab's rollover interest.
+  Q7 [Quote and page]: “the Mac-Gray stockholders elected as directors Michael M. Rothenberg and James E. Hyman, candidates nominated by Mac-Gray's stockholder, Moab Partners, L.P.” (p. 29)
+  T7 [Sort date]: 2013-05-30T00:00:00
+  U7 [Date from]: 2013-05-30T00:00:00
+  V7 [Date to]: 2013-05-30T00:00:00
+EXCEL ROW 8
+  A8 [#]: 7
+  B8 [When]: 06/21/2013
+  C8 [Who]: Party A
+  D8 [Type]: Strategic
+  E8 [Event]: Bid
+  F8 [Process]: 1
+  G8 [Round]: 0
+  H8 [Price low]: 17
+  I8 [Price high]: 19
+  J8 [All cash]: Yes
+  K8 [Formality]: Informal
+  L8 [Conditions]: Heavy
+  M8 [Count]: 1
+  P8 [Note]: Unsolicited proposal to the board, made before any NDA or diligence (Heavy by context). It was still standing when round 1 was evaluated on 07/25.
+  Q8 [Quote and page]: “Party A submitted an unsolicited proposal to the Mac-Gray Board of Directors offering to purchase Mac-Gray for an all-cash purchase price of $17.00 to $19.00 per share” (p. 30)
+  T8 [Sort date]: 2013-06-21T00:00:00
+  U8 [Date from]: 2013-06-21T00:00:00
+  V8 [Date to]: 2013-06-21T00:00:00
+EXCEL ROW 9
+  A9 [#]: 8
+  B9 [When]: 06/24/2013
+  C9 [Who]: Mac-Gray (Special Committee)
+  E9 [Event]: Target sale decision
+  F9 [Process]: 1
+  G9 [Round]: 0
+  P9 [Note]: Board forms a Special Committee of six independent directors, excluding CEO MacDonald and Moab's Rothenberg. The committee will weigh a sale against staying stand-alone and approach 50 parties.
+  Q9 [Quote and page]: “the Special Committee concluded that it would be in the best interests of stockholders to consider a potential sale of Mac-Gray” (p. 31)
+  T9 [Sort date]: 2013-06-24T00:00:00
+  U9 [Date from]: 2013-06-24T00:00:00
+  V9 [Date to]: 2013-06-24T00:00:00
+EXCEL ROW 10
+  A10 [#]: 9
+  B10 [When]: 06/24/2013 to 06/28/2013
+  C10 [Who]: Mac-Gray (BofA Merrill Lynch)
+  E10 [Event]: Round opened
+  F10 [Process]: 1
+  G10 [Round]: 1
+  P10 [Note]: BofA's outreach carries out the 06/24 decision; contacts reported by 06/28. NDA signers get an informational package, with preliminary IOIs due 07/23/2013 (no separate Deadline set row).
+  Q10 [Quote and page]: “BofA Merrill Lynch contacted the strategic and financial parties identified at the June 24th Special Committee meeting” (p. 32)
+  R10 [Flag]: Q1
+  T10 [Sort date]: 2013-06-26T00:00:00
+  U10 [Date from]: 2013-06-24T00:00:00
+  V10 [Date to]: 2013-06-28T00:00:00
+EXCEL ROW 11
+  A11 [#]: 10
+  B11 [When]: by 06/28/2013
+  C11 [Who]: CSC/Pamplona
+  D11 [Type]: Strategic
+  E11 [Event]: Contact
+  F11 [Process]: 1
+  G11 [Round]: 1
+  M11 [Count]: 1
+  P11 [Note]: Target-initiated. Pamplona is interested, including an acquisition by its portfolio company CSC (acquired May 2013), and says diligence would be minimal.
+  Q11 [Quote and page]: “BofA Merrill Lynch also reported that they had spoken with representatives of Pamplona, as instructed by the Special Committee, who expressed interest in a transaction” (p. 32)
+  T11 [Sort date]: 2013-06-26T00:00:00
+  U11 [Date from]: 2013-06-24T00:00:00
+  V11 [Date to]: 2013-06-28T00:00:00
+EXCEL ROW 12
+  A12 [#]: 11
+  B12 [When]: during the next several weeks after 06/24/2013
+  C12 [Who]: 13 other strategic parties
+  D12 [Type]: Strategic
+  E12 [Event]: Contact
+  F12 [Process]: 1
+  G12 [Round]: 1
+  M12 [Count]: 13
+  P12 [Note]: Target outreach. Of 50 contacted (15 strategic, 35 financial), Party A (#2) and CSC/Pamplona (#10) are recorded separately, leaving 13 strategic parties.
+  Q12 [Quote and page]: “to solicit potential interest in a transaction with Mac-Gray, 15 of which were potential strategic buyers and 35 of which were potential financial buyers” (p. 32)
+  T12 [Sort date]: 2013-06-26T00:00:00
+  U12 [Date from]: 2013-06-24T00:00:00
+EXCEL ROW 13
+  A13 [#]: 12
+  B13 [When]: during the next several weeks after 06/24/2013
+  C13 [Who]: 35 financial parties
+  D13 [Type]: Financial
+  E13 [Event]: Contact
+  F13 [Process]: 1
+  G13 [Round]: 1
+  M13 [Count]: 35
+  P13 [Note]: Target outreach to all 35 financial parties (including private equity), among them Party B and Party C. 50 contacted in total.
+  Q13 [Quote and page]: “to solicit potential interest in a transaction with Mac-Gray, 15 of which were potential strategic buyers and 35 of which were potential financial buyers” (p. 32)
+  T13 [Sort date]: 2013-06-26T00:00:00
+  U13 [Date from]: 2013-06-24T00:00:00
+EXCEL ROW 14
+  A14 [#]: 13
+  B14 [When]: over the two months after late June 2013
+  C14 [Who]: 16 other financial NDA signers
+  D14 [Type]: Financial
+  E14 [Event]: NDA signed
+  F14 [Process]: 1
+  G14 [Round]: 1
+  M14 [Count]: 16
+  P14 [Note]: 20 NDAs in total (2 strategic, 18 financial). Party A, CSC/Pamplona, Party B and Party C have their own rows, leaving 16 financial. Signing dates not given; each got an informational package.
+  Q14 [Quote and page]: “a total of 20 potential bidders, including two strategic bidders (Party A and CSC/Pamplona) and 18 financial bidders (including Party B and Party C), entered into confidentiality agreements” (p. 32)
+  R14 [Flag]: Q3
+  T14 [Sort date]: 2013-06-26T00:00:00
+  U14 [Date from]: 2013-06-24T00:00:00
+EXCEL ROW 15
+  A15 [#]: 14
+  B15 [When]: 06/28/2013
+  C15 [Who]: Party B
+  D15 [Type]: Financial
+  E15 [Event]: NDA signed
+  F15 [Process]: 1
+  G15 [Round]: 1
+  M15 [Count]: 1
+  P15 [Note]: Confidentiality and standstill agreement; received the informational package.
+  Q15 [Quote and page]: “Party B, entered into a confidentiality and standstill agreement with Mac-Gray” (p. 32)
+  T15 [Sort date]: 2013-06-28T00:00:00
+  U15 [Date from]: 2013-06-28T00:00:00
+  V15 [Date to]: 2013-06-28T00:00:00
+EXCEL ROW 16
+  A16 [#]: 15
+  B16 [When]: 06/30/2013
+  C16 [Who]: Party C
+  D16 [Type]: Financial
+  E16 [Event]: NDA signed
+  F16 [Process]: 1
+  G16 [Round]: 1
+  M16 [Count]: 1
+  P16 [Note]: Confidentiality and standstill agreement; received the informational package.
+  Q16 [Quote and page]: “Party C entered into a confidentiality and standstill agreement with Mac-Gray” (p. 32)
+  T16 [Sort date]: 2013-06-30T00:00:00
+  U16 [Date from]: 2013-06-30T00:00:00
+  V16 [Date to]: 2013-06-30T00:00:00
+EXCEL ROW 17
+  A17 [#]: 16
+  B17 [When]: 07/06/2013
+  C17 [Who]: Mac-Gray (Special Committee)
+  E17 [Event]: Other material event
+  F17 [Process]: 1
+  G17 [Round]: 1
+  P17 [Note]: Refuses rollover partnership: denies the request (relayed by Rothenberg 07/03) for Moab to partner exclusively with CSC/Pamplona on a rollover. Such talks allowed only later.
+  Q17 [Quote and page]: “the Special Committee decided to deny the exclusivity request at this stage of the process” (p. 33)
+  T17 [Sort date]: 2013-07-06T00:00:00
+  U17 [Date from]: 2013-07-06T00:00:00
+  V17 [Date to]: 2013-07-06T00:00:00
+EXCEL ROW 18
+  A18 [#]: 17
+  B18 [When]: 07/11/2013
+  C18 [Who]: CSC/Pamplona
+  D18 [Type]: Strategic
+  E18 [Event]: NDA signed
+  F18 [Process]: 1
+  G18 [Round]: 1
+  M18 [Count]: 1
+  P18 [Note]: Agreement with Pamplona Capital Management LLC, reused in the merger agreement (s. 6.17). Received the informational package. Party A's NDA talks stalled on non-solicit terms 07/11-07/23.
+  Q18 [Quote and page]: “CSC/Pamplona entered into a confidentiality and standstill agreement with Mac-Gray” (p. 33)
+  T18 [Sort date]: 2013-07-11T00:00:00
+  U18 [Date from]: 2013-07-11T00:00:00
+  V18 [Date to]: 2013-07-11T00:00:00
+EXCEL ROW 19
+  A19 [#]: 18
+  B19 [When]: 07/23/2013
+  C19 [Who]: CSC/Pamplona
+  D19 [Type]: Strategic
+  E19 [Event]: Bid
+  F19 [Process]: 1
+  G19 [Round]: 1
+  H19 [Price low]: 18.5
+  I19 [Price high]: 18.5
+  J19 [All cash]: Yes
+  K19 [Formality]: Informal
+  L19 [Conditions]: Heavy
+  M19 [Count]: 1
+  P19 [Note]: Preliminary IOI based only on the informational package, with no data room or management access (Heavy by context).
+  Q19 [Quote and page]: “CSC/Pamplona submitted a preliminary indication of interest at an all-cash purchase price of $18.50 per share.” (p. 33)
+  T19 [Sort date]: 2013-07-23T00:00:00
+  U19 [Date from]: 2013-07-23T00:00:00
+  V19 [Date to]: 2013-07-23T00:00:00
+EXCEL ROW 20
+  A20 [#]: 19
+  B20 [When]: 07/23/2013
+  C20 [Who]: Mac-Gray
+  E20 [Event]: Deadline
+  F20 [Process]: 1
+  G20 [Round]: 1
+  P20 [Note]: Due date for preliminary IOIs. CSC/Pamplona bid on time; Party B and Party C bid on 07/24 and were considered on 07/25 (late bids accepted).
+  Q20 [Quote and page]: “a preliminary indication of interest, which they were instructed to submit by July 23, 2013” (p. 32)
+  R20 [Flag]: Q2
+  T20 [Sort date]: 2013-07-23T00:00:00
+  U20 [Date from]: 2013-07-23T00:00:00
+  V20 [Date to]: 2013-07-23T00:00:00
+EXCEL ROW 21
+  A21 [#]: 20
+  B21 [When]: 07/23/2013
+  C21 [Who]: 16 other financial NDA signers
+  D21 [Type]: Financial
+  E21 [Event]: Did not submit
+  F21 [Process]: 1
+  G21 [Round]: 1
+  M21 [Count]: 16
+  N21 [Exit reason]: Not stated
+  O21 [Inferred]: Y
+  P21 [Note]: Inferred. 20 signers − Party A (no NDA until 08/05) − 3 submitters = 16. On 07/25 the target named only four interested bidders. Some may have signed after 07/23.
+  Q21 [Quote and page]: “reach out to each of the four interested bidders and arrange management meetings” (p. 34)
+  R21 [Flag]: Q3
+  T21 [Sort date]: 2013-07-23T00:00:00
+  U21 [Date from]: 2013-07-23T00:00:00
+  V21 [Date to]: 2013-07-23T00:00:00
+EXCEL ROW 22
+  A22 [#]: 21
+  B22 [When]: 07/24/2013
+  C22 [Who]: Party B
+  D22 [Type]: Financial
+  E22 [Event]: Bid
+  F22 [Process]: 1
+  G22 [Round]: 1
+  H22 [Price low]: 17
+  I22 [Price high]: 18
+  J22 [All cash]: Yes
+  K22 [Formality]: Informal
+  L22 [Conditions]: Heavy
+  M22 [Count]: 1
+  P22 [Note]: Written preliminary IOI, one day after the due date. Based on the informational package only (Heavy by context).
+  Q22 [Quote and page]: “Party B submitted a preliminary indication of interest at an all-cash purchase price of $17.00 to $18.00 per share.” (p. 33)
+  T22 [Sort date]: 2013-07-24T00:00:00
+  U22 [Date from]: 2013-07-24T00:00:00
+  V22 [Date to]: 2013-07-24T00:00:00
+EXCEL ROW 23
+  A23 [#]: 22
+  B23 [When]: 07/24/2013
+  C23 [Who]: Party C
+  D23 [Type]: Financial
+  E23 [Event]: Bid
+  F23 [Process]: 1
+  G23 [Round]: 1
+  H23 [Price low]: 15
+  I23 [Price high]: 17
+  J23 [All cash]: Yes
+  K23 [Formality]: Informal
+  L23 [Conditions]: Heavy
+  M23 [Count]: 1
+  P23 [Note]: Oral preliminary IOI to BofA, one day after the due date. Based on the informational package only (Heavy by context).
+  Q23 [Quote and page]: “presented an oral preliminary indication of interest at an all-cash purchase price of $15.00 to $17.00 per share” (p. 33)
+  T23 [Sort date]: 2013-07-24T00:00:00
+  U23 [Date from]: 2013-07-24T00:00:00
+  V23 [Date to]: 2013-07-24T00:00:00
+EXCEL ROW 24
+  A24 [#]: 23
+  B24 [When]: 07/25/2013
+  C24 [Who]: Mac-Gray (Special Committee)
+  E24 [Event]: Round opened
+  F24 [Process]: 1
+  G24 [Round]: 2
+  P24 [Note]: Committee finds IOIs lower than expected. Advances four: Party A (subject to NDA), Party B, Party C, CSC/Pamplona. Staged disclosure; management meetings for all, synergy information for strategics; revised IOIs to follow.
+  Q24 [Quote and page]: “authorized and instructed BofA Merrill Lynch to proceed with the staged disclosure as discussed at this meeting and to reach out to each of the four interested bidders” (p. 34)
+  R24 [Flag]: Q1
+  T24 [Sort date]: 2013-07-25T00:00:00
+  U24 [Date from]: 2013-07-25T00:00:00
+  V24 [Date to]: 2013-07-25T00:00:00
+EXCEL ROW 25
+  A25 [#]: 24
+  B25 [When]: 07/25/2013
+  C25 [Who]: Party C
+  D25 [Type]: Financial
+  E25 [Event]: Bid
+  F25 [Process]: 1
+  G25 [Round]: 1
+  H25 [Price low]: 16
+  I25 [Price high]: 16.5
+  J25 [All cash]: Yes
+  K25 [Formality]: Informal
+  L25 [Conditions]: Heavy
+  M25 [Count]: 1
+  P25 [Note]: Written IOI after the 07/25 meeting; revises #22 (oral $15.00-$17.00). Answers the round-1 request. Based on the informational package only (Heavy by context).
+  Q25 [Quote and page]: “Party C submitted a written indication of interest at an all-cash purchase price of $16.00 to $16.50 per share.” (p. 34)
+  T25 [Sort date]: 2013-07-25T00:00:00
+  U25 [Date from]: 2013-07-25T00:00:00
+  V25 [Date to]: 2013-07-25T00:00:00
+EXCEL ROW 26
+  A26 [#]: 25
+  B26 [When]: 08/05/2013
+  C26 [Who]: Party A
+  D26 [Type]: Strategic
+  E26 [Event]: NDA signed
+  F26 [Process]: 1
+  G26 [Round]: 2
+  M26 [Count]: 1
+  P26 [Note]: Talks resumed 07/27 and non-solicit terms agreed. Received the informational package so it could improve its 06/21 proposal (#7).
+  Q26 [Quote and page]: “Party A entered into a confidentiality and standstill agreement with Mac-Gray and was provided with an informational package” (p. 34)
+  T26 [Sort date]: 2013-08-05T00:00:00
+  U26 [Date from]: 2013-08-05T00:00:00
+  V26 [Date to]: 2013-08-05T00:00:00
+EXCEL ROW 27
+  A27 [#]: 26
+  B27 [When]: 08/06/2013 to 08/27/2013
+  C27 [Who]: Mac-Gray
+  E27 [Event]: Other material event
+  F27 [Process]: 1
+  G27 [Round]: 2
+  P27 [Note]: Information access differs by bidder type: B and C (financial) get broad data-room access; A and CSC/Pamplona (strategic) get limited access, customer data withheld, plus synergy talks. All four had management presentations 08/06-08/14.
+  Q27 [Quote and page]: “Party A and CSC/Pamplona, in light of the fact that they were strategic bidders, were given somewhat limited access to this electronic data site” (p. 34)
+  T27 [Sort date]: 2013-08-06T00:00:00
+  U27 [Date from]: 2013-08-06T00:00:00
+  V27 [Date to]: 2013-08-27T00:00:00
+EXCEL ROW 28
+  A28 [#]: 27
+  B28 [When]: 08/27/2013
+  C28 [Who]: Mac-Gray (BofA Merrill Lynch)
+  E28 [Event]: Deadline set
+  F28 [Process]: 1
+  G28 [Round]: 2
+  P28 [Note]: Letter to all four (authorized 08/15): revised written proposals due 09/09/2013 to go on to in-depth evaluation. Proposals to cover valuation, financing, approvals, covenants and diligence.
+  Q28 [Quote and page]: “instructing such bidders to submit revised written proposals no later than September 9, 2013 if such bidders wished to proceed further in the process” (p. 35)
+  T28 [Sort date]: 2013-08-27T00:00:00
+  U28 [Date from]: 2013-08-27T00:00:00
+  V28 [Date to]: 2013-08-27T00:00:00
+EXCEL ROW 29
+  A29 [#]: 28
+  B29 [When]: 09/09/2013
+  C29 [Who]: CSC/Pamplona
+  D29 [Type]: Strategic
+  E29 [Event]: Bid
+  F29 [Process]: 1
+  G29 [Round]: 2
+  H29 [Price low]: 19.5
+  I29 [Price high]: 19.5
+  J29 [All cash]: Yes
+  K29 [Formality]: Informal
+  L29 [Conditions]: Heavy
+  M29 [Count]: 1
+  P29 [Note]: Revised IOI, up from $18.50 (#18). Pamplona commits 100% of the capital. Requests 2-week exclusivity. Heavy: customer data still withheld and further in-depth diligence expected.
+  Q29 [Quote and page]: “CSC/Pamplona submitted a revised indication of interest with an all-cash purchase price of $19.50 per share, indicating that Pamplona was committed to provide 100% of the capital” (p. 35)
+  T29 [Sort date]: 2013-09-09T00:00:00
+  U29 [Date from]: 2013-09-09T00:00:00
+  V29 [Date to]: 2013-09-09T00:00:00
+EXCEL ROW 30
+  A30 [#]: 29
+  B30 [When]: 09/09/2013
+  C30 [Who]: Party B
+  D30 [Type]: Financial
+  E30 [Event]: Bid
+  F30 [Process]: 1
+  G30 [Round]: 2
+  H30 [Price low]: 18.5
+  I30 [Price high]: 18.5
+  J30 [All cash]: Yes
+  K30 [Formality]: Informal
+  L30 [Conditions]: Heavy
+  M30 [Count]: 1
+  P30 [Note]: Revised IOI, up from $17.00-$18.00 (#21). Financing from affiliated-fund equity plus third-party debt; no firm financing commitment (Heavy).
+  Q30 [Quote and page]: “Party B also submitted a revised indication of interest with an all-cash purchase price of $18.50 per share” (p. 35)
+  T30 [Sort date]: 2013-09-09T00:00:00
+  U30 [Date from]: 2013-09-09T00:00:00
+  V30 [Date to]: 2013-09-09T00:00:00
+EXCEL ROW 31
+  A31 [#]: 30
+  B31 [When]: 09/09/2013
+  C31 [Who]: Mac-Gray
+  E31 [Event]: Deadline
+  F31 [Process]: 1
+  G31 [Round]: 2
+  P31 [Note]: Due date for revised written proposals. CSC/Pamplona and Party B bid on time; Party A and Party C bid on 09/10 and were reviewed on 09/11 (late bids accepted).
+  Q31 [Quote and page]: “instructing such bidders to submit revised written proposals no later than September 9, 2013” (p. 35)
+  R31 [Flag]: Q2
+  T31 [Sort date]: 2013-09-09T00:00:00
+  U31 [Date from]: 2013-09-09T00:00:00
+  V31 [Date to]: 2013-09-09T00:00:00
+EXCEL ROW 32
+  A32 [#]: 31
+  B32 [When]: 09/10/2013
+  C32 [Who]: Party A
+  D32 [Type]: Strategic
+  E32 [Event]: Bid
+  F32 [Process]: 1
+  G32 [Round]: 2
+  H32 [Price low]: 18
+  I32 [Price high]: 19
+  J32 [All cash]: Yes
+  K32 [Formality]: Informal
+  L32 [Conditions]: Heavy
+  M32 [Count]: 1
+  P32 [Note]: Revised IOI, one day late; same range as its 06/21 proposal (#7). To be financed by existing credit facilities or affiliated equity; no firm financing commitment (Heavy).
+  Q32 [Quote and page]: “Party A submitted a revised indication of interest with an all-cash purchase price of $18.00 to $19.00 per share, to be financed by outstanding credit facilities or affiliated equity sources.” (p. 35)
+  T32 [Sort date]: 2013-09-10T00:00:00
+  U32 [Date from]: 2013-09-10T00:00:00
+  V32 [Date to]: 2013-09-10T00:00:00
+EXCEL ROW 33
+  A33 [#]: 32
+  B33 [When]: 09/10/2013
+  C33 [Who]: Party C
+  D33 [Type]: Financial
+  E33 [Event]: Bid
+  F33 [Process]: 1
+  G33 [Round]: 2
+  H33 [Price low]: 16
+  I33 [Price high]: 17
+  J33 [All cash]: Yes
+  K33 [Formality]: Informal
+  L33 [Conditions]: Heavy
+  M33 [Count]: 1
+  P33 [Note]: Revised oral IOI to BofA, one day late; revises #24 ($16.00-$16.50). No firm financing commitment (Heavy).
+  Q33 [Quote and page]: “indicated that it was submitting a revised oral indication of interest with an all-cash purchase price of $16.00 to $17.00 per share” (p. 35)
+  T33 [Sort date]: 2013-09-10T00:00:00
+  U33 [Date from]: 2013-09-10T00:00:00
+  V33 [Date to]: 2013-09-10T00:00:00
+EXCEL ROW 34
+  A34 [#]: 33
+  B34 [When]: 09/11/2013
+  C34 [Who]: Stewart G. MacDonald, Jr. (CEO)
+  E34 [Event]: Other material event
+  F34 [Process]: 1
+  G34 [Round]: 2
+  P34 [Note]: Rollover refused by holder: CEO and major holder says he won't roll over shares. BofA reports bidders unlikely to proceed without his support; committee has him fully briefed (09/12). He backs the process, wants higher value.
+  Q34 [Quote and page]: “it was unlikely that any of these parties would move forward in the process without the express support of Mr. MacDonald” (p. 35)
+  T34 [Sort date]: 2013-09-11T00:00:00
+  U34 [Date from]: 2013-09-11T00:00:00
+  V34 [Date to]: 2013-09-11T00:00:00
+EXCEL ROW 35
+  A35 [#]: 34
+  B35 [When]: 09/11/2013
+  C35 [Who]: Mac-Gray (Special Committee)
+  E35 [Event]: Round opened
+  F35 [Process]: 1
+  G35 [Round]: 3
+  P35 [Note]: BofA calls all four the same day asking for final IOIs by 09/18/2013. Short exclusivity offered to one bidder depending on price and deal certainty.
+  Q35 [Quote and page]: “the Special Committee instructed BofA Merrill Lynch to call each of Party A, Party B, Party C and CSC/Pamplona to request final indications of interest by September 18, 2013” (p. 36)
+  R35 [Flag]: Q1
+  T35 [Sort date]: 2013-09-11T00:00:00
+  U35 [Date from]: 2013-09-11T00:00:00
+  V35 [Date to]: 2013-09-11T00:00:00
+EXCEL ROW 36
+  A36 [#]: 35
+  B36 [When]: 09/18/2013
+  C36 [Who]: CSC/Pamplona
+  D36 [Type]: Strategic
+  E36 [Event]: Bid
+  F36 [Process]: 1
+  G36 [Round]: 3
+  H36 [Price low]: 20.75
+  I36 [Price high]: 20.75
+  J36 [All cash]: Yes
+  K36 [Formality]: Formal
+  L36 [Conditions]: Light
+  M36 [Count]: 1
+  P36 [Note]: Final-round proposal, up from $19.50 (#28); Formal as a response to the final solicitation. Pamplona commits 100% of the capital; only confirmatory diligence followed (Light). Requests 2-week exclusivity.
+  Q36 [Quote and page]: “CSC/Pamplona submitted a proposal for an all-cash purchase price of $20.75 per share, reiterating that Pamplona was committed to provide 100% of the capital” (p. 36)
+  R36 [Flag]: Q4
+  T36 [Sort date]: 2013-09-18T00:00:00
+  U36 [Date from]: 2013-09-18T00:00:00
+  V36 [Date to]: 2013-09-18T00:00:00
+EXCEL ROW 37
+  A37 [#]: 36
+  B37 [When]: 09/18/2013
+  C37 [Who]: Party A
+  D37 [Type]: Strategic
+  E37 [Event]: Bid reaffirmed
+  F37 [Process]: 1
+  G37 [Round]: 3
+  H37 [Price low]: 18
+  I37 [Price high]: 19
+  J37 [All cash]: Yes
+  K37 [Formality]: Formal
+  L37 [Conditions]: Heavy
+  M37 [Count]: 1
+  P37 [Note]: By phone to BofA: confirms #31 as its best and final offer, answering the final solicitation. The 09/10 bid had no firm financing commitment and none is reported since (Heavy).
+  Q37 [Quote and page]: “its previous indication of interest with an all-cash purchase price of $18.00 to $19.00 per share was its best and final offer” (p. 36)
+  R37 [Flag]: Q4
+  T37 [Sort date]: 2013-09-18T00:00:00
+  U37 [Date from]: 2013-09-18T00:00:00
+  V37 [Date to]: 2013-09-18T00:00:00
+EXCEL ROW 38
+  A38 [#]: 37
+  B38 [When]: 09/18/2013
+  C38 [Who]: Party B
+  D38 [Type]: Financial
+  E38 [Event]: Bid
+  F38 [Process]: 1
+  G38 [Round]: 3
+  H38 [Price low]: 21.5
+  I38 [Price high]: 21.5
+  J38 [All cash]: No
+  K38 [Formality]: Formal
+  L38 [Conditions]: Heavy
+  M38 [Count]: 1
+  P38 [Note]: Party B values its bid at $21.50: $19.00 cash plus options for 10% of new equity, which it values at $2.50 and which vest on a five-year target. Debt-and-equity financing, no commitment reported (Heavy).
+  Q38 [Quote and page]: “Party B also submitted a revised indication of interest with a purchase price that Party B valued at $21.50 per share, including $19.00 of cash to be paid at closing” (p. 36)
+  R38 [Flag]: Q4; Q5
+  T38 [Sort date]: 2013-09-18T00:00:00
+  U38 [Date from]: 2013-09-18T00:00:00
+  V38 [Date to]: 2013-09-18T00:00:00
+EXCEL ROW 39
+  A39 [#]: 38
+  B39 [When]: 09/18/2013
+  C39 [Who]: Party C
+  D39 [Type]: Financial
+  E39 [Event]: Did not submit
+  F39 [Process]: 1
+  G39 [Round]: 3
+  M39 [Count]: 1
+  N39 [Exit reason]: Not stated
+  P39 [Note]: Did not submit or reaffirm its $16.00-$17.00 IOI (#32) and gave no reason. Reported on 09/19; not seen again.
+  Q39 [Quote and page]: “Party C did not submit a revised indication of interest or reiterate its prior indication of interest” (p. 36)
+  T39 [Sort date]: 2013-09-18T00:00:00
+  U39 [Date from]: 2013-09-18T00:00:00
+  V39 [Date to]: 2013-09-18T00:00:00
+EXCEL ROW 40
+  A40 [#]: 39
+  B40 [When]: 09/18/2013
+  C40 [Who]: Mac-Gray
+  E40 [Event]: Deadline
+  F40 [Process]: 1
+  G40 [Round]: 3
+  P40 [Note]: Due date for final IOIs, reached. On 09/19 the committee acted on the bids in hand (enforced).
+  Q40 [Quote and page]: “request final indications of interest by September 18, 2013” (p. 36)
+  R40 [Flag]: Q2
+  T40 [Sort date]: 2013-09-18T00:00:00
+  U40 [Date from]: 2013-09-18T00:00:00
+  V40 [Date to]: 2013-09-18T00:00:00
+EXCEL ROW 41
+  A41 [#]: 40
+  B41 [When]: 09/19/2013
+  C41 [Who]: Mac-Gray (Special Committee)
+  E41 [Event]: Other material event
+  F41 [Process]: 1
+  G41 [Round]: 3
+  P41 [Note]: Preferred bidder and price requirement: CSC/Pamplona is best on value, certainty and risk (Party B's options and financing riskier). Exclusivity offered at $21.25; MacDonald supports $21.25.
+  Q41 [Quote and page]: “the Special Committee would be prepared to move into exclusivity at a price of $21.25 per share” (p. 37)
+  T41 [Sort date]: 2013-09-19T00:00:00
+  U41 [Date from]: 2013-09-19T00:00:00
+  V41 [Date to]: 2013-09-19T00:00:00
+EXCEL ROW 42
+  A42 [#]: 41
+  B42 [When]: 09/21/2013
+  C42 [Who]: CSC/Pamplona
+  D42 [Type]: Strategic
+  E42 [Event]: Bid
+  F42 [Process]: 1
+  G42 [Round]: 3
+  H42 [Price low]: 21.25
+  I42 [Price high]: 21.25
+  J42 [All cash]: Yes
+  K42 [Formality]: Formal
+  L42 [Conditions]: Light
+  M42 [Count]: 1
+  P42 [Note]: Raised from $20.75 (#35) the same day the committee asked. Conditioned on 2-week exclusivity; asks for voting agreements from MacDonald. Pamplona funds 100%, no financing contingency; confirmatory diligence only (Light).
+  Q42 [Quote and page]: “CSC/Pamplona were willing to increase their all-cash purchase price to $21.25 per share as a last and best offer” (p. 37)
+  R42 [Flag]: Q4
+  T42 [Sort date]: 2013-09-21T00:00:00
+  U42 [Date from]: 2013-09-21T00:00:00
+  V42 [Date to]: 2013-09-21T00:00:00
+EXCEL ROW 43
+  A43 [#]: 42
+  B43 [When]: 09/24/2013
+  C43 [Who]: CSC/Pamplona
+  D43 [Type]: Strategic
+  E43 [Event]: Exclusivity changed
+  F43 [Process]: 1
+  G43 [Round]: 3
+  M43 [Count]: 1
+  P43 [Note]: Executed, authorized 09/23; exclusive until 5 p.m. 10/12/2013. Ends if CSC/Pamplona adversely changes the $21.25 final proposal. CSC/Pamplona then got full data-room access.
+  Q43 [Quote and page]: “CSC, Pamplona and Mac-Gray executed the exclusivity agreement providing for exclusive negotiations until 5 p.m. ET on October 12, 2013” (p. 38)
+  T43 [Sort date]: 2013-09-24T00:00:00
+  U43 [Date from]: 2013-09-24T00:00:00
+  V43 [Date to]: 2013-09-24T00:00:00
+EXCEL ROW 44
+  A44 [#]: 43
+  B44 [When]: by 09/24/2013
+  C44 [Who]: Party A
+  D44 [Type]: Strategic
+  E44 [Event]: Dropped by target
+  F44 [Process]: 1
+  G44 [Round]: 3
+  M44 [Count]: 1
+  N44 [Exit reason]: Would not improve earlier offer
+  O44 [Inferred]: Y
+  P44 [Note]: Inferred: displaced when exclusivity with CSC/Pamplona was executed; not reported told. On 09/18 it declined to improve its $18.00-$19.00 range (#36).
+  Q44 [Quote and page]: “CSC, Pamplona and Mac-Gray executed the exclusivity agreement providing for exclusive negotiations until 5 p.m. ET on October 12, 2013” (p. 38)
+  T44 [Sort date]: 2013-09-24T00:00:00
+  U44 [Date from]: 2013-09-24T00:00:00
+  V44 [Date to]: 2013-09-24T00:00:00
+EXCEL ROW 45
+  A45 [#]: 44
+  B45 [When]: by 09/24/2013
+  C45 [Who]: Party B
+  D45 [Type]: Financial
+  E45 [Event]: Dropped by target
+  F45 [Process]: 1
+  G45 [Round]: 3
+  M45 [Count]: 1
+  N45 [Exit reason]: Terms or process
+  O45 [Inferred]: Y
+  P45 [Note]: Inferred date: displaced by exclusivity with CSC/Pamplona. Reason from the committee on 09/19: Party B's options were contingent and deferred, and its financing riskier, despite the higher face value.
+  Q45 [Quote and page]: “the revised indication of interest submitted by CSC/Pamplona had the potential of delivering the most value to stockholders, provided greater certainty and involved less potential risk” (p. 37)
+  T45 [Sort date]: 2013-09-24T00:00:00
+  U45 [Date from]: 2013-09-24T00:00:00
+  V45 [Date to]: 2013-09-24T00:00:00
+EXCEL ROW 46
+  A46 [#]: 45
+  B46 [When]: 09/25/2013
+  C46 [Who]: Kirkland & Ellis LLP
+  E46 [Event]: Adviser
+  F46 [Process]: 1
+  G46 [Round]: 3
+  P46 [Note]: Outside legal counsel to CSC/Pamplona; first seen acting when it received the target's first merger agreement draft.
+  Q46 [Quote and page]: “Kirkland & Ellis LLP, outside legal counsel to CSC/Pamplona” (p. 38)
+  T46 [Sort date]: 2013-09-25T00:00:00
+  U46 [Date from]: 2013-09-25T00:00:00
+  V46 [Date to]: 2013-09-25T00:00:00
+EXCEL ROW 47
+  A47 [#]: 46
+  B47 [When]: 09/25/2013 to 10/07/2013
+  C47 [Who]: Moab Partners, L.P.
+  E47 [Event]: Other material event
+  F47 [Process]: 1
+  G47 [Round]: 3
+  P47 [Note]: Rollover resolved: talks with Pamplona, allowed from 09/23, end with no Moab rollover (reported 10/07). Moab signed a voting agreement at signing.
+  Q47 [Quote and page]: “As a result of such discussions, it was determined that Moab would not rollover any Moab shares in the transaction.” (p. 38)
+  T47 [Sort date]: 2013-10-01T00:00:00
+  U47 [Date from]: 2013-09-25T00:00:00
+  V47 [Date to]: 2013-10-07T00:00:00
+EXCEL ROW 48
+  A48 [#]: 47
+  B48 [When]: 10/12/2013
+  C48 [Who]: CSC/Pamplona
+  D48 [Type]: Strategic
+  E48 [Event]: Exclusivity changed
+  F48 [Process]: 1
+  G48 [Round]: 3
+  M48 [Count]: 1
+  P48 [Note]: Extended to 11:59 p.m. 10/15/2013. CSC/Pamplona asked 10/09; the committee required a termination fee of at most $11 million, agreed 10/11.
+  Q48 [Quote and page]: “CSC, Pamplona and Mac-Gray executed a letter agreement extending exclusivity until 11:59 p.m. ET on October 15, 2013.” (p. 41)
+  T48 [Sort date]: 2013-10-12T00:00:00
+  U48 [Date from]: 2013-10-12T00:00:00
+  V48 [Date to]: 2013-10-12T00:00:00
+EXCEL ROW 49
+  A49 [#]: 48
+  B49 [When]: 10/14/2013
+  C49 [Who]: CSC/Pamplona
+  D49 [Type]: Strategic
+  E49 [Event]: Merger agreement signed
+  F49 [Process]: 1
+  G49 [Round]: 3
+  M49 [Count]: 1
+  P49 [Note]: $21.25 per share in cash. Pamplona commitment letter ($594m, no financing condition); $11m target fee; $15m reverse fee; MacDonald and Moab voting agreements.
+  Q49 [Quote and page]: “Later in the day, on October 14, 2013, the merger agreement was executed, the Pamplona commitment letter was delivered” (p. 41)
+  R49 [Flag]: Q6
+  T49 [Sort date]: 2013-10-14T00:00:00
+  U49 [Date from]: 2013-10-14T00:00:00
+  V49 [Date to]: 2013-10-14T00:00:00
+EXCEL ROW 50
+  A50 [#]: 49
+  B50 [When]: 10/15/2013
+  C50 [Who]: Mac-Gray and CSC
+  E50 [Event]: Merger announced
+  F50 [Process]: 1
+  G50 [Round]: post
+  P50 [Note]: Joint announcement before the market opened. No post-signing competing proposals reported.
+  Q50 [Quote and page]: “Mac-Gray and CSC jointly announced the execution of the merger agreement.” (p. 41)
+  T50 [Sort date]: 2013-10-15T00:00:00
+  U50 [Date from]: 2013-10-15T00:00:00
+  V50 [Date to]: 2013-10-15T00:00:00
+SHEET 'Rounds'; state=visible; rows=4; columns=10
+EXCEL ROW 1
+  A1 [Process]: Process
+  B1 [Round]: Round
+  C1 [Opened]: Opened
+  D1 [How opened]: How opened
+  E1 [Who was in]: Who was in
+  F1 [Due dates]: Due dates
+  G1 [Deadline outcome]: Deadline outcome
+  H1 [Finality]: Finality
+  I1 [Bids received]: Bids received
+  J1 [How it ended]: How it ended
+EXCEL ROW 2
+  A2 [Process]: 1
+  B2 [Round]: 1
+  C2 [Opened]: 2013-06-26T00:00:00
+  D2 [How opened]: BofA outreach to 50 parties after the 06/24 decision; NDA signers asked for preliminary IOIs
+  E2 [Who was in]: 20: 2 strategic (CSC/Pamplona; Party A via its standing 06/21 proposal, NDA only on 08/05) and 18 financial (Party B, Party C, 16 unnamed NDA signers)
+  F2 [Due dates]: 07/23/2013
+  G2 [Deadline outcome]: Late bids accepted
+  H2 [Finality]: Not final
+  I2 [Bids received]: 3: CSC/Pamplona, Party B, Party C (oral, then written); Party A's round-0 proposal also reviewed
+  J2 [How it ended]: four advanced (Party A, Party B, Party C, CSC/Pamplona); 16 financial signers out
+EXCEL ROW 3
+  A3 [Process]: 1
+  B3 [Round]: 2
+  C3 [Opened]: 2013-07-25T00:00:00
+  D3 [How opened]: committee advanced four, set up management meetings and staged data-room access, then asked for revised IOIs
+  E3 [Who was in]: 4: 2 strategic (Party A, CSC/Pamplona), 2 financial (Party B, Party C)
+  F3 [Due dates]: 09/09/2013
+  G3 [Deadline outcome]: Late bids accepted
+  H3 [Finality]: Not final
+  I3 [Bids received]: 4: CSC/Pamplona, Party B, Party A, Party C
+  J3 [How it ended]: all four asked for final IOIs; none out
+EXCEL ROW 4
+  A4 [Process]: 1
+  B4 [Round]: 3
+  C4 [Opened]: 2013-09-11T00:00:00
+  D4 [How opened]: committee asked all four for final IOIs by 09/18, with short exclusivity for one
+  E4 [Who was in]: 4: 2 strategic (Party A, CSC/Pamplona), 2 financial (Party B, Party C)
+  F4 [Due dates]: 09/18/2013
+  G4 [Deadline outcome]: Enforced
+  H4 [Finality]: Announced as final
+  I4 [Bids received]: 3: CSC/Pamplona ($20.75, raised to $21.25 on 09/21), Party B ($21.50 package), Party A (reaffirmed $18.00-$19.00); Party C did not submit
+  J4 [How it ended]: CSC/Pamplona chosen 09/19, exclusivity 09/24, signing 10/14; Party A and Party B dropped, Party C out
+SHEET 'Questions'; state=visible; rows=7; columns=7
+EXCEL ROW 1
+  A1 [Q]: Q
+  B1 [Question]: Question
+  C1 [Recommended answer]: Recommended answer
+  D1 [Why, with page]: Why, with page
+  E1 [Rows affected]: Rows affected
+  F1 [What changes if answered differently]: What changes if answered differently
+  G1 [Reviewer note]: Reviewer note
+EXCEL ROW 2
+  A2 [Q]: Q1
+  B2 [Question]: Process and round map: one process, three rounds opening at the outreach (06/24-06/28), the 07/25 advancement of four, and the 09/11 final request?
+  C2 [Recommended answer]: Yes, as recorded.
+  D2 [Why, with page]: 07/25: target picked who advanced and opened a staged information stage for revised IOIs (pp. 33-34). 09/11: first request for final IOIs (p. 36).
+  E2 [Rows affected]: 8, 9, 23, 25-27, 34
+  F2 [What changes if answered differently]: If round 2 opened with the 08/27 letter, #23, #25 and #26 move to round 1. Bid rounds are unchanged.
+EXCEL ROW 3
+  A3 [Q]: Q2
+  B3 [Question]: Deadline outcomes: 07/23 Late bids accepted; 09/09 Late bids accepted; 09/18 Enforced?
+  C3 [Recommended answer]: Yes, as recorded.
+  D3 [Why, with page]: B and C bid 07/24, reviewed 07/25 (p. 33). A and C bid 09/10, reviewed 09/11 (p. 35). The 09/19 selection used bids in hand (p. 37).
+  E3 [Rows affected]: 19, 21, 22, 30, 31, 32, 39
+  F3 [What changes if answered differently]: If one-day slips count as on time, 07/23 and 09/09 become Enforced. Live counts are unchanged.
+EXCEL ROW 4
+  A4 [Q]: Q3
+  B4 [Question]: Were all 16 unnamed financial NDA signers eligible at the 07/23 due date?
+  C4 [Recommended answer]: Yes: Did not submit at 07/23 (inferred).
+  D4 [Why, with page]: The 20 NDAs were signed 'over the next two months', undated (p. 32). On 07/25 only four bidders were named (p. 34).
+  E4 [Rows affected]: 13, 20
+  F4 [What changes if answered differently]: Late signers would instead be Dropped by target on 07/25 or later. The live count after 07/25 stays four.
+EXCEL ROW 5
+  A5 [Q]: Q4
+  B5 [Question]: Are the round-3 bids Formal, though called 'indications of interest' with no markup before exclusivity?
+  C5 [Recommended answer]: Yes, Formal (C13 rule 2): they answer the 09/11 final request as asked.
+  D5 [Why, with page]: Final request p. 36. CSC/Pamplona's $21.25 is a 'last and best offer' (p. 37). Kirkland returned a merger agreement draft on 10/07 (p. 39).
+  E5 [Rows affected]: 35, 36, 37, 41
+  F5 [What changes if answered differently]: If Informal: add a CSC/Pamplona Bid reaffirmed at $21.25 on 10/07 (returned draft); Party A and Party B final bids become Informal.
+EXCEL ROW 6
+  A6 [Q]: Q5
+  B6 [Question]: How should Party B's 09/18 cash-plus-options package be priced?
+  C6 [Recommended answer]: $21.50 (Party B's own valuation), All cash = No; the Note gives $19.00 cash + options valued at $2.50.
+  D6 [Why, with page]: 'valued at $21.50 per share, including $19.00 of cash'; options vest on five-year targets (p. 36).
+  E6 [Rows affected]: 37, 44
+  F6 [What changes if answered differently]: Cash-only $19.00 would rank Party B below CSC/Pamplona's $20.75.
+EXCEL ROW 7
+  A7 [Q]: Q6
+  B7 [Question]: Is the winner CSC/Pamplona Strategic or Mixed?
+  C7 [Recommended answer]: Strategic: sponsor-owned laundry operator; Pamplona provides equity.
+  D7 [Why, with page]: The filing calls CSC/Pamplona a strategic bidder (pp. 32, 34). Parent is a CSC subsidiary (p. 26). Pamplona commits $594m (p. 59).
+  E7 [Rows affected]: 10, 17, 18, 28, 35, 41, 42, 47, 48
+  F7 [What changes if answered differently]: Mixed if Pamplona is a co-bidder: it signed the NDA and exclusivity and has liability up to $50m. The strategic/financial split would shift.
+SHEET 'Deal facts'; state=visible; rows=17; columns=2
+EXCEL ROW 1
+  A1 [Field]: Field
+  B1 [Value]: Value
+EXCEL ROW 2
+  A2 [Field]: Target
+  B2 [Value]: Mac-Gray Corporation
+EXCEL ROW 3
+  A3 [Field]: Acquirer
+  B3 [Value]: CSC ServiceWorks, Inc. (via Spin Holdco Inc. and CSC Fenway, Inc.; with CSC ServiceWorks Holdings, Inc.), a portfolio company of Pamplona Capital; funded by Pamplona Capital Partners III, L.P.
+EXCEL ROW 4
+  A4 [Field]: Acquirer type
+  B4 [Value]: Strategic (sponsor-owned operating company)
+EXCEL ROW 5
+  A5 [Field]: Agreed price and consideration
+  B5 [Value]: $21.25 per share in cash
+EXCEL ROW 6
+  A6 [Field]: Merger agreement signed
+  B6 [Value]: 2013-10-14T00:00:00
+EXCEL ROW 7
+  A7 [Field]: Merger announced
+  B7 [Value]: 2013-10-15T00:00:00
+EXCEL ROW 8
+  A8 [Field]: Filing type and date
+  B8 [Value]: DEFM14A, 12/04/2013
+EXCEL ROW 9
+  A9 [Field]: Background pages
+  B9 [Value]: 27-41
+EXCEL ROW 10
+  A10 [Field]: Initiation
+  B10 [Value]: target-led
+EXCEL ROW 11
+  A11 [Field]: Number of processes
+  B11 [Value]: 1
+EXCEL ROW 12
+  A12 [Field]: Auction screen
+  B12 [Value]: Met: 20 confidentiality agreements (2 strategic, 18 financial)
+EXCEL ROW 13
+  A13 [Field]: Whole-company bids
+  B13 [Value]: Yes
+EXCEL ROW 14
+  A14 [Field]: Currency and units of bid prices
+  B14 [Value]: US dollars per share; Party B's 09/18 bid is $19.00 cash plus options it valued at $2.50
+EXCEL ROW 15
+  A15 [Field]: Target financial advisers
+  B15 [Value]: BofA Merrill Lynch (sole)
+EXCEL ROW 16
+  A16 [Field]: Target legal advisers
+  B16 [Value]: Goodwin Procter LLP
+EXCEL ROW 17
+  A17 [Field]: Account
+  B17 [Value]: Mac-Gray, the second-largest US laundry facilities management contractor, had BofA Merrill Lynch sound out strategic rival Party A in April 2013; Party A made an unsolicited $17.00-$19.00 proposal on June 21. On June 24 a new Special Committee decided to consider a sale, and BofA contacted 50 parties (15 strategic, 35 financial), 20 of which signed confidentiality agreements. Preliminary indications from CSC/Pamplona ($18.50), Party B ($17.00-$18.00) and Party C ($15.00-$17.00, then $16.00-$16.50) led the committee to advance four bidders, including Party A, to management meetings and staged data-room access, with less customer data shown to strategic bidders. Revised indications on September 9-10 ranged from $16.00 to $19.50. A request for final indications by September 18 drew $20.75 from CSC/Pamplona, a $21.50 cash-plus-options package from Party B, Party A's unchanged $18.00-$19.00 and nothing from Party C. The committee preferred CSC/Pamplona's fully Pamplona-funded offer for its certainty, asked for $21.25, and signed exclusivity on September 24 once CSC/Pamplona agreed. After one extension of exclusivity, the merger agreement was signed on October 14, 2013 at $21.25 per share in cash and announced on October 15.

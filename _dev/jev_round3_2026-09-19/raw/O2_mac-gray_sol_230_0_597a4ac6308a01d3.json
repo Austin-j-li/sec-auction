@@ -1,0 +1,54 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On July 11, 2013, CSC/Pamplona entered into a confidentiality and standstill agreement with Mac-Gray and were provided with an informational package for the purpose of providing CSC/Pamplona with data to formulate a preliminary indication of interest.",
+   "target_sentence": "On July 11, 2013, CSC/Pamplona entered into a confidentiality and standstill agreement with Mac-Gray and were provided with an informational package for the purpose of providing CSC/Pamplona with data to formulate a preliminary indication of interest."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_15": "06/28/2013 | Party B | NDA signed | Confidentiality and standstill agreement; informational package provided.",
+     "row_16": "06/30/2013 | Party C | NDA signed | Confidentiality and standstill agreement; informational package provided.",
+     "row_17": "07/06/2013 | Moab | Other material event | Denied exclusive rollover discussions with CSC/Pamplona; Moab's shares remained potential capital for other bidders.",
+     "row_18": "07/11/2013 | CSC/Pamplona | NDA signed | Confidentiality and standstill agreement; informational package provided.",
+     "row_21": "07/23/2013 | CSC/Pamplona | Bid | price 18.5 | Preliminary indication before substantive data-room or management access.",
+     "row_22": "07/23/2013 | 16 other financial NDA signers | Did not submit | 20 NDA signers \u2212 Party A, Party B, Party C and CSC/Pamplona = 16; exact signing/submission timing is uncertain.",
+     "row_23": "07/24/2013 | Party B | Bid | price 17-18 | Late preliminary indication before substantive data-room or management access.",
+     "row_24": "07/24/2013 | Party C | Bid | price 15-17 | Late oral preliminary indication before substantive data-room or management access.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_18",
+    "confidence": 1.0,
+    "probabilities": {
+     "row_17": 0.0,
+     "row_16": 0.0,
+     "none": 0.0,
+     "row_18": 1.0,
+     "row_24": 0.0,
+     "row_22": 0.0,
+     "row_15": 0.0,
+     "row_23": 0.0,
+     "row_21": 0.0,
+     "not_an_event": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1016,
+   "output_tokens": 116
+  }
+ },
+ "latency_s": 0.399
+}

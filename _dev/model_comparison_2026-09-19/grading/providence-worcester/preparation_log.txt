@@ -1,0 +1,1 @@
+{"deal": "providence-worcester", "labels": ["Candidate-A", "Candidate-B", "Candidate-C"], "reference_sha256": "5d6bcc6d33d43581f611415ea2698b7c00154c932a70b931fbde8fcc5dcd29a9"}

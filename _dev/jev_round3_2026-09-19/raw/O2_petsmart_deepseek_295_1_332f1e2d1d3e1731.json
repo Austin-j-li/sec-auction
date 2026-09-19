@@ -1,0 +1,68 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "During the period from the middle of August through the end of October, the Company developed the Profit Improvement Plan and prepared for a sale process. During this period, J.P. Morgan was contacted by 27 potential participants in a sale process, including three strategic parties (not counting Industry Participant) and 24 financial participants (including potential lead buyers as well as large suppliers of equity capital to lead buyers).",
+   "target_sentence": "During this period, J.P. Morgan was contacted by 27 potential participants in a sale process, including three strategic parties (not counting Industry Participant) and 24 financial participants (including potential lead buyers as well as large suppliers of equity capital to lead buyers)."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_5": "07/03/2014 | JANA Partners | Activist | Filed Schedule 13D disclosing a 9.9% stake; advocated a sale in amendments and letters through August; met the Company on 07/10.",
+     "row_6": "07/07/2014 | Longview | Activist | Public letter urged the board to consider a sale; offered to roll over part of its holdings if needed; met directors and management in May.",
+     "row_8": "08/07/2014 | Industry Participant | Bidder interest | Called J.P. Morgan: might revisit a combination if the Company pursued alternatives; reported to the ad hoc committee.",
+     "row_9": "08/13/2014 | PetSmart | Target sale decision | Board determined to explore strategic alternatives including a possible sale; Profit Improvement Plan; ad hoc committee to oversee; J.P. Morgan to contact parties later.",
+     "row_10": "08/19/2014 | PetSmart | Sale process announced | Press release announced exploration of strategic alternatives including a possible sale; uncontacted parties could approach J.P. Morgan.",
+     "row_11": "08/27/2014 | PetSmart | Other material event | Not invited: told 08/22 and 08/27 the board would not invite it; may still submit a proposal; no contact since 08/27.",
+     "row_12": "mid-August\u2013October 2014 | 27 potential participants | Other material event | Contacts: 27 parties (3 strategic not counting Industry Participant; 24 financial) approached J.P. Morgan mid-August\u2013end October; ~15 expressed interest by the 10/03 board update.",
+     "row_13": "first week of October 2014 | PetSmart | Round opened | Round 1 opened by the first-week-of-October confidentiality wave; the 10/30 indication due date was set later.",
+     "row_14": "first week of October 2014 | 15 potentially interested financial buyers | NDA signed | All 15 received October due diligence, management presentations and detailed financial and business-plan information.",
+     "row_15": "October 2014 | PetSmart | Deadline set | Set non-binding preliminary indication due date of 10/30; communicated to the potential bidders during October.",
+     "row_17": "10/30/2014 | PetSmart | Deadline | Six of the potentially interested parties submitted indications of interest.",
+     "row_18": "10/30/2014 | Buyer Group | Bid | price 81-83 | Preliminary non-binding indication; range $81.00\u2013$83.00; consideration not stated.",
+     "row_19": "10/30/2014 | Unnamed financial bidder 1 | Bid | price 80-85 | Another of the six submitters; non-binding range $80.00\u2013$85.00; not individually named.",
+     "row_21": "10/30/2014 | 3 unnamed indication submitters | Bid | Remainder of the six submitters; no individual detail or prices; one later advanced, two eliminated 11/03 (#24).",
+     "row_23": "10/30\u201311/02/2014 | Bidder 2 | Bid | price 81-84 | Raised after J.P. Morgan's 10/30\u201311/02 calls; range $81.00\u2013$84.00; made it one of four at or above $80.00.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_12",
+    "confidence": 1.0,
+    "probabilities": {
+     "row_6": 0.0,
+     "row_15": 0.0,
+     "row_12": 1.0,
+     "row_9": 0.0,
+     "row_5": 0.0,
+     "row_23": 0.0,
+     "none": 0.0,
+     "row_18": 0.0,
+     "row_8": 0.0,
+     "row_13": 0.0,
+     "row_14": 0.0,
+     "row_11": 0.0,
+     "row_19": 0.0,
+     "row_10": 0.0,
+     "row_21": 0.0,
+     "row_17": 0.0,
+     "not_an_event": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1585,
+   "output_tokens": 182
+  }
+ },
+ "latency_s": 0.41
+}

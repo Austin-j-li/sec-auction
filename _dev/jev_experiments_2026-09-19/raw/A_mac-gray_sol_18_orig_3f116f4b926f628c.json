@@ -1,0 +1,54 @@
+{
+ "request": {
+  "state": {
+   "passage": {
+    "before": [
+     "On July 6, 2013, the Special Committee held a telephonic meeting for the purpose of receiving an update on the ongoing sale process. By invitation of the Special Committee, representatives from BofA Merrill Lynch and Goodwin Procter were also present throughout the meeting. The Special Committee discussed whether Moab should be permitted to partner exclusively with CSC/Pamplona. Because the",
+     "objective of the sale process was to maximize value for Mac-Gray's stockholders, the Special Committee decided to deny the exclusivity request at this stage of the process so that the potential equity rollover of Moab's shares could be available as a source of capital for other potential bidders. The Special Committee instructed BofA Merrill Lynch and Goodwin Procter to communicate to CSC/Pamplona and Mr. Rothenberg, respectively, that it was premature for Mac-Gray to permit Moab to engage in equity rollover discussions with any party, including CSC/Pamplona, but that such discussions would be permitted at a later stage of the sale process."
+    ],
+    "cited_paragraph": "On July 11, 2013, CSC/Pamplona entered into a confidentiality and standstill agreement with Mac-Gray and were provided with an informational package for the purpose of providing CSC/Pamplona with data to formulate a preliminary indication of interest.",
+    "after": [
+     "Between July 11, 2013 and July 23, 2013, Party B, Party C and CSC/Pamplona engaged in a preliminary review of Mac-Gray and the potential acquisition opportunity. Also during this time, outside counsel to Party A and representatives of Goodwin Procter negotiated the terms of a confidentiality and standstill agreement, but did not come to agreement on the terms of the customer and employee non-solicitation provisions.",
+     "On July 23, 2013, CSC/Pamplona submitted a preliminary indication of interest at an all-cash purchase price of $18.50 per share."
+    ]
+   }
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "actor": {
+    "type": "noul",
+    "instructions": "Does `passage.cited_paragraph` describe something done by, done to, or decided about the party called \"CSC/Pamplona\" (or a group that the passage shows includes it)?",
+    "criteria": {
+     "true": "That party, or a cohort clearly containing it, is a subject of the cited paragraph.",
+     "false": "The cited paragraph concerns other parties only."
+    }
+   },
+   "event": {
+    "type": "noul",
+    "instructions": "A research ledger records an event labelled \"NDA signed\" for \"CSC/Pamplona\". Does the passage report facts that fit the label \"NDA signed\" for that party?",
+    "criteria": {
+     "true": "The passage reports such an event, or facts from which it directly follows.",
+     "false": "The passage reports a different kind of event, or nothing of that kind."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "actor": {
+    "type": "noul",
+    "noul": 0.99
+   },
+   "event": {
+    "type": "noul",
+    "noul": 0.84
+   }
+  },
+  "usage": {
+   "input_tokens": 900,
+   "output_tokens": 36
+  }
+ },
+ "latency_s": 0.373
+}

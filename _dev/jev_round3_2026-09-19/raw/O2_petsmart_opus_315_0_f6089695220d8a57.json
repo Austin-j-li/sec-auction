@@ -1,0 +1,56 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Following the board meeting, the parties completed negotiations on terms satisfactory to both parties, and finalized the terms of the Longview voting agreement. On December 14, 2014, the parties executed the merger agreement, the voting agreement and related transaction agreements and issued a press release announcing the transaction.",
+   "target_sentence": "Following the board meeting, the parties completed negotiations on terms satisfactory to both parties, and finalized the terms of the Longview voting agreement."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_34": "12/10/2014 | PetSmart (ad hoc committee) | Deadline revised | Neither bid acceptable unless improved: J.P. Morgan told both bidders to raise their bids, improved bids due 12/12. Treated as an extension within the final round, not a new round.",
+     "row_35": "12/12/2014 (early) | Buyer Group / Longview | Other material event | Rollover permitted: committee approved Buyer Group\u2019s request to work with Longview; confidentiality agreement shared bid price. Bidder 2 would consider rollover only post-signing. Both bidders met Longview 12/09 without disclosing prices.",
+     "row_36": "12/12/2014 (evening) | Bidder 2 | Bid | price 81.5 | Revises #30. Confirmed to J.P. Morgan as best and final; with revised merger agreement drafts and financing commitment documents.",
+     "row_37": "12/12/2014 (evening) | Buyer Group | Bid | price 82.5 | Revises #29. Oral offer; said it was working to raise it within hours. Financing commitments already provided.",
+     "row_38": "12/12/2014 (later evening) | Buyer Group | Bid | price 83 | Revises #36. Best and final; revised drafts \u201cwith few exceptions\u201d in executable form, plus financing commitments. Longview\u2019s $250 million rollover support helped reach $83.00; members unwilling or unable to go higher.",
+     "row_39": "12/12/2014 | PetSmart | Deadline | Due date for improved bids; both remaining bidders submitted that evening.",
+     "row_40": "12/13/2014 | Buyer Group | Other material event | Board selected Buyer Group: approved merger at $83.00 cash, subject to resolving remaining open points in the agreement; J.P. Morgan gave fairness opinion.",
+     "row_42": "12/14/2014 | Buyer Group | Merger agreement signed | $83.00 per share in cash. Parent Argos Holdings (BC Partners-affiliated). Equity up to $1.83bn plus Longview rollover (3,012,050 shares, $250m); debt up to $6.95bn (Citi-led); Longview voting agreement. No go-shop.",
+     "row_44": "12/14/2014 | PetSmart | Merger announced | Press release announcing the transaction on the signing date.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_42",
+    "confidence": 0.6,
+    "probabilities": {
+     "row_35": 0.01,
+     "not_an_event": 0.07,
+     "row_40": 0.01,
+     "row_36": 0.0,
+     "row_38": 0.02,
+     "row_34": 0.0,
+     "none": 0.25,
+     "row_39": 0.0,
+     "row_42": 0.64,
+     "row_44": 0.0,
+     "row_37": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1247,
+   "output_tokens": 126
+  }
+ },
+ "latency_s": 0.401
+}

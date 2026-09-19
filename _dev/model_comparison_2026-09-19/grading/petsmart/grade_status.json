@@ -1,0 +1,17 @@
+{
+  "model": "gpt-6-astra",
+  "effort": "high",
+  "stage": "grade",
+  "state": "finished",
+  "started_utc": "2026-09-19T16:35:16.548099+00:00",
+  "pid": 805490,
+  "exit_code": 0,
+  "elapsed_seconds": 857.65,
+  "outputs": {
+    "output/grade/recompute_scores.py": "d6415587b6932eaf8c08c11e478d1e2a54601c67e234ee1f0e29466030df0ca8",
+    "output/grade/scoring_notes.md": "1fe7139a988a18e75916da1bca308a03203e35c1e5e770f64b842aa22f9c8cc2",
+    "output/grade/SHA256SUMS": "2cdfa36b4a4175caf5761d040a928576264cad2bff34f1cac64c64234ce34161",
+    "output/grade/scores.json": "fbd162b084fd3b5b6390cea6d0cb6cee7c7fac0986542ae330ae32ddc73b1556",
+    "output/grade/inspection_audit.json": "998913aef61bd878c5b2d2e539ed43aebc354830fff3050f0cfd9e6aad42b84b"
+  }
+}

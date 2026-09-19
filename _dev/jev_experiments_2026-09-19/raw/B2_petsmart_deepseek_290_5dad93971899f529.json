@@ -1,0 +1,82 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On July 3, 2014, JANA Partners filed a Schedule 13D with the SEC disclosing that JANA had acquired 9.9% of the Company's outstanding common stock and that JANA intended to engage in discussions with management and the board with respect to a review of strategic alternatives, including a sale of the Company. On July 7, 2014, Longview made public a letter to the board in which Longview stated that the board should consider the a sale of the Company (as well as other strategic alternatives) and that should the board determine a sale transaction to be in the interests of all stockholders, Longview would consider, depending on the parties and terms involved, rolling part or all of its holdings into equity of the acquiring entity rather than receive cash consideration, should doing so prove necessary in order to enable the Company to complete a transaction. Over the course of July and August, JANA Partners filed several amendments to its Schedule 13D and publicly disclosed letters to the board, advocating for a sale of PetSmart. On July 10, 2014, representatives of JANA met in person with representatives of the Company. At this meeting, the JANA representatives presented their perspectives on the Company and advocated for a sale of the Company. On July 10, 2014, representatives of the Company also spoke to representatives of Longview and Longview reiterated its advocacy for a sale of the Company.",
+   "ledger_rows": [
+    {
+     "When": "06/18/2014",
+     "Who": "PetSmart",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Board formed the ad hoc committee (Josefowicz, Gangwal, Stemberg) and authorized vetting and retention of a financial advisor; focus on capital-structure alternatives."
+    },
+    {
+     "When": "07/03/2014",
+     "Who": "JANA Partners",
+     "Event": "Activist",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Filed Schedule 13D disclosing a 9.9% stake; advocated a sale in amendments and letters through August; met the Company on 07/10."
+    },
+    {
+     "When": "07/07/2014",
+     "Who": "Longview",
+     "Event": "Activist",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Public letter urged the board to consider a sale; offered to roll over part of its holdings if needed; met directors and management in May."
+    },
+    {
+     "When": "July 2014",
+     "Who": "J.P. Morgan",
+     "Event": "Adviser",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Company's financial advisor; retained in July after interviews; engagement letter effective 08/21/2014."
+    },
+    {
+     "When": "08/07/2014",
+     "Who": "Industry Participant",
+     "Event": "Bidder interest",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Called J.P. Morgan: might revisit a combination if the Company pursued alternatives; reported to the ad hoc committee."
+    },
+    {
+     "When": "08/13/2014",
+     "Who": "PetSmart",
+     "Event": "Target sale decision",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Board determined to explore strategic alternatives including a possible sale; Profit Improvement Plan; ad hoc committee to oversee; J.P. Morgan to contact parties later."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "contact": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "contact": {
+    "type": "noul",
+    "noul": 0.71
+   }
+  },
+  "usage": {
+   "input_tokens": 1234,
+   "output_tokens": 20
+  }
+ },
+ "latency_s": 0.25
+}

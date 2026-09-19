@@ -1,0 +1,76 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "In mid-June 2016, at the direction of the Transaction Committee, representatives of GHF instructed all potential buyers to submit non-binding letters of intent (\"LOIs\") by July 20, 2016, together with mark-ups of the forms of merger agreement, disclosure letter and voting agreement, which GHF indicated would be posted to the internet data site. Potential buyers were instructed to provide a valuation for the Company based on the purchase of 100% of the outstanding common stock on a dollar per share basis (assuming conversion of the preferred stock into common stock) or the financial terms of any non-cash proposal.",
+   "target_sentence": "Potential buyers were instructed to provide a valuation for the Company based on the purchase of 100% of the outstanding common stock on a dollar per share basis (assuming conversion of the preferred stock into common stock) or the financial terms of any non-cash proposal."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_9": "subsequently; by 04/22/2016 | Party A | NDA signed | Named recipient of the Company memorandum and identified as having executed a confidentiality agreement; no standstill.",
+     "row_10": "subsequently; by 04/22/2016 | G&W | NDA signed | Named recipient of the Company memorandum and identified as having executed a confidentiality agreement; no standstill.",
+     "row_11": "subsequently; by 04/22/2016 | Party B | NDA signed | Named recipient of the Company memorandum and identified as having executed a confidentiality agreement; no standstill.",
+     "row_14": "by 04/27/2016 | GHF | Deadline set | Non-binding IOIs initially due 05/10/2016.",
+     "row_15": "after 04/27/2016; by 05/19/2016 | GHF | Deadline revised | IOI deadline moved from 05/10 to 05/19 so buyers could formulate their most compelling offers.",
+     "row_16": "05/19/2016 | Providence and Worcester Railroad Company | Deadline | Revised IOI due date reached; recommended outcome is Enforced, subject to Q2.",
+     "row_17": "05/19/2016 | 16 NDA signers without IOIs | Did not submit | 25 initial signers \u2212 9 IOI submitters = 16; may include Party A. Count becomes 17 if Party B was an additional signer (Q3).",
+     "row_18": "05/19/2016\u201306/01/2016 | 9 IOI bidders | Bid | price 17.93-26.5 | Non-binding preliminary IOIs before substantive diligence; aggregate range only, so no bidder receives an endpoint.",
+     "row_19": "06/01/2016 | 2 low IOI bidders | Dropped by target | Transaction Committee excluded the two low bidders from management presentations and further diligence.",
+     "row_20": "06/01/2016 | Providence and Worcester Railroad Company | Round opened | Seven remaining bidders advanced to management presentations and the data site for additional diligence.",
+     "row_21": "mid-June 2016 | GHF | Deadline set | LOIs due 07/20 with markups of the merger agreement, disclosure letter and voting agreement.",
+     "row_22": "early July 2016 | Party C | Bidder interest | Late entrant approached management about acquiring the whole Company; no price at first contact.",
+     "row_23": "early July 2016 | Party C | NDA signed | New entrant; received the same Company memorandum as other potential buyers.",
+     "row_24": "07/12/2016 | Party C | Bid | price 21 | IOI preceded data-site and management access; implied equity value $108 million.",
+     "row_25": "by 07/14/2016 | Party C | Other material event | Catch-up access: data site and a 07/14 telephone management presentation after its late entry.",
+     "row_26": "late July 2016 | Party B | Bid | price 24 | LOI with merger- and voting-agreement markups; expedited diligence review.",
+     "row_31": "07/20/2016 | Providence and Worcester Railroad Company | Deadline | LOI due date reached; G&W\u2019s 07/21 LOI was considered, so recommended outcome is Late bids accepted.",
+     "row_34": "07/21/2016 | G&W | Bid | price 21.15 | $20.02 cash plus bidder-valued $1.13 CVR; merger/voting markups and disclosure-letter markup; requested three-week exclusive diligence.",
+     "row_35": "07/26/2016 | G&W | Bid | price 22.15 | $21.02 cash plus bidder-valued $1.13 CVR; formal status and three-week exclusive diligence carried from #33.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "not_an_event",
+    "confidence": 0.63,
+    "probabilities": {
+     "row_17": 0.0,
+     "row_26": 0.01,
+     "row_20": 0.0,
+     "row_16": 0.0,
+     "row_19": 0.0,
+     "row_11": 0.0,
+     "row_23": 0.0,
+     "row_24": 0.01,
+     "row_9": 0.0,
+     "not_an_event": 0.66,
+     "row_34": 0.04,
+     "row_14": 0.0,
+     "row_31": 0.0,
+     "none": 0.12,
+     "row_25": 0.0,
+     "row_35": 0.0,
+     "row_21": 0.15,
+     "row_10": 0.0,
+     "row_18": 0.01,
+     "row_22": 0.0,
+     "row_15": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1788,
+   "output_tokens": 224
+  }
+ },
+ "latency_s": 0.544
+}

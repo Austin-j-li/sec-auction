@@ -1,0 +1,188 @@
+{
+  "Candidate-A": {
+    "sheets": [
+      {
+        "name": "Deal ledger",
+        "rows": 45,
+        "freeze": "A2",
+        "filter": "A1:V46",
+        "merged": [],
+        "hidden": "visible",
+        "unwrapped_nonempty": []
+      },
+      {
+        "name": "Rounds",
+        "rows": 3,
+        "freeze": "A2",
+        "filter": "A1:J4",
+        "merged": [],
+        "hidden": "visible",
+        "unwrapped_nonempty": []
+      },
+      {
+        "name": "Questions",
+        "rows": 6,
+        "freeze": "A2",
+        "filter": "A1:G7",
+        "merged": [],
+        "hidden": "visible",
+        "unwrapped_nonempty": []
+      },
+      {
+        "name": "Deal facts",
+        "rows": 16,
+        "freeze": "A2",
+        "filter": "A1:B17",
+        "merged": [],
+        "hidden": "visible",
+        "unwrapped_nonempty": []
+      }
+    ],
+    "word_volume": {
+      "Deal ledger": 2587,
+      "Rounds": 191,
+      "Questions": 653,
+      "Deal facts": 359
+    },
+    "question_words": {
+      "Q1": 121,
+      "Q2": 103,
+      "Q3": 110,
+      "Q4": 103,
+      "Q5": 95,
+      "Q6": 98
+    },
+    "long_notes": [],
+    "long_quotes": [],
+    "quote_nonmatches": [
+      10
+    ],
+    "date_issues": [],
+    "txt_cells_checked": 768,
+    "txt_mismatches": [],
+    "comments": [],
+    "formulas": []
+  },
+  "Candidate-B": {
+    "sheets": [
+      {
+        "name": "Deal ledger",
+        "rows": 49,
+        "freeze": "A2",
+        "filter": "A1:V50",
+        "merged": [],
+        "hidden": "visible",
+        "unwrapped_nonempty": []
+      },
+      {
+        "name": "Rounds",
+        "rows": 3,
+        "freeze": "A2",
+        "filter": "A1:J4",
+        "merged": [],
+        "hidden": "visible",
+        "unwrapped_nonempty": []
+      },
+      {
+        "name": "Questions",
+        "rows": 6,
+        "freeze": "A2",
+        "filter": "A1:G7",
+        "merged": [],
+        "hidden": "visible",
+        "unwrapped_nonempty": []
+      },
+      {
+        "name": "Deal facts",
+        "rows": 16,
+        "freeze": "A2",
+        "filter": "A1:B17",
+        "merged": [],
+        "hidden": "visible",
+        "unwrapped_nonempty": []
+      }
+    ],
+    "word_volume": {
+      "Deal ledger": 3102,
+      "Rounds": 205,
+      "Questions": 410,
+      "Deal facts": 304
+    },
+    "question_words": {
+      "Q1": 70,
+      "Q2": 58,
+      "Q3": 61,
+      "Q4": 74,
+      "Q5": 53,
+      "Q6": 59
+    },
+    "long_notes": [],
+    "long_quotes": [],
+    "quote_nonmatches": [],
+    "date_issues": [],
+    "txt_cells_checked": 818,
+    "txt_mismatches": [],
+    "comments": [],
+    "formulas": []
+  },
+  "Candidate-C": {
+    "sheets": [
+      {
+        "name": "Deal ledger",
+        "rows": 50,
+        "freeze": "A2",
+        "filter": "A1:V51",
+        "merged": [],
+        "hidden": "visible",
+        "unwrapped_nonempty": []
+      },
+      {
+        "name": "Rounds",
+        "rows": 4,
+        "freeze": "A2",
+        "filter": "A1:J5",
+        "merged": [],
+        "hidden": "visible",
+        "unwrapped_nonempty": []
+      },
+      {
+        "name": "Questions",
+        "rows": 4,
+        "freeze": "A2",
+        "filter": "A1:G5",
+        "merged": [],
+        "hidden": "visible",
+        "unwrapped_nonempty": []
+      },
+      {
+        "name": "Deal facts",
+        "rows": 16,
+        "freeze": "A2",
+        "filter": "A1:B17",
+        "merged": [],
+        "hidden": "visible",
+        "unwrapped_nonempty": []
+      }
+    ],
+    "word_volume": {
+      "Deal ledger": 2440,
+      "Rounds": 193,
+      "Questions": 315,
+      "Deal facts": 231
+    },
+    "question_words": {
+      "Q1": 79,
+      "Q2": 82,
+      "Q3": 77,
+      "Q4": 61
+    },
+    "long_notes": [],
+    "long_quotes": [],
+    "quote_nonmatches": [],
+    "date_issues": [],
+    "txt_cells_checked": 821,
+    "txt_mismatches": [],
+    "comments": [],
+    "formulas": []
+  }
+}

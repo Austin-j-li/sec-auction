@@ -1,0 +1,110 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Between July 11, 2013 and July 23, 2013, Party B, Party C and CSC/Pamplona engaged in a preliminary review of Mac-Gray and the potential acquisition opportunity. Also during this time, outside counsel to Party A and representatives of Goodwin Procter negotiated the terms of a confidentiality and standstill agreement, but did not come to agreement on the terms of the customer and employee non-solicitation provisions.",
+   "ledger_rows": [
+    {
+     "When": "06/30/2013",
+     "Who": "Party C",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Confidentiality and standstill agreement; received the informational package."
+    },
+    {
+     "When": "07/06/2013",
+     "Who": "Mac-Gray (Special Committee)",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Refuses rollover partnership: denies the request (relayed by Rothenberg 07/03) for Moab to partner exclusively with CSC/Pamplona on a rollover. Such talks allowed only later."
+    },
+    {
+     "When": "07/11/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Agreement with Pamplona Capital Management LLC, reused in the merger agreement (s. 6.17). Received the informational package. Party A's NDA talks stalled on non-solicit terms 07/11-07/23."
+    },
+    {
+     "When": "07/23/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Bid",
+     "Price low": 18.5,
+     "Price high": 18.5,
+     "Note": "Preliminary IOI based only on the informational package, with no data room or management access (Heavy by context)."
+    },
+    {
+     "When": "07/23/2013",
+     "Who": "16 other financial NDA signers",
+     "Event": "Did not submit",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Inferred. 20 signers \u2212 Party A (no NDA until 08/05) \u2212 3 submitters = 16. On 07/25 the target named only four interested bidders. Some may have signed after 07/23."
+    },
+    {
+     "When": "07/24/2013",
+     "Who": "Party B",
+     "Event": "Bid",
+     "Price low": 17,
+     "Price high": 18,
+     "Note": "Written preliminary IOI, one day after the due date. Based on the informational package only (Heavy by context)."
+    },
+    {
+     "When": "07/24/2013",
+     "Who": "Party C",
+     "Event": "Bid",
+     "Price low": 15,
+     "Price high": 17,
+     "Note": "Oral preliminary IOI to BofA, one day after the due date. Based on the informational package only (Heavy by context)."
+    },
+    {
+     "When": "07/25/2013",
+     "Who": "Mac-Gray (Special Committee)",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Committee finds IOIs lower than expected. Advances four: Party A (subject to NDA), Party B, Party C, CSC/Pamplona. Staged disclosure; management meetings for all, synergy information for strategics; revised IOIs to follow."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "nda_access": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.7
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.43
+   }
+  },
+  "usage": {
+   "input_tokens": 1410,
+   "output_tokens": 39
+  }
+ },
+ "latency_s": 0.243
+}

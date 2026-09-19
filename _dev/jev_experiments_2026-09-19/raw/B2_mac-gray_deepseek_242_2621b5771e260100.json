@@ -1,0 +1,42 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On August 14, 2013, representatives of Party A attended a management presentation at the Boston office of Goodwin Procter with members of Mac-Gray management, representatives of BofA Merrill Lynch and the two members of the Transaction Committee.",
+   "ledger_rows": [
+    {
+     "When": "07/25/2013",
+     "Who": "Mac-Gray",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Staged disclosure: Party B and Party C (financial) to get broad data-site access; Party A and CSC/Pamplona (strategic) limited access, customer data withheld until later."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "nda_access": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.12
+   }
+  },
+  "usage": {
+   "input_tokens": 546,
+   "output_tokens": 21
+  }
+ },
+ "latency_s": 0.254
+}

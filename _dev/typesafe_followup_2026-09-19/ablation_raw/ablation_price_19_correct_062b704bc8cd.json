@@ -1,0 +1,60 @@
+{
+  "case_id": "ablation_price_19_correct",
+  "request_sha256": "062b704bc8cd7681b5ec8f4bcd765e7d24b7df8a8b41f56386be00431db0930c",
+  "request": {
+    "model": "jev-1.13.0",
+    "state": {
+      "passage": [
+        {
+          "paragraph_id": "298",
+          "text": "During October, the potential bidders were informed that non-binding preliminary indications of interest would be due on October 30, 2014. The potential bidders were also informed that Longview had informed the Company that it would be willing to \"roll-over\" up to 7.5 million shares on terms and price acceptable to Longview, meaning that such shares would not receive cash merger consideration but would"
+        },
+        {
+          "paragraph_id": "299",
+          "text": "remain outstanding as equity in PetSmart or the buyer's acquisition vehicle, if so desired by the bidder. The Company requested that, in connection with their preliminary indications of interest, the bidders should indicate their interest, if any, in participation by Longview, but that such interest was not a condition to participation in the process."
+        },
+        {
+          "paragraph_id": "300",
+          "text": "On October 30, six of the potentially interested parties submitted indications of interest. From October 30 to November 2, 2014, representatives of J.P. Morgan spoke by telephone with all of the potentially interested parties, including those that did not submit an indication of interest, to hear the parties' respective rationales for the price levels suggested in their indications or rationales for not submitting an indication. Three bidders initially indicated price ranges that reached at least $80.00 per share, including the Buyer Group, which indicated a range of $81.00 to $83.00 per share, and another bidder, which suggested a range of $80.00 to $85.00 per share. As a result of its discussions with J.P. Morgan, another bidder (which we refer to as \"Bidder 2\"), which had initially indicated a price of $78.00, increased its indication to a range of $81.00 to $84.00 per share."
+        },
+        {
+          "paragraph_id": "301",
+          "text": "On November 3, 2014, the board met in person, together with members of management and representatives of J.P. Morgan and Wachtell Lipton, to continue its review of strategic alternatives, including a review of the indications of interest. The board determined to allow the four bidders that had indicated a price or range at or above $80.00 per share to proceed to the final round of the sale process. Following this meeting, representatives of J.P. Morgan notified the eliminated parties, none of which indicated any interest or ability to remain in the process at price levels above their respective initial indications."
+        },
+        {
+          "paragraph_id": "302",
+          "text": "Two of the bidders (one of which had been invited into the final round but had indicated a desire to work with an equity partner in light of the size of an acquisition of PetSmart, and the other of which had indicated to J.P. Morgan that it would drop out of the process if not permitted to work together with another bidder) requested permission to work together. These two bidders informed J.P. Morgan that they had worked together successfully in previous large leveraged buyouts. After deliberation and consultation with the Company's financial and legal advisors, the ad hoc committee authorized these two bidders to work together. We refer to these two bidders together as \"Bidder 3.\" Each of the bidders invited into the final round indicated some interest in a Longview rollover, though each also stated that its bid would not be conditioned or dependent on Longview participation."
+        }
+      ]
+    },
+    "questions": {
+      "scoped_noul": {
+        "type": "noul",
+        "instructions": "For Buyer Group, evaluate the claim that the price at the event \"initial indication October 30, 2014\" was $81.00 to $83.00 per share. Use only the source and bind the entire range, bidder, event and price basis together. Is that exact claim supported?",
+        "criteria": {
+          "true": "The source explicitly supports the entire price/range for this bidder at this event and price basis.",
+          "false": "The price is different, belongs to another event/bidder/component, or evidence is missing."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "scoped_noul": {
+        "type": "noul",
+        "noul": 0.94
+      }
+    },
+    "usage": {
+      "input_tokens": 1185,
+      "output_tokens": 23
+    }
+  },
+  "attempts": [
+    {
+      "status": 200,
+      "latency_s": 0.8671678599930601
+    }
+  ]
+}

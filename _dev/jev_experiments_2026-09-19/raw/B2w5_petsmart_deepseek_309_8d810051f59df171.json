@@ -1,0 +1,150 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On December 10, PetSmart received final bid letters along with revised versions of the merger agreement and other transaction documents from the Buyer Group and from Bidder 2 and a verbal indication from Bidder 3. The Buyer Group offered $80.70 per share, in cash, and Bidder 2 offered $80.35 per share, in cash. Bidder 3 verbally communicated to J.P. Morgan that their valuation would not be above the current stock price of approximately $78 per share. J.P. Morgan communicated to Bidder 3 that it was unlikely to be competitive and accordingly Bidder 3 did not submit a written offer. The form of merger agreement and other transaction documentation submitted by the Buyer Group were more favorable to the Company (including because they were less conditional and more likely to be completed and because they offered more certainty of protection for the Company in the unlikely event of non-completion of the transaction) and reflected substantially more acceptance of the Company's positions. Each bidder indicated that its bid was not dependent on a rollover by Longview, but neither the Buyer Group nor Bidder 2 ruled out the possibility of partnering with Longview in a transaction, though Bidder 2 indicated that any partnering with Longview would only occur after completion of bidding and execution of a definitive merger agreement with the Company.",
+   "ledger_rows": [
+    {
+     "When": "12/04\u201312/05/2014",
+     "Who": "PetSmart",
+     "Event": "Deadline set",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Set evening 12/10 for final bids, replacing the initial 12/05 plan; mark-ups and financing commitments requested in advance."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "PetSmart",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Final bids due; Buyer Group and Bidder 2 submitted; Bidder 3 no written offer."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "Buyer Group",
+     "Event": "Bid",
+     "Price low": 80.7,
+     "Price high": 80.7,
+     "Note": "Final bid letter with revised merger agreement; financing commitment documents provided 12/06; committee required improvement (#31)."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "Bidder 2",
+     "Event": "Bid",
+     "Price low": 80.35,
+     "Price high": 80.35,
+     "Note": "Final bid letter with revised merger agreement; financing commitments not stated at this stage."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "Bidder 3",
+     "Event": "Did not submit",
+     "Price low": null,
+     "Price high": null,
+     "Note": "No written offer: verbal valuation not above ~$78 stock price; J.P. Morgan said unlikely to be competitive."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "PetSmart",
+     "Event": "Deadline revised",
+     "Price low": null,
+     "Price high": null,
+     "Note": "After 12/10 bids, required improvements by 12/12; J.P. Morgan informed bidders and contacted Longview 12/11."
+    },
+    {
+     "When": "12/12/2014",
+     "Who": "Buyer Group",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Rollover: authorized to work with Longview after 12/09 introductory meetings; confidentiality agreement signed 12/12; voting-agreement form provided."
+    },
+    {
+     "When": "12/12/2014",
+     "Who": "Bidder 2",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Declined: rollover would not affect its price; would consider only after execution of a merger agreement."
+    },
+    {
+     "When": "12/12/2014",
+     "Who": "PetSmart",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Improved bids due; Buyer Group and Bidder 2 submitted; both confirmed best and final."
+    },
+    {
+     "When": "12/12/2014",
+     "Who": "Bidder 2",
+     "Event": "Bid",
+     "Price low": 81.5,
+     "Price high": 81.5,
+     "Note": "Best and final; confirmed as such by conversation 12/12; revised draft and financing commitment documents submitted."
+    },
+    {
+     "When": "12/12/2014",
+     "Who": "Buyer Group",
+     "Event": "Bid",
+     "Price low": 82.5,
+     "Price high": 82.5,
+     "Note": "Oral interim offer; stated it was working to increase within hours; superseded same evening by $83.00 (#37)."
+    },
+    {
+     "When": "12/12/2014",
+     "Who": "Buyer Group",
+     "Event": "Bid",
+     "Price low": 83,
+     "Price high": 83,
+     "Note": "Best and final; revised draft substantially executable; financing commitment documents; Longview participation helped achieve $83.00."
+    },
+    {
+     "When": "12/13/2014",
+     "Who": "PetSmart",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Selected the Buyer Group: board approved the $83.00 merger, subject to resolution of remaining open points; J.P. Morgan fairness opinion given."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "bid": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "exit": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a potential buyer withdraws, declines to bid, is told it will not advance, or is otherwise excluded from the process. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "bid": {
+    "type": "noul",
+    "noul": 0.82
+   },
+   "exit": {
+    "type": "noul",
+    "noul": 0.9
+   }
+  },
+  "usage": {
+   "input_tokens": 1933,
+   "output_tokens": 36
+  }
+ },
+ "latency_s": 0.252
+}

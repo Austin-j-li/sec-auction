@@ -1,0 +1,210 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On April 7, 2016, the Transaction Committee met by telephone conference and discussed the process to date with representatives of GHF. Representatives of GHF reported that they and Company management had held a series of introductory meetings with five potential strategic buyers (including G&W) at the 2016 Connections Convention. Mr. Noreck reported that the Company had also approached two additional Class I railroads to determine their interest in a possible transaction. After discussion, the Transaction Committee authorized representatives of GHF, on behalf of the Company, to contact each of the five interested parties with whom management had met at the 2016 Connections Convention, as well as other potential strategic buyers (including certain Class I railroads) and private equity firms who had entered into confidentiality agreements with the Company to confirm their continuing interest. Subsequently, on April 21, 2016, the Company and representatives of GHF held an introductory meeting with another potential strategic buyer (\"Party B\").",
+   "ledger_rows": [
+    {
+     "When": "03/14/2016",
+     "Who": "Providence and Worcester Railroad Company",
+     "Event": "Target sale decision",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Board decided to proceed with GHF\u2019s exploratory change-in-control transaction strategy and formed the Transaction Committee."
+    },
+    {
+     "When": "by 03/24/2016",
+     "Who": "Hinckley, Allen & Snyder LLP",
+     "Event": "Adviser",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Target legal adviser; first seen acting at the Transaction Committee meeting."
+    },
+    {
+     "When": "03/24/2016",
+     "Who": "Providence and Worcester Railroad Company",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Transaction Committee authorized broad outreach to Party A and other potential buyers."
+    },
+    {
+     "When": "week of 03/28/2016",
+     "Who": "11 potential strategic buyers",
+     "Event": "Contact",
+     "Price low": null,
+     "Price high": null,
+     "Note": "GHF outreach cohort; included Party A."
+    },
+    {
+     "When": "week of 03/28/2016",
+     "Who": "18 potential financial buyers",
+     "Event": "Contact",
+     "Price low": null,
+     "Price high": null,
+     "Note": "GHF outreach cohort."
+    },
+    {
+     "When": "subsequently; by 04/22/2016",
+     "Who": "Party A",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Named recipient of the Company memorandum and identified as having executed a confidentiality agreement; no standstill."
+    },
+    {
+     "When": "subsequently; by 04/22/2016",
+     "Who": "G&W",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Named recipient of the Company memorandum and identified as having executed a confidentiality agreement; no standstill."
+    },
+    {
+     "When": "subsequently; by 04/22/2016",
+     "Who": "Party B",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Named recipient of the Company memorandum and identified as having executed a confidentiality agreement; no standstill."
+    },
+    {
+     "When": "subsequently; by 04/22/2016",
+     "Who": "8 other strategic NDA signers",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Residual of 11 strategic signers after Party A, G&W and Party B; no standstill. Party B\u2019s inclusion is subject to Q3."
+    },
+    {
+     "When": "subsequently; by 04/22/2016",
+     "Who": "14 financial NDA signers",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Cohort; confidentiality agreements contained no standstill."
+    },
+    {
+     "When": "by 04/27/2016",
+     "Who": "GHF",
+     "Event": "Deadline set",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Non-binding IOIs initially due 05/10/2016."
+    },
+    {
+     "When": "after 04/27/2016; by 05/19/2016",
+     "Who": "GHF",
+     "Event": "Deadline revised",
+     "Price low": null,
+     "Price high": null,
+     "Note": "IOI deadline moved from 05/10 to 05/19 so buyers could formulate their most compelling offers."
+    },
+    {
+     "When": "05/19/2016",
+     "Who": "Providence and Worcester Railroad Company",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Revised IOI due date reached; recommended outcome is Enforced, subject to Q2."
+    },
+    {
+     "When": "05/19/2016",
+     "Who": "16 NDA signers without IOIs",
+     "Event": "Did not submit",
+     "Price low": null,
+     "Price high": null,
+     "Note": "25 initial signers \u2212 9 IOI submitters = 16; may include Party A. Count becomes 17 if Party B was an additional signer (Q3)."
+    },
+    {
+     "When": "05/19/2016\u201306/01/2016",
+     "Who": "9 IOI bidders",
+     "Event": "Bid",
+     "Price low": 17.93,
+     "Price high": 26.5,
+     "Note": "Non-binding preliminary IOIs before substantive diligence; aggregate range only, so no bidder receives an endpoint."
+    },
+    {
+     "When": "06/01/2016",
+     "Who": "2 low IOI bidders",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Transaction Committee excluded the two low bidders from management presentations and further diligence."
+    },
+    {
+     "When": "06/01/2016",
+     "Who": "Providence and Worcester Railroad Company",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Seven remaining bidders advanced to management presentations and the data site for additional diligence."
+    },
+    {
+     "When": "mid-June 2016",
+     "Who": "GHF",
+     "Event": "Deadline set",
+     "Price low": null,
+     "Price high": null,
+     "Note": "LOIs due 07/20 with markups of the merger agreement, disclosure letter and voting agreement."
+    },
+    {
+     "When": "07/20/2016",
+     "Who": "Providence and Worcester Railroad Company",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "LOI due date reached; G&W\u2019s 07/21 LOI was considered, so recommended outcome is Late bids accepted."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "nda_access": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.53
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.31
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.6
+   }
+  },
+  "usage": {
+   "input_tokens": 2449,
+   "output_tokens": 55
+  }
+ },
+ "latency_s": 0.286
+}

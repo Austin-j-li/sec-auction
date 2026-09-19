@@ -1,0 +1,58 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On September 9, 2013, CSC/Pamplona submitted a revised indication of interest with an all-cash purchase price of $19.50 per share, indicating that Pamplona was committed to provide 100% of the capital required to consummate the transaction and requesting that CSC/Pamplona and Mac-Gray agree to exclusive negotiations for two weeks. On September 9, 2013, Party B also submitted a revised indication of interest with an all-cash purchase price of $18.50 per share and proposed to finance the transaction with a combination of equity from affiliated funds and third party debt. Party B's revised indication of interest did not include a firm financing commitment.",
+   "target_sentence": "On September 9, 2013, CSC/Pamplona submitted a revised indication of interest with an all-cash purchase price of $19.50 per share, indicating that Pamplona was committed to provide 100% of the capital required to consummate the transaction and requesting that CSC/Pamplona and Mac-Gray agree to exclusive negotiations for two weeks."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_28": "08/06/2013\u201308/27/2013 | Mac-Gray | Other material event | Granted B/C broad data-site access; limited A/CSC access and withheld customer data from the strategic bidders.",
+     "row_29": "08/27/2013 | Mac-Gray | Round opened | Four bidders invited; revised written bids due September 9.",
+     "row_30": "09/09/2013 | Mac-Gray | Deadline | Revised bids due; Party A and Party C submitted one day late and were considered.",
+     "row_31": "09/09/2013 | CSC/Pamplona | Bid | price 19.5 | Pamplona committed 100% of capital; two-week exclusivity requested. Further in-depth diligence remained contemplated.",
+     "row_32": "09/09/2013 | Party B | Bid | price 18.5 | No firm financing commitment; proposed affiliated equity and third-party debt.",
+     "row_33": "09/10/2013 | Party A | Bid | price 18-19 | No firm financing commitment; funding proposed from credit facilities or affiliated equity.",
+     "row_34": "09/10/2013 | Party C | Bid | price 16-17 | Oral proposal; no firm financing commitment.",
+     "row_35": "09/11/2013 | Stewart MacDonald | Other material event | Declined any equity rollover; bidders reportedly required his express support, not his rollover.",
+     "row_36": "09/11/2013 | Mac-Gray | Round opened | Final indications requested from four bidders; due September 18; possible short exclusivity with one bidder.",
+     "row_37": "09/18/2013 | Mac-Gray | Deadline | Final indications due; three bidders responded and Party C did not.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company; or exclusivity is requested, authorised, granted, signed or extended. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_31",
+    "confidence": 1.0,
+    "probabilities": {
+     "row_34": 0.0,
+     "row_31": 1.0,
+     "row_32": 0.0,
+     "none": 0.0,
+     "row_36": 0.0,
+     "not_an_event": 0.0,
+     "row_37": 0.0,
+     "row_35": 0.0,
+     "row_30": 0.0,
+     "row_29": 0.0,
+     "row_28": 0.0,
+     "row_33": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1269,
+   "output_tokens": 136
+  }
+ },
+ "latency_s": 0.503
+}

@@ -1,0 +1,54 @@
+{
+ "request": {
+  "state": {
+   "passage": {
+    "before": [
+     "On September 23, 2013, representatives from Goodwin Procter participated in a telephone conference call with Mr. Rothenberg and his counsel to inform Mr. Rothenberg, on a limited basis, of the status of the Special Committee's review of strategic alternatives and the negotiations between Mac-Gray and CSC and Pamplona to provide Moab with the opportunity to resume discussions with CSC/Pamplona regarding a possible equity rollover of Moab's shares in the transaction if Moab still had an interest in such a rollover. Mr. Rothenberg indicated he would like to discuss the possibility of an equity rollover with CSC/Pamplona and it was agreed that representatives of BofA Merrill Lynch would arrange and facilitate such a discussion.",
+     "Later on September 23, 2013, the Special Committee held a telephonic meeting, the purpose of which was to receive an update on the negotiations from the Transaction Committee and Goodwin Procter regarding the CSC/Pamplona final proposal and request for exclusivity. Representatives from Goodwin Procter reviewed the terms of the CSC/Pamplona final proposal with the Special Committee, including the $21.25 per share cash consideration, the $15 million CSC reverse termination fee, certain post-signing covenants, the fact that there would be no financing contingency and that Pamplona was committing to fund 100% of the capital needed for closing. After discussion, the Special Committee authorized Mac-Gray to enter into an exclusivity agreement providing for exclusive negotiations until 5 p.m. ET on October 12, 2013 on the terms included in the CSC/Pamplona final proposal and authorized the Transaction Committee and Goodwin Procter to continue negotiations with CSC/Pamplona based on guidance provided by the Special Committee at this meeting."
+    ],
+    "cited_paragraph": "On September 24, 2013, CSC, Pamplona and Mac-Gray executed the exclusivity agreement providing for exclusive negotiations until 5 p.m. ET on October 12, 2013, subject to certain conditions, including that CSC and Pamplona not adversely change or modify the terms of the CSC/Pamplona final proposal.",
+    "after": [
+     "On September 25, 2013, Goodwin Procter delivered to Kirkland & Ellis LLP, outside legal counsel to CSC/Pamplona, whom we refer to as Kirkland, the initial draft of the merger agreement. Between September 25, 2013 and October 7, 2013, the Transaction Committee and representatives from CSC/Pamplona, Goodwin Procter and Kirkland negotiated the terms of the merger agreement (including our ability to respond to unsolicited inquiries following the announcement of the transaction and our right to terminate the merger agreement to accept a superior proposal) and the Pamplona commitment letter. The parties discussed various open points in the merger agreement and the Pamplona commitment letter, including the proposal by Mac-Gray that both Pamplona and CSC be responsible in the event CSC failed to consummate the merger, including liability for any and all damages resulting from a breach of the merger agreement, certain post-signing covenants and the parties' termination rights, including the amount of the termination fee payable by Mac-Gray to CSC under certain circumstances (which we refer to as the Mac-Gray termination fee), which Mac-Gray proposed should approximate 2.5% of the total equity value of the transaction. Also during this time, CSC and Pamplona were granted full access to the electronic data site and access to certain members of management and conducted confirmatory business and legal due diligence on Mac-Gray. Mr. Rothenberg engaged in various discussions with representatives of Pamplona during this time to discuss a possible rollover of Moab shares. As a result of such discussions, it was determined that Moab would not rollover any Moab shares in the transaction. Following such determination, BofA Merrill Lynch and the Transaction Committee provided Mr. Rothenberg with the details regarding the Special Committee's review of strategic alternatives and the negotiations between Mac-Gray and CSC/Pamplona.",
+     "Between September 24, 2013 and September 27, 2013, Kirkland and outside counsel to Mr. MacDonald negotiated the terms of the MacDonald voting agreements, which were entered into by Mr. MacDonald, his wife and one of his trusts on September 27, 2013, and which became effective upon entry into the merger agreement."
+    ]
+   }
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "actor": {
+    "type": "noul",
+    "instructions": "Does `passage.cited_paragraph` describe something done by, done to, or decided about the party called \"CSC/Pamplona\" (or a group that the passage shows includes it)?",
+    "criteria": {
+     "true": "That party, or a cohort clearly containing it, is a subject of the cited paragraph.",
+     "false": "The cited paragraph concerns other parties only."
+    }
+   },
+   "event": {
+    "type": "noul",
+    "instructions": "A research ledger records an event labelled \"Exclusivity changed\" for \"CSC/Pamplona\". Does the passage report facts that fit the label \"Exclusivity changed\" for that party?",
+    "criteria": {
+     "true": "The passage reports such an event, or facts from which it directly follows.",
+     "false": "The passage reports a different kind of event, or nothing of that kind."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "actor": {
+    "type": "noul",
+    "noul": 0.98
+   },
+   "event": {
+    "type": "noul",
+    "noul": 0.21
+   }
+  },
+  "usage": {
+   "input_tokens": 1445,
+   "output_tokens": 36
+  }
+ },
+ "latency_s": 0.288
+}

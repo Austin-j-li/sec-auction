@@ -1,0 +1,98 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "The Special Committee discussed that the preliminary indications of interest were lower than expected and suggested that additional due diligence, including with regard to the potential synergies, should result in improved offers by the strategic parties. The Special Committee then discussed the highly competitive nature of Mac-Gray's industry and expressed concern over permitting access to and the potential misuse of sensitive and competitive information, including customer terms and locations, especially by strategic bidders. Accordingly, the Special Committee concluded that it would be advisable to stage the disclosure of such information to each of the bidders to the extent that a bidder's indication of interest and other actions demonstrated its seriousness in acquiring Mac-Gray on terms viewed favorably by the Special Committee. Based on this discussion, BofA Merrill Lynch discussed with the Special Committee a proposed process for the second stage of the on-going sale process. As part of this review, BofA Merrill Lynch recommended that management meetings be arranged between members of Mac-Gray management (other than Mr. MacDonald) and each of Party A (if Party A",
+   "ledger_rows": [
+    {
+     "When": "07/11/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Confidentiality and standstill agreement; informational package provided."
+    },
+    {
+     "When": "07/23/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Bid",
+     "Price low": 18.5,
+     "Price high": 18.5,
+     "Note": "Preliminary indication before substantive data-room or management access."
+    },
+    {
+     "When": "07/23/2013",
+     "Who": "16 other financial NDA signers",
+     "Event": "Did not submit",
+     "Price low": null,
+     "Price high": null,
+     "Note": "20 NDA signers \u2212 Party A, Party B, Party C and CSC/Pamplona = 16; exact signing/submission timing is uncertain."
+    },
+    {
+     "When": "07/24/2013",
+     "Who": "Party B",
+     "Event": "Bid",
+     "Price low": 17,
+     "Price high": 18,
+     "Note": "Late preliminary indication before substantive data-room or management access."
+    },
+    {
+     "When": "07/24/2013",
+     "Who": "Party C",
+     "Event": "Bid",
+     "Price low": 15,
+     "Price high": 17,
+     "Note": "Late oral preliminary indication before substantive data-room or management access."
+    },
+    {
+     "When": "07/25/2013",
+     "Who": "Mac-Gray",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Four bidders advanced to staged management access and were to be asked for revised bids."
+    },
+    {
+     "When": "later 07/25/2013",
+     "Who": "Party C",
+     "Event": "Bid",
+     "Price low": 16,
+     "Price high": 16.5,
+     "Note": "Written revision of oral #23; same initial solicitation, submitted after Round 2 opened."
+    },
+    {
+     "When": "08/05/2013",
+     "Who": "Party A",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Agreement followed resumed negotiations; informational package provided to support a possible improvement of #7."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "nda_access": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.32
+   }
+  },
+  "usage": {
+   "input_tokens": 1237,
+   "output_tokens": 21
+  }
+ },
+ "latency_s": 0.257
+}

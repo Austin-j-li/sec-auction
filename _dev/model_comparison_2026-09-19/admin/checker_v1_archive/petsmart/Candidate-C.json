@@ -1,0 +1,168 @@
+{
+  "checker": "patched-v1.8-lean-mechanical",
+  "checker_version": "1.0",
+  "workbook": "/home/uctpiaj/Projects/Sec_extraction_new/_dev/model_comparison_2026-09-19/grading/petsmart/work/candidates/Candidate-C.xlsx",
+  "filing": "/home/uctpiaj/Projects/Sec_extraction_new/_dev/model_comparison_2026-09-19/grading/petsmart/work/raw_filing/petsmart_2015-02-02_DEFM14A.htm",
+  "status": "fail",
+  "scope_note": "Mechanical checks only. Quote occurrence proves source occurrence, not semantic support. No bidder-population arithmetic or substantive extraction grading is performed.",
+  "summary": {
+    "errors": 15,
+    "warnings": 4,
+    "information": 0,
+    "total_issues": 19
+  },
+  "issues": [
+    {
+      "severity": "error",
+      "code": "controlled.flag",
+      "sheet": "Deal ledger",
+      "row": 34,
+      "column": "Flag",
+      "message": "Flag must be one question id such as Q1; found 'Q1; Q2'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #33, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #34, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #35, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #36, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #37, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #38, but that ledger row is flagged 'Q2' rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #39, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #40, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #41, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #42, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "warning",
+      "code": "questions.length",
+      "sheet": "Questions",
+      "row": 2,
+      "column": null,
+      "message": "Question entry has about 134 words across its review fields; the instruction asks for about 60."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 3,
+      "column": "Rows affected",
+      "message": "Rows affected cites #33, but that ledger row is flagged None rather than 'Q2'."
+    },
+    {
+      "severity": "warning",
+      "code": "questions.length",
+      "sheet": "Questions",
+      "row": 3,
+      "column": null,
+      "message": "Question entry has about 113 words across its review fields; the instruction asks for about 60."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 4,
+      "column": "Rows affected",
+      "message": "Rows affected cites #32, but that ledger row is flagged 'Q5' rather than 'Q3'."
+    },
+    {
+      "severity": "warning",
+      "code": "questions.length",
+      "sheet": "Questions",
+      "row": 4,
+      "column": null,
+      "message": "Question entry has about 114 words across its review fields; the instruction asks for about 60."
+    },
+    {
+      "severity": "error",
+      "code": "controlled.acquirer_type",
+      "sheet": "Deal facts",
+      "row": 4,
+      "column": "Value",
+      "message": "Acquirer type 'Financial (private-equity-led consortium; Longview rollover is support, not a separate bidder)' is not allowed."
+    },
+    {
+      "severity": "error",
+      "code": "facts.process_count",
+      "sheet": "Deal facts",
+      "row": 11,
+      "column": "Value",
+      "message": "Number of processes must equal the ledger's 1; found datetime.datetime(1900, 1, 1, 0, 0)."
+    },
+    {
+      "severity": "warning",
+      "code": "facts.account_sentences",
+      "sheet": "Deal facts",
+      "row": 17,
+      "column": "Value",
+      "message": "Account appears to have 7 sentences; the instruction asks for five or six."
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "At a special meeting of the Board held on March 14, 2016, representatives of GHF discussed their evaluation of the Company's business operations and strategy for improving operational and financial performance, as well as railroad industry dynamics more generally and their impact on current railroad valuations. Representatives of GHF then proposed a process pursuant to which the Company would proceed with discussions with Party A and also solicit interest from other potential third parties regarding a change in control transaction. The Board considered various factors, including the marketplace, the risks attendant to engaging in the process discussed with representatives of GHF, the Company's overall strategic position, and the challenges attendant to improving the Company's financial performance in order to maximize shareholder value and concluded, based upon its examination of these and other factors, that it was in the best interest of the Company",
+   "ledger_rows": [
+    {
+     "When": "Q4 2015",
+     "Who": "Party A",
+     "Event": "Bidder interest",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Class I rail partner; at a commercial meeting suggested joint ventures and interest in acquiring equity in the Company (no price; not a whole-company offer). Prompted Board to have a subcommittee interview bankers."
+    },
+    {
+     "When": "01/27/2016",
+     "Who": "Greene Holcomb & Fisher LLC (GHF), later BMO Capital Markets",
+     "Event": "Adviser",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Target's financial adviser (only one named), engaged by Board on subcommittee recommendation. BMO acquired GHF's business 08/01/2016 and continued the mandate; BMO gave the 08/12/2016 fairness opinion."
+    },
+    {
+     "When": "03/14/2016",
+     "Who": "Target (Board)",
+     "Event": "Target sale decision",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Board adopted GHF's proposed 'exploratory transaction strategy': continue talks with Party A and solicit other change-in-control interest. Formed Transaction Committee (Barrett, Anderson, Garvey), which could not approve a deal."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "contact": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "contact": {
+    "type": "noul",
+    "noul": 0.56
+   }
+  },
+  "usage": {
+   "input_tokens": 894,
+   "output_tokens": 20
+  }
+ },
+ "latency_s": 0.277
+}

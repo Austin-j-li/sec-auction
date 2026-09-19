@@ -1,0 +1,56 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On September 21, 2013, the members of the Transaction Committee called the representative of CSC/Pamplona to propose that Mac-Gray was prepared to move forward with CSC/Pamplona on an exclusive basis for two weeks subject to CSC/Pamplona increasing their all-cash purchase price to $21.25 per share. Later that same day, the representative of CSC/Pamplona called the members of the Transaction Committee to confirm that CSC/Pamplona were willing to increase their all-cash purchase price to $21.25 per share as a last and best offer, provided that Mac-Gray agree to a two week period of exclusive negotiations. The representative of CSC/Pamplona also requested that shares of Mac-Gray common stock owned beneficially and of record by Mr. MacDonald and his immediate family be subject to a customary voting agreement, which we refer to as the MacDonald voting agreements.",
+   "target_sentence": "On September 21, 2013, the members of the Transaction Committee called the representative of CSC/Pamplona to propose that Mac-Gray was prepared to move forward with CSC/Pamplona on an exclusive basis for two weeks subject to CSC/Pamplona increasing their all-cash purchase price to $21.25 per share."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_34": "09/18/2013 | CSC/Pamplona | Bid | price 20.75 | Responded to the final request; Pamplona's 100% funding reiterated; requested two-week exclusive negotiations.",
+     "row_35": "09/18/2013 | Party A | Bid reaffirmed | price 18-19 | Reaffirmed the standing $18.00\u2013$19.00 indication as best and final in response to the final request; carried from #28; no firm financing commitment.",
+     "row_36": "09/18/2013 | Party B | Bid | price 21.5 | Package: $19.00 cash plus options Party B valued at $2.50/share (10% of new equity; strike at cost basis); vesting tied to base-case projections over five years; no firm financing commitment.",
+     "row_37": "09/18/2013 | Party C | Did not submit | Did not submit or reiterate its $16.00\u2013$17.00 indication in response to the final request; gave no reasons.",
+     "row_38": "09/19/2013 | Mac-Gray | Other material event | SC concluded CSC/Pamplona offered most value and certainty but should raise its price above $20.75; authorized exclusivity at $21.25; MacDonald supported that price.",
+     "row_39": "09/21/2013 | CSC/Pamplona | Bid | price 21.25 | Raised to $21.25 as last and best offer, conditioned on two-week exclusive negotiations; requested MacDonald voting agreement; confirmed by telephone.",
+     "row_40": "09/24/2013 | CSC/Pamplona | Exclusivity changed | Executed with CSC and Pamplona until 5 p.m. ET 10/12/2013; included $15M CSC reverse termination fee and no financing contingency; Pamplona funding 100%.",
+     "row_41": "by 09/24/2013 | Party A | Dropped by target | Inferred: exclusivity with CSC/Pamplona displaced the two live rivals; Party A had declared $18.00\u2013$19.00 its best and final offer.",
+     "row_42": "by 09/24/2013 | Party B | Dropped by target | Inferred: exclusivity displaced the two live rivals; SC preferred CSC/Pamplona's certainty over Party B's debt-funded, option-heavy package.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted; or exclusivity is requested, authorised, granted, signed or extended. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_39",
+    "confidence": 0.58,
+    "probabilities": {
+     "row_38": 0.02,
+     "row_42": 0.0,
+     "row_40": 0.0,
+     "row_37": 0.0,
+     "row_39": 0.63,
+     "row_34": 0.0,
+     "row_36": 0.0,
+     "not_an_event": 0.0,
+     "row_35": 0.0,
+     "row_41": 0.0,
+     "none": 0.35000000000000003
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1456,
+   "output_tokens": 126
+  }
+ },
+ "latency_s": 0.508
+}

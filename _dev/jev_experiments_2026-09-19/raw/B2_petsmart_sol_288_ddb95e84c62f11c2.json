@@ -1,0 +1,94 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "At a meeting on June 18, 2014, the board reviewed, together with a financial advisor and with Wachtell, Lipton, Rosen & Katz (\"Wachtell Lipton\"), its legal advisor, the various strategic and financial alternatives potentially available to the Company and determined to explore more intensively potential changes to the Company's capital structure, with a focus on returning capital to stockholders. The board also established an ad hoc advisory subcommittee (the \"ad hoc committee\") with respect to, among other",
+   "ledger_rows": [
+    {
+     "When": "late May\u2013June 2014",
+     "Who": "Stockholders and interested parties",
+     "Event": "Activist",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Suggested strategic or financial alternatives, including a sale of PetSmart."
+    },
+    {
+     "When": "06/18/2014",
+     "Who": "Unnamed financial adviser",
+     "Event": "Adviser",
+     "Price low": null,
+     "Price high": null,
+     "Note": "PetSmart financial adviser; first seen acting at the board meeting. The filing does not identify it or describe a later role."
+    },
+    {
+     "When": "06/18/2014",
+     "Who": "Wachtell, Lipton, Rosen & Katz",
+     "Event": "Adviser",
+     "Price low": null,
+     "Price high": null,
+     "Note": "PetSmart legal adviser; first seen acting with the board."
+    },
+    {
+     "When": "07/03/2014",
+     "Who": "JANA Partners",
+     "Event": "Activist",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Disclosed a 9.9% stake and sought review of strategic alternatives, including a sale."
+    },
+    {
+     "When": "07/07/2014",
+     "Who": "Longview",
+     "Event": "Activist",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Publicly urged the board to consider a sale and offered a possible rollover."
+    },
+    {
+     "When": "July 2014",
+     "Who": "J.P. Morgan",
+     "Event": "Adviser",
+     "Price low": null,
+     "Price high": null,
+     "Note": "PetSmart financial adviser; retained after interviews. Engagement letter later stated effective 08/21/2014."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "adviser": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "agreements": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "adviser": {
+    "type": "noul",
+    "noul": 0.82
+   },
+   "agreements": {
+    "type": "noul",
+    "noul": 0.19
+   }
+  },
+  "usage": {
+   "input_tokens": 1102,
+   "output_tokens": 39
+  }
+ },
+ "latency_s": 0.286
+}

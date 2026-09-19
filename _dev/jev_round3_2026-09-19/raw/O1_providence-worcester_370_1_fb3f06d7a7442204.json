@@ -1,0 +1,85 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Subsequent to the delivery of BMO's opinion and the Board's approval of the merger agreement and voting agreement, representatives of BMO advised the Board that when checking to determine if there were any financial advisory or financing relationships with G&W, it had inadvertently failed to identify that a BMO affiliate has a participation in G&W's existing secured syndicated debt facility as described under the section titled \"Summary of Financial Analysis of BMO Capital Markets Corp.- Miscellaneous \" on page 41. On September 6, 2016, the Board considered this new information, determined this relationship was not material to BMO's independence and confirmed that the Board remained comfortable with the engagement and opinion of BMO.",
+   "sentence": "On September 6, 2016, the Board considered this new information, determined this relationship was not material to BMO's independence and confirmed that the Board remained comfortable with the engagement and opinion of BMO."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "bid": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "nda_access": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "exit": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a potential buyer withdraws, declines to bid, is told it will not advance, or is otherwise excluded from the process? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "deadline": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "exclusivity": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that exclusivity is requested, authorised, granted, signed or extended? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "agreements": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed? Judge `sentence` only; `paragraph` is context for names and dates."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "bid": {
+    "type": "noul",
+    "noul": 0.01
+   },
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.02
+   },
+   "exit": {
+    "type": "noul",
+    "noul": 0.01
+   },
+   "deadline": {
+    "type": "noul",
+    "noul": 0.02
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.01
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.46
+   },
+   "exclusivity": {
+    "type": "noul",
+    "noul": 0.01
+   },
+   "agreements": {
+    "type": "noul",
+    "noul": 0.03
+   }
+  },
+  "usage": {
+   "input_tokens": 892,
+   "output_tokens": 138
+  }
+ },
+ "latency_s": 0.339
+}

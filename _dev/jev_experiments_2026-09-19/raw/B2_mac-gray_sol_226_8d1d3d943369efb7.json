@@ -1,0 +1,58 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On June 30, 2013, Party C entered into a confidentiality and standstill agreement with Mac-Gray and was provided with an informational package for the purpose of providing Party C with data to formulate a preliminary indication of interest.",
+   "ledger_rows": [
+    {
+     "When": "by 06/28/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Contact",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Target-directed first contact; Pamplona expressed interest through portfolio company CSC."
+    },
+    {
+     "When": "06/28/2013",
+     "Who": "Party B",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Confidentiality and standstill agreement; informational package provided."
+    },
+    {
+     "When": "06/30/2013",
+     "Who": "Party C",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Confidentiality and standstill agreement; informational package provided."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "nda_access": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.96
+   }
+  },
+  "usage": {
+   "input_tokens": 662,
+   "output_tokens": 21
+  }
+ },
+ "latency_s": 0.242
+}

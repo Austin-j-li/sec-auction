@@ -1,0 +1,54 @@
+{
+ "request": {
+  "state": {
+   "passage": {
+    "before": [
+     "During the period from the middle of August through the end of October, the Company developed the Profit Improvement Plan and prepared for a sale process. During this period, J.P. Morgan was contacted by 27 potential participants in a sale process, including three strategic parties (not counting Industry Participant) and 24 financial participants (including potential lead buyers as well as large suppliers of equity capital to lead buyers).",
+     "On October 3, 2014, the board met, together with members of management and representatives of J.P. Morgan and Wachtell Lipton, to conduct regularly scheduled business and to receive an update on the status of the Profit Improvement Plan, the planning for which had been completed, and on the sale process, including an update on communications with the 27 potentially interested parties as well as Industry Participant that had occurred since the August 13 board meeting. Among other things, the board was informed that approximately 15 parties had expressed interest in participating in the process. In addition, at this meeting, in consultation with its financial and legal advisors, the board reviewed and, for the reasons discussed in August, reaffirmed the determination not to invite Industry Participant to participate in the sale process."
+    ],
+    "cited_paragraph": "In the first week of October 2014, the Company entered into confidentiality and standstill agreements with 15 potentially interested financial buyers, all 15 of which, during the month of October engaged in due diligence, received management presentations involving the Company's senior-most management, and received detailed financial and business plan information, including detailed information concerning the Profit Improvement Plan and associated cost-saving plans and opportunities.",
+    "after": [
+     "During October, the potential bidders were informed that non-binding preliminary indications of interest would be due on October 30, 2014. The potential bidders were also informed that Longview had informed the Company that it would be willing to \"roll-over\" up to 7.5 million shares on terms and price acceptable to Longview, meaning that such shares would not receive cash merger consideration but would",
+     "remain outstanding as equity in PetSmart or the buyer's acquisition vehicle, if so desired by the bidder. The Company requested that, in connection with their preliminary indications of interest, the bidders should indicate their interest, if any, in participation by Longview, but that such interest was not a condition to participation in the process."
+    ]
+   }
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "actor": {
+    "type": "noul",
+    "instructions": "Does `passage.cited_paragraph` describe something done by, done to, or decided about the party called \"PetSmart\" (or a group that the passage shows includes it)?",
+    "criteria": {
+     "true": "That party, or a cohort clearly containing it, is a subject of the cited paragraph.",
+     "false": "The cited paragraph concerns other parties only."
+    }
+   },
+   "event": {
+    "type": "noul",
+    "instructions": "A research ledger records an event labelled \"Round opened\" for \"PetSmart\". Does the passage report facts that fit the label \"Round opened\" for that party?",
+    "criteria": {
+     "true": "The passage reports such an event, or facts from which it directly follows.",
+     "false": "The passage reports a different kind of event, or nothing of that kind."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "actor": {
+    "type": "noul",
+    "noul": 0.69
+   },
+   "event": {
+    "type": "noul",
+    "noul": 0.62
+   }
+  },
+  "usage": {
+   "input_tokens": 961,
+   "output_tokens": 36
+  }
+ },
+ "latency_s": 0.244
+}

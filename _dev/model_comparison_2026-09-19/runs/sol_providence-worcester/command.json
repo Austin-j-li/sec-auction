@@ -1,0 +1,24 @@
+{
+  "credential_delivery": "read-only external credential bind; no credential copied to run directory",
+  "provider": "sol",
+  "provider_argv": [
+    "/home/uctpiaj/.codex/packages/standalone/releases/0.155.1-x86_64-unknown-linux-musl/bin/codex",
+    "exec",
+    "--ephemeral",
+    "--ignore-user-config",
+    "--ignore-rules",
+    "--skip-git-repo-check",
+    "--dangerously-bypass-approvals-and-sandbox",
+    "--json",
+    "--color",
+    "never",
+    "--model",
+    "gpt-5.6-sol",
+    "-c",
+    "model_reasoning_effort=\"xhigh\"",
+    "-C",
+    "/home/uctpiaj/work",
+    "Read SEC_Deal_Ledger_Extraction_Instruction.md in this folder and follow it. Extract the deal whose filing is in raw_filing/ and save the finished workbook in extraction/ as providence-worcester.xlsx. Work only from this instruction and this filing."
+  ],
+  "started_at": "2026-09-19T16:15:15.726635+00:00"
+}

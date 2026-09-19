@@ -1,0 +1,48 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On September 24, 2013, CSC, Pamplona and Mac-Gray executed the exclusivity agreement providing for exclusive negotiations until 5 p.m. ET on October 12, 2013, subject to certain conditions, including that CSC and Pamplona not adversely change or modify the terms of the CSC/Pamplona final proposal.",
+   "target_sentence": "On September 24, 2013, CSC, Pamplona and Mac-Gray executed the exclusivity agreement providing for exclusive negotiations until 5 p.m."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_42": "09/21/2013 | CSC/Pamplona | Bid | price 21.25 | Raised from $20.75 (#35) the same day the committee asked. Conditioned on 2-week exclusivity; asks for voting agreements from MacDonald. Pamplona funds 100%, no financing contingency; confirmatory diligence only (Light).",
+     "row_43": "09/24/2013 | CSC/Pamplona | Exclusivity changed | Executed, authorized 09/23; exclusive until 5 p.m. 10/12/2013. Ends if CSC/Pamplona adversely changes the $21.25 final proposal. CSC/Pamplona then got full data-room access.",
+     "row_44": "by 09/24/2013 | Party A | Dropped by target | Inferred: displaced when exclusivity with CSC/Pamplona was executed; not reported told. On 09/18 it declined to improve its $18.00-$19.00 range (#36).",
+     "row_46": "09/25/2013 | Kirkland & Ellis LLP | Adviser | Outside legal counsel to CSC/Pamplona; first seen acting when it received the target's first merger agreement draft.",
+     "row_47": "09/25/2013 to 10/07/2013 | Moab Partners, L.P. | Other material event | Rollover resolved: talks with Pamplona, allowed from 09/23, end with no Moab rollover (reported 10/07). Moab signed a voting agreement at signing.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that exclusivity is requested, authorised, granted, signed or extended. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_43",
+    "confidence": 0.85,
+    "probabilities": {
+     "row_44": 0.0,
+     "not_an_event": 0.0,
+     "none": 0.12,
+     "row_46": 0.0,
+     "row_42": 0.0,
+     "row_43": 0.88,
+     "row_47": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1027,
+   "output_tokens": 86
+  }
+ },
+ "latency_s": 0.259
+}

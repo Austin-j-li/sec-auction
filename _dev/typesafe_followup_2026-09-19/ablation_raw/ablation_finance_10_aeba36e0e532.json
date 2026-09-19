@@ -1,0 +1,51 @@
+{
+  "case_id": "ablation_finance_10",
+  "request_sha256": "aeba36e0e532aea45a74d56f41f6ec798c9b802faad69a2f2b7a97e2343c6b62",
+  "request": {
+    "model": "jev-1.13.0",
+    "state": {
+      "source": [
+        {
+          "paragraph_id": "353",
+          "text": "G&W submitted an LOI on July 21, 2016 to acquire the Company for a price of $21.15 per share (subject to a three-week exclusive diligence period). The price included $20.02 cash at closing and $1.13 in the form of a contingent value right, the value of which was based on the subsequent sale of the Company's South Quay property (\"CVR\"). G&W also provided a mark-up of the disclosure letter. On July 26, 2016, in response to feedback from representatives of GHF indicating its price and CVR structure were not competitive, G&W submitted a revised LOI, which increased its offer to $22.15 per share (including $21.02 in cash and $1.13 CVR)."
+        }
+      ]
+    },
+    "questions": {
+      "financing": {
+        "type": "choice",
+        "instructions": "For G&W at \"July 21, 2016 LOI\", what does the supplied source explicitly report about financing commitment? Judge only financing; do not import another bidder or date, or infer commitment from all-cash consideration.",
+        "criteria": {
+          "committed": "Financing commitment provided, capital expressly committed, or financing not needed.",
+          "missing": "Explicitly no firm commitment, uncommitted financing, or financing contingency.",
+          "silent": "No explicit statement establishing either commitment or absence for this bidder at this event. Silence is not missing financing."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "financing": {
+        "type": "choice",
+        "choice": "silent",
+        "confidence": 0.98,
+        "probabilities": {
+          "committed": 0.01,
+          "silent": 0.98,
+          "missing": 0.01
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 613,
+      "output_tokens": 41
+    }
+  },
+  "attempts": [
+    {
+      "status": 200,
+      "latency_s": 1.450660558999516
+    }
+  ]
+}

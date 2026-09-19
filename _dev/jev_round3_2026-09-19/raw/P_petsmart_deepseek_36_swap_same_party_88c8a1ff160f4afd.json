@@ -1,0 +1,61 @@
+{
+ "request": {
+  "state": {
+   "passage": {
+    "before": [
+     "Early in the day on December 12, 2014, the Buyer Group requested permission to work more closely with Longview in order to include a rollover of a portion of the Company shares managed by Longview in the Buyer Group's bid. The Buyer Group informed J.P. Morgan that the Buyer Group was working to achieve a higher price, and that Longview participation with the Buyer Group might enhance the Buyer Group's ability to do so. Bidder 2 indicated to J.P. Morgan that accommodation of a Longview rollover would not affect Bidder 2's price, and that Bidder 2 would consider accommodating a Longview rollover only after execution of a merger agreement between the Company and Bidder 2. After consultation with the Company's financial and legal advisors, the ad hoc committee approved the Buyer Group's request, and,",
+     "later that day, Longview and the Buyer Group entered into a confidentiality agreement permitting the exchange of detailed information between them, including bid price, which had not previously been shared with Longview. The ad hoc committee also instructed Wachtell Lipton to provide a form of voting agreement to Longview to secure Longview's commitment to vote for the merger subject to certain exceptions, including a change of recommendation by the board."
+    ],
+    "cited_paragraph": "During the evening of December 12, 2014, Bidder 2 submitted an offer of $81.50 per share, in cash. Representatives of J.P. Morgan confirmed via a conversation with Bidder 2 on the evening of December 12, 2014 that $81.50 per share was its best and final offer. The Buyer Group initially submitted an oral offer of $82.50 per share, in cash, but stated that it was working to increase the offer within the next few hours. Later in the evening, the Buyer Group submitted a best and final offer of $83.00 per share, in cash. In addition, each bidder submitted a revised draft of the merger agreement and other transaction agreements, and copies of their respective financing commitment documents. The versions submitted by the Buyer Group were, with few exceptions, in substantially executable form.",
+    "after": [
+     "On December 13, 2014, the board met in person, together with the members of management and representatives of J.P. Morgan and Wachtell Lipton, to discuss and review the final bids and to consider the proposed transaction. Representatives of J.P. Morgan reviewed the respective bids as well as the recent progression of the sale process. Representatives of Wachtell Lipton reviewed the terms of the draft merger agreement and other transaction documents and reviewed the financing commitments that had been provided by the Buyer Group. Representatives of J.P. Morgan made a financial presentation concerning the proposed transaction with the Buyer Group, as well as the Company's alternatives to a sale of the Company, including a leveraged share repurchase. J.P. Morgan then rendered its oral opinion, which was subsequently confirmed in writing, to the board that, as of that date, and based upon and subject to the factors, assumptions and limitations set forth in its opinion, the merger consideration of $83.00 in cash to be paid to the holders of the Company's common stock in the merger was fair, from a financial point of view, to such holders. Following extensive discussion, the board unanimously determined that the merger agreement and the transactions contemplated thereby, including the merger, were advisable and in the best interests of PetSmart and its stockholders, and to recommend that the Company's stockholders approve the adoption of the merger agreement. The board's determination was subject, however, to confirmation that the remaining open points in the merger agreement had been satisfactorily resolved, and the board determined to reconvene, if deemed necessary by the ad hoc committee or the chairman of the board.",
+     "Following the board meeting, the parties completed negotiations on terms satisfactory to both parties, and finalized the terms of the Longview voting agreement. On December 14, 2014, the parties executed the merger agreement, the voting agreement and related transaction agreements and issued a press release announcing the transaction."
+    ]
+   }
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "scoped": {
+    "type": "choice",
+    "criteria": {
+     "supported": "The source states this price (or range) for this party at this specific event. Trailing zeros and wording may differ.",
+     "contradicted": "The source describes this specific event by this party and gives a different price or range for it, or the claimed figure belongs to another party, another event, or only one component of the package.",
+     "insufficient": "The source does not state a price for this specific event, for example because a standing earlier price is merely confirmed without being restated."
+    },
+    "instructions": "A research ledger claims that at the event recorded as \"Bid\" by \"Bidder 2\", dated 12/12/2014 (priced proposal 4 of 4 by this party over the whole process, in date order), the total per-share value of the proposal was $80.35. Judge this claim against `passage` only. Bind party, date, event and price together: a figure that the passage gives for a different party, a different date or proposal, or for only the cash part of a package does not support the claim."
+   },
+   "actor_only": {
+    "type": "noul",
+    "instructions": "Does the passage state that \"Bidder 2\" offered, proposed or indicated a price of $80.35 per share (the same number may be written without trailing zeros)?",
+    "criteria": {
+     "true": "The per-share figure $80.35 appears in the passage as this party's price.",
+     "false": "The passage gives a different figure for this party, or no figure."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "scoped": {
+    "type": "choice",
+    "choice": "contradicted",
+    "confidence": 0.99,
+    "probabilities": {
+     "insufficient": 0.01,
+     "contradicted": 0.99,
+     "supported": 0.0
+    }
+   },
+   "actor_only": {
+    "type": "noul",
+    "noul": 0.02
+   }
+  },
+  "usage": {
+   "input_tokens": 1519,
+   "output_tokens": 66
+  }
+ },
+ "latency_s": 1.352
+}

@@ -1,0 +1,52 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Later on July 25, 2013, Party C submitted a written indication of interest at an all-cash purchase price of $16.00 to $16.50 per share.",
+   "target_sentence": "Later on July 25, 2013, Party C submitted a written indication of interest at an all-cash purchase price of $16.00 to $16.50 per share."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_19": "07/23/2013 | CSC/Pamplona | Bid | price 18.5 | Preliminary IOI based only on the informational package, with no data room or management access (Heavy by context).",
+     "row_21": "07/23/2013 | 16 other financial NDA signers | Did not submit | Inferred. 20 signers \u2212 Party A (no NDA until 08/05) \u2212 3 submitters = 16. On 07/25 the target named only four interested bidders. Some may have signed after 07/23.",
+     "row_22": "07/24/2013 | Party B | Bid | price 17-18 | Written preliminary IOI, one day after the due date. Based on the informational package only (Heavy by context).",
+     "row_23": "07/24/2013 | Party C | Bid | price 15-17 | Oral preliminary IOI to BofA, one day after the due date. Based on the informational package only (Heavy by context).",
+     "row_24": "07/25/2013 | Mac-Gray (Special Committee) | Round opened | Committee finds IOIs lower than expected. Advances four: Party A (subject to NDA), Party B, Party C, CSC/Pamplona. Staged disclosure; management meetings for all, synergy information for strategics; revised IOIs to follow.",
+     "row_25": "07/25/2013 | Party C | Bid | price 16-16.5 | Written IOI after the 07/25 meeting; revises #22 (oral $15.00-$17.00). Answers the round-1 request. Based on the informational package only (Heavy by context).",
+     "row_26": "08/05/2013 | Party A | NDA signed | Talks resumed 07/27 and non-solicit terms agreed. Received the informational package so it could improve its 06/21 proposal (#7).",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_25",
+    "confidence": 1.0,
+    "probabilities": {
+     "row_23": 0.0,
+     "row_21": 0.0,
+     "row_22": 0.0,
+     "row_26": 0.0,
+     "row_25": 1.0,
+     "not_an_event": 0.0,
+     "row_19": 0.0,
+     "none": 0.0,
+     "row_24": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1112,
+   "output_tokens": 106
+  }
+ },
+ "latency_s": 0.36
+}

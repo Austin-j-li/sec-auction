@@ -1,0 +1,120 @@
+{
+ "request": {
+  "state": {
+   "passage": {
+    "before": [
+     "On the afternoon of August 12, 2016, following the meeting of the Transaction Committee, the Board held a special meeting to review and consider the recommendation of the Transaction Committee with respect to a potential sale transaction. All directors were present in person or by telephone other than Director Smith. The Transaction Committee reported on the process and the status of the negotiations with Party B and G&W. Drafts of the Party B merger agreement, voting agreement and disclosure letter and drafts of the G&W merger agreement, voting agreement and disclosure letter were provided to the directors at the meeting. Hinckley Allen reviewed the material terms of the draft merger agreements provided by Party B and G&W, and the differences between the G&W draft merger agreement and the Party B draft merger agreement. Hinckley Allen also reviewed the Board's fiduciary obligations in connection with the proposed transaction and responded to questions from the directors. Hinckley Allen advised the Board that both Party B's and G&W's draft merger agreements restricted the Company from soliciting a competing proposal, subject to a \"fiduciary out\" for an unsolicited superior proposal, which required the Company to pay a termination fee equal to 3% of the transaction value in the case of G&W (which the Company had negotiated down from 3.85%) and 3% plus Party B's transaction expenses (capped at 1% of transaction value) in the case of Party B, in the event the merger agreement was terminated as a result of the Board's decision to pursue such a proposal.",
+     "Hinckley Allen advised the Board that the draft merger agreement and disclosure letter for both Party B and G&W had minor differences but were substantively the same, except for the following: (1) the price offered by"
+    ],
+    "cited_paragraph": "G&W was $1.00 more per share; (2) the termination fee payable by the Company in the event the Board exercised its \"fiduciary out\" in order to accept a superior proposal was less under the G&W draft agreement than the Party B draft agreement; and (3) the STB approval process for G&W and Party B would be different since G&W owned connecting railroads. The Board arranged a telephone call with the Company's STB counsel to discuss the process for obtaining the required regulatory approval or exemption for the transaction, the risks associated with each process, the use of a voting trust to enable an earlier closing of the transaction (as contemplated by the G&W merger agreement) and the likely timeframe for obtaining any regulatory clearance for a transaction with either Party B or G&W. Based upon that discussion, the Board determined that the timeframe for, and the likelihood of, obtaining the required regulatory approval was not materially different for a transaction with G&W versus a transaction with Party B. At the request of the Board, representatives of BMO then contacted Party B to determine if it would increase its offer price. Party B indicated that it would not increase its price.",
+    "after": [
+     "The Board determined that the G&W offer represented the superior proposal. At the request of the Board, representatives of BMO reviewed BMO's financial analyses supporting its opinion to the Board as to the fairness, from a financial point of view, to the holders of our common stock of the consideration to be received by those holders (other than the Eder Trusts) in the merger pursuant to the merger agreement as of August 12, 2016. At the request of the Board, BMO confirmed that it did not have any existing or contemplated material relationships with G&W in connection with the provision of any financial advisory or financing services to G&W. BMO then rendered an oral opinion to the Board, subsequently confirmed by delivery of a written opinion, dated August 12, 2016 to the effect that, as of that date, and based upon and subject to the various assumptions made, procedures followed, matters considered and qualifications and limitations on the scope of review undertaken by BMO as set forth in its written opinion, the merger consideration to be received by the holders of our common stock in the merger pursuant to the merger agreement was fair, from a financial point of view, to those holders (other than the Eder Trusts). Following a discussion of the terms of the merger agreement and related matters, the Board (other than Director Smith, who recused himself from the August 12, 2016 meeting) (i) determined that the merger agreement, the plan of merger and the merger and other transactions contemplated by the merger agreement are fair to, advisable and in the best interests of the Company and its shareholders, (ii) approved and declared advisable the merger agreement and the transactions contemplated thereby, including the merger and the plan of merger, (iii) directed that the merger agreement be submitted to the Company's shareholders for approval and (iv) resolved to recommend that the Company's shareholders approve the merger agreement and the transactions contemplated thereby, including the merger and the plan of merger.",
+     "Shortly thereafter, Hinckley Allen and Simpson Thacher finalized the transaction documents and the Company and G&W executed the merger agreement, and the Company, G&W and the Eder Trusts executed the voting agreement. The Company issued a press release publicly announcing the transaction on Monday, August 15, 2016 prior to the opening of trading of the Company's common stock on the NASDAQ."
+    ]
+   }
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "actor": {
+    "type": "noul",
+    "instructions": "Does `passage.cited_paragraph` describe something done by, done to, or decided about the party called \"Party B\" (or a group that the passage shows includes it)?",
+    "criteria": {
+     "true": "That party, or a cohort clearly containing it, is a subject of the cited paragraph.",
+     "false": "The cited paragraph concerns other parties only."
+    }
+   },
+   "event": {
+    "type": "noul",
+    "instructions": "A research ledger records an event labelled \"Dropped by target\" for \"Party B\". Does the passage report facts that fit the label \"Dropped by target\" for that party?",
+    "criteria": {
+     "true": "The passage reports such an event, or facts from which it directly follows.",
+     "false": "The passage reports a different kind of event, or nothing of that kind."
+    }
+   },
+   "exit_label": {
+    "type": "choice",
+    "instructions": "How does the passage describe \"Party B\" leaving or losing the sale process?",
+    "criteria": {
+     "Dropped by target": "The target excluded the bidder, refused it the next stage, or signed exclusivity with a rival.",
+     "Withdrew": "The bidder itself said it was ending its participation.",
+     "Did not submit": "The bidder was invited to bid by a deadline and did not submit a bid.",
+     "Not selected at signing": "The bidder was still bidding or still in the process when the target signed with someone else.",
+     "No exit described": "The passage does not describe this party leaving or losing the process."
+    }
+   },
+   "exit_reason": {
+    "type": "choice",
+    "instructions": "What reason does the passage give for \"Party B\" leaving the sale process or not continuing?",
+    "criteria": {
+     "Value below market price": "Bidder indicated its valuation was below the current share price.",
+     "Value at or below market price": "Bidder indicated it could not pay a premium to the share price.",
+     "Value below earlier offer": "Bidder indicated it could now pay only less than its own earlier offer.",
+     "Value at earlier offer": "Bidder's value stayed at its earlier offer.",
+     "Would not improve earlier offer": "Bidder was unable or unwilling to raise its earlier offer.",
+     "Lower offer than rivals": "Bidder's offer was lower than competing offers.",
+     "Terms or process": "Exit due to contract terms, conditions, financing, timing, diligence or process issues, not price.",
+     "Other stated reason": "Another reason is stated (strategy change, other priorities, etc.).",
+     "Not stated": "The passage gives no reason for this party's exit."
+    }
+   },
+   "exit_express": {
+    "type": "noul",
+    "instructions": "Does the passage expressly report that \"Party B\" left, was excluded from, was told it was out of, or declined to continue in the process?",
+    "criteria": {
+     "true": "An exit, exclusion or notification is stated in words.",
+     "false": "The exit can only be inferred, for example because the party is simply not mentioned among those continuing."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "actor": {
+    "type": "noul",
+    "noul": 0.98
+   },
+   "event": {
+    "type": "noul",
+    "noul": 0.24
+   },
+   "exit_label": {
+    "type": "choice",
+    "choice": "Dropped by target",
+    "confidence": 0.34,
+    "probabilities": {
+     "No exit described": 0.1,
+     "Not selected at signing": 0.41,
+     "Withdrew": 0.02,
+     "Did not submit": 0.0,
+     "Dropped by target": 0.47
+    }
+   },
+   "exit_reason": {
+    "type": "choice",
+    "choice": "Would not improve earlier offer",
+    "confidence": 0.89,
+    "probabilities": {
+     "Would not improve earlier offer": 0.9,
+     "Other stated reason": 0.0,
+     "Terms or process": 0.0,
+     "Value below earlier offer": 0.0,
+     "Value at or below market price": 0.0,
+     "Not stated": 0.01,
+     "Value below market price": 0.0,
+     "Value at earlier offer": 0.01,
+     "Lower offer than rivals": 0.08
+    }
+   },
+   "exit_express": {
+    "type": "noul",
+    "noul": 0.28
+   }
+  },
+  "usage": {
+   "input_tokens": 2122,
+   "output_tokens": 228
+  }
+ },
+ "latency_s": 0.262
+}

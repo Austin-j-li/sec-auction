@@ -1,0 +1,114 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On August 7, 2014, a representative of Industry Participant contacted a representative of J.P. Morgan. The Industry Participant representative indicated that she had heard rumors that J.P. Morgan was working with the Company and wanted to inform J.P. Morgan that, if the Company were to pursue strategic alternatives, Industry Participant might be interested in re-visiting the conversations that had taken place in the Spring concerning the feasibility of a possible combination of the two Companies. The J.P. Morgan representative reported the conversation to the ad hoc committee.",
+   "ledger_rows": [
+    {
+     "When": "late May\u2013June 2014",
+     "Who": "Some stockholders and interested parties",
+     "Event": "Activist",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Communications after the 05/21 earnings release urged strategic/financial alternatives, including a sale or a levered return of capital."
+    },
+    {
+     "When": "06/18/2014",
+     "Who": "PetSmart",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Board formed the ad hoc committee (Josefowicz, Gangwal, Stemberg) and authorized vetting and retention of a financial advisor; focus on capital-structure alternatives."
+    },
+    {
+     "When": "07/03/2014",
+     "Who": "JANA Partners",
+     "Event": "Activist",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Filed Schedule 13D disclosing a 9.9% stake; advocated a sale in amendments and letters through August; met the Company on 07/10."
+    },
+    {
+     "When": "07/07/2014",
+     "Who": "Longview",
+     "Event": "Activist",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Public letter urged the board to consider a sale; offered to roll over part of its holdings if needed; met directors and management in May."
+    },
+    {
+     "When": "July 2014",
+     "Who": "J.P. Morgan",
+     "Event": "Adviser",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Company's financial advisor; retained in July after interviews; engagement letter effective 08/21/2014."
+    },
+    {
+     "When": "08/07/2014",
+     "Who": "Industry Participant",
+     "Event": "Bidder interest",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Called J.P. Morgan: might revisit a combination if the Company pursued alternatives; reported to the ad hoc committee."
+    },
+    {
+     "When": "08/13/2014",
+     "Who": "PetSmart",
+     "Event": "Target sale decision",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Board determined to explore strategic alternatives including a possible sale; Profit Improvement Plan; ad hoc committee to oversee; J.P. Morgan to contact parties later."
+    },
+    {
+     "When": "08/19/2014",
+     "Who": "PetSmart",
+     "Event": "Sale process announced",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Press release announced exploration of strategic alternatives including a possible sale; uncontacted parties could approach J.P. Morgan."
+    },
+    {
+     "When": "08/27/2014",
+     "Who": "PetSmart",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Not invited: told 08/22 and 08/27 the board would not invite it; may still submit a proposal; no contact since 08/27."
+    },
+    {
+     "When": "mid-August\u2013October 2014",
+     "Who": "27 potential participants",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Contacts: 27 parties (3 strategic not counting Industry Participant; 24 financial) approached J.P. Morgan mid-August\u2013end October; ~15 expressed interest by the 10/03 board update."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "contact": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "contact": {
+    "type": "noul",
+    "noul": 0.93
+   }
+  },
+  "usage": {
+   "input_tokens": 1426,
+   "output_tokens": 20
+  }
+ },
+ "latency_s": 0.259
+}

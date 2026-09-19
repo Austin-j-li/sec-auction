@@ -1,0 +1,72 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On April 7, 2016, the Transaction Committee met by telephone conference and discussed the process to date with representatives of GHF. Representatives of GHF reported that they and Company management had held a series of introductory meetings with five potential strategic buyers (including G&W) at the 2016 Connections Convention. Mr. Noreck reported that the Company had also approached two additional Class I railroads to determine their interest in a possible transaction. After discussion, the Transaction Committee authorized representatives of GHF, on behalf of the Company, to contact each of the five interested parties with whom management had met at the 2016 Connections Convention, as well as other potential strategic buyers (including certain Class I railroads) and private equity firms who had entered into confidentiality agreements with the Company to confirm their continuing interest. Subsequently, on April 21, 2016, the Company and representatives of GHF held an introductory meeting with another potential strategic buyer (\"Party B\").",
+   "target_sentence": "After discussion, the Transaction Committee authorized representatives of GHF, on behalf of the Company, to contact each of the five interested parties with whom management had met at the 2016 Connections Convention, as well as other potential strategic buyers (including certain Class I railroads) and private equity firms who had entered into confidentiality agreements with the Company to confirm their continuing interest."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_4": "03/14/2016 | Target (Board) | Target sale decision | Board adopted GHF's proposed 'exploratory transaction strategy': continue talks with Party A and solicit other change-in-control interest. Formed Transaction Committee (Barrett, Anderson, Garvey), which could not approve a deal.",
+     "row_5": "03/24/2016 | Hinckley, Allen & Snyder LLP | Adviser | Target's legal counsel; first seen acting 03/24/2016, attending Transaction Committee meetings.",
+     "row_6": "week of 03/28/2016 | Target (GHF) | Round opened | GHF outreach wave began, executing the Committee's 03/24 authorization to contact Party A and other buyers (management had told Party A of GHF's engagement on 03/22-23).",
+     "row_7": "week of 03/28/2016 | 10 strategic buyers contacted | Contact | GHF contacted 11 potential strategic buyers; Party A (#1) is the eleventh. All 11 later signed NDAs.",
+     "row_8": "week of 03/28/2016 | 18 financial buyers contacted | Contact | GHF contacted 18 potential financial buyers; 14 later signed NDAs, 4 did not.",
+     "row_9": "after week of 03/28/2016 | 11 strategic NDA signers | NDA signed | All 11 contacted strategic buyers; no standstills. Includes Party A and G&W (NDA dated 04/03/2016). Parties E and F, and probably B, are members but the filing does not say so. Memorandum later sent to signers.",
+     "row_10": "after week of 03/28/2016 | 14 financial NDA signers | NDA signed | 14 of the 18 contacted financial buyers; no standstills. Party D is presumably a member (only financial signers before July). Filing's total: 25 NDAs.",
+     "row_11": "by 04/07/2016 | 2 additional Class I railroads | Contact | Company management approached them about a possible transaction; filing reports no response and no NDA.",
+     "row_12": "by 04/27/2016 | Target (GHF) | Deadline set | Every potential buyer told to submit a non-binding IOI by 05/10/2016; memorandum already sent to NDA signers.",
+     "row_13": "after 04/27/2016 | Target (GHF) | Deadline revised | IOI due date moved from 05/10 to 05/19/2016. Day not given; Date from assumes 05/10 was still operative at the 04/27 Board discussion.",
+     "row_14": "05/19/2016 | Target | Deadline | IOI due date reached. IOIs arrived 05/19 to 06/01.",
+     "row_15": "05/19/2016 - 06/01/2016 | 9 IOI bidders | Bid | price 17.93-26.5 | Range for the group; $/share assumes preferred converts; equity $90M-$134M. Made before data-site access. By later events includes B, G&W, D, E, F and the two LOI non-submitters (#29-30): 5 strategic, 2 financial, 2 unknown.",
+     "row_16": "by 06/01/2016 | 16 NDA signers without IOI | Did not submit | 25 NDA signers (#8-9) \u2212 9 IOI bidders (#14) = 16. None reappears. May include Party A, which the filing never mentions after March.",
+     "row_17": "05/23/2016 - 06/01/2016 | 2 low IOI bidders | Dropped by target | Transaction Committee excluded the two lowest IOIs from management presentations to save management time. Identities and types not disclosed; may include Party A.",
+     "row_18": "05/23/2016 - 06/01/2016 | Target (Transaction Committee) | Round opened | Committee advanced the other seven IOI bidders to in-person management presentations and further diligence; all seven got internet data-site access.",
+     "row_19": "mid-June 2016 | Target (GHF) | Deadline set | Non-binding LOIs due 07/20/2016 with mark-ups of the merger agreement, disclosure letter and voting agreement; price per share for 100% of common. Drafts posted 06/29, 06/30, 07/11.",
+     "row_24": "07/20/2016 | Target | Deadline | LOI due date reached; six LOIs arrived in late July, G&W's on 07/21.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information; or the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted; or a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "none",
+    "confidence": 0.37,
+    "probabilities": {
+     "row_19": 0.0,
+     "row_14": 0.0,
+     "row_8": 0.0,
+     "row_24": 0.0,
+     "row_15": 0.0,
+     "row_10": 0.0,
+     "row_9": 0.01,
+     "row_4": 0.02,
+     "row_18": 0.0,
+     "none": 0.42,
+     "row_7": 0.13,
+     "row_13": 0.0,
+     "row_11": 0.1,
+     "row_12": 0.0,
+     "row_6": 0.31,
+     "row_16": 0.0,
+     "row_17": 0.0,
+     "not_an_event": 0.01,
+     "row_5": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 2141,
+   "output_tokens": 197
+  }
+ },
+ "latency_s": 0.842
+}

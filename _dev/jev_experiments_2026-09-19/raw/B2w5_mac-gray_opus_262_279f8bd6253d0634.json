@@ -1,0 +1,90 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "committing to fund 100% of the capital needed for closing, which, together with the all-cash per share purchase price of $21.25, we refer to as the CSC/Pamplona final proposal. The parties also agreed that the exclusivity agreement would automatically terminate if CSC or Pamplona adversely changed any of the terms of the CSC/Pamplona final proposal.",
+   "ledger_rows": [
+    {
+     "When": "09/19/2013",
+     "Who": "Mac-Gray (Special Committee)",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Preferred bidder and price requirement: CSC/Pamplona is best on value, certainty and risk (Party B's options and financing riskier). Exclusivity offered at $21.25; MacDonald supports $21.25."
+    },
+    {
+     "When": "09/21/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Bid",
+     "Price low": 21.25,
+     "Price high": 21.25,
+     "Note": "Raised from $20.75 (#35) the same day the committee asked. Conditioned on 2-week exclusivity; asks for voting agreements from MacDonald. Pamplona funds 100%, no financing contingency; confirmatory diligence only (Light)."
+    },
+    {
+     "When": "09/24/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Exclusivity changed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Executed, authorized 09/23; exclusive until 5 p.m. 10/12/2013. Ends if CSC/Pamplona adversely changes the $21.25 final proposal. CSC/Pamplona then got full data-room access."
+    },
+    {
+     "When": "by 09/24/2013",
+     "Who": "Party A",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Inferred: displaced when exclusivity with CSC/Pamplona was executed; not reported told. On 09/18 it declined to improve its $18.00-$19.00 range (#36)."
+    },
+    {
+     "When": "by 09/24/2013",
+     "Who": "Party B",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Inferred date: displaced by exclusivity with CSC/Pamplona. Reason from the committee on 09/19: Party B's options were contingent and deferred, and its financing riskier, despite the higher face value."
+    },
+    {
+     "When": "09/25/2013",
+     "Who": "Kirkland & Ellis LLP",
+     "Event": "Adviser",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Outside legal counsel to CSC/Pamplona; first seen acting when it received the target's first merger agreement draft."
+    },
+    {
+     "When": "09/25/2013 to 10/07/2013",
+     "Who": "Moab Partners, L.P.",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Rollover resolved: talks with Pamplona, allowed from 09/23, end with no Moab rollover (reported 10/07). Moab signed a voting agreement at signing."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "bid": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "bid": {
+    "type": "noul",
+    "noul": 0.76
+   }
+  },
+  "usage": {
+   "input_tokens": 1277,
+   "output_tokens": 20
+  }
+ },
+ "latency_s": 0.347
+}

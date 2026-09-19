@@ -1,0 +1,74 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On December 8, 2014, the board met telephonically, together with members of management and representatives of J.P. Morgan and Wachtell Lipton, to receive an update and review and discuss the comments from the bidders on the draft merger agreement and other transaction documents. Later on December 8, 2014, Wachtell Lipton sent to the Buyer Group and Bidder 2 revised versions of the form of merger agreement and other transaction documents, reflecting the Company's positions and reactions to the bidders' respective comments.",
+   "ledger_rows": [
+    {
+     "When": "12/04\u201312/05/2014",
+     "Who": "PetSmart",
+     "Event": "Deadline set",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Set evening 12/10 for final bids, replacing the initial 12/05 plan; mark-ups and financing commitments requested in advance."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "PetSmart",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Final bids due; Buyer Group and Bidder 2 submitted; Bidder 3 no written offer."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "Buyer Group",
+     "Event": "Bid",
+     "Price low": 80.7,
+     "Price high": 80.7,
+     "Note": "Final bid letter with revised merger agreement; financing commitment documents provided 12/06; committee required improvement (#31)."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "Bidder 2",
+     "Event": "Bid",
+     "Price low": 80.35,
+     "Price high": 80.35,
+     "Note": "Final bid letter with revised merger agreement; financing commitments not stated at this stage."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "Bidder 3",
+     "Event": "Did not submit",
+     "Price low": null,
+     "Price high": null,
+     "Note": "No written offer: verbal valuation not above ~$78 stock price; J.P. Morgan said unlikely to be competitive."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "adviser": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "adviser": {
+    "type": "noul",
+    "noul": 0.23
+   }
+  },
+  "usage": {
+   "input_tokens": 943,
+   "output_tokens": 22
+  }
+ },
+ "latency_s": 0.273
+}

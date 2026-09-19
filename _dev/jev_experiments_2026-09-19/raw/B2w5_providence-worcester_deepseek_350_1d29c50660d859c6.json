@@ -1,0 +1,162 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Over the course of June and July 2016, each of the potential buyers and their respective advisors engaged in due diligence of the Company's business and financial condition, including holding meetings with certain members of the Company's management team. The Transaction Committee met on June 30, 2016 to receive a status update on the management presentations and due diligence efforts of the potential buyers. In early July 2016, a potential strategic buyer that had not previously been part of the process (\"Party C\") approached the Company's management and expressed interest in acquiring the Company. After executing a confidentiality agreement, Party C was provided the memorandum concerning the Company provided to the other potential buyers. On July 12, 2016, Party C submitted an IOI with an offer price per share of $21.00 (implying an equity value of $108 million). Subsequently, Party C was provided access to the internet data site and the Company's management held a management presentation with Party C by telephone on July 14, 2016.",
+   "ledger_rows": [
+    {
+     "When": "by 04/27/2016",
+     "Who": "PWRR",
+     "Event": "Deadline set",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Potential buyers advised to submit non-binding indications of interest by 05/10/2016; communicated before the 04/27 Board meeting."
+    },
+    {
+     "When": "by 05/19/2016",
+     "Who": "PWRR",
+     "Event": "Deadline revised",
+     "Price low": null,
+     "Price high": null,
+     "Note": "IOI deadline postponed to 05/19/2016 to let buyers formulate compelling offers; revision itself undated, only bound is the new date."
+    },
+    {
+     "When": "05/19/2016",
+     "Who": "PWRR",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "IOI due date reached; nine IOIs followed; the Transaction Committee evaluated them on 05/23 and 06/01."
+    },
+    {
+     "When": "06/01/2016",
+     "Who": "Two low bidders",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Excluded after IOI review as the lowest of the nine offers; decision made at the 05/23 and 06/01 Committee meetings."
+    },
+    {
+     "When": "06/01/2016",
+     "Who": "PWRR (Transaction Committee)",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Round 2 opened: Committee advanced seven after excluding two, opening management presentations and data-site diligence; LOIs later sought by 07/20."
+    },
+    {
+     "When": "by 07/12/2016",
+     "Who": "Party C",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Signed a confidentiality agreement and received the same memorandum as other buyers; no standstill."
+    },
+    {
+     "When": "07/12/2016",
+     "Who": "Party C",
+     "Event": "Bid",
+     "Price low": 21,
+     "Price high": 21,
+     "Note": "IOI; equity value $108M; no diligence or financing terms stated; made before data-site and management access."
+    },
+    {
+     "When": "07/14/2016",
+     "Who": "Party C",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Provided catch-up access for late entrant: data-site access plus telephone management presentation after its 07/12 IOI."
+    },
+    {
+     "When": "late July 2016",
+     "Who": "Party B",
+     "Event": "Bid",
+     "Price low": 24,
+     "Price high": 24,
+     "Note": "LOI with mark-ups of merger and voting agreements; expedited diligence; highest of the six LOIs."
+    },
+    {
+     "When": "late July 2016",
+     "Who": "Party E",
+     "Event": "Bid",
+     "Price low": 21.26,
+     "Price high": 21.26,
+     "Note": "LOI; 60-day exclusive diligence and documentation period requested; issues list only, no markup."
+    },
+    {
+     "When": "late July 2016",
+     "Who": "Party D",
+     "Event": "Bid",
+     "Price low": 21,
+     "Price high": 21,
+     "Note": "LOI with mark-ups of merger and voting agreements; four-week diligence period."
+    },
+    {
+     "When": "07/21/2016",
+     "Who": "G&W",
+     "Event": "Bid",
+     "Price low": 21.15,
+     "Price high": 21.15,
+     "Note": "LOI: $20.02 cash at closing plus $1.13 CVR on South Quay property sale; three-week exclusive diligence requested; mark-ups provided."
+    },
+    {
+     "When": "07/26/2016",
+     "Who": "G&W",
+     "Event": "Bid",
+     "Price low": 22.15,
+     "Price high": 22.15,
+     "Note": "Raised after GHF said price and CVR structure were not competitive; $21.02 cash plus $1.13 CVR; exclusive diligence request stands."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "bid": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "nda_access": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "bid": {
+    "type": "noul",
+    "noul": 0.95
+   },
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.74
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.34
+   }
+  },
+  "usage": {
+   "input_tokens": 2012,
+   "output_tokens": 53
+  }
+ },
+ "latency_s": 0.253
+}

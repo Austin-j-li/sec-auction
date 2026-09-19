@@ -1,0 +1,58 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "50 parties, including CSC and Pamplona, who together we refer to as CSC/Pamplona, and Party A, to solicit potential interest in a transaction with Mac-Gray, 15 of which were potential strategic buyers and 35 of which were potential financial buyers, including private equity firms.",
+   "target_sentence": "50 parties, including CSC and Pamplona, who together we refer to as CSC/Pamplona, and Party A, to solicit potential interest in a transaction with Mac-Gray, 15 of which were potential strategic buyers and 35 of which were potential financial buyers, including private equity firms."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_8": "06/21/2013 | Party A | Bid | price 17-19 | Unsolicited proposal to the board, made before any NDA or diligence (Heavy by context). It was still standing when round 1 was evaluated on 07/25.",
+     "row_9": "06/24/2013 | Mac-Gray (Special Committee) | Target sale decision | Board forms a Special Committee of six independent directors, excluding CEO MacDonald and Moab's Rothenberg. The committee will weigh a sale against staying stand-alone and approach 50 parties.",
+     "row_10": "06/24/2013 to 06/28/2013 | Mac-Gray (BofA Merrill Lynch) | Round opened | BofA's outreach carries out the 06/24 decision; contacts reported by 06/28. NDA signers get an informational package, with preliminary IOIs due 07/23/2013 (no separate Deadline set row).",
+     "row_11": "by 06/28/2013 | CSC/Pamplona | Contact | Target-initiated. Pamplona is interested, including an acquisition by its portfolio company CSC (acquired May 2013), and says diligence would be minimal.",
+     "row_12": "during the next several weeks after 06/24/2013 | 13 other strategic parties | Contact | Target outreach. Of 50 contacted (15 strategic, 35 financial), Party A (#2) and CSC/Pamplona (#10) are recorded separately, leaving 13 strategic parties.",
+     "row_13": "during the next several weeks after 06/24/2013 | 35 financial parties | Contact | Target outreach to all 35 financial parties (including private equity), among them Party B and Party C. 50 contacted in total.",
+     "row_14": "over the two months after late June 2013 | 16 other financial NDA signers | NDA signed | 20 NDAs in total (2 strategic, 18 financial). Party A, CSC/Pamplona, Party B and Party C have their own rows, leaving 16 financial. Signing dates not given; each got an informational package.",
+     "row_15": "06/28/2013 | Party B | NDA signed | Confidentiality and standstill agreement; received the informational package.",
+     "row_16": "06/30/2013 | Party C | NDA signed | Confidentiality and standstill agreement; received the informational package.",
+     "row_20": "07/23/2013 | Mac-Gray | Deadline | Due date for preliminary IOIs. CSC/Pamplona bid on time; Party B and Party C bid on 07/24 and were considered on 07/25 (late bids accepted).",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_12",
+    "confidence": 0.79,
+    "probabilities": {
+     "row_8": 0.0,
+     "row_11": 0.0,
+     "row_10": 0.1,
+     "row_9": 0.01,
+     "row_15": 0.0,
+     "row_16": 0.0,
+     "not_an_event": 0.01,
+     "row_20": 0.0,
+     "row_14": 0.0,
+     "none": 0.03,
+     "row_13": 0.05,
+     "row_12": 0.8
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1350,
+   "output_tokens": 134
+  }
+ },
+ "latency_s": 0.258
+}

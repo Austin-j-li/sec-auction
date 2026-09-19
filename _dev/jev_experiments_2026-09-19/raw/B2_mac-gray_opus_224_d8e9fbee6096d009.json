@@ -1,0 +1,98 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On June 28, 2013, the members of the Transaction Committee participated in a telephone conference call with representatives of BofA Merrill Lynch and Goodwin Procter. BofA Merrill Lynch summarized the contacts they had had with certain of the potential bidders. In particular, BofA Merrill Lynch reported that they had spoken with representatives of Party A, as instructed by the Special Committee, who had expressed the view that there would be considerable synergies if Party A were to acquire Mac-Gray and that Party A would be speaking with certain financing sources with respect to funding such a transaction. BofA Merrill Lynch also reported that they had spoken with representatives of Pamplona, as instructed by the Special Committee, who expressed interest in a transaction, including an acquisition of Mac-Gray by its portfolio company, CSC. Pamplona emphasized that business and legal due diligence would be minimal given its familiarity with Mac-Gray and the industry generally.",
+   "ledger_rows": [
+    {
+     "When": "06/24/2013 to 06/28/2013",
+     "Who": "Mac-Gray (BofA Merrill Lynch)",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "BofA's outreach carries out the 06/24 decision; contacts reported by 06/28. NDA signers get an informational package, with preliminary IOIs due 07/23/2013 (no separate Deadline set row)."
+    },
+    {
+     "When": "by 06/28/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Contact",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Target-initiated. Pamplona is interested, including an acquisition by its portfolio company CSC (acquired May 2013), and says diligence would be minimal."
+    },
+    {
+     "When": "during the next several weeks after 06/24/2013",
+     "Who": "13 other strategic parties",
+     "Event": "Contact",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Target outreach. Of 50 contacted (15 strategic, 35 financial), Party A (#2) and CSC/Pamplona (#10) are recorded separately, leaving 13 strategic parties."
+    },
+    {
+     "When": "during the next several weeks after 06/24/2013",
+     "Who": "35 financial parties",
+     "Event": "Contact",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Target outreach to all 35 financial parties (including private equity), among them Party B and Party C. 50 contacted in total."
+    },
+    {
+     "When": "over the two months after late June 2013",
+     "Who": "16 other financial NDA signers",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "20 NDAs in total (2 strategic, 18 financial). Party A, CSC/Pamplona, Party B and Party C have their own rows, leaving 16 financial. Signing dates not given; each got an informational package."
+    },
+    {
+     "When": "06/28/2013",
+     "Who": "Party B",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Confidentiality and standstill agreement; received the informational package."
+    },
+    {
+     "When": "06/30/2013",
+     "Who": "Party C",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Confidentiality and standstill agreement; received the informational package."
+    },
+    {
+     "When": "07/23/2013",
+     "Who": "Mac-Gray",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Due date for preliminary IOIs. CSC/Pamplona bid on time; Party B and Party C bid on 07/24 and were considered on 07/25 (late bids accepted)."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "contact": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "contact": {
+    "type": "noul",
+    "noul": 0.69
+   }
+  },
+  "usage": {
+   "input_tokens": 1388,
+   "output_tokens": 20
+  }
+ },
+ "latency_s": 0.251
+}

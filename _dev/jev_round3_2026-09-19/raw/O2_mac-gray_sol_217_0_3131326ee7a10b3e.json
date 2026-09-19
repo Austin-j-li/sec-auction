@@ -1,0 +1,48 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On June 21, 2013, Party A submitted an unsolicited proposal to the Mac-Gray Board of Directors offering to purchase Mac-Gray for an all-cash purchase price of $17.00 to $19.00 per share, which we refer to as the Party A June 21 proposal.",
+   "target_sentence": "On June 21, 2013, Party A submitted an unsolicited proposal to the Mac-Gray Board of Directors offering to purchase Mac-Gray for an all-cash purchase price of $17.00 to $19.00 per share, which we refer to as the Party A June 21 proposal."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_6": "05/30/2013 | BofA Merrill Lynch | Adviser | Target financial adviser selected May 30; engagement letter executed May 31.",
+     "row_7": "05/30/2013 | Moab | Activist | Moab's proxy contest led to election of two nominees; co-founder Rothenberg joined Mac-Gray's board and later had sale-process conflicts.",
+     "row_8": "06/21/2013 | Party A | Bid | price 17-19 | Unsolicited first priced approach; whole-company offer before substantive diligence.",
+     "row_9": "06/24/2013 | Mac-Gray | Target sale decision | Special Committee chose to consider a potential company sale against remaining independent.",
+     "row_10": "06/24/2013 | Mac-Gray | Round opened | Committee launched outreach to 50 parties: 15 strategic and 35 financial.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_8",
+    "confidence": 1.0,
+    "probabilities": {
+     "row_9": 0.0,
+     "row_7": 0.0,
+     "row_10": 0.0,
+     "not_an_event": 0.0,
+     "none": 0.0,
+     "row_6": 0.0,
+     "row_8": 1.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 889,
+   "output_tokens": 81
+  }
+ },
+ "latency_s": 0.272
+}

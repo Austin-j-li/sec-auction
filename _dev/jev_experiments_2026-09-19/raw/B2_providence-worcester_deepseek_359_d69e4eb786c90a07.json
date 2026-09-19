@@ -1,0 +1,166 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "The Transaction Committee met by telephone conference on July 22, 2016 and in person after the regular quarterly Board meeting on July 27, 2016, to review the LOIs with representatives of GHF. Representatives of GHF reviewed the material financial terms of each LOI, including the offer price, and additional due diligence requested. The Transaction Committee discussed the process for the on-site due diligence requested by the bidders, the delays inherent in managing on-site due diligence by multiple parties and the difficulties of maintaining the confidentiality of the discussions. The Transaction Committee concluded that the Company should proceed with confirmatory due diligence and negotiations with G&W and Party B because of the higher offers made by each of G&W and Party B relative to the other potential buyers. At the direction of the Transaction Committee, representatives of GHF subsequently contacted the remaining bidders to inform them that they were no longer involved in the process. The Transaction Committee updated the independent directors (other than Director Smith) regarding the process at a meeting held immediately prior to the Board's regular quarterly meeting on July 27, 2016. Director Smith is Vice President and Group Executive, Locomotive Group of GATX Corporation (\"GATX\"), which owns 4.92% of the Company's common stock. In order to avoid any potential conflict, Mr. Smith elected to recuse himself from participating in this and other Board meetings at which the bidding process and any potential transaction were to be discussed because of the possibility that GATX might be a potential buyer of the Company.",
+   "ledger_rows": [
+    {
+     "When": "late July 2016",
+     "Who": "Party F",
+     "Event": "Bid",
+     "Price low": 19.2,
+     "Price high": 19.2,
+     "Note": "LOI; 30-day due diligence period; no markup."
+    },
+    {
+     "When": "07/20/2016",
+     "Who": "One strategic buyer (unnamed)",
+     "Event": "Did not submit",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Elected not to submit an LOI after being advanced; one of the seven; not necessarily permanent."
+    },
+    {
+     "When": "07/20/2016",
+     "Who": "One financial buyer (unnamed)",
+     "Event": "Did not submit",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Elected not to submit an LOI after being advanced; one of the seven; not necessarily permanent."
+    },
+    {
+     "When": "07/27/2016",
+     "Who": "PWRR (Transaction Committee)",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Round 3 opened: Committee advanced G&W and Party B for confirmatory diligence and negotiations and directed that other bidders be told they were out."
+    },
+    {
+     "When": "by 07/27/2016",
+     "Who": "Party E",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Not among the two advanced; included in remaining bidders told they were no longer involved; last bid $21.26 (07/20)."
+    },
+    {
+     "When": "by 07/27/2016",
+     "Who": "Party D",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Not among the two advanced; included in remaining bidders told out; last bid $21.00 (07/20); returned 07/29."
+    },
+    {
+     "When": "by 07/27/2016",
+     "Who": "Party C",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Not among the two advanced; included in remaining bidders told out; last bid $19.30 (07/20); no later activity."
+    },
+    {
+     "When": "by 07/27/2016",
+     "Who": "Party F",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Not among the two advanced; included in remaining bidders told out; last bid $19.20 (07/20); no later activity."
+    },
+    {
+     "When": "07/29/2016",
+     "Who": "Party D",
+     "Event": "Re-entered",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Returned after exit #34; expressed interest in reengaging and enhancing its offer; revised bid followed 08/01."
+    },
+    {
+     "When": "07/29/2016",
+     "Who": "Party E",
+     "Event": "Re-entered",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Returned after exit #33; expressed interest in reengaging and enhancing its offer; revised bid followed 08/01."
+    },
+    {
+     "When": "08/01/2016",
+     "Who": "Party D",
+     "Event": "Bid",
+     "Price low": 24,
+     "Price high": 24,
+     "Note": "Revised up from $21.00; 30-day diligence period retained; on 08/02 asked the Company not to sign with a rival during diligence."
+    },
+    {
+     "When": "08/01/2016",
+     "Who": "Party E",
+     "Event": "Bid",
+     "Price low": 23.81,
+     "Price high": 23.81,
+     "Note": "Raised from $21.26 with financing support from Party F; 30-day diligence period."
+    },
+    {
+     "When": "08/01/2016",
+     "Who": "Party F",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Provided financing support for Party E's revised $23.81 bid; F had already exited on 07/27 (last bid $19.20); relationship formed."
+    },
+    {
+     "When": "08/02/2016",
+     "Who": "Party E",
+     "Event": "Bid",
+     "Price low": 21.26,
+     "Price high": 21.26,
+     "Note": "Reversion: withdrew the $23.81 proposal while confirming its original $21.26 offer; stays in the process."
+    },
+    {
+     "When": "08/02/2016",
+     "Who": "Party D",
+     "Event": "Withdrew",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Declined to shorten diligence and sought a no-sign commitment; Company refused; filing's words: would not proceed with further diligence 'at that time'."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "exit": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a potential buyer withdraws, declines to bid, is told it will not advance, or is otherwise excluded from the process. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "exit": {
+    "type": "noul",
+    "noul": 0.59
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.58
+   }
+  },
+  "usage": {
+   "input_tokens": 2205,
+   "output_tokens": 36
+  }
+ },
+ "latency_s": 0.342
+}

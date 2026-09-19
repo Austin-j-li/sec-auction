@@ -1,0 +1,52 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "The board frequently reviews, with the Company's management and with the assistance of financial and legal advisors, the Company's strategic and financial alternatives in light of developments in the Company's business, in the sectors in which it competes, in the economy generally and in financial markets. The alternatives reviewed have included large and small acquisitions, mergers, a sale of the Company, as well as alternatives for returning capital to stockholders, including by means of levered or unlevered share repurchases or extraordinary dividends, and, from time to time, the Company received inquiries from third parties seeking to determine the Company's interest in a sale transaction. During the first calendar quarter of 2014, one of the alternatives considered by the board was a merger with or acquisition of another participant in PetSmart's industry, a privately-held company which we refer to here as \"Industry Participant.\" In March, 2014, the board authorized management to contact Industry Participant to determine Industry Participant's interest in initiating exploratory discussions concerning the feasibility of a merger or acquisition transaction. During the Spring of 2014, David Lenhardt, PetSmart's chief executive officer, spoke on a few occasions to Industry Participant's CEO. Industry Participant's CEO informed Mr. Lenhardt that Industry Participant was not for sale and that, in any event, Industry Participant's management and owners believed that antitrust clearance for a combination of PetSmart and Industry Participant would not be received or would be received only with unacceptable conditions. Over the next two months, Mr. Lenhardt spoke on several other occasions with Industry Participant's CEO and with a representative of one of Industry Participant's controlling stockholders, during which time, Industry Participant continued to raise concerns regarding receiving antitrust clearance for such a transaction.",
+   "target_sentence": "Industry Participant's CEO informed Mr. Lenhardt that Industry Participant was not for sale and that, in any event, Industry Participant's management and owners believed that antitrust clearance for a combination of PetSmart and Industry Participant would not be received or would be received only with unacceptable conditions."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_2": "late May\u2013June 2014 | Stockholders and interested parties | Activist | Suggested strategic or financial alternatives, including a sale of PetSmart.",
+     "row_3": "06/18/2014 | Unnamed financial adviser | Adviser | PetSmart financial adviser; first seen acting at the board meeting. The filing does not identify it or describe a later role.",
+     "row_4": "06/18/2014 | Wachtell, Lipton, Rosen & Katz | Adviser | PetSmart legal adviser; first seen acting with the board.",
+     "row_5": "07/03/2014 | JANA Partners | Activist | Disclosed a 9.9% stake and sought review of strategic alternatives, including a sale.",
+     "row_6": "07/07/2014 | Longview | Activist | Publicly urged the board to consider a sale and offered a possible rollover.",
+     "row_7": "July 2014 | J.P. Morgan | Adviser | PetSmart financial adviser; retained after interviews. Engagement letter later stated effective 08/21/2014.",
+     "row_8": "08/07/2014 | Industry Participant | Bidder interest | Initiating approach: said it might revisit a possible combination if PetSmart pursued alternatives.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a potential buyer withdraws, declines to bid, is told it will not advance, or is otherwise excluded from the process. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "none",
+    "confidence": 0.73,
+    "probabilities": {
+     "none": 0.77,
+     "row_3": 0.0,
+     "row_8": 0.01,
+     "row_2": 0.0,
+     "row_7": 0.0,
+     "not_an_event": 0.22,
+     "row_6": 0.0,
+     "row_4": 0.0,
+     "row_5": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1279,
+   "output_tokens": 96
+  }
+ },
+ "latency_s": 0.611
+}

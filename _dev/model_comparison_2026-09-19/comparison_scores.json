@@ -1,0 +1,243 @@
+{
+  "basis": "Equal-weight mean of three frozen 100-point deal scores; AM01 leaves scores unchanged",
+  "models": {
+    "sol": {
+      "model": "GPT-5.6-Sol xhigh",
+      "deals": {
+        "mac-gray": {
+          "blind_label": "Candidate-C",
+          "score_100": 87.25,
+          "category_scores": {
+            "participation": 28.5,
+            "rounds": 18.75,
+            "formality_conditions": 19.0,
+            "chronology": 8.0,
+            "bids_prices": 10.0,
+            "other_material_coverage": 3.0
+          },
+          "critical_errors": [
+            {
+              "root_cause_id": "C-ROUND",
+              "rows": [
+                "Deal ledger 29\u201350",
+                "Rounds 3\u20135",
+                "Questions 2"
+              ],
+              "test_or_event": "R01/R05/R06/R09",
+              "wrong_or_missing_field": "Process-stage segmentation and bid-round variable",
+              "source_pages": [
+                "34",
+                "35",
+                "36"
+              ],
+              "unsupported_assertion": "August 27 opens a fourth-map stage separate from the July 25 information/rebid stage.",
+              "correction_needed": "Convert ledger row 29 to Deadline set in Round 2; merge current Rounds 3/4 (Excel rows) into one July 25 round; renumber current final Round 4 to 3. Keep all economic bids and September 11 final opening. One root cause, several scored outputs."
+            }
+          ]
+        },
+        "petsmart": {
+          "blind_label": "Candidate-A",
+          "score_100": 91.0,
+          "category_scores": {
+            "participation": 28.5,
+            "rounds": 22.5,
+            "formality_conditions": 20.0,
+            "chronology": 6.0,
+            "bids_prices": 10.0,
+            "other_material_coverage": 4.0
+          },
+          "critical_errors": []
+        },
+        "providence-worcester": {
+          "blind_label": "Candidate-A",
+          "score_100": 83.0,
+          "category_scores": {
+            "participation": 25.5,
+            "rounds": 20.0,
+            "formality_conditions": 17.5,
+            "chronology": 7.5,
+            "bids_prices": 7.5,
+            "other_material_coverage": 5.0
+          },
+          "critical_errors": [
+            {
+              "id": "A-CE1",
+              "description": "Both July G&W offers are classified noncash (All cash=No), although a CVR alone does not establish noncash settlement. Full package prices are correct; this changes the consideration research field, not the price. No extra negative weight added.",
+              "rows": [
+                "Deal ledger!34 (event #33)",
+                "Deal ledger!35 (event #34)"
+              ],
+              "source_pages": [
+                "29"
+              ],
+              "instruction_sections": [
+                "C15"
+              ],
+              "related_tests": [
+                "B03"
+              ],
+              "root_cause": "Treating existence of a CVR as noncash consideration."
+            },
+            {
+              "id": "A-CE2",
+              "description": "Party B is coded Dropped by target when it remained a bidding rival at signing and refused to increase. Correct Event to Not selected at signing; preserve the existing correct refusal reason. This changes the exit-mechanism field.",
+              "rows": [
+                "Deal ledger!53 (event #52)",
+                "Rounds!4"
+              ],
+              "source_pages": [
+                "31",
+                "32"
+              ],
+              "instruction_sections": [
+                "C16"
+              ],
+              "related_tests": [
+                "P10"
+              ]
+            }
+          ]
+        }
+      },
+      "mean_score_100": 87.08333333333333,
+      "critical_root_causes": 3
+    },
+    "opus": {
+      "model": "Claude Opus 5 high",
+      "deals": {
+        "mac-gray": {
+          "blind_label": "Candidate-B",
+          "score_100": 93.25,
+          "category_scores": {
+            "participation": 28.5,
+            "rounds": 23.75,
+            "formality_conditions": 19.0,
+            "chronology": 8.0,
+            "bids_prices": 10.0,
+            "other_material_coverage": 4.0
+          },
+          "critical_errors": []
+        },
+        "petsmart": {
+          "blind_label": "Candidate-C",
+          "score_100": 96.0,
+          "category_scores": {
+            "participation": 28.5,
+            "rounds": 25.0,
+            "formality_conditions": 20.0,
+            "chronology": 8.0,
+            "bids_prices": 10.0,
+            "other_material_coverage": 4.5
+          },
+          "critical_errors": []
+        },
+        "providence-worcester": {
+          "blind_label": "Candidate-C",
+          "score_100": 100.0,
+          "category_scores": {
+            "participation": 30.0,
+            "rounds": 25.0,
+            "formality_conditions": 20.0,
+            "chronology": 10.0,
+            "bids_prices": 10.0,
+            "other_material_coverage": 5.0
+          },
+          "critical_errors": []
+        }
+      },
+      "mean_score_100": 96.41666666666667,
+      "critical_root_causes": 0
+    },
+    "deepseek": {
+      "model": "DeepSeek V4.1 Flash max",
+      "deals": {
+        "mac-gray": {
+          "blind_label": "Candidate-A",
+          "score_100": 90.75,
+          "category_scores": {
+            "participation": 27.0,
+            "rounds": 23.75,
+            "formality_conditions": 20.0,
+            "chronology": 7.0,
+            "bids_prices": 10.0,
+            "other_material_coverage": 3.0
+          },
+          "critical_errors": []
+        },
+        "petsmart": {
+          "blind_label": "Candidate-B",
+          "score_100": 78.5,
+          "category_scores": {
+            "participation": 19.5,
+            "rounds": 20.0,
+            "formality_conditions": 20.0,
+            "chronology": 6.0,
+            "bids_prices": 9.0,
+            "other_material_coverage": 4.0
+          },
+          "critical_errors": [
+            {
+              "id": "B-CR1",
+              "finding": "Bidder 3 is one joint bidding unit but its December 10 Did not submit row has Count 2. Even reading formation as two constituents becoming one, 15-9-2-1=3 live units before that exit; subtracting 2 leaves 1 rather than the 2 rivals actually bidding on December 12, and subtracting Bidder 2 at signing leaves 0 rather than the winner. Correct M31 to 1. This is one serious unit-count error propagated through P07-P10, not four independent incidents.",
+              "rows": [
+                "Deal ledger rows 26, 31, 42",
+                "Rounds row 3",
+                "Questions row 6"
+              ],
+              "source_pages": [
+                "24",
+                "25",
+                "26"
+              ],
+              "instruction_sections": "C3-C4, C16",
+              "root_cause": "Constituent count reused for joint-unit exit"
+            }
+          ]
+        },
+        "providence-worcester": {
+          "blind_label": "Candidate-B",
+          "score_100": 90.5,
+          "category_scores": {
+            "participation": 25.5,
+            "rounds": 22.5,
+            "formality_conditions": 20.0,
+            "chronology": 8.75,
+            "bids_prices": 8.75,
+            "other_material_coverage": 5.0
+          },
+          "critical_errors": [
+            {
+              "id": "B-CE1",
+              "description": "Party E is retained as an independent live competitor until August 12, producing three rather than two live bidders after the August 4 named continuation set. Replace signing exit with an earlier inferred Dropped by target exit and Question under C16/A05. E reversion and D withdrawal are otherwise correct.",
+              "rows": [
+                "Deal ledger!43 (event #42)",
+                "Deal ledger!45 (event #44)",
+                "Deal ledger!51 (event #50)",
+                "Rounds!4"
+              ],
+              "source_pages": [
+                "30",
+                "31"
+              ],
+              "instruction_sections": [
+                "C16",
+                "D"
+              ],
+              "related_tests": [
+                "P09"
+              ],
+              "root_cause": "Applying the signing fallback despite an earlier named advancement/continuation set."
+            }
+          ]
+        }
+      },
+      "mean_score_100": 86.58333333333333,
+      "critical_root_causes": 2
+    }
+  },
+  "ranking": [
+    "opus",
+    "sol",
+    "deepseek"
+  ]
+}

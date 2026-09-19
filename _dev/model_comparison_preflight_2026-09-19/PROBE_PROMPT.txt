@@ -1,0 +1,9 @@
+This is a provider-connectivity and sandbox-isolation smoke test. There is no deal filing here.
+
+Work only inside the current directory. Do not use the web, network tools, external connectors, memories, skills, subagents, or files outside this directory.
+
+1. Read input/toy.txt.
+2. Use the shell to run Python and import openpyxl.
+3. Create output/smoke.xlsx with one worksheet named Smoke. Set A1 to sandbox-ok and A2 to the exact text from input/toy.txt.
+4. Create output/result.txt containing exactly two lines: OK, then the openpyxl version.
+5. In your final response, state whether both files were written and identify one fairness or isolation pitfall to guard against in a nine-run blind workbook comparison involving three models and three filings. Keep the response under 120 words.

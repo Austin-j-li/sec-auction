@@ -1,0 +1,70 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "During November, the bidders engaged in further extensive due diligence investigations of the Company, including further detailed management presentations. Also during November, the Company circulated a form of merger agreement to the bidders with instructions that the bidders submit any proposed comments on the merger agreement together with their final bids. Following the Company's third quarter earnings announcement and, at the request of bidders and the direction of the board and the Company, representatives of J.P. Morgan provided the bidders with updates to the Company's fiscal year 2014 financial projections.",
+   "ledger_rows": [
+    {
+     "When": "11/03/2014",
+     "Who": "PetSmart",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Final round opened by the 11/03 advancement of four bidders at or above $80.00; merger-agreement form circulated in November; updated FY2014 projections given to all finalists."
+    },
+    {
+     "When": "11/03/2014",
+     "Who": "2 unnamed indication submitters",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "6 submitters \u2212 4 advanced = 2 notified as eliminated; none could remain above their initial indications."
+    },
+    {
+     "When": "12/04\u201312/05/2014",
+     "Who": "PetSmart",
+     "Event": "Deadline set",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Set evening 12/10 for final bids, replacing the initial 12/05 plan; mark-ups and financing commitments requested in advance."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "nda_access": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "deadline": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.45
+   },
+   "deadline": {
+    "type": "noul",
+    "noul": 0.52
+   }
+  },
+  "usage": {
+   "input_tokens": 912,
+   "output_tokens": 37
+  }
+ },
+ "latency_s": 0.246
+}

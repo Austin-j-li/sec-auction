@@ -1,0 +1,70 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On October 14, 2013, the Special Committee held a meeting via teleconference to discuss the final terms of the transaction and the proposed definitive merger agreement and related documents. By invitation of the Special Committee, Mr. Rothenberg and representatives of BofA Merrill Lynch and Goodwin Procter were also present for all or portions of the meeting. The members of the Transaction Committee reported to the Special Committee on the negotiations that had taken place since the meeting of the Special Committee held on October 11, 2013, and in particular that the Transaction Committee and CSC had come to an agreement on the remaining open business points, including the post-signing covenants and the termination fees. Goodwin Procter again reviewed with the Special Committee its fiduciary duties and provided a summary of the terms of the proposed merger agreement and the Pamplona capital commitment letter, copies of which were provided to the directors prior to the meeting. Also at this meeting, BofA Merrill Lynch reviewed with the Special Committee its financial analysis of the consideration and delivered to the Special Committee an oral opinion, which was confirmed by delivery of a written opinion dated, October 14, 2013, to the effect that, as of that date and based on and subject to the assumptions and limitations described in its opinion, the consideration to be received by holders of Mac-Gray common stock was fair, from a financial point of view, to such holders. Following these presentations, the Special Committee went into an executive session that excluded BofA Merrill Lynch and, after discussion, the Special Committee unanimously determined to recommend to the Board that the merger agreement and the merger were advisable and in the best interests of Mac-Gray's stockholders and that the Board approve the merger on the terms and subject to the conditions set forth in the merger agreement, adopt the merger agreement and recommend that the Mac-Gray stockholders adopt and approve the merger agreement. The Special Committee meeting then adjourned.",
+   "ledger_rows": [
+    {
+     "When": "10/12/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Exclusivity changed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Extended to 11:59 p.m. 10/15/2013. CSC/Pamplona asked 10/09; the committee required a termination fee of at most $11 million, agreed 10/11."
+    },
+    {
+     "When": "10/14/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Merger agreement signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "$21.25 per share in cash. Pamplona commitment letter ($594m, no financing condition); $11m target fee; $15m reverse fee; MacDonald and Moab voting agreements."
+    },
+    {
+     "When": "10/15/2013",
+     "Who": "Mac-Gray and CSC",
+     "Event": "Merger announced",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Joint announcement before the market opened. No post-signing competing proposals reported."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "adviser": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "agreements": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "adviser": {
+    "type": "noul",
+    "noul": 0.28
+   },
+   "agreements": {
+    "type": "noul",
+    "noul": 0.28
+   }
+  },
+  "usage": {
+   "input_tokens": 1231,
+   "output_tokens": 39
+  }
+ },
+ "latency_s": 0.24
+}

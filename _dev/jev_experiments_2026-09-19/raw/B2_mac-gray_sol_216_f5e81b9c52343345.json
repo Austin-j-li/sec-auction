@@ -1,0 +1,50 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On June 12, 2013, Mr. Rothenberg and Mr. Hyman met individually with Mr. Bullock, Mr. Daoust, Ms. Serafini and representatives from Goodwin Procter as part of their orientation as new members of the Board. Each was provided with an overview of the status of the Board's review of strategic alternatives and a potential sale process. At the meeting with Mr. Rothenberg, the participants discussed that, to the extent Moab might have an interest in an equity rollover of all or a portion of Moab's shares of Mac-Gray common stock in connection with any sale transaction that might result from the Board's strategic alternatives process, Mr. Rothenberg would need to be excluded from the process from the outset. At the time of this meeting, Moab beneficially owned approximately 9% of Mac-Gray's outstanding common stock.",
+   "ledger_rows": [
+    {
+     "When": "05/30/2013",
+     "Who": "Moab",
+     "Event": "Activist",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Moab's proxy contest led to election of two nominees; co-founder Rothenberg joined Mac-Gray's board and later had sale-process conflicts."
+    },
+    {
+     "When": "06/21/2013",
+     "Who": "Party A",
+     "Event": "Bid",
+     "Price low": 17,
+     "Price high": 19,
+     "Note": "Unsolicited first priced approach; whole-company offer before substantive diligence."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "exit": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a potential buyer withdraws, declines to bid, is told it will not advance, or is otherwise excluded from the process. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "exit": {
+    "type": "noul",
+    "noul": 0.42
+   }
+  },
+  "usage": {
+   "input_tokens": 742,
+   "output_tokens": 20
+  }
+ },
+ "latency_s": 0.241
+}

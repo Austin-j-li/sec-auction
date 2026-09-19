@@ -1,0 +1,150 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On December 13, 2014, the board met in person, together with the members of management and representatives of J.P. Morgan and Wachtell Lipton, to discuss and review the final bids and to consider the proposed transaction. Representatives of J.P. Morgan reviewed the respective bids as well as the recent progression of the sale process. Representatives of Wachtell Lipton reviewed the terms of the draft merger agreement and other transaction documents and reviewed the financing commitments that had been provided by the Buyer Group. Representatives of J.P. Morgan made a financial presentation concerning the proposed transaction with the Buyer Group, as well as the Company's alternatives to a sale of the Company, including a leveraged share repurchase. J.P. Morgan then rendered its oral opinion, which was subsequently confirmed in writing, to the board that, as of that date, and based upon and subject to the factors, assumptions and limitations set forth in its opinion, the merger consideration of $83.00 in cash to be paid to the holders of the Company's common stock in the merger was fair, from a financial point of view, to such holders. Following extensive discussion, the board unanimously determined that the merger agreement and the transactions contemplated thereby, including the merger, were advisable and in the best interests of PetSmart and its stockholders, and to recommend that the Company's stockholders approve the adoption of the merger agreement. The board's determination was subject, however, to confirmation that the remaining open points in the merger agreement had been satisfactorily resolved, and the board determined to reconvene, if deemed necessary by the ad hoc committee or the chairman of the board.",
+   "ledger_rows": [
+    {
+     "When": "12/10/2014",
+     "Who": "Buyer Group",
+     "Event": "Bid",
+     "Price low": 80.7,
+     "Price high": 80.7,
+     "Note": "Final bid letter with revised merger agreement and transaction documents. Financing commitment documents supplied 12/06. Documents less conditional than Bidder 2\u2019s. Not dependent on Longview rollover."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "Bidder 2",
+     "Event": "Bid",
+     "Price low": 80.35,
+     "Price high": 80.35,
+     "Note": "Final bid letter with revised merger agreement and transaction documents; documents more conditional than Buyer Group\u2019s; financing status not reported until 12/12. Would partner with Longview only after signing."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "PetSmart",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Final-bid due date (evening). Two written bids received; Bidder 3 gave only a verbal valuation."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "Bidder 3",
+     "Event": "Did not submit",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Verbal valuation not above the ~$78 stock price; J.P. Morgan said it was unlikely to be competitive, so no written offer. Both sides contributed. Not mentioned again."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "PetSmart (ad hoc committee)",
+     "Event": "Deadline revised",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Neither bid acceptable unless improved: J.P. Morgan told both bidders to raise their bids, improved bids due 12/12. Treated as an extension within the final round, not a new round."
+    },
+    {
+     "When": "12/12/2014 (early)",
+     "Who": "Buyer Group / Longview",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Rollover permitted: committee approved Buyer Group\u2019s request to work with Longview; confidentiality agreement shared bid price. Bidder 2 would consider rollover only post-signing. Both bidders met Longview 12/09 without disclosing prices."
+    },
+    {
+     "When": "12/12/2014 (evening)",
+     "Who": "Bidder 2",
+     "Event": "Bid",
+     "Price low": 81.5,
+     "Price high": 81.5,
+     "Note": "Revises #30. Confirmed to J.P. Morgan as best and final; with revised merger agreement drafts and financing commitment documents."
+    },
+    {
+     "When": "12/12/2014 (evening)",
+     "Who": "Buyer Group",
+     "Event": "Bid",
+     "Price low": 82.5,
+     "Price high": 82.5,
+     "Note": "Revises #29. Oral offer; said it was working to raise it within hours. Financing commitments already provided."
+    },
+    {
+     "When": "12/12/2014 (later evening)",
+     "Who": "Buyer Group",
+     "Event": "Bid",
+     "Price low": 83,
+     "Price high": 83,
+     "Note": "Revises #36. Best and final; revised drafts \u201cwith few exceptions\u201d in executable form, plus financing commitments. Longview\u2019s $250 million rollover support helped reach $83.00; members unwilling or unable to go higher."
+    },
+    {
+     "When": "12/12/2014",
+     "Who": "PetSmart",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Due date for improved bids; both remaining bidders submitted that evening."
+    },
+    {
+     "When": "12/13/2014",
+     "Who": "Buyer Group",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Board selected Buyer Group: approved merger at $83.00 cash, subject to resolving remaining open points in the agreement; J.P. Morgan gave fairness opinion."
+    },
+    {
+     "When": "12/14/2014",
+     "Who": "Buyer Group",
+     "Event": "Merger agreement signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "$83.00 per share in cash. Parent Argos Holdings (BC Partners-affiliated). Equity up to $1.83bn plus Longview rollover (3,012,050 shares, $250m); debt up to $6.95bn (Citi-led); Longview voting agreement. No go-shop."
+    },
+    {
+     "When": "12/14/2014",
+     "Who": "PetSmart",
+     "Event": "Merger announced",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Press release announcing the transaction on the signing date."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "adviser": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "agreements": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "adviser": {
+    "type": "noul",
+    "noul": 0.35
+   },
+   "agreements": {
+    "type": "noul",
+    "noul": 0.59
+   }
+  },
+  "usage": {
+   "input_tokens": 2160,
+   "output_tokens": 39
+  }
+ },
+ "latency_s": 0.237
+}

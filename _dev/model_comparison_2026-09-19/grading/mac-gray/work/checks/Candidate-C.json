@@ -1,0 +1,153 @@
+{
+  "checker": "patched-v1.8-lean-mechanical",
+  "checker_version": "1.1",
+  "checker_revision": "Accepts B5 explanatory field labels and leading canonical Deal facts values; treats valid row/question-link mismatches as review leads; accepts multiple valid Flag ids.",
+  "workbook": "_dev/model_comparison_2026-09-19/grading/mac-gray/work/candidates/Candidate-C.xlsx",
+  "filing": "_dev/model_comparison_2026-09-19/grading/mac-gray/work/raw_filing/mac-gray_2013-12-04_DEFM14A.htm",
+  "status": "pass_with_warnings",
+  "scope_note": "Mechanical checks only. Quote occurrence proves source occurrence, not semantic support. No bidder-population arithmetic or substantive extraction grading is performed.",
+  "summary": {
+    "errors": 0,
+    "warnings": 17,
+    "information": 0,
+    "total_issues": 17
+  },
+  "issues": [
+    {
+      "severity": "warning",
+      "code": "questions.rows_unparsed",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected is narrative/global, so its row links could not be checked mechanically."
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 3,
+      "column": "Rows affected",
+      "message": "Rows affected cites #18, but that ledger row's focused Flag does not include 'Q2'."
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 3,
+      "column": "Rows affected",
+      "message": "Rows affected cites #20, but that ledger row's focused Flag does not include 'Q2'."
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 3,
+      "column": "Rows affected",
+      "message": "Rows affected cites #21, but that ledger row's focused Flag does not include 'Q2'."
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 3,
+      "column": "Rows affected",
+      "message": "Rows affected cites #22, but that ledger row's focused Flag does not include 'Q2'."
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 3,
+      "column": "Rows affected",
+      "message": "Rows affected cites #23, but that ledger row's focused Flag does not include 'Q2'."
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 3,
+      "column": "Rows affected",
+      "message": "Rows affected cites #28, but that ledger row's focused Flag does not include 'Q2'."
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 3,
+      "column": "Rows affected",
+      "message": "Rows affected cites #30, but that ledger row's focused Flag does not include 'Q2'."
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 3,
+      "column": "Rows affected",
+      "message": "Rows affected cites #31, but that ledger row's focused Flag does not include 'Q2'."
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 3,
+      "column": "Rows affected",
+      "message": "Rows affected cites #32, but that ledger row's focused Flag does not include 'Q2'."
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 3,
+      "column": "Rows affected",
+      "message": "Rows affected cites #33, but that ledger row's focused Flag does not include 'Q2'."
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 3,
+      "column": "Rows affected",
+      "message": "Rows affected cites #35, but that ledger row's focused Flag does not include 'Q2'."
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 3,
+      "column": "Rows affected",
+      "message": "Rows affected cites #37, but that ledger row's focused Flag does not include 'Q2'."
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 3,
+      "column": "Rows affected",
+      "message": "Rows affected cites #38, but that ledger row's focused Flag does not include 'Q2'."
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 3,
+      "column": "Rows affected",
+      "message": "Rows affected cites #39, but that ledger row's focused Flag does not include 'Q2'."
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 3,
+      "column": "Rows affected",
+      "message": "Rows affected cites #40, but that ledger row's focused Flag does not include 'Q2'."
+    },
+    {
+      "severity": "warning",
+      "code": "questions.deadline_outcomes",
+      "sheet": "Questions",
+      "row": null,
+      "column": null,
+      "message": "The ledger has a reached Deadline, but no Question visibly mentions deadline outcomes."
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "agreed to enter into a confidentiality agreement), Party B, Party C and CSC/Pamplona to provide these parties with access to high level information concerning Mac-Gray's technology, pipeline, management team, regional operations, contracts, operations and growth initiatives, and in the case of CSC/Pamplona and Party A, synergies, and to then request that each of these parties submit a revised indication of interest. After discussion and in an effort to drive offers with increased value, the Special Committee authorized and instructed BofA Merrill Lynch to proceed with the staged disclosure as discussed at this meeting and to reach out to each of the four interested bidders and arrange management meetings.",
+   "ledger_rows": [
+    {
+     "When": "07/23/2013",
+     "Who": "16 other financial NDA signers",
+     "Event": "Did not submit",
+     "Price low": null,
+     "Price high": null,
+     "Note": "20 NDA signers \u2212 Party A, Party B, Party C and CSC/Pamplona = 16; exact signing/submission timing is uncertain."
+    },
+    {
+     "When": "07/25/2013",
+     "Who": "Mac-Gray",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Four bidders advanced to staged management access and were to be asked for revised bids."
+    },
+    {
+     "When": "later 07/25/2013",
+     "Who": "Party C",
+     "Event": "Bid",
+     "Price low": 16,
+     "Price high": 16.5,
+     "Note": "Written revision of oral #23; same initial solicitation, submitted after Round 2 opened."
+    },
+    {
+     "When": "08/05/2013",
+     "Who": "Party A",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Agreement followed resumed negotiations; informational package provided to support a possible improvement of #7."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "nda_access": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.3
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.35
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.17
+   }
+  },
+  "usage": {
+   "input_tokens": 1100,
+   "output_tokens": 55
+  }
+ },
+ "latency_s": 0.239
+}

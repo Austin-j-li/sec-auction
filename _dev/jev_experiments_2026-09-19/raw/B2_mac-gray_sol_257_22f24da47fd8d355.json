@@ -1,0 +1,86 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On September 19, 2013, the Special Committee held an in-person meeting. By invitation of the Special Committee, Mr. MacDonald and Mr. Shea, as well as representatives from BofA Merrill Lynch and Goodwin Procter, were also present for all or portions of the meeting. At this meeting, BofA Merrill Lynch updated the Special Committee as to the current status of the revised indications of interest submitted by Party A, Party B and CSC/Pamplona and reported that Party C did not submit a revised indication of interest or reiterate its prior indication of interest. BofA Merrill Lynch also reported to the Special Committee on Mr. MacDonald's general support for continuing with the process and his view that Mac-Gray should continue to seek a higher value for stockholders. Mr. Shea again reviewed the Projections with the Special Committee and BofA Merrill Lynch. The Special Committee again discussed the Projections, including the risks relating to Mac-Gray's ability to execute its strategic plan as an independent, stand-alone company (including Mac-Gray's ability to identify, acquire and successfully integrate laundry facilities management businesses, establish new and/or renew existing laundry facility management leases and penetrate markets historically dominated by smaller",
+   "ledger_rows": [
+    {
+     "When": "09/18/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Bid",
+     "Price low": 20.75,
+     "Price high": 20.75,
+     "Note": "Pamplona committed 100% of capital; two-week exclusivity requested; no further diligence condition reported."
+    },
+    {
+     "When": "09/18/2013",
+     "Who": "Party A",
+     "Event": "Bid reaffirmed",
+     "Price low": 18,
+     "Price high": 19,
+     "Note": "Reaffirms #32 as best and final in response to final solicitation; prior lack of firm financing remains."
+    },
+    {
+     "When": "09/18/2013",
+     "Who": "Party B",
+     "Event": "Bid",
+     "Price low": 21.5,
+     "Price high": 21.5,
+     "Note": "Package: $19.00 cash at closing plus options Party B valued at $2.50; options vested on five-year performance. Third-party debt anticipated."
+    },
+    {
+     "When": "09/18/2013",
+     "Who": "Party C",
+     "Event": "Did not submit",
+     "Price low": null,
+     "Price high": null,
+     "Note": "No final indication or reaffirmation; no reason stated."
+    },
+    {
+     "When": "09/19/2013",
+     "Who": "Mac-Gray",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Preferred CSC/Pamplona for certainty and sought $21.25 before exclusivity."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "nda_access": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.18
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.38
+   }
+  },
+  "usage": {
+   "input_tokens": 1199,
+   "output_tokens": 39
+  }
+ },
+ "latency_s": 0.271
+}

@@ -1,0 +1,48 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On September 25, 2013, Goodwin Procter delivered to Kirkland & Ellis LLP, outside legal counsel to CSC/Pamplona, whom we refer to as Kirkland, the initial draft of the merger agreement. Between September 25, 2013 and October 7, 2013, the Transaction Committee and representatives from CSC/Pamplona, Goodwin Procter and Kirkland negotiated the terms of the merger agreement (including our ability to respond to unsolicited inquiries following the announcement of the transaction and our right to terminate the merger agreement to accept a superior proposal) and the Pamplona commitment letter. The parties discussed various open points in the merger agreement and the Pamplona commitment letter, including the proposal by Mac-Gray that both Pamplona and CSC be responsible in the event CSC failed to consummate the merger, including liability for any and all damages resulting from a breach of the merger agreement, certain post-signing covenants and the parties' termination rights, including the amount of the termination fee payable by Mac-Gray to CSC under certain circumstances (which we refer to as the Mac-Gray termination fee), which Mac-Gray proposed should approximate 2.5% of the total equity value of the transaction. Also during this time, CSC and Pamplona were granted full access to the electronic data site and access to certain members of management and conducted confirmatory business and legal due diligence on Mac-Gray. Mr. Rothenberg engaged in various discussions with representatives of Pamplona during this time to discuss a possible rollover of Moab shares. As a result of such discussions, it was determined that Moab would not rollover any Moab shares in the transaction. Following such determination, BofA Merrill Lynch and the Transaction Committee provided Mr. Rothenberg with the details regarding the Special Committee's review of strategic alternatives and the negotiations between Mac-Gray and CSC/Pamplona.",
+   "target_sentence": "Also during this time, CSC and Pamplona were granted full access to the electronic data site and access to certain members of management and conducted confirmatory business and legal due diligence on Mac-Gray."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_44": "09/24/2013 | CSC/Pamplona | Exclusivity changed | Executed exclusive negotiations through October 12, conditioned on no adverse change to final proposal.",
+     "row_45": "09/24/2013 | Party A | Dropped by target | Inferred displaced when rival exclusivity executed. Party A had said #38 was best and final.",
+     "row_46": "09/24/2013 | Party B | Dropped by target | Inferred displaced when rival exclusivity executed; target preferred CSC/Pamplona's certainty over Party B's contingent options and financing risk.",
+     "row_47": "09/25/2013 | Kirkland & Ellis LLP | Adviser | Outside legal counsel to CSC/Pamplona; first named while receiving Mac-Gray's initial merger-agreement draft.",
+     "row_48": "09/25/2013\u201310/07/2013 | Moab | Other material event | Resolved rollover relationship: talks permitted September 23 ended with no Moab rollover.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "none",
+    "confidence": 0.99,
+    "probabilities": {
+     "row_44": 0.0,
+     "row_46": 0.0,
+     "none": 0.99,
+     "not_an_event": 0.0,
+     "row_48": 0.0,
+     "row_47": 0.01,
+     "row_45": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1232,
+   "output_tokens": 83
+  }
+ },
+ "latency_s": 0.463
+}

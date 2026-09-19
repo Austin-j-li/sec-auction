@@ -1,0 +1,54 @@
+{
+ "request": {
+  "state": {
+   "passage": {
+    "before": [
+     "The board frequently reviews, with the Company's management and with the assistance of financial and legal advisors, the Company's strategic and financial alternatives in light of developments in the Company's business, in the sectors in which it competes, in the economy generally and in financial markets. The alternatives reviewed have included large and small acquisitions, mergers, a sale of the Company, as well as alternatives for returning capital to stockholders, including by means of levered or unlevered share repurchases or extraordinary dividends, and, from time to time, the Company received inquiries from third parties seeking to determine the Company's interest in a sale transaction. During the first calendar quarter of 2014, one of the alternatives considered by the board was a merger with or acquisition of another participant in PetSmart's industry, a privately-held company which we refer to here as \"Industry Participant.\" In March, 2014, the board authorized management to contact Industry Participant to determine Industry Participant's interest in initiating exploratory discussions concerning the feasibility of a merger or acquisition transaction. During the Spring of 2014, David Lenhardt, PetSmart's chief executive officer, spoke on a few occasions to Industry Participant's CEO. Industry Participant's CEO informed Mr. Lenhardt that Industry Participant was not for sale and that, in any event, Industry Participant's management and owners believed that antitrust clearance for a combination of PetSmart and Industry Participant would not be received or would be received only with unacceptable conditions. Over the next two months, Mr. Lenhardt spoke on several other occasions with Industry Participant's CEO and with a representative of one of Industry Participant's controlling stockholders, during which time, Industry Participant continued to raise concerns regarding receiving antitrust clearance for such a transaction.",
+     "On May 21, 2014, the Company released its first quarter earnings announcement, which disclosed quarterly performance below Wall Street expectations and weaker-than-expected guidance for its second quarter and full year. Following this release, in late May and June 2014, the Company received written or verbal communications from some stockholders and from interested parties suggesting that the Company engage in various strategic or financial alternatives. Among the alternatives suggested were a levered return of capital to stockholders and a sale of the Company. Also during May 2014, representatives of Longview met with certain members of the board and senior management. At those meetings, representatives of Longview presented their views on the business and strategic direction of the Company, but did not advocate for any specific transactions or alternatives."
+    ],
+    "cited_paragraph": "At a meeting on June 18, 2014, the board reviewed, together with a financial advisor and with Wachtell, Lipton, Rosen & Katz (\"Wachtell Lipton\"), its legal advisor, the various strategic and financial alternatives potentially available to the Company and determined to explore more intensively potential changes to the Company's capital structure, with a focus on returning capital to stockholders. The board also established an ad hoc advisory subcommittee (the \"ad hoc committee\") with respect to, among other",
+    "after": [
+     "things, the review of alternatives. Chairman Gregory Josefowicz and directors Rakesh Gangwal and Thomas Stemberg, all of whom are nonexecutive, independent directors, were appointed to the ad hoc committee. In addition, the board authorized the vetting and retention of a financial advisor to assist in the review. In July, after interviewing several potential financial advisors, the Company retained J.P. Morgan as financial advisor based on, among other factors, J.P. Morgan's reputation, experience in mergers and acquisitions, valuation, financing and capital markets and its familiarity with the Company.",
+     "On July 3, 2014, JANA Partners filed a Schedule 13D with the SEC disclosing that JANA had acquired 9.9% of the Company's outstanding common stock and that JANA intended to engage in discussions with management and the board with respect to a review of strategic alternatives, including a sale of the Company. On July 7, 2014, Longview made public a letter to the board in which Longview stated that the board should consider the a sale of the Company (as well as other strategic alternatives) and that should the board determine a sale transaction to be in the interests of all stockholders, Longview would consider, depending on the parties and terms involved, rolling part or all of its holdings into equity of the acquiring entity rather than receive cash consideration, should doing so prove necessary in order to enable the Company to complete a transaction. Over the course of July and August, JANA Partners filed several amendments to its Schedule 13D and publicly disclosed letters to the board, advocating for a sale of PetSmart. On July 10, 2014, representatives of JANA met in person with representatives of the Company. At this meeting, the JANA representatives presented their perspectives on the Company and advocated for a sale of the Company. On July 10, 2014, representatives of the Company also spoke to representatives of Longview and Longview reiterated its advocacy for a sale of the Company."
+    ]
+   }
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "actor": {
+    "type": "noul",
+    "instructions": "Does `passage.cited_paragraph` describe something done by, done to, or decided about the party called \"Wachtell Lipton\" (or a group that the passage shows includes it)?",
+    "criteria": {
+     "true": "That party, or a cohort clearly containing it, is a subject of the cited paragraph.",
+     "false": "The cited paragraph concerns other parties only."
+    }
+   },
+   "event": {
+    "type": "noul",
+    "instructions": "A research ledger records an event labelled \"Adviser\" for \"Wachtell Lipton\". Does the passage report facts that fit the label \"Adviser\" for that party?",
+    "criteria": {
+     "true": "The passage reports such an event, or facts from which it directly follows.",
+     "false": "The passage reports a different kind of event, or nothing of that kind."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "actor": {
+    "type": "noul",
+    "noul": 0.8
+   },
+   "event": {
+    "type": "noul",
+    "noul": 0.97
+   }
+  },
+  "usage": {
+   "input_tokens": 1558,
+   "output_tokens": 36
+  }
+ },
+ "latency_s": 0.312
+}

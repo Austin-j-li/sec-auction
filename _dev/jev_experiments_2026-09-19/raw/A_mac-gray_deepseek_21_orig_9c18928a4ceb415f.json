@@ -1,0 +1,54 @@
+{
+ "request": {
+  "state": {
+   "passage": {
+    "before": [
+     "On July 24, 2013, Party B submitted a preliminary indication of interest at an all-cash purchase price of $17.00 to $18.00 per share. Also on July 24, 2013, representatives from Party C called BofA Merrill Lynch and presented an oral preliminary indication of interest at an all-cash purchase price of $15.00 to $17.00 per share.",
+     "On July 25, 2013, the Board held a regularly scheduled in-person meeting. By invitation of the Board, Mr. Shea and representatives from BofA Merrill Lynch and Goodwin Procter were also present for all or portions of this meeting. Prior to the start of the meeting, because the Board expected to discuss matters related to the sale process, and in light of Moab's continuing interest in a potential equity rollover in any sale transaction, Mr. Rothenberg recused himself from the meeting and the meeting proceeded as a meeting of the Special Committee. At this meeting, representatives of BofA Merrill Lynch reviewed the preliminary indications of interest received from Party B, Party C and CSC/Pamplona as well as the Party A June 21 proposal, in each case from a financial point of view. The Board reviewed management's five-year strategic business plan and Projections. During this meeting, representatives of Goodwin Procter reviewed for the Special Committee its fiduciary duties in the context of considering a potential sale. The Special Committee then discussed the potential conflict of interest arising from Moab's continuing desire to consider an equity rollover and decided that Mr. Rothenberg should be asked to recuse himself from participating in Board meetings for the duration of the sale process so he would not be privy to confidential information about Mac-Gray and our business."
+    ],
+    "cited_paragraph": "The Special Committee discussed that the preliminary indications of interest were lower than expected and suggested that additional due diligence, including with regard to the potential synergies, should result in improved offers by the strategic parties. The Special Committee then discussed the highly competitive nature of Mac-Gray's industry and expressed concern over permitting access to and the potential misuse of sensitive and competitive information, including customer terms and locations, especially by strategic bidders. Accordingly, the Special Committee concluded that it would be advisable to stage the disclosure of such information to each of the bidders to the extent that a bidder's indication of interest and other actions demonstrated its seriousness in acquiring Mac-Gray on terms viewed favorably by the Special Committee. Based on this discussion, BofA Merrill Lynch discussed with the Special Committee a proposed process for the second stage of the on-going sale process. As part of this review, BofA Merrill Lynch recommended that management meetings be arranged between members of Mac-Gray management (other than Mr. MacDonald) and each of Party A (if Party A",
+    "after": [
+     "agreed to enter into a confidentiality agreement), Party B, Party C and CSC/Pamplona to provide these parties with access to high level information concerning Mac-Gray's technology, pipeline, management team, regional operations, contracts, operations and growth initiatives, and in the case of CSC/Pamplona and Party A, synergies, and to then request that each of these parties submit a revised indication of interest. After discussion and in an effort to drive offers with increased value, the Special Committee authorized and instructed BofA Merrill Lynch to proceed with the staged disclosure as discussed at this meeting and to reach out to each of the four interested bidders and arrange management meetings.",
+     "Later on July 25, 2013, Party C submitted a written indication of interest at an all-cash purchase price of $16.00 to $16.50 per share."
+    ]
+   }
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "actor": {
+    "type": "noul",
+    "instructions": "Does `passage.cited_paragraph` describe something done by, done to, or decided about the party called \"Mac-Gray\" (or a group that the passage shows includes it)?",
+    "criteria": {
+     "true": "That party, or a cohort clearly containing it, is a subject of the cited paragraph.",
+     "false": "The cited paragraph concerns other parties only."
+    }
+   },
+   "event": {
+    "type": "noul",
+    "instructions": "A research ledger records an event labelled \"Round opened\" for \"Mac-Gray\". Does the passage report facts that fit the label \"Round opened\" for that party?",
+    "criteria": {
+     "true": "The passage reports such an event, or facts from which it directly follows.",
+     "false": "The passage reports a different kind of event, or nothing of that kind."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "actor": {
+    "type": "noul",
+    "noul": 0.97
+   },
+   "event": {
+    "type": "noul",
+    "noul": 0.41
+   }
+  },
+  "usage": {
+   "input_tokens": 1258,
+   "output_tokens": 36
+  }
+ },
+ "latency_s": 0.252
+}

@@ -1,0 +1,54 @@
+{
+ "request": {
+  "state": {
+   "passage": {
+    "before": [
+     "On October 1, 2013, representatives of Mac-Gray management, along with representatives from BofA Merrill Lynch and representatives from CSC/Pamplona attended a meeting at the Boston offices of Goodwin Procter for purposes of conducting confirmatory business due diligence. Representatives of Mac-Gray, Goodwin Procter, BofA Merrill Lynch and representatives of CSC/Pamplona and Kirkland participated in various telephone conference calls over the subsequent days to finalize business and legal due diligence.",
+     "On October 5, 2013, Kirkland delivered to Goodwin Procter a revised draft of the Pamplona commitment letter which, among other things, proposed that, in addition to CSC, Pamplona would be responsible in the event CSC failed to consummate the merger, but that Pamplona's liability for damages resulting from a breach of the merger agreement would be limited to an unspecified dollar amount."
+    ],
+    "cited_paragraph": "On October 7, 2013, the Special Committee held a telephonic meeting, the purpose of which was to receive an update on the transaction negotiations from the Transaction Committee and Goodwin Procter. By invitation of the Special Committee, Mr. MacDonald was also present for a portion of the meeting. Mr. Daoust reported to the Special Committee that, after discussions between Moab and representatives of Pamplona, it was determined that Moab would not rollover any Moab shares in the transaction. Mr. Daoust also provided the Special Committee with an overview of the open business points and the progress the parties had made since the September 23 rd Special Committee meeting. Representatives from Goodwin Procter then reported on the progress that had been made in diligence and summarized the open issues in the merger agreement and the Pamplona commitment letter, including to what extent Pamplona would be responsible in the event CSC failed to consummate the merger, including CSC's and Pamplona's liability for damages resulting from a breach of the merger agreement, certain post-signing covenants and the parties' termination rights, including the amounts of the Mac-Gray termination fee and the CSC reverse termination fee. The Special Committee authorized the Transaction Committee and Goodwin Procter to continue negotiations with CSC/Pamplona, and, among other things, provided guidance with respect to the open transaction issues discussed at the meeting.",
+    "after": [
+     "Also on October 7, 2013, Kirkland delivered to Goodwin Procter a revised draft of the merger agreement which, among other things, proposed a $15 million Mac-Gray termination fee, which represented approximately 4.4% of the total equity value of the transaction, and certain positions on the scope of various post-signing covenants.",
+     "On October 8, 2013, representatives from Goodwin Procter and Kirkland participated in a telephone conference call to discuss the open points in the merger agreement and the Pamplona commitment letter, including to what extent Pamplona would also have liability in the event CSC failed to consummate the merger, which Kirkland proposed, at the direction of CSC/Pamplona, be capped at $50 million. Kirkland and Goodwin Procter also discussed CSC's and Pamplona's liability for damages resulting from a breach of the merger agreement, certain post-signing covenants and the parties' termination rights, including the amounts of the Mac-Gray termination fee and the CSC reverse termination fee. The parties also discussed potential compromises on the post-signing covenants. Goodwin Procter and Kirkland agreed to communicate these positions to their respective clients. Later that day, after various discussions among representatives from CSC/Pamplona, Kirkland, Goodwin Procter and the members of the Transaction Committee, and on behalf of the Special Committee, Goodwin Procter sent an e-mail to the representatives of Kirkland that proposed to accept the"
+    ]
+   }
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "actor": {
+    "type": "noul",
+    "instructions": "Does `passage.cited_paragraph` describe something done by, done to, or decided about the party called \"Moab\" (or a group that the passage shows includes it)?",
+    "criteria": {
+     "true": "That party, or a cohort clearly containing it, is a subject of the cited paragraph.",
+     "false": "The cited paragraph concerns other parties only."
+    }
+   },
+   "event": {
+    "type": "noul",
+    "instructions": "A research ledger records an event labelled \"Other material event\" for \"Moab\". Does the passage report facts that fit the label \"Other material event\" for that party?",
+    "criteria": {
+     "true": "The passage reports such an event, or facts from which it directly follows.",
+     "false": "The passage reports a different kind of event, or nothing of that kind."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "actor": {
+    "type": "noul",
+    "noul": 0.95
+   },
+   "event": {
+    "type": "noul",
+    "noul": 0.75
+   }
+  },
+  "usage": {
+   "input_tokens": 1284,
+   "output_tokens": 36
+  }
+ },
+ "latency_s": 0.265
+}

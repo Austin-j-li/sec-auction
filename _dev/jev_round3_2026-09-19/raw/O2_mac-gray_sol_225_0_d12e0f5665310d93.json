@@ -1,0 +1,62 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Later on June 28, 2013, Party B, entered into a confidentiality and standstill agreement with Mac-Gray and was provided with an informational package for the purpose of providing Party B with data to formulate a preliminary indication of interest.",
+   "target_sentence": "Later on June 28, 2013, Party B, entered into a confidentiality and standstill agreement with Mac-Gray and was provided with an informational package for the purpose of providing Party B with data to formulate a preliminary indication of interest."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_9": "06/24/2013 | Mac-Gray | Target sale decision | Special Committee chose to consider a potential company sale against remaining independent.",
+     "row_10": "06/24/2013 | Mac-Gray | Round opened | Committee launched outreach to 50 parties: 15 strategic and 35 financial.",
+     "row_11": "next several weeks after 06/24/2013 | 13 other potential strategic buyers | Contact | Residual of 15 strategic outreach targets less Party A and CSC/Pamplona; total outreach was 50.",
+     "row_12": "next several weeks after 06/24/2013 | 35 potential financial buyers | Contact | Includes Party B and Party C; total outreach was 35 financial parties.",
+     "row_13": "over two months after 06/24/2013 | 16 other financial NDA signers | NDA signed | Residual of 18 financial NDA signers less Party B and Party C; 20 total signers included two strategic bidders.",
+     "row_14": "by 06/28/2013 | CSC/Pamplona | Contact | Target-directed first contact; Pamplona expressed interest through portfolio company CSC.",
+     "row_15": "06/28/2013 | Party B | NDA signed | Confidentiality and standstill agreement; informational package provided.",
+     "row_16": "06/30/2013 | Party C | NDA signed | Confidentiality and standstill agreement; informational package provided.",
+     "row_17": "07/06/2013 | Moab | Other material event | Denied exclusive rollover discussions with CSC/Pamplona; Moab's shares remained potential capital for other bidders.",
+     "row_18": "07/11/2013 | CSC/Pamplona | NDA signed | Confidentiality and standstill agreement; informational package provided.",
+     "row_19": "by 07/23/2013 | Mac-Gray | Deadline set | Due date was communicated with informational packages; exact communication date not stated.",
+     "row_20": "07/23/2013 | Mac-Gray | Deadline | Initial indications due; later July 24-25 submissions were accepted.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_15",
+    "confidence": 1.0,
+    "probabilities": {
+     "row_18": 0.0,
+     "row_10": 0.0,
+     "row_9": 0.0,
+     "row_15": 1.0,
+     "row_14": 0.0,
+     "row_20": 0.0,
+     "row_16": 0.0,
+     "row_11": 0.0,
+     "row_19": 0.0,
+     "row_13": 0.0,
+     "row_17": 0.0,
+     "row_12": 0.0,
+     "none": 0.0,
+     "not_an_event": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1219,
+   "output_tokens": 155
+  }
+ },
+ "latency_s": 0.29
+}

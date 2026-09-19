@@ -1,0 +1,146 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "decided that he was not interested in rolling over any of his shares in a transaction and recommended that Mr. MacDonald be fully briefed of the process to date. The Special Committee agreed, noting that Mr. MacDonald's perspective on the purchase price of a sale transaction was critical to the Special Committee's evaluation, as any potential acquiror would be unlikely to proceed without knowing that Mr. MacDonald would support the transaction. Based on the amount of due diligence conducted by Party A, Party B, Party C and CSC/Pamplona, and discussions with such parties to date, and in an effort to maximize value for Mac-Gray's stockholders, the Special Committee instructed BofA Merrill Lynch to call each of Party A, Party B, Party C and CSC/Pamplona to request final indications of interest by September 18, 2013 and to indicate that Mac-Gray would consider engaging in a short period of exclusive negotiations with one of the bidders depending upon, among other things, the proposed purchase price and the level of deal certainty indicated in the bidder's final proposal. As authorized and instructed by the Special Committee, representatives of BofA Merrill Lynch called each of Party A, Party B, Party C and CSC/Pamplona on September 11, 2013 with such instructions.",
+   "ledger_rows": [
+    {
+     "When": "09/09/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Bid",
+     "Price low": 19.5,
+     "Price high": 19.5,
+     "Note": "Revised IOI, up from $18.50 (#18). Pamplona commits 100% of the capital. Requests 2-week exclusivity. Heavy: customer data still withheld and further in-depth diligence expected."
+    },
+    {
+     "When": "09/09/2013",
+     "Who": "Party B",
+     "Event": "Bid",
+     "Price low": 18.5,
+     "Price high": 18.5,
+     "Note": "Revised IOI, up from $17.00-$18.00 (#21). Financing from affiliated-fund equity plus third-party debt; no firm financing commitment (Heavy)."
+    },
+    {
+     "When": "09/10/2013",
+     "Who": "Party A",
+     "Event": "Bid",
+     "Price low": 18,
+     "Price high": 19,
+     "Note": "Revised IOI, one day late; same range as its 06/21 proposal (#7). To be financed by existing credit facilities or affiliated equity; no firm financing commitment (Heavy)."
+    },
+    {
+     "When": "09/10/2013",
+     "Who": "Party C",
+     "Event": "Bid",
+     "Price low": 16,
+     "Price high": 17,
+     "Note": "Revised oral IOI to BofA, one day late; revises #24 ($16.00-$16.50). No firm financing commitment (Heavy)."
+    },
+    {
+     "When": "09/11/2013",
+     "Who": "Stewart G. MacDonald, Jr. (CEO)",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Rollover refused by holder: CEO and major holder says he won't roll over shares. BofA reports bidders unlikely to proceed without his support; committee has him fully briefed (09/12). He backs the process, wants higher value."
+    },
+    {
+     "When": "09/11/2013",
+     "Who": "Mac-Gray (Special Committee)",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "BofA calls all four the same day asking for final IOIs by 09/18/2013. Short exclusivity offered to one bidder depending on price and deal certainty."
+    },
+    {
+     "When": "09/18/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Bid",
+     "Price low": 20.75,
+     "Price high": 20.75,
+     "Note": "Final-round proposal, up from $19.50 (#28); Formal as a response to the final solicitation. Pamplona commits 100% of the capital; only confirmatory diligence followed (Light). Requests 2-week exclusivity."
+    },
+    {
+     "When": "09/18/2013",
+     "Who": "Party A",
+     "Event": "Bid reaffirmed",
+     "Price low": 18,
+     "Price high": 19,
+     "Note": "By phone to BofA: confirms #31 as its best and final offer, answering the final solicitation. The 09/10 bid had no firm financing commitment and none is reported since (Heavy)."
+    },
+    {
+     "When": "09/18/2013",
+     "Who": "Party B",
+     "Event": "Bid",
+     "Price low": 21.5,
+     "Price high": 21.5,
+     "Note": "Party B values its bid at $21.50: $19.00 cash plus options for 10% of new equity, which it values at $2.50 and which vest on a five-year target. Debt-and-equity financing, no commitment reported (Heavy)."
+    },
+    {
+     "When": "09/18/2013",
+     "Who": "Party C",
+     "Event": "Did not submit",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Did not submit or reaffirm its $16.00-$17.00 IOI (#32) and gave no reason. Reported on 09/19; not seen again."
+    },
+    {
+     "When": "09/18/2013",
+     "Who": "Mac-Gray",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Due date for final IOIs, reached. On 09/19 the committee acted on the bids in hand (enforced)."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "deadline": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "deadline": {
+    "type": "noul",
+    "noul": 0.88
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.9
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.51
+   }
+  },
+  "usage": {
+   "input_tokens": 2105,
+   "output_tokens": 54
+  }
+ },
+ "latency_s": 0.287
+}

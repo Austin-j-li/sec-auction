@@ -1,0 +1,20 @@
+{
+  "Candidate-A": {
+    "model": "sol",
+    "original": "/home/uctpiaj/Projects/Sec_extraction_new/_dev/model_comparison_2026-09-19/runs/sol_providence-worcester/extraction/providence-worcester.xlsx",
+    "original_sha256": "3c48ea690503acdd36bc8b695e6ddd74b76b7ff10d405e79c8cbd036a526389c",
+    "neutral_sha256": "bb895f86eb1fec926838e0b9d5f093771458888ac50e9be239bc38c5d558171c"
+  },
+  "Candidate-B": {
+    "model": "deepseek",
+    "original": "/home/uctpiaj/Projects/Sec_extraction_new/_dev/model_comparison_2026-09-19/runs/deepseek_providence-worcester/work/extraction/providence-worcester.xlsx",
+    "original_sha256": "33d5d51300e0de7f2ad75b04002ca9fc1e81b4ea277fa4a6e9fd41c353383184",
+    "neutral_sha256": "f518cbbb7f8cc57fc5de63487f216773e06fa1fe94f761cda35733b9cdf9c9c3"
+  },
+  "Candidate-C": {
+    "model": "opus",
+    "original": "/home/uctpiaj/Projects/Sec_extraction_new/_dev/model_comparison_2026-09-19/runs/opus_providence-worcester/extraction/providence-worcester.xlsx",
+    "original_sha256": "458414ab3b3484d12250f1a1c41adb0b681dd924a8f6e5b8fc4bf9d6b75b2f38",
+    "neutral_sha256": "2fa9339ab9c1e10cf88a9ea72b393361349d54cfbd8eaf01ae0ffa1b70e72925"
+  }
+}

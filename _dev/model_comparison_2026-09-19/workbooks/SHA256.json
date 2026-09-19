@@ -1,0 +1,47 @@
+[
+  {
+    "file": "workbooks/sol/mac-gray.xlsx",
+    "sha256": "e568558177f2be1a8441aef7522eec6325fc9249cd533e20cca32ef609f20d0f",
+    "bytes": 19784
+  },
+  {
+    "file": "workbooks/sol/petsmart.xlsx",
+    "sha256": "0db5afd35cb026e723dd8d3a115e087f785a9fe26a9f38ed3f16d4076dd9ef26",
+    "bytes": 19208
+  },
+  {
+    "file": "workbooks/sol/providence-worcester.xlsx",
+    "sha256": "3c48ea690503acdd36bc8b695e6ddd74b76b7ff10d405e79c8cbd036a526389c",
+    "bytes": 20142
+  },
+  {
+    "file": "workbooks/opus/mac-gray.xlsx",
+    "sha256": "f599dd89d2d0f3e8e320389b5c78e1bacdc95420983438444c3b67186229175a",
+    "bytes": 21026
+  },
+  {
+    "file": "workbooks/opus/petsmart.xlsx",
+    "sha256": "67a23b67bd66da2b84a1672ef85d8a37e6b79ebb2ff01432aceb591a5e8af4cb",
+    "bytes": 20942
+  },
+  {
+    "file": "workbooks/opus/providence-worcester.xlsx",
+    "sha256": "458414ab3b3484d12250f1a1c41adb0b681dd924a8f6e5b8fc4bf9d6b75b2f38",
+    "bytes": 22455
+  },
+  {
+    "file": "workbooks/deepseek/mac-gray.xlsx",
+    "sha256": "95575595829404dad90ed71d3a30640f1fbc9a9efa7320cf84f780fc2e2635b3",
+    "bytes": 20106
+  },
+  {
+    "file": "workbooks/deepseek/petsmart.xlsx",
+    "sha256": "b60385871d6c81ffd3c37009260776610a9e975ce7b40a907d2cb62ab28e9ea9",
+    "bytes": 18827
+  },
+  {
+    "file": "workbooks/deepseek/providence-worcester.xlsx",
+    "sha256": "33d5d51300e0de7f2ad75b04002ca9fc1e81b4ea277fa4a6e9fd41c353383184",
+    "bytes": 21704
+  }
+]

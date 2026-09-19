@@ -1,0 +1,85 @@
+{
+ "request": {
+  "state": {
+   "previous_paragraph": "authorities and would take eight months to a year, or longer, to pursue, with no assurance of success even after such a delay; the risk that Industry Participant would obtain competitively advantageous information in the course of due diligence even if it were not the winning bidder or indeed never bid; and the risk that participation by Industry Participant in the sale process would disrupt or negatively impact the sale process or impose an unacceptable time delay, in either case which would not advance the goal of maximizing shareholder value. On August 19, 2014, concurrent with its second quarter earnings announcement, the Company issued a press release announcing that it determined to explore strategic alternatives for the Company to maximize value for stockholders, including a possible sale of the Company.",
+   "paragraph": "During the weeks following the August 13 board meeting, members of the ad hoc committee continued to discuss among themselves, with fellow directors and with J.P. Morgan, the timing and process for the exploration of strategic alternatives, including issues relating to Industry Participant. In light of the risks discussed at the August 13 meeting and in these subsequent discussions, the ad hoc committee directed J.P. Morgan to communicate to Industry Participant the board's concerns as a result of which Industry Participant would not be invited to participate in the exploratory process. On August 22, 2014, a representative of J.P. Morgan contacted by telephone the representative of Industry Participant with whom the J.P. Morgan representative had spoken to on August 7. During this call, Industry Participant confirmed that it was aware of the Company's August 19 announcement and the J.P Morgan representative informed the Industry Participant representative of the board's concerns regarding Industry Participant's participation. The parties agreed to speak again in a few days. On August 27, 2014, representatives of Industry Participant contacted by telephone the representative of J.P. Morgan. During this call, the Industry Participant representatives stated that Industry Participant would have interest in discussing the possibility of a combination of the two companies. The J.P. Morgan representative reiterated the concerns identified by the board that engaging with Industry Participant was unlikely to maximize value for PetSmart's stockholders. The J.P. Morgan representative stated that Industry Participant would not be invited into the exploratory process, but that if Industry Participant were to wish to submit a proposal or other communication to the Company, the board would consider it. There has been no contact between PetSmart and Industry Participant (or between any of their respective representatives) since August 27, 2014."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "bid": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "nda_access": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "exit": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a potential buyer withdraws, declines to bid, is told it will not advance, or is otherwise excluded from the process? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "deadline": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "exclusivity": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that exclusivity is requested, authorised, granted, signed or extended? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "agreements": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "bid": {
+    "type": "noul",
+    "noul": 0.29
+   },
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.09
+   },
+   "exit": {
+    "type": "noul",
+    "noul": 0.97
+   },
+   "deadline": {
+    "type": "noul",
+    "noul": 0.12
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.87
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.65
+   },
+   "exclusivity": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "agreements": {
+    "type": "noul",
+    "noul": 0.14
+   }
+  },
+  "usage": {
+   "input_tokens": 1245,
+   "output_tokens": 138
+  }
+ },
+ "latency_s": 0.239
+}

@@ -1,0 +1,45 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Later on October 9, 2013, the Special Committee held a telephonic meeting, the purpose of which was to receive an update on the transaction negotiations from the Transaction Committee and Goodwin Procter. By invitation of the Special Committee, Mr. MacDonald was also present at this meeting. The Transaction Committee reported to the Special Committee on the negotiations that had taken place since the meeting of the Special Committee held on October 7, 2013. The Transaction Committee reported that the parties had come to an agreement that Pamplona's liability for certain damages would be limited to $50 million, but that certain post-signing covenants and the amounts of the termination fees remained open issues. The Special Committee discussed various alternatives that could be proposed to CSC/Pamplona on the open issues. Goodwin Procter then reported that Kirkland had requested on behalf of CSC/Pamplona that the exclusivity agreement, due to expire at 5 p.m. ET on October 12, 2013, be extended to allow for continued negotiations of these open issues. After discussion, the Special Committee authorized the Transaction Committee to negotiate the open issues within certain parameters and in connection therewith to extend exclusivity to October 15, 2013. The Special Committee also determined to reconvene for an update telephone conference call on October 11, 2013.",
+   "ledger_rows": []
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "deadline": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "exclusivity": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that exclusivity is requested, authorised, granted, signed or extended. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "deadline": {
+    "type": "noul",
+    "noul": 0.15
+   },
+   "exclusivity": {
+    "type": "noul",
+    "noul": 0.04
+   }
+  },
+  "usage": {
+   "input_tokens": 791,
+   "output_tokens": 38
+  }
+ },
+ "latency_s": 0.27
+}

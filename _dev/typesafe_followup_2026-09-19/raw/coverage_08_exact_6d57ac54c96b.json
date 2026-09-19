@@ -1,0 +1,65 @@
+{
+  "case_id": "coverage_08_exact",
+  "request_sha256": "6d57ac54c96bc7082117028f6407a70fc42e0836fc8974223b38ff49b03efd19",
+  "request": {
+    "model": "jev-1.13.0",
+    "state": {
+      "source": [
+        {
+          "paragraph_id": "313",
+          "text": "During the evening of December 12, 2014, Bidder 2 submitted an offer of $81.50 per share, in cash. Representatives of J.P. Morgan confirmed via a conversation with Bidder 2 on the evening of December 12, 2014 that $81.50 per share was its best and final offer. The Buyer Group initially submitted an oral offer of $82.50 per share, in cash, but stated that it was working to increase the offer within the next few hours. Later in the evening, the Buyer Group submitted a best and final offer of $83.00 per share, in cash. In addition, each bidder submitted a revised draft of the merger agreement and other transaction agreements, and copies of their respective financing commitment documents. The versions submitted by the Buyer Group were, with few exceptions, in substantially executable form."
+        }
+      ],
+      "target_event": "Buyer Group increased its December 12 oral $82.50 offer to a later best and final $83 offer.",
+      "ledger_rows": {
+        "row_0": "Buyer Group increased its December 12 oral $82.50 offer to a later best and final $83 offer."
+      }
+    },
+    "questions": {
+      "covered": {
+        "type": "noul",
+        "instructions": "Is the target_event recorded in ledger_rows? Match the actual event, including its bidder, date, action and material terms, not just topic overlap.",
+        "criteria": {
+          "true": "At least one row records this same event.",
+          "false": "No supplied row records this event."
+        }
+      },
+      "match": {
+        "type": "choice",
+        "instructions": "Select the ledger row that records target_event. A related event with a different date, bidder, amount or action does not count. Match by meaning, allowing paraphrase. Select none if absent.",
+        "criteria": {
+          "row_0": "Buyer Group increased its December 12 oral $82.50 offer to a later best and final $83 offer.",
+          "none": "None of the supplied ledger rows records the target event with the same actors, date, action and material terms."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "covered": {
+        "type": "noul",
+        "noul": 0.98
+      },
+      "match": {
+        "type": "choice",
+        "choice": "row_0",
+        "confidence": 1.0,
+        "probabilities": {
+          "none": 0.0,
+          "row_0": 1.0
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 753,
+      "output_tokens": 51
+    }
+  },
+  "attempts": [
+    {
+      "status": 200,
+      "latency_s": 6.462745106997318
+    }
+  ]
+}

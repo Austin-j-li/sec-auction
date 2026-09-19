@@ -1,0 +1,85 @@
+{
+ "request": {
+  "state": {
+   "previous_paragraph": "After a review of these opportunities and risks, the Board engaged in a general discussion concerning whether it might be advisable to approach and discuss a potential sale transaction with third parties at this time as a means by which to deliver value to the stockholders of Mac-Gray. The Board discussed the potential risks and benefits of commencing a process in which parties would be invited to review confidential information and submit indications of interest with respect to a potential business combination involving Mac-Gray. In particular, the Board discussed the potential disruptions to Mac-Gray's business, the risk of leaks that might arise from approaching potential acquirors within the industry and the impact on Mac-Gray's business that could result from any such leaks, including the potential loss of customers, suppliers and employees resulting from uncertainty over the future of Mac-Gray. The Board also discussed the potential need to disclose during such process sensitive, proprietary and confidential information to competitors and potential competitors.",
+   "paragraph": "After BofA Merrill Lynch and management left the meeting, a representative of Goodwin Procter provided an overview of the Board's fiduciary duties and the Board discussed engaging a financial advisor to assist the Board in considering strategic alternatives, including a sale process. To assist in the administration of the strategic alternatives review, the Board formed a transaction committee at this meeting, which we refer to as the Transaction Committee, and appointed Thomas Bullock and Paul Daoust, both independent directors, to serve as its members. Mr. Daoust was appointed because of his knowledge of and experience with mergers and acquisitions, including as president, chief executive officer and board member of Salary.com when it was sold in 2010. Mr. Bullock was appointed because of his knowledge of Mac-Gray and our business, given his tenure on the Board (since November 2000) and his chairmanship role. Further, both Mr. Daoust and Mr. Bullock indicated that they would be able to commit sufficient time to undertake the responsibilities associated with membership on the Transaction Committee. The Transaction Committee was charged with recommending to the Board the selection and engagement of a financial advisor to assist the Board in seeking and considering strategic alternatives, including but not limited to a merger, consolidation, business combination, recapitalization, restructuring, going-private or other strategic transaction or alternative that might be available to Mac-Gray in lieu of pursuing any of the foregoing. The Board also delegated to the Transaction Committee authority to take any administrative actions in connection with the Board's exploration of strategic alternatives. The Board concluded that it would discuss the review of strategic alternatives, including engaging in a potential sale process, at its next meeting so that the Board would have additional time to consider the risks and benefits of the various alternatives discussed."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "bid": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "nda_access": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "exit": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a potential buyer withdraws, declines to bid, is told it will not advance, or is otherwise excluded from the process? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "deadline": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "exclusivity": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that exclusivity is requested, authorised, granted, signed or extended? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   },
+   "agreements": {
+    "type": "noul",
+    "instructions": "Does `paragraph` report that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed? Judge `paragraph` only; `previous_paragraph` is context for names and dates."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "bid": {
+    "type": "noul",
+    "noul": 0.01
+   },
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "exit": {
+    "type": "noul",
+    "noul": 0.02
+   },
+   "deadline": {
+    "type": "noul",
+    "noul": 0.02
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.35
+   },
+   "exclusivity": {
+    "type": "noul",
+    "noul": 0.02
+   },
+   "agreements": {
+    "type": "noul",
+    "noul": 0.82
+   }
+  },
+  "usage": {
+   "input_tokens": 1277,
+   "output_tokens": 138
+  }
+ },
+ "latency_s": 0.639
+}

@@ -1,0 +1,54 @@
+{
+ "request": {
+  "state": {
+   "passage": {
+    "before": [
+     "At a meeting on June 18, 2014, the board reviewed, together with a financial advisor and with Wachtell, Lipton, Rosen & Katz (\"Wachtell Lipton\"), its legal advisor, the various strategic and financial alternatives potentially available to the Company and determined to explore more intensively potential changes to the Company's capital structure, with a focus on returning capital to stockholders. The board also established an ad hoc advisory subcommittee (the \"ad hoc committee\") with respect to, among other",
+     "things, the review of alternatives. Chairman Gregory Josefowicz and directors Rakesh Gangwal and Thomas Stemberg, all of whom are nonexecutive, independent directors, were appointed to the ad hoc committee. In addition, the board authorized the vetting and retention of a financial advisor to assist in the review. In July, after interviewing several potential financial advisors, the Company retained J.P. Morgan as financial advisor based on, among other factors, J.P. Morgan's reputation, experience in mergers and acquisitions, valuation, financing and capital markets and its familiarity with the Company."
+    ],
+    "cited_paragraph": "On July 3, 2014, JANA Partners filed a Schedule 13D with the SEC disclosing that JANA had acquired 9.9% of the Company's outstanding common stock and that JANA intended to engage in discussions with management and the board with respect to a review of strategic alternatives, including a sale of the Company. On July 7, 2014, Longview made public a letter to the board in which Longview stated that the board should consider the a sale of the Company (as well as other strategic alternatives) and that should the board determine a sale transaction to be in the interests of all stockholders, Longview would consider, depending on the parties and terms involved, rolling part or all of its holdings into equity of the acquiring entity rather than receive cash consideration, should doing so prove necessary in order to enable the Company to complete a transaction. Over the course of July and August, JANA Partners filed several amendments to its Schedule 13D and publicly disclosed letters to the board, advocating for a sale of PetSmart. On July 10, 2014, representatives of JANA met in person with representatives of the Company. At this meeting, the JANA representatives presented their perspectives on the Company and advocated for a sale of the Company. On July 10, 2014, representatives of the Company also spoke to representatives of Longview and Longview reiterated its advocacy for a sale of the Company.",
+    "after": [
+     "On August 7, 2014, a representative of Industry Participant contacted a representative of J.P. Morgan. The Industry Participant representative indicated that she had heard rumors that J.P. Morgan was working with the Company and wanted to inform J.P. Morgan that, if the Company were to pursue strategic alternatives, Industry Participant might be interested in re-visiting the conversations that had taken place in the Spring concerning the feasibility of a possible combination of the two Companies. The J.P. Morgan representative reported the conversation to the ad hoc committee.",
+     "On August 13, 2014, the board met in person, together with members of management and representatives of J.P. Morgan and Wachtell Lipton, to complete its initial review of strategic and financial alternatives potentially available to the Company and to receive an update on communications from stockholders and other interested parties, including Industry Participant. As a result of this meeting, the board (1) determined to explore strategic alternatives (including a possible sale of the Company) for the Company to maximize value for stockholders including by commencing a process to determine the potential value that could be achieved via a sale of the Company; (2) instructed management to commence intensive planning for a cost-reduction and profit-improvement plan (which we refer to collectively as the \"Profit Improvement Plan\") to potentially increase the value of the Company, whether in a sale of the Company or on a standalone basis should no sale materialize; and (3) authorized the ad hoc committee to oversee the sale exploration process, and, in between meetings of the full board, to give direction to the Company's financial and legal advisors, to lead on behalf of the Company (or to give guidance to the Company's representatives in connection with) any negotiations with potentially interested parties and periodically to brief the full board on the status of the sale exploration process. Together with the Company's financial and legal advisors, the board also considered and discussed alternative formats and timing for the conduct of the exploratory sale process, and determined that at the appropriate time, which was expected to be during the second half of September or early October, J.P. Morgan should contact financial and strategic parties deemed likely to be interested and capable of completing a transaction. In addition, the board determined that the Company would issue a public announcement of its intention to explore strategic alternatives, which would ensure that interested parties not contacted would become aware of the process and could contact J.P. Morgan on their own initiative. In connection with this discussion, after deliberation and consultation with its financial and legal advisors, the board reviewed the potential benefits and risks of inviting Industry Participant to participate in the exploratory sale process. In this regard, the board considered, among other things, in addition to the communications with Industry Representative in the Spring and on August 7, the very high risk that an acquisition by or a combination with Industry Participant would not receive antitrust clearances, or would receive such clearances only with the imposition by governmental authorities of unacceptable conditions; the near certainty that the process of seeking such clearances would result in the receipt of a so-called \"second request\" from governmental"
+    ]
+   }
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "actor": {
+    "type": "noul",
+    "instructions": "Does `passage.cited_paragraph` describe something done by, done to, or decided about the party called \"Longview\" (or a group that the passage shows includes it)?",
+    "criteria": {
+     "true": "That party, or a cohort clearly containing it, is a subject of the cited paragraph.",
+     "false": "The cited paragraph concerns other parties only."
+    }
+   },
+   "event": {
+    "type": "noul",
+    "instructions": "A research ledger records an event labelled \"Activist\" for \"Longview\". Does the passage report facts that fit the label \"Activist\" for that party?",
+    "criteria": {
+     "true": "The passage reports such an event, or facts from which it directly follows.",
+     "false": "The passage reports a different kind of event, or nothing of that kind."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "actor": {
+    "type": "noul",
+    "noul": 0.97
+   },
+   "event": {
+    "type": "noul",
+    "noul": 0.86
+   }
+  },
+  "usage": {
+   "input_tokens": 1668,
+   "output_tokens": 36
+  }
+ },
+ "latency_s": 0.33
+}

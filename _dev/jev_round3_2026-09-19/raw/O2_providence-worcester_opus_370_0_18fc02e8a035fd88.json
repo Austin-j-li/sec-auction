@@ -1,0 +1,44 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Subsequent to the delivery of BMO's opinion and the Board's approval of the merger agreement and voting agreement, representatives of BMO advised the Board that when checking to determine if there were any financial advisory or financing relationships with G&W, it had inadvertently failed to identify that a BMO affiliate has a participation in G&W's existing secured syndicated debt facility as described under the section titled \"Summary of Financial Analysis of BMO Capital Markets Corp.- Miscellaneous \" on page 41. On September 6, 2016, the Board considered this new information, determined this relationship was not material to BMO's independence and confirmed that the Board remained comfortable with the engagement and opinion of BMO.",
+   "target_sentence": "Subsequent to the delivery of BMO's opinion and the Board's approval of the merger agreement and voting agreement, representatives of BMO advised the Board that when checking to determine if there were any financial advisory or financing relationships with G&W, it had inadvertently failed to identify that a BMO affiliate has a participation in G&W's existing secured syndicated debt facility as described under the section titled \"Summary of Financial Analysis of BMO Capital Markets Corp.- Miscellaneous \" on page 41."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_52": "08/12/2016 | Party B | Not selected at signing | Declined to raise its $24.00 offer (#46). Board found G&W's $25.00 superior; the drafts otherwise differed on the termination fee (lower for G&W) and on the STB approval route.",
+     "row_53": "08/12/2016 | G&W | Merger agreement signed | $25.00 cash per common share (each preferred share converts into 100 common). Termination fee 3% ($3.785M). Eder Trusts signed voting agreement. Board approved 08/12 (Smith recused).",
+     "row_54": "08/15/2016 | Target | Merger announced | Press release before NASDAQ open.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "not_an_event",
+    "confidence": 0.69,
+    "probabilities": {
+     "row_52": 0.0,
+     "not_an_event": 0.75,
+     "row_54": 0.0,
+     "none": 0.15,
+     "row_53": 0.1
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 947,
+   "output_tokens": 65
+  }
+ },
+ "latency_s": 0.281
+}

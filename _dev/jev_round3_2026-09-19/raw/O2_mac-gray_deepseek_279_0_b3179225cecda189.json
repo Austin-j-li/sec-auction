@@ -1,0 +1,42 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On October 12, 2013, CSC, Pamplona and Mac-Gray executed a letter agreement extending exclusivity until 11:59 p.m. ET on October 15, 2013.",
+   "target_sentence": "On October 12, 2013, CSC, Pamplona and Mac-Gray executed a letter agreement extending exclusivity until 11:59 p.m."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_44": "10/12/2013 | CSC/Pamplona | Exclusivity changed | Letter agreement extended exclusivity to 11:59 p.m. ET 10/15/2013 after CSC/Pamplona agreed to an $11M Mac-Gray termination fee.",
+     "row_45": "10/14/2013 | Mac-Gray and CSC | Merger agreement signed | Agreed $21.25 per share all cash; no financing contingency; Pamplona committed $594 million; Moab and MacDonald voting agreements delivered.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that exclusivity is requested, authorised, granted, signed or extended. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_44",
+    "confidence": 0.92,
+    "probabilities": {
+     "row_44": 0.94,
+     "not_an_event": 0.0,
+     "none": 0.06,
+     "row_45": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 720,
+   "output_tokens": 56
+  }
+ },
+ "latency_s": 0.285
+}

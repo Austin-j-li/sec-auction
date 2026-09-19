@@ -1,0 +1,162 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On August 1, 2016, Hinckley Allen provided Party B with a revised merger agreement and voting agreement, reflecting changes from the marked-up documents included with Party B's LOI. On August 3, 2016, Hinckley Allen provided G&W with a revised merger agreement and voting agreement, reflecting changes from the marked-up documents included with G&W's LOI. On August 3, 2016, the Company and Hinckley Allen also responded to additional due diligence questions submitted by Party B. On August 4, 2016, the Transaction Committee met by conference call to discuss the process with representatives of BMO and Hinckley Allen on the",
+   "ledger_rows": [
+    {
+     "When": "07/27/2016",
+     "Who": "Target (Transaction Committee)",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Committee chose confirmatory diligence and negotiations with G&W and Party B for their higher offers. Dated 07/27: meetings were 07/22 and 07/27, and the choice relied on G&W's 07/26 revision (#32)."
+    },
+    {
+     "When": "07/27/2016",
+     "Who": "Party C",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "GHF later told the remaining bidders they were out; sorted to the Committee's decision day. $19.30 LOI."
+    },
+    {
+     "When": "07/27/2016",
+     "Who": "Party D",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "GHF later told the remaining bidders they were out; sorted to the Committee's decision day. $21.00 LOI."
+    },
+    {
+     "When": "07/27/2016",
+     "Who": "Party E",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "GHF later told the remaining bidders they were out; sorted to the Committee's decision day. $21.26 LOI."
+    },
+    {
+     "When": "07/27/2016",
+     "Who": "Party F",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "GHF later told the remaining bidders they were out; sorted to the Committee's decision day. $19.20 LOI. F later gave Party E financing support (#41) but did not bid again."
+    },
+    {
+     "When": "07/29/2016",
+     "Who": "Party D",
+     "Event": "Re-entered",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Returned after exit #35: on calls with GHF, said it wanted to re-engage and improve its offer. Filing does not say who started the calls."
+    },
+    {
+     "When": "07/29/2016",
+     "Who": "Party E",
+     "Event": "Re-entered",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Returned after exit #36: on calls with GHF, said it wanted to re-engage and improve its offer. Filing does not say who started the calls."
+    },
+    {
+     "When": "08/01/2016",
+     "Who": "Party D",
+     "Event": "Bid",
+     "Price low": 24,
+     "Price high": 24,
+     "Note": "Revised LOI; 30-day due diligence period. Formal because its July LOI came with a markup (#26); no new markup reported."
+    },
+    {
+     "When": "08/01/2016",
+     "Who": "Party E",
+     "Event": "Bid",
+     "Price low": 23.81,
+     "Price high": 23.81,
+     "Note": "Revised LOI with financing support from Party F (out since #37); 30-day due diligence period. Board had BMO clarify terms and diligence needs."
+    },
+    {
+     "When": "08/02/2016",
+     "Who": "Party E",
+     "Event": "Bid",
+     "Price low": 21.26,
+     "Price high": 21.26,
+     "Note": "Reversion: withdrew its $23.81 proposal (#41) but confirmed its original $21.26 LOI (#25), which asked for 60-day exclusivity."
+    },
+    {
+     "When": "08/01/2016 - 08/04/2016",
+     "Who": "Party D",
+     "Event": "Withdrew",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Would not shorten its 30-day diligence period and asked the Company not to sign with anyone else meanwhile. The Company refused because B and G&W were active. D stopped diligence 'at that time'. Both sides contributed."
+    },
+    {
+     "When": "08/04/2016",
+     "Who": "Target (Transaction Committee)",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Preferred bidder named: continue diligence and talks with G&W and B, but prioritize B for its higher price and finish the merger agreement with B."
+    },
+    {
+     "When": "by 08/04/2016",
+     "Who": "Party E",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Out by 08/04: the Committee named only G&W and B as continuing, and E's confirmed $21.26 offer is never mentioned again."
+    },
+    {
+     "When": "08/04/2016",
+     "Who": "Party B",
+     "Event": "Bid reaffirmed",
+     "Price low": 24,
+     "Price high": 24,
+     "Note": "Carried from #24; reaffirmed by returned draft: B's counsel sent a revised merger agreement as the Company moved to complete the agreement with B (#44). On-site diligence continued to 08/11."
+    },
+    {
+     "When": "08/09/2016",
+     "Who": "G&W",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Target told G&W it intended to sign with another bidder. G&W asked to continue diligence (on-site 08/10-11) toward a better offer; granted. On 08/11 G&W signalled a revised LOI."
+    },
+    {
+     "When": "08/10/2016",
+     "Who": "Simpson Thacher & Bartlett LLP",
+     "Event": "Adviser",
+     "Price low": null,
+     "Price high": null,
+     "Note": "G&W's legal counsel; first seen acting 08/10/2016."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "adviser": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "adviser": {
+    "type": "noul",
+    "noul": 0.39
+   }
+  },
+  "usage": {
+   "input_tokens": 2150,
+   "output_tokens": 22
+  }
+ },
+ "latency_s": 0.277
+}

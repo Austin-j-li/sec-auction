@@ -1,0 +1,85 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On December 10, PetSmart received final bid letters along with revised versions of the merger agreement and other transaction documents from the Buyer Group and from Bidder 2 and a verbal indication from Bidder 3. The Buyer Group offered $80.70 per share, in cash, and Bidder 2 offered $80.35 per share, in cash. Bidder 3 verbally communicated to J.P. Morgan that their valuation would not be above the current stock price of approximately $78 per share. J.P. Morgan communicated to Bidder 3 that it was unlikely to be competitive and accordingly Bidder 3 did not submit a written offer. The form of merger agreement and other transaction documentation submitted by the Buyer Group were more favorable to the Company (including because they were less conditional and more likely to be completed and because they offered more certainty of protection for the Company in the unlikely event of non-completion of the transaction) and reflected substantially more acceptance of the Company's positions. Each bidder indicated that its bid was not dependent on a rollover by Longview, but neither the Buyer Group nor Bidder 2 ruled out the possibility of partnering with Longview in a transaction, though Bidder 2 indicated that any partnering with Longview would only occur after completion of bidding and execution of a definitive merger agreement with the Company.",
+   "sentence": "Each bidder indicated that its bid was not dependent on a rollover by Longview, but neither the Buyer Group nor Bidder 2 ruled out the possibility of partnering with Longview in a transaction, though Bidder 2 indicated that any partnering with Longview would only occur after completion of bidding and execution of a definitive merger agreement with the Company."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "bid": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "nda_access": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "exit": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a potential buyer withdraws, declines to bid, is told it will not advance, or is otherwise excluded from the process? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "deadline": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "exclusivity": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that exclusivity is requested, authorised, granted, signed or extended? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "agreements": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed? Judge `sentence` only; `paragraph` is context for names and dates."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "bid": {
+    "type": "noul",
+    "noul": 0.12
+   },
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.02
+   },
+   "exit": {
+    "type": "noul",
+    "noul": 0.07
+   },
+   "deadline": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "exclusivity": {
+    "type": "noul",
+    "noul": 0.02
+   },
+   "agreements": {
+    "type": "noul",
+    "noul": 0.09
+   }
+  },
+  "usage": {
+   "input_tokens": 1047,
+   "output_tokens": 138
+  }
+ },
+ "latency_s": 0.433
+}

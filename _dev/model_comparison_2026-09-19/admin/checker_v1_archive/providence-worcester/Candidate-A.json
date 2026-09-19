@@ -1,0 +1,336 @@
+{
+  "checker": "patched-v1.8-lean-mechanical",
+  "checker_version": "1.0",
+  "workbook": "/home/uctpiaj/Projects/Sec_extraction_new/_dev/model_comparison_2026-09-19/grading/providence-worcester/work/candidates/Candidate-A.xlsx",
+  "filing": "/home/uctpiaj/Projects/Sec_extraction_new/_dev/model_comparison_2026-09-19/grading/providence-worcester/work/raw_filing/providence-worcester_2016-09-20_DEFM14A.htm",
+  "status": "fail",
+  "scope_note": "Mechanical checks only. Quote occurrence proves source occurrence, not semantic support. No bidder-population arithmetic or substantive extraction grading is performed.",
+  "summary": {
+    "errors": 35,
+    "warnings": 5,
+    "information": 0,
+    "total_issues": 40
+  },
+  "issues": [
+    {
+      "severity": "error",
+      "code": "rounds.deadline_count",
+      "sheet": "Rounds",
+      "row": 2,
+      "column": "Deadline outcome",
+      "message": "Ledger has 1 Deadline row(s), but Rounds lists 2 outcome(s)."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #20, but that ledger row is flagged 'Q2' rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #21, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #22, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #23, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #24, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #25, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #26, but that ledger row is flagged 'Q4' rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #27, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #28, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #29, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #30, but that ledger row is flagged 'Q2' rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #31, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #32, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #33, but that ledger row is flagged 'Q2' rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #34, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #36, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #37, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #38, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #39, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #40, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #41, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #42, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #43, but that ledger row is flagged 'Q4' rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #44, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #45, but that ledger row is flagged 'Q4' rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #46, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #47, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #48, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #49, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #50, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #51, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #52, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "error",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #53, but that ledger row is flagged None rather than 'Q1'."
+    },
+    {
+      "severity": "warning",
+      "code": "questions.length",
+      "sheet": "Questions",
+      "row": 2,
+      "column": null,
+      "message": "Question entry has about 97 words across its review fields; the instruction asks for about 60."
+    },
+    {
+      "severity": "warning",
+      "code": "questions.length",
+      "sheet": "Questions",
+      "row": 3,
+      "column": null,
+      "message": "Question entry has about 101 words across its review fields; the instruction asks for about 60."
+    },
+    {
+      "severity": "warning",
+      "code": "questions.length",
+      "sheet": "Questions",
+      "row": 4,
+      "column": null,
+      "message": "Question entry has about 107 words across its review fields; the instruction asks for about 60."
+    },
+    {
+      "severity": "warning",
+      "code": "questions.length",
+      "sheet": "Questions",
+      "row": 5,
+      "column": null,
+      "message": "Question entry has about 104 words across its review fields; the instruction asks for about 60."
+    },
+    {
+      "severity": "warning",
+      "code": "questions.deadline_outcomes",
+      "sheet": "Questions",
+      "row": null,
+      "column": null,
+      "message": "The ledger has a reached Deadline, but no Question visibly mentions deadline outcomes."
+    },
+    {
+      "severity": "error",
+      "code": "facts.fields",
+      "sheet": "Deal facts",
+      "row": 2,
+      "column": "Field",
+      "message": "Deal facts fields must appear exactly in the prescribed order; found ['Target', 'Acquirer', 'Acquirer type', 'Agreed price and consideration', 'Merger agreement signed', 'Merger announced', 'Filing type and date', 'Background pages', 'Initiation (target-led, bidder-led, activist-influenced, mixed or unclear)', 'Number of processes', 'Auction screen', 'Whole-company bids (Yes, or No with what was bid for)', 'Currency and units of bid prices', 'Target financial advisers', 'Target legal advisers', 'Account']."
+    }
+  ]
+}

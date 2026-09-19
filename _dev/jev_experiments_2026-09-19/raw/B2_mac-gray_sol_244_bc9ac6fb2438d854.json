@@ -1,0 +1,58 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Between August 6, 2013 and August 27, 2013, the four bidders conducted business and legal due diligence. During this time, Party B and Party C, in light of the fact that they were financial bidders, were given broad access to an electronic data site, and Party A and CSC/Pamplona, in light of the fact that they were strategic bidders, were given somewhat limited access to this electronic data site, with access to customer data, including customer locations, being reserved until later in the process as part of the staging discussed at the July 25 th Special Committee meeting. During this time, both Party A and CSC/Pamplona participated in discussions with members of Mac-Gray management around synergies.",
+   "ledger_rows": [
+    {
+     "When": "08/06/2013\u201308/27/2013",
+     "Who": "Mac-Gray",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Granted B/C broad data-site access; limited A/CSC access and withheld customer data from the strategic bidders."
+    },
+    {
+     "When": "08/27/2013",
+     "Who": "Mac-Gray",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Four bidders invited; revised written bids due September 9."
+    },
+    {
+     "When": "09/09/2013",
+     "Who": "Mac-Gray",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Revised bids due; Party A and Party C submitted one day late and were considered."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "nda_access": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.18
+   }
+  },
+  "usage": {
+   "input_tokens": 799,
+   "output_tokens": 21
+  }
+ },
+ "latency_s": 0.34
+}

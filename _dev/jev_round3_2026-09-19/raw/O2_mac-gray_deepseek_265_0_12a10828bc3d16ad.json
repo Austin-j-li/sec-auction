@@ -1,0 +1,44 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On September 24, 2013, CSC, Pamplona and Mac-Gray executed the exclusivity agreement providing for exclusive negotiations until 5 p.m. ET on October 12, 2013, subject to certain conditions, including that CSC and Pamplona not adversely change or modify the terms of the CSC/Pamplona final proposal.",
+   "target_sentence": "On September 24, 2013, CSC, Pamplona and Mac-Gray executed the exclusivity agreement providing for exclusive negotiations until 5 p.m."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_39": "09/21/2013 | CSC/Pamplona | Bid | price 21.25 | Raised to $21.25 as last and best offer, conditioned on two-week exclusive negotiations; requested MacDonald voting agreement; confirmed by telephone.",
+     "row_40": "09/24/2013 | CSC/Pamplona | Exclusivity changed | Executed with CSC and Pamplona until 5 p.m. ET 10/12/2013; included $15M CSC reverse termination fee and no financing contingency; Pamplona funding 100%.",
+     "row_43": "10/07/2013 | Moab | Other material event | After Moab and Pamplona held rollover discussions, the Special Committee was told Moab would not roll over any shares in the transaction.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that exclusivity is requested, authorised, granted, signed or extended. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_40",
+    "confidence": 0.86,
+    "probabilities": {
+     "row_40": 0.89,
+     "row_39": 0.0,
+     "row_43": 0.0,
+     "not_an_event": 0.0,
+     "none": 0.11
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 810,
+   "output_tokens": 66
+  }
+ },
+ "latency_s": 0.297
+}

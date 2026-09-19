@@ -1,0 +1,61 @@
+{
+  "case_id": "coverage_09_empty",
+  "request_sha256": "f089bd397afb73bc952a3311f5e3985d3bbdc0088bc852d0d5c4e9513e7c8f5f",
+  "request": {
+    "model": "jev-1.13.0",
+    "state": {
+      "source": [
+        {
+          "paragraph_id": "306",
+          "text": "On December 6, 2014, the Buyer Group and Bidder 2 submitted their respective comments on the draft merger agreement and other transaction documents, and the Buyer Group provided its financing commitment documents."
+        }
+      ],
+      "target_event": "Buyer Group supplied financing commitment documents on December 6, 2014.",
+      "ledger_rows": {}
+    },
+    "questions": {
+      "covered": {
+        "type": "noul",
+        "instructions": "Is the target_event recorded in ledger_rows? Match the actual event, including its bidder, date, action and material terms, not just topic overlap.",
+        "criteria": {
+          "true": "At least one row records this same event.",
+          "false": "No supplied row records this event."
+        }
+      },
+      "match": {
+        "type": "choice",
+        "instructions": "Select the ledger row that records target_event. A related event with a different date, bidder, amount or action does not count. Match by meaning, allowing paraphrase. Select none if absent.",
+        "criteria": {
+          "none": "None of the supplied ledger rows records the target event with the same actors, date, action and material terms."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "covered": {
+        "type": "noul",
+        "noul": 0.03
+      },
+      "match": {
+        "type": "choice",
+        "choice": "none",
+        "confidence": 1.0,
+        "probabilities": {
+          "none": 1.0
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 520,
+      "output_tokens": 40
+    }
+  },
+  "attempts": [
+    {
+      "status": 200,
+      "latency_s": 6.885913103003986
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Two of the bidders (one of which had been invited into the final round but had indicated a desire to work with an equity partner in light of the size of an acquisition of PetSmart, and the other of which had indicated to J.P. Morgan that it would drop out of the process if not permitted to work together with another bidder) requested permission to work together. These two bidders informed J.P. Morgan that they had worked together successfully in previous large leveraged buyouts. After deliberation and consultation with the Company's financial and legal advisors, the ad hoc committee authorized these two bidders to work together. We refer to these two bidders together as \"Bidder 3.\" Each of the bidders invited into the final round indicated some interest in a Longview rollover, though each also stated that its bid would not be conditioned or dependent on Longview participation.",
+   "ledger_rows": [
+    {
+     "When": "first week of October 2014",
+     "Who": "PetSmart",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Round 1 opened by the first-week-of-October confidentiality wave; the 10/30 indication due date was set later."
+    },
+    {
+     "When": "first week of October 2014",
+     "Who": "15 potentially interested financial buyers",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "All 15 received October due diligence, management presentations and detailed financial and business-plan information."
+    },
+    {
+     "When": "October 2014",
+     "Who": "PetSmart",
+     "Event": "Deadline set",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Set non-binding preliminary indication due date of 10/30; communicated to the potential bidders during October."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "PetSmart",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Six of the potentially interested parties submitted indications of interest."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "Buyer Group",
+     "Event": "Bid",
+     "Price low": 81,
+     "Price high": 83,
+     "Note": "Preliminary non-binding indication; range $81.00\u2013$83.00; consideration not stated."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "Unnamed financial bidder 1",
+     "Event": "Bid",
+     "Price low": 80,
+     "Price high": 85,
+     "Note": "Another of the six submitters; non-binding range $80.00\u2013$85.00; not individually named."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "3 unnamed indication submitters",
+     "Event": "Bid",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Remainder of the six submitters; no individual detail or prices; one later advanced, two eliminated 11/03 (#24)."
+    },
+    {
+     "When": "10/30\u201311/02/2014",
+     "Who": "Bidder 2",
+     "Event": "Bid",
+     "Price low": 81,
+     "Price high": 84,
+     "Note": "Raised after J.P. Morgan's 10/30\u201311/02 calls; range $81.00\u2013$84.00; made it one of four at or above $80.00."
+    },
+    {
+     "When": "11/03/2014",
+     "Who": "PetSmart",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Final round opened by the 11/03 advancement of four bidders at or above $80.00; merger-agreement form circulated in November; updated FY2014 projections given to all finalists."
+    },
+    {
+     "When": "11/03/2014",
+     "Who": "2 unnamed indication submitters",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "6 submitters \u2212 4 advanced = 2 notified as eliminated; none could remain above their initial indications."
+    },
+    {
+     "When": "12/04\u201312/05/2014",
+     "Who": "PetSmart",
+     "Event": "Deadline set",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Set evening 12/10 for final bids, replacing the initial 12/05 plan; mark-ups and financing commitments requested in advance."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "adviser": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "adviser": {
+    "type": "noul",
+    "noul": 0.19
+   }
+  },
+  "usage": {
+   "input_tokens": 1570,
+   "output_tokens": 22
+  }
+ },
+ "latency_s": 0.233
+}

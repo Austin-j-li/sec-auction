@@ -1,0 +1,126 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On September 19, 2013, the Special Committee held an in-person meeting. By invitation of the Special Committee, Mr. MacDonald and Mr. Shea, as well as representatives from BofA Merrill Lynch and Goodwin Procter, were also present for all or portions of the meeting. At this meeting, BofA Merrill Lynch updated the Special Committee as to the current status of the revised indications of interest submitted by Party A, Party B and CSC/Pamplona and reported that Party C did not submit a revised indication of interest or reiterate its prior indication of interest. BofA Merrill Lynch also reported to the Special Committee on Mr. MacDonald's general support for continuing with the process and his view that Mac-Gray should continue to seek a higher value for stockholders. Mr. Shea again reviewed the Projections with the Special Committee and BofA Merrill Lynch. The Special Committee again discussed the Projections, including the risks relating to Mac-Gray's ability to execute its strategic plan as an independent, stand-alone company (including Mac-Gray's ability to identify, acquire and successfully integrate laundry facilities management businesses, establish new and/or renew existing laundry facility management leases and penetrate markets historically dominated by smaller",
+   "ledger_rows": [
+    {
+     "When": "09/11/2013",
+     "Who": "Mac-Gray",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Round 3 opened: SC instructed BofA to request final indications by 09/18/2013, signaling possible short exclusivity depending on price and deal certainty."
+    },
+    {
+     "When": "09/18/2013",
+     "Who": "Mac-Gray",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Round 3 final due date reached; CSC/Pamplona, Party B and Party A responded; Party C did not submit."
+    },
+    {
+     "When": "09/18/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Bid",
+     "Price low": 20.75,
+     "Price high": 20.75,
+     "Note": "Responded to the final request; Pamplona's 100% funding reiterated; requested two-week exclusive negotiations."
+    },
+    {
+     "When": "09/18/2013",
+     "Who": "Party A",
+     "Event": "Bid reaffirmed",
+     "Price low": 18,
+     "Price high": 19,
+     "Note": "Reaffirmed the standing $18.00\u2013$19.00 indication as best and final in response to the final request; carried from #28; no firm financing commitment."
+    },
+    {
+     "When": "09/18/2013",
+     "Who": "Party B",
+     "Event": "Bid",
+     "Price low": 21.5,
+     "Price high": 21.5,
+     "Note": "Package: $19.00 cash plus options Party B valued at $2.50/share (10% of new equity; strike at cost basis); vesting tied to base-case projections over five years; no firm financing commitment."
+    },
+    {
+     "When": "09/18/2013",
+     "Who": "Party C",
+     "Event": "Did not submit",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Did not submit or reiterate its $16.00\u2013$17.00 indication in response to the final request; gave no reasons."
+    },
+    {
+     "When": "09/19/2013",
+     "Who": "Mac-Gray",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "SC concluded CSC/Pamplona offered most value and certainty but should raise its price above $20.75; authorized exclusivity at $21.25; MacDonald supported that price."
+    },
+    {
+     "When": "09/21/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Bid",
+     "Price low": 21.25,
+     "Price high": 21.25,
+     "Note": "Raised to $21.25 as last and best offer, conditioned on two-week exclusive negotiations; requested MacDonald voting agreement; confirmed by telephone."
+    },
+    {
+     "When": "by 09/24/2013",
+     "Who": "Party A",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Inferred: exclusivity with CSC/Pamplona displaced the two live rivals; Party A had declared $18.00\u2013$19.00 its best and final offer."
+    },
+    {
+     "When": "by 09/24/2013",
+     "Who": "Party B",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Inferred: exclusivity displaced the two live rivals; SC preferred CSC/Pamplona's certainty over Party B's debt-funded, option-heavy package."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "nda_access": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.19
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.52
+   }
+  },
+  "usage": {
+   "input_tokens": 1758,
+   "output_tokens": 39
+  }
+ },
+ "latency_s": 0.218
+}

@@ -1,0 +1,58 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Later in the day, on October 14, 2013, the merger agreement was executed, the Pamplona commitment letter was delivered, Moab and Parent executed the Moab voting agreement and the Mac-Donald voting agreements became effective.",
+   "ledger_rows": [
+    {
+     "When": "10/12/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Exclusivity changed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Extended to 11:59 p.m. 10/15/2013. CSC/Pamplona asked 10/09; the committee required a termination fee of at most $11 million, agreed 10/11."
+    },
+    {
+     "When": "10/14/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Merger agreement signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "$21.25 per share in cash. Pamplona commitment letter ($594m, no financing condition); $11m target fee; $15m reverse fee; MacDonald and Moab voting agreements."
+    },
+    {
+     "When": "10/15/2013",
+     "Who": "Mac-Gray and CSC",
+     "Event": "Merger announced",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Joint announcement before the market opened. No post-signing competing proposals reported."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "agreements": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "agreements": {
+    "type": "noul",
+    "noul": 0.84
+   }
+  },
+  "usage": {
+   "input_tokens": 753,
+   "output_tokens": 21
+  }
+ },
+ "latency_s": 0.289
+}

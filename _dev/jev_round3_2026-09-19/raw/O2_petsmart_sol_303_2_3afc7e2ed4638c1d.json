@@ -1,0 +1,68 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "During November, the bidders engaged in further extensive due diligence investigations of the Company, including further detailed management presentations. Also during November, the Company circulated a form of merger agreement to the bidders with instructions that the bidders submit any proposed comments on the merger agreement together with their final bids. Following the Company's third quarter earnings announcement and, at the request of bidders and the direction of the board and the Company, representatives of J.P. Morgan provided the bidders with updates to the Company's fiscal year 2014 financial projections.",
+   "target_sentence": "Following the Company's third quarter earnings announcement and, at the request of bidders and the direction of the board and the Company, representatives of J.P. Morgan provided the bidders with updates to the Company's fiscal year 2014 financial projections."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_19": "during October 2014 | PetSmart | Deadline set | Set 10/30/2014 for non-binding preliminary indications of interest.",
+     "row_20": "during October 2014 | Longview | Other material event | Offered all bidders optional rollover support of up to 7.5 million shares; it was not a participation condition.",
+     "row_21": "10/30/2014 | PetSmart | Deadline | Preliminary-indication deadline; six parties submitted and the board selected four on 11/03/2014.",
+     "row_22": "10/30/2014 | Buyer Group | Bid | price 81-83 | Non-binding preliminary indication; later advanced.",
+     "row_23": "10/30/2014 | Unnamed $80\u2013$85 bidder | Bid | price 80-85 | Non-binding preliminary indication; treated as one later Bidder 3 precursor under Q4.",
+     "row_24": "10/30/2014 | Unnamed other \u2265$80 bidder | Bid | Its range reached at least $80; endpoints undisclosed. Treated as the other Bidder 3 precursor under Q4.",
+     "row_25": "10/30/2014 | Bidder 2 | Bid | price 78 | Initial non-binding preliminary indication; revised after discussions with J.P. Morgan.",
+     "row_26": "10/30/2014 | 2 other first-round bidders | Bid | Residual submitters; the filing gives no individual prices. Under Q4 they were the bidders eliminated on 11/03/2014.",
+     "row_27": "10/30/2014 | 9 other financial buyers | Did not submit | 15 NDA signers \u2212 6 reported submitters = 9; this cohort may be affected by the five-groups summary.",
+     "row_28": "10/30/2014\u201311/02/2014 | Bidder 2 | Bid | price 81-84 | Raised its preliminary indication after discussions with J.P. Morgan.",
+     "row_29": "11/03/2014 | PetSmart | Round opened | Board advanced four bidders at or above $80 to a final round; later final materials included agreement comments and updated projections.",
+     "row_30": "11/03/2014 | 2 other first-round bidders | Dropped by target | Six submitters \u2212 four advanced = two; filing says eliminated parties could not remain above their initial prices. Q4 assumes neither later joined Bidder 3.",
+     "row_31": "after 11/03/2014 | Two high-range bidders / Bidder 3 | Bidding group changed | Formed Bidder 3 with target permission. Q4 assumes both were among the four advanced bidders.",
+     "row_32": "by 12/03/2014 | PetSmart | Deadline set | Initially set 12/05/2014 for final bids, targeting completion by 12/15/2014.",
+     "row_33": "12/04/2014\u201312/05/2014 | PetSmart | Deadline revised | Moved final-bid deadline from 12/05 to the evening of 12/10 and requested agreement markups and financing commitments in advance if possible.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_29",
+    "confidence": 0.47,
+    "probabilities": {
+     "row_21": 0.0,
+     "not_an_event": 0.02,
+     "none": 0.46,
+     "row_31": 0.0,
+     "row_28": 0.01,
+     "row_30": 0.0,
+     "row_29": 0.51,
+     "row_20": 0.0,
+     "row_27": 0.0,
+     "row_22": 0.0,
+     "row_33": 0.0,
+     "row_26": 0.0,
+     "row_23": 0.0,
+     "row_24": 0.0,
+     "row_32": 0.0,
+     "row_25": 0.0,
+     "row_19": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1591,
+   "output_tokens": 186
+  }
+ },
+ "latency_s": 0.4
+}

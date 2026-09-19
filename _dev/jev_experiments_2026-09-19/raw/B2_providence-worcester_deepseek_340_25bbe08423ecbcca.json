@@ -1,0 +1,98 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "and its shareholders to proceed with the transaction strategy discussed with representatives of GHF. In light of the potentially significant time and effort involved in pursuing such exploratory transaction strategy, as well as the possible need to provide guidance to GHF and management on short notice, at the conclusion of the meeting, the Board appointed a special committee of independent directors of the Board (which we refer to as the \"Transaction Committee\"), composed of Frank W. Barrett (Chair), Richard W. Anderson and James C. Garvey, for the purpose of assisting in the supervision and oversight of the process on the full Board's behalf and making a recommendation to the full Board. The Transaction Committee did not have the authority to approve or enter into a change of control transaction, which, under Rhode Island law, is an authority that can only be exercised by the full Board. At the time of appointment, Messrs. Barrett and Garvey had been elected by the preferred shareholders and Mr. Anderson had been elected by the common shareholders at the 2015 annual shareholders meeting. At the Company's 2016 annual shareholders meeting on April 27, 2016, Messrs. Barrett and Anderson were re-elected as directors by the common shareholders and Mr. Garvey was re-elected as a director by the preferred shareholders.",
+   "ledger_rows": [
+    {
+     "When": "fourth quarter of 2015",
+     "Who": "Party A",
+     "Event": "Bidder interest",
+     "Price low": null,
+     "Price high": null,
+     "Note": "First step: Class I rail partner raised possible joint ventures and interest in acquiring equity during a commercial meeting; no price. Led to Board review of strategic options."
+    },
+    {
+     "When": "fourth quarter of 2015",
+     "Who": "PWRR Board",
+     "Event": "Target sale decision",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Board appointed the subcommittee after Party A's approach, to interview bankers and evaluate options including a change in control; exploratory, no sale decision yet."
+    },
+    {
+     "When": "01/27/2016",
+     "Who": "Greene Holcomb & Fisher LLC (GHF)",
+     "Event": "Adviser",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Target's investment banker; subcommittee recommended and Board engaged GHF. GHF acquired by BMO Capital Markets Corp. 08/01/2016 - one adviser, renamed, no new row."
+    },
+    {
+     "When": "03/14/2016",
+     "Who": "PWRR Board",
+     "Event": "Target sale decision",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Board concluded to proceed with GHF's proposed strategy - discussions with Party A plus solicitation of other buyers; appointed Transaction Committee (no authority to approve a transaction)."
+    },
+    {
+     "When": "week of March 28, 2016",
+     "Who": "PWRR",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Round 1 opened on the first outreach wave; the Transaction Committee had authorized GHF on 03/24 to contact Party A and other potential buyers."
+    },
+    {
+     "When": "week of March 28, 2016",
+     "Who": "29 potential buyers (11 strategic, 18 financial)",
+     "Event": "Contact",
+     "Price low": null,
+     "Price high": null,
+     "Note": "GHF contacted 11 strategic (incl. Party A) and 18 financial prospects; direction target to buyers. Aggregate step; 25 of them later signed NDAs."
+    },
+    {
+     "When": "by 04/07/2016",
+     "Who": "11 strategic NDA signers",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "All 11 contacted strategic prospects signed, including Party A, Party B and G&W; no standstill provisions; received the Company memorandum."
+    },
+    {
+     "When": "by 04/07/2016",
+     "Who": "14 financial NDA signers",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "14 of 18 contacted financial prospects signed; with the 11 strategic signers, 25 confidentiality agreements in total."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "agreements": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "agreements": {
+    "type": "noul",
+    "noul": 0.32
+   }
+  },
+  "usage": {
+   "input_tokens": 1446,
+   "output_tokens": 21
+  }
+ },
+ "latency_s": 0.285
+}

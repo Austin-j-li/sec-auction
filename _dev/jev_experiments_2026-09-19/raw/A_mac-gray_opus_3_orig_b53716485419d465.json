@@ -1,0 +1,54 @@
+{
+ "request": {
+  "state": {
+   "passage": {
+    "before": [
+     "Certain potential strategic transactions have been discussed from time to time between Mac-Gray and CSC and other participants in the laundry facilities management industry, including discussions between Mac-Gray and CSC in the winter of 2011 and into 2012 regarding the possible acquisition of CSC by Mac-Gray. In connection with Mac-Gray's consideration of a possible acquisition of CSC, which we refer to as the 2011-2012 Discussions, Mac-Gray engaged BofA Merrill Lynch on October 23, 2012. During the fall and winter of 2012, CSC engaged in a sale process and, ultimately, CSC was purchased by Pamplona in May 2013.",
+     "As part of its ongoing review of strategic alternatives, at an in-person meeting of the Board on April 5, 2013, the Board discussed the sale of CSC to Pamplona as well as industry-wide merger and acquisition activity and dynamics, and authorized Mac-Gray management to work with BofA Merrill Lynch to explore transactional opportunities that might be available to Mac-Gray, including opportunities with another strategic party, whom we refer to as Party A, in the laundry facilities management industry. The Board also determined to further consider Mac-Gray's strategic alternatives at its meeting scheduled for May 9, 2013."
+    ],
+    "cited_paragraph": "On April 8, 2013, representatives of BofA Merrill Lynch, as instructed by the Board, telephoned a representative of Party A to discuss generally a possible business combination between Party A and Mac-Gray. During this call, the representative of Party A indicated that Party A might consider a business combination with Mac-Gray.",
+    "after": [
+     "On May 9, 2013, the Mac-Gray Board of Directors held a regularly scheduled in-person meeting. By invitation of the Board, Stewart G. MacDonald, Jr., our chief executive officer, Michael J. Shea, our executive vice president and chief financial officer, Neil MacLellan and Phil Emma, executive vice presidents at Mac-Gray, Linda Serafini, our vice president, general counsel and secretary, and representatives from BofA Merrill Lynch and Goodwin Procter LLP, outside legal counsel to Mac-Gray, were also in attendance for all or portions of the meeting. At this meeting, BofA Merrill Lynch discussed CSC's sale process and the acquisition environment generally and provided an overview of strategic alternatives for Mac-Gray, including the continued pursuit of Mac-Gray's existing business plan, a significant stock repurchase program, acquisition opportunities and the possibility of a sale process. With respect to a potential sale process, BofA Merrill Lynch discussed the then-current merger and acquisition environment and Mac-Gray's potential attractiveness as an acquisition target, including a general overview of potential valuation parameters. BofA Merrill Lynch also reported on its conversation with the representative of Party A, who had expressed interest in pursuing a possible business combination with Mac-Gray. Management and BofA Merrill Lynch also reviewed with the Board potential opportunities if Mac-Gray were to remain independent, including the ability to improve profitability and EBITDA margins by increasing scale and density through organic growth and/or strategic acquisitions as well as the ability to increase revenue through vend increases and the conversion from coin-operated technology to card-based technology. In considering these alternatives, the Board considered the risks associated with executing and achieving Mac-Gray's short and long-term business and financial objectives, including Mac-Gray's ability to identify, acquire and successfully integrate laundry facilities management businesses, establish new and/or renew existing laundry facility management leases and penetrate markets historically dominated by smaller local and regional",
+     "operators, the impact of general economic and market trends on Mac-Gray's sales and the general risks of market conditions that could reduce Mac-Gray's stock price."
+    ]
+   }
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "actor": {
+    "type": "noul",
+    "instructions": "Does `passage.cited_paragraph` describe something done by, done to, or decided about the party called \"Party A\" (or a group that the passage shows includes it)?",
+    "criteria": {
+     "true": "That party, or a cohort clearly containing it, is a subject of the cited paragraph.",
+     "false": "The cited paragraph concerns other parties only."
+    }
+   },
+   "event": {
+    "type": "noul",
+    "instructions": "A research ledger records an event labelled \"Target interest\" for \"Party A\". Does the passage report facts that fit the label \"Target interest\" for that party?",
+    "criteria": {
+     "true": "The passage reports such an event, or facts from which it directly follows.",
+     "false": "The passage reports a different kind of event, or nothing of that kind."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "actor": {
+    "type": "noul",
+    "noul": 0.97
+   },
+   "event": {
+    "type": "noul",
+    "noul": 0.94
+   }
+  },
+  "usage": {
+   "input_tokens": 1262,
+   "output_tokens": 36
+  }
+ },
+ "latency_s": 0.688
+}

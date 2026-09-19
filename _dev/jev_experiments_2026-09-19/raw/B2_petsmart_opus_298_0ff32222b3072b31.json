@@ -1,0 +1,122 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "During October, the potential bidders were informed that non-binding preliminary indications of interest would be due on October 30, 2014. The potential bidders were also informed that Longview had informed the Company that it would be willing to \"roll-over\" up to 7.5 million shares on terms and price acceptable to Longview, meaning that such shares would not receive cash merger consideration but would",
+   "ledger_rows": [
+    {
+     "When": "first week of October 2014",
+     "Who": "PetSmart / J.P. Morgan",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Round 1 opened by the NDA wave (buyers came to target; no outreach wave reported). Board told 10/03 about 15 parties interested."
+    },
+    {
+     "When": "first week of October 2014",
+     "Who": "15 financial NDA signers",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Confidentiality and standstill agreements. All 15 did diligence in October, had senior-management presentations and detailed business-plan and Profit Improvement Plan information. Includes Buyer Group, Bidder 2 and all IOI submitters."
+    },
+    {
+     "When": "during October 2014",
+     "Who": "PetSmart / J.P. Morgan",
+     "Event": "Deadline set",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Non-binding preliminary IOIs due 10/30. Bidders told Longview would roll over up to 7.5 million shares if bidder wished; asked to indicate interest, not a condition."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "Buyer Group",
+     "Event": "Bid",
+     "Price low": 81,
+     "Price high": 83,
+     "Note": "Preliminary non-binding IOI; range. Consortium led by BC Partners funds (later with CDPQ, GIC, StepStone). Terms beyond price not reported."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "Unnamed financial bidder 1",
+     "Event": "Bid",
+     "Price low": 80,
+     "Price high": 85,
+     "Note": "Preliminary non-binding IOI; range. Advanced 11/03; on recommended reading, later part of Bidder 3."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "Unnamed financial bidder 2",
+     "Event": "Bid",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Third of three IOIs whose range \u201creached at least $80.00\u201d; endpoints not disclosed, so price cells blank. Advanced 11/03; on recommended reading, later part of Bidder 3."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "Bidder 2",
+     "Event": "Bid",
+     "Price low": 78,
+     "Price high": 78,
+     "Note": "Preliminary non-binding IOI at a point price."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "2 other IOI submitters",
+     "Event": "Bid",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Six IOIs in total; the remaining two, prices undisclosed but below the $80.00 cut-off (inferred from the board\u2019s advancement rule). Reasons section says IOIs came from 5 bidder groups."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "PetSmart",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Due date for non-binding preliminary indications of interest."
+    },
+    {
+     "When": "by 10/30/2014",
+     "Who": "9 NDA signers without IOI",
+     "Event": "Did not submit",
+     "Price low": null,
+     "Price high": null,
+     "Note": "15 signers \u2212 6 submitters = 9. J.P. Morgan heard their rationales for not submitting (10/30\u201311/02); rationales not disclosed. Would be 10 if only 5 IOIs (Q4)."
+    },
+    {
+     "When": "10/30\u201311/02/2014",
+     "Who": "Bidder 2",
+     "Event": "Bid",
+     "Price low": 81,
+     "Price high": 84,
+     "Note": "Revises #19 after J.P. Morgan calls on rationales for price levels; raised $78.00 to a range, bringing it above the $80.00 cut-off."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "deadline": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "deadline": {
+    "type": "noul",
+    "noul": 0.88
+   }
+  },
+  "usage": {
+   "input_tokens": 1567,
+   "output_tokens": 20
+  }
+ },
+ "latency_s": 0.343
+}

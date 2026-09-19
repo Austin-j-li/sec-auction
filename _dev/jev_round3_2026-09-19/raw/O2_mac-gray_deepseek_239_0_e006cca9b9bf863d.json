@@ -1,0 +1,48 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On August 6, 2013, representatives of Party B attended a management presentation at the Boston office of Goodwin Procter with members of Mac-Gray management, representatives of BofA Merrill Lynch and a member of the Transaction Committee.",
+   "target_sentence": "On August 6, 2013, representatives of Party B attended a management presentation at the Boston office of Goodwin Procter with members of Mac-Gray management, representatives of BofA Merrill Lynch and a member of the Transaction Committee."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_18": "07/23/2013 | 16 financial NDA signers (cohort) | Did not submit | Inferred: 20 signers minus Party B, Party C and CSC/Pamplona (submitted) and Party A (recorded; still negotiating NDA) leaves 16 non-submitters; signing dates unstated, so some may be late entrants.",
+     "row_21": "07/25/2013 | Mac-Gray | Round opened | Round 2 opened: Special Committee advanced Party A, Party B, Party C and CSC/Pamplona to management meetings and staged diligence, then revised indications.",
+     "row_22": "07/25/2013 | Mac-Gray | Other material event | Staged disclosure: Party B and Party C (financial) to get broad data-site access; Party A and CSC/Pamplona (strategic) limited access, customer data withheld until later.",
+     "row_23": "07/25/2013 | Party C | Bid | price 16-16.5 | Written indication replacing Party C's prior oral $15.00\u2013$17.00 indication.",
+     "row_24": "08/05/2013 | Party A | NDA signed | Signed after non-solicitation terms were agreed 07/27/2013; informational package provided to potentially improve the June 21 proposal.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "none",
+    "confidence": 0.77,
+    "probabilities": {
+     "not_an_event": 0.05,
+     "none": 0.81,
+     "row_21": 0.14,
+     "row_18": 0.0,
+     "row_22": 0.0,
+     "row_23": 0.0,
+     "row_24": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 957,
+   "output_tokens": 83
+  }
+ },
+ "latency_s": 0.512
+}

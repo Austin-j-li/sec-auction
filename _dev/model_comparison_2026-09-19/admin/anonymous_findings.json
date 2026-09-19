@@ -1,0 +1,17 @@
+{
+  "mac-gray": {
+    "Candidate-A": "Preserves the three-round structure and all 13 bid/reaffirmation events. Missing aggregate Contact and several adviser/access events; Party A NDA is assigned to the wrong round. No critical error under the frozen rubric.",
+    "Candidate-B": "Highest Mac-Gray score; preserves the three-round structure, all 13 bids/reaffirmations and explicit contact cohorts. Still omits buyer-bank adviser events and September 27 voting-agreement formation; some conditions/date judgments need qualification.",
+    "Candidate-C": "Adds an extra August 27 round where the grader finds a deadline announcement within the July 25 stage. This shifts later round labels (ledger rows 29-50, Rounds rows 3-5). All 13 economic bid/reaffirmation events and numeric prices remain intact."
+  },
+  "petsmart": {
+    "Candidate-A": "Correct main participation path and separate third qualifying initial indication. Uses constituent Count 2 at joint-unit formation with a clarifying Question; normalize the net reduction to 1. Anonymous price-slot links and deadline consistency still need correction.",
+    "Candidate-B": "Records Count 2 when the single Bidder 3 group exits on December 10 (ledger row 31), corrupting the live-bidder arithmetic. Also misses a separate initially qualifying indication and part of the December deadline history.",
+    "Candidate-C": "Highest PetSmart score; retains the separate third initial qualifying indication, net one-unit group reduction and deadline extension. Still over-links anonymous price histories, needs tighter date bounds and contains some unsupported adviser/financing qualifiers."
+  },
+  "providence-worcester": {
+    "Candidate-A": "Codes the July CVR packages as noncash without settlement support and Party B as Dropped by target rather than Not selected at signing (ledger rows 34-35 and 53). Also misses Party B August 4 reaffirmation.",
+    "Candidate-B": "Keeps Party E live until signing despite an earlier named continuation set, overstating late competition (ledger rows 43,45,51; Rounds row 4). Also leaves several LOI upper bounds too late.",
+    "Candidate-C": "Passes all 33 frozen weighted tests, including re-entry and late-stage competition. Still needs corrections to Party A statements in Questions, a catch-up-access date bound, the unscored transaction-expense caveat and an ambiguous final-signing note. A 100 score does not mean an error-free workbook."
+  }
+}

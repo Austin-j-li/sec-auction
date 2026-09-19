@@ -1,0 +1,68 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On December 13, 2014, the board met in person, together with the members of management and representatives of J.P. Morgan and Wachtell Lipton, to discuss and review the final bids and to consider the proposed transaction. Representatives of J.P. Morgan reviewed the respective bids as well as the recent progression of the sale process. Representatives of Wachtell Lipton reviewed the terms of the draft merger agreement and other transaction documents and reviewed the financing commitments that had been provided by the Buyer Group. Representatives of J.P. Morgan made a financial presentation concerning the proposed transaction with the Buyer Group, as well as the Company's alternatives to a sale of the Company, including a leveraged share repurchase. J.P. Morgan then rendered its oral opinion, which was subsequently confirmed in writing, to the board that, as of that date, and based upon and subject to the factors, assumptions and limitations set forth in its opinion, the merger consideration of $83.00 in cash to be paid to the holders of the Company's common stock in the merger was fair, from a financial point of view, to such holders. Following extensive discussion, the board unanimously determined that the merger agreement and the transactions contemplated thereby, including the merger, were advisable and in the best interests of PetSmart and its stockholders, and to recommend that the Company's stockholders approve the adoption of the merger agreement. The board's determination was subject, however, to confirmation that the remaining open points in the merger agreement had been satisfactorily resolved, and the board determined to reconvene, if deemed necessary by the ad hoc committee or the chairman of the board.",
+   "target_sentence": "Following extensive discussion, the board unanimously determined that the merger agreement and the transactions contemplated thereby, including the merger, were advisable and in the best interests of PetSmart and its stockholders, and to recommend that the Company's stockholders approve the adoption of the merger agreement."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_34": "12/10/2014 | PetSmart | Deadline | Final-bid deadline reached; the target received two written final bids and Bidder 3\u2019s verbal indication.",
+     "row_35": "12/10/2014 | Buyer Group | Bid | price 80.7 | Final cash bid with revised transaction documents; committed financing had been provided on 12/06; documentation was less conditional than Bidder 2\u2019s.",
+     "row_36": "12/10/2014 | Bidder 2 | Bid | price 80.35 | Final cash bid with a revised merger agreement; its documentation was comparatively more conditional than Buyer Group\u2019s.",
+     "row_37": "12/10/2014 | Bidder 3 | Bid | Verbal whole-company indication; ceiling was approximately the current stock price, not a written final offer.",
+     "row_38": "12/10/2014 | Bidder 3 | Withdrew | J.P. Morgan said the valuation was unlikely to compete; Bidder 3 then did not submit the requested written offer. Attribution is flagged.",
+     "row_39": "12/10/2014 | PetSmart | Deadline revised | Required the two remaining bidders to improve by 12/12; treated as an extension within the already announced final round.",
+     "row_40": "early 12/12/2014 | Buyer Group / Longview | Other material event | Approved Buyer Group\u2019s request to work with Longview; they formed a rollover-support relationship but not a separate bidding group.",
+     "row_41": "12/12/2014 | PetSmart | Deadline | Improved-bid deadline; Bidder 2 and Buyer Group submitted revised bids that evening.",
+     "row_42": "evening 12/12/2014 | Bidder 2 | Bid | price 81.5 | Submitted revised agreements and financing commitments; later confirmed $81.50 was best and final.",
+     "row_43": "evening 12/12/2014 | Buyer Group | Bid | price 82.5 | Oral revision; said it was working to increase the offer within hours. Revised agreements and financing commitments accompanied the final sequence.",
+     "row_44": "later evening 12/12/2014 | Buyer Group | Bid | price 83 | Best and final cash offer; revised documents were, with few exceptions, substantially executable and financing commitments were supplied.",
+     "row_45": "12/13/2014 | PetSmart | Other material event | Selected Buyer Group and approved its merger, subject to satisfactory resolution of remaining agreement points.",
+     "row_46": "12/13/2014 | Bidder 2 | Dropped by target | Buyer Group\u2019s $83 offer was selected over Bidder 2\u2019s standing $81.50 best-and-final offer.",
+     "row_48": "12/14/2014 | PetSmart / Argos Holdings Inc. | Merger agreement signed | $83.00 per share in cash; Longview voting agreement and related transaction agreements also executed.",
+     "row_49": "12/14/2014 | PetSmart / Buyer Group | Merger announced | Issued a press release announcing the signed transaction.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_45",
+    "confidence": 0.97,
+    "probabilities": {
+     "row_48": 0.0,
+     "row_42": 0.0,
+     "row_35": 0.0,
+     "row_39": 0.0,
+     "row_40": 0.0,
+     "row_44": 0.0,
+     "row_46": 0.0,
+     "row_34": 0.0,
+     "row_49": 0.0,
+     "row_41": 0.0,
+     "row_36": 0.0,
+     "none": 0.01,
+     "row_43": 0.0,
+     "not_an_event": 0.01,
+     "row_45": 0.98,
+     "row_37": 0.0,
+     "row_38": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1764,
+   "output_tokens": 186
+  }
+ },
+ "latency_s": 0.394
+}

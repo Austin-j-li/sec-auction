@@ -1,0 +1,7832 @@
+[
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 8,
+  "who": "Party A",
+  "when": "06/21/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   17.0,
+   19.0
+  ],
+  "true": [
+   17.0,
+   19.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.98,
+  "scoped_dist": {
+   "contradicted": 0.01,
+   "supported": 0.98,
+   "insufficient": 0.01
+  },
+  "actor_only": 0.99,
+  "tokens": 2801
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 8,
+  "who": "Party A",
+  "when": "06/21/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   18.0,
+   19.0
+  ],
+  "true": [
+   17.0,
+   19.0
+  ],
+  "swap_source_row": 32,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 1.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.06,
+  "tokens": 2801
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 19,
+  "who": "CSC/Pamplona",
+  "when": "07/23/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   18.5,
+   18.5
+  ],
+  "true": [
+   18.5,
+   18.5
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 0.0,
+   "insufficient": 0.0,
+   "supported": 1.0
+  },
+  "actor_only": 0.99,
+  "tokens": 1917
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 19,
+  "who": "CSC/Pamplona",
+  "when": "07/23/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   19.5,
+   19.5
+  ],
+  "true": [
+   18.5,
+   18.5
+  ],
+  "swap_source_row": 29,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "insufficient": 0.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.02,
+  "tokens": 1917
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 19,
+  "who": "CSC/Pamplona",
+  "when": "07/23/2013",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   17.0,
+   18.0
+  ],
+  "true": [
+   18.5,
+   18.5
+  ],
+  "swap_source_row": 22,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 1.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 1938
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 22,
+  "who": "Party B",
+  "when": "07/24/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   17.0,
+   18.0
+  ],
+  "true": [
+   17.0,
+   18.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "supported": 1.0,
+   "contradicted": 0.0
+  },
+  "actor_only": 0.99,
+  "tokens": 1949
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 22,
+  "who": "Party B",
+  "when": "07/24/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   18.5,
+   18.5
+  ],
+  "true": [
+   17.0,
+   18.0
+  ],
+  "swap_source_row": 30,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "insufficient": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.03,
+  "tokens": 1928
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 22,
+  "who": "Party B",
+  "when": "07/24/2013",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   15.0,
+   17.0
+  ],
+  "true": [
+   17.0,
+   18.0
+  ],
+  "swap_source_row": 23,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 1.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 1949
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 23,
+  "who": "Party C",
+  "when": "07/24/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   15.0,
+   17.0
+  ],
+  "true": [
+   15.0,
+   17.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 0.0,
+   "supported": 1.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.99,
+  "tokens": 1949
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 23,
+  "who": "Party C",
+  "when": "07/24/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   16.0,
+   16.5
+  ],
+  "true": [
+   15.0,
+   17.0
+  ],
+  "swap_source_row": 25,
+  "scoped": "contradicted",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "supported": 0.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.04,
+  "tokens": 1949
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 23,
+  "who": "Party C",
+  "when": "07/24/2013",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   17.0,
+   18.0
+  ],
+  "true": [
+   15.0,
+   17.0
+  ],
+  "swap_source_row": 22,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "supported": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.04,
+  "tokens": 1949
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 25,
+  "who": "Party C",
+  "when": "07/25/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   16.0,
+   16.5
+  ],
+  "true": [
+   16.0,
+   16.5
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.91,
+  "scoped_dist": {
+   "contradicted": 0.05,
+   "supported": 0.94,
+   "insufficient": 0.01
+  },
+  "actor_only": 0.97,
+  "tokens": 1965
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 25,
+  "who": "Party C",
+  "when": "07/25/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   15.0,
+   17.0
+  ],
+  "true": [
+   16.0,
+   16.5
+  ],
+  "swap_source_row": 23,
+  "scoped": "contradicted",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "supported": 0.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.92,
+  "tokens": 1965
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 29,
+  "who": "CSC/Pamplona",
+  "when": "09/09/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   19.5,
+   19.5
+  ],
+  "true": [
+   19.5,
+   19.5
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.96,
+  "scoped_dist": {
+   "insufficient": 0.01,
+   "contradicted": 0.02,
+   "supported": 0.97
+  },
+  "actor_only": 0.99,
+  "tokens": 1910
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 29,
+  "who": "CSC/Pamplona",
+  "when": "09/09/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   20.75,
+   20.75
+  ],
+  "true": [
+   19.5,
+   19.5
+  ],
+  "swap_source_row": 36,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "insufficient": 0.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.02,
+  "tokens": 1910
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 29,
+  "who": "CSC/Pamplona",
+  "when": "09/09/2013",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   18.5,
+   18.5
+  ],
+  "true": [
+   19.5,
+   19.5
+  ],
+  "swap_source_row": 30,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 1.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 1910
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 30,
+  "who": "Party B",
+  "when": "09/09/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   18.5,
+   18.5
+  ],
+  "true": [
+   18.5,
+   18.5
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.98,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 0.01,
+   "supported": 0.99
+  },
+  "actor_only": 0.99,
+  "tokens": 1904
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 30,
+  "who": "Party B",
+  "when": "09/09/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   21.5,
+   21.5
+  ],
+  "true": [
+   18.5,
+   18.5
+  ],
+  "swap_source_row": 38,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "contradicted": 1.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.02,
+  "tokens": 1904
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 30,
+  "who": "Party B",
+  "when": "09/09/2013",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   19.5,
+   19.5
+  ],
+  "true": [
+   18.5,
+   18.5
+  ],
+  "swap_source_row": 29,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "supported": 0.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 1904
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 32,
+  "who": "Party A",
+  "when": "09/10/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   18.0,
+   19.0
+  ],
+  "true": [
+   18.0,
+   19.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.98,
+  "scoped_dist": {
+   "contradicted": 0.01,
+   "insufficient": 0.0,
+   "supported": 0.99
+  },
+  "actor_only": 0.99,
+  "tokens": 2095
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 32,
+  "who": "Party A",
+  "when": "09/10/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   17.0,
+   19.0
+  ],
+  "true": [
+   18.0,
+   19.0
+  ],
+  "swap_source_row": 8,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "insufficient": 0.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.05,
+  "tokens": 2095
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 32,
+  "who": "Party A",
+  "when": "09/10/2013",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   16.0,
+   17.0
+  ],
+  "true": [
+   18.0,
+   19.0
+  ],
+  "swap_source_row": 33,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "insufficient": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.03,
+  "tokens": 2095
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 33,
+  "who": "Party C",
+  "when": "09/10/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   16.0,
+   17.0
+  ],
+  "true": [
+   16.0,
+   17.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.95,
+  "scoped_dist": {
+   "contradicted": 0.03,
+   "supported": 0.96,
+   "insufficient": 0.01
+  },
+  "actor_only": 0.98,
+  "tokens": 2095
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 33,
+  "who": "Party C",
+  "when": "09/10/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   16.0,
+   16.5
+  ],
+  "true": [
+   16.0,
+   17.0
+  ],
+  "swap_source_row": 25,
+  "scoped": "contradicted",
+  "scoped_conf": 0.97,
+  "scoped_dist": {
+   "supported": 0.02,
+   "contradicted": 0.98,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.06,
+  "tokens": 2095
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 33,
+  "who": "Party C",
+  "when": "09/10/2013",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   18.0,
+   19.0
+  ],
+  "true": [
+   16.0,
+   17.0
+  ],
+  "swap_source_row": 32,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "contradicted": 1.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 2095
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 36,
+  "who": "CSC/Pamplona",
+  "when": "09/18/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   20.75,
+   20.75
+  ],
+  "true": [
+   20.75,
+   20.75
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 0.0,
+   "supported": 1.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.99,
+  "tokens": 2767
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 36,
+  "who": "CSC/Pamplona",
+  "when": "09/18/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   21.25,
+   21.25
+  ],
+  "true": [
+   20.75,
+   20.75
+  ],
+  "swap_source_row": 42,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "supported": 0.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.02,
+  "tokens": 2767
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 36,
+  "who": "CSC/Pamplona",
+  "when": "09/18/2013",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   18.0,
+   19.0
+  ],
+  "true": [
+   20.75,
+   20.75
+  ],
+  "swap_source_row": 37,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "insufficient": 0.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 2788
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 37,
+  "who": "Party A",
+  "when": "09/18/2013",
+  "event": "Bid reaffirmed",
+  "variant": "orig",
+  "claimed": [
+   18.0,
+   19.0
+  ],
+  "true": [
+   18.0,
+   19.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.88,
+  "scoped_dist": {
+   "contradicted": 0.05,
+   "supported": 0.91,
+   "insufficient": 0.04
+  },
+  "actor_only": 0.99,
+  "tokens": 2786
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 37,
+  "who": "Party A",
+  "when": "09/18/2013",
+  "event": "Bid reaffirmed",
+  "variant": "swap_same_party",
+  "claimed": [
+   17.0,
+   19.0
+  ],
+  "true": [
+   18.0,
+   19.0
+  ],
+  "swap_source_row": 8,
+  "scoped": "contradicted",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "supported": 0.0,
+   "contradicted": 0.99,
+   "insufficient": 0.01
+  },
+  "actor_only": 0.04,
+  "tokens": 2786
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 37,
+  "who": "Party A",
+  "when": "09/18/2013",
+  "event": "Bid reaffirmed",
+  "variant": "swap_near_party",
+  "claimed": [
+   20.75,
+   20.75
+  ],
+  "true": [
+   18.0,
+   19.0
+  ],
+  "swap_source_row": 36,
+  "scoped": "contradicted",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 1.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 2765
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 38,
+  "who": "Party B",
+  "when": "09/18/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   21.5,
+   21.5
+  ],
+  "true": [
+   21.5,
+   21.5
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "supported": 1.0,
+   "contradicted": 0.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.99,
+  "tokens": 2761
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 38,
+  "who": "Party B",
+  "when": "09/18/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   18.5,
+   18.5
+  ],
+  "true": [
+   21.5,
+   21.5
+  ],
+  "swap_source_row": 30,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "insufficient": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.98,
+  "tokens": 2761
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 38,
+  "who": "Party B",
+  "when": "09/18/2013",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   18.0,
+   19.0
+  ],
+  "true": [
+   21.5,
+   21.5
+  ],
+  "swap_source_row": 37,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "supported": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.04,
+  "tokens": 2782
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 42,
+  "who": "CSC/Pamplona",
+  "when": "09/21/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   21.25,
+   21.25
+  ],
+  "true": [
+   21.25,
+   21.25
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.98,
+  "scoped_dist": {
+   "supported": 0.99,
+   "contradicted": 0.01,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.98,
+  "tokens": 3000
+ },
+ {
+  "deal": "mac-gray",
+  "model": "opus",
+  "row": 42,
+  "who": "CSC/Pamplona",
+  "when": "09/21/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   20.75,
+   20.75
+  ],
+  "true": [
+   21.25,
+   21.25
+  ],
+  "swap_source_row": 36,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "supported": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.99,
+  "tokens": 3000
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 8,
+  "who": "Party A",
+  "when": "06/21/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   17.0,
+   19.0
+  ],
+  "true": [
+   17.0,
+   19.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 0.0,
+   "supported": 1.0
+  },
+  "actor_only": 0.98,
+  "tokens": 2801
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 8,
+  "who": "Party A",
+  "when": "06/21/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   18.0,
+   19.0
+  ],
+  "true": [
+   17.0,
+   19.0
+  ],
+  "swap_source_row": 33,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 1.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.05,
+  "tokens": 2801
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 21,
+  "who": "CSC/Pamplona",
+  "when": "07/23/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   18.5,
+   18.5
+  ],
+  "true": [
+   18.5,
+   18.5
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 1.0,
+   "contradicted": 0.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.99,
+  "tokens": 1917
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 21,
+  "who": "CSC/Pamplona",
+  "when": "07/23/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   19.5,
+   19.5
+  ],
+  "true": [
+   18.5,
+   18.5
+  ],
+  "swap_source_row": 31,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "insufficient": 0.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.02,
+  "tokens": 1917
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 21,
+  "who": "CSC/Pamplona",
+  "when": "07/23/2013",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   17.0,
+   18.0
+  ],
+  "true": [
+   18.5,
+   18.5
+  ],
+  "swap_source_row": 23,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "supported": 0.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 1938
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 23,
+  "who": "Party B",
+  "when": "07/24/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   17.0,
+   18.0
+  ],
+  "true": [
+   17.0,
+   18.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 0.0,
+   "supported": 1.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.99,
+  "tokens": 1949
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 23,
+  "who": "Party B",
+  "when": "07/24/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   18.5,
+   18.5
+  ],
+  "true": [
+   17.0,
+   18.0
+  ],
+  "swap_source_row": 32,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "supported": 0.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 1928
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 23,
+  "who": "Party B",
+  "when": "07/24/2013",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   15.0,
+   17.0
+  ],
+  "true": [
+   17.0,
+   18.0
+  ],
+  "swap_source_row": 24,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "contradicted": 1.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 1949
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 24,
+  "who": "Party C",
+  "when": "07/24/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   15.0,
+   17.0
+  ],
+  "true": [
+   15.0,
+   17.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 0.0,
+   "insufficient": 0.0,
+   "supported": 1.0
+  },
+  "actor_only": 0.99,
+  "tokens": 1949
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 24,
+  "who": "Party C",
+  "when": "07/24/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   16.0,
+   16.5
+  ],
+  "true": [
+   15.0,
+   17.0
+  ],
+  "swap_source_row": 26,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "insufficient": 0.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.04,
+  "tokens": 1949
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 24,
+  "who": "Party C",
+  "when": "07/24/2013",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   17.0,
+   18.0
+  ],
+  "true": [
+   15.0,
+   17.0
+  ],
+  "swap_source_row": 23,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "insufficient": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.04,
+  "tokens": 1949
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 26,
+  "who": "Party C",
+  "when": "later 07/25/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   16.0,
+   16.5
+  ],
+  "true": [
+   16.0,
+   16.5
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.84,
+  "scoped_dist": {
+   "insufficient": 0.02,
+   "contradicted": 0.09,
+   "supported": 0.89
+  },
+  "actor_only": 0.96,
+  "tokens": 1966
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 26,
+  "who": "Party C",
+  "when": "later 07/25/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   15.0,
+   17.0
+  ],
+  "true": [
+   16.0,
+   16.5
+  ],
+  "swap_source_row": 24,
+  "scoped": "contradicted",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "insufficient": 0.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.92,
+  "tokens": 1966
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 31,
+  "who": "CSC/Pamplona",
+  "when": "09/09/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   19.5,
+   19.5
+  ],
+  "true": [
+   19.5,
+   19.5
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.96,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 0.02,
+   "supported": 0.98
+  },
+  "actor_only": 0.99,
+  "tokens": 1910
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 31,
+  "who": "CSC/Pamplona",
+  "when": "09/09/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   20.75,
+   20.75
+  ],
+  "true": [
+   19.5,
+   19.5
+  ],
+  "swap_source_row": 38,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 1.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.02,
+  "tokens": 1910
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 31,
+  "who": "CSC/Pamplona",
+  "when": "09/09/2013",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   18.5,
+   18.5
+  ],
+  "true": [
+   19.5,
+   19.5
+  ],
+  "swap_source_row": 32,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "supported": 0.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 1910
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 32,
+  "who": "Party B",
+  "when": "09/09/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   18.5,
+   18.5
+  ],
+  "true": [
+   18.5,
+   18.5
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.98,
+  "scoped_dist": {
+   "supported": 0.99,
+   "insufficient": 0.0,
+   "contradicted": 0.01
+  },
+  "actor_only": 0.99,
+  "tokens": 1904
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 32,
+  "who": "Party B",
+  "when": "09/09/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   21.5,
+   21.5
+  ],
+  "true": [
+   18.5,
+   18.5
+  ],
+  "swap_source_row": 40,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "insufficient": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.02,
+  "tokens": 1904
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 32,
+  "who": "Party B",
+  "when": "09/09/2013",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   19.5,
+   19.5
+  ],
+  "true": [
+   18.5,
+   18.5
+  ],
+  "swap_source_row": 31,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 1.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 1904
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 33,
+  "who": "Party A",
+  "when": "09/10/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   18.0,
+   19.0
+  ],
+  "true": [
+   18.0,
+   19.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.98,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 0.01,
+   "supported": 0.99
+  },
+  "actor_only": 0.98,
+  "tokens": 2095
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 33,
+  "who": "Party A",
+  "when": "09/10/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   17.0,
+   19.0
+  ],
+  "true": [
+   18.0,
+   19.0
+  ],
+  "swap_source_row": 8,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "insufficient": 0.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.05,
+  "tokens": 2095
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 33,
+  "who": "Party A",
+  "when": "09/10/2013",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   16.0,
+   17.0
+  ],
+  "true": [
+   18.0,
+   19.0
+  ],
+  "swap_source_row": 34,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "insufficient": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.03,
+  "tokens": 2095
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 34,
+  "who": "Party C",
+  "when": "09/10/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   16.0,
+   17.0
+  ],
+  "true": [
+   16.0,
+   17.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.93,
+  "scoped_dist": {
+   "contradicted": 0.03,
+   "supported": 0.96,
+   "insufficient": 0.01
+  },
+  "actor_only": 0.99,
+  "tokens": 2095
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 34,
+  "who": "Party C",
+  "when": "09/10/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   16.0,
+   16.5
+  ],
+  "true": [
+   16.0,
+   17.0
+  ],
+  "swap_source_row": 26,
+  "scoped": "contradicted",
+  "scoped_conf": 0.96,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 0.97,
+   "supported": 0.03
+  },
+  "actor_only": 0.07,
+  "tokens": 2095
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 34,
+  "who": "Party C",
+  "when": "09/10/2013",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   18.0,
+   19.0
+  ],
+  "true": [
+   16.0,
+   17.0
+  ],
+  "swap_source_row": 33,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "insufficient": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.03,
+  "tokens": 2095
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 38,
+  "who": "CSC/Pamplona",
+  "when": "09/18/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   20.75,
+   20.75
+  ],
+  "true": [
+   20.75,
+   20.75
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 0.0,
+   "insufficient": 0.0,
+   "supported": 1.0
+  },
+  "actor_only": 0.99,
+  "tokens": 2767
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 38,
+  "who": "CSC/Pamplona",
+  "when": "09/18/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   21.25,
+   21.25
+  ],
+  "true": [
+   20.75,
+   20.75
+  ],
+  "swap_source_row": 43,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "supported": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.02,
+  "tokens": 2767
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 38,
+  "who": "CSC/Pamplona",
+  "when": "09/18/2013",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   18.0,
+   19.0
+  ],
+  "true": [
+   20.75,
+   20.75
+  ],
+  "swap_source_row": 39,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "supported": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.04,
+  "tokens": 2788
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 39,
+  "who": "Party A",
+  "when": "09/18/2013",
+  "event": "Bid reaffirmed",
+  "variant": "orig",
+  "claimed": [
+   18.0,
+   19.0
+  ],
+  "true": [
+   18.0,
+   19.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.88,
+  "scoped_dist": {
+   "contradicted": 0.04,
+   "insufficient": 0.04,
+   "supported": 0.92
+  },
+  "actor_only": 0.99,
+  "tokens": 2786
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 39,
+  "who": "Party A",
+  "when": "09/18/2013",
+  "event": "Bid reaffirmed",
+  "variant": "swap_same_party",
+  "claimed": [
+   17.0,
+   19.0
+  ],
+  "true": [
+   18.0,
+   19.0
+  ],
+  "swap_source_row": 8,
+  "scoped": "contradicted",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "insufficient": 0.01,
+   "supported": 0.0,
+   "contradicted": 0.99
+  },
+  "actor_only": 0.04,
+  "tokens": 2786
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 39,
+  "who": "Party A",
+  "when": "09/18/2013",
+  "event": "Bid reaffirmed",
+  "variant": "swap_near_party",
+  "claimed": [
+   20.75,
+   20.75
+  ],
+  "true": [
+   18.0,
+   19.0
+  ],
+  "swap_source_row": 38,
+  "scoped": "contradicted",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "supported": 0.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 2765
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 40,
+  "who": "Party B",
+  "when": "09/18/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   21.5,
+   21.5
+  ],
+  "true": [
+   21.5,
+   21.5
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 0.0,
+   "supported": 1.0
+  },
+  "actor_only": 0.99,
+  "tokens": 2761
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 40,
+  "who": "Party B",
+  "when": "09/18/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   18.5,
+   18.5
+  ],
+  "true": [
+   21.5,
+   21.5
+  ],
+  "swap_source_row": 32,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "insufficient": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.98,
+  "tokens": 2761
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 40,
+  "who": "Party B",
+  "when": "09/18/2013",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   18.0,
+   19.0
+  ],
+  "true": [
+   21.5,
+   21.5
+  ],
+  "swap_source_row": 39,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 1.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 2782
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 43,
+  "who": "CSC/Pamplona",
+  "when": "09/21/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   21.25,
+   21.25
+  ],
+  "true": [
+   21.25,
+   21.25
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.98,
+  "scoped_dist": {
+   "contradicted": 0.02,
+   "supported": 0.98,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.98,
+  "tokens": 3000
+ },
+ {
+  "deal": "mac-gray",
+  "model": "sol",
+  "row": 43,
+  "who": "CSC/Pamplona",
+  "when": "09/21/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   20.75,
+   20.75
+  ],
+  "true": [
+   21.25,
+   21.25
+  ],
+  "swap_source_row": 38,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "supported": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.99,
+  "tokens": 3000
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 8,
+  "who": "Party A",
+  "when": "06/21/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   17.0,
+   19.0
+  ],
+  "true": [
+   17.0,
+   19.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.98,
+  "scoped_dist": {
+   "contradicted": 0.01,
+   "insufficient": 0.01,
+   "supported": 0.98
+  },
+  "actor_only": 0.98,
+  "tokens": 2801
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 8,
+  "who": "Party A",
+  "when": "06/21/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   18.0,
+   19.0
+  ],
+  "true": [
+   17.0,
+   19.0
+  ],
+  "swap_source_row": 29,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "insufficient": 0.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.06,
+  "tokens": 2801
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 17,
+  "who": "CSC/Pamplona",
+  "when": "07/23/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   18.5,
+   18.5
+  ],
+  "true": [
+   18.5,
+   18.5
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 0.0,
+   "supported": 1.0
+  },
+  "actor_only": 0.99,
+  "tokens": 1917
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 17,
+  "who": "CSC/Pamplona",
+  "when": "07/23/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   19.5,
+   19.5
+  ],
+  "true": [
+   18.5,
+   18.5
+  ],
+  "swap_source_row": 27,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "insufficient": 0.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.02,
+  "tokens": 1917
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 17,
+  "who": "CSC/Pamplona",
+  "when": "07/23/2013",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   17.0,
+   18.0
+  ],
+  "true": [
+   18.5,
+   18.5
+  ],
+  "swap_source_row": 19,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 1.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 1938
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 19,
+  "who": "Party B",
+  "when": "07/24/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   17.0,
+   18.0
+  ],
+  "true": [
+   17.0,
+   18.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 0.0,
+   "supported": 1.0
+  },
+  "actor_only": 0.98,
+  "tokens": 1949
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 19,
+  "who": "Party B",
+  "when": "07/24/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   18.5,
+   18.5
+  ],
+  "true": [
+   17.0,
+   18.0
+  ],
+  "swap_source_row": 28,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "insufficient": 0.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 1928
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 19,
+  "who": "Party B",
+  "when": "07/24/2013",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   15.0,
+   17.0
+  ],
+  "true": [
+   17.0,
+   18.0
+  ],
+  "swap_source_row": 20,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "supported": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.03,
+  "tokens": 1949
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 20,
+  "who": "Party C",
+  "when": "07/24/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   15.0,
+   17.0
+  ],
+  "true": [
+   15.0,
+   17.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 1.0,
+   "contradicted": 0.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.99,
+  "tokens": 1949
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 20,
+  "who": "Party C",
+  "when": "07/24/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   16.0,
+   16.5
+  ],
+  "true": [
+   15.0,
+   17.0
+  ],
+  "swap_source_row": 23,
+  "scoped": "contradicted",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "insufficient": 0.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.04,
+  "tokens": 1949
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 20,
+  "who": "Party C",
+  "when": "07/24/2013",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   17.0,
+   18.0
+  ],
+  "true": [
+   15.0,
+   17.0
+  ],
+  "swap_source_row": 19,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 1.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.04,
+  "tokens": 1949
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 23,
+  "who": "Party C",
+  "when": "07/25/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   16.0,
+   16.5
+  ],
+  "true": [
+   16.0,
+   16.5
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.94,
+  "scoped_dist": {
+   "supported": 0.96,
+   "insufficient": 0.0,
+   "contradicted": 0.04
+  },
+  "actor_only": 0.97,
+  "tokens": 1965
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 23,
+  "who": "Party C",
+  "when": "07/25/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   15.0,
+   17.0
+  ],
+  "true": [
+   16.0,
+   16.5
+  ],
+  "swap_source_row": 20,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "supported": 0.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.93,
+  "tokens": 1965
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 27,
+  "who": "CSC/Pamplona",
+  "when": "09/09/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   19.5,
+   19.5
+  ],
+  "true": [
+   19.5,
+   19.5
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.96,
+  "scoped_dist": {
+   "insufficient": 0.01,
+   "supported": 0.97,
+   "contradicted": 0.02
+  },
+  "actor_only": 0.99,
+  "tokens": 1910
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 27,
+  "who": "CSC/Pamplona",
+  "when": "09/09/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   20.75,
+   20.75
+  ],
+  "true": [
+   19.5,
+   19.5
+  ],
+  "swap_source_row": 34,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "insufficient": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.02,
+  "tokens": 1910
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 27,
+  "who": "CSC/Pamplona",
+  "when": "09/09/2013",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   18.5,
+   18.5
+  ],
+  "true": [
+   19.5,
+   19.5
+  ],
+  "swap_source_row": 28,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 1.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 1910
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 28,
+  "who": "Party B",
+  "when": "09/09/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   18.5,
+   18.5
+  ],
+  "true": [
+   18.5,
+   18.5
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "supported": 0.99,
+   "insufficient": 0.0,
+   "contradicted": 0.01
+  },
+  "actor_only": 0.99,
+  "tokens": 1904
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 28,
+  "who": "Party B",
+  "when": "09/09/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   21.5,
+   21.5
+  ],
+  "true": [
+   18.5,
+   18.5
+  ],
+  "swap_source_row": 36,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "contradicted": 1.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.02,
+  "tokens": 1904
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 28,
+  "who": "Party B",
+  "when": "09/09/2013",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   19.5,
+   19.5
+  ],
+  "true": [
+   18.5,
+   18.5
+  ],
+  "swap_source_row": 27,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "contradicted": 1.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 1904
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 29,
+  "who": "Party A",
+  "when": "09/10/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   18.0,
+   19.0
+  ],
+  "true": [
+   18.0,
+   19.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "supported": 0.99,
+   "contradicted": 0.01
+  },
+  "actor_only": 0.99,
+  "tokens": 2095
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 29,
+  "who": "Party A",
+  "when": "09/10/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   17.0,
+   19.0
+  ],
+  "true": [
+   18.0,
+   19.0
+  ],
+  "swap_source_row": 8,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "insufficient": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.05,
+  "tokens": 2095
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 29,
+  "who": "Party A",
+  "when": "09/10/2013",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   16.0,
+   17.0
+  ],
+  "true": [
+   18.0,
+   19.0
+  ],
+  "swap_source_row": 30,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "contradicted": 1.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 2095
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 30,
+  "who": "Party C",
+  "when": "09/10/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   16.0,
+   17.0
+  ],
+  "true": [
+   16.0,
+   17.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.94,
+  "scoped_dist": {
+   "contradicted": 0.03,
+   "supported": 0.96,
+   "insufficient": 0.01
+  },
+  "actor_only": 0.99,
+  "tokens": 2095
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 30,
+  "who": "Party C",
+  "when": "09/10/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   16.0,
+   16.5
+  ],
+  "true": [
+   16.0,
+   17.0
+  ],
+  "swap_source_row": 23,
+  "scoped": "contradicted",
+  "scoped_conf": 0.96,
+  "scoped_dist": {
+   "contradicted": 0.97,
+   "supported": 0.03,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.06,
+  "tokens": 2095
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 30,
+  "who": "Party C",
+  "when": "09/10/2013",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   18.0,
+   19.0
+  ],
+  "true": [
+   16.0,
+   17.0
+  ],
+  "swap_source_row": 29,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "supported": 0.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 2095
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 34,
+  "who": "CSC/Pamplona",
+  "when": "09/18/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   20.75,
+   20.75
+  ],
+  "true": [
+   20.75,
+   20.75
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 0.0,
+   "supported": 1.0
+  },
+  "actor_only": 0.99,
+  "tokens": 2767
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 34,
+  "who": "CSC/Pamplona",
+  "when": "09/18/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   21.25,
+   21.25
+  ],
+  "true": [
+   20.75,
+   20.75
+  ],
+  "swap_source_row": 39,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "supported": 0.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.02,
+  "tokens": 2767
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 34,
+  "who": "CSC/Pamplona",
+  "when": "09/18/2013",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   18.0,
+   19.0
+  ],
+  "true": [
+   20.75,
+   20.75
+  ],
+  "swap_source_row": 35,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "insufficient": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.04,
+  "tokens": 2788
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 35,
+  "who": "Party A",
+  "when": "09/18/2013",
+  "event": "Bid reaffirmed",
+  "variant": "orig",
+  "claimed": [
+   18.0,
+   19.0
+  ],
+  "true": [
+   18.0,
+   19.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.91,
+  "scoped_dist": {
+   "insufficient": 0.03,
+   "contradicted": 0.03,
+   "supported": 0.94
+  },
+  "actor_only": 0.99,
+  "tokens": 2786
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 35,
+  "who": "Party A",
+  "when": "09/18/2013",
+  "event": "Bid reaffirmed",
+  "variant": "swap_same_party",
+  "claimed": [
+   17.0,
+   19.0
+  ],
+  "true": [
+   18.0,
+   19.0
+  ],
+  "swap_source_row": 8,
+  "scoped": "contradicted",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "supported": 0.0,
+   "contradicted": 0.99,
+   "insufficient": 0.01
+  },
+  "actor_only": 0.03,
+  "tokens": 2786
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 35,
+  "who": "Party A",
+  "when": "09/18/2013",
+  "event": "Bid reaffirmed",
+  "variant": "swap_near_party",
+  "claimed": [
+   20.75,
+   20.75
+  ],
+  "true": [
+   18.0,
+   19.0
+  ],
+  "swap_source_row": 34,
+  "scoped": "contradicted",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "supported": 0.0,
+   "contradicted": 1.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 2765
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 36,
+  "who": "Party B",
+  "when": "09/18/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   21.5,
+   21.5
+  ],
+  "true": [
+   21.5,
+   21.5
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 0.0,
+   "insufficient": 0.0,
+   "supported": 1.0
+  },
+  "actor_only": 0.99,
+  "tokens": 2761
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 36,
+  "who": "Party B",
+  "when": "09/18/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   18.5,
+   18.5
+  ],
+  "true": [
+   21.5,
+   21.5
+  ],
+  "swap_source_row": 28,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "insufficient": 0.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.98,
+  "tokens": 2761
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 36,
+  "who": "Party B",
+  "when": "09/18/2013",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   18.0,
+   19.0
+  ],
+  "true": [
+   21.5,
+   21.5
+  ],
+  "swap_source_row": 35,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "supported": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.04,
+  "tokens": 2782
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 39,
+  "who": "CSC/Pamplona",
+  "when": "09/21/2013",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   21.25,
+   21.25
+  ],
+  "true": [
+   21.25,
+   21.25
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.98,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "supported": 0.99,
+   "contradicted": 0.01
+  },
+  "actor_only": 0.98,
+  "tokens": 3000
+ },
+ {
+  "deal": "mac-gray",
+  "model": "deepseek",
+  "row": 39,
+  "who": "CSC/Pamplona",
+  "when": "09/21/2013",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   20.75,
+   20.75
+  ],
+  "true": [
+   21.25,
+   21.25
+  ],
+  "swap_source_row": 34,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "supported": 0.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.99,
+  "tokens": 3000
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 15,
+  "who": "9 IOI bidders",
+  "when": "05/19/2016 - 06/01/2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   17.93,
+   26.5
+  ],
+  "true": [
+   17.93,
+   26.5
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "supported": 0.99,
+   "insufficient": 0.0,
+   "contradicted": 0.01
+  },
+  "actor_only": 0.97,
+  "tokens": 2354
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 22,
+  "who": "Party C",
+  "when": "07/12/2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   21.0,
+   21.0
+  ],
+  "true": [
+   21.0,
+   21.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 0.0,
+   "supported": 1.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.99,
+  "tokens": 2203
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 22,
+  "who": "Party C",
+  "when": "07/12/2016",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   19.3,
+   19.3
+  ],
+  "true": [
+   21.0,
+   21.0
+  ],
+  "swap_source_row": 28,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "insufficient": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.02,
+  "tokens": 2203
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 22,
+  "who": "Party C",
+  "when": "07/12/2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   24.0,
+   24.0
+  ],
+  "true": [
+   21.0,
+   21.0
+  ],
+  "swap_source_row": 25,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "insufficient": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.03,
+  "tokens": 2203
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 25,
+  "who": "Party B",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   24.0,
+   24.0
+  ],
+  "true": [
+   24.0,
+   24.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.36,
+  "scoped_dist": {
+   "contradicted": 0.06,
+   "supported": 0.58,
+   "insufficient": 0.36
+  },
+  "actor_only": 0.91,
+  "tokens": 2078
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 25,
+  "who": "Party B",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   21.15,
+   21.15
+  ],
+  "true": [
+   24.0,
+   24.0
+  ],
+  "swap_source_row": 32,
+  "scoped": "contradicted",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "insufficient": 0.01,
+   "contradicted": 0.99,
+   "supported": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 2078
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 26,
+  "who": "Party E",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   21.26,
+   21.26
+  ],
+  "true": [
+   21.26,
+   21.26
+  ],
+  "swap_source_row": null,
+  "scoped": "insufficient",
+  "scoped_conf": 0.35,
+  "scoped_dist": {
+   "insufficient": 0.57,
+   "contradicted": 0.34,
+   "supported": 0.09
+  },
+  "actor_only": 0.87,
+  "tokens": 1849
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 26,
+  "who": "Party E",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   23.81,
+   23.81
+  ],
+  "true": [
+   21.26,
+   21.26
+  ],
+  "swap_source_row": 42,
+  "scoped": "contradicted",
+  "scoped_conf": 0.92,
+  "scoped_dist": {
+   "insufficient": 0.05,
+   "contradicted": 0.95,
+   "supported": 0.0
+  },
+  "actor_only": 0.02,
+  "tokens": 1849
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 26,
+  "who": "Party E",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   21.0,
+   21.0
+  ],
+  "true": [
+   21.26,
+   21.26
+  ],
+  "swap_source_row": 27,
+  "scoped": "contradicted",
+  "scoped_conf": 0.91,
+  "scoped_dist": {
+   "insufficient": 0.06,
+   "supported": 0.0,
+   "contradicted": 0.94
+  },
+  "actor_only": 0.04,
+  "tokens": 1849
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 27,
+  "who": "Party D",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   21.0,
+   21.0
+  ],
+  "true": [
+   21.0,
+   21.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.32,
+  "scoped_dist": {
+   "contradicted": 0.23,
+   "supported": 0.55,
+   "insufficient": 0.22
+  },
+  "actor_only": 0.96,
+  "tokens": 1802
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 27,
+  "who": "Party D",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   24.0,
+   24.0
+  ],
+  "true": [
+   21.0,
+   21.0
+  ],
+  "swap_source_row": 41,
+  "scoped": "contradicted",
+  "scoped_conf": 0.97,
+  "scoped_dist": {
+   "insufficient": 0.01,
+   "supported": 0.01,
+   "contradicted": 0.98
+  },
+  "actor_only": 0.03,
+  "tokens": 1802
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 27,
+  "who": "Party D",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   21.26,
+   21.26
+  ],
+  "true": [
+   21.0,
+   21.0
+  ],
+  "swap_source_row": 26,
+  "scoped": "contradicted",
+  "scoped_conf": 0.98,
+  "scoped_dist": {
+   "insufficient": 0.01,
+   "contradicted": 0.99,
+   "supported": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 1802
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 28,
+  "who": "Party C",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   19.3,
+   19.3
+  ],
+  "true": [
+   19.3,
+   19.3
+  ],
+  "swap_source_row": null,
+  "scoped": "contradicted",
+  "scoped_conf": 0.91,
+  "scoped_dist": {
+   "insufficient": 0.05,
+   "supported": 0.01,
+   "contradicted": 0.94
+  },
+  "actor_only": 0.52,
+  "tokens": 1657
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 28,
+  "who": "Party C",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   21.0,
+   21.0
+  ],
+  "true": [
+   19.3,
+   19.3
+  ],
+  "swap_source_row": 22,
+  "scoped": "contradicted",
+  "scoped_conf": 0.91,
+  "scoped_dist": {
+   "insufficient": 0.05,
+   "contradicted": 0.94,
+   "supported": 0.01
+  },
+  "actor_only": 0.76,
+  "tokens": 1657
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 28,
+  "who": "Party C",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   21.0,
+   21.0
+  ],
+  "true": [
+   19.3,
+   19.3
+  ],
+  "swap_source_row": 27,
+  "scoped": "contradicted",
+  "scoped_conf": 0.88,
+  "scoped_dist": {
+   "supported": 0.01,
+   "contradicted": 0.92,
+   "insufficient": 0.07
+  },
+  "actor_only": 0.78,
+  "tokens": 1657
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 29,
+  "who": "Party F",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   19.2,
+   19.2
+  ],
+  "true": [
+   19.2,
+   19.2
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.54,
+  "scoped_dist": {
+   "insufficient": 0.13,
+   "supported": 0.7,
+   "contradicted": 0.17
+  },
+  "actor_only": 0.95,
+  "tokens": 1831
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 29,
+  "who": "Party F",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   19.3,
+   19.3
+  ],
+  "true": [
+   19.2,
+   19.2
+  ],
+  "swap_source_row": 28,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 1.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 1831
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 32,
+  "who": "G&W",
+  "when": "07/21/2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   21.15,
+   21.15
+  ],
+  "true": [
+   21.15,
+   21.15
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.94,
+  "scoped_dist": {
+   "insufficient": 0.02,
+   "supported": 0.96,
+   "contradicted": 0.02
+  },
+  "actor_only": 0.98,
+  "tokens": 1908
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 32,
+  "who": "G&W",
+  "when": "07/21/2016",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   22.15,
+   22.15
+  ],
+  "true": [
+   21.15,
+   21.15
+  ],
+  "swap_source_row": 33,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 1.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.99,
+  "tokens": 1908
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 32,
+  "who": "G&W",
+  "when": "07/21/2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   21.26,
+   21.26
+  ],
+  "true": [
+   21.15,
+   21.15
+  ],
+  "swap_source_row": 26,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "supported": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.03,
+  "tokens": 1908
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 33,
+  "who": "G&W",
+  "when": "07/26/2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   22.15,
+   22.15
+  ],
+  "true": [
+   22.15,
+   22.15
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 0.0,
+   "supported": 1.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.98,
+  "tokens": 1908
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 33,
+  "who": "G&W",
+  "when": "07/26/2016",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   21.15,
+   21.15
+  ],
+  "true": [
+   22.15,
+   22.15
+  ],
+  "swap_source_row": 32,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "insufficient": 0.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.98,
+  "tokens": 1908
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 33,
+  "who": "G&W",
+  "when": "07/26/2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   21.26,
+   21.26
+  ],
+  "true": [
+   22.15,
+   22.15
+  ],
+  "swap_source_row": 26,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "supported": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.03,
+  "tokens": 1908
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 41,
+  "who": "Party D",
+  "when": "08/01/2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   24.0,
+   24.0
+  ],
+  "true": [
+   24.0,
+   24.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 0.0,
+   "supported": 1.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.98,
+  "tokens": 2006
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 41,
+  "who": "Party D",
+  "when": "08/01/2016",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   21.0,
+   21.0
+  ],
+  "true": [
+   24.0,
+   24.0
+  ],
+  "swap_source_row": 27,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "supported": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.98,
+  "tokens": 2006
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 41,
+  "who": "Party D",
+  "when": "08/01/2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   23.81,
+   23.81
+  ],
+  "true": [
+   24.0,
+   24.0
+  ],
+  "swap_source_row": 42,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 1.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.04,
+  "tokens": 2006
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 42,
+  "who": "Party E",
+  "when": "08/01/2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   23.81,
+   23.81
+  ],
+  "true": [
+   23.81,
+   23.81
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.97,
+  "scoped_dist": {
+   "contradicted": 0.02,
+   "supported": 0.98,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.95,
+  "tokens": 2006
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 42,
+  "who": "Party E",
+  "when": "08/01/2016",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   21.26,
+   21.26
+  ],
+  "true": [
+   23.81,
+   23.81
+  ],
+  "swap_source_row": 43,
+  "scoped": "contradicted",
+  "scoped_conf": 0.98,
+  "scoped_dist": {
+   "supported": 0.01,
+   "contradicted": 0.99,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.99,
+  "tokens": 2006
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 42,
+  "who": "Party E",
+  "when": "08/01/2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   24.0,
+   24.0
+  ],
+  "true": [
+   23.81,
+   23.81
+  ],
+  "swap_source_row": 41,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 1.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.04,
+  "tokens": 2006
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 43,
+  "who": "Party E",
+  "when": "08/02/2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   21.26,
+   21.26
+  ],
+  "true": [
+   21.26,
+   21.26
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.1,
+  "scoped_dist": {
+   "contradicted": 0.37,
+   "supported": 0.4,
+   "insufficient": 0.23
+  },
+  "actor_only": 0.99,
+  "tokens": 2006
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 43,
+  "who": "Party E",
+  "when": "08/02/2016",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   23.81,
+   23.81
+  ],
+  "true": [
+   21.26,
+   21.26
+  ],
+  "swap_source_row": 42,
+  "scoped": "contradicted",
+  "scoped_conf": 0.83,
+  "scoped_dist": {
+   "contradicted": 0.89,
+   "supported": 0.06,
+   "insufficient": 0.05
+  },
+  "actor_only": 0.97,
+  "tokens": 2006
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 43,
+  "who": "Party E",
+  "when": "08/02/2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   24.0,
+   24.0
+  ],
+  "true": [
+   21.26,
+   21.26
+  ],
+  "swap_source_row": 41,
+  "scoped": "contradicted",
+  "scoped_conf": 0.96,
+  "scoped_dist": {
+   "supported": 0.0,
+   "insufficient": 0.03,
+   "contradicted": 0.97
+  },
+  "actor_only": 0.05,
+  "tokens": 2006
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 47,
+  "who": "Party B",
+  "when": "08/04/2016",
+  "event": "Bid reaffirmed",
+  "variant": "orig",
+  "claimed": [
+   24.0,
+   24.0
+  ],
+  "true": [
+   24.0,
+   24.0
+  ],
+  "swap_source_row": null,
+  "scoped": "contradicted",
+  "scoped_conf": 0.66,
+  "scoped_dist": {
+   "insufficient": 0.22,
+   "contradicted": 0.78,
+   "supported": 0.0
+  },
+  "actor_only": 0.07,
+  "tokens": 2681
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 47,
+  "who": "Party B",
+  "when": "08/04/2016",
+  "event": "Bid reaffirmed",
+  "variant": "swap_near_party",
+  "claimed": [
+   25.0,
+   25.0
+  ],
+  "true": [
+   24.0,
+   24.0
+  ],
+  "swap_source_row": 50,
+  "scoped": "contradicted",
+  "scoped_conf": 0.84,
+  "scoped_dist": {
+   "insufficient": 0.11,
+   "contradicted": 0.89,
+   "supported": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 2681
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 50,
+  "who": "G&W",
+  "when": "08/12/2016 (morning)",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   25.0,
+   25.0
+  ],
+  "true": [
+   25.0,
+   25.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.64,
+  "scoped_dist": {
+   "contradicted": 0.24,
+   "insufficient": 0.0,
+   "supported": 0.76
+  },
+  "actor_only": 0.99,
+  "tokens": 2690
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 50,
+  "who": "G&W",
+  "when": "08/12/2016 (morning)",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   22.15,
+   22.15
+  ],
+  "true": [
+   25.0,
+   25.0
+  ],
+  "swap_source_row": 33,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "insufficient": 0.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 2690
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "opus",
+  "row": 50,
+  "who": "G&W",
+  "when": "08/12/2016 (morning)",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   24.0,
+   24.0
+  ],
+  "true": [
+   25.0,
+   25.0
+  ],
+  "swap_source_row": 47,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "insufficient": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.06,
+  "tokens": 2690
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 18,
+  "who": "9 IOI bidders",
+  "when": "05/19/2016\u201306/01/2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   17.93,
+   26.5
+  ],
+  "true": [
+   17.93,
+   26.5
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "contradicted": 0.01,
+   "insufficient": 0.0,
+   "supported": 0.99
+  },
+  "actor_only": 0.97,
+  "tokens": 2353
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 24,
+  "who": "Party C",
+  "when": "07/12/2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   21.0,
+   21.0
+  ],
+  "true": [
+   21.0,
+   21.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "supported": 1.0,
+   "contradicted": 0.0
+  },
+  "actor_only": 0.99,
+  "tokens": 2203
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 24,
+  "who": "Party C",
+  "when": "07/12/2016",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   19.3,
+   19.3
+  ],
+  "true": [
+   21.0,
+   21.0
+  ],
+  "swap_source_row": 29,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "insufficient": 0.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.02,
+  "tokens": 2203
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 24,
+  "who": "Party C",
+  "when": "07/12/2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   24.0,
+   24.0
+  ],
+  "true": [
+   21.0,
+   21.0
+  ],
+  "swap_source_row": 26,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "contradicted": 1.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 2203
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 26,
+  "who": "Party B",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   24.0,
+   24.0
+  ],
+  "true": [
+   24.0,
+   24.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.67,
+  "scoped_dist": {
+   "contradicted": 0.04,
+   "supported": 0.78,
+   "insufficient": 0.18
+  },
+  "actor_only": 0.91,
+  "tokens": 2058
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 26,
+  "who": "Party B",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   21.15,
+   21.15
+  ],
+  "true": [
+   24.0,
+   24.0
+  ],
+  "swap_source_row": 34,
+  "scoped": "contradicted",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "supported": 0.0,
+   "contradicted": 0.99,
+   "insufficient": 0.01
+  },
+  "actor_only": 0.03,
+  "tokens": 2058
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 27,
+  "who": "Party E",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   21.26,
+   21.26
+  ],
+  "true": [
+   21.26,
+   21.26
+  ],
+  "swap_source_row": null,
+  "scoped": "insufficient",
+  "scoped_conf": 0.35,
+  "scoped_dist": {
+   "insufficient": 0.5700000000000001,
+   "supported": 0.07,
+   "contradicted": 0.36
+  },
+  "actor_only": 0.87,
+  "tokens": 1849
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 27,
+  "who": "Party E",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   23.81,
+   23.81
+  ],
+  "true": [
+   21.26,
+   21.26
+  ],
+  "swap_source_row": 44,
+  "scoped": "contradicted",
+  "scoped_conf": 0.93,
+  "scoped_dist": {
+   "insufficient": 0.05,
+   "contradicted": 0.95,
+   "supported": 0.0
+  },
+  "actor_only": 0.02,
+  "tokens": 1849
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 27,
+  "who": "Party E",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   21.0,
+   21.0
+  ],
+  "true": [
+   21.26,
+   21.26
+  ],
+  "swap_source_row": 28,
+  "scoped": "contradicted",
+  "scoped_conf": 0.94,
+  "scoped_dist": {
+   "contradicted": 0.96,
+   "insufficient": 0.04,
+   "supported": 0.0
+  },
+  "actor_only": 0.04,
+  "tokens": 1849
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 28,
+  "who": "Party D",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   21.0,
+   21.0
+  ],
+  "true": [
+   21.0,
+   21.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.21,
+  "scoped_dist": {
+   "supported": 0.47,
+   "insufficient": 0.25,
+   "contradicted": 0.28
+  },
+  "actor_only": 0.95,
+  "tokens": 1802
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 28,
+  "who": "Party D",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   24.0,
+   24.0
+  ],
+  "true": [
+   21.0,
+   21.0
+  ],
+  "swap_source_row": 43,
+  "scoped": "contradicted",
+  "scoped_conf": 0.96,
+  "scoped_dist": {
+   "supported": 0.0,
+   "contradicted": 0.98,
+   "insufficient": 0.02
+  },
+  "actor_only": 0.03,
+  "tokens": 1802
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 28,
+  "who": "Party D",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   21.26,
+   21.26
+  ],
+  "true": [
+   21.0,
+   21.0
+  ],
+  "swap_source_row": 27,
+  "scoped": "contradicted",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "insufficient": 0.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 1802
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 29,
+  "who": "Party C",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   19.3,
+   19.3
+  ],
+  "true": [
+   19.3,
+   19.3
+  ],
+  "swap_source_row": null,
+  "scoped": "contradicted",
+  "scoped_conf": 0.91,
+  "scoped_dist": {
+   "contradicted": 0.94,
+   "insufficient": 0.05,
+   "supported": 0.01
+  },
+  "actor_only": 0.53,
+  "tokens": 1657
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 29,
+  "who": "Party C",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   21.0,
+   21.0
+  ],
+  "true": [
+   19.3,
+   19.3
+  ],
+  "swap_source_row": 24,
+  "scoped": "contradicted",
+  "scoped_conf": 0.88,
+  "scoped_dist": {
+   "contradicted": 0.92,
+   "insufficient": 0.07,
+   "supported": 0.01
+  },
+  "actor_only": 0.75,
+  "tokens": 1657
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 29,
+  "who": "Party C",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   21.0,
+   21.0
+  ],
+  "true": [
+   19.3,
+   19.3
+  ],
+  "swap_source_row": 28,
+  "scoped": "contradicted",
+  "scoped_conf": 0.88,
+  "scoped_dist": {
+   "contradicted": 0.92,
+   "supported": 0.01,
+   "insufficient": 0.07
+  },
+  "actor_only": 0.76,
+  "tokens": 1657
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 30,
+  "who": "Party F",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   19.2,
+   19.2
+  ],
+  "true": [
+   19.2,
+   19.2
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.8,
+  "scoped_dist": {
+   "contradicted": 0.08,
+   "supported": 0.87,
+   "insufficient": 0.05
+  },
+  "actor_only": 0.96,
+  "tokens": 1831
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 30,
+  "who": "Party F",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   19.3,
+   19.3
+  ],
+  "true": [
+   19.2,
+   19.2
+  ],
+  "swap_source_row": 29,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "supported": 0.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.02,
+  "tokens": 1831
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 34,
+  "who": "G&W",
+  "when": "07/21/2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   21.15,
+   21.15
+  ],
+  "true": [
+   21.15,
+   21.15
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.95,
+  "scoped_dist": {
+   "contradicted": 0.02,
+   "insufficient": 0.01,
+   "supported": 0.97
+  },
+  "actor_only": 0.98,
+  "tokens": 1908
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 34,
+  "who": "G&W",
+  "when": "07/21/2016",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   22.15,
+   22.15
+  ],
+  "true": [
+   21.15,
+   21.15
+  ],
+  "swap_source_row": 35,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 1.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.99,
+  "tokens": 1908
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 34,
+  "who": "G&W",
+  "when": "07/21/2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   21.26,
+   21.26
+  ],
+  "true": [
+   21.15,
+   21.15
+  ],
+  "swap_source_row": 27,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "insufficient": 0.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 1908
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 35,
+  "who": "G&W",
+  "when": "07/26/2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   22.15,
+   22.15
+  ],
+  "true": [
+   22.15,
+   22.15
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 1.0,
+   "insufficient": 0.0,
+   "contradicted": 0.0
+  },
+  "actor_only": 0.98,
+  "tokens": 1908
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 35,
+  "who": "G&W",
+  "when": "07/26/2016",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   21.15,
+   21.15
+  ],
+  "true": [
+   22.15,
+   22.15
+  ],
+  "swap_source_row": 34,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "insufficient": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.98,
+  "tokens": 1908
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 35,
+  "who": "G&W",
+  "when": "07/26/2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   21.26,
+   21.26
+  ],
+  "true": [
+   22.15,
+   22.15
+  ],
+  "swap_source_row": 27,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "contradicted": 1.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 1908
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 43,
+  "who": "Party D",
+  "when": "08/01/2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   24.0,
+   24.0
+  ],
+  "true": [
+   24.0,
+   24.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 0.0,
+   "supported": 1.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.98,
+  "tokens": 2006
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 43,
+  "who": "Party D",
+  "when": "08/01/2016",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   21.0,
+   21.0
+  ],
+  "true": [
+   24.0,
+   24.0
+  ],
+  "swap_source_row": 28,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 1.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.99,
+  "tokens": 2006
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 43,
+  "who": "Party D",
+  "when": "08/01/2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   23.81,
+   23.81
+  ],
+  "true": [
+   24.0,
+   24.0
+  ],
+  "swap_source_row": 44,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "contradicted": 1.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.04,
+  "tokens": 2006
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 44,
+  "who": "Party E",
+  "when": "08/01/2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   23.81,
+   23.81
+  ],
+  "true": [
+   23.81,
+   23.81
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.97,
+  "scoped_dist": {
+   "supported": 0.98,
+   "insufficient": 0.0,
+   "contradicted": 0.02
+  },
+  "actor_only": 0.96,
+  "tokens": 2006
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 44,
+  "who": "Party E",
+  "when": "08/01/2016",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   21.26,
+   21.26
+  ],
+  "true": [
+   23.81,
+   23.81
+  ],
+  "swap_source_row": 46,
+  "scoped": "contradicted",
+  "scoped_conf": 0.98,
+  "scoped_dist": {
+   "contradicted": 0.99,
+   "supported": 0.01,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.99,
+  "tokens": 2006
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 44,
+  "who": "Party E",
+  "when": "08/01/2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   24.0,
+   24.0
+  ],
+  "true": [
+   23.81,
+   23.81
+  ],
+  "swap_source_row": 43,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "supported": 0.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.05,
+  "tokens": 2006
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 46,
+  "who": "Party E",
+  "when": "08/02/2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   21.26,
+   21.26
+  ],
+  "true": [
+   21.26,
+   21.26
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.19,
+  "scoped_dist": {
+   "contradicted": 0.36,
+   "supported": 0.47000000000000003,
+   "insufficient": 0.17
+  },
+  "actor_only": 0.99,
+  "tokens": 2006
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 46,
+  "who": "Party E",
+  "when": "08/02/2016",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   23.81,
+   23.81
+  ],
+  "true": [
+   21.26,
+   21.26
+  ],
+  "swap_source_row": 44,
+  "scoped": "contradicted",
+  "scoped_conf": 0.84,
+  "scoped_dist": {
+   "insufficient": 0.05,
+   "supported": 0.05,
+   "contradicted": 0.9
+  },
+  "actor_only": 0.97,
+  "tokens": 2006
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 46,
+  "who": "Party E",
+  "when": "08/02/2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   24.0,
+   24.0
+  ],
+  "true": [
+   21.26,
+   21.26
+  ],
+  "swap_source_row": 43,
+  "scoped": "contradicted",
+  "scoped_conf": 0.95,
+  "scoped_dist": {
+   "supported": 0.0,
+   "insufficient": 0.03,
+   "contradicted": 0.97
+  },
+  "actor_only": 0.05,
+  "tokens": 2006
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 52,
+  "who": "G&W",
+  "when": "08/12/2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   25.0,
+   25.0
+  ],
+  "true": [
+   25.0,
+   25.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.59,
+  "scoped_dist": {
+   "supported": 0.73,
+   "insufficient": 0.0,
+   "contradicted": 0.27
+  },
+  "actor_only": 0.99,
+  "tokens": 2686
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "sol",
+  "row": 52,
+  "who": "G&W",
+  "when": "08/12/2016",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   22.15,
+   22.15
+  ],
+  "true": [
+   25.0,
+   25.0
+  ],
+  "swap_source_row": 35,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 1.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 2686
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 22,
+  "who": "Party C",
+  "when": "07/12/2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   21.0,
+   21.0
+  ],
+  "true": [
+   21.0,
+   21.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 0.0,
+   "insufficient": 0.0,
+   "supported": 1.0
+  },
+  "actor_only": 0.99,
+  "tokens": 2203
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 22,
+  "who": "Party C",
+  "when": "07/12/2016",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   19.3,
+   19.3
+  ],
+  "true": [
+   21.0,
+   21.0
+  ],
+  "swap_source_row": 27,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 1.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.02,
+  "tokens": 2203
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 22,
+  "who": "Party C",
+  "when": "07/12/2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   24.0,
+   24.0
+  ],
+  "true": [
+   21.0,
+   21.0
+  ],
+  "swap_source_row": 24,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 1.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.04,
+  "tokens": 2203
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 24,
+  "who": "Party B",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   24.0,
+   24.0
+  ],
+  "true": [
+   24.0,
+   24.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.38,
+  "scoped_dist": {
+   "contradicted": 0.06,
+   "supported": 0.58,
+   "insufficient": 0.36
+  },
+  "actor_only": 0.9,
+  "tokens": 2078
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 24,
+  "who": "Party B",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   21.15,
+   21.15
+  ],
+  "true": [
+   24.0,
+   24.0
+  ],
+  "swap_source_row": 31,
+  "scoped": "contradicted",
+  "scoped_conf": 0.98,
+  "scoped_dist": {
+   "supported": 0.0,
+   "insufficient": 0.01,
+   "contradicted": 0.99
+  },
+  "actor_only": 0.03,
+  "tokens": 2078
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 25,
+  "who": "Party E",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   21.26,
+   21.26
+  ],
+  "true": [
+   21.26,
+   21.26
+  ],
+  "swap_source_row": null,
+  "scoped": "insufficient",
+  "scoped_conf": 0.28,
+  "scoped_dist": {
+   "supported": 0.1,
+   "contradicted": 0.39,
+   "insufficient": 0.51
+  },
+  "actor_only": 0.83,
+  "tokens": 1849
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 25,
+  "who": "Party E",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   23.81,
+   23.81
+  ],
+  "true": [
+   21.26,
+   21.26
+  ],
+  "swap_source_row": 41,
+  "scoped": "contradicted",
+  "scoped_conf": 0.94,
+  "scoped_dist": {
+   "insufficient": 0.04,
+   "supported": 0.0,
+   "contradicted": 0.96
+  },
+  "actor_only": 0.02,
+  "tokens": 1849
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 25,
+  "who": "Party E",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   21.0,
+   21.0
+  ],
+  "true": [
+   21.26,
+   21.26
+  ],
+  "swap_source_row": 26,
+  "scoped": "contradicted",
+  "scoped_conf": 0.89,
+  "scoped_dist": {
+   "supported": 0.0,
+   "insufficient": 0.07,
+   "contradicted": 0.93
+  },
+  "actor_only": 0.04,
+  "tokens": 1849
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 26,
+  "who": "Party D",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   21.0,
+   21.0
+  ],
+  "true": [
+   21.0,
+   21.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.25,
+  "scoped_dist": {
+   "insufficient": 0.23,
+   "supported": 0.5,
+   "contradicted": 0.27
+  },
+  "actor_only": 0.95,
+  "tokens": 1802
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 26,
+  "who": "Party D",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   24.0,
+   24.0
+  ],
+  "true": [
+   21.0,
+   21.0
+  ],
+  "swap_source_row": 40,
+  "scoped": "contradicted",
+  "scoped_conf": 0.96,
+  "scoped_dist": {
+   "insufficient": 0.02,
+   "contradicted": 0.97,
+   "supported": 0.01
+  },
+  "actor_only": 0.03,
+  "tokens": 1802
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 26,
+  "who": "Party D",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   21.26,
+   21.26
+  ],
+  "true": [
+   21.0,
+   21.0
+  ],
+  "swap_source_row": 25,
+  "scoped": "contradicted",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "contradicted": 0.99,
+   "insufficient": 0.01,
+   "supported": 0.0
+  },
+  "actor_only": 0.02,
+  "tokens": 1802
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 27,
+  "who": "Party C",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   19.3,
+   19.3
+  ],
+  "true": [
+   19.3,
+   19.3
+  ],
+  "swap_source_row": null,
+  "scoped": "contradicted",
+  "scoped_conf": 0.88,
+  "scoped_dist": {
+   "contradicted": 0.93,
+   "insufficient": 0.06,
+   "supported": 0.01
+  },
+  "actor_only": 0.5,
+  "tokens": 1657
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 27,
+  "who": "Party C",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   21.0,
+   21.0
+  ],
+  "true": [
+   19.3,
+   19.3
+  ],
+  "swap_source_row": 22,
+  "scoped": "contradicted",
+  "scoped_conf": 0.88,
+  "scoped_dist": {
+   "contradicted": 0.91,
+   "insufficient": 0.08,
+   "supported": 0.01
+  },
+  "actor_only": 0.74,
+  "tokens": 1657
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 27,
+  "who": "Party C",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   21.0,
+   21.0
+  ],
+  "true": [
+   19.3,
+   19.3
+  ],
+  "swap_source_row": 26,
+  "scoped": "contradicted",
+  "scoped_conf": 0.88,
+  "scoped_dist": {
+   "supported": 0.01,
+   "contradicted": 0.92,
+   "insufficient": 0.07
+  },
+  "actor_only": 0.77,
+  "tokens": 1657
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 28,
+  "who": "Party F",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   19.2,
+   19.2
+  ],
+  "true": [
+   19.2,
+   19.2
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.52,
+  "scoped_dist": {
+   "supported": 0.68,
+   "insufficient": 0.11,
+   "contradicted": 0.21
+  },
+  "actor_only": 0.95,
+  "tokens": 1831
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 28,
+  "who": "Party F",
+  "when": "late July 2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   19.3,
+   19.3
+  ],
+  "true": [
+   19.2,
+   19.2
+  ],
+  "swap_source_row": 27,
+  "scoped": "contradicted",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 1.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.02,
+  "tokens": 1831
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 31,
+  "who": "G&W",
+  "when": "07/21/2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   21.15,
+   21.15
+  ],
+  "true": [
+   21.15,
+   21.15
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.96,
+  "scoped_dist": {
+   "insufficient": 0.01,
+   "contradicted": 0.01,
+   "supported": 0.98
+  },
+  "actor_only": 0.98,
+  "tokens": 1908
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 31,
+  "who": "G&W",
+  "when": "07/21/2016",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   22.15,
+   22.15
+  ],
+  "true": [
+   21.15,
+   21.15
+  ],
+  "swap_source_row": 32,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "supported": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.98,
+  "tokens": 1908
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 31,
+  "who": "G&W",
+  "when": "07/21/2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   21.26,
+   21.26
+  ],
+  "true": [
+   21.15,
+   21.15
+  ],
+  "swap_source_row": 25,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "supported": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.03,
+  "tokens": 1908
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 32,
+  "who": "G&W",
+  "when": "07/26/2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   22.15,
+   22.15
+  ],
+  "true": [
+   22.15,
+   22.15
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 1.0,
+   "contradicted": 0.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.98,
+  "tokens": 1908
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 32,
+  "who": "G&W",
+  "when": "07/26/2016",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   21.15,
+   21.15
+  ],
+  "true": [
+   22.15,
+   22.15
+  ],
+  "swap_source_row": 31,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "insufficient": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.98,
+  "tokens": 1908
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 32,
+  "who": "G&W",
+  "when": "07/26/2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   21.26,
+   21.26
+  ],
+  "true": [
+   22.15,
+   22.15
+  ],
+  "swap_source_row": 25,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "contradicted": 1.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 1908
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 40,
+  "who": "Party D",
+  "when": "08/01/2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   24.0,
+   24.0
+  ],
+  "true": [
+   24.0,
+   24.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 0.0,
+   "insufficient": 0.0,
+   "supported": 1.0
+  },
+  "actor_only": 0.98,
+  "tokens": 2006
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 40,
+  "who": "Party D",
+  "when": "08/01/2016",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   21.0,
+   21.0
+  ],
+  "true": [
+   24.0,
+   24.0
+  ],
+  "swap_source_row": 26,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "contradicted": 1.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.99,
+  "tokens": 2006
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 40,
+  "who": "Party D",
+  "when": "08/01/2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   23.81,
+   23.81
+  ],
+  "true": [
+   24.0,
+   24.0
+  ],
+  "swap_source_row": 41,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "insufficient": 0.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.04,
+  "tokens": 2006
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 41,
+  "who": "Party E",
+  "when": "08/01/2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   23.81,
+   23.81
+  ],
+  "true": [
+   23.81,
+   23.81
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.98,
+  "scoped_dist": {
+   "contradicted": 0.01,
+   "insufficient": 0.0,
+   "supported": 0.99
+  },
+  "actor_only": 0.96,
+  "tokens": 2006
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 41,
+  "who": "Party E",
+  "when": "08/01/2016",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   21.26,
+   21.26
+  ],
+  "true": [
+   23.81,
+   23.81
+  ],
+  "swap_source_row": 43,
+  "scoped": "contradicted",
+  "scoped_conf": 0.97,
+  "scoped_dist": {
+   "supported": 0.02,
+   "contradicted": 0.98,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.99,
+  "tokens": 2006
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 41,
+  "who": "Party E",
+  "when": "08/01/2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   24.0,
+   24.0
+  ],
+  "true": [
+   23.81,
+   23.81
+  ],
+  "swap_source_row": 40,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "supported": 0.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.05,
+  "tokens": 2006
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 43,
+  "who": "Party E",
+  "when": "08/02/2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   21.26,
+   21.26
+  ],
+  "true": [
+   21.26,
+   21.26
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.32,
+  "scoped_dist": {
+   "contradicted": 0.31,
+   "supported": 0.55,
+   "insufficient": 0.14
+  },
+  "actor_only": 0.99,
+  "tokens": 2006
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 43,
+  "who": "Party E",
+  "when": "08/02/2016",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   23.81,
+   23.81
+  ],
+  "true": [
+   21.26,
+   21.26
+  ],
+  "swap_source_row": 41,
+  "scoped": "contradicted",
+  "scoped_conf": 0.87,
+  "scoped_dist": {
+   "contradicted": 0.91,
+   "insufficient": 0.05,
+   "supported": 0.04
+  },
+  "actor_only": 0.95,
+  "tokens": 2006
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 43,
+  "who": "Party E",
+  "when": "08/02/2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   24.0,
+   24.0
+  ],
+  "true": [
+   21.26,
+   21.26
+  ],
+  "swap_source_row": 40,
+  "scoped": "contradicted",
+  "scoped_conf": 0.96,
+  "scoped_dist": {
+   "contradicted": 0.97,
+   "supported": 0.0,
+   "insufficient": 0.03
+  },
+  "actor_only": 0.05,
+  "tokens": 2006
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 46,
+  "who": "Party B",
+  "when": "08/04/2016",
+  "event": "Bid reaffirmed",
+  "variant": "orig",
+  "claimed": [
+   24.0,
+   24.0
+  ],
+  "true": [
+   24.0,
+   24.0
+  ],
+  "swap_source_row": null,
+  "scoped": "contradicted",
+  "scoped_conf": 0.61,
+  "scoped_dist": {
+   "insufficient": 0.26,
+   "contradicted": 0.74,
+   "supported": 0.0
+  },
+  "actor_only": 0.08,
+  "tokens": 2681
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 46,
+  "who": "Party B",
+  "when": "08/04/2016",
+  "event": "Bid reaffirmed",
+  "variant": "swap_near_party",
+  "claimed": [
+   25.0,
+   25.0
+  ],
+  "true": [
+   24.0,
+   24.0
+  ],
+  "swap_source_row": 49,
+  "scoped": "contradicted",
+  "scoped_conf": 0.82,
+  "scoped_dist": {
+   "insufficient": 0.12,
+   "contradicted": 0.88,
+   "supported": 0.0
+  },
+  "actor_only": 0.04,
+  "tokens": 2681
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 49,
+  "who": "G&W",
+  "when": "08/12/2016",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   25.0,
+   25.0
+  ],
+  "true": [
+   25.0,
+   25.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.55,
+  "scoped_dist": {
+   "contradicted": 0.3,
+   "supported": 0.7,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.99,
+  "tokens": 2686
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 49,
+  "who": "G&W",
+  "when": "08/12/2016",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   22.15,
+   22.15
+  ],
+  "true": [
+   25.0,
+   25.0
+  ],
+  "swap_source_row": 32,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "supported": 0.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 2686
+ },
+ {
+  "deal": "providence-worcester",
+  "model": "deepseek",
+  "row": 49,
+  "who": "G&W",
+  "when": "08/12/2016",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   24.0,
+   24.0
+  ],
+  "true": [
+   25.0,
+   25.0
+  ],
+  "swap_source_row": 46,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "supported": 0.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.06,
+  "tokens": 2686
+ },
+ {
+  "deal": "petsmart",
+  "model": "opus",
+  "row": 17,
+  "who": "Buyer Group",
+  "when": "10/30/2014",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   81.0,
+   83.0
+  ],
+  "true": [
+   81.0,
+   83.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "contradicted": 0.0,
+   "supported": 1.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.99,
+  "tokens": 2790
+ },
+ {
+  "deal": "petsmart",
+  "model": "opus",
+  "row": 17,
+  "who": "Buyer Group",
+  "when": "10/30/2014",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   80.7,
+   80.7
+  ],
+  "true": [
+   81.0,
+   83.0
+  ],
+  "swap_source_row": 30,
+  "scoped": "contradicted",
+  "scoped_conf": 0.96,
+  "scoped_dist": {
+   "contradicted": 0.98,
+   "insufficient": 0.01,
+   "supported": 0.01
+  },
+  "actor_only": 0.04,
+  "tokens": 2769
+ },
+ {
+  "deal": "petsmart",
+  "model": "opus",
+  "row": 17,
+  "who": "Buyer Group",
+  "when": "10/30/2014",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   80.0,
+   85.0
+  ],
+  "true": [
+   81.0,
+   83.0
+  ],
+  "swap_source_row": 18,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 1.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.04,
+  "tokens": 2790
+ },
+ {
+  "deal": "petsmart",
+  "model": "opus",
+  "row": 18,
+  "who": "Unnamed financial bidder 1",
+  "when": "10/30/2014",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   80.0,
+   85.0
+  ],
+  "true": [
+   80.0,
+   85.0
+  ],
+  "swap_source_row": null,
+  "scoped": "contradicted",
+  "scoped_conf": 0.34,
+  "scoped_dist": {
+   "contradicted": 0.55,
+   "insufficient": 0.1,
+   "supported": 0.35
+  },
+  "actor_only": 0.52,
+  "tokens": 2774
+ },
+ {
+  "deal": "petsmart",
+  "model": "opus",
+  "row": 18,
+  "who": "Unnamed financial bidder 1",
+  "when": "10/30/2014",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   81.0,
+   83.0
+  ],
+  "true": [
+   80.0,
+   85.0
+  ],
+  "swap_source_row": 17,
+  "scoped": "contradicted",
+  "scoped_conf": 0.88,
+  "scoped_dist": {
+   "insufficient": 0.02,
+   "contradicted": 0.92,
+   "supported": 0.06
+  },
+  "actor_only": 0.22,
+  "tokens": 2774
+ },
+ {
+  "deal": "petsmart",
+  "model": "opus",
+  "row": 20,
+  "who": "Bidder 2",
+  "when": "10/30/2014",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   78.0,
+   78.0
+  ],
+  "true": [
+   78.0,
+   78.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.53,
+  "scoped_dist": {
+   "insufficient": 0.07,
+   "supported": 0.69,
+   "contradicted": 0.24
+  },
+  "actor_only": 0.97,
+  "tokens": 2771
+ },
+ {
+  "deal": "petsmart",
+  "model": "opus",
+  "row": 20,
+  "who": "Bidder 2",
+  "when": "10/30/2014",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   81.0,
+   84.0
+  ],
+  "true": [
+   78.0,
+   78.0
+  ],
+  "swap_source_row": 24,
+  "scoped": "contradicted",
+  "scoped_conf": 0.85,
+  "scoped_dist": {
+   "insufficient": 0.06,
+   "contradicted": 0.9,
+   "supported": 0.04
+  },
+  "actor_only": 0.99,
+  "tokens": 2792
+ },
+ {
+  "deal": "petsmart",
+  "model": "opus",
+  "row": 20,
+  "who": "Bidder 2",
+  "when": "10/30/2014",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   80.0,
+   85.0
+  ],
+  "true": [
+   78.0,
+   78.0
+  ],
+  "swap_source_row": 18,
+  "scoped": "contradicted",
+  "scoped_conf": 0.98,
+  "scoped_dist": {
+   "contradicted": 0.99,
+   "supported": 0.0,
+   "insufficient": 0.01
+  },
+  "actor_only": 0.05,
+  "tokens": 2792
+ },
+ {
+  "deal": "petsmart",
+  "model": "opus",
+  "row": 24,
+  "who": "Bidder 2",
+  "when": "10/30\u201311/02/2014",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   81.0,
+   84.0
+  ],
+  "true": [
+   81.0,
+   84.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.77,
+  "scoped_dist": {
+   "supported": 0.84,
+   "contradicted": 0.14,
+   "insufficient": 0.02
+  },
+  "actor_only": 0.99,
+  "tokens": 2798
+ },
+ {
+  "deal": "petsmart",
+  "model": "opus",
+  "row": 24,
+  "who": "Bidder 2",
+  "when": "10/30\u201311/02/2014",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   78.0,
+   78.0
+  ],
+  "true": [
+   81.0,
+   84.0
+  ],
+  "swap_source_row": 20,
+  "scoped": "contradicted",
+  "scoped_conf": 0.79,
+  "scoped_dist": {
+   "contradicted": 0.86,
+   "insufficient": 0.01,
+   "supported": 0.13
+  },
+  "actor_only": 0.97,
+  "tokens": 2777
+ },
+ {
+  "deal": "petsmart",
+  "model": "opus",
+  "row": 24,
+  "who": "Bidder 2",
+  "when": "10/30\u201311/02/2014",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   80.0,
+   85.0
+  ],
+  "true": [
+   81.0,
+   84.0
+  ],
+  "swap_source_row": 18,
+  "scoped": "contradicted",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "supported": 0.01,
+   "contradicted": 0.99
+  },
+  "actor_only": 0.05,
+  "tokens": 2798
+ },
+ {
+  "deal": "petsmart",
+  "model": "opus",
+  "row": 30,
+  "who": "Buyer Group",
+  "when": "12/10/2014",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   80.7,
+   80.7
+  ],
+  "true": [
+   80.7,
+   80.7
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.78,
+  "scoped_dist": {
+   "insufficient": 0.01,
+   "supported": 0.86,
+   "contradicted": 0.13
+  },
+  "actor_only": 0.99,
+  "tokens": 2496
+ },
+ {
+  "deal": "petsmart",
+  "model": "opus",
+  "row": 30,
+  "who": "Buyer Group",
+  "when": "12/10/2014",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   82.5,
+   82.5
+  ],
+  "true": [
+   80.7,
+   80.7
+  ],
+  "swap_source_row": 37,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "insufficient": 0.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 2496
+ },
+ {
+  "deal": "petsmart",
+  "model": "opus",
+  "row": 30,
+  "who": "Buyer Group",
+  "when": "12/10/2014",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   80.35,
+   80.35
+  ],
+  "true": [
+   80.7,
+   80.7
+  ],
+  "swap_source_row": 31,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "contradicted": 1.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.04,
+  "tokens": 2496
+ },
+ {
+  "deal": "petsmart",
+  "model": "opus",
+  "row": 31,
+  "who": "Bidder 2",
+  "when": "12/10/2014",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   80.35,
+   80.35
+  ],
+  "true": [
+   80.35,
+   80.35
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.93,
+  "scoped_dist": {
+   "supported": 0.95,
+   "insufficient": 0.01,
+   "contradicted": 0.04
+  },
+  "actor_only": 0.99,
+  "tokens": 2498
+ },
+ {
+  "deal": "petsmart",
+  "model": "opus",
+  "row": 31,
+  "who": "Bidder 2",
+  "when": "12/10/2014",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   81.5,
+   81.5
+  ],
+  "true": [
+   80.35,
+   80.35
+  ],
+  "swap_source_row": 36,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 1.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 2498
+ },
+ {
+  "deal": "petsmart",
+  "model": "opus",
+  "row": 31,
+  "who": "Bidder 2",
+  "when": "12/10/2014",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   80.7,
+   80.7
+  ],
+  "true": [
+   80.35,
+   80.35
+  ],
+  "swap_source_row": 30,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "supported": 0.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 2498
+ },
+ {
+  "deal": "petsmart",
+  "model": "opus",
+  "row": 36,
+  "who": "Bidder 2",
+  "when": "12/12/2014 (evening)",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   81.5,
+   81.5
+  ],
+  "true": [
+   81.5,
+   81.5
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.96,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 0.03,
+   "supported": 0.97
+  },
+  "actor_only": 0.99,
+  "tokens": 2431
+ },
+ {
+  "deal": "petsmart",
+  "model": "opus",
+  "row": 36,
+  "who": "Bidder 2",
+  "when": "12/12/2014 (evening)",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   80.35,
+   80.35
+  ],
+  "true": [
+   81.5,
+   81.5
+  ],
+  "swap_source_row": 31,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "contradicted": 1.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.99,
+  "tokens": 2431
+ },
+ {
+  "deal": "petsmart",
+  "model": "opus",
+  "row": 36,
+  "who": "Bidder 2",
+  "when": "12/12/2014 (evening)",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   82.5,
+   82.5
+  ],
+  "true": [
+   81.5,
+   81.5
+  ],
+  "swap_source_row": 37,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "contradicted": 1.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.04,
+  "tokens": 2431
+ },
+ {
+  "deal": "petsmart",
+  "model": "opus",
+  "row": 37,
+  "who": "Buyer Group",
+  "when": "12/12/2014 (evening)",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   82.5,
+   82.5
+  ],
+  "true": [
+   82.5,
+   82.5
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "supported": 0.99,
+   "insufficient": 0.0,
+   "contradicted": 0.01
+  },
+  "actor_only": 0.98,
+  "tokens": 2426
+ },
+ {
+  "deal": "petsmart",
+  "model": "opus",
+  "row": 37,
+  "who": "Buyer Group",
+  "when": "12/12/2014 (evening)",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   83.0,
+   83.0
+  ],
+  "true": [
+   82.5,
+   82.5
+  ],
+  "swap_source_row": 38,
+  "scoped": "contradicted",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "insufficient": 0.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.99,
+  "tokens": 2426
+ },
+ {
+  "deal": "petsmart",
+  "model": "opus",
+  "row": 37,
+  "who": "Buyer Group",
+  "when": "12/12/2014 (evening)",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   81.5,
+   81.5
+  ],
+  "true": [
+   82.5,
+   82.5
+  ],
+  "swap_source_row": 36,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "supported": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.04,
+  "tokens": 2426
+ },
+ {
+  "deal": "petsmart",
+  "model": "opus",
+  "row": 38,
+  "who": "Buyer Group",
+  "when": "12/12/2014 (later evening)",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   83.0,
+   83.0
+  ],
+  "true": [
+   83.0,
+   83.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "supported": 1.0,
+   "contradicted": 0.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.99,
+  "tokens": 2426
+ },
+ {
+  "deal": "petsmart",
+  "model": "opus",
+  "row": 38,
+  "who": "Buyer Group",
+  "when": "12/12/2014 (later evening)",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   82.5,
+   82.5
+  ],
+  "true": [
+   83.0,
+   83.0
+  ],
+  "swap_source_row": 37,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "insufficient": 0.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.99,
+  "tokens": 2426
+ },
+ {
+  "deal": "petsmart",
+  "model": "opus",
+  "row": 38,
+  "who": "Buyer Group",
+  "when": "12/12/2014 (later evening)",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   81.5,
+   81.5
+  ],
+  "true": [
+   83.0,
+   83.0
+  ],
+  "swap_source_row": 36,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "supported": 0.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.04,
+  "tokens": 2426
+ },
+ {
+  "deal": "petsmart",
+  "model": "sol",
+  "row": 22,
+  "who": "Buyer Group",
+  "when": "10/30/2014",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   81.0,
+   83.0
+  ],
+  "true": [
+   81.0,
+   83.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "supported": 1.0,
+   "insufficient": 0.0,
+   "contradicted": 0.0
+  },
+  "actor_only": 0.99,
+  "tokens": 2790
+ },
+ {
+  "deal": "petsmart",
+  "model": "sol",
+  "row": 22,
+  "who": "Buyer Group",
+  "when": "10/30/2014",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   80.7,
+   80.7
+  ],
+  "true": [
+   81.0,
+   83.0
+  ],
+  "swap_source_row": 35,
+  "scoped": "contradicted",
+  "scoped_conf": 0.93,
+  "scoped_dist": {
+   "contradicted": 0.95,
+   "supported": 0.03,
+   "insufficient": 0.02
+  },
+  "actor_only": 0.04,
+  "tokens": 2769
+ },
+ {
+  "deal": "petsmart",
+  "model": "sol",
+  "row": 22,
+  "who": "Buyer Group",
+  "when": "10/30/2014",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   80.0,
+   85.0
+  ],
+  "true": [
+   81.0,
+   83.0
+  ],
+  "swap_source_row": 23,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 1.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.04,
+  "tokens": 2790
+ },
+ {
+  "deal": "petsmart",
+  "model": "sol",
+  "row": 23,
+  "who": "Unnamed $80\u2013$85 bidder",
+  "when": "10/30/2014",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   80.0,
+   85.0
+  ],
+  "true": [
+   80.0,
+   85.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.94,
+  "scoped_dist": {
+   "supported": 0.97,
+   "contradicted": 0.03,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.94,
+  "tokens": 2782
+ },
+ {
+  "deal": "petsmart",
+  "model": "sol",
+  "row": 23,
+  "who": "Unnamed $80\u2013$85 bidder",
+  "when": "10/30/2014",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   81.0,
+   83.0
+  ],
+  "true": [
+   80.0,
+   85.0
+  ],
+  "swap_source_row": 22,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "supported": 0.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.05,
+  "tokens": 2782
+ },
+ {
+  "deal": "petsmart",
+  "model": "sol",
+  "row": 25,
+  "who": "Bidder 2",
+  "when": "10/30/2014",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   78.0,
+   78.0
+  ],
+  "true": [
+   78.0,
+   78.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.63,
+  "scoped_dist": {
+   "supported": 0.75,
+   "contradicted": 0.22,
+   "insufficient": 0.03
+  },
+  "actor_only": 0.97,
+  "tokens": 2771
+ },
+ {
+  "deal": "petsmart",
+  "model": "sol",
+  "row": 25,
+  "who": "Bidder 2",
+  "when": "10/30/2014",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   81.0,
+   84.0
+  ],
+  "true": [
+   78.0,
+   78.0
+  ],
+  "swap_source_row": 28,
+  "scoped": "contradicted",
+  "scoped_conf": 0.88,
+  "scoped_dist": {
+   "contradicted": 0.92,
+   "insufficient": 0.04,
+   "supported": 0.04
+  },
+  "actor_only": 0.99,
+  "tokens": 2792
+ },
+ {
+  "deal": "petsmart",
+  "model": "sol",
+  "row": 25,
+  "who": "Bidder 2",
+  "when": "10/30/2014",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   80.0,
+   85.0
+  ],
+  "true": [
+   78.0,
+   78.0
+  ],
+  "swap_source_row": 23,
+  "scoped": "contradicted",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "insufficient": 0.01,
+   "contradicted": 0.99,
+   "supported": 0.0
+  },
+  "actor_only": 0.05,
+  "tokens": 2792
+ },
+ {
+  "deal": "petsmart",
+  "model": "sol",
+  "row": 28,
+  "who": "Bidder 2",
+  "when": "10/30/2014\u201311/02/2014",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   81.0,
+   84.0
+  ],
+  "true": [
+   81.0,
+   84.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.62,
+  "scoped_dist": {
+   "insufficient": 0.03,
+   "contradicted": 0.22,
+   "supported": 0.75
+  },
+  "actor_only": 0.99,
+  "tokens": 2803
+ },
+ {
+  "deal": "petsmart",
+  "model": "sol",
+  "row": 28,
+  "who": "Bidder 2",
+  "when": "10/30/2014\u201311/02/2014",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   78.0,
+   78.0
+  ],
+  "true": [
+   81.0,
+   84.0
+  ],
+  "swap_source_row": 25,
+  "scoped": "contradicted",
+  "scoped_conf": 0.76,
+  "scoped_dist": {
+   "insufficient": 0.02,
+   "contradicted": 0.84,
+   "supported": 0.14
+  },
+  "actor_only": 0.97,
+  "tokens": 2782
+ },
+ {
+  "deal": "petsmart",
+  "model": "sol",
+  "row": 28,
+  "who": "Bidder 2",
+  "when": "10/30/2014\u201311/02/2014",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   80.0,
+   85.0
+  ],
+  "true": [
+   81.0,
+   84.0
+  ],
+  "swap_source_row": 23,
+  "scoped": "contradicted",
+  "scoped_conf": 0.98,
+  "scoped_dist": {
+   "supported": 0.01,
+   "contradicted": 0.99,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.05,
+  "tokens": 2803
+ },
+ {
+  "deal": "petsmart",
+  "model": "sol",
+  "row": 35,
+  "who": "Buyer Group",
+  "when": "12/10/2014",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   80.7,
+   80.7
+  ],
+  "true": [
+   80.7,
+   80.7
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.79,
+  "scoped_dist": {
+   "contradicted": 0.12,
+   "insufficient": 0.01,
+   "supported": 0.87
+  },
+  "actor_only": 0.99,
+  "tokens": 2496
+ },
+ {
+  "deal": "petsmart",
+  "model": "sol",
+  "row": 35,
+  "who": "Buyer Group",
+  "when": "12/10/2014",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   82.5,
+   82.5
+  ],
+  "true": [
+   80.7,
+   80.7
+  ],
+  "swap_source_row": 43,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "contradicted": 1.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 2496
+ },
+ {
+  "deal": "petsmart",
+  "model": "sol",
+  "row": 35,
+  "who": "Buyer Group",
+  "when": "12/10/2014",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   80.35,
+   80.35
+  ],
+  "true": [
+   80.7,
+   80.7
+  ],
+  "swap_source_row": 36,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "supported": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.04,
+  "tokens": 2496
+ },
+ {
+  "deal": "petsmart",
+  "model": "sol",
+  "row": 36,
+  "who": "Bidder 2",
+  "when": "12/10/2014",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   80.35,
+   80.35
+  ],
+  "true": [
+   80.35,
+   80.35
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.93,
+  "scoped_dist": {
+   "contradicted": 0.03,
+   "supported": 0.96,
+   "insufficient": 0.01
+  },
+  "actor_only": 0.99,
+  "tokens": 2498
+ },
+ {
+  "deal": "petsmart",
+  "model": "sol",
+  "row": 36,
+  "who": "Bidder 2",
+  "when": "12/10/2014",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   81.5,
+   81.5
+  ],
+  "true": [
+   80.35,
+   80.35
+  ],
+  "swap_source_row": 42,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "supported": 0.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 2498
+ },
+ {
+  "deal": "petsmart",
+  "model": "sol",
+  "row": 36,
+  "who": "Bidder 2",
+  "when": "12/10/2014",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   80.7,
+   80.7
+  ],
+  "true": [
+   80.35,
+   80.35
+  ],
+  "swap_source_row": 35,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "insufficient": 0.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 2498
+ },
+ {
+  "deal": "petsmart",
+  "model": "sol",
+  "row": 42,
+  "who": "Bidder 2",
+  "when": "evening 12/12/2014",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   81.5,
+   81.5
+  ],
+  "true": [
+   81.5,
+   81.5
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.96,
+  "scoped_dist": {
+   "supported": 0.98,
+   "insufficient": 0.0,
+   "contradicted": 0.02
+  },
+  "actor_only": 0.99,
+  "tokens": 2428
+ },
+ {
+  "deal": "petsmart",
+  "model": "sol",
+  "row": 42,
+  "who": "Bidder 2",
+  "when": "evening 12/12/2014",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   80.35,
+   80.35
+  ],
+  "true": [
+   81.5,
+   81.5
+  ],
+  "swap_source_row": 36,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "insufficient": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.99,
+  "tokens": 2428
+ },
+ {
+  "deal": "petsmart",
+  "model": "sol",
+  "row": 42,
+  "who": "Bidder 2",
+  "when": "evening 12/12/2014",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   82.5,
+   82.5
+  ],
+  "true": [
+   81.5,
+   81.5
+  ],
+  "swap_source_row": 43,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "insufficient": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.04,
+  "tokens": 2428
+ },
+ {
+  "deal": "petsmart",
+  "model": "sol",
+  "row": 43,
+  "who": "Buyer Group",
+  "when": "evening 12/12/2014",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   82.5,
+   82.5
+  ],
+  "true": [
+   82.5,
+   82.5
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.98,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 0.01,
+   "supported": 0.99
+  },
+  "actor_only": 0.99,
+  "tokens": 2423
+ },
+ {
+  "deal": "petsmart",
+  "model": "sol",
+  "row": 43,
+  "who": "Buyer Group",
+  "when": "evening 12/12/2014",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   83.0,
+   83.0
+  ],
+  "true": [
+   82.5,
+   82.5
+  ],
+  "swap_source_row": 44,
+  "scoped": "contradicted",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "supported": 0.0,
+   "insufficient": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.99,
+  "tokens": 2423
+ },
+ {
+  "deal": "petsmart",
+  "model": "sol",
+  "row": 43,
+  "who": "Buyer Group",
+  "when": "evening 12/12/2014",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   81.5,
+   81.5
+  ],
+  "true": [
+   82.5,
+   82.5
+  ],
+  "swap_source_row": 42,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "insufficient": 0.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.04,
+  "tokens": 2423
+ },
+ {
+  "deal": "petsmart",
+  "model": "sol",
+  "row": 44,
+  "who": "Buyer Group",
+  "when": "later evening 12/12/2014",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   83.0,
+   83.0
+  ],
+  "true": [
+   83.0,
+   83.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "supported": 0.99,
+   "insufficient": 0.0,
+   "contradicted": 0.01
+  },
+  "actor_only": 0.99,
+  "tokens": 2424
+ },
+ {
+  "deal": "petsmart",
+  "model": "sol",
+  "row": 44,
+  "who": "Buyer Group",
+  "when": "later evening 12/12/2014",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   82.5,
+   82.5
+  ],
+  "true": [
+   83.0,
+   83.0
+  ],
+  "swap_source_row": 43,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "contradicted": 1.0,
+   "insufficient": 0.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.98,
+  "tokens": 2424
+ },
+ {
+  "deal": "petsmart",
+  "model": "sol",
+  "row": 44,
+  "who": "Buyer Group",
+  "when": "later evening 12/12/2014",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   81.5,
+   81.5
+  ],
+  "true": [
+   83.0,
+   83.0
+  ],
+  "swap_source_row": 42,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 1.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.04,
+  "tokens": 2424
+ },
+ {
+  "deal": "petsmart",
+  "model": "deepseek",
+  "row": 18,
+  "who": "Buyer Group",
+  "when": "10/30/2014",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   81.0,
+   83.0
+  ],
+  "true": [
+   81.0,
+   83.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "supported": 1.0,
+   "contradicted": 0.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.99,
+  "tokens": 2790
+ },
+ {
+  "deal": "petsmart",
+  "model": "deepseek",
+  "row": 18,
+  "who": "Buyer Group",
+  "when": "10/30/2014",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   80.7,
+   80.7
+  ],
+  "true": [
+   81.0,
+   83.0
+  ],
+  "swap_source_row": 29,
+  "scoped": "contradicted",
+  "scoped_conf": 0.96,
+  "scoped_dist": {
+   "contradicted": 0.98,
+   "insufficient": 0.01,
+   "supported": 0.01
+  },
+  "actor_only": 0.04,
+  "tokens": 2769
+ },
+ {
+  "deal": "petsmart",
+  "model": "deepseek",
+  "row": 18,
+  "who": "Buyer Group",
+  "when": "10/30/2014",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   80.0,
+   85.0
+  ],
+  "true": [
+   81.0,
+   83.0
+  ],
+  "swap_source_row": 19,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "contradicted": 1.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.05,
+  "tokens": 2790
+ },
+ {
+  "deal": "petsmart",
+  "model": "deepseek",
+  "row": 19,
+  "who": "Unnamed financial bidder 1",
+  "when": "10/30/2014",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   80.0,
+   85.0
+  ],
+  "true": [
+   80.0,
+   85.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.24,
+  "scoped_dist": {
+   "insufficient": 0.08,
+   "contradicted": 0.42,
+   "supported": 0.5
+  },
+  "actor_only": 0.56,
+  "tokens": 2774
+ },
+ {
+  "deal": "petsmart",
+  "model": "deepseek",
+  "row": 19,
+  "who": "Unnamed financial bidder 1",
+  "when": "10/30/2014",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   81.0,
+   83.0
+  ],
+  "true": [
+   80.0,
+   85.0
+  ],
+  "swap_source_row": 18,
+  "scoped": "contradicted",
+  "scoped_conf": 0.93,
+  "scoped_dist": {
+   "insufficient": 0.02,
+   "supported": 0.03,
+   "contradicted": 0.95
+  },
+  "actor_only": 0.18,
+  "tokens": 2774
+ },
+ {
+  "deal": "petsmart",
+  "model": "deepseek",
+  "row": 23,
+  "who": "Bidder 2",
+  "when": "10/30\u201311/02/2014",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   81.0,
+   84.0
+  ],
+  "true": [
+   81.0,
+   84.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.83,
+  "scoped_dist": {
+   "insufficient": 0.01,
+   "contradicted": 0.1,
+   "supported": 0.89
+  },
+  "actor_only": 0.99,
+  "tokens": 2798
+ },
+ {
+  "deal": "petsmart",
+  "model": "deepseek",
+  "row": 23,
+  "who": "Bidder 2",
+  "when": "10/30\u201311/02/2014",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   80.35,
+   80.35
+  ],
+  "true": [
+   81.0,
+   84.0
+  ],
+  "swap_source_row": 30,
+  "scoped": "contradicted",
+  "scoped_conf": 0.98,
+  "scoped_dist": {
+   "contradicted": 0.99,
+   "supported": 0.0,
+   "insufficient": 0.01
+  },
+  "actor_only": 0.02,
+  "tokens": 2777
+ },
+ {
+  "deal": "petsmart",
+  "model": "deepseek",
+  "row": 23,
+  "who": "Bidder 2",
+  "when": "10/30\u201311/02/2014",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   80.0,
+   85.0
+  ],
+  "true": [
+   81.0,
+   84.0
+  ],
+  "swap_source_row": 19,
+  "scoped": "contradicted",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "supported": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.06,
+  "tokens": 2798
+ },
+ {
+  "deal": "petsmart",
+  "model": "deepseek",
+  "row": 29,
+  "who": "Buyer Group",
+  "when": "12/10/2014",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   80.7,
+   80.7
+  ],
+  "true": [
+   80.7,
+   80.7
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.78,
+  "scoped_dist": {
+   "insufficient": 0.01,
+   "supported": 0.86,
+   "contradicted": 0.13
+  },
+  "actor_only": 0.99,
+  "tokens": 2496
+ },
+ {
+  "deal": "petsmart",
+  "model": "deepseek",
+  "row": 29,
+  "who": "Buyer Group",
+  "when": "12/10/2014",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   82.5,
+   82.5
+  ],
+  "true": [
+   80.7,
+   80.7
+  ],
+  "swap_source_row": 37,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "insufficient": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.03,
+  "tokens": 2496
+ },
+ {
+  "deal": "petsmart",
+  "model": "deepseek",
+  "row": 29,
+  "who": "Buyer Group",
+  "when": "12/10/2014",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   80.35,
+   80.35
+  ],
+  "true": [
+   80.7,
+   80.7
+  ],
+  "swap_source_row": 30,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 1.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.04,
+  "tokens": 2496
+ },
+ {
+  "deal": "petsmart",
+  "model": "deepseek",
+  "row": 30,
+  "who": "Bidder 2",
+  "when": "12/10/2014",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   80.35,
+   80.35
+  ],
+  "true": [
+   80.35,
+   80.35
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.94,
+  "scoped_dist": {
+   "supported": 0.96,
+   "insufficient": 0.01,
+   "contradicted": 0.03
+  },
+  "actor_only": 0.99,
+  "tokens": 2498
+ },
+ {
+  "deal": "petsmart",
+  "model": "deepseek",
+  "row": 30,
+  "who": "Bidder 2",
+  "when": "12/10/2014",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   81.5,
+   81.5
+  ],
+  "true": [
+   80.35,
+   80.35
+  ],
+  "swap_source_row": 36,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "insufficient": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.03,
+  "tokens": 2498
+ },
+ {
+  "deal": "petsmart",
+  "model": "deepseek",
+  "row": 30,
+  "who": "Bidder 2",
+  "when": "12/10/2014",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   80.7,
+   80.7
+  ],
+  "true": [
+   80.35,
+   80.35
+  ],
+  "swap_source_row": 29,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "contradicted": 1.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.03,
+  "tokens": 2498
+ },
+ {
+  "deal": "petsmart",
+  "model": "deepseek",
+  "row": 36,
+  "who": "Bidder 2",
+  "when": "12/12/2014",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   81.5,
+   81.5
+  ],
+  "true": [
+   81.5,
+   81.5
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.94,
+  "scoped_dist": {
+   "contradicted": 0.04,
+   "supported": 0.96,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.99,
+  "tokens": 2427
+ },
+ {
+  "deal": "petsmart",
+  "model": "deepseek",
+  "row": 36,
+  "who": "Bidder 2",
+  "when": "12/12/2014",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   80.35,
+   80.35
+  ],
+  "true": [
+   81.5,
+   81.5
+  ],
+  "swap_source_row": 30,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "insufficient": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.99,
+  "tokens": 2427
+ },
+ {
+  "deal": "petsmart",
+  "model": "deepseek",
+  "row": 36,
+  "who": "Bidder 2",
+  "when": "12/12/2014",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   82.5,
+   82.5
+  ],
+  "true": [
+   81.5,
+   81.5
+  ],
+  "swap_source_row": 37,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "contradicted": 1.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.04,
+  "tokens": 2427
+ },
+ {
+  "deal": "petsmart",
+  "model": "deepseek",
+  "row": 37,
+  "who": "Buyer Group",
+  "when": "12/12/2014",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   82.5,
+   82.5
+  ],
+  "true": [
+   82.5,
+   82.5
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.99,
+  "scoped_dist": {
+   "contradicted": 0.01,
+   "insufficient": 0.0,
+   "supported": 0.99
+  },
+  "actor_only": 0.98,
+  "tokens": 2422
+ },
+ {
+  "deal": "petsmart",
+  "model": "deepseek",
+  "row": 37,
+  "who": "Buyer Group",
+  "when": "12/12/2014",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   83.0,
+   83.0
+  ],
+  "true": [
+   82.5,
+   82.5
+  ],
+  "swap_source_row": 38,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "supported": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.99,
+  "tokens": 2422
+ },
+ {
+  "deal": "petsmart",
+  "model": "deepseek",
+  "row": 37,
+  "who": "Buyer Group",
+  "when": "12/12/2014",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   81.5,
+   81.5
+  ],
+  "true": [
+   82.5,
+   82.5
+  ],
+  "swap_source_row": 36,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "insufficient": 0.0,
+   "contradicted": 1.0,
+   "supported": 0.0
+  },
+  "actor_only": 0.04,
+  "tokens": 2422
+ },
+ {
+  "deal": "petsmart",
+  "model": "deepseek",
+  "row": 38,
+  "who": "Buyer Group",
+  "when": "12/12/2014",
+  "event": "Bid",
+  "variant": "orig",
+  "claimed": [
+   83.0,
+   83.0
+  ],
+  "true": [
+   83.0,
+   83.0
+  ],
+  "swap_source_row": null,
+  "scoped": "supported",
+  "scoped_conf": 0.98,
+  "scoped_dist": {
+   "contradicted": 0.01,
+   "insufficient": 0.0,
+   "supported": 0.99
+  },
+  "actor_only": 0.99,
+  "tokens": 2422
+ },
+ {
+  "deal": "petsmart",
+  "model": "deepseek",
+  "row": 38,
+  "who": "Buyer Group",
+  "when": "12/12/2014",
+  "event": "Bid",
+  "variant": "swap_same_party",
+  "claimed": [
+   82.5,
+   82.5
+  ],
+  "true": [
+   83.0,
+   83.0
+  ],
+  "swap_source_row": 37,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "contradicted": 1.0,
+   "insufficient": 0.0
+  },
+  "actor_only": 0.98,
+  "tokens": 2422
+ },
+ {
+  "deal": "petsmart",
+  "model": "deepseek",
+  "row": 38,
+  "who": "Buyer Group",
+  "when": "12/12/2014",
+  "event": "Bid",
+  "variant": "swap_near_party",
+  "claimed": [
+   81.5,
+   81.5
+  ],
+  "true": [
+   83.0,
+   83.0
+  ],
+  "swap_source_row": 36,
+  "scoped": "contradicted",
+  "scoped_conf": 1.0,
+  "scoped_dist": {
+   "supported": 0.0,
+   "insufficient": 0.0,
+   "contradicted": 1.0
+  },
+  "actor_only": 0.04,
+  "tokens": 2422
+ }
+]

@@ -1,0 +1,85 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "decided that he was not interested in rolling over any of his shares in a transaction and recommended that Mr. MacDonald be fully briefed of the process to date. The Special Committee agreed, noting that Mr. MacDonald's perspective on the purchase price of a sale transaction was critical to the Special Committee's evaluation, as any potential acquiror would be unlikely to proceed without knowing that Mr. MacDonald would support the transaction. Based on the amount of due diligence conducted by Party A, Party B, Party C and CSC/Pamplona, and discussions with such parties to date, and in an effort to maximize value for Mac-Gray's stockholders, the Special Committee instructed BofA Merrill Lynch to call each of Party A, Party B, Party C and CSC/Pamplona to request final indications of interest by September 18, 2013 and to indicate that Mac-Gray would consider engaging in a short period of exclusive negotiations with one of the bidders depending upon, among other things, the proposed purchase price and the level of deal certainty indicated in the bidder's final proposal. As authorized and instructed by the Special Committee, representatives of BofA Merrill Lynch called each of Party A, Party B, Party C and CSC/Pamplona on September 11, 2013 with such instructions.",
+   "sentence": "As authorized and instructed by the Special Committee, representatives of BofA Merrill Lynch called each of Party A, Party B, Party C and CSC/Pamplona on September 11, 2013 with such instructions."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "bid": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "nda_access": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "exit": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a potential buyer withdraws, declines to bid, is told it will not advance, or is otherwise excluded from the process? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "deadline": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "exclusivity": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that exclusivity is requested, authorised, granted, signed or extended? Judge `sentence` only; `paragraph` is context for names and dates."
+   },
+   "agreements": {
+    "type": "noul",
+    "instructions": "Does `sentence` itself report that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed? Judge `sentence` only; `paragraph` is context for names and dates."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "bid": {
+    "type": "noul",
+    "noul": 0.02
+   },
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "exit": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "deadline": {
+    "type": "noul",
+    "noul": 0.79
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.95
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.49
+   },
+   "exclusivity": {
+    "type": "noul",
+    "noul": 0.13
+   },
+   "agreements": {
+    "type": "noul",
+    "noul": 0.12
+   }
+  },
+  "usage": {
+   "input_tokens": 1029,
+   "output_tokens": 138
+  }
+ },
+ "latency_s": 0.411
+}

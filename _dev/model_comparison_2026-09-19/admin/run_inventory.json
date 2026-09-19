@@ -1,0 +1,215 @@
+{
+  "updated_utc": "2026-09-19T16:29:56.290981+00:00",
+  "runs": [
+    {
+      "run": "deepseek_mac-gray",
+      "model": "deepseek/deepseek-flash",
+      "effort": "max",
+      "state": "finished",
+      "exit_code": 0,
+      "elapsed_seconds": 558.51,
+      "instruction_sha256": "f7e73a6673166597f2bd7c8c0457f72ba996585f1351595d00cd653f7a37009d",
+      "tool_calls": 38,
+      "input_tokens": 2825277,
+      "output_tokens": 26368,
+      "reasoning_tokens": 106489,
+      "reported_api_cost_usd": 0.09598957799999999,
+      "workbooks": [
+        {
+          "name": "mac-gray.xlsx",
+          "bytes": 20106,
+          "sha256": "95575595829404dad90ed71d3a30640f1fbc9a9efa7320cf84f780fc2e2635b3"
+        }
+      ]
+    },
+    {
+      "run": "deepseek_petsmart",
+      "model": "deepseek/deepseek-flash",
+      "effort": "max",
+      "state": "finished",
+      "exit_code": 0,
+      "elapsed_seconds": 613.12,
+      "instruction_sha256": "f7e73a6673166597f2bd7c8c0457f72ba996585f1351595d00cd653f7a37009d",
+      "tool_calls": 47,
+      "input_tokens": 3588265,
+      "output_tokens": 19205,
+      "reasoning_tokens": 118546,
+      "reported_api_cost_usd": 0.10897175999999999,
+      "workbooks": [
+        {
+          "name": "petsmart.xlsx",
+          "bytes": 18827,
+          "sha256": "b60385871d6c81ffd3c37009260776610a9e975ce7b40a907d2cb62ab28e9ea9"
+        }
+      ]
+    },
+    {
+      "run": "deepseek_providence-worcester",
+      "model": "deepseek/deepseek-flash",
+      "effort": "max",
+      "state": "finished",
+      "exit_code": 0,
+      "elapsed_seconds": 739.08,
+      "instruction_sha256": "f7e73a6673166597f2bd7c8c0457f72ba996585f1351595d00cd653f7a37009d",
+      "tool_calls": 53,
+      "input_tokens": 6431006,
+      "output_tokens": 22978,
+      "reasoning_tokens": 143861,
+      "reported_api_cost_usd": 0.14326738799999997,
+      "workbooks": [
+        {
+          "name": "providence-worcester.xlsx",
+          "bytes": 21704,
+          "sha256": "33d5d51300e0de7f2ad75b04002ca9fc1e81b4ea277fa4a6e9fd41c353383184"
+        }
+      ]
+    },
+    {
+      "run": "opus_mac-gray",
+      "model": "claude-opus-5",
+      "effort": "high",
+      "state": "completed",
+      "exit_code": 0,
+      "elapsed_seconds": 466.072,
+      "instruction_sha256": "f7e73a6673166597f2bd7c8c0457f72ba996585f1351595d00cd653f7a37009d",
+      "tool_calls": 21,
+      "input_tokens": 1276107,
+      "output_tokens": 49079,
+      "reasoning_tokens": 25813,
+      "reported_api_cost_usd": null,
+      "reported_list_cost_usd": 3.099316,
+      "duration_api_ms": 462902,
+      "returned_models": [
+        "claude-opus-5"
+      ],
+      "workbooks": [
+        {
+          "name": "mac-gray.xlsx",
+          "bytes": 21026,
+          "sha256": "f599dd89d2d0f3e8e320389b5c78e1bacdc95420983438444c3b67186229175a"
+        }
+      ]
+    },
+    {
+      "run": "opus_petsmart",
+      "model": "claude-opus-5",
+      "effort": "high",
+      "state": "completed",
+      "exit_code": 0,
+      "elapsed_seconds": 451.21,
+      "instruction_sha256": "f7e73a6673166597f2bd7c8c0457f72ba996585f1351595d00cd653f7a37009d",
+      "tool_calls": 21,
+      "input_tokens": 1173982,
+      "output_tokens": 45800,
+      "reasoning_tokens": 26473,
+      "reported_api_cost_usd": null,
+      "reported_list_cost_usd": 2.8988850000000004,
+      "duration_api_ms": 447827,
+      "returned_models": [
+        "claude-opus-5"
+      ],
+      "workbooks": [
+        {
+          "name": "petsmart.xlsx",
+          "bytes": 20942,
+          "sha256": "67a23b67bd66da2b84a1672ef85d8a37e6b79ebb2ff01432aceb591a5e8af4cb"
+        }
+      ]
+    },
+    {
+      "run": "opus_providence-worcester",
+      "model": "claude-opus-5",
+      "effort": "high",
+      "state": "completed",
+      "exit_code": 0,
+      "elapsed_seconds": 546.27,
+      "instruction_sha256": "f7e73a6673166597f2bd7c8c0457f72ba996585f1351595d00cd653f7a37009d",
+      "tool_calls": 15,
+      "input_tokens": 849158,
+      "output_tokens": 56254,
+      "reasoning_tokens": 36840,
+      "reported_api_cost_usd": null,
+      "reported_list_cost_usd": 3.0463610000000005,
+      "duration_api_ms": 539856,
+      "returned_models": [
+        "claude-opus-5"
+      ],
+      "workbooks": [
+        {
+          "name": "providence-worcester.xlsx",
+          "bytes": 22455,
+          "sha256": "458414ab3b3484d12250f1a1c41adb0b681dd924a8f6e5b8fc4bf9d6b75b2f38"
+        }
+      ]
+    },
+    {
+      "run": "sol_mac-gray",
+      "model": "gpt-5.6-sol",
+      "effort": "xhigh",
+      "state": "completed",
+      "exit_code": 0,
+      "elapsed_seconds": 763.811,
+      "instruction_sha256": "f7e73a6673166597f2bd7c8c0457f72ba996585f1351595d00cd653f7a37009d",
+      "tool_calls": 21,
+      "input_tokens": 2036210,
+      "output_tokens": 38702,
+      "reasoning_tokens": 21730,
+      "reported_api_cost_usd": null,
+      "workbooks": [
+        {
+          "name": "mac-gray.xlsx",
+          "bytes": 19784,
+          "sha256": "e568558177f2be1a8441aef7522eec6325fc9249cd533e20cca32ef609f20d0f"
+        }
+      ]
+    },
+    {
+      "run": "sol_petsmart",
+      "model": "gpt-5.6-sol",
+      "effort": "xhigh",
+      "state": "completed",
+      "exit_code": 0,
+      "elapsed_seconds": 755.973,
+      "instruction_sha256": "f7e73a6673166597f2bd7c8c0457f72ba996585f1351595d00cd653f7a37009d",
+      "tool_calls": 20,
+      "input_tokens": 2030585,
+      "output_tokens": 37601,
+      "reasoning_tokens": 20493,
+      "reported_api_cost_usd": null,
+      "workbooks": [
+        {
+          "name": "petsmart.xlsx",
+          "bytes": 19208,
+          "sha256": "0db5afd35cb026e723dd8d3a115e087f785a9fe26a9f38ed3f16d4076dd9ef26"
+        }
+      ]
+    },
+    {
+      "run": "sol_providence-worcester",
+      "model": "gpt-5.6-sol",
+      "effort": "xhigh",
+      "state": "completed",
+      "exit_code": 0,
+      "elapsed_seconds": 835.247,
+      "instruction_sha256": "f7e73a6673166597f2bd7c8c0457f72ba996585f1351595d00cd653f7a37009d",
+      "tool_calls": 28,
+      "input_tokens": 1986518,
+      "output_tokens": 40222,
+      "reasoning_tokens": 23038,
+      "reported_api_cost_usd": null,
+      "workbooks": [
+        {
+          "name": "providence-worcester.xlsx",
+          "bytes": 20142,
+          "sha256": "3c48ea690503acdd36bc8b695e6ddd74b76b7ff10d405e79c8cbd036a526389c"
+        }
+      ]
+    }
+  ],
+  "tool_audit_leads": [],
+  "notes": [
+    "Network strings are review leads, not proof of network use.",
+    "DeepSeek cost is client-reported API cost; Opus list cost is not subscription marginal cost.",
+    "Sol usage may aggregate multiple model turns; interpretation follows CLI emitted usage."
+  ]
+}

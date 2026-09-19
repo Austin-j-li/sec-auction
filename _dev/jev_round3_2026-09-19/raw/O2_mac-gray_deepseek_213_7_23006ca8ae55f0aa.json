@@ -1,0 +1,46 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On May 30, 2013, the Board held an in-person meeting. By invitation of the Board, Mr. MacDonald, Mr. Shea, Ms. Serafini and representatives of Goodwin Procter were also present for all or portions of the meeting. During the meeting, the members of the Transaction Committee presented their assessment of the relative capabilities, strengths, and possible weaknesses of the three financial advisor candidates. Mr. Shea also provided his perspective of each financial advisor candidate's capabilities, strengths, and possible weaknesses. The Transaction Committee recommended to the Board that Mac-Gray engage BofA Merrill Lynch as Mac-Gray's financial advisor for the Board's exploration of strategic alternatives, including a potential sale process. The Transaction Committee's endorsement of BofA Merrill Lynch was based on, among other things, BofA Merrill Lynch's knowledge of Mac-Gray, the industry generally, the current environment for mergers and acquisitions and potential strategic acquirors, as well as BofA Merrill Lynch's proposed process and strategy for maximizing value to Mac-Gray's stockholders should the Board determine that a sale of the company would be in the best interests of stockholders. Representatives of Goodwin Procter reviewed with the Board the terms of proposed BofA Merrill Lynch engagement. Based on the recommendation of the Transaction Committee, the Board unanimously approved the engagement of BofA Merrill Lynch on the terms discussed at this meeting.",
+   "target_sentence": "Based on the recommendation of the Transaction Committee, the Board unanimously approved the engagement of BofA Merrill Lynch on the terms discussed at this meeting."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_5": "05/15/2013 | BofA Merrill Lynch | Adviser ended | Transaction Committee determined on 05/14/2013 to terminate the engagement letter for the 2011-2012 Discussions; termination letter sent 05/15/2013.",
+     "row_6": "05/30/2013 | BofA Merrill Lynch | Adviser | Board approved engaging BofA Merrill Lynch as financial advisor for the strategic-alternatives review; engagement letter entered 05/31/2013.",
+     "row_7": "05/30/2013 | Moab | Activist | Moab's proxy contest yielded two new Mac-Gray directors (Rothenberg, Hyman); Moab held about 9% of Mac-Gray's outstanding common stock.",
+     "row_8": "06/21/2013 | Party A | Bid | price 17-19 | Unsolicited; no NDA or substantive diligence access yet; reviewed with the round-1 indications on 07/25/2013.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_6",
+    "confidence": 1.0,
+    "probabilities": {
+     "not_an_event": 0.0,
+     "row_8": 0.0,
+     "row_6": 1.0,
+     "none": 0.0,
+     "row_5": 0.0,
+     "row_7": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1101,
+   "output_tokens": 71
+  }
+ },
+ "latency_s": 0.24
+}

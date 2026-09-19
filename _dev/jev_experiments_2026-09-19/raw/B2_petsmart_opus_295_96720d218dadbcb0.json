@@ -1,0 +1,82 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "During the period from the middle of August through the end of October, the Company developed the Profit Improvement Plan and prepared for a sale process. During this period, J.P. Morgan was contacted by 27 potential participants in a sale process, including three strategic parties (not counting Industry Participant) and 24 financial participants (including potential lead buyers as well as large suppliers of equity capital to lead buyers).",
+   "ledger_rows": [
+    {
+     "When": "mid-August \u2013 10/03/2014",
+     "Who": "24 financial participants",
+     "Event": "Contact",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Parties contacted J.P. Morgan (inbound); includes potential lead buyers and large equity suppliers. All 27 reported to board by 10/03. Reasons section: Company \u201ccontacted or were contacted by more than 25\u201d."
+    },
+    {
+     "When": "mid-August \u2013 10/03/2014",
+     "Who": "3 strategic parties",
+     "Event": "Contact",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Inbound contacts to J.P. Morgan, excluding Industry Participant. None signed a confidentiality agreement (all 15 signers were financial)."
+    },
+    {
+     "When": "08/19/2014",
+     "Who": "PetSmart",
+     "Event": "Sale process announced",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Press release with Q2 earnings; intended to let parties not contacted approach J.P. Morgan on their own initiative."
+    },
+    {
+     "When": "08/27/2014",
+     "Who": "Industry Participant",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Target refused admission: on ad hoc committee direction, J.P. Morgan conveyed concerns (08/22), then said IP not invited (antitrust, information, delay risks); proposals would be considered. Reaffirmed 10/03. No later contact; never entered."
+    },
+    {
+     "When": "first week of October 2014",
+     "Who": "PetSmart / J.P. Morgan",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Round 1 opened by the NDA wave (buyers came to target; no outreach wave reported). Board told 10/03 about 15 parties interested."
+    },
+    {
+     "When": "first week of October 2014",
+     "Who": "15 financial NDA signers",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Confidentiality and standstill agreements. All 15 did diligence in October, had senior-management presentations and detailed business-plan and Profit Improvement Plan information. Includes Buyer Group, Bidder 2 and all IOI submitters."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "contact": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "contact": {
+    "type": "noul",
+    "noul": 0.77
+   }
+  },
+  "usage": {
+   "input_tokens": 1091,
+   "output_tokens": 20
+  }
+ },
+ "latency_s": 0.239
+}

@@ -1,0 +1,50 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Also on October 7, 2013, Kirkland delivered to Goodwin Procter a revised draft of the merger agreement which, among other things, proposed a $15 million Mac-Gray termination fee, which represented approximately 4.4% of the total equity value of the transaction, and certain positions on the scope of various post-signing covenants.",
+   "ledger_rows": [
+    {
+     "When": "09/25/2013",
+     "Who": "Kirkland & Ellis LLP",
+     "Event": "Adviser",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Outside legal counsel to CSC/Pamplona; first seen acting when it received the target's first merger agreement draft."
+    },
+    {
+     "When": "09/25/2013 to 10/07/2013",
+     "Who": "Moab Partners, L.P.",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Rollover resolved: talks with Pamplona, allowed from 09/23, end with no Moab rollover (reported 10/07). Moab signed a voting agreement at signing."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "bid": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "bid": {
+    "type": "noul",
+    "noul": 0.2
+   }
+  },
+  "usage": {
+   "input_tokens": 676,
+   "output_tokens": 20
+  }
+ },
+ "latency_s": 0.278
+}

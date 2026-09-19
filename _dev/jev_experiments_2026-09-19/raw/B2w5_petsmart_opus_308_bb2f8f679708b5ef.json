@@ -1,0 +1,142 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Following the execution of a confidentiality agreement, on December 9, 2014, J.P. Morgan arranged introductory meetings between Longview and the Buyer Group, and between Longview and Bidder 2. These meetings, which were attended by representatives of J.P. Morgan and Wachtell Lipton, were introductory in nature, to enable the bidders to determine their interest in working with Longview, and vice versa, and the bidders were prohibited at this time from disclosing to Longview the respective prices that the bidders intended to bid.",
+   "ledger_rows": [
+    {
+     "When": "November 2014 (by 12/04/2014)",
+     "Who": "PetSmart board",
+     "Event": "Deadline set",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Final bids initially due Friday 12/05/2014, with completion targeted 12/15. In November form merger agreement circulated with instruction to submit comments together with final bids."
+    },
+    {
+     "When": "12/04\u201312/05/2014",
+     "Who": "PetSmart (ad hoc committee)",
+     "Event": "Deadline revised",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Final-bid due date moved from 12/05 to evening of 12/10 to shorten post-bid period and leak risk; bidders asked to send markups and financing commitments in advance."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "Buyer Group",
+     "Event": "Bid",
+     "Price low": 80.7,
+     "Price high": 80.7,
+     "Note": "Final bid letter with revised merger agreement and transaction documents. Financing commitment documents supplied 12/06. Documents less conditional than Bidder 2\u2019s. Not dependent on Longview rollover."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "Bidder 2",
+     "Event": "Bid",
+     "Price low": 80.35,
+     "Price high": 80.35,
+     "Note": "Final bid letter with revised merger agreement and transaction documents; documents more conditional than Buyer Group\u2019s; financing status not reported until 12/12. Would partner with Longview only after signing."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "PetSmart",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Final-bid due date (evening). Two written bids received; Bidder 3 gave only a verbal valuation."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "Bidder 3",
+     "Event": "Did not submit",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Verbal valuation not above the ~$78 stock price; J.P. Morgan said it was unlikely to be competitive, so no written offer. Both sides contributed. Not mentioned again."
+    },
+    {
+     "When": "12/10/2014",
+     "Who": "PetSmart (ad hoc committee)",
+     "Event": "Deadline revised",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Neither bid acceptable unless improved: J.P. Morgan told both bidders to raise their bids, improved bids due 12/12. Treated as an extension within the final round, not a new round."
+    },
+    {
+     "When": "12/12/2014 (early)",
+     "Who": "Buyer Group / Longview",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Rollover permitted: committee approved Buyer Group\u2019s request to work with Longview; confidentiality agreement shared bid price. Bidder 2 would consider rollover only post-signing. Both bidders met Longview 12/09 without disclosing prices."
+    },
+    {
+     "When": "12/12/2014 (evening)",
+     "Who": "Bidder 2",
+     "Event": "Bid",
+     "Price low": 81.5,
+     "Price high": 81.5,
+     "Note": "Revises #30. Confirmed to J.P. Morgan as best and final; with revised merger agreement drafts and financing commitment documents."
+    },
+    {
+     "When": "12/12/2014 (evening)",
+     "Who": "Buyer Group",
+     "Event": "Bid",
+     "Price low": 82.5,
+     "Price high": 82.5,
+     "Note": "Revises #29. Oral offer; said it was working to raise it within hours. Financing commitments already provided."
+    },
+    {
+     "When": "12/12/2014 (later evening)",
+     "Who": "Buyer Group",
+     "Event": "Bid",
+     "Price low": 83,
+     "Price high": 83,
+     "Note": "Revises #36. Best and final; revised drafts \u201cwith few exceptions\u201d in executable form, plus financing commitments. Longview\u2019s $250 million rollover support helped reach $83.00; members unwilling or unable to go higher."
+    },
+    {
+     "When": "12/12/2014",
+     "Who": "PetSmart",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Due date for improved bids; both remaining bidders submitted that evening."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "nda_access": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.64
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.68
+   }
+  },
+  "usage": {
+   "input_tokens": 1858,
+   "output_tokens": 37
+  }
+ },
+ "latency_s": 0.262
+}

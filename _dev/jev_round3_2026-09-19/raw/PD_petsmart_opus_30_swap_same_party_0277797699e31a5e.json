@@ -1,0 +1,61 @@
+{
+ "request": {
+  "state": {
+   "passage": {
+    "before": [
+     "On December 8, 2014, the board met telephonically, together with members of management and representatives of J.P. Morgan and Wachtell Lipton, to receive an update and review and discuss the comments from the bidders on the draft merger agreement and other transaction documents. Later on December 8, 2014, Wachtell Lipton sent to the Buyer Group and Bidder 2 revised versions of the form of merger agreement and other transaction documents, reflecting the Company's positions and reactions to the bidders' respective comments.",
+     "Following the execution of a confidentiality agreement, on December 9, 2014, J.P. Morgan arranged introductory meetings between Longview and the Buyer Group, and between Longview and Bidder 2. These meetings, which were attended by representatives of J.P. Morgan and Wachtell Lipton, were introductory in nature, to enable the bidders to determine their interest in working with Longview, and vice versa, and the bidders were prohibited at this time from disclosing to Longview the respective prices that the bidders intended to bid."
+    ],
+    "cited_paragraph": "On December 10, PetSmart received final bid letters along with revised versions of the merger agreement and other transaction documents from the Buyer Group and from Bidder 2 and a verbal indication from Bidder 3. The Buyer Group offered $80.70 per share, in cash, and Bidder 2 offered $80.35 per share, in cash. Bidder 3 verbally communicated to J.P. Morgan that their valuation would not be above the current stock price of approximately $78 per share. J.P. Morgan communicated to Bidder 3 that it was unlikely to be competitive and accordingly Bidder 3 did not submit a written offer. The form of merger agreement and other transaction documentation submitted by the Buyer Group were more favorable to the Company (including because they were less conditional and more likely to be completed and because they offered more certainty of protection for the Company in the unlikely event of non-completion of the transaction) and reflected substantially more acceptance of the Company's positions. Each bidder indicated that its bid was not dependent on a rollover by Longview, but neither the Buyer Group nor Bidder 2 ruled out the possibility of partnering with Longview in a transaction, though Bidder 2 indicated that any partnering with Longview would only occur after completion of bidding and execution of a definitive merger agreement with the Company.",
+    "after": [
+     "On December 10, 2014, the ad hoc committee discussed the bids and the draft merger agreements with representatives of J.P. Morgan and Wachtell Lipton. The ad hoc committee was of the view that there could be no assurance that the board would approve either bid unless improved. In light of the closeness of the bids, recent positive developments identified at the board meeting on December 3, and the view shared by the ad hoc committee and J.P. Morgan that neither of the bids represented the bidders' respective best offers, the ad hoc committee instructed J.P. Morgan to inform each bidder that it would need to increase its bid, and to instruct the bidders to submit improved bids on December 12, 2014. On the evening of December 11, 2014, representatives of J.P. Morgan contacted Longview to inform Longview that the bidders have been asked to submit revised and improved bids, and to confirm that Longview continued to be interested and willing to participate in a potential transaction by rolling over a portion of its Company common stock, so long as Longview's participation was desired and approved by the ad hoc committee.",
+     "Early in the day on December 12, 2014, the Buyer Group requested permission to work more closely with Longview in order to include a rollover of a portion of the Company shares managed by Longview in the Buyer Group's bid. The Buyer Group informed J.P. Morgan that the Buyer Group was working to achieve a higher price, and that Longview participation with the Buyer Group might enhance the Buyer Group's ability to do so. Bidder 2 indicated to J.P. Morgan that accommodation of a Longview rollover would not affect Bidder 2's price, and that Bidder 2 would consider accommodating a Longview rollover only after execution of a merger agreement between the Company and Bidder 2. After consultation with the Company's financial and legal advisors, the ad hoc committee approved the Buyer Group's request, and,"
+    ]
+   }
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "scoped": {
+    "type": "choice",
+    "criteria": {
+     "supported": "The source states this price (or range) for this party at this specific event. Trailing zeros and wording may differ.",
+     "contradicted": "The source describes this specific event by this party and gives a different price or range for it, or the claimed figure belongs to another party, another event, or only one component of the package.",
+     "insufficient": "The source does not state a price for this specific event, for example because a standing earlier price is merely confirmed without being restated."
+    },
+    "instructions": "A research ledger claims that at the event recorded as \"Bid\" by \"Buyer Group\", dated 12/10/2014 (priced proposal 2 of 4 by this party over the whole process, in date order), the total per-share value of the proposal was $82.50. Judge this claim against `passage` only. Bind party, date, event and price together: a figure that the passage gives for a different party, a different date or proposal, or for only the cash part of a package does not support the claim."
+   },
+   "actor_only": {
+    "type": "noul",
+    "instructions": "Does the passage state that \"Buyer Group\" offered, proposed or indicated a price of $82.50 per share (the same number may be written without trailing zeros)?",
+    "criteria": {
+     "true": "The per-share figure $82.50 appears in the passage as this party's price.",
+     "false": "The passage gives a different figure for this party, or no figure."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "scoped": {
+    "type": "choice",
+    "choice": "contradicted",
+    "confidence": 1.0,
+    "probabilities": {
+     "contradicted": 1.0,
+     "insufficient": 0.0,
+     "supported": 0.0
+    }
+   },
+   "actor_only": {
+    "type": "noul",
+    "noul": 0.03
+   }
+  },
+  "usage": {
+   "input_tokens": 1599,
+   "output_tokens": 66
+  }
+ },
+ "latency_s": 0.322
+}

@@ -1,0 +1,44 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "As part of its ongoing review of strategic alternatives, at an in-person meeting of the Board on April 5, 2013, the Board discussed the sale of CSC to Pamplona as well as industry-wide merger and acquisition activity and dynamics, and authorized Mac-Gray management to work with BofA Merrill Lynch to explore transactional opportunities that might be available to Mac-Gray, including opportunities with another strategic party, whom we refer to as Party A, in the laundry facilities management industry. The Board also determined to further consider Mac-Gray's strategic alternatives at its meeting scheduled for May 9, 2013.",
+   "target_sentence": "As part of its ongoing review of strategic alternatives, at an in-person meeting of the Board on April 5, 2013, the Board discussed the sale of CSC to Pamplona as well as industry-wide merger and acquisition activity and dynamics, and authorized Mac-Gray management to work with BofA Merrill Lynch to explore transactional opportunities that might be available to Mac-Gray, including opportunities with another strategic party, whom we refer to as Party A, in the laundry facilities management industry."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_2": "10/23/2012 | BofA Merrill Lynch | Adviser | Engaged for the 2011-2012 Discussions regarding Mac-Gray's possible acquisition of CSC, not Mac-Gray's sale; mandate later terminated and re-engaged 05/30/2013 for this sale.",
+     "row_3": "04/05/2013 | Mac-Gray | Target sale decision | Board authorized management to work with BofA Merrill Lynch to explore transactional opportunities, including with Party A; to consider strategic alternatives further at the May 9 meeting.",
+     "row_4": "04/08/2013 | Party A | Target interest | BofA Merrill Lynch, as instructed by the Board, telephoned Party A; Party A indicated it might consider a business combination with Mac-Gray.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_3",
+    "confidence": 0.97,
+    "probabilities": {
+     "row_4": 0.0,
+     "row_3": 0.98,
+     "row_2": 0.0,
+     "none": 0.01,
+     "not_an_event": 0.01
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 935,
+   "output_tokens": 62
+  }
+ },
+ "latency_s": 0.441
+}

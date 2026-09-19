@@ -1,0 +1,70 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On April 8, 2013, representatives of BofA Merrill Lynch, as instructed by the Board, telephoned a representative of Party A to discuss generally a possible business combination between Party A and Mac-Gray. During this call, the representative of Party A indicated that Party A might consider a business combination with Mac-Gray.",
+   "ledger_rows": [
+    {
+     "When": "04/05/2013",
+     "Who": "BofA Merrill Lynch",
+     "Event": "Adviser",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Target financial adviser; first seen acting in this sale exploration. Its earlier mandate concerned Mac-Gray's contemplated acquisition of CSC."
+    },
+    {
+     "When": "04/08/2013",
+     "Who": "Party A",
+     "Event": "Target interest",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Target-initiated approach; Party A said it might consider a business combination."
+    },
+    {
+     "When": "05/09/2013",
+     "Who": "Goodwin Procter LLP",
+     "Event": "Adviser",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Mac-Gray outside legal counsel; first seen acting in the relevant review."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "contact": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "adviser": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "contact": {
+    "type": "noul",
+    "noul": 0.62
+   },
+   "adviser": {
+    "type": "noul",
+    "noul": 0.45
+   }
+  },
+  "usage": {
+   "input_tokens": 814,
+   "output_tokens": 38
+  }
+ },
+ "latency_s": 0.251
+}

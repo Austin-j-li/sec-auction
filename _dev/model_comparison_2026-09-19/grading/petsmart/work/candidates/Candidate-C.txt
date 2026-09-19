@@ -1,0 +1,799 @@
+SHEET 'Deal ledger'; state=visible; rows=44; columns=22
+EXCEL ROW 1
+  A1 [#]: #
+  B1 [When]: When
+  C1 [Who]: Who
+  D1 [Type]: Type
+  E1 [Event]: Event
+  F1 [Process]: Process
+  G1 [Round]: Round
+  H1 [Price low]: Price low
+  I1 [Price high]: Price high
+  J1 [All cash]: All cash
+  K1 [Formality]: Formality
+  L1 [Conditions]: Conditions
+  M1 [Count]: Count
+  N1 [Exit reason]: Exit reason
+  O1 [Inferred]: Inferred
+  P1 [Note]: Note
+  Q1 [Quote and page]: Quote and page
+  R1 [Flag]: Flag
+  S1 [Reviewer note]: Reviewer note
+  T1 [Sort date]: Sort date
+  U1 [Date from]: Date from
+  V1 [Date to]: Date to
+EXCEL ROW 2
+  A2 [#]: 1
+  B2 [When]: late May–June 2014
+  C2 [Who]: Unnamed stockholders and interested parties
+  E2 [Event]: Activist
+  F2 [Process]: 1
+  G2 [Round]: 0
+  P2 [Note]: After weak Q1 results (05/21/2014), some stockholders and interested parties urged strategic or financial alternatives, including a levered return of capital and a sale of the Company.
+  Q2 [Quote and page]: “the Company received written or verbal communications from some stockholders and from interested parties suggesting that the Company engage in various strategic or financial alternatives” (p. 21)
+  T2 [Sort date]: 2014-05-21T00:00:00
+  U2 [Date from]: 2014-05-21T00:00:00
+  V2 [Date to]: 2014-06-30T00:00:00
+EXCEL ROW 3
+  A3 [#]: 2
+  B3 [When]: 06/18/2014
+  C3 [Who]: Wachtell Lipton
+  E3 [Event]: Adviser
+  F3 [Process]: 1
+  G3 [Round]: 0
+  P3 [Note]: Target legal adviser; first seen acting at 06/18 board meeting, which chose to focus on capital return and formed ad hoc committee (Josefowicz, Gangwal, Stemberg).
+  Q3 [Quote and page]: “the board reviewed, together with a financial advisor and with Wachtell, Lipton, Rosen & Katz (“Wachtell Lipton”), its legal advisor” (p. 21)
+  T3 [Sort date]: 2014-06-18T00:00:00
+  U3 [Date from]: 2014-06-18T00:00:00
+  V3 [Date to]: 2014-06-18T00:00:00
+EXCEL ROW 4
+  A4 [#]: 3
+  B4 [When]: 06/18/2014
+  C4 [Who]: Unnamed financial advisor
+  E4 [Event]: Adviser
+  F4 [Process]: 1
+  G4 [Round]: 0
+  P4 [Note]: Unnamed financial advisor to the board, first seen acting 06/18; board then authorized vetting and retention of a financial advisor. Not mentioned again.
+  Q4 [Quote and page]: “At a meeting on June 18, 2014, the board reviewed, together with a financial advisor and with Wachtell” (p. 21)
+  T4 [Sort date]: 2014-06-18T00:00:00
+  U4 [Date from]: 2014-06-18T00:00:00
+  V4 [Date to]: 2014-06-18T00:00:00
+EXCEL ROW 5
+  A5 [#]: 4
+  B5 [When]: 07/03/2014
+  C5 [Who]: JANA Partners
+  E5 [Event]: Activist
+  F5 [Process]: 1
+  G5 [Round]: 0
+  P5 [Note]: 13D at 9.9%; sought review of alternatives including a sale. Further 13D amendments and public letters in July–August advocating a sale; met the Company 07/10/2014 advocating a sale.
+  Q5 [Quote and page]: “JANA Partners filed a Schedule 13D with the SEC disclosing that JANA had acquired 9.9% of the Company’s outstanding common stock” (p. 22)
+  T5 [Sort date]: 2014-07-03T00:00:00
+  U5 [Date from]: 2014-07-03T00:00:00
+  V5 [Date to]: 2014-07-03T00:00:00
+EXCEL ROW 6
+  A6 [#]: 5
+  B6 [When]: 07/07/2014
+  C6 [Who]: Longview
+  E6 [Event]: Activist
+  F6 [Process]: 1
+  G6 [Round]: 0
+  P6 [Note]: Shareholder; public letter urging board to consider a sale; would consider rolling some or all holdings into buyer equity. Met board in May without advocating; reiterated sale advocacy 07/10/2014.
+  Q6 [Quote and page]: “Longview made public a letter to the board in which Longview stated that the board should consider the a sale of the Company” (p. 22)
+  T6 [Sort date]: 2014-07-07T00:00:00
+  U6 [Date from]: 2014-07-07T00:00:00
+  V6 [Date to]: 2014-07-07T00:00:00
+EXCEL ROW 7
+  A7 [#]: 6
+  B7 [When]: July 2014
+  C7 [Who]: J.P. Morgan
+  E7 [Event]: Adviser
+  F7 [Process]: 1
+  G7 [Round]: 0
+  P7 [Note]: Target’s sole financial adviser, retained after interviews; engagement letter effective 08/21/2014; fee up to about $39 million; gave fairness opinion 12/13/2014.
+  Q7 [Quote and page]: “In July, after interviewing several potential financial advisors, the Company retained J.P. Morgan as financial advisor” (p. 22)
+  T7 [Sort date]: 2014-07-16T00:00:00
+  U7 [Date from]: 2014-07-01T00:00:00
+  V7 [Date to]: 2014-07-31T00:00:00
+EXCEL ROW 8
+  A8 [#]: 7
+  B8 [When]: 08/07/2014
+  C8 [Who]: Industry Participant
+  D8 [Type]: Strategic
+  E8 [Event]: Bidder interest
+  F8 [Process]: 1
+  G8 [Round]: 0
+  M8 [Count]: 1
+  P8 [Note]: Privately-held industry competitor; contacted J.P. Morgan after rumours, may revisit spring 2014 talks (PetSmart-initiated merger/acquisition discussions, which IP rebuffed citing antitrust). No price.
+  Q8 [Quote and page]: “Industry Participant might be interested in re-visiting the conversations that had taken place in the Spring concerning the feasibility of a possible combination of the two Companies” (p. 22)
+  R8 [Flag]: Q6
+  T8 [Sort date]: 2014-08-07T00:00:00
+  U8 [Date from]: 2014-08-07T00:00:00
+  V8 [Date to]: 2014-08-07T00:00:00
+EXCEL ROW 9
+  A9 [#]: 8
+  B9 [When]: 08/13/2014
+  C9 [Who]: PetSmart board
+  E9 [Event]: Target sale decision
+  F9 [Process]: 1
+  G9 [Round]: 0
+  P9 [Note]: Board decided to explore alternatives incl. a sale, with Profit Improvement Plan as standalone fallback; ad hoc committee to oversee; J.P. Morgan outreach deferred to late Sept/early Oct; public announcement planned.
+  Q9 [Quote and page]: “the board (1) determined to explore strategic alternatives (including a possible sale of the Company) for the Company to maximize value for stockholders” (p. 22)
+  T9 [Sort date]: 2014-08-13T00:00:00
+  U9 [Date from]: 2014-08-13T00:00:00
+  V9 [Date to]: 2014-08-13T00:00:00
+EXCEL ROW 10
+  A10 [#]: 9
+  B10 [When]: mid-August – 10/03/2014
+  C10 [Who]: 24 financial participants
+  D10 [Type]: Financial
+  E10 [Event]: Contact
+  F10 [Process]: 1
+  G10 [Round]: 0
+  M10 [Count]: 24
+  P10 [Note]: Parties contacted J.P. Morgan (inbound); includes potential lead buyers and large equity suppliers. All 27 reported to board by 10/03. Reasons section: Company “contacted or were contacted by more than 25”.
+  Q10 [Quote and page]: “J.P. Morgan was contacted by 27 potential participants in a sale process, including three strategic parties (not counting Industry Participant) and 24 financial participants” (p. 23)
+  R10 [Flag]: Q1
+  T10 [Sort date]: 2014-08-13T00:00:00
+  U10 [Date from]: 2014-08-13T00:00:00
+  V10 [Date to]: 2014-10-03T00:00:00
+EXCEL ROW 11
+  A11 [#]: 10
+  B11 [When]: mid-August – 10/03/2014
+  C11 [Who]: 3 strategic parties
+  D11 [Type]: Strategic
+  E11 [Event]: Contact
+  F11 [Process]: 1
+  G11 [Round]: 0
+  M11 [Count]: 3
+  P11 [Note]: Inbound contacts to J.P. Morgan, excluding Industry Participant. None signed a confidentiality agreement (all 15 signers were financial).
+  Q11 [Quote and page]: “J.P. Morgan was contacted by 27 potential participants in a sale process, including three strategic parties (not counting Industry Participant) and 24 financial participants” (p. 23)
+  T11 [Sort date]: 2014-08-13T00:00:00
+  U11 [Date from]: 2014-08-13T00:00:00
+  V11 [Date to]: 2014-10-03T00:00:00
+EXCEL ROW 12
+  A12 [#]: 11
+  B12 [When]: 08/19/2014
+  C12 [Who]: PetSmart
+  E12 [Event]: Sale process announced
+  F12 [Process]: 1
+  G12 [Round]: 0
+  P12 [Note]: Press release with Q2 earnings; intended to let parties not contacted approach J.P. Morgan on their own initiative.
+  Q12 [Quote and page]: “the Company issued a press release announcing that it determined to explore strategic alternatives for the Company to maximize value for stockholders, including a possible sale of the Company” (p. 23)
+  T12 [Sort date]: 2014-08-19T00:00:00
+  U12 [Date from]: 2014-08-19T00:00:00
+  V12 [Date to]: 2014-08-19T00:00:00
+EXCEL ROW 13
+  A13 [#]: 12
+  B13 [When]: 08/27/2014
+  C13 [Who]: Industry Participant
+  D13 [Type]: Strategic
+  E13 [Event]: Other material event
+  F13 [Process]: 1
+  G13 [Round]: 0
+  M13 [Count]: 1
+  P13 [Note]: Target refused admission: on ad hoc committee direction, J.P. Morgan conveyed concerns (08/22), then said IP not invited (antitrust, information, delay risks); proposals would be considered. Reaffirmed 10/03. No later contact; never entered.
+  Q13 [Quote and page]: “The J.P. Morgan representative stated that Industry Participant would not be invited into the exploratory process” (p. 23)
+  R13 [Flag]: Q6
+  T13 [Sort date]: 2014-08-27T00:00:00
+  U13 [Date from]: 2014-08-27T00:00:00
+  V13 [Date to]: 2014-08-27T00:00:00
+EXCEL ROW 14
+  A14 [#]: 13
+  B14 [When]: first week of October 2014
+  C14 [Who]: PetSmart / J.P. Morgan
+  E14 [Event]: Round opened
+  F14 [Process]: 1
+  G14 [Round]: 1
+  P14 [Note]: Round 1 opened by the NDA wave (buyers came to target; no outreach wave reported). Board told 10/03 about 15 parties interested.
+  Q14 [Quote and page]: “In the first week of October 2014, the Company entered into confidentiality and standstill agreements with 15 potentially interested financial buyers” (p. 23)
+  R14 [Flag]: Q1
+  T14 [Sort date]: 2014-10-04T00:00:00
+  U14 [Date from]: 2014-10-01T00:00:00
+  V14 [Date to]: 2014-10-07T00:00:00
+EXCEL ROW 15
+  A15 [#]: 14
+  B15 [When]: first week of October 2014
+  C15 [Who]: 15 financial NDA signers
+  D15 [Type]: Financial
+  E15 [Event]: NDA signed
+  F15 [Process]: 1
+  G15 [Round]: 1
+  M15 [Count]: 15
+  P15 [Note]: Confidentiality and standstill agreements. All 15 did diligence in October, had senior-management presentations and detailed business-plan and Profit Improvement Plan information. Includes Buyer Group, Bidder 2 and all IOI submitters.
+  Q15 [Quote and page]: “In the first week of October 2014, the Company entered into confidentiality and standstill agreements with 15 potentially interested financial buyers” (p. 23)
+  T15 [Sort date]: 2014-10-04T00:00:00
+  U15 [Date from]: 2014-10-01T00:00:00
+  V15 [Date to]: 2014-10-07T00:00:00
+EXCEL ROW 16
+  A16 [#]: 15
+  B16 [When]: during October 2014
+  C16 [Who]: PetSmart / J.P. Morgan
+  E16 [Event]: Deadline set
+  F16 [Process]: 1
+  G16 [Round]: 1
+  P16 [Note]: Non-binding preliminary IOIs due 10/30. Bidders told Longview would roll over up to 7.5 million shares if bidder wished; asked to indicate interest, not a condition.
+  Q16 [Quote and page]: “During October, the potential bidders were informed that non-binding preliminary indications of interest would be due on October 30, 2014.” (p. 23)
+  T16 [Sort date]: 2014-10-15T00:00:00
+  U16 [Date from]: 2014-10-01T00:00:00
+  V16 [Date to]: 2014-10-29T00:00:00
+EXCEL ROW 17
+  A17 [#]: 16
+  B17 [When]: 10/30/2014
+  C17 [Who]: Buyer Group
+  D17 [Type]: Financial
+  E17 [Event]: Bid
+  F17 [Process]: 1
+  G17 [Round]: 1
+  H17 [Price low]: 81
+  I17 [Price high]: 83
+  J17 [All cash]: Not stated
+  K17 [Formality]: Informal
+  L17 [Conditions]: Unclear
+  M17 [Count]: 1
+  P17 [Note]: Preliminary non-binding IOI; range. Consortium led by BC Partners funds (later with CDPQ, GIC, StepStone). Terms beyond price not reported.
+  Q17 [Quote and page]: “including the Buyer Group, which indicated a range of $81.00 to $83.00 per share” (p. 24)
+  T17 [Sort date]: 2014-10-30T00:00:00
+  U17 [Date from]: 2014-10-30T00:00:00
+  V17 [Date to]: 2014-10-30T00:00:00
+EXCEL ROW 18
+  A18 [#]: 17
+  B18 [When]: 10/30/2014
+  C18 [Who]: Unnamed financial bidder 1
+  D18 [Type]: Financial
+  E18 [Event]: Bid
+  F18 [Process]: 1
+  G18 [Round]: 1
+  H18 [Price low]: 80
+  I18 [Price high]: 85
+  J18 [All cash]: Not stated
+  K18 [Formality]: Informal
+  L18 [Conditions]: Unclear
+  M18 [Count]: 1
+  P18 [Note]: Preliminary non-binding IOI; range. Advanced 11/03; on recommended reading, later part of Bidder 3.
+  Q18 [Quote and page]: “and another bidder, which suggested a range of $80.00 to $85.00 per share” (p. 24)
+  R18 [Flag]: Q3
+  T18 [Sort date]: 2014-10-30T00:00:00
+  U18 [Date from]: 2014-10-30T00:00:00
+  V18 [Date to]: 2014-10-30T00:00:00
+EXCEL ROW 19
+  A19 [#]: 18
+  B19 [When]: 10/30/2014
+  C19 [Who]: Unnamed financial bidder 2
+  D19 [Type]: Financial
+  E19 [Event]: Bid
+  F19 [Process]: 1
+  G19 [Round]: 1
+  J19 [All cash]: Not stated
+  K19 [Formality]: Informal
+  L19 [Conditions]: Unclear
+  M19 [Count]: 1
+  P19 [Note]: Third of three IOIs whose range “reached at least $80.00”; endpoints not disclosed, so price cells blank. Advanced 11/03; on recommended reading, later part of Bidder 3.
+  Q19 [Quote and page]: “Three bidders initially indicated price ranges that reached at least $80.00 per share” (p. 24)
+  R19 [Flag]: Q3
+  T19 [Sort date]: 2014-10-30T00:00:00
+  U19 [Date from]: 2014-10-30T00:00:00
+  V19 [Date to]: 2014-10-30T00:00:00
+EXCEL ROW 20
+  A20 [#]: 19
+  B20 [When]: 10/30/2014
+  C20 [Who]: Bidder 2
+  D20 [Type]: Financial
+  E20 [Event]: Bid
+  F20 [Process]: 1
+  G20 [Round]: 1
+  H20 [Price low]: 78
+  I20 [Price high]: 78
+  J20 [All cash]: Not stated
+  K20 [Formality]: Informal
+  L20 [Conditions]: Unclear
+  M20 [Count]: 1
+  P20 [Note]: Preliminary non-binding IOI at a point price.
+  Q20 [Quote and page]: “another bidder (which we refer to as “Bidder 2”), which had initially indicated a price of $78.00” (p. 24)
+  T20 [Sort date]: 2014-10-30T00:00:00
+  U20 [Date from]: 2014-10-30T00:00:00
+  V20 [Date to]: 2014-10-30T00:00:00
+EXCEL ROW 21
+  A21 [#]: 20
+  B21 [When]: 10/30/2014
+  C21 [Who]: 2 other IOI submitters
+  D21 [Type]: Financial
+  E21 [Event]: Bid
+  F21 [Process]: 1
+  G21 [Round]: 1
+  J21 [All cash]: Not stated
+  K21 [Formality]: Informal
+  L21 [Conditions]: Unclear
+  M21 [Count]: 2
+  P21 [Note]: Six IOIs in total; the remaining two, prices undisclosed but below the $80.00 cut-off (inferred from the board’s advancement rule). Reasons section says IOIs came from 5 bidder groups.
+  Q21 [Quote and page]: “On October 30, six of the potentially interested parties submitted indications of interest.” (p. 24)
+  R21 [Flag]: Q4
+  T21 [Sort date]: 2014-10-30T00:00:00
+  U21 [Date from]: 2014-10-30T00:00:00
+  V21 [Date to]: 2014-10-30T00:00:00
+EXCEL ROW 22
+  A22 [#]: 21
+  B22 [When]: 10/30/2014
+  C22 [Who]: PetSmart
+  E22 [Event]: Deadline
+  F22 [Process]: 1
+  G22 [Round]: 1
+  P22 [Note]: Due date for non-binding preliminary indications of interest.
+  Q22 [Quote and page]: “non-binding preliminary indications of interest would be due on October 30, 2014” (p. 23)
+  R22 [Flag]: Q2
+  T22 [Sort date]: 2014-10-30T00:00:00
+  U22 [Date from]: 2014-10-30T00:00:00
+  V22 [Date to]: 2014-10-30T00:00:00
+EXCEL ROW 23
+  A23 [#]: 22
+  B23 [When]: by 10/30/2014
+  C23 [Who]: 9 NDA signers without IOI
+  D23 [Type]: Financial
+  E23 [Event]: Did not submit
+  F23 [Process]: 1
+  G23 [Round]: 1
+  M23 [Count]: 9
+  N23 [Exit reason]: Not stated
+  O23 [Inferred]: Y
+  P23 [Note]: 15 signers − 6 submitters = 9. J.P. Morgan heard their rationales for not submitting (10/30–11/02); rationales not disclosed. Would be 10 if only 5 IOIs (Q4).
+  Q23 [Quote and page]: “including those that did not submit an indication of interest, to hear the parties’ respective rationales” (p. 24)
+  R23 [Flag]: Q4
+  T23 [Sort date]: 2014-10-30T00:00:00
+  V23 [Date to]: 2014-10-30T00:00:00
+EXCEL ROW 24
+  A24 [#]: 23
+  B24 [When]: 10/30–11/02/2014
+  C24 [Who]: Bidder 2
+  D24 [Type]: Financial
+  E24 [Event]: Bid
+  F24 [Process]: 1
+  G24 [Round]: 1
+  H24 [Price low]: 81
+  I24 [Price high]: 84
+  J24 [All cash]: Not stated
+  K24 [Formality]: Informal
+  L24 [Conditions]: Unclear
+  M24 [Count]: 1
+  P24 [Note]: Revises #19 after J.P. Morgan calls on rationales for price levels; raised $78.00 to a range, bringing it above the $80.00 cut-off.
+  Q24 [Quote and page]: “which had initially indicated a price of $78.00, increased its indication to a range of $81.00 to $84.00 per share” (p. 24)
+  R24 [Flag]: Q2
+  T24 [Sort date]: 2014-10-31T00:00:00
+  U24 [Date from]: 2014-10-30T00:00:00
+  V24 [Date to]: 2014-11-02T00:00:00
+EXCEL ROW 25
+  A25 [#]: 24
+  B25 [When]: 11/03/2014
+  C25 [Who]: PetSmart board
+  E25 [Event]: Round opened
+  F25 [Process]: 1
+  G25 [Round]: 2
+  P25 [Note]: Board advanced four bidders at or above $80.00 (Buyer Group, Bidder 2, Unnamed financial bidders 1 and 2) to the “final round”; November diligence, management presentations, updated FY2014 projections for all.
+  Q25 [Quote and page]: “determined to allow the four bidders that had indicated a price or range at or above $80.00 per share to proceed to the final round of the sale process” (p. 24)
+  R25 [Flag]: Q1
+  T25 [Sort date]: 2014-11-03T00:00:00
+  U25 [Date from]: 2014-11-03T00:00:00
+  V25 [Date to]: 2014-11-03T00:00:00
+EXCEL ROW 26
+  A26 [#]: 25
+  B26 [When]: 11/03/2014
+  C26 [Who]: 2 other IOI submitters
+  D26 [Type]: Financial
+  E26 [Event]: Dropped by target
+  F26 [Process]: 1
+  G26 [Round]: 1
+  M26 [Count]: 2
+  N26 [Exit reason]: Lower offer than rivals
+  P26 [Note]: Below board’s $80.00 cut-off; notified after the meeting. None indicated interest or ability to go above its initial indication.
+  Q26 [Quote and page]: “representatives of J.P. Morgan notified the eliminated parties, none of which indicated any interest or ability to remain in the process at price levels above their respective initial indications.” (p. 24)
+  R26 [Flag]: Q4
+  T26 [Sort date]: 2014-11-03T00:00:00
+  U26 [Date from]: 2014-11-03T00:00:00
+  V26 [Date to]: 2014-11-03T00:00:00
+EXCEL ROW 27
+  A27 [#]: 26
+  B27 [When]: November 2014 (by 12/04/2014)
+  C27 [Who]: PetSmart board
+  E27 [Event]: Deadline set
+  F27 [Process]: 1
+  G27 [Round]: 2
+  P27 [Note]: Final bids initially due Friday 12/05/2014, with completion targeted 12/15. In November form merger agreement circulated with instruction to submit comments together with final bids.
+  Q27 [Quote and page]: “had initially set Friday, December 5 as the date for submission of bids” (p. 24)
+  T27 [Sort date]: 2014-11-18T00:00:00
+  U27 [Date from]: 2014-11-03T00:00:00
+  V27 [Date to]: 2014-12-04T00:00:00
+EXCEL ROW 28
+  A28 [#]: 27
+  B28 [When]: November 2014 (after 11/03)
+  C28 [Who]: Bidder 3 (Unnamed financial bidders 1 and 2)
+  D28 [Type]: Financial
+  E28 [Event]: Bidding group changed
+  F28 [Process]: 1
+  G28 [Round]: 2
+  M28 [Count]: 1
+  O28 [Inferred]: Y
+  P28 [Note]: Ad hoc committee let two bidders work together: one (final-round invitee) wanted an equity partner given deal size; other would drop out otherwise. Members inferred as bidders 1 and 2. Count = net reduction.
+  Q28 [Quote and page]: “the ad hoc committee authorized these two bidders to work together. We refer to these two bidders together as “Bidder 3.”” (p. 24)
+  R28 [Flag]: Q3
+  T28 [Sort date]: 2014-11-21T00:00:00
+  U28 [Date from]: 2014-11-03T00:00:00
+  V28 [Date to]: 2014-12-10T00:00:00
+EXCEL ROW 29
+  A29 [#]: 28
+  B29 [When]: 12/04–12/05/2014
+  C29 [Who]: PetSmart (ad hoc committee)
+  E29 [Event]: Deadline revised
+  F29 [Process]: 1
+  G29 [Round]: 2
+  P29 [Note]: Final-bid due date moved from 12/05 to evening of 12/10 to shorten post-bid period and leak risk; bidders asked to send markups and financing commitments in advance.
+  Q29 [Quote and page]: “Accordingly, the Company set the evening of Wednesday, December 10 (five days, rather than 10 days prior to the anticipated December 15 completion date)” (p. 25)
+  R29 [Flag]: Q2
+  T29 [Sort date]: 2014-12-04T00:00:00
+  U29 [Date from]: 2014-12-04T00:00:00
+  V29 [Date to]: 2014-12-05T00:00:00
+EXCEL ROW 30
+  A30 [#]: 29
+  B30 [When]: 12/10/2014
+  C30 [Who]: Buyer Group
+  D30 [Type]: Financial
+  E30 [Event]: Bid
+  F30 [Process]: 1
+  G30 [Round]: 2
+  H30 [Price low]: 80.7
+  I30 [Price high]: 80.7
+  J30 [All cash]: Yes
+  K30 [Formality]: Formal
+  L30 [Conditions]: Light
+  M30 [Count]: 1
+  P30 [Note]: Final bid letter with revised merger agreement and transaction documents. Financing commitment documents supplied 12/06. Documents less conditional than Bidder 2’s. Not dependent on Longview rollover.
+  Q30 [Quote and page]: “The Buyer Group offered $80.70 per share, in cash, and Bidder 2 offered $80.35 per share, in cash.” (p. 25)
+  T30 [Sort date]: 2014-12-10T00:00:00
+  U30 [Date from]: 2014-12-10T00:00:00
+  V30 [Date to]: 2014-12-10T00:00:00
+EXCEL ROW 31
+  A31 [#]: 30
+  B31 [When]: 12/10/2014
+  C31 [Who]: Bidder 2
+  D31 [Type]: Financial
+  E31 [Event]: Bid
+  F31 [Process]: 1
+  G31 [Round]: 2
+  H31 [Price low]: 80.35
+  I31 [Price high]: 80.35
+  J31 [All cash]: Yes
+  K31 [Formality]: Formal
+  L31 [Conditions]: Unclear
+  M31 [Count]: 1
+  P31 [Note]: Final bid letter with revised merger agreement and transaction documents; documents more conditional than Buyer Group’s; financing status not reported until 12/12. Would partner with Longview only after signing.
+  Q31 [Quote and page]: “The Buyer Group offered $80.70 per share, in cash, and Bidder 2 offered $80.35 per share, in cash.” (p. 25)
+  T31 [Sort date]: 2014-12-10T00:00:00
+  U31 [Date from]: 2014-12-10T00:00:00
+  V31 [Date to]: 2014-12-10T00:00:00
+EXCEL ROW 32
+  A32 [#]: 31
+  B32 [When]: 12/10/2014
+  C32 [Who]: PetSmart
+  E32 [Event]: Deadline
+  F32 [Process]: 1
+  G32 [Round]: 2
+  P32 [Note]: Final-bid due date (evening). Two written bids received; Bidder 3 gave only a verbal valuation.
+  Q32 [Quote and page]: “PetSmart received final bid letters along with revised versions of the merger agreement and other transaction documents from the Buyer Group and from Bidder 2” (p. 25)
+  R32 [Flag]: Q2
+  T32 [Sort date]: 2014-12-10T00:00:00
+  U32 [Date from]: 2014-12-10T00:00:00
+  V32 [Date to]: 2014-12-10T00:00:00
+EXCEL ROW 33
+  A33 [#]: 32
+  B33 [When]: 12/10/2014
+  C33 [Who]: Bidder 3
+  D33 [Type]: Financial
+  E33 [Event]: Did not submit
+  F33 [Process]: 1
+  G33 [Round]: 2
+  M33 [Count]: 1
+  N33 [Exit reason]: Value at or below market price
+  P33 [Note]: Verbal valuation not above the ~$78 stock price; J.P. Morgan said it was unlikely to be competitive, so no written offer. Both sides contributed. Not mentioned again.
+  Q33 [Quote and page]: “Bidder 3 verbally communicated to J.P. Morgan that their valuation would not be above the current stock price of approximately $78 per share.” (p. 25)
+  R33 [Flag]: Q5
+  T33 [Sort date]: 2014-12-10T00:00:00
+  U33 [Date from]: 2014-12-10T00:00:00
+  V33 [Date to]: 2014-12-10T00:00:00
+EXCEL ROW 34
+  A34 [#]: 33
+  B34 [When]: 12/10/2014
+  C34 [Who]: PetSmart (ad hoc committee)
+  E34 [Event]: Deadline revised
+  F34 [Process]: 1
+  G34 [Round]: 2
+  P34 [Note]: Neither bid acceptable unless improved: J.P. Morgan told both bidders to raise their bids, improved bids due 12/12. Treated as an extension within the final round, not a new round.
+  Q34 [Quote and page]: “inform each bidder that it would need to increase its bid, and to instruct the bidders to submit improved bids on December 12, 2014.” (p. 25)
+  R34 [Flag]: Q1; Q2
+  T34 [Sort date]: 2014-12-10T00:00:00
+  U34 [Date from]: 2014-12-10T00:00:00
+  V34 [Date to]: 2014-12-10T00:00:00
+EXCEL ROW 35
+  A35 [#]: 34
+  B35 [When]: 12/12/2014 (early)
+  C35 [Who]: Buyer Group / Longview
+  D35 [Type]: Financial
+  E35 [Event]: Other material event
+  F35 [Process]: 1
+  G35 [Round]: 2
+  M35 [Count]: 1
+  P35 [Note]: Rollover permitted: committee approved Buyer Group’s request to work with Longview; confidentiality agreement shared bid price. Bidder 2 would consider rollover only post-signing. Both bidders met Longview 12/09 without disclosing prices.
+  Q35 [Quote and page]: “Early in the day on December 12, 2014, the Buyer Group requested permission to work more closely with Longview in order to include a rollover” (p. 25)
+  T35 [Sort date]: 2014-12-12T00:00:00
+  U35 [Date from]: 2014-12-12T00:00:00
+  V35 [Date to]: 2014-12-12T00:00:00
+EXCEL ROW 36
+  A36 [#]: 35
+  B36 [When]: 12/12/2014 (evening)
+  C36 [Who]: Bidder 2
+  D36 [Type]: Financial
+  E36 [Event]: Bid
+  F36 [Process]: 1
+  G36 [Round]: 2
+  H36 [Price low]: 81.5
+  I36 [Price high]: 81.5
+  J36 [All cash]: Yes
+  K36 [Formality]: Formal
+  L36 [Conditions]: Light
+  M36 [Count]: 1
+  P36 [Note]: Revises #30. Confirmed to J.P. Morgan as best and final; with revised merger agreement drafts and financing commitment documents.
+  Q36 [Quote and page]: “Representatives of J.P. Morgan confirmed via a conversation with Bidder 2 on the evening of December 12, 2014 that $81.50 per share was its best and final offer.” (p. 26)
+  T36 [Sort date]: 2014-12-12T00:00:00
+  U36 [Date from]: 2014-12-12T00:00:00
+  V36 [Date to]: 2014-12-12T00:00:00
+EXCEL ROW 37
+  A37 [#]: 36
+  B37 [When]: 12/12/2014 (evening)
+  C37 [Who]: Buyer Group
+  D37 [Type]: Financial
+  E37 [Event]: Bid
+  F37 [Process]: 1
+  G37 [Round]: 2
+  H37 [Price low]: 82.5
+  I37 [Price high]: 82.5
+  J37 [All cash]: Yes
+  K37 [Formality]: Formal
+  L37 [Conditions]: Light
+  M37 [Count]: 1
+  P37 [Note]: Revises #29. Oral offer; said it was working to raise it within hours. Financing commitments already provided.
+  Q37 [Quote and page]: “The Buyer Group initially submitted an oral offer of $82.50 per share, in cash, but stated that it was working to increase the offer within the next few hours.” (p. 26)
+  T37 [Sort date]: 2014-12-12T00:00:00
+  U37 [Date from]: 2014-12-12T00:00:00
+  V37 [Date to]: 2014-12-12T00:00:00
+EXCEL ROW 38
+  A38 [#]: 37
+  B38 [When]: 12/12/2014 (later evening)
+  C38 [Who]: Buyer Group
+  D38 [Type]: Financial
+  E38 [Event]: Bid
+  F38 [Process]: 1
+  G38 [Round]: 2
+  H38 [Price low]: 83
+  I38 [Price high]: 83
+  J38 [All cash]: Yes
+  K38 [Formality]: Formal
+  L38 [Conditions]: Light
+  M38 [Count]: 1
+  P38 [Note]: Revises #36. Best and final; revised drafts “with few exceptions” in executable form, plus financing commitments. Longview’s $250 million rollover support helped reach $83.00; members unwilling or unable to go higher.
+  Q38 [Quote and page]: “Later in the evening, the Buyer Group submitted a best and final offer of $83.00 per share, in cash.” (p. 26)
+  T38 [Sort date]: 2014-12-12T00:00:00
+  U38 [Date from]: 2014-12-12T00:00:00
+  V38 [Date to]: 2014-12-12T00:00:00
+EXCEL ROW 39
+  A39 [#]: 38
+  B39 [When]: 12/12/2014
+  C39 [Who]: PetSmart
+  E39 [Event]: Deadline
+  F39 [Process]: 1
+  G39 [Round]: 2
+  P39 [Note]: Due date for improved bids; both remaining bidders submitted that evening.
+  Q39 [Quote and page]: “During the evening of December 12, 2014, Bidder 2 submitted an offer of $81.50 per share, in cash.” (p. 26)
+  R39 [Flag]: Q2
+  T39 [Sort date]: 2014-12-12T00:00:00
+  U39 [Date from]: 2014-12-12T00:00:00
+  V39 [Date to]: 2014-12-12T00:00:00
+EXCEL ROW 40
+  A40 [#]: 39
+  B40 [When]: 12/13/2014
+  C40 [Who]: Buyer Group
+  D40 [Type]: Financial
+  E40 [Event]: Other material event
+  F40 [Process]: 1
+  G40 [Round]: 2
+  M40 [Count]: 1
+  P40 [Note]: Board selected Buyer Group: approved merger at $83.00 cash, subject to resolving remaining open points in the agreement; J.P. Morgan gave fairness opinion.
+  Q40 [Quote and page]: “The board’s determination was subject, however, to confirmation that the remaining open points in the merger agreement had been satisfactorily resolved” (p. 26)
+  T40 [Sort date]: 2014-12-13T00:00:00
+  U40 [Date from]: 2014-12-13T00:00:00
+  V40 [Date to]: 2014-12-13T00:00:00
+EXCEL ROW 41
+  A41 [#]: 40
+  B41 [When]: 12/14/2014
+  C41 [Who]: Simpson Thacher & Bartlett
+  E41 [Event]: Adviser
+  F41 [Process]: 1
+  G41 [Round]: 2
+  O41 [Inferred]: Y
+  P41 [Note]: Parent’s counsel: named as copy recipient for notices to Parent in the merger agreement. Role inferred; first seen at signing.
+  Q41 [Quote and page]: “with a copy to: Simpson Thacher and Bartlett LLP” (p. A-46)
+  T41 [Sort date]: 2014-12-14T00:00:00
+  V41 [Date to]: 2014-12-14T00:00:00
+EXCEL ROW 42
+  A42 [#]: 41
+  B42 [When]: 12/14/2014
+  C42 [Who]: Buyer Group
+  D42 [Type]: Financial
+  E42 [Event]: Merger agreement signed
+  F42 [Process]: 1
+  G42 [Round]: 2
+  M42 [Count]: 1
+  P42 [Note]: $83.00 per share in cash. Parent Argos Holdings (BC Partners-affiliated). Equity up to $1.83bn plus Longview rollover (3,012,050 shares, $250m); debt up to $6.95bn (Citi-led); Longview voting agreement. No go-shop.
+  Q42 [Quote and page]: “On December 14, 2014, the parties executed the merger agreement, the voting agreement and related transaction agreements” (p. 26)
+  T42 [Sort date]: 2014-12-14T00:00:00
+  U42 [Date from]: 2014-12-14T00:00:00
+  V42 [Date to]: 2014-12-14T00:00:00
+EXCEL ROW 43
+  A43 [#]: 42
+  B43 [When]: 12/14/2014
+  C43 [Who]: Bidder 2
+  D43 [Type]: Financial
+  E43 [Event]: Not selected at signing
+  F43 [Process]: 1
+  G43 [Round]: 2
+  M43 [Count]: 1
+  N43 [Exit reason]: Lower offer than rivals
+  P43 [Note]: Best and final $81.50 below Buyer Group’s $83.00.
+  Q43 [Quote and page]: “neither of which was willing to make a definitive offer at a price above $81.50, which was lower than the $83.00 price offered by the Buyer Group” (p. 27)
+  T43 [Sort date]: 2014-12-14T00:00:00
+  U43 [Date from]: 2014-12-14T00:00:00
+  V43 [Date to]: 2014-12-14T00:00:00
+EXCEL ROW 44
+  A44 [#]: 43
+  B44 [When]: 12/14/2014
+  C44 [Who]: PetSmart
+  E44 [Event]: Merger announced
+  F44 [Process]: 1
+  G44 [Round]: post
+  P44 [Note]: Press release announcing the transaction on the signing date.
+  Q44 [Quote and page]: “On December 14, 2014, the parties executed the merger agreement, the voting agreement and related transaction agreements and issued a press release announcing the transaction.” (p. 26)
+  T44 [Sort date]: 2014-12-14T00:00:00
+  U44 [Date from]: 2014-12-14T00:00:00
+  V44 [Date to]: 2014-12-14T00:00:00
+SHEET 'Rounds'; state=visible; rows=3; columns=10
+EXCEL ROW 1
+  A1 [Process]: Process
+  B1 [Round]: Round
+  C1 [Opened]: Opened
+  D1 [How opened]: How opened
+  E1 [Who was in]: Who was in
+  F1 [Due dates]: Due dates
+  G1 [Deadline outcome]: Deadline outcome
+  H1 [Finality]: Finality
+  I1 [Bids received]: Bids received
+  J1 [How it ended]: How it ended
+EXCEL ROW 2
+  A2 [Process]: 1
+  B2 [Round]: 1
+  C2 [Opened]: 2014-10-04T00:00:00
+  D2 [How opened]: Confidentiality and standstill agreements signed with 15 financial buyers in first week of October (#13–14); buyers had come to J.P. Morgan, no outreach wave reported
+  E2 [Who was in]: 15 financial, 0 strategic: Buyer Group, Bidder 2, Unnamed financial bidders 1 and 2, 11 other unnamed financial NDA signers
+  F2 [Due dates]: 10/30/2014
+  G2 [Deadline outcome]: Enforced
+  H2 [Finality]: Not final
+  I2 [Bids received]: 6 bidders (non-binding IOIs): Buyer Group $81–83, Unnamed financial bidder 1 $80–85, Unnamed financial bidder 2 (range reaching ≥$80), Bidder 2 $78 then $81–84, 2 others below $80
+  J2 [How it ended]: four advanced (≥$80.00), two eliminated 11/03, nine did not submit
+EXCEL ROW 3
+  A3 [Process]: 1
+  B3 [Round]: 2
+  C3 [Opened]: 2014-11-03T00:00:00
+  D3 [How opened]: Board advanced the four bidders at or above $80.00 to the “final round” (#24); bidders told to send merger-agreement comments with final bids
+  E3 [Who was in]: 4 financial: Buyer Group, Bidder 2, Unnamed financial bidders 1 and 2 (the latter two combined as Bidder 3 in November, leaving 3 bidding units)
+  F3 [Due dates]: 12/05/2014 → 12/10/2014 → 12/12/2014
+  G3 [Deadline outcome]: Extended; Enforced
+  H3 [Finality]: Announced as final
+  I3 [Bids received]: 2 bidders: Buyer Group ($80.70 on 12/10; $82.50 then $83.00 on 12/12), Bidder 2 ($80.35 on 12/10; $81.50 on 12/12). Bidder 3 gave only a verbal valuation ≤ ~$78
+  J3 [How it ended]: Bidder 3 did not submit 12/10; Buyer Group selected 12/13; signing 12/14; Bidder 2 not selected
+SHEET 'Questions'; state=visible; rows=7; columns=7
+EXCEL ROW 1
+  A1 [Q]: Q
+  B1 [Question]: Question
+  C1 [Recommended answer]: Recommended answer
+  D1 [Why, with page]: Why, with page
+  E1 [Rows affected]: Rows affected
+  F1 [What changes if answered differently]: What changes if answered differently
+  G1 [Reviewer note]: Reviewer note
+EXCEL ROW 2
+  A2 [Q]: Q1
+  B2 [Question]: Process and round map: one process, round 0 to early October, round 1 = preliminary indications, round 2 = final round incl. the 12/12 improved bids?
+  C2 [Recommended answer]: Yes. Round 1 opens with the first-week-of-October NDA wave; round 2 opens 11/03 and is announced as final; the 12/10 demand for improved bids is a deadline extension within round 2.
+  D2 [Why, with page]: Filing says J.P. Morgan “was contacted by” 27 parties; no outreach wave reported (p. 23). Board calls the 11/03 stage the “final round” and bidders were to submit “final bids” (p. 24–25).
+  E2 [Rows affected]: #9, #13, #24, #33–#42
+  F2 [What changes if answered differently]: If the 12/10 request opens a round 3 (best and final), #33 becomes Round opened and #34–#42 move to round 3; the 12/10 due date becomes Enforced. If round 1 is dated from the mid-August contacts, #9–#12 move to round 1.
+EXCEL ROW 3
+  A3 [Q]: Q2
+  B3 [Question]: Deadline outcomes: 10/30 Enforced; 12/05 superseded before arrival; 12/10 Extended; 12/12 Enforced?
+  C3 [Recommended answer]: Yes. The board acted on 11/03 on bids in hand; 12/10 was followed by a request for improved bids by 12/12; the board selected the Buyer Group on 12/13 on the 12/12 bids.
+  D3 [Why, with page]: Bidder 2 raised $78.00 to $81–84 in calls from 10/30 to 11/02, which qualified it for the final round (p. 24). 12/05 due date replaced on 12/04–12/05 (p. 24–25); improved bids requested 12/10 (p. 25).
+  E3 [Rows affected]: #21, #23, #28, #31, #33, #38
+  F3 [What changes if answered differently]: If Bidder 2’s revision is treated as arriving after 10/30, round 1 outcome becomes “Late bids accepted”. Under the three-round alternative in Q1, 12/10 outcome becomes Enforced.
+EXCEL ROW 4
+  A4 [Q]: Q3
+  B4 [Question]: Who formed Bidder 3, and were both members live final-round invitees?
+  C4 [Recommended answer]: Both members were among the four advanced on 11/03, i.e. Unnamed financial bidders 1 and 2; independent bidders fell from 4 to 3.
+  D4 [Why, with page]: Only four advanced and later just three bidding units appear; Reasons say the Company negotiated with the Buyer Group and “two other bidding groups” (p. 24, 26). But p. 24 says only “one of which had been invited into the final round”.
+  E4 [Rows affected]: #17, #18, #27, #32
+  F4 [What changes if answered differently]: If the second member had been eliminated on 11/03, it needs a Re-entered row, and one of the four advanced bidders has an unreported exit (inferred Not selected/Dropped); live counts in round 2 change.
+EXCEL ROW 5
+  A5 [Q]: Q4
+  B5 [Question]: How many preliminary indications were received: six or five?
+  C5 [Recommended answer]: Six, as narrated in the Background; 9 NDA signers did not submit.
+  D5 [Why, with page]: Background: “six of the potentially interested parties submitted indications of interest” (p. 24). Reasons: indications “from 5 bidder groups” (p. 26), possibly counting Bidder 3’s two members as one group.
+  E5 [Rows affected]: #20, #22, #25
+  F5 [What changes if answered differently]: If five, the cohort of other submitters (#20, #25) falls to 1 and the non-submitter cohort (#22) rises to 10.
+EXCEL ROW 6
+  A6 [Q]: Q5
+  B6 [Question]: Who ended Bidder 3’s participation on 12/10?
+  C6 [Recommended answer]: Did not submit, reason Value at or below market price: it gave only a verbal valuation not above ~$78 and submitted no written offer.
+  D6 [Why, with page]: Bidder 3’s valuation would not exceed the ~$78 stock price; J.P. Morgan said it was unlikely to be competitive “and accordingly Bidder 3 did not submit a written offer” (p. 25).
+  E6 [Rows affected]: #32
+  F6 [What changes if answered differently]: Could be Withdrew (bidder’s own valuation) or Dropped by target (J.P. Morgan discouraged it). The live count is the same; only who decided changes.
+EXCEL ROW 7
+  A7 [Q]: Q6
+  B7 [Question]: Should Industry Participant count as an entered participant?
+  C7 [Recommended answer]: No. It expressed interest without a price, signed no confidentiality agreement and was refused admission, so it gets no exit row.
+  D7 [Why, with page]: IP “would not be invited into the exploratory process”; no contact after 08/27/2014 (p. 23). Spring 2014 talks were PetSmart-initiated merger/acquisition talks, not a sale approach (p. 21).
+  E7 [Rows affected]: #7, #12
+  F7 [What changes if answered differently]: If treated as a round-0 bidder, #12 becomes Dropped by target (Terms or process: antitrust risk), adding one strategic entry and exit.
+SHEET 'Deal facts'; state=visible; rows=17; columns=2
+EXCEL ROW 1
+  A1 [Field]: Field
+  B1 [Value]: Value
+EXCEL ROW 2
+  A2 [Field]: Target
+  B2 [Value]: PetSmart, Inc.
+EXCEL ROW 3
+  A3 [Field]: Acquirer
+  B3 [Value]: Argos Holdings Inc. (Parent) and Argos Merger Sub Inc., affiliates of funds advised by BC Partners; owned at closing by the Buyer Group: BC Partners funds, La Caisse de dépôt et placement du Québec, GIC Special Investments affiliates, StepStone Group affiliates and, after 12/12/2014, Longview (rollover of 3,012,050 shares)
+EXCEL ROW 4
+  A4 [Field]: Acquirer type
+  B4 [Value]: Financial (private-equity-led consortium; Longview rollover is support, not a separate bidder)
+EXCEL ROW 5
+  A5 [Field]: Agreed price and consideration
+  B5 [Value]: $83.00 per share in cash
+EXCEL ROW 6
+  A6 [Field]: Merger agreement signed
+  B6 [Value]: 2014-12-14T00:00:00
+EXCEL ROW 7
+  A7 [Field]: Merger announced
+  B7 [Value]: 2014-12-14T00:00:00
+EXCEL ROW 8
+  A8 [Field]: Filing type and date
+  B8 [Value]: DEFM14A, 02/02/2015
+EXCEL ROW 9
+  A9 [Field]: Background pages
+  B9 [Value]: 21–26
+EXCEL ROW 10
+  A10 [Field]: Initiation
+  B10 [Value]: activist-influenced
+EXCEL ROW 11
+  A11 [Field]: Number of processes
+  B11 [Value]: 1900-01-01T00:00:00
+EXCEL ROW 12
+  A12 [Field]: Auction screen
+  B12 [Value]: Met — 15 financial buyers signed confidentiality and standstill agreements (first week of October 2014)
+EXCEL ROW 13
+  A13 [Field]: Whole-company bids
+  B13 [Value]: Yes
+EXCEL ROW 14
+  A14 [Field]: Currency and units of bid prices
+  B14 [Value]: US dollars per share
+EXCEL ROW 15
+  A15 [Field]: Target financial advisers
+  B15 [Value]: J.P. Morgan (sole retained financial adviser; engagement letter effective 08/21/2014); an unnamed financial advisor attended the 06/18/2014 board meeting
+EXCEL ROW 16
+  A16 [Field]: Target legal advisers
+  B16 [Value]: Wachtell, Lipton, Rosen & Katz
+EXCEL ROW 17
+  A17 [Field]: Account
+  B17 [Value]: After weak first-quarter 2014 results and public pressure from JANA Partners (9.9%) and Longview, PetSmart’s board decided on 08/13/2014 to explore a sale, announced it on 08/19, and kept the strategic Industry Participant out on antitrust grounds. J.P. Morgan was approached by 27 parties; 15 financial buyers signed confidentiality agreements in early October and six submitted non-binding indications on 10/30/2014. On 11/03 the board advanced the four at or above $80.00 per share to a final round, where two of them were allowed to combine as Bidder 3. At the 12/10 final-bid deadline the Buyer Group bid $80.70 and Bidder 2 $80.35 with agreement markups, while Bidder 3 valued PetSmart no higher than its ~$78 share price and did not submit. Told to improve by 12/12, Bidder 2 offered $81.50 best and final and the Buyer Group, helped by a Longview rollover, $83.00. The board approved the Buyer Group’s $83.00 cash offer on 12/13 and the merger agreement was signed and announced on 12/14/2014.

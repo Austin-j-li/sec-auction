@@ -1,0 +1,51 @@
+{
+  "case_id": "ablation_finance_04",
+  "request_sha256": "4731a9b9c6b2fb9487852c8145dbcddac7757923d957c961e48bfdf82b2dba33",
+  "request": {
+    "model": "jev-1.13.0",
+    "state": {
+      "source": [
+        {
+          "paragraph_id": "256",
+          "text": "On September 18, 2013, CSC/Pamplona submitted a proposal for an all-cash purchase price of $20.75 per share, reiterating that Pamplona was committed to provide 100% of the capital required to consummate the transaction and requesting that CSC/Pamplona and Mac-Gray agree to engage in exclusive negotiations for two weeks. Also on September 18, 2013, Party A reiterated in a telephone call to a representative of BofA Merrill Lynch that its previous indication of interest with an all-cash purchase price of $18.00 to $19.00 per share was its best and final offer. On September 18, 2013, Party B also submitted a revised indication of interest with a purchase price that Party B valued at $21.50 per share, including $19.00 of cash to be paid at closing and the remaining per share price to be paid in the form of options to be issued to Mac-Gray stockholders, representing 10% of the new equity with a strike price equal to Party B's initial cost basis. These options, which we refer to as the Party B options, would vest on the achievement of the base case management projections ( i.e. , over five years), excluding any future acquisitions. Party B's proposal stated that it valued the Party B options at $2.50 of incremental value per share. Party C did not submit a revised indication of interest or reiterate its prior indication of interest of an all-cash purchase price of $16.00 to $17.00 per share nor did it specify any reasons in connection therewith."
+        }
+      ]
+    },
+    "questions": {
+      "financing": {
+        "type": "choice",
+        "instructions": "For CSC/Pamplona at \"September 18, 2013 proposal\", what does the supplied source explicitly report about financing commitment? Judge only financing; do not import another bidder or date, or infer commitment from all-cash consideration.",
+        "criteria": {
+          "committed": "Financing commitment provided, capital expressly committed, or financing not needed.",
+          "missing": "Explicitly no firm commitment, uncommitted financing, or financing contingency.",
+          "silent": "No explicit statement establishing either commitment or absence for this bidder at this event. Silence is not missing financing."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "financing": {
+        "type": "choice",
+        "choice": "committed",
+        "confidence": 1.0,
+        "probabilities": {
+          "committed": 1.0,
+          "missing": 0.0,
+          "silent": 0.0
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 805,
+      "output_tokens": 42
+    }
+  },
+  "attempts": [
+    {
+      "status": 200,
+      "latency_s": 1.2939688690094044
+    }
+  ]
+}

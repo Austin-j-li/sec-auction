@@ -1,0 +1,130 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "and its shareholders to proceed with the transaction strategy discussed with representatives of GHF. In light of the potentially significant time and effort involved in pursuing such exploratory transaction strategy, as well as the possible need to provide guidance to GHF and management on short notice, at the conclusion of the meeting, the Board appointed a special committee of independent directors of the Board (which we refer to as the \"Transaction Committee\"), composed of Frank W. Barrett (Chair), Richard W. Anderson and James C. Garvey, for the purpose of assisting in the supervision and oversight of the process on the full Board's behalf and making a recommendation to the full Board. The Transaction Committee did not have the authority to approve or enter into a change of control transaction, which, under Rhode Island law, is an authority that can only be exercised by the full Board. At the time of appointment, Messrs. Barrett and Garvey had been elected by the preferred shareholders and Mr. Anderson had been elected by the common shareholders at the 2015 annual shareholders meeting. At the Company's 2016 annual shareholders meeting on April 27, 2016, Messrs. Barrett and Anderson were re-elected as directors by the common shareholders and Mr. Garvey was re-elected as a director by the preferred shareholders.",
+   "ledger_rows": [
+    {
+     "When": "fourth quarter 2015",
+     "Who": "Party A",
+     "Event": "Bidder interest",
+     "Price low": null,
+     "Price high": null,
+     "Note": "First contact arose in a commercial meeting; possible joint ventures and an equity investment were discussed, without price or resolved scope."
+    },
+    {
+     "When": "01/27/2016",
+     "Who": "Greene Holcomb & Fisher LLC",
+     "Event": "Adviser",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Target financial adviser; acquired by BMO Capital Markets Corp. on 08/01/2016 and referred to thereafter as BMO."
+    },
+    {
+     "When": "03/14/2016",
+     "Who": "Providence and Worcester Railroad Company",
+     "Event": "Target sale decision",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Board decided to proceed with GHF\u2019s exploratory change-in-control transaction strategy and formed the Transaction Committee."
+    },
+    {
+     "When": "by 03/24/2016",
+     "Who": "Hinckley, Allen & Snyder LLP",
+     "Event": "Adviser",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Target legal adviser; first seen acting at the Transaction Committee meeting."
+    },
+    {
+     "When": "03/24/2016",
+     "Who": "Providence and Worcester Railroad Company",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Transaction Committee authorized broad outreach to Party A and other potential buyers."
+    },
+    {
+     "When": "week of 03/28/2016",
+     "Who": "11 potential strategic buyers",
+     "Event": "Contact",
+     "Price low": null,
+     "Price high": null,
+     "Note": "GHF outreach cohort; included Party A."
+    },
+    {
+     "When": "week of 03/28/2016",
+     "Who": "18 potential financial buyers",
+     "Event": "Contact",
+     "Price low": null,
+     "Price high": null,
+     "Note": "GHF outreach cohort."
+    },
+    {
+     "When": "subsequently; by 04/22/2016",
+     "Who": "Party A",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Named recipient of the Company memorandum and identified as having executed a confidentiality agreement; no standstill."
+    },
+    {
+     "When": "subsequently; by 04/22/2016",
+     "Who": "G&W",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Named recipient of the Company memorandum and identified as having executed a confidentiality agreement; no standstill."
+    },
+    {
+     "When": "subsequently; by 04/22/2016",
+     "Who": "Party B",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Named recipient of the Company memorandum and identified as having executed a confidentiality agreement; no standstill."
+    },
+    {
+     "When": "subsequently; by 04/22/2016",
+     "Who": "8 other strategic NDA signers",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Residual of 11 strategic signers after Party A, G&W and Party B; no standstill. Party B\u2019s inclusion is subject to Q3."
+    },
+    {
+     "When": "subsequently; by 04/22/2016",
+     "Who": "14 financial NDA signers",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Cohort; confidentiality agreements contained no standstill."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "agreements": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "agreements": {
+    "type": "noul",
+    "noul": 0.36
+   }
+  },
+  "usage": {
+   "input_tokens": 1660,
+   "output_tokens": 21
+  }
+ },
+ "latency_s": 0.272
+}

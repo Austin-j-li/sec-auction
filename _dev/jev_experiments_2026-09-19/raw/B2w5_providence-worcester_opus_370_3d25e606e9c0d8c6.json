@@ -1,0 +1,70 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Subsequent to the delivery of BMO's opinion and the Board's approval of the merger agreement and voting agreement, representatives of BMO advised the Board that when checking to determine if there were any financial advisory or financing relationships with G&W, it had inadvertently failed to identify that a BMO affiliate has a participation in G&W's existing secured syndicated debt facility as described under the section titled \"Summary of Financial Analysis of BMO Capital Markets Corp.- Miscellaneous \" on page 41. On September 6, 2016, the Board considered this new information, determined this relationship was not material to BMO's independence and confirmed that the Board remained comfortable with the engagement and opinion of BMO.",
+   "ledger_rows": [
+    {
+     "When": "08/12/2016",
+     "Who": "Party B",
+     "Event": "Not selected at signing",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Declined to raise its $24.00 offer (#46). Board found G&W's $25.00 superior; the drafts otherwise differed on the termination fee (lower for G&W) and on the STB approval route."
+    },
+    {
+     "When": "08/12/2016",
+     "Who": "G&W",
+     "Event": "Merger agreement signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "$25.00 cash per common share (each preferred share converts into 100 common). Termination fee 3% ($3.785M). Eder Trusts signed voting agreement. Board approved 08/12 (Smith recused)."
+    },
+    {
+     "When": "08/15/2016",
+     "Who": "Target",
+     "Event": "Merger announced",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Press release before NASDAQ open."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "adviser": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "agreements": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "adviser": {
+    "type": "noul",
+    "noul": 0.11
+   },
+   "agreements": {
+    "type": "noul",
+    "noul": 0.66
+   }
+  },
+  "usage": {
+   "input_tokens": 948,
+   "output_tokens": 39
+  }
+ },
+ "latency_s": 0.3
+}

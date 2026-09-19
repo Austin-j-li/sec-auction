@@ -1,0 +1,12 @@
+{
+  "client_pid": 784887,
+  "elapsed_seconds": 466.072,
+  "ended_at": "2026-09-19T16:21:41.136887+00:00",
+  "exit_code": 0,
+  "started_at": "2026-09-19T16:13:55.064937+00:00",
+  "state": "completed",
+  "timed_out": false,
+  "workbook_exists": true,
+  "workbook_valid_xlsx": true,
+  "worker_pid": 784884
+}

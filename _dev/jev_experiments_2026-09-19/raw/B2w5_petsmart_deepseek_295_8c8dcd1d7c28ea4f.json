@@ -1,0 +1,154 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "During the period from the middle of August through the end of October, the Company developed the Profit Improvement Plan and prepared for a sale process. During this period, J.P. Morgan was contacted by 27 potential participants in a sale process, including three strategic parties (not counting Industry Participant) and 24 financial participants (including potential lead buyers as well as large suppliers of equity capital to lead buyers).",
+   "ledger_rows": [
+    {
+     "When": "07/03/2014",
+     "Who": "JANA Partners",
+     "Event": "Activist",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Filed Schedule 13D disclosing a 9.9% stake; advocated a sale in amendments and letters through August; met the Company on 07/10."
+    },
+    {
+     "When": "07/07/2014",
+     "Who": "Longview",
+     "Event": "Activist",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Public letter urged the board to consider a sale; offered to roll over part of its holdings if needed; met directors and management in May."
+    },
+    {
+     "When": "08/07/2014",
+     "Who": "Industry Participant",
+     "Event": "Bidder interest",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Called J.P. Morgan: might revisit a combination if the Company pursued alternatives; reported to the ad hoc committee."
+    },
+    {
+     "When": "08/13/2014",
+     "Who": "PetSmart",
+     "Event": "Target sale decision",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Board determined to explore strategic alternatives including a possible sale; Profit Improvement Plan; ad hoc committee to oversee; J.P. Morgan to contact parties later."
+    },
+    {
+     "When": "08/19/2014",
+     "Who": "PetSmart",
+     "Event": "Sale process announced",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Press release announced exploration of strategic alternatives including a possible sale; uncontacted parties could approach J.P. Morgan."
+    },
+    {
+     "When": "08/27/2014",
+     "Who": "PetSmart",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Not invited: told 08/22 and 08/27 the board would not invite it; may still submit a proposal; no contact since 08/27."
+    },
+    {
+     "When": "mid-August\u2013October 2014",
+     "Who": "27 potential participants",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Contacts: 27 parties (3 strategic not counting Industry Participant; 24 financial) approached J.P. Morgan mid-August\u2013end October; ~15 expressed interest by the 10/03 board update."
+    },
+    {
+     "When": "first week of October 2014",
+     "Who": "PetSmart",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Round 1 opened by the first-week-of-October confidentiality wave; the 10/30 indication due date was set later."
+    },
+    {
+     "When": "first week of October 2014",
+     "Who": "15 potentially interested financial buyers",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "All 15 received October due diligence, management presentations and detailed financial and business-plan information."
+    },
+    {
+     "When": "October 2014",
+     "Who": "PetSmart",
+     "Event": "Deadline set",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Set non-binding preliminary indication due date of 10/30; communicated to the potential bidders during October."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "PetSmart",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Six of the potentially interested parties submitted indications of interest."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "Buyer Group",
+     "Event": "Bid",
+     "Price low": 81,
+     "Price high": 83,
+     "Note": "Preliminary non-binding indication; range $81.00\u2013$83.00; consideration not stated."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "Unnamed financial bidder 1",
+     "Event": "Bid",
+     "Price low": 80,
+     "Price high": 85,
+     "Note": "Another of the six submitters; non-binding range $80.00\u2013$85.00; not individually named."
+    },
+    {
+     "When": "10/30/2014",
+     "Who": "3 unnamed indication submitters",
+     "Event": "Bid",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Remainder of the six submitters; no individual detail or prices; one later advanced, two eliminated 11/03 (#24)."
+    },
+    {
+     "When": "10/30\u201311/02/2014",
+     "Who": "Bidder 2",
+     "Event": "Bid",
+     "Price low": 81,
+     "Price high": 84,
+     "Note": "Raised after J.P. Morgan's 10/30\u201311/02 calls; range $81.00\u2013$84.00; made it one of four at or above $80.00."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "contact": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "contact": {
+    "type": "noul",
+    "noul": 0.89
+   }
+  },
+  "usage": {
+   "input_tokens": 1825,
+   "output_tokens": 20
+  }
+ },
+ "latency_s": 0.277
+}

@@ -1,0 +1,40 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Later on October 11, 2013, the two members of the Transaction Committee telephoned CSC/Pamplona and communicated the Special Committee's position. Shortly following that conversation, the representative of CSC/Pamplona telephoned Mr. Daoust and agreed to the $11 million Mac-Gray",
+   "target_sentence": "Shortly following that conversation, the representative of CSC/Pamplona telephoned Mr. Daoust and agreed to the $11 million Mac-Gray."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_44": "10/12/2013 | CSC/Pamplona | Exclusivity changed | Letter agreement extended exclusivity to 11:59 p.m. ET 10/15/2013 after CSC/Pamplona agreed to an $11M Mac-Gray termination fee.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company; or a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_44",
+    "confidence": 0.58,
+    "probabilities": {
+     "none": 0.27,
+     "row_44": 0.72,
+     "not_an_event": 0.01
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 695,
+   "output_tokens": 46
+  }
+ },
+ "latency_s": 0.529
+}

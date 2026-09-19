@@ -1,0 +1,54 @@
+{
+ "request": {
+  "state": {
+   "passage": {
+    "before": [
+     "On July 3, 2013, Mr. Rothenberg called a representative of Goodwin Procter to indicate that he had spoken with representatives of Pamplona about Moab's desire to maintain the flexibility to consider a possible equity rollover if Pamplona were to participate in a business combination with Mac-Gray. Mr. Rothenberg also informed Goodwin Procter that Pamplona would be requesting that any confidentiality agreement CSC/Pamplona execute with Mac-Gray permit CSC and Pamplona to discuss their bid and evaluation material with Moab, with Moab agreeing to exclusively engage with CSC/Pamplona.",
+     "On July 6, 2013, the Special Committee held a telephonic meeting for the purpose of receiving an update on the ongoing sale process. By invitation of the Special Committee, representatives from BofA Merrill Lynch and Goodwin Procter were also present throughout the meeting. The Special Committee discussed whether Moab should be permitted to partner exclusively with CSC/Pamplona. Because the"
+    ],
+    "cited_paragraph": "objective of the sale process was to maximize value for Mac-Gray's stockholders, the Special Committee decided to deny the exclusivity request at this stage of the process so that the potential equity rollover of Moab's shares could be available as a source of capital for other potential bidders. The Special Committee instructed BofA Merrill Lynch and Goodwin Procter to communicate to CSC/Pamplona and Mr. Rothenberg, respectively, that it was premature for Mac-Gray to permit Moab to engage in equity rollover discussions with any party, including CSC/Pamplona, but that such discussions would be permitted at a later stage of the sale process.",
+    "after": [
+     "On July 11, 2013, CSC/Pamplona entered into a confidentiality and standstill agreement with Mac-Gray and were provided with an informational package for the purpose of providing CSC/Pamplona with data to formulate a preliminary indication of interest.",
+     "Between July 11, 2013 and July 23, 2013, Party B, Party C and CSC/Pamplona engaged in a preliminary review of Mac-Gray and the potential acquisition opportunity. Also during this time, outside counsel to Party A and representatives of Goodwin Procter negotiated the terms of a confidentiality and standstill agreement, but did not come to agreement on the terms of the customer and employee non-solicitation provisions."
+    ]
+   }
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "actor": {
+    "type": "noul",
+    "instructions": "Does `passage.cited_paragraph` describe something done by, done to, or decided about the party called \"Moab\" (or a group that the passage shows includes it)?",
+    "criteria": {
+     "true": "That party, or a cohort clearly containing it, is a subject of the cited paragraph.",
+     "false": "The cited paragraph concerns other parties only."
+    }
+   },
+   "event": {
+    "type": "noul",
+    "instructions": "A research ledger records an event labelled \"Other material event\" for \"Moab\". Does the passage report facts that fit the label \"Other material event\" for that party?",
+    "criteria": {
+     "true": "The passage reports such an event, or facts from which it directly follows.",
+     "false": "The passage reports a different kind of event, or nothing of that kind."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "actor": {
+    "type": "noul",
+    "noul": 0.94
+   },
+   "event": {
+    "type": "noul",
+    "noul": 0.68
+   }
+  },
+  "usage": {
+   "input_tokens": 987,
+   "output_tokens": 36
+  }
+ },
+ "latency_s": 0.272
+}

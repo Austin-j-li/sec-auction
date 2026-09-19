@@ -1,0 +1,120 @@
+{
+ "request": {
+  "state": {
+   "passage": {
+    "before": [
+     "On July 25, 2013, the Board held a regularly scheduled in-person meeting. By invitation of the Board, Mr. Shea and representatives from BofA Merrill Lynch and Goodwin Procter were also present for all or portions of this meeting. Prior to the start of the meeting, because the Board expected to discuss matters related to the sale process, and in light of Moab's continuing interest in a potential equity rollover in any sale transaction, Mr. Rothenberg recused himself from the meeting and the meeting proceeded as a meeting of the Special Committee. At this meeting, representatives of BofA Merrill Lynch reviewed the preliminary indications of interest received from Party B, Party C and CSC/Pamplona as well as the Party A June 21 proposal, in each case from a financial point of view. The Board reviewed management's five-year strategic business plan and Projections. During this meeting, representatives of Goodwin Procter reviewed for the Special Committee its fiduciary duties in the context of considering a potential sale. The Special Committee then discussed the potential conflict of interest arising from Moab's continuing desire to consider an equity rollover and decided that Mr. Rothenberg should be asked to recuse himself from participating in Board meetings for the duration of the sale process so he would not be privy to confidential information about Mac-Gray and our business.",
+     "The Special Committee discussed that the preliminary indications of interest were lower than expected and suggested that additional due diligence, including with regard to the potential synergies, should result in improved offers by the strategic parties. The Special Committee then discussed the highly competitive nature of Mac-Gray's industry and expressed concern over permitting access to and the potential misuse of sensitive and competitive information, including customer terms and locations, especially by strategic bidders. Accordingly, the Special Committee concluded that it would be advisable to stage the disclosure of such information to each of the bidders to the extent that a bidder's indication of interest and other actions demonstrated its seriousness in acquiring Mac-Gray on terms viewed favorably by the Special Committee. Based on this discussion, BofA Merrill Lynch discussed with the Special Committee a proposed process for the second stage of the on-going sale process. As part of this review, BofA Merrill Lynch recommended that management meetings be arranged between members of Mac-Gray management (other than Mr. MacDonald) and each of Party A (if Party A"
+    ],
+    "cited_paragraph": "agreed to enter into a confidentiality agreement), Party B, Party C and CSC/Pamplona to provide these parties with access to high level information concerning Mac-Gray's technology, pipeline, management team, regional operations, contracts, operations and growth initiatives, and in the case of CSC/Pamplona and Party A, synergies, and to then request that each of these parties submit a revised indication of interest. After discussion and in an effort to drive offers with increased value, the Special Committee authorized and instructed BofA Merrill Lynch to proceed with the staged disclosure as discussed at this meeting and to reach out to each of the four interested bidders and arrange management meetings.",
+    "after": [
+     "Later on July 25, 2013, Party C submitted a written indication of interest at an all-cash purchase price of $16.00 to $16.50 per share.",
+     "Discussions with Party A resumed on July 27, 2103 and Party A and the Transaction Committee agreed to the terms of the customer and employee non-solicitation provisions. On August 5, 2013, Party A entered into a confidentiality and standstill agreement with Mac-Gray and was provided with an informational package for the purpose of providing Party A with data to potentially improve the terms of the Party A June 21 proposal."
+    ]
+   }
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "actor": {
+    "type": "noul",
+    "instructions": "Does `passage.cited_paragraph` describe something done by, done to, or decided about the party called \"16 other financial NDA signers\" (or a group that the passage shows includes it)?",
+    "criteria": {
+     "true": "That party, or a cohort clearly containing it, is a subject of the cited paragraph.",
+     "false": "The cited paragraph concerns other parties only."
+    }
+   },
+   "event": {
+    "type": "noul",
+    "instructions": "A research ledger records an event labelled \"Not selected at signing\" for \"16 other financial NDA signers\". Does the passage report facts that fit the label \"Not selected at signing\" for that party?",
+    "criteria": {
+     "true": "The passage reports such an event, or facts from which it directly follows.",
+     "false": "The passage reports a different kind of event, or nothing of that kind."
+    }
+   },
+   "exit_label": {
+    "type": "choice",
+    "instructions": "How does the passage describe \"16 other financial NDA signers\" leaving or losing the sale process?",
+    "criteria": {
+     "Dropped by target": "The target excluded the bidder, refused it the next stage, or signed exclusivity with a rival.",
+     "Withdrew": "The bidder itself said it was ending its participation.",
+     "Did not submit": "The bidder was invited to bid by a deadline and did not submit a bid.",
+     "Not selected at signing": "The bidder was still bidding or still in the process when the target signed with someone else.",
+     "No exit described": "The passage does not describe this party leaving or losing the process."
+    }
+   },
+   "exit_reason": {
+    "type": "choice",
+    "instructions": "What reason does the passage give for \"16 other financial NDA signers\" leaving the sale process or not continuing?",
+    "criteria": {
+     "Value below market price": "Bidder indicated its valuation was below the current share price.",
+     "Value at or below market price": "Bidder indicated it could not pay a premium to the share price.",
+     "Value below earlier offer": "Bidder indicated it could now pay only less than its own earlier offer.",
+     "Value at earlier offer": "Bidder's value stayed at its earlier offer.",
+     "Would not improve earlier offer": "Bidder was unable or unwilling to raise its earlier offer.",
+     "Lower offer than rivals": "Bidder's offer was lower than competing offers.",
+     "Terms or process": "Exit due to contract terms, conditions, financing, timing, diligence or process issues, not price.",
+     "Other stated reason": "Another reason is stated (strategy change, other priorities, etc.).",
+     "Not stated": "The passage gives no reason for this party's exit."
+    }
+   },
+   "exit_express": {
+    "type": "noul",
+    "instructions": "Does the passage expressly report that \"16 other financial NDA signers\" left, was excluded from, was told it was out of, or declined to continue in the process?",
+    "criteria": {
+     "true": "An exit, exclusion or notification is stated in words.",
+     "false": "The exit can only be inferred, for example because the party is simply not mentioned among those continuing."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "actor": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "event": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "exit_label": {
+    "type": "choice",
+    "choice": "No exit described",
+    "confidence": 1.0,
+    "probabilities": {
+     "Not selected at signing": 0.0,
+     "Did not submit": 0.0,
+     "Dropped by target": 0.0,
+     "No exit described": 1.0,
+     "Withdrew": 0.0
+    }
+   },
+   "exit_reason": {
+    "type": "choice",
+    "choice": "Not stated",
+    "confidence": 1.0,
+    "probabilities": {
+     "Not stated": 1.0,
+     "Would not improve earlier offer": 0.0,
+     "Value below earlier offer": 0.0,
+     "Value at or below market price": 0.0,
+     "Other stated reason": 0.0,
+     "Value below market price": 0.0,
+     "Terms or process": 0.0,
+     "Value at earlier offer": 0.0,
+     "Lower offer than rivals": 0.0
+    }
+   },
+   "exit_express": {
+    "type": "noul",
+    "noul": 0.01
+   }
+  },
+  "usage": {
+   "input_tokens": 1825,
+   "output_tokens": 224
+  }
+ },
+ "latency_s": 0.233
+}

@@ -1,0 +1,56 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On September 10, 2013, Party A submitted a revised indication of interest with an all-cash purchase price of $18.00 to $19.00 per share, to be financed by outstanding credit facilities or affiliated equity sources. Also on September 10, 2013, in a telephone call to a representative of BofA Merrill Lynch, a representative of Party C indicated that it was submitting a revised oral indication of interest with an all-cash purchase price of $16.00 to $17.00 per share. Neither Party A's nor Party C's revised indication of interest included a firm financing commitment.",
+   "target_sentence": "Also on September 10, 2013, in a telephone call to a representative of BofA Merrill Lynch, a representative of Party C indicated that it was submitting a revised oral indication of interest with an all-cash purchase price of $16.00 to $17.00 per share."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_25": "08/27/2013 | BofA Merrill Lynch | Deadline set | BofA letter instructed revised written proposals by 09/09/2013 to continue to in-depth evaluation; covered valuation, financing, approvals and diligence focus.",
+     "row_26": "09/09/2013 | Mac-Gray | Deadline | Round 2 due date reached; CSC/Pamplona and Party B submitted; Party A and Party C submitted late and were reviewed on 09/11/2013.",
+     "row_27": "09/09/2013 | CSC/Pamplona | Bid | price 19.5 | Pamplona committed to 100% of required capital; requested two-week exclusive negotiations; no financing contingency reported.",
+     "row_28": "09/09/2013 | Party B | Bid | price 18.5 | Equity from affiliated funds plus third-party debt; no firm financing commitment reported.",
+     "row_29": "09/10/2013 | Party A | Bid | price 18-19 | Financed by outstanding credit facilities or affiliated equity sources; no firm financing commitment reported.",
+     "row_30": "09/10/2013 | Party C | Bid | price 16-17 | Oral revised indication; no firm financing commitment reported.",
+     "row_31": "09/11/2013 | MacDonald | Other material event | Transaction Committee gave MacDonald a limited process overview so he could consider a rollover; he decided he was not interested in rolling over any shares.",
+     "row_32": "09/11/2013 | Mac-Gray | Round opened | Round 3 opened: SC instructed BofA to request final indications by 09/18/2013, signaling possible short exclusivity depending on price and deal certainty.",
+     "row_33": "09/18/2013 | Mac-Gray | Deadline | Round 3 final due date reached; CSC/Pamplona, Party B and Party A responded; Party C did not submit.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_30",
+    "confidence": 1.0,
+    "probabilities": {
+     "row_25": 0.0,
+     "row_30": 1.0,
+     "row_28": 0.0,
+     "row_33": 0.0,
+     "not_an_event": 0.0,
+     "row_29": 0.0,
+     "row_31": 0.0,
+     "row_27": 0.0,
+     "none": 0.0,
+     "row_32": 0.0,
+     "row_26": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1248,
+   "output_tokens": 126
+  }
+ },
+ "latency_s": 0.513
+}

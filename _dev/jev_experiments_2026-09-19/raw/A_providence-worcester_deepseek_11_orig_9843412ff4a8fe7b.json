@@ -1,0 +1,54 @@
+{
+ "request": {
+  "state": {
+   "passage": {
+    "before": [
+     "On March 24, 2016, the Transaction Committee met by telephone conference to discuss the results of management's meeting with Party A and to discuss next steps in the process. Members of management and representatives of each of GHF and the Company's legal counsel, Hinckley, Allen & Snyder LLP (which we refer to as \"Hinckley Allen\"), participated in all meetings of the Transaction Committee, except as otherwise indicated. At this meeting, Mr. Noreck reported that he and other members of the senior management team had met with various representatives of Party A on March 22 and 23, 2016 and had informed Party A of GHF's engagement. The Transaction Committee authorized GHF to contact Party A as well as other potential buyers to determine their level of interest in a change in control transaction. During the week of March 28, 2016, in accordance with the Transaction Committee's directives, representatives of GHF contacted 11 potential strategic buyers (including Party A) and 18 potential financial buyers. Each of the potential strategic buyers and 14 potential financial buyers subsequently executed confidentiality agreements. The confidentiality agreements did not contain any \"standstill\" or similar provision that would prohibit a potential buyer from submitting a proposal or making an offer to acquire the Company.",
+     "Between April 3, 2016 and April 6, 2016, representatives of GHF and members of the Company's management held a series of introductory meetings with five potential strategic buyers (including G&W) at the American Short Line and Regional Railroad Association's 2016 Connections Convention (\"2016 Connections Convention\")."
+    ],
+    "cited_paragraph": "On April 7, 2016, the Transaction Committee met by telephone conference and discussed the process to date with representatives of GHF. Representatives of GHF reported that they and Company management had held a series of introductory meetings with five potential strategic buyers (including G&W) at the 2016 Connections Convention. Mr. Noreck reported that the Company had also approached two additional Class I railroads to determine their interest in a possible transaction. After discussion, the Transaction Committee authorized representatives of GHF, on behalf of the Company, to contact each of the five interested parties with whom management had met at the 2016 Connections Convention, as well as other potential strategic buyers (including certain Class I railroads) and private equity firms who had entered into confidentiality agreements with the Company to confirm their continuing interest. Subsequently, on April 21, 2016, the Company and representatives of GHF held an introductory meeting with another potential strategic buyer (\"Party B\").",
+    "after": [
+     "With the assistance of GHF, the Company prepared a memorandum concerning the Company and its prospects, which was distributed to the potential buyers, including Party A, Party B and G&W, that had executed confidentiality agreements. The Transaction Committee met with representatives of GHF by telephone conference on April 22, 2016 and discussed the status of discussions with potential buyers. On April 27, 2016,",
+     "the Board met in executive session (without Mr. Eder present) with representatives of GHF and discussed the status of the process, including that each potential buyer had been advised to submit a non-binding indication of interest by May 10, 2016 (which deadline was subsequently postponed to May 19, 2016 to ensure the potential buyers had sufficient time to formulate their most compelling offers)."
+    ]
+   }
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "actor": {
+    "type": "noul",
+    "instructions": "Does `passage.cited_paragraph` describe something done by, done to, or decided about the party called \"Two additional Class I railroads\" (or a group that the passage shows includes it)?",
+    "criteria": {
+     "true": "That party, or a cohort clearly containing it, is a subject of the cited paragraph.",
+     "false": "The cited paragraph concerns other parties only."
+    }
+   },
+   "event": {
+    "type": "noul",
+    "instructions": "A research ledger records an event labelled \"Contact\" for \"Two additional Class I railroads\". Does the passage report facts that fit the label \"Contact\" for that party?",
+    "criteria": {
+     "true": "The passage reports such an event, or facts from which it directly follows.",
+     "false": "The passage reports a different kind of event, or nothing of that kind."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "actor": {
+    "type": "noul",
+    "noul": 0.95
+   },
+   "event": {
+    "type": "noul",
+    "noul": 0.78
+   }
+  },
+  "usage": {
+   "input_tokens": 1213,
+   "output_tokens": 36
+  }
+ },
+ "latency_s": 0.302
+}

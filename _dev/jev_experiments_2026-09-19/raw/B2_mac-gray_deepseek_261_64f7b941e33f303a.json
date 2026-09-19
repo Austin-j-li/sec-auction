@@ -1,0 +1,66 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Between September 21, 2013 and September 23, 2013, the parties negotiated the terms of the exclusivity agreement, including an expiration date of October 12, 2013, the inclusion of a $15 million \"reverse\" termination fee payable by CSC/Pamplona to Mac-Gray in the event regulatory clearance is not obtained, which we refer to as the CSC reverse termination fee, agreements regarding certain post-signing covenants, the fact that there would be no financing contingency and that Pamplona was",
+   "ledger_rows": [
+    {
+     "When": "09/19/2013",
+     "Who": "Mac-Gray",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "SC concluded CSC/Pamplona offered most value and certainty but should raise its price above $20.75; authorized exclusivity at $21.25; MacDonald supported that price."
+    },
+    {
+     "When": "09/21/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Bid",
+     "Price low": 21.25,
+     "Price high": 21.25,
+     "Note": "Raised to $21.25 as last and best offer, conditioned on two-week exclusive negotiations; requested MacDonald voting agreement; confirmed by telephone."
+    },
+    {
+     "When": "by 09/24/2013",
+     "Who": "Party A",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Inferred: exclusivity with CSC/Pamplona displaced the two live rivals; Party A had declared $18.00\u2013$19.00 its best and final offer."
+    },
+    {
+     "When": "by 09/24/2013",
+     "Who": "Party B",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Inferred: exclusivity displaced the two live rivals; SC preferred CSC/Pamplona's certainty over Party B's debt-funded, option-heavy package."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "exclusivity": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that exclusivity is requested, authorised, granted, signed or extended. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "exclusivity": {
+    "type": "noul",
+    "noul": 0.39
+   }
+  },
+  "usage": {
+   "input_tokens": 901,
+   "output_tokens": 22
+  }
+ },
+ "latency_s": 0.309
+}

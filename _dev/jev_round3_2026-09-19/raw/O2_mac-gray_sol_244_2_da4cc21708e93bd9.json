@@ -1,0 +1,48 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Between August 6, 2013 and August 27, 2013, the four bidders conducted business and legal due diligence. During this time, Party B and Party C, in light of the fact that they were financial bidders, were given broad access to an electronic data site, and Party A and CSC/Pamplona, in light of the fact that they were strategic bidders, were given somewhat limited access to this electronic data site, with access to customer data, including customer locations, being reserved until later in the process as part of the staging discussed at the July 25 th Special Committee meeting. During this time, both Party A and CSC/Pamplona participated in discussions with members of Mac-Gray management around synergies.",
+   "target_sentence": "During this time, both Party A and CSC/Pamplona participated in discussions with members of Mac-Gray management around synergies."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_28": "08/06/2013\u201308/27/2013 | Mac-Gray | Other material event | Granted B/C broad data-site access; limited A/CSC access and withheld customer data from the strategic bidders.",
+     "row_29": "08/27/2013 | Mac-Gray | Round opened | Four bidders invited; revised written bids due September 9.",
+     "row_30": "09/09/2013 | Mac-Gray | Deadline | Revised bids due; Party A and Party C submitted one day late and were considered.",
+     "row_31": "09/09/2013 | CSC/Pamplona | Bid | price 19.5 | Pamplona committed 100% of capital; two-week exclusivity requested. Further in-depth diligence remained contemplated.",
+     "row_32": "09/09/2013 | Party B | Bid | price 18.5 | No firm financing commitment; proposed affiliated equity and third-party debt.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "none",
+    "confidence": 0.64,
+    "probabilities": {
+     "none": 0.7,
+     "row_32": 0.0,
+     "row_28": 0.1,
+     "not_an_event": 0.2,
+     "row_30": 0.0,
+     "row_29": 0.0,
+     "row_31": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 955,
+   "output_tokens": 83
+  }
+ },
+ "latency_s": 0.304
+}

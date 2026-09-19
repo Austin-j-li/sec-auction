@@ -1,0 +1,66 @@
+{
+ "request": {
+  "state": {
+   "passage": {
+    "before": [
+     "Party B submitted an LOI to acquire the Company for a price of $24.00 per share (subject to an expedited diligence review).",
+     "G&W submitted an LOI on July 21, 2016 to acquire the Company for a price of $21.15 per share (subject to a three-week exclusive diligence period). The price included $20.02 cash at closing and $1.13 in the form of a contingent value right, the value of which was based on the subsequent sale of the Company's South Quay property (\"CVR\"). G&W also provided a mark-up of the disclosure letter. On July 26, 2016, in response to feedback from representatives of GHF indicating its price and CVR structure were not competitive, G&W submitted a revised LOI, which increased its offer to $22.15 per share (including $21.02 in cash and $1.13 CVR)."
+    ],
+    "cited_paragraph": "Party E (a strategic buyer) submitted an LOI to acquire the Company for a price of $21.26 per share (subject to a 60-day exclusivity period for due diligence and negotiation of definitive documentation).",
+    "after": [
+     "Party D (a financial buyer) submitted an LOI to acquire the Company for a price of $21.00 per share (subject to a four-week diligence period).",
+     "Party C submitted an LOI to acquire the Company for a price of $19.30 per share (subject to a 30-day diligence period)."
+    ]
+   }
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "actor": {
+    "type": "noul",
+    "instructions": "Does `passage.cited_paragraph` describe something done by, done to, or decided about the party called \"Party C\" (or a group that the passage shows includes it)?",
+    "criteria": {
+     "true": "That party, or a cohort clearly containing it, is a subject of the cited paragraph.",
+     "false": "The cited paragraph concerns other parties only."
+    }
+   },
+   "event": {
+    "type": "noul",
+    "instructions": "A research ledger records an event labelled \"Bid\" for \"Party C\". Does the passage report facts that fit the label \"Bid\" for that party?",
+    "criteria": {
+     "true": "The passage reports such an event, or facts from which it directly follows.",
+     "false": "The passage reports a different kind of event, or nothing of that kind."
+    }
+   },
+   "price": {
+    "type": "noul",
+    "instructions": "Does the passage state that \"Party C\" offered, proposed or indicated a price of $21.26 per share (the same number may be written without trailing zeros)?",
+    "criteria": {
+     "true": "The per-share figure $21.26 appears in the passage as this party's price.",
+     "false": "The passage gives a different figure for this party, or no figure."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "actor": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "event": {
+    "type": "noul",
+    "noul": 0.91
+   },
+   "price": {
+    "type": "noul",
+    "noul": 0.03
+   }
+  },
+  "usage": {
+   "input_tokens": 890,
+   "output_tokens": 52
+  }
+ },
+ "latency_s": 0.247
+}

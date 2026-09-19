@@ -1,0 +1,68 @@
+{
+  "case_id": "coverage_06_paraphrase",
+  "request_sha256": "7ed3e0b7bfefa6c89b77cb6f8815378493d51cadd65d03eeed7f5353f10cb07b",
+  "request": {
+    "model": "jev-1.13.0",
+    "state": {
+      "source": [
+        {
+          "paragraph_id": "305",
+          "text": "unintended public disclosure. Accordingly, the Company set the evening of Wednesday, December 10 (five days, rather than 10 days prior to the anticipated December 15 completion date) as the deadline for submission of final bids, and at the same time asked the bidders to submit mark-ups of the draft merger agreement and the other transaction documents and financing commitments, if possible, in advance."
+        }
+      ],
+      "target_event": "PetSmart set December 10, 2014 as the deadline for final bids.",
+      "ledger_rows": {
+        "row_0": "Final bids now due the evening of December 10.",
+        "row_1": "Final bids due December 5; transaction completion targeted December 15."
+      }
+    },
+    "questions": {
+      "covered": {
+        "type": "noul",
+        "instructions": "Is the target_event recorded in ledger_rows? Match the actual event, including its bidder, date, action and material terms, not just topic overlap.",
+        "criteria": {
+          "true": "At least one row records this same event.",
+          "false": "No supplied row records this event."
+        }
+      },
+      "match": {
+        "type": "choice",
+        "instructions": "Select the ledger row that records target_event. A related event with a different date, bidder, amount or action does not count. Match by meaning, allowing paraphrase. Select none if absent.",
+        "criteria": {
+          "row_0": "Final bids now due the evening of December 10.",
+          "row_1": "Final bids due December 5; transaction completion targeted December 15.",
+          "none": "None of the supplied ledger rows records the target event with the same actors, date, action and material terms."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "covered": {
+        "type": "noul",
+        "noul": 0.57
+      },
+      "match": {
+        "type": "choice",
+        "choice": "row_0",
+        "confidence": 0.9,
+        "probabilities": {
+          "none": 0.06,
+          "row_0": 0.94,
+          "row_1": 0.0
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 661,
+      "output_tokens": 60
+    }
+  },
+  "attempts": [
+    {
+      "status": 200,
+      "latency_s": 11.134059650998097
+    }
+  ]
+}

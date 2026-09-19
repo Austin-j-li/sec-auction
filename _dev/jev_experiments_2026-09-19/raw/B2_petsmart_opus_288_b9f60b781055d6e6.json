@@ -1,0 +1,94 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "At a meeting on June 18, 2014, the board reviewed, together with a financial advisor and with Wachtell, Lipton, Rosen & Katz (\"Wachtell Lipton\"), its legal advisor, the various strategic and financial alternatives potentially available to the Company and determined to explore more intensively potential changes to the Company's capital structure, with a focus on returning capital to stockholders. The board also established an ad hoc advisory subcommittee (the \"ad hoc committee\") with respect to, among other",
+   "ledger_rows": [
+    {
+     "When": "late May\u2013June 2014",
+     "Who": "Unnamed stockholders and interested parties",
+     "Event": "Activist",
+     "Price low": null,
+     "Price high": null,
+     "Note": "After weak Q1 results (05/21/2014), some stockholders and interested parties urged strategic or financial alternatives, including a levered return of capital and a sale of the Company."
+    },
+    {
+     "When": "06/18/2014",
+     "Who": "Wachtell Lipton",
+     "Event": "Adviser",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Target legal adviser; first seen acting at 06/18 board meeting, which chose to focus on capital return and formed ad hoc committee (Josefowicz, Gangwal, Stemberg)."
+    },
+    {
+     "When": "06/18/2014",
+     "Who": "Unnamed financial advisor",
+     "Event": "Adviser",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Unnamed financial advisor to the board, first seen acting 06/18; board then authorized vetting and retention of a financial advisor. Not mentioned again."
+    },
+    {
+     "When": "07/03/2014",
+     "Who": "JANA Partners",
+     "Event": "Activist",
+     "Price low": null,
+     "Price high": null,
+     "Note": "13D at 9.9%; sought review of alternatives including a sale. Further 13D amendments and public letters in July\u2013August advocating a sale; met the Company 07/10/2014 advocating a sale."
+    },
+    {
+     "When": "07/07/2014",
+     "Who": "Longview",
+     "Event": "Activist",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Shareholder; public letter urging board to consider a sale; would consider rolling some or all holdings into buyer equity. Met board in May without advocating; reiterated sale advocacy 07/10/2014."
+    },
+    {
+     "When": "July 2014",
+     "Who": "J.P. Morgan",
+     "Event": "Adviser",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Target\u2019s sole financial adviser, retained after interviews; engagement letter effective 08/21/2014; fee up to about $39 million; gave fairness opinion 12/13/2014."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "adviser": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "agreements": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "adviser": {
+    "type": "noul",
+    "noul": 0.88
+   },
+   "agreements": {
+    "type": "noul",
+    "noul": 0.71
+   }
+  },
+  "usage": {
+   "input_tokens": 1247,
+   "output_tokens": 39
+  }
+ },
+ "latency_s": 0.246
+}

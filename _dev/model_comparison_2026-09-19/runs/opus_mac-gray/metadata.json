@@ -1,0 +1,15 @@
+{
+  "deal": "mac-gray",
+  "effort": "high",
+  "expected_output": "mac-gray.xlsx",
+  "filing_name": "mac-gray_2013-12-04_DEFM14A.htm",
+  "filing_sha256": "e6ea7bd00cfc389c28e5139a3d23aafcc684f7b65ff54d699f3c5be11bbc4301",
+  "instruction_name": "SEC_Deal_Ledger_Extraction_Instruction.md",
+  "instruction_sha256": "f7e73a6673166597f2bd7c8c0457f72ba996585f1351595d00cd653f7a37009d",
+  "model": "claude-opus-5",
+  "prepared_at": "2026-09-19T16:13:54.864182+00:00",
+  "prompt_sha256": "500f54a95b46052b2707f6ff97f4597f7e6f825b5f40e5023f3b4b085182d9d2",
+  "provider": "opus",
+  "sandbox": "bubblewrap fresh home/state/tmp; one instruction; one filing; one output directory",
+  "timeout_seconds": 5400
+}

@@ -1,0 +1,54 @@
+{
+ "request": {
+  "state": {
+   "passage": {
+    "before": [
+     "Later on October 11, 2013, the two members of the Transaction Committee telephoned CSC/Pamplona and communicated the Special Committee's position. Shortly following that conversation, the representative of CSC/Pamplona telephoned Mr. Daoust and agreed to the $11 million Mac-Gray",
+     "termination fee. Following such agreement, Goodwin Procter delivered Kirkland revised drafts of the merger agreement and the Pamplona commitment letter."
+    ],
+    "cited_paragraph": "On October 12, 2013, CSC, Pamplona and Mac-Gray executed a letter agreement extending exclusivity until 11:59 p.m. ET on October 15, 2013.",
+    "after": [
+     "Between October 12, 2013 and October 14, 2013, Kirkland and Goodwin Procter finalized the remaining unresolved issues in the merger agreement and the Pamplona commitment letter.",
+     "Between October 8, 2013 and October 14, 2013, Kirkland and counsel for Moab negotiated the terms of a voting agreement for Moab."
+    ]
+   }
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "actor": {
+    "type": "noul",
+    "instructions": "Does `passage.cited_paragraph` describe something done by, done to, or decided about the party called \"CSC/Pamplona\" (or a group that the passage shows includes it)?",
+    "criteria": {
+     "true": "That party, or a cohort clearly containing it, is a subject of the cited paragraph.",
+     "false": "The cited paragraph concerns other parties only."
+    }
+   },
+   "event": {
+    "type": "noul",
+    "instructions": "A research ledger records an event labelled \"Exclusivity changed\" for \"CSC/Pamplona\". Does the passage report facts that fit the label \"Exclusivity changed\" for that party?",
+    "criteria": {
+     "true": "The passage reports such an event, or facts from which it directly follows.",
+     "false": "The passage reports a different kind of event, or nothing of that kind."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "actor": {
+    "type": "noul",
+    "noul": 0.96
+   },
+   "event": {
+    "type": "noul",
+    "noul": 0.91
+   }
+  },
+  "usage": {
+   "input_tokens": 720,
+   "output_tokens": 36
+  }
+ },
+ "latency_s": 0.225
+}

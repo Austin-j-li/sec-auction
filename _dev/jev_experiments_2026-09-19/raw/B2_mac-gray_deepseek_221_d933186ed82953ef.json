@@ -1,0 +1,58 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "The Special Committee, with the assistance of BofA Merrill Lynch and management, also discussed the general and specific universe of potential acquirors who might be contacted, including those parties the Special Committee believed had the strongest potential to have an interest in engaging in a strategic transaction with Mac-Gray. In its evaluation of potential likely acquirors, the Special Committee considered such parties' financial strength, their experience in acquiring companies in Mac-Gray's industry, such parties' perceived potential interest in Mac-Gray and potential synergies based on such parties' businesses and legal considerations. The Special Committee and BofA Merrill Lynch also discussed that although potential strategic buyers should be able to pay a higher purchase price because of synergies, it was important to solicit interest from financial buyers, including private equity firms, to maximize the competitive dynamics in the sale process. This perspective was based on the fact that many financial buyers had engaged in transactions with companies in industries similar to Mac-Gray and could be in a position to recognize value competitive with potential strategic buyers. Guided by the foregoing principles, the Special Committee determined to approach a total of",
+   "ledger_rows": [
+    {
+     "When": "06/24/2013",
+     "Who": "Mac-Gray",
+     "Event": "Target sale decision",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Special Committee of six independent directors formed; MacDonald and Rothenberg excluded from sale deliberations over potential rollover conflicts; sale seen as best path versus remaining standalone."
+    },
+    {
+     "When": "06/24/2013\u201308/24/2013",
+     "Who": "16 financial NDA signers (cohort)",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Filing reports 20 NDA signers (2 strategic, 18 financial); Party A, CSC/Pamplona, Party B and Party C recorded individually; residual 16 financial bidders."
+    },
+    {
+     "When": "07/23/2013",
+     "Who": "Mac-Gray",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Round 1 due date reached; CSC/Pamplona submitted an indication; Party B and Party C submitted late and were reviewed on 07/25/2013."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "adviser": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a financial or legal adviser is retained, engaged, terminated or first shown acting for the target, a committee or a bidder. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "adviser": {
+    "type": "noul",
+    "noul": 0.22
+   }
+  },
+  "usage": {
+   "input_tokens": 930,
+   "output_tokens": 22
+  }
+ },
+ "latency_s": 0.282
+}

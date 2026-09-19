@@ -1,0 +1,120 @@
+{
+ "request": {
+  "state": {
+   "passage": {
+    "before": [
+     "On December 8, 2014, the board met telephonically, together with members of management and representatives of J.P. Morgan and Wachtell Lipton, to receive an update and review and discuss the comments from the bidders on the draft merger agreement and other transaction documents. Later on December 8, 2014, Wachtell Lipton sent to the Buyer Group and Bidder 2 revised versions of the form of merger agreement and other transaction documents, reflecting the Company's positions and reactions to the bidders' respective comments.",
+     "Following the execution of a confidentiality agreement, on December 9, 2014, J.P. Morgan arranged introductory meetings between Longview and the Buyer Group, and between Longview and Bidder 2. These meetings, which were attended by representatives of J.P. Morgan and Wachtell Lipton, were introductory in nature, to enable the bidders to determine their interest in working with Longview, and vice versa, and the bidders were prohibited at this time from disclosing to Longview the respective prices that the bidders intended to bid."
+    ],
+    "cited_paragraph": "On December 10, PetSmart received final bid letters along with revised versions of the merger agreement and other transaction documents from the Buyer Group and from Bidder 2 and a verbal indication from Bidder 3. The Buyer Group offered $80.70 per share, in cash, and Bidder 2 offered $80.35 per share, in cash. Bidder 3 verbally communicated to J.P. Morgan that their valuation would not be above the current stock price of approximately $78 per share. J.P. Morgan communicated to Bidder 3 that it was unlikely to be competitive and accordingly Bidder 3 did not submit a written offer. The form of merger agreement and other transaction documentation submitted by the Buyer Group were more favorable to the Company (including because they were less conditional and more likely to be completed and because they offered more certainty of protection for the Company in the unlikely event of non-completion of the transaction) and reflected substantially more acceptance of the Company's positions. Each bidder indicated that its bid was not dependent on a rollover by Longview, but neither the Buyer Group nor Bidder 2 ruled out the possibility of partnering with Longview in a transaction, though Bidder 2 indicated that any partnering with Longview would only occur after completion of bidding and execution of a definitive merger agreement with the Company.",
+    "after": [
+     "On December 10, 2014, the ad hoc committee discussed the bids and the draft merger agreements with representatives of J.P. Morgan and Wachtell Lipton. The ad hoc committee was of the view that there could be no assurance that the board would approve either bid unless improved. In light of the closeness of the bids, recent positive developments identified at the board meeting on December 3, and the view shared by the ad hoc committee and J.P. Morgan that neither of the bids represented the bidders' respective best offers, the ad hoc committee instructed J.P. Morgan to inform each bidder that it would need to increase its bid, and to instruct the bidders to submit improved bids on December 12, 2014. On the evening of December 11, 2014, representatives of J.P. Morgan contacted Longview to inform Longview that the bidders have been asked to submit revised and improved bids, and to confirm that Longview continued to be interested and willing to participate in a potential transaction by rolling over a portion of its Company common stock, so long as Longview's participation was desired and approved by the ad hoc committee.",
+     "Early in the day on December 12, 2014, the Buyer Group requested permission to work more closely with Longview in order to include a rollover of a portion of the Company shares managed by Longview in the Buyer Group's bid. The Buyer Group informed J.P. Morgan that the Buyer Group was working to achieve a higher price, and that Longview participation with the Buyer Group might enhance the Buyer Group's ability to do so. Bidder 2 indicated to J.P. Morgan that accommodation of a Longview rollover would not affect Bidder 2's price, and that Bidder 2 would consider accommodating a Longview rollover only after execution of a merger agreement between the Company and Bidder 2. After consultation with the Company's financial and legal advisors, the ad hoc committee approved the Buyer Group's request, and,"
+    ]
+   }
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "actor": {
+    "type": "noul",
+    "instructions": "Does `passage.cited_paragraph` describe something done by, done to, or decided about the party called \"Bidder 3\" (or a group that the passage shows includes it)?",
+    "criteria": {
+     "true": "That party, or a cohort clearly containing it, is a subject of the cited paragraph.",
+     "false": "The cited paragraph concerns other parties only."
+    }
+   },
+   "event": {
+    "type": "noul",
+    "instructions": "A research ledger records an event labelled \"Dropped by target\" for \"Bidder 3\". Does the passage report facts that fit the label \"Dropped by target\" for that party?",
+    "criteria": {
+     "true": "The passage reports such an event, or facts from which it directly follows.",
+     "false": "The passage reports a different kind of event, or nothing of that kind."
+    }
+   },
+   "exit_label": {
+    "type": "choice",
+    "instructions": "How does the passage describe \"Bidder 3\" leaving or losing the sale process?",
+    "criteria": {
+     "Dropped by target": "The target excluded the bidder, refused it the next stage, or signed exclusivity with a rival.",
+     "Withdrew": "The bidder itself said it was ending its participation.",
+     "Did not submit": "The bidder was invited to bid by a deadline and did not submit a bid.",
+     "Not selected at signing": "The bidder was still bidding or still in the process when the target signed with someone else.",
+     "No exit described": "The passage does not describe this party leaving or losing the process."
+    }
+   },
+   "exit_reason": {
+    "type": "choice",
+    "instructions": "What reason does the passage give for \"Bidder 3\" leaving the sale process or not continuing?",
+    "criteria": {
+     "Value below market price": "Bidder indicated its valuation was below the current share price.",
+     "Value at or below market price": "Bidder indicated it could not pay a premium to the share price.",
+     "Value below earlier offer": "Bidder indicated it could now pay only less than its own earlier offer.",
+     "Value at earlier offer": "Bidder's value stayed at its earlier offer.",
+     "Would not improve earlier offer": "Bidder was unable or unwilling to raise its earlier offer.",
+     "Lower offer than rivals": "Bidder's offer was lower than competing offers.",
+     "Terms or process": "Exit due to contract terms, conditions, financing, timing, diligence or process issues, not price.",
+     "Other stated reason": "Another reason is stated (strategy change, other priorities, etc.).",
+     "Not stated": "The passage gives no reason for this party's exit."
+    }
+   },
+   "exit_express": {
+    "type": "noul",
+    "instructions": "Does the passage expressly report that \"Bidder 3\" left, was excluded from, was told it was out of, or declined to continue in the process?",
+    "criteria": {
+     "true": "An exit, exclusion or notification is stated in words.",
+     "false": "The exit can only be inferred, for example because the party is simply not mentioned among those continuing."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "actor": {
+    "type": "noul",
+    "noul": 0.99
+   },
+   "event": {
+    "type": "noul",
+    "noul": 0.51
+   },
+   "exit_label": {
+    "type": "choice",
+    "choice": "Did not submit",
+    "confidence": 0.81,
+    "probabilities": {
+     "Dropped by target": 0.08,
+     "Did not submit": 0.86,
+     "Withdrew": 0.06,
+     "No exit described": 0.0,
+     "Not selected at signing": 0.0
+    }
+   },
+   "exit_reason": {
+    "type": "choice",
+    "choice": "Value at or below market price",
+    "confidence": 0.72,
+    "probabilities": {
+     "Other stated reason": 0.0,
+     "Value at or below market price": 0.76,
+     "Not stated": 0.0,
+     "Terms or process": 0.0,
+     "Value below earlier offer": 0.0,
+     "Value below market price": 0.2,
+     "Would not improve earlier offer": 0.0,
+     "Lower offer than rivals": 0.04,
+     "Value at earlier offer": 0.0
+    }
+   },
+   "exit_express": {
+    "type": "noul",
+    "noul": 0.89
+   }
+  },
+  "usage": {
+   "input_tokens": 1968,
+   "output_tokens": 228
+  }
+ },
+ "latency_s": 0.326
+}

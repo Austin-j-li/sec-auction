@@ -1,0 +1,98 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Party B submitted an LOI to acquire the Company for a price of $24.00 per share (subject to an expedited diligence review).",
+   "ledger_rows": [
+    {
+     "When": "early July 2016",
+     "Who": "Party C",
+     "Event": "Bidder interest",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Late entrant approached management about acquiring the whole Company; no price at first contact."
+    },
+    {
+     "When": "early July 2016",
+     "Who": "Party C",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "New entrant; received the same Company memorandum as other potential buyers."
+    },
+    {
+     "When": "07/12/2016",
+     "Who": "Party C",
+     "Event": "Bid",
+     "Price low": 21,
+     "Price high": 21,
+     "Note": "IOI preceded data-site and management access; implied equity value $108 million."
+    },
+    {
+     "When": "by 07/14/2016",
+     "Who": "Party C",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Catch-up access: data site and a 07/14 telephone management presentation after its late entry."
+    },
+    {
+     "When": "late July 2016",
+     "Who": "Party B",
+     "Event": "Bid",
+     "Price low": 24,
+     "Price high": 24,
+     "Note": "LOI with merger- and voting-agreement markups; expedited diligence review."
+    },
+    {
+     "When": "late July 2016",
+     "Who": "Party E",
+     "Event": "Bid",
+     "Price low": 21.26,
+     "Price high": 21.26,
+     "Note": "LOI sought 60-day exclusivity for diligence and documents; supplied an issues summary, not reported agreement markups."
+    },
+    {
+     "When": "07/21/2016",
+     "Who": "G&W",
+     "Event": "Bid",
+     "Price low": 21.15,
+     "Price high": 21.15,
+     "Note": "$20.02 cash plus bidder-valued $1.13 CVR; merger/voting markups and disclosure-letter markup; requested three-week exclusive diligence."
+    },
+    {
+     "When": "07/26/2016",
+     "Who": "G&W",
+     "Event": "Bid",
+     "Price low": 22.15,
+     "Price high": 22.15,
+     "Note": "$21.02 cash plus bidder-valued $1.13 CVR; formal status and three-week exclusive diligence carried from #33."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "bid": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "bid": {
+    "type": "noul",
+    "noul": 0.92
+   }
+  },
+  "usage": {
+   "input_tokens": 1087,
+   "output_tokens": 20
+  }
+ },
+ "latency_s": 0.274
+}

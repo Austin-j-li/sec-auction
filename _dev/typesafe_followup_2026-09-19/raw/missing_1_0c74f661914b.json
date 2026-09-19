@@ -1,0 +1,51 @@
+{
+  "case_id": "missing_1",
+  "request_sha256": "0c74f661914b169b168851fbd8cdee1e07ad5f9dbcd9de86025df590ba71f253",
+  "request": {
+    "model": "jev-1.13.0",
+    "state": {
+      "passage": [
+        {
+          "paragraph_id": "239",
+          "text": "On August 6, 2013, representatives of Party B attended a management presentation at the Boston office of Goodwin Procter with members of Mac-Gray management, representatives of BofA Merrill Lynch and a member of the Transaction Committee."
+        }
+      ]
+    },
+    "questions": {
+      "scoped": {
+        "type": "choice",
+        "instructions": "For Party B, does the supplied passage explicitly state a price of $18.50 per share at \"management presentation August 6, 2013\"? Do not infer a standing price.",
+        "criteria": {
+          "supported": "The source explicitly supports the claimed price for this bidder at this exact event.",
+          "contradicted": "The source gives a different price for the same bidder and event, or explicitly denies that submission. A different date, bidder or price component cannot support the claim.",
+          "insufficient": "The supplied source does not establish the price at the specified event. Missing evidence is not contradiction; do not infer a carried-forward price."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "scoped": {
+        "type": "choice",
+        "choice": "insufficient",
+        "confidence": 1.0,
+        "probabilities": {
+          "contradicted": 0.0,
+          "insufficient": 1.0,
+          "supported": 0.0
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 509,
+      "output_tokens": 48
+    }
+  },
+  "attempts": [
+    {
+      "status": 200,
+      "latency_s": 0.8796476569987135
+    }
+  ]
+}

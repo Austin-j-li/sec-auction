@@ -1,0 +1,130 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "the Board met in executive session (without Mr. Eder present) with representatives of GHF and discussed the status of the process, including that each potential buyer had been advised to submit a non-binding indication of interest by May 10, 2016 (which deadline was subsequently postponed to May 19, 2016 to ensure the potential buyers had sufficient time to formulate their most compelling offers).",
+   "ledger_rows": [
+    {
+     "When": "subsequently; by 04/22/2016",
+     "Who": "Party A",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Named recipient of the Company memorandum and identified as having executed a confidentiality agreement; no standstill."
+    },
+    {
+     "When": "subsequently; by 04/22/2016",
+     "Who": "G&W",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Named recipient of the Company memorandum and identified as having executed a confidentiality agreement; no standstill."
+    },
+    {
+     "When": "subsequently; by 04/22/2016",
+     "Who": "Party B",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Named recipient of the Company memorandum and identified as having executed a confidentiality agreement; no standstill."
+    },
+    {
+     "When": "by 04/27/2016",
+     "Who": "GHF",
+     "Event": "Deadline set",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Non-binding IOIs initially due 05/10/2016."
+    },
+    {
+     "When": "after 04/27/2016; by 05/19/2016",
+     "Who": "GHF",
+     "Event": "Deadline revised",
+     "Price low": null,
+     "Price high": null,
+     "Note": "IOI deadline moved from 05/10 to 05/19 so buyers could formulate their most compelling offers."
+    },
+    {
+     "When": "05/19/2016",
+     "Who": "Providence and Worcester Railroad Company",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Revised IOI due date reached; recommended outcome is Enforced, subject to Q2."
+    },
+    {
+     "When": "05/19/2016",
+     "Who": "16 NDA signers without IOIs",
+     "Event": "Did not submit",
+     "Price low": null,
+     "Price high": null,
+     "Note": "25 initial signers \u2212 9 IOI submitters = 16; may include Party A. Count becomes 17 if Party B was an additional signer (Q3)."
+    },
+    {
+     "When": "05/19/2016\u201306/01/2016",
+     "Who": "9 IOI bidders",
+     "Event": "Bid",
+     "Price low": 17.93,
+     "Price high": 26.5,
+     "Note": "Non-binding preliminary IOIs before substantive diligence; aggregate range only, so no bidder receives an endpoint."
+    },
+    {
+     "When": "06/01/2016",
+     "Who": "2 low IOI bidders",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Transaction Committee excluded the two low bidders from management presentations and further diligence."
+    },
+    {
+     "When": "06/01/2016",
+     "Who": "Providence and Worcester Railroad Company",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Seven remaining bidders advanced to management presentations and the data site for additional diligence."
+    },
+    {
+     "When": "mid-June 2016",
+     "Who": "GHF",
+     "Event": "Deadline set",
+     "Price low": null,
+     "Price high": null,
+     "Note": "LOIs due 07/20 with markups of the merger agreement, disclosure letter and voting agreement."
+    },
+    {
+     "When": "07/20/2016",
+     "Who": "Providence and Worcester Railroad Company",
+     "Event": "Deadline",
+     "Price low": null,
+     "Price high": null,
+     "Note": "LOI due date reached; G&W\u2019s 07/21 LOI was considered, so recommended outcome is Late bids accepted."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "deadline": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "deadline": {
+    "type": "noul",
+    "noul": 0.78
+   }
+  },
+  "usage": {
+   "input_tokens": 1521,
+   "output_tokens": 20
+  }
+ },
+ "latency_s": 0.216
+}

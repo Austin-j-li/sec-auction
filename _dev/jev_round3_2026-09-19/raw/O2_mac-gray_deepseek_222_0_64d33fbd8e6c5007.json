@@ -1,0 +1,50 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "50 parties, including CSC and Pamplona, who together we refer to as CSC/Pamplona, and Party A, to solicit potential interest in a transaction with Mac-Gray, 15 of which were potential strategic buyers and 35 of which were potential financial buyers, including private equity firms.",
+   "target_sentence": "50 parties, including CSC and Pamplona, who together we refer to as CSC/Pamplona, and Party A, to solicit potential interest in a transaction with Mac-Gray, 15 of which were potential strategic buyers and 35 of which were potential financial buyers, including private equity firms."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_8": "06/21/2013 | Party A | Bid | price 17-19 | Unsolicited; no NDA or substantive diligence access yet; reviewed with the round-1 indications on 07/25/2013.",
+     "row_9": "06/24/2013 | Mac-Gray | Target sale decision | Special Committee of six independent directors formed; MacDonald and Rothenberg excluded from sale deliberations over potential rollover conflicts; sale seen as best path versus remaining standalone.",
+     "row_11": "06/24/2013\u201308/24/2013 | 16 financial NDA signers (cohort) | NDA signed | Filing reports 20 NDA signers (2 strategic, 18 financial); Party A, CSC/Pamplona, Party B and Party C recorded individually; residual 16 financial bidders.",
+     "row_12": "06/28/2013 | Party B | NDA signed | Signed confidentiality and standstill agreement and received an informational package; instructed to submit a preliminary indication by 07/23/2013.",
+     "row_13": "06/30/2013 | Party C | NDA signed | Signed confidentiality and standstill agreement and received an informational package; instructed to submit a preliminary indication by 07/23/2013.",
+     "row_16": "07/23/2013 | Mac-Gray | Deadline | Round 1 due date reached; CSC/Pamplona submitted an indication; Party B and Party C submitted late and were reviewed on 07/25/2013.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "none",
+    "confidence": 0.79,
+    "probabilities": {
+     "row_9": 0.0,
+     "none": 0.83,
+     "not_an_event": 0.03,
+     "row_11": 0.14,
+     "row_16": 0.0,
+     "row_12": 0.0,
+     "row_13": 0.0,
+     "row_8": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1037,
+   "output_tokens": 91
+  }
+ },
+ "latency_s": 0.384
+}

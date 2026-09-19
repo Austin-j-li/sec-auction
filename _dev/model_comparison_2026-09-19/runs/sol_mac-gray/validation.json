@@ -1,0 +1,13 @@
+{
+  "bytes": 19784,
+  "exists": true,
+  "path": "/home/uctpiaj/Projects/Sec_extraction_new/_dev/model_comparison_2026-09-19/runs/sol_mac-gray/extraction/mac-gray.xlsx",
+  "sha256": "e568558177f2be1a8441aef7522eec6325fc9249cd533e20cca32ef609f20d0f",
+  "sheet_names": [
+    "Deal ledger",
+    "Rounds",
+    "Questions",
+    "Deal facts"
+  ],
+  "valid_xlsx": true
+}

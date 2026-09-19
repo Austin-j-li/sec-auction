@@ -1,0 +1,46 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Shortly thereafter, Hinckley Allen and Simpson Thacher finalized the transaction documents and the Company and G&W executed the merger agreement, and the Company, G&W and the Eder Trusts executed the voting agreement. The Company issued a press release publicly announcing the transaction on Monday, August 15, 2016 prior to the opening of trading of the Company's common stock on the NASDAQ.",
+   "target_sentence": "Shortly thereafter, Hinckley Allen and Simpson Thacher finalized the transaction documents and the Company and G&W executed the merger agreement, and the Company, G&W and the Eder Trusts executed the voting agreement."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_52": "08/12/2016 | G&W | Bid | price 25 | Cash LOI after physical diligence, with merger/voting markups; CVR removed; only final documentation reported; offer expired 08/13 at 6 p.m.",
+     "row_53": "08/12/2016 | Party B | Dropped by target | At the Board\u2019s request BMO sought an increase; Party B refused, and the Board selected G&W\u2019s $25 offer as superior.",
+     "row_54": "08/12/2016 | Providence and Worcester Railroad Company and G&W | Merger agreement signed | G&W agreed to acquire the Company for $25.00 per common share in cash; preferred stock deemed converted 100-for-1.",
+     "row_55": "08/15/2016 | Providence and Worcester Railroad Company | Merger announced | Company publicly announced the signed transaction before NASDAQ trading opened.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_54",
+    "confidence": 0.8,
+    "probabilities": {
+     "row_53": 0.0,
+     "none": 0.12,
+     "row_54": 0.84,
+     "row_55": 0.04,
+     "not_an_event": 0.0,
+     "row_52": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 868,
+   "output_tokens": 76
+  }
+ },
+ "latency_s": 0.351
+}

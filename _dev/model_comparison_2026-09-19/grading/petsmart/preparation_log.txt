@@ -1,0 +1,1 @@
+{"deal": "petsmart", "labels": ["Candidate-A", "Candidate-B", "Candidate-C"], "reference_sha256": "2467fc445dd085e2014227a90b1ab3da40e0655ce871ec0818d75136123b64e7"}

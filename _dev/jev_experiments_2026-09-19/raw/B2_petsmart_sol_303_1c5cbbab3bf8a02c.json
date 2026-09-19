@@ -1,0 +1,86 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "During November, the bidders engaged in further extensive due diligence investigations of the Company, including further detailed management presentations. Also during November, the Company circulated a form of merger agreement to the bidders with instructions that the bidders submit any proposed comments on the merger agreement together with their final bids. Following the Company's third quarter earnings announcement and, at the request of bidders and the direction of the board and the Company, representatives of J.P. Morgan provided the bidders with updates to the Company's fiscal year 2014 financial projections.",
+   "ledger_rows": [
+    {
+     "When": "11/03/2014",
+     "Who": "PetSmart",
+     "Event": "Round opened",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Board advanced four bidders at or above $80 to a final round; later final materials included agreement comments and updated projections."
+    },
+    {
+     "When": "11/03/2014",
+     "Who": "2 other first-round bidders",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Six submitters \u2212 four advanced = two; filing says eliminated parties could not remain above their initial prices. Q4 assumes neither later joined Bidder 3."
+    },
+    {
+     "When": "after 11/03/2014",
+     "Who": "Two high-range bidders / Bidder 3",
+     "Event": "Bidding group changed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Formed Bidder 3 with target permission. Q4 assumes both were among the four advanced bidders."
+    },
+    {
+     "When": "by 12/03/2014",
+     "Who": "PetSmart",
+     "Event": "Deadline set",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Initially set 12/05/2014 for final bids, targeting completion by 12/15/2014."
+    },
+    {
+     "When": "12/04/2014\u201312/05/2014",
+     "Who": "PetSmart",
+     "Event": "Deadline revised",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Moved final-bid deadline from 12/05 to the evening of 12/10 and requested agreement markups and financing commitments in advance if possible."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "nda_access": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "deadline": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker sets, changes or communicates a bid deadline, process letter or request for final offers. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "nda_access": {
+    "type": "noul",
+    "noul": 0.38
+   },
+   "deadline": {
+    "type": "noul",
+    "noul": 0.51
+   }
+  },
+  "usage": {
+   "input_tokens": 1098,
+   "output_tokens": 37
+  }
+ },
+ "latency_s": 0.281
+}

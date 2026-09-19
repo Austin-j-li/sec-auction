@@ -1,0 +1,13 @@
+{
+  "bytes": 19208,
+  "exists": true,
+  "path": "/home/uctpiaj/Projects/Sec_extraction_new/_dev/model_comparison_2026-09-19/runs/sol_petsmart/extraction/petsmart.xlsx",
+  "sha256": "0db5afd35cb026e723dd8d3a115e087f785a9fe26a9f38ed3f16d4076dd9ef26",
+  "sheet_names": [
+    "Deal ledger",
+    "Rounds",
+    "Questions",
+    "Deal facts"
+  ],
+  "valid_xlsx": true
+}

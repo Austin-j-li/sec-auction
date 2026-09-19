@@ -1,0 +1,62 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Following the execution of a confidentiality agreement, on December 9, 2014, J.P. Morgan arranged introductory meetings between Longview and the Buyer Group, and between Longview and Bidder 2. These meetings, which were attended by representatives of J.P. Morgan and Wachtell Lipton, were introductory in nature, to enable the bidders to determine their interest in working with Longview, and vice versa, and the bidders were prohibited at this time from disclosing to Longview the respective prices that the bidders intended to bid.",
+   "target_sentence": "Following the execution of a confidentiality agreement, on December 9, 2014, J.P. Morgan arranged introductory meetings between Longview and the Buyer Group, and between Longview and Bidder 2."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_27": "November 2014 (by 12/04/2014) | PetSmart board | Deadline set | Final bids initially due Friday 12/05/2014, with completion targeted 12/15. In November form merger agreement circulated with instruction to submit comments together with final bids.",
+     "row_29": "12/04\u201312/05/2014 | PetSmart (ad hoc committee) | Deadline revised | Final-bid due date moved from 12/05 to evening of 12/10 to shorten post-bid period and leak risk; bidders asked to send markups and financing commitments in advance.",
+     "row_30": "12/10/2014 | Buyer Group | Bid | price 80.7 | Final bid letter with revised merger agreement and transaction documents. Financing commitment documents supplied 12/06. Documents less conditional than Bidder 2\u2019s. Not dependent on Longview rollover.",
+     "row_31": "12/10/2014 | Bidder 2 | Bid | price 80.35 | Final bid letter with revised merger agreement and transaction documents; documents more conditional than Buyer Group\u2019s; financing status not reported until 12/12. Would partner with Longview only after signing.",
+     "row_32": "12/10/2014 | PetSmart | Deadline | Final-bid due date (evening). Two written bids received; Bidder 3 gave only a verbal valuation.",
+     "row_33": "12/10/2014 | Bidder 3 | Did not submit | Verbal valuation not above the ~$78 stock price; J.P. Morgan said it was unlikely to be competitive, so no written offer. Both sides contributed. Not mentioned again.",
+     "row_34": "12/10/2014 | PetSmart (ad hoc committee) | Deadline revised | Neither bid acceptable unless improved: J.P. Morgan told both bidders to raise their bids, improved bids due 12/12. Treated as an extension within the final round, not a new round.",
+     "row_35": "12/12/2014 (early) | Buyer Group / Longview | Other material event | Rollover permitted: committee approved Buyer Group\u2019s request to work with Longview; confidentiality agreement shared bid price. Bidder 2 would consider rollover only post-signing. Both bidders met Longview 12/09 without disclosing prices.",
+     "row_36": "12/12/2014 (evening) | Bidder 2 | Bid | price 81.5 | Revises #30. Confirmed to J.P. Morgan as best and final; with revised merger agreement drafts and financing commitment documents.",
+     "row_37": "12/12/2014 (evening) | Buyer Group | Bid | price 82.5 | Revises #29. Oral offer; said it was working to raise it within hours. Financing commitments already provided.",
+     "row_38": "12/12/2014 (later evening) | Buyer Group | Bid | price 83 | Revises #36. Best and final; revised drafts \u201cwith few exceptions\u201d in executable form, plus financing commitments. Longview\u2019s $250 million rollover support helped reach $83.00; members unwilling or unable to go higher.",
+     "row_39": "12/12/2014 | PetSmart | Deadline | Due date for improved bids; both remaining bidders submitted that evening.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a party signs a confidentiality agreement, or is given (or denied) data room access, management meetings, projections or other diligence information; or the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_35",
+    "confidence": 0.67,
+    "probabilities": {
+     "not_an_event": 0.01,
+     "row_30": 0.0,
+     "row_29": 0.0,
+     "row_37": 0.0,
+     "row_32": 0.0,
+     "none": 0.29,
+     "row_33": 0.0,
+     "row_34": 0.0,
+     "row_38": 0.0,
+     "row_27": 0.0,
+     "row_35": 0.7,
+     "row_31": 0.0,
+     "row_36": 0.0,
+     "row_39": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1584,
+   "output_tokens": 156
+  }
+ },
+ "latency_s": 0.389
+}

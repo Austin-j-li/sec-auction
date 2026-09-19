@@ -1,0 +1,58 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "G&W was $1.00 more per share; (2) the termination fee payable by the Company in the event the Board exercised its \"fiduciary out\" in order to accept a superior proposal was less under the G&W draft agreement than the Party B draft agreement; and (3) the STB approval process for G&W and Party B would be different since G&W owned connecting railroads. The Board arranged a telephone call with the Company's STB counsel to discuss the process for obtaining the required regulatory approval or exemption for the transaction, the risks associated with each process, the use of a voting trust to enable an earlier closing of the transaction (as contemplated by the G&W merger agreement) and the likely timeframe for obtaining any regulatory clearance for a transaction with either Party B or G&W. Based upon that discussion, the Board determined that the timeframe for, and the likelihood of, obtaining the required regulatory approval was not materially different for a transaction with G&W versus a transaction with Party B. At the request of the Board, representatives of BMO then contacted Party B to determine if it would increase its offer price. Party B indicated that it would not increase its price.",
+   "target_sentence": "Party B indicated that it would not increase its price."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_45": "08/04/2016 | Target (Transaction Committee) | Other material event | Preferred bidder named: continue diligence and talks with G&W and B, but prioritize B for its higher price and finish the merger agreement with B.",
+     "row_46": "by 08/04/2016 | Party E | Dropped by target | Out by 08/04: the Committee named only G&W and B as continuing, and E's confirmed $21.26 offer is never mentioned again.",
+     "row_47": "08/04/2016 | Party B | Bid reaffirmed | price 24 | Carried from #24; reaffirmed by returned draft: B's counsel sent a revised merger agreement as the Company moved to complete the agreement with B (#44). On-site diligence continued to 08/11.",
+     "row_48": "08/09/2016 | G&W | Other material event | Target told G&W it intended to sign with another bidder. G&W asked to continue diligence (on-site 08/10-11) toward a better offer; granted. On 08/11 G&W signalled a revised LOI.",
+     "row_49": "08/10/2016 | Simpson Thacher & Bartlett LLP | Adviser | G&W's legal counsel; first seen acting 08/10/2016.",
+     "row_50": "08/12/2016 (morning) | G&W | Bid | price 25 | All-cash revised LOI; CVR dropped; mark-ups of merger and voting agreements; offer expiring 6 p.m. next day. Physical diligence done 08/11; agreement signed that day, without financing condition.",
+     "row_51": "08/12/2016 | Party B | Other material event | At its 10:30 a.m. meeting, the Committee had BMO tell B that a higher revised LOI had arrived. In the afternoon, the Board had BMO ask B to raise its price.",
+     "row_52": "08/12/2016 | Party B | Not selected at signing | Declined to raise its $24.00 offer (#46). Board found G&W's $25.00 superior; the drafts otherwise differed on the termination fee (lower for G&W) and on the STB approval route.",
+     "row_53": "08/12/2016 | G&W | Merger agreement signed | $25.00 cash per common share (each preferred share converts into 100 common). Termination fee 3% ($3.785M). Eder Trusts signed voting agreement. Board approved 08/12 (Smith recused).",
+     "row_54": "08/15/2016 | Target | Merger announced | Press release before NASDAQ open.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_52",
+    "confidence": 0.96,
+    "probabilities": {
+     "not_an_event": 0.01,
+     "row_50": 0.0,
+     "row_49": 0.0,
+     "row_45": 0.0,
+     "row_48": 0.0,
+     "none": 0.01,
+     "row_52": 0.96,
+     "row_51": 0.01,
+     "row_54": 0.0,
+     "row_47": 0.01,
+     "row_46": 0.0,
+     "row_53": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1483,
+   "output_tokens": 136
+  }
+ },
+ "latency_s": 0.503
+}

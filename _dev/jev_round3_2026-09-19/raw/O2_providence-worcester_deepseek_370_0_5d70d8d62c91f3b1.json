@@ -1,0 +1,46 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "Subsequent to the delivery of BMO's opinion and the Board's approval of the merger agreement and voting agreement, representatives of BMO advised the Board that when checking to determine if there were any financial advisory or financing relationships with G&W, it had inadvertently failed to identify that a BMO affiliate has a participation in G&W's existing secured syndicated debt facility as described under the section titled \"Summary of Financial Analysis of BMO Capital Markets Corp.- Miscellaneous \" on page 41. On September 6, 2016, the Board considered this new information, determined this relationship was not material to BMO's independence and confirmed that the Board remained comfortable with the engagement and opinion of BMO.",
+   "target_sentence": "Subsequent to the delivery of BMO's opinion and the Board's approval of the merger agreement and voting agreement, representatives of BMO advised the Board that when checking to determine if there were any financial advisory or financing relationships with G&W, it had inadvertently failed to identify that a BMO affiliate has a participation in G&W's existing secured syndicated debt facility as described under the section titled \"Summary of Financial Analysis of BMO Capital Markets Corp.- Miscellaneous \" on page 41."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_50": "08/12/2016 | Party B | Not selected at signing | Asked on 08/12 whether it would increase its $24.00; declined; Board then chose G&W's $25.00 as the superior proposal.",
+     "row_51": "by 08/12/2016 | Party E | Not selected at signing | Last seen confirming a standing $21.26 on 08/02; not included when the Board chose G&W at $25.00.",
+     "row_52": "08/12/2016 | PWRR / G&W | Merger agreement signed | Agreed price $25.00 per share in cash; preferred converts into 100 common shares; termination fee $3.785M; board approved and parties signed same day; voting agreement with Eder Trusts.",
+     "row_53": "08/15/2016 | PWRR / G&W | Merger announced | Press release before NASDAQ opened; signed merger agreement announced publicly.",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a voting, support or rollover agreement, a special committee, or the merger agreement itself is formed, approved or signed. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "not_an_event",
+    "confidence": 0.63,
+    "probabilities": {
+     "row_51": 0.0,
+     "not_an_event": 0.7,
+     "none": 0.25,
+     "row_50": 0.0,
+     "row_52": 0.05,
+     "row_53": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1012,
+   "output_tokens": 75
+  }
+ },
+ "latency_s": 0.464
+}

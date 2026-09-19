@@ -1,0 +1,142 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "G&W submitted an LOI on July 21, 2016 to acquire the Company for a price of $21.15 per share (subject to a three-week exclusive diligence period). The price included $20.02 cash at closing and $1.13 in the form of a contingent value right, the value of which was based on the subsequent sale of the Company's South Quay property (\"CVR\"). G&W also provided a mark-up of the disclosure letter. On July 26, 2016, in response to feedback from representatives of GHF indicating its price and CVR structure were not competitive, G&W submitted a revised LOI, which increased its offer to $22.15 per share (including $21.02 in cash and $1.13 CVR).",
+   "ledger_rows": [
+    {
+     "When": "by 07/12/2016",
+     "Who": "Party C",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Signed a confidentiality agreement and received the same memorandum as other buyers; no standstill."
+    },
+    {
+     "When": "07/12/2016",
+     "Who": "Party C",
+     "Event": "Bid",
+     "Price low": 21,
+     "Price high": 21,
+     "Note": "IOI; equity value $108M; no diligence or financing terms stated; made before data-site and management access."
+    },
+    {
+     "When": "07/14/2016",
+     "Who": "Party C",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Provided catch-up access for late entrant: data-site access plus telephone management presentation after its 07/12 IOI."
+    },
+    {
+     "When": "late July 2016",
+     "Who": "Party B",
+     "Event": "Bid",
+     "Price low": 24,
+     "Price high": 24,
+     "Note": "LOI with mark-ups of merger and voting agreements; expedited diligence; highest of the six LOIs."
+    },
+    {
+     "When": "late July 2016",
+     "Who": "Party E",
+     "Event": "Bid",
+     "Price low": 21.26,
+     "Price high": 21.26,
+     "Note": "LOI; 60-day exclusive diligence and documentation period requested; issues list only, no markup."
+    },
+    {
+     "When": "late July 2016",
+     "Who": "Party D",
+     "Event": "Bid",
+     "Price low": 21,
+     "Price high": 21,
+     "Note": "LOI with mark-ups of merger and voting agreements; four-week diligence period."
+    },
+    {
+     "When": "late July 2016",
+     "Who": "Party C",
+     "Event": "Bid",
+     "Price low": 19.3,
+     "Price high": 19.3,
+     "Note": "LOI; 30-day diligence period; no markup."
+    },
+    {
+     "When": "late July 2016",
+     "Who": "Party F",
+     "Event": "Bid",
+     "Price low": 19.2,
+     "Price high": 19.2,
+     "Note": "LOI; 30-day due diligence period; no markup."
+    },
+    {
+     "When": "07/20/2016",
+     "Who": "One strategic buyer (unnamed)",
+     "Event": "Did not submit",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Elected not to submit an LOI after being advanced; one of the seven; not necessarily permanent."
+    },
+    {
+     "When": "07/20/2016",
+     "Who": "One financial buyer (unnamed)",
+     "Event": "Did not submit",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Elected not to submit an LOI after being advanced; one of the seven; not necessarily permanent."
+    },
+    {
+     "When": "07/21/2016",
+     "Who": "G&W",
+     "Event": "Bid",
+     "Price low": 21.15,
+     "Price high": 21.15,
+     "Note": "LOI: $20.02 cash at closing plus $1.13 CVR on South Quay property sale; three-week exclusive diligence requested; mark-ups provided."
+    },
+    {
+     "When": "07/26/2016",
+     "Who": "G&W",
+     "Event": "Bid",
+     "Price low": 22.15,
+     "Price high": 22.15,
+     "Note": "Raised after GHF said price and CVR structure were not competitive; $21.02 cash plus $1.13 CVR; exclusive diligence request stands."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "bid": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "exclusivity": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that exclusivity is requested, authorised, granted, signed or extended. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "bid": {
+    "type": "noul",
+    "noul": 0.95
+   },
+   "exclusivity": {
+    "type": "noul",
+    "noul": 0.81
+   }
+  },
+  "usage": {
+   "input_tokens": 1675,
+   "output_tokens": 38
+  }
+ },
+ "latency_s": 0.263
+}

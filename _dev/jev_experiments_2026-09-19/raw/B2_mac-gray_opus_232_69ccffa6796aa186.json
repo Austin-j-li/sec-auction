@@ -1,0 +1,66 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On July 23, 2013, CSC/Pamplona submitted a preliminary indication of interest at an all-cash purchase price of $18.50 per share.",
+   "ledger_rows": [
+    {
+     "When": "07/11/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "NDA signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Agreement with Pamplona Capital Management LLC, reused in the merger agreement (s. 6.17). Received the informational package. Party A's NDA talks stalled on non-solicit terms 07/11-07/23."
+    },
+    {
+     "When": "07/23/2013",
+     "Who": "CSC/Pamplona",
+     "Event": "Bid",
+     "Price low": 18.5,
+     "Price high": 18.5,
+     "Note": "Preliminary IOI based only on the informational package, with no data room or management access (Heavy by context)."
+    },
+    {
+     "When": "07/24/2013",
+     "Who": "Party B",
+     "Event": "Bid",
+     "Price low": 17,
+     "Price high": 18,
+     "Note": "Written preliminary IOI, one day after the due date. Based on the informational package only (Heavy by context)."
+    },
+    {
+     "When": "07/24/2013",
+     "Who": "Party C",
+     "Event": "Bid",
+     "Price low": 15,
+     "Price high": 17,
+     "Note": "Oral preliminary IOI to BofA, one day after the due date. Based on the informational package only (Heavy by context)."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "bid": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "bid": {
+    "type": "noul",
+    "noul": 0.97
+   }
+  },
+  "usage": {
+   "input_tokens": 806,
+   "output_tokens": 20
+  }
+ },
+ "latency_s": 0.268
+}

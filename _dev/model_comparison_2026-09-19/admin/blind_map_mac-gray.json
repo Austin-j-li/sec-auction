@@ -1,0 +1,20 @@
+{
+  "Candidate-A": {
+    "model": "deepseek",
+    "original": "/home/uctpiaj/Projects/Sec_extraction_new/_dev/model_comparison_2026-09-19/runs/deepseek_mac-gray/work/extraction/mac-gray.xlsx",
+    "original_sha256": "95575595829404dad90ed71d3a30640f1fbc9a9efa7320cf84f780fc2e2635b3",
+    "neutral_sha256": "ebab6655a0ca11f605b96697c060af7eebae100c10e28de9c234ea2949f0e468"
+  },
+  "Candidate-B": {
+    "model": "opus",
+    "original": "/home/uctpiaj/Projects/Sec_extraction_new/_dev/model_comparison_2026-09-19/runs/opus_mac-gray/extraction/mac-gray.xlsx",
+    "original_sha256": "f599dd89d2d0f3e8e320389b5c78e1bacdc95420983438444c3b67186229175a",
+    "neutral_sha256": "f46d21331f8990eb394bca2f66d5dfd1862b5d644b62787e4df14773ce2d0070"
+  },
+  "Candidate-C": {
+    "model": "sol",
+    "original": "/home/uctpiaj/Projects/Sec_extraction_new/_dev/model_comparison_2026-09-19/runs/sol_mac-gray/extraction/mac-gray.xlsx",
+    "original_sha256": "e568558177f2be1a8441aef7522eec6325fc9249cd533e20cca32ef609f20d0f",
+    "neutral_sha256": "3bcbe621dd5dcee8d595cad48ecd2fc558ea3d4c17ec9bdbcda4a032a5de5fb0"
+  }
+}

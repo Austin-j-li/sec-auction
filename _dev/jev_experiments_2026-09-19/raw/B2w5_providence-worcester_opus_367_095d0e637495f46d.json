@@ -1,0 +1,126 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "G&W was $1.00 more per share; (2) the termination fee payable by the Company in the event the Board exercised its \"fiduciary out\" in order to accept a superior proposal was less under the G&W draft agreement than the Party B draft agreement; and (3) the STB approval process for G&W and Party B would be different since G&W owned connecting railroads. The Board arranged a telephone call with the Company's STB counsel to discuss the process for obtaining the required regulatory approval or exemption for the transaction, the risks associated with each process, the use of a voting trust to enable an earlier closing of the transaction (as contemplated by the G&W merger agreement) and the likely timeframe for obtaining any regulatory clearance for a transaction with either Party B or G&W. Based upon that discussion, the Board determined that the timeframe for, and the likelihood of, obtaining the required regulatory approval was not materially different for a transaction with G&W versus a transaction with Party B. At the request of the Board, representatives of BMO then contacted Party B to determine if it would increase its offer price. Party B indicated that it would not increase its price.",
+   "ledger_rows": [
+    {
+     "When": "08/04/2016",
+     "Who": "Target (Transaction Committee)",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Preferred bidder named: continue diligence and talks with G&W and B, but prioritize B for its higher price and finish the merger agreement with B."
+    },
+    {
+     "When": "by 08/04/2016",
+     "Who": "Party E",
+     "Event": "Dropped by target",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Out by 08/04: the Committee named only G&W and B as continuing, and E's confirmed $21.26 offer is never mentioned again."
+    },
+    {
+     "When": "08/04/2016",
+     "Who": "Party B",
+     "Event": "Bid reaffirmed",
+     "Price low": 24,
+     "Price high": 24,
+     "Note": "Carried from #24; reaffirmed by returned draft: B's counsel sent a revised merger agreement as the Company moved to complete the agreement with B (#44). On-site diligence continued to 08/11."
+    },
+    {
+     "When": "08/09/2016",
+     "Who": "G&W",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Target told G&W it intended to sign with another bidder. G&W asked to continue diligence (on-site 08/10-11) toward a better offer; granted. On 08/11 G&W signalled a revised LOI."
+    },
+    {
+     "When": "08/10/2016",
+     "Who": "Simpson Thacher & Bartlett LLP",
+     "Event": "Adviser",
+     "Price low": null,
+     "Price high": null,
+     "Note": "G&W's legal counsel; first seen acting 08/10/2016."
+    },
+    {
+     "When": "08/12/2016 (morning)",
+     "Who": "G&W",
+     "Event": "Bid",
+     "Price low": 25,
+     "Price high": 25,
+     "Note": "All-cash revised LOI; CVR dropped; mark-ups of merger and voting agreements; offer expiring 6 p.m. next day. Physical diligence done 08/11; agreement signed that day, without financing condition."
+    },
+    {
+     "When": "08/12/2016",
+     "Who": "Party B",
+     "Event": "Other material event",
+     "Price low": null,
+     "Price high": null,
+     "Note": "At its 10:30 a.m. meeting, the Committee had BMO tell B that a higher revised LOI had arrived. In the afternoon, the Board had BMO ask B to raise its price."
+    },
+    {
+     "When": "08/12/2016",
+     "Who": "Party B",
+     "Event": "Not selected at signing",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Declined to raise its $24.00 offer (#46). Board found G&W's $25.00 superior; the drafts otherwise differed on the termination fee (lower for G&W) and on the STB approval route."
+    },
+    {
+     "When": "08/12/2016",
+     "Who": "G&W",
+     "Event": "Merger agreement signed",
+     "Price low": null,
+     "Price high": null,
+     "Note": "$25.00 cash per common share (each preferred share converts into 100 common). Termination fee 3% ($3.785M). Eder Trusts signed voting agreement. Board approved 08/12 (Smith recused)."
+    },
+    {
+     "When": "08/15/2016",
+     "Who": "Target",
+     "Event": "Merger announced",
+     "Price low": null,
+     "Price high": null,
+     "Note": "Press release before NASDAQ open."
+    }
+   ]
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "bid": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   },
+   "contact": {
+    "type": "noul",
+    "instructions": "`paragraph` reports that the target or its banker contacts potential buyers, or a potential buyer approaches the target, including counts of parties contacted. Is every such event in `paragraph` recorded by some entry in `ledger_rows` (same party, same kind of event, consistent date)?",
+    "criteria": {
+     "true": "Each such event has a matching ledger entry, possibly summarised in an entry's Note.",
+     "false": "At least one such event in the paragraph has no matching ledger entry."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "bid": {
+    "type": "noul",
+    "noul": 0.67
+   },
+   "contact": {
+    "type": "noul",
+    "noul": 0.74
+   }
+  },
+  "usage": {
+   "input_tokens": 1758,
+   "output_tokens": 36
+  }
+ },
+ "latency_s": 0.283
+}

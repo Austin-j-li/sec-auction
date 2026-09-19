@@ -1,0 +1,68 @@
+{
+  "case_id": "coverage_08_paraphrase",
+  "request_sha256": "515874779af9cca6e6bedd6c5586ebc40a6c515e0b63898d836e022cd2ea3463",
+  "request": {
+    "model": "jev-1.13.0",
+    "state": {
+      "source": [
+        {
+          "paragraph_id": "313",
+          "text": "During the evening of December 12, 2014, Bidder 2 submitted an offer of $81.50 per share, in cash. Representatives of J.P. Morgan confirmed via a conversation with Bidder 2 on the evening of December 12, 2014 that $81.50 per share was its best and final offer. The Buyer Group initially submitted an oral offer of $82.50 per share, in cash, but stated that it was working to increase the offer within the next few hours. Later in the evening, the Buyer Group submitted a best and final offer of $83.00 per share, in cash. In addition, each bidder submitted a revised draft of the merger agreement and other transaction agreements, and copies of their respective financing commitment documents. The versions submitted by the Buyer Group were, with few exceptions, in substantially executable form."
+        }
+      ],
+      "target_event": "Buyer Group increased its December 12 oral $82.50 offer to a later best and final $83 offer.",
+      "ledger_rows": {
+        "row_0": "Later December 12: Buyer Group final price $83 after earlier oral $82.50.",
+        "row_1": "December 12: Buyer Group oral offer $82.50 and working to increase it."
+      }
+    },
+    "questions": {
+      "covered": {
+        "type": "noul",
+        "instructions": "Is the target_event recorded in ledger_rows? Match the actual event, including its bidder, date, action and material terms, not just topic overlap.",
+        "criteria": {
+          "true": "At least one row records this same event.",
+          "false": "No supplied row records this event."
+        }
+      },
+      "match": {
+        "type": "choice",
+        "instructions": "Select the ledger row that records target_event. A related event with a different date, bidder, amount or action does not count. Match by meaning, allowing paraphrase. Select none if absent.",
+        "criteria": {
+          "row_0": "Later December 12: Buyer Group final price $83 after earlier oral $82.50.",
+          "row_1": "December 12: Buyer Group oral offer $82.50 and working to increase it.",
+          "none": "None of the supplied ledger rows records the target event with the same actors, date, action and material terms."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "covered": {
+        "type": "noul",
+        "noul": 0.95
+      },
+      "match": {
+        "type": "choice",
+        "choice": "row_0",
+        "confidence": 0.99,
+        "probabilities": {
+          "row_1": 0.0,
+          "row_0": 0.99,
+          "none": 0.01
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 807,
+      "output_tokens": 60
+    }
+  },
+  "attempts": [
+    {
+      "status": 200,
+      "latency_s": 5.237107651002589
+    }
+  ]
+}

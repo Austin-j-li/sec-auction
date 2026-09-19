@@ -1,0 +1,153 @@
+{
+  "case_id": "price_02_correct",
+  "request_sha256": "1cb5656d11619d3f8ad1dd4b15222d5364193c837ab944aa50637a668c75fa8e",
+  "request": {
+    "model": "jev-1.13.0",
+    "state": {
+      "passage": [
+        {
+          "paragraph_id": "351",
+          "text": "In late July 2016, the Company received six LOIs with offer prices per share ranging from $19.20 to $24.00 (implying equity values of $96 million to $121 million). Party B, G&W and another bidder (\"Party D\") also provided mark-ups of the draft merger agreement and voting agreement. One bidder (\"Party E\") provided a summary of material issues and proposed changes to the merger agreement and voting agreement with respect to those issues."
+        },
+        {
+          "paragraph_id": "352",
+          "text": "Party B submitted an LOI to acquire the Company for a price of $24.00 per share (subject to an expedited diligence review)."
+        },
+        {
+          "paragraph_id": "353",
+          "text": "G&W submitted an LOI on July 21, 2016 to acquire the Company for a price of $21.15 per share (subject to a three-week exclusive diligence period). The price included $20.02 cash at closing and $1.13 in the form of a contingent value right, the value of which was based on the subsequent sale of the Company's South Quay property (\"CVR\"). G&W also provided a mark-up of the disclosure letter. On July 26, 2016, in response to feedback from representatives of GHF indicating its price and CVR structure were not competitive, G&W submitted a revised LOI, which increased its offer to $22.15 per share (including $21.02 in cash and $1.13 CVR)."
+        },
+        {
+          "paragraph_id": "354",
+          "text": "Party E (a strategic buyer) submitted an LOI to acquire the Company for a price of $21.26 per share (subject to a 60-day exclusivity period for due diligence and negotiation of definitive documentation)."
+        },
+        {
+          "paragraph_id": "355",
+          "text": "Party D (a financial buyer) submitted an LOI to acquire the Company for a price of $21.00 per share (subject to a four-week diligence period)."
+        }
+      ]
+    },
+    "questions": {
+      "legacy": {
+        "type": "noul",
+        "instructions": "Does the passage state that \"G&W\" offered, proposed or indicated a price of $21.15 per share (the same number may be written without trailing zeros)?",
+        "criteria": {
+          "true": "The per-share figure $21.15 appears in the passage as this party's price.",
+          "false": "The passage gives a different figure for this party, or no figure."
+        }
+      },
+      "scoped": {
+        "type": "choice",
+        "instructions": "For G&W, evaluate the claim that the price at the event \"LOI submitted July 21, 2016, total consideration including CVR\" was $21.15 per share. Use only the source and bind the entire range, bidder, event and price basis together.",
+        "criteria": {
+          "supported": "The source explicitly supports the claimed price for this bidder at this exact event.",
+          "contradicted": "The source gives a different price for the same bidder and event, or explicitly denies that submission. A different date, bidder or price component cannot support the claim.",
+          "insufficient": "The supplied source does not establish the price at the specified event. Missing evidence is not contradiction; do not infer a carried-forward price."
+        }
+      },
+      "low": {
+        "type": "choice",
+        "instructions": "For G&W at the event \"LOI submitted July 21, 2016, total consideration including CVR\", select the explicitly reported total per-share offer price, or lower endpoint if a range. Include attributed noncash package value. Exclude a component, equity total, rival price, or another offer by the same bidder. Select none when not established.",
+        "criteria": {
+          "$1.13": "Verbatim monetary amount found in source.",
+          "$19.20": "Verbatim monetary amount found in source.",
+          "$20.02": "Verbatim monetary amount found in source.",
+          "$21.00": "Verbatim monetary amount found in source.",
+          "$21.02": "Verbatim monetary amount found in source.",
+          "$21.15": "Verbatim monetary amount found in source.",
+          "$21.26": "Verbatim monetary amount found in source.",
+          "$22.15": "Verbatim monetary amount found in source.",
+          "$24.00": "Verbatim monetary amount found in source.",
+          "$96.00": "Verbatim monetary amount found in source.",
+          "$121.00": "Verbatim monetary amount found in source.",
+          "none": "No amount in the candidates is explicitly established for this endpoint at this event."
+        }
+      },
+      "high": {
+        "type": "choice",
+        "instructions": "For G&W at the event \"LOI submitted July 21, 2016, total consideration including CVR\", select the explicitly reported total per-share offer price, or upper endpoint if a range. Include attributed noncash package value. Exclude a component, equity total, rival price, or another offer by the same bidder. Select none when not established.",
+        "criteria": {
+          "$1.13": "Verbatim monetary amount found in source.",
+          "$19.20": "Verbatim monetary amount found in source.",
+          "$20.02": "Verbatim monetary amount found in source.",
+          "$21.00": "Verbatim monetary amount found in source.",
+          "$21.02": "Verbatim monetary amount found in source.",
+          "$21.15": "Verbatim monetary amount found in source.",
+          "$21.26": "Verbatim monetary amount found in source.",
+          "$22.15": "Verbatim monetary amount found in source.",
+          "$24.00": "Verbatim monetary amount found in source.",
+          "$96.00": "Verbatim monetary amount found in source.",
+          "$121.00": "Verbatim monetary amount found in source.",
+          "none": "No amount in the candidates is explicitly established for this endpoint at this event."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "legacy": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "scoped": {
+        "type": "choice",
+        "choice": "supported",
+        "confidence": 1.0,
+        "probabilities": {
+          "contradicted": 0.0,
+          "supported": 1.0,
+          "insufficient": 0.0
+        }
+      },
+      "low": {
+        "type": "choice",
+        "choice": "$21.15",
+        "confidence": 1.0,
+        "probabilities": {
+          "$21.15": 1.0,
+          "$21.02": 0.0,
+          "$21.26": 0.0,
+          "$1.13": 0.0,
+          "$24.00": 0.0,
+          "none": 0.0,
+          "$20.02": 0.0,
+          "$19.20": 0.0,
+          "$22.15": 0.0,
+          "$21.00": 0.0,
+          "$121.00": 0.0,
+          "$96.00": 0.0
+        }
+      },
+      "high": {
+        "type": "choice",
+        "choice": "$21.15",
+        "confidence": 1.0,
+        "probabilities": {
+          "$21.15": 1.0,
+          "$21.02": 0.0,
+          "$1.13": 0.0,
+          "$21.26": 0.0,
+          "$24.00": 0.0,
+          "none": 0.0,
+          "$20.02": 0.0,
+          "$121.00": 0.0,
+          "$22.15": 0.0,
+          "$21.00": 0.0,
+          "$19.20": 0.0,
+          "$96.00": 0.0
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 1838,
+      "output_tokens": 379
+    }
+  },
+  "attempts": [
+    {
+      "status": 200,
+      "latency_s": 5.902455839008326
+    }
+  ]
+}

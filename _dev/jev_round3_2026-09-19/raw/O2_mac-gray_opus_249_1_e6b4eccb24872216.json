@@ -1,0 +1,58 @@
+{
+ "request": {
+  "state": {
+   "paragraph": "On September 9, 2013, CSC/Pamplona submitted a revised indication of interest with an all-cash purchase price of $19.50 per share, indicating that Pamplona was committed to provide 100% of the capital required to consummate the transaction and requesting that CSC/Pamplona and Mac-Gray agree to exclusive negotiations for two weeks. On September 9, 2013, Party B also submitted a revised indication of interest with an all-cash purchase price of $18.50 per share and proposed to finance the transaction with a combination of equity from affiliated funds and third party debt. Party B's revised indication of interest did not include a firm financing commitment.",
+   "target_sentence": "On September 9, 2013, Party B also submitted a revised indication of interest with an all-cash purchase price of $18.50 per share and proposed to finance the transaction with a combination of equity from affiliated funds and third party debt."
+  },
+  "model": "jev-1.13.0",
+  "questions": {
+   "match": {
+    "type": "choice",
+    "criteria": {
+     "row_27": "08/06/2013 to 08/27/2013 | Mac-Gray | Other material event | Information access differs by bidder type: B and C (financial) get broad data-room access; A and CSC/Pamplona (strategic) get limited access, customer data withheld, plus synergy talks. All four had management presentations 08/06-08/14.",
+     "row_28": "08/27/2013 | Mac-Gray (BofA Merrill Lynch) | Deadline set | Letter to all four (authorized 08/15): revised written proposals due 09/09/2013 to go on to in-depth evaluation. Proposals to cover valuation, financing, approvals, covenants and diligence.",
+     "row_29": "09/09/2013 | CSC/Pamplona | Bid | price 19.5 | Revised IOI, up from $18.50 (#18). Pamplona commits 100% of the capital. Requests 2-week exclusivity. Heavy: customer data still withheld and further in-depth diligence expected.",
+     "row_30": "09/09/2013 | Party B | Bid | price 18.5 | Revised IOI, up from $17.00-$18.00 (#21). Financing from affiliated-fund equity plus third-party debt; no firm financing commitment (Heavy).",
+     "row_31": "09/09/2013 | Mac-Gray | Deadline | Due date for revised written proposals. CSC/Pamplona and Party B bid on time; Party A and Party C bid on 09/10 and were reviewed on 09/11 (late bids accepted).",
+     "row_32": "09/10/2013 | Party A | Bid | price 18-19 | Revised IOI, one day late; same range as its 06/21 proposal (#7). To be financed by existing credit facilities or affiliated equity; no firm financing commitment (Heavy).",
+     "row_33": "09/10/2013 | Party C | Bid | price 16-17 | Revised oral IOI to BofA, one day late; revises #24 ($16.00-$16.50). No firm financing commitment (Heavy).",
+     "row_34": "09/11/2013 | Stewart G. MacDonald, Jr. (CEO) | Other material event | Rollover refused by holder: CEO and major holder says he won't roll over shares. BofA reports bidders unlikely to proceed without his support; committee has him fully briefed (09/12). He backs the process, wants higher value.",
+     "row_35": "09/11/2013 | Mac-Gray (Special Committee) | Round opened | BofA calls all four the same day asking for final IOIs by 09/18/2013. Short exclusivity offered to one bidder depending on price and deal certainty.",
+     "row_40": "09/18/2013 | Mac-Gray | Deadline | Due date for final IOIs, reached. On 09/19 the committee acted on the bids in hand (enforced).",
+     "none": "None of the ledger rows records the event reported in the target sentence, either as the row's own event or in its note.",
+     "not_an_event": "The target sentence reports no discrete event of these kinds (background, reasoning, description or discussion only)."
+    },
+    "instructions": "`target_sentence` (from a merger filing; `paragraph` gives context) appears to report that a bidder submits, revises, confirms or reaffirms a priced proposal, indication of interest or offer for the company. Each option describes one row of a research ledger as date | party | event | note. Select the row that records the event reported in `target_sentence`: same party or group, same action, consistent date and terms, allowing paraphrase and allowing the event to be summarised in a row's note. A related event with a different party, date or action does not count."
+   }
+  }
+ },
+ "response": {
+  "model": "jev-1.13.0",
+  "answers": {
+   "match": {
+    "type": "choice",
+    "choice": "row_30",
+    "confidence": 1.0,
+    "probabilities": {
+     "row_32": 0.0,
+     "not_an_event": 0.0,
+     "row_40": 0.0,
+     "none": 0.0,
+     "row_31": 0.0,
+     "row_28": 0.0,
+     "row_30": 1.0,
+     "row_33": 0.0,
+     "row_29": 0.0,
+     "row_35": 0.0,
+     "row_34": 0.0,
+     "row_27": 0.0
+    }
+   }
+  },
+  "usage": {
+   "input_tokens": 1525,
+   "output_tokens": 136
+  }
+ },
+ "latency_s": 0.426
+}
