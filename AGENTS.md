@@ -11,12 +11,12 @@ This project turns the "Background of the Merger" section of an SEC merger filin
 ## Layout
 - `SEC_Deal_Ledger_Extraction_Instruction.md`: the working instruction (v1.8 lean).
 - `raw_filing/`: filings to extract.
-- `extraction/`: finished ledgers.
+- `extraction/`: finished ledgers. The Claude Opus 5 workbooks here are the only canonical extraction.
 - `ref/`: Alex's collection instructions, voice notes and hand-coded deals. For evaluation only.
-- `_dev/`: development history, not for extraction runs. Start with `_dev/HANDOFF.md`. It holds the clean-run comparison of instruction versions, the instruction audits, the ledger checker and a copy of the assistant's project memory.
+- `_dev/`: development history, not for extraction runs. Start with `_dev/HANDOFF.md`. It holds the ledger checker and sandbox scripts, the blind model comparison that selected the Opus extractions, the Jev checker experiments and a copy of the assistant's project memory. Older material is in git history; see `_dev/CHRONOLOGY.md`.
 
 ## If you are asked to work on the pipeline itself
 - Read `_dev/HANDOFF.md` first.
 - Change the instruction only with Austin's approval, and run extractions only on his command.
-- Comparison runs must be isolated: one instruction and one filing per sandboxed session (`_dev/clean_run_comparison_2026-09-19/sandbox_run.sh`). Run the checker after the run, never where the extracting agent can see it.
+- Comparison runs must be isolated: one instruction and one filing per sandboxed session (`_dev/tools/sandbox/sandbox_run.sh`). Run the checker after the run, never where the extracting agent can see it.
 - Commit and push only when asked.

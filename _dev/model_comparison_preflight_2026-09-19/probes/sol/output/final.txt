@@ -1,3 +1,0 @@
-No—neither file was written. The shell provider failed to launch because its executable was missing, so Python/openpyxl could not run.
-
-Fairness pitfall: prevent filing/model identity or prior-run artifacts from leaking between runs; use fresh, identical sandboxes with randomized blind assignments.

@@ -1,1 +1,0 @@
-Read toy.txt. Use Python and openpyxl to create extraction/smoke.xlsx with one sheet Smoke and A1 containing sandbox-ok. Verify it by reopening. Do not use the web, external files, skills or subagents. Finish with a short status.
