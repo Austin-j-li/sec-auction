@@ -348,6 +348,11 @@ def run(workbook: Path, filing: Path, cache_dir: Path = DEFAULT_CACHE, api_key: 
         paras, span = paragraphs(filing)
         rows = ledger(workbook, paras)
         summary["rows_not_located"] = sum(r["_para"] is None for r in rows)
+        for r in rows:
+            if r["_para"] is None:
+                issues.append({"severity": "info", "code": "jev.row_not_located", "sheet": "Deal ledger", "row": r["_sheet_row"],
+                               "column": "Quote and page", "basis": "jev",
+                               "message": "Quotation not found inside one filing paragraph, so Jev did not check this row."})
     except Exception as exc:  # a second reader must never take the mechanical report down with it
         skipped("pass", exc)
     else:

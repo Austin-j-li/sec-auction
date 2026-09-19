@@ -1493,17 +1493,29 @@ ISSUE_ORDER = ["error", "price_contradicted", "missing_top", "missing_second", "
 
 
 def add_jev(report: dict[str, Any], workbook: Path, filing: Path) -> None:
-    import jev_pass
+    try:
+        import jev_pass
 
-    result = jev_pass.run(workbook, filing)
+        result = jev_pass.run(workbook, filing)
+    except Exception as exc:  # the second reader must never cost us the mechanical report
+        result = {
+            "issues": [
+                {"severity": "info", "code": "jev.skipped", "sheet": None, "row": None, "column": None,
+                 "message": f"Jev step skipped ({type(exc).__name__}: {exc}). Mechanical checks are unaffected.",
+                 "basis": "jev"}
+            ],
+            "summary": {"model_judgments": 0},
+        }
     report["jev"] = result["summary"]
-    report["summary"]["model_judgments"] = result["summary"]["model_judgments"]
     report["scope_note"] += (
         " Items with basis 'jev' are model judgments with a confidence, for the reviewer to confirm or dismiss."
     )
     issues = report["issues"] + result["issues"]
     issues.sort(key=lambda x: (ISSUE_ORDER.index(x.get("tier") or x["severity"]), -(x.get("confidence") or 0)))
     report["issues"] = issues
+    report["summary"]["model_judgments"] = result["summary"]["model_judgments"]
+    report["summary"]["information"] = sum(x["severity"] == "info" for x in issues)
+    report["summary"]["total_issues"] = len(issues)
 
 
 def main(argv: list[str] | None = None) -> int:

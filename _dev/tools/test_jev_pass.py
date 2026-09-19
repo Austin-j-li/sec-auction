@@ -90,6 +90,17 @@ class JevPassTests(unittest.TestCase):
         self.assertEqual(report["status"], "pass")
         self.assertEqual(report["issues"][0]["basis"], "jev")
 
+    def test_broken_jev_module_still_writes_the_report(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            workbook, filing = build_valid_fixture(Path(tmp))
+            output = Path(tmp) / "report.json"
+            with mock.patch.dict("sys.modules", {"jev_pass": None}):
+                code = check_lean.main(["--workbook", str(workbook), "--filing", str(filing), "--output", str(output), "--jev", "on"])
+            report = json.loads(output.read_text())
+        self.assertEqual(code, 0)
+        self.assertEqual([i["code"] for i in report["issues"]], ["jev.skipped"])
+        self.assertEqual(report["summary"]["total_issues"], 1)
+
 
 if __name__ == "__main__":
     unittest.main()
