@@ -12,4 +12,4 @@ Everything below except the current items was removed from the working tree on 2
 | 19 Sep | Jev (TypeSafe) rounds 1–3 as post-extraction checker | Price and missing-event checks work on the development deals; not yet built | reports kept in `_dev/jev_checker/`; code, cached API responses in `f1de7d9:_dev/jev_experiments_2026-09-19/`, `typesafe_followup_2026-09-19/`, `jev_round3_2026-09-19/`; early notes in `87aae86:_dev/jev_research_2026-09-19/` |
 | 20 Sep | Tidy-up | Old 39-column checker `check_ledger.py` replaced by `check_lean.py`; stale folders removed | commit after `f1de7d9` |
 
-Not in git: the command-line tools' own state folders from the comparison (caches, plugins, 643 MB) were moved to `~/sec_extraction_cli_state_archive_2026-09-19/` on the Ubuntu laptop. They can be deleted.
+Not in git: the command-line tools' own state folders from the comparison (caches and plugins, 643 MB, no research content) were deleted on 20 September 2026.
