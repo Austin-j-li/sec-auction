@@ -6,3 +6,4 @@
 - [Plain language for Austin](user-plain-language.md) — new to LM development; explain tools by what they do for the project, no jargon
 - [Dev tidy 2026-09-20](dev-tidy-2026-09-20.md) — _dev slimmed; Opus canonical; old folders only in git history at f1de7d9
 - [Jev design decisions 2026-09-20](jev-design-decisions-2026-09-20.md) — checker not preprocessor; merge with script; revision loop next; full text in _dev/jev_checker/README.md
+- [Merged checker 2026-09-20](merged-checker-2026-09-20.md) — check_lean.py + optional Jev step built and merged; reproduces round 3; unseen-deal test still owed
