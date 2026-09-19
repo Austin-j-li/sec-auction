@@ -1,0 +1,732 @@
+##### SHEET 'Deal ledger' (46 rows x 22 cols)
+HEADER: # | When | Who | Type | Event | Process | Round | Price low | Price high | All cash | Formality | Conditions | Count | Exit reason | Inferred | Note | Quote and page | Flag | Reviewer note | Sort date | Date from | Date to
+--- row 2
+   #: 1
+   When: 06/18/2014
+   Who: PetSmart (target)
+   Event: Other material event
+   Process: 1
+   Round: 0
+   Note: Board reviewed alternatives after May–June stockholder communications; chose to explore capital-structure changes (capital-return focus); created ad hoc committee; authorized financial-adviser search.
+   Quote and page: “determined to explore more intensively potential changes to the Company’s capital structure, with a focus on returning capital to stockholders (p. 21)”
+   Sort date: 2014-06-18
+   Date from: 2014-06-18
+   Date to: 2014-06-18
+--- row 3
+   #: 2
+   When: 06/18/2014
+   Who: Wachtell, Lipton, Rosen & Katz
+   Event: Adviser
+   Process: 1
+   Round: 0
+   Note: Company's legal adviser; first seen acting 06/18/2014; represented the Company on the merger agreement.
+   Quote and page: “the board reviewed, together with a financial advisor and with Wachtell, Lipton, Rosen & Katz (“Wachtell Lipton”), its legal advisor (p. 21)”
+   Sort date: 2014-06-18
+   Date from: 2014-06-18
+   Date to: 2014-06-18
+--- row 4
+   #: 3
+   When: 07/03/2014
+   Who: JANA Partners
+   Event: Activist
+   Process: 1
+   Round: 0
+   Note: Filed Schedule 13D disclosing 9.9% stake; sought review of strategic alternatives incl. sale; met the Company 07/10; 13D amendments and letters through August.
+   Quote and page: “JANA Partners filed a Schedule 13D with the SEC disclosing that JANA had acquired 9.9% of the Company’s outstanding common stock (p. 22)”
+   Sort date: 2014-07-03
+   Date from: 2014-07-03
+   Date to: 2014-07-03
+--- row 5
+   #: 4
+   When: 07/07/2014
+   Who: Longview Asset Management
+   Event: Activist
+   Process: 1
+   Round: 0
+   Note: Public letter urged board to consider a sale; willing to roll part of its holdings into an acquirer; met board/management in May; reiterated at 07/10 call.
+   Quote and page: “Longview made public a letter to the board in which Longview stated that the board should consider the a sale of the Company (p. 22)”
+   Sort date: 2014-07-07
+   Date from: 2014-07-07
+   Date to: 2014-07-07
+--- row 6
+   #: 5
+   When: July 2014
+   Who: J.P. Morgan Securities LLC
+   Event: Adviser
+   Process: 1
+   Round: 0
+   Note: Company's financial adviser (sole named; primary); retained after interviews; engagement letter effective 08/21/2014.
+   Quote and page: “In July, after interviewing several potential financial advisors, the Company retained J.P. Morgan as financial advisor (p. 22)”
+   Sort date: 2014-07-16
+   Date from: 2014-07-01
+   Date to: 2014-07-31
+--- row 7
+   #: 6
+   When: 08/07/2014
+   Who: Industry Participant
+   Type: Strategic
+   Event: Bidder interest
+   Process: 1
+   Round: 0
+   Count: 1
+   Note: Told JPM it might revisit Spring combination talks if the Company pursued alternatives; reported to the ad hoc committee; no price.
+   Quote and page: “if the Company were to pursue strategic alternatives, Industry Participant might be interested in re-visiting the conversations that had taken place in the Spring (p. 22)”
+   Sort date: 2014-08-07
+   Date from: 2014-08-07
+   Date to: 2014-08-07
+--- row 8
+   #: 7
+   When: 08/13/2014
+   Who: PetSmart (target)
+   Event: Target sale decision
+   Process: 1
+   Round: 0
+   Note: Board chose to explore strategic alternatives incl. a possible sale; authorized ad hoc committee to oversee; planned outreach for late September/early October; decided to announce publicly; reviewed Industry Participant risks.
+   Quote and page: “the board (1) determined to explore strategic alternatives (including a possible sale of the Company) for the Company to maximize value for stockholders (p. 22)”
+   Sort date: 2014-08-13
+   Date from: 2014-08-13
+   Date to: 2014-08-13
+--- row 9
+   #: 8
+   When: mid-August–end of October 2014
+   Who: 3 strategic parties (cohort)
+   Type: Strategic
+   Event: Contact
+   Process: 1
+   Round: 0
+   Count: 3
+   Note: Inbound contacts during sale-process preparation; not counting Industry Participant; none signed a confidentiality agreement or entered the process.
+   Quote and page: “including three strategic parties (not counting Industry Participant) and 24 financial participants (p. 23)”
+   Flag: Q1
+   Sort date: 2014-08-13
+   Date from: 2014-08-13
+   Date to: 2014-10-31
+--- row 10
+   #: 9
+   When: mid-August–end of October 2014
+   Who: 24 financial participants (cohort)
+   Type: Financial
+   Event: Contact
+   Process: 1
+   Round: 0
+   Count: 24
+   Note: Inbound contacts incl. potential lead buyers and large suppliers of equity capital to lead buyers.
+   Quote and page: “24 financial participants (including potential lead buyers as well as large suppliers of equity capital to lead buyers) (p. 23)”
+   Flag: Q1
+   Sort date: 2014-08-13
+   Date from: 2014-08-13
+   Date to: 2014-10-31
+--- row 11
+   #: 10
+   When: 08/19/2014
+   Who: PetSmart (target)
+   Event: Sale process announced
+   Process: 1
+   Round: 0
+   Note: Press release, concurrent with Q2 earnings, announced exploration of strategic alternatives incl. a possible sale; interested parties could contact JPM.
+   Quote and page: “the Company issued a press release announcing that it determined to explore strategic alternatives for the Company to maximize value for stockholders, including a possible sale of the Company (p. 23)”
+   Sort date: 2014-08-19
+   Date from: 2014-08-19
+   Date to: 2014-08-19
+--- row 12
+   #: 11
+   When: 08/22/2014
+   Who: Industry Participant
+   Type: Strategic
+   Event: Other material event
+   Process: 1
+   Round: 0
+   Count: 1
+   Note: JPM conveyed the board's decision not to invite it into the exploratory process; IP confirmed awareness of the 08/19 announcement; agreed to speak again.
+   Quote and page: “Industry Participant would not be invited to participate in the exploratory process (p. 23)”
+   Sort date: 2014-08-22
+   Date from: 2014-08-22
+   Date to: 2014-08-22
+--- row 13
+   #: 12
+   When: 08/27/2014
+   Who: Industry Participant
+   Type: Strategic
+   Event: Other material event
+   Process: 1
+   Round: 0
+   Count: 1
+   Note: Reaffirmed interest; told again it would not be invited, but the board would consider any proposal it submitted; no contact since 08/27.
+   Quote and page: “if Industry Participant were to wish to submit a proposal or other communication to the Company, the board would consider it (p. 23)”
+   Sort date: 2014-08-27
+   Date from: 2014-08-27
+   Date to: 2014-08-27
+--- row 14
+   #: 13
+   When: first week of October 2014
+   Who: PetSmart (target)
+   Event: Round opened
+   Process: 1
+   Round: 1
+   Note: Confidentiality and standstill agreements with 15 financial buyers began the solicitation; non-binding indications due 10/30.
+   Quote and page: “In the first week of October 2014, the Company entered into confidentiality and standstill agreements with 15 potentially interested financial buyers (p. 23)”
+   Flag: Q1
+   Sort date: 2014-10-01
+   Date from: 2014-10-01
+   Date to: 2014-10-07
+--- row 15
+   #: 14
+   When: first week of October 2014
+   Who: 15 financial buyers (cohort)
+   Type: Financial
+   Event: NDA signed
+   Process: 1
+   Round: 1
+   Count: 15
+   Note: All 15 engaged in due diligence, got management presentations and detailed financial/business-plan information incl. the Profit Improvement Plan during October.
+   Quote and page: “all 15 of which, during the month of October engaged in due diligence, received management presentations involving the Company’s senior-most management, and received detailed financial and business plan information (p. 23)”
+   Sort date: 2014-10-01
+   Date from: 2014-10-01
+   Date to: 2014-10-07
+--- row 16
+   #: 15
+   When: October 2014
+   Who: PetSmart (target)
+   Event: Deadline set
+   Process: 1
+   Round: 1
+   Note: Bidders informed non-binding preliminary indications of interest due 10/30/2014.
+   Quote and page: “the potential bidders were informed that non-binding preliminary indications of interest would be due on October 30, 2014 (p. 23)”
+   Sort date: 2014-10-16
+   Date from: 2014-10-01
+   Date to: 2014-10-31
+--- row 17
+   #: 16
+   When: October 2014
+   Who: Longview Asset Management
+   Event: Other material event
+   Process: 1
+   Round: 1
+   Note: Willing to roll over up to 7.5M shares on terms/price acceptable to it; bidders asked to indicate interest; not a condition to participation.
+   Quote and page: “Longview had informed the Company that it would be willing to “roll-over” up to 7.5 million shares on terms and price acceptable to Longview (p. 23)”
+   Sort date: 2014-10-16
+   Date from: 2014-10-01
+   Date to: 2014-10-31
+--- row 18
+   #: 17
+   When: 10/30/2014
+   Who: PetSmart (target)
+   Event: Deadline
+   Process: 1
+   Round: 1
+   Note: Indication deadline reached; six of the 15 signed buyers submitted; JPM called all parties 10/30–11/02.
+   Quote and page: “On October 30, six of the potentially interested parties submitted indications of interest (p. 24)”
+   Flag: Q2; Q4
+   Sort date: 2014-10-30
+   Date from: 2014-10-30
+   Date to: 2014-10-30
+--- row 19
+   #: 18
+   When: 10/30/2014
+   Who: Buyer Group
+   Type: Financial
+   Event: Bid
+   Process: 1
+   Round: 1
+   Price low: 81
+   Price high: 83
+   All cash: Not stated
+   Formality: Informal
+   Conditions: Unclear
+   Count: 1
+   Note: Non-binding preliminary indication of $81.00–$83.00 per share; among the three initial indications reaching at least $80.00.
+   Quote and page: “the Buyer Group, which indicated a range of $81.00 to $83.00 per share (p. 24)”
+   Sort date: 2014-10-30
+   Date from: 2014-10-30
+   Date to: 2014-10-30
+--- row 20
+   #: 19
+   When: 10/30/2014
+   Who: Unnamed financial bidder 1
+   Type: Financial
+   Event: Bid
+   Process: 1
+   Round: 1
+   Price low: 80
+   Price high: 85
+   All cash: Not stated
+   Formality: Informal
+   Conditions: Unclear
+   Count: 1
+   Note: Non-binding preliminary indication; one of the three initial indications reaching at least $80.00; later combined into Bidder 3.
+   Quote and page: “another bidder, which suggested a range of $80.00 to $85.00 per share (p. 24)”
+   Sort date: 2014-10-30
+   Date from: 2014-10-30
+   Date to: 2014-10-30
+--- row 21
+   #: 20
+   When: 10/30/2014
+   Who: Bidder 2
+   Type: Financial
+   Event: Bid
+   Process: 1
+   Round: 1
+   Price low: 78
+   Price high: 78
+   All cash: Not stated
+   Formality: Informal
+   Conditions: Unclear
+   Count: 1
+   Note: Initial non-binding indication of $78.00 per share.
+   Quote and page: “another bidder (which we refer to as “Bidder 2”), which had initially indicated a price of $78.00 (p. 24)”
+   Sort date: 2014-10-30
+   Date from: 2014-10-30
+   Date to: 2014-10-30
+--- row 22
+   #: 21
+   When: 10/30/2014
+   Who: 3 further IOI submitters (cohort)
+   Type: Financial
+   Event: Bid
+   Process: 1
+   Round: 1
+   All cash: Not stated
+   Formality: Informal
+   Conditions: Unclear
+   Count: 3
+   Note: Three of the six submitters besides the individually recorded bidders; prices undisclosed; one later advanced to the final round.
+   Quote and page: “six of the potentially interested parties submitted indications of interest (p. 24)”
+   Flag: Q4
+   Sort date: 2014-10-30
+   Date from: 2014-10-30
+   Date to: 2014-10-30
+--- row 23
+   #: 22
+   When: 10/30/2014
+   Who: 9 non-submitting NDA signers (cohort)
+   Type: Financial
+   Event: Did not submit
+   Process: 1
+   Round: 1
+   Count: 9
+   Exit reason: Not stated
+   Inferred: Y
+   Note: 15 signers − 6 submitters = 9; eligible for the indication solicitation with no submission reported; out by 10/30.
+   Quote and page: “representatives of J.P. Morgan spoke by telephone with all of the potentially interested parties, including those that did not submit an indication of interest (p. 24)”
+   Flag: Q4
+   Sort date: 2014-10-30
+   Date from: 2014-10-30
+   Date to: 2014-10-30
+--- row 24
+   #: 23
+   When: 10/30–11/02/2014
+   Who: Bidder 2
+   Type: Financial
+   Event: Bid
+   Process: 1
+   Round: 1
+   Price low: 81
+   Price high: 84
+   All cash: Not stated
+   Formality: Informal
+   Conditions: Unclear
+   Count: 1
+   Note: Raised its indication during JPM's 10/30–11/02 calls; part of the four indications at or above $80.00 advanced 11/03.
+   Quote and page: “increased its indication to a range of $81.00 to $84.00 per share (p. 24)”
+   Flag: Q2
+   Sort date: 2014-10-31
+   Date from: 2014-10-30
+   Date to: 2014-11-02
+--- row 25
+   #: 24
+   When: 11/03/2014
+   Who: PetSmart (target)
+   Event: Round opened
+   Process: 1
+   Round: 2
+   Note: Board advanced the four bidders at/above $80.00 to the final round; each indicated interest in a Longview rollover but not conditioned on it.
+   Quote and page: “The board determined to allow the four bidders that had indicated a price or range at or above $80.00 per share to proceed to the final round (p. 24)”
+   Sort date: 2014-11-03
+   Date from: 2014-11-03
+   Date to: 2014-11-03
+--- row 26
+   #: 25
+   When: 11/03/2014
+   Who: 2 eliminated IOI submitters (cohort)
+   Type: Financial
+   Event: Dropped by target
+   Process: 1
+   Round: 1
+   Count: 2
+   Exit reason: Lower offer than rivals
+   Note: Six submitters − four advanced = two; JPM notified the eliminated parties; none would go above their initial indications.
+   Quote and page: “representatives of J.P. Morgan notified the eliminated parties, none of which indicated any interest or ability to remain in the process at price levels above their respective initial indications (p. 24)”
+   Sort date: 2014-11-03
+   Date from: 2014-11-03
+   Date to: 2014-11-03
+--- row 27
+   #: 26
+   When: November 2014
+   Who: Bidder 3 (two finalists combined)
+   Type: Financial
+   Event: Bidding group changed
+   Process: 1
+   Round: 2
+   Count: 2
+   Note: Two of the four finalists combined as 'Bidder 3' (one sought an equity partner; the other would drop out otherwise); unnamed financial bidder 1 is one of them.
+   Quote and page: “After deliberation and consultation with the Company’s financial and legal advisors, the ad hoc committee authorized these two bidders to work together (p. 24)”
+   Sort date: 2014-11-16
+   Date from: 2014-11-03
+   Date to: 2014-11-30
+--- row 28
+   #: 27
+   When: November 2014
+   Who: PetSmart (target)
+   Event: Other material event
+   Process: 1
+   Round: 2
+   Note: Circulated form of merger agreement with comments due alongside final bids; after Q3 earnings, JPM gave all bidders updated FY2014 projections.
+   Quote and page: “representatives of J.P. Morgan provided the bidders with updates to the Company’s fiscal year 2014 financial projections (p. 24)”
+   Sort date: 2014-11-16
+   Date from: 2014-11-01
+   Date to: 2014-11-30
+--- row 29
+   #: 28
+   When: by 12/03/2014
+   Who: PetSmart (target)
+   Event: Deadline set
+   Process: 1
+   Round: 2
+   Note: Board's initial plan: final bids due 12/05/2014; process completion targeted 12/15/2014; revised days later.
+   Quote and page: “The board had initially targeted Monday, December 15 for completion of the sale process, and had initially set Friday, December 5 as the date for submission of bids (p. 24)”
+   Flag: Q3
+   Sort date: 2014-12-03
+   Date to: 2014-12-03
+--- row 30
+   #: 29
+   When: 12/04–12/05/2014
+   Who: PetSmart (target)
+   Event: Deadline revised
+   Process: 1
+   Round: 2
+   Note: Committee set 12/10 (was 12/05); asked for mark-ups and financing commitments in advance; shorter window to limit leak risk.
+   Quote and page: “the Company set the evening of Wednesday, December 10 (five days, rather than 10 days prior to the anticipated December 15 completion date) (p. 25)”
+   Flag: Q3
+   Sort date: 2014-12-04
+   Date from: 2014-12-04
+   Date to: 2014-12-05
+--- row 31
+   #: 30
+   When: 12/06/2014
+   Who: Buyer Group
+   Type: Financial
+   Event: Other material event
+   Process: 1
+   Round: 2
+   Count: 1
+   Note: Provided financing commitment documents with its merger-agreement comments; Bidder 2 submitted comments only.
+   Quote and page: “the Buyer Group and Bidder 2 submitted their respective comments on the draft merger agreement and other transaction documents, and the Buyer Group provided its financing commitment documents (p. 25)”
+   Sort date: 2014-12-06
+   Date from: 2014-12-06
+   Date to: 2014-12-06
+--- row 32
+   #: 31
+   When: 12/09/2014
+   Who: Buyer Group; Bidder 2
+   Type: Financial
+   Event: Other material event
+   Process: 1
+   Round: 2
+   Count: 2
+   Note: JPM arranged introductory meetings with Longview for these two; bid prices could not be disclosed; Bidder 3 not included.
+   Quote and page: “J.P. Morgan arranged introductory meetings between Longview and the Buyer Group, and between Longview and Bidder 2 (p. 25)”
+   Sort date: 2014-12-09
+   Date from: 2014-12-09
+   Date to: 2014-12-09
+--- row 33
+   #: 32
+   When: 12/10/2014
+   Who: PetSmart (target)
+   Event: Deadline
+   Process: 1
+   Round: 2
+   Note: Final bid letters with revised merger-agreement documents received from Buyer Group and Bidder 2; Bidder 3 gave only a verbal indication.
+   Quote and page: “PetSmart received final bid letters along with revised versions of the merger agreement and other transaction documents from the Buyer Group and from Bidder 2 (p. 25)”
+   Sort date: 2014-12-10
+   Date from: 2014-12-10
+   Date to: 2014-12-10
+--- row 34
+   #: 33
+   When: 12/10/2014
+   Who: Buyer Group
+   Type: Financial
+   Event: Bid
+   Process: 1
+   Round: 2
+   Price low: 80.7
+   Price high: 80.7
+   All cash: Yes
+   Formality: Formal
+   Conditions: Light
+   Count: 1
+   Note: Final bid letter; below its 10/30 indication ($81.00–$83.00); financing commitment documents provided 12/06; revised merger-agreement documents more favorable.
+   Quote and page: “The Buyer Group offered $80.70 per share, in cash (p. 25)”
+   Sort date: 2014-12-10
+   Date from: 2014-12-10
+   Date to: 2014-12-10
+--- row 35
+   #: 34
+   When: 12/10/2014
+   Who: Bidder 2
+   Type: Financial
+   Event: Bid
+   Process: 1
+   Round: 2
+   Price low: 80.35
+   Price high: 80.35
+   All cash: Yes
+   Formality: Formal
+   Conditions: Light
+   Count: 1
+   Note: Final bid letter; below its revised indication ($81.00–$84.00); submitted revised merger-agreement documents.
+   Quote and page: “Bidder 2 offered $80.35 per share, in cash (p. 25)”
+   Sort date: 2014-12-10
+   Date from: 2014-12-10
+   Date to: 2014-12-10
+--- row 36
+   #: 35
+   When: 12/10/2014
+   Who: Bidder 3
+   Type: Financial
+   Event: Did not submit
+   Process: 1
+   Round: 2
+   Count: 1
+   Exit reason: Value at or below market price
+   Note: Verbal valuation only, not above the ~$78 stock price; told it was unlikely to be competitive; no written offer.
+   Quote and page: “Bidder 3 verbally communicated to J.P. Morgan that their valuation would not be above the current stock price of approximately $78 per share (p. 25)”
+   Flag: Q5
+   Sort date: 2014-12-10
+   Date from: 2014-12-10
+   Date to: 2014-12-10
+--- row 37
+   #: 36
+   When: 12/10/2014
+   Who: PetSmart (target)
+   Event: Deadline revised
+   Process: 1
+   Round: 2
+   Note: Committee found neither bid represented the bidders' best offers; directed each to increase; improved bids due 12/12.
+   Quote and page: “the ad hoc committee instructed J.P. Morgan to inform each bidder that it would need to increase its bid, and to instruct the bidders to submit improved bids (p. 25)”
+   Flag: Q3
+   Sort date: 2014-12-10
+   Date from: 2014-12-10
+   Date to: 2014-12-10
+--- row 38
+   #: 37
+   When: 12/12/2014
+   Who: Buyer Group
+   Type: Financial
+   Event: Other material event
+   Process: 1
+   Round: 2
+   Count: 1
+   Note: Approved to include a Longview rollover; Longview–Buyer Group NDA lets them exchange detailed information incl. bid price; voting-agreement form provided; JPM had confirmed Longview's interest 12/11; Bidder 2 would accommodate only after signing.
+   Quote and page: “later that day, Longview and the Buyer Group entered into a confidentiality agreement permitting the exchange of detailed information between them, including bid price (p. 26)”
+   Sort date: 2014-12-12
+   Date from: 2014-12-12
+   Date to: 2014-12-12
+--- row 39
+   #: 38
+   When: 12/12/2014
+   Who: PetSmart (target)
+   Event: Deadline
+   Process: 1
+   Round: 2
+   Note: Improved best-and-final bids received from both remaining bidders with revised drafts and financing commitments.
+   Quote and page: “each bidder submitted a revised draft of the merger agreement and other transaction agreements, and copies of their respective financing commitment documents (p. 26)”
+   Sort date: 2014-12-12
+   Date from: 2014-12-12
+   Date to: 2014-12-12
+--- row 40
+   #: 39
+   When: 12/12/2014
+   Who: Bidder 2
+   Type: Financial
+   Event: Bid
+   Process: 1
+   Round: 2
+   Price low: 81.5
+   Price high: 81.5
+   All cash: Yes
+   Formality: Formal
+   Conditions: Light
+   Count: 1
+   Note: Best and final, confirmed by JPM the same evening; up from $80.35; lower than the Buyer Group's $83.00.
+   Quote and page: “Bidder 2 submitted an offer of $81.50 per share, in cash (p. 26)”
+   Sort date: 2014-12-12
+   Date from: 2014-12-12
+   Date to: 2014-12-12
+--- row 41
+   #: 40
+   When: 12/12/2014
+   Who: Buyer Group
+   Type: Financial
+   Event: Bid
+   Process: 1
+   Round: 2
+   Price low: 82.5
+   Price high: 82.5
+   All cash: Yes
+   Formality: Formal
+   Conditions: Light
+   Count: 1
+   Note: Oral offer, stated it was working to increase within hours.
+   Quote and page: “The Buyer Group initially submitted an oral offer of $82.50 per share, in cash, but stated that it was working to increase the offer within the next few hours (p. 26)”
+   Sort date: 2014-12-12
+   Date from: 2014-12-12
+   Date to: 2014-12-12
+--- row 42
+   #: 41
+   When: 12/12/2014
+   Who: Buyer Group
+   Type: Financial
+   Event: Bid
+   Process: 1
+   Round: 2
+   Price low: 83
+   Price high: 83
+   All cash: Yes
+   Formality: Formal
+   Conditions: Light
+   Count: 1
+   Note: Best and final; revised merger-agreement draft substantially executable; members unwilling/unable to offer more.
+   Quote and page: “the Buyer Group submitted a best and final offer of $83.00 per share, in cash (p. 26)”
+   Sort date: 2014-12-12
+   Date from: 2014-12-12
+   Date to: 2014-12-12
+--- row 43
+   #: 42
+   When: 12/13/2014
+   Who: PetSmart (target)
+   Event: Other material event
+   Process: 1
+   Round: 2
+   Note: Board approved the merger with the Buyer Group subject to resolving remaining open points; JPM gave a fairness opinion; determined to reconvene if needed.
+   Quote and page: “the board unanimously determined that the merger agreement and the transactions contemplated thereby, including the merger, were advisable and in the best interests of PetSmart and its stockholders (p. 26)”
+   Sort date: 2014-12-13
+   Date from: 2014-12-13
+   Date to: 2014-12-13
+--- row 44
+   #: 43
+   When: 12/14/2014
+   Who: PetSmart (target); Buyer Group
+   Event: Merger agreement signed
+   Process: 1
+   Round: 2
+   Note: $83.00 per share in cash; voting agreement with Longview; rollover agreement (3,012,050 shares); equity and termination-fee commitment letters executed.
+   Quote and page: “On December 14, 2014, the parties executed the merger agreement, the voting agreement and related transaction agreements (p. 26)”
+   Sort date: 2014-12-14
+   Date from: 2014-12-14
+   Date to: 2014-12-14
+--- row 45
+   #: 44
+   When: 12/14/2014
+   Who: PetSmart (target); Buyer Group
+   Event: Merger announced
+   Process: 1
+   Round: post
+   Note: Press release announced the transaction on signing day.
+   Quote and page: “the parties executed the merger agreement, the voting agreement and related transaction agreements and issued a press release announcing the transaction (p. 26)”
+   Sort date: 2014-12-14
+   Date from: 2014-12-14
+   Date to: 2014-12-14
+--- row 46
+   #: 45
+   When: 12/14/2014
+   Who: Bidder 2
+   Type: Financial
+   Event: Not selected at signing
+   Process: 1
+   Round: 2
+   Count: 1
+   Exit reason: Lower offer than rivals
+   Note: Still bidding at $81.50 best and final; the target signed with the Buyer Group at $83.00.
+   Quote and page: “ultimately negotiated with the Buyer Group as well as two other bidding groups, neither of which was willing to make a definitive offer at a price above $81.50 (p. 27)”
+   Sort date: 2014-12-14
+   Date from: 2014-12-14
+   Date to: 2014-12-14
+##### SHEET 'Rounds' (3 rows x 10 cols)
+HEADER: Process | Round | Opened | How opened | Who was in | Due dates | Deadline outcome | Finality | Bids received | How it ended
+--- row 2
+   Process: 1
+   Round: 1
+   Opened: 2014-10-01
+   How opened: Confidentiality/standstill agreements signed with 15 financial buyers; diligence opened
+   Who was in: 15, all Financial, incl. Buyer Group, Bidder 2 and unnamed financial bidder 1
+   Due dates: 10/30/2014
+   Deadline outcome: Enforced
+   Finality: Not final
+   Bids received: 6 of 15: Buyer Group ($81.00–$83.00); Bidder 2 ($78.00 then $81.00–$84.00); unnamed financial bidder 1 ($80.00–$85.00); 3 others (prices undisclosed)
+   How it ended: four advanced (at or above $80.00), eleven out
+--- row 3
+   Process: 1
+   Round: 2
+   Opened: 2014-11-03
+   How opened: Board advanced the four bidders at or above $80.00 and asked for final bids; eliminated bidders notified
+   Who was in: 4, all Financial: Buyer Group, Bidder 2, unnamed financial bidder 1 and one further finalist (last two combined as Bidder 3)
+   Due dates: 12/05/2014 → 12/10/2014 → 12/12/2014
+   Deadline outcome: Extended; Enforced
+   Finality: Announced as final
+   Bids received: 2 written: Buyer Group ($80.70 → $82.50 → $83.00); Bidder 2 ($80.35 → $81.50); plus Bidder 3's oral valuation (≤ ~$78.00, no written offer)
+   How it ended: signing with Buyer Group
+##### SHEET 'Questions' (6 rows x 7 cols)
+HEADER: Q | Question | Recommended answer | Why, with page | Rows affected | What changes if answered differently | Reviewer note
+--- row 2
+   Q: Q1
+   Question: Round map: one process; Round 1 opened by the first-week-of-October NDA wave, not the earlier contacts; Round 2 opened 11/03 as the final round; the 12/12 call an extension?
+   Recommended answer: Yes. No target outreach wave is reported, so Round 1 opens at the NDA wave; 11/03 opens the final round; C11 makes 12/12 a Deadline revised.
+   Why, with page: pp. 23–26 (“was contacted by 27 potential participants,” p. 23).
+   Rows affected: #8, #9, #13.
+   What changes if answered differently: If Round 1 opened at the first substantive contacts (late September/early October), #8–#9 become Round 1 and “Opened” shifts.
+--- row 3
+   Q: Q2
+   Question: Round 1 deadline outcome: Enforced, or Late bids accepted because Bidder 2 raised its indication during the 10/30–11/02 calls?
+   Recommended answer: Enforced — Bidder 2's raise is dated from 10/30 (not after), and the board selected on 11/03 on the bids in hand.
+   Why, with page: “On October 30, six…” and “From October 30 to November 2…,” p. 24.
+   Rows affected: #17, #23 (and Rounds Round 1).
+   What changes if answered differently: If Late bids accepted: Round 1's outcome label changes; #23's Date from becomes 10/31.
+--- row 4
+   Q: Q3
+   Question: Round 2 outcomes: 12/05 superseded before arrival (no outcome), 12/10 Extended, 12/12 Enforced — or should 12/05 count as Extended and 12/10 as Enforced?
+   Recommended answer: As recorded. 12/05 was revised on 12/04–12/05 before arriving, so it has no outcome; 12/10 reached and extended to 12/12; 12/12 reached, then signing.
+   Why, with page: pp. 24–26; improvement request p. 25.
+   Rows affected: #28, #29, #36 (and Rounds Round 2).
+   What changes if answered differently: Counting 12/05 gives “Extended; Extended; Enforced”; treating 12/10 as Enforced gives “Enforced; Enforced.”
+--- row 5
+   Q: Q4
+   Question: Six parties submitted indications of interest (p. 24), but the Reasons section counts “first round indications of interest from 5 bidder groups” (p. 27). Six or five?
+   Recommended answer: Six; the narrative says six and the arithmetic reconciles (15 − 6 = 9 non-submitters; 6 − 4 = 2 eliminated). “Five” may count only priced groups.
+   Why, with page: pp. 24, 27.
+   Rows affected: #17, #21, #22 (and Rounds Round 1).
+   What changes if answered differently: If five: residual cohort #21 becomes 2, non-submitter exit #22 becomes 10, and Round 1 “Bids received” becomes 5.
+--- row 6
+   Q: Q5
+   Question: Bidder 3's 12/10 statement — valuation “would not be above” ~$78, no written offer: bid or valuation statement?
+   Recommended answer: Not a Bid (C12): a valuation statement without an offer, recorded in its exit row; it “did not submit a written offer.”
+   Why, with page: p. 25.
+   Rows affected: #35 (and Rounds Round 2).
+   What changes if answered differently: If a Bid: add a Bid row with Price high ≈$78.00 and change Round 2 “Bids received.”
+##### SHEET 'Deal facts' (17 rows x 2 cols)
+Field | Value
+Target | PetSmart, Inc. (Delaware corporation; NASDAQ: PETM; 1,404 stores)
+Acquirer | Argos Holdings Inc. (Parent) and Argos Merger Sub Inc.; Parent to be owned by the Buyer Group — funds advised by BC Partners, Inc., La Caisse de dépôt et placement du Québec, affiliates of GIC Special Investments Pte Ltd, affiliates of StepStone Group LP and Longview Asset Management, LLC
+Acquirer type | Financial
+Agreed price and consideration | $83.00 per share in cash (all-cash merger); total funds required estimated at approximately $8.4 billion
+Merger agreement signed | 2014-12-14
+Merger announced | 2014-12-14
+Filing type and date | DEFM14A definitive proxy statement; dated 02/02/2015
+Background pages | 21–26
+Initiation | Mixed — board-led review of strategic alternatives amid activist pressure from JANA Partners and Longview; Industry Participant also approached the Company
+Number of processes | 1
+Auction screen | Met — 15 independent prospective acquirers (all financial buyers) executed confidentiality agreements with the target in the process
+Whole-company bids | Yes — all-cash whole-company proposals: Buyer Group up to $83.00, Bidder 2 up to $81.50; first-round indications from $78.00 to $85.00
+Currency and units of bid prices | US dollars per share of common stock
+Target financial advisers | J.P. Morgan Securities LLC (sole named financial adviser; engagement letter effective 08/21/2014)
+Target legal advisers | Wachtell, Lipton, Rosen & Katz
+Account | PetSmart's board explored strategic alternatives during 2014 amid activist pressure from JANA Partners and Longview and after an approach from Industry Participant, which the board excluded on antitrust grounds. The board decided to explore a sale on August 13 and announced it publicly on August 19. In the first week of October, 15 financial buyers signed confidentiality and standstill agreements and received diligence; six submitted non-binding indications of interest by October 30, and on November 3 the board advanced the four bidders at or above $80.00 to a final round, where two of them combined as Bidder 3. Final bids on December 10 were $80.70 (Buyer Group) and $80.35 (Bidder 2); after the company demanded improvements, Bidder 2 gave a best-and-final $81.50 and the Buyer Group $83.00 on December 12 while Bidder 3 did not submit. The board approved the merger on December 13 and the parties signed on December 14 at $83.00 per share in cash, with Longview rolling 3,012,050 shares into the buyer.

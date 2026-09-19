@@ -1,0 +1,1386 @@
+##### SHEET 'Deal ledger' (52 rows x 39 cols)
+HEADER: # | When | Who | What happened | Process | Round | Type | Terms or outcome | Formality | Conditions level | Why and evidence | Source | Review | Reviewer note | Row id | Include | Count | Date from | Date to | Working date | Date basis | Date method | Price low | Price high | Price kind | Price origin | Currency | All cash | Cash at closing | Conditions detail | Due date | Deadline treatment | Round finality | Decided by | Exit reason | Outcome basis | Page | Related rows | Deal
+--- row 2
+   #: 1
+   When: 06/18/2014
+   Who: PetSmart board (with management, a financial advisor and Wachtell Lipton)
+   What happened: Material process update
+   Process: 1
+   Round: 0
+   Terms or outcome: Board reviewed strategic and financial alternatives; determined to explore capital-structure changes with a focus on returning capital to stockholders; established the ad hoc committee (Chairman Gregory Josefowicz, Rakesh Gangwal, Thomas Stemberg); authorized the vetting and retention of a financial advisor.
+   Why and evidence: Stated. First board step in the exploration that became the sale process; not itself a sale decision. “At a meeting on June 18, 2014, the board reviewed, together with a financial advisor and with Wachtell, Lipton, Rosen & Katz (“Wachtell Lipton”), its legal advisor, the various strategic and financial alternatives potentially available to the Company and determined to explore more intensively potential changes to the Company’s capital structure, with a focus on returning capital to stockholders.” (p.21). “Chairman Gregory Josefowicz and directors Rakesh Gangwal and Thomas Stemberg, all of whom are nonexecutive, independent directors, were appointed to the ad hoc committee. In addition, the board authorized the vetting and retention of a financial advisor to assist in the review.” (p.22).
+   Source: P-004; P-005
+   Review: Q1
+   Row id: R001
+   Include: Yes
+   Date from: 2014-06-18
+   Date to: 2014-06-18
+   Working date: 2014-06-18
+   Date basis: Reported day
+   Date method: Reported
+   Page: 21
+   Deal: PetSmart
+--- row 3
+   #: 2
+   When: 06/18/2014
+   Who: Wachtell, Lipton, Rosen & Katz (adviser)
+   What happened: Adviser service observed
+   Process: 1
+   Round: 0
+   Terms or outcome: Client: PetSmart (Company). Role: legal advisor. Shown acting at the June 18, 2014 board meeting; engagement date not disclosed.
+   Why and evidence: Stated (earliest supported service date). A first narrative mention alone is not proof of retention on that date; the filing shows Wachtell advising the board on this mandate. “the board reviewed, together with a financial advisor and with Wachtell, Lipton, Rosen & Katz (“Wachtell Lipton”), its legal advisor,” (p.21).
+   Source: P-004
+   Row id: R002
+   Include: Yes
+   Date from: 2014-06-18
+   Date to: 2014-06-18
+   Working date: 2014-06-18
+   Date basis: Reported day
+   Date method: Reported
+   Page: 21
+   Deal: PetSmart
+--- row 4
+   #: 3
+   When: July 2014 (day not disclosed)
+   Who: J.P. Morgan Securities LLC (adviser)
+   What happened: Adviser engaged
+   Process: 1
+   Round: 0
+   Terms or outcome: Client: PetSmart (Company). Role: financial advisor and process bank (the only named target financial advisor; fairness opinion rendered 12/13/2014, confirmed in writing 12/14/2014). Retained in July 2014 after interviewing several potential financial advisors.
+   Why and evidence: Stated engagement; month stated without a day. Convention: Working date assigned to 07/01 to preserve reading order ahead of the dated July 3 JANA filing; the retention day is not disclosed (also see Q8). “In July, after interviewing several potential financial advisors, the Company retained J.P. Morgan as financial advisor based on, among other factors, J.P. Morgan’s reputation, experience in mergers and acquisitions, valuation, financing and capital markets and its familiarity with the Company.” (p.22).
+   Source: P-005
+   Review: Q8
+   Row id: R003
+   Include: Yes
+   Date from: 2014-07-01
+   Date to: 2014-07-31
+   Working date: 2014-07-01
+   Date basis: Reported interval
+   Date method: Assigned: sequence
+   Page: 22
+   Deal: PetSmart
+--- row 5
+   #: 4
+   When: 07/03/2014
+   Who: JANA Partners LLC (activist)
+   What happened: Activist pressure
+   Process: 1
+   Round: 0
+   Terms or outcome: JANA disclosed a 9.9% stake and intent to engage management and the board on a review of strategic alternatives, including a sale; over July–August JANA filed further Schedule 13D amendments and public letters advocating a sale.
+   Why and evidence: Stated. Sale advocacy (not a bid). “On July 3, 2014, JANA Partners filed a Schedule 13D with the SEC disclosing that JANA had acquired 9.9% of the Company’s outstanding common stock and that JANA intended to engage in discussions with management and the board with respect to a review of strategic alternatives, including a sale of the Company.” (p.22).
+   Source: P-006
+   Row id: R004
+   Include: Yes
+   Date from: 2014-07-03
+   Date to: 2014-07-03
+   Working date: 2014-07-03
+   Date basis: Reported day
+   Date method: Reported
+   Page: 22
+   Deal: PetSmart
+--- row 6
+   #: 5
+   When: 07/07/2014
+   Who: Longview Asset Management, LLC (activist / later rollover investor)
+   What happened: Activist pressure
+   Process: 1
+   Round: 0
+   Terms or outcome: Longview publicly urged the board to consider a sale and said it would consider rolling part or all of its holdings into acquiring-entity equity rather than cash if needed to enable a transaction.
+   Why and evidence: Stated. Earliest disclosed Longview rollover willingness; the rollover-support relationship is recorded once when permitted/formed (R043). “On July 7, 2014, Longview made public a letter to the board in which Longview stated that the board should consider the a sale of the Company (as well as other strategic alternatives) and that should the board determine a sale transaction to be in the interests of all stockholders, Longview would consider, depending on the parties and terms involved, rolling part or all of its holdings into equity of the acquiring entity rather than receive cash consideration, should doing so prove necessary in order to enable the Company to complete a transaction.” (p.22).
+   Source: P-006
+   Row id: R005
+   Include: Yes
+   Date from: 2014-07-07
+   Date to: 2014-07-07
+   Working date: 2014-07-07
+   Date basis: Reported day
+   Date method: Reported
+   Page: 22
+   Related rows: R043
+   Deal: PetSmart
+--- row 7
+   #: 6
+   When: 07/10/2014
+   Who: JANA Partners LLC (activist)
+   What happened: Activist pressure
+   Process: 1
+   Round: 0
+   Terms or outcome: JANA representatives met in person with Company representatives and advocated for a sale.
+   Why and evidence: Stated. “On July 10, 2014, representatives of JANA met in person with representatives of the Company. At this meeting, the JANA representatives presented their perspectives on the Company and advocated for a sale of the Company.” (p.22).
+   Source: P-006
+   Row id: R006
+   Include: Yes
+   Date from: 2014-07-10
+   Date to: 2014-07-10
+   Working date: 2014-07-10
+   Date basis: Reported day
+   Date method: Reported
+   Page: 22
+   Deal: PetSmart
+--- row 8
+   #: 7
+   When: 07/10/2014
+   Who: Longview Asset Management, LLC (activist)
+   What happened: Activist pressure
+   Process: 1
+   Round: 0
+   Terms or outcome: Company representatives spoke with Longview, which reiterated its advocacy for a sale.
+   Why and evidence: Stated. “representatives of the Company also spoke to representatives of Longview and Longview reiterated its advocacy for a sale of the Company.” (p.22).
+   Source: P-006
+   Row id: R007
+   Include: Yes
+   Date from: 2014-07-10
+   Date to: 2014-07-10
+   Working date: 2014-07-10
+   Date basis: Reported day
+   Date method: Reported
+   Page: 22
+   Deal: PetSmart
+--- row 9
+   #: 8
+   When: 08/07/2014
+   Who: Industry Participant (strategic party)
+   What happened: Bidder interest
+   Process: 1
+   Round: 0
+   Type: Strategic
+   Terms or outcome: Industry Participant contacted J.P. Morgan: if PetSmart pursued strategic alternatives, it might be interested in revisiting a possible combination; J.P. Morgan reported the conversation to the ad hoc committee. Unpriced. Count 1 (Industry Participant’s first contact representation).
+   Why and evidence: Stated. Inbound unpriced approach; Industry Participant never entered the process and is not closed out (see R010, R014 and Q5). “a representative of Industry Participant contacted a representative of J.P. Morgan. The Industry Participant representative indicated that she had heard rumors that J.P. Morgan was working with the Company and wanted to inform J.P. Morgan that, if the Company were to pursue strategic alternatives, Industry Participant might be interested in re-visiting the conversations that had taken place in the Spring concerning the feasibility of a possible combination of the two Companies.” (p.22).
+   Source: P-007
+   Review: Q5
+   Row id: R008
+   Include: Yes
+   Count: 1
+   Date from: 2014-08-07
+   Date to: 2014-08-07
+   Working date: 2014-08-07
+   Date basis: Reported day
+   Date method: Reported
+   Page: 22
+   Related rows: R010; R014; R015
+   Deal: PetSmart
+--- row 10
+   #: 9
+   When: 08/13/2014
+   Who: PetSmart board (with management, J.P. Morgan and Wachtell Lipton)
+   What happened: Target sale decision
+   Process: 1
+   Round: 0
+   Terms or outcome: Board determined to explore strategic alternatives, including a possible sale of the Company, to maximize stockholder value; instructed management to plan the Profit Improvement Plan; authorized the ad hoc committee to oversee the sale exploration, direct advisers and lead negotiations; planned J.P. Morgan outreach to financial and strategic parties in the second half of September or early October and a public announcement to draw inbound interest.
+   Why and evidence: Stated. Target-led exploration decision; the filing does not report the planned outreach as beginning within about a week, so this is not the Round 1 anchor (see R016 and Q1). “determined to explore strategic alternatives (including a possible sale of the Company) for the Company to maximize value for stockholders” (p.22).
+   Source: P-008
+   Review: Q1
+   Row id: R009
+   Include: Yes
+   Date from: 2014-08-13
+   Date to: 2014-08-13
+   Working date: 2014-08-13
+   Date basis: Reported day
+   Date method: Reported
+   Page: 22
+   Related rows: R016; R017
+   Deal: PetSmart
+--- row 11
+   #: 10
+   When: 08/13/2014
+   Who: PetSmart board (re Industry Participant)
+   What happened: Target decision
+   Process: 1
+   Round: 0
+   Terms or outcome: Board determined not to invite Industry Participant to the exploratory sale process after weighing the very high antitrust-clearance risk (likely “second request”, eight months to a year or longer, no assurance of success), the risk of giving it diligence information, and process disruption/delay risk.
+   Why and evidence: Stated. Exclusion of a party that never entered; no participation-outcome row (see Q5). “the very high risk that an acquisition by or a combination with Industry Participant would not receive antitrust clearances, or would receive such clearances only with the imposition by governmental authorities of unacceptable conditions;” (p.22). “Industry Participant would not be invited into the exploratory process, but that if Industry Participant were to wish to submit a proposal or other communication to the Company, the board would consider it.” (p.23).
+   Source: P-008; P-010
+   Review: Q5
+   Row id: R010
+   Include: Yes
+   Date from: 2014-08-13
+   Date to: 2014-08-13
+   Working date: 2014-08-13
+   Date basis: Reported day
+   Date method: Reported
+   Page: 22
+   Related rows: R008; R014; R015
+   Deal: PetSmart
+--- row 12
+   #: 11
+   When: mid-August to end-October 2014
+   Who: Three strategic parties (cohort; excluding Industry Participant)
+   What happened: Contact
+   Process: 1
+   Round: 0
+   Type: Strategic
+   Terms or outcome: J.P. Morgan was contacted by three strategic parties (not counting Industry Participant) while the Company prepared for a sale process; unpriced. None proceeded to a confidentiality agreement (the 15 signers were all financial buyers). Count 3.
+   Why and evidence: Stated (split by type). Inferred that the three strategic parties did not sign non-disclosure agreements: the filing describes the signer cohort as 15 financial buyers. “J.P. Morgan was contacted by 27 potential participants in a sale process, including three strategic parties (not counting Industry Participant) and 24 financial participants” (p.23). “confidentiality and standstill agreements with 15 potentially interested financial buyers, all 15 of which, during the month of October engaged in due diligence, received management presentations involving the Company’s senior-most management, and received detailed financial and business plan information, including detailed information concerning the Profit Improvement Plan” (p.23).
+   Source: P-011; P-013
+   Review: Q4
+   Row id: R011
+   Include: Yes
+   Count: 3
+   Date from: 2014-08-13
+   Date to: 2014-10-31
+   Working date: 2014-08-13
+   Date basis: Reported interval
+   Date method: Assigned: bound
+   Page: 23
+   Related rows: R012; R017
+   Deal: PetSmart
+--- row 13
+   #: 12
+   When: mid-August to end-October 2014
+   Who: 24 financial parties (cohort)
+   What happened: Contact
+   Process: 1
+   Round: 0
+   Type: Financial
+   Terms or outcome: J.P. Morgan was contacted by 24 financial participants (including potential lead buyers and large suppliers of equity capital to lead buyers); 15 later signed confidentiality agreements and entered the process; 9 did not sign. Count 24. Contacts continued through end-October and span the Round 1 opening.
+   Why and evidence: Stated (split by type). One disclosed aggregate; the 15 signers are a subset of these 24. “including three strategic parties (not counting Industry Participant) and 24 financial participants (including potential lead buyers as well as large suppliers of equity capital to lead buyers).” (p.23).
+   Source: P-011
+   Review: Q4
+   Row id: R012
+   Include: Yes
+   Count: 24
+   Date from: 2014-08-13
+   Date to: 2014-10-31
+   Working date: 2014-08-13
+   Date basis: Reported interval
+   Date method: Assigned: bound
+   Page: 23
+   Related rows: R011; R017
+   Deal: PetSmart
+--- row 14
+   #: 13
+   When: 08/19/2014
+   Who: PetSmart, Inc. (issuer)
+   What happened: Sale process announced
+   Process: 1
+   Round: 0
+   Terms or outcome: Press release (concurrent with PetSmart’s second-quarter earnings announcement) disclosing the determination to explore strategic alternatives, including a possible sale, to maximize stockholder value.
+   Why and evidence: Stated. Publicity made parties not contacted aware of the process and able to approach J.P. Morgan. “On August 19, 2014, concurrent with its second quarter earnings announcement, the Company issued a press release announcing that it determined to explore strategic alternatives for the Company to maximize value for stockholders, including a possible sale of the Company.” (p.23).
+   Source: P-009
+   Review: Q1
+   Row id: R013
+   Include: Yes
+   Date from: 2014-08-19
+   Date to: 2014-08-19
+   Working date: 2014-08-19
+   Date basis: Reported day
+   Date method: Reported
+   Page: 23
+   Related rows: R009; R016
+   Deal: PetSmart
+--- row 15
+   #: 14
+   When: 08/22/2014
+   Who: J.P. Morgan (target side) / Industry Participant
+   What happened: Contact
+   Process: 1
+   Round: 0
+   Terms or outcome: J.P. Morgan called Industry Participant’s representative: confirmed Industry Participant was aware of the August 19 announcement and informed it of the board’s concerns; the parties agreed to speak again. Count 0 (Industry Participant already represented by R008).
+   Why and evidence: Stated. Direction: target to bidder; implementing the exclusion decision. “On August 22, 2014, a representative of J.P. Morgan contacted by telephone the representative of Industry Participant with whom the J.P. Morgan representative had spoken to on August 7. During this call, Industry Participant confirmed that it was aware of the Company’s August 19 announcement and the J.P Morgan representative informed the Industry Participant representative of the board’s concerns regarding Industry Participant’s participation. The parties agreed to speak again in a few days.” (p.23).
+   Source: P-010
+   Row id: R014
+   Include: Yes
+   Count: 0
+   Date from: 2014-08-22
+   Date to: 2014-08-22
+   Working date: 2014-08-22
+   Date basis: Reported day
+   Date method: Reported
+   Page: 23
+   Related rows: R008; R010
+   Deal: PetSmart
+--- row 16
+   #: 15
+   When: 08/27/2014
+   Who: Industry Participant (bidder side) / J.P. Morgan (target side)
+   What happened: Contact
+   Process: 1
+   Round: 0
+   Terms or outcome: Industry Participant called J.P. Morgan stating it would have interest in discussing a combination; J.P. Morgan reiterated the board’s concerns and said Industry Participant would not be invited into the exploratory process, but any proposal or communication it submitted would be considered by the board. No contact between PetSmart and Industry Participant since. Count 0.
+   Why and evidence: Stated. Final exclusion position; Industry Participant never entered and has no outcome row. “Industry Participant would have interest in discussing the possibility of a combination of the two companies. The J.P. Morgan representative reiterated the concerns identified by the board that engaging with Industry Participant was unlikely to maximize value for PetSmart’s stockholders. The J.P. Morgan representative stated that Industry Participant would not be invited into the exploratory process, but that if Industry Participant were to wish to submit a proposal or other communication to the Company, the board would consider it.” (p.23).
+   Source: P-010
+   Review: Q5
+   Row id: R015
+   Include: Yes
+   Count: 0
+   Date from: 2014-08-27
+   Date to: 2014-08-27
+   Working date: 2014-08-27
+   Date basis: Reported day
+   Date method: Reported
+   Page: 23
+   Related rows: R008; R010
+   Deal: PetSmart
+--- row 17
+   #: 16
+   When: first week of October 2014
+   Who: PetSmart / J.P. Morgan (process)
+   What happened: Round opened
+   Process: 1
+   Round: 1
+   Terms or outcome: R1 anchor: confidentiality and standstill agreements with 15 financial buyers, first week of October 2014. Rejected candidate anchors: R009 (08/13 sale decision), R013 (08/19 press release), R008/R015 (Industry Participant contacts), R019–R020 (10/30 IOI deadline). No target outreach wave is reported (parties came to the target after the 08/19 announcement), so Round 1 opens at the first target-organized step that admits participants. Round finality: Not final — only non-binding preliminary indications of interest were solicited; no finality announcement.
+   Why and evidence: Convention (boundary): per section 6.3 anchor order. The NDA wave is the earliest target-organized admission step (the October process letter carrying the IOI deadline came later). “In the first week of October 2014, the Company entered into confidentiality and standstill agreements with 15 potentially interested financial buyers, all 15 of which, during the month of October engaged in due diligence, received management presentations involving the Company’s senior-most management,” (p.23). “J.P. Morgan was contacted by 27 potential participants in a sale process, including three strategic parties (not counting Industry Participant) and 24 financial participants” (p.23).
+   Source: P-013; P-011
+   Review: Q1
+   Row id: R016
+   Include: Yes
+   Date from: 2014-10-01
+   Date to: 2014-10-07
+   Working date: 2014-10-01
+   Date basis: Reported interval
+   Date method: Assigned: bound
+   Round finality: Not final
+   Page: 23
+   Related rows: R009; R013; R019; R020
+   Deal: PetSmart
+--- row 18
+   #: 17
+   When: first week of October 2014
+   Who: 15 potentially interested financial buyers (cohort)
+   What happened: NDA signed
+   Process: 1
+   Round: 1
+   Type: Financial
+   Terms or outcome: 15 financial buyers executed confidentiality and standstill agreements with the Company (new signatures; no reused agreements identified). All 15 engaged in due diligence during October, received management presentations involving senior-most management, and received detailed financial and business plan information including the Profit Improvement Plan and cost-saving plans. Standstills prevent them from submitting (or seeking permission to submit) a higher bid once the Company entered a definitive agreement with the winning process participant. Count 15.
+   Why and evidence: Stated. Uniform stage access is stated on this admission row, not as separate information-access rows. Auction screen: more than one independent prospective acquiring bidder unit signed (met). “all 15 of which, during the month of October engaged in due diligence, received management presentations involving the Company’s senior-most management, and received detailed financial and business plan information, including detailed information concerning the Profit Improvement Plan and associated cost-saving plans and opportunities.” (p.23). “standstill provisions that prevent those parties from submitting (or even seeking permission to submit) a higher bid once the Company entered into a definitive transaction agreement with the winning sale process participant.” (p.28).
+   Source: P-013; X-009
+   Review: Q4
+   Row id: R017
+   Include: Yes
+   Count: 15
+   Date from: 2014-10-01
+   Date to: 2014-10-07
+   Working date: 2014-10-01
+   Date basis: Reported interval
+   Date method: Assigned: bound
+   Page: 23
+   Related rows: R016; R021
+   Deal: PetSmart
+--- row 19
+   #: 18
+   When: 10/03/2014
+   Who: PetSmart board (with management, J.P. Morgan and Wachtell Lipton)
+   What happened: Target decision
+   Process: 1
+   Round: 1
+   Terms or outcome: Board received a process update: approximately 15 parties had expressed interest; reviewed communications with the 27 potential participants and Industry Participant; reaffirmed the determination not to invite Industry Participant to the process.
+   Why and evidence: Stated. The relative order of this meeting and the NDA wave start is not stated; the NDA-wave rows are placed first under the section 8.1 order convention (see Q8). “the board was informed that approximately 15 parties had expressed interest in participating in the process. In addition, at this meeting, in consultation with its financial and legal advisors, the board reviewed and, for the reasons discussed in August, reaffirmed the determination not to invite Industry Participant to participate in the sale process.” (p.23).
+   Source: P-012
+   Review: Q8
+   Row id: R018
+   Include: Yes
+   Date from: 2014-10-03
+   Date to: 2014-10-03
+   Working date: 2014-10-03
+   Date basis: Reported day
+   Date method: Reported
+   Page: 23
+   Related rows: R010; R015; R016
+   Deal: PetSmart
+--- row 20
+   #: 19
+   When: during October 2014 (day not disclosed)
+   Who: PetSmart / J.P. Morgan (process)
+   What happened: Deadline set
+   Process: 1
+   Round: 1
+   Terms or outcome: Potential bidders were informed that non-binding preliminary indications of interest were due on 10/30/2014. They were also informed Longview would be willing to “roll-over” up to 7.5 million shares on terms and price acceptable to Longview, and were asked to indicate their interest in Longview participation; such interest was not a condition to participation. Due date 10/30/2014.
+   Why and evidence: Stated. Communication day not disclosed; assigned the period midpoint (see Q8). The Longview rollover availability is folded into this process communication; the rollover relationship itself is recorded once at R043. “During October, the potential bidders were informed that non-binding preliminary indications of interest would be due on October 30, 2014. The potential bidders were also informed that Longview had informed the Company that it would be willing to “roll-over” up to 7.5 million shares on terms and price acceptable to Longview,” (p.23). “such interest was not a condition to participation in the process.” (p.24).
+   Source: P-014; P-015
+   Review: Q8
+   Row id: R019
+   Include: Yes
+   Date from: 2014-10-01
+   Date to: 2014-10-30
+   Working date: 2014-10-15
+   Date basis: Reported interval
+   Date method: Assigned: midpoint
+   Due date: 2014-10-30
+   Page: 23
+   Related rows: R020
+   Deal: PetSmart
+--- row 21
+   #: 20
+   When: 10/30/2014
+   Who: PetSmart (process deadline)
+   What happened: Deadline
+   Process: 1
+   Round: 1
+   Terms or outcome: Due date for non-binding preliminary indications of interest. Six parties submitted on 10/30/2014; J.P. Morgan then spoke with all potentially interested parties, including non-submitters. Treatment: Enforced — the board took its next step (advancing four bidders) on the bids in hand. Due date 10/30/2014.
+   Why and evidence: Stated. Treatment assessed from what followed in the same round: the 11/03 board advancement (R028). No extension and no late bid accepted; Bidder 2’s increase was solicited in the target’s follow-up calls and is continuing negotiation, not late acceptance. “On October 30, six of the potentially interested parties submitted indications of interest. From October 30 to November 2, 2014, representatives of J.P. Morgan spoke by telephone with all of the potentially interested parties, including those that did not submit an indication of interest, to hear the parties’ respective rationales for the price levels suggested in their indications or rationales for not submitting an indication.” (p.24).
+   Source: P-016
+   Review: Q2
+   Row id: R020
+   Include: Yes
+   Date from: 2014-10-30
+   Date to: 2014-10-30
+   Working date: 2014-10-30
+   Date basis: Reported day
+   Date method: Reported
+   Due date: 2014-10-30
+   Deadline treatment: Enforced
+   Page: 24
+   Related rows: R019; R028
+   Deal: PetSmart
+--- row 22
+   #: 21
+   When: by 10/30/2014
+   Who: Nine NDA signers (cohort)
+   What happened: Did not submit
+   Process: 1
+   Round: 1
+   Type: Financial
+   Terms or outcome: Inferred: residual (base assumes all six IOI submitters were among the 15 confidentiality-agreement signers) — 15 NDA signers − 6 submitters = 9 non-submitters; range allowed by the uncertainty: at least 9. No submission recorded at the 10/30/2014 solicitation.
+   Why and evidence: Inferred: residual. Arithmetic uses the filing’s stated base (15 signers) minus the six accounted-for submitters; no notice, motive or identity is inferred. See Q4/Q5. “the Company entered into confidentiality and standstill agreements with 15 potentially interested financial buyers, all 15 of which, during the month of October engaged in due diligence, received management presentations involving the Company’s senior-most management, and received detailed financial and business plan information,” (p.23). “six of the potentially interested parties submitted indications of interest.” (p.24).
+   Source: P-013; P-016
+   Review: Q4; Q5
+   Row id: R021
+   Include: Yes
+   Count: 9
+   Date to: 2014-10-30
+   Working date: 2014-10-30
+   Date basis: Relative only
+   Date method: Assigned: deadline
+   Decided by: Unknown
+   Exit reason: Not stated
+   Outcome basis: Inferred: residual
+   Page: 24
+   Related rows: R017; R022
+   Deal: PetSmart
+--- row 23
+   #: 22
+   When: 10/30/2014
+   Who: Buyer Group (BC Partners-led consortium)
+   What happened: Bid
+   Process: 1
+   Round: 1
+   Type: Financial
+   Terms or outcome: Non-binding preliminary indication of interest of $81.00–$83.00 per share. Count 1. Advanced to the final round 11/03/2014 (R028). Related: later bids R037, R045, R046.
+   Formality: Informal
+   Conditions level: Insufficient evidence
+   Why and evidence: Stated price; Convention: preliminary exploratory offer with no supported formal signal → Informal. Conditions: price only; nothing stated on financing or diligence, so Insufficient evidence (stage context: substantive October data-room/management access had preceded the IOI). “the Buyer Group, which indicated a range of $81.00 to $83.00 per share, and another bidder, which suggested a range of $80.00 to $85.00 per share.” (p.24).
+   Source: P-016
+   Review: Q6
+   Row id: R022
+   Include: Yes
+   Count: 1
+   Date from: 2014-10-30
+   Date to: 2014-10-30
+   Working date: 2014-10-30
+   Date basis: Reported day
+   Date method: Reported
+   Price low: 81
+   Price high: 83
+   Price kind: Bidder range
+   Price origin: Stated
+   Currency: USD
+   All cash: Not stated
+   Conditions detail: Fin: not stated; DD required: not stated; DD open: yes; Excl: not stated
+   Page: 24
+   Related rows: R028; R037; R045; R046
+   Deal: PetSmart
+--- row 24
+   #: 23
+   When: 10/30/2014
+   Who: Bidder 2
+   What happened: Bid
+   Process: 1
+   Round: 1
+   Type: Financial
+   Terms or outcome: Non-binding preliminary indication of interest of $78.00 per share; later increased during J.P. Morgan’s follow-up calls (R027). Count 1.
+   Formality: Informal
+   Conditions level: Insufficient evidence
+   Why and evidence: Stated price; Convention: preliminary exploratory offer → Informal. Conditions: Insufficient evidence (price only; nothing stated on financing/diligence). “another bidder (which we refer to as “Bidder 2”), which had initially indicated a price of $78.00,” (p.24).
+   Source: P-016
+   Review: Q6
+   Row id: R023
+   Include: Yes
+   Count: 1
+   Date from: 2014-10-30
+   Date to: 2014-10-30
+   Working date: 2014-10-30
+   Date basis: Reported day
+   Date method: Reported
+   Price low: 78
+   Price high: 78
+   Price kind: Point
+   Price origin: Stated
+   Currency: USD
+   All cash: Not stated
+   Conditions detail: Fin: not stated; DD required: not stated; DD open: yes; Excl: not stated
+   Page: 24
+   Related rows: R027
+   Deal: PetSmart
+--- row 25
+   #: 24
+   When: 10/30/2014
+   Who: Unnamed financial bidder A
+   What happened: Bid
+   Process: 1
+   Round: 1
+   Type: Financial
+   Terms or outcome: Non-binding preliminary indication of interest of $80.00–$85.00 per share. Count 1. Among the four bidders allowed to proceed to the final round (R028). The filing does not name this bidder.
+   Formality: Informal
+   Conditions level: Insufficient evidence
+   Why and evidence: Stated price; Convention: Informal (preliminary IOI). Conditions: Insufficient evidence. Identity not disclosed; may be one of the two bidders that formed Bidder 3 (see Q3), stated as a hypothesis only. “and another bidder, which suggested a range of $80.00 to $85.00 per share.” (p.24).
+   Source: P-016
+   Review: Q3; Q6
+   Row id: R024
+   Include: Yes
+   Count: 1
+   Date from: 2014-10-30
+   Date to: 2014-10-30
+   Working date: 2014-10-30
+   Date basis: Reported day
+   Date method: Reported
+   Price low: 80
+   Price high: 85
+   Price kind: Bidder range
+   Price origin: Stated
+   Currency: USD
+   All cash: Not stated
+   Conditions detail: Fin: not stated; DD required: not stated; DD open: yes; Excl: not stated
+   Page: 24
+   Related rows: R028; R031
+   Deal: PetSmart
+--- row 26
+   #: 25
+   When: 10/30/2014
+   Who: Unnamed financial bidder B
+   What happened: Bid
+   Process: 1
+   Round: 1
+   Type: Financial
+   Terms or outcome: Non-binding preliminary indication of interest whose price range reached at least $80.00 per share; endpoints not disclosed. Count 1. Among the four bidders allowed to proceed to the final round (R028). The filing does not name this bidder.
+   Formality: Informal
+   Conditions level: Insufficient evidence
+   Why and evidence: Stated that the range reached at least $80.00; Convention: endpoints not stated → cells left blank (ambiguous whether a floor on the whole range or a level the range reached — see Q7). Informal; Insufficient evidence. “Three bidders initially indicated price ranges that reached at least $80.00 per share, including the Buyer Group, which indicated a range of $81.00 to $83.00 per share, and another bidder, which suggested a range of $80.00 to $85.00 per share. As a result of its discussions with J.P. Morgan,” (p.24).
+   Source: P-016
+   Review: Q3; Q7
+   Row id: R025
+   Include: Yes
+   Count: 1
+   Date from: 2014-10-30
+   Date to: 2014-10-30
+   Working date: 2014-10-30
+   Date basis: Reported day
+   Date method: Reported
+   Price kind: Undisclosed
+   Currency: USD
+   All cash: Not stated
+   Conditions detail: Fin: not stated; DD required: not stated; DD open: yes; Excl: not stated
+   Page: 24
+   Related rows: R028; R032
+   Deal: PetSmart
+--- row 27
+   #: 26
+   When: 10/30/2014
+   Who: Two other IOI submitters (cohort)
+   What happened: Bid
+   Process: 1
+   Round: 1
+   Type: Financial
+   Terms or outcome: Non-binding preliminary indications of interest from the two remaining submitters; prices not disclosed (they did not reach the $80.00 advancement level; this is inferred from the stated set of four bidders at or above $80.00). Count 2.
+   Formality: Informal
+   Conditions level: Insufficient evidence
+   Why and evidence: Stated submission count (six total; four individually described); Inferred (convention) that these two were below $80.00: the board advanced the four bidders that had indicated at least $80.00. Informal; Insufficient evidence. “The board determined to allow the four bidders that had indicated a price or range at or above $80.00 per share to proceed to the final round of the sale process.” (p.24).
+   Source: P-016; P-017
+   Review: Q4; Q6
+   Row id: R026
+   Include: Yes
+   Count: 2
+   Date from: 2014-10-30
+   Date to: 2014-10-30
+   Working date: 2014-10-30
+   Date basis: Reported day
+   Date method: Reported
+   Price kind: Undisclosed
+   Currency: USD
+   All cash: Not stated
+   Conditions detail: Fin: not stated; DD required: not stated; DD open: yes; Excl: not stated
+   Page: 24
+   Related rows: R029
+   Deal: PetSmart
+--- row 28
+   #: 27
+   When: 10/30/2014–11/02/2014 (day not disclosed)
+   Who: Bidder 2
+   What happened: Bid
+   Process: 1
+   Round: 1
+   Type: Financial
+   Terms or outcome: Revised indication of interest of $81.00–$84.00 per share, increased from $78.00 as a result of its discussions with J.P. Morgan. Count 0 (same bidder unit as R023). Related: revises R023; advanced to the final round (R028).
+   Formality: Informal
+   Conditions level: Insufficient evidence
+   Why and evidence: Stated revision; Convention: still the preliminary IOI stage → Informal. Conditions Insufficient evidence. Date: revision occurred within the 10/30–11/02 call window; midpoint assigned. “increased its indication to a range of $81.00 to $84.00 per share.” (p.24).
+   Source: P-016
+   Review: Q6; Q8
+   Row id: R027
+   Include: Yes
+   Count: 0
+   Date from: 2014-10-30
+   Date to: 2014-11-02
+   Working date: 2014-10-31
+   Date basis: Reported interval
+   Date method: Assigned: midpoint
+   Price low: 81
+   Price high: 84
+   Price kind: Bidder range
+   Price origin: Stated
+   Currency: USD
+   All cash: Not stated
+   Conditions detail: Fin: not stated; DD required: not stated; DD open: yes; Excl: not stated
+   Page: 24
+   Related rows: R023; R028
+   Deal: PetSmart
+--- row 29
+   #: 28
+   When: 11/03/2014
+   Who: PetSmart board (with management, J.P. Morgan and Wachtell Lipton)
+   What happened: Round opened
+   Process: 1
+   Round: 2
+   Terms or outcome: Round 2 (final round) opens: board allowed the four bidders at or above $80.00 per share to proceed; J.P. Morgan notified the eliminated parties. Final-round work: further extensive due diligence and management presentations, a form of merger agreement circulated with instructions to submit markups together with final bids, and updated FY2014 projections. Each invited bidder indicated interest in a Longview rollover but stated its bid was not conditioned or dependent on Longview participation. Round finality: Announced as final — the target designated this the final round and later solicited final bids on a set deadline.
+   Why and evidence: Stated advancement (new stage, new offers sought). Convention: Announced as final (the target’s own final-round designation). “The board determined to allow the four bidders that had indicated a price or range at or above $80.00 per share to proceed to the final round of the sale process.” (p.24). “Each of the bidders invited into the final round indicated some interest in a Longview rollover, though each also stated that its bid would not be conditioned or dependent on Longview participation.” (p.24).
+   Source: P-017; P-018; P-019
+   Review: Q1
+   Row id: R028
+   Include: Yes
+   Date from: 2014-11-03
+   Date to: 2014-11-03
+   Working date: 2014-11-03
+   Date basis: Reported day
+   Date method: Reported
+   Round finality: Announced as final
+   Page: 24
+   Related rows: R020; R022; R023; R024; R025; R029
+   Deal: PetSmart
+--- row 30
+   #: 29
+   When: 11/03/2014
+   Who: Two eliminated IOI submitters (cohort)
+   What happened: Dropped by target
+   Process: 1
+   Round: 1
+   Type: Financial
+   Terms or outcome: Dropped by target: the two submitters below $80.00 were notified of elimination from the final round; neither indicated any interest or ability to remain in the process at price levels above its initial indication. Denied stage: Round 2. Count 2. Decided by: Target. Exit reason: Lower offer than rivals.
+   Why and evidence: Stated. Round carries the round being left (R1), with the denied stage (R2) explained. “representatives of J.P. Morgan notified the eliminated parties, none of which indicated any interest or ability to remain in the process at price levels above their respective initial indications.” (p.24).
+   Source: P-016; P-017
+   Review: Q5
+   Row id: R029
+   Include: Yes
+   Count: 2
+   Date from: 2014-11-03
+   Date to: 2014-11-03
+   Working date: 2014-11-03
+   Date basis: Reported day
+   Date method: Reported
+   Decided by: Target
+   Exit reason: Lower offer than rivals
+   Outcome basis: Stated
+   Page: 24
+   Related rows: R026; R028
+   Deal: PetSmart
+--- row 31
+   #: 30
+   When: after 11/03/2014; day not disclosed
+   Who: Bidder 3 (two final-round bidders)
+   What happened: Bidding group changed
+   Process: 1
+   Round: 2
+   Type: Financial
+   Terms or outcome: Two final-round bidders (one invited, seeking an equity partner because of the size of a PetSmart acquisition; the other having said it would drop out unless permitted to pair) requested and were authorized by the ad hoc committee to work together as “Bidder 3”; the two had worked together in previous large leveraged buyouts. Proposed/permitted status: permitted/authorized. Composition effect: final-round bidding units 4 → 3. The filing does not name the members (see Q3). Count 2 (members affected).
+   Why and evidence: Stated formation of a bidding group. Anonymous members; the unit effect is stated by the count reconciliation (four invited, three negotiating units in December) rather than by name. Identity hypothesis in Q3. “Two of the bidders (one of which had been invited into the final round but had indicated a desire to work with an equity partner in light of the size of an acquisition of PetSmart, and the other of which had indicated to J.P. Morgan that it would drop out of the process if not permitted to work together with another bidder) requested permission to work together.” (p.24). “We refer to these two bidders together as “Bidder 3.”” (p.24).
+   Source: P-018
+   Review: Q3
+   Row id: R030
+   Include: Yes
+   Count: 2
+   Date from: 2014-11-04
+   Working date: 2014-11-04
+   Date basis: Relative only
+   Date method: Assigned: bound
+   Page: 24
+   Related rows: R024; R025; R031; R032; R039
+   Deal: PetSmart
+--- row 32
+   #: 31
+   When: after 11/03/2014; day not disclosed
+   Who: Unnamed financial bidder A
+   What happened: Joined group
+   Process: 1
+   Round: 2
+   Type: Financial
+   Terms or outcome: Inferred: identity — Count 0. May already be counted among the two members of R030 (Bidder 3 formation); the filing does not name the members. Recommended reading: Unnamed financial bidder A is one of the two final-round bidders besides the Buyer Group and Bidder 2 that formed Bidder 3 (see Q3); ends independent bidding; the stage count falls by one. Out as an independent bidder by the 12/10/2014 final-bid transition (continuing units then: Buyer Group, Bidder 2, Bidder 3).
+   Why and evidence: Inferred: identity (section 10.2 Count-0 row). Identity is not stated by the filing; flagged in Q3. Never move counts from a cohort to a name. “(one of which had been invited into the final round but had indicated a desire to work with an equity partner in light of the size of an acquisition of PetSmart, and the other of which had indicated to J.P. Morgan that it would drop out of the process if not permitted to work together with another bidder)” (p.24).
+   Source: P-018
+   Review: Q3; Q5
+   Row id: R031
+   Include: Yes
+   Count: 0
+   Date from: 2014-11-04
+   Working date: 2014-11-04
+   Date basis: Relative only
+   Date method: Assigned: bound
+   Outcome basis: Inferred: identity
+   Page: 24
+   Related rows: R030; R024
+   Deal: PetSmart
+--- row 33
+   #: 32
+   When: after 11/03/2014; day not disclosed
+   Who: Unnamed financial bidder B
+   What happened: Joined group
+   Process: 1
+   Round: 2
+   Type: Financial
+   Terms or outcome: Inferred: identity — Count 0. May already be counted among the two members of R030 (Bidder 3 formation); the filing does not name the members. Recommended reading: Unnamed financial bidder B is one of the two final-round bidders besides the Buyer Group and Bidder 2 that formed Bidder 3 (see Q3); ends independent bidding; the stage count falls by one. Out as an independent bidder by the 12/10/2014 final-bid transition (continuing units then: Buyer Group, Bidder 2, Bidder 3).
+   Why and evidence: Inferred: identity (section 10.2 Count-0 row). Identity is not stated by the filing; flagged in Q3. “the other of which had indicated to J.P. Morgan that it would drop out of the process if not permitted to work together with another bidder)” (p.24).
+   Source: P-018
+   Review: Q3; Q5
+   Row id: R032
+   Include: Yes
+   Count: 0
+   Date from: 2014-11-04
+   Working date: 2014-11-04
+   Date basis: Relative only
+   Date method: Assigned: bound
+   Outcome basis: Inferred: identity
+   Page: 24
+   Related rows: R030; R025
+   Deal: PetSmart
+--- row 34
+   #: 33
+   When: November 2014 (day not disclosed)
+   Who: J.P. Morgan (target side) / four final-round bidders
+   What happened: Information access changed
+   Process: 1
+   Round: 2
+   Terms or outcome: Following PetSmart’s third-quarter earnings announcement, at the request of bidders and with board direction, J.P. Morgan provided the bidders with updates to the Company’s fiscal year 2014 financial projections. Affected: the four final-round bidders. Reason: reflect Q3 results; the projections were revised after bidding had begun (IOIs 10/30/2014). Count blank.
+   Why and evidence: Stated. Projections issued/revised after bidding had begun — a differentiated information event; day not disclosed (period midpoint assigned; see Q8). “Following the Company’s third quarter earnings announcement and, at the request of bidders and the direction of the board and the Company, representatives of J.P. Morgan provided the bidders with updates to the Company’s fiscal year 2014 financial projections.” (p.24).
+   Source: P-019
+   Review: Q8
+   Row id: R033
+   Include: Yes
+   Date from: 2014-11-01
+   Date to: 2014-11-30
+   Working date: 2014-11-15
+   Date basis: Reported interval
+   Date method: Assigned: midpoint
+   Page: 24
+   Related rows: R016; R028
+   Deal: PetSmart
+--- row 35
+   #: 34
+   When: 12/04/2014–12/05/2014
+   Who: PetSmart ad hoc committee (with financial and legal advisors)
+   What happened: Deadline revised
+   Process: 1
+   Round: 2
+   Terms or outcome: Deadline revised: the ad hoc committee concluded the remaining steps could be done in a shorter period to reduce the risk of leaks or unintended public disclosure; the Company moved the deadline for submission of final bids from 12/05/2014 to the evening of 12/10/2014 (five days rather than ten before the anticipated 12/15 completion) and asked bidders to submit markups of the draft merger agreement and other transaction documents, and financing commitments, in advance if possible. Treatment: Extended. Due date (new): 12/10/2014.
+   Why and evidence: Stated. Revision of an existing due date; old and new preserved. The original 12/05/2014 date was superseded before arrival and has no separate milestone row. “had initially set Friday, December 5 as the date for submission of bids so as to allow sufficient time for the Company to receive and analyze the bids, conduct further rounds of bidding, if necessary,” (p.24). “the Company set the evening of Wednesday, December 10 (five days, rather than 10 days prior to the anticipated December 15 completion date) as the deadline for submission of final bids,” (p.25).
+   Source: P-020; P-021
+   Review: Q2
+   Row id: R034
+   Include: Yes
+   Date from: 2014-12-04
+   Date to: 2014-12-05
+   Working date: 2014-12-05
+   Date basis: Reported interval
+   Date method: Assigned: decision day
+   Due date: 2014-12-10
+   Deadline treatment: Extended
+   Page: 25
+   Related rows: R036
+   Deal: PetSmart
+--- row 36
+   #: 35
+   When: 12/09/2014
+   Who: J.P. Morgan (arranging); Longview; Buyer Group; Bidder 2
+   What happened: Information access changed
+   Process: 1
+   Round: 2
+   Terms or outcome: Following execution of a confidentiality agreement, J.P. Morgan arranged introductory meetings between Longview and the Buyer Group and between Longview and Bidder 2 (Bidder 3 did not have a meeting on the narrative), to let the bidders assess interest in working with Longview and vice versa; the bidders were prohibited at this time from disclosing their intended bid prices to Longview. Count blank.
+   Why and evidence: Stated. Differentiated access among live finalists (two of the three bidding units met Longview). Material because Longview participation was later credited as helpful in achieving $83.00. “Following the execution of a confidentiality agreement, on December 9, 2014, J.P. Morgan arranged introductory meetings between Longview and the Buyer Group, and between Longview and Bidder 2.” (p.25). “the bidders were prohibited at this time from disclosing to Longview the respective prices that the bidders intended to bid.” (p.25).
+   Source: P-024
+   Review: Q1
+   Row id: R035
+   Include: Yes
+   Date from: 2014-12-09
+   Date to: 2014-12-09
+   Working date: 2014-12-09
+   Date basis: Reported day
+   Date method: Reported
+   Page: 25
+   Related rows: R028; R043
+   Deal: PetSmart
+--- row 37
+   #: 36
+   When: 12/10/2014 (evening deadline)
+   Who: PetSmart (process deadline)
+   What happened: Deadline
+   Process: 1
+   Round: 2
+   Terms or outcome: Deadline for submission of final bids (evening of 12/10/2014). Treatment: Extended — after the bids the ad hoc committee requested improved bids for 12/12/2014 (R041). Due date 12/10/2014.
+   Why and evidence: Stated. Due date revised from 12/05/2014; revised again by the improvement request issued after this date arrived. “On December 10, PetSmart received final bid letters along with revised versions of the merger agreement and other transaction documents from the Buyer Group and from Bidder 2 and a verbal indication from Bidder 3.” (p.25).
+   Source: P-025
+   Review: Q2
+   Row id: R036
+   Include: Yes
+   Date from: 2014-12-10
+   Date to: 2014-12-10
+   Working date: 2014-12-10
+   Date basis: Reported day
+   Date method: Reported
+   Due date: 2014-12-10
+   Deadline treatment: Extended
+   Page: 25
+   Related rows: R034; R040; R041
+   Deal: PetSmart
+--- row 38
+   #: 37
+   When: 12/10/2014
+   Who: Buyer Group (BC Partners-led consortium)
+   What happened: Bid
+   Process: 1
+   Round: 2
+   Type: Financial
+   Terms or outcome: Final bid letter: $80.70 per share in cash, with revised merger agreement and transaction documents; the Buyer Group had provided financing commitment documents on 12/06 and its documentation was more favorable to the Company (less conditional, more likely to be completed, more acceptance of the Company’s positions). Count 1. Related: R022 (IOI), R045 (improved).
+   Formality: Formal
+   Conditions level: Light
+   Why and evidence: Stated price; Formal (signal 1: bidder-returned agreement markups/revised documents). Conditions Light: committed financing provided; no diligence condition stated; diligence under way (DD open). “The Buyer Group offered $80.70 per share, in cash, and Bidder 2 offered $80.35 per share, in cash. Bidder 3 verbally communicated to J.P. Morgan that their valuation would not be above the current stock price of approximately $78 per share. J.P. Morgan communicated to Bidder 3 that it was unlikely to be competitive and accordingly Bidder 3 did not submit a written offer. The form of merger agreement and other transaction documentation submitted by the Buyer Group were more favorable to the Company (including because they were less conditional and more likely to be completed and because they offered more certainty of protection for the Company in the unlikely event of non-completion of the transaction) and reflected substantially more acceptance of the Company’s positions.” (p.25). “the Buyer Group provided its financing commitment documents.” (p.25).
+   Source: P-025; P-022
+   Review: Q6
+   Row id: R037
+   Include: Yes
+   Count: 1
+   Date from: 2014-12-10
+   Date to: 2014-12-10
+   Working date: 2014-12-10
+   Date basis: Reported day
+   Date method: Reported
+   Price low: 80.7
+   Price high: 80.7
+   Price kind: Point
+   Price origin: Stated
+   Currency: USD
+   All cash: Yes
+   Cash at closing: 80.7
+   Conditions detail: Fin: committed; DD required: not stated; DD open: yes; Excl: not stated
+   Page: 25
+   Related rows: R022; R045; R046
+   Deal: PetSmart
+--- row 39
+   #: 38
+   When: 12/10/2014
+   Who: Bidder 2
+   What happened: Bid
+   Process: 1
+   Round: 2
+   Type: Financial
+   Terms or outcome: Final bid letter: $80.35 per share in cash, with revised merger agreement and transaction documents. Bidder 2 indicated any partnering with Longview would occur only after completion of bidding and execution of a definitive merger agreement. Count 1. Related: R027 (revised IOI), R044 (improved).
+   Formality: Formal
+   Conditions level: Insufficient evidence
+   Why and evidence: Stated price; Formal (signal 1: bidder-returned agreement markups/revised documents). Conditions Insufficient evidence: price and documents but nothing stated on financing or diligence conditions (the filing notes Bidder 2’s documentation was more conditional than the Buyer Group’s). “The Buyer Group offered $80.70 per share, in cash, and Bidder 2 offered $80.35 per share, in cash.” (p.25). “Bidder 2 indicated that any partnering with Longview would only occur after completion of bidding and execution of a definitive merger agreement with the Company.” (p.25).
+   Source: P-025
+   Review: Q6
+   Row id: R038
+   Include: Yes
+   Count: 1
+   Date from: 2014-12-10
+   Date to: 2014-12-10
+   Working date: 2014-12-10
+   Date basis: Reported day
+   Date method: Reported
+   Price low: 80.35
+   Price high: 80.35
+   Price kind: Point
+   Price origin: Stated
+   Currency: USD
+   All cash: Yes
+   Cash at closing: 80.35
+   Conditions detail: Fin: not stated; DD required: not stated; DD open: yes; Excl: not stated
+   Page: 25
+   Related rows: R027; R044
+   Deal: PetSmart
+--- row 40
+   #: 39
+   When: 12/10/2014
+   Who: Bidder 3
+   What happened: Bid
+   Process: 1
+   Round: 2
+   Type: Financial
+   Terms or outcome: Bound: ≤ $78.00 — verbal indication that Bidder 3’s valuation would not be above the current stock price of approximately $78 per share; no written offer; J.P. Morgan communicated that this was unlikely to be competitive. Count 1. Related: R030 (formation), R040 (outcome).
+   Formality: Informal
+   Conditions level: Insufficient evidence
+   Why and evidence: Stated bound (approximate: “approximately $78”; the number is the then-current stock price, not a stated offer level — see Q7). Convention: Informal (verbal, no documents). Conditions Insufficient evidence; diligence status not disclosed for Bidder 3. “a verbal indication from Bidder 3. The Buyer Group offered $80.70 per share, in cash, and Bidder 2 offered $80.35 per share, in cash. Bidder 3 verbally communicated to J.P. Morgan that their valuation would not be above the current stock price of approximately $78 per share.” (p.25).
+   Source: P-025
+   Review: Q6; Q7
+   Row id: R039
+   Include: Yes
+   Count: 1
+   Date from: 2014-12-10
+   Date to: 2014-12-10
+   Working date: 2014-12-10
+   Date basis: Reported day
+   Date method: Reported
+   Price high: 78
+   Price kind: Bound only
+   Price origin: Stated
+   Currency: USD
+   All cash: Not stated
+   Conditions detail: Fin: not stated; DD required: not stated; DD open: not disclosed; Excl: not stated
+   Page: 25
+   Related rows: R030; R040
+   Deal: PetSmart
+--- row 41
+   #: 40
+   When: 12/10/2014
+   Who: Bidder 3
+   What happened: Did not submit
+   Process: 1
+   Round: 2
+   Type: Financial
+   Terms or outcome: Bidder 3 did not submit a written offer in the final-bid solicitation after J.P. Morgan said its indication was unlikely to be competitive; out by the improved-bid stage (only the Buyer Group and Bidder 2 were asked to improve). Decided by: Both (target discouragement followed by non-submission). Exit reason: Value at or below market price. Count 1.
+   Why and evidence: Stated non-submission; date established by the 12/10/2014 solicitation context (assigned to the due date under section 8.1 rule 2). “J.P. Morgan communicated to Bidder 3 that it was unlikely to be competitive and accordingly Bidder 3 did not submit a written offer.” (p.25).
+   Source: P-025; P-026
+   Review: Q5
+   Row id: R040
+   Include: Yes
+   Count: 1
+   Date to: 2014-12-10
+   Working date: 2014-12-10
+   Date basis: Relative only
+   Date method: Assigned: deadline
+   Decided by: Both
+   Exit reason: Value at or below market price
+   Outcome basis: Stated
+   Page: 25
+   Related rows: R039; R041
+   Deal: PetSmart
+--- row 42
+   #: 41
+   When: 12/10/2014
+   Who: PetSmart ad hoc committee (with J.P. Morgan and Wachtell Lipton)
+   What happened: Deadline revised
+   Process: 1
+   Round: 2
+   Terms or outcome: Deadline revised: after reviewing the 12/10/2014 bids, the ad hoc committee — seeing the bids as close, noting positive developments since 12/03/2014 and viewing neither bid as the bidder’s best offer — instructed J.P. Morgan to tell each bidder it must increase its bid and to submit improved bids on 12/12/2014; J.P. Morgan also contacted Longview on the evening of 12/11/2014 to confirm its continued rollover interest. Treatment: Extended. Due date (new): 12/12/2014.
+   Why and evidence: Stated. Improvement request after the due date of a round already opened as final; an extension of that round under section 8.3, not a new round and not a fresh deadline set. “the ad hoc committee instructed J.P. Morgan to inform each bidder that it would need to increase its bid, and to instruct the bidders to submit improved bids on December 12, 2014.” (p.25). “On the evening of December 11, 2014, representatives of J.P. Morgan contacted Longview to inform Longview that the bidders have been asked to submit revised and improved bids, and to confirm that Longview continued to be interested and willing to participate in a potential transaction” (p.25).
+   Source: P-026
+   Review: Q2
+   Row id: R041
+   Include: Yes
+   Date from: 2014-12-10
+   Date to: 2014-12-10
+   Working date: 2014-12-10
+   Date basis: Reported day
+   Date method: Reported
+   Due date: 2014-12-12
+   Deadline treatment: Extended
+   Page: 25
+   Related rows: R036; R042
+   Deal: PetSmart
+--- row 43
+   #: 42
+   When: 12/12/2014
+   Who: PetSmart (process deadline)
+   What happened: Deadline
+   Process: 1
+   Round: 2
+   Terms or outcome: Deadline for improved bids. Both written bidders submitted on 12/12/2014; the board selected on the bids (approval 12/13/2014; signing 12/14/2014). Treatment: Enforced. Due date 12/12/2014.
+   Why and evidence: Stated. The date passed with no further extension or late bids, and the target took its next step on the bids in hand. “During the evening of December 12, 2014, Bidder 2 submitted an offer of $81.50 per share, in cash. Representatives of J.P. Morgan confirmed via a conversation with Bidder 2 on the evening of December 12, 2014 that $81.50 per share was its best and final offer. The Buyer Group initially submitted an oral offer of $82.50 per share, in cash,” (p.26).
+   Source: P-029
+   Review: Q2
+   Row id: R042
+   Include: Yes
+   Date from: 2014-12-12
+   Date to: 2014-12-12
+   Working date: 2014-12-12
+   Date basis: Reported day
+   Date method: Reported
+   Due date: 2014-12-12
+   Deadline treatment: Enforced
+   Page: 26
+   Related rows: R041; R047
+   Deal: PetSmart
+--- row 44
+   #: 43
+   When: 12/12/2014 (with related events on 12/11 and 12/14/2014)
+   Who: PetSmart ad hoc committee / Buyer Group / Longview
+   What happened: Material process update
+   Process: 1
+   Round: 2
+   Terms or outcome: Longview rollover permitted and formed: the ad hoc committee approved the Buyer Group’s request to work more closely with Longview and to include a rollover of a portion of the Company shares managed by Longview in its bid (the Buyer Group said Longview participation might enhance its ability to achieve a higher price); Longview and the Buyer Group then entered a confidentiality agreement permitting the exchange of detailed information including bid price (not previously shared); Wachtell Lipton was instructed to provide a voting-agreement form to Longview. Bidder 2 had said accommodating a rollover would not affect its price and would be considered only after execution. The rollover was documented in the 12/14/2014 Parent–Longview rollover agreement (3,012,050 shares, $250 million worth, for Parent equity). Count blank.
+   Why and evidence: Stated. One row for the rollover-support relationship’s permitted/formed step (section 4); the resolution would be at closing (not observed). Longview was not an independent bidder, so this is not a bidding-group change. “the Buyer Group requested permission to work more closely with Longview in order to include a rollover of a portion of the Company shares managed by Longview in the Buyer Group’s bid.” (p.25). “Longview and the Buyer Group entered into a confidentiality agreement permitting the exchange of detailed information between them, including bid price,” (p.26).
+   Source: P-027; P-028; X-015
+   Review: Q1
+   Row id: R043
+   Include: Yes
+   Date from: 2014-12-12
+   Date to: 2014-12-12
+   Working date: 2014-12-12
+   Date basis: Reported day
+   Date method: Reported
+   Page: 25
+   Related rows: R005; R035; R048
+   Deal: PetSmart
+--- row 45
+   #: 44
+   When: 12/12/2014 (evening)
+   Who: Bidder 2
+   What happened: Bid
+   Process: 1
+   Round: 2
+   Type: Financial
+   Terms or outcome: Improved best and final offer: $81.50 per share in cash; J.P. Morgan confirmed by telephone the same evening that $81.50 was Bidder 2’s best and final offer. Revised merger agreement/transaction documents and financing commitment documents submitted. Count 0 (same unit as R038). Related: R038; best-and-final confirmation folded into this bid (same day).
+   Formality: Formal
+   Conditions level: Light
+   Why and evidence: Stated price; Formal (signal 1: bidder-returned revised agreement; also best-and-final response). Conditions Light: financing commitment documents submitted; no diligence condition stated. “Bidder 2 submitted an offer of $81.50 per share, in cash. Representatives of J.P. Morgan confirmed via a conversation with Bidder 2 on the evening of December 12, 2014 that $81.50 per share was its best and final offer.” (p.26). “each bidder submitted a revised draft of the merger agreement and other transaction agreements, and copies of their respective financing commitment documents.” (p.26).
+   Source: P-029
+   Review: Q6
+   Row id: R044
+   Include: Yes
+   Count: 0
+   Date from: 2014-12-12
+   Date to: 2014-12-12
+   Working date: 2014-12-12
+   Date basis: Reported day
+   Date method: Reported
+   Price low: 81.5
+   Price high: 81.5
+   Price kind: Point
+   Price origin: Stated
+   Currency: USD
+   All cash: Yes
+   Cash at closing: 81.5
+   Conditions detail: Fin: committed; DD required: not stated; DD open: yes; Excl: not stated
+   Page: 26
+   Related rows: R038; R049
+   Deal: PetSmart
+--- row 46
+   #: 45
+   When: 12/12/2014 (evening)
+   Who: Buyer Group (BC Partners-led consortium)
+   What happened: Bid
+   Process: 1
+   Round: 2
+   Type: Financial
+   Terms or outcome: Oral improved offer of $82.50 per share in cash; the Buyer Group stated it was working to increase the offer within the next few hours. Count 0. Related: R037; superseded the same evening by R046.
+   Formality: Formal
+   Conditions level: Light
+   Why and evidence: Stated price; Formal documentation carried forward (revised agreement submitted 12/10–12/12 and substantially executable). Conditions Light (committed financing; no diligence condition stated). “The Buyer Group initially submitted an oral offer of $82.50 per share, in cash, but stated that it was working to increase the offer within the next few hours.” (p.26).
+   Source: P-029
+   Review: Q6
+   Row id: R045
+   Include: Yes
+   Count: 0
+   Date from: 2014-12-12
+   Date to: 2014-12-12
+   Working date: 2014-12-12
+   Date basis: Reported day
+   Date method: Reported
+   Price low: 82.5
+   Price high: 82.5
+   Price kind: Point
+   Price origin: Stated
+   Currency: USD
+   All cash: Yes
+   Cash at closing: 82.5
+   Conditions detail: Fin: committed; DD required: not stated; DD open: yes; Excl: not stated
+   Page: 26
+   Related rows: R037; R046
+   Deal: PetSmart
+--- row 47
+   #: 46
+   When: 12/12/2014 (evening)
+   Who: Buyer Group (BC Partners-led consortium)
+   What happened: Bid
+   Process: 1
+   Round: 2
+   Type: Financial
+   Terms or outcome: Best and final offer: $83.00 per share in cash; revised merger agreement and other transaction documents and financing commitment documents submitted, in substantially executable form with few exceptions. Count 0. Related: R045 (same-evening improvement); agreed consideration on signing (R048).
+   Formality: Formal
+   Conditions level: Light
+   Why and evidence: Stated price; Formal (signal 1). Conditions Light. The board later noted $83.00 appeared to be the highest price the Buyer Group could offer, and that Longview’s participation (approximately $250 million of stock) was helpful in achieving it. “the Buyer Group submitted a best and final offer of $83.00 per share, in cash. In addition, each bidder submitted a revised draft of the merger agreement and other transaction agreements, and copies of their respective financing commitment documents. The versions submitted by the Buyer Group were, with few exceptions, in substantially executable form.” (p.26). “Longview’s willingness to participate in the Buyer Group with respect to $250 million of the common stock was helpful in achieving an $83.00 per share price.” (p.27).
+   Source: P-029; X-008c
+   Review: Q6
+   Row id: R046
+   Include: Yes
+   Count: 0
+   Date from: 2014-12-12
+   Date to: 2014-12-12
+   Working date: 2014-12-12
+   Date basis: Reported day
+   Date method: Reported
+   Price low: 83
+   Price high: 83
+   Price kind: Point
+   Price origin: Stated
+   Currency: USD
+   All cash: Yes
+   Cash at closing: 83
+   Conditions detail: Fin: committed; DD required: not stated; DD open: yes; Excl: not stated
+   Page: 26
+   Related rows: R037; R045; R048
+   Deal: PetSmart
+--- row 48
+   #: 47
+   When: 12/13/2014
+   Who: PetSmart board (with management, J.P. Morgan and Wachtell Lipton)
+   What happened: Target decision
+   Process: 1
+   Round: 2
+   Terms or outcome: Board reviewed the final bids, the process and the financing commitments; J.P. Morgan rendered its oral fairness opinion ($83.00 fair from a financial point of view), subsequently confirmed in writing; the board unanimously determined the merger with the Buyer Group advisable and in the best interests of PetSmart and its stockholders and recommended adoption — subject to confirmation that remaining open points in the merger agreement were satisfactorily resolved, with reconvening if needed.
+   Why and evidence: Stated. Preferred-bidder/approval decision; qualifications preserved. “Following extensive discussion, the board unanimously determined that the merger agreement and the transactions contemplated thereby, including the merger, were advisable and in the best interests of PetSmart and its stockholders,” (p.26). “The board’s determination was subject, however, to confirmation that the remaining open points in the merger agreement had been satisfactorily resolved,” (p.26).
+   Source: P-030
+   Row id: R047
+   Include: Yes
+   Date from: 2014-12-13
+   Date to: 2014-12-13
+   Working date: 2014-12-13
+   Date basis: Reported day
+   Date method: Reported
+   Page: 26
+   Related rows: R046; R048
+   Deal: PetSmart
+--- row 49
+   #: 48
+   When: 12/14/2014
+   Who: PetSmart / Argos Holdings Inc. and Argos Merger Sub Inc. (Buyer Group)
+   What happened: Merger agreement signed
+   Process: 1
+   Round: 2
+   Terms or outcome: Agreed consideration: $83.00 per share in cash. Executed the merger agreement with Parent (Argos Holdings Inc., affiliates of funds advised by BC Partners) and Merger Sub; also executed the Longview voting agreement (7,424,591 shares to vote in favor) and related transaction agreements, including the Parent–Longview rollover agreement (3,012,050 shares). Signing is not a bid; numeric price cells and formality/conditionality cells left blank.
+   Why and evidence: Stated. Agreed consideration recorded here, not as another bid. “On December 14, 2014, the parties executed the merger agreement, the voting agreement and related transaction agreements and issued a press release announcing the transaction.” (p.26). “Longview has agreed to contribute 3,012,050 shares (“rollover shares”) to Parent immediately prior to the effective time in exchange for equity interests in Parent.” (p.41).
+   Source: P-031; X-004; X-015
+   Row id: R048
+   Include: Yes
+   Date from: 2014-12-14
+   Date to: 2014-12-14
+   Working date: 2014-12-14
+   Date basis: Reported day
+   Date method: Reported
+   Page: 26
+   Related rows: R043; R046; R047; R049
+   Deal: PetSmart
+--- row 50
+   #: 49
+   When: by 12/14/2014
+   Who: Bidder 2
+   What happened: Not selected at signing
+   Process: 1
+   Round: 2
+   Type: Financial
+   Terms or outcome: Bidder 2’s best and final $81.50 was below the winning $83.00; the board noted neither other bidding group was willing to make a definitive offer above $81.50. Decided by: Target. Exit reason: Lower offer than rivals. Count 1.
+   Why and evidence: Stated outcome (was still bidding when the target chose another). Timing assigned to the signing date (section 10.2). “neither of which was willing to make a definitive offer at a price above $81.50, which was lower than the $83.00 price offered by the Buyer Group.” (p.27). “Bidder 2 had informed the Company’s representatives that $81.50 per share was its best and final offer.” (p.27).
+   Source: X-008a; X-008b; P-031
+   Review: Q5
+   Row id: R049
+   Include: Yes
+   Count: 1
+   Date to: 2014-12-14
+   Working date: 2014-12-14
+   Date basis: Relative only
+   Date method: Assigned: bound
+   Decided by: Target
+   Exit reason: Lower offer than rivals
+   Outcome basis: Stated
+   Page: 27
+   Related rows: R044; R048
+   Deal: PetSmart
+--- row 51
+   #: 50
+   When: 12/14/2014
+   Who: PetSmart, Inc. (issuer)
+   What happened: Merger announced
+   Process: 1
+   Round: 2
+   Terms or outcome: Press release announcing the transaction (same day as signing).
+   Why and evidence: Stated. “issued a press release announcing the transaction.” (p.26).
+   Source: P-031
+   Row id: R050
+   Include: Yes
+   Date from: 2014-12-14
+   Date to: 2014-12-14
+   Working date: 2014-12-14
+   Date basis: Reported day
+   Date method: Reported
+   Page: 26
+   Related rows: R048
+   Deal: PetSmart
+--- row 52
+   #: 51
+   When: 12/14/2014 (earliest supported service date)
+   Who: Simpson Thacher & Bartlett LLP (adviser)
+   What happened: Adviser service observed
+   Process: 1
+   Round: 2
+   Terms or outcome: Client: Parent / Merger Sub (Buyer Group). Role: legal counsel; earliest supported appearance is the executed merger agreement’s notice provisions; engagement date not disclosed.
+   Why and evidence: Stated (service observed). No earlier date is disclosed; first mention cannot be treated as the engagement date. “Simpson Thacher and Bartlett LLP 425 Lexington Avenue New York, NY 10017 Facsimile: (212) 455-2502 Email: rsymons@stblaw.com Attention: Ryerson Symons” (p.A-46).
+   Source: X-028
+   Review: Q5
+   Row id: R051
+   Include: Yes
+   Date from: 2014-12-14
+   Date to: 2014-12-14
+   Working date: 2014-12-14
+   Date basis: Reported day
+   Date method: Reported
+   Page: A-46
+   Deal: PetSmart
+##### SHEET 'Summary' (52 rows x 4 cols)
+PetSmart, Inc. — sale process ledger | Deal short name: PetSmart  |  Ledger rows: 51  |  Process 1  |  Rounds 0–2  |  Delivered: 09/19/2026
+Status | AI first pass; not human-approved. Instruction revision: 19 September 2026 (Pro). Source coverage: the complete supplied filing — PetSmart, Inc. Definitive Proxy Statement on Schedule 14A (DEFM14A), filed 02/02/2015 (raw_filing/petsmart_2015-02-02_DEFM14A.htm; ~163 pages including Annexes A–C). The ledger is built from the complete Background of the Merger (pp. 21–26) plus passages cited from the Summary, Q&A, Reasons, Financing, Regulatory, Litigation, Market Price and Security Ownership sections and the merger-agreement notices. Last recheck status: initial build only; no post-delivery recheck yet. Correction tracking: the hidden "AI original" sheet holds a values-only baseline of the Deal ledger; changed cells are highlighted red bold by Row id + column (programmatically simulated, not tested in Excel).
+1. Commercial account
+Story | After a weak 05/21/2014 earnings release and public pressure from JANA Partners (9.9% Schedule 13D on 07/03/2014) and Longview (07/07/2014 letter advocating a sale), the PetSmart board decided on 08/13/2014 to explore strategic alternatives including a possible sale, publicly announced the exploration on 08/19/2014, and excluded antitrust-risky Industry Participant from the process. J.P. Morgan was contacted by 27 potential participants (3 strategic, 24 financial); 15 financial buyers signed confidentiality and standstill agreements in the first week of October 2014 and received uniform diligence access, management presentations and Profit Improvement Plan information.
+Six parties submitted non-binding indications of interest on 10/30/2014 (Buyer Group $81.00–$83.00; another bidder $80.00–$85.00; Bidder 2 $78.00 increased to $81.00–$84.00; an unnamed bidder whose range reached at least $80.00; and two submitters below $80.00). The board advanced the four at or above $80.00 to the final round on 11/03/2014; two of them combined as "Bidder 3" (units 4 → 3: Buyer Group, Bidder 2, Bidder 3).
+Final bids on 12/10/2014 were $80.70 (Buyer Group) and $80.35 (Bidder 2), with Bidder 3 giving only an uncompetitive verbal indication (not above approximately $78.00). The ad hoc committee extended bidding to 12/12/2014, when Bidder 2 confirmed $81.50 as best and final and the Buyer Group moved $82.50 → $83.00 best and final with committed financing and substantially executable documentation.
+The board approved the Buyer Group merger on 12/13/2014 and the parties signed on 12/14/2014 at $83.00 per share in cash — a 38.8% premium to the 07/02/2014 unaffected price and 6.9% above the 12/12/2014 close of $77.67 — with Longview rolling over 3,012,050 shares (about $250m) and voting 7,424,591 shares in favour. Observed outcome: signed with the Buyer Group; no post-signing competing proposal as of 02/02/2015; closing not observed in the filing (expected first half of 2015).
+Initiation assessment | Mixed, with activist influence and substantial inbound interest: the board’s own alternatives review and Profit Improvement Plan planning (06/18/2014) preceded, but did not cause, a sale; the 08/13/2014 sale decision followed the JANA/Longview campaigns, and the process then ran largely on parties approaching J.P. Morgan after the 08/19/2014 publicity.
+2. Deal facts
+Target | PetSmart, Inc. (Delaware; NASDAQ: PETM; 1,404 stores; 202 in-store boarding facilities in the U.S., Canada and Puerto Rico). [P-001, P-002, X-007]
+Focal acquirer | Argos Holdings Inc. ("Parent") / Argos Merger Sub Inc., affiliates of funds advised by BC Partners, Inc.; Parent to be owned by the Buyer Group. Type: Financial (private-equity-led consortium; no strategic buyer advanced). [X-007, R048]
+Buyer Group | Funds advised by BC Partners, Inc.; La Caisse de dépôt et placement du Québec; affiliates of GIC Special Investments Pte Ltd; affiliates of StepStone Group LP; and Longview Asset Management, LLC at all times after 12/12/2014. (Names indicating non-US entities: La Caisse de dépôt et placement du Québec and GIC Special Investments Pte Ltd.) [X-001, X-007]
+Agreed consideration | $83.00 per share in cash; all cash; transaction not subject to a financing condition. [X-002, X-005, R046, R048]
+Key dates | Merger agreement dated as of 12/14/2014; announced 12/14/2014. Special meeting 03/06/2015; record date 01/29/2015 (99,455,151 shares outstanding; majority of outstanding shares required). Expected closing first half of 2015 — not observed in the filing. [P-031, X-003, X-025, X-024, X-002]
+Termination fees | $255m company termination fee; $510m Parent reverse termination fee; expense reimbursement up to $15m. Legal terms recorded for context only (no ledger rows). [X-029]
+Share counts / rollover | Record date shares 99,455,151; Longview rollover 3,012,050 shares ($250m worth) for Parent equity; Longview voting agreement 7,424,591 shares (~7.5%); Longview beneficial ownership 8,214,170 shares (8.3%) per its 12/19/2014 Schedule 13D/A. [X-003, X-015, X-004, X-022]
+Financing inputs | Total funds required estimated at approximately $8.4bn: debt up to ~$6.2bn plus a $750m senior secured ABL revolver (aggregate debt facility up to $6.95bn; not all drawn), cash equity up to ~$1.83bn, Longview rollover $250m, and ~$425m cash on hand at closing. [X-011–X-015]
+Filing | DEFM14A, filed 02/02/2015; source file: raw_filing/petsmart_2015-02-02_DEFM14A.htm (relative local link). Background pages 21–26. Full passages in the Source text sheet.
+3. Process and round map
+Process 1 | Only sale attempt observed: exploration decision 08/13/2014 → Round 1 (October NDA/IOI stage) → Round 2 final round 11/03/2014 → signing 12/14/2014. Outcome: signed with the Buyer Group; closing pending at the filing date. No process termination or restart. Post-signing: no go-shop; no-solicitation with fiduciary out; 15 signers’ standstills; no unsolicited proposal as of 02/02/2015. [R009; R016; R028; R048; X-009; X-010]
+Round 0 (pre-opening) | No Round opened row. 06/18/2014 board review and committee formation [R001–R002]; J.P. Morgan retention (July) [R003]; JANA/Longview activism [R004–R007]; Industry Participant approaches and exclusion [R008–R015]; 27 contacts [R011–R012]; 08/19 announcement [R013].
+Round 1 — Not final | Opened at the confidentiality/standstill wave, first week of October 2014 [R016] (R1 anchor; rejected candidates R009, R013, R008/R015, R019–R020). Scope: 15 financial signers [R017]. IOI deadline communicated during October, due 10/30/2014 — Enforced [R019–R020]. Submissions: Buyer Group $81–83 [R022]; Bidder 2 $78 [R023] revised to $81–84 [R027]; Unnamed financial bidder A $80–85 [R024]; Unnamed financial bidder B range reached ≥$80 [R025]; two other submitters, prices not disclosed [R026]; nine inferred non-submitters [R021]. Transition 11/03/2014 [R028]: four advanced; two eliminated [R029].
+Round 2 — Announced as final | Opened 11/03/2014 [R028]. Units: 4 invited → two combine as Bidder 3 [R030–R032] → 3 independent units. November: further diligence; updated FY2014 projections [R033]. Deadlines: final-bid date set earlier for 12/05/2014, revised 12/04–05 to 12/10/2014 [R034] — Extended [R036]; improvement request 12/10 → 12/12/2014 [R041] — Extended [R042]. Bids: Buyer Group $80.70 [R037]; Bidder 2 $80.35 [R038]; Bidder 3 ≤~$78 verbal [R039] and no written offer [R040]. Longview introductory meetings 12/09 [R035]; rollover permitted/formed 12/12 [R043]. Improved/best and final: Bidder 2 $81.50 [R044]; Buyer Group $82.50 [R045] → $83.00 [R046]. Board approval 12/13 [R047]; signing and announcement 12/14 [R048–R050].
+Deadline history | 10/30/2014 — Enforced (six IOIs; board advanced four). 12/05/2014 — superseded before arrival by the 12/04–05 revision (Extended; no milestone row). 12/10/2014 — Extended (improved bids to 12/12). 12/12/2014 — Enforced (bids received; selection and signing followed). No late bids accepted. [R019–R020, R034, R036, R041–R042]
+Round-bidder tallies | Round 1: 6 submitting units. Round 2: 3 submitting/communicating units (Buyer Group, Bidder 2, Bidder 3). These are stage-specific units, not unique firms across the deal. [R022–R027; R037–R039, R044–R046]
+4. Participants and advisers
+Buyer Group | Financial (PE-led consortium). Among the 15 signers (first week October); first recorded bid 10/30 $81–83 [R022]; advanced 11/03; final bid $80.70 [R037]; improved $82.50 → $83.00 best and final [R045–R046]; winner — no exit row; closing pending at the filing date. Longview admitted to the group after 12/12/2014 (rollover, not a membership change).
+Bidder 2 | Financial. IOI $78.00 [R023] revised to $81–84 [R027]; advanced; final bid $80.35 [R038]; improved best and final $81.50 [R044]; Not selected at signing (Stated; Target; Lower offer than rivals) [R049].
+Bidder 3 | Financial. Formed early November 2014 from two unnamed final-round bidders [R030]; verbal indication not above approximately $78 [R039]; Did not submit (Stated; Both; Value at or below market price) [R040].
+Unnamed financial bidder A | Financial. IOI $80.00–$85.00 [R024]; final-round bidder; Joined group / Inferred: identity, Count 0 (closes independent bidding; may be one of Bidder 3’s members) [R031].
+Unnamed financial bidder B | Financial. IOI with a range that reached at least $80.00, endpoints not disclosed [R025]; final-round bidder; Joined group / Inferred: identity, Count 0 [R032].
+Other submitters / signers | Two further IOI submitters (cohort, prices not disclosed; Dropped by target 11/03) [R026, R029]; nine NDA signers (Did not submit at 10/30; Inferred: residual) [R021]; 3 strategic parties and 9 financial parties contacted but never admitted — no outcome rows.
+Industry Participant | Strategic. Approaches 08/07/2014 and 08/27/2014; excluded from the process by target decision 08/13/2014, reaffirmed 10/03/2014; never entered — no outcome row. [R008, R010, R014, R015, R018]
+Activists | JANA Partners (13D 9.9% on 07/03; in-person meeting 07/10; further amendments/letters through July–August) and Longview (public letter 07/07; call 07/10; later rollover investor and voting-agreement party). [R004–R007, R043, R048]
+Advisers | J.P. Morgan Securities LLC — Company financial advisor and process bank (engaged July 2014; fairness opinion 12/13, confirmed 12/14) [R003, R047]. Wachtell, Lipton, Rosen & Katz — Company legal advisor (earliest supported service 06/18/2014) [R002]. Simpson Thacher & Bartlett LLP — Parent/Merger Sub legal counsel (earliest support: executed merger agreement, 12/14/2014) [R051]. Innisfree M&A Incorporated — Company proxy solicitor for the special meeting (~$182,725 paid by the record date; ~$240,000 expected through March 2015; engagement date not disclosed) — Summary only [X-023]. An unnamed financial advisor attended the 06/18/2014 board meeting and is not attributed to any named firm [P-004].
+Financing sources | Debt financing lenders (not advisers): Citigroup Global Markets Inc., Barclays Bank PLC, Deutsche Bank AG New York Branch, Nomura Securities International, Inc., Jefferies Finance LLC; joined by RBC Capital Markets, Macquarie Capital (USA) Inc. and Natixis, New York Branch. [X-017]
+5. Counts and auction screen
+Contacts (organisations approached) | =SUMIFS('Deal ledger'!$Q$2:$Q$52,'Deal ledger'!$D$2:$D$52,"Contact",'Deal ledger'!$P$2:$P$52,"Yes")+SUMIFS('Deal ledger'!$Q$2:$Q$52,'Deal ledger'!$D$2:$D$52,"Bidder interest",'Deal ledger'!$P$2:$P$52,"Yes") | 27 potential participants (3 strategic + 24 financial; p.23); "more than 25" (p.27) | Ledger 28 includes Industry Participant (carried on its Bidder interest row R008, Count 1) which the filing excludes from the 27. Scope: organisations, not bids.
+NDA signers (new) | =SUMIFS('Deal ledger'!$Q$2:$Q$52,'Deal ledger'!$D$2:$D$52,"NDA signed",'Deal ledger'!$P$2:$P$52,"Yes") | 15 potentially interested financial buyers (p.23) | All financial; no reused agreements identified. Auction screen (more than one independent prospective acquiring bidder unit with executed confidentiality agreements): MET.
+Round 1 submitting units | =SUMIFS('Deal ledger'!$Q$2:$Q$52,'Deal ledger'!$D$2:$D$52,"Bid",'Deal ledger'!$F$2:$F$52,1,'Deal ledger'!$P$2:$P$52,"Yes") | Six parties submitted indications of interest (p.24); "5 bidder groups" (p.27) | Conflict preserved; preferred reading = six parties (background, specific); the reasons’ group-basis count may reflect the two combining bidders (see Q4).
+Round 2 submitting/communicating units | =SUMIFS('Deal ledger'!$Q$2:$Q$52,'Deal ledger'!$D$2:$D$52,"Bid",'Deal ledger'!$F$2:$F$52,2,'Deal ledger'!$P$2:$P$52,"Yes") | "negotiated with the Buyer Group as well as two other bidding groups" (p.27) | Buyer Group, Bidder 2, Bidder 3.
+Inferred non-submitters (R1) | =SUMIFS('Deal ledger'!$Q$2:$Q$52,'Deal ledger'!$D$2:$D$52,"Did not submit",'Deal ledger'!$AJ$2:$AJ$52,"Inferred: residual",'Deal ledger'!$P$2:$P$52,"Yes") | Derived 15 signers − 6 submitters | Base assumption: all six submitters were among the 15 signers; if not, the residual rises (see Q4).
+Stated R1 exits (dropped) | =SUMIFS('Deal ledger'!$Q$2:$Q$52,'Deal ledger'!$D$2:$D$52,"Dropped by target",'Deal ledger'!$AJ$2:$AJ$52,"Stated",'Deal ledger'!$P$2:$P$52,"Yes") | The eliminated parties were notified (p.24) | The two submitters below $80.00.
+Stage balance (R1) | Entrants 15 (NDA signers) − stated exits 2 (dropped below-$80 submitters) − inferred exits 9 (non-submitters) = 4 continuing (the four bidders advanced to the final round). Inferred share of R1 exits: 9/11 (82%).
+Stage balance (R2) | Round 2 units: 4 bidders invited → two combine as Bidder 3 (units 4 → 3; R030–R032). Of the three units, Bidder 3 did not submit a written offer (out 12/10; R040) and Bidder 2 was not selected at signing (out by 12/14; R049). Remaining: 1 — the Buyer Group (winner). All R2 exits are stated; the two membership closures use Count-0 "Inferred: identity" rows (R031–R032).
+Outcome tallies | Occurrences/affected units (not unique permanent exits): Dropped by target 2; Did not submit 10 (9 inferred + 1 stated); Not selected at signing 1; Joined group 2 members. Winner: Buyer Group. Organisations vs units: 15 NDA signer organisations; 6 R1 submitting parties; 3 R2 independent units; 1 winner.
+6. Comparability and inputs
+Scope / currency | Other-scope proposals: none observed — all proposals were for whole-company equity. Currency: USD throughout; no conversions. Contingent consideration: none; no CVRs.
+Unusual consideration | Longview rollover (equity in Parent for 3,012,050 shares, $250m worth) is not public consideration; all other Longview shares receive $83.00 cash. Standstill provisions limit post-signing bidding by the 15 signers. No go-shop. Reverse termination fee $510m.
+Market benchmarks | Agreed price $83.00; premium 38.8% to the 07/02/2014 unaffected price (calculated implied unaffected price ≈ $59.80 = 83.00 / 1.388); 12/12/2014 close $77.67 (last trading day before announcement); 01/30/2015 close $81.71; 2014 Q4 high/low $81.97 / $63.21; 2015 Q1-through-01/30 high/low $81.95 / $81.00. [X-021, X-026]
+Optional calculations | Equity value at $83.00 × 99,455,151 shares = $8,254,777,533 (outstanding-basis only; excludes options/RSUs/PSUs and any dilution; not a filing-stated total). Premium to 12/12/2014 close = 6.9% (83.00/77.67 − 1). [X-003, X-002]
+Glossary | NDA = confidentiality/non-disclosure agreement. Standstill = contractual limit on acquiring shares/announcing bids (here, also barring higher bids after a definitive agreement). IOI = indication of interest. Rollover = holder contributes shares to the buyer’s vehicle instead of receiving cash. Go-shop = post-signing solicitation window (none here). HSR = U.S. Hart-Scott-Rodino antitrust waiting period (early termination 01/07/2015). ARC = Canada Advance Ruling Certificate (issued 01/14/2015). Bound only = one-sided communicated price limit, not a submitted level. Reverse termination fee = fee payable by the buyer/Parent ($510m here). [X-018, X-019]
+##### SHEET 'Questions' (20 rows x 8 cols)
+HEADER: Q | Review topic | Recommended answer | Why and source | Affected rows/fields | Consequence of changing it | Status | Reviewer note
+--- row 2
+   Q: Q1
+   Review topic: Process and round map; rejected boundaries
+   Recommended answer: Adopt one process (Process 1) with two analytical rounds: R1 opened at the first-week-of-October 2014 confidentiality/standstill wave (Not final; preliminary IOI stage) and R2 the final round opened 11/03/2014 (Announced as final). Keep round 0 for pre-opening approaches. Reject a separate R3 for the November request for final bids: it is the continuing purpose of R2 and the smallest map preserving real transitions. Reject the 08/13 sale decision, 08/19 press release, Industry Participant contacts and the 10/30 deadline as the R1 anchor (no target outreach wave is reported; the NDA wave is the first target-organized admission step). No go-shop; no post-signing solicitation; no process termination/restart.
+   Why and source: Instruction 6.3 anchor order and round rules; P-011 ("J.P. Morgan was contacted by 27 potential participants"), P-013 (NDA wave), P-017 (four to the final round), P-020/P-021 (final-bid timetable), P-031 (signing). The reasons describe the same process (X-008a).
+   Affected rows/fields: R016, R028, R009, R013, R008/R015, R019/R020
+   Consequence of changing it: If a third round were adopted, R2 finality and round-bidder tallies split and the 12/10 bids would need re-rounding; if the anchor moved to 08/13, R1 scope would include parties that never signed and R1 bidder counts would not match the 15-signer base.
+--- row 3
+   Q: Q2
+   Review topic: Deadline history and treatments
+   Recommended answer: Keep: 10/30/2014 IOI deadline — Enforced; 12/05/2014 final-bid date — superseded before arrival by the 12/04–05 revision (remains in history; no milestone row; treated Extended on the revised row); 12/10/2014 final-bid deadline — Extended (improved bids requested for 12/12); 12/12/2014 — Enforced. No "Late bids accepted": Bidder 2’s increase after 10/30 was target-solicited continuing negotiation, not late acceptance.
+   Why and source: P-014/P-016 (IOIs due and submitted), P-017 (advancement on the bids in hand), P-020/P-021 (revision 12/05→12/10), P-026 (improvement to 12/12), P-029 (bids), P-030 (selection).
+   Affected rows/fields: R019, R020, R034, R036, R041, R042 (Due date / Deadline treatment fields; Summary deadline map)
+   Consequence of changing it: Different labels change the Summary deadline map; marking 10/30 "Late bids accepted" would wrongly reclassify the target-solicited Bidder 2 revision.
+--- row 4
+   Q: Q3
+   Review topic: Bidder 3 membership and unit reconciliation
+   Recommended answer: Recommended reading: Bidder 3 was formed by the two final-round bidders other than the Buyer Group and Bidder 2 (Unnamed financial bidders A and B; R024/R025). This is the only reading that reconciles the four invited bidders to the three bidding units active in December and the Reasons’ statement that the Company "negotiated with the Buyer Group as well as two other bidding groups". The filing does not name the members; keep R031/R032 as Count-0 "Inferred: identity" rows and do not treat the names as settled.
+   Why and source: P-016 (four bidders at/above $80; specific prices for Buyer Group and the $80–85 bidder), P-017 (four allowed to proceed; two eliminated), P-018 (two requested to work together; "Bidder 3"), P-025 (December record: Buyer Group, Bidder 2 and a verbal indication from Bidder 3 only), X-008a ("two other bidding groups").
+   Affected rows/fields: R030, R031, R032, R024, R025, R028, R036
+   Consequence of changing it: If the pair instead included an eliminated below-$80 bidder, an invited bidder would have disappeared without a disclosed outcome and the three-unit December record would not reconcile; the Unit-count statements in Summary would need rework.
+--- row 5
+   Q: Q4
+   Review topic: NDA quantities, overlap, type splits and the 6-vs-5 conflict
+   Recommended answer: Keep: 15 new NDA signers, all financial buyers (auction screen MET); 27 contacts split 3 strategic + 24 financial; six submitting parties in Round 1 (Background p.24) as the primary count, with the Reasons’ "5 bidder groups" (p.27) preserved as a conflicting group-basis statement (two combining bidders counted as one group, or drafting variance); nine non-submitters as the residual 15 − 6 with the base assumption stated. Note: the six submitters are assumed to be among the 15 signers; if not, the residual rises.
+   Why and source: P-011, P-013, P-016, P-017; X-008a ("5 bidder groups"); X-009 (standstills); P-021 arithmetic.
+   Affected rows/fields: R011, R012, R017, R021, R022–R027
+   Consequence of changing it: Changing the submitting count to five would make the residual ten and alter the R1 stage balance; changing the NDA base would alter the auction-screen statement and Summary totals.
+--- row 6
+   Q: Q5
+   Review topic: Participation outcomes, agency and inferred closings
+   Recommended answer: Adopt: 9 non-submitters — Did not submit (Inferred: residual; Unknown / Not stated; assigned to the 10/30/2014 deadline). Two below-$80 submitters — Dropped by target (Stated; Target; Lower offer than rivals). Bidder 3 — Did not submit (Stated; Both — target discouragement before non-submission; Value at or below market price). Bidder 2 — Not selected at signing (Stated; Target; Lower offer than rivals). Unnamed financial bidders A and B — Count-0 Inferred: identity rows. Industry Participant never entered: contacts and target decisions only, no outcome row.
+   Why and source: P-013/P-016 (base and six submitters), P-017 (eliminations), P-025 (verbal indication; no written offer), X-008a/b ($81.50 best and final vs $83.00), P-010/P-012 (Industry Participant exclusion).
+   Affected rows/fields: R021, R029, R040, R049, R031, R032, R008–R015
+   Consequence of changing it: Agency labels feed the outcome tallies and the Summary balance; converting the residual to individual exits is not supported and would fabricate identities; treating Industry Participant as entered would require an invented outcome.
+--- row 7
+   Q: Q6
+   Review topic: Formality and conditions levels
+   Recommended answer: Keep: IOIs Informal (preliminary non-binding indications; no supported formal signal) with Conditions level Insufficient evidence (price only; October diligence access existed but no conditions are stated). Final bids: Buyer Group Formal/Light (returned agreement markups; financing commitment documents 12/06; no diligence condition stated); Bidder 2 Formal with 12/10 Insufficient evidence and 12/12 Light (financing commitment documents submitted); Bidder 3 Informal with a bound-only price and Insufficient evidence. The 12/06 markups and 12/08 revised drafts belong to the 12/10 bids (no separate rows). No None, no Heavy, and no late-reconfirmation rows are created.
+   Why and source: P-016 (IOIs), P-017 (advancement), P-022 (12/06 comments and financing documents), P-025 (final bids; comparative conditionality), P-029 (revised drafts and financing documents), P-021 (documents "in advance"), X-027 (committed debt/equity financing). The winner reaches signing with Formal rows (R037, R045, R046); no None, Heavy or late-reconfirmation rows arise.
+   Affected rows/fields: R022–R027, R037, R038, R039, R044, R045, R046 (Formality / Conditions level / Conditions detail)
+   Consequence of changing it: Reclassifying the IOIs as Heavy by context would contradict the instruction (substantive diligence access had preceded them); moving the 12/06 markups into their own rows would create duplicate draft events.
+--- row 8
+   Q: Q7
+   Review topic: Scope, currency, price interpretation and normalization
+   Recommended answer: Keep: no other-scope proposals (all whole-company); all amounts USD, no conversions; Bidder 3’s "not above approximately $78" recorded as a Bound-only price (Price high 78.00; approximate, based on the then-current stock price — flagged). Unnamed financial bidder B’s "range reached at least $80.00" is ambiguous (floor on the range vs level reached); endpoints left blank and kept in text. Longview’s rollover is equity in Parent, not public consideration — all other shares receive $83.00 cash; the ~$8.25bn equity value is an outstanding-basis calculation (83.00 × 99,455,151), not a filing-stated total.
+   Why and source: P-016 (ranges), P-025 (verbal indication), X-002/X-003 (consideration; shares), X-013 (rollover $250m), X-015 (3,012,050 shares), X-011–X-014 (funds).
+   Affected rows/fields: R024, R025, R039, R043, R046; Summary comparability inputs
+   Consequence of changing it: Reading B as a floor would add a Bound-only row and change the R1 price display; blanking Bidder 3’s Price high would lose a disclosed bound; adding the rollover to public consideration would misstate per-share cash.
+--- row 9
+   Q: Q8
+   Review topic: Dates, assigned Working dates and same-day order
+   Recommended answer: Keep the disclosed conventions: NDA wave Working date 10/01 (first day of the "first week of October"; the relative order with the 10/03 board meeting is not stated — display convention); J.P. Morgan retention 07/01 (Assigned: sequence, to preserve reading order ahead of the dated 07/03 JANA filing); November projections update 11/15 (period midpoint); Bidder 3 formation 11/04 (first admissible day after 11/03); the Bidder 3 non-submission assigned to the 12/10 deadline; same-day sequences 12/10 (deadline → bids → improvement revision) and 12/12 (deadline → rollover approval → Bidder 2 → Buyer Group $82.50 → $83.00); 12/13 approval before 12/14 signing and announcement.
+   Why and source: Instruction 8.1 rules; P-013 (first week of October), P-012 (10/03 meeting), P-005 (July retention), P-019 (November projections), P-018 (formation after 11/03), P-025/P-026/P-029 (December sequence), P-030/P-031.
+   Affected rows/fields: R003, R016–R018, R033, R030–R032, R040, R036–R041, R045–R050
+   Consequence of changing it: These choices affect only display order and the sort key, never the source facts; moving a Working date could reorder same-date rows within a round (relevant to the December sequence and the R1/R2 boundary).
+--- row 10
+   Q: Q9
+   Review topic: Bidder types and adviser clients
+   Recommended answer: Keep all bidders Financial (all 15 signers were financial buyers; no strategic party advanced) and Industry Participant Strategic. Adviser clients are clear: J.P. Morgan and Wachtell Lipton for the Company, Simpson Thacher for Parent/Merger Sub, Innisfree (proxy solicitor) for the Company. The unnamed financial advisor present at the 06/18/2014 board meeting is not attributed to any named firm and Innisfree’s engagement date is not disclosed; both limitations are stated rather than resolved.
+   Why and source: P-011/P-013 (three strategic vs 15 financial), P-008 (Industry Participant antitrust exclusion), P-004/P-005 (advisers), X-028 (Simpson Thacher notices), X-023 (Innisfree fees; no engagement date).
+   Affected rows/fields: R002, R003, R008, R011, R012, R017, R051; Summary Type/advisers blocks
+   Consequence of changing it: A type change would alter the Summary type statements and, for any bidder, the research classification; an adviser-client correction would change the adviser rows but not the commercial account.
+Check results (instruction section 13) — run at build, 09/19/2026
+--- row 13
+   Q: 1. Coverage and materiality
+   Review topic: Passed
+   Recommended answer: All disclosed core offers, contacts/NDAs, information/selection changes, participation outcomes, process transitions, signing and publicity are represented. Routine 12/06 comments and 12/08 draft exchanges are deliberately folded into the 12/10 bids; inferred closing rows are explicit (R021, R031, R032).
+--- row 14
+   Q: 2. Counts and population
+   Review topic: Qualified
+   Recommended answer: Summary arithmetic matches included ledger contributions (NDA 15; contacts 28 incl. Industry Participant; R1 submissions 6; R2 units 3). Source qualifiers preserved: the Reasons’ "5 bidder groups" conflicts with the Background’s six submitters; the 9-residual assumes all six submitters were signers; the Bidder 3 identity reading affects the unit break-down (see Q3/Q4).
+--- row 15
+   Q: 3. Participation continuity
+   Review topic: Passed
+   Recommended answer: Every participant that entered is closed: 9 inferred non-submitters; 2 dropped; 2 joined-group Count-0 identity rows; 1 did not submit; 1 not selected at signing; the Buyer Group remains as winner. Entrant stock never negative; Industry Participant never entered and has no outcome row. The closure mechanism for Unnamed financial bidders A/B depends on the Q3 reading.
+--- row 16
+   Q: 4. Dates and order
+   Review topic: Passed
+   Recommended answer: Programmatic checks: every row has a Working date and Date method; sorting by Working date with # as tie-breaker reproduces the ledger order (non-decreasing); Working dates lie within their Date from/Date to windows; Date basis/method pairs are valid (Reported day = Reported; Inferred day = Inferred); deadline communication, due dates and signing are kept distinct. Based on the filing text; not externally validated.
+--- row 17
+   Q: 5. Offers and classifications
+   Review topic: Qualified
+   Recommended answer: Formality and conditions assessments are reasoned; Conditions detail strings use the fixed format on every Bid/Bid reaffirmed row. Insufficient-evidence levels remain for the preliminary IOIs and Bidder 2’s first final bid; Bidder 3 is a Bound-only price; no Heavy or None classifications were required. Offer updates, groups, reaffirmations and signing are not mistaken for extra priced submissions.
+--- row 18
+   Q: 6. Structure and consistency
+   Review topic: Passed
+   Recommended answer: One Round opened row per round with a Round finality value; R1 anchor tag present with rejected candidates as rows; every Deadline row carries a treatment matching the Summary map; Page populated wherever Source is populated (R051 uses "A-46" for the annex); tags and structured fields agree; Row ids unique; Include defaults to Yes.
+--- row 19
+   Q: 7. Evidence
+   Review topic: Passed
+   Recommended answer: Every quotation in Why and evidence was programmatically recovered exactly from its cited Source text passage (token match, allowing only declared whitespace/quote normalization), and pages were carried from the filing. Interpretation validity was checked by reading (see Q3, Q5, Q8).
+--- row 20
+   Q: 8. Review and workbook operation
+   Review topic: Qualified
+   Recommended answer: Data validations, hidden sheets, column groups, autofilter and layout were created programmatically and re-read with openpyxl; LibreOffice headless crashed in this environment (even on a trivial test file), so formulas were NOT recalculated in a spreadsheet application. SUMIFS results were instead verified by simulating the same aggregation against the delivered ledger (NDA 15; contacts 28 incl. Industry Participant; R1 submissions 6; R2 units 3; inferred residual 9). Internal Source links and the AI-original baseline comparison (red-bold conditional formatting) were not rendered or tested in Excel; links are static and may need refreshing after sorting; the baseline is a values-only snapshot.
+##### SHEET 'Source text' (visible, 64 rows) -- skipped
+##### SHEET 'AI original' (hidden, 54 rows) -- skipped
+##### SHEET 'Lists' (hidden, 41 rows) -- skipped

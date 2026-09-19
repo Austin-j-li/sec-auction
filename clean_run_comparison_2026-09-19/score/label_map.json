@@ -1,0 +1,26 @@
+{
+ "providence-worcester": {
+  "K": "run2/full_providence-worcester",
+  "L": "run1/v15_providence-worcester",
+  "M": "run2/v15_providence-worcester",
+  "N": "run1/v18_providence-worcester",
+  "P": "run1/full_providence-worcester",
+  "Q": "run2/v18_providence-worcester"
+ },
+ "mac-gray": {
+  "K": "run1/v15_mac-gray",
+  "L": "run2/v18_mac-gray",
+  "M": "run1/full_mac-gray",
+  "N": "run1/v18_mac-gray",
+  "P": "run2/v15_mac-gray",
+  "Q": "run2/full_mac-gray"
+ },
+ "petsmart": {
+  "K": "run1/v18_petsmart",
+  "L": "run2/v18_petsmart",
+  "M": "run1/v15_petsmart",
+  "N": "run2/v15_petsmart",
+  "P": "run1/full_petsmart",
+  "Q": "run2/full_petsmart"
+ }
+}

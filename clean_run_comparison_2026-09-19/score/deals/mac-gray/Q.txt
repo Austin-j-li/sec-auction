@@ -1,0 +1,1493 @@
+##### SHEET 'Deal ledger' (56 rows x 40 cols)
+HEADER: # | When | Who | What happened | Process | Round | Type | Terms or outcome | Formality | Conditions level | Why and evidence | Source | Review | Reviewer note | Correction | Row id | Include | Count | Date from | Date to | Working date | Date basis | Date method | Price low | Price high | Price kind | Price origin | Currency | All cash | Cash at closing | Conditions detail | Due date | Deadline treatment | Round finality | Decided by | Exit reason | Outcome basis | Page | Related rows | Deal
+--- row 2
+   #: 1
+   When: 10/23/2012
+   Who: BofA Merrill Lynch (financial adviser, Mac-Gray)
+   What happened: Adviser engaged
+   Round: 0
+   Terms or outcome: Engaged by Mac-Gray for the 2011-2012 Discussions — the possible acquisition of CSC by Mac-Gray (target-as-acquirer mandate); pre-process context, not a sale of Mac-Gray.
+   Why and evidence: — Stated engagement: "Mac-Gray engaged BofA Merrill Lynch on October 23, 2012" (p.27).
+   Source: P-002
+   Row id: R001
+   Include: Yes
+   Date from: 2012-10-23
+   Date to: 2012-10-23
+   Working date: 2012-10-23
+   Date basis: Reported day
+   Date method: Reported
+   Page: 27
+   Related rows: R006; R007 (later mandates)
+   Deal: Mac-Gray/CSC
+--- row 3
+   #: 2
+   When: 04/05/2013
+   Who: Mac-Gray Board of Directors
+   What happened: Target sale decision
+   Process: 1
+   Round: 0
+   Terms or outcome: Board reviewed the completed CSC sale to Pamplona and industry M&A activity; authorized management to work with BofA Merrill Lynch on transactional opportunities, including with strategic party "Party A"; deferred further consideration to the 05/09/2013 meeting.
+   Why and evidence: — Stated decision: "authorized Mac-Gray management to work with BofA Merrill Lynch to explore transactional opportunities that might be available to Mac-Gray, including opportunities with another strategic party, whom we refer to as Party A" (p.27).— Deferral: "The Board also determined to further consider Mac-Gray's strategic alternatives at its meeting scheduled for May 9, 2013" (p.27).
+   Source: P-003
+   Review: Q1
+   Row id: R002
+   Include: Yes
+   Date from: 2013-04-05
+   Date to: 2013-04-05
+   Working date: 2013-04-05
+   Date basis: Reported day
+   Date method: Reported
+   Page: 27
+   Related rows: R011 (rejected R1 boundary candidate)
+   Deal: Mac-Gray/CSC
+--- row 4
+   #: 3
+   When: 04/08/2013
+   Who: Party A (potential strategic acquirer)
+   What happened: Target interest
+   Process: 1
+   Round: 0
+   Type: Strategic
+   Terms or outcome: BofA Merrill Lynch, on the Board’s instruction, telephoned Party A about a possible business combination; Party A indicated it might consider one. First sale-related contact with Party A. Party A is inside the 15 potential strategic buyers contacted in the June 24 wave (R012, Count 15), which already counts it; Count 0 avoids double counting.
+   Why and evidence: — Stated contact and receptiveness: "representatives of BofA Merrill Lynch, as instructed by the Board, telephoned a representative of Party A to discuss generally a possible business combination between Party A and Mac-Gray. During this call, the representative of Party A indicated that Party A might consider a business combination with Mac-Gray" (p.27).— Party A is one of the 15 strategic parties in the June 24 wave: "50 parties, including CSC and Pamplona, who together we refer to as CSC/Pamplona, and Party A, to solicit potential interest in a transaction with Mac-Gray, 15 of which were potential strategic buyers" (p.31-32).
+   Source: P-004; P-022
+   Review: Q3
+   Row id: R003
+   Include: Yes
+   Count: 0
+   Date from: 2013-04-08
+   Date to: 2013-04-08
+   Working date: 2013-04-08
+   Date basis: Reported day
+   Date method: Reported
+   Page: 27
+   Related rows: R012 (cohort contains Party A); R009 (Party A June 21 proposal)
+   Deal: Mac-Gray/CSC
+--- row 5
+   #: 4
+   When: 05/09/2013
+   Who: Mac-Gray Board of Directors
+   What happened: Target decision
+   Process: 1
+   Round: 0
+   Terms or outcome: Board discussed whether to approach third parties about a potential sale; formed the Transaction Committee (Thomas Bullock and Paul Daoust) to recommend and engage a financial adviser; concluded to revisit the review at its next meeting.
+   Why and evidence: — Stated discussion: "the Board engaged in a general discussion concerning whether it might be advisable to approach and discuss a potential sale transaction with third parties at this time as a means by which to deliver value to the stockholders of Mac-Gray" (p.28).— Transaction Committee formed: "the Board formed a transaction committee at this meeting, which we refer to as the Transaction Committee, and appointed Thomas Bullock and Paul Daoust, both independent directors, to serve as its members" (p.28).— Deferral: "The Board concluded that it would discuss the review of strategic alternatives, including engaging in a potential sale process, at its next meeting" (p.28).
+   Source: P-006; P-007
+   Review: Q1
+   Row id: R004
+   Include: Yes
+   Date from: 2013-05-09
+   Date to: 2013-05-09
+   Working date: 2013-05-09
+   Date basis: Reported day
+   Date method: Reported
+   Page: 28
+   Related rows: R007
+   Deal: Mac-Gray/CSC
+--- row 6
+   #: 5
+   When: 05/09/2013
+   Who: Goodwin Procter LLP (outside legal counsel, Mac-Gray)
+   What happened: Adviser service observed
+   Process: 1
+   Round: 0
+   Terms or outcome: Goodwin Procter LLP, outside legal counsel to Mac-Gray, first shown acting on the strategic-alternatives mandate at the May 9, 2013 Board meeting (fiduciary-duty overview); engagement date and engagement letter not disclosed.
+   Why and evidence: — Earliest observed service: "representatives from BofA Merrill Lynch and Goodwin Procter LLP, outside legal counsel to Mac-Gray, were also in attendance for all or portions of the meeting" (p.27-28).— Fiduciary overview and further service: "a representative of Goodwin Procter provided an overview of the Board's fiduciary duties" (p.28).
+   Source: P-005; P-007
+   Row id: R005
+   Include: Yes
+   Date from: 2013-05-09
+   Date to: 2013-05-09
+   Working date: 2013-05-09
+   Date basis: Reported day
+   Date method: Reported
+   Page: 27
+   Related rows: R004
+   Deal: Mac-Gray/CSC
+--- row 7
+   #: 6
+   When: 05/15/2013
+   Who: BofA Merrill Lynch (financial adviser, Mac-Gray)
+   What happened: Adviser ended
+   Round: 0
+   Terms or outcome: Termination of the 10/23/2012 engagement for the 2011-2012 Discussions: Transaction Committee determined to terminate on 05/14/2013; letter sent 05/15/2013. BofA Merrill Lynch was simultaneously a candidate for the new strategic-alternatives mandate.
+   Why and evidence: — Stated determination and letter: "the Transaction Committee determined to terminate BofA Merrill Lynch's engagement letter entered into for purposes of the 2011-2012 Discussions" (p.29). "On May 15, 2013, Mac-Gray sent a letter to BofA Merrill Lynch terminating their engagement in connection with the 2011-2012 Discussions" (p.29).
+   Source: P-009; P-010
+   Row id: R006
+   Include: Yes
+   Date from: 2013-05-15
+   Date to: 2013-05-15
+   Working date: 2013-05-15
+   Date basis: Reported day
+   Date method: Reported
+   Page: 29
+   Related rows: R001; R007
+   Deal: Mac-Gray/CSC
+--- row 8
+   #: 7
+   When: 05/30/2013 (Board approval) – 05/31/2013 (engagement letter)
+   Who: BofA Merrill Lynch (financial adviser, Mac-Gray)
+   What happened: Adviser engaged
+   Process: 1
+   Round: 0
+   Terms or outcome: Board unanimously approved engaging BofA Merrill Lynch as financial adviser for the strategic-alternatives review (three banks invited 05/10/2013; presentations 05/22 and 05/29/2013); engagement letter entered 05/31/2013, including a restriction on BofA Merrill Lynch sourcing buyer acquisition financing without Mac-Gray’s prior written consent.
+   Why and evidence: — Selection process: "determined to invite three nationally recognized investment banks to submit proposals" (p.28).— Board approval: "Based on the recommendation of the Transaction Committee, the Board unanimously approved the engagement of BofA Merrill Lynch on the terms discussed at this meeting" (p.29).— Engagement letter and restriction: "On May 31, 2013, Mac-Gray entered into an engagement letter with BofA Merrill Lynch with respect to the Board's undertaking a review of strategic alternatives, including a potential sale process, and in which BofA Merrill Lynch agreed not to engage as a possible source of new acquisition financing for any potential buyers in connection with any such sale process without Mac-Gray's prior written consent" (p.30). Engagement timing: Board approval 05/30/2013; engagement letter 05/31/2013 (Working date assigned to the first day; Assigned: bound).
+   Source: P-008; P-014; P-016
+   Review: Q1
+   Row id: R007
+   Include: Yes
+   Date from: 2013-05-30
+   Date to: 2013-05-31
+   Working date: 2013-05-30
+   Date basis: Reported interval
+   Date method: Assigned: bound
+   Page: 29
+   Related rows: R004; R006
+   Deal: Mac-Gray/CSC
+--- row 9
+   #: 8
+   When: 05/30/2013
+   Who: Moab Partners, L.P. and affiliates (activist stockholder); Mac-Gray
+   What happened: Activist involvement
+   Process: 1
+   Round: 0
+   Terms or outcome: Moab’s proxy contest: Moab-nominated Michael M. Rothenberg (Moab co-founder and General Partner) and James E. Hyman elected as directors in place of incumbent nominees; Board size reduced to seven; Moab held approximately 9% of shares. Rothenberg was later excluded from the sale-process evaluation because Moab sought a possible equity rollover (R010, R016).
+   Why and evidence: — Stated election and proxy contest: "the Mac-Gray stockholders elected as directors Michael M. Rothenberg and James E. Hyman, candidates nominated by Mac-Gray's stockholder, Moab Partners, L.P. and certain of its affiliates, which we refer collectively to as Moab. Mac-Gray and Moab engaged in a proxy contest leading up to the annual meeting" (p.29).— Moab stake at the June 12 orientation: "At the time of this meeting, Moab beneficially owned approximately 9% of Mac-Gray's outstanding common stock" (p.30).
+   Source: P-015; P-017
+   Row id: R008
+   Include: Yes
+   Date from: 2013-05-30
+   Date to: 2013-05-30
+   Working date: 2013-05-30
+   Date basis: Reported day
+   Date method: Reported
+   Page: 29
+   Related rows: R010; R016
+   Deal: Mac-Gray/CSC
+--- row 10
+   #: 9
+   When: 06/21/2013
+   Who: Party A (potential strategic acquirer)
+   What happened: Bid
+   Process: 1
+   Round: 0
+   Type: Strategic
+   Terms or outcome: Unsolicited all-cash proposal to purchase Mac-Gray at $17.00–$19.00 per share. Made before any NDA or substantive diligence access (NDA signed 08/05/2013, R027); first contact was the 04/08/2013 call (R003). Still standing when round 1 was evaluated, so Party A counts as a round-1 participant although this bid row sits in round 0.
+   Formality: Informal
+   Conditions level: Heavy
+   Why and evidence: — Stated proposal: "On June 21, 2013, Party A submitted an unsolicited proposal to the Mac-Gray Board of Directors offering to purchase Mac-Gray for an all-cash purchase price of $17.00 to $19.00 per share, which we refer to as the Party A June 21 proposal" (p.30).— No formal signal and no substantive access yet: "outside counsel to Party A and representatives of Goodwin Procter negotiated the terms of a confidentiality and standstill agreement, but did not come to agreement on the terms of the customer and employee non-solicitation provisions" (p.33). Formality: preliminary exploratory proposal, no supported formal signal — Informal. Conditions: Heavy by context — made before any NDA or substantive diligence access.
+   Source: P-018; P-030
+   Review: Q4
+   Row id: R009
+   Include: Yes
+   Count: 1
+   Date from: 2013-06-21
+   Date to: 2013-06-21
+   Working date: 2013-06-21
+   Date basis: Reported day
+   Date method: Reported
+   Price low: 17
+   Price high: 19
+   Price kind: Bidder range
+   Price origin: Stated
+   Currency: USD
+   All cash: Yes
+   Conditions detail: Fin: not stated; DD required: not stated; DD open: no; Excl: not stated
+   Page: 30
+   Related rows: R003 (first contact); R012/R011 (round-1 participation); R027 (NDA)
+   Deal: Mac-Gray/CSC
+--- row 11
+   #: 10
+   When: 06/24/2013
+   Who: Mac-Gray Board of Directors
+   What happened: Target decision
+   Process: 1
+   Round: 0
+   Terms or outcome: Board established the Special Committee of six independent and disinterested directors (Bullock, Daoust, Hyman, Meagher, Percelay, Robinson; Bullock chairman) and excluded Mr. MacDonald and Mr. Rothenberg from the Board’s evaluation of strategic alternatives because they could be asked to partner with a potential acquirer; Transaction Committee became a sub-committee.
+   Why and evidence: — Stated establishment: "the Board then established the Special Committee, comprised of the six independent and disinterested members of the Board (namely, Mr. Bullock, Mr. Daoust, Mr. Hyman, William F. Meagher, Bruce A. Percelay and Alastair G. Robinson)" (p.30).— Exclusions: "the Board decided, and Mr. MacDonald and Mr. Rothenberg agreed, that it would be appropriate to exclude Mr. MacDonald and Mr. Rothenberg from the Board's evaluation of strategic alternatives and any negotiations with third parties that might take place" (p.30).
+   Source: P-019
+   Review: Q1
+   Row id: R010
+   Include: Yes
+   Date from: 2013-06-24
+   Date to: 2013-06-24
+   Working date: 2013-06-24
+   Date basis: Reported day
+   Date method: Reported
+   Page: 30
+   Related rows: R011
+   Deal: Mac-Gray/CSC
+--- row 12
+   #: 11
+   When: 06/24/2013
+   Who: Mac-Gray Special Committee
+   What happened: Round opened
+   Process: 1
+   Round: 1
+   Terms or outcome: R1 anchor: Special Committee’s 06/24/2013 determination to consider a potential sale and to approach 50 parties (15 potential strategic buyers; 35 potential financial buyers), executed by BofA Merrill Lynch outreach beginning within days (first NDA 06/28/2013). Other candidate anchors: R002 (04/05/2013 authorization), R003 (04/08/2013 Party A call), R007 (05/31/2013 engagement letter), R012–R013 (first outreach wave), R014 (06/28/2013 first NDA). Purpose: solicit preliminary indications of interest, with packages furnished to NDA signers and IOIs instructed by 07/23/2013 (R017). Round-1 participant set: Party A (round-0 proposal standing, R009), Party B, Party C, CSC/Pamplona.
+   Why and evidence: — Stated determination and approach scope: "the Special Committee concluded that it would be in the best interests of stockholders to consider a potential sale of Mac-Gray" (p.31). "the Special Committee determined to approach a total of 50 parties, including CSC and Pamplona, who together we refer to as CSC/Pamplona, and Party A, to solicit potential interest in a transaction with Mac-Gray, 15 of which were potential strategic buyers and 35 of which were potential financial buyers, including private equity firms" (p.31-32).
+   Source: P-021; P-022
+   Review: Q1
+   Row id: R011
+   Include: Yes
+   Date from: 2013-06-24
+   Date to: 2013-06-24
+   Working date: 2013-06-24
+   Date basis: Reported day
+   Date method: Reported
+   Round finality: Not final
+   Page: 31
+   Related rows: R009; R010; R002; R003; R007; R012–R014
+   Deal: Mac-Gray/CSC
+--- row 13
+   #: 12
+   When: after 06/24/2013; late June through August 2013 (individual contact dates not disclosed)
+   Who: Mac-Gray (via BofA Merrill Lynch) → 15 potential strategic buyers
+   What happened: Contact
+   Process: 1
+   Round: 1
+   Type: Strategic
+   Terms or outcome: Outreach to the 15 potential strategic buyers identified at the June 24 Special Committee meeting, in accordance with its directives. Parties contacted include Party A (first contacted 04/08/2013, R003 — Count 0 there) and CSC/Pamplona. Count 15 = the cohort as described; treated as a single contact wave.
+   Why and evidence: — Stated outreach: "During the next several weeks, in accordance with the directives of the Special Committee, BofA Merrill Lynch contacted the strategic and financial parties identified at the June 24th Special Committee meeting" (p.32).— Cohort size and composition: "15 of which were potential strategic buyers" (p.31-32). Working date convention: the wave began after the 06/24/2013 directive; individual contact dates are not disclosed (Assigned: bound to the first day of the reported window).
+   Source: P-023; P-022
+   Review: Q3; Q7
+   Row id: R012
+   Include: Yes
+   Count: 15
+   Date from: 2013-06-24
+   Date to: 2013-08-27
+   Working date: 2013-06-24
+   Date basis: Approximate window
+   Date method: Assigned: bound
+   Page: 32
+   Related rows: R003 (Party A, Count 0 there); R011; R013
+   Deal: Mac-Gray/CSC
+--- row 14
+   #: 13
+   When: after 06/24/2013; late June through August 2013 (individual contact dates not disclosed)
+   Who: Mac-Gray (via BofA Merrill Lynch) → 35 potential financial buyers
+   What happened: Contact
+   Process: 1
+   Round: 1
+   Type: Financial
+   Terms or outcome: Outreach to the 35 potential financial buyers including private equity firms, in accordance with the Special Committee’s directives. Includes Party B and Party C, later recorded individually at the NDA stage. Count 35 = the cohort as described.
+   Why and evidence: — Stated outreach: "BofA Merrill Lynch contacted the strategic and financial parties identified at the June 24th Special Committee meeting" (p.32).— Cohort size and composition: "35 of which were potential financial buyers, including private equity firms" (p.31-32). Working date convention: the wave began after the 06/24/2013 directive; individual contact dates are not disclosed (Assigned: bound to the first day of the reported window).
+   Source: P-023; P-022
+   Review: Q3; Q7
+   Row id: R013
+   Include: Yes
+   Count: 35
+   Date from: 2013-06-24
+   Date to: 2013-08-27
+   Working date: 2013-06-24
+   Date basis: Approximate window
+   Date method: Assigned: bound
+   Page: 32
+   Related rows: R011; R012
+   Deal: Mac-Gray/CSC
+--- row 15
+   #: 14
+   When: 06/28/2013
+   Who: Party B (financial bidder)
+   What happened: NDA signed
+   Process: 1
+   Round: 1
+   Type: Financial
+   Terms or outcome: Executed a confidentiality and standstill agreement with Mac-Gray on Mac-Gray’s form (individually negotiated; no material variances) and received the informational package; standstill carried a sunset allowing confidential proposals on announcement of a business combination or change of control.
+   Why and evidence: — Stated execution and package: "Later on June 28, 2013, Party B, entered into a confidentiality and standstill agreement with Mac-Gray and was provided with an informational package for the purpose of providing Party B with data to formulate a preliminary indication of interest" (p.32).— Form and standstill terms: "entered into confidentiality agreements with Mac-Gray on a form provided by Mac-Gray, the terms of which were individually negotiated with potential bidders, but did not vary materially from the form provided" (p.32).
+   Source: P-025; P-023
+   Row id: R014
+   Include: Yes
+   Count: 1
+   Date from: 2013-06-28
+   Date to: 2013-06-28
+   Working date: 2013-06-28
+   Date basis: Reported day
+   Date method: Reported
+   Page: 32
+   Deal: Mac-Gray/CSC
+--- row 16
+   #: 15
+   When: 06/30/2013
+   Who: Party C (financial bidder)
+   What happened: NDA signed
+   Process: 1
+   Round: 1
+   Type: Financial
+   Terms or outcome: Executed a confidentiality and standstill agreement with Mac-Gray and received the informational package on the same basis as the other signers.
+   Why and evidence: — Stated execution and package: "On June 30, 2013, Party C entered into a confidentiality and standstill agreement with Mac-Gray and was provided with an informational package for the purpose of providing Party C with data to formulate a preliminary indication of interest" (p.32).
+   Source: P-026
+   Row id: R015
+   Include: Yes
+   Count: 1
+   Date from: 2013-06-30
+   Date to: 2013-06-30
+   Working date: 2013-06-30
+   Date basis: Reported day
+   Date method: Reported
+   Page: 32
+   Deal: Mac-Gray/CSC
+--- row 17
+   #: 16
+   When: 07/06/2013
+   Who: Mac-Gray Special Committee; Moab Partners (via Mr. Rothenberg); CSC/Pamplona
+   What happened: Material process update
+   Process: 1
+   Round: 1
+   Terms or outcome: Moab rollover request denied as premature: Mr. Rothenberg had asked that CSC/Pamplona be allowed to share bid and evaluation material with Moab, with Moab exclusively engaged with CSC/Pamplona; the Special Committee denied exclusivity so that Moab’s stake could remain available as capital for other bidders, and said rollover discussions would be permitted at a later stage.
+   Why and evidence: — Stated request: "Mr. Rothenberg also informed Goodwin Procter that Pamplona would be requesting that any confidentiality agreement CSC/Pamplona execute with Mac-Gray permit CSC and Pamplona to discuss their bid and evaluation material with Moab, with Moab agreeing to exclusively engage with CSC/Pamplona" (p.32).— Stated denial and rationale: "the Special Committee decided to deny the exclusivity request at this stage of the process so that the potential equity rollover of Moab's shares could be available as a source of capital for other potential bidders" (p.32-33).— Deferral: "it was premature for Mac-Gray to permit Moab to engage in equity rollover discussions with any party, including CSC/Pamplona, but that such discussions would be permitted at a later stage of the sale process" (p.32-33).
+   Source: P-027; P-028
+   Review: Q6
+   Row id: R016
+   Include: Yes
+   Date from: 2013-07-06
+   Date to: 2013-07-06
+   Working date: 2013-07-06
+   Date basis: Reported day
+   Date method: Reported
+   Page: 32
+   Related rows: R049 (resolution); R010
+   Deal: Mac-Gray/CSC
+--- row 18
+   #: 17
+   When: between 06/28/2013 and 07/23/2013 (communication date not disclosed)
+   Who: Mac-Gray (informational package) → NDA signers
+   What happened: Deadline set
+   Process: 1
+   Round: 1
+   Terms or outcome: Informational-package letter instructed NDA signers to submit preliminary indications of interest by 07/23/2013, addressing valuation, sources and structures of financing, material conditions (including required approvals) and due-diligence focus areas. Communication date not disclosed: the package was furnished to each party as it signed; first signer 06/28/2013.
+   Why and evidence: — Stated instruction: "Parties that had entered into confidentiality and standstill agreements with Mac-Gray were furnished an informational package for the purpose of providing potential bidders with data to formulate a preliminary indication of interest, which they were instructed to submit by July 23, 2013" (p.32).— Requested proposal content: "The letter requested that the proposals address, among other things, valuation, sources and structures of financing, material conditions, including required approvals, and focus areas for due diligence" (p.32). Working date convention: communication window 06/28–07/23/2013; midpoint used as a sort key (Assigned: midpoint).
+   Source: P-023
+   Review: Q2; Q7
+   Row id: R017
+   Include: Yes
+   Date from: 2013-06-28
+   Date to: 2013-07-23
+   Working date: 2013-07-10
+   Date basis: Approximate window
+   Date method: Assigned: midpoint
+   Due date: 2013-07-23
+   Page: 32
+   Related rows: R020 (due date reached)
+   Deal: Mac-Gray/CSC
+--- row 19
+   #: 18
+   When: 07/11/2013
+   Who: CSC/Pamplona (strategic bidder)
+   What happened: NDA signed
+   Process: 1
+   Round: 1
+   Type: Strategic
+   Terms or outcome: CSC and Pamplona entered into a confidentiality and standstill agreement with Mac-Gray jointly (one bidder unit) and received the informational package.
+   Why and evidence: — Stated execution and package: "On July 11, 2013, CSC/Pamplona entered into a confidentiality and standstill agreement with Mac-Gray and were provided with an informational package for the purpose of providing CSC/Pamplona with data to formulate a preliminary indication of interest" (p.33).
+   Source: P-029
+   Row id: R018
+   Include: Yes
+   Count: 1
+   Date from: 2013-07-11
+   Date to: 2013-07-11
+   Working date: 2013-07-11
+   Date basis: Reported day
+   Date method: Reported
+   Page: 33
+   Deal: Mac-Gray/CSC
+--- row 20
+   #: 19
+   When: late June through late August 2013 (individual dates not disclosed)
+   Who: 16 remaining financial bidders (residual cohort)
+   What happened: NDA signed
+   Process: 1
+   Round: 1
+   Type: Financial
+   Terms or outcome: Residual cohort: 20 potential bidders signed confidentiality and standstill agreements over roughly two months; four are individually recorded (Party A 08/05/2013, Party B 06/28/2013, Party C 06/30/2013, CSC/Pamplona 07/11/2013) and the remaining 16 signers are represented by this one cohort row. The cohort’s Working date is moved earlier to 07/23/2013 (inside its window) so that it precedes its inferred non-submission row (R021) — Assigned: sequence.
+   Why and evidence: — Stated total and split: "Over the next two months a total of 20 potential bidders, including two strategic bidders (Party A and CSC/Pamplona) and 18 financial bidders (including Party B and Party C), entered into confidentiality agreements with Mac-Gray" (p.32). Working date convention: the cohort’s signing window (late June to late August) straddles the 07/23/2013 solicitation; the date was moved earlier inside that window so the entry row precedes its inferred non-submission outcome (Assigned: sequence).
+   Source: P-023
+   Review: Q3; Q7
+   Row id: R019
+   Include: Yes
+   Count: 16
+   Date from: 2013-06-24
+   Date to: 2013-08-27
+   Working date: 2013-07-23
+   Date basis: Approximate window
+   Date method: Assigned: sequence
+   Page: 32
+   Related rows: R014; R015; R018; R027; R021 (inferred non-submission)
+   Deal: Mac-Gray/CSC
+--- row 21
+   #: 20
+   When: 07/23/2013
+   Who: N/A — solicitation deadline
+   What happened: Deadline
+   Process: 1
+   Round: 1
+   Terms or outcome: Preliminary-indication due date reached. CSC/Pamplona submitted on 07/23/2013; Party B submitted 07/24/2013 and Party C 07/24–07/25/2013, and the Special Committee reviewed all of them on 07/25/2013 with no revision of the due date. Treatment: Late bids accepted.
+   Why and evidence: — Due date: "instructed to submit by July 23, 2013" (p.32).— Late submissions considered: "On July 25, 2013, the Board held a regularly scheduled in-person meeting" (p.33). "representatives of BofA Merrill Lynch reviewed the preliminary indications of interest received from Party B, Party C and CSC/Pamplona as well as the Party A June 21 proposal" (p.33).
+   Source: P-023; P-033
+   Review: Q2
+   Row id: R020
+   Include: Yes
+   Date from: 2013-07-23
+   Date to: 2013-07-23
+   Working date: 2013-07-23
+   Date basis: Reported day
+   Date method: Reported
+   Due date: 2013-07-23
+   Deadline treatment: Late bids accepted
+   Page: 32
+   Related rows: R017
+   Deal: Mac-Gray/CSC
+--- row 22
+   #: 21
+   When: by 07/23/2013 (solicitation due date passed with no submission)
+   Who: 16 remaining financial bidders (residual cohort)
+   What happened: Did not submit
+   Process: 1
+   Round: 1
+   Type: Financial
+   Terms or outcome: Inferred: residual — 20 NDA signers − 4 individually recorded signers (Party A, Party B, Party C, CSC/Pamplona) = 16 remaining signers, all financial; none is reported to have submitted a July 23 indication. Base assumes each of the 20 signers was covered by the July 23 solicitation; if any signed later than that deadline, the non-submitting set is smaller (flagged in Q3). Inferred from arithmetic only — no dates, motives or identities inferred.
+   Why and evidence: — Base population: "a total of 20 potential bidders, including two strategic bidders (Party A and CSC/Pamplona) and 18 financial bidders (including Party B and Party C), entered into confidentiality agreements with Mac-Gray" (p.32).— Continuing set named at the next transition: "reach out to each of the four interested bidders and arrange management meetings" (p.33-34).— Solicitation due date: "instructed to submit by July 23, 2013" (p.32). Outcome basis: arithmetic residual only — no dates, motives, identities or voluntary withdrawal inferred. Count = stated base − accounted participants.
+   Source: P-023; P-034
+   Review: Q3
+   Row id: R021
+   Include: Yes
+   Count: 16
+   Date to: 2013-07-23
+   Working date: 2013-07-23
+   Date basis: Relative only
+   Date method: Assigned: deadline
+   Decided by: Unknown
+   Exit reason: Not stated
+   Outcome basis: Inferred: residual
+   Page: 32
+   Related rows: R019 (entry); R020
+   Deal: Mac-Gray/CSC
+--- row 23
+   #: 22
+   When: 07/23/2013
+   Who: CSC/Pamplona (strategic bidder)
+   What happened: Bid
+   Process: 1
+   Round: 1
+   Type: Strategic
+   Terms or outcome: Preliminary indication of interest: all-cash $18.50 per share, submitted on the 07/23/2013 due date after a preliminary review (07/11–07/23) but before data-room or management access; financing not described at this stage.
+   Formality: Informal
+   Conditions level: Heavy
+   Why and evidence: — Stated indication: "On July 23, 2013, CSC/Pamplona submitted a preliminary indication of interest at an all-cash purchase price of $18.50 per share" (p.33).— Substantive access not yet given: "Between July 11, 2013 and July 23, 2013, Party B, Party C and CSC/Pamplona engaged in a preliminary review of Mac-Gray and the potential acquisition opportunity" (p.33). Conditions: Heavy by context — preliminary indication made before data-room or management access; financing not yet described.
+   Source: P-031; P-030
+   Review: Q4
+   Row id: R022
+   Include: Yes
+   Count: 1
+   Date from: 2013-07-23
+   Date to: 2013-07-23
+   Working date: 2013-07-23
+   Date basis: Reported day
+   Date method: Reported
+   Price low: 18.5
+   Price high: 18.5
+   Price kind: Point
+   Price origin: Stated
+   Currency: USD
+   All cash: Yes
+   Cash at closing: 18.5
+   Conditions detail: Fin: not stated; DD required: not stated; DD open: yes; Excl: not stated
+   Page: 33
+   Related rows: R030 (Sept 9 revision); R037; R042
+   Deal: Mac-Gray/CSC
+--- row 24
+   #: 23
+   When: 07/24/2013
+   Who: Party B (financial bidder)
+   What happened: Bid
+   Process: 1
+   Round: 1
+   Type: Financial
+   Terms or outcome: Preliminary indication of interest: all-cash $17.00–$18.00 per share, submitted one day after the 07/23/2013 instruction and considered at the 07/25/2013 Special Committee meeting.
+   Formality: Informal
+   Conditions level: Heavy
+   Why and evidence: — Stated indication: "On July 24, 2013, Party B submitted a preliminary indication of interest at an all-cash purchase price of $17.00 to $18.00 per share" (p.33). Conditions: Heavy by context — preliminary indication before substantive diligence access, and no financing commitment reported.
+   Source: P-032
+   Review: Q4
+   Row id: R023
+   Include: Yes
+   Count: 1
+   Date from: 2013-07-24
+   Date to: 2013-07-24
+   Working date: 2013-07-24
+   Date basis: Reported day
+   Date method: Reported
+   Price low: 17
+   Price high: 18
+   Price kind: Bidder range
+   Price origin: Stated
+   Currency: USD
+   All cash: Yes
+   Conditions detail: Fin: not stated; DD required: not stated; DD open: yes; Excl: not stated
+   Page: 33
+   Related rows: R031 (Sept 9 revision)
+   Deal: Mac-Gray/CSC
+--- row 25
+   #: 24
+   When: 07/24/2013 (oral indication) – 07/25/2013 (written indication)
+   Who: Party C (financial bidder)
+   What happened: Bid
+   Process: 1
+   Round: 1
+   Type: Financial
+   Terms or outcome: One bid, two communications: an oral preliminary indication on 07/24/2013 at $15.00–$17.00 per share, then a written indication on 07/25/2013 at $16.00–$16.50 per share. Recorded as a single bid under the one-communication convention; the written range is recorded in the price cells and both values are stated here. All-cash; financing not described.
+   Formality: Informal
+   Conditions level: Heavy
+   Why and evidence: — Oral indication: "representatives from Party C called BofA Merrill Lynch and presented an oral preliminary indication of interest at an all-cash purchase price of $15.00 to $17.00 per share" (p.33).— Written indication: "Later on July 25, 2013, Party C submitted a written indication of interest at an all-cash purchase price of $16.00 to $16.50 per share" (p.34). Conditions: Heavy by context — preliminary indication before substantive diligence access. One bid, two communications (see Terms or outcome).
+   Source: P-032; P-035
+   Review: Q5; Q7
+   Row id: R024
+   Include: Yes
+   Count: 1
+   Date from: 2013-07-24
+   Date to: 2013-07-25
+   Working date: 2013-07-24
+   Date basis: Reported interval
+   Date method: Assigned: bound
+   Price low: 16
+   Price high: 16.5
+   Price kind: Bidder range
+   Price origin: Stated
+   Currency: USD
+   All cash: Yes
+   Conditions detail: Fin: not stated; DD required: not stated; DD open: yes; Excl: not stated
+   Page: 33
+   Related rows: R033 (Sept 10 revision)
+   Deal: Mac-Gray/CSC
+--- row 26
+   #: 25
+   When: 07/25/2013
+   Who: Mac-Gray Special Committee
+   What happened: Target decision
+   Process: 1
+   Round: 1
+   Terms or outcome: Preliminary indications judged lower than expected; the Special Committee advanced the four interested bidders (Party A, Party B, Party C, CSC/Pamplona) to a second stage — staged information disclosure and management meetings — to drive improved offers. The Special Committee also directed that Mr. Rothenberg recuse himself from Board meetings for the duration of the sale process (Moab rollover conflict).
+   Why and evidence: — Advancement decision: "the Special Committee authorized and instructed BofA Merrill Lynch to proceed with the staged disclosure as discussed at this meeting and to reach out to each of the four interested bidders and arrange management meetings" (p.33-34).— Recusal: "The Special Committee then discussed the potential conflict of interest arising from Moab's continuing desire to consider an equity rollover and decided that Mr. Rothenberg should be asked to recuse himself from participating in Board meetings for the duration of the sale process" (p.33).
+   Source: P-034; P-033
+   Review: Q1
+   Row id: R025
+   Include: Yes
+   Date from: 2013-07-25
+   Date to: 2013-07-25
+   Working date: 2013-07-25
+   Date basis: Reported day
+   Date method: Reported
+   Page: 34
+   Related rows: R026; R011
+   Deal: Mac-Gray/CSC
+--- row 27
+   #: 26
+   When: 07/25/2013 (decision); implemented 08/06/2013–08/27/2013
+   Who: Mac-Gray Special Committee; Party A, Party B, Party C, CSC/Pamplona
+   What happened: Information access changed
+   Process: 1
+   Round: 1
+   Terms or outcome: Differentiated (tiered) access among live bidders: Party B and Party C, as financial bidders, were given broad access to the electronic data site; Party A and CSC/Pamplona, as strategic bidders, were given somewhat limited access, with customer data (including customer locations) withheld until a later stage; management presentations were held for all four bidders (08/06, 08/08, 08/12, 08/14). Stated rationale: concern over access to and potential misuse of sensitive competitive information, especially by strategic bidders; staging by demonstrated seriousness.
+   Why and evidence: — Stated access split and withholding: "Party B and Party C, in light of the fact that they were financial bidders, were given broad access to an electronic data site, and Party A and CSC/Pamplona, in light of the fact that they were strategic bidders, were given somewhat limited access to this electronic data site, with access to customer data, including customer locations, being reserved until later in the process as part of the staging discussed at the July 25 th Special Committee meeting" (p.34).— Stated rationale: "expressed concern over permitting access to and the potential misuse of sensitive and competitive information, including customer terms and locations, especially by strategic bidders" (p.33-34).— Presentations for all four: "On August 6, 2013, representatives of Party B attended a management presentation" (p.34). "On August 14, 2013, representatives of Party A attended a management presentation at the Boston office of Goodwin Procter" (p.34).
+   Source: P-042; P-034; P-037; P-040
+   Row id: R026
+   Include: Yes
+   Date from: 2013-07-25
+   Date to: 2013-07-25
+   Working date: 2013-07-25
+   Date basis: Reported day
+   Date method: Reported
+   Page: 34
+   Related rows: R025
+   Deal: Mac-Gray/CSC
+--- row 28
+   #: 27
+   When: 08/05/2013
+   Who: Party A (strategic bidder)
+   What happened: NDA signed
+   Process: 1
+   Round: 1
+   Type: Strategic
+   Terms or outcome: Executed after NDA negotiations stalled over customer and employee non-solicitation provisions; discussions resumed 07/27/2013 (the filing states "July 27, 2103" — source typo; intended 2013) and the agreement was executed 08/05/2013; informational package furnished so Party A could potentially improve its June 21 proposal.
+   Why and evidence: — Stated execution: "On August 5, 2013, Party A entered into a confidentiality and standstill agreement with Mac-Gray and was provided with an informational package for the purpose of providing Party A with data to potentially improve the terms of the Party A June 21 proposal" (p.34).— Stalled negotiation and source typo retained: "Discussions with Party A resumed on July 27, 2103 and Party A and the Transaction Committee agreed to the terms of the customer and employee non-solicitation provisions" (p.34). "did not come to agreement on the terms of the customer and employee non-solicitation provisions" (p.33).
+   Source: P-036; P-030
+   Row id: R027
+   Include: Yes
+   Count: 1
+   Date from: 2013-08-05
+   Date to: 2013-08-05
+   Working date: 2013-08-05
+   Date basis: Reported day
+   Date method: Reported
+   Page: 34
+   Deal: Mac-Gray/CSC
+--- row 29
+   #: 28
+   When: 08/27/2013
+   Who: Mac-Gray (BofA Merrill Lynch) → Party A, Party B, Party C, CSC/Pamplona
+   What happened: Round opened
+   Process: 1
+   Round: 2
+   Terms or outcome: Second-stage solicitation: letter to all four bidders once all four’s diligence was substantially complete, instructing revised written proposals no later than 09/09/2013 to continue to in-depth evaluation and confirmatory due diligence, addressing valuation, financing, regulatory approvals, post-signing covenants and diligence focus. Authorized at the 08/15/2013 Special Committee meeting; same-day follow-up diligence call with Party B. Round finality: Not final.
+   Why and evidence: — Stated authorization: "the Special Committee authorized and instructed BofA Merrill Lynch to send a letter to each of Party A, Party B, Party C and CSC/Pamplona once all four of the bidders' due diligence was substantially complete requesting that, in light of the results of the respective party's due diligence, such party submit a revised written proposal in order to continue in the process, including to engage in more in-depth and confirmatory due diligence of Mac-Gray" (p.34).— Stated letter and deadline: "On August 27, 2013, BofA Merrill Lynch, as instructed by the Special Committee, sent a letter to each of Party A, Party B, Party C and CSC/Pamplona instructing such bidders to submit revised written proposals no later than September 9, 2013 if such bidders wished to proceed further in the process to pursue an in-depth evaluation of Mac-Gray with the objective of making a revised offer" (p.35).
+   Source: P-041; P-043
+   Review: Q1
+   Row id: R028
+   Include: Yes
+   Date from: 2013-08-27
+   Date to: 2013-08-27
+   Working date: 2013-08-27
+   Date basis: Reported day
+   Date method: Reported
+   Due date: 2013-09-09
+   Round finality: Not final
+   Page: 35
+   Related rows: R025; R029
+   Deal: Mac-Gray/CSC
+--- row 30
+   #: 29
+   When: 09/09/2013
+   Who: N/A — solicitation deadline
+   What happened: Deadline
+   Process: 1
+   Round: 2
+   Terms or outcome: Revised-proposal due date reached. CSC/Pamplona and Party B submitted on 09/09/2013; Party A and Party C submitted revised indications on 09/10/2013 and were reviewed at the 09/11/2013 Special Committee meeting with no revision of the due date. Treatment: Late bids accepted.
+   Why and evidence: — Due date and on-time submissions: "instructing such bidders to submit revised written proposals no later than September 9, 2013" (p.35). "On September 9, 2013, CSC/Pamplona submitted a revised indication of interest with an all-cash purchase price of $19.50 per share" (p.35).— Late submissions reviewed: "On September 10, 2013, Party A submitted a revised indication of interest" (p.35). "the Special Committee held a telephonic meeting to review the revised indications of interest submitted by Party A, Party B, Party C and CSC/Pamplona" (p.35-36).
+   Source: P-043; P-047; P-048; P-050
+   Review: Q2
+   Row id: R029
+   Include: Yes
+   Date from: 2013-09-09
+   Date to: 2013-09-09
+   Working date: 2013-09-09
+   Date basis: Reported day
+   Date method: Reported
+   Due date: 2013-09-09
+   Deadline treatment: Late bids accepted
+   Page: 35
+   Related rows: R028
+   Deal: Mac-Gray/CSC
+--- row 31
+   #: 30
+   When: 09/09/2013
+   Who: CSC/Pamplona (strategic bidder)
+   What happened: Bid
+   Process: 1
+   Round: 2
+   Type: Strategic
+   Terms or outcome: Revised indication of interest: all-cash $19.50 per share; Pamplona indicated it was committed to provide 100% of the capital required; CSC/Pamplona requested a two-week exclusive negotiation.
+   Formality: Informal
+   Conditions level: Light
+   Why and evidence: — Stated indication and committed capital: "On September 9, 2013, CSC/Pamplona submitted a revised indication of interest with an all-cash purchase price of $19.50 per share, indicating that Pamplona was committed to provide 100% of the capital required to consummate the transaction and requesting that CSC/Pamplona and Mac-Gray agree to exclusive negotiations for two weeks" (p.35).— Diligence still running: "Between September 11, 2013 and September 18, 2013, Party A, Party B, Party C and CSC/Pamplona continued to conduct business and legal due diligence" (p.36). Conditions: Light — committed financing reported (Pamplona, 100% of required capital) and no diligence condition attached to the bid; diligence remained open on the narrative.
+   Source: P-047; P-052
+   Review: Q4
+   Row id: R030
+   Include: Yes
+   Count: 1
+   Date from: 2013-09-09
+   Date to: 2013-09-09
+   Working date: 2013-09-09
+   Date basis: Reported day
+   Date method: Reported
+   Price low: 19.5
+   Price high: 19.5
+   Price kind: Point
+   Price origin: Stated
+   Currency: USD
+   All cash: Yes
+   Cash at closing: 19.5
+   Conditions detail: Fin: committed; DD required: not stated; DD open: yes; Excl: requested (2 wks)
+   Page: 35
+   Related rows: R037 (Sept 18 revision)
+   Deal: Mac-Gray/CSC
+--- row 32
+   #: 31
+   When: 09/09/2013
+   Who: Party B (financial bidder)
+   What happened: Bid
+   Process: 1
+   Round: 2
+   Type: Financial
+   Terms or outcome: Revised indication of interest: all-cash $18.50 per share, proposed to be financed with equity from affiliated funds and third-party debt; no firm financing commitment.
+   Formality: Informal
+   Conditions level: Heavy
+   Why and evidence: — Stated indication and financing: "On September 9, 2013, Party B also submitted a revised indication of interest with an all-cash purchase price of $18.50 per share and proposed to finance the transaction with a combination of equity from affiliated funds and third party debt. Party B's revised indication of interest did not include a firm financing commitment" (p.35). Conditions: Heavy — no firm financing commitment reported; third-party debt contemplated.
+   Source: P-047
+   Review: Q4
+   Row id: R031
+   Include: Yes
+   Count: 1
+   Date from: 2013-09-09
+   Date to: 2013-09-09
+   Working date: 2013-09-09
+   Date basis: Reported day
+   Date method: Reported
+   Price low: 18.5
+   Price high: 18.5
+   Price kind: Point
+   Price origin: Stated
+   Currency: USD
+   All cash: Yes
+   Cash at closing: 18.5
+   Conditions detail: Fin: not committed; DD required: not stated; DD open: yes; Excl: not stated
+   Page: 35
+   Related rows: R039 (Sept 18 revision)
+   Deal: Mac-Gray/CSC
+--- row 33
+   #: 32
+   When: 09/10/2013
+   Who: Party A (strategic bidder)
+   What happened: Bid
+   Process: 1
+   Round: 2
+   Type: Strategic
+   Terms or outcome: Revised indication of interest: all-cash $18.00–$19.00 per share, to be financed by outstanding credit facilities or affiliated equity sources; no firm financing commitment.
+   Formality: Informal
+   Conditions level: Heavy
+   Why and evidence: — Stated indication: "On September 10, 2013, Party A submitted a revised indication of interest with an all-cash purchase price of $18.00 to $19.00 per share, to be financed by outstanding credit facilities or affiliated equity sources" (p.35).— No firm commitment: "Neither Party A's nor Party C's revised indication of interest included a firm financing commitment" (p.35). Conditions: Heavy — no firm financing commitment reported.
+   Source: P-048
+   Review: Q4
+   Row id: R032
+   Include: Yes
+   Count: 1
+   Date from: 2013-09-10
+   Date to: 2013-09-10
+   Working date: 2013-09-10
+   Date basis: Reported day
+   Date method: Reported
+   Price low: 18
+   Price high: 19
+   Price kind: Bidder range
+   Price origin: Stated
+   Currency: USD
+   All cash: Yes
+   Conditions detail: Fin: not committed; DD required: not stated; DD open: yes; Excl: not stated
+   Page: 35
+   Related rows: R038 (Sept 18 best-and-final reiteration)
+   Deal: Mac-Gray/CSC
+--- row 34
+   #: 33
+   When: 09/10/2013
+   Who: Party C (financial bidder)
+   What happened: Bid
+   Process: 1
+   Round: 2
+   Type: Financial
+   Terms or outcome: Revised oral indication of interest in a telephone call to BofA Merrill Lynch: all-cash $16.00–$17.00 per share; no firm financing commitment.
+   Formality: Informal
+   Conditions level: Heavy
+   Why and evidence: — Stated oral indication: "in a telephone call to a representative of BofA Merrill Lynch, a representative of Party C indicated that it was submitting a revised oral indication of interest with an all-cash purchase price of $16.00 to $17.00 per share" (p.35).— No firm commitment: "Neither Party A's nor Party C's revised indication of interest included a firm financing commitment" (p.35). Conditions: Heavy — no firm financing commitment reported.
+   Source: P-048
+   Review: Q4
+   Row id: R033
+   Include: Yes
+   Count: 1
+   Date from: 2013-09-10
+   Date to: 2013-09-10
+   Working date: 2013-09-10
+   Date basis: Reported day
+   Date method: Reported
+   Price low: 16
+   Price high: 17
+   Price kind: Bidder range
+   Price origin: Stated
+   Currency: USD
+   All cash: Yes
+   Conditions detail: Fin: not committed; DD required: not stated; DD open: yes; Excl: not stated
+   Page: 35
+   Deal: Mac-Gray/CSC
+--- row 35
+   #: 34
+   When: 09/11/2013 (limited overview) – 09/12/2013 (detailed briefing)
+   Who: Mac-Gray Transaction Committee / BofA Merrill Lynch ↔ Mr. MacDonald
+   What happened: Material process update
+   Process: 1
+   Round: 2
+   Terms or outcome: Mr. MacDonald’s rollover question resolved: in a limited-overview call (no bidder identities or prices) he said he was not interested in rolling over any shares; the Special Committee agreed he should be fully briefed because any potential acquiror was seen as unlikely to proceed without knowing he would support the transaction; a 09/12/2013 detailed briefing followed, after which he voiced general support while urging a higher value.
+   Why and evidence: — Stated rollover position: "During this call, Mr. MacDonald indicated that he had decided that he was not interested in rolling over any of his shares in any transaction" (p.35).— Stated support premise: "it was unlikely that any of these parties would move forward in the process without the express support of Mr. MacDonald" (p.35-36).— Stated briefing and stance: "Although Mr. MacDonald voiced his general support for continuing with the process, he expressed his view that Mac-Gray should continue to seek a higher value for stockholders" (p.36). Working date convention: reported interval 09/11–09/12/2013; first day used (Assigned: bound).
+   Source: P-049; P-050; P-051
+   Review: Q6; Q7
+   Row id: R034
+   Include: Yes
+   Date from: 2013-09-11
+   Date to: 2013-09-12
+   Working date: 2013-09-11
+   Date basis: Reported interval
+   Date method: Assigned: bound
+   Page: 35
+   Related rows: R016; R049; R041 (his 09/19 support at $21.25)
+   Deal: Mac-Gray/CSC
+--- row 36
+   #: 35
+   When: 09/11/2013
+   Who: Mac-Gray Special Committee (via BofA Merrill Lynch) → Party A, Party B, Party C, CSC/Pamplona
+   What happened: Round opened
+   Process: 1
+   Round: 3
+   Terms or outcome: First request for final indications of interest: BofA Merrill Lynch called each of the four bidders on 09/11/2013, as instructed, requesting final indications by 09/18/2013 and signaling that Mac-Gray would consider a short exclusive negotiation with one bidder depending on price and deal certainty. Invited bidders unchanged. Round finality: Announced as final — the target asked for "final indications of interest".
+   Why and evidence: — Stated instruction: "the Special Committee instructed BofA Merrill Lynch to call each of Party A, Party B, Party C and CSC/Pamplona to request final indications of interest by September 18, 2013 and to indicate that Mac-Gray would consider engaging in a short period of exclusive negotiations with one of the bidders depending upon, among other things, the proposed purchase price and the level of deal certainty indicated in the bidder's final proposal" (p.35-36).— Calls made same day: "representatives of BofA Merrill Lynch called each of Party A, Party B, Party C and CSC/Pamplona on September 11, 2013 with such instructions" (p.35-36).
+   Source: P-050
+   Review: Q1
+   Row id: R035
+   Include: Yes
+   Date from: 2013-09-11
+   Date to: 2013-09-11
+   Working date: 2013-09-11
+   Date basis: Reported day
+   Date method: Reported
+   Due date: 2013-09-18
+   Round finality: Announced as final
+   Page: 36
+   Related rows: R036
+   Deal: Mac-Gray/CSC
+--- row 37
+   #: 36
+   When: 09/18/2013
+   Who: N/A — solicitation deadline
+   What happened: Deadline
+   Process: 1
+   Round: 3
+   Terms or outcome: Final-indication due date reached. Three bidders responded on 09/18/2013 (CSC/Pamplona $20.75; Party A best-and-final reiteration; Party B $21.50 package); Party C did not submit (R040). The Special Committee took its next step on the bids in hand at its 09/19/2013 meeting — selection of CSC/Pamplona and authorization to offer exclusivity at $21.25. Treatment: Enforced.
+   Why and evidence: — Due date and responses: "to request final indications of interest by September 18, 2013" (p.35-36). "On September 18, 2013, CSC/Pamplona submitted a proposal for an all-cash purchase price of $20.75 per share" (p.36).— Next step on the bids in hand: "the Special Committee concluded that the revised indication of interest submitted by CSC/Pamplona had the potential of delivering the most value to stockholders, provided greater certainty and involved less potential risk than the other indications" (p.37).
+   Source: P-050; P-053; P-055
+   Review: Q2
+   Row id: R036
+   Include: Yes
+   Date from: 2013-09-18
+   Date to: 2013-09-18
+   Working date: 2013-09-18
+   Date basis: Reported day
+   Date method: Reported
+   Due date: 2013-09-18
+   Deadline treatment: Enforced
+   Page: 36
+   Related rows: R035
+   Deal: Mac-Gray/CSC
+--- row 38
+   #: 37
+   When: 09/18/2013
+   Who: CSC/Pamplona (strategic bidder)
+   What happened: Bid
+   Process: 1
+   Round: 3
+   Type: Strategic
+   Terms or outcome: Final-solicited proposal: all-cash $20.75 per share; Pamplona reiterated it was committed to provide 100% of the capital required; requested two-week exclusive negotiations.
+   Formality: Formal
+   Conditions level: Light
+   Why and evidence: — Stated proposal and commitment: "On September 18, 2013, CSC/Pamplona submitted a proposal for an all-cash purchase price of $20.75 per share, reiterating that Pamplona was committed to provide 100% of the capital required to consummate the transaction and requesting that CSC/Pamplona and Mac-Gray agree to engage in exclusive negotiations for two weeks" (p.36).— Formal signal — response on the requested basis to the final solicitation: "to request final indications of interest by September 18, 2013" (p.35-36). Formality: Formal — response on the requested basis to the target’s final-indications request (signal 2). Conditions: Light — committed financing, no diligence condition attached; diligence still open.
+   Source: P-053; P-050
+   Review: Q4
+   Row id: R037
+   Include: Yes
+   Count: 1
+   Date from: 2013-09-18
+   Date to: 2013-09-18
+   Working date: 2013-09-18
+   Date basis: Reported day
+   Date method: Reported
+   Price low: 20.75
+   Price high: 20.75
+   Price kind: Point
+   Price origin: Stated
+   Currency: USD
+   All cash: Yes
+   Cash at closing: 20.75
+   Conditions detail: Fin: committed; DD required: not stated; DD open: yes; Excl: requested (2 wks)
+   Page: 36
+   Related rows: R042 (Sept 21 increase); R035
+   Deal: Mac-Gray/CSC
+--- row 39
+   #: 38
+   When: 09/18/2013
+   Who: Party A (strategic bidder)
+   What happened: Bid reaffirmed
+   Process: 1
+   Round: 3
+   Type: Strategic
+   Terms or outcome: Reaffirmed by: price confirmed — telephone reiteration that its earlier all-cash $18.00–$19.00 indication was Party A’s best and final offer; price carried forward from R032, not restated. Financing basis unchanged (outstanding credit facilities or affiliated equity; no firm commitment).
+   Formality: Formal
+   Conditions level: Heavy
+   Why and evidence: — Stated reaffirmation: "Party A reiterated in a telephone call to a representative of BofA Merrill Lynch that its previous indication of interest with an all-cash purchase price of $18.00 to $19.00 per share was its best and final offer" (p.36).— Formal signal — best-and-final response; standing conditions unchanged: "Neither Party A's nor Party C's revised indication of interest included a firm financing commitment" (p.35). Formality: Formal — supported best-and-final response (signal 2; oral confirmation). Conditions: Heavy — carried financing basis with no firm commitment at this date (see R032).
+   Source: P-053; P-048
+   Review: Q4; Q5
+   Row id: R038
+   Include: Yes
+   Count: 1
+   Date from: 2013-09-18
+   Date to: 2013-09-18
+   Working date: 2013-09-18
+   Date basis: Reported day
+   Date method: Reported
+   Price low: 18
+   Price high: 19
+   Price kind: Bidder range
+   Price origin: Carried forward
+   Currency: USD
+   All cash: Yes
+   Conditions detail: Fin: not committed; DD required: not stated; DD open: yes; Excl: not stated
+   Page: 36
+   Related rows: R032 (carried price); R042 (later Party A dropped)
+   Deal: Mac-Gray/CSC
+--- row 40
+   #: 39
+   When: 09/18/2013
+   Who: Party B (financial bidder)
+   What happened: Bid
+   Process: 1
+   Round: 3
+   Type: Financial
+   Terms or outcome: Revised indication valued by Party B at $21.50 per share: $19.00 cash at closing plus options representing 10% of the new equity with a strike price equal to Party B’s initial cost basis; options to vest over five years on achievement of the base-case management projections (excluding future acquisitions); Party B valued the options at $2.50 per share. Package value, not guaranteed cash; financing remained without a firm commitment.
+   Formality: Formal
+   Conditions level: Heavy
+   Why and evidence: — Stated package and option terms: "Party B also submitted a revised indication of interest with a purchase price that Party B valued at $21.50 per share, including $19.00 of cash to be paid at closing and the remaining per share price to be paid in the form of options to be issued to Mac-Gray stockholders, representing 10% of the new equity with a strike price equal to Party B's initial cost basis. These options, which we refer to as the Party B options, would vest on the achievement of the base case management projections ( i.e. , over five years), excluding any future acquisitions. Party B's proposal stated that it valued the Party B options at $2.50 of incremental value per share" (p.36).— Financing not committed; formal signal — final-solicitation response: "Neither Party A's nor Party C's revised indication of interest included a firm financing commitment" (p.35). Formality: Formal — final-solicitation response (signal 2). Conditions: Heavy — no firm financing commitment; option consideration adds contingency. Price: package value, not guaranteed cash.
+   Source: P-053; P-048
+   Review: Q4; Q5
+   Row id: R039
+   Include: Yes
+   Count: 1
+   Date from: 2013-09-18
+   Date to: 2013-09-18
+   Working date: 2013-09-18
+   Date basis: Reported day
+   Date method: Reported
+   Price low: 21.5
+   Price high: 21.5
+   Price kind: Point
+   Price origin: Stated
+   Currency: USD
+   All cash: No
+   Cash at closing: 19
+   Conditions detail: Fin: not committed; DD required: not stated; DD open: yes; Excl: not stated
+   Page: 36
+   Related rows: R031 (prior priced bid)
+   Deal: Mac-Gray/CSC
+--- row 41
+   #: 40
+   When: by 09/18/2013 (final-indication deadline passed with no submission)
+   Who: Party C (financial bidder)
+   What happened: Did not submit
+   Process: 1
+   Round: 3
+   Type: Financial
+   Terms or outcome: Party C did not submit a revised indication of interest or reiterate its prior $16.00–$17.00 indication in response to the 09/11/2013 final request, and the filing states it gave no reasons. Closed at this transition; no further Party C participation is reported.
+   Why and evidence: — Stated non-submission: "Party C did not submit a revised indication of interest or reiterate its prior indication of interest of an all-cash purchase price of $16.00 to $17.00 per share nor did it specify any reasons in connection therewith" (p.36). Outcome basis: Stated — the filing directly reports the non-submission and that no reasons were given.
+   Source: P-053
+   Review: Q3
+   Row id: R040
+   Include: Yes
+   Count: 1
+   Date to: 2013-09-18
+   Working date: 2013-09-18
+   Date basis: Relative only
+   Date method: Assigned: deadline
+   Decided by: Unknown
+   Exit reason: Not stated
+   Outcome basis: Stated
+   Page: 36
+   Deal: Mac-Gray/CSC
+--- row 42
+   #: 41
+   When: 09/19/2013
+   Who: Mac-Gray Special Committee
+   What happened: Target decision
+   Process: 1
+   Round: 3
+   Terms or outcome: Preferred-bidder decision: the Special Committee concluded CSC/Pamplona’s indication offered the most value, greater certainty and less risk (Party B’s options were contingent and complex and Party B would likely need third-party debt); it concluded CSC/Pamplona should be able to raise above $20.75 and authorized the Transaction Committee to offer exclusivity at $21.25; Mr. MacDonald indicated he would support $21.25.
+   Why and evidence: — Stated conclusion: "the Special Committee concluded that the revised indication of interest submitted by CSC/Pamplona had the potential of delivering the most value to stockholders, provided greater certainty and involved less potential risk than the other indications" (p.37).— Price requirement and exclusivity authorization: "the Special Committee also concluded that, primarily in view of potential synergies between Mac-Gray and CSC, CSC/Pamplona should be in a position to increase their offer price above $20.75. The Special Committee then authorized the Transaction Committee to inform CSC/Pamplona that the Special Committee would be prepared to move into exclusivity at a price of $21.25 per share" (p.37). "at this meeting Mr. MacDonald indicated that he would be supportive of a price of $21.25 per share" (p.37).
+   Source: P-055
+   Row id: R041
+   Include: Yes
+   Date from: 2013-09-19
+   Date to: 2013-09-19
+   Working date: 2013-09-19
+   Date basis: Reported day
+   Date method: Reported
+   Page: 37
+   Related rows: R042; R043
+   Deal: Mac-Gray/CSC
+--- row 43
+   #: 42
+   When: 09/21/2013
+   Who: CSC/Pamplona (strategic bidder)
+   What happened: Bid
+   Process: 1
+   Round: 3
+   Type: Strategic
+   Terms or outcome: Price increase to $21.25 per share all-cash as a last and best offer, provided Mac-Gray agreed to a two-week exclusive negotiation; CSC/Pamplona also requested a customary voting agreement over Mr. MacDonald’s and his immediate family’s shares. This is the price component of the CSC/Pamplona final proposal (no financing contingency; Pamplona committing 100% of the capital needed for closing).
+   Formality: Formal
+   Conditions level: Light
+   Why and evidence: — Stated confirmation: "the representative of CSC/Pamplona called the members of the Transaction Committee to confirm that CSC/Pamplona were willing to increase their all-cash purchase price to $21.25 per share as a last and best offer, provided that Mac-Gray agree to a two week period of exclusive negotiations" (p.37).— Voting agreement request: "The representative of CSC/Pamplona also requested that shares of Mac-Gray common stock owned beneficially and of record by Mr. MacDonald and his immediate family be subject to a customary voting agreement, which we refer to as the MacDonald voting agreements" (p.37).— Final proposal terms: "the inclusion of a $15 million "reverse" termination fee payable by CSC/Pamplona to Mac-Gray in the event regulatory clearance is not obtained, which we refer to as the CSC reverse termination fee, agreements regarding certain post-signing covenants, the fact that there would be no financing contingency and that Pamplona was committing to fund 100% of the capital needed for closing" (p.37-38). Formality: carries forward from R037 (continuing proposal; no return to a preliminary basis). Conditions: Light — Pamplona committed 100% of closing capital; no financing contingency.
+   Source: P-056; P-057
+   Review: Q4
+   Row id: R042
+   Include: Yes
+   Count: 0
+   Date from: 2013-09-21
+   Date to: 2013-09-21
+   Working date: 2013-09-21
+   Date basis: Reported day
+   Date method: Reported
+   Price low: 21.25
+   Price high: 21.25
+   Price kind: Point
+   Price origin: Stated
+   Currency: USD
+   All cash: Yes
+   Cash at closing: 21.25
+   Conditions detail: Fin: committed; DD required: not stated; DD open: yes; Excl: requested (2 wks)
+   Page: 37
+   Related rows: R037 (revises it); R043
+   Deal: Mac-Gray/CSC
+--- row 44
+   #: 43
+   When: 09/23/2013
+   Who: Mac-Gray Special Committee; CSC/Pamplona
+   What happened: Exclusivity changed
+   Process: 1
+   Round: 3
+   Terms or outcome: Authorized: the Special Committee authorized Mac-Gray to enter an exclusivity agreement providing exclusive negotiations until 5 p.m. ET on 10/12/2013 on the CSC/Pamplona final proposal terms ($21.25 per share cash; $15 million CSC reverse termination fee if regulatory clearance is not obtained; no financing contingency; Pamplona to fund 100% of closing capital); the agreement would automatically terminate if CSC or Pamplona adversely changed the final proposal terms.
+   Why and evidence: — Stated authorization: "After discussion, the Special Committee authorized Mac-Gray to enter into an exclusivity agreement providing for exclusive negotiations until 5 p.m. ET on October 12, 2013 on the terms included in the CSC/Pamplona final proposal" (p.38).— Stated terms and condition: "The parties also agreed that the exclusivity agreement would automatically terminate if CSC or Pamplona adversely changed any of the terms of the CSC/Pamplona final proposal" (p.37-38).
+   Source: P-059; P-057
+   Review: Q8
+   Row id: R043
+   Include: Yes
+   Date from: 2013-09-23
+   Date to: 2013-09-23
+   Working date: 2013-09-23
+   Date basis: Reported day
+   Date method: Reported
+   Page: 38
+   Related rows: R044; R042
+   Deal: Mac-Gray/CSC
+--- row 45
+   #: 44
+   When: 09/24/2013
+   Who: CSC, Pamplona and Mac-Gray
+   What happened: Exclusivity changed
+   Process: 1
+   Round: 3
+   Terms or outcome: Executed: CSC, Pamplona and Mac-Gray executed the exclusivity agreement — exclusive negotiations until 5 p.m. ET on 10/12/2013, subject to certain conditions including that CSC and Pamplona not adversely change or modify the final proposal terms. This execution is the transition into the definitive-negotiation stage (R047).
+   Why and evidence: — Stated execution: "On September 24, 2013, CSC, Pamplona and Mac-Gray executed the exclusivity agreement providing for exclusive negotiations until 5 p.m. ET on October 12, 2013, subject to certain conditions, including that CSC and Pamplona not adversely change or modify the terms of the CSC/Pamplona final proposal" (p.38).
+   Source: P-060
+   Review: Q8
+   Row id: R044
+   Include: Yes
+   Date from: 2013-09-24
+   Date to: 2013-09-24
+   Working date: 2013-09-24
+   Date basis: Reported day
+   Date method: Reported
+   Page: 38
+   Related rows: R043; R047; R045; R046
+   Deal: Mac-Gray/CSC
+--- row 46
+   #: 45
+   When: by 09/24/2013 (exclusivity execution)
+   Who: Party A (strategic bidder)
+   What happened: Dropped by target
+   Process: 1
+   Round: 3
+   Type: Strategic
+   Terms or outcome: Inferred: exclusivity — Party A was still live after the final round (its best-and-final reiteration of 09/18/2013) when Mac-Gray executed exclusivity with CSC/Pamplona on 09/24/2013; the filing reports no notice to Party A and states no reason. Closed at this transition.
+   Why and evidence: — Exclusivity execution: "On September 24, 2013, CSC, Pamplona and Mac-Gray executed the exclusivity agreement providing for exclusive negotiations until 5 p.m. ET on October 12, 2013" (p.38).— Last participation: "Party A reiterated in a telephone call to a representative of BofA Merrill Lynch that its previous indication of interest with an all-cash purchase price of $18.00 to $19.00 per share was its best and final offer" (p.36). Outcome basis and agency: Inferred solely from the exclusivity execution; Decided by Target for the transition; the filing states no reason or notice.
+   Source: P-060; P-053
+   Review: Q3
+   Row id: R045
+   Include: Yes
+   Count: 1
+   Date to: 2013-09-24
+   Working date: 2013-09-24
+   Date basis: Relative only
+   Date method: Assigned: decision day
+   Decided by: Target
+   Exit reason: Not stated
+   Outcome basis: Inferred: exclusivity
+   Page: 38
+   Related rows: R038; R044
+   Deal: Mac-Gray/CSC
+--- row 47
+   #: 46
+   When: by 09/24/2013 (exclusivity execution)
+   Who: Party B (financial bidder)
+   What happened: Dropped by target
+   Process: 1
+   Round: 3
+   Type: Financial
+   Terms or outcome: Inferred: exclusivity — Party B was still live after the final round (its 09/18/2013 $21.50 package) when Mac-Gray executed exclusivity with CSC/Pamplona on 09/24/2013; the filing reports no notice to Party B and states no reason. Closed at this transition.
+   Why and evidence: — Exclusivity execution: "On September 24, 2013, CSC, Pamplona and Mac-Gray executed the exclusivity agreement providing for exclusive negotiations until 5 p.m. ET on October 12, 2013" (p.38).— Last participation: "Party B also submitted a revised indication of interest with a purchase price that Party B valued at $21.50 per share" (p.36). Outcome basis and agency: Inferred solely from the exclusivity execution; Decided by Target for the transition; the filing states no reason or notice.
+   Source: P-060; P-053
+   Review: Q3
+   Row id: R046
+   Include: Yes
+   Count: 1
+   Date to: 2013-09-24
+   Working date: 2013-09-24
+   Date basis: Relative only
+   Date method: Assigned: decision day
+   Decided by: Target
+   Exit reason: Not stated
+   Outcome basis: Inferred: exclusivity
+   Page: 38
+   Related rows: R039; R044
+   Deal: Mac-Gray/CSC
+--- row 48
+   #: 47
+   When: 09/24/2013
+   Who: Mac-Gray ↔ CSC/Pamplona
+   What happened: Round opened
+   Process: 1
+   Round: 4
+   Terms or outcome: Definitive-negotiation stage opens with the 09/24/2013 exclusivity execution (R044); Goodwin Procter delivered the initial merger-agreement draft to Kirkland & Ellis on 09/25/2013 (R048) and CSC/Pamplona were granted full data-site and management access for confirmatory diligence. Selected bidder CSC/Pamplona remains live; all other bidders are already closed. Round finality: Inferred final — no announcement, but the target moved to definitive negotiation with the selected bidder.
+   Why and evidence: — Draft delivered and confirmatory diligence: "On September 25, 2013, Goodwin Procter delivered to Kirkland & Ellis LLP, outside legal counsel to CSC/Pamplona, whom we refer to as Kirkland, the initial draft of the merger agreement" (p.38). "CSC and Pamplona were granted full access to the electronic data site and access to certain members of management and conducted confirmatory business and legal due diligence on Mac-Gray" (p.38).
+   Source: P-061
+   Review: Q1
+   Row id: R047
+   Include: Yes
+   Date from: 2013-09-24
+   Date to: 2013-09-24
+   Working date: 2013-09-24
+   Date basis: Reported day
+   Date method: Reported
+   Round finality: Inferred final
+   Page: 38
+   Related rows: R044; R048; R043; R035
+   Deal: Mac-Gray/CSC
+--- row 49
+   #: 48
+   When: 09/25/2013
+   Who: Kirkland & Ellis LLP (outside legal counsel, CSC/Pamplona)
+   What happened: Adviser service observed
+   Process: 1
+   Round: 4
+   Terms or outcome: First shown acting on the CSC/Pamplona mandate when Goodwin Procter delivered the initial merger-agreement draft to Kirkland; engagement date not disclosed. Kirkland negotiated the merger agreement and the Pamplona commitment letter for CSC/Pamplona.
+   Why and evidence: — Earliest observed service: "On September 25, 2013, Goodwin Procter delivered to Kirkland & Ellis LLP, outside legal counsel to CSC/Pamplona, whom we refer to as Kirkland, the initial draft of the merger agreement" (p.38).
+   Source: P-061
+   Row id: R048
+   Include: Yes
+   Date from: 2013-09-25
+   Date to: 2013-09-25
+   Working date: 2013-09-25
+   Date basis: Reported day
+   Date method: Reported
+   Page: 38
+   Deal: Mac-Gray/CSC
+--- row 50
+   #: 49
+   When: after 09/23/2013; reported 10/07/2013
+   Who: Moab Partners; CSC/Pamplona; Mac-Gray Special Committee
+   What happened: Material process update
+   Process: 1
+   Round: 4
+   Terms or outcome: Moab rollover resolved without a rollover: the Special Committee had allowed Mr. Rothenberg on 09/23/2013 to resume discussions with CSC/Pamplona about a possible rollover of Moab’s shares; after those discussions it was determined that Moab would not roll over any shares in the transaction, as reported to the Special Committee on 10/07/2013.
+   Why and evidence: — Stated permission: "to provide Moab with the opportunity to resume discussions with CSC/Pamplona regarding a possible equity rollover of Moab's shares in the transaction if Moab still had an interest in such a rollover" (p.38).— Stated discussion period: "Mr. Rothenberg engaged in various discussions with representatives of Pamplona during this time to discuss a possible rollover of Moab shares" (p.38).— Stated determination reported 10/07/2013: "Mr. Daoust reported to the Special Committee that, after discussions between Moab and representatives of Pamplona, it was determined that Moab would not rollover any Moab shares in the transaction" (p.39). Working date convention: the determination date is not disclosed; it is reported at the 10/07/2013 Special Committee meeting (Assigned: bound to the report).
+   Source: P-058; P-061; P-065
+   Review: Q6; Q7
+   Row id: R049
+   Include: Yes
+   Date from: 2013-09-23
+   Date to: 2013-10-07
+   Working date: 2013-10-07
+   Date basis: Approximate window
+   Date method: Assigned: bound
+   Page: 39
+   Related rows: R016 (denial); R010
+   Deal: Mac-Gray/CSC
+--- row 51
+   #: 50
+   When: 10/09/2013
+   Who: Mac-Gray Special Committee; CSC/Pamplona
+   What happened: Exclusivity changed
+   Process: 1
+   Round: 4
+   Terms or outcome: Extension authorized: the Special Committee authorized the Transaction Committee to negotiate the open issues within parameters and to extend exclusivity to 10/15/2013; CSC/Pamplona had requested extension of the 5 p.m. ET 10/12 expiry to allow continued negotiations.
+   Why and evidence: — Stated request and authorization: "Kirkland had requested on behalf of CSC/Pamplona that the exclusivity agreement, due to expire at 5 p.m. ET on October 12, 2013, be extended to allow for continued negotiations of these open issues. After discussion, the Special Committee authorized the Transaction Committee to negotiate the open issues within certain parameters and in connection therewith to extend exclusivity to October 15, 2013" (p.40).
+   Source: P-069
+   Review: Q8
+   Row id: R050
+   Include: Yes
+   Date from: 2013-10-09
+   Date to: 2013-10-09
+   Working date: 2013-10-09
+   Date basis: Reported day
+   Date method: Reported
+   Page: 40
+   Related rows: R051
+   Deal: Mac-Gray/CSC
+--- row 52
+   #: 51
+   When: 10/12/2013
+   Who: CSC, Pamplona and Mac-Gray
+   What happened: Exclusivity changed
+   Process: 1
+   Round: 4
+   Terms or outcome: Extended: letter agreement executed extending exclusivity to 11:59 p.m. ET on 10/15/2013. The extension was authorized subject to CSC/Pamplona agreeing to a Mac-Gray termination fee of not more than $11 million; CSC/Pamplona agreed on 10/11/2013.
+   Why and evidence: — Stated execution: "On October 12, 2013, CSC, Pamplona and Mac-Gray executed a letter agreement extending exclusivity until 11:59 p.m. ET on October 15, 2013" (p.41).— Stated condition and agreement: "The Special Committee confirmed that the Transaction Committee and representatives of Mac-Gray were authorized to extend the exclusivity agreement until 11:59 p.m. on ET on October 15, 2013 if CSC/Pamplona would agree to a Mac-Gray termination fee of not more than $11 million" (p.40). "the representative of CSC/Pamplona telephoned Mr. Daoust and agreed to the $11 million Mac-Gray termination fee" (p.40-41).
+   Source: P-072; P-070; P-071
+   Review: Q8
+   Row id: R051
+   Include: Yes
+   Date from: 2013-10-12
+   Date to: 2013-10-12
+   Working date: 2013-10-12
+   Date basis: Reported day
+   Date method: Reported
+   Page: 41
+   Related rows: R050
+   Deal: Mac-Gray/CSC
+--- row 53
+   #: 52
+   When: 10/14/2013
+   Who: Mac-Gray Special Committee; Mac-Gray Board of Directors
+   What happened: Target decision
+   Process: 1
+   Round: 4
+   Terms or outcome: BofA Merrill Lynch delivered its oral fairness opinion (confirmed in writing, dated 10/14/2013); the Special Committee unanimously determined to recommend the merger agreement; the Board, on that recommendation, unanimously approved and adopted the merger agreement and recommends stockholder adoption.
+   Why and evidence: — Stated opinion: "BofA Merrill Lynch reviewed with the Special Committee its financial analysis of the consideration and delivered to the Special Committee an oral opinion, which was confirmed by delivery of a written opinion dated, October 14, 2013" (p.41).— Stated recommendations: "the Board (upon the recommendation of the Special Committee) unanimously determined that the merger agreement and the merger were advisable and in the best interests of Mac-Gray's stockholders, approved the merger on the terms and subject to the conditions set forth in the merger agreement, adopted the merger agreement and recommended that the Mac-Gray stockholders adopt and approve the merger agreement" (p.41).
+   Source: P-075; P-076
+   Review: Q5
+   Row id: R052
+   Include: Yes
+   Date from: 2013-10-14
+   Date to: 2013-10-14
+   Working date: 2013-10-14
+   Date basis: Reported day
+   Date method: Reported
+   Page: 41
+   Related rows: R053
+   Deal: Mac-Gray/CSC
+--- row 54
+   #: 53
+   When: 10/14/2013
+   Who: Mac-Gray; CSC ServiceWorks Holdings, Inc.; CSC ServiceWorks, Inc.; Spin Holdco Inc.; CSC Fenway, Inc.
+   What happened: Merger agreement signed
+   Process: 1
+   Round: 4
+   Terms or outcome: Executed: Agreement and Plan of Merger dated as of 10/14/2013 (Mac-Gray; Holdings; CSC; Spin Holdco/Parent; CSC Fenway/Merger Subsidiary). Agreed consideration: $21.25 per share in cash, without interest, less applicable withholding. Pamplona commitment letter ($594 million) delivered; no financing condition to the Buyer Entities’ obligations; Mac-Gray termination fee $11 million; CSC reverse termination fee $15 million; Pamplona damages liability capped at $50 million (Buyer Entities unlimited). Moab voting agreement executed and the MacDonald voting agreements became effective (≈15% of shares subject to voting agreements). No go-shop is reported; the Board retained a fiduciary out to accept a superior proposal on payment of the $11 million fee.
+   Why and evidence: — Stated execution and related documents: "Later in the day, on October 14, 2013, the merger agreement was executed, the Pamplona commitment letter was delivered, Moab and Parent executed the Moab voting agreement and the Mac-Donald voting agreements became effective" (p.41).— Consideration: "will be automatically converted into the right to receive $21.25 in cash, without interest and less applicable withholding taxes" (p.5).— Termination fees: "Mac-Gray has agreed to pay Parent $11 million upon the termination of the merger agreement under certain circumstances" (p.10). "then Parent will pay Mac-Gray the $15 million Parent termination fee" (p.81).— Financing: "The merger agreement does not contain any condition to the obligations of the Buyer Entities or Merger Subsidiary relating to the receipt of financing by the Buyer Entities" (p.58). "an aggregate of $594 million of capital (the Pamplona commitment amount)" (p.59).— Voting agreements: "Approximately 15% of the outstanding Mac-Gray shares on the record date for the special meeting are subject to the voting agreements" (p.82).
+   Source: P-077; X-001; X-005; X-025; X-019; X-020; X-026
+   Review: Q5
+   Row id: R053
+   Include: Yes
+   Date from: 2013-10-14
+   Date to: 2013-10-14
+   Working date: 2013-10-14
+   Date basis: Reported day
+   Date method: Reported
+   Page: 41
+   Related rows: R052; R054; R044
+   Deal: Mac-Gray/CSC
+--- row 55
+   #: 54
+   When: 10/15/2013
+   Who: Mac-Gray and CSC ServiceWorks, Inc.
+   What happened: Merger announced
+   Process: 1
+   Round: post
+   Terms or outcome: Joint announcement of the execution of the merger agreement, before U.S. stock markets opened. The merger was announced as expected to close in January 2014 (first half of 2014 per the merger-agreement section); no completion is observed in this filing.
+   Why and evidence: — Stated announcement: "On October 15, 2013, before the U.S. stock markets opened, Mac-Gray and CSC jointly announced the execution of the merger agreement" (p.41).— Expected timing: "We currently expect the merger to be completed in January 2014" (p.14).
+   Source: P-078; X-008
+   Row id: R054
+   Include: Yes
+   Date from: 2013-10-15
+   Date to: 2013-10-15
+   Working date: 2013-10-15
+   Date basis: Reported day
+   Date method: Reported
+   Page: 41
+   Related rows: R053
+   Deal: Mac-Gray/CSC
+--- row 56
+   #: 55
+   When: 12/04/2013
+   Who: MacKenzie Partners, Inc. (proxy solicitor, Mac-Gray)
+   What happened: Adviser service observed
+   Process: 1
+   Round: post
+   Terms or outcome: Proxy solicitor for the special meeting; the proxy statement states Mac-Gray expects to retain MacKenzie Partners for the solicitation for a fee of approximately $15,000 plus out-of-pocket expenses and indemnification (expected retention, not a stated executed engagement).
+   Why and evidence: — Stated expected retention: "we expect to retain MacKenzie Partners, Inc. to assist in the solicitation for a fee of approximately $15,000" (p.23).
+   Source: X-010
+   Row id: R055
+   Include: Yes
+   Date from: 2013-12-04
+   Date to: 2013-12-04
+   Working date: 2013-12-04
+   Date basis: Reported day
+   Date method: Reported
+   Page: 23
+   Deal: Mac-Gray/CSC
+##### SHEET 'Summary' (60 rows x 2 cols)
+1. STATUS AND COMMERCIAL ACCOUNT
+Status | AI first pass; not human-approved. Prepared under the supplied instruction “Reading a merger filing into a deal ledger: extraction instruction”, revision of 19 September 2026.
+Source coverage | Single supplied filing: mac-gray_2013-12-04_DEFM14A.htm — Mac-Gray Corporation DEFM14A filed 12/04/2013 (177 component pages incl. Annexes A–D). Complete Background of the Merger (printed pp.27–41) transcribed in Source text; every additional passage used is X-001–X-030. No outside sources, market data or third-party knowledge used.
+Account | Mac-Gray, a NYSE-listed laundry-facilities manager (NYSE: TUC), faced activist pressure from Moab Partners (a ~9% holder that elected two directors at the 05/30/2013 annual meeting) and began a target-led sale review in mid-2013 under a Special Committee of six independent directors formed to manage insider-conflict issues. BofA Merrill Lynch approached 50 potential buyers (15 strategic, 35 financial); 20 signed confidentiality agreements, and four bid: strategic Party A (an industry party), strategic CSC/Pamplona (CSC ServiceWorks, a Pamplona portfolio company), and financial bidders Party B and Party C. Party A’s early $17.00–$19.00 proposal (06/21/2013) was overtaken as CSC/Pamplona raised through $18.50 (07/23), $19.50 (09/09) and $20.75 (09/18); Party B’s final package (valued by Party B at $21.50 = $19.00 cash plus options) and Party A’s best-and-final $18.00–$19.00 were judged less certain, and Party C stopped bidding without explanation. On 09/21/2013 CSC/Pamplona confirmed $21.25 all-cash as its last and best offer in exchange for a two-week exclusivity, and on 10/14/2013 — after negotiating the Mac-Gray termination fee down from $15 million to $11 million — the parties signed a $21.25 all-cash merger agreement, announced 10/15/2013.
+Observed outcome | Signing, not closing. No post-signing competing proposal or go-shop activity is reported; HSR clearance was awaited (waiting period expired 11/27/2013), the special meeting was set for 01/08/2014 and closing was expected in January 2014 (first half of 2014 per the merger-agreement section).
+Last recheck status | First delivery; no reviewer edits yet. AI original is an exact values-only copy of this ledger at delivery. Changed-cell highlighting (red bold by Row id and column vs AI original) is not implemented — an explicit Correction column is provided next to Reviewer note (see Questions, check 8).
+2. DEAL FACTS
+Target | Mac-Gray Corporation, 404 Wyman Street, Suite 400, Waltham, Massachusetts 02451 (Delaware corporation; NYSE symbol TUC). Second-largest US laundry facilities management contractor; sells/services commercial laundry equipment through its product sales division.
+Focal acquirer and type | CSC ServiceWorks, Inc. (CSC), a Delaware corporation and Pamplona Capital Partners III, L.P. portfolio company — Strategic. Acquires through Spin Holdco Inc. (Parent, wholly owned by CSC), CSC Fenway, Inc. (Merger Subsidiary), with CSC ServiceWorks Holdings, Inc. (sole stockholder of CSC). Pamplona is the owner/financier of the acquirer, not a separate bidder; parent and acquisition shells are one bidder unit.
+Agreed consideration | $21.25 per share in cash, without interest, less applicable withholding — all cash; fixed cash payable at closing $21.25 (R053). Labelled calculation (not a filing-stated aggregate): 14,758,306 shares × $21.25 = $313,614,002.50.
+Signing / announcement / completion | Agreement and Plan of Merger dated as of 10/14/2013 (R053); joint announcement 10/15/2013 before market open (R054); completion not observed in this filing — expected January 2014 (merger-agreement section: first half of 2014). Expected closing kept separate from the observed record.
+Filing identity | Mac-Gray Corporation DEFM14A, filed 12/04/2013; source file mac-gray_2013-12-04_DEFM14A.htm; Background of the Merger at printed pp.27–41; merger agreement Annex A; BofA fairness opinion Annex B; DGCL §262 Annex C; form of voting agreement Annex D.
+Vote and process protections | Merger agreement adoption requires a majority of outstanding shares; voting agreements covered ≈15% of shares (Moab, Mr. MacDonald and family entities). Mac-Gray termination fee $11 million (≈3.2% of equity value per the filing); Parent termination fee $15 million (regulatory reverse fee); Pamplona damages liability capped at $50 million (Buyer Entities unlimited); no financing condition; no go-shop is reported, but the Board kept a fiduciary out for a superior proposal.
+Special meeting items | 01/08/2014 special meeting: (1) adopt the merger agreement; (2) advisory (non-binding) "golden parachute" compensation vote; (3) adjournment proposal.
+3. PROCESS AND ROUND MAP
+Process 1 outcome | One continuing Mac-Gray sale process (June 2013 → signing 10/14/2013). The 2011-2012 Discussions were Mac-Gray’s own attempt to acquire CSC (R001, R006) — retained only as mandate/initiation context, not a Mac-Gray sale process; no second sale attempt is observed.
+Round 0 (pre-opening) | Context only, no Round-opened row: 2011-2012 Discussions; 04/05/2013 Board authorization (R002); 04/08/2013 Party A contact (R003); 06/21/2013 Party A $17.00–$19.00 proposal (R009, still standing into round 1 — Party A is a round-1 participant).
+Round 1 (06/24/2013 – 07/23/2013) | Opened on the Special Committee’s 06/24/2013 decision to consider a sale and approach 50 parties — no outreach was reported before that directive, and execution began within days (first NDA 06/28/2013). Rejected boundary candidates preserved as rows: R002, R003, R007, R012–R013, R014. Purpose: preliminary indications of interest; deadline 07/23/2013 (set with the informational packages, R017) — Late bids accepted (Party B 07/24; Party C 07/24–07/25, considered 07/25). Round-1 bidders: 4 (three IOIs plus Party A’s standing proposal); 16 residual signers inferred non-submitters (R019, R021). Finality: Not final.
+Round 2 (08/27/2013 – 09/09/2013) | Opened on the 08/27/2013 letter requesting revised written proposals once all four bidders’ diligence was substantially complete (authorized 08/15/2013). Deadline 09/09/2013 — Late bids accepted (Party A and Party C 09/10, reviewed 09/11). Round-2 bidders: 4. Finality: Not final.
+Round 3 (09/11/2013 – 09/24/2013) | Opened on the first request for final indications of interest (calls made 09/11/2013). Deadline 09/18/2013 — Enforced (three responses; selection step 09/19). Round-3 bidders: 3 (CSC/Pamplona $20.75; Party A best-and-final reiteration; Party B $21.50 package); Party C did not submit (R040). CSC/Pamplona confirmed $21.25 last-and-best 09/21 (R042); exclusivity authorized 09/23 (R043). Finality: Announced as final.
+Round 4 (09/24/2013 – 10/14/2013) | Opened on the move to exclusive definitive negotiation with the selected bidder (exclusivity executed 09/24, R044; initial merger-agreement draft 09/25, R048). Round-4 bidders: 1 (CSC/Pamplona). Finality: Inferred final. Ends with signing 10/14/2013 (R053).
+Post-signing | No competing proposals or go-shop activity observed. Announcement 10/15/2013 (R054); proxy statement 12/04/2013 and special-meeting scheduling (R055). Signing is not treated as Process terminated.
+Exclusivity history | Requested with the 09/09 and 09/18 bids; authorized 09/23 (R043); executed 09/24 until 5 p.m. ET 10/12 (R044); extension authorized 10/09 (R050); letter agreement 10/12 extended to 11:59 p.m. ET 10/15 (R051).
+Deadline history | 07/23/2013 IOI deadline (set with the packages; R017/R020) — Late bids accepted; 09/09/2013 revised-proposal deadline (R028/R029) — Late bids accepted; 09/18/2013 final-indication deadline (R035/R036) — Enforced. No bid deadline was revised or extended; the two exclusivity expiries are not bid deadlines.
+4. PARTICIPANTS AND ADVISERS
+Party A — Strategic | Anonymized strategic party in the laundry facilities management industry. First contacted 04/08/2013 (R003); unsolicited all-cash $17.00–$19.00 proposal 06/21/2013 (R009, round 0; still standing into round 1); NDA 08/05/2013 after stalled non-solicitation terms (R027); revised IOI 09/10/2013 $18.00–$19.00 (R032); best-and-final reiteration 09/18/2013 (R038, Formal, Heavy). Closed: Dropped by target at the 09/24/2013 exclusivity execution (R045; Inferred: exclusivity; Decided by Target; reason not stated).
+Party B — Financial | Anonymized financial bidder. NDA 06/28/2013 (R014); IOI 07/24/2013 $17.00–$18.00 (R023); revised IOI 09/09/2013 $18.50 with no firm financing commitment (R031); final package 09/18/2013 valued by Party B at $21.50 ($19.00 cash at closing plus options worth $2.50) (R039; Formal, Heavy). Closed: Dropped by target at the 09/24/2013 exclusivity execution (R046; Inferred: exclusivity; Decided by Target; reason not stated).
+Party C — Financial | Anonymized financial bidder. NDA 06/30/2013 (R015); oral IOI 07/24/2013 $15.00–$17.00 and written indication 07/25/2013 $16.00–$16.50 (R024); revised oral IOI 09/10/2013 $16.00–$17.00 (R033); did not submit or reiterate in the final round and gave no reasons. Closed: Did not submit at the 09/18/2013 deadline (R040, stated).
+CSC/Pamplona — Strategic (winner) | CSC ServiceWorks, Inc. with Pamplona Capital Partners III, L.P. (one bidder unit; filing treats them as a strategic bidder pair). NDA 07/11/2013 (R018); IOIs $18.50 07/23 (R022), $19.50 09/09 with 100% capital commitment (R030), $20.75 09/18 (R037), $21.25 last-and-best 09/21 conditional on two-week exclusivity (R042); exclusivity 09/24 (R044); signed 10/14/2013 (R053). No exit row — the winner.
+Residual cohort | 16 remaining financial bidders (20 signers less the four individually recorded: 2 strategic + 18 financial per the filing; Party B and Party C are individually recorded). Entry at the NDA wave (R019, Count 16); inferred non-submitters at the 07/23/2013 solicitation (R021, Count 16).
+Non-entrants | 30 of the 50 approached parties did not sign confidentiality agreements or bid; no individual outcomes are disclosed and none are invented.
+Ownership / country attributes (disclosed) | Moab Capital Partners, LLC / Michael M. Rothenberg ≈9.07% (1,338,127 shares); Stewart G. MacDonald, Jr. ≈16.65% (2,456,568 shares, incl. trusts); Cynthia V. Doggett 16.65%; directors and executive officers as a group (14 persons) 35.04%; all entities Delaware/US unless stated. Mr. Rothenberg is Moab’s co-founder and General Partner; the board also included a Moab-nominated director (Mr. Hyman).
+Group / funding relationships | No bidding-group change occurred: no independent bidder joined (or left for) another’s bidding unit (no "Bidding group changed"/"Joined group" rows). Moab’s possible equity rollover with CSC/Pamplona was denied (07/06/2013), later permitted to be discussed and resolved without a rollover (10/07/2013) — R016, R049. Pamplona’s $594 million commitment supports the CSC bid — recorded on the bid/signing rows, not as a group change.
+Advisers | BofA Merrill Lynch — financial adviser to Mac-Gray: engaged 10/23/2012 for the 2011-2012 Discussions (R001), terminated 05/15/2013 (R006), re-engaged for the strategic-alternatives review 05/30–05/31/2013 (R007); fairness opinion 10/14/2013 (R052). Goodwin Procter LLP — outside legal counsel to Mac-Gray; service observed from 05/09/2013; no engagement date disclosed (R005). Kirkland & Ellis LLP — outside legal counsel to CSC/Pamplona; service observed from 09/25/2013 (R048). MacKenzie Partners, Inc. — proxy solicitor; expected retention at ≈$15,000 reported 12/04/2013 (R055). No unclear client affiliations remain.
+5. COUNTS AND AUCTION SCREEN
+Contacts (filing assertion) | 50 parties contacted: 15 potential strategic buyers and 35 potential financial buyers (R012, R013). Ledger-derived contact tally (SUMIFS, Include = Yes):
+Contact total formula | =SUMIFS('Deal ledger'!$R:$R,'Deal ledger'!$D:$D,"Contact",'Deal ledger'!$E:$E,1,'Deal ledger'!$Q:$Q,"Yes")
+Contacts — reconciliation | The SUMIFS = 50 (15 + 35). Row R003 (Party A first contact, 04/08/2013) carries Count 0 because Party A is already inside the 15-party strategic cohort — it is a first-contact record, not an additive unit; do not sum to 51.
+NDAs (filing assertion) | 20 potential bidders signed confidentiality and standstill agreements: 2 strategic (Party A, CSC/Pamplona) and 18 financial (including Party B and Party C).
+NDA total formula | =SUMIFS('Deal ledger'!$R:$R,'Deal ledger'!$D:$D,"NDA signed",'Deal ledger'!$E:$E,1,'Deal ledger'!$Q:$Q,"Yes")
+NDAs — reconciliation | The SUMIFS = 20: individually recorded R014 (Party B), R015 (Party C), R018 (CSC/Pamplona), R027 (Party A) + residual cohort R019 (16 financial signers) = 20. No double counting of named members.
+Round-bidder tallies (ledger) | Round 1: 3 Count units for round-1 submissions (R022–R024) + Party A’s standing round-0 proposal shown as a round-1 participant (R009/R011) = 4 bidders. Round 2: 4 (R030–R033). Round 3: 3 (R037, R038, R039; R042 is a Count-0 same-round increase). Round 4: 1 (selected definitive negotiator; no Bid rows).
+Round 2 formula | =SUMIFS('Deal ledger'!$R:$R,'Deal ledger'!$D:$D,"Bid",'Deal ledger'!$E:$E,1,'Deal ledger'!$F:$F,2,'Deal ledger'!$Q:$Q,"Yes")
+Round 3 formula | =SUMIFS('Deal ledger'!$R:$R,'Deal ledger'!$D:$D,"Bid",'Deal ledger'!$F:$F,3,'Deal ledger'!$Q:$Q,"Yes")+SUMIFS('Deal ledger'!$R:$R,'Deal ledger'!$D:$D,"Bid reaffirmed",'Deal ledger'!$F:$F,3,'Deal ledger'!$Q:$Q,"Yes")
+Outcome tallies (affected units) | Dropped by target:
+Dropped formula | =SUMIFS('Deal ledger'!$R:$R,'Deal ledger'!$D:$D,"Dropped by target",'Deal ledger'!$Q:$Q,"Yes")
+Did not submit | =SUMIFS('Deal ledger'!$R:$R,'Deal ledger'!$D:$D,"Did not submit",'Deal ledger'!$Q:$Q,"Yes")
+Per-stage balance (process 1) | Entered 20 (R014/R015/R018/R027 individually + R019 residual cohort = 20 signers, each counted once) − stated exits 1 (Party C, Did not submit) − inferred exits 18 (16 residual non-submitters + Party A and Party B dropped by exclusivity) = continuing 1 (CSC/Pamplona, the winner). Inferred share of exits: 18 of 19. No participant is left unclosed; the balance is exact because the filing states the signer population (20).
+Auction screen | Met. More than one independent prospective acquiring bidder unit executed bidder-target confidentiality agreements for the process: 20 signers including at least four independently evidenced units (Party A, CSC/Pamplona, Party B, Party C). Lender-only, adviser and rollover-holder agreements excluded (none exist here). Sample eligibility remains a research decision.
+Do not add steps | Contacts (50 parties reached) ≠ submissions (round-1: 3; round-2: 4; round-3: 3) ≠ unique firms (20 entrants) ≠ outcomes (19 affected units) ≠ NDA signers (20). Different steps must not be summed.
+6. COMPARABILITY AND INPUTS
+Shares and ownership | 14,758,306 shares issued and outstanding (11/27/2013); ≈104 record holders; ≈15% subject to voting agreements; Moab ≈9.07%; Mr. S. MacDonald ≈16.65%; directors and officers as a group 35.04%.
+Market prices and premiums | Closing prices: $14.72 on 10/11/2013 (last trading day before Board approval); $14.93 on 10/14/2013 (last full trading day before announcement); $21.30 on 11/27/2013. 52-week high for the period ending 10/11/2013: $15.61. Stated premiums vs $21.25: ≈36% over the 52-week high and ≈44% over the $14.72 close.
+Adviser analyses (not offers) | BofA implied per-share reference ranges from selected public companies: $13.50–$18.75 (2013E without acquisitions), $13.75–$19.00 (2013E with acquisitions), $13.75–$19.25 (2014E without), $12.75–$19.25 (2014E with) versus the $21.25 consideration; 20 selected precedent transactions included the May 1, 2013 Coinmach/Pamplona transaction. Analysis only — not recorded as bids.
+Contingent / non-cash consideration | Party B’s 09/18/2013 package: $19.00 cash at closing plus options = 10% of new equity, strike equal to Party B’s initial cost basis, vesting over five years on achievement of base-case management projections (excluding future acquisitions); Party B valued the options at $2.50/share, for a stated package value of $21.50. All cash = No; Cash at closing = $19.00; the $2.50 option value is not guaranteed cash.
+Financing inputs | Pamplona commitment letter dated 10/14/2013: $594 million of capital; no financing condition to the Buyer Entities’ obligations; Pamplona and the Buyer Entities jointly and severally liable for damages, with Pamplona capped at $50 million (Buyer Entities unlimited); CSC reverse termination fee $15 million; Mac-Gray termination fee negotiated from $15 million (Kirkland’s 10/07 proposal, ≈4.4% of equity value) to $11 million (≈3.2%).
+Projections | Management Projections prepared June 2013 (without-acquisitions and with-acquisitions cases; 2013–2018), provided to the Special Committee and BofA; not updated for the merger. Used in the fairness opinion.
+Other-scope proposals | None disclosed. All four bids were for the whole company; no segment, asset, minority-stake or other-scope proposals appear. The 2011-2012 Discussions concerned Mac-Gray’s possible acquisition of CSC and are not an other-scope bid for Mac-Gray.
+Other inputs and normalization | Net debt, dilution and rollover treatment are not disclosed; no currency conversion or net-debt bridge has been performed (all amounts USD). The equity-value calculation above is the only labelled conversion, using the stated 14,758,306 shares.
+Glossary | NDA = confidentiality/non-disclosure agreement; IOI = indication of interest; LOI = letter of intent (not used here); Party A/B/C = filing’s anonymized bidders; CSC/Pamplona = one bidder unit (CSC ServiceWorks with Pamplona as owner/financier); Round 0 = pre-opening approaches and standing proposals; Round finality = whether the round was announced/inferred final; Inferred closing = a participant closed by arithmetic/transition without a stated exit; Working date = assigned sort key with a stated method, not an observed date; Auction screen = whether >1 independent bidder unit signed bidder-target confidentiality agreements.
+##### SHEET 'Questions' (20 rows x 8 cols)
+HEADER: Q | Review topic | Recommended answer | Why and source | Affected rows/fields | Consequence of changing it | Status | Reviewer note
+--- row 2
+   Q: Q1
+   Review topic: Process and round map; Round-1 anchor and rejected boundaries
+   Recommended answer: Adopt one process and four analytical rounds as recorded: R1 opens 06/24/2013 on the Special Committee’s decision to consider a sale and approach 50 parties (executed by BofA outreach within days; first NDA 06/28/2013); R2 opens 08/27/2013 on the revised-proposal letter; R3 opens 09/11/2013 on the first request for final indications of interest (Announced as final); R4 opens 09/24/2013 on the move to exclusive definitive negotiation with the selected bidder (Inferred final). Round 0 holds the 2011-2012 Discussions, the 04/05/2013 authorization, the 04/08/2013 Party A contact and the 06/21/2013 Party A proposal, with Party A shown as a round-1 participant because its proposal was standing when round 1 was evaluated. Alternative: the smallest map is three rounds, folding the definitive-negotiation phase into R3; if so, delete/Include=No R047 and move R044–R053 to R3.
+   Why and source: Boundaries: the filing reports no target outreach before the 06/24/2013 directive, and BofA’s contacts began within days (background pp.31–32); R3 is the first “final” request (p.36) and the exclusivity stage follows the final stage (pp.37–38). Rejected R1 boundary candidates are preserved as their own rows: R002 (authorization), R003 (Party A call), R007 (engagement letter), R012–R013 (outreach wave), R014 (first NDA). R4 rests on the instruction’s trigger “moves to definitive negotiation with selected bidders” and its “Inferred final” definition; the counter-reading is that the exclusivity is “inside an established final negotiation stage”.
+   Affected rows/fields: R010, R011 (R1); R028 (R2); R035 (R3); R043, R044, R047 (R4); boundary rows R002, R003, R007, R012–R014; Round fields and Round finality on all Round-opened rows
+   Consequence of changing it: If R4 is folded into R3: round count 4 → 3; R3 gains the definitive-negotiation phase; the R4 round-bidder tally (1) disappears; no participant outcome changes. If the R1 anchor moves to 06/28–07/23, Round 1’s opening date and some count context shift.
+   Status: Pending
+--- row 3
+   Q: Q2
+   Review topic: Deadline history and treatments
+   Recommended answer: Keep as recorded: IOI deadline 07/23/2013 (set with the informational packages between 06/28 and 07/23; estimated Working date 07/10) — Late bids accepted (Party B 07/24; Party C 07/24–07/25, both considered 07/25); revised-proposal deadline 09/09/2013 — Late bids accepted (Party A and Party C 09/10, reviewed 09/11); final-indication deadline 09/18/2013 — Enforced (three responses; selection step 09/19). The exclusivity expiries (10/12, 10/15) are not bid deadlines.
+   Why and source: Deadline instructions at background pp.32 and p.35; late submissions and the meetings that considered them at pp.33–36; the 09/19 selection step at pp.36–37. No deadline revision is reported, so no Deadline revised row exists; the July 23 due date and its late acceptance are preserved in R017/R020.
+   Affected rows/fields: R017, R020 (07/23); R028, R029 (09/09); R035, R036 (09/18); Deadline treatment fields and the Summary deadline map
+   Consequence of changing it: Reclassifying 07/23 or 09/09 from Late bids accepted to Unclear/Enforced would change the deadline map and could move late bids out of their round’s submission count; the 09/18 treatment is robust unless the reviewer reads the 09/21 $21.25 confirmation as a new solicitation.
+   Status: Pending
+--- row 4
+   Q: Q3
+   Review topic: Participants, NDA/contact counts, residual base and inferred closings
+   Recommended answer: Accept the population: 50 parties contacted (15 + 35), 20 NDA signers (2 strategic + 18 financial), 4 individually recorded, residual cohort of 16 financial signers. Close-outs: 16 residual non-submitters at 07/23/2013 (Count 16; Inferred: residual — 20 − 4 = 16); Party C Did not submit at 09/18/2013 (stated, Count 1); Party A and Party B Dropped by target at the 09/24/2013 exclusivity execution (Inferred: exclusivity, Count 1 each). The 30 contacted non-signers never entered and get no outcome rows.
+   Why and source: Base and continuing sets: p.32 (20 signers; 2 + 18 split) and p.34 (the four advanced at the 07/25/2013 meeting); Party C’s non-submission is expressly reported (p.36); exclusivity execution p.38 closes live rivals. Uncertainty: the base assumes all 20 signers were covered by the 07/23/2013 solicitation, but signings are described “over the next two months” (to late August) and Party A signed only on 08/05/2013 — if some residual signers post-date 07/23, the non-submitting set is smaller (or some should be closed at a later transition). Party A’s 04/08/2013 contact carries Count 0 because it sits inside the 15-party strategic cohort (R012).
+   Affected rows/fields: R003, R012–R013, R019, R021, R040, R045, R046; Count fields; Summary balance
+   Consequence of changing it: Splitting or resizing the residual cohort changes the inferred-exit count and the per-stage balance; if any of the 16 later submitted an IOI not reported in the narrative, the residual overstates non-submission — the filing’s exhaustive-sounding list (Party B, Party C, CSC/Pamplona and Party A’s standing proposal) argues against that.
+   Status: Pending
+--- row 5
+   Q: Q4
+   Review topic: Formality and conditions borderlines
+   Recommended answer: As recorded: July IOIs are Informal and Heavy by context (made before data-room/management access); September revised IOIs remain Informal except the three final-round responses, which are Formal (R037, R038, R039 — responses on the requested basis to the 09/11/2013 final-indications request), with Party A Formal on an oral best-and-final price confirmation; conditions are Heavy for Party A and Party B (no firm financing commitment), Light for CSC/Pamplona (Pamplona committed 100% of capital; no diligence condition attached) and Light for the 09/21/2013 $21.25 confirmation (carried forward). No Conditions level turns on a stated diligence period, no row is None, and there is no late reconfirmation row (the winner’s latest priced bid is Formal and sits in an Announced-as-final round, so the section 9.1 late-reconfirmation test fails).
+   Why and source: Formality signals: final-indications request p.36; responses p.36. Conditions: no firm commitment for Party B (p.35) and Party A/Party C (p.35); Pamplona commitment (pp.35–36); pre-access IOIs (pp.33–34 data-room staging). The winner reached signing with a Formal row (R037) — no gap.
+   Affected rows/fields: R009, R022–R024, R030–R033, R037–R039, R042; Formality, Conditions level and Conditions detail fields
+   Consequence of changing it: Reclassifying any September IOI as Informal, or the final responses as Formal, changes the formality tallies and the Conditions detail strings; prices, outcomes and the round map are unaffected.
+   Status: Pending
+--- row 6
+   Q: Q5
+   Review topic: Price and consideration conventions; scope
+   Recommended answer: Keep as recorded: per-share cells in USD only; Party A’s ranges as Bidder range with Carried forward on the 09/18/2013 reaffirmation; Party B’s 09/18/2013 package entered as a Point at $21.50 (Party B’s stated value) with All cash = No and Cash at closing $19.00; Party C’s oral-to-written July indications treated as one bid with the written range recorded; no Bound only rows; no other-scope bids; signing row carries the agreed $21.25 in text only (no price cells).
+   Why and source: Package value: p.36 (“Party B valued at $21.50 … $19.00 of cash … options … valued the Party B options at $2.50”); carried price p.36 (reiteration of the previous $18.00–$19.00 indication); one-communication convention applied to Party C (pp.33–34); no other-scope proposals appear anywhere in the filing.
+   Affected rows/fields: R024, R032, R038, R039, R053; Price low/high/kind/origin, All cash, Cash at closing, Terms or outcome
+   Consequence of changing it: If the reviewer prefers not to enter bidder-assigned package values in price cells, blank R039’s price cells and keep $21.50/$19.00/$2.50 in text; carried-forward vs restated on R038 changes Price origin only. No totals depend on these cells.
+   Status: Pending
+--- row 7
+   Q: Q6
+   Review topic: Moab/MacDonald rollover rows and the two-row convention
+   Recommended answer: Keep three rows: R016 (rollover denied as premature, 07/06/2013), R034 (Mr. MacDonald’s rollover question resolved and his support position, 09/11–09/12/2013) and R049 (Moab discussions permitted 09/23/2013 and resolved without a rollover, reported 10/07/2013). No separate row for the 09/23/2013 permission, per the instruction’s “at most one row when permitted, denied or formed and one when resolved” convention for rollover relationships.
+   Why and source: Denial and rationale p.32–33; permission p.38; discussions and determination pp.38–39; MacDonald’s position pp.35–36. The filing never shows a formed rollover or any financing-support relationship between Moab and CSC/Pamplona, and no voting/group change results.
+   Affected rows/fields: R016, R034, R049; Material process update rows; Summary group/funding note
+   Consequence of changing it: Adding a fourth row for the 09/23/2013 permission changes row counts only; reclassifying these as Bidding group changed would be wrong (a rollover holder is not a bidding-unit member) and would distort the unit counts.
+   Status: Pending
+--- row 8
+   Q: Q7
+   Review topic: Assigned Working dates and display order within rounds
+   Recommended answer: Accept the disclosed conventions: R012/R013 (wave) use the first day of the reported window (06/24/2013); R017 uses the midpoint of 06/28–07/23 (07/10/2013); R019 is moved earlier inside its window to 07/23/2013 (Assigned: sequence) so the residual cohort’s entry precedes its inferred non-submission; R024 and R034 use the first day of a reported interval; R045/R046 use the transition date (Assigned: decision day); R049 uses the 10/07/2013 report bound. Sorting by Working date with # as tiebreak reproduces the reading order; no Working date falls outside its own window. Source quirks retained: the filing’s “July 27, 2103” typo (R027; intended 2013) and a duplicated sentence in the informational-package paragraph (Source text P-023).
+   Why and source: Rules applied from the instruction, section 8.1; the order constraint drove R019’s sequence assignment (entry must precede R021’s inferred closing); each affected row’s reason states its convention.
+   Affected rows/fields: R012, R013, R017, R019, R024, R034, R045, R046, R049; Date from/to, Working date, Date basis/method fields
+   Consequence of changing it: Changing any convention moves only display order (and possibly the entry-before-outcome check for R019/R021); facts, counts and outcomes are unaffected.
+   Status: Pending
+--- row 9
+   Q: Q8
+   Review topic: Exclusivity row granularity
+   Recommended answer: Keep four Exclusivity changed rows: authorized 09/23/2013 (R043), executed 09/24/2013 (R044), extension authorized 10/09/2013 (R050), extended by letter agreement 10/12/2013 (R051), each stating the actual vs scheduled state. Alternative: merge authorized+executed and authorized+extended into two rows (granted; extended).
+   Why and source: Authorization p.38 and execution p.38; extension request and authorization pp.40–41; letter agreement p.41. The instruction asks the row to state which state (requested/authorized/granted/extended/ended) it records.
+   Affected rows/fields: R043, R044, R050, R051; Exclusivity changed rows and Summary exclusivity history
+   Consequence of changing it: Merging to two rows changes row count and the exact timing record for the 09/23 authorization and 10/09 authorization; no bid, count or outcome changes.
+   Status: Pending
+CHECK RESULTS (instruction section 13) — run on this delivered version
+--- row 12
+   Review topic: Check
+   Recommended answer: Scope and method
+   Why and source: Result
+   Affected rows/fields: Notes / affected rows; consequences
+--- row 13
+   Review topic: 1. Coverage and materiality
+   Recommended answer: Reading the full filing against the ledger
+   Why and source: Passed
+   Affected rows/fields: All disclosed core proposals (11 priced Bid rows + R038 reaffirmation + R042 increase), contacts and NDAs (50 approached; 20 signed), the differentiated-access decision (R026), selection/exclusivity (R041–R047), signing (R053) and announcement (R054) are accounted for; regulatory/litigation facts are confined to Summary. Supplied-source limits (single filing; no post-DEC-2013 events) stated in Summary; inferred closings explicit.
+--- row 14
+   Review topic: 2. Counts and population
+   Recommended answer: Formula/logic check and Summary reconciliation
+   Why and source: Qualified
+   Affected rows/fields: Sums reconcile: contacts 50 (15+35; R003 Count 0), NDAs 20 (4 named + 16 residual), round bidders 4/4/3/1, outcomes 2 dropped + 17 did-not-submit + 1 winner = 20 entrants. Qualification: the residual base assumes all 20 signers were eligible for the 07/23/2013 solicitation (some signings may be later — Q3); Party A contact overlap documented rather than silently zeroed.
+--- row 15
+   Review topic: 3. Participation continuity
+   Recommended answer: Per-bidder history and per-stage stock
+   Why and source: Passed
+   Affected rows/fields: Each of the 20 entrants closes exactly once: Party C stated; 16 residual + Party A + Party B inferred; CSC/Pamplona signs. Stock never negative and only the winner remains after 09/24/2013. No bid, reaffirmation or resumed diligence follows a recorded outcome, so no Re-entered row is required.
+--- row 16
+   Review topic: 4. Dates and order
+   Recommended answer: Programmatic check of ordering and windows; reading check of intervals
+   Why and source: Qualified
+   Affected rows/fields: All Working dates are filled and non-decreasing in # order; each lies inside its row’s Date from/to; Reported/Inferred methods pair exactly with their bases; assigned methods used elsewhere. Qualification: the conventions in Q7 (bounds, midpoints, sequence) are analytical; not recalculated in Excel (written formulas verified programmatically).
+--- row 17
+   Review topic: 5. Offers and classifications
+   Recommended answer: Field-level review of all Bid/Bid reaffirmed rows
+   Why and source: Qualified
+   Affected rows/fields: Every Bid/Bid reaffirmed row has Formality, Conditions level and a fixed-format Conditions detail string; price kinds/origins/cash flags agree with the text; signing has no price/formality/conditions cells; Party B’s package is All cash = No with $19.00 closing cash. Qualification: the formality and Heavy-by-context calls are judgment (Q4); Party B’s bidder-assigned option value is recorded per the package convention (Q5).
+--- row 18
+   Review topic: 6. Structure and consistency
+   Recommended answer: Structural audit across ledger and Summary
+   Why and source: Passed
+   Affected rows/fields: One Round opened row per round (R011, R028, R035, R047), each with Round finality; R011 carries the R1 anchor tag with candidate Row ids; each Deadline row’s treatment matches the Summary map; every inferred row opens with its Outcome basis; Related rows point to prior (not self/future) records; Page filled wherever Source is.
+--- row 19
+   Review topic: 7. Evidence
+   Recommended answer: Programmatic quotation matching plus interpretation read
+   Why and source: Passed
+   Affected rows/fields: Every quotation used was matched to the cited passage in the source text (whitespace-normalized; filing typography preserved, including the “July 27, 2103” typo and the duplicated sentence in P-023); page citations verified against the printed-page map; cross-paragraph premises cited (e.g., formality signals and the residual base). Text matching alone does not validate interpretation — judgment items are in Q1–Q8.
+--- row 20
+   Review topic: 8. Review and workbook operation
+   Recommended answer: Workbook open/re-save text and structural inspection
+   Why and source: Qualified
+   Affected rows/fields: Question links and Affected-row references resolve to existing Row ids; drop-down lists written for all controlled columns; Source hyperlinks written and verified present after save (internal “location” links, no external targets); Summary formulas written and their arithmetic verified programmatically, but NOT recalculated or tested in a spreadsheet application — LibreOffice is unavailable in this environment (it crashes on load) and Excel was not runnable here. Changed-cell highlighting is NOT implemented: AI original is retained as the values baseline and a Correction column is provided beside Reviewer note; no automatic baseline comparison or dependent-update mechanism is claimed.
+##### SHEET 'Source text' (visible, 109 rows) -- skipped
+##### SHEET 'AI original' (hidden, 56 rows) -- skipped
+##### SHEET 'Lists' (hidden, 41 rows) -- skipped

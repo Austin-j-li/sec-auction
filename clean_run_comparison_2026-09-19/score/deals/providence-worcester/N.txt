@@ -1,0 +1,839 @@
+##### SHEET 'Deal ledger' (50 rows x 22 cols)
+HEADER: # | When | Who | Type | Event | Process | Round | Price low | Price high | All cash | Formality | Conditions | Count | Exit reason | Inferred | Note | Quote and page | Flag | Reviewer note | Sort date | Date from | Date to
+--- row 2
+   #: 1
+   When: fourth quarter of 2015
+   Who: Party A
+   Type: Strategic
+   Event: Bidder interest
+   Process: 1
+   Round: 0
+   Count: 1
+   Note: Party A suggested joint ventures and raised interest in acquiring equity; meeting was for joint commercial opportunities; no price.
+   Quote and page: During the meeting, Party A suggested possible joint venture arrangements and expressed some interest in acquiring equity in the Company to further develop strategic opportunities and enhance regional connectivity. (p. 27)
+   Sort date: 2015-11-15
+   Date from: 2015-10-01
+   Date to: 2015-12-31
+--- row 3
+   #: 2
+   When: fourth quarter of 2015
+   Who: PWRR Board
+   Event: Target sale decision
+   Process: 1
+   Round: 0
+   Note: Board appointed subcommittee (Barrett, Anderson) to interview bankers and evaluate strategic options, including potential change in control transactions, after Party A's interest.
+   Quote and page: the Board appointed a subcommittee of two independent directors, Frank W. Barrett and Richard W. Anderson, to interview potential investment bankers (p. 27)
+   Sort date: 2015-11-15
+   Date from: 2015-10-01
+   Date to: 2015-12-31
+--- row 4
+   #: 3
+   When: 01/27/2016
+   Who: GHF (Greene Holcomb & Fisher LLC)
+   Event: Adviser
+   Process: 1
+   Round: 0
+   Note: Retained as the target's investment banking firm; would not represent any buyer or financing source; its business was acquired by BMO 08/01/2016 (same adviser, no new row).
+   Quote and page: Following this presentation, the Board approved the subcommittee’s recommendation and the Company engaged GHF. (p. 27)
+   Sort date: 2016-01-27
+   Date from: 2016-01-27
+   Date to: 2016-01-27
+--- row 5
+   #: 4
+   When: 03/14/2016
+   Who: PWRR Board
+   Event: Target sale decision
+   Process: 1
+   Round: 0
+   Note: Special meeting approved the process: discussions with Party A plus solicitation of other third parties; appointed three-director Transaction Committee (no deal authority).
+   Quote and page: Representatives of GHF then proposed a process pursuant to which the Company would proceed with discussions with Party A and also solicit interest from other potential third parties (p. 27)
+   Sort date: 2016-03-14
+   Date from: 2016-03-14
+   Date to: 2016-03-14
+--- row 6
+   #: 5
+   When: 03/24/2016
+   Who: Hinckley, Allen & Snyder LLP
+   Event: Adviser
+   Process: 1
+   Round: 0
+   Note: Target's legal counsel; first seen acting at the 03/24/2016 Transaction Committee meeting; participated in committee meetings except as otherwise indicated.
+   Quote and page: the Company’s legal counsel, Hinckley, Allen & Snyder LLP (which we refer to as “Hinckley Allen”) (p. 28)
+   Sort date: 2016-03-24
+   Date from: 2016-03-24
+   Date to: 2016-03-24
+--- row 7
+   #: 6
+   When: week of March 28, 2016
+   Who: PWRR
+   Event: Round opened
+   Process: 1
+   Round: 1
+   Note: First outreach wave (opens round 1); committee authorized outreach 03/24; 29 contacted; five strategic buyers met management at the 2016 Connections Convention 04/03-06.
+   Quote and page: During the week of March 28, 2016, in accordance with the Transaction Committee’s directives, representatives of GHF contacted 11 potential strategic buyers (including Party A) and 18 potential financial buyers. (p. 28)
+   Sort date: 2016-03-31
+   Date from: 2016-03-28
+   Date to: 2016-04-03
+--- row 8
+   #: 7
+   When: week of March 28, 2016
+   Who: 11 potential strategic buyers
+   Type: Strategic
+   Event: Contact
+   Process: 1
+   Round: 1
+   Count: 11
+   Note: GHF outreach to the strategic cohort; includes Party A; direction: target/banker to buyers; NDAs follow.
+   Quote and page: representatives of GHF contacted 11 potential strategic buyers (including Party A) (p. 28)
+   Sort date: 2016-03-31
+   Date from: 2016-03-28
+   Date to: 2016-04-03
+--- row 9
+   #: 8
+   When: week of March 28, 2016
+   Who: 18 potential financial buyers
+   Type: Financial
+   Event: Contact
+   Process: 1
+   Round: 1
+   Count: 18
+   Note: GHF outreach to the financial cohort; direction: target/banker to buyers; 14 of 18 later signed confidentiality agreements.
+   Quote and page: and 18 potential financial buyers (p. 28)
+   Sort date: 2016-03-31
+   Date from: 2016-03-28
+   Date to: 2016-04-03
+--- row 10
+   #: 9
+   When: by 04/07/2016
+   Who: 2 additional Class I railroads
+   Type: Strategic
+   Event: Contact
+   Process: 1
+   Round: 1
+   Count: 2
+   Note: Company management approached them to gauge interest; reported 04/07; never mentioned again; may sit inside signer cohorts (Q3).
+   Quote and page: the Company had also approached two additional Class I railroads to determine their interest in a possible transaction (p. 28)
+   Flag: Q3
+   Sort date: 2016-04-07
+   Date to: 2016-04-07
+--- row 11
+   #: 10
+   When: by 04/22/2016
+   Who: 11 potential strategic buyers
+   Type: Strategic
+   Event: NDA signed
+   Process: 1
+   Round: 1
+   Count: 11
+   Note: Subsequent to the 03/28 contact wave; all 11 strategic buyers signed; agreements had no standstill; memorandum later distributed to signers.
+   Quote and page: Each of the potential strategic buyers and 14 potential financial buyers subsequently executed confidentiality agreements (p. 28)
+   Sort date: 2016-04-09
+   Date from: 2016-03-28
+   Date to: 2016-04-22
+--- row 12
+   #: 11
+   When: by 04/22/2016
+   Who: 14 potential financial buyers
+   Type: Financial
+   Event: NDA signed
+   Process: 1
+   Round: 1
+   Count: 14
+   Note: Subsequent to the 03/28 contact wave; 4 of 18 financial buyers did not sign; combined 25 signers as the filing cites.
+   Quote and page: and 14 potential financial buyers subsequently executed confidentiality agreements (p. 28)
+   Sort date: 2016-04-09
+   Date from: 2016-03-28
+   Date to: 2016-04-22
+--- row 13
+   #: 12
+   When: by 04/27/2016
+   Who: PWRR
+   Event: Deadline set
+   Process: 1
+   Round: 1
+   Note: Potential buyers advised to submit non-binding IOIs by 05/10; Board told on 04/27; later postponed to 05/19.
+   Quote and page: each potential buyer had been advised to submit a non-binding indication of interest by May 10, 2016 (p. 29)
+   Sort date: 2016-04-27
+   Date to: 2016-04-27
+--- row 14
+   #: 13
+   When: by 05/10/2016
+   Who: PWRR
+   Event: Deadline revised
+   Process: 1
+   Round: 1
+   Note: IOI deadline postponed from 05/10 to 05/19 to give buyers time to formulate their most compelling offers.
+   Quote and page: which deadline was subsequently postponed to May 19, 2016 to ensure the potential buyers had sufficient time to formulate their most compelling offers (p. 29)
+   Flag: Q2
+   Sort date: 2016-05-03
+   Date from: 2016-04-27
+   Date to: 2016-05-10
+--- row 15
+   #: 14
+   When: 05/19/2016
+   Who: PWRR
+   Event: Deadline
+   Process: 1
+   Round: 1
+   Note: Due date reached; nine IOIs received 05/19-06/01; two lowest excluded 06/01 (Q2).
+   Quote and page: Between May 19, 2016 and June 1, 2016, the Company received nine written indications of interest (“IOIs”) from potential buyers (p. 29)
+   Flag: Q2
+   Sort date: 2016-05-19
+   Date from: 2016-05-19
+   Date to: 2016-05-19
+--- row 16
+   #: 15
+   When: between 05/19/2016 and 06/01/2016
+   Who: Nine potential buyers (unnamed)
+   Type: Unknown
+   Event: Bid
+   Process: 1
+   Round: 1
+   Price low: 17.93
+   Price high: 26.5
+   All cash: Not stated
+   Formality: Informal
+   Conditions: Heavy
+   Count: 9
+   Note: Range $17.93-$26.50 assuming preferred conversion; equity values $90M-$134M; pre-management-presentation indications; two lowest later excluded.
+   Quote and page: with offer prices per share ranging from $17.93 to $26.50 (assuming the conversion of preferred stock into common stock), implying equity values of $90 million to $134 million (p. 29)
+   Sort date: 2016-05-19
+   Date from: 2016-05-19
+   Date to: 2016-06-01
+--- row 17
+   #: 16
+   When: 05/19/2016
+   Who: 16 NDA signers (no IOI)
+   Type: Unknown
+   Event: Did not submit
+   Process: 1
+   Round: 1
+   Count: 16
+   Exit reason: Not stated
+   Inferred: Y
+   Note: 25 signers - 9 IOI submitters = 16; no submission in the IOI solicitation; may include Party A (Q3, Q5).
+   Quote and page: 25 of whom entered into confidentiality agreements with the Company and received information related to the Company (p. 33)
+   Flag: Q3, Q5
+   Sort date: 2016-05-19
+   Date from: 2016-05-19
+   Date to: 2016-05-19
+--- row 18
+   #: 17
+   When: 06/01/2016
+   Who: Two low bidders (unnamed)
+   Type: Unknown
+   Event: Dropped by target
+   Process: 1
+   Round: 1
+   Count: 2
+   Exit reason: Lower offer than rivals
+   Note: Excluded from management presentations to save management time; lowest of the nine IOIs; never named; may include Party A (Q5).
+   Quote and page: the Transaction Committee concluded that the two low bidders should be excluded from that process (p. 29)
+   Flag: Q5
+   Sort date: 2016-06-01
+   Date from: 2016-06-01
+   Date to: 2016-06-01
+--- row 19
+   #: 18
+   When: 06/01/2016
+   Who: Transaction Committee
+   Event: Round opened
+   Process: 1
+   Round: 2
+   Note: Seven of nine advanced to management presentations and equal data-site access; LOIs requested mid-June with mark-ups for 07/20.
+   Quote and page: The Transaction Committee authorized representatives of GHF to schedule in-person management presentations with the remaining seven potential buyers and allow these parties to conduct additional due diligence. (p. 29)
+   Flag: Q1
+   Sort date: 2016-06-01
+   Date from: 2016-06-01
+   Date to: 2016-06-01
+--- row 20
+   #: 19
+   When: mid-June 2016
+   Who: PWRR
+   Event: Deadline set
+   Process: 1
+   Round: 2
+   Note: GHF instructed potential buyers to submit non-binding LOIs by 07/20 with mark-ups; valuation requested per share assuming preferred conversion.
+   Quote and page: representatives of GHF instructed all potential buyers to submit non-binding letters of intent (“LOIs”) by July 20, 2016 (p. 29)
+   Sort date: 2016-06-15
+   Date from: 2016-06-11
+   Date to: 2016-06-19
+--- row 21
+   #: 20
+   When: early July 2016
+   Who: Party C
+   Type: Strategic
+   Event: Bidder interest
+   Process: 1
+   Round: 2
+   Count: 1
+   Note: Late entrant approached management; no price; not previously part of the process.
+   Quote and page: In early July 2016, a potential strategic buyer that had not previously been part of the process (“Party C”) approached the Company’s management and expressed interest in acquiring the Company (p. 29)
+   Sort date: 2016-07-05
+   Date from: 2016-07-01
+   Date to: 2016-07-10
+--- row 22
+   #: 21
+   When: early July 2016
+   Who: Party C
+   Type: Strategic
+   Event: NDA signed
+   Process: 1
+   Round: 2
+   Count: 1
+   Note: Signed confidentiality agreement and received the buyers' memorandum; a 26th signer if the Board's count of 25 excludes it (Q3).
+   Quote and page: After executing a confidentiality agreement, Party C was provided the memorandum concerning the Company provided to the other potential buyers (p. 29)
+   Flag: Q3
+   Sort date: 2016-07-05
+   Date from: 2016-07-01
+   Date to: 2016-07-10
+--- row 23
+   #: 22
+   When: 07/12/2016
+   Who: Party C
+   Type: Strategic
+   Event: Bid
+   Process: 1
+   Round: 2
+   Price low: 21
+   Price high: 21
+   All cash: Not stated
+   Formality: Informal
+   Conditions: Heavy
+   Count: 1
+   Note: IOI on memorandum only (no data room yet); equity value $108M; data-site access and management call followed 07/14.
+   Quote and page: On July 12, 2016, Party C submitted an IOI with an offer price per share of $21.00 (implying an equity value of $108 million) (p. 29)
+   Sort date: 2016-07-12
+   Date from: 2016-07-12
+   Date to: 2016-07-12
+--- row 24
+   #: 23
+   When: 07/14/2016
+   Who: Party C
+   Type: Strategic
+   Event: Other material event
+   Process: 1
+   Round: 2
+   Count: 1
+   Note: Provided catch-up data-site access and a telephone management presentation after its IOI; other buyers admitted to the data site in June.
+   Quote and page: Subsequently, Party C was provided access to the internet data site and the Company’s management held a management presentation with Party C by telephone on July 14, 2016 (p. 29)
+   Sort date: 2016-07-14
+   Date from: 2016-07-14
+   Date to: 2016-07-14
+--- row 25
+   #: 24
+   When: 07/20/2016
+   Who: PWRR
+   Event: Deadline
+   Process: 1
+   Round: 2
+   Note: Due date reached; G&W submitted its LOI on 07/21 and was considered; six LOIs received in late July.
+   Quote and page: In late July 2016, the Company received six LOIs with offer prices per share ranging from $19.20 to $24.00 (implying equity values of $96 million to $121 million) (p. 29)
+   Flag: Q2
+   Sort date: 2016-07-20
+   Date from: 2016-07-20
+   Date to: 2016-07-20
+--- row 26
+   #: 25
+   When: late July 2016
+   Who: Party B
+   Type: Strategic
+   Event: Bid
+   Process: 1
+   Round: 2
+   Price low: 24
+   Price high: 24
+   All cash: Not stated
+   Formality: Formal
+   Conditions: Light
+   Count: 1
+   Note: Highest of six LOIs; expedited diligence review; returned mark-ups of merger agreement and voting agreement (Formal); later declined to raise.
+   Quote and page: Party B submitted an LOI to acquire the Company for a price of $24.00 per share (subject to an expedited diligence review) (p. 29)
+   Sort date: 2016-07-20
+   Date from: 2016-07-20
+   Date to: 2016-07-27
+--- row 27
+   #: 26
+   When: late July 2016
+   Who: Party E
+   Type: Strategic
+   Event: Bid
+   Process: 1
+   Round: 2
+   Price low: 21.26
+   Price high: 21.26
+   All cash: Not stated
+   Formality: Informal
+   Conditions: Heavy
+   Count: 1
+   Note: 60-day exclusivity for diligence and documentation; provided only a summary of issues on the drafts, no markup (Informal).
+   Quote and page: Party E (a strategic buyer) submitted an LOI to acquire the Company for a price of $21.26 per share (p. 30)
+   Sort date: 2016-07-20
+   Date from: 2016-07-20
+   Date to: 2016-07-27
+--- row 28
+   #: 27
+   When: late July 2016
+   Who: Party D
+   Type: Financial
+   Event: Bid
+   Process: 1
+   Round: 2
+   Price low: 21
+   Price high: 21
+   All cash: Not stated
+   Formality: Formal
+   Conditions: Heavy
+   Count: 1
+   Note: Four-week diligence period; returned mark-ups of merger agreement and voting agreement (Formal).
+   Quote and page: Party D (a financial buyer) submitted an LOI to acquire the Company for a price of $21.00 per share (subject to a four-week diligence period) (p. 30)
+   Sort date: 2016-07-20
+   Date from: 2016-07-20
+   Date to: 2016-07-27
+--- row 29
+   #: 28
+   When: late July 2016
+   Who: Party C
+   Type: Strategic
+   Event: Bid
+   Process: 1
+   Round: 2
+   Price low: 19.3
+   Price high: 19.3
+   All cash: Not stated
+   Formality: Informal
+   Conditions: Heavy
+   Count: 1
+   Note: 30-day diligence period; late entrant; no markup reported.
+   Quote and page: Party C submitted an LOI to acquire the Company for a price of $19.30 per share (subject to a 30-day diligence period) (p. 30)
+   Sort date: 2016-07-20
+   Date from: 2016-07-20
+   Date to: 2016-07-27
+--- row 30
+   #: 29
+   When: late July 2016
+   Who: Party F
+   Type: Strategic
+   Event: Bid
+   Process: 1
+   Round: 2
+   Price low: 19.2
+   Price high: 19.2
+   All cash: Not stated
+   Formality: Informal
+   Conditions: Heavy
+   Count: 1
+   Note: 30-day due diligence period; lowest LOI; no markup reported.
+   Quote and page: Party F (a strategic buyer) submitted an LOI to acquire the Company for a price of $19.20 per share (subject to a 30-day due diligence period) (p. 30)
+   Sort date: 2016-07-20
+   Date from: 2016-07-20
+   Date to: 2016-07-27
+--- row 31
+   #: 30
+   When: 07/20/2016
+   Who: 1 advanced strategic buyer (unnamed)
+   Type: Strategic
+   Event: Did not submit
+   Process: 1
+   Round: 2
+   Count: 1
+   Exit reason: Not stated
+   Note: Elected not to submit an LOI; one of the seven advanced to management presentations (7 advanced + Party C - 6 submitters = 2). May include Party A.
+   Quote and page: One strategic buyer and one financial buyer elected not to submit an LOI (p. 30)
+   Flag: Q5
+   Sort date: 2016-07-20
+   Date from: 2016-07-20
+   Date to: 2016-07-20
+--- row 32
+   #: 31
+   When: 07/20/2016
+   Who: 1 advanced financial buyer (unnamed)
+   Type: Financial
+   Event: Did not submit
+   Process: 1
+   Round: 2
+   Count: 1
+   Exit reason: Not stated
+   Note: Elected not to submit an LOI; one of the seven advanced to management presentations (7 advanced + Party C - 6 submitters = 2).
+   Quote and page: One strategic buyer and one financial buyer elected not to submit an LOI (p. 30)
+   Sort date: 2016-07-20
+   Date from: 2016-07-20
+   Date to: 2016-07-20
+--- row 33
+   #: 32
+   When: 07/21/2016
+   Who: G&W
+   Type: Strategic
+   Event: Bid
+   Process: 1
+   Round: 2
+   Price low: 21.15
+   Price high: 21.15
+   All cash: Yes
+   Formality: Formal
+   Conditions: Heavy
+   Count: 1
+   Note: $20.02 cash + $1.13 CVR (South Quay sale); three-week exclusive diligence; mark-ups of merger agreement, voting agreement, disclosure letter.
+   Quote and page: G&W submitted an LOI on July 21, 2016 to acquire the Company for a price of $21.15 per share (subject to a three-week exclusive diligence period) (p. 29)
+   Sort date: 2016-07-21
+   Date from: 2016-07-21
+   Date to: 2016-07-21
+--- row 34
+   #: 33
+   When: 07/26/2016
+   Who: G&W
+   Type: Strategic
+   Event: Bid
+   Process: 1
+   Round: 2
+   Price low: 22.15
+   Price high: 22.15
+   All cash: Yes
+   Formality: Formal
+   Conditions: Heavy
+   Count: 1
+   Note: Raised from $21.15 after GHF said price and CVR structure were not competitive; $21.02 cash + $1.13 CVR; exclusive diligence unchanged.
+   Quote and page: G&W submitted a revised LOI, which increased its offer to $22.15 per share (including $21.02 in cash and $1.13 CVR) (p. 29)
+   Sort date: 2016-07-26
+   Date from: 2016-07-26
+   Date to: 2016-07-26
+--- row 35
+   #: 34
+   When: 07/27/2016
+   Who: Transaction Committee
+   Event: Round opened
+   Process: 1
+   Round: 3
+   Note: After LOI review, moved to confirmatory due diligence and definitive negotiation with G&W and Party B; other bidders told they were out.
+   Quote and page: The Transaction Committee concluded that the Company should proceed with confirmatory due diligence and negotiations with G&W and Party B (p. 30)
+   Sort date: 2016-07-27
+   Date from: 2016-07-27
+   Date to: 2016-07-27
+--- row 36
+   #: 35
+   When: after 07/27/2016
+   Who: Party C
+   Type: Strategic
+   Event: Dropped by target
+   Process: 1
+   Round: 2
+   Count: 1
+   Exit reason: Lower offer than rivals
+   Inferred: Y
+   Note: Among the 'remaining bidders' told they were no longer involved after the 07/27 selection; not named individually in that report.
+   Quote and page: representatives of GHF subsequently contacted the remaining bidders to inform them that they were no longer involved in the process (p. 30)
+   Sort date: 2016-07-27
+   Date from: 2016-07-27
+--- row 37
+   #: 36
+   When: after 07/27/2016
+   Who: Party F
+   Type: Strategic
+   Event: Dropped by target
+   Process: 1
+   Round: 2
+   Count: 1
+   Exit reason: Lower offer than rivals
+   Inferred: Y
+   Note: Among the 'remaining bidders' told they were no longer involved after the 07/27 selection; later provided financing support to Party E's revised bid.
+   Quote and page: representatives of GHF subsequently contacted the remaining bidders to inform them that they were no longer involved in the process (p. 30)
+   Sort date: 2016-07-27
+   Date from: 2016-07-27
+--- row 38
+   #: 37
+   When: after 07/27/2016
+   Who: Party D
+   Type: Financial
+   Event: Dropped by target
+   Process: 1
+   Round: 2
+   Count: 1
+   Exit reason: Lower offer than rivals
+   Inferred: Y
+   Note: 'Reengaging' on 07/29 implies it was out; returned with a revised LOI 08/01 (see #39).
+   Quote and page: During those calls, Party D and Party E both expressed interest in reengaging and enhancing their offers (p. 30)
+   Flag: Q4
+   Sort date: 2016-07-27
+   Date from: 2016-07-27
+   Date to: 2016-07-29
+--- row 39
+   #: 38
+   When: after 07/27/2016
+   Who: Party E
+   Type: Strategic
+   Event: Dropped by target
+   Process: 1
+   Round: 2
+   Count: 1
+   Exit reason: Lower offer than rivals
+   Inferred: Y
+   Note: 'Reengaging' on 07/29 implies it was out; returned with a revised LOI 08/01 (see #40).
+   Quote and page: During those calls, Party D and Party E both expressed interest in reengaging and enhancing their offers (p. 30)
+   Flag: Q4
+   Sort date: 2016-07-27
+   Date from: 2016-07-27
+   Date to: 2016-07-29
+--- row 40
+   #: 39
+   When: 08/01/2016
+   Who: Party D
+   Type: Financial
+   Event: Bid
+   Process: 1
+   Round: 3
+   Price low: 24
+   Price high: 24
+   All cash: Not stated
+   Formality: Formal
+   Conditions: Heavy
+   Count: 1
+   Note: Returned after exit #37; revised LOI up from $21.00; 30-day diligence period; mark-ups earlier (Formal carries).
+   Quote and page: On August 1, 2016, Party D submitted a revised LOI at a price of $24.00 per share (p. 30)
+   Sort date: 2016-08-01
+   Date from: 2016-08-01
+   Date to: 2016-08-01
+--- row 41
+   #: 40
+   When: 08/01/2016
+   Who: Party E
+   Type: Strategic
+   Event: Bid
+   Process: 1
+   Round: 3
+   Price low: 23.81
+   Price high: 23.81
+   All cash: Not stated
+   Formality: Informal
+   Conditions: Heavy
+   Count: 1
+   Note: Returned after exit #38; revised LOI with financing support from Party F; 30-day diligence period.
+   Quote and page: Party E submitted a revised LOI, along with financing support, from Party F, at a price of $23.81 per share (p. 30)
+   Sort date: 2016-08-01
+   Date from: 2016-08-01
+   Date to: 2016-08-01
+--- row 42
+   #: 41
+   When: 08/02/2016
+   Who: Party E
+   Type: Strategic
+   Event: Bid
+   Process: 1
+   Round: 3
+   Price low: 21.26
+   Price high: 21.26
+   All cash: Not stated
+   Formality: Informal
+   Conditions: Heavy
+   Count: 1
+   Note: Reversion: withdrew the $23.81 revision and confirmed original $21.26 proposal (60-day exclusivity); not an exit.
+   Quote and page: Party E withdrew its revised proposal on August 2, 2016 (but confirmed its original proposal of $21.26 per share) (p. 30)
+   Sort date: 2016-08-02
+   Date from: 2016-08-02
+   Date to: 2016-08-02
+--- row 43
+   #: 42
+   When: 08/01/2016-08/02/2016
+   Who: Party D
+   Type: Financial
+   Event: Withdrew
+   Process: 1
+   Round: 3
+   Count: 1
+   Exit reason: Terms or process
+   Note: Declined to shorten its 30-day diligence and asked the Company not to sign with a rival; Company refused; D would not proceed 'at that time'.
+   Quote and page: Party D indicated that it would not proceed with further due diligence at that time (p. 30)
+   Sort date: 2016-08-02
+   Date from: 2016-08-01
+   Date to: 2016-08-02
+--- row 44
+   #: 43
+   When: 08/04/2016
+   Who: Party E
+   Type: Strategic
+   Event: Dropped by target
+   Process: 1
+   Round: 3
+   Count: 1
+   Exit reason: Lower offer than rivals
+   Inferred: Y
+   Note: Committee continued with only G&W and Party B; E's standing $21.26 was below both; filing does not say E was told.
+   Quote and page: the Transaction Committee directed the management team and representatives of each of BMO and Hinckley Allen to continue diligence and negotiations with both G&W and Party B (p. 31)
+   Flag: Q4
+   Sort date: 2016-08-04
+   Date from: 2016-08-04
+   Date to: 2016-08-04
+--- row 45
+   #: 44
+   When: 08/09/2016
+   Who: G&W
+   Type: Strategic
+   Event: Other material event
+   Process: 1
+   Round: 3
+   Count: 1
+   Note: Directed BMO to tell G&W the Company intended to sign with another bidder; G&W asked to continue diligence to facilitate an improved offer; request granted (08/10-08/11).
+   Quote and page: the Transaction Committee directed representatives of BMO to inform G&W that the Company intended to enter into a merger agreement with another bidder (p. 31)
+   Sort date: 2016-08-09
+   Date from: 2016-08-09
+   Date to: 2016-08-09
+--- row 46
+   #: 45
+   When: 08/10/2016
+   Who: Simpson Thacher & Bartlett LLP
+   Event: Adviser
+   Process: 1
+   Round: 3
+   Note: G&W's legal counsel; first seen acting 08/10/2016 negotiating merger agreement and disclosure letter revisions with Hinckley Allen.
+   Quote and page: representatives of Hinckley Allen and Simpson Thacher & Bartlett LLP (which we refer to as “Simpson Thacher”), G&W’s legal counsel, discussed various provisions of the draft merger agreement (p. 31)
+   Sort date: 2016-08-10
+   Date from: 2016-08-10
+   Date to: 2016-08-10
+--- row 47
+   #: 46
+   When: 08/12/2016
+   Who: G&W
+   Type: Strategic
+   Event: Bid
+   Process: 1
+   Round: 3
+   Price low: 25
+   Price high: 25
+   All cash: Yes
+   Formality: Formal
+   Conditions: Light
+   Count: 1
+   Note: Cash, no CVR; mark-ups of merger agreement and voting agreement; offer expiring 6:00 p.m. 08/13; physical diligence completed 08/11; winning bid.
+   Quote and page: G&W submitted a revised LOI to acquire the Company for a price of $25.00 per share in cash, which excluded the previously proposed CVR (p. 31)
+   Sort date: 2016-08-12
+   Date from: 2016-08-12
+   Date to: 2016-08-12
+--- row 48
+   #: 47
+   When: 08/12/2016
+   Who: PWRR and G&W
+   Event: Merger agreement signed
+   Process: 1
+   Round: 3
+   Count: 1
+   Note: Board chose G&W over Party B; $25.00 cash per common share; preferred converts into 100 common shares plus accrued dividends; Eder Trusts voting agreement signed.
+   Quote and page: the Company and G&W executed the merger agreement, and the Company, G&W and the Eder Trusts executed the voting agreement (p. 32)
+   Sort date: 2016-08-12
+   Date from: 2016-08-12
+   Date to: 2016-08-12
+--- row 49
+   #: 48
+   When: 08/12/2016
+   Who: Party B
+   Type: Strategic
+   Event: Not selected at signing
+   Process: 1
+   Round: 3
+   Count: 1
+   Exit reason: Would not improve earlier offer
+   Note: Told another party had bid higher; asked to raise its $24.00 offer; declined; Board chose G&W's $25.00 cash proposal.
+   Quote and page: Party B indicated that it would not increase its price (p. 32)
+   Sort date: 2016-08-12
+   Date from: 2016-08-12
+   Date to: 2016-08-12
+--- row 50
+   #: 49
+   When: 08/15/2016
+   Who: PWRR
+   Event: Merger announced
+   Process: 1
+   Round: post
+   Note: Press release issued before the opening of NASDAQ trading.
+   Quote and page: The Company issued a press release publicly announcing the transaction on Monday, August 15, 2016 prior to the opening of trading of the Company’s common stock on the NASDAQ (p. 32)
+   Sort date: 2016-08-15
+   Date from: 2016-08-15
+   Date to: 2016-08-15
+##### SHEET 'Rounds' (4 rows x 10 cols)
+HEADER: Process | Round | Opened | How opened | Who was in | Due dates | Deadline outcome | Finality | Bids received | How it ended
+--- row 2
+   Process: 1
+   Round: 1
+   Opened: 2016-03-31
+   How opened: Committee authorized GHF to contact Party A and other buyers (03/24); GHF contacted 29 buyers during the week of 03/28.
+   Who was in: 25 (11 strategic - incl. Party A, Party B, Party E, Party F, G&W; 14 financial - incl. Party D); Party A's round-0 interest carries.
+   Due dates: 05/10/2016 → 05/19/2016
+   Deadline outcome: Late bids accepted
+   Finality: Not final
+   Bids received: 9 unnamed (IOIs $17.93-$26.50; equity $90M-$134M)
+   How it ended: nine bid; two low bidders excluded; seven advanced
+--- row 3
+   Process: 1
+   Round: 2
+   Opened: 2016-06-01
+   How opened: Committee advanced seven IOI submitters to management presentations and data-site access; LOIs requested mid-June.
+   Who was in: 7 advanced (strategic: Party B, G&W, Party E, Party F + 1 unnamed; financial: Party D + 1 unnamed) + Party C (late entrant, early July).
+   Due dates: 07/20/2016
+   Deadline outcome: Late bids accepted
+   Finality: Not final
+   Bids received: 6 LOIs: Party B, G&W, Party E, Party D, Party C, Party F; Party C's 07/12 IOI ($21.00) also in round
+   How it ended: six bid; G&W and Party B advanced; C, D, E, F told they were no longer involved (D, E briefly re-engaged)
+--- row 4
+   Process: 1
+   Round: 3
+   Opened: 2016-07-27
+   How opened: Committee moved to confirmatory due diligence and definitive negotiations with G&W and Party B.
+   Who was in: 2 (G&W, Party B - both strategic); Party D and Party E re-engaged 07/29-08/01, then closed.
+   Due dates: none stated
+   Deadline outcome: No deadline stated
+   Finality: Inferred final
+   Bids received: 3 bid: G&W $25.00 cash (08/12); Party D $24.00 (08/01); Party E $23.81 then $21.26 (08/01-02); Party B declined to improve
+   How it ended: signing (G&W, $25.00 cash)
+##### SHEET 'Questions' (6 rows x 7 cols)
+HEADER: Q | Question | Recommended answer | Why, with page | Rows affected | What changes if answered differently | Reviewer note
+--- row 2
+   Q: Q1
+   Question: Round map: R1 opens with the week-of-03/28 outreach (IOIs due 05/19); R2 opens 06/01 when the Committee advanced seven and opened the presentation/data-site stage; R3 opens 07/27 on the move to definitive negotiation with G&W and Party B. Is the 06/01 R2 boundary right?
+   Recommended answer: Keep as recorded. Most plausible alternative: R2 opens mid-June, when GHF instructed the LOIs; the 06/01 advancement would close R1 and the 'Round opened' row would move to mid-June; round membership of all bids is unchanged.
+   Why, with page: A round begins when the target selects who advances, opens a distinct information stage tied to new offers, or moves to definitive negotiation. Advancement/data site 06/01 (p. 29); LOI instruction mid-June (p. 29); definitive negotiation 07/27 (p. 30).
+   Rows affected: #18 (Round opened R2).
+   What changes if answered differently: The R2 opening row's When, Sort date and position (after #19); no bid moves between rounds.
+--- row 3
+   Q: Q2
+   Question: Deadline outcomes: R1's 05/10 date was postponed to 05/19 before it arrived (recorded revised), so only 05/19's outcome is recorded - 'Late bids accepted' (nine IOIs received 05/19-06/01). R2's 07/20 outcome is 'Late bids accepted' (G&W's dated 07/21 LOI was considered). Correct?
+   Recommended answer: Keep both as 'Late bids accepted'. Alternatives: R1 'Enforced' if all nine IOIs arrived on 05/19 and the Committee then selected on bids in hand, or two reached dates ('Extended; Late bids accepted') if 05/10 passed before the postponement; R2 'Enforced' if the 07/21 LOI was treated as timely.
+   Why, with page: Nine IOIs received 05/19-06/01 (p. 29); G&W LOI dated 07/21, reviewed 07/22 and 07/27 (pp. 29-30); postponement to 05/19 (p. 29).
+   Rows affected: #13-#15 (deadline rows and IOI cohort); #24 (07/20 deadline); Rounds-sheet outcome cells.
+   What changes if answered differently: The Deadline outcome cells and the Notes of the deadline rows; no bids or rounds move.
+--- row 4
+   Q: Q3
+   Question: Signer counts: the rows show 11 strategic + 14 financial confidentiality agreements (25) in the March-April wave plus Party C's later agreement (26); the Board states 25 signers. Also, two additional Class I railroads were approached (p. 28) and never mentioned again.
+   Recommended answer: Keep the wave at 25 as filed and Party C as a separate, later signer (26 total); treat the two Class I railroads as non-entrants (no agreement shown). Alternative: Party C inside the 25 (wave 24) - contradicted by 'Each of the potential strategic buyers' executing (p. 28).
+   Why, with page: 11 strategic + 14 financial signed (p. 28); Party C signed on entering in early July (p. 29); Board cites '25 of whom entered into confidentiality agreements' (p. 33); two Class I railroads approached (p. 28).
+   Rows affected: #9-#11, #16 (residual), #21 (Party C NDA).
+   What changes if answered differently: Auction-screen count (Met either way); the 16-submitter residual arithmetic (base 25 vs 24/26).
+--- row 5
+   Q: Q4
+   Question: Party D and Party E were told they were 'no longer involved' after 07/27 and then 'reengaged' (07/29-08/01); the ledger closes both on 07/27 (Dropped by target) and records their 08/01 bids as returns. E is closed finally on 08/04, not left live to signing.
+   Recommended answer: Keep exit-and-return: 'reengaging' implies they were out; close E on 08/04 when the Committee continued with only G&W and Party B (its $21.26 was below both). Alternative: treat both as continuously live (live count 4 from 08/01) or close E only at signing.
+   Why, with page: 'no longer involved in the process' (p. 30); 'reengaging and enhancing their offers' (p. 30); 'continue diligence and negotiations with both G&W and Party B' (p. 31).
+   Rows affected: #37-#40, #43 (D/E exits and returns).
+   What changes if answered differently: Live-bidder counts 07/27-08/12 (2 vs 4) and E's final exit label/date (Dropped 08/04 vs Not selected 08/12).
+--- row 6
+   Q: Q5
+   Question: Party A - the first counterparty (Q4 2015) - is never mentioned after the memorandum stage; it may sit in the 16 IOI non-submitters, the two excluded low bidders, or the two non-submitting LOI bidders. No separate exit row is written.
+   Recommended answer: Keep no separate exit row; residual Notes say they may include Party A; treat Party A as exited by signing inside a residual (reason Not stated). All six LOI submitters are named, so Party A did not submit one.
+   Why, with page: Party A named through the memo distribution (p. 28); the nine IOIs are unnamed (p. 29); all six LOI submitters are named (pp. 29-30).
+   Rows affected: #16, #17, #30 (residuals that may include Party A).
+   What changes if answered differently: Only the composition of anonymous residuals; no prices, rounds or named exits change.
+##### SHEET 'Deal facts' (17 rows x 2 cols)
+Field | Value
+Target | Providence and Worcester Railroad Company (PWRR), a Rhode Island corporation; regional freight railroad in Massachusetts, Rhode Island, Connecticut and New York; NASDAQ ticker PWX.
+Acquirer | Genesee & Wyoming Inc. (G&W), a Delaware corporation, through Pullman Acquisition Sub Inc., a wholly-owned subsidiary formed 08/12/2016.
+Acquirer type | Strategic - an operating freight-railroad company (owns or leases 121 freight railroads worldwide).
+Agreed price and consideration | $25.00 in cash per share of common stock, without interest; each preferred share converts automatically into 100 common shares (plus accrued/unpaid dividends) and then receives the same $25.00 cash; no financing condition.
+Merger agreement signed | 2016-08-12
+Merger announced | 2016-08-15
+Filing type and date | DEFM14A (definitive proxy statement), dated 09/19/2016; first mailed to shareholders on or about 09/21/2016.
+Background pages | 27-31 (printed pages).
+Initiation | Bidder-led - Party A raised acquisition interest in Q4 2015; the Board then organized the process.
+Number of processes | 1
+Auction screen | Met - 25 confidentiality agreements in the March-April wave (11 strategic, 14 financial); Party C signed a later agreement (see Q3).
+Whole-company bids | Yes - nine IOIs ($17.93-$26.50), six LOIs ($19.20-$24.00) and G&W's winning $25.00 cash bid; all were whole-company per-share bids.
+Currency and units of bid prices | US dollars per share of common stock (the filing assumes conversion of preferred stock into common stock).
+Target financial advisers | Greene Holcomb & Fisher LLC (GHF), engaged 01/27/2016; its business was acquired by BMO Capital Markets Corp. on 08/01/2016, which advised thereafter and delivered the fairness opinion (same adviser, no new row).
+Target legal advisers | Hinckley, Allen & Snyder LLP (first seen acting 03/24/2016).
+Account | PWRR, a New England regional freight railroad, explored a sale after Class I partner Party A raised acquisition interest in Q4 2015. The Board engaged GHF in January 2016 and in March approved a process combining discussions with Party A and a broad solicitation; 29 parties were contacted, 25 signed confidentiality agreements and nine submitted non-binding IOIs ($17.93-$26.50). Two low bidders were excluded and seven advanced to management presentations, producing six LOIs ($19.20-$24.00); G&W and Party B were selected for confirmatory diligence and definitive negotiation. G&W was told the Company intended to sign with Party B, then raised its all-cash offer to $25.00 per share on August 12; Party B declined to improve and the Board signed with G&W that day. The transaction was announced on August 15, 2016.

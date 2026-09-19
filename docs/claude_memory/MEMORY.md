@@ -1,0 +1,4 @@
+- [Pro vs Alex yardstick](pro-vs-alex-yardstick.md) — Pro review ≠ Alex checklist; list of convention conflicts to get Alex to rule on
+- [Instruction audit 2026-09-19](instruction-audit-2026-09-19.md) — instruction v2 vs Alex docs: closure misfit, patch list, 16 questions for Alex; reports in instruction_audit_2026-09-19/
+- [Short-form worktree and run contamination](short-form-worktree-and-run-contamination.md) — short instruction + checker state; 19 Sep DeepSeek full-vs-short runs invalid, clean-folder rule for reruns
+- [Clean-run comparison 2026-09-19](clean-run-comparison-2026-09-19.md) — sandboxed full vs v1.5 vs v1.8 test: versions tie on facts, v1.8 far cheaper to review; harness and open calls

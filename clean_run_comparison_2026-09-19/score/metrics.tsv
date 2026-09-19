@@ -1,0 +1,19 @@
+runset	variant	deal	workbook	sheets	ledger_rows	ledger_cols	ledger_words	words_per_row	other_sheet_words	source_copy_words	question_items	rows_flagged	pct_flagged	minutes	tool_calls	tokens_in	tokens_out	tokens_reasoning	cost_usd	exit
+run1	full	mac-gray	mac-gray.xlsx	Deal ledger; Summary; Questions; Source text; AI original(h); Lists(h)	52	39	8690	167.1	4393	13624	7	32	62	16.1	99	175449	57240	140298	0.2	0
+run1	full	petsmart	petsmart.xlsx	Deal ledger; Summary; Questions; Source text; Lists(h); AI original(h)	45	39	6908	153.5	4273	9453	8	45	100	20.7	167	175856	75272	149271	0.277	0
+run1	full	providence-worcester	providence-worcester.xlsx	Deal ledger; Summary; Questions; Source text; AI original(h); Lists(h)	57	39	8852	155.3	3544	7794	15	44	77	19.0	80	107018	49344	133565	0.163	0
+run1	v15	mac-gray	mac-gray.xlsx	Deal ledger; Summary; Questions; Source text; Lists(h)	49	39	8093	165.2	4001	13225	8	47	96	19.6	120	171397	64857	168824	0.244	0
+run1	v15	petsmart	petsmart.xlsx	Deal ledger; Lists(h); Summary; Questions; Source text	45	39	6750	150.0	4267	8970	8	29	64	18.7	99	156418	55233	172510	0.214	0
+run1	v15	providence-worcester	providence-worcester.xlsx	Deal ledger; Summary; Questions; Source text; Lists(h)	53	39	7673	144.8	3709	6951	7	47	89	20.2	99	133767	57164	188637	0.238	0
+run1	v18	mac-gray	mac-gray.xlsx	Deal ledger; Rounds; Questions; Deal facts	51	22	2834	55.6	1133	0	4	9	18	11.0	39	67640	20654	132431	0.113	0
+run1	v18	petsmart	petsmart.xlsx	Deal ledger; Rounds; Questions; Deal facts	45	22	2191	48.7	922	0	5	11	24	12.9	56	84305	25150	143781	0.136	0
+run1	v18	providence-worcester	providence-worcester.xlsx	Deal ledger; Rounds; Questions; Deal facts	49	22	2463	50.3	1334	0	5	12	24	12.8	30	109665	20906	154305	0.13	0
+run2	full	mac-gray	mac-gray.xlsx	Deal ledger; Summary; Questions; Source text; AI original(h); Lists(h)	55	40	8686	157.9	4635	13283	8	42	76	17.9	100	181932	65501	154087	0.218	0
+run2	full	petsmart	petsmart.xlsx	Deal ledger; Summary; Questions; Source text; AI original(h); Lists(h)	51	39	7463	146.3	4181	7232	9	42	82	17.1	84	101378	52822	156004	0.184	0
+run2	full	providence-worcester	providence-worcester.xlsx	Deal ledger; Summary; Questions; Source text; AI original(h); Lists(h)	60	39	7514	125.2	3933	6011	8	48	80	16.9	109	134781	64765	146991	0.196	0
+run2	v15	mac-gray	mac-gray.xlsx	Deal ledger; Summary; Questions; Source text; Lists(h)	50	39	8608	172.2	3474	14561	8	44	88	14.8	69	131526	52136	135872	0.168	0
+run2	v15	petsmart	petsmart.xlsx	Deal ledger; Summary; Questions; Source text; Lists(h)	49	39	8982	183.3	3671	8752	8	43	88	17.2	94	141622	59804	150825	0.193	0
+run2	v15	providence-worcester	providence-worcester.xlsx	Deal ledger; Summary; Questions; Source text; Lists(h)	57	39	8861	155.5	3796	7732	8	47	82	19.2	78	123205	86172	173538	0.221	0
+run2	v18	mac-gray	mac-gray.xlsx	Deal ledger; Rounds; Questions; Deal facts	49	22	2454	50.1	1270	0	7	17	35	12.4	39	70113	39960	137141	0.13	0
+run2	v18	petsmart	petsmart.xlsx	Deal ledger; Rounds; Questions; Deal facts	41	22	2036	49.7	1216	0	5	12	29	12.0	67	87780	20713	130668	0.123	0
+run2	v18	providence-worcester	providence-worcester.xlsx	Deal ledger; Rounds; Questions; Deal facts	48	22	2649	55.2	1730	0	6	19	40	12.4	39	68605	22059	149292	0.127	0

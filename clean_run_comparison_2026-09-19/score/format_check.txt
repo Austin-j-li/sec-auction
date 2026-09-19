@@ -1,0 +1,12 @@
+run1 full providence-worcester ::   -> 2 FAIL, 0 WARN :: FAIL bid rows;FAIL quotations;
+run1 full mac-gray ::   -> 0 FAIL, 0 WARN :: 
+run1 full petsmart ::   -> 3 FAIL, 1 WARN :: FAIL bid rows;FAIL source ids;FAIL quotations;WARN per-stage balance (heuristic);
+run1 v15 providence-worcester ::   -> 2 FAIL, 0 WARN :: FAIL bid rows;FAIL quotations;
+run1 v15 mac-gray ::   -> 0 FAIL, 0 WARN :: 
+run1 v15 petsmart ::   -> 1 FAIL, 0 WARN :: FAIL bid rows;
+run2 full providence-worcester ::   -> 2 FAIL, 0 WARN :: FAIL outcome rows;FAIL bid rows;
+run2 full mac-gray ::   -> 0 FAIL, 1 WARN :: WARN columns;
+run2 full petsmart ::   -> 3 FAIL, 1 WARN :: FAIL bid rows;FAIL source ids;FAIL quotations;WARN per-stage balance (heuristic);
+run2 v15 providence-worcester ::   -> 3 FAIL, 0 WARN :: FAIL native dates;FAIL bid rows;FAIL summary formulas;
+run2 v15 mac-gray ::   -> 0 FAIL, 0 WARN :: 
+run2 v15 petsmart ::   -> 1 FAIL, 0 WARN :: FAIL bid rows;
