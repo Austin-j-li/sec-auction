@@ -11,5 +11,6 @@ Everything below except the current items was removed from the working tree on 2
 | 19 Sep | Blind model comparison on patched v1.8: Opus 5, GPT-5.6-Sol, DeepSeek; GPT-6-Astra graders | Opus 96.4, Sol 87.1, DeepSeek 86.6; Opus workbooks become canonical | report kept in `_dev/model_comparison/`; runs, logs, all nine workbooks, preflight in `f1de7d9:_dev/model_comparison_2026-09-19/` and `..._preflight_...`; commit `87aae86` |
 | 19 Sep | Jev (TypeSafe) rounds 1–3 as post-extraction checker | Price and missing-event checks work on the development deals; not yet built | reports kept in `_dev/jev_checker/`; code, cached API responses in `f1de7d9:_dev/jev_experiments_2026-09-19/`, `typesafe_followup_2026-09-19/`, `jev_round3_2026-09-19/`; early notes in `87aae86:_dev/jev_research_2026-09-19/` |
 | 20 Sep | Tidy-up | Old 39-column checker `check_ledger.py` replaced by `check_lean.py`; stale folders removed | commit after `f1de7d9` |
+| 20 Sep | Merged checker built | `check_lean.py` runs the mechanical checks, then the optional Jev step (`jev_pass.py`); one report. Reproduces round 3 on the Opus workbooks | `_dev/tools/`, `_dev/jev_checker/README.md` |
 
 Not in git: the command-line tools' own state folders from the comparison (caches and plugins, 643 MB, no research content) were deleted on 20 September 2026.

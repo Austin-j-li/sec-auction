@@ -11,6 +11,11 @@ Usage:
     python3 check_lean.py --workbook candidate.xlsx --filing filing.htm \
         --output mechanical_report.json
 
+With ``--jev on`` (or ``--jev auto``, the default, when TYPESAFE_API_KEY is set)
+the report also carries model judgments from ``jev_pass.py``: prices that look
+contradicted and events that look missing. They are review leads with a
+confidence, marked ``basis: "jev"``; they never change the status or exit code.
+
 Exit status is 0 when there are no errors, 1 when validation errors are found,
 and 2 when an input cannot be opened or the JSON report cannot be written.
 """
@@ -21,6 +26,7 @@ import argparse
 import datetime as dt
 import json
 import math
+import os
 import re
 import sys
 import unicodedata
@@ -1464,7 +1470,7 @@ class LeanChecker:
                 "information": counts["info"],
                 "total_issues": len(self.issues),
             },
-            "issues": self.issues,
+            "issues": [{**issue, "basis": "mechanical"} for issue in self.issues],
         }
 
 
@@ -1473,13 +1479,39 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--workbook", required=True, type=Path, help="Workbook to check")
     parser.add_argument("--filing", required=True, type=Path, help="Full SEC filing in HTML")
     parser.add_argument("--output", required=True, type=Path, help="JSON report path")
+    parser.add_argument(
+        "--jev",
+        choices=["auto", "on", "off"],
+        default="auto",
+        help="Second-reader pass: auto runs it when TYPESAFE_API_KEY is set; on also runs from cached answers alone",
+    )
     return parser.parse_args(argv)
+
+
+# Report order: what is certain and serious first, model judgments next, housekeeping last.
+ISSUE_ORDER = ["error", "price_contradicted", "missing_top", "missing_second", "price_not_stated", "warning", "info"]
+
+
+def add_jev(report: dict[str, Any], workbook: Path, filing: Path) -> None:
+    import jev_pass
+
+    result = jev_pass.run(workbook, filing)
+    report["jev"] = result["summary"]
+    report["summary"]["model_judgments"] = result["summary"]["model_judgments"]
+    report["scope_note"] += (
+        " Items with basis 'jev' are model judgments with a confidence, for the reviewer to confirm or dismiss."
+    )
+    issues = report["issues"] + result["issues"]
+    issues.sort(key=lambda x: (ISSUE_ORDER.index(x.get("tier") or x["severity"]), -(x.get("confidence") or 0)))
+    report["issues"] = issues
 
 
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     checker = LeanChecker(args.workbook, args.filing)
     report = checker.run()
+    if report["status"] != "error" and (args.jev == "on" or (args.jev == "auto" and os.environ.get("TYPESAFE_API_KEY"))):
+        add_jev(report, args.workbook, args.filing)
     try:
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -1488,7 +1520,9 @@ def main(argv: list[str] | None = None) -> int:
         return 2
     print(
         f"{report['status']}: {report['summary']['errors']} error(s), "
-        f"{report['summary']['warnings']} warning(s); report={args.output}"
+        f"{report['summary']['warnings']} warning(s)"
+        + (f", {report['summary']['model_judgments']} model judgment(s)" if "jev" in report else "")
+        + f"; report={args.output}"
     )
     if report["status"] == "error":
         return 2
