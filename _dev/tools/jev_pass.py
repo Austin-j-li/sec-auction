@@ -70,8 +70,12 @@ class JevUnavailable(Exception):
 # ---------------------------------------------------------------- filing text
 
 
+C1_AS_CP1252 = {c: bytes([c]).decode("cp1252", "ignore") for c in range(0x80, 0xA0)}
+
+
 def norm(s: Any) -> str:
-    s = unicodedata.normalize("NFKC", s or "")
+    # Old SEC filings carry Windows-1252 punctuation; some lxml versions leave it as control characters.
+    s = unicodedata.normalize("NFKC", (s or "").translate(C1_AS_CP1252))
     s = s.replace("“", '"').replace("”", '"').replace("’", "'").replace("‘", "'")
     s = re.sub(r"[‐-―]", "-", s)
     return re.sub(r"\s+", " ", s).strip()
