@@ -1,0 +1,17 @@
+{
+  "deal": "penford",
+  "effort": "high",
+  "expected_output": "penford.xlsx",
+  "filing_name": "penford_2014-12-29_DEFM14A.htm",
+  "filing_sha256": "5bd50713b2ce136b9b80d28360b6281d6890d0d95b35cfe36a3eacd288bb53aa",
+  "instruction_name": "SEC_Deal_Ledger_Extraction_Instruction.md",
+  "instruction_sha256": "f7e73a6673166597f2bd7c8c0457f72ba996585f1351595d00cd653f7a37009d",
+  "mode": "extract",
+  "model": "claude-opus-5",
+  "prepared_at": "2026-09-20T10:38:05.518957+00:00",
+  "prompt_sha256": "bbaad82152ca1d44d150868001fc0a6d22ef8f1eeecd1026c34559968930442b",
+  "provider": "opus",
+  "revised_from_sha256": null,
+  "sandbox": "bubblewrap fresh home/state/tmp; one instruction; one filing; one output directory",
+  "timeout_seconds": 5400
+}

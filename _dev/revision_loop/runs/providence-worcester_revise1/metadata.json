@@ -1,0 +1,17 @@
+{
+  "deal": "providence-worcester",
+  "effort": "high",
+  "expected_output": "providence-worcester.xlsx",
+  "filing_name": "providence-worcester_2016-09-20_DEFM14A.htm",
+  "filing_sha256": "32d7a2738c95c29fa98fccc6a874a5e2acbfd0b7fc87a1f3e9145c60f627378a",
+  "instruction_name": "SEC_Deal_Ledger_Extraction_Instruction.md",
+  "instruction_sha256": "f7e73a6673166597f2bd7c8c0457f72ba996585f1351595d00cd653f7a37009d",
+  "mode": "revise",
+  "model": "claude-opus-5",
+  "prepared_at": "2026-09-20T10:38:05.257550+00:00",
+  "prompt_sha256": "9b115200cbe6c9b4ab4a4d8a8a5d67177c0a5d8f92a57b220a21ca0a53285539",
+  "provider": "opus",
+  "revised_from_sha256": "458414ab3b3484d12250f1a1c41adb0b681dd924a8f6e5b8fc4bf9d6b75b2f38",
+  "sandbox": "bubblewrap fresh home/state/tmp; one instruction; one filing; one output directory",
+  "timeout_seconds": 5400
+}

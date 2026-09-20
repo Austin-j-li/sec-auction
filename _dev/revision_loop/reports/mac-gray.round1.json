@@ -1,0 +1,69 @@
+{
+  "checker": "patched-v1.8-lean-mechanical",
+  "checker_version": "1.1",
+  "checker_revision": "Accepts B5 explanatory field labels and leading canonical Deal facts values; treats valid row/question-link mismatches as review leads; accepts multiple valid Flag ids.",
+  "workbook": "_dev/revision_loop/runs/mac-gray_revise1/extraction/mac-gray.xlsx",
+  "filing": "raw_filing/mac-gray_2013-12-04_DEFM14A.htm",
+  "status": "pass",
+  "scope_note": "Mechanical checks only. Quote occurrence proves source occurrence, not semantic support. No bidder-population arithmetic or substantive extraction grading is performed. Items with basis 'jev' are model judgments with a confidence, for the reviewer to confirm or dismiss.",
+  "summary": {
+    "errors": 0,
+    "warnings": 0,
+    "information": 0,
+    "total_issues": 3,
+    "model_judgments": 3
+  },
+  "issues": [
+    {
+      "severity": "review",
+      "code": "jev.event_missing",
+      "sheet": "Deal ledger",
+      "row": null,
+      "column": null,
+      "message": "Probably absent from the ledger (agreements): \"Between September 24, 2013 and September 27, 2013, Kirkland and outside counsel to Mr. MacDonald negotiated the terms of the MacDonald voting agreements, which were entered into by Mr. MacDonald, his wife and one of his trusts on September 27, 2013, and which became effective upon entry into the merger agreement.\"",
+      "basis": "jev",
+      "confidence": 0.96,
+      "tier": "missing_top",
+      "background_paragraph": 69
+    },
+    {
+      "severity": "review",
+      "code": "jev.event_missing",
+      "sheet": "Deal ledger",
+      "row": null,
+      "column": null,
+      "message": "Probably absent from the ledger (agreements): \"After discussion, the Board (upon the recommendation of the Special Committee) unanimously determined that the merger agreement and the merger were advisable and in the best interests of Mac-Gray's stockholders, approved the merger on the terms and subject to the conditions set forth in the merger agreement, adopted the merger agreement and recommended that the Mac-Gray stockholders adopt and approve the merger agreement.\"",
+      "basis": "jev",
+      "confidence": 0.95,
+      "tier": "missing_top",
+      "background_paragraph": 85
+    },
+    {
+      "severity": "review",
+      "code": "jev.event_missing",
+      "sheet": "Deal ledger",
+      "row": null,
+      "column": null,
+      "message": "Possibly absent from the ledger (agreements): \"Following these presentations, the Special Committee went into an executive session that excluded BofA Merrill Lynch and, after discussion, the Special Committee unanimously determined to recommend to the Board that the merger agreement and the merger were advisable and in the best interests of Mac-Gray's stockholders and that the Board approve the merger on the terms and subject to the conditions set forth in the merger agreement, adopt the merger agreement and recommend that the Mac-Gray stockholders adopt and approve the merger agreement.\"",
+      "basis": "jev",
+      "confidence": 0.86,
+      "tier": "missing_second",
+      "background_paragraph": 84
+    }
+  ],
+  "jev": {
+    "model": "jev-1.13.0",
+    "passes_run": [
+      "price",
+      "omission"
+    ],
+    "rows_not_located": 0,
+    "priced_rows": 13,
+    "priced_rows_checked": 13,
+    "background_paragraphs": 87,
+    "event_sentences": 80,
+    "none_any_confidence": 9,
+    "new_api_calls": 0,
+    "model_judgments": 3
+  }
+}

@@ -1,0 +1,264 @@
+{
+  "checker": "patched-v1.8-lean-mechanical",
+  "checker_version": "1.1",
+  "checker_revision": "Accepts B5 explanatory field labels and leading canonical Deal facts values; treats valid row/question-link mismatches as review leads; accepts multiple valid Flag ids.",
+  "workbook": "_dev/revision_loop/runs/stec_extract/extraction/stec.xlsx",
+  "filing": "raw_filing/stec_2013-08-08_DEFM14A.htm",
+  "status": "fail",
+  "scope_note": "Mechanical checks only. Quote occurrence proves source occurrence, not semantic support. No bidder-population arithmetic or substantive extraction grading is performed. Items with basis 'jev' are model judgments with a confidence, for the reviewer to confirm or dismiss.",
+  "summary": {
+    "errors": 1,
+    "warnings": 18,
+    "information": 0,
+    "total_issues": 24,
+    "model_judgments": 5
+  },
+  "issues": [
+    {
+      "severity": "error",
+      "code": "facts.process_count",
+      "sheet": "Deal facts",
+      "row": 11,
+      "column": "Value",
+      "message": "Number of processes must equal the ledger's 1; found '1.'.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "review",
+      "code": "jev.price_contradicted",
+      "sheet": "Deal ledger",
+      "row": 24,
+      "column": "Price low",
+      "message": "The quoted passage appears to give a different price than $5.60 for this event.",
+      "basis": "jev",
+      "confidence": 0.93,
+      "tier": "price_contradicted",
+      "expected": false
+    },
+    {
+      "severity": "review",
+      "code": "jev.event_missing",
+      "sheet": "Deal ledger",
+      "row": null,
+      "column": null,
+      "message": "Probably absent from the ledger (nda_access): \"Also, on June 18, 2013, sTec and WDC entered into a \"clean team agreement\" to allow certain representatives of WDC access to further information in the data room.\"",
+      "basis": "jev",
+      "confidence": 1.0,
+      "tier": "missing_top",
+      "background_paragraph": 80
+    },
+    {
+      "severity": "review",
+      "code": "jev.event_missing",
+      "sheet": "Deal ledger",
+      "row": null,
+      "column": null,
+      "message": "Probably absent from the ledger (agreements): \"In addition, our board of directors added Mr. Bahri to the special committee.\"",
+      "basis": "jev",
+      "confidence": 0.94,
+      "tier": "missing_top",
+      "background_paragraph": 23
+    },
+    {
+      "severity": "review",
+      "code": "jev.event_missing",
+      "sheet": "Deal ledger",
+      "row": null,
+      "column": null,
+      "message": "Possibly absent from the ledger (contact): \"In the summer of 2012, Mr. Moshayedi attended a lunch meeting at the invitation of Mr. Michael Hajeck, then WDC's Senior Vice President and General Manager, Solid State Business Unit.\"",
+      "basis": "jev",
+      "confidence": 0.86,
+      "tier": "missing_second",
+      "background_paragraph": 3
+    },
+    {
+      "severity": "review",
+      "code": "jev.event_missing",
+      "sheet": "Deal ledger",
+      "row": null,
+      "column": null,
+      "message": "Possibly absent from the ledger (contact): \"BofA Merrill Lynch then contacted the company's officers and Dr. Daly to report the communication from WDC.\"",
+      "basis": "jev",
+      "confidence": 0.84,
+      "tier": "missing_second",
+      "background_paragraph": 65
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #55, but that ledger row's focused Flag does not include 'Q1'.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #56, but that ledger row's focused Flag does not include 'Q1'.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #57, but that ledger row's focused Flag does not include 'Q1'.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #58, but that ledger row's focused Flag does not include 'Q1'.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #59, but that ledger row's focused Flag does not include 'Q1'.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #60, but that ledger row's focused Flag does not include 'Q1'.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #61, but that ledger row's focused Flag does not include 'Q1'.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #62, but that ledger row's focused Flag does not include 'Q1'.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #63, but that ledger row's focused Flag does not include 'Q1'.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.length",
+      "sheet": "Questions",
+      "row": 2,
+      "column": null,
+      "message": "Question entry has about 139 words across its review fields; the instruction asks for about 60.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.length",
+      "sheet": "Questions",
+      "row": 3,
+      "column": null,
+      "message": "Question entry has about 131 words across its review fields; the instruction asks for about 60.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 4,
+      "column": "Rows affected",
+      "message": "Rows affected cites #53, but that ledger row's focused Flag does not include 'Q3'.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 4,
+      "column": "Rows affected",
+      "message": "Rows affected cites #54, but that ledger row's focused Flag does not include 'Q3'.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.length",
+      "sheet": "Questions",
+      "row": 4,
+      "column": null,
+      "message": "Question entry has about 123 words across its review fields; the instruction asks for about 60.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.length",
+      "sheet": "Questions",
+      "row": 5,
+      "column": null,
+      "message": "Question entry has about 138 words across its review fields; the instruction asks for about 60.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.length",
+      "sheet": "Questions",
+      "row": 6,
+      "column": null,
+      "message": "Question entry has about 91 words across its review fields; the instruction asks for about 60.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 7,
+      "column": "Rows affected",
+      "message": "Rows affected cites #58, but that ledger row's focused Flag does not include 'Q6'.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.length",
+      "sheet": "Questions",
+      "row": 7,
+      "column": null,
+      "message": "Question entry has about 92 words across its review fields; the instruction asks for about 60.",
+      "basis": "mechanical"
+    }
+  ],
+  "jev": {
+    "model": "jev-1.13.0",
+    "passes_run": [
+      "price",
+      "omission"
+    ],
+    "rows_not_located": 0,
+    "priced_rows": 8,
+    "priced_rows_checked": 8,
+    "background_paragraphs": 88,
+    "event_sentences": 78,
+    "none_any_confidence": 9,
+    "new_api_calls": 382,
+    "model_judgments": 5
+  }
+}

@@ -90,7 +90,7 @@ def paragraphs(filing: Path) -> tuple[list[str], tuple[int, int]]:
             continue
         t = norm(el.get_text(" "))
         if len(t) > 40 or re.fullmatch(
-            r"(background of the (merger|offer)|reasons for the merger.*|recommendation of .*)", t, re.I
+            r"(background of the (merger|offer)|(.{1,40}[’']s )?reasons for the merger.*|recommendation of .*)", t, re.I
         ):
             paras.append(t)
     heads = [i for i, t in enumerate(paras) if re.fullmatch(r"background of the (merger|offer)", t, re.I)]
@@ -101,7 +101,7 @@ def paragraphs(filing: Path) -> tuple[list[str], tuple[int, int]]:
         (
             i
             for i in range(start, len(paras))
-            if len(paras[i]) < 120 and re.match(r"(reasons for the merger|recommendation of)", paras[i], re.I)
+            if len(paras[i]) < 120 and re.match(r"((.{1,40}[’']s )?reasons for the merger|recommendation of)", paras[i], re.I)
         ),
         None,
     )

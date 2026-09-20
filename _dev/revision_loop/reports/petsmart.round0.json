@@ -1,0 +1,168 @@
+{
+  "checker": "patched-v1.8-lean-mechanical",
+  "checker_version": "1.1",
+  "checker_revision": "Accepts B5 explanatory field labels and leading canonical Deal facts values; treats valid row/question-link mismatches as review leads; accepts multiple valid Flag ids.",
+  "workbook": "extraction/petsmart.xlsx",
+  "filing": "raw_filing/petsmart_2015-02-02_DEFM14A.htm",
+  "status": "pass_with_warnings",
+  "scope_note": "Mechanical checks only. Quote occurrence proves source occurrence, not semantic support. No bidder-population arithmetic or substantive extraction grading is performed. Items with basis 'jev' are model judgments with a confidence, for the reviewer to confirm or dismiss.",
+  "summary": {
+    "errors": 0,
+    "warnings": 14,
+    "information": 1,
+    "total_issues": 15,
+    "model_judgments": 0
+  },
+  "issues": [
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #34, but that ledger row's focused Flag does not include 'Q1'.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #35, but that ledger row's focused Flag does not include 'Q1'.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #36, but that ledger row's focused Flag does not include 'Q1'.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #37, but that ledger row's focused Flag does not include 'Q1'.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #38, but that ledger row's focused Flag does not include 'Q1'.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #39, but that ledger row's focused Flag does not include 'Q1'.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #40, but that ledger row's focused Flag does not include 'Q1'.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #41, but that ledger row's focused Flag does not include 'Q1'.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 2,
+      "column": "Rows affected",
+      "message": "Rows affected cites #42, but that ledger row's focused Flag does not include 'Q1'.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.length",
+      "sheet": "Questions",
+      "row": 2,
+      "column": null,
+      "message": "Question entry has about 134 words across its review fields; the instruction asks for about 60.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.length",
+      "sheet": "Questions",
+      "row": 3,
+      "column": null,
+      "message": "Question entry has about 113 words across its review fields; the instruction asks for about 60.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.flag_mismatch",
+      "sheet": "Questions",
+      "row": 4,
+      "column": "Rows affected",
+      "message": "Rows affected cites #32, but that ledger row's focused Flag does not include 'Q3'.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.length",
+      "sheet": "Questions",
+      "row": 4,
+      "column": null,
+      "message": "Question entry has about 114 words across its review fields; the instruction asks for about 60.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "facts.account_sentences",
+      "sheet": "Deal facts",
+      "row": 17,
+      "column": "Value",
+      "message": "Account appears to have 7 sentences; the instruction asks for five or six.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "info",
+      "code": "jev.row_not_located",
+      "sheet": "Deal ledger",
+      "row": 41,
+      "column": "Quote and page",
+      "basis": "jev",
+      "message": "Quotation not found inside one filing paragraph, so Jev did not check this row."
+    }
+  ],
+  "jev": {
+    "model": "jev-1.13.0",
+    "passes_run": [
+      "price",
+      "omission"
+    ],
+    "rows_not_located": 1,
+    "priced_rows": 9,
+    "priced_rows_checked": 9,
+    "background_paragraphs": 30,
+    "event_sentences": 45,
+    "none_any_confidence": 2,
+    "new_api_calls": 0,
+    "model_judgments": 0
+  }
+}

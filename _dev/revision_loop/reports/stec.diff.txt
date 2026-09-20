@@ -1,0 +1,111 @@
+## Deal ledger: 11 change(s)
+  row 54 -> 54, Flag:
+      was: 
+      now: Q3
+  row 55 -> 55, Flag:
+      was: 
+      now: Q3
+  row 56 -> 56, Flag:
+      was: 
+      now: Q1
+  row 57 -> 57, Flag:
+      was: Q6
+      now: Q1, Q6
+  row 58 -> 58, Flag:
+      was: 
+      now: Q1
+  row 59 -> 59, Flag:
+      was: 
+      now: Q1, Q6
+  row 60 -> 60, Flag:
+      was: 
+      now: Q1
+  row 61 -> 61, Flag:
+      was: 
+      now: Q1
+  row 62 -> 62, Flag:
+      was: 
+      now: Q1
+  row 63 -> 63, Flag:
+      was: 
+      now: Q1
+  row 64 -> 64, Flag:
+      was: 
+      now: Q1
+## Rounds: no change
+## Questions: 23 change(s)
+  row 2 -> 2, Question:
+      was: Is this one process with rounds 0, 1 and 2, or does WDC's 05/31 withdrawal and 06/10 return start a new round (or a second process) on 06/11?
+      now: Is this one process, rounds 0-2, or does WDC's 06/10 return open a new round?
+  row 2 -> 2, Recommended answer:
+      was: One process; rounds 0, 1 and 2 as recorded, with everything from 06/10 inside round 2.
+      now: One process; 06/10 onward stays in round 2.
+  row 2 -> 2, Why, with page:
+      was: Round 2 was already opened as final on 05/16 (p. 30), and C8 treats a further best-offer request to the same finalist as part of the final round, not a new one....
+      now: Round 2 opened as final on 05/16 (p. 30); C8 keeps a further best-offer request to the same finalist inside it.
+  row 2 -> 2, What changes if answered differently:
+      was: Rows #57-#63 move to round 3 (or to process 2 with Process terminated / Process restarted rows at 05/31 and 06/10), and the Rounds sheet gains a third line whos...
+      now: #57-#63 move to round 3, or to a second process; Rounds gains a line.
+  row 3 -> 3, Question:
+      was: Are the deadline outcomes right: round 1 (due 05/03) Late bids accepted, and round 2 (due 05/28, then 05/30) Extended then Enforced?
+      now: Are the deadline outcomes right: Late bids accepted (05/03), Extended (05/28), Enforced (05/30)?
+  row 3 -> 3, Recommended answer:
+      was: Yes: Late bids accepted for 05/03; Extended for 05/28; Enforced for 05/30.
+      now: Yes, as recorded.
+  row 3 -> 3, Why, with page:
+      was: Company D submitted on 05/10 and Company H on 05/15, both after 05/03 and both considered, with no revision of the date (p. 29). The 05/28 date was moved by the...
+      now: Company D bid 05/10 and Company H 05/15, both considered, no revision (p. 29); the best-and-final request moved 05/28 to 05/30, where the board selected on bids...
+  row 3 -> 3, What changes if answered differently:
+      was: If the 05/03 date is read as Passed without action, round 1 shows no enforcement of its only deadline; if the 05/30 request is read as opening a new round rathe...
+      now: Passed without action for 05/03; or 05/30 opens a new round, splitting round 2.
+  row 4 -> 4, Question:
+      was: Should Company D's failure to bid by the 05/28 round-2 due date be an exit (Did not submit) rather than an Other material event?
+      now: Is Company D's 05/28 non-submission an exit (Did not submit)?
+  row 4 -> 4, Recommended answer:
+      was: Keep it as Other material event; Company D's single exit row is its 06/05 withdrawal.
+      now: No; keep Other material event; its exit is 06/05.
+  row 4 -> 4, Why, with page:
+      was: On 05/28 Company D said it 'continued to have an interest' and needed about two weeks more diligence (p. 30); it was still being offered the chance to continue ...
+      now: Company D said on 05/28 it remained interested and needed two more weeks (p. 30); it was still offered a chance to continue on 05/31 (p. 31).
+  row 4 -> 4, What changes if answered differently:
+      was: Company D would exit on 05/28 and need a Re-entered row on 05/31, so live bidders fall from 2 to 1 between 05/28 and 05/31 and round 2 records two exits for one...
+      now: Company D would exit 05/28 and need a Re-entered row; live bidders fall to one.
+  row 5 -> 5, Question:
+      was: Are Company C and Company G among the 18 prospective acquirers BofA had discussions with, so that the unnamed residual is 9 strategic plus 1 financial sponsor?
+      now: Are Companies C and G inside BofA's 18 contacts, leaving a residual of 10?
+  row 5 -> 5, Recommended answer:
+      was: Yes: treat Company C as one of the six select-asset parties and Company G as one of the nine that declined, leaving a residual of 10.
+      now: Yes: residual of nine strategics plus the financial sponsor.
+  row 5 -> 5, Why, with page:
+      was: The filing names only WDC, Companies H and D as the three that bid for the whole company and only Company A and the financial sponsor among the nine not interes...
+      now: Only WDC, D and H bid whole-company; A and the sponsor are the named refusers among nine (p. 27); C, E and F sought select assets (p. 28).
+  row 5 -> 5, What changes if answered differently:
+      was: If Company C or Company G sits outside the 18, the unnamed residual rises to 11 or 12 and the count of parties reached in round 1 rises with it.
+      now: The residual rises to 11 or 12, and round-1 contacts with it.
+  row 6 -> 6, Question:
+      was: Did Company C enter the process, so that its exclusion on 04/15 deserves an exit row?
+      now: Did Company C enter, so that its 04/15 exclusion deserves an exit row?
+  row 6 -> 6, Recommended answer:
+      was: Record the exit row as shown, but treat Company C as never having entered for live-bidder counts.
+      now: Keep the exit row; treat C as never entered for live-bidder counts.
+  row 6 -> 6, Why, with page:
+      was: Company C signed no confidentiality agreement and made no whole-company proposal, yet the filing reports an explicit target decision: the special committee 'dec...
+      now: Company C signed no confidentiality agreement and made no whole-company proposal, yet the special committee 'decided not to continue discussions with Company C'...
+  row 6 -> 6, What changes if answered differently:
+      was: Drop row #19 and note Company C's departure in its 03/13 Bidder interest row; entries less exits then balance exactly on the six confidentiality-agreement signe...
+      now: Drop #19 and note C's departure in its 03/13 row.
+  row 7 -> 7, Question:
+      was: Should WDC's 06/10 bid carry Conditions = Heavy on the strength of WDC's reported internal split, or Light?
+      now: Should WDC's 06/10 bid carry Conditions = Heavy on its internal split, or Light?
+  row 7 -> 7, Why, with page:
+      was: WDC reported 'a difference of opinion had emerged internally', that its prior bidding approach 'had been rejected' and that it had seriously considered not proc...
+      now: WDC reported 'a difference of opinion had emerged internally' and that its prior bidding approach 'had been rejected' (pp. 31-32); the board then demanded confi...
+  row 7 -> 7, What changes if answered differently:
+      was: If Light, WDC's conditions never worsen across the process and the 06/14 bid at $6.85 no longer reads as the resolution of an internal approval problem.
+      now: If Light, WDC's conditions never worsen and the 06/14 bid loses its approval context.
+## Deal facts: 1 change(s)
+  row 11 -> 11, Value:
+      was: 1.
+      now: 1
+
+Total: 35 change(s)

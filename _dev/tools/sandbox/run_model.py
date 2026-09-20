@@ -17,14 +17,18 @@ import time
 
 
 BASE = Path(__file__).resolve().parent
-PROJECT = BASE.parent.parent
+PROJECT = BASE.parents[2]
 HOME_HOST = Path.home()
 SANDBOX_HOME = Path("/home/uctpiaj")
 WORK = SANDBOX_HOME / "work"
 INSTRUCTION_NAME = "SEC_Deal_Ledger_Extraction_Instruction.md"
 CODEX_RELEASE = HOME_HOST / ".codex/packages/standalone/releases/0.155.1-x86_64-unknown-linux-musl"
 CLAUDE_BIN = HOME_HOST / ".local/share/claude/versions/2.1.278"
-MINIFORGE = HOME_HOST / "miniforge3"
+MINIFORGE = HOME_HOST / "miniforge3"  # Ubuntu laptop; absent on the VM, where system Python is used
+import openpyxl as _openpyxl
+PYLIB_HOST = Path(_openpyxl.__file__).resolve().parents[1]  # site-packages that holds openpyxl
+PYLIB = Path("/opt/pylib")
+REPORT_NAME = "checker_report.md"
 TIMEOUT_SECONDS = 90 * 60
 
 
@@ -71,6 +75,21 @@ def prepare(args: argparse.Namespace) -> None:
         f"Extract the deal whose filing is in raw_filing/ and save the finished workbook "
         f"in extraction/ as {args.deal}.xlsx. Work only from this instruction and this filing."
     )
+    if args.revise_from:
+        # Revision pass: the agent starts from a finished workbook and the checker's findings on it.
+        shutil.copy2(args.revise_from, output_dir / f"{args.deal}.xlsx")
+        shutil.copy2(args.report, input_dir / REPORT_NAME)
+        prompt = (
+            f"extraction/{args.deal}.xlsx is a finished ledger for the filing in raw_filing/, made by following "
+            f"{INSTRUCTION_NAME} in this folder. {REPORT_NAME} lists what an automatic checker found in it. "
+            f"Read the instruction, then go through the findings one by one against the filing. Findings marked "
+            f"'certain' come from exact rules. Findings marked 'model judgment' come from a small model and are often "
+            f"wrong; act on one only if the filing and the instruction support it. Change the workbook only where a "
+            f"finding shows a real error under the instruction; do not add rows the instruction would fold into a "
+            f"note, and do not change anything no finding points to. Save the revised workbook under the same name, "
+            f"and write extraction/revision_notes.md listing each finding, what you decided and why. "
+            f"Work only from the instruction, the filing, the workbook and the findings."
+        )
     (run_dir / "prompt.txt").write_text(prompt + "\n", encoding="utf-8")
     metadata = {
         "prepared_at": now_iso(),
@@ -82,6 +101,8 @@ def prepare(args: argparse.Namespace) -> None:
         "filing_sha256": sha256(raw_dir / args.filing),
         "prompt_sha256": hashlib.sha256((prompt + "\n").encode()).hexdigest(),
         "expected_output": f"{args.deal}.xlsx",
+        "mode": "revise" if args.revise_from else "extract",
+        "revised_from_sha256": sha256(Path(args.revise_from)) if args.revise_from else None,
         "model": "gpt-5.6-sol" if args.provider == "sol" else "claude-opus-5",
         "effort": "xhigh" if args.provider == "sol" else "high",
         "timeout_seconds": TIMEOUT_SECONDS,
@@ -110,7 +131,6 @@ def bwrap_base(run_dir: Path, provider: str) -> list[str]:
         "--symlink", "usr/lib", "/lib",
         "--symlink", "usr/lib64", "/lib64",
         "--ro-bind", "/etc/ssl", "/etc/ssl",
-        "--ro-bind", "/etc/ca-certificates", "/etc/ca-certificates",
         "--ro-bind", "/etc/resolv.conf", "/etc/resolv.conf",
         "--ro-bind", "/etc/hosts", "/etc/hosts",
         "--ro-bind", "/etc/nsswitch.conf", "/etc/nsswitch.conf",
@@ -120,7 +140,6 @@ def bwrap_base(run_dir: Path, provider: str) -> list[str]:
         "--ro-bind", "/etc/localtime", "/etc/localtime",
         "--proc", "/proc", "--dev", "/dev", "--tmpfs", "/tmp", "--tmpfs", "/run",
         "--dir", "/home", "--tmpfs", h,
-        "--ro-bind", str(MINIFORGE), str(MINIFORGE),
         "--dir", work,
         "--dir", f"{work}/raw_filing",
         "--dir", f"{work}/extraction",
@@ -131,8 +150,19 @@ def bwrap_base(run_dir: Path, provider: str) -> list[str]:
         "--setenv", "USER", "uctpiaj",
         "--setenv", "LANG", "C.UTF-8",
         "--setenv", "TMPDIR", "/tmp",
-        "--setenv", "PATH", f"{MINIFORGE}/bin:/usr/bin:/bin",
+        "--ro-bind", str(PYLIB_HOST), str(PYLIB),
+        "--setenv", "PYTHONPATH", str(PYLIB),
     ]
+    for certs in ["/etc/ca-certificates", "/etc/pki", "/etc/crypto-policies"]:  # Debian and Red Hat layouts
+        if Path(certs).exists():
+            command += ["--ro-bind", certs, certs]
+    if MINIFORGE.is_dir():
+        command += ["--ro-bind", str(MINIFORGE), str(MINIFORGE), "--setenv", "PATH", f"{MINIFORGE}/bin:/usr/bin:/bin"]
+    else:
+        command += ["--setenv", "PATH", "/usr/bin:/bin"]
+    report = run_dir / "input" / REPORT_NAME
+    if report.is_file():
+        command += ["--ro-bind", str(report), f"{work}/{REPORT_NAME}"]
 
     if provider == "sol":
         command += [
@@ -324,6 +354,8 @@ def parser() -> argparse.ArgumentParser:
     p.add_argument("--run-dir", required=True)
     p.add_argument("--deal", required=True)
     p.add_argument("--filing", required=True)
+    p.add_argument("--revise-from", help="finished workbook to revise (revision pass)")
+    p.add_argument("--report", help="checker findings in plain text, required with --revise-from")
     p.set_defaults(func=prepare)
     p = sub.add_parser("launch")
     p.add_argument("--provider", choices=["sol", "opus"], required=True)

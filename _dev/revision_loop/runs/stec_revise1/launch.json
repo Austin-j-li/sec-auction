@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "/usr/bin/python3",
+    "/home/uctpiaj/work/Projects/sec-extraction/_dev/tools/sandbox/run_model.py",
+    "worker",
+    "--provider",
+    "opus",
+    "--run-dir",
+    "/home/uctpiaj/work/Projects/sec-extraction/_dev/revision_loop/runs/stec_revise1"
+  ],
+  "launched_at": "2026-09-20T13:40:29.705489+00:00",
+  "launcher_pid": 1271927
+}

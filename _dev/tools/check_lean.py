@@ -121,6 +121,7 @@ INITIATION_FIELDS = {
     "Initiation (target-led, bidder-led, activist-influenced, mixed or unclear)",
 }
 AUCTION_SCREEN_FIELDS = {"Auction screen", "Auction screen (C1)"}
+EARLIER_APPROACHES_FIELDS = {"Earlier approaches", "Earlier approaches (C7)"}
 WHOLE_COMPANY_FIELDS = {
     "Whole-company bids",
     "Whole-company bids (Yes, or No with what was bid for)",
@@ -1312,8 +1313,18 @@ class LeanChecker:
 
         rows = nonempty_rows(ws, len(FACT_COLUMNS))
         actual_fields = [ws.cell(row, 1).value for row in rows]
-        fields_match = len(actual_fields) == len(FACT_FIELD_OPTIONS) and all(
-            actual in allowed for actual, allowed in zip(actual_fields, FACT_FIELD_OPTIONS, strict=True)
+        # "Earlier approaches" (v1.9, C7) follows Number of processes; workbooks made under v1.8 lack it.
+        required_fields = [
+            field
+            for index, field in enumerate(actual_fields)
+            if not (
+                field in EARLIER_APPROACHES_FIELDS
+                and index > 0
+                and actual_fields[index - 1] == "Number of processes"
+            )
+        ]
+        fields_match = len(required_fields) == len(FACT_FIELD_OPTIONS) and all(
+            actual in allowed for actual, allowed in zip(required_fields, FACT_FIELD_OPTIONS, strict=True)
         )
         if not fields_match:
             self.add(
