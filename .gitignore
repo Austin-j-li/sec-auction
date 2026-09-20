@@ -1,5 +1,12 @@
 .~lock*
 __pycache__/
 *.pyc
+.pytest_cache/
 .env
-_dev/tools/.jev_cache/
+# New runs are disposable.
+_dev/runs/
+# Agent state and credential mount points never belong in a research snapshot.
+_dev/**/state/
+_dev/**/*.xdg/
+.credentials.json
+auth.json

@@ -1,17 +1,22 @@
-# Handoff (20 September 2026)
+# Current development handoff — 20 September 2026
 
-**Working instruction:** `SEC_Deal_Ledger_Extraction_Instruction.md`, v1.9 lean (20 Sep: adopted provisionally from `_dev/OPEN_QUESTIONS_recommendations_2026-09-20.md`, all but Q3 and Q7; the three canonical workbooks were made under v1.8 and are not yet updated). 22-column ledger; sheets Deal ledger, Rounds, Deal facts, Questions.
+The working instruction is **v1.11 lean**, with 22 ledger columns and four sheets: Deal ledger, Rounds, Questions, Deal facts. [Its decision record](DECISIONS_v1.11.md) explains the consistency pass. No extraction has tested v1.9–v1.11.
 
-**Canonical extraction:** the three workbooks in `extraction/` are the Claude Opus 5 (high) runs from the blind model comparison of 19 September. They are the only extraction kept in the working tree. Opus scored 96.4/100 against 87.1 (GPT-5.6-Sol) and 86.6 (DeepSeek); see `_dev/model_comparison/COMPARISON.md` and the per-deal `grading/` notes for the corrections each workbook still needs. They are not yet research-ready.
+The three workbooks in `extraction/` are still the **Opus 5 high runs under v1.8**. They were selected by the blind comparison (`git show 407a6e4:_dev/model_comparison/COMPARISON.md`), and still need the corrections in its grading notes. They are not research-ready. Cleanup did not change the instruction, filings, reference data or workbooks.
 
-**What is in `_dev/`:**
-- `tools/check_lean.py`: the checker for the lean workbook. Mechanical checks always (structure, consistency, quotations found in the filing); with `TYPESAFE_API_KEY` set it adds Jev's model judgments (`tools/jev_pass.py`: prices that look contradicted, events that look missing) to the same report. Run it after an extraction, never where the extracting agent can see it. `tools/sandbox/` holds the scripts that run one isolated extraction per deal (bubblewrap; paths are for the Ubuntu laptop).
-- `tools/make_seed.py` builds `ref/seed.csv` from Alex's workbook (390 deals, identifying columns only; 21 rows marked for review). `tools/fetch_filing.py <deal>` fetches a filing on demand into `raw_filing/` and records it in `raw_filing/MANIFEST.csv`; `--verify` re-checks every file against EDGAR. It cuts the document out of the submission text file because EDGAR now adds a tracking script to served HTML pages. Tender offers (SC TO-T, 34 deals) are not handled yet.
-- `model_comparison/`: report, rubric, scores, and per-deal source reference and scoring notes.
-- `jev_checker/`: TypeSafe's Jev model as a cheap second reader of finished ledgers. **Start with `jev_checker/README.md`**: what Jev is in plain words, what three rounds of experiments found, and the decisions Austin and the assistant reached (keep Jev a checker, merge it with the mechanical script into one command and one report, then try a revision loop). The `RESULTS_round*.md` files have the detail.
-- `revision_loop/`: first trial of the revision loop (20 September): checker findings handed back to Opus for one pass on the three workbooks and on a blind Penford extraction. **Read `revision_loop/RESULTS.md`.** Short version: it clears every mechanical finding and breaks nothing, but fixes almost none of the graded substantive errors, and the extractor refused every Jev finding. `tools/sandbox/run_model.py` now runs on the VM and has a revise mode; `tools/findings_text.py` and `tools/diff_workbooks.py` support it.
-- `OPEN_QUESTIONS_for_Alex.md`: convention questions awaiting Alex.
-- `docs/claude_memory/`: copy of the assistant's project memory.
-- `CHRONOLOGY.md`: what was done when, and which commit holds the removed material.
+## Current workflow
 
-**Next:** set the merged checker's flags against the grading notes for the three workbooks; test on unseen deals (Penford, sTec; filings fetched 20 September); the revision-loop experiment (needs Austin's go-ahead); put the open questions to Alex.
+- Use [tools/README.md](tools/README.md) for the checker, isolated runner, filing fetcher and review helpers. Run results go under ignored `_dev/runs/`.
+- `tools/check_lean.py` is the mechanical checker, version **1.4**. Its standard command is offline. It checks structure and source-quote occurrence, not substantive research correctness. A mechanical pass is not acceptance of the data.
+- **Jev was deleted on 20 September 2026.** It caught planted price swaps but never a real error: no Jev finding changed a workbook in the five-deal trial, and Penford drew two false alarms. The code is in git history up to `407a6e4`.
+- The checker/revision trial is **complete**, not waiting to be launched. Its results (`git show 407a6e4:_dev/revision_loop/RESULTS.md`) show mechanical cleanup, little substantive improvement, and all Jev findings rejected by the revising model. Those refusals are not independent human adjudication.
+- [RESEARCH_QUESTIONS.md](RESEARCH_QUESTIONS.md) is the current question list. Prior recommendations remain provisional. Q3's one-sided-price change and Q7's Company H exit change remain unadopted.
+- `tools/make_seed.py` builds identifying-only `ref/seed.csv` from Alex's workbook; it is a deliberate rebuild command. `tools/fetch_filing.py` downloads filings and records their source/hash. Existing files must match their local manifest before reuse. SC TO-T tender-offer exhibits remain unsupported.
+
+## Next work
+
+1. Ask Alex the current convention questions and adjudicate the disputed sTec findings against the source. The Astra grade was a model review under v1.8; several judgments were overtaken by later rules.
+2. On Austin's explicit command, run isolated v1.11 extractions on sTec and Penford, then check and evaluate them outside the extractor's sandbox. These deals are useful regressions, not a clean unseen test of the instruction.
+3. Update the lagging workbooks only after the validation decision. A genuinely unseen pilot would need new filings and human review.
+
+Do not rerun the completed revision trial merely because a historical report calls it “next.” There is no archive folder: completed experiments live in git history, indexed in [CHRONOLOGY.md](CHRONOLOGY.md).

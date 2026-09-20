@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Mechanical validator for the patched v1.8 lean deal-ledger workbook.
+"""Mechanical validator for the lean deal-ledger workbook (instruction v1.11).
 
 This checker intentionally does not decide whether events, bidders, rounds, or
 classifications are substantively correct. In particular, it does not sum
@@ -10,11 +10,6 @@ substring of the full filing parsed by BeautifulSoup.
 Usage:
     python3 check_lean.py --workbook candidate.xlsx --filing filing.htm \
         --output mechanical_report.json
-
-With ``--jev on`` (or ``--jev auto``, the default, when TYPESAFE_API_KEY is set)
-the report also carries model judgments from ``jev_pass.py``: prices that look
-contradicted and events that look missing. They are review leads with a
-confidence, marked ``basis: "jev"``; they never change the status or exit code.
 
 Exit status is 0 when there are no errors, 1 when validation errors are found,
 and 2 when an input cannot be opened or the JSON report cannot be written.
@@ -39,10 +34,10 @@ from bs4 import BeautifulSoup
 from openpyxl.utils.cell import coordinate_to_tuple, range_boundaries
 
 
-CHECKER_VERSION = "1.1"
+CHECKER_VERSION = "1.4"
 CHECKER_REVISION = (
-    "Accepts B5 explanatory field labels and leading canonical Deal facts values; "
-    "treats valid row/question-link mismatches as review leads; accepts multiple valid Flag ids."
+    "A date-formatted Number of processes is rejected instead of "
+    "silently converted to an Excel serial number. Retains instruction v1.11 checks."
 )
 
 SHEETS = ["Deal ledger", "Rounds", "Questions", "Deal facts"]
@@ -281,11 +276,6 @@ def as_integer_or_text(value: Any) -> int | None:
         return integer
     if isinstance(value, str) and re.fullmatch(r"[+-]?\d+", value.strip()):
         return int(value.strip())
-    # A numeric 1 in the mixed-format Value column can reopen as Excel's
-    # serial-date rendering when a workbook applies a date style to the cell.
-    if isinstance(value, (dt.date, dt.datetime)) and value.year == 1900:
-        day_number = (value.date() if isinstance(value, dt.datetime) else value) - dt.date(1899, 12, 31)
-        return day_number.days
     return None
 
 
@@ -675,10 +665,24 @@ class LeanChecker:
                     column="Count",
                 )
             if event in BID_EVENTS | {"Re-entered"} and is_blank(count):
+                count_note = normalize_contiguous(record["Note"])
+                documented_count = re.search(
+                    r"\bCount:\s*(?:at least\b|more than\b|at most\b|fewer than\b|"
+                    r"less than\b|approximately\b|about\b|unknown\b|not stated\b|"
+                    r"\d+\s*[-–—]\s*\d+)",
+                    count_note,
+                    re.IGNORECASE,
+                )
                 self.add(
-                    "error",
-                    "ledger.count_bidder",
-                    f"Count is required on {event} rows.",
+                    "warning" if documented_count else "error",
+                    "ledger.count_uncertain" if documented_count else "ledger.count_bidder",
+                    (
+                        "Count is blank with a documented bound, estimate or unknown population; "
+                        "review the source and do not use it as an exact count."
+                        if documented_count
+                        else f"Count is required on {event} rows unless the Note explains the "
+                        "qualified or unknown population with 'Count: ...'."
+                    ),
                     sheet=ws.title,
                     row=excel_row,
                     column="Count",
@@ -793,9 +797,10 @@ class LeanChecker:
 
             if word_count(record["Note"]) > 40:
                 self.add(
-                    "error",
+                    "warning",
                     "ledger.note_length",
-                    f"Note has {word_count(record['Note'])} words; maximum is 40.",
+                    f"Note has {word_count(record['Note'])} words; aim for 40. "
+                    "Retain the excess only for required facts that cannot be shortened.",
                     sheet=ws.title,
                     row=excel_row,
                     column="Note",
@@ -1036,6 +1041,10 @@ class LeanChecker:
                 )
 
             for field in ROUND_COLUMNS[2:]:
+                if field == "Deadline outcome":
+                    # Future or superseded deadlines can leave this cell blank;
+                    # validate it against the reached Deadline rows below.
+                    continue
                 if is_blank(values[field]):
                     self.add(
                         "error",
@@ -1079,7 +1088,10 @@ class LeanChecker:
                 )
 
             due_dates = normalize_contiguous(values["Due dates"])
-            outcome = normalize_contiguous(values["Deadline outcome"])
+            outcome = (
+                "" if is_blank(values["Deadline outcome"])
+                else normalize_contiguous(values["Deadline outcome"])
+            )
             deadline_count = ledger["deadlines"].get(key, 0)
             if outcome == "No deadline stated":
                 if due_dates.lower() != "none stated":
@@ -1121,6 +1133,24 @@ class LeanChecker:
                         row=excel_row,
                         column="Deadline outcome",
                     )
+            elif deadline_count:
+                self.add(
+                    "error",
+                    "rounds.deadline_count",
+                    f"Ledger has {deadline_count} Deadline row(s), but Deadline outcome is blank.",
+                    sheet=ws.title,
+                    row=excel_row,
+                    column="Deadline outcome",
+                )
+            elif due_dates.lower() == "none stated":
+                self.add(
+                    "error",
+                    "rounds.no_deadline_pair",
+                    "Due dates is 'none stated', so Deadline outcome must be 'No deadline stated'.",
+                    sheet=ws.title,
+                    row=excel_row,
+                    column="Deadline outcome",
+                )
 
         if keys != sorted(keys):
             self.add(
@@ -1388,12 +1418,16 @@ class LeanChecker:
         auction = normalize_contiguous(values.get(auction_field)) if auction_field else ""
         if auction and (
             re.match(r"^(Met|Not met|Uncertain)(?:\b|:)", auction) is None
-            or re.search(r"\b\d+\b", auction) is None
+            or (
+                re.search(r"\b\d+\b", auction) is None
+                and re.search(r"\bcount unknown\b", auction, re.IGNORECASE) is None
+            )
         ):
             self.add(
                 "error",
                 "facts.auction_screen",
-                "Auction screen must start with Met, Not met, or Uncertain and include the number.",
+                "Auction screen must start with Met, Not met, or Uncertain and include "
+                "a supported number or 'count unknown'.",
                 sheet=ws.title,
                 row=self._fact_row(rows, ws, auction_field),
                 column="Value",
@@ -1465,7 +1499,7 @@ class LeanChecker:
         else:
             status = "pass"
         return {
-            "checker": "patched-v1.8-lean-mechanical",
+            "checker": "lean-mechanical",
             "checker_version": CHECKER_VERSION,
             "checker_revision": CHECKER_REVISION,
             "workbook": str(self.workbook_path),
@@ -1490,51 +1524,13 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--workbook", required=True, type=Path, help="Workbook to check")
     parser.add_argument("--filing", required=True, type=Path, help="Full SEC filing in HTML")
     parser.add_argument("--output", required=True, type=Path, help="JSON report path")
-    parser.add_argument(
-        "--jev",
-        choices=["auto", "on", "off"],
-        default="auto",
-        help="Second-reader pass: auto runs it when TYPESAFE_API_KEY is set; on also runs from cached answers alone",
-    )
     return parser.parse_args(argv)
-
-
-# Report order: what is certain and serious first, model judgments next, housekeeping last.
-ISSUE_ORDER = ["error", "price_contradicted", "missing_top", "missing_second", "price_not_stated", "warning", "info"]
-
-
-def add_jev(report: dict[str, Any], workbook: Path, filing: Path) -> None:
-    try:
-        import jev_pass
-
-        result = jev_pass.run(workbook, filing)
-    except Exception as exc:  # the second reader must never cost us the mechanical report
-        result = {
-            "issues": [
-                {"severity": "info", "code": "jev.skipped", "sheet": None, "row": None, "column": None,
-                 "message": f"Jev step skipped ({type(exc).__name__}: {exc}). Mechanical checks are unaffected.",
-                 "basis": "jev"}
-            ],
-            "summary": {"model_judgments": 0},
-        }
-    report["jev"] = result["summary"]
-    report["scope_note"] += (
-        " Items with basis 'jev' are model judgments with a confidence, for the reviewer to confirm or dismiss."
-    )
-    issues = report["issues"] + result["issues"]
-    issues.sort(key=lambda x: (ISSUE_ORDER.index(x.get("tier") or x["severity"]), -(x.get("confidence") or 0)))
-    report["issues"] = issues
-    report["summary"]["model_judgments"] = result["summary"]["model_judgments"]
-    report["summary"]["information"] = sum(x["severity"] == "info" for x in issues)
-    report["summary"]["total_issues"] = len(issues)
 
 
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     checker = LeanChecker(args.workbook, args.filing)
     report = checker.run()
-    if report["status"] != "error" and (args.jev == "on" or (args.jev == "auto" and os.environ.get("TYPESAFE_API_KEY"))):
-        add_jev(report, args.workbook, args.filing)
     try:
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -1544,7 +1540,6 @@ def main(argv: list[str] | None = None) -> int:
     print(
         f"{report['status']}: {report['summary']['errors']} error(s), "
         f"{report['summary']['warnings']} warning(s)"
-        + (f", {report['summary']['model_judgments']} model judgment(s)" if "jev" in report else "")
         + f"; report={args.output}"
     )
     if report["status"] == "error":

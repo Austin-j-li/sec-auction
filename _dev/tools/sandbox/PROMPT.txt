@@ -1,1 +1,0 @@
-Read SEC_Deal_Ledger_Extraction_Instruction.md in this folder and follow it. Extract the deal whose filing is in raw_filing/ and save the finished workbook in extraction/ as DEAL.xlsx. Work only from this instruction and this filing.

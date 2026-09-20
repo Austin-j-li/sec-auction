@@ -20,9 +20,12 @@ a second; this script makes at most 4.
 import argparse
 import csv
 import hashlib
+import io
+import os
 import re
 import sys
 import time
+import tempfile
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
@@ -33,7 +36,7 @@ RAW = ROOT / "raw_filing"
 MANIFEST = RAW / "MANIFEST.csv"
 MANIFEST_FIELDS = ["file", "deal", "form_type", "date_filed", "source_url", "document", "fetched_utc", "bytes", "sha256"]
 
-USER_AGENT = "Austin Li junyu.li.24@ucl.ac.uk"
+USER_AGENT = os.environ.get("SEC_USER_AGENT", "Austin Li junyu.li.24@ucl.ac.uk")
 MIN_GAP = 0.25  # seconds between requests
 _last_request = [0.0]
 
@@ -91,12 +94,25 @@ def read_csv(path):
         return list(csv.DictReader(f))
 
 
+def atomic_write(path, data):
+    with tempfile.NamedTemporaryFile(dir=path.parent, prefix="." + path.name, delete=False) as handle:
+        temporary = Path(handle.name)
+        try:
+            handle.write(data)
+            handle.close()
+            temporary.chmod(0o644)  # NamedTemporaryFile makes 0600
+            temporary.replace(path)
+        finally:
+            temporary.unlink(missing_ok=True)
+
+
 def write_manifest(rows):
     rows.sort(key=lambda r: r["file"])
-    with open(MANIFEST, "w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=MANIFEST_FIELDS)
-        w.writeheader()
-        w.writerows(rows)
+    buffer = io.StringIO(newline="")
+    writer = csv.DictWriter(buffer, fieldnames=MANIFEST_FIELDS)
+    writer.writeheader()
+    writer.writerows(rows)
+    atomic_write(MANIFEST, buffer.getvalue().encode("utf-8"))
 
 
 def fetch(seed_row, manifest, force):
@@ -107,9 +123,12 @@ def fetch(seed_row, manifest, force):
         raise FetchError("%s: tender offers are not handled yet" % deal)
     name = "%s_%s_%s.htm" % (deal, seed_row["date_filed"], seed_row["form_type"].replace(" ", ""))
     path = RAW / name
-    recorded = any(r["file"] == name for r in manifest)
+    recorded = next((r for r in manifest if r["file"] == name), None)
     if path.exists() and recorded and not force:
-        return "%s: already present" % name
+        data = path.read_bytes()
+        if hashlib.sha256(data).hexdigest() != recorded["sha256"] or len(data) != int(recorded["bytes"]):
+            raise FetchError("%s: local file differs from its manifest; inspect it or use --force to refetch" % name)
+        return "%s: already present; local hash verified" % name
 
     url, document, data = main_document(seed_row["index_url"], seed_row["form_type"])
     if path.exists() and not force:  # a file from before the manifest: keep it, record what EDGAR has now
@@ -117,7 +136,7 @@ def fetch(seed_row, manifest, force):
             raise FetchError("%s: differs from EDGAR's copy; rerun with --force to replace it" % name)
         note = "%s: existing file matches EDGAR byte for byte; recorded" % name
     else:
-        path.write_bytes(data)
+        atomic_write(path, data)
         note = "%s: saved, %d bytes" % (name, len(data))
     manifest[:] = [r for r in manifest if r["file"] != name]
     manifest.append({

@@ -8,13 +8,23 @@ not as every later row changing. For a changed row only the changed cells are
 printed, under the column heading from the sheet's first row.
 """
 import difflib
+from itertools import zip_longest
 import sys
 
 import openpyxl
 
 
 def rows(ws):
-    return [tuple("" if c is None else str(c) for c in r) for r in ws.iter_rows(values_only=True)]
+    return [
+        tuple(("blank", "") if c.value is None else (c.data_type, str(c.value)) for c in row)
+        for row in ws.iter_rows()
+    ]
+
+
+def display(cell):
+    kind, value = cell
+    label = {"n": "number", "s": "text", "d": "date", "b": "boolean", "f": "formula"}.get(kind, kind)
+    return f"{value} [{label}]" if kind != "blank" else "[blank]"
 
 
 def clip(text, n=160):
@@ -38,19 +48,23 @@ def main(before, after):
                 continue
             if op == "replace" and i2 - i1 == j2 - j1:
                 for i, j in zip(range(i1, i2), range(j1, j2)):
-                    for k, (x, y) in enumerate(zip(a[i], b[j])):
+                    for k, (x, y) in enumerate(zip_longest(a[i], b[j], fillvalue=("missing", ""))):
                         if x != y:
-                            col = head[k] if k < len(head) and head[k] else "col %d" % (k + 1)
-                            out.append("  row %d -> %d, %s:\n      was: %s\n      now: %s" % (i + 1, j + 1, col, clip(x), clip(y)))
+                            col = head[k][1] if k < len(head) and head[k][1] else "col %d" % (k + 1)
+                            out.append("  row %d -> %d, %s:\n      was: %s\n      now: %s" % (
+                                i + 1, j + 1, col, clip(display(x)), clip(display(y))
+                            ))
                 continue
             for i in range(i1, i2):
-                out.append("  removed row %d: %s" % (i + 1, clip(" | ".join(v for v in a[i] if v), 300)))
+                out.append("  removed row %d: %s" % (i + 1, clip(" | ".join(display(v) for v in a[i] if v[0] != "blank"), 300)))
             for j in range(j1, j2):
-                out.append("  added row %d: %s" % (j + 1, clip(" | ".join(v for v in b[j] if v), 300)))
+                out.append("  added row %d: %s" % (j + 1, clip(" | ".join(display(v) for v in b[j] if v[0] != "blank"), 300)))
         print("## %s: %s" % (name, "no change" if not out else "%d change(s)" % len(out)))
         print("\n".join(out)) if out else None
         total += len(out)
     print("\nTotal: %d change(s)" % total)
+    a_wb.close()
+    b_wb.close()
 
 
 if __name__ == "__main__":

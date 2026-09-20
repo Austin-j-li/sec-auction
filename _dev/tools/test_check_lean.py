@@ -198,6 +198,81 @@ class LeanCheckerTests(unittest.TestCase):
             self.assertEqual(report["status"], "pass", report["issues"])
             self.assertEqual(report["summary"]["errors"], 0)
 
+    def test_qualified_bid_cohort_keeps_count_blank_without_hiding_omissions(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            workbook, filing = build_valid_fixture(Path(tmp))
+            cases = [
+                ("Count: at least 11; the filing supplies only a lower bound.", "warning"),
+                ("Count: approximately 20.", "warning"),
+                ("Count: 11–14.", "warning"),
+                ("Count: unknown; the filing does not number these bidders.", "warning"),
+                ("The price was approximately $10 per share.", "error"),
+                ("", "error"),
+            ]
+            for note, expected_severity in cases:
+                with self.subTest(note=note):
+                    wb = check_lean.openpyxl.load_workbook(workbook)
+                    wb["Deal ledger"]["C3"] = "Financial bidder cohort"
+                    wb["Deal ledger"]["M3"] = None
+                    wb["Deal ledger"]["P3"] = note
+                    wb.save(workbook)
+                    report = check_lean.LeanChecker(workbook, filing).run()
+                    count_issues = [
+                        issue for issue in report["issues"]
+                        if issue["code"] in {"ledger.count_bidder", "ledger.count_uncertain"}
+                    ]
+                    self.assertEqual(len(count_issues), 1, report["issues"])
+                    self.assertEqual(count_issues[0]["severity"], expected_severity)
+                    if expected_severity == "warning":
+                        self.assertEqual(report["summary"]["errors"], 0, report["issues"])
+
+    def test_required_bid_details_over_note_target_are_a_review_lead(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            workbook, filing = build_valid_fixture(Path(tmp))
+            wb = check_lean.openpyxl.load_workbook(workbook)
+            wb["Deal ledger"]["P3"] = (
+                "Six-week diligence period; financing not committed. The proposal requested "
+                "exclusive negotiations through February 14 and a management presentation "
+                "before final approval. Price carried from #1; reaffirmed by returned draft. "
+                "The filing reports a reference closing price of $8 on January 2 and a "
+                "25 percent premium to that price."
+            )
+            wb.save(workbook)
+            report = check_lean.LeanChecker(workbook, filing).run()
+            issues = {issue["code"]: issue["severity"] for issue in report["issues"]}
+            self.assertEqual(issues["ledger.note_length"], "warning")
+            self.assertEqual(report["summary"]["errors"], 0, report["issues"])
+
+    def test_future_deadline_has_no_outcome_but_reached_deadline_requires_one(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            workbook, filing = build_valid_fixture(Path(tmp))
+            wb = check_lean.openpyxl.load_workbook(workbook)
+            wb["Rounds"]["F2"] = "01/20/2020 (future at filing)"
+            wb["Rounds"]["G2"] = None
+            wb["Rounds"]["J2"] = "Bidding remains open at filing."
+            wb.save(workbook)
+            report = check_lean.LeanChecker(workbook, filing).run()
+            self.assertEqual(report["summary"]["errors"], 0, report["issues"])
+
+            wb["Deal ledger"]["E4"] = "Deadline"
+            wb.save(workbook)
+            report = check_lean.LeanChecker(workbook, filing).run()
+            self.assertIn("rounds.deadline_count", {issue["code"] for issue in report["issues"]})
+
+    def test_unknown_auction_count_and_no_deadline_pair(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            workbook, filing = build_valid_fixture(Path(tmp))
+            wb = check_lean.openpyxl.load_workbook(workbook)
+            wb["Deal facts"]["B12"] = "Uncertain: count unknown"
+            wb.save(workbook)
+            report = check_lean.LeanChecker(workbook, filing).run()
+            self.assertEqual(report["summary"]["errors"], 0, report["issues"])
+
+            wb["Rounds"]["G2"] = None
+            wb.save(workbook)
+            report = check_lean.LeanChecker(workbook, filing).run()
+            self.assertIn("rounds.no_deadline_pair", {issue["code"] for issue in report["issues"]})
+
     def test_important_failures_are_reported(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             workbook, filing = build_valid_fixture(Path(tmp))
@@ -254,13 +329,23 @@ class LeanCheckerTests(unittest.TestCase):
             facts["A10"] = "Initiation (target-led, bidder-led, activist-influenced, mixed or unclear)"
             facts["B10"] = "Target-led - the board initiated outreach"
             facts["B11"] = 1
-            facts["B11"].number_format = "MM/DD/YYYY"
             facts["A12"] = "Auction screen (C1)"
             facts["A13"] = "Whole-company bids (Yes, or No with what was bid for)"
             wb.save(workbook)
 
             report = check_lean.LeanChecker(workbook, filing).run()
             self.assertEqual(report["status"], "pass", report["issues"])
+
+    def test_date_formatted_process_count_is_not_silently_accepted(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            workbook, filing = build_valid_fixture(Path(tmp))
+            wb = check_lean.openpyxl.load_workbook(workbook)
+            wb["Deal facts"]["B11"] = 1
+            wb["Deal facts"]["B11"].number_format = "MM/DD/YYYY"
+            wb.save(workbook)
+            report = check_lean.LeanChecker(workbook, filing).run()
+            self.assertEqual(report["status"], "fail")
+            self.assertIn("facts.process_count", {issue["code"] for issue in report["issues"]})
 
     def test_multiple_flags_and_link_mismatches_are_review_leads(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

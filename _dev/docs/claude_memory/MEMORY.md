@@ -1,9 +1,0 @@
-- [Pro vs Alex yardstick](pro-vs-alex-yardstick.md) — Pro review ≠ Alex checklist; list of convention conflicts to get Alex to rule on
-- [Instruction audit 2026-09-19](instruction-audit-2026-09-19.md) — instruction v2 vs Alex docs: closure misfit, patch list, 16 questions for Alex; reports in instruction_audit_2026-09-19/
-- [Short-form worktree and run contamination](short-form-worktree-and-run-contamination.md) — short instruction + checker state; 19 Sep DeepSeek full-vs-short runs invalid, clean-folder rule for reruns
-- [Clean-run comparison 2026-09-19](clean-run-comparison-2026-09-19.md) — sandboxed full vs v1.5 vs v1.8 test: versions tie on facts, v1.8 far cheaper to review; harness and open calls
-- [TypeSafe Jev rounds 2026-09-19](typesafe-jev-rounds-2026-09-19.md) — three checker experiment rounds; scoped price check + sentence-level omission check proposed, gates unmet
-- [Plain language for Austin](user-plain-language.md) — new to LM development; explain tools by what they do for the project, no jargon
-- [Dev tidy 2026-09-20](dev-tidy-2026-09-20.md) — _dev slimmed; Opus canonical; old folders only in git history at f1de7d9
-- [Jev design decisions 2026-09-20](jev-design-decisions-2026-09-20.md) — checker not preprocessor; merge with script; revision loop next; full text in _dev/jev_checker/README.md
-- [Merged checker 2026-09-20](merged-checker-2026-09-20.md) — check_lean.py + optional Jev step built and merged; reproduces round 3; unseen-deal test still owed
