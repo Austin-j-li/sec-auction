@@ -40,7 +40,7 @@ Thirty isolated runs: DeepSeek flash (max) under v1.11, v1.12 and v1.12.1 on all
 ## Next work
 
 1. **Test v1.13 on unseen filings, only on Austin's explicit command.** Three or four Opus runs cost about $15–20. Unseen deals have no ground truth; the method that worked on 21 September is one fresh reader agent per deal checking the workbook against the filing, with Austin spot-checking its findings in the cockpit. Watch round maps first: they were the unstable part under every earlier version.
-2. Open design question from Austin: DeepSeek as a cheap first pass with Opus reviewing. Not decided.
+2. DeepSeek drafting with Opus reviewing was tried on two deals (end of `reviews/2026-09-21/instruction_comparison.md`): same cost as a fresh Opus extraction, and the reviewer inherits the draft's round and process skeleton. Not worth pursuing. The open alternative is the reverse order, a fresh Opus reader auditing an Opus workbook; not approved.
 3. Not approved, do not build: extra checker rules, an "Unclear" finality value, paragraph-indexed filing text, the staged pipeline.
 4. When Alex is reachable: the convention questions in RESEARCH_QUESTIONS.md and Q7.
 

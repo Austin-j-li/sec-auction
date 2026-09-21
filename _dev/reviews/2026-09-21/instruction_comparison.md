@@ -56,3 +56,14 @@ Opus, three hard deals (errors are zero in every run):
 DeepSeek gets prices, dates and named bidders right (about 93% of its bid prices match an Opus bid; no invented party in any workbook checked) at one-thirtieth of the cost. It is weaker and less stable on everything that needs judgment: processes (an invented second process in two sTec runs and one Meredith run, a fourth in one Synacor run), collapsed or missing stages, missing cohort closures, missing parties (no Company H rows in one Synacor run, the agreed $16.99 price never a bid row in one Meredith run), fabricated reaffirmation rows, and Conditions. It is usable as a cheap signal about an instruction, not as the extractor.
 
 As an instruction signal, DeepSeek's one clear message is that the shorter v1.12.1 is easier to follow mechanically (11 checker errors against 42–43). It did not reproduce the Opus-level differences: for example DeepSeek under v1.11 already split Meredith's December and January stages, and under v1.12.1 it did not.
+
+## DeepSeek draft, Opus review (two-deal trial)
+
+Austin's question: since DeepSeek gets prices right, could it draft and Opus review? Trial on Meredith and Synacor: Opus high, in the sandbox, was given the DeepSeek v1.12.1 workbook as an unchecked draft, the filing and the v1.12.1 instruction, told it was responsible for the finished ledger and to rebuild processes and rounds where the filing required. Compared with the fresh Opus v1.12.1 run on the same deal; judged by one model reader per deal.
+
+| Deal | Review of draft | Fresh extraction | Reader's verdict |
+| --- | --- | --- | --- |
+| Meredith | $4.73, 10 min, 78 rows, 3 rounds | $4.80, 12 min, 82 rows, 4 rounds | Reviewed is somewhat worse. It removed the invented second process and restored the missing offers and cohort, but kept about half the draft's structure: the merged December/January round (now labelled "Announced as final"), Party D's March rows in round 0, one fused 29 April row, a debatable Gray $14.51 bid row, dividend-only figures in price cells, Gray's hindsight Heavy condition. Nothing substantive that the fresh run gets wrong and the reviewed one gets right. |
+| Synacor | $5.76, 16 min, 79 rows, 7 rounds | $5.46, 15 min, 75 rows, 6 rounds | Reviewed is slightly better on formality, finality, exit reasons and the round map (five of the filing's six stages against four), worse on two inherited items: a verbal "would consider increasing" kept as a Bid, now with a computed price range, and Company H never entered. The round map extends the draft's boundaries rather than being rebuilt. |
+
+**Result: no saving and no quality gain.** Reviewing costs what extracting costs, because reading the filing is most of the cost. The reviewer corrects cells and gross errors but inherits the draft's skeleton, and the skeleton is where DeepSeek is weakest. Two deals, one run each, model-judged.
