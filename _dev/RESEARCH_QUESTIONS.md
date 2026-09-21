@@ -1,6 +1,6 @@
 # Current research questions
 
-The working instruction is v1.11. Its conventions are provisional where Alex's hand-coding, written rules and voice notes disagree. This list supersedes the old “16 questions” assessment as a navigation document; it authorizes no instruction or workbook changes.
+The working instruction is v1.12. Its conventions are provisional where Alex's hand-coding, written rules and voice notes disagree. This list supersedes the old “16 questions” assessment as a navigation document; it authorizes no instruction or workbook changes.
 
 ## Decisions still withheld by Austin
 
@@ -23,4 +23,4 @@ Also settle the source hierarchy: which governs when spring hand-coding and late
 
 Show the adopted handling of superseding/reused NDAs, WDC's addendum, conditions supported by reported facts, reconciled contact cohorts, the June 19 projections and Wells Fargo, soft deadlines, and reference share prices with their own dates. Keep these confirmations distinct from the unadopted Q3/Q7 changes above.
 
-Evidence and row references are preserved in the September 20 recommendations (`git show 407a6e4:_dev/OPEN_QUESTIONS_recommendations_2026-09-20.md`), especially “Send to Alex,” and the earlier assessment (`git show 407a6e4:_dev/OPEN_QUESTIONS_for_Alex.md`). Some references describe v1.8 trial rows and have not been re-extracted under v1.11. The [v1.11 decision record](DECISIONS_v1.11.md) governs the current instruction.
+Evidence and row references are preserved in the September 20 recommendations (`git show 407a6e4:_dev/OPEN_QUESTIONS_recommendations_2026-09-20.md`), especially “Send to Alex,” and the earlier assessment (`git show 407a6e4:_dev/OPEN_QUESTIONS_for_Alex.md`). Some references describe v1.8 trial rows and predate the v1.11 extractions. The [v1.12 decision record](DECISIONS_v1.12.md) governs the current instruction.

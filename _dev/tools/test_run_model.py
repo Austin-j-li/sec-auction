@@ -37,6 +37,35 @@ class RunnerTests(unittest.TestCase):
                 run_model.status(argparse.Namespace(runs_dir=root / "runs"))
             self.assertEqual(json.loads(output.getvalue())["run"], "sample")
 
+    def test_usage_comes_from_the_event_log_and_versions_are_recorded(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            run = self.prepare_fixture(root)
+            versions = json.loads((run / "metadata.json").read_text())["library_versions"]
+            self.assertEqual(set(versions), {"openpyxl", "beautifulsoup4", "lxml"})
+            events = root / "events.jsonl"
+            events.write_text("not json\n" + json.dumps({
+                "type": "result", "total_cost_usd": 1.5,
+                "usage": {"input_tokens": 4, "output_tokens": 9, "service_tier": "standard"},
+            }) + "\n")
+            self.assertEqual(run_model.run_usage(events), {
+                "tokens": {"input_tokens": 4, "output_tokens": 9}, "cost_usd": 1.5,
+            })
+            events.write_text("".join(json.dumps({
+                "type": "turn.completed", "usage": {"input_tokens": 2, "output_tokens": 3},
+            }) + "\n" for _ in range(2)))
+            self.assertEqual(run_model.run_usage(events), {
+                "tokens": {"input_tokens": 4, "output_tokens": 6}, "cost_usd": None,
+            })
+            events.write_text("".join(json.dumps({"type": "step_finish", "part": {
+                "tokens": {"total": 9, "input": 1, "output": 2, "cache": {"read": 6, "write": 0}}, "cost": 0.25,
+            }}) + "\n" for _ in range(2)))
+            self.assertEqual(run_model.run_usage(events), {"tokens": {
+                "input_tokens": 2, "output_tokens": 4, "cache_read_tokens": 12, "cache_write_tokens": 0,
+            }, "cost_usd": 0.5})
+            events.write_text("")
+            self.assertIsNone(run_model.run_usage(events))
+
     def test_half_specified_revision_fails_before_creating_run(self):
         with tempfile.TemporaryDirectory() as tmp:
             for flag in ["--revise-from", "--report"]:

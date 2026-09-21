@@ -15,8 +15,11 @@ Current guidance is in [HANDOFF.md](HANDOFF.md); completed experiments live in g
 | 20 Sep | Five-deal checker/revision trial completed | Mechanical defects fixed, little substantive improvement; no Jev finding produced a workbook change | `407a6e4:_dev/revision_loop/` |
 | 20 Sep | Convention recommendations, then instruction v1.9 | Adopted provisionally except Q3 and Q7 | `407a6e4:_dev/OPEN_QUESTIONS_recommendations_2026-09-20.md` |
 | 20 Sep | Instruction v1.10 editorial tightening | Rule-inventory audit and fresh-reader conflict list | audit reports never committed; superseded by DECISIONS_v1.11.md |
-| 20 Sep | Instruction v1.11 consistency pass with five Sol reviewers | Explicit participant/round/deadline/Question rules; protected Q3/Q7 decisions retained; no new extraction | [Decision record](DECISIONS_v1.11.md) |
+| 20 Sep | Instruction v1.11 consistency pass with five Sol reviewers | Explicit participant/round/deadline/Question rules; protected Q3/Q7 decisions retained; no new extraction | `59e2325:_dev/DECISIONS_v1.11.md` |
 | 20 Sep | Deep repo cleanup; Jev deleted | Historical material, run state and the Jev step removed from the checkout (no archive folder); tools repaired; checker v1.4 is mechanical only | this commit; earlier material at `407a6e4` and `f1de7d9` |
+| 20 Sep | Eight blind Opus 5 extractions under v1.11 | All pass the mechanical checker; about $31 in total | workbooks in `extraction/` |
+| 21 Sep | Eight-deal model review, pipeline research note, five-agent audit of both | Every bid price and date correct; 2–8% of rows per deal carry a consequential error (Meredith 12–15%), in counts, exits, round boundaries and conditionality. Staged pipeline not built | `_dev/reviews/2026-09-21/` |
+| 21 Sep | Instruction v1.12; checker v1.5; runner records tokens, cost and library versions; requirements pinned | General edits only; no extraction has tested v1.12 | [Decision record](DECISIONS_v1.12.md) |
 
 The cleanup was committed with v1.10 and v1.11. The instruction and research inputs were unchanged by the cleanup itself.
 

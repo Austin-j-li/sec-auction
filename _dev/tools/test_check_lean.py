@@ -273,6 +273,29 @@ class LeanCheckerTests(unittest.TestCase):
             report = check_lean.LeanChecker(workbook, filing).run()
             self.assertIn("rounds.no_deadline_pair", {issue["code"] for issue in report["issues"]})
 
+    def test_exact_day_and_inferred_exit_cross_checks(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            workbook, filing = build_valid_fixture(Path(tmp))
+            wb = check_lean.openpyxl.load_workbook(workbook)
+            ledger = wb["Deal ledger"]
+            header = [cell.value for cell in ledger[1]]
+            col = {name: index + 1 for index, name in enumerate(header)}
+            target = next(
+                row for row in range(2, ledger.max_row + 1)
+                if isinstance(ledger.cell(row, col["When"]).value, str)
+                and check_lean.re.fullmatch(r"\d{2}/\d{2}/\d{4}", ledger.cell(row, col["When"]).value)
+            )
+            sort_day = ledger.cell(target, col["Sort date"]).value
+            ledger.cell(target, col["Date from"]).value = sort_day - dt.timedelta(days=1)
+            ledger.cell(target, col["Event"]).value = "Withdrew"
+            ledger.cell(target, col["Inferred"]).value = "Y"
+            ledger.cell(target, col["Exit reason"]).value = "Terms or process"
+            wb.save(workbook)
+            issues = check_lean.LeanChecker(workbook, filing).run()["issues"]
+            found = {(issue["code"], issue["severity"]) for issue in issues}
+            self.assertIn(("date.exact_day_mismatch", "error"), found)
+            self.assertIn(("exit.inferred_reason", "warning"), found)
+
     def test_important_failures_are_reported(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             workbook, filing = build_valid_fixture(Path(tmp))

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Mechanical validator for the lean deal-ledger workbook (instruction v1.11).
+"""Mechanical validator for the lean deal-ledger workbook (instruction v1.12).
 
 This checker intentionally does not decide whether events, bidders, rounds, or
 classifications are substantively correct. In particular, it does not sum
@@ -34,10 +34,11 @@ from bs4 import BeautifulSoup
 from openpyxl.utils.cell import coordinate_to_tuple, range_boundaries
 
 
-CHECKER_VERSION = "1.4"
+CHECKER_VERSION = "1.5"
 CHECKER_REVISION = (
-    "A date-formatted Number of processes is rejected instead of "
-    "silently converted to an Excel serial number. Retains instruction v1.11 checks."
+    "Adds two cross-column checks: an exact-day When must equal Date from, Date to and "
+    "Sort date (C10), and an inferred exit carries Exit reason 'Not stated' (C16). "
+    "Checks instruction v1.12."
 )
 
 SHEETS = ["Deal ledger", "Rounds", "Questions", "Deal facts"]
@@ -765,6 +766,15 @@ class LeanChecker:
                         row=excel_row,
                         column="Exit reason",
                     )
+                elif record["Inferred"] == "Y" and exit_reason != "Not stated":
+                    self.add(
+                        "warning",
+                        "exit.inferred_reason",
+                        f"An inferred exit carries Exit reason 'Not stated' (C16); found {exit_reason!r}.",
+                        sheet=ws.title,
+                        row=excel_row,
+                        column="Exit reason",
+                    )
             elif not is_blank(exit_reason):
                 self.add(
                     "error",
@@ -928,6 +938,22 @@ class LeanChecker:
                     row=excel_row,
                     column="Date from",
                 )
+            when = record["When"]
+            if isinstance(when, str) and re.fullmatch(r"\d{2}/\d{2}/\d{4}", when.strip()):
+                try:
+                    reported_day = dt.datetime.strptime(when.strip(), "%m/%d/%Y").date()
+                except ValueError:
+                    reported_day = None
+                for date_column in DATE_COLUMNS:
+                    if reported_day and parsed_dates[date_column] not in (None, reported_day):
+                        self.add(
+                            "error",
+                            "date.exact_day_mismatch",
+                            f"When reports the day {when.strip()}, so {date_column} must equal it (C10).",
+                            sheet=ws.title,
+                            row=excel_row,
+                            column=date_column,
+                        )
             if sort_date and date_from and sort_date < date_from:
                 self.add(
                     "error",

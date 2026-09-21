@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import hashlib
+import importlib.metadata
 import json
 import os
 from pathlib import Path
@@ -26,6 +27,10 @@ INSTRUCTION_NAME = "SEC_Deal_Ledger_Extraction_Instruction.md"
 CODEX_BIN = Path(os.environ.get("SEC_CODEX_BIN") or shutil.which("codex") or "/missing/codex").resolve()
 CODEX_RELEASE = CODEX_BIN.parent.parent
 CLAUDE_BIN = Path(os.environ.get("SEC_CLAUDE_BIN") or shutil.which("claude") or "/missing/claude").resolve()
+OPENCODE_BIN = Path(os.environ.get("SEC_OPENCODE_BIN") or shutil.which("opencode") or "/missing/opencode").resolve()
+OPENCODE_SANDBOX = Path("/opt/opencode")
+OPENCODE_AUTH = HOME_HOST / ".local/share/opencode/auth.json"
+MODELS = {"sol": ("gpt-5.6-sol", "xhigh"), "opus": ("claude-opus-5", "high"), "deepseek": ("deepseek/deepseek-flash", "max")}
 CODEX_SANDBOX = Path("/opt/codex")
 CLAUDE_SANDBOX = Path("/opt/claude")
 MINIFORGE = HOME_HOST / "miniforge3"  # Ubuntu laptop; absent on the VM, where system Python is used
@@ -56,6 +61,61 @@ def write_json(path: Path, value: object) -> None:
     os.replace(tmp, path)
 
 
+def library_versions() -> dict[str, str | None]:
+    """Installed versions of the pinned libraries the extracting agent can import."""
+    versions: dict[str, str | None] = {}
+    for name in ("openpyxl", "beautifulsoup4", "lxml"):
+        try:
+            versions[name] = importlib.metadata.version(name)
+        except importlib.metadata.PackageNotFoundError:
+            versions[name] = None
+    return versions
+
+
+def run_usage(events_path: Path) -> dict[str, object] | None:
+    """Tokens and cost from the provider's event log; None if it reports none.
+
+    Claude ends with one "result" event carrying usage and total_cost_usd.
+    Codex reports usage per "turn.completed" event and no cost; turns are summed.
+    opencode reports tokens and cost per "step_finish" event; steps are summed.
+    """
+    totals: dict[str, float] = {}
+    cost = None
+    found = False
+    with events_path.open(encoding="utf-8", errors="replace") as events:
+        for line in events:
+            try:
+                event = json.loads(line)
+            except ValueError:
+                continue
+            if isinstance(event, dict) and event.get("type") == "step_finish":
+                part = event.get("part") or {}
+                tokens = dict(part.get("tokens") or {})
+                cache = tokens.pop("cache", None) or {}
+                tokens.update({f"cache_{key}": value for key, value in cache.items()})
+                for key, value in tokens.items():
+                    if key != "total" and isinstance(value, (int, float)):
+                        totals[f"{key}_tokens"] = totals.get(f"{key}_tokens", 0) + value
+                cost = (cost or 0) + (part.get("cost") or 0)
+                found = True
+                continue
+            if not isinstance(event, dict) or event.get("type") not in ("result", "turn.completed"):
+                continue
+            usage = event.get("usage")
+            if not isinstance(usage, dict):
+                continue
+            found = True
+            if event["type"] == "result":
+                totals = {}
+                cost = event.get("total_cost_usd")
+            for key, value in usage.items():
+                if key.endswith("_tokens") and isinstance(value, (int, float)):
+                    totals[key] = totals.get(key, 0) + value
+    if not found:
+        return None
+    return {"tokens": totals, "cost_usd": cost}
+
+
 def prepare(args: argparse.Namespace) -> None:
     if bool(args.revise_from) != bool(args.report):
         raise SystemExit("--revise-from and --report must be supplied together")
@@ -66,7 +126,7 @@ def prepare(args: argparse.Namespace) -> None:
     run_dir = Path(args.run_dir).resolve()
     if run_dir.exists() and any(run_dir.iterdir()):
         raise SystemExit(f"refusing to overwrite non-empty run directory: {run_dir}")
-    instruction_src = PROJECT / INSTRUCTION_NAME
+    instruction_src = Path(args.instruction).resolve() if args.instruction else PROJECT / INSTRUCTION_NAME
     filing_src = PROJECT / "raw_filing" / args.filing
     if not instruction_src.is_file() or not filing_src.is_file():
         raise SystemExit("instruction or filing source is missing")
@@ -112,11 +172,12 @@ def prepare(args: argparse.Namespace) -> None:
         "expected_output": f"{args.deal}.xlsx",
         "mode": "revise" if args.revise_from else "extract",
         "revised_from_sha256": sha256(Path(args.revise_from)) if args.revise_from else None,
-        "model": "gpt-5.6-sol" if args.provider == "sol" else "claude-opus-5",
-        "effort": "xhigh" if args.provider == "sol" else "high",
+        "model": MODELS[args.provider][0],
+        "effort": MODELS[args.provider][1],
         "timeout_seconds": TIMEOUT_SECONDS,
         "runner_sha256": sha256(Path(__file__)),
         "python_version": sys.version,
+        "library_versions": library_versions(),
         "sandbox": "bubblewrap fresh home/state/tmp; one instruction; one filing; one output directory",
     }
     write_json(run_dir / "metadata.json", metadata)
@@ -187,6 +248,11 @@ def bwrap_base(run_dir: Path, provider: str, state: Path) -> list[str]:
             "--ro-bind", str(HOME_HOST / ".codex/auth.json"), str(SANDBOX_HOME / ".codex/auth.json"),
             "--setenv", "CODEX_HOME", str(SANDBOX_HOME / ".codex"),
         ]
+    elif provider == "deepseek":
+        xdg = SANDBOX_HOME / ".xdg"
+        command += ["--bind", str(state), str(xdg), "--ro-bind", str(OPENCODE_BIN), str(OPENCODE_SANDBOX)]
+        for name in ("data", "config", "state", "cache"):
+            command += ["--setenv", f"XDG_{name.upper()}_HOME", str(xdg / name)]
     else:
         command += [
             "--ro-bind", str(CLAUDE_BIN), str(CLAUDE_SANDBOX),
@@ -206,6 +272,12 @@ def provider_command(run_dir: Path, provider: str) -> list[str]:
             "--skip-git-repo-check", "--dangerously-bypass-approvals-and-sandbox",
             "--json", "--color", "never", "--model", "gpt-5.6-sol",
             "-c", 'model_reasoning_effort="xhigh"', "-C", str(WORK), prompt,
+        ]
+    if provider == "deepseek":
+        model, variant = MODELS[provider]
+        return [
+            str(OPENCODE_SANDBOX), "run", "--pure", "--auto", "--agent", "build",
+            "--model", model, "--variant", variant, "--format", "json", prompt,
         ]
     return [
         str(CLAUDE_SANDBOX), "--print", "--output-format", "stream-json", "--verbose",
@@ -243,12 +315,13 @@ def validate_workbook(run_dir: Path) -> dict[str, object]:
 def preflight(provider: str) -> Path:
     if not shutil.which("bwrap"):
         raise SystemExit("bubblewrap (bwrap) is required")
-    binary = CODEX_BIN if provider == "sol" else CLAUDE_BIN
+    binary = {"sol": CODEX_BIN, "deepseek": OPENCODE_BIN}.get(provider, CLAUDE_BIN)
     if not binary.is_file() or not os.access(binary, os.X_OK):
-        raise SystemExit(f"provider executable not found: {binary}; set SEC_CODEX_BIN or SEC_CLAUDE_BIN")
+        raise SystemExit(f"provider executable not found: {binary}; set SEC_CODEX_BIN, SEC_CLAUDE_BIN or SEC_OPENCODE_BIN")
     if provider == "sol" and (binary.parent.name != "bin" or binary.name != "codex"):
         raise SystemExit("SEC_CODEX_BIN must resolve to a standalone release's bin/codex")
-    credential = HOME_HOST / (".codex/auth.json" if provider == "sol" else ".claude/.credentials.json")
+    credential = {"sol": HOME_HOST / ".codex/auth.json", "deepseek": OPENCODE_AUTH}.get(
+        provider, HOME_HOST / ".claude/.credentials.json")
     if not credential.is_file():
         raise SystemExit(f"provider authentication file is missing: {credential}")
     return binary
@@ -272,6 +345,21 @@ def run_worker(args: argparse.Namespace, state: Path) -> None:
         cache = HOME_HOST / ".codex/models_cache.json"
         if cache.is_file():
             shutil.copy2(cache, state / "models_cache.json")
+
+    if args.provider == "deepseek":
+        # opencode state lives in the temporary directory: the DeepSeek key alone, web access denied.
+        for name in ("data/opencode", "config/opencode", "state", "cache/opencode"):
+            (state / name).mkdir(parents=True)
+        key = json.loads(OPENCODE_AUTH.read_text(encoding="utf-8"))["deepseek"]
+        auth = state / "data/opencode/auth.json"
+        write_json(auth, {"deepseek": key})
+        write_json(state / "config/opencode/opencode.jsonc", {
+            "$schema": "https://opencode.ai/config.json",
+            "permission": {"edit": "allow", "bash": "allow", "webfetch": "deny", "external_directory": "allow"},
+        })
+        models = HOME_HOST / ".cache/opencode/models.json"
+        if models.is_file():
+            shutil.copy2(models, state / "cache/opencode/models.json")
 
     provider_argv = provider_command(run_dir, args.provider)
     command = bwrap_base(run_dir, args.provider, state) + provider_argv
@@ -332,6 +420,7 @@ def run_worker(args: argparse.Namespace, state: Path) -> None:
         "timed_out": timed_out,
         "workbook_exists": validation.get("exists", False),
         "workbook_valid_xlsx": validation.get("valid_xlsx", False),
+        "usage": run_usage(stdout_path),
     })
 
 
@@ -381,19 +470,20 @@ def parser() -> argparse.ArgumentParser:
     root = argparse.ArgumentParser()
     sub = root.add_subparsers(dest="command", required=True)
     p = sub.add_parser("prepare")
-    p.add_argument("--provider", choices=["sol", "opus"], required=True)
+    p.add_argument("--provider", choices=["sol", "opus", "deepseek"], required=True)
     p.add_argument("--run-dir", required=True)
     p.add_argument("--deal", required=True)
     p.add_argument("--filing", required=True)
+    p.add_argument("--instruction", help="candidate instruction file to test (default: the working instruction)")
     p.add_argument("--revise-from", help="finished workbook to revise (revision pass)")
     p.add_argument("--report", help="checker findings in plain text, required with --revise-from")
     p.set_defaults(func=prepare)
     p = sub.add_parser("launch")
-    p.add_argument("--provider", choices=["sol", "opus"], required=True)
+    p.add_argument("--provider", choices=["sol", "opus", "deepseek"], required=True)
     p.add_argument("--run-dir", required=True)
     p.set_defaults(func=launch)
     p = sub.add_parser("worker")
-    p.add_argument("--provider", choices=["sol", "opus"], required=True)
+    p.add_argument("--provider", choices=["sol", "opus", "deepseek"], required=True)
     p.add_argument("--run-dir", required=True)
     p.set_defaults(func=worker)
     p = sub.add_parser("status")

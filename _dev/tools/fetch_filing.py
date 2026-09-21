@@ -119,8 +119,6 @@ def fetch(seed_row, manifest, force):
     deal = seed_row["deal"]
     if seed_row["status"] != "ok":
         raise FetchError("%s: seed row needs review first (%s)" % (deal, seed_row["status"]))
-    if seed_row["form_type"] == "SC TO-T":
-        raise FetchError("%s: tender offers are not handled yet" % deal)
     name = "%s_%s_%s.htm" % (deal, seed_row["date_filed"], seed_row["form_type"].replace(" ", ""))
     path = RAW / name
     recorded = next((r for r in manifest if r["file"] == name), None)
@@ -130,7 +128,9 @@ def fetch(seed_row, manifest, force):
             raise FetchError("%s: local file differs from its manifest; inspect it or use --force to refetch" % name)
         return "%s: already present; local hash verified" % name
 
-    url, document, data = main_document(seed_row["index_url"], seed_row["form_type"])
+    # In a tender offer the background sits in the offer to purchase, exhibit (a)(1)(A), not the cover form.
+    document_type = "EX-99.(A)(1)(A)" if seed_row["form_type"] == "SC TO-T" else seed_row["form_type"]
+    url, document, data = main_document(seed_row["index_url"], document_type)
     if path.exists() and not force:  # a file from before the manifest: keep it, record what EDGAR has now
         if path.read_bytes() != data:
             raise FetchError("%s: differs from EDGAR's copy; rerun with --force to replace it" % name)

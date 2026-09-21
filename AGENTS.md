@@ -9,7 +9,7 @@ This project turns the "Background of the Merger" section of an SEC merger filin
 - Do not use the web. Do not identify anonymous bidders from outside knowledge.
 
 ## Layout
-- `SEC_Deal_Ledger_Extraction_Instruction.md`: the working instruction (v1.11 lean).
+- `SEC_Deal_Ledger_Extraction_Instruction.md`: the working instruction (v1.12).
 - `raw_filing/`: filings to extract, fetched from EDGAR by `_dev/tools/fetch_filing.py`. `MANIFEST.csv` records each file's source link and SHA-256.
 - `extraction/`: finished ledgers. The Claude Opus 5 workbooks here are the only canonical extraction.
 - `ref/`: Alex's collection instructions, voice notes and hand-coded deals. For evaluation only. `seed.csv` (built by `_dev/tools/make_seed.py`) lists each deal's filing link and holds no answers.
