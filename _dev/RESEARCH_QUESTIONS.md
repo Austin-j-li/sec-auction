@@ -1,11 +1,11 @@
 # Current research questions
 
-The working instruction is v1.12. Its conventions are provisional where Alex's hand-coding, written rules and voice notes disagree. This list supersedes the old “16 questions” assessment as a navigation document; it authorizes no instruction or workbook changes.
+The working instruction is v1.13; its conventions are sections E1–E14 (C1–C16 in v1.12 and earlier). Its conventions are provisional where Alex's hand-coding, written rules and voice notes disagree. This list supersedes the old “16 questions” assessment as a navigation document; it authorizes no instruction or workbook changes.
 
 ## Decisions still withheld by Austin
 
-- **Q3, one-sided prices:** the proposed interpretation change and PetSmart #18 cell edit were not adopted. Keep C15's existing rule. Clarifying Party A's hedged range remains a review question, not an approved recoding.
-- **Q7, Company H:** neither the proposed continuing-invitation exception nor its revised exit-reason wording was adopted. Keep the current C16 rule until Austin decides otherwise.
+- **Q3, one-sided prices:** the proposed interpretation change and PetSmart #18 cell edit were not adopted. Keep the existing price rule (E13). Clarifying Party A's hedged range remains a review question, not an approved recoding.
+- **Q7, Company H:** neither the proposed continuing-invitation exception nor its revised exit-reason wording was adopted. Keep the current exit rule (E14) until Austin decides otherwise.
 
 These Q numbers refer to the 20 September recommendations, not the IDs in a deal workbook.
 

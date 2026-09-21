@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Mechanical validator for the lean deal-ledger workbook (instruction v1.12).
+"""Mechanical validator for the lean deal-ledger workbook (instruction v1.13).
 
 This checker intentionally does not decide whether events, bidders, rounds, or
 classifications are substantively correct. In particular, it does not sum
@@ -37,8 +37,8 @@ from openpyxl.utils.cell import coordinate_to_tuple, range_boundaries
 CHECKER_VERSION = "1.5"
 CHECKER_REVISION = (
     "Adds two cross-column checks: an exact-day When must equal Date from, Date to and "
-    "Sort date (C10), and an inferred exit carries Exit reason 'Not stated' (C16). "
-    "Checks instruction v1.12."
+    "Sort date (E8), and an inferred exit carries Exit reason 'Not stated' (E14). "
+    "Checks instruction v1.13."
 )
 
 SHEETS = ["Deal ledger", "Rounds", "Questions", "Deal facts"]
@@ -116,8 +116,8 @@ INITIATION_FIELDS = {
     "Initiation",
     "Initiation (target-led, bidder-led, activist-influenced, mixed or unclear)",
 }
-AUCTION_SCREEN_FIELDS = {"Auction screen", "Auction screen (C1)"}
-EARLIER_APPROACHES_FIELDS = {"Earlier approaches", "Earlier approaches (C7)"}
+AUCTION_SCREEN_FIELDS = {"Auction screen", "Auction screen (C1)", "Auction screen (E1)"}
+EARLIER_APPROACHES_FIELDS = {"Earlier approaches", "Earlier approaches (C7)", "Earlier approaches (E5)"}
 WHOLE_COMPANY_FIELDS = {
     "Whole-company bids",
     "Whole-company bids (Yes, or No with what was bid for)",
@@ -770,7 +770,7 @@ class LeanChecker:
                     self.add(
                         "warning",
                         "exit.inferred_reason",
-                        f"An inferred exit carries Exit reason 'Not stated' (C16); found {exit_reason!r}.",
+                        f"An inferred exit carries Exit reason 'Not stated' (E14); found {exit_reason!r}.",
                         sheet=ws.title,
                         row=excel_row,
                         column="Exit reason",
@@ -949,7 +949,7 @@ class LeanChecker:
                         self.add(
                             "error",
                             "date.exact_day_mismatch",
-                            f"When reports the day {when.strip()}, so {date_column} must equal it (C10).",
+                            f"When reports the day {when.strip()}, so {date_column} must equal it (E8).",
                             sheet=ws.title,
                             row=excel_row,
                             column=date_column,
