@@ -20,4 +20,4 @@ Q3 (one-sided prices) needs no text change. Q7 (Company H continuing invitation)
 
 ## Evidence and its limits
 
-The rewrite was run as "v1.12.1", before the round definition was added, against v1.11 and v1.12 on the eight reviewed deals: `reviews/2026-09-21/instruction_comparison.md`. On Opus it beat v1.11 and tied v1.12; DeepSeek flash made a quarter as many checker errors under it. Round boundaries were unstable under every version, which is why the round definition was added. **No extraction has run under v1.13 as it now reads, and none under any of these versions on an unseen filing.**
+The rewrite was run as "v1.12.1", before the round definition was added, against v1.11 and v1.12 on the eight reviewed deals: `git show acc9986:_dev/reviews/2026-09-21/instruction_comparison.md`. On Opus it beat v1.11 and tied v1.12; DeepSeek flash made a quarter as many checker errors under it. Round boundaries were unstable under every version, which is why the round definition was added. **No extraction has run under v1.13 as it now reads, and none under any of these versions on an unseen filing.**
