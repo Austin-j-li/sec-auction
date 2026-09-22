@@ -1,0 +1,26 @@
+{
+  "cell": {
+    "arm": "opus-5-5-medium",
+    "deal": "datalink",
+    "effort": "medium",
+    "filing": "datalink_2016-11-29_DEFM14A.htm",
+    "id": "datalink-opus-5-5-medium-r1",
+    "model": "claude-opus-5-5",
+    "provider": "opus",
+    "replicate": 1,
+    "timeout_minutes": 150
+  },
+  "check_summary": {
+    "errors": 0,
+    "information": 0,
+    "total_issues": 19,
+    "warnings": 19
+  },
+  "failure_reason": null,
+  "mismatches": [],
+  "network_commands": [],
+  "recorded_at": "2026-09-22T20:16:57.189768+00:00",
+  "state": "completed",
+  "web_or_delegation": [],
+  "workbook_sha256": "5c1898ffaf1916902937cff91d40771392b8b133f54f612ff92465619dd7670c"
+}

@@ -1,0 +1,25 @@
+{
+  "deal": "synacor",
+  "effort": "high",
+  "expected_output": "synacor.xlsx",
+  "filing_name": "synacor_2021-03-03_SCTO-T.htm",
+  "filing_sha256": "2ea05ceef8c7315f7bf81743a70f67a2574e545cb303e48152efd6803b749b0e",
+  "instruction_name": "SEC_Deal_Ledger_Extraction_Instruction.md",
+  "instruction_sha256": "513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304",
+  "library_versions": {
+    "beautifulsoup4": "4.15.0",
+    "lxml": "5.2.1",
+    "openpyxl": "3.1.5"
+  },
+  "mode": "extract",
+  "model": "claude-opus-5-5",
+  "prepared_at": "2026-09-22T19:55:42.542699+00:00",
+  "prompt_sha256": "16138707e81ac7be2ebdfcbbbc652779c1740b1aa0f280b2de630015c3711e37",
+  "provider": "opus",
+  "python_version": "3.12.13 (main, Apr 16 2026, 00:00:00) [GCC 14.3.1 20251022 (Red Hat 14.3.1-4)]",
+  "report_sha256": null,
+  "revised_from_sha256": null,
+  "runner_sha256": "3eb633a5a5b8660da5421febe001341ec1bf0aacfa071bbe0eb2dbf688a07a1f",
+  "sandbox": "bubblewrap fresh home/state/tmp; one instruction; one filing; one output directory",
+  "timeout_seconds": 9000
+}

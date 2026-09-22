@@ -1,0 +1,1192 @@
+{
+  "deal": "datalink",
+  "filing": "raw_filing/datalink_2016-11-29_DEFM14A.htm",
+  "instruction": "SEC_Deal_Ledger_Extraction_Instruction.md v1.13.2 (sha256 513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304)",
+  "weights": {
+    "participation": 30,
+    "rounds": 25,
+    "formality_conditions": 20,
+    "chronology": 10,
+    "bids_prices": 10,
+    "other": 5
+  },
+  "tests": [
+    {
+      "id": "DA-P01",
+      "category": "participation",
+      "weight": 2,
+      "item": "Party A stays live from its January entry into the June outreach",
+      "check": "Deal ledger: Party A's entry is recorded once in process 1 (its 01/19/2016 Bid in round 0; the 02/04/2016 NDA signed is a later step). No Party A exit row (Dropped by target, Withdrew, Did not submit) is dated 04/20/2016 or anywhere in April-May 2016, and Party A has no Re-entered row at the June outreach. A June 2016 Contact or NDA signed row for Party A (see DA-P02) is a later step, not a fresh entry, provided it is not labelled Re-entered and Party A is not counted as a new live unit. Where the 04/20 board response is recorded (Other material event or Note), it must not be an exit; whether it is recorded is not scored here.",
+      "expected": "No exit for Party A at 04/20/2016 or in April-May 2016. Party A is continuously live from 01/19/2016 into the June stage: talks continued through May and Party A was on the June list.",
+      "partial_credit": "Half credit: Party A gets Dropped by target or Withdrew at 04/20 but a Re-entered row follows at the June outreach (06/01-06/06), so participation still reconciles. Fail: an exit with no re-entry, or Party A absent.",
+      "accepted_alternatives": [
+        "04/20 decision recorded as an Other material event, as a Note on Party A's 03/29 Bid row, or not recorded at all",
+        "A June 2016 Contact or NDA signed row for Party A that is not labelled Re-entered and not counted as a new entrant"
+      ],
+      "source_pages": [
+        "27",
+        "28"
+      ],
+      "source_quote": "our board was not interested in pursuing a transaction with Party A at that time, but that our board would consider a definitive proposal offered by Party A that had a higher likelihood of consummation",
+      "provenance": [
+        "filing pp.27-28 (periodic conversations with Party A through May; June list includes Party A)",
+        "E3 entry counted once; E14: rejecting one proposal while its bidder continues is not an exit",
+        "revised workbook #10",
+        "Alex Excel 2826 codes Party A 'Drop' 04/20 (convention conflict, not imported)",
+        "verifier fixes: conformance, coverage (June NDA row allowed; 04/20 recording not scored)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Alex's RA coding drops Party A on 04/20. A careless reading of 'not interested ... at that time' creates an exit that E14 excludes, because talks continued into May and Party A was on the June list."
+    },
+    {
+      "id": "DA-P02",
+      "category": "participation",
+      "weight": 3,
+      "item": "Strategic NDA signers reconcile to 10 with Insight counted once",
+      "check": "Deal ledger strategic NDA signed rows reconcile to the stated 10 distinct signers (Party A, Party B, Insight, 7 unnamed), with Insight counted once. Either reading of Party A's instrument is acceptable. (a) Party A's membership of the 10 is its 02/04/2016 NDA: the June-step strategic NDA rows sum to 9 (e.g., '8 strategic NDA signers (incl. Party B)' Count 8 plus Insight Count 1), plus Party A's 02/04 row. (b) Party A signed a new NDA in the June wave: the June-step rows sum to 10 with Party A among them (a residual of 9 including Party A and Party B plus Insight's row, or a separate June Party A row), and its 02/04 row is also kept. Cohort Type is Strategic; the Note or Who keeps the filing's total of 10.",
+      "expected": "10 distinct strategic NDA signers. June-step rows sum to 9 when Party A's February NDA is its counted instrument, or 10 when Party A is in the June wave; Insight appears exactly once.",
+      "partial_credit": "Half credit: Insight counted twice (a residual that still includes Insight, plus Insight's own 06/14 row); or Party A counted twice within the June step (inside the cohort and on a separate June row); or cohort Type not Strategic; in each case with the Note stating the total of 10. Fail: strategic signer rows that cannot be reconciled to 10.",
+      "accepted_alternatives": [
+        "Residual cohort of 9 including Insight and Party B, plus Party A's 02/04 row, when Insight's annex-dated NDA is not split out (that omission is penalised only in DA-C01)",
+        "Reading (b): a June NDA for Party A, provided Party A is not treated as a new entrant (DA-P01)"
+      ],
+      "source_pages": [
+        "28",
+        "27",
+        "A-32"
+      ],
+      "source_quote": "Beginning June 6, Raymond James contacted 13 strategic acquirers (including Party A, Party B and Insight), 10 of which (including Party A, Party B and Insight) signed a non-disclosure agreement",
+      "provenance": [
+        "filing p.28; p.27 (Party A NDA 02/04/2016); p.A-32 (Insight NDA 06/14/2016)",
+        "E3 cohorts (remainder for the same step); E7",
+        "ADJUDICATION F3",
+        "revised workbook #7, #15, #16",
+        "Alex Excel 2827-2836 (10 strategic NDA rows, including a June row for Party A)",
+        "verifier fix: conformance (reconcile by step; both Party A readings accepted)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "The raw draft kept Insight inside a 9-party cohort. Adding the annex-dated Insight NDA without reducing the cohort counts Insight twice."
+    },
+    {
+      "id": "DA-P03",
+      "category": "participation",
+      "weight": 1,
+      "item": "Financial sponsors: 13 NDA signers, typed Financial",
+      "check": "Deal ledger NDA signed rows total 13 financial signers (a cohort of 13 including Party C, or 12 plus Party C individually), Type Financial, in process 1 at the broad-auction stage (round 2 under the adopted map). Contact reconciliation is scored in DA-P04 and NDA dating in DA-C02; neither is scored here.",
+      "expected": "13 financial NDA signers (incl. Party C); Type Financial.",
+      "partial_credit": "Half credit: count right but Type Unknown or Mixed; or the Count is off by one while the Note states 13.",
+      "accepted_alternatives": [
+        "Party C given its own NDA row with a 12-member residual cohort"
+      ],
+      "source_pages": [
+        "28"
+      ],
+      "source_quote": "Later in June, Raymond James also contacted 14 financial sponsors (including Party C), 13 of which (including Party C) signed a non-disclosure agreement",
+      "provenance": [
+        "filing p.28; p.30 (Party C 'was a financial sponsor')",
+        "revised workbook #18",
+        "Alex Excel 2837-2849",
+        "verifier fixes: source fidelity, conformance, coverage (date and contact components moved to DA-C02 and DA-P04)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Guard on the financial population."
+    },
+    {
+      "id": "DA-P04",
+      "category": "participation",
+      "weight": 1,
+      "item": "Contacts reconcile to 27; contact or declining is neither entry nor exit",
+      "check": "(a) Deal ledger Contact rows (cohorts acceptable) reconcile to 13 strategic and 14 financial contacts, 27 in total (p.36); Party A's first contact may be its January Bid row, leaving a strategic Contact cohort of 12. (b) Contact alone is not entry: the 3 strategic and 1 financial contacted parties that did not sign NDAs get no exit row (Withdrew, Did not submit, Dropped by target) for being contacted or declining, and are not placed in an NDA-signer or non-submitter cohort. A Note or Question saying that up to three unnamed IOI submitters may have been contacted non-signers who entered by bidding (E3) is consistent with this test.",
+      "expected": "Contacts: 13 strategic + 14 financial = 27. Declining an NDA is neither an entry nor an exit; the filing leaves open whether up to 3 non-signers entered by bidding (inside the IOI cohorts).",
+      "partial_credit": "Half credit: exactly one of (a) and (b) fails (e.g., no Contact rows or contacts only in a Note; or an exit row for the four non-signers as a group).",
+      "accepted_alternatives": [
+        "Strategic Contact cohort of 12 (excluding Party A, first contacted in January) or 13 (including Party A)"
+      ],
+      "source_pages": [
+        "28",
+        "36"
+      ],
+      "source_quote": "sought offers to acquire Datalink from a broad group of 27 potential bidders, including financial sponsors and strategic bidders, 23 of whom entered into confidentiality agreements with us",
+      "provenance": [
+        "filing p.28, p.29 (unnamed submitters' NDA status not stated), p.36",
+        "E3 entry; E7 contacts; E14 only entrants get exits",
+        "revised workbook #14, #17, Rounds R2 (up to 3 bid-only entrants)",
+        "ADJUDICATION F1 (distinguish entry by bidding from NDA entry)",
+        "verifier fixes: all three lenses ('never enter' removed)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Guard. Keeps Contact separate from entry (E3/E7) without asserting that non-signers never bid; careless ledgers give exits to parties that never entered."
+    },
+    {
+      "id": "DA-P05",
+      "category": "participation",
+      "weight": 3,
+      "item": "Round-2 IOI submitters split by the filing's types, with no synthetic Party A bid",
+      "check": "Deal ledger round-2 Bid rows: individual rows for Insight and Party B (Strategic) and Party C (Financial). The six other IOI submitters are split by the filing's type totals: 2 unnamed strategic (Type Strategic, Count 2) and 4 unnamed financial (Type Financial, Count 4), with no additional combined six-bidder price row alongside them. Party A has no new round-2 Bid or Bid reaffirmed row; its 03/29 proposal is treated as the standing offer the target considered (in a Note, in Rounds, or in a price-less Other material event). The Rounds round-2 'Bids received' counts the 9 new IOIs; noting Party A's standing offer there (10 bidders represented) is welcome but not required.",
+      "expected": "9 new IOIs: Insight, Party B and 2 unnamed strategic; Party C and 4 unnamed financial. Party A's standing 03/29 proposal was also considered, with no new Party A bid row.",
+      "partial_credit": "Half credit: counts right, but the six others kept as one Unknown-type cohort (the raw-draft error); or a synthetic Party A July Bid or Bid reaffirmed row; or a combined six-bidder price row kept alongside the typed Count-2 and Count-4 rows (the six offers counted twice). Fail: named IOI submitters missing, type totals wrong, or two of the half-credit errors.",
+      "accepted_alternatives": [
+        "Unnamed submitters on individual rows, provided types and counts are right and no individual prices are assigned",
+        "Rounds 'Bids received' of 9, with or without mention of Party A's standing proposal",
+        "A price-less Other material event dated 07/27/2016 recording that the board counted Party A's 03/29 proposal among the offers considered"
+      ],
+      "source_pages": [
+        "29"
+      ],
+      "source_quote": "Four strategic parties (in addition to Party A, which submitted the proposal described above on March 29, 2016), including Insight and Party B, and five financial sponsors, including Party C, submitted initial indications of interest.",
+      "provenance": [
+        "filing p.29",
+        "ADJUDICATION F2 and F6",
+        "revised workbook #21-#23, #26-#27, Rounds R2",
+        "fresh_review F6 option (a)",
+        "Alex Excel 2853 gives Party A a July IOI at $8.80-10.50 (convention conflict, not imported)",
+        "verifier fixes: conformance (D3 Bids received), coverage (OME accepted; duplicate six-bid row penalised)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "The raw Opus draft used one Unknown-type cohort of six (F2), and Alex gave Party A a July IOI. The test separates a careful type split from shortcuts."
+    },
+    {
+      "id": "DA-P06",
+      "category": "participation",
+      "weight": 4,
+      "item": "Round-2 non-submitters carry qualified ranges, not exact counts",
+      "check": "Deal ledger has non-submitter rows (Inferred = Y, Exit reason Not stated) for strategic and financial NDA signers with no IOI, with Count blank and qualified ranges in Who or at the start of the Note: strategic 5-7 and financial 8-9 (13-16 in total). Main reading: Did not submit, dated by 07/18/2016 and by 07/21/2016 respectively, in round 2. The Rounds round-2 'How it ended' agrees with the ledger ranges (13-16 did not submit, or 14-17 under the Party A alternative), not an exact total, and the exact total of 23 NDA signers is kept.",
+      "expected": "Strategic 5-7 (10 minus Party A, Insight and Party B, minus 0 to 2 unnamed signer-submitters). Financial 8-9 (13 minus Party C, minus 3 to 4 unnamed signer-submitters). 13-16 in total; Count blank.",
+      "partial_credit": "Half credit: exact Counts 5 and 8 (13 total) with Inferred = Y, and the Note or a Question discloses that the unnamed submitters' NDA membership is not established; or a single unknown-type row carrying 'Count: 13-16'. Fail: non-submitters absent; exact counts with no disclosure; counts that ignore the stated totals; or Party A counted both as a non-submitter and among the ten bidders considered.",
+      "accepted_alternatives": [
+        "Strategic 6-8 (total 14-17) if Party A itself is treated as a round-2 non-submitter (no new IOI), provided Party A is then not also counted among the bidders considered or advanced on 07/27",
+        "The same qualified ranges closed as Dropped by target (Inferred = Y, Not stated) by 07/27/2016 in round 2, because the IOI due dates went to 'the interested parties' (p.29) and not every signer's eligibility is established; these must be kept separate from, or clearly distinguished in the Note from, the five IOI bidders not selected (DA-P07)",
+        "Ranges shown in Who or at the start of the Note ('Count: 5-7')"
+      ],
+      "source_pages": [
+        "28",
+        "29",
+        "36"
+      ],
+      "source_quote": "Four strategic parties (in addition to Party A, which submitted the proposal described above on March 29, 2016), including Insight and Party B, and five financial sponsors, including Party C, submitted initial indications of interest.",
+      "provenance": [
+        "filing pp.28-29, p.36",
+        "Part B exact-subtraction rule; E3 counts; E14 inferred closures",
+        "ADJUDICATION F1 (existing-rule failure)",
+        "revised workbook #25, #29, Q5, Rounds R2; revision/population_reconciliation.json",
+        "Alex Excel 2860-2861 ('5-7 strategic' and '10-12 financial' Drop rows at 07/27; different convention)",
+        "verifier fixes: coverage (Rounds range under Party A alternative), conformance (07/27 Dropped-by-target alternative)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Adjudicated trap. The raw Opus draft recorded exact 5 and 8 while admitting that membership was not established. An exact count from a qualified subtraction is the Part B error."
+    },
+    {
+      "id": "DA-P07",
+      "category": "participation",
+      "weight": 2,
+      "item": "07/27 selection: five advance, the rest are closed",
+      "check": "Deal ledger has a Dropped by target row for the IOI bidders not advanced: When 'by 07/27/2016' or Date to 07/27/2016; round 2 (the round being left); Count 5 (10 represented minus 5 advanced), or Count 4 where Party A is handled separately under the DA-P06/DA-P08 alternatives; Type Unknown; Exit reason Not stated or Lower offer than rivals. The Inferred flag is not scored (Y with Not stated follows E14; blank with the price-based reason treats the reported selection criterion as the decision). The advancers are Insight, Party B, Party C and two unnamed parties.",
+      "expected": "5 not selected (Dropped by target, by 07/27/2016); 5 advanced.",
+      "partial_credit": "Half credit: closure present but miscounted by one (outside the Count-4 alternative), or given an unsupported type split. Fail: no closure for the bidders not selected.",
+      "accepted_alternatives": [
+        "Exit reason 'Lower offer than rivals', Inferred blank or Y (the filing reports that the five highest-priced IOIs advanced)",
+        "Count 4 plus separate treatment of Party A, consistent with DA-P06 and DA-P08"
+      ],
+      "source_pages": [
+        "29"
+      ],
+      "source_quote": "our board directed our management and the Raymond James team to continue to pursue a transaction with the five parties that submitted the highest-priced initial indications of interest, including Insight, Party B and Party C.",
+      "provenance": [
+        "filing p.29",
+        "E14 advancement rule",
+        "revised workbook #31",
+        "Alex Excel 2859-2861",
+        "verifier fixes: all three lenses (Inferred flag; Count 4)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Guard on the selection arithmetic. Exit reason Not stated and the price-based reason are both accepted."
+    },
+    {
+      "id": "DA-P08",
+      "category": "participation",
+      "weight": 2,
+      "item": "Party A's status after 07/27 is not asserted beyond the filing",
+      "check": "Deal ledger does not give Party A a definite individual exit at 07/27 (or at the September non-submission). Its later status stays inside the 07/27 not-selected residual, the two unnamed advancers, or (under the DA-P06 alternative) the round-2 non-submitter cohort, and a Note or Question names the possibility that Party A was one of the two unnamed advancers (the price comparison, its $10.30-10.75 range against the others' $10.50 maximum, is optional). Party A is closed exactly once, through one of those cohorts.",
+      "expected": "Party A remains within a residual cohort with the uncertainty named; no individual Party A exit is asserted.",
+      "partial_credit": "Half credit: Party A kept inside the residual cohorts and closed once, but no Note or Question names the possibility that it advanced; or an individual inferred Party A exit (Dropped by target by 07/27, or Did not submit) with Inferred = Y and a Note or Question that expressly names the alternative that Party A advanced, with cohort counts adjusted so Party A is not counted twice. Fail: an individual Party A exit presented as reported; Party A counted both individually and inside a cohort; or Party A never closed.",
+      "accepted_alternatives": [
+        "Under DA-P06's alternative, Party A inside the round-2 non-submitter cohort (strategic 6-8) with the 07/27 not-selected Count 4 and no individual exit, provided a Note or Question names the possibility that its standing proposal was among the five advanced"
+      ],
+      "source_pages": [
+        "27",
+        "29"
+      ],
+      "source_quote": "The other initial indications of interest included prices from a low of $8.80 per share to a high of $10.50 per share.",
+      "provenance": [
+        "filing p.27 (Party A $10.30-$10.75) and p.29",
+        "E14: a party whose membership in the residual is uncertain stays inside it, with the possibility named",
+        "revised workbook #31, #44, Q3",
+        "Alex Excel 2859 (Party A 'Drop' 07/27; not imported)",
+        "verifier fixes: source fidelity, coverage (P06 alternative), conformance (price comparison optional; half credit for missing possibility)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Alex coded an individual Party A drop at 07/27. Party A's range tops the others' $10.50 maximum and the filing never names it among the five, so it may have been one of the two unnamed advancers."
+    },
+    {
+      "id": "DA-P09",
+      "category": "participation",
+      "weight": 3,
+      "item": "The two unnamed July advancers exit after 09/01, not at the final letter or due date",
+      "check": "Deal ledger closes the two unnamed July advancers once (a cohort row with Count 2, or two individual rows), Type Unknown (the filing gives no type; Party A may be one). Label: Did not submit or Withdrew, resting on the reported 'ultimately determined not to submit'; Exit reason Not stated. Timing: after the 09/01/2016 board (When 'after 09/01/2016' or similar; Date from on or after 09/01/2016 or blank; no Date to before 09/01). Round 4, or 3 as the round being left. The Inferred flag is not scored (the exit is reported; its date bound is inferred). They are not closed at 07/27, 08/16 or 08/30.",
+      "expected": "2 unnamed advancers (Type Unknown): Did not submit (or Withdrew), after 09/01/2016; still in the process on 09/01.",
+      "partial_credit": "Half credit: correct label and count but dated by the 08/30/2016 due date (contradicting 'remained in the process' on 09/01); or Dropped by target (inferred) by 09/02/2016 at Insight's exclusivity, with a Note recording that both ultimately determined not to submit (E14 records reported exits first); or everything right except a guessed Strategic or Financial type. Fail: Dropped by target at 08/16 (not sent a letter), a closure at 07/27, no closure, or a 09/02 closure with no mention of the reported non-submission.",
+      "accepted_alternatives": [
+        "Withdrew (they 'determined not to submit'), dated after 09/01",
+        "Round 3 as the round being left (no final letter reported to them)"
+      ],
+      "source_pages": [
+        "30",
+        "31"
+      ],
+      "source_quote": "were still considering whether they would submit proposals. Both parties ultimately determined not to submit proposals.",
+      "provenance": [
+        "filing pp.29-31 (presentations to 'two other participants' 08/05 and 08/10; still considering on 09/01); p.30 (types given only for Insight, B, C)",
+        "E14: record reported exits first",
+        "source_inventory S12",
+        "revised workbook #44, Q6",
+        "Alex Excel 2865 ('Drop' 09/01)",
+        "verifier fixes: all three lenses (09/02 half credit; Inferred flag; type guard)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Inventory trap S12. No final letter is reported to the two advancers, which tempts a Dropped-by-target exit at 08/16 or Did not submit at 08/30, but the filing keeps them in the process on 09/01."
+    },
+    {
+      "id": "DA-P10",
+      "category": "participation",
+      "weight": 3,
+      "item": "Party B and Party C closed at Insight's 09/02 exclusivity and re-entered 10/01",
+      "check": "Deal ledger: Party B and Party C each have Dropped by target, Inferred = Y, Exit reason Not stated, When 'by 09/02/2016' (Date to 09/02/2016), round 4, at Insight's executed exclusivity. Each has a Re-entered row dated 10/01/2016 (Raymond James re-contact; round 5) before any later row for that bidder.",
+      "expected": "B and C: inferred Dropped by target by 09/02/2016 (Not stated); Re-entered 10/01/2016.",
+      "partial_credit": "Half credit: B and C kept live through September with no drop or re-entry, but a Question discusses the E14 executed-exclusivity rule; or the drop and re-entry are present but the drop carries a stated reason or is dated at the 09/01 board. Fail: a drop with no re-entry (making the 10/24 and 10/26 exits second closures); B or C labelled Withdrew at 09/02; or no treatment at all.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "31",
+        "32"
+      ],
+      "source_quote": "Later on September 2, 2016, the parties signed an exclusivity agreement with an expiration time of 11:59 p.m. Eastern time on September 30, 2016.",
+      "provenance": [
+        "filing pp.31-32",
+        "E14 inferred closure at executed exclusivity; E14 Re-entered",
+        "ADJUDICATION F8 (reported-exit alternative rejected)",
+        "revised workbook #48, #49, #54, #55, Q9"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "A mechanical E14 rule that careless extractions either skip or apply without the October re-entry, which produces double exits."
+    },
+    {
+      "id": "DA-P11",
+      "category": "participation",
+      "weight": 2,
+      "item": "Party B withdraws on 10/24; the 10/03 constraint is not an exit",
+      "check": "Deal ledger has Party B Withdrew dated 10/24/2016 (reported; Inferred blank), round 5, Exit reason Other stated reason or Value below earlier offer. The Note conveys the temporary qualifier ('at that time') or the Q3-statement basis (exact wording not scored). Party B's 10/03 disclosure of another pending transaction is not recorded as an exit (whether it has its own row is not scored here).",
+      "expected": "Party B: Withdrew 10/24/2016, stated reason (draft Q3 financial statements).",
+      "partial_credit": "Half credit: correct row, but Exit reason Not stated or Terms or process. Fail: exit dated 10/03 or at signing; labelled Dropped by target; or missing.",
+      "accepted_alternatives": [
+        "Exit reason 'Value below earlier offer' (the 10/26 board heard that B would not proceed on the terms of its earlier proposal, p.33)"
+      ],
+      "source_pages": [
+        "32",
+        "33"
+      ],
+      "source_quote": "On October 24, 2016, Party B indicated that it was not willing to acquire the Company at that time and was withdrawing its earlier proposal, based on, among other things, our draft third quarter financial statements.",
+      "provenance": [
+        "filing pp.32-33",
+        "E14 Withdrew ('for now')",
+        "revised workbook #56, #60, Q10",
+        "Alex Excel 2873 (B 'Drop' 11/06; not imported)",
+        "verifier fix: conformance (wording and 10/03 row not scored)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Alex dates B's exit to signing. The reported 10/24 withdrawal and the non-exit 10/03 constraint separate careful reading from careless."
+    },
+    {
+      "id": "DA-P12",
+      "category": "participation",
+      "weight": 2,
+      "item": "Party C's final exit comes at the 10/26 exclusivity, not the 10/20 information withholding",
+      "check": "Deal ledger closes Party C's last participation period (after its 10/01 re-entry) with Dropped by target, Inferred = Y, Exit reason Not stated, When 'by 10/26/2016' (Date to 10/26/2016), round 5, at the executed exclusivity with Insight. The 10/20 withholding of Q3 information is not recorded as C's exit (its information-access row is scored in DA-C05).",
+      "expected": "Party C: inferred Dropped by target by 10/26/2016 (Not stated).",
+      "partial_credit": "Half credit: C closed at 10/20/2016 as Dropped by target with Lower offer than rivals (rejected in adjudication because the 10/26 board still weighed C's offer); C closed as Not selected at signing on 11/06/2016; or the inferred 10/26 exit carries a stated reason. Fail: C never closed, or closed as Withdrew.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "33"
+      ],
+      "source_quote": "Our board discussed Party C's lower proposed price of $11.25 per share and the greater certainty of closing offered by the Insight proposal.",
+      "provenance": [
+        "filing p.33",
+        "E14 exclusivity transition",
+        "ADJUDICATION F8 (rejected)",
+        "revised workbook #59, #63",
+        "Alex Excel 2869 ('Drop' 10/20)",
+        "verifier fixes: conformance, coverage (double penalty with DA-C05 removed)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Alex and the fresh reviewer both favoured a 10/20 exit. The adjudicated E14 reading keeps C live until the 10/26 exclusivity."
+    },
+    {
+      "id": "DA-P13",
+      "category": "participation",
+      "weight": 2,
+      "item": "Live bidder units reconcile internally across the whole sale",
+      "check": "Grade internal consistency, not timing choices scored elsewhere. (a) No named bidder (Party A, Party B, Party C, Insight) has two exits without an intervening Re-entered row; Insight has no exit; Party A, Party B and Party C each end their last participation period exactly once, individually or inside a cohort, and no cohort double-counts a named bidder closed individually. (b) Rounds 'Who was in' agrees with the ledger's entries, exits and re-entries: round 3 = 5 (Insight, Party B, Party C, 2 unnamed); round 4 = 3 invited plus the 2 remaining advancers (or 3, with the two accounted for elsewhere in Rounds); round 5 = 3 (Insight, Party B, Party C). Timing or label choices that earn full or partial credit in DA-P06 to DA-P12 are not penalised again here.",
+      "expected": "10 represented at 07/27 (9 under the DA-P06 Party A alternative) -> 5 -> 3 invited (+2 until their undated non-submission) -> 1 after the 09/02 exclusivity (plus the 2 advancers while the workbook keeps them open) -> 3 at 10/01 -> 2 after 10/24 -> 1 after 10/26 through signing; no double closures.",
+      "partial_credit": "Half credit: exactly one failure across (a) and (b). Fail: two or more.",
+      "accepted_alternatives": [
+        "9 bidders considered on 07/27 when Party A is a round-2 non-submitter",
+        "1 or 3 live units between 09/02 and the two unnamed advancers' undated exit",
+        "3 live units between 09/02 and 10/01 if B and C are kept live through September (see DA-P10)"
+      ],
+      "source_pages": [
+        "29",
+        "31",
+        "32",
+        "33"
+      ],
+      "source_quote": "On October 1, 2016, Raymond James contacted Party B and Party C by telephone, each of whom expressed interest on those calls in reengaging in the process.",
+      "provenance": [
+        "filing pp.29-33",
+        "instruction F check 1 and E14 live-unit sentence",
+        "revision/population_reconciliation.json; revision/VERIFICATION.md",
+        "verifier fixes: all three lenses (undated advancer exit; no cascade of upstream choices)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Checks that participation accounting holds together through the exclusivity and re-entry sequence. Double closures are the common failure."
+    },
+    {
+      "id": "DA-R01",
+      "category": "rounds",
+      "weight": 1,
+      "item": "One process",
+      "check": "Deal facts 'Number of processes' is 1. The Deal ledger has no Process terminated or Process restarted row, and every row from January 2016 through signing is Process 1.",
+      "expected": "One process (E5 test (a) fails because Party A was kept in view; no break of three months or more).",
+      "partial_credit": "none",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "27",
+        "28"
+      ],
+      "source_quote": "During February, March, April and May, and including after Party A's initial and updated indications of interest were received, Mr. Lidsky and representatives of Raymond James had periodic conversations with Party A regarding a potential sale transaction",
+      "provenance": [
+        "filing pp.27-28",
+        "E5",
+        "revised workbook Q1, Deal facts",
+        "verifier fix: coverage (weight 2 to 1; every observed extraction passes)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Guard. The 04/20 rejection and the 05/25 sale decision tempt a split, but contact with Party A continued through May and Party A was on the June list."
+    },
+    {
+      "id": "DA-R02",
+      "category": "rounds",
+      "weight": 3,
+      "item": "Round 0 and the January bilateral round 1 (researcher's F9 ruling)",
+      "check": "Deal ledger: Party A's unsolicited 01/19/2016 $10.00 Bid is round 0. Exactly one Round opened row for round 1 (Process 1) dates the bilateral Party A stage between 01/28/2016 and 03/19/2016 (01/29/2016 inferred per the ruling), marked Inferred = Y or explained. Party A's 03/29/2016 Bid is in round 1. The Rounds sheet has a round-1 line (Who was in: Party A; Due dates none stated; No deadline stated; Not final) and no line for round 0.",
+      "expected": "Round 0: Party A's 01/19/2016 letter. Round 1: bilateral Party A stage opened 01/29/2016 (inferred), containing the mid-March request and the 03/29/2016 proposal. Rounds line for round 1: Party A, no due date, Not final.",
+      "partial_credit": "Half credit: the literal E6 ordering (all January-May Party A activity, including the 03/29 bid, in round 0, with round 1 opening at the June outreach), whatever alternative the map Question names; under that map grade the other round tests by stage (expected round n becomes n-1). Also half credit: round 1 opened in the window but the 01/19 letter also placed in round 1. Fail: an internally inconsistent map (e.g., a January round-1 opening with the 03/29 bid in round 0, or two Round opened rows for round 1).",
+      "accepted_alternatives": [
+        "Any round-1 opening from 01/28/2016 through 03/19/2016 (e.g., 01/28 price feedback, 02/04 NDA, 02/24 data room, mid-March request), Inferred or explained, with the 01/19 bid in round 0 and the 03/29 bid in round 1"
+      ],
+      "source_pages": [
+        "27"
+      ],
+      "source_quote": "determined that our management should continue to pursue the opportunity with Party A while being mindful of our board's concerns regarding a potential leak of a Company sale process.",
+      "provenance": [
+        "filing p.27 (01/29 decision; 02/24 data room; 'As we requested in mid-March 2016')",
+        "ADJUDICATION F9: Austin's 21 September ruling retains the January bilateral round 1 and the five-round map",
+        "revised workbook #3, #9, Rounds R1, Q1",
+        "fresh_review F9 (literal E6 ordering favours June)",
+        "verifier fixes: source fidelity, coverage (date window), conformance (June-map half credit independent of Question; weight 4 to 3)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "The researcher-adjudicated map choice. The fresh reviewer read E6's ordered list as favouring June, so extractions can split here."
+    },
+    {
+      "id": "DA-R03",
+      "category": "rounds",
+      "weight": 1,
+      "item": "Broad auction stage opened 06/06/2016",
+      "check": "Deal ledger has exactly one Round opened row for the broad-auction stage, dated 06/06/2016 (round 2 under the adopted map). Its Rounds line's How opened describes the Raymond James outreach, or the board authorization that launched it under the 06/01 alternative.",
+      "expected": "Round 2 opened 06/06/2016 by the Raymond James outreach.",
+      "partial_credit": "none",
+      "accepted_alternatives": [
+        "Opened 06/01/2016 (board authorization, carried out by outreach within a week)"
+      ],
+      "source_pages": [
+        "28"
+      ],
+      "source_quote": "On June 6, 2016, Raymond James began contacting potential strategic acquirers, with management's authorization, to gauge their interest in a potential transaction.",
+      "provenance": [
+        "filing p.28",
+        "E6 (decision-then-execution rule)",
+        "revised workbook #13, Rounds R2",
+        "verifier fix: conformance (How opened wording not prescribed)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard"
+    },
+    {
+      "id": "DA-R04",
+      "category": "rounds",
+      "weight": 2,
+      "item": "Five-party second stage opened 07/27/2016",
+      "check": "Deal ledger has a Round opened row dated 07/27/2016 for the five-party second stage: selection of the five highest-priced IOIs for further management presentations and diligence. Rounds line: Who was in 5 (Insight, Party B, Party C and two unnamed parties of unstated type); Due dates none stated / No deadline stated; Finality Not final; Bids received 0.",
+      "expected": "Round 3 opened 07/27/2016 with 5 bidders; no due date; Not final.",
+      "partial_credit": "Half credit: rounds 3 and 4 merged (the 07/27 selection treated only as the end of round 2, with the August information stage folded into the 08/16 final round; or 08/16 recorded only as a Deadline set inside a round opened 07/27), provided the map Question names the alternative.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "29"
+      ],
+      "source_quote": "Our management team provided management presentations to the five parties that were selected by our board.",
+      "provenance": [
+        "filing p.29",
+        "E6: 'opens a distinct information stage tied to new offers'",
+        "revised workbook #30, Rounds R3, Q1 alternative (ii)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Q1 alternative (ii). Tests E6's 'distinct information stage' trigger against maps that merge the two stages. The merge is penalised here only."
+    },
+    {
+      "id": "DA-R05",
+      "category": "rounds",
+      "weight": 2,
+      "item": "Final-proposal request of 08/16/2016",
+      "check": "Deal ledger dates the final-proposal request 08/16/2016 (instruction letters to Insight, Party B and Party C requiring a merger-agreement mark-up, due 08/30/2016 at 5:00 p.m. ET). Under the adopted map this is a Round opened row (round 4). Under a merged map that opens its round at 07/27, a Deadline set row dated 08/16 earns full credit here (the merge is penalised only in DA-R04). The Rounds line for the final-proposal stage names Insight, Party B and Party C as invited, and the two other July advancers are accounted for somewhere in Rounds (as remaining without a reported letter in 'Who was in', or in the previous round's 'How it ended').",
+      "expected": "Round 4 opened 08/16/2016; 3 invited (Insight, Party B, Party C); the 2 other advancers remained without a reported letter.",
+      "partial_credit": "Half credit: the two remaining advancers accounted for nowhere in the Rounds sheet. Fail: the final-proposal stage opened at 08/30, 08/31 or 09/01, or the 08/16 request missing.",
+      "accepted_alternatives": [
+        "'Who was in: 3' with the two advancers accounted for in round 3's 'How it ended' or elsewhere in Rounds"
+      ],
+      "source_pages": [
+        "29"
+      ],
+      "source_quote": "Raymond James provided each of Insight, Party B and Party C with an instruction letter relating to their final proposals.",
+      "provenance": [
+        "filing p.29, p.30 ('remained in the process'), p.36",
+        "E6 first request for final offers; D3 Who was in",
+        "source_inventory S01",
+        "revised workbook #33, Rounds R4, Q6",
+        "verifier fixes: conformance (Who was in 3 accepted), coverage (merge not re-penalised)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Tests E6's 'first request for final ... offers' trigger, plus the two advancers who remained without a letter."
+    },
+    {
+      "id": "DA-R06",
+      "category": "rounds",
+      "weight": 3,
+      "item": "October re-engagement is its own round (round 5)",
+      "check": "Deal ledger has a Round opened row (Inferred = Y or explained) dated 10/01/2016 for the re-engagement stage after Insight's exclusivity lapsed: Raymond James re-contacts Party B and Party C and sends revised merger-agreement drafts while talks with Insight continue. Rounds line: Who was in 3 (Insight, Party B, Party C); Due dates none stated / No deadline stated; How it ended: signing with Insight 11/06/2016. B's withdrawal, C's exit, Insight's 11/01 and 11/02 bids and the signing all sit in this round.",
+      "expected": "Round 5 opened 10/01/2016 (inferred), with 3 bidders, no due date, ending in signing.",
+      "partial_credit": "Half credit: October treated as a continuation of round 4 (no round 5) while the B and C re-entries are still recorded; or round 5 opened at the 10/26 exclusivity instead of the re-engagement.",
+      "accepted_alternatives": [
+        "Opened 09/29/2016 (board decision to let exclusivity lapse and approach B and C)"
+      ],
+      "source_pages": [
+        "32"
+      ],
+      "source_quote": "our board directed management to allow Insight's exclusivity period to expire and to approach Party B and Party C, while continuing to engage with Insight regarding Insight's requests.",
+      "provenance": [
+        "filing p.32",
+        "E6: an unannounced round follows a plainly ended round; exclusivity after a final round ends it",
+        "revised workbook #53, Rounds R5, Q1 alternative (iii)",
+        "CORRECTION_BRIEF F9 (five-round map retained)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Q1 alternative (iii). E6's 'improvement requests continue the round' wording tempts folding October into round 4, even though round 4 had ended in exclusivity."
+    },
+    {
+      "id": "DA-R07",
+      "category": "rounds",
+      "weight": 2,
+      "item": "Round-2 parallel due dates and their outcomes",
+      "check": "Rounds round-2 line: Due dates list 07/18/2016 (strategic) and 07/21/2016 (financial), kept as two dates; Deadline outcome gives one value per date, each Enforced or Unclear. The Deal ledger has Deadline rows dated 07/18/2016 and 07/21/2016.",
+      "expected": "Due dates 07/18/2016 and 07/21/2016; outcome Enforced; Enforced (Unclear accepted for either).",
+      "partial_credit": "Half credit: exactly one of: only one due date recorded, or the two collapsed into one Deadline row; an outcome other than Enforced or Unclear (e.g., Passed without action). Fail: both, or no due date recorded, or Late bids accepted or Extended asserted.",
+      "accepted_alternatives": [
+        "Unclear; Unclear, or Enforced for one date and Unclear for the other, because IOI arrival dates are not reported"
+      ],
+      "source_pages": [
+        "29"
+      ],
+      "source_quote": "Raymond James also communicated to the interested parties that initial indications of interest were due on July 18, 2016 from strategic buyers and July 21, 2016 from financial sponsors.",
+      "provenance": [
+        "filing p.29",
+        "E8 (a due date does not show arrival); E9",
+        "revised workbook #19, #24, #28, Rounds R2, Q4 (names Unclear as the alternative)",
+        "verifier fix: conformance (Unclear accepted)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "The type-specific parallel due dates are often collapsed into one."
+    },
+    {
+      "id": "DA-R08",
+      "category": "rounds",
+      "weight": 4,
+      "item": "Round-4 deadline outcome: Late bids accepted",
+      "check": "Rounds round-4 line: Due dates 08/30/2016 (5:00 p.m. ET); Deadline outcome 'Late bids accepted'. The Deal ledger has a Deadline row dated 08/30/2016, and Insight's proposal is dated 08/31/2016 in round 4.",
+      "expected": "Late bids accepted (Insight's 08/31 proposal considered after the 08/30 due date).",
+      "partial_credit": "Half credit: outcome Unclear, with Insight's one-day-late submission noted. Fail: Enforced, Passed without action or Extended.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "29",
+        "30"
+      ],
+      "source_quote": "On August 30, 2016, each of Parties B and C submitted their final proposals to acquire us, and on August 31, 2016, Insight submitted its proposal.",
+      "provenance": [
+        "filing pp.29-31",
+        "E9 Late bids accepted",
+        "source_inventory S02",
+        "revised workbook #36, #37, Q8",
+        "verifier fix: conformance (weight 3 to 4)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Insight's 08/31 arrival after the 08/30 due date is easy to miss; Enforced is the careless value."
+    },
+    {
+      "id": "DA-R09",
+      "category": "rounds",
+      "weight": 2,
+      "item": "Finality labels",
+      "check": "Rounds Finality: round 4 'Announced as final'; round 5 'Inferred final'; rounds 1, 2 and 3 'Not final'.",
+      "expected": "R1-R3 Not final; R4 Announced as final; R5 Inferred final.",
+      "partial_credit": "Half credit: exactly one round other than round 4 mislabelled. Fail: round 4 not Announced as final, or two or more errors.",
+      "accepted_alternatives": [
+        "Round 5 'Announced as final' where the workbook grounds it in p.36's 'submit and affirm best and final' language"
+      ],
+      "source_pages": [
+        "29",
+        "36"
+      ],
+      "source_quote": "requiring Insight, Party B and Party C to submit and affirm best and final acquisition proposals.",
+      "provenance": [
+        "filing p.29 (instruction letter 'relating to their final proposals'), p.36",
+        "E6 finality",
+        "revised workbook Rounds",
+        "fresh_review: round 4 as Announced as final is supported"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "The mislabel risks are round 1's bilateral stage and round 5's re-engagement."
+    },
+    {
+      "id": "DA-R10",
+      "category": "rounds",
+      "weight": 2,
+      "item": "Improvements, revisions and exclusivity stay inside round 4",
+      "check": "No Round opened row is dated between 08/17/2016 and 09/28/2016. All of these are assigned to round 4 (the 08/16 final round): the 08/31 improvement requests; the revisions reported on 09/01 (Insight's deletion of the employment condition, Party B's financing revision, Party C's $11.25), where recorded as rows; Insight's $12.00 (09/01); the exclusivity request and the 09/02 execution; and Insight's September pre-closing conditions. Rounds round-4 'How it ended' records Insight's selection and exclusivity on 09/02.",
+      "expected": "Round 4 spans 08/16/2016 to the 09/02 exclusivity and its lapse, with no extra round.",
+      "partial_credit": "Half credit: no Round opened row in the window, but exactly one listed event assigned to a different round. Fail: a Round opened row in the window, or two or more misassigned events.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "30",
+        "31",
+        "32"
+      ],
+      "source_quote": "Our management instructed Raymond James to contact each of the three parties to suggest they make certain initial improvements to their proposals",
+      "provenance": [
+        "filing pp.30-32",
+        "E6: requests to improve continue the round; exclusivity after a final round ends it",
+        "source_inventory S06-S18",
+        "revised workbook #34-#52",
+        "verifier fix: conformance (partial credit added)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Earlier instruction versions opened a round on each improvement request; v1.13.2 E6 keeps them inside the round. Guards against over-splitting."
+    },
+    {
+      "id": "DA-R11",
+      "category": "rounds",
+      "weight": 3,
+      "item": "Party C's 10/04 reaffirmation is not a new round-5 bid",
+      "check": "Deal ledger has no Bid (or Bid reaffirmed) row for Party C dated 10/04/2016. C's standing offer remains its round-4 $11.25 row, with the 10/04 reaffirmation preserved in a Note or a non-bid row. The Rounds round-5 'Bids received' counts only Insight as making new offers; C's standing offer may be noted.",
+      "expected": "No Party C Bid row on 10/04/2016; round 5 new offers come from Insight only.",
+      "partial_credit": "Half credit: a Bid reaffirmed row for C with a Question (E10's finalization test is still not met). Fail: a new Party C Bid row in round 5.",
+      "accepted_alternatives": [
+        "The reaffirmation recorded as an Other material event without price, formality or conditions cells"
+      ],
+      "source_pages": [
+        "32"
+      ],
+      "source_quote": "On October 4, 2016, Party C reaffirmed its earlier offer of $11.25 per share.",
+      "provenance": [
+        "filing p.32",
+        "E10",
+        "ADJUDICATION F7 (raw draft error)",
+        "revised workbook #55, Rounds R5, Q2",
+        "Alex Excel 2868 (C bid 10/04; not imported)",
+        "verifier fix: coverage (weight 2 to 3)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "The raw Opus draft and Alex both coded a 10/04 C bid. E10 records no new Bid for an unchanged confirmation."
+    },
+    {
+      "id": "DA-F01",
+      "category": "formality_conditions",
+      "weight": 2,
+      "item": "Pre-final bids are Informal: Party A's two bids and the round-2 IOIs",
+      "check": "(a) Party A's 01/19/2016 Bid: Formality Informal. (b) Party A's 03/29/2016 Bid: Formality Informal, Conditions Heavy (offer contingent on financing). (c) Every round-2 IOI Bid row (Insight, Party B, Party C and the unnamed cohorts): Formality Informal and Conditions Unclear or Heavy, not Light or None.",
+      "expected": "01/19 Informal; 03/29 Informal and Heavy; round-2 IOIs Informal with Conditions Unclear (Heavy accepted).",
+      "partial_credit": "Half credit: exactly one of (a)-(c) wrong (e.g., 03/29 Conditions Unclear, or one IOI row Light, None or Formal). Fail: two or more wrong.",
+      "accepted_alternatives": [
+        "Round-2 IOI Conditions Heavy (significant open diligence items reported across the IOIs)"
+      ],
+      "source_pages": [
+        "27",
+        "29"
+      ],
+      "source_quote": "The offer was contingent on the receipt of financing by Party A.",
+      "provenance": [
+        "filing p.27; p.29 ('conditions and significant open diligence items with respect to the initial indications of interests')",
+        "E11 Informal default; E12 Heavy (financing contingency), Unclear (diligence open)",
+        "revised workbook #1, #9, #21-#27",
+        "Alex Excel 2822, 2824, 2850-2858 (Informal)",
+        "merged from draft DA-F01 and DA-F02 (coverage)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Guard on the informal stage; replaces draft DA-F01 and DA-F02."
+    },
+    {
+      "id": "DA-F03",
+      "category": "formality_conditions",
+      "weight": 3,
+      "item": "Final-stage bids are Formal",
+      "check": "Formality is Formal on Party B $12.00 (08/30/2016), Party C $11.00 (08/30/2016), Insight $11.75 (08/31/2016) and the round-4 revisions (Party C $11.25, by 09/01/2016, and Insight $12.00, 09/01/2016).",
+      "expected": "All Formal (mark-ups submitted in answer to the final-proposal letter).",
+      "partial_credit": "Half credit: one of these rows not Formal.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "29",
+        "30",
+        "31"
+      ],
+      "source_quote": "The letter instructed each party to submit its proposal by 5:00 p.m. Eastern time on August 30, 2016, and, among other items, to include a mark-up of the merger agreement with the proposal.",
+      "provenance": [
+        "filing pp.29-31",
+        "E11 criteria (1) and (2)",
+        "revised workbook #34-#41, #46",
+        "Alex Excel 2862-2867 (Formal)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard"
+    },
+    {
+      "id": "DA-F04",
+      "category": "formality_conditions",
+      "weight": 4,
+      "item": "Party C (08/30) and Insight (08/31) are Heavy",
+      "check": "Party C's 08/30/2016 $11.00 Bid has Conditions Heavy: a third-party diligence-call contingency, and still exploring financing with no commitment. Insight's 08/31/2016 $11.75 Bid has Conditions Heavy: its mark-up added a continued-employment closing condition.",
+      "expected": "C 08/30: Heavy. Insight 08/31: Heavy.",
+      "partial_credit": "Half credit: one of the two Unclear, the other Heavy. Fail: Light or None on either.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "30"
+      ],
+      "source_quote": "Although Party C's markup did not include any financing contingency or reverse termination fee, it indicated that it was still exploring third-party financing.",
+      "provenance": [
+        "filing p.30",
+        "E12 Heavy (financing not committed; material stated condition)",
+        "source_inventory S04, S05",
+        "revised workbook #35, #37",
+        "verifier fix: conformance (weight 3 to 4)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "The absence of a financing contingency in C's mark-up tempts Light or None; E12 treats reported uncommitted financing as Heavy."
+    },
+    {
+      "id": "DA-F05",
+      "category": "formality_conditions",
+      "weight": 1,
+      "item": "Party B's final-stage Conditions are not None",
+      "check": "Party B's 08/30/2016 $12.00 Bid has Conditions Heavy, Unclear or Light. Where the workbook records B's financing-delay revision (reported 09/01/2016) as its own $12.00 row, that row also has Heavy, Unclear or Light. A Note-only treatment of the revision is allowed (unscored open call) and is not penalised here.",
+      "expected": "Heavy, Unclear or Light (all defensible under E12); not None, because the bid carries a third-party diligence-call contingency.",
+      "partial_credit": "none",
+      "accepted_alternatives": [
+        "Heavy (third-party diligence calls; financing structure with a reverse termination fee as sole remedy that could extend closing)",
+        "Unclear",
+        "Light (negotiated commitment letters reported; diligence limited to third-party calls)"
+      ],
+      "source_pages": [
+        "29",
+        "30"
+      ],
+      "source_quote": "Party B indicated that its proposal was contingent on the satisfactory completion of due diligence calls to certain third parties, and provided negotiated commitment letters required to finance its proposal.",
+      "provenance": [
+        "filing pp.29-31",
+        "E12 Light and Heavy definitions",
+        "source_inventory S03, S10",
+        "revision/VERIFICATION.md (B's labels are retained coding judgments)",
+        "revised workbook #34, #40",
+        "verifier fixes: conformance (Light accepted; weight 2 to 1), source fidelity (separate 09/01 row optional)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Guard. Committed financing weighs against a financing structure with the reverse fee as sole remedy and third-party diligence calls, so three labels are defensible; only None fails."
+    },
+    {
+      "id": "DA-F06",
+      "category": "formality_conditions",
+      "weight": 2,
+      "item": "Insight's 09/01 bids (qualified label)",
+      "check": "Insight's 09/01/2016 $12.00 Bid, and any separate $11.75 row recording its deletion of the employment condition (reported 09/01), has Formality Formal and Conditions Heavy or Unclear.",
+      "expected": "Formal; Heavy (requested 30-day exclusive period) or Unclear (remaining diligence items open, no condition stated).",
+      "partial_credit": "Half credit: Light (no financing needed and the condition deleted, although remaining diligence items were still open on 09/01). Fail: None, or Informal.",
+      "accepted_alternatives": [
+        "Heavy",
+        "Unclear"
+      ],
+      "source_pages": [
+        "30",
+        "31"
+      ],
+      "source_quote": "our board directed our management and our advisors to further negotiate terms of the Insight proposal before our board would consider Insight's request for a 30-day exclusivity period",
+      "provenance": [
+        "filing pp.30-31 ('summarized the remaining diligence items highlighted by each of the parties')",
+        "E12 (exclusive period counts as Heavy; Light requires no open diligence)",
+        "revision/VERIFICATION.md retained qualification on #39/#46",
+        "revised workbook Q7"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Qualified label. Resting Heavy on the exclusivity request is an interpretation, so both Heavy and Unclear are defensible."
+    },
+    {
+      "id": "DA-F07",
+      "category": "formality_conditions",
+      "weight": 3,
+      "item": "November bids: no Light from later-completed diligence",
+      "check": "Insight's 11/01/2016 $11.00 and 11/02/2016 $11.25 Bids have Formality Formal and Conditions Unclear (diligence still open when made); Heavy is accepted. Neither is Light or None: diligence was completed between 11/02 and 11/06, after the bids, and cannot upgrade them.",
+      "expected": "Formal; Unclear (Heavy accepted).",
+      "partial_credit": "Half credit: one of the two rows Light or None; or Conditions correct on both but Formality Informal.",
+      "accepted_alternatives": [
+        "Heavy (exclusive period to 11/07 during which Insight 'would continue its due diligence')"
+      ],
+      "source_pages": [
+        "33",
+        "34"
+      ],
+      "source_quote": "Additional commercial and legal due diligence continued during this period as well.",
+      "provenance": [
+        "filing pp.33-34",
+        "Part A and E12: later changes do not upgrade earlier rows",
+        "ADJUDICATION F4 (the raw draft used Light based on later completion)",
+        "revised workbook #64, #66, Q7"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Adjudicated hindsight trap: the raw Opus draft used the later completion of diligence to justify Light."
+    },
+    {
+      "id": "DA-F08",
+      "category": "formality_conditions",
+      "weight": 3,
+      "item": "All cash only where the bid states cash",
+      "check": "All cash is Yes on Party A's 01/19/2016 Bid and Not stated on Party A's 03/29/2016 Bid, on Insight's 11/02/2016 $11.25 Bid, and on every other Bid row: no Yes is inferred from the signed cash consideration. The signed cash terms appear in the Merger agreement signed Note and in Deal facts.",
+      "expected": "Only the 01/19 letter is Yes; all other bids are Not stated.",
+      "partial_credit": "Half credit: exactly one error, typically Yes on the 11/02 bid or the 03/29 bid.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "27",
+        "34",
+        "62"
+      ],
+      "source_quote": "received an unsolicited letter from Party A proposing to acquire the Company at a price of $10.00 in cash per share.",
+      "provenance": [
+        "filing p.27, p.34, p.62",
+        "E13: a dollar price alone does not establish cash",
+        "ADJUDICATION F5",
+        "revised workbook #1, #9, #66",
+        "Alex Excel 2872 (all_cash=1 on the executed row)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Adjudicated F5 trap: the raw Opus draft set Yes on the 11/02 bid on the strength of the later signing."
+    },
+    {
+      "id": "DA-F09",
+      "category": "formality_conditions",
+      "weight": 2,
+      "item": "Party C's revised $11.25: dropping the financing contingency earns no Light or None",
+      "check": "Party C's revised $11.25 Bid (reported to the 09/01/2016 board; round 4) has Formality Formal and Conditions Heavy or Unclear. Agreeing to leave a financing contingency out of the merger agreement does not report committed financing (C was 'still exploring third-party financing' with its 08/30 proposal), and its third-party diligence-call contingency is not reported as withdrawn.",
+      "expected": "Formal; Heavy (diligence-call contingency carried from 08/30; no financing commitment reported) or Unclear.",
+      "partial_credit": "Half credit: Conditions Light. Fail: Conditions None, or Formality Informal.",
+      "accepted_alternatives": [
+        "Heavy",
+        "Unclear (no condition restated in the 09/01 report)"
+      ],
+      "source_pages": [
+        "30"
+      ],
+      "source_quote": "Party C had updated its proposal and increased its price to $11.25 per share and agreed not to include any financing contingency in the merger agreement.",
+      "provenance": [
+        "filing p.30 (08/30 'still exploring third-party financing'; 09/01 update); p.33 (10/20 'Party C had less certainty of closing')",
+        "E12: silence about financing establishes neither commitment nor its absence; None needs affirmative support",
+        "source_inventory S11",
+        "revised workbook #41 (Formal, Heavy); raw workbook #40 (Formal, Heavy)",
+        "Alex Excel 2866 (Formal; no conditions field)",
+        "added from coverage verifier"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Inventory trap S11, previously untested. The dropped financing contingency invites None or Light. This is C's standing offer, reaffirmed 10/04 and weighed until 10/26, so its conditions level matters."
+    },
+    {
+      "id": "DA-C01",
+      "category": "chronology",
+      "weight": 3,
+      "item": "Insight's NDA dated 06/14/2016 from Annex A",
+      "check": "Deal ledger has an NDA signed row for Insight (Strategic, Count 1, round 2) with When 06/14/2016 and Date from = Date to = Sort date = 06/14/2016. Its quotation comes from p. A-32 and the Note identifies the annexed merger agreement as the source; naming section 5.6(b) or p. A-1 is not required.",
+      "expected": "Insight NDA signed 06/14/2016 (annex-sourced).",
+      "partial_credit": "Half credit: the 06/14 date appears only in a cohort Note or in Deal facts, or the row exists but carries a window instead of the exact day.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "A-32",
+        "A-1"
+      ],
+      "source_quote": "The provisions of the Confidentiality Agreement dated June 14, 2016 between Parent and the Company",
+      "provenance": [
+        "filing p. A-32 (section 5.6(b)), p. A-1 (Parent = Insight Enterprises, Inc.)",
+        "instruction C1, C3; E7",
+        "ADJUDICATION F3 (found by the fresh review; the raw draft missed it)",
+        "revised workbook #16",
+        "Alex Excel 2827 (Insight NDA dated 06/06, rough)",
+        "verifier fix: conformance (citation wording not scored)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "The only annex-sourced event. The raw extraction missed it, and instruction step C1 requires reading the annexes."
+    },
+    {
+      "id": "DA-C02",
+      "category": "chronology",
+      "weight": 2,
+      "item": "Undated responses keep their windows and order",
+      "check": "(a) Round-2 IOI Bid rows (Insight, Party B, Party C, unnamed cohorts) do not assert arrival on the due date: Date to is 07/27/2016 (the board review) or blank, and Date from is no later than the due date or blank. The strategic IOI rows sort at or before the 07/18/2016 Deadline row and before the strategic non-submitter row; the financial IOI rows sort by 07/21/2016. (b) The June NDA cohort rows are not dated to one exact day (Date from 06/06/2016 or later, or blank; Date to blank or a later bound). (c) The offer changes first reported at the 09/01/2016 board (Party C's $11.25 and, where recorded as rows, Party B's financing revision and Insight's deletion of the employment condition) carry a window ending 09/01/2016 that begins on or after 08/30/2016 (or a blank Date from), not 09/01/2016 in both Date from and Date to, and sort before Insight's exact-day 09/01/2016 $12.00 row.",
+      "expected": "IOI windows end 07/27/2016 with type-specific due-date ordering; NDA cohorts carry windows; the revisions reported on 09/01 carry 08/30 or 08/31 to 09/01 windows and precede Insight's $12.00.",
+      "partial_credit": "Half credit: exactly one of (a)-(c) wrong (e.g., IOIs exact on 07/18 or 07/21 in both date cells, or strategic IOIs sorted after the strategic deadline; all NDAs exact on 06/06; C's $11.25 exact on 09/01). Fail: two or more wrong.",
+      "accepted_alternatives": [
+        "Revision windows beginning 08/30/2016 (after the original submissions) or 08/31/2016 (after the improvement requests)",
+        "IOI Sort dates other than the due date, provided the strategic IOIs still precede the strategic non-submitter row"
+      ],
+      "source_pages": [
+        "28",
+        "29",
+        "30"
+      ],
+      "source_quote": "Raymond James reviewed the initial indications of interest that had been received.",
+      "provenance": [
+        "filing pp.28-30 ('Beginning June 6'; 'Later in June'; 07/27 review; C's update reported at the 09/01 board; Insight's $12.00 after that meeting)",
+        "E8: a due date does not show arrival; a meeting that considered offers bounds their receipt; # follows true order",
+        "fresh_review F2 (strategic IOIs sorted after their own deadline in the raw draft)",
+        "source_inventory S10 (no unsupported exact arrival day)",
+        "revised workbook #15, #18, #21-#27, #39-#41",
+        "Alex Excel 2827-2858, 2866 (exact 06/06, 07/18, 07/21 and 09/01 dates)",
+        "verifier fixes: coverage (ordering and 09/01 windows added; NDA dating moved here from DA-P03)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Alex dates IOIs to their due dates, NDAs to 06/06 and C's $11.25 to 09/01; the raw draft misordered the strategic IOIs. E8 forbids precision the filing lacks."
+    },
+    {
+      "id": "DA-C03",
+      "category": "chronology",
+      "weight": 2,
+      "item": "Exclusivity sequence",
+      "check": "Deal ledger Exclusivity changed rows for Insight: a request for 30-day exclusivity by 09/01/2016 (Date to 09/01, not dated as the execution); execution on 09/02/2016, expiring at 11:59 p.m. on 09/30/2016; the lapse at 09/30/2016, as its own row or stated in a dated Note (e.g., on the 09/29 board-decision row), either earning full credit; and a second execution on 10/26/2016, running through 9:00 a.m. on 11/07/2016. Insight's October requests (10/06, 10/08, 10/20) may be rows or Notes.",
+      "expected": "Requested by 09/01; executed 09/02 to 09/30; lapsed 09/30; executed 10/26 to 11/07.",
+      "partial_credit": "Half credit: both executions correct, but the 09/01 request appears only in a Note. Fail: an execution row missing or misdated (e.g., the 10/26 execution dated at Insight's 10/20 demand).",
+      "accepted_alternatives": [
+        "Request row with Date from 08/31/2016 (Insight's proposal) and Date to 09/01/2016"
+      ],
+      "source_pages": [
+        "31",
+        "32",
+        "33"
+      ],
+      "source_quote": "On October 26, 2016, we executed the exclusivity agreement with Insight granting Insight exclusivity through 9:00 a.m. on November 7, 2016",
+      "provenance": [
+        "filing pp.31-33",
+        "D2 Exclusivity changed; E14 (a request drops no one)",
+        "ADJUDICATION L1; source_inventory S14, S17",
+        "revised workbook #42, #47, #52, #57, #62",
+        "verifier fixes: all three lenses (09/30 lapse Note allowed)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "L1: the raw draft folded the request into a Note. Inventory S17 checks the actual calendar endpoint rather than 30 days added mechanically."
+    },
+    {
+      "id": "DA-C04",
+      "category": "chronology",
+      "weight": 1,
+      "item": "Insight's September pre-closing conditions get their own row",
+      "check": "Insight's new pre-closing requirements (pro forma 8-K adjustments completed before closing; auditor consent and management representation letters as closing conditions), with its 09/28 refusal to sign without them, have their own row dated between 09/23 and 09/28, before the 09/29 board decision. Either form is accepted: a same-price Bid dated 09/26/2016 ($12.00 carried, Formal, Heavy, round 4), or an Other material event dated 09/23, 09/26 or 09/28/2016 whose row or Note records the requirements.",
+      "expected": "A dated row between 09/23 and 09/28: a Bid on 09/26 ($12.00, Formal, Heavy) or an Other material event on 09/23, 09/26 or 09/28.",
+      "partial_credit": "Half credit: recorded only in the Note of another row (e.g., the 09/29 board decision), or as a Bid row with a changed price or with Conditions other than Heavy. Fail: absent.",
+      "accepted_alternatives": [
+        "Other material event dated 09/23 (first reported discussion of 'Insight's related requests', p.31), 09/26 or 09/28, provided the row or its Note records the pre-closing requirements; whether same-price term changes are Bid rows is an open convention (cf. Mac-Gray R01)",
+        "Bid dated 09/26, per adjudicated F10"
+      ],
+      "source_pages": [
+        "31",
+        "32"
+      ],
+      "source_quote": "unless we would agree to Insight's requests that were discussed on September 23, 2016, and in subsequent drafts, Insight would not be willing to enter into the merger agreement.",
+      "provenance": [
+        "filing pp.31-32 (09/23 call on 'the proposed pro forma 8-K adjustments and Insight's related requests'; 09/26 draft language; 09/28 insistence)",
+        "ADJUDICATION F10",
+        "revised workbook #50; raw workbook #48 (09/28 OME)",
+        "RESEARCH_QUESTIONS: Mac-Gray R01 pending (same-price Bid convention)",
+        "verifier fixes: source fidelity, conformance (09/23 accepted), coverage (weight 2 to 1)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Both the raw form (09/28 OME) and the revised form (09/26 Bid) pass; leaving the event out, or folding it into a Note, is the careless error."
+    },
+    {
+      "id": "DA-C05",
+      "category": "chronology",
+      "weight": 2,
+      "item": "Reported information-access differences",
+      "check": "(a) Deal ledger has a row dated 10/20/2016 (Other material event) recording that draft Q3 financial statements and Q4 expectations went to Insight and Party B and were withheld from Party C, with the stated reasons (lower price; less certainty of closing). (b) The executive presentations to eight interested parties between 06/21/2016 and 07/07/2016 (Insight's on 06/28/2016; p.29: 'executive presentations with eight parties that had expressed an interest in acquiring us') are recorded, as an information-access row or in a dated Note.",
+      "expected": "10/20/2016 row naming Party C as excluded and why; eight-party executive presentations (06/21-07/07, Insight 06/28) recorded.",
+      "partial_credit": "Half credit: exactly one of (a) and (b) satisfied. (a) found only inside another row's Note, or without naming who was excluded, counts as unsatisfied.",
+      "accepted_alternatives": [
+        "(b) as its own Other material event with a 06/21-07/07 window, or as a dated Note on a round-2 row",
+        "The August draft merger agreements to Party B (08/05), Insight (08/09) and Party C (08/15) may also be recorded; not scored"
+      ],
+      "source_pages": [
+        "29",
+        "33"
+      ],
+      "source_quote": "Party C was not provided this financial information because its re-affirmed proposed price of $11.25 per share was less than the price of $12.00 per share proposed by Insight and Party B",
+      "provenance": [
+        "filing p.29 (executive presentations; all NDA signers got a management presentation per p.28), p.33 (10/20 posting)",
+        "E2 information access",
+        "revised workbook #20, #59; raw workbook #20",
+        "verifier fix: coverage (executive presentations added; weight 1 to 2)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "E2 requires a row for a reported access difference (research use 5). The 10/20 fact also tempts an unsupported 10/20 exit for C (DA-P12)."
+    },
+    {
+      "id": "DA-B01",
+      "category": "bids_prices",
+      "weight": 2,
+      "item": "Party A prices",
+      "check": "Party A's 01/19/2016 Bid has Price low = Price high = 10.00. Party A's 03/29/2016 Bid has Price low 10.30 and Price high 10.75.",
+      "expected": "01/19: 10.00/10.00. 03/29: 10.30/10.75.",
+      "partial_credit": "Half credit: one of the two wrong.",
+      "accepted_alternatives": [
+        "03/29: Price low 10.30 with Price high blank, and the conditional $10.75 in the Note"
+      ],
+      "source_pages": [
+        "27"
+      ],
+      "source_quote": "Party A provided a written proposal to acquire the Company for a price of at least $10.30 per share, with the offer price potentially being as high as $10.75 per share",
+      "provenance": [
+        "filing p.27",
+        "E13 one-sided rule",
+        "revised workbook #1, #9",
+        "Alex Excel 2822, 2824"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard"
+    },
+    {
+      "id": "DA-B02",
+      "category": "bids_prices",
+      "weight": 3,
+      "item": "IOI prices, and the group range kept off individuals",
+      "check": "Round-2 IOI prices: Insight 10.75-11.75; Party B 10.50-11.00; Party C 11.00-11.00. The $8.80-$10.50 range of the 'other' IOIs is not assigned as endpoints to any individual bidder (named or unnamed) or to Party A, and is not repeated as the typed subgroup rows' own endpoints. It appears either in the Notes of blank-priced split cohort rows or on a single combined six-bidder cohort row.",
+      "expected": "Named IOI prices as stated; $8.80-$10.50 only at group level.",
+      "partial_credit": "Half credit: named prices right, but the range placed as endpoints on each typed subgroup row; or named prices right but the $8.80-$10.50 range omitted everywhere. Fail: the range assigned to individuals or to Party A, or a named price wrong.",
+      "accepted_alternatives": [
+        "One combined six-bidder cohort row carrying 8.80-10.50 (E13's 'that group's cohort row'); its loss of the type split is penalised only in DA-P05"
+      ],
+      "source_pages": [
+        "29"
+      ],
+      "source_quote": "The highest price included in an initial indication of interest was submitted by Insight, with a range of $10.75-11.75 per share. Party B submitted a range of $10.50-11.00 per share, and Party C submitted a price of $11.00 per share.",
+      "provenance": [
+        "filing p.29",
+        "ADJUDICATION F2; E13",
+        "revised workbook #21-#23, #26-#27",
+        "Alex Excel 2853-2858 (range assigned to individuals and Party A; not imported)",
+        "verifier fix: conformance (omission rule added)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Alex's convention assigns the group range to each unnamed bidder and to Party A; E13 forbids that."
+    },
+    {
+      "id": "DA-B03",
+      "category": "bids_prices",
+      "weight": 3,
+      "item": "Final-stage prices",
+      "check": "Bid rows: Party B 12.00 (08/30/2016); Party C 11.00 (08/30/2016); Insight 11.75 (08/31/2016); Party C 11.25 (by 09/01/2016); Insight 12.00 (09/01/2016). Point prices fill both cells.",
+      "expected": "B 12.00; C 11.00, then 11.25; Insight 11.75, then 12.00.",
+      "partial_credit": "Half credit: one price or date wrong or missing.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "29",
+        "30",
+        "31"
+      ],
+      "source_quote": "Party C had updated its proposal and increased its price to $11.25 per share and agreed not to include any financing contingency in the merger agreement.",
+      "provenance": [
+        "filing pp.29-31",
+        "revised workbook #34-#41, #46",
+        "Alex Excel 2862-2867"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard"
+    },
+    {
+      "id": "DA-B04",
+      "category": "bids_prices",
+      "weight": 2,
+      "item": "November prices; signing is not a bid",
+      "check": "Insight Bids dated 11/01/2016 at 11.00 (price reduction) and 11/02/2016 at 11.25 (acceptance of the target's counter), both round 5. The 11/06 Merger agreement signed row has blank Price, All cash, Formality and Conditions cells, with $11.25 in cash in its Note.",
+      "expected": "11/01: 11.00. 11/02: 11.25. Signing row unpriced.",
+      "partial_credit": "Half credit: one of these wrong, e.g., price cells filled on the signing row, or the 11/02 bid dated 11/01.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "34",
+        "35"
+      ],
+      "source_quote": "On a subsequent call, Mr. Lamneck agreed to the increased offer price of $11.25 per share.",
+      "provenance": [
+        "filing pp.34-35",
+        "D2: signing is not another bid",
+        "revised workbook #64, #66, #67",
+        "Alex Excel 2871-2872 ($11.25 dated 11/01)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard; Alex dates the $11.25 to 11/01."
+    },
+    {
+      "id": "DA-O01",
+      "category": "other",
+      "weight": 2,
+      "item": "Acquirer, price, signing and announcement",
+      "check": "Deal facts: Acquirer Insight Enterprises, Inc. (Reef Acquisition Co. as merger sub is acceptable); Acquirer type Strategic; Agreed price and consideration $11.25 per share in cash; Merger agreement signed 11/06/2016; Merger announced 11/07/2016. The Deal ledger has separate Merger agreement signed (11/06/2016) and Merger announced (11/07/2016) rows.",
+      "expected": "Insight (Strategic); $11.25 cash; signed 11/06/2016; announced 11/07/2016; two ledger rows.",
+      "partial_credit": "Half credit: one element wrong, or signing and announcement merged into one ledger row.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "19",
+        "35",
+        "62"
+      ],
+      "source_quote": "The parties executed the merger agreement during the evening of Sunday, November 6, 2016, and Insight and we issued a joint press release prior to the opening of the market on Monday, November 7, 2016",
+      "provenance": [
+        "filing p.19 (Insight description), p.35, p.62",
+        "D2 two rows",
+        "revised workbook Deal facts, #67, #68"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard"
+    },
+    {
+      "id": "DA-O02",
+      "category": "other",
+      "weight": 1,
+      "item": "Target advisers",
+      "check": "Deal facts: Target financial advisers = Raymond James (Raymond James & Associates, Inc.); Target legal advisers = Faegre Baker Daniels LLP.",
+      "expected": "Raymond James & Associates, Inc.; Faegre Baker Daniels LLP.",
+      "partial_credit": "Half credit: one missing or wrong.",
+      "accepted_alternatives": [
+        "'Raymond James' without the full legal name",
+        "'FaegreBD'"
+      ],
+      "source_pages": [
+        "3",
+        "27"
+      ],
+      "source_quote": "Our legal counsel, Faegre Baker Daniels LLP (\"FaegreBD\"), provided a presentation to our board",
+      "provenance": [
+        "filing p.3, p.27",
+        "revised workbook Deal facts, #4, #6"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard"
+    },
+    {
+      "id": "DA-O03",
+      "category": "other",
+      "weight": 1,
+      "item": "Auction screen and whole-company bids",
+      "check": "Deal facts: Auction screen begins 'Met' for process 1 with 23 parties (10 strategic + 13 financial); Whole-company bids = Yes.",
+      "expected": "Met (process 1): 23 parties; Whole-company bids Yes.",
+      "partial_credit": "Half credit: Met with an unsupported or missing count, or Whole-company bids wrong.",
+      "accepted_alternatives": [
+        "'at least 23' phrasing"
+      ],
+      "source_pages": [
+        "28",
+        "36"
+      ],
+      "source_quote": "sought offers to acquire Datalink from a broad group of 27 potential bidders, including financial sponsors and strategic bidders, 23 of whom entered into confidentiality agreements with us",
+      "provenance": [
+        "filing p.28, p.36",
+        "E1",
+        "revised workbook Deal facts"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard"
+    },
+    {
+      "id": "DA-O04",
+      "category": "other",
+      "weight": 1,
+      "item": "Initiation",
+      "check": "Deal facts Initiation = mixed or bidder-led: Party A's unsolicited January approach began the talks, and the target then ran the June auction.",
+      "expected": "mixed (bidder-led accepted).",
+      "partial_credit": "Half credit: target-led.",
+      "accepted_alternatives": [
+        "bidder-led"
+      ],
+      "source_pages": [
+        "27",
+        "28"
+      ],
+      "source_quote": "In January 2016, Paul F. Lidsky, our President and Chief Executive Officer, received an unsolicited request for an in-person meeting with Party A, a strategic party.",
+      "provenance": [
+        "filing pp.27-28",
+        "D5",
+        "revised workbook Deal facts (mixed)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Convention-dependent label; guard."
+    }
+  ],
+  "unscored_open_calls": [
+    {
+      "item": "Party A's 04/12/2016 'updated indication of interest': a separate same-price Bid row, or folded into the 03/29 Bid Note",
+      "why": "The filing says A 'affirmed substantially all of these transaction terms, including the price per share' (p.27). The adjudication (F7) folded it into a Note, but 'substantially all' and 'updated' leave a changed term possible, and Alex coded a bid. Either treatment is defensible if the price stays 10.30-10.75 and the event stays in round 1."
+    },
+    {
+      "item": "Separate same-price Bid rows for Insight's deletion of the employment condition and for Party B's financing revision (both reported 09/01), versus Notes",
+      "why": "Whether non-price term changes earn their own Bid rows is the open Mac-Gray R01 convention in _dev/RESEARCH_QUESTIONS.md. Inventory S09/S10 wants them recoverable; either separate rows or dated Notes preserve them. DA-F05, DA-F06 and DA-C02 grade such rows only where they exist."
+    },
+    {
+      "item": "Exact round-1 opening day inside 01/28-03/19/2016, and so whether the 01/28 price feedback, the adviser rows and the 02/04 NDA are round 0 or round 1",
+      "why": "The F9 ruling fixes January as round 1 but records that 'the exact start of substantive bilateral negotiation remains a judgment'. DA-R02 accepts any opening from 01/28 through 03/19."
+    },
+    {
+      "item": "Whether Party A signed a new NDA in June or relied on its 02/04 NDA",
+      "why": "p.28 counts Party A among the 10 strategic signers without saying which instrument. DA-P02 accepts both readings and scores only double counting of Insight or of Party A within one step."
+    },
+    {
+      "item": "Rows for the August draft merger agreements sent only to Party B (08/05), Insight (08/09) and Party C (08/15)",
+      "why": "E2 gives a row to reported differences in information access, but the filing is silent about whether the two unnamed advancers received drafts, so whether this is a reported difference is a judgment call. (The eight-party executive presentations are now scored in DA-C05 with a lenient row-or-Note form.)"
+    },
+    {
+      "item": "Projections supplied to Insight (p.39)",
+      "why": "Undated, and the filing does not say rivals lacked them. The adjudication (F11) required no row; an optional Note is fine."
+    },
+    {
+      "item": "Bid reaffirmed for Insight's 10/26 confirmation of $12.00",
+      "why": "E10 makes it unnecessary because Insight's latest priced row sits in a final round. A tolerated extra row does not change the substance, so it is not scored."
+    },
+    {
+      "item": "Order of the two unnamed advancers' undated non-submission relative to the 09/02 exclusivity and Party B and Party C's inferred exits",
+      "why": "The filing gives only 'ultimately'. DA-P09 scores only that the exit is not dated before 09/01 (with half credit for a 09/02 exclusivity closure), and DA-P13 accepts 1 or 3 live units after 09/02."
+    }
+  ],
+  "notes": "Method. The frozen v1.13.2 instruction was read in full. The filing's Background of the Merger (printed pp.27-35) was read in order, then the passages it points to: p.36 (27 bidders, 23 confidentiality agreements, 'submit and affirm best and final'), p.19, p.3, p.62 and Annex A pp. A-1/A-32. Every expected value is anchored in that text. All source_quotes were checked mechanically as whitespace-normalised verbatim substrings of the extracted filing text, including the new DA-F09 quote (p.30) and the phrases added to DA-C04 (p.31, 09/23 call) and DA-C05 (p.29, executive presentations). Leads, used only as leads: the verified revision datalink_revised.xlsx, ADJUDICATION.md (F1-F11, L1, Austin's F9 ruling), CORRECTION_BRIEF, VERIFICATION.md, population_reconciliation.json, source inventory S01-S18, fresh_review.md, and Alex's rows at Excel 2822-2873. Where Alex's conventions conflict with the instruction, they were not imported: group range put on individuals; Party A dropped 04/20 and 07/27; C dropped 10/20; B dropped 11/06; NDAs dated 06/06; IOIs dated to due dates.\n\nGrading conventions. Weights: participation 30, rounds 25, formality_conditions 20, chronology 10, bids_prices 10, other 5; 45 tests. Half credit is 0.5 of the test weight. Round numbers follow the adopted five-round map (Austin's F9 ruling). Penalise a different map once, in DA-R02 or DA-R04 (or DA-R06 for folding October), and grade every other test by stage identity, e.g. under a June-round-1 map expected round n becomes n-1. The Inferred flag is scored only where a check says so. Accepted alternatives earn full credit. No test depends on wording, Note length, row counts or the number of Questions.\n\nChange log (draft to final).\nFixed:\n- P01: a June Contact/NDA row for Party A is allowed if it is not Re-entered and not a new entrant. Whether the 04/20 response is recorded is not scored.\n- P02: reconciles by step and accepts either reading of Party A's instrument. Only Insight counted twice, or Party A counted twice within one step, is penalised. This removes a self-contradiction.\n- P03: narrowed to the 13 financial signers and their type. Its date clause moved to C02 and its contacts clause to P04, to remove double penalties.\n- P04: removed 'non-signers never enter', which contradicted P06. Up to 3 unnamed IOI submitters may be bid-only entrants.\n- P05: a Rounds 'Bids received' of 9 conforms to D3. A price-less OME for Party A's standing offer is accepted. A combined six-bid row kept beside the typed cohorts is penalised as double counting (F2).\n- P06: Rounds may read 14-17 under the Party A alternative. Also accepts the ranges closed as Dropped by target at 07/27, because eligibility for the IOI request ('the interested parties') is not established.\n- P07: Inferred flag not scored; Count 4 accepted under the P06/P08 alternatives.\n- P08: accepts Party A inside the non-submitter cohort. The price comparison is optional. Half credit when the possibility that A advanced is not named.\n- P09: half credit for an inferred 09/02 exclusivity closure that notes the reported non-submission. Inferred flag not scored. A guessed type costs half.\n- P11: wording not scored; a 10/03 row is not required.\n- P12: the 10/20 row is scored only in C05.\n- P13: restructured as an internal-consistency check. It no longer fixes 1 live unit after 09/02 (the advancers' exit is undated) and no longer re-penalises choices graded in P06-P12.\n- R01: weight 2 to 1 (every run passes).\n- R02: accepted window widened to 01/28-03/19. June-map half credit no longer depends on which alternative the Question names. Weight 4 to 3.\n- R03: How opened wording not prescribed.\n- R05: a merged map is penalised only in R04. 'Who was in: 3' is accepted when the two advancers are accounted for elsewhere.\n- R07: Unclear accepted, since IOI arrival dates are unreported. The test now turns on keeping the parallel due dates.\n- R08: weight 3 to 4.\n- R10: half credit for one misassigned event.\n- R11: weight 2 to 3 (the F7 trap that both the raw draft and Alex failed).\n- F04: weight 3 to 4.\n- F05: Light accepted (E12 Light fits reported commitment letters with diligence limited to third-party calls). B's 09/01 row is optional. Weight 2 to 1.\n- F06: the deletion row is identified at $11.75.\n- C01: citation wording not scored.\n- C02: adds type-specific IOI ordering and the windows of the revisions reported on 09/01 (Alex dates C's $11.25 exactly 09/01; S10). It absorbs NDA dating.\n- C03: the 09/30 lapse may be a Note (removes a check/partial contradiction).\n- C04: 09/23 accepted, since the filing dates 'Insight's related requests' to that call. Weight 2 to 1, as both forms pass.\n- C05: adds the eight-party executive presentations (E2 'presentations ... given to some and not others'), leniently as a row or a dated Note. Weight 1 to 2.\n- B02: half credit when the group range is omitted.\nDropped: F02, merged into F01; both were guards.\nAdded: F09, Party C's revised $11.25 Conditions (inventory S11). The coverage verifier found it; the quote was verified at p.30. It keeps Light at half credit because C's financing was reported uncommitted, whereas B reported commitment letters (F05).\nVerifier disagreements resolved: coverage would give B Light half credit, but conformance's E12 reading was adopted. Keeping the eight-party presentations unscored (draft) versus scoring them (coverage) was resolved in favour of scoring, with a lenient form.\n\nLimits. This reference is model-built and not human-adjudicated. The only human decision encoded is Austin's F9 round-map ruling (DA-R02, R04-R06). The following rest on model adjudications and lead-verified corrections that I re-checked against the filing but no human has benchmarked:\n- P06 ranges (F1)\n- P05/B02 type split and group range (F2)\n- C01 annex NDA (F3)\n- F07 no-hindsight (F4)\n- F08 cash (F5)\n- R11 reaffirmation (F7)\n- the P10/P12 exclusivity-exit reading (F8)\n- C04 (F10)\n- the C03 request row (L1)\nThe qualified Conditions labels (F05, F06, F07, F09) carry multiple accepted values. Whole-deal human acceptance of the revised workbook is still pending.\n\nThese rest on the filing alone: population totals, prices, dates, due dates, Late bids accepted, finality, the P09 timing, advisers and deal facts.\n\nGenuinely unresolved in the filing, so the tests reward keeping them open: whether Party A advanced on 07/27; the two advancers' types; whether the unnamed IOI submitters signed NDAs; all IOI eligibility.\n\nUntested: adviser and sale-decision rows, the undated Deadline set, the 10/13 concession, and the 10/24 GAAP-statement access row.\n\nNo repo file was modified. Scratch files are under /home/uctpiaj/work/tmp/claude-1001/dl/."
+}

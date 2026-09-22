@@ -1,0 +1,26 @@
+{
+  "cell": {
+    "arm": "gpt-6-sol-high",
+    "deal": "mac-gray",
+    "effort": "high",
+    "filing": "mac-gray_2013-12-04_DEFM14A.htm",
+    "id": "mac-gray-gpt-6-sol-high-r1",
+    "model": "gpt-6-sol",
+    "provider": "sol",
+    "replicate": 1,
+    "timeout_minutes": 150
+  },
+  "check_summary": {
+    "errors": 0,
+    "information": 0,
+    "total_issues": 10,
+    "warnings": 10
+  },
+  "failure_reason": null,
+  "mismatches": [],
+  "network_commands": [],
+  "recorded_at": "2026-09-22T20:09:24.705383+00:00",
+  "state": "completed",
+  "web_or_delegation": [],
+  "workbook_sha256": "76474ee62935c029b72442c0bb59564585574293c19194cc56ce47cbfd96732d"
+}

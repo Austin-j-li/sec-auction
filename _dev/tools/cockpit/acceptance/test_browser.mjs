@@ -12,7 +12,8 @@ import playwright from '/home/uctpiaj/work/vm-browser/node_modules/playwright/in
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const REPO = resolve(HERE, '../../../..');
-const EVIDENCE = resolve(REPO, '_dev/reviews/2026-09-21-v1132-cockpit/cockpit-verification');
+const EVIDENCE = resolve(process.env.COCKPIT_BROWSER_EVIDENCE || resolve(REPO, '_dev/reviews/2026-09-21-v1132-cockpit/cockpit-verification'));
+const STAGED_DIST = process.env.COCKPIT_TEST_DIST ? resolve(process.env.COCKPIT_TEST_DIST) : null;
 const results = [];
 const screenshots = [];
 const browsers = [];
@@ -27,6 +28,22 @@ async function fixtureUrl() {
     if (line.startsWith('{')) return JSON.parse(line).url;
   }
   throw new Error(`Synthetic server exited before announcing URL: ${serverStderr}`);
+}
+
+async function useStagedAssets(context) {
+  if (!STAGED_DIST) return;
+  await context.route('**/*', async route => {
+    const url = new URL(route.request().url());
+    if (url.pathname.startsWith('/api/')) return route.continue();
+    const asset = url.pathname.startsWith('/assets/') ? url.pathname.slice(1) : 'index.html';
+    const type = asset.endsWith('.js') ? 'text/javascript' : asset.endsWith('.css') ? 'text/css' : asset.endsWith('.woff2') ? 'font/woff2' : 'text/html';
+    try { return route.fulfill({ body: await readFile(resolve(STAGED_DIST, asset)), contentType: type }); }
+    catch { return route.continue(); }
+  });
+}
+
+async function waitForRevision(page, revision) {
+  await page.waitForFunction(expected => document.querySelector('.deal-subline')?.textContent.includes(`Revision ${expected}`), revision);
 }
 
 function record(name, passed, detail = '') {
@@ -76,6 +93,7 @@ async function run() {
   const browser = await playwright.chromium.launch({ headless: true, executablePath: '/opt/google/chrome/chrome', args: ['--no-sandbox', '--disable-dev-shm-usage'] });
   browsers.push(browser);
   const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, acceptDownloads: true, reducedMotion: 'reduce' });
+  await useStagedAssets(context);
   const page = await context.newPage();
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
@@ -157,7 +175,7 @@ async function run() {
   await page.getByText('Read only version').waitFor();
   record('raw version read only', await page.getByRole('button', { name: 'Save changes' }).isDisabled());
   await page.getByRole('combobox', { name: 'Version' }).selectOption('working');
-  await page.getByText('Working revision 1').waitFor();
+  await waitForRevision(page, 1);
   const downloadPromise = page.waitForEvent('download');
   await page.getByRole('link', { name: 'Export Excel' }).click();
   const download = await downloadPromise;
@@ -198,7 +216,7 @@ async function run() {
   record('base revision restore control', await page.locator('.history-item').filter({ hasText: 'Revision 0' }).getByRole('button', { name: 'Restore' }).count() === 1);
   page.once('dialog', dialog => dialog.accept());
   await page.locator('.history-item').filter({ hasText: 'Revision 0' }).getByRole('button', { name: 'Restore' }).click();
-  await page.getByText('Working revision 6').waitFor();
+  await waitForRevision(page, 6);
   current = await api(page, '/api/deal/synthetic');
   record('browser undo first save', current.body.workspace.revision === 6 && current.body.facts[0].value === 'Synthetic Acme');
 
@@ -239,12 +257,13 @@ async function run() {
   await screenshot(page, 'desktop-conflict.png');
   page.once('dialog', dialog => dialog.accept());
   await page.getByRole('button', { name: 'Discard edits and load latest' }).click();
-  await page.getByText('Working revision 8').waitFor();
+  await waitForRevision(page, 8);
   const reloadedNote = await noteField.inputValue();
   record('explicit conflict reload', reloadedNote === 'Other editor value', `note=${JSON.stringify(reloadedNote)}`);
 
   for (const viewport of [{ width: 1024, height: 768, label: 'laptop' }, { width: 390, height: 844, label: 'narrow' }]) {
     const narrow = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height }, reducedMotion: 'reduce' });
+    await useStagedAssets(narrow);
     const view = await narrow.newPage();
     view.on('pageerror', error => errors.push(error.message));
     await view.goto(base + '/deal/synthetic', { waitUntil: 'networkidle' });

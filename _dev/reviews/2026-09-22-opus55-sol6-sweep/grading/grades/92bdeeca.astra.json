@@ -1,0 +1,275 @@
+{
+ "grader": "astra",
+ "grades": [
+  {
+   "id": "SY-P01",
+   "grade": "pass",
+   "rows": "Deal ledger 8, 14, 21, 28\u201330, 37",
+   "reason": "The contact cohorts contain 37 and 8, preserve the approximate historical counts, and do not duplicate H through a separate Contact row."
+  },
+  {
+   "id": "SY-P02",
+   "grade": "partial",
+   "rows": "Deal ledger 25\u201326, 30\u201331, 35; Rounds 4; Questions 3",
+   "reason": "The ledger preserves the accepted 13\u201314 residual and membership uncertainty, but Rounds does not state the required bounded total of live bidder units."
+  },
+  {
+   "id": "SY-P03",
+   "grade": "pass",
+   "rows": "Deal ledger 25\u201326, 49",
+   "reason": "The cohort closes once under September 23 exclusivity with an inferred exit, blank Count and the accepted 12\u201314 range treating E's reused agreement separately."
+  },
+  {
+   "id": "SY-P04",
+   "grade": "pass",
+   "rows": "Deal ledger 16\u201317, 24\u201326",
+   "reason": "The restart explicitly closes E and F, and E's fresh July 13 participation records its amended and reused NDA."
+  },
+  {
+   "id": "SY-P05",
+   "grade": "pass",
+   "rows": "Deal ledger 31, 47, 57, 63",
+   "reason": "CLP has the required financial NDA entry, September 23 displacement and December 18\u201321 re-entry before its January 4 bid."
+  },
+  {
+   "id": "SY-P06",
+   "grade": "partial",
+   "rows": "Deal ledger 43, 48",
+   "reason": "G's September 23 Dropped by target exit is correct, but its reason is Terms or process rather than Would not improve earlier offer."
+  },
+  {
+   "id": "SY-P07",
+   "grade": "pass",
+   "rows": "Deal ledger 37, 52, 61\u201362, 68",
+   "reason": "H enters through explicit December 30 admission and closes once by January 6 with an inferred Not stated exit and no invented NDA."
+  },
+  {
+   "id": "SY-P08",
+   "grade": "pass",
+   "rows": "Deal ledger 54, 69",
+   "reason": "I signs its NDA on November 19 and has one inferred Dropped by target closure by January 6 with reason Not stated."
+  },
+  {
+   "id": "SY-P09",
+   "grade": "fail",
+   "rows": "Deal ledger 64",
+   "reason": "E's withdrawal is dated January 5\u20136 with reason Not stated, rather than January 4 with a scope-related reason, so it also misses the stated partial-credit alternatives."
+  },
+  {
+   "id": "SY-P10",
+   "grade": "pass",
+   "rows": "Deal ledger 9, 23",
+   "reason": "A withdraws on June 20 for Value below earlier offer, and C's mutual withdrawal carries the correct October window and Terms or process reason."
+  },
+  {
+   "id": "SY-P11",
+   "grade": "pass",
+   "rows": "Deal ledger 3, 12, 16\u201319, 22, 31, 35\u201337, 54",
+   "reason": "All specified bidder types are correct, 180 Degree remains a rollover participant, and Company D has no bidder participation rows."
+  },
+  {
+   "id": "SY-R01",
+   "grade": "pass",
+   "rows": "Deal ledger 7\u201326; Questions 2; Deal facts 11",
+   "reason": "The workbook uses the accepted two-process map, discusses the uncertain earlier break and records an inferred July 13 restart separate from Company D's acquisition talks."
+  },
+  {
+   "id": "SY-R02",
+   "grade": "pass",
+   "rows": "Deal ledger 25\u201327; Rounds 4",
+   "reason": "Final-process round 1 opens with mid-July outreach on July 15, includes the September 17 due date and leaves E's July 13 approach in round 0."
+  },
+  {
+   "id": "SY-R03",
+   "grade": "partial",
+   "rows": "Deal ledger 38; Rounds 4",
+   "reason": "The September 17 Deadline row exists, but Late bids accepted earns only partial credit."
+  },
+  {
+   "id": "SY-R04",
+   "grade": "pass",
+   "rows": "Deal ledger 45\u201346, 50; Rounds 5",
+   "reason": "E's exclusive round opens September 23 with E alone and no bid deadline, while October 23 expiry remains within that round."
+  },
+  {
+   "id": "SY-R05",
+   "grade": "pass",
+   "rows": "Deal ledger 51, 55\u201365; Rounds 6",
+   "reason": "The October 27 re-solicitation round includes CLP and H and consistently contains the December proposals and both January CLP bids."
+  },
+  {
+   "id": "SY-R06",
+   "grade": "pass",
+   "rows": "Deal ledger 67, 71, 73\u201375; Rounds 7",
+   "reason": "CLP's definitive round opens January 6, contains its final bid and signing, and assigns the announcement to post."
+  },
+  {
+   "id": "SY-R07",
+   "grade": "pass",
+   "rows": "Rounds 4\u20137",
+   "reason": "The four final-process rounds have the required Not final, Inferred final, Not final and Inferred final classifications."
+  },
+  {
+   "id": "SY-R08",
+   "grade": "pass",
+   "rows": "Deal ledger 38, 50, 60, 73; Rounds 4\u20137",
+   "reason": "September 17 is the only bid deadline, and later proposal expirations and signing conditions are not coded as deadlines."
+  },
+  {
+   "id": "SY-R09",
+   "grade": "pass",
+   "rows": "Deal ledger 4\u20135, 7, 18, 32, 35, 40\u201341",
+   "reason": "The four September bids are in final-process round 1, A's bids are in round 0, and C's round-1 assignment follows the accepted merged-process map."
+  },
+  {
+   "id": "SY-R10",
+   "grade": "pass",
+   "rows": "Deal ledger 6\u20137, 20, 27, 46, 51, 67; Rounds 2\u20137",
+   "reason": "Every numbered round has exactly one preceding opening and one Rounds line, including Liontree's 2018 outreach and the single additional 2019 round."
+  },
+  {
+   "id": "SY-F01",
+   "grade": "pass",
+   "rows": "Deal ledger 40",
+   "reason": "CLP's September 17 bid is Informal, Unclear and all cash."
+  },
+  {
+   "id": "SY-F02",
+   "grade": "partial",
+   "rows": "Deal ledger 32, 41\u201342",
+   "reason": "Both E offers are correctly scoped informal bids, but September 18 Conditions is Unclear rather than Heavy."
+  },
+  {
+   "id": "SY-F03",
+   "grade": "pass",
+   "rows": "Deal ledger 63",
+   "reason": "CLP's January 4 bid is Informal, Unclear and all cash, with ongoing diligence noted."
+  },
+  {
+   "id": "SY-F04",
+   "grade": "pass",
+   "rows": "Deal ledger 65",
+   "reason": "CLP's $2.00 bid is Informal, Heavy and all cash, reflecting the requested 30-day exclusivity period."
+  },
+  {
+   "id": "SY-F05",
+   "grade": "partial",
+   "rows": "Deal ledger 65, 71, 73",
+   "reason": "No $2.00 Bid reaffirmed row exists, but Notes document the January 21 draft and cite CLP's delivered and negotiated agreement draft alongside its later Formal bid."
+  },
+  {
+   "id": "SY-F06",
+   "grade": "pass",
+   "rows": "Deal ledger 73\u201374",
+   "reason": "The final bid is Formal, Light and all cash, and the signing row leaves all bid-specific cells blank."
+  },
+  {
+   "id": "SY-F07",
+   "grade": "pass",
+   "rows": "Deal ledger 56, 60",
+   "reason": "Both minority tender proposals are Other-scope bids with Informal formality and Heavy conditions."
+  },
+  {
+   "id": "SY-F08",
+   "grade": "pass",
+   "rows": "Deal ledger 22, 35, 55, 59",
+   "reason": "All specified segment proposals are informal Other-scope bids with blank prices, and G's financing conditions are Unclear."
+  },
+  {
+   "id": "SY-F09",
+   "grade": "pass",
+   "rows": "Deal ledger 4\u20135, 18",
+   "reason": "A's and C's whole-company bids have the required informal and unclear classifications, blank prices and correct cash labels."
+  },
+  {
+   "id": "SY-C01",
+   "grade": "partial",
+   "rows": "Deal ledger 31\u201332, 35, 40\u201342, 45, 50, 54\u201356, 59\u201365, 70\u201375",
+   "reason": "The listed reported dates are correct except E's January 4 decline, whose exit date fields instead span January 5\u20136."
+  },
+  {
+   "id": "SY-C02",
+   "grade": "partial",
+   "rows": "Deal ledger 8, 12, 23, 28, 57\u201358, 65",
+   "reason": "Two sub-items deviate: Liontree's outreach is restricted to May 9\u2013June 20 and CLP's $2.00 bid is assigned an exact January 6 date."
+  },
+  {
+   "id": "SY-C03",
+   "grade": "pass",
+   "rows": "Deal ledger 2\u201375, especially 59\u201367 and 72\u201374",
+   "reason": "Sort dates never decrease, and the December letters, January bids and withdrawal, round opening and final signing events follow the required order."
+  },
+  {
+   "id": "SY-C04",
+   "grade": "pass",
+   "rows": "Deal ledger 42, 45, 50, 66, 70",
+   "reason": "E's exclusivity request, execution and expiry are recorded separately, while CLP's exclusivity is expressly only requested."
+  },
+  {
+   "id": "SY-C05",
+   "grade": "pass",
+   "rows": "Deal ledger 31, 74\u201375",
+   "reason": "Signing and announcement are separate correctly dated rows, announcement is post, CLP's NDA is September 8 and no event exceeds the filing date."
+  },
+  {
+   "id": "SY-B01",
+   "grade": "pass",
+   "rows": "Deal ledger 32, 41",
+   "reason": "Both E bids have 2.00 in both price cells."
+  },
+  {
+   "id": "SY-B02",
+   "grade": "pass",
+   "rows": "Deal ledger 40",
+   "reason": "CLP's September 17 bid records the required 1.35\u20131.41 range."
+  },
+  {
+   "id": "SY-B03",
+   "grade": "pass",
+   "rows": "Deal ledger 63",
+   "reason": "CLP's January 4 bid records 1.88 in both price cells."
+  },
+  {
+   "id": "SY-B04",
+   "grade": "pass",
+   "rows": "Deal ledger 65, 70",
+   "reason": "CLP's 2.00 bid has Date to January 6 and precedes the January 7 LOI execution."
+  },
+  {
+   "id": "SY-B05",
+   "grade": "pass",
+   "rows": "Deal ledger 73",
+   "reason": "CLP's February 10 bid records 2.20 in both price cells."
+  },
+  {
+   "id": "SY-B06",
+   "grade": "pass",
+   "rows": "Deal ledger 4\u20135, 18, 22, 35, 44, 55, 57\u201359, 63",
+   "reason": "The conditional percentage increase remains an unpriced material event, undisclosed bid prices remain blank and no intervening CLP price is invented."
+  },
+  {
+   "id": "SY-O01",
+   "grade": "pass",
+   "rows": "Deal facts 3\u20135",
+   "reason": "The acquirer entry names CLP and both acquisition entities, classifies it Financial and states $2.20 cash through a tender offer followed by merger."
+  },
+  {
+   "id": "SY-O02",
+   "grade": "pass",
+   "rows": "Deal facts 6\u20139",
+   "reason": "Signing, announcement, Schedule TO offer-to-purchase filing date and background pages match the reference."
+  },
+  {
+   "id": "SY-O03",
+   "grade": "pass",
+   "rows": "Deal facts 16\u201317; Deal ledger 6, 19, 33, 71",
+   "reason": "The target advisers are Canaccord, Liontree and Gunderson Dettmer, while Thompson Hine is correctly identified as CLP's counsel."
+  },
+  {
+   "id": "SY-O04",
+   "grade": "pass",
+   "rows": "Deal facts 10, 13\u201314",
+   "reason": "The final-process auction screen is Met and explicitly cites 14 NDA signers, while initiation is mixed and whole-company bids are Yes."
+  }
+ ]
+}

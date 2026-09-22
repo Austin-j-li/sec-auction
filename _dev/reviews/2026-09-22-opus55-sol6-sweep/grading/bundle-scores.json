@@ -1,0 +1,324 @@
+{
+ "d091d979": {
+  "cell": "datalink-gpt-6-sol-high-r1",
+  "deal": "datalink",
+  "arm": "gpt-6-sol-high",
+  "duplicate": false,
+  "graders": {
+   "astra": {
+    "score": 85.0,
+    "missing": []
+   },
+   "claude1": {
+    "score": 87.0,
+    "missing": []
+   },
+   "claude2": {
+    "score": 87.0,
+    "missing": []
+   }
+  },
+  "claude_mean": 87.0,
+  "astra": 85.0,
+  "score": 86.0
+ },
+ "4257d407": {
+  "cell": "datalink-gpt-6-sol-xhigh-r1",
+  "deal": "datalink",
+  "arm": "gpt-6-sol-xhigh",
+  "duplicate": false,
+  "graders": {
+   "astra": {
+    "score": 87.0,
+    "missing": []
+   },
+   "claude1": {
+    "score": 86.5,
+    "missing": []
+   },
+   "claude2": {
+    "score": 88.0,
+    "missing": []
+   }
+  },
+  "claude_mean": 87.25,
+  "astra": 87.0,
+  "score": 87.12
+ },
+ "f762733f": {
+  "cell": "datalink-opus-5-5-high-r1",
+  "deal": "datalink",
+  "arm": "opus-5-5-high",
+  "duplicate": false,
+  "graders": {
+   "astra": {
+    "score": 88.0,
+    "missing": []
+   },
+   "claude1": {
+    "score": 90.0,
+    "missing": []
+   },
+   "claude2": {
+    "score": 88.0,
+    "missing": []
+   }
+  },
+  "claude_mean": 89.0,
+  "astra": 88.0,
+  "score": 88.5
+ },
+ "08319c86": {
+  "cell": "datalink-opus-5-5-medium-r1",
+  "deal": "datalink",
+  "arm": "opus-5-5-medium",
+  "duplicate": false,
+  "graders": {
+   "astra": {
+    "score": 92.5,
+    "missing": []
+   },
+   "claude1": {
+    "score": 92.5,
+    "missing": []
+   },
+   "claude2": {
+    "score": 92.5,
+    "missing": []
+   }
+  },
+  "claude_mean": 92.5,
+  "astra": 92.5,
+  "score": 92.5
+ },
+ "cd007b5d": {
+  "cell": "mac-gray-gpt-6-sol-high-r1",
+  "deal": "mac-gray",
+  "arm": "gpt-6-sol-high",
+  "duplicate": false,
+  "graders": {
+   "astra": {
+    "score": 82.0,
+    "missing": []
+   },
+   "claude1": {
+    "score": 87.5,
+    "missing": []
+   },
+   "claude2": {
+    "score": 87.5,
+    "missing": []
+   }
+  },
+  "claude_mean": 87.5,
+  "astra": 82.0,
+  "score": 84.75
+ },
+ "31aeb785": {
+  "cell": "mac-gray-gpt-6-sol-xhigh-r1",
+  "deal": "mac-gray",
+  "arm": "gpt-6-sol-xhigh",
+  "duplicate": false,
+  "graders": {
+   "astra": {
+    "score": 98.5,
+    "missing": []
+   },
+   "claude1": {
+    "score": 97.25,
+    "missing": []
+   },
+   "claude2": {
+    "score": 97.25,
+    "missing": []
+   }
+  },
+  "claude_mean": 97.25,
+  "astra": 98.5,
+  "score": 97.88
+ },
+ "66353e67": {
+  "cell": "mac-gray-opus-5-5-high-r1",
+  "deal": "mac-gray",
+  "arm": "opus-5-5-high",
+  "duplicate": false,
+  "graders": {
+   "astra": {
+    "score": 94.5,
+    "missing": []
+   },
+   "claude1": {
+    "score": 93.25,
+    "missing": []
+   },
+   "claude2": {
+    "score": 93.25,
+    "missing": []
+   }
+  },
+  "claude_mean": 93.25,
+  "astra": 94.5,
+  "score": 93.88
+ },
+ "8c07ac2a": {
+  "cell": "mac-gray-opus-5-5-medium-r1",
+  "deal": "mac-gray",
+  "arm": "opus-5-5-medium",
+  "duplicate": false,
+  "graders": {
+   "astra": {
+    "score": 93.5,
+    "missing": []
+   },
+   "claude1": {
+    "score": 93.5,
+    "missing": []
+   },
+   "claude2": {
+    "score": 93.5,
+    "missing": []
+   }
+  },
+  "claude_mean": 93.5,
+  "astra": 93.5,
+  "score": 93.5
+ },
+ "23d3fe85": {
+  "cell": "synacor-gpt-6-sol-high-r1",
+  "deal": "synacor",
+  "arm": "gpt-6-sol-high",
+  "duplicate": false,
+  "graders": {
+   "astra": {
+    "score": 81.75,
+    "missing": []
+   },
+   "claude1": {
+    "score": 81.25,
+    "missing": []
+   },
+   "claude2": {
+    "score": 83.25,
+    "missing": []
+   }
+  },
+  "claude_mean": 82.25,
+  "astra": 81.75,
+  "score": 82.0
+ },
+ "92bdeeca": {
+  "cell": "synacor-gpt-6-sol-xhigh-r1",
+  "deal": "synacor",
+  "arm": "gpt-6-sol-xhigh",
+  "duplicate": false,
+  "graders": {
+   "astra": {
+    "score": 86.5,
+    "missing": []
+   },
+   "claude1": {
+    "score": 90.25,
+    "missing": []
+   },
+   "claude2": {
+    "score": 90.25,
+    "missing": []
+   }
+  },
+  "claude_mean": 90.25,
+  "astra": 86.5,
+  "score": 88.38
+ },
+ "e11520e3": {
+  "cell": "synacor-opus-5-5-high-r1",
+  "deal": "synacor",
+  "arm": "opus-5-5-high",
+  "duplicate": false,
+  "graders": {
+   "astra": {
+    "score": 95.25,
+    "missing": []
+   },
+   "claude1": {
+    "score": 95.25,
+    "missing": []
+   },
+   "claude2": {
+    "score": 95.25,
+    "missing": []
+   }
+  },
+  "claude_mean": 95.25,
+  "astra": 95.25,
+  "score": 95.25
+ },
+ "32b33295": {
+  "cell": "synacor-opus-5-5-medium-r1",
+  "deal": "synacor",
+  "arm": "opus-5-5-medium",
+  "duplicate": false,
+  "graders": {
+   "astra": {
+    "score": 92.25,
+    "missing": []
+   },
+   "claude1": {
+    "score": 96.75,
+    "missing": []
+   },
+   "claude2": {
+    "score": 96.75,
+    "missing": []
+   }
+  },
+  "claude_mean": 96.75,
+  "astra": 92.25,
+  "score": 94.5
+ },
+ "1d14623a": {
+  "cell": "synacor-opus-5-5-high-r1",
+  "deal": "synacor",
+  "arm": "opus-5-5-high",
+  "duplicate": true,
+  "graders": {
+   "astra": {
+    "score": 95.25,
+    "missing": []
+   },
+   "claude1": {
+    "score": 95.25,
+    "missing": []
+   },
+   "claude2": {
+    "score": 95.25,
+    "missing": []
+   }
+  },
+  "claude_mean": 95.25,
+  "astra": 95.25,
+  "score": 95.25
+ },
+ "abbfb701": {
+  "cell": "mac-gray-gpt-6-sol-xhigh-r1",
+  "deal": "mac-gray",
+  "arm": "gpt-6-sol-xhigh",
+  "duplicate": true,
+  "graders": {
+   "astra": {
+    "score": 98.5,
+    "missing": []
+   },
+   "claude1": {
+    "score": 97.25,
+    "missing": []
+   },
+   "claude2": {
+    "score": 97.25,
+    "missing": []
+   }
+  },
+  "claude_mean": 97.25,
+  "astra": 98.5,
+  "score": 97.88
+ }
+}

@@ -1,0 +1,1240 @@
+{
+  "deal": "synacor",
+  "filing": "raw_filing/synacor_2021-03-03_SCTO-T.htm",
+  "instruction": "SEC_Deal_Ledger_Extraction_Instruction.md v1.13.2 (sha256 513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304)",
+  "weights": {
+    "participation": 30,
+    "rounds": 25,
+    "formality_conditions": 20,
+    "chronology": 10,
+    "bids_prices": 10,
+    "other": 5
+  },
+  "tests": [
+    {
+      "id": "SY-P01",
+      "category": "participation",
+      "weight": 2,
+      "item": "Outreach contact cohorts and qualified counts",
+      "check": "Deal ledger: Contact cohort row(s) for Canaccord's mid-July to mid-September 2020 outreach reconcile to the stated 37 without double counting: Count 37; or Count 36 plus an individual Contact row for Company H (reported as arising from that outreach); or a blank Count with a range whose upper bound is 37 where named parties that may be among the 37 have their own Contact rows and the Note names the overlap. A Contact row records management's 8 portal-and-advertising contacts (Count 8). Qualified populations are not made exact: Liontree's 2018 'approximately 12' and management's 2019 'approximately five' cohorts have blank Count with the approximation stated ('Count: approximately 12'); the 2019 Canaccord 'additional 18' may carry Count 18. No contacted cohort is treated as entered beyond the reported NDA signers.",
+      "expected": "2020: 37 Canaccord contacts (or 36 + Company H, or a range capped at 37 with overlaps named), 8 portal contacts; 2019: 18 (exact), approximately 5 (blank Count); 2018: approximately 12 (blank Count).",
+      "partial_credit": "Half if the 2020 cohorts reconcile but a qualified cohort (approx. 12 or approx. 5) carries an exact Count; half if one 2020 cohort is missing; half if Count 37 sits beside a separate Company H Contact row (Count 1) with the overlap neither netted nor noted.",
+      "accepted_alternatives": [
+        "Count 36 plus a separate Company H Contact row",
+        "Count 37 with a Note that Company H is among them",
+        "Cohort Count blank with a range whose upper bound is 37 (e.g., 'Count: 36–37' or '35–37'), where H or another party that may be among the 37 has its own Contact row and the Note names the overlap",
+        "2018/2019 contacts folded into the Round opened Note with the approximate number preserved and no exact Count"
+      ],
+      "source_pages": [
+        "30",
+        "31",
+        "32"
+      ],
+      "source_quote": "From the middle of July 2020 to the middle of September 2020, Canaccord Genuity reached out to 37 parties (other than Companies A-D)",
+      "provenance": [
+        "filing pp. 30-33",
+        "v1.13.2 draft #8, #14, #22, #29-#31",
+        "v1.13 draft #7, #13, #16, #26-#27",
+        "instruction verifier (range alternative; unnetted H row)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard; both drafts pass, but exact Counts on 'approximately' cohorts and an unnetted H contact are common careless errors"
+    },
+    {
+      "id": "SY-P02",
+      "category": "participation",
+      "weight": 4,
+      "item": "2020 NDA-signer cohort: bounded Count, no double count",
+      "check": "Deal ledger: the 14 outreach NDA signers are recorded as an NDA signed cohort row whose Note gives the filing total (14); CLP keeps its own NDA signed row dated 09/08/2020 (Count 1). The filing does not establish whether CLP, Company E (NDA amendment 07/13/2020) or Company G (entered by its 09/14/2020 bid; no NDA reported) is among the 14, so the cohort Count is BLANK and the Note states a range or bound with upper bound 14 that nets out at least CLP (e.g., 'Count: 13–14', '12–14' or '11–14', or 'at most 14'), naming the possible overlaps; G's possible membership is named in the cohort Note or reflected in the Rounds live-unit range. Company G has no individual NDA signed row. Rounds, final-process round 1 'Who was in' states live bidder units as a range or bound within 14–17 (e.g., 14–17 or 15–17), not an exact figure.",
+      "expected": "Cohort Count blank; Note range capped at 14 netting at least CLP (13–14, 12–14 or 11–14) with CLP/E/G overlaps named; CLP NDA row Count 1; no G NDA row; round-1 live units a range within 14–17.",
+      "partial_credit": "Half if the cohort Count is exact (14, or 13 with CLP treated as one of the 14) but the Note states that membership of CLP, E or G in the 14 is unconfirmed; half if Company G has its own NDA signed row but the cohort is otherwise right; half if the ledger is right but Rounds gives an exact live count. None if an exact Count carries no stated uncertainty (e.g., Count 14 beside CLP's own row with no overlap noted), or if the NDA cohort is missing.",
+      "accepted_alternatives": [
+        "'Count: at most 14' or 'up to 14' with the possible overlaps named",
+        "'Count: 13–14' netting only CLP, where E's amendment is read as outside the 14 and G's possible membership is named in the Note or reflected in a Rounds range such as 15–17",
+        "A range with a lower bound of 10 if Company H is also treated as a possible member"
+      ],
+      "source_pages": [
+        "32"
+      ],
+      "source_quote": "Of the parties contacted, 14 parties executed non-disclosure agreements with the Company and were provided access to confidential information relating to the Company’s business and prospects.",
+      "provenance": [
+        "filing pp. 32-33",
+        "instruction E3 (cohort holds remainder of members with own rows), E14 (uncertain member stays inside residual), Part B",
+        "acc9986:_dev/reviews/2026-09-21/synacor.md confirmed error 1 (v1.11 13-person cohort after subtracting CLP called arithmetically valid; the exact error was in the non-submitter count and Rounds live count)",
+        "v1.13.2 draft #32 (11–14; Rounds 14–17)",
+        "v1.13 draft #28 (13–14; Rounds 15–17)",
+        "Alex/RA rows 600-602 (NDA for G and H, exact '11 parties')",
+        "source-fidelity and instruction verifiers (13–14 defensible under E3); coverage verifier (G NDA trap)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Runs differ: v1.11 exact 13 with an exact Rounds live count; v1.13 13–14; v1.13.2 11–14; RA coding invents an NDA for G and an exact 11. Tests bounded counting and no double count of CLP/E/G."
+    },
+    {
+      "id": "SY-P03",
+      "category": "participation",
+      "weight": 3,
+      "item": "Closure of the NDA signers that never bid",
+      "check": "Deal ledger: the residual 2020 NDA-signer cohort is closed exactly once by an inferred exit (Inferred = Y, Exit reason Not stated): Did not submit, When 'by 09/17/2020', Date to 09/17/2020; or Dropped by target dated 09/23/2020 (other active discussions terminated under E's exclusivity). Count is blank and the Note gives the subtraction as a range that nets out every possible submitter among the 14 (CLP, G, E): e.g., 'Count: 11–14', '11–13' (CLP taken as one of the 14) or '12–14' (E's amendment read as outside the 14). No exact number of non-submitters, and no second closure of the same cohort.",
+      "expected": "Did not submit by 09/17/2020 (or Dropped by target 09/23/2020), Inferred Y, Exit reason Not stated, Count blank, Note range 11–14 (11–13 or 12–14 accepted).",
+      "partial_credit": "Half if the label/date are right but the Count is exact (13, 12 or 11) or the range nets out only CLP (13–14); half if the closure appears only in Rounds text with no ledger row, or the cohort is closed twice. None if the cohort is never closed.",
+      "accepted_alternatives": [
+        "Dropped by target, 09/23/2020 (other active discussions terminated), Count blank with range, Exit reason Not stated or Terms or process; Inferred Y, or blank where the Note cites the reported termination",
+        "Range 11–13 where CLP is treated as one of the 14"
+      ],
+      "source_pages": [
+        "32",
+        "33",
+        "34"
+      ],
+      "source_quote": "Other than as described below, none of the outreach attempts to these 37 parties ultimately led to an indication of interest from any of these parties",
+      "provenance": [
+        "filing pp. 32-34",
+        "instruction E14 (Did not submit arithmetic; range where a submitter's membership is uncertain)",
+        "acc9986 synacor.md confirmed error 1 (13 non-submitters unsupported; conditional range 11-13)",
+        "v1.13.2 draft #42",
+        "v1.13 draft #39",
+        "Alex/RA row 607 ('11 parties' Drop 09/17/2020)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Reviewer-found error: the v1.11 run and RA coding each turned one branch of the membership uncertainty into an exact exit count."
+    },
+    {
+      "id": "SY-P04",
+      "category": "participation",
+      "weight": 2,
+      "item": "Company E's fresh entry in 2020 and closure of 2019 participation",
+      "check": "Deal ledger: Company E's 2019 portal-only participation (NDA 07/30/2019) and Company F's 2019 participation are each closed once before or at the start of the 2020–21 process — by the Process restarted marker (Count covering them or Note naming them) or by their own exit rows — and are not carried as continuing participation. In the final process, E enters afresh on 07/13/2020 through the NDA amendment (an NDA signed row dated 07/13/2020, or the amendment noted on E's first row in that process), counted once.",
+      "expected": "E NDA signed (amendment) 07/13/2020 in the final process; 2019 E and F participation closed by the restart marker or by own rows.",
+      "partial_credit": "Half if E's 2020 entry is taken only from its 09/10/2020 bid (amendment ignored), or if the 2019 participation is left open or closed twice.",
+      "accepted_alternatives": [
+        "Amendment treated as an expressly reused agreement and noted on E's 07/13/2020 Bidder interest row",
+        "Company F closed by its own undated Withdrew (Terms or process) row instead of the marker"
+      ],
+      "source_pages": [
+        "31",
+        "32"
+      ],
+      "source_quote": "on July 13, 2020, the Company and Company E entered into an amendment to their non-disclosure agreement entered into on July 30, 2019",
+      "provenance": [
+        "filing pp. 31-32",
+        "instruction E5 (marker closes open participation; returning party enters afresh), E7",
+        "v1.13.2 draft #23, #25",
+        "v1.13 draft #18, #20, #23",
+        "acc9986 synacor.md (E NDA brought into process 3 by the 07/13 amendment)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard; process-closure bookkeeping and single counting of E"
+    },
+    {
+      "id": "SY-P05",
+      "category": "participation",
+      "weight": 3.5,
+      "item": "CLP: entry, displacement by E's exclusivity, re-entry",
+      "check": "Deal ledger: (1) CLP NDA signed 09/08/2020, Type Financial, Count 1; (2) a Dropped by target row for CLP dated 09/23/2020 (displaced when Synacor entered E's exclusive LOI and terminated other active discussions); (3) a Re-entered row for CLP dated within 12/18/2020–01/04/2021 (preferably the 12/18–12/21 outreach after which CLP accelerated diligence), placed before CLP's 01/04/2021 $1.88 bid. CLP has no other exit before signing. Exit reason on the 09/23 row is not scored.",
+      "expected": "NDA 09/08/2020; Dropped by target 09/23/2020; Re-entered 12/18–12/21/2020 (or by 12/30/2020 or 01/04/2021), before the 01/04/2021 bid.",
+      "partial_credit": "Half if the exit and resumed participation are both present but the exit is mislabelled (e.g., Withdrew) or misdated, or if the 09/23 exit is present but no Re-entered row precedes the 01/04 bid (or vice versa).",
+      "accepted_alternatives": [
+        "Re-entered dated 12/30/2020 (Committee continues with CLP, H and I) or 01/04/2021 (LOI), provided it precedes the bid row"
+      ],
+      "source_pages": [
+        "32",
+        "34",
+        "35"
+      ],
+      "source_quote": "As a result of the exclusivity provisions in the letter of intent, the Company and Canaccord Genuity also terminated other active discussions with other parties relating to a proposed transaction at such time.",
+      "provenance": [
+        "filing pp. 32, 34-36, 62",
+        "instruction E14 (displaced by a rival's executed exclusivity; Re-entered before resumed participation)",
+        "v1.13.2 draft #33, #49, #60",
+        "v1.13 draft #29, #48, #59"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "A careless extraction keeps CLP live through E's exclusivity or omits the re-entry, misstating live bidders in two rounds."
+    },
+    {
+      "id": "SY-P06",
+      "category": "participation",
+      "weight": 3,
+      "item": "Company G exit label and reason",
+      "check": "Deal ledger: Company G (software-and-services-only bidder) has one exit in its first participation period: Dropped by target dated 09/23/2020 (other discussions terminated under E's exclusivity), with Exit reason 'Would not improve earlier offer', because G was asked on 09/21–09/22 to raise its price and could not (E14: a bidder asked to improve that declines takes this reason even where the target then chooses a rival).",
+      "expected": "Dropped by target, 09/23/2020, Exit reason Would not improve earlier offer.",
+      "partial_credit": "Half if label and date are right but Exit reason is Terms or process, Lower offer than rivals, Other stated reason or Not stated; half if Withdrew dated 09/22/2020 with Would not improve earlier offer.",
+      "accepted_alternatives": [
+        "An additional Re-entered/closure pair around the 12/18–12/30/2020 re-contact is tolerated if the 09/23 exit and reason are right"
+      ],
+      "source_pages": [
+        "33",
+        "34"
+      ],
+      "source_quote": "Company G was unable to increase its purchase price",
+      "provenance": [
+        "filing pp. 33-36",
+        "instruction E14 last paragraph",
+        "v1.13 draft #49 (Would not improve earlier offer)",
+        "v1.13.2 draft #50 (Terms or process)",
+        "Alex/RA row 613 (G Drop 12/30/2020)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "The two Opus drafts disagree on the reason and RA dates the drop 12/30; E14's improve-then-decline sentence decides it."
+    },
+    {
+      "id": "SY-P07",
+      "category": "participation",
+      "weight": 3.5,
+      "item": "Company H: entry by admission and one final closure",
+      "check": "Deal ledger: Company H has NO NDA signed row (none is reported). H enters by the target's admission to a stage — primarily the 12/30/2020 Special Committee decision to continue with CLP, Company H and Company I and seek non-binding LOIs from them (or the opening of that round if it names H) — and its final participation period is closed once by an inferred exit (Inferred = Y, Exit reason Not stated) dated by 01/06/2021 (01/07 accepted): Dropped by target (CLP alone advanced) or Did not submit. H never has an exit row before an entry, and each participation period is closed once.",
+      "expected": "Entry by admission (primarily 12/30/2020); one inferred final closure by 01/06/2021 (01/07 accepted), Dropped by target or Did not submit, Not stated; no NDA row for H.",
+      "partial_credit": "Half if H is never entered but a Question or Note explains the no-entry reading (no NDA or bid); half if H's final closure is Not selected at signing on 02/10/2021. None if H gets an NDA signed row or an exit with no prior entry.",
+      "accepted_alternatives": [
+        "Entry at a 10/27/2020 re-solicitation round opening; 11/02/2020 'unable to submit a proposal at that time' as Withdrew (for now); Re-entered by 12/30/2020; final inferred closure by 01/06 or 01/07/2021",
+        "Entry 09/22/2020 when Synacor's CEO encouraged H to submit a whole-company proposal (admission to the round-1 stage), closed 09/22–09/23/2020 (Did not submit or Withdrew, or Dropped by target 09/23 under E's exclusivity), Re-entered at 10/27, within 12/18–12/21 or on 12/30/2020, and one final inferred closure by 01/06 or 01/07/2021"
+      ],
+      "source_pages": [
+        "33",
+        "34",
+        "35",
+        "36"
+      ],
+      "source_quote": "continue to engage with CLP, Company H and Company I, including directing Canaccord Genuity and the Company’s management to continue to seek non-binding letters of intent from such parties",
+      "provenance": [
+        "filing pp. 33-36",
+        "instruction E3 (entry by admission to a stage), E14 inferred closures",
+        "v1.13.2 draft #63, #72",
+        "v1.13 draft #63, #70",
+        "acc9986 instruction_comparison.md DeepSeek-review trial ('Company H never entered' counted as an error)",
+        "Alex/RA rows 601 (H NDA, unsupported) and 609 (H Drop 11/02/2020)",
+        "source-fidelity and instruction verifiers (09/22 admission path)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Runs disagreed: one reviewed run never entered H; RA gave H an unsupported NDA and an exit before any entry."
+    },
+    {
+      "id": "SY-P08",
+      "category": "participation",
+      "weight": 2,
+      "item": "Company I: entry and single closure",
+      "check": "Deal ledger: Company I (portal-and-advertising only) enters by NDA signed 11/19/2020 and is closed exactly once, dated within 12/30/2020–01/07/2021, with Inferred = Y and Exit reason Not stated: Withdrew by 01/04/2021 (Canaccord then named only E and H as other interested parties), Dropped by target by 01/06 or 01/07/2021 (only CLP advanced), or Did not submit by 01/06 or 01/07/2021.",
+      "expected": "NDA signed 11/19/2020; one inferred closure within 12/30/2020–01/07/2021 (Withdrew by 01/04, Dropped by target or Did not submit by 01/06–01/07), Not stated.",
+      "partial_credit": "Half if closed as Not selected at signing 02/10/2021, or if two closures are recorded, or if I is left open with its status explained in Rounds.",
+      "accepted_alternatives": [
+        "Withdrew by 01/04/2021 (Date from 12/30/2020)",
+        "Dropped by target by 01/06/2021",
+        "Dropped by target by 01/07/2021 (LOI executed with CLP)",
+        "Did not submit by 01/06 or 01/07/2021"
+      ],
+      "source_pages": [
+        "34",
+        "36"
+      ],
+      "source_quote": "only Company E (with respect to its proposed partial tender offer proposal) and Company H remained as other parties interested in engaging on a transaction",
+      "provenance": [
+        "filing pp. 34-36",
+        "instruction E14 (first transition that applies)",
+        "acc9986 synacor.md unresolved item 5",
+        "v1.13.2 draft #56, #65",
+        "v1.13 draft #54, #71",
+        "Alex/RA rows 610, 617 (I Drop 02/10/2021)",
+        "instruction verifier (window fix)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Three sources give three different closures; the test requires one supported closure with honest inference marking."
+    },
+    {
+      "id": "SY-P09",
+      "category": "participation",
+      "weight": 3.5,
+      "item": "Company E's exit from the final process",
+      "check": "Deal ledger: Company E's participation in the 2020–21 process ends in Withdrew dated 01/04/2021 (E declined Canaccord's request to re-engage on an acquisition of 100% and said its tender-offer proposal would lapse after 01/04/2021), with an Exit reason that records scope/terms rather than a refusal to raise price: Terms or process or Other stated reason. E has no unreturned exit at 12/14/2020 or 12/30/2020 (its partial-tender proposal stayed outstanding until 01/04).",
+      "expected": "Withdrew, 01/04/2021, Exit reason Terms or process (or Other stated reason); each E participation period closed once.",
+      "partial_credit": "Half if Withdrew 01/04/2021 carries Would not improve earlier offer (arguable under the 01/04 directive to 'maximize offers from each of CLP and Company E', but the request put to E was to return to a 100% acquisition, a change of scope, and E had no standing whole-company offer to improve), Value below earlier offer, or Not stated; half if E's only exit is Dropped by target 12/30/2020 or Withdrew 12/14/2020, with the 01/04 decline in a Note. None if E has two exits without a re-entry between them, or no exit.",
+      "accepted_alternatives": [
+        "Exit reason Other stated reason citing E's refusal to return to a whole-company deal",
+        "Dropped by target 12/30/2020 (E left out of the continuing set CLP, H, I), Re-entered 01/04/2021 (asked to re-engage), Withdrew 01/04/2021 with a scope/terms reason; each period closed once"
+      ],
+      "source_pages": [
+        "35",
+        "36"
+      ],
+      "source_quote": "Company E declined to do so and indicated that its tender offer proposal would no longer be available following January 4, 2021.",
+      "provenance": [
+        "filing pp. 34-36",
+        "instruction E14",
+        "acc9986 synacor.md confirmed error 2 (model review under v1.11: Would not improve confuses scope with price; use Terms or process)",
+        "acc9986 instruction_comparison.md (v1.12.1 regresses on E's exit reason)",
+        "v1.13.2 draft #67 (Would not improve earlier offer)",
+        "v1.13 draft #66 (Value below earlier offer)",
+        "Alex/RA row 611 (E Drop 12/04/2020)",
+        "verifiers split: instruction lens would accept Would not improve; source lens half; coverage lens none"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Reviewer-found error that recurred in both later drafts in different forms; full credit only for a scope/terms reason, half for the valuation-style reasons."
+    },
+    {
+      "id": "SY-P10",
+      "category": "participation",
+      "weight": 1.5,
+      "item": "Company A and Company C exits",
+      "check": "Deal ledger: Company A — Withdrew dated 06/20/2018, Exit reason Value below earlier offer (A could not support the value in its own indication). Company C — one reported exit dated October 2019 (Date from 10/01/2019, Date to 10/31/2019), label Withdrew or Dropped by target, Exit reason Not stated or Terms or process (a mutual decision).",
+      "expected": "A: Withdrew 06/20/2018, Value below earlier offer. C: Withdrew (or Dropped by target), October 2019, Not stated/Terms or process.",
+      "partial_credit": "Half if one of the two is wrong (e.g., A's reason Not stated, or C left to the process marker although its ending is reported and dated).",
+      "accepted_alternatives": [
+        "C: Dropped by target, with the mutual ending noted"
+      ],
+      "source_pages": [
+        "30",
+        "31"
+      ],
+      "source_quote": "Company A informed the Company that they were unable to support the transaction at the proposed value set forth in the non-binding indication of interest",
+      "provenance": [
+        "filing pp. 30-31",
+        "instruction E14 (record reported exits first)",
+        "v1.13.2 draft #7, #21",
+        "v1.13 draft #8, #19",
+        "Alex/RA rows 592, 598"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard"
+    },
+    {
+      "id": "SY-P11",
+      "category": "participation",
+      "weight": 2,
+      "item": "Bidder types and non-bidders",
+      "check": "Deal ledger Type: CLP Financial; Company E Financial (investment subsidiary of a financial services company); Company G Financial; Company H Strategic (public-company software acquirer); Company I Strategic; Company A Financial; Company C Strategic; Company F Strategic. 180 Degree's equity rollover does not create a bidding group: no Bidding group changed row, 180 Degree is not a separate bidder or cohort, and E keeps its name and Type. Company D (which Synacor itself proposed to acquire) has no NDA, bid or exit rows as a bidder for Synacor.",
+      "expected": "Types as listed; no 180 Degree group; no Company D bidder rows.",
+      "partial_credit": "Half if exactly one type is wrong (commonly H coded Financial) or 180 Degree is treated as a co-bidder.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "28",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34"
+      ],
+      "source_quote": "a different public-company software acquirer (“Company H”), had also expressed more serious interest in an acquisition of the Company",
+      "provenance": [
+        "filing pp. 28-34",
+        "instruction E1, E3, E4",
+        "Alex/RA rows 601, 609 (H coded financial)",
+        "v1.13.2 and v1.13 drafts (H Strategic; 180 Degree as Other material event)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "RA coding types H as financial; the rollover and Synacor's own bid for D are scope/grouping traps."
+    },
+    {
+      "id": "SY-R01",
+      "category": "rounds",
+      "weight": 3,
+      "item": "Process map",
+      "check": "Deal ledger and Deal facts: the 2020–21 sale that ended with CLP is its own process, separate from the 2018 (Company A/Liontree) and 2019 (Company C, portal divestiture, Canaccord's 18 contacts) attempts, which have rows under earlier process number(s). The final process begins with a Process restarted row dated 07/13/2020 (Company E's approach taken up), Inferred = Y because the 2019 attempt lapsed (last acquirer contact October 2019 or undated to 01/15/2020). Company D acquisition talks form no process. Deal facts Number of processes = 3.",
+      "expected": "3 processes; final-process restart 07/13/2020, Inferred Y; no Company D process.",
+      "partial_credit": "Half if the final process is separate but the restart marker is missing or not marked Inferred, or if 2019 events are placed in the final process.",
+      "accepted_alternatives": [
+        "2 processes, with 2018 and 2019 merged and the E5 break test called uncertain (undated Liontree outreach to 12/31/2018; Company B)",
+        "Restart dated mid-July 2020 (07/13–07/19) at the outreach directive"
+      ],
+      "source_pages": [
+        "30",
+        "31",
+        "32"
+      ],
+      "source_quote": "Mr. Kevin Rendino, informed the Company’s management of potential interest that Company E had in a potential acquisition of the Company",
+      "provenance": [
+        "filing pp. 30-32",
+        "instruction E1, E5",
+        "acc9986 synacor.md (continuity fixed; 2018–2019 break underdetermined)",
+        "acc9986 instruction_comparison.md (DeepSeek invented a fourth process)",
+        "v1.13.2 draft #10, #23, Q1",
+        "v1.13 draft #9, #20, Q1-Q2"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Fail if 2019 and 2020–21 are one process or Company D becomes a process; the 2018/2019 split is left to judgment."
+    },
+    {
+      "id": "SY-R02",
+      "category": "rounds",
+      "weight": 2,
+      "item": "Final-process round 1: opening and due date",
+      "check": "Rounds: a line for final-process round 1 with Opened between 07/13/2020 and 07/19/2020 (the mid-July Canaccord outreach wave the Company directed after E's 07/13 approach), How opened naming that outreach, and Due dates containing 09/17/2020 (non-binding IOIs); the matching Round opened row exists in the Deal ledger. E's 07/13/2020 approach and NDA amendment sit in round 0 or at the opening, not in a later round.",
+      "expected": "Round 1 opened mid-July 2020 (Sort date 07/13–07/19/2020); due date 09/17/2020.",
+      "partial_credit": "Half if round 1 exists but is opened outside the 07/13–07/19 window (e.g., at 09/08 or 09/17), or the 09/17 due date is missing from Due dates.",
+      "accepted_alternatives": [
+        "Opened 07/13/2020 treating the outreach directive as same-day"
+      ],
+      "source_pages": [
+        "32"
+      ],
+      "source_quote": "The Company also then directed Canaccord Genuity to commence outreach to various parties to consider an acquisition of the Company and/or its software and services business.",
+      "provenance": [
+        "filing p. 32",
+        "instruction E6 round-1 opening order, E8 ('mid' = days 11–19)",
+        "v1.13.2 draft #27-#28, Rounds line 3",
+        "v1.13 draft #25, Rounds line 3"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard; both drafts agree"
+    },
+    {
+      "id": "SY-R03",
+      "category": "rounds",
+      "weight": 2.5,
+      "item": "09/17/2020 deadline row and outcome",
+      "check": "Deal ledger has a Deadline row dated 09/17/2020 in final-process round 1; Rounds round-1 Deadline outcome is Enforced (the target acted on the bids in hand: best-offer request to E, improvement requests to CLP and G, exclusivity with E on 09/23) or Passed without action (bargaining simply continued). Whether a Question discusses the outcome is not scored.",
+      "expected": "Deadline row 09/17/2020; outcome Enforced (Passed without action accepted).",
+      "partial_credit": "Half for Late bids accepted or Unclear, or for a correct outcome with no Deadline row. None for Extended or a missing outcome.",
+      "accepted_alternatives": [
+        "Passed without action"
+      ],
+      "source_pages": [
+        "32",
+        "33",
+        "34"
+      ],
+      "source_quote": "The Company Special Committee directed Canaccord Genuity to further follow up with Company G to seek to increase the purchase price payable for the software and services segment",
+      "provenance": [
+        "filing pp. 32-34",
+        "instruction E9",
+        "acc9986 synacor.md unresolved item 2 (Enforced defensible; E not a proven late bidder)",
+        "v1.13.2 draft #41, Q3",
+        "v1.13 draft #38, Q7"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Tests whether E's 09/18 revision is misread as a late bid or the deadline as extended."
+    },
+    {
+      "id": "SY-R04",
+      "category": "rounds",
+      "weight": 3,
+      "item": "Exclusive negotiation with Company E opens its own round",
+      "check": "Deal ledger and Rounds: a Round opened row dated 09/23/2020 (Synacor enters E's LOI with exclusivity to 10/23/2020 and begins diligence and definitive-agreement negotiation) opens a new round of the final process (round 2 in the primary map); its Rounds line shows Who was in = Company E (1 financial) and Due dates none stated. The 10/23/2020 exclusivity expiry is an event inside this round, not a round opening.",
+      "expected": "Round 2 opened 09/23/2020, Company E alone.",
+      "partial_credit": "Half if E's exclusive stage is a separate round but opened on another date (e.g., 09/18 or 10/23).",
+      "accepted_alternatives": [
+        "If the 09/17/2020 'best offer' request to E is treated as a first best-and-final solicitation: a round opened 09/17/2020 (E's 09/18 reply Formal) that ends in E's 09/23 exclusivity, in place of a 09/23 opening"
+      ],
+      "source_pages": [
+        "33",
+        "34"
+      ],
+      "source_quote": "On September 23, 2020, the Company and Company E entered into Company E’s letter of intent, and began coordination to commence diligence and prepare documentation relating to the transaction.",
+      "provenance": [
+        "filing pp. 33-34",
+        "instruction E6 (move to definitive negotiation where no round opened as final)",
+        "v1.13.2 draft #51",
+        "v1.13 draft #47",
+        "v1.13 Q6 (09/17 best-offer alternative)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Fail if no round boundary separates the IOI round from E's exclusive negotiation."
+    },
+    {
+      "id": "SY-R05",
+      "category": "rounds",
+      "weight": 4.5,
+      "item": "Distinct re-solicitation round between E's exclusivity and CLP's LOI",
+      "check": "Deal ledger and Rounds: the final process has a round (round 3 in the primary map) opened on 10/27/2020 (Committee asks Canaccord to re-initiate outreach), within 12/18–12/21/2020 (Canaccord re-approaches CLP, G, H) or on 12/30/2020 (Committee lets E's offer expire and seeks non-binding LOIs from CLP, H and I), separate from both E's exclusive round and CLP's definitive-negotiation round. Its Rounds line lists at least CLP and Company H as participants, Due dates none stated. CLP's 01/04/2021 $1.88 bid and its $2.00 bid reported 01/06/2021 are both assigned to this round (the 01/04–01/05 requests to improve continue it). Consistency only: I's 12/08 LOI and E's 12/14 partial-tender proposal fall in this round only if it opened 10/27 (otherwise in E's exclusive round); E's and I's 12/29 letters fall in it if it opened 10/27 or 12/18–12/21, and in E's exclusive round if it opened 12/30.",
+      "expected": "Round 3 opened 10/27/2020 or 12/30/2020 (12/18–12/21 accepted); CLP $1.88 and $2.00 in it.",
+      "partial_credit": "Half if the round exists but CLP's $2.00 bid is placed in the definitive-negotiation round, or the round is opened on 01/04/2021.",
+      "accepted_alternatives": [
+        "Two rounds here: one opened 10/27/2020 and another opened 12/30/2020, provided CLP's $1.88 and $2.00 are in the later one",
+        "Round opened within 12/18–12/21/2020"
+      ],
+      "source_pages": [
+        "34",
+        "35",
+        "36"
+      ],
+      "source_quote": "requested that Canaccord Genuity re-initiate outreach to various parties which had previously expressed some interest in a transaction with the Company",
+      "provenance": [
+        "filing pp. 34-36",
+        "instruction E6",
+        "acc9986 instruction_comparison.md ('no Synacor workbook carries all six stages'; round maps unstable)",
+        "v1.13.2 draft #53 (10/27)",
+        "v1.13 draft #63 (12/30) with Q1 alternative 10/27",
+        "source-fidelity and coverage verifiers (date-consistency correction)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Hardest part of the map; runs dropped or merged this stage. Fail if CLP's $1.88/$2.00 sit in E's exclusive round or in the same round as the $2.20 bid."
+    },
+    {
+      "id": "SY-R06",
+      "category": "rounds",
+      "weight": 2.5,
+      "item": "CLP definitive-negotiation round",
+      "check": "Deal ledger and Rounds: a round opened 01/06/2021 (Committee decides to enter the non-binding LOI with CLP and commence diligence and definitive negotiation) or 01/07/2021 (LOI executed), with Who was in = CLP only (Company I may be listed if kept open to signing), Due dates none stated, How it ended = signing with CLP at $2.20 on 02/10/2021. CLP's 01/21/2021 reaffirmation (if recorded) and 02/10/2021 $2.20 bid are in this round; the 02/11/2021 Merger announced row is Round post.",
+      "expected": "Final round opened 01/06 or 01/07/2021; CLP alone; ends in signing 02/10/2021.",
+      "partial_credit": "Half if the round opens later (e.g., 01/21 or 02/08/2021) or the announcement is not post.",
+      "accepted_alternatives": [
+        "Opened 01/06/2021",
+        "Opened 01/07/2021"
+      ],
+      "source_pages": [
+        "36",
+        "37",
+        "38"
+      ],
+      "source_quote": "it unanimously determined to enter into the non-binding letter of intent with CLP and commence diligence and negotiation of a definitive agreement",
+      "provenance": [
+        "filing pp. 36-38",
+        "instruction E6",
+        "acc9986 synacor.md unresolved item 4 (one-day boundary)",
+        "v1.13.2 draft #73",
+        "v1.13 draft #69"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Tests whether the $2.20 bid is separated from the December–January LOI bids."
+    },
+    {
+      "id": "SY-R07",
+      "category": "rounds",
+      "weight": 2.5,
+      "item": "Finality of final-process rounds",
+      "check": "Rounds Finality: IOI round (round 1) Not final; E's exclusive-negotiation round Inferred final; re-solicitation round(s) Not final; CLP's definitive round Inferred final. No round is Announced as final, except a 09/17/2020 best-offer round under SY-R04's accepted alternative.",
+      "expected": "R1 Not final; E round Inferred final; re-solicitation Not final; CLP round Inferred final.",
+      "partial_credit": "Half if exactly one round deviates (commonly E's exclusive round marked Not final). None if two or more deviate or CLP's round is Announced as final or Not final.",
+      "accepted_alternatives": [
+        "Under the SY-R04 alternative, the 09/17/2020 best-offer round is Announced as final or Inferred final"
+      ],
+      "source_pages": [
+        "33",
+        "34",
+        "36"
+      ],
+      "source_quote": "which included a request for Company E to provide its best offer on purchase price",
+      "provenance": [
+        "filing pp. 33-36",
+        "instruction E6 finality",
+        "v1.13.2 and v1.13 Rounds sheets",
+        "instruction verifier (Inferred final alternative)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Separates Inferred final (definitive negotiation) from Not final (non-binding solicitation) stages."
+    },
+    {
+      "id": "SY-R08",
+      "category": "rounds",
+      "weight": 1.5,
+      "item": "No spurious bid deadlines",
+      "check": "The only bid due date in the 2020–21 process is 09/17/2020. The expiry of E's tender-offer proposal 'by January 4, 2021', the 10/23/2020 exclusivity expiry and CLP's requirement to sign on 02/10/2021 are not recorded as Deadline set/Deadline revised/Deadline rows or as Rounds Due dates; the later rounds show Due dates 'none stated' and Deadline outcome 'No deadline stated' (or blank).",
+      "expected": "Later rounds: none stated / No deadline stated.",
+      "partial_credit": "Half if exactly one spurious deadline appears.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "34",
+        "35",
+        "38"
+      ],
+      "source_quote": "Company E indicated that its proposal relating to the tender offer would expire by January 4, 2021.",
+      "provenance": [
+        "filing pp. 34-38",
+        "instruction E9 (only bid due dates are deadlines), D3",
+        "v1.13.2 and v1.13 Rounds sheets"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard against treating offer expiries and exclusivity ends as deadlines"
+    },
+    {
+      "id": "SY-R09",
+      "category": "rounds",
+      "weight": 2,
+      "item": "Bid-to-round assignment: round 1 and round 0",
+      "check": "Deal ledger Round: E's 09/10/2020 $2.00 LOI, G's 09/14/2020 software-only IOI, CLP's 09/17/2020 IOI and E's 09/18/2020 revised LOI are in final-process round 1. Company A's 02/06/2018 and 04/25/2018 IOIs and Company C's 08/13/2019 LOI are round 0 (unsolicited, before any outreach they could answer).",
+      "expected": "As listed.",
+      "partial_credit": "Half with exactly one misassignment (e.g., E's 09/10 LOI in round 0).",
+      "accepted_alternatives": [
+        "E's 09/18 bid in a 09/17 best-offer round under the SY-R04 alternative",
+        "Company C's 08/13/2019 LOI in round 1 where the extractor's map already has round 1 open in C's process before 08/13/2019 (2018 and 2019 merged, or process-2 round 1 opened by management's Q3 2019 portal outreach)"
+      ],
+      "source_pages": [
+        "30",
+        "32",
+        "33"
+      ],
+      "source_quote": "for an all-cash transaction to acquire 100% of the Company’s outstanding equity and equity awards at a per Share price of $2.00",
+      "provenance": [
+        "filing pp. 30-33",
+        "instruction E6",
+        "v1.13.2 draft #3-#4, #18, #34, #37, #40, #43",
+        "v1.13 draft #3-#4, #12, #30, #33, #37, #40",
+        "instruction verifier (C round-1 alternative)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard"
+    },
+    {
+      "id": "SY-R10",
+      "category": "rounds",
+      "weight": 1.5,
+      "item": "Earlier-process round skeleton and opening order",
+      "check": "Deal ledger and Rounds: (a) the process holding the 2018 attempt has a round 1 opened by Liontree's outreach to about 12 parties (Round opened Sort date on or after 05/08/2018, no later than 12/31/2018); (b) where the 2019 attempt is a separate process, it has exactly one round-1 opening tied to its outreach (management's Q3 2019 portal outreach, Canaccord's post-08/25/2019 outreach to 18, or the 08/25/2019 engagement that launched it; which is not scored); (c) in every process, each round from 1 up has exactly one Round opened row and one Rounds line, and no row carrying Round n ≥ 1 has a lower # than that round's Round opened row (e.g., the 05/08/2018 Liontree Adviser row is round 0 or placed after the opening).",
+      "expected": "Process 1 round 1 opened at Liontree's outreach (on/after 05/08/2018); one round-1 opening for a separate 2019 process; one opening row and one Rounds line per round; no round-n row above its opening.",
+      "partial_credit": "Half with exactly one violation (e.g., one round-1 row above its Round opened row, or one round without a Rounds line). None with two or more, or if the 2018 outreach opens no round.",
+      "accepted_alternatives": [
+        "With 2018 and 2019 merged (SY-R01 alternative): the merged process opens round 1 at Liontree's outreach and has at most one further round for the 2019 outreach, each with one opening row and one Rounds line",
+        "Liontree Adviser row coded round 1 when it is placed after the round-1 Round opened row"
+      ],
+      "source_pages": [
+        "30",
+        "31"
+      ],
+      "source_quote": "Liontree then reached out to approximately 12 potential strategic and financial companies to evaluate their interest in an acquisition of the Company.",
+      "provenance": [
+        "filing pp. 30-31",
+        "instruction E6 (round 1 opens at the first outreach wave), D2 (exactly one Round opened per round), Part F check 4",
+        "v1.13.2 raw draft #5 (Liontree Adviser coded round 1 above #6 Round opened)",
+        "v1.13 draft #5 (round 0), #6, #15",
+        "coverage verifier (missing test)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "The v1.13.2 draft left a round-1 row above its opening row; otherwise guards the earlier processes' round skeleton, which no other test covers."
+    },
+    {
+      "id": "SY-F01",
+      "category": "formality_conditions",
+      "weight": 2.5,
+      "item": "CLP 09/17/2020 IOI labels",
+      "check": "Deal ledger CLP Bid dated 09/17/2020: Formality Informal; All cash Yes; Conditions Unclear — committed capital is reported, but the narrative shows CLP's diligence still open (parties 'still conducting diligence' on 09/16; on 09/22 any increase was 'subject to further diligence'), so Light's 'nothing shows diligence still open' test fails.",
+      "expected": "Informal; Unclear; All cash Yes.",
+      "partial_credit": "Half if Conditions Heavy; none if Conditions Light or None or Formality Formal.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "33"
+      ],
+      "source_quote": "contemplated a purchase price of $1.35 to $1.41 per Share. CLP proposed paying cash for the purchase price by utilizing committed capital from its private equity vehicles",
+      "provenance": [
+        "filing p. 33",
+        "instruction E12 (Light requires nothing showing diligence open)",
+        "v1.13.2 draft #40",
+        "v1.13 draft #37"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "'Committed capital' tempts a careless Light; E12's diligence clause makes it Unclear."
+    },
+    {
+      "id": "SY-F02",
+      "category": "formality_conditions",
+      "weight": 3,
+      "item": "Company E's 09/10 and 09/18/2020 LOIs",
+      "check": "Deal ledger: E's 09/10/2020 LOI is a whole-company Bid (the 180 Degree rollover does not make it partial), Formality Informal, All cash Yes. E's 09/18/2020 revised LOI is a Bid (not Bid reaffirmed: the target had not moved to finalize with E), Formality Informal, Conditions Heavy (exclusivity requested to 10/23/2020, about five weeks, before diligence had begun).",
+      "expected": "09/10: Bid, Informal, All cash Yes. 09/18: Bid, Informal, Heavy.",
+      "partial_credit": "Half if 09/18 Conditions Unclear, or 09/18 labelled Bid reaffirmed, or 09/18 has no bid row but its $2.00 reaffirmation and exclusivity request are recorded (Exclusivity changed row and/or Note), or 09/10 All cash Not stated. None if the rollover makes the 09/10 bid an Other-scope bid or the 09/18 bid is Light/None.",
+      "accepted_alternatives": [
+        "09/18 Formality Formal only together with the SY-R04 alternative (09/17 best-offer round treated as best-and-final)"
+      ],
+      "source_pages": [
+        "32",
+        "33"
+      ],
+      "source_quote": "re-affirming that it would only pay $2.00 per Share in connection with its acquisition of the Company, and requesting that the Company enter into exclusivity with it until October 23, 2020",
+      "provenance": [
+        "filing pp. 32-34",
+        "instruction E1 (rollover), E10, E12 (multi-week exclusive period is Heavy)",
+        "v1.13.2 draft #34, #43",
+        "v1.13 draft #30, #40, Q6",
+        "instruction and coverage verifiers (fold-in partial credit)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Tests the rollover scope trap and Heavy-on-exclusivity."
+    },
+    {
+      "id": "SY-F03",
+      "category": "formality_conditions",
+      "weight": 2,
+      "item": "CLP 01/04/2021 $1.88 LOI labels",
+      "check": "Deal ledger CLP Bid dated 01/04/2021: Formality Informal; All cash Yes; Conditions Unclear or Heavy — not Light or None, because diligence was still under way (accelerated into January; weeks of diligence after the LOI) even though the offer was not contingent on third-party debt.",
+      "expected": "Informal; Unclear (Heavy accepted); All cash Yes.",
+      "partial_credit": "Half if exactly one of Formality/Conditions is wrong.",
+      "accepted_alternatives": [
+        "Conditions Heavy (a further substantive diligence period is reported after the LOI)"
+      ],
+      "source_pages": [
+        "35",
+        "36",
+        "37"
+      ],
+      "source_quote": "with a purchase price of $1.88 per Share in cash. The letter of intent indicated that if necessary, CLP would be prepared to fund the entire acquisition amount through an equity commitment",
+      "provenance": [
+        "filing pp. 35-37",
+        "instruction E12",
+        "v1.13.2 draft #64",
+        "v1.13 draft #64"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "The equity-funding language tempts None/Light."
+    },
+    {
+      "id": "SY-F04",
+      "category": "formality_conditions",
+      "weight": 3,
+      "item": "CLP $2.00 bid (reported 01/06/2021) labels",
+      "check": "Deal ledger CLP Bid at $2.00: Formality Informal (non-binding LOI, no agreement markup, no final solicitation); Conditions Heavy (30-day exclusivity requested, a stated multi-week exclusive period); All cash Yes (Not stated accepted).",
+      "expected": "Informal; Heavy; All cash Yes (or Not stated).",
+      "partial_credit": "Half if Conditions Unclear; none if Formal or Conditions None/Light.",
+      "accepted_alternatives": [
+        "All cash Not stated (the $2.00 report does not itself restate the form of consideration; E13), provided Formality and Conditions are right"
+      ],
+      "source_pages": [
+        "36"
+      ],
+      "source_quote": "Canaccord Genuity reported that CLP agreed to increase its offer to $2.00 per Share and had also requested a 30-day period of exclusivity.",
+      "provenance": [
+        "filing p. 36",
+        "instruction E11, E12, E13",
+        "acc9986 instruction_comparison.md (v1.12.1 'calls a non-binding letter Formal')",
+        "v1.13.2 draft #69",
+        "v1.13 draft #67"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "A prior run labelled this non-binding letter Formal."
+    },
+    {
+      "id": "SY-F05",
+      "category": "formality_conditions",
+      "weight": 2.5,
+      "item": "CLP's draft merger agreement as Bid reaffirmed",
+      "check": "Deal ledger: a Bid reaffirmed row for CLP recording that its standing $2.00 offer became formal after the target moved to finalize with it — dated 01/21/2021 (CLP's counsel delivered CLP's own initial draft Merger Agreement) or to CLP's returned drafts after 01/27/2021 and before 02/10/2021 — with 2.00 in both price cells carried from the $2.00 bid, Formality Formal, Conditions Unclear or Heavy (diligence continued into February), All cash Yes or Not stated. The $2.00 Bid row itself stays Informal.",
+      "expected": "Bid reaffirmed, 01/21/2021 (or on late-January/early-February returned drafts), 2.00, Formal, Unclear (Heavy accepted).",
+      "partial_credit": "Half if there is no reaffirmation row but a Question or Note discusses the 01/21 draft and its bearing on formality; half if the row is labelled Bid instead of Bid reaffirmed; half if Conditions is None or Light; half if the reaffirmation is placed at the 01/07/2021 LOI execution. None if the $2.00 row is itself made Formal, or nothing records the draft agreement's bearing on formality.",
+      "accepted_alternatives": [
+        "Conditions Heavy",
+        "All cash Not stated",
+        "Dated within 01/28–02/09/2021 on CLP's returned Merger Agreement drafts, where no earlier reaffirmation row exists"
+      ],
+      "source_pages": [
+        "37"
+      ],
+      "source_quote": "outside counsel to CLP, Thompson Hine LLP (“Thompson”), delivered an initial draft of the Merger Agreement to Gunderson",
+      "provenance": [
+        "filing p. 37",
+        "instruction E10, E11 items 1 and 3",
+        "RESEARCH_QUESTIONS provisional convention 3 (formal timing)",
+        "acc9986 synacor.md (v1.11 late-January returned-draft dating judged right)",
+        "v1.13.2 draft #75, Q8",
+        "v1.13 draft #74, Q10"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Formal timing is a provisional convention; fail only if the non-binding $2.00 row is made Formal retroactively or the draft agreement is ignored."
+    },
+    {
+      "id": "SY-F06",
+      "category": "formality_conditions",
+      "weight": 2,
+      "item": "CLP 02/10/2021 $2.20 bid labels",
+      "check": "Deal ledger CLP Bid dated 02/10/2021: Formality Formal; Conditions None or Light (equity commitment, no financing condition; raise conditioned only on signing that day); All cash Yes. The Merger agreement signed row leaves price cells, All cash, Formality and Conditions blank.",
+      "expected": "Formal; None (Light accepted); All cash Yes; signing row blank.",
+      "partial_credit": "Half if Conditions Unclear or Heavy, or if the signing row carries price/bid labels; none if Informal.",
+      "accepted_alternatives": [
+        "Conditions Light (the same-day signing requirement read as final documentation)"
+      ],
+      "source_pages": [
+        "28",
+        "29",
+        "38"
+      ],
+      "source_quote": "CLP also noted the increase in purchase price was conditioned upon finalizing and executing the Merger Agreement that same day",
+      "provenance": [
+        "filing pp. 28-29, 38",
+        "instruction D2, E12",
+        "v1.13.2 draft #77-#78",
+        "v1.13 draft #76-#77",
+        "Alex/RA row 616 (Formal)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard"
+    },
+    {
+      "id": "SY-F07",
+      "category": "formality_conditions",
+      "weight": 2.5,
+      "item": "Company E's partial tender proposals",
+      "check": "Deal ledger: E's 12/14/2020 proposal (tender for 35% at $2.00 with standstill waiver, new CEO/CFO, three board seats, poison pill) and its 12/29/2020 letter (20% minimum tender, board recommendation, expiry by 01/04/2021) are Other-scope bid rows (a minority stake), not Bid; Formality Informal; Conditions Heavy. Price cells may hold 2.00 or be blank.",
+      "expected": "Two Other-scope bid rows, Informal, Heavy.",
+      "partial_credit": "Half if one of the two is missing or mis-scoped, or Conditions Unclear. None if both are coded as whole-company Bids.",
+      "accepted_alternatives": [
+        "Price cells blank",
+        "12/29 letter recorded as an Other-scope bid carried from 12/14 with the added conditions"
+      ],
+      "source_pages": [
+        "34",
+        "35"
+      ],
+      "source_quote": "so that Company E could commence a tender offer at a purchase price of $2.00 per Share for 35% of the outstanding Shares",
+      "provenance": [
+        "filing pp. 34-35",
+        "instruction E1 (minority stake), E10, E12",
+        "acc9986 synacor.md (tender-offer scope clean)",
+        "v1.13.2 draft #58, #62",
+        "v1.13 draft #56, #61",
+        "Alex/RA row 611 note"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Coding these as whole-company Bids would count a $2.00 whole-company price that E disclaimed."
+    },
+    {
+      "id": "SY-F08",
+      "category": "formality_conditions",
+      "weight": 1.5,
+      "item": "Segment-only bids",
+      "check": "Deal ledger: G's 09/14/2020 IOI (software and services only), I's 12/08/2020 LOI (portal and advertising only) and F's 09/15/2019 IOI (portal) are Other-scope bid rows, Formality Informal, with blank price cells; G's Conditions are Unclear or Heavy (equity plus third-party debt financing, commitment not reported), not None/Light. I's 12/29/2020 re-affirmation, if given its own row, is also an Other-scope bid (Informal, blank price); none of these is a whole-company Bid.",
+      "expected": "Other-scope bid rows, Informal, blank prices; G Unclear (Heavy accepted).",
+      "partial_credit": "Half if one row is mislabelled or omitted (e.g., I's 12/29 labelled Bid reaffirmed, or any segment bid coded as a whole-company Bid).",
+      "accepted_alternatives": [
+        "G Conditions Heavy",
+        "I's 12/29 re-affirmation folded into the Note of I's 12/08 Other-scope bid, or recorded as an Other material event, with no new bid row"
+      ],
+      "source_pages": [
+        "31",
+        "33",
+        "34",
+        "35"
+      ],
+      "source_quote": "proposed acquiring only the Company’s software and services business",
+      "provenance": [
+        "filing pp. 31-35",
+        "instruction E1, E10, E12",
+        "v1.13.2 draft #20, #37, #57, #61",
+        "v1.13 draft #17, #33, #55, #60",
+        "instruction verifier (I 12/29 fold-in)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard; none may be a whole-company Bid"
+    },
+    {
+      "id": "SY-F09",
+      "category": "formality_conditions",
+      "weight": 1,
+      "item": "Earlier-process whole-company bids: labels and consideration",
+      "check": "Deal ledger: Company A's 02/06/2018 and 04/25/2018 IOIs and Company C's 08/13/2019 LOI are whole-company Bid rows (not Other-scope), with Formality Informal, Conditions Unclear (no condition, diligence or financing is reported; silence supports neither None nor Light) and blank price cells. All cash is Not stated for A's two IOIs and No for C's LOI (cash and stock).",
+      "expected": "A 02/06/2018 and 04/25/2018: Bid, Informal, Unclear, All cash Not stated, no price. C 08/13/2019: Bid, Informal, Unclear, All cash No, no price.",
+      "partial_credit": "Half with exactly one wrong label across the three rows (commonly C's All cash Not stated, or Conditions None on a silent row). None with two or more.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "30"
+      ],
+      "source_quote": "On August 13, 2019, Company C submitted a non-binding letter of intent proposing an acquisition of the Company with consideration in the form of cash and stock.",
+      "provenance": [
+        "filing p. 30",
+        "instruction E12 (silence establishes nothing; None needs affirmative support), E13 (shares make All cash No; a dollar price alone does not establish cash)",
+        "v1.13.2 draft #3, #4, #18",
+        "v1.13 draft #3, #4, #12",
+        "Alex/RA rows 590, 591, 597 (Informal; all_cash NA)",
+        "coverage verifier (missing test)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard; RA coding left C's mixed consideration blank, and silent early bids invite a careless Conditions None"
+    },
+    {
+      "id": "SY-C01",
+      "category": "chronology",
+      "weight": 2.5,
+      "item": "Key 2020–21 dates",
+      "check": "Deal ledger rows carry these reported days (When, Date from, Date to, Sort date): CLP NDA 09/08/2020; E LOI 09/10/2020; G IOI 09/14/2020; CLP IOI 09/17/2020; E revised LOI or its exclusivity request 09/18/2020; E LOI/exclusivity executed 09/23/2020; exclusivity expired 10/23/2020; I NDA 11/19/2020; I LOI 12/08/2020; E partial tender 12/14/2020; E letter 12/29/2020; a row for the Committee's 12/30/2020 decision (Round opened, Other material event, admission or exit row); CLP $1.88 LOI and E's decline 01/04/2021; board $2.20 requirement 02/08/2021; CLP $2.20 and signing 02/10/2021; announcement 02/11/2021. Where rows are recorded for I's 12/29 re-affirmation, the 01/07/2021 LOI execution or CLP's 01/21/2021 draft Merger Agreement, they carry those days; if those three are only in a Note, that is not a deviation.",
+      "expected": "All dates as listed.",
+      "partial_credit": "Half if one or two are wrong or missing; none if three or more.",
+      "accepted_alternatives": [
+        "01/07/2021 LOI execution carried in the When or Note of the 01/06 decision or Round opened row"
+      ],
+      "source_pages": [
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38"
+      ],
+      "source_quote": "On January 7, 2021, the Company and CLP executed the non-binding letter of intent.",
+      "provenance": [
+        "filing pp. 32-38",
+        "instruction E2, E8",
+        "v1.13.2 and v1.13 drafts",
+        "Alex/RA rows 603-617",
+        "instruction and coverage verifiers (no double penalty on convention-dependent rows)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard"
+    },
+    {
+      "id": "SY-C02",
+      "category": "chronology",
+      "weight": 2.5,
+      "item": "Date windows for ranged events",
+      "check": "Deal ledger Date from/Date to: (a) 2020 Canaccord outreach Contact cohort: Date from 07/13/2020 (07/11 accepted), Date to 09/19/2020; (b) any row recording the 12/18–12/21/2020 outreach to CLP, G and H, or a re-entry dated to it, has Date from 12/18/2020 and Date to 12/21/2020; (c) CLP's $2.00 bid: When 'by 01/06/2021', Date to 01/06/2021, Date from 01/05/2021 or blank; (d) Company C NDA 'March 2019': 03/01–03/31/2019, and C's exit 'October 2019': 10/01–10/31/2019; (e) Liontree 2018 outreach contacts: Date from 05/08/2018, Date to blank or 12/31/2018.",
+      "expected": "Windows as listed.",
+      "partial_credit": "Half if one or two sub-items deviate (e.g., the $2.00 bid given 01/06/2021 as both Date from and Date to); none if three or more.",
+      "accepted_alternatives": [
+        "(c) Date from blank (no deviation)",
+        "(c) Date from 01/06/2021 counts as one deviation only"
+      ],
+      "source_pages": [
+        "30",
+        "31",
+        "32",
+        "35",
+        "36"
+      ],
+      "source_quote": "Between December 18 and December 21, 2020, at the direction of the Company, Canaccord Genuity engaged in further outreach to CLP, Company G and Company H",
+      "provenance": [
+        "filing pp. 30-36",
+        "instruction E8, Part B",
+        "v1.13 draft #67 (01/05–01/06)",
+        "v1.13.2 draft #69 (01/06 only)",
+        "source-fidelity and instruction verifiers (blank Date from allowed)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "The drafts differ on the $2.00 window; tests keeping the filing's precision without over-narrowing."
+    },
+    {
+      "id": "SY-C03",
+      "category": "chronology",
+      "weight": 1.5,
+      "item": "Ordering around CLP's selection",
+      "check": "Deal ledger # order with non-decreasing Sort dates: E's (and I's, if recorded) 12/29 rows before the 12/30 Committee decision; CLP's 01/04 $1.88 bid, E's 01/04 Withdrew and CLP's $2.00 bid all before the Round opened row for CLP's definitive-negotiation round (01/06 or 01/07); the 02/08 price-requirement row before the 02/10 $2.20 bid, which precedes the Merger agreement signed row.",
+      "expected": "Order as listed; Sort dates never decrease.",
+      "partial_credit": "Half with exactly one ordering violation.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "35",
+        "36",
+        "37",
+        "38"
+      ],
+      "source_quote": "Canaccord Genuity reported that CLP agreed to increase its offer to $2.00 per Share and had also requested a 30-day period of exclusivity.",
+      "provenance": [
+        "filing pp. 35-38",
+        "instruction E8",
+        "v1.13 draft #67-#69"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "A same-day 01/06 opening tempts placing the $2.00 bid after the decision."
+    },
+    {
+      "id": "SY-C04",
+      "category": "chronology",
+      "weight": 2,
+      "item": "Exclusivity events, including CLP's unexecuted request",
+      "check": "Deal ledger: E's exclusivity is recorded as requested 09/18/2020 (Exclusivity changed row or the Bid Note), executed 09/23/2020 and ended/expired 10/23/2020 (Exclusivity changed rows). CLP's 30-day exclusivity request (reported 01/06/2021) is recorded only as requested; no row records CLP exclusivity as executed or granted on 01/07/2021 or later, because the filing never says it was granted.",
+      "expected": "E: requested 09/18, executed 09/23, ended 10/23/2020; CLP: requested only.",
+      "partial_credit": "Half if one E step is missing; half if CLP's exclusivity is recorded as executed with Inferred = Y and a Note saying execution is not reported; none if CLP exclusivity is recorded as a reported execution.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "33",
+        "34",
+        "36"
+      ],
+      "source_quote": "On October 23, 2020, the exclusivity period that the Company had agreed upon with Company E expired",
+      "provenance": [
+        "filing pp. 33-36",
+        "instruction D2, E14, Part B",
+        "v1.13.2 draft #44, #48, #52, #70",
+        "v1.13 draft #41, #46, #50, #68"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Trap: inferring that the 01/07 LOI granted CLP exclusivity is unsupported."
+    },
+    {
+      "id": "SY-C05",
+      "category": "chronology",
+      "weight": 1.5,
+      "item": "Signing, announcement and secondary-section consistency",
+      "check": "Deal ledger: a Merger agreement signed row dated 02/10/2021 (Note gives $2.20 cash; may cite the equity commitment and Tender and Support Agreements from pp. 28-29, 61) and a separate Merger announced row dated 02/11/2021 with Round post; CLP's NDA date matches the Section 13 Confidentiality Agreement summary (09/08/2020, p. 62); no event row dated after the 03/03/2021 filing.",
+      "expected": "Signing 02/10/2021 and announcement 02/11/2021 as two rows; announcement post.",
+      "partial_credit": "Half if the two are merged into one row or the announcement round is not post.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "38",
+        "62"
+      ],
+      "source_quote": "Before the opening of trading on the public markets on February 11, 2021, the Company issued a press release announcing entry into the Merger Agreement",
+      "provenance": [
+        "filing pp. 28-29, 38, 61-62",
+        "instruction D2 (signing and announcement are two rows), E8 (filing date cutoff)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard; the secondary sections add confirmation, not new events"
+    },
+    {
+      "id": "SY-B01",
+      "category": "bids_prices",
+      "weight": 1.5,
+      "item": "Company E whole-company prices",
+      "check": "Deal ledger: E's 09/10/2020 Bid and 09/18/2020 Bid each have Price low = Price high = 2.00. If the 09/18 letter has no bid row (SY-F02 fold-in path), score this test on the 09/10 row alone.",
+      "expected": "2.00/2.00 on both.",
+      "partial_credit": "Half if one is wrong or missing.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "32",
+        "33"
+      ],
+      "source_quote": "for an all-cash transaction to acquire 100% of the Company’s outstanding equity and equity awards at a per Share price of $2.00",
+      "provenance": [
+        "filing pp. 32-33",
+        "Alex/RA rows 604, 608"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard"
+    },
+    {
+      "id": "SY-B02",
+      "category": "bids_prices",
+      "weight": 2,
+      "item": "CLP 09/17/2020 range",
+      "check": "Deal ledger: CLP Bid dated 09/17/2020 with Price low 1.35 and Price high 1.41.",
+      "expected": "1.35 / 1.41.",
+      "partial_credit": "none",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "33"
+      ],
+      "source_quote": "contemplated a purchase price of $1.35 to $1.41 per Share. CLP proposed paying cash for the purchase price by utilizing committed capital from its private equity vehicles",
+      "provenance": [
+        "filing p. 33",
+        "Alex/RA row 606"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard"
+    },
+    {
+      "id": "SY-B03",
+      "category": "bids_prices",
+      "weight": 1.5,
+      "item": "CLP 01/04/2021 price",
+      "check": "Deal ledger: CLP Bid dated 01/04/2021 with Price low = Price high = 1.88.",
+      "expected": "1.88/1.88.",
+      "partial_credit": "none",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "36"
+      ],
+      "source_quote": "with a purchase price of $1.88 per Share in cash. The letter of intent indicated that if necessary, CLP would be prepared to fund the entire acquisition amount through an equity commitment",
+      "provenance": [
+        "filing p. 36",
+        "Alex/RA row 614"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard"
+    },
+    {
+      "id": "SY-B04",
+      "category": "bids_prices",
+      "weight": 1.5,
+      "item": "CLP $2.00 price and dating",
+      "check": "Deal ledger: CLP Bid with Price low = Price high = 2.00, dated by 01/06/2021 (Date to 01/06/2021) and placed before the LOI execution; not dated 01/07 or 01/08/2021.",
+      "expected": "2.00/2.00, by 01/06/2021.",
+      "partial_credit": "Half if the price is right but the bid is dated 01/07/2021 or later.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "36"
+      ],
+      "source_quote": "Canaccord Genuity reported that CLP agreed to increase its offer to $2.00 per Share and had also requested a 30-day period of exclusivity.",
+      "provenance": [
+        "filing p. 36",
+        "acc9986 synacor.md (RA row 615 dates it 01/08)",
+        "Alex/RA row 615"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "RA coding dated this bid 01/08."
+    },
+    {
+      "id": "SY-B05",
+      "category": "bids_prices",
+      "weight": 1.5,
+      "item": "CLP 02/10/2021 price",
+      "check": "Deal ledger: CLP Bid dated 02/10/2021 with Price low = Price high = 2.20.",
+      "expected": "2.20/2.20.",
+      "partial_credit": "none",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "38"
+      ],
+      "source_quote": "CLP indicated that it would increase the purchase price per Share from $2.00 per Share to $2.20 per Share",
+      "provenance": [
+        "filing p. 38",
+        "Alex/RA row 616"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard"
+    },
+    {
+      "id": "SY-B06",
+      "category": "bids_prices",
+      "weight": 2,
+      "item": "No invented prices",
+      "check": "Deal ledger: (a) CLP's 09/22/2020 verbal remark that, subject to diligence, it 'would consider' raising its price 10–25% has no price cells filled, and no computed range such as $1.49–$1.76 appears in any price cell; it is best recorded as Other material event or in a Note; (b) Company A's IOIs, Company C's LOI and the segment bids of F, G and I have blank price cells; (c) no priced CLP bid is dated between 09/23/2020 and 01/03/2021 (the 12/29 reference to 'CLP’s offer' fixes no price).",
+      "expected": "No computed or invented price anywhere; 09/22 remark not a priced Bid.",
+      "partial_credit": "Half if the 09/22 remark is a Bid row with blank price cells (with or without a Question); none if any computed or invented price appears in a price cell.",
+      "accepted_alternatives": [
+        "09/22 remark folded into a Note"
+      ],
+      "source_pages": [
+        "30",
+        "31",
+        "33",
+        "35"
+      ],
+      "source_quote": "CLP provided a verbal indication that, subject to further diligence, it would consider increasing its purchase price by 10% to 25% per Share",
+      "provenance": [
+        "filing pp. 30-35",
+        "instruction E10 (valuation statement without an offer is not a Bid), E13",
+        "acc9986 instruction_comparison.md (v1.12 coded the priceless remark as a Bid; the reviewed DeepSeek draft kept it with a computed range)",
+        "v1.13 draft #44 (Bid, blank price)",
+        "v1.13.2 draft #47 (Other material event)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Earlier runs coded the remark as a Bid, one with a computed price range."
+    },
+    {
+      "id": "SY-O01",
+      "category": "other",
+      "weight": 1.5,
+      "item": "Acquirer, type and agreed price",
+      "check": "Deal facts: Acquirer names CLP SY Holding, LLC (Parent) and/or SY Merger Sub Corporation, controlled by Centre Lane Partners V, L.P. (Centre Lane Partners / CLP); Acquirer type Financial; Agreed price and consideration $2.20 per share in cash through a tender offer followed by a DGCL 251(h) merger.",
+      "expected": "CLP entities; Financial; $2.20 cash, two-step.",
+      "partial_credit": "Half if one element is missing or wrong.",
+      "accepted_alternatives": [
+        "Acquirer given simply as Centre Lane Partners (CLP) with Parent/Purchaser named"
+      ],
+      "source_pages": [
+        "1",
+        "28",
+        "38"
+      ],
+      "source_quote": "CLP Fund V, a private investment fund, is primarily engaged in the business of investing in companies.",
+      "provenance": [
+        "filing cover, pp. 2, 28, 38"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard"
+    },
+    {
+      "id": "SY-O02",
+      "category": "other",
+      "weight": 1,
+      "item": "Deal dates and filing",
+      "check": "Deal facts: Merger agreement signed 02/10/2021; Merger announced 02/11/2021; Filing type and date SC TO-T (Offer to Purchase) dated 03/03/2021; Background pages 30–38.",
+      "expected": "02/10/2021; 02/11/2021; SC TO-T 03/03/2021; pp. 30–38.",
+      "partial_credit": "Half if one field is wrong.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "1",
+        "30",
+        "38"
+      ],
+      "source_quote": "Later that day, the parties executed the Merger Agreement and the Tender and Support Agreements",
+      "provenance": [
+        "filing cover (March 3, 2021), pp. 30-38, 67"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard"
+    },
+    {
+      "id": "SY-O03",
+      "category": "other",
+      "weight": 1,
+      "item": "Advisers",
+      "check": "Deal facts: Target financial advisers include Canaccord Genuity (2019–2021; fairness opinion 02/10/2021), and Liontree Advisors (2018) either here or as a ledger Adviser row; Target legal advisers = Gunderson Dettmer. Thompson Hine is not listed as the target's counsel (it is CLP's).",
+      "expected": "Canaccord Genuity (and Liontree); Gunderson Dettmer.",
+      "partial_credit": "Half if Thompson Hine is listed as the target's counsel, or if Liontree appears neither in Deal facts nor as a ledger Adviser row.",
+      "accepted_alternatives": [
+        "Deal facts lists only Canaccord Genuity where the ledger has a Liontree Adviser row"
+      ],
+      "source_pages": [
+        "30",
+        "31",
+        "32",
+        "37",
+        "38"
+      ],
+      "source_quote": "Canaccord Genuity rendered for the benefit of the Company Board its oral opinion, subsequently confirmed in writing on February 10, 2021",
+      "provenance": [
+        "filing pp. 30-38",
+        "instruction D2, D5"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard"
+    },
+    {
+      "id": "SY-O04",
+      "category": "other",
+      "weight": 1.5,
+      "item": "Auction screen, initiation, whole-company bids",
+      "check": "Deal facts: the Auction screen entry for the 2020–21 process begins 'Met' with a supported number (at least 14 NDA parties; 'at least 15' counting Company I's 11/19/2020 NDA is also supported); Initiation is mixed or bidder-led (Company E's approach, then a target-run outreach); Whole-company bids = Yes.",
+      "expected": "Met (final process, at least 14); mixed; Yes.",
+      "partial_credit": "Half if one of the three is wrong (e.g., Initiation target-led, or screen Uncertain for the final process).",
+      "accepted_alternatives": [
+        "Initiation bidder-led"
+      ],
+      "source_pages": [
+        "32"
+      ],
+      "source_quote": "Of the parties contacted, 14 parties executed non-disclosure agreements with the Company and were provided access to confidential information relating to the Company’s business and prospects.",
+      "provenance": [
+        "filing pp. 32-36",
+        "instruction E1, D5",
+        "v1.13.2 and v1.13 Deal facts"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard"
+    }
+  ],
+  "unscored_open_calls": [
+    {
+      "item": "Company B merger of equals (Oct 2018–Mar 2019)",
+      "why": "Synacor proposed it, so it may be an acquisition by Synacor rather than a sale of Synacor, and E1 does not settle mergers of equals. The choice changes the 2018–2019 gap but no tested participant. RA coding includes B; both Opus drafts exclude it. Neither inclusion nor exclusion is scored."
+    },
+    {
+      "item": "Whether the 2018 and 2019 attempts are separate processes",
+      "why": "Liontree's roughly 12 contacts are undated, running at most to 12/31/2018, so E5(b)'s three-month break cannot be established or refuted. SY-R01 and SY-R10 accept 2 or 3 processes."
+    },
+    {
+      "item": "Process 2 round-1 trigger and the place of the 2019 portal divestiture",
+      "why": "The first 2019 outreach was management's Q3 2019 portal-only outreach to about five companies; Canaccord's 18 whole-company contacts came after 08/25/2019. E6 does not say whether a segment solicitation opens the whole-company process's round. SY-R10 requires one opening but does not score which."
+    },
+    {
+      "item": "09/17/2020 'best offer' request to Company E",
+      "why": "It is either improvement bargaining inside round 1, under E6's counter-proposal rule, or a first best-and-final request that opens a round and makes E's 09/18 reply Formal. Tests accept both, provided the map is consistent."
+    },
+    {
+      "item": "Opening date of the re-solicitation round (10/27 vs 12/18–21 vs 12/30/2020) and whether 10/27 and 12/30 are separate rounds",
+      "why": "The 10/27 re-outreach and the 12/30 selection of CLP, H and I with an LOI request can each be read as a stage change, and the filing's 'continue to seek' language blurs the line. SY-R05 scores only that the stage exists and that CLP's two January bids sit in it."
+    },
+    {
+      "item": "Exit reason for CLP's 09/23/2020 displacement",
+      "why": "The filing gives exclusivity as the mechanism, and CLP's price was below E's. Terms or process, Other stated reason, Not stated and Lower offer than rivals each have some support."
+    },
+    {
+      "item": "Company F's closure",
+      "why": "'Unable to agree on terms' is undated and does not assign the decision, so an own-row Withdrew and closure by the process marker are both defensible. (Company C's ending is reported and dated, October 2019, so it is scored in SY-P10.)"
+    },
+    {
+      "item": "Company A's exit round (0 or 1)",
+      "why": "Liontree's outreach is undated after 05/08/2018; if it began before A's 06/20/2018 withdrawal, A's exit carries round 1, otherwise round 0. Not scored."
+    },
+    {
+      "item": "Late-December 'CLP’s offer' reference (12/29/2020)",
+      "why": "The phrase may refer to CLP's standing September IOI or be retrospective. An unpriced, inferred CLP bid is arguable; only an invented price is penalised (SY-B06)."
+    },
+    {
+      "item": "Conditions on Company E's 09/10/2020 LOI",
+      "why": "No diligence or financing statement is reported. The 180 Degree rollover it relies on was supported 'subject to due diligence' on 09/14, so Unclear and Heavy are both arguable."
+    },
+    {
+      "item": "Auction screen for processes 1–2",
+      "why": "E1 counts prospective acquirers under NDA but does not say whether portal-only NDA holders (E 2019, F) count. Process 1 could be Not met or Uncertain, given the undocumented Liontree contacts."
+    },
+    {
+      "item": "Whether CLP and Company E's 07/13/2020 NDA amendment are among the '14 parties'",
+      "why": "CLP signed inside the outreach window but is never said to have been contacted; E's amendment may predate the outreach. These set the bounds of the NDA-signer and non-submitter ranges; SY-P02 and SY-P03 accept every bound that follows from a stated reading."
+    },
+    {
+      "item": "Information-access rows (Company H's 10/27 request for updated financials; CLP's accelerated December diligence)",
+      "why": "E2 asks for rows on differential access, but the filing does not say whether H received the information, and CLP's diligence pace may be only a Note."
+    },
+    {
+      "item": "Company G after the 12/18–12/21 re-contact",
+      "why": "G said it would not go above its earlier price, and on 12/30 it 'would not increase its offer price', which could imply its offer still stood. A re-entry and second closure is tolerated but not required."
+    }
+  ],
+  "notes": "Method: read the frozen v1.13.2 instruction in full, RESEARCH_QUESTIONS.md, and the filing's whole Background of the Offer (Offer to Purchase §11, pp. 30–38) plus §9 (p. 28), §10 financing (pp. 28–29) and §13 agreements (pp. 61–62). Printed pages were mapped from page footers; every source_quote was re-checked by script against that map (verbatim after whitespace/quote normalisation, one passage, at most 40 words); weights re-summed by script. Leads, not truth: the v1.13.2 raw Opus draft (79 events, 4 final-process rounds, R3 at 10/27), the v1.13 Opus draft (78 events, R3 at 12/30), the v1.11 model review (git show acc9986:_dev/reviews/2026-09-21/synacor.md), instruction_comparison.md, and Alex/RA rows 589–617 of ref/deal_details_Alex_2026.xlsx (inherited RA coding, no red Alex corrections; known errors include NDAs for G and H, H coded Financial, an exact '11 parties', CLP's $2.00 dated 01/08, H dropped 11/02, I dropped 02/10). Weights: participation 30, rounds 25, formality_conditions 20, chronology 10, bids_prices 10, other 5; 45 tests.\n\nChange log (reconciliation of three verifier reports):\n- Weights: the draft's rounds tests summed to 24.5 (total 99.5). Rebalanced toward discriminating items: P06 3 and P09 3.5 (+0.5 each), P01 and P11 2 (−0.5 each); R05 4.5 (+0.5), R02 2, R06 2.5, R08 1.5 (−0.5 each), new R10 1.5; F06 2, F08 1.5 (−0.5 each), new F09 1; C02 2.5 (+0.5), C03 1.5 (−0.5).\n- Added SY-R10 (earlier-process round skeleton and opening order; the v1.13.2 draft has the Liontree Adviser row coded round 1 above its Round opened row) and SY-F09 (A's and C's whole-company bids; C's cash-and-stock LOI is All cash No). Both quotes verified on p. 30.\n- SY-P01: accept a range capped at 37 when overlapping parties have own Contact rows; half for an unnetted Company H contact row.\n- SY-P02: accept a blank-Count 13–14 range netting only CLP (E3 nets only members with own rows; G has no NDA row), with G/E named or reflected in the Rounds range; added the G-NDA trap (RA row 600); exact Count with stated uncertainty now half, without it none. Corrected provenance: the v1.11 review called the 13-person NDA cohort (after CLP) arithmetically valid; its confirmed error was the exact 13 non-submitters and exact Rounds live count, tested in SY-P03. Marked convention_dependent.\n- SY-P03: accept 11–13 (CLP taken as one of the 14); the 09/23 alternative may leave Inferred blank when the Note cites the reported termination.\n- SY-P07: softened 'enters only by'; added the 09/22 CEO-invitation admission path; a Question or Note (not only a Question) earns the no-entry half credit.\n- SY-P08: window corrected to 12/30/2020–01/07/2021 (it contradicted its own half credit for 02/10); added Dropped by target by 01/07 and Did not submit.\n- SY-P09: verifiers split three ways on 'Would not improve earlier offer'. Decision after rereading p. 36: the request actually put to E was to re-engage on a 100% acquisition (scope), and E had no standing whole-company offer to improve, but the same-day 'maximize offers from each of CLP and Company E' directive makes the E14 reading arguable, so it earns half (was none). Added the E14-consistent 12/30 Dropped / 01/04 Re-entered / 01/04 Withdrew path as accepted, and a 12/14 exit as half. Now convention_dependent.\n- SY-P10 and open calls: process-marker closure limited to Company F; C's dated, reported ending is scored.\n- SY-P11: removed the Company B clause (it is an unscored open call and made a Question decide credit); added p. 30 to pages.\n- SY-R03, SY-B06, SY-F05, SY-O04: removed Question-presence or extra-content requirements (task rule; D5 asks for scope text only with 'No').\n- SY-R05: corrected a date error (I's 12/08 LOI and E's 12/14 proposal predate a 12/18–21 opening).\n- SY-R07: 09/17 best-offer round may be Announced or Inferred final. SY-R09: C's LOI may sit in round 1 where the extractor's map already has round 1 open.\n- SY-F02: half credit when E's same-price 09/18 letter is folded into an Exclusivity changed row (E10). SY-F04/F05: All cash Not stated accepted (E13). SY-F05: late-January/early-February returned-draft dating accepted in full (E10 'returning its own markup'; the v1.11 review judged that dating right); a 01/07 LOI-execution reaffirmation and Conditions Light are half, not fail. SY-F08: I's 12/29 re-affirmation may be folded.\n- SY-C01: I's 12/29, the 01/07 execution and the 01/21 draft count only if recorded as rows (no double penalty with F05/F08/R06); the 12/30 decision may be any row type. SY-C02: a blank Date from on the 'by 01/06' $2.00 bid is not a deviation; (b) applies to whichever row records the 12/18–21 outreach. SY-C04: half for CLP exclusivity shown executed but marked Inferred. SY-B01: scored on 09/10 alone when the 09/18 letter is folded. SY-O03: Liontree may appear as a ledger Adviser row instead of in Deal facts.\n- No test was dropped; the source-fidelity lens found every quote verbatim on a listed page and every expected value supported, and my re-check confirmed it.\n\nLimits: this reference is model-built and reconciled, not human-adjudicated by Austin or Alex. Items resting on lead-verified corrections rather than the filing alone: SY-P03 and the exactness part of SY-P02 (v1.11 model review, confirmed error 1), SY-P09's preference for a scope reason (v1.11 model review, confirmed error 2, itself unadjudicated), SY-B06 and SY-F04 (instruction_comparison findings), SY-P07's entry requirement (DeepSeek-review trial judgment), and SY-R10 (a checker error in the v1.13.2 draft). All other expected values rest on the filing and the instruction directly. The SC TO-T is the bidder's document and the target's Schedule 14D-9 is not in the repo, so membership of the 37 contacts and 14 signers, outreach dates and draft contents cannot be pinned down. Conventions marked provisional in RESEARCH_QUESTIONS (process boundaries, formal timing) are handled with accepted alternatives or left unscored. Several items require the grader to follow cross-row consistency (round-map alternatives, E's 09/18 formality, H's and E's participation periods); each check names the ledger and Rounds cells that settle it. Scratch build and verification files: /home/uctpiaj/work/tmp/claude-1001/syrec/final.py and final.json."
+}

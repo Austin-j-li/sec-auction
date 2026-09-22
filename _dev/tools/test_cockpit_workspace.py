@@ -59,6 +59,14 @@ class WorkspaceTests(unittest.TestCase):
         self.assertEqual(self.ws.export("alpha-deal", "v1132-raw"), self.original)
         self.assertEqual(self.ws.document("alpha-deal", "report")["text"], "A report")
 
+    def test_deal_without_default_base_is_a_clear_error(self):
+        catalog_path = self.root / "_dev/cockpit/catalog.json"
+        catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
+        del catalog["deals"]["alpha-deal"]["default_base"]
+        catalog_path.write_text(json.dumps(catalog), encoding="utf-8")
+        with self.assertRaisesRegex(WorkspaceError, "no default_base"):
+            data.Cockpit(self.root).deal("alpha-deal")
+
     def test_typed_edit_history_restart_and_restore(self):
         row = self.cockpit.deal("alpha-deal")["ledger"]["rows"][0]
         result = self.save([{"type": "update", "sheet": "Deal ledger", "uid": row["uid"], "values": {"Price low": "12.5", "Sort date": "2020-03-04", "Reviewer note": "=source wording"}}])

@@ -59,7 +59,7 @@ Keep the instruction frozen. Do not treat either re-extraction or an unadjudicat
 ## Preserved artifacts
 
 - [Raw v1.13.2 workbook](/home/uctpiaj/Projects/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/raw/extraction/mac-gray.xlsx), byte-identical to the extractor's output.
-- [Existing v1.13 baseline](/home/uctpiaj/Projects/sec-extraction/extraction/mac-gray.xlsx), unchanged.
+- Existing v1.13 baseline, unchanged: the 54-event v1.13 baseline (SHA-256 `6c8b583bd9b948cd8e6dee6aa2f7fba43acc5598c5bf73c6f55ae7efab13a852`, archived; git `03d59b1:extraction/mac-gray.xlsx`). Since 22 September the current `extraction/mac-gray.xlsx` is a different, newer Opus 5.5 medium draft.
 - [Original independent audit](/home/uctpiaj/Projects/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/audit/review.md) and [structured findings](/home/uctpiaj/Projects/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/audit/findings.json), unchanged.
 - [Adjudication](/home/uctpiaj/Projects/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/ADJUDICATION.md), [source inventory](/home/uctpiaj/Projects/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/source-inventory.md), and [inventory comparison](/home/uctpiaj/Projects/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/inventory-comparison.md).
 - `selection.json`, protocol and lead-finding freeze records, both mechanical reports, and `provenance/` retain hashes, prompts, statuses, model/usage evidence and the audit isolation check. Disposable run directories and provider state are removed after recording the results.

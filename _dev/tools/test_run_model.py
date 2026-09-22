@@ -1,11 +1,14 @@
 """Runner checks using temporary inputs and mocks; no provider is launched."""
 
 import argparse
+import base64
 import contextlib
 import io
 import json
+import os
 from pathlib import Path
 import tempfile
+import time
 import unittest
 from unittest import mock
 import zipfile
@@ -14,7 +17,18 @@ from sandbox import run_model
 
 
 class RunnerTests(unittest.TestCase):
-    def prepare_fixture(self, root, revise=False):
+    def setUp(self):
+        # Every test runs against a synthetic token file, never the operator's real one.
+        tokens = tempfile.TemporaryDirectory()
+        self.addCleanup(tokens.cleanup)
+        token = Path(tokens.name) / "token"
+        token.write_text("synthetic-token")
+        token.chmod(0o600)
+        patcher = mock.patch.object(run_model, "CLAUDE_TOKEN_FILE", token)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
+    def prepare_fixture(self, root, revise=False, extra=()):
         project = root / "project"
         (project / "raw_filing").mkdir(parents=True)
         (project / run_model.INSTRUCTION_NAME).write_text("Synthetic instruction")
@@ -22,7 +36,7 @@ class RunnerTests(unittest.TestCase):
         run = root / "runs" / "sample"
         argv = [
             "prepare", "--provider", "opus", "--run-dir", str(run),
-            "--deal", "sample", "--filing", "sample.htm",
+            "--deal", "sample", "--filing", "sample.htm", *extra,
         ]
         if revise:
             workbook = root / "draft.xlsx"
@@ -35,11 +49,53 @@ class RunnerTests(unittest.TestCase):
             run_model.prepare(args)
         return run
 
-    def write_workbook(self, path, value="synthetic"):
+    def write_workbook(self, path, value="synthetic", sheets=tuple(run_model.SHEETS)):
         workbook = run_model._openpyxl.Workbook()
+        workbook.active.title = sheets[0]
         workbook.active.append([value])
+        for name in sheets[1:]:
+            workbook.create_sheet(name)
         workbook.save(path)
         workbook.close()
+
+    def result_event(self, model="claude-opus-5-5", **fields):
+        event = {
+            "type": "result", "subtype": "success", "is_error": False, "session_id": "session-1",
+            "stop_reason": "end_turn", "terminal_reason": "completed", "num_turns": 2,
+            "total_cost_usd": 0.5, "duration_api_ms": 1000,
+            "usage": {"input_tokens": 1, "output_tokens": 10, "output_tokens_details": {"thinking_tokens": 6},
+                      "cache_creation": {"ephemeral_1h_input_tokens": 100, "ephemeral_5m_input_tokens": 0}},
+            "modelUsage": {model: {"costUSD": 0.5}},
+        }
+        event.update(fields)
+        return event
+
+    def processes(self, run, *steps):
+        """Patch Popen with one process per step: exit code, events, and what it saves.
+
+        The last item is False, True (a four-sheet workbook) or workbook options, where
+        "notes" also writes revision_notes.md and "workbook": False saves only the notes.
+        """
+        procs = []
+        for exit_code, logged, save in steps:
+            def wait(timeout=None, exit_code=exit_code, logged=logged, save=save):
+                with (run / "events.jsonl").open("a") as log:
+                    log.writelines(json.dumps(event) + "\n" for event in logged)
+                options = {} if save in (True, False) else dict(save)
+                if options.pop("notes", False):
+                    (run / "extraction/revision_notes.md").write_text("Synthetic notes")
+                if save and options.pop("workbook", True):
+                    self.write_workbook(run / "extraction/sample.xlsx", **options)
+                return exit_code
+            procs.append(mock.Mock(pid=12345, wait=mock.Mock(side_effect=wait)))
+        self.procs = procs
+        return mock.patch.object(run_model.subprocess, "Popen", side_effect=procs)
+
+    def run_worker(self, run, *steps):
+        with mock.patch.object(run_model, "preflight", return_value=Path(run_model.__file__)), \
+                self.processes(run, *steps) as popen:
+            code = run_model.worker(argparse.Namespace(run_dir=run, provider="opus"))
+        return code, json.loads((run / "status.json").read_text()), popen
 
     def test_prepare_creates_no_runtime_state_and_status_uses_requested_root(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -80,6 +136,79 @@ class RunnerTests(unittest.TestCase):
             events.write_text("")
             self.assertIsNone(run_model.run_usage(events))
 
+    def test_continued_claude_session_sums_usage_but_reports_cumulative_cost(self):
+        # A resumed session reports usage for its own invocation, and cost and modelUsage for the whole session.
+        with tempfile.TemporaryDirectory() as tmp:
+            events = Path(tmp) / "events.jsonl"
+            first = self.result_event()
+            second = self.result_event(total_cost_usd=0.9, num_turns=3, duration_api_ms=2500)
+            events.write_text(json.dumps({"type": "system", "subtype": "init", "claude_code_version": "9.9.9",
+                                          "model": "claude-opus-5-5", "tools": ["Bash"]}) + "\n"
+                              + json.dumps(first) + "\n" + json.dumps(second) + "\n")
+            self.assertEqual(run_model.run_usage(events), {
+                "tokens": {"input_tokens": 2, "output_tokens": 20}, "cost_usd": 0.9,
+            })
+            summary = run_model.claude_summary(events)
+            self.assertEqual(summary["claude_code_version"], "9.9.9")
+            self.assertEqual(summary["served_models"], ["claude-opus-5-5"])
+            self.assertEqual((summary["invocations"], summary["num_turns"], summary["duration_api_ms"]), (2, 5, 2500))
+            self.assertEqual((summary["thinking_tokens"], summary["cache_write_1h_tokens"]), (12, 200))
+            self.assertFalse(summary["refusal"])
+            events.write_text(json.dumps({"type": "assistant", "message": {"stop_reason": "refusal"}}) + "\n")
+            self.assertTrue(run_model.claude_summary(events)["refusal"])
+
+    def test_model_effort_and_timeout_come_from_prepared_metadata(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            run = self.prepare_fixture(Path(tmp), extra=("--effort", "medium", "--timeout-minutes", "120"))
+            metadata = run_model.prepared_metadata(run, "opus")
+            self.assertEqual((metadata["model"], metadata["effort"], metadata["timeout_seconds"]),
+                             ("claude-opus-5-5", "medium", 7200))
+            argv = run_model.provider_command(run, "opus", metadata)
+            self.assertEqual(argv[argv.index("--model") + 1], "claude-opus-5-5")
+            self.assertEqual(argv[argv.index("--tools") + 1], "Bash,Read,Write")  # the only tools the agent sees
+            self.assertEqual(argv[argv.index("--effort") + 1], "medium")
+            self.assertNotIn("--resume", argv)
+            self.assertEqual(argv[-1], (run / "prompt.txt").read_text().strip())
+            resumed = run_model.provider_command(run, "opus", metadata, "go on", "session-1")
+            self.assertEqual(resumed[-3:], ["--resume", "session-1", "go on"])
+            state = Path(tmp) / "state"
+            state.mkdir()
+            command = run_model.bwrap_base(run, "opus", state, Path(tmp) / "scratch")
+            for name, value in run_model.CLAUDE_ENV.items():
+                self.assertIn(["--setenv", name, value], [command[i:i + 3] for i in range(len(command))])
+
+    def test_default_opus_run_is_opus_5_5(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            metadata = json.loads((self.prepare_fixture(Path(tmp)) / "metadata.json").read_text())
+        self.assertEqual((metadata["model"], metadata["effort"], metadata["timeout_seconds"]),
+                         ("claude-opus-5-5", run_model.DEFAULT_EFFORT["opus"], run_model.TIMEOUT_SECONDS))
+
+    def test_disallowed_model_effort_or_timeout_fails_before_creating_run(self):
+        for extra, message in [(("--effort", "extreme"), "runs one of"), (("--model", "claude-sonnet-5"), "runs one of"),
+                               (("--timeout-minutes", "5"), "between 10 and 360")]:
+            with self.subTest(extra=extra), tempfile.TemporaryDirectory() as tmp:
+                with self.assertRaisesRegex(SystemExit, message):
+                    self.prepare_fixture(Path(tmp), extra=extra)
+                self.assertFalse((Path(tmp) / "runs").exists())
+
+    def test_edited_model_or_effort_fails_before_launch(self):
+        for key, value in [("model", "claude-sonnet-5"), ("effort", "--dangerously-skip-permissions"),
+                           ("effort", None), ("timeout_seconds", 99999)]:
+            with self.subTest(key=key, value=value), tempfile.TemporaryDirectory() as tmp:
+                run = self.prepare_fixture(Path(tmp))
+                metadata = json.loads((run / "metadata.json").read_text())
+                metadata[key] = value
+                run_model.write_json(run / "metadata.json", metadata)
+                with mock.patch.object(run_model.subprocess, "Popen") as popen:
+                    with self.assertRaisesRegex(SystemExit, "prepare a new run directory"):
+                        run_model.launch(argparse.Namespace(run_dir=run, provider="opus"))
+                popen.assert_not_called()
+
+    def test_historical_opus_5_metadata_still_verifies(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            run = self.prepare_fixture(Path(tmp), extra=("--model", "claude-opus-5", "--effort", "high"))
+            self.assertEqual(run_model.prepared_metadata(run, "opus")["model"], "claude-opus-5")
+
     def test_half_specified_revision_fails_before_creating_run(self):
         with tempfile.TemporaryDirectory() as tmp:
             for flag in ["--revise-from", "--report"]:
@@ -103,7 +232,7 @@ class RunnerTests(unittest.TestCase):
 
     def test_runtime_state_is_deleted_even_after_worker_failure(self):
         seen = []
-        def fail(args, state):
+        def fail(args, state, scratch):
             self.assertTrue(state.is_dir())
             seen.append(state)
             (state / "generated-state").write_text("temporary")
@@ -138,7 +267,7 @@ class RunnerTests(unittest.TestCase):
                             if entrypoint == "launch":
                                 run_model.launch(args)
                             else:
-                                run_model.run_worker(args, root / "state")
+                                run_model.run_worker(args, root / "state", root / "scratch")
                     popen.assert_not_called()
                     preflight.assert_not_called()
                     self.assertFalse((run / "launcher.log").exists())
@@ -189,36 +318,77 @@ class RunnerTests(unittest.TestCase):
             self.assertIn("hash mismatch", result["error"])
 
     def test_worker_outcomes_distinguish_execution_failures(self):
+        ok = self.result_event()
         cases = [
-            (0, "valid", False, "completed", None),
-            (2, "valid", False, "failed", "provider_exit"),
-            (0, "missing", False, "failed", "workbook_missing"),
-            (0, "unreadable", False, "failed", "workbook_unreadable"),
-            (-15, "valid", True, "timed_out", "timeout"),
+            (None, 0, [(0, [ok], True)]),
+            ("provider_exit", 2, [(2, [ok], True)]),
+            ("provider_refusal", 0, [(0, [self.result_event(stop_reason="refusal")], True)]),
+            ("provider_error", 0, [(0, [self.result_event(subtype="error_during_execution", is_error=True)], True)]),
+            ("provider_error", 0, [(0, [], True)]),
+            ("model_mismatch", 0, [(0, [self.result_event(modelUsage={"claude-opus-5-5": {}, "claude-opus-5": {}})], True)]),
+            # An incomplete workbook is also unfinished work, so it is resumed before it fails.
+            ("workbook_incomplete", 0, [(0, [ok], {"sheets": ("Sheet",)})] * (run_model.MAX_CONTINUATIONS + 1)),
         ]
-        for exit_code, output, timed_out, state, reason in cases:
-            with self.subTest(exit_code=exit_code, output=output, timed_out=timed_out), tempfile.TemporaryDirectory() as tmp:
+        for reason, exit_code, steps in cases:
+            with self.subTest(reason=reason, steps=len(steps)), tempfile.TemporaryDirectory() as tmp:
                 run = self.prepare_fixture(Path(tmp))
-                workbook = run / "extraction/sample.xlsx"
-                if output == "valid":
-                    self.write_workbook(workbook)
-                elif output == "unreadable":
-                    workbook.write_text("not a workbook")
-                proc = mock.Mock(pid=12345)
-                proc.wait.side_effect = [
-                    run_model.subprocess.TimeoutExpired("synthetic", 1), exit_code,
-                ] if timed_out else [exit_code]
-                with mock.patch.object(run_model, "preflight", return_value=Path(run_model.__file__)), \
-                        mock.patch.object(run_model.subprocess, "Popen", return_value=proc), \
-                        mock.patch.object(run_model.os, "killpg"):
-                    result_code = run_model.worker(argparse.Namespace(run_dir=run, provider="opus"))
-                result = json.loads((run / "status.json").read_text())
-                self.assertEqual(result_code, 0 if state == "completed" else 1)
-                self.assertEqual(result["state"], state)
+                code, result, _ = self.run_worker(run, *steps)
+                self.assertEqual(code, 0 if reason is None else 1)
+                self.assertEqual(result["state"], "completed" if reason is None else "failed")
                 self.assertEqual(result["failure_reason"], reason)
                 self.assertEqual(result["exit_code"], exit_code)
-                self.assertEqual(result["workbook_valid_xlsx"], output == "valid")
+                self.assertEqual(result["continuations"], len(steps) - 1)
                 self.assertTrue((run / "validation.json").is_file())
+                self.assertEqual(json.loads((run / "provider-results.json").read_text()),
+                                 [event for step in steps for event in step[1]])
+
+    def test_unreadable_workbook_and_timeout_are_distinguished(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            run = self.prepare_fixture(Path(tmp))
+            (run / "extraction/sample.xlsx").write_text("not a workbook")
+            steps = [(0, [self.result_event()], False)] * (run_model.MAX_CONTINUATIONS + 1)
+            _, result, _ = self.run_worker(run, *steps)
+            self.assertEqual((result["failure_reason"], result["continuations"]),
+                             ("workbook_unreadable", run_model.MAX_CONTINUATIONS))
+        with tempfile.TemporaryDirectory() as tmp:
+            run = self.prepare_fixture(Path(tmp))
+            proc = mock.Mock(pid=12345)
+            proc.wait.side_effect = [run_model.subprocess.TimeoutExpired("synthetic", 1), -15]
+            with mock.patch.object(run_model, "preflight", return_value=Path(run_model.__file__)), \
+                    mock.patch.object(run_model.subprocess, "Popen", return_value=proc), \
+                    mock.patch.object(run_model.os, "killpg"):
+                self.assertEqual(run_model.worker(argparse.Namespace(run_dir=run, provider="opus")), 1)
+            result = json.loads((run / "status.json").read_text())
+            self.assertEqual((result["state"], result["failure_reason"], result["exit_code"]), ("timed_out", "timeout", -15))
+            self.assertEqual(proc.wait.call_args_list[0].kwargs["timeout"] > 5000, True)
+
+    def test_early_stop_is_resumed_until_the_workbook_is_saved(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            run = self.prepare_fixture(Path(tmp))
+            code, result, popen = self.run_worker(
+                run, (0, [self.result_event()], False), (0, [self.result_event(total_cost_usd=0.8)], True))
+            self.assertEqual((code, result["state"], result["continuations"]), (0, "completed", 1))
+            self.assertEqual(result["usage"]["cost_usd"], 0.8)
+            self.assertEqual(result["provider"]["invocations"], 2)
+            command = json.loads((run / "command.json").read_text())
+            self.assertNotIn("--resume", command["provider_argv"])
+            resumed = command["continuation_argv"][0]
+            self.assertEqual(resumed[-3:-1], ["--resume", "session-1"])
+            self.assertIn("extraction/sample.xlsx is not yet saved", resumed[-1])
+            self.assertEqual(popen.call_count, 2)
+
+    def test_continuations_are_bounded_and_never_follow_a_failure(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            run = self.prepare_fixture(Path(tmp))
+            steps = [(0, [self.result_event()], False)] * (run_model.MAX_CONTINUATIONS + 1)
+            _, result, popen = self.run_worker(run, *steps)
+            self.assertEqual((result["failure_reason"], result["continuations"]), ("workbook_missing", run_model.MAX_CONTINUATIONS))
+            self.assertEqual(popen.call_count, run_model.MAX_CONTINUATIONS + 1)
+        for event in (self.result_event(stop_reason="refusal"), self.result_event(is_error=True, subtype="error_max_turns")):
+            with self.subTest(event=event), tempfile.TemporaryDirectory() as tmp:
+                run = self.prepare_fixture(Path(tmp))
+                _, result, popen = self.run_worker(run, (0, [event], False))
+                self.assertEqual((result["continuations"], popen.call_count), (0, 1))
 
     def test_provider_start_failure_does_not_leave_running_status(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -235,14 +405,8 @@ class RunnerTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             run = self.prepare_fixture(root, revise=True)
-            def finish(**kwargs):
-                self.write_workbook(run / "extraction/sample.xlsx", "revised")
-                return 0
-            proc = mock.Mock(pid=12345)
-            proc.wait.side_effect = finish
-            with mock.patch.object(run_model, "preflight", return_value=Path(run_model.__file__)), \
-                    mock.patch.object(run_model.subprocess, "Popen", return_value=proc):
-                self.assertEqual(run_model.worker(argparse.Namespace(run_dir=run, provider="opus")), 0)
+            code, _, _ = self.run_worker(run, (0, [self.result_event()], {"value": "revised", "notes": True}))
+            self.assertEqual(code, 0)
             self.assertTrue(run_model.validate_workbook(run)["valid_xlsx"])
             output = io.StringIO()
             with contextlib.redirect_stdout(output):
@@ -254,6 +418,54 @@ class RunnerTests(unittest.TestCase):
                     run_model.worker(argparse.Namespace(run_dir=run, provider="opus"))
             popen.assert_not_called()
             self.assertEqual((run / "status.json").read_bytes(), recorded_status)
+
+    def test_continuation_keeps_the_same_scratch_home_and_tmp(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            run = self.prepare_fixture(Path(tmp))
+            _, result, popen = self.run_worker(
+                run, (0, [self.result_event()], False), (0, [self.result_event()], True))
+            self.assertEqual(result["continuations"], 1)
+            first, second = (call.args[0] for call in popen.call_args_list)
+
+            def mounts(command, target):
+                return [command[i:i + 3] for i in range(len(command) - 2)
+                        if command[i] in ("--bind", "--ro-bind", "--tmpfs") and target in command[i + 1:i + 3]]
+
+            for target in (str(run_model.SANDBOX_HOME), "/tmp"):
+                self.assertEqual(len(mounts(first, target)), 1)
+                self.assertEqual(mounts(first, target)[0][0], "--bind")  # not a fresh tmpfs per invocation
+                self.assertEqual(mounts(first, target), mounts(second, target))
+
+    def test_continuation_waits_only_for_the_time_left(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            run = self.prepare_fixture(Path(tmp))
+            self.run_worker(run, (0, [self.result_event()], False), (0, [self.result_event()], True))
+            limit = json.loads((run / "metadata.json").read_text())["timeout_seconds"]
+            first, second = (proc.wait.call_args.kwargs["timeout"] for proc in self.procs)
+            self.assertLessEqual(first, limit)
+            self.assertLess(second, limit)
+            self.assertLessEqual(second, first)
+
+    def test_half_saved_workbook_is_resumed(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            run = self.prepare_fixture(Path(tmp))
+            _, result, popen = self.run_worker(
+                run, (0, [self.result_event()], {"sheets": ("Deal ledger", "Rounds")}), (0, [self.result_event()], True))
+            self.assertEqual((result["state"], result["continuations"], popen.call_count), ("completed", 1, 2))
+
+    def test_revision_is_resumed_until_its_notes_are_written(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            run = self.prepare_fixture(Path(tmp), revise=True)
+            _, result, popen = self.run_worker(
+                run, (0, [self.result_event()], False), (0, [self.result_event()], {"notes": True, "workbook": False}))
+            self.assertEqual((result["state"], result["continuations"]), ("completed", 1))
+            resumed = json.loads((run / "command.json").read_text())["continuation_argv"][0]
+            self.assertIn("revision_notes.md has not been written", resumed[-1])
+        with tempfile.TemporaryDirectory() as tmp:
+            run = self.prepare_fixture(Path(tmp), revise=True)
+            steps = [(0, [self.result_event()], False)] * (run_model.MAX_CONTINUATIONS + 1)
+            _, result, _ = self.run_worker(run, *steps)
+            self.assertEqual(result["failure_reason"], "revision_notes_missing")
 
     def test_validation_reads_lazy_worksheet_content_and_handles_unreadable_bytes(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -280,12 +492,91 @@ class RunnerTests(unittest.TestCase):
             report.write_text("Must not enter a blind extraction")
             state = root / "runtime-state"
             state.mkdir()
-            command = run_model.bwrap_base(run, "opus", state)
+            command = run_model.bwrap_base(run, "opus", state, root / "scratch")
             self.assertNotIn(str(report), command)
+            self.assertFalse(any(".credentials.json" in part for part in command))
             self.assertIn(str(run / "input" / run_model.INSTRUCTION_NAME), command)
             self.assertIn(str(run / "input" / "raw_filing" / "sample.htm"), command)
             self.assertIn(str(state), command)
             self.assertNotIn(str(run / "state"), command)
+
+    def test_oauth_token_reaches_the_cli_through_a_pipe_only(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            token = Path(tmp) / "token"
+            token.write_text("sk-ant-oat-synthetic\n")
+            token.chmod(0o600)
+            run = self.prepare_fixture(Path(tmp))
+            with mock.patch.object(run_model, "CLAUDE_TOKEN_FILE", token):
+                with run_model.claude_token("opus") as (args, fds):
+                    self.assertEqual(args[:2], ["--setenv", "CLAUDE_CODE_OAUTH_TOKEN_FILE_DESCRIPTOR"])
+                    self.assertEqual(os.read(fds[0], 100), b"sk-ant-oat-synthetic")
+                with self.assertRaises(OSError):
+                    os.fstat(fds[0])  # closed once the invocation is over
+                command = run_model.bwrap_base(run, "opus", Path(tmp) / "state", Path(tmp) / "scratch")
+                self.assertNotIn(str(run_model.HOME_HOST / ".claude/.credentials.json"), command)
+                _, result, popen = self.run_worker(run, (0, [self.result_event()], True))
+            self.assertEqual(result["state"], "completed")
+            call = popen.call_args
+            self.assertEqual(len(call.kwargs["pass_fds"]), 1)
+            self.assertIn("CLAUDE_CODE_OAUTH_TOKEN_FILE_DESCRIPTOR", call.args[0])
+            self.assertNotIn("sk-ant-oat-synthetic", " ".join(call.args[0]))
+            self.assertNotIn("sk-ant-oat-synthetic", (run / "command.json").read_text())
+            self.assertIn("inherited pipe", json.loads((run / "command.json").read_text())["credential_delivery"])
+
+    def test_preflight_requires_usable_claude_credentials(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            token, home = Path(tmp) / "token", Path(tmp) / "home"
+            (home / ".claude").mkdir(parents=True)
+            # Even a host login with a token on disk is never shared with the sandbox.
+            (home / ".claude/.credentials.json").write_text(json.dumps({"claudeAiOauth": {"accessToken": "host"}}))
+            patches = [mock.patch.object(run_model, "CLAUDE_BIN", Path(run_model.__file__)),
+                       mock.patch.object(run_model.os, "access", return_value=True),
+                       mock.patch.object(run_model.shutil, "which", return_value="/usr/bin/bwrap"),
+                       mock.patch.object(run_model, "CLAUDE_TOKEN_FILE", token),
+                       mock.patch.object(run_model, "HOME_HOST", home)]
+            with contextlib.ExitStack() as stack:
+                for patch in patches:
+                    stack.enter_context(patch)
+                with self.assertRaisesRegex(SystemExit, "claude setup-token"):
+                    run_model.preflight("opus")
+                token.write_text("sk-ant-oat-synthetic")
+                token.chmod(0o644)
+                with self.assertRaisesRegex(SystemExit, "chmod 600"):
+                    run_model.preflight("opus")
+                token.chmod(0o600)
+                self.assertEqual(run_model.preflight("opus"), Path(run_model.__file__))
+
+    def test_sol_runs_gpt_6_sol_with_shell_and_patches_only(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            run = self.prepare_fixture(Path(tmp), extra=())
+            metadata = json.loads((run / "metadata.json").read_text())
+            argv = run_model.provider_command(run, "sol", {**metadata, "model": "gpt-6-sol", "effort": "high"})
+        self.assertEqual(argv[argv.index("--model") + 1], "gpt-6-sol")
+        self.assertIn('model_reasoning_effort="high"', argv)
+        self.assertIn('web_search="disabled"', argv)
+        disabled = {argv[i + 1] for i, part in enumerate(argv) if part == "--disable"}
+        self.assertTrue({"apps", "plugins", "browser_use", "computer_use", "multi_agent"} <= disabled)
+        self.assertNotIn("code_mode_host", disabled)  # GPT-6-Sol calls every tool through code mode
+        self.assertNotIn("ultra", run_model.EFFORTS["sol"])
+
+    def test_sol_preflight_refuses_a_codex_login_near_expiry(self):
+        def token(hours):
+            claims = base64.urlsafe_b64encode(json.dumps({"exp": time.time() + hours * 3600}).encode()).decode().rstrip("=")
+            return {"tokens": {"access_token": f"header.{claims}.signature"}}
+        with tempfile.TemporaryDirectory() as tmp:
+            home = Path(tmp)
+            (home / ".codex").mkdir()
+            codex = home / "release/bin/codex"
+            codex.parent.mkdir(parents=True)
+            codex.write_text("")
+            with mock.patch.object(run_model, "HOME_HOST", home), mock.patch.object(run_model, "CODEX_BIN", codex), \
+                    mock.patch.object(run_model.os, "access", return_value=True), \
+                    mock.patch.object(run_model.shutil, "which", return_value="/usr/bin/bwrap"):
+                (home / ".codex/auth.json").write_text(json.dumps(token(2)))
+                with self.assertRaisesRegex(SystemExit, "renew it on the host"):
+                    run_model.preflight("sol")
+                (home / ".codex/auth.json").write_text(json.dumps(token(30)))
+                self.assertEqual(run_model.preflight("sol"), codex)
 
     def test_preflight_rejects_missing_provider_binary(self):
         with mock.patch.object(run_model, "CLAUDE_BIN", Path("/nonexistent/provider")), \

@@ -1,0 +1,26 @@
+{
+  "cell": {
+    "arm": "gpt-6-sol-high",
+    "deal": "datalink",
+    "effort": "high",
+    "filing": "datalink_2016-11-29_DEFM14A.htm",
+    "id": "datalink-gpt-6-sol-high-r1",
+    "model": "gpt-6-sol",
+    "provider": "sol",
+    "replicate": 1,
+    "timeout_minutes": 150
+  },
+  "check_summary": {
+    "errors": 0,
+    "information": 0,
+    "total_issues": 4,
+    "warnings": 4
+  },
+  "failure_reason": null,
+  "mismatches": [],
+  "network_commands": [],
+  "recorded_at": "2026-09-22T20:15:26.544564+00:00",
+  "state": "completed",
+  "web_or_delegation": [],
+  "workbook_sha256": "ff222e81117e7a2659ff500203a2e2a4eeeb95639795ded3532090d191a840bb"
+}

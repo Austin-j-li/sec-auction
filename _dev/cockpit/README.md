@@ -2,13 +2,13 @@
 
 Open [Ledger cockpit](https://lines.dealextract.org) using the existing Austin or Alex login. Choose a deal, then use its **Working copy** to make edits. The filing stays beside the selected record. On a narrow screen, switch between **Filing** and **Workspace**.
 
+Drag the thin divider between the filing and workspace, or between a sheet's list and editor, to change their widths. When the right panel is narrow, the list moves above the editor; drag their horizontal divider to change the list height. Double-click a divider to reset it; when focused, use arrow keys for small steps or Home/End for the limits. Use the arrow buttons beside the workspace tabs to reach tabs that do not fit. Drag the lower-right corner of a multiline text box to change its width and height; if widened beyond the editor, use its horizontal scrollbar to reach the rest. Pane sizes are remembered in this browser and do not change the workbook or create an unsaved edit.
+
 ## Versions and review status
 
-Each of the nine deals has a preserved v1.13.2 raw extraction. The original eight also retain their v1.13 baselines. Datalink starts from its verified 68-event correction pass. Mac-Gray starts from the latest 58-event correction candidate, explicitly labeled **R01 pending**; the earlier 55-event correction pass and raw drafts remain selectable. Verification here means the documented development-lead checks of supported corrections. It is not a human approval of the complete deal.
+Each of the nine deals has one version: its Claude Opus 5.5 medium extraction under instruction v1.13.2 (22 September), which is also the working base. None has been reviewed. Earlier Opus 5 drafts, v1.13 baselines and the lead-verified Datalink and Mac-Gray correction passes are no longer selectable; their evidence remains in the review packets.
 
-Mac-Gray's R01 asks whether material termination-fee and guarantee changes should be separate same-price Bids or dated Notes. Its decision, acceptance, coverage and analytical-use documents are in Review. That choice remains Austin's; the candidate is not frozen or research-ready.
-
-The seven fresh drafts await source review; retired Sol/Grok comparison findings and report links have been removed. Datalink and Mac-Gray retain their attributed review records. Source row numbers in earlier findings belong to their labeled version. Datalink's January-round convention is recorded separately as Austin's decision. The Astra experiment is a historical side note and is not a selectable cockpit version.
+Review holds only case-level decisions that do not depend on an earlier workbook's rows. Datalink shows Austin's 21 September ruling to keep January's bilateral stage as round 1 (five rounds; January 29 inferred), to be checked against the displayed extraction. Mac-Gray shows Austin's 22 September R01 decision, with its research-decision document: bidder-commitment changes at an unchanged price are same-price Bids, and the target termination fee stays in a dated Note. The displayed extraction has not yet been revised to it. Audit findings and corrections keyed to earlier drafts' rows were removed from the cockpit. The Astra experiment is a historical side note and is not a selectable cockpit version.
 
 ## A review session
 
@@ -21,7 +21,7 @@ When events are inserted, moved or deleted, explicit event references follow the
 
 If another editor has saved first, the cockpit keeps your staged edits and blocks overwriting that revision. Download those edits before choosing to discard them and load the current copy. Compare and reapply the intended changes to the current copy.
 
-The mechanical checker runs again on saved working copies. Its errors and warnings remain visible; it does not certify source completeness or research acceptance. Datalink's imported correction pass retains the documented page-break quotation exception in its checker result.
+The mechanical checker runs again on saved working copies. Its errors and warnings remain visible; it does not certify source completeness or research acceptance.
 
 ## Storage and operation
 
@@ -29,4 +29,4 @@ Version and report paths are allowlisted in [catalog.json](catalog.json). Origin
 
 The existing `ledger-cockpit.service` serves the built frontend and API on loopback port 8778 behind the existing Cloudflare Access route. The public origin is `https://lines.dealextract.org`. Public edit attribution uses the configured access identities; loopback development is explicitly attributed to `local`. The application performs no model calls when viewing or saving a deal.
 
-Build and verification scope: [COCKPIT_BUILD.md](../COCKPIT_BUILD.md). Extraction provenance: [nine-deal import report](../reviews/2026-09-21-v1132-cockpit/REPORT.md). The role assignment for this development phase is **Astra for design, review and reasoning; GPT Sol for code implementation**.
+Build and verification scope: [COCKPIT_BUILD.md](../COCKPIT_BUILD.md). The original cockpit acceptance and deployment records predate the resize controls described above; their separate synthetic browser check is `_dev/tools/cockpit/acceptance/test_resize.mjs`. A read-only check on 22 September confirmed that the running loopback service serves the new HTML and JS/CSS assets. Browser interaction with resize and authenticated viewing through the public route were not tested in this documentation pass. Extraction provenance: [re-extraction packet](../reviews/2026-09-22-opus55-reextraction/README.md). The role assignment for this development phase is **Astra for design, review and reasoning; GPT Sol for code implementation**.

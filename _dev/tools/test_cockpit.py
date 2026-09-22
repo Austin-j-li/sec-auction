@@ -343,12 +343,6 @@ class HelperTests(unittest.TestCase):
         self.assertIn("A-1", data.cited_pages("A-1"))
         self.assertEqual(data.cited_pages("30, 32"), {"30", "32"})
 
-    def test_reader_mapping(self) -> None:
-        self.assertEqual(server.reader_for("A.Gorbenko@ucl.ac.uk"), "alex")
-        self.assertEqual(server.reader_for("junyu.li.24@ucl.ac.uk"), "austin")
-        self.assertEqual(server.reader_for(None), "local")
-        self.assertEqual(server.reader_for("someone@example.com"), "local")
-
 
 class CockpitTests(unittest.TestCase):
     def setUp(self) -> None:

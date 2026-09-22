@@ -2,12 +2,10 @@
 
 from __future__ import annotations
 
-import hashlib
 import json
 from pathlib import Path
 import tempfile
 import unittest
-from unittest import mock
 
 import openpyxl
 
@@ -59,178 +57,102 @@ class ImportTests(unittest.TestCase):
         with self.assertRaises(imp.ImportErrorEvidence):
             imp.workbook(self.root, "bad.xlsx")
 
-    def test_batch_refuses_incomplete_and_false_provider_success(self) -> None:
-        batch_path = self.root / imp.REVIEW / "batch.json"
-        write_json(batch_path, {"state": "running", "runs": {}})
-        with self.assertRaisesRegex(imp.ImportErrorEvidence, "incomplete"):
-            imp.verify_batch(self.root, {}, {})
-        runs = {deal: {"state": "completed"} for deal in imp.NEW_DEALS}
-        write_json(batch_path, dict(state="completed", runs=runs,
-                                    instruction_sha256=imp.INSTRUCTION_HASH,
-                                    model="claude-opus-5", effort="high"))
-        protected = {}
-        manifest = {}
-        for deal in imp.NEW_DEALS:
-            source = f"{deal}.htm"
-            protected[f"raw_filing/{source}"] = hashlib.sha256(deal.encode()).hexdigest()
-            manifest[deal] = {"file": source}
-            folder = self.root / imp.REVIEW / "receipts" / deal
-            book = f"{imp.REVIEW}/raw/extraction/{deal}.xlsx"
-            digest = make_book(self.root / book)
-            write_json(folder / "receipt.json", dict(state="completed", workbook_sha256=digest,
-                check_summary={"errors": 0, "warnings": 1}))
-            write_json(folder / "metadata.json", dict(model="claude-opus-5", effort="high",
-                instruction_sha256=imp.INSTRUCTION_HASH,
-                filing_sha256=protected[f"raw_filing/{source}"]))
-            write_json(folder / "status.json", dict(state="completed", exit_code=0))
-            write_json(folder / "validation.json", {"valid_xlsx": True, "sha256": digest})
-            write_json(folder / "provider-results.json", [dict(subtype="success", is_error=False,
-                modelUsage={"claude-opus-5": {}})])
-            write_json(self.root / imp.REVIEW / "checks" / f"{deal}.json",
-                       {"summary": {"errors": 0, "warnings": 1}})
-        receipts = imp.verify_batch(self.root, protected, manifest)
-        self.assertEqual(set(receipts), set(imp.NEW_DEALS))
-        penford = self.root / imp.REVIEW / "receipts/penford/provider-results.json"
-        write_json(penford, [{"subtype": "success", "modelUsage": {"claude-sonnet": {}}}])
-        with self.assertRaisesRegex(imp.ImportErrorEvidence, "success/model"):
-            imp.verify_batch(self.root, protected, manifest)
-
-    def test_recorded_austin_ruling_keeps_provenance(self) -> None:
-        write_json(self.root / imp.DATA / "fresh_findings.json", {"findings": [
-            {"id": "F9", "claim": "Change first-round boundary", "affected_rows": [3],
-             "rules": ["E6"], "evidence": [], "proposed_correction": "Move January to round 0"}
-        ]})
-        ruling = imp.datalink_findings(self.root)[0]
-        self.assertEqual(ruling["source_version"], "v1132-raw")
-        self.assertEqual(ruling["judgment"], "unreviewed")
-        self.assertEqual(ruling["recorded_decision"]["actor"], "Austin Li")
-        self.assertEqual(ruling["implementation"], "unassessed")
-        self.assertEqual(ruling["recorded_correction"]["version"], "datalink-verified")
-        self.assertTrue(ruling["needs_recheck"])
-        write_json(self.root / imp.MAC / "audit/findings.json", {"findings": [
-            {"id": "F01", "problem": "Incorrect Q9 counterfactual", "rule": "E10",
-             "affected_rows": ["Questions Q9"], "quote": "a quote", "page": "39",
-             "proposed_correction": "Revise Q9"}
-        ]})
-        mac = imp.mac_findings(self.root)
-        self.assertEqual(len(mac), 5)  # audit F01 plus four distinct lead findings
-        self.assertEqual(mac[0]["recorded_correction"]["version"], "mac-gray-verified")
-        self.assertEqual(mac[0]["implementation"], "unassessed")
-        self.assertTrue(all(f["judgment"] == "unreviewed" for f in mac))
-
-    def test_full_catalog_versions_with_synthetic_workbooks(self) -> None:
+    def synthetic_repo(self) -> dict:
+        """A nine-deal checkout with filings, re-extraction receipts and decision documents."""
         root = self.root
-        instruction = root / "SEC_Deal_Ledger_Extraction_Instruction.md"
-        instruction.write_text("synthetic frozen instruction")
-        instruction_hash = imp.sha256(instruction)
-        manifest_rows = ["file,deal,sha256"]
-        raw_hashes = {}
-        protected = {"SEC_Deal_Ledger_Extraction_Instruction.md": instruction_hash}
+        rows = ["file,deal,sha256"]
+        manifest = {}
+        deals = {}
         for deal in imp.DEALS:
-            source = root / "raw_filing" / f"{deal}.htm"
-            source.parent.mkdir(parents=True, exist_ok=True)
-            source.write_text(f"synthetic filing for {deal}")
-            digest = imp.sha256(source)
-            manifest_rows.append(f"{deal}.htm,{deal},{digest}")
-            protected[f"raw_filing/{deal}.htm"] = digest
-            if deal != "datalink":
-                prior = f"extraction/{deal}.xlsx"
-                protected[prior] = make_book(root / prior)
-            raw = (f"{imp.REVIEW}/raw/extraction/{deal}.xlsx" if deal in imp.NEW_DEALS
-                   else "extraction/datalink.xlsx" if deal == "datalink"
-                   else f"{imp.MAC}/raw/extraction/mac-gray.xlsx")
-            raw_hashes[deal] = make_book(root / raw)
-            if deal == "datalink":
-                protected[raw] = raw_hashes[deal]
-        manifest = root / "raw_filing/MANIFEST.csv"
-        manifest.write_text("\n".join(manifest_rows) + "\n")
-        protected["raw_filing/MANIFEST.csv"] = imp.sha256(manifest)
-        write_json(root / imp.REVIEW / "protected-inputs.json", {"sha256": protected})
-        write_json(root / imp.DATA / "fresh_findings.json", {"findings": []})
-        write_json(root / imp.MAC / "audit/findings.json", {"findings": []})
-        write_json(root / imp.MAC / "provenance/extraction/validation.json", {"sha256": raw_hashes["mac-gray"]})
-        def metadata(deal):
-            return {"mode": "extract", "model": "claude-opus-5", "effort": "high",
-                    "instruction_sha256": instruction_hash,
-                    "filing_sha256": protected[f"raw_filing/{deal}.htm"],
-                    "filing_name": f"{deal}.htm"}
-        good_status = {"state": "completed", "exit_code": 0}
-        good_provider = {"subtype": "success", "is_error": False,
-                         "modelUsage": {"claude-opus-5": {}}}
-        write_json(root / imp.DATA / "provenance.json", {
-            "runs": {"extraction": {"metadata": metadata("datalink"), "status": good_status,
-                     "provider_result": good_provider,
-                     "validation": {"valid_xlsx": True, "sha256": raw_hashes["datalink"]}}},
-            "raw_workbook_sha256": raw_hashes["datalink"]})
-        write_json(root / imp.MAC / "provenance/extraction/metadata.json", metadata("mac-gray"))
-        write_json(root / imp.MAC / "provenance/extraction/status.json", good_status)
-        write_json(root / imp.MAC / "provenance/extraction/provider-summary.json", {
-            "result": good_provider, "raw_workbook_sha256": raw_hashes["mac-gray"]})
-        write_json(root / imp.MAC / "provenance/extraction/validation.json", {
-            "valid_xlsx": True, "sha256": raw_hashes["mac-gray"]})
-        data_rev = make_book(root / imp.DATA / "revision/datalink_revised.xlsx")
-        write_json(root / imp.DATA / "revision/post_hashes.json", {"revised_workbook_sha256": data_rev})
-        write_json(root / imp.DATA / "revision/structural_verification.json", {"four_sheets_in_required_order": True})
-        write_json(root / imp.DATA / "revision/reference_audit.json", {"all_targets_exist": True, "question_flags_bidirectional_match": True})
-        mac_rev = make_book(root / imp.MAC / "revision/extraction/mac-gray.xlsx")
-        mac_candidate = make_book(root / imp.MAC_ACCEPTANCE / "extraction/mac-gray.xlsx")
-        write_json(root / imp.MAC / "revision/verification/final-checks.json", {
-            "final_workbook_sha256": mac_rev, "all_protected_inputs_unchanged": True,
-            "no_unexpected_cell_changes_remain": True})
-        for relative in (
-            f"{imp.DATA}/fresh_review.md", f"{imp.DATA}/ADJUDICATION.md",
-            f"{imp.DATA}/inventory_comparison.md", f"{imp.DATA}/revision/INVENTORY_VERIFICATION.md",
-            f"{imp.DATA}/revision/VERIFICATION.md", f"{imp.DATA}/revision/CORRECTION_BRIEF.md",
-            f"{imp.MAC}/REPORT.md", f"{imp.MAC}/audit/review.md",
-            f"{imp.MAC}/ADJUDICATION.md", f"{imp.MAC}/revision/VERIFICATION.md",
-            f"{imp.MAC}/revision/ACCEPTED_CORRECTIONS.md",
-            f"{imp.MAC_ACCEPTANCE}/ACCEPTANCE.md",
-            f"{imp.MAC_ACCEPTANCE}/ACCEPTED_CORRECTIONS.md",
-            f"{imp.MAC_ACCEPTANCE}/RESEARCH_DECISION.md",
-            f"{imp.MAC_ACCEPTANCE}/ANALYTICAL_USE.md",
-            f"{imp.MAC_ACCEPTANCE}/FILING_COVERAGE.md",
-        ):
-            path = root / relative
-            path.parent.mkdir(parents=True, exist_ok=True)
-            path.write_text("accepted corrections implemented\n")
-        data_receipts = {deal: {"workbook_sha256": raw_hashes[deal],
-                                "checker_summary": {"errors": 0, "warnings": 1},
-                                "reported_cost_usd": 1.0} for deal in imp.NEW_DEALS}
-        with mock.patch.object(imp, "INSTRUCTION_HASH", instruction_hash), \
-             mock.patch.object(imp, "verify_batch", return_value=data_receipts), \
-             mock.patch.object(imp, "verify_mac_candidate", return_value={"workbook_sha256": mac_candidate, "r01_pending": True}), \
-             mock.patch.object(imp, "workbook", wraps=imp.workbook) as checked:
-            # The checked Mac-Gray final hash is fixed by the preserved real
-            # packet; patch only that literal fixture-specific check.
-            def fixture_workbook(r, relative, expected=None):
-                if relative.endswith("revision/extraction/mac-gray.xlsx"):
-                    expected = mac_rev
-                return checked._mock_wraps(r, relative, expected)
-            checked.side_effect = fixture_workbook
-            catalog, provenance = imp.build_catalog(root)
-        self.assertEqual(set(catalog["deals"]), set(imp.DEALS))
-        self.assertEqual(catalog["deals"]["datalink"]["default_base"], "datalink-verified")
-        self.assertEqual(catalog["deals"]["mac-gray"]["default_base"], "mac-gray-candidate")
-        self.assertEqual(len(catalog["deals"]["mac-gray"]["versions"]), 4)
-        self.assertEqual(catalog["deals"]["mac-gray"]["versions"][-1]["sha256"], mac_candidate)
-        self.assertTrue(any(f["id"] == "mac-gray-r01" and f["source_version"] == "mac-gray-candidate"
-                            for f in catalog["deals"]["mac-gray"]["findings"]))
-        self.assertEqual(catalog["deals"]["kraton"]["default_base"], "v1132-raw")
-        self.assertEqual(len(catalog["deals"]["kraton"]["versions"]), 2)
-        for deal in imp.NEW_DEALS:
-            self.assertEqual(catalog["deals"][deal]["findings"], [])
-            self.assertEqual(catalog["deals"][deal]["documents"], [])
-        self.assertNotIn("three-model", json.dumps(catalog))
-        self.assertNotIn("three-model", imp.report_text(catalog, provenance))
-        self.assertEqual(len(provenance["new_extractions"]), 7)
-        self.assertEqual(provenance["reused_raw"]["datalink"]["source_sha256"],
-                         protected["raw_filing/datalink.htm"])
-        bad_meta = metadata("mac-gray")
-        bad_meta["model"] = "claude-sonnet"
-        write_json(root / imp.MAC / "provenance/extraction/metadata.json", bad_meta)
-        with mock.patch.object(imp, "INSTRUCTION_HASH", instruction_hash), \
-             self.assertRaisesRegex(imp.ImportErrorEvidence, "Reused raw provenance"):
-            imp.verify_reused(root, protected, {d: {"file": f"{d}.htm"} for d in imp.DEALS})
+            filing = root / "raw_filing" / f"{deal}.htm"
+            filing.parent.mkdir(parents=True, exist_ok=True)
+            filing.write_text(f"synthetic filing for {deal}")
+            manifest[deal] = {"file": filing.name, "sha256": imp.sha256(filing)}
+            rows.append(f"{filing.name},{deal},{manifest[deal]['sha256']}")
+            folder = root / imp.REEXTRACT / "receipts" / deal
+            digest = make_book(root / "extraction" / f"{deal}.xlsx")
+            summary = {"errors": 0, "warnings": 2}
+            deals[deal] = {"new_sha256": digest, "old_sha256": "0" * 64, "check_summary": summary}
+            write_json(folder / "metadata.json", dict(mode="extract", provider="opus",
+                model="claude-opus-5-5", effort="medium", instruction_sha256=imp.INSTRUCTION_HASH,
+                filing_name=filing.name, filing_sha256=manifest[deal]["sha256"]))
+            write_json(folder / "status.json", dict(state="completed", exit_code=0, continuations=0,
+                provider={"served_models": ["claude-opus-5-5"]}, usage={"cost_usd": 1.5}))
+            write_json(folder / "command.json", {})
+            write_json(folder / "check.json", {"summary": summary})
+            write_json(folder / "provider-results.json", [dict(subtype="success", is_error=False,
+                modelUsage={"claude-opus-5-5": {}})])
+        (root / "raw_filing/MANIFEST.csv").write_text("\n".join(rows) + "\n")
+        write_json(root / imp.REEXTRACT / "reextraction.json", dict(model="claude-opus-5-5",
+            effort="medium", instruction_sha256=imp.INSTRUCTION_HASH, deals=deals))
+        for relative in (f"{imp.DATA}/ADJUDICATION.md", f"{imp.MAC_ACCEPTANCE}/RESEARCH_DECISION.md"):
+            (root / relative).parent.mkdir(parents=True, exist_ok=True)
+            (root / relative).write_text("recorded decision\n")
+        return manifest
+
+    def test_catalog_has_only_the_current_extraction(self) -> None:
+        self.synthetic_repo()
+        catalog, provenance = imp.build_catalog(self.root)
+        self.assertEqual(list(catalog["deals"]), list(imp.DEALS))
+        for deal, item in catalog["deals"].items():
+            self.assertEqual(item["default_base"], "opus55-medium")
+            self.assertEqual(len(item["versions"]), 1)
+            only = item["versions"][0]
+            self.assertEqual((only["id"], only["path"], only["sha256"]),
+                             ("opus55-medium", f"extraction/{deal}.xlsx",
+                              imp.sha256(self.root / "extraction" / f"{deal}.xlsx")))
+            # Only case-level decisions survive, and none is tied to a removed version.
+            for record in item["findings"] + item["documents"]:
+                self.assertIsNone(record["source_version"])
+            self.assertEqual(provenance["opus55_medium"][deal]["workbook_sha256"], only["sha256"])
+        self.assertEqual([f["id"] for f in catalog["deals"]["datalink"]["findings"]], ["datalink-f9"])
+        f9 = catalog["deals"]["datalink"]["findings"][0]
+        self.assertEqual(f9["recorded_decision"]["actor"], "Austin Li")
+        self.assertEqual((f9["judgment"], f9["implementation"]), ("unreviewed", "unassessed"))
+        self.assertNotIn("recorded_correction", f9)
+        mac = catalog["deals"]["mac-gray"]
+        self.assertEqual([f["id"] for f in mac["findings"]], ["mac-gray-r01"])
+        self.assertEqual([d["id"] for d in mac["documents"]], ["mac-gray-r01"])
+        for deal in set(imp.DEALS) - {"datalink", "mac-gray"}:
+            self.assertEqual((catalog["deals"][deal]["findings"], catalog["deals"][deal]["documents"]), ([], []))
+        text = json.dumps(catalog)
+        for retired in ("v1132-raw", "v113-baseline", "datalink-verified", "mac-gray-verified",
+                        "mac-gray-candidate", "previous/"):
+            self.assertNotIn(retired, text)
+
+    def test_main_writes_only_catalog_and_current_verification(self) -> None:
+        self.synthetic_repo()
+        before = {p for p in self.root.rglob("*") if p.is_file()}
+        self.assertEqual(imp.main(["--root", str(self.root)]), 0)
+        written = {p.relative_to(self.root).as_posix()
+                   for p in self.root.rglob("*") if p.is_file()} - {
+                       p.relative_to(self.root).as_posix() for p in before}
+        self.assertEqual(written, {"_dev/cockpit/catalog.json",
+                                   f"{imp.REEXTRACT}/import-verification.json"})
+
+    def test_filing_must_match_manifest(self) -> None:
+        self.synthetic_repo()
+        (self.root / "raw_filing/stec.htm").write_text("altered filing")
+        with self.assertRaisesRegex(imp.ImportErrorEvidence, "Filing hash differs from manifest: stec"):
+            imp.build_catalog(self.root)
+
+    def test_reextraction_refuses_wrong_model_or_workbook(self) -> None:
+        manifest = self.synthetic_repo()
+        result = imp.verify_reextraction(self.root, manifest)
+        self.assertEqual(result["kraton"]["workbook_sha256"],
+                         imp.sha256(self.root / "extraction/kraton.xlsx"))
+        self.assertEqual(result["kraton"]["reported_cost_usd"], 1.5)
+        meta = self.root / imp.REEXTRACT / "receipts/stec/metadata.json"
+        good = json.loads(meta.read_text())
+        write_json(meta, {**good, "effort": "high"})
+        with self.assertRaisesRegex(imp.ImportErrorEvidence, "prepared inputs differ: stec"):
+            imp.verify_reextraction(self.root, manifest)
+        write_json(meta, good)
+        other = openpyxl.load_workbook(self.root / "extraction/penford.xlsx")
+        other[imp.SHEETS[0]]["A1"] = "not the run's output"
+        other.save(self.root / "extraction/penford.xlsx")
+        with self.assertRaisesRegex(imp.ImportErrorEvidence, "Hash mismatch"):
+            imp.verify_reextraction(self.root, manifest)
 
 
 if __name__ == "__main__":

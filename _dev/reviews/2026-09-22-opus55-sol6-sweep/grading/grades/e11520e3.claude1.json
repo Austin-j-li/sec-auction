@@ -1,0 +1,275 @@
+{
+ "grader": "claude1",
+ "grades": [
+  {
+   "id": "SY-P01",
+   "grade": "pass",
+   "rows": "Deal ledger rows 8, 13, 18, 28, 29",
+   "reason": "The 2020 Canaccord cohort has Count 37 and a Note saying Company H was among them, which is an accepted alternative; the portal cohort has Count 8, the 2019 cohort Count 18, and the approximately-5 and approximately-12 cohorts leave Count blank with 'Count: approximately' in the Note; no cohort is treated as entered."
+  },
+  {
+   "id": "SY-P02",
+   "grade": "pass",
+   "rows": "Deal ledger rows 30, 31; Rounds row 4",
+   "reason": "The residual NDA cohort has a blank Count and 'Count: 11\u201314', naming E, CLP and G as possible members; CLP has its own NDA row dated 09/08/2020 with Count 1; G has no NDA row; Rounds round 1 gives live units as 14\u201317."
+  },
+  {
+   "id": "SY-P03",
+   "grade": "pass",
+   "rows": "Deal ledger row 41",
+   "reason": "The residual cohort is closed once by Did not submit (by 09/17/2020, Date to 09/17/2020), with Inferred Y, Exit reason Not stated, a blank Count and 'Count: 11\u201314', which nets out E, CLP and G."
+  },
+  {
+   "id": "SY-P04",
+   "grade": "pass",
+   "rows": "Deal ledger rows 14, 15, 22, 23, 25",
+   "reason": "The 07/13/2020 Process restarted row (Count 2) closes E's and F's 2019 participation, and E re-enters once through its 07/13/2020 NDA amendment (NDA signed row); the Bidder interest row is a contact, not a second entry."
+  },
+  {
+   "id": "SY-P05",
+   "grade": "pass",
+   "rows": "Deal ledger rows 31, 49, 61, 67",
+   "reason": "CLP has NDA signed 09/08/2020 (Financial, Count 1), Dropped by target 09/23/2020, and Re-entered 12/18\u201312/21/2020, which sits before its 01/04/2021 $1.88 bid; CLP has no other exit."
+  },
+  {
+   "id": "SY-P06",
+   "grade": "partial",
+   "rows": "Deal ledger row 50",
+   "reason": "G's exit is Dropped by target on 09/23/2020, the right label and date, but the Exit reason is Terms or process rather than Would not improve earlier offer."
+  },
+  {
+   "id": "SY-P07",
+   "grade": "pass",
+   "rows": "Deal ledger rows 37, 46, 54, 55, 62, 66, 73; Rounds row 6",
+   "reason": "H has no NDA row; it enters through the Committee's admission decision on 12/30/2020 (an Other material event noting that H enters) and is closed once by an inferred Dropped by target, by 01/06/2021, reason Not stated; its earlier contacts are not exits."
+  },
+  {
+   "id": "SY-P08",
+   "grade": "pass",
+   "rows": "Deal ledger rows 56, 74",
+   "reason": "Company I enters by NDA signed on 11/19/2020 and is closed once by Dropped by target, by 01/06/2021, with Inferred Y and Exit reason Not stated."
+  },
+  {
+   "id": "SY-P09",
+   "grade": "partial",
+   "rows": "Deal ledger row 69",
+   "reason": "E's exit is Withdrew on 01/04/2021 with no earlier unreturned exit, but the Exit reason is Not stated rather than a scope or terms reason, which the test marks as half credit."
+  },
+  {
+   "id": "SY-P10",
+   "grade": "pass",
+   "rows": "Deal ledger rows 9, 21",
+   "reason": "Company A is Withdrew 06/20/2018 with Value below earlier offer, and Company C is Withdrew October 2019 (10/01\u201310/31/2019) with Exit reason Not stated."
+  },
+  {
+   "id": "SY-P11",
+   "grade": "pass",
+   "rows": "Deal ledger rows 2-5, 11, 15, 31, 32, 35, 36, 37, 56",
+   "reason": "Every Type matches (CLP, E, G and A Financial; H, I, C and F Strategic); 180 Degree appears only as an Other material event with no group change; Company D has no rows."
+  },
+  {
+   "id": "SY-R01",
+   "grade": "pass",
+   "rows": "Deal ledger rows 10, 22; Deal facts row 11",
+   "reason": "The workbook has three processes (2018, 2019, 2020\u201321); the final process starts with a Process restarted row dated 07/13/2020 marked Inferred Y; there is no Company D process; Deal facts gives 3."
+  },
+  {
+   "id": "SY-R02",
+   "grade": "pass",
+   "rows": "Rounds row 4; Deal ledger rows 23, 25, 27",
+   "reason": "Process 3 round 1 opens on 07/16/2020 (mid-July) at the Canaccord outreach with a Due date of 09/17/2020; there is a matching Round opened row, and E's 07/13 approach and NDA amendment sit in round 0."
+  },
+  {
+   "id": "SY-R03",
+   "grade": "pass",
+   "rows": "Deal ledger row 40; Rounds row 4",
+   "reason": "There is a Deadline row dated 09/17/2020 in round 1, and the round-1 Deadline outcome is Enforced."
+  },
+  {
+   "id": "SY-R04",
+   "grade": "pass",
+   "rows": "Deal ledger rows 51, 52; Rounds row 5",
+   "reason": "Round 2 opens on 09/23/2020 for the exclusive negotiation with E, Who was in is Company E (1 financial), Due dates none stated, and the 10/23 expiry is an event inside that round."
+  },
+  {
+   "id": "SY-R05",
+   "grade": "pass",
+   "rows": "Deal ledger rows 57, 59, 60, 64, 65, 67, 71; Rounds row 6",
+   "reason": "Round 3 opens on 12/18\u201312/21/2020 (an accepted window), lists CLP and H among its participants with Due dates none stated, holds CLP's $1.88 and $2.00 bids, and places the 12/08 and 12/14 bids in round 2 and the 12/29 letters in round 3 consistently."
+  },
+  {
+   "id": "SY-R06",
+   "grade": "pass",
+   "rows": "Deal ledger rows 75, 78, 81, 83; Rounds row 7",
+   "reason": "Round 4 opens on 01/06/2021 with CLP alone and no due date and ends in the 02/10/2021 signing; the 01/21 reaffirmation and the $2.20 bid are in it, and the announcement is Round post."
+  },
+  {
+   "id": "SY-R07",
+   "grade": "pass",
+   "rows": "Rounds rows 4-7",
+   "reason": "Finality is Not final for R1, Inferred final for R2, Not final for R3 and Inferred final for R4."
+  },
+  {
+   "id": "SY-R08",
+   "grade": "pass",
+   "rows": "Rounds rows 5-7; Deal ledger rows 52, 65, 72",
+   "reason": "The only bid due date is 09/17/2020; later rounds show 'none stated' and 'No deadline stated', and none of the offer expiries or exclusivity dates is coded as a deadline."
+  },
+  {
+   "id": "SY-R09",
+   "grade": "pass",
+   "rows": "Deal ledger rows 4, 5, 16, 32, 35, 39, 42",
+   "reason": "E's 09/10 bid, G's 09/14 bid, CLP's 09/17 bid and E's 09/18 revised-LOI row are all in process-3 round 1, and A's two IOIs and C's 08/13/2019 LOI are round 0."
+  },
+  {
+   "id": "SY-R10",
+   "grade": "pass",
+   "rows": "Deal ledger rows 6, 7, 8, 12, 27, 51, 60, 75; Rounds rows 2-7",
+   "reason": "Process 1 round 1 opens at the Liontree outreach (Sort date 05/08/2018) after the round-0 Adviser row; process 2 has one round-1 opening; every round has exactly one opening row and one Rounds line; no round-n row sits above its opening."
+  },
+  {
+   "id": "SY-F01",
+   "grade": "pass",
+   "rows": "Deal ledger row 39",
+   "reason": "CLP's 09/17/2020 bid is Informal, All cash Yes, with Conditions Unclear."
+  },
+  {
+   "id": "SY-F02",
+   "grade": "partial",
+   "rows": "Deal ledger rows 32, 42",
+   "reason": "E's 09/10 bid is correct (whole-company Bid, Informal, All cash Yes), but the 09/18 revised LOI has no bid row; its $2.00 reaffirmation and exclusivity request appear only in an Exclusivity changed row, which the test marks as half credit."
+  },
+  {
+   "id": "SY-F03",
+   "grade": "pass",
+   "rows": "Deal ledger row 67",
+   "reason": "CLP's 01/04/2021 bid is Informal, All cash Yes, with Conditions Unclear."
+  },
+  {
+   "id": "SY-F04",
+   "grade": "pass",
+   "rows": "Deal ledger row 71",
+   "reason": "CLP's $2.00 bid is Informal, Conditions Heavy, All cash Yes."
+  },
+  {
+   "id": "SY-F05",
+   "grade": "pass",
+   "rows": "Deal ledger rows 71, 78",
+   "reason": "There is a Bid reaffirmed row dated 01/21/2021 at 2.00/2.00, Formal, Conditions Unclear, All cash Yes, and the $2.00 Bid row stays Informal."
+  },
+  {
+   "id": "SY-F06",
+   "grade": "pass",
+   "rows": "Deal ledger rows 81, 82",
+   "reason": "CLP's 02/10/2021 bid is Formal, Conditions None, All cash Yes, and the signing row leaves the price and bid-label cells blank."
+  },
+  {
+   "id": "SY-F07",
+   "grade": "pass",
+   "rows": "Deal ledger rows 59, 65",
+   "reason": "E's 12/14/2020 and 12/29/2020 proposals are both Other-scope bid rows, Informal, with Conditions Heavy."
+  },
+  {
+   "id": "SY-F08",
+   "grade": "pass",
+   "rows": "Deal ledger rows 19, 35, 57, 64",
+   "reason": "The F, G and I segment bids, and I's 12/29 reaffirmation, are all Other-scope bid rows, Informal, with blank prices; G's Conditions are Unclear."
+  },
+  {
+   "id": "SY-F09",
+   "grade": "pass",
+   "rows": "Deal ledger rows 4, 5, 16",
+   "reason": "A's two IOIs are whole-company Bids (Informal, Unclear, All cash Not stated, no price), and C's LOI is a Bid (Informal, Unclear, All cash No, no price)."
+  },
+  {
+   "id": "SY-C01",
+   "grade": "pass",
+   "rows": "Deal ledger rows 31, 32, 35, 39, 42, 48, 52, 56, 57, 59, 64, 65, 66, 67, 69, 76, 78, 79, 81, 82, 83",
+   "reason": "Every listed 2020\u201321 date appears on the correct rows, including the optional 12/29 I, 01/07 LOI and 01/21 draft rows."
+  },
+  {
+   "id": "SY-C02",
+   "grade": "pass",
+   "rows": "Deal ledger rows 8, 11, 21, 28, 60-63, 71",
+   "reason": "All windows match: the Canaccord cohort runs 07/13\u201309/19/2020, the December rows 12/18\u201312/21/2020, CLP's $2.00 bid is 'by 01/06/2021' (01/05\u201301/06), C's NDA and exit are month windows, and the Liontree contacts run 05/08\u201312/31/2018."
+  },
+  {
+   "id": "SY-C03",
+   "grade": "pass",
+   "rows": "Deal ledger rows 64-67, 69, 71, 75, 79, 81, 82",
+   "reason": "The 12/29 rows come before the 12/30 decision; the 01/04 bid, E's withdrawal and the $2.00 bid come before the 01/06 Round opened row; 02/08 comes before the 02/10 bid, which comes before signing; Sort dates never decrease."
+  },
+  {
+   "id": "SY-C04",
+   "grade": "pass",
+   "rows": "Deal ledger rows 42, 48, 52, 72, 76",
+   "reason": "E's exclusivity is recorded as requested 09/18, executed 09/23 and ended 10/23/2020; CLP's exclusivity is recorded only as requested, and a Note says the grant is unreported."
+  },
+  {
+   "id": "SY-C05",
+   "grade": "pass",
+   "rows": "Deal ledger rows 31, 82, 83",
+   "reason": "Signing (02/10/2021, $2.20 cash) and announcement (02/11/2021, Round post) are separate rows, CLP's NDA is dated 09/08/2020, and no row falls after the filing date."
+  },
+  {
+   "id": "SY-B01",
+   "grade": "pass",
+   "rows": "Deal ledger rows 32, 42",
+   "reason": "E's 09/10 bid carries 2.00/2.00; the 09/18 letter has no bid row, so under the test's fold-in rule the 09/10 row alone is scored."
+  },
+  {
+   "id": "SY-B02",
+   "grade": "pass",
+   "rows": "Deal ledger row 39",
+   "reason": "CLP's 09/17/2020 bid has Price low 1.35 and Price high 1.41."
+  },
+  {
+   "id": "SY-B03",
+   "grade": "pass",
+   "rows": "Deal ledger row 67",
+   "reason": "CLP's 01/04/2021 bid is 1.88/1.88."
+  },
+  {
+   "id": "SY-B04",
+   "grade": "pass",
+   "rows": "Deal ledger rows 71, 76",
+   "reason": "CLP's $2.00 bid is 2.00/2.00, dated 'by 01/06/2021' with Date to 01/06/2021, and placed before the 01/07 LOI execution."
+  },
+  {
+   "id": "SY-B05",
+   "grade": "pass",
+   "rows": "Deal ledger row 81",
+   "reason": "CLP's 02/10/2021 bid is 2.20/2.20."
+  },
+  {
+   "id": "SY-B06",
+   "grade": "pass",
+   "rows": "Deal ledger rows 4, 5, 16, 19, 35, 45, 57, 64",
+   "reason": "The 09/22 remark is an Other material event with empty price cells (its arithmetic appears only in the Note); the A, C, F, G and I bids have blank prices; no priced CLP bid falls between 09/23/2020 and 01/03/2021."
+  },
+  {
+   "id": "SY-O01",
+   "grade": "pass",
+   "rows": "Deal facts rows 3, 4, 5",
+   "reason": "The acquirer is named as CLP SY Holding and SY Merger Sub, controlled by Centre Lane Partners V; the type is Financial; the price is $2.20 cash via tender offer and \u00a7251(h) merger."
+  },
+  {
+   "id": "SY-O02",
+   "grade": "pass",
+   "rows": "Deal facts rows 6, 7, 8, 9",
+   "reason": "Deal facts give signing 02/10/2021, announcement 02/11/2021, Schedule TO-T Offer to Purchase dated 03/03/2021, and background pages 30\u201338."
+  },
+  {
+   "id": "SY-O03",
+   "grade": "pass",
+   "rows": "Deal facts rows 16, 17; Deal ledger row 77",
+   "reason": "Financial advisers are Canaccord Genuity (with the fairness opinion) and Liontree (2018); legal adviser is Gunderson Dettmer; Thompson Hine is identified as CLP's counsel."
+  },
+  {
+   "id": "SY-O04",
+   "grade": "pass",
+   "rows": "Deal facts rows 10, 13, 14",
+   "reason": "The process-3 auction screen reads 'Met \u2026 at least 14 parties', Initiation is mixed, and Whole-company bids is Yes."
+  }
+ ]
+}

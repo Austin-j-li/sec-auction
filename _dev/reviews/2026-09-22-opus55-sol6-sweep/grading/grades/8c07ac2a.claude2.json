@@ -1,0 +1,251 @@
+{
+ "grader": "claude2",
+ "grades": [
+  {
+   "id": "MG-P01",
+   "grade": "pass",
+   "rows": "Deal ledger 3, 11, 12, 13, 14",
+   "reason": "Party A's 04/08 row, CSC/Pamplona's own Contact row, 13 other strategic and 35 financial add up to 50. The Note says Party B and Party C are presumably among the 35, and no row treats contacts as admitted bidders."
+  },
+  {
+   "id": "MG-P02",
+   "grade": "pass",
+   "rows": "Deal ledger 16, 17, 20, 21, 29",
+   "reason": "Named NDA rows are right: Party B 06/28, Party C 06/30, CSC/Pamplona 07/11 (Strategic) and Party A 08/05 (Strategic), each Count 1. The remainder cohort is Financial, Count 16, for 20 in total."
+  },
+  {
+   "id": "MG-P03",
+   "grade": "pass",
+   "rows": "Deal ledger 3, 9, 29, 50; Rounds 2",
+   "reason": "Party A enters through its 06/21 round-0 Bid (the Note calls it the entry). The 04/08 row is Target interest and the 08/05 NDA adds no entry. A has no exit before 09/24 and no Re-entered row, and CSC/Pamplona is one unit throughout."
+  },
+  {
+   "id": "MG-P04",
+   "grade": "partial",
+   "rows": "Deal ledger 24; Questions 3; Rounds 2",
+   "reason": "The 16 are closed once, as an exact all-16 Did not submit by 07/23 (Count 16, Inferred Y, Not stated). The row's Note and Q2 say signing dates are unknown and some may have signed after the due date, which is a caveated exact closure, so partial rather than pass."
+  },
+  {
+   "id": "MG-P05",
+   "grade": "pass",
+   "rows": "Deal ledger 43",
+   "reason": "One Party C exit: Did not submit, 09/18/2013, Process 1, Round 3, Not stated. There is no later bid, Withdrew or exclusivity drop."
+  },
+  {
+   "id": "MG-P06",
+   "grade": "pass",
+   "rows": "Deal ledger 49, 50, 51",
+   "reason": "Party A and Party B are each Dropped by target by 09/24/2013 (Date to 09/24), Inferred Y, Round 3, Not stated. Both are tied to the executed exclusivity."
+  },
+  {
+   "id": "MG-P07",
+   "grade": "pass",
+   "rows": "Deal ledger 24, 43, 50, 51, 56; Rounds 2-4",
+   "reason": "Nineteen closures in total (16 + C + A + B), with no duplicate signing closures, no Re-entered or Process terminated row and no CSC/Pamplona exit. Rounds shows 4 at the R2 and R3 openings, 3 bidding after 09/18 and 1 after 09/24, consistent with the ledger."
+  },
+  {
+   "id": "MG-P08",
+   "grade": "pass",
+   "rows": "Deal ledger 8, 18, 19, 38, 48, 53",
+   "reason": "Moab and MacDonald appear only as Activist or Other material event rows, with Type and Count blank. The 07/03 rollover and exclusivity request (row 18) and the Special Committee's 07/06 denial (row 19) are both recorded."
+  },
+  {
+   "id": "MG-P09",
+   "grade": "pass",
+   "rows": "Deal ledger 14, 20, 22, 32, 40, 47 (CSC/Pamplona), 3, 9, 29 (Party A), 16, 17, 21 (B, C, cohort); Deal facts 4",
+   "reason": "CSC/Pamplona and Party A are Strategic on every row. Party B, Party C and the cohort are Financial, and Deal facts Acquirer type is Strategic."
+  },
+  {
+   "id": "MG-R01",
+   "grade": "pass",
+   "rows": "All Deal ledger rows; Rounds 2-4; Deal facts 11, 12",
+   "reason": "Process is 1 everywhere, with no terminated or restarted row, and Number of processes is 1. The 2011-2012 CSC talks are described as buy-side context only."
+  },
+  {
+   "id": "MG-R02",
+   "grade": "pass",
+   "rows": "Deal ledger 11; Rounds 2",
+   "reason": "There is one Round opened row for R1, dated 06/24/2013, and Rounds R1 Opened is 06/24/2013."
+  },
+  {
+   "id": "MG-R03",
+   "grade": "pass",
+   "rows": "Deal ledger 27, 31; Rounds 3",
+   "reason": "Round 2 opens 07/25/2013 on the selection of four for staged diligence and is Not final. The 08/27 letter is a Deadline set inside round 2."
+  },
+  {
+   "id": "MG-R04",
+   "grade": "pass",
+   "rows": "Deal ledger 39; Rounds 2, 3, 4",
+   "reason": "Round 3 opens 09/11/2013 with the request for final indications and is Announced as final. Rounds 1 and 2 are Not final."
+  },
+  {
+   "id": "MG-R05",
+   "grade": "pass",
+   "rows": "Deal ledger 45-57; Rounds 4",
+   "reason": "No round opens after 09/11, there is no go-shop round and no round-0 or post Rounds line. Merger announced is Round post."
+  },
+  {
+   "id": "MG-R06",
+   "grade": "pass",
+   "rows": "Deal ledger 23, 31, 35; Rounds 2, 3",
+   "reason": "Deadline rows at 07/23 and 09/09, the latter set 08/27. Both deadline outcomes are Late bids accepted."
+  },
+  {
+   "id": "MG-R07",
+   "grade": "pass",
+   "rows": "Deal ledger 44, 49, 55; Rounds 4",
+   "reason": "There is a 09/18 Deadline row with the outcome Enforced. The exclusivity expiries get no Deadline rows or Due dates."
+  },
+  {
+   "id": "MG-R08",
+   "grade": "pass",
+   "rows": "Deal ledger 9, 22, 25, 26, 28, 32, 34, 36, 37, 40, 41, 42, 47",
+   "reason": "All 13 bids sit in the expected rounds (0: 1; 1: 4 including C's 07/25 written bid; 2: 4; 3: 4)."
+  },
+  {
+   "id": "MG-R09",
+   "grade": "partial",
+   "rows": "Rounds 2, 3, 4",
+   "reason": "R2 (4, A conditional on its NDA) and R3 (4 in, 3 bid) are right and Party A is not admitted to R1. But R1 'Who was in' asserts an exact '19 NDA signers' and ends 'sixteen out', with only a signing-date caveat, instead of treating the unnamed signers' admission as unknown."
+  },
+  {
+   "id": "MG-F01",
+   "grade": "pass",
+   "rows": "Deal ledger 9, 22, 25, 26, 28, 32, 34, 36, 37",
+   "reason": "All nine round 0-2 bids are Informal, including CSC/Pamplona's 09/09 bid."
+  },
+  {
+   "id": "MG-F02",
+   "grade": "pass",
+   "rows": "Deal ledger 40, 41, 42, 47",
+   "reason": "All four final-round responses (CSC/Pamplona 09/18 and 09/21, Party A 09/18, Party B 09/18) are Formal."
+  },
+  {
+   "id": "MG-F03",
+   "grade": "pass",
+   "rows": "Deal ledger 34, 36, 37",
+   "reason": "Party B 09/09, Party A 09/10 and Party C 09/10 are Heavy, each with a Note citing no firm financing commitment."
+  },
+  {
+   "id": "MG-F04",
+   "grade": "pass",
+   "rows": "Deal ledger 32, 40, 47; Questions 6",
+   "reason": "CSC/Pamplona's 09/09, 09/18 and 09/21 bids are Heavy on the two-week exclusivity condition, with Pamplona's 100% funding kept in the Note."
+  },
+  {
+   "id": "MG-F05",
+   "grade": "pass",
+   "rows": "Deal ledger 9, 22, 25, 26, 28",
+   "reason": "All five early indications are Unclear."
+  },
+  {
+   "id": "MG-F06",
+   "grade": "pass",
+   "rows": "Deal ledger 41, 42",
+   "reason": "Party A 09/18 is Heavy, grounded in its financing gap, and Party B 09/18 is Unclear. Neither is None or Light."
+  },
+  {
+   "id": "MG-F07",
+   "grade": "pass",
+   "rows": "Deal ledger 9, 22, 25, 26, 28, 32, 34, 36, 37, 40, 41, 42, 47",
+   "reason": "The 12 cash bids are All cash Yes and Party B's 09/18 package is No."
+  },
+  {
+   "id": "MG-F08",
+   "grade": "pass",
+   "rows": "Deal ledger 56, 54, 55",
+   "reason": "The signing row has price, All cash, Formality and Conditions blank. There is no October Bid reaffirmed and no target counter as a Bid; fee changes are kept as Notes (R01 option 1)."
+  },
+  {
+   "id": "MG-C01",
+   "grade": "pass",
+   "rows": "Deal ledger 26, 27, 28",
+   "reason": "There are separate oral 07/24 ($15-17) and written 07/25 ($16-16.50) Party C rows. The written one sorts after the 07/25 Round opened row and its Note says it came after the meeting."
+  },
+  {
+   "id": "MG-C02",
+   "grade": "pass",
+   "rows": "Deal ledger 12, 13, 21",
+   "reason": "The cohort row keeps 'over the two months after 06/24' (06/24 to 08/24). The outreach Contact rows start 06/24 with Date to blank and no invented end."
+  },
+  {
+   "id": "MG-C03",
+   "grade": "pass",
+   "rows": "Deal ledger 30",
+   "reason": "A dedicated 08/06-08/27 Other material event names broad data-room access for Party B and Party C and limited access for Party A and CSC/Pamplona, with customer data withheld."
+  },
+  {
+   "id": "MG-C04",
+   "grade": "pass",
+   "rows": "Deal ledger 49, 54, 55",
+   "reason": "Exclusivity is executed 09/24 (authorized 09/23, to 10/12). The extension request has its own 'by 10/09/2013' row, separate from the 10/12 execution to 10/15."
+  },
+  {
+   "id": "MG-C05",
+   "grade": "fail",
+   "rows": "Deal ledger 47, 53, 56",
+   "reason": "There is no row for the 09/27 MacDonald voting agreements. They appear only in Notes (the 09/21 request and 'voting agreements' at signing) with no 09/27 execution date."
+  },
+  {
+   "id": "MG-C06",
+   "grade": "partial",
+   "rows": "Deal ledger 52",
+   "reason": "Kirkland & Ellis is recorded as CSC/Pamplona's counsel dated 09/25/2013. The Annex A section 5.11 banks (Morgan Stanley, Deutsche Bank Securities, Evercore) are absent from the workbook."
+  },
+  {
+   "id": "MG-C07",
+   "grade": "pass",
+   "rows": "Deal ledger 45, 46, 47",
+   "reason": "The 09/19 Special Committee row (CSC/Pamplona preferred, exclusivity at $21.25) and the 09/21 Transaction Committee communication have blank price cells and sort before CSC/Pamplona's 09/21 $21.25 bid."
+  },
+  {
+   "id": "MG-B01",
+   "grade": "pass",
+   "rows": "Deal ledger 9, 22, 25, 26, 28",
+   "reason": "All five round 0-1 prices and dates match exactly."
+  },
+  {
+   "id": "MG-B02",
+   "grade": "pass",
+   "rows": "Deal ledger 32, 34, 36, 37",
+   "reason": "CSC/Pamplona is $19.50 and Party B $18.50 on 09/09; Party A is $18-19 and Party C $16-17 on 09/10."
+  },
+  {
+   "id": "MG-B03",
+   "grade": "pass",
+   "rows": "Deal ledger 40, 41, 45, 46, 47",
+   "reason": "CSC/Pamplona $20.75 on 09/18, Party A $18-19 on 09/18 and CSC/Pamplona $21.25 on 09/21 are right. The target's $21.25 counter is an Other material event, not a Bid."
+  },
+  {
+   "id": "MG-B04",
+   "grade": "pass",
+   "rows": "Deal ledger 42",
+   "reason": "Price low and high are $21.50. The Note gives $19.00 cash plus options valued by Party B at $2.50, vesting on the five-year plan targets."
+  },
+  {
+   "id": "MG-B05",
+   "grade": "pass",
+   "rows": "Deal ledger 3, 14, 43 and all Bid rows",
+   "reason": "Only the 13 expected priced bids exist, with no bids for the 04/08 or 06/28 contacts or for Party C after 09/18, and non-bid rows have blank price cells."
+  },
+  {
+   "id": "MG-O01",
+   "grade": "pass",
+   "rows": "Deal facts 3, 5, 6, 7; Deal ledger 56, 57",
+   "reason": "Acquirer is CSC ServiceWorks via Spin Holdco, the price is $21.25 cash, signed 10/14 and announced 10/15, with separate signing and announcement rows."
+  },
+  {
+   "id": "MG-O02",
+   "grade": "pass",
+   "rows": "Deal facts 13, 14",
+   "reason": "Auction screen reads 'Met (process 1): 20 parties' and Whole-company bids is Yes."
+  },
+  {
+   "id": "MG-O03",
+   "grade": "pass",
+   "rows": "Deal facts 10, 16, 17; Deal ledger 3",
+   "reason": "Initiation is target-led, the 04/08 row is Target interest, and the advisers are BofA Merrill Lynch and Goodwin Procter LLP."
+  }
+ ]
+}

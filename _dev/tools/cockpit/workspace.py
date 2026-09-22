@@ -119,7 +119,10 @@ class Workspace:
         return found
 
     def base(self, item: dict[str, Any]) -> dict[str, Any]:
-        return self.version(item, item.get("default_base", "v1132-raw"))
+        ident = item.get("default_base")
+        if not isinstance(ident, str) or not ident:
+            raise WorkspaceError("catalog deal has no default_base")
+        return self.version(item, ident)
 
     def _connect(self, write: bool = False) -> sqlite3.Connection | None:
         if not write and not self.db_path.is_file():

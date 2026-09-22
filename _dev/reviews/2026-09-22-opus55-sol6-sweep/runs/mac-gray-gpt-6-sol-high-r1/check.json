@@ -1,0 +1,107 @@
+{
+  "checker": "lean-mechanical",
+  "checker_revision": "Adds two cross-column checks: an exact-day When must equal Date from, Date to and Sort date (E8), and an inferred exit carries Exit reason 'Not stated' (E14). Checks instruction v1.13.1.",
+  "checker_version": "1.5",
+  "filing": "/home/uctpiaj/work/Projects/sec-extraction/raw_filing/mac-gray_2013-12-04_DEFM14A.htm",
+  "issues": [
+    {
+      "basis": "mechanical",
+      "code": "exit.inferred_reason",
+      "column": "Exit reason",
+      "message": "An inferred exit carries Exit reason 'Not stated' (E14); found 'Would not improve earlier offer'.",
+      "row": 50,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.rows_unparsed",
+      "column": "Rows affected",
+      "message": "Rows affected is narrative/global, so its row links could not be checked mechanically.",
+      "row": 2,
+      "severity": "warning",
+      "sheet": "Questions"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.length",
+      "column": null,
+      "message": "Question entry has about 137 words across its review fields; the instruction asks for about 60.",
+      "row": 2,
+      "severity": "warning",
+      "sheet": "Questions"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.rows_unparsed",
+      "column": "Rows affected",
+      "message": "Rows affected is narrative/global, so its row links could not be checked mechanically.",
+      "row": 3,
+      "severity": "warning",
+      "sheet": "Questions"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.rows_unparsed",
+      "column": "Rows affected",
+      "message": "Rows affected is narrative/global, so its row links could not be checked mechanically.",
+      "row": 4,
+      "severity": "warning",
+      "sheet": "Questions"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.rows_unparsed",
+      "column": "Rows affected",
+      "message": "Rows affected is narrative/global, so its row links could not be checked mechanically.",
+      "row": 5,
+      "severity": "warning",
+      "sheet": "Questions"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.length",
+      "column": null,
+      "message": "Question entry has about 111 words across its review fields; the instruction asks for about 60.",
+      "row": 5,
+      "severity": "warning",
+      "sheet": "Questions"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.rows_unparsed",
+      "column": "Rows affected",
+      "message": "Rows affected is narrative/global, so its row links could not be checked mechanically.",
+      "row": 7,
+      "severity": "warning",
+      "sheet": "Questions"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.rows_unparsed",
+      "column": "Rows affected",
+      "message": "Rows affected is narrative/global, so its row links could not be checked mechanically.",
+      "row": 8,
+      "severity": "warning",
+      "sheet": "Questions"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.deadline_outcomes",
+      "column": null,
+      "message": "The ledger has a reached Deadline, but no Question visibly mentions deadline outcomes.",
+      "row": null,
+      "severity": "warning",
+      "sheet": "Questions"
+    }
+  ],
+  "scope_note": "Mechanical checks only. Quote occurrence proves source occurrence, not semantic support. No bidder-population arithmetic or substantive extraction grading is performed.",
+  "status": "pass_with_warnings",
+  "summary": {
+    "errors": 0,
+    "information": 0,
+    "total_issues": 10,
+    "warnings": 10
+  },
+  "workbook": "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/2026-09-22-opus55-sol6-sweep/mac-gray-gpt-6-sol-high-r1/extraction/mac-gray.xlsx"
+}

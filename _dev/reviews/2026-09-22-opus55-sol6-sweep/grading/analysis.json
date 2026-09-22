@@ -1,0 +1,339 @@
+{
+ "agreement": {
+  "claude1_claude2_mean_abs_gap": 0.39,
+  "claude_astra_mean_abs_gap": 1.52,
+  "claude_minus_astra_by_arm": {
+   "gpt-6-sol-high": 2.67,
+   "gpt-6-sol-xhigh": 0.92,
+   "opus-5-5-high": -0.08,
+   "opus-5-5-medium": 1.5
+  },
+  "claude_minus_astra_mean": 0.98,
+  "duplicate_controls": [
+   {
+    "cell": "synacor-opus-5-5-high-r1",
+    "duplicate": 95.25,
+    "gap": 0.0,
+    "original": 95.25
+   },
+   {
+    "cell": "mac-gray-gpt-6-sol-xhigh-r1",
+    "duplicate": 97.88,
+    "gap": 0.0,
+    "original": 97.88
+   }
+  ],
+  "full_level_disagreements": 3,
+  "item_agreement": {
+   "claude-astra": 0.974,
+   "claude1-claude2": 0.993
+  }
+ },
+ "arms": {
+  "gpt-6-sol-high": {
+   "astra": 82.92,
+   "claude": 85.58,
+   "completed_only_score": 84.25,
+   "deals": {
+    "datalink": {
+     "mean": 86.0,
+     "scores": [
+      86.0
+     ]
+    },
+    "mac-gray": {
+     "mean": 84.75,
+     "scores": [
+      84.75
+     ]
+    },
+    "synacor": {
+     "mean": 82.0,
+     "scores": [
+      82.0
+     ]
+    }
+   },
+   "failed": 0,
+   "n": 3,
+   "score": 84.25
+  },
+  "gpt-6-sol-xhigh": {
+   "astra": 90.67,
+   "claude": 91.58,
+   "completed_only_score": 91.13,
+   "deals": {
+    "datalink": {
+     "mean": 87.12,
+     "scores": [
+      87.12
+     ]
+    },
+    "mac-gray": {
+     "mean": 97.88,
+     "scores": [
+      97.88
+     ]
+    },
+    "synacor": {
+     "mean": 88.38,
+     "scores": [
+      88.38
+     ]
+    }
+   },
+   "failed": 0,
+   "n": 3,
+   "score": 91.13
+  },
+  "opus-5-5-high": {
+   "astra": 92.58,
+   "claude": 92.5,
+   "completed_only_score": 92.54,
+   "deals": {
+    "datalink": {
+     "mean": 88.5,
+     "scores": [
+      88.5
+     ]
+    },
+    "mac-gray": {
+     "mean": 93.88,
+     "scores": [
+      93.88
+     ]
+    },
+    "synacor": {
+     "mean": 95.25,
+     "scores": [
+      95.25
+     ]
+    }
+   },
+   "failed": 0,
+   "n": 3,
+   "score": 92.54
+  },
+  "opus-5-5-medium": {
+   "astra": 92.75,
+   "claude": 94.25,
+   "completed_only_score": 93.5,
+   "deals": {
+    "datalink": {
+     "mean": 92.5,
+     "scores": [
+      92.5
+     ]
+    },
+    "mac-gray": {
+     "mean": 93.5,
+     "scores": [
+      93.5
+     ]
+    },
+    "synacor": {
+     "mean": 94.5,
+     "scores": [
+      94.5
+     ]
+    }
+   },
+   "failed": 0,
+   "n": 3,
+   "score": 93.5
+  }
+ },
+ "cells": {
+  "datalink-gpt-6-sol-high-r1": {
+   "arm": "gpt-6-sol-high",
+   "astra": 85.0,
+   "claude": 87.0,
+   "deal": "datalink",
+   "replicate": 1,
+   "score": 86.0,
+   "state": "completed"
+  },
+  "datalink-gpt-6-sol-xhigh-r1": {
+   "arm": "gpt-6-sol-xhigh",
+   "astra": 87.0,
+   "claude": 87.25,
+   "deal": "datalink",
+   "replicate": 1,
+   "score": 87.12,
+   "state": "completed"
+  },
+  "datalink-opus-5-5-high-r1": {
+   "arm": "opus-5-5-high",
+   "astra": 88.0,
+   "claude": 89.0,
+   "deal": "datalink",
+   "replicate": 1,
+   "score": 88.5,
+   "state": "completed"
+  },
+  "datalink-opus-5-5-medium-r1": {
+   "arm": "opus-5-5-medium",
+   "astra": 92.5,
+   "claude": 92.5,
+   "deal": "datalink",
+   "replicate": 1,
+   "score": 92.5,
+   "state": "completed"
+  },
+  "mac-gray-gpt-6-sol-high-r1": {
+   "arm": "gpt-6-sol-high",
+   "astra": 82.0,
+   "claude": 87.5,
+   "deal": "mac-gray",
+   "replicate": 1,
+   "score": 84.75,
+   "state": "completed"
+  },
+  "mac-gray-gpt-6-sol-xhigh-r1": {
+   "arm": "gpt-6-sol-xhigh",
+   "astra": 98.5,
+   "claude": 97.25,
+   "deal": "mac-gray",
+   "replicate": 1,
+   "score": 97.88,
+   "state": "completed"
+  },
+  "mac-gray-opus-5-5-high-r1": {
+   "arm": "opus-5-5-high",
+   "astra": 94.5,
+   "claude": 93.25,
+   "deal": "mac-gray",
+   "replicate": 1,
+   "score": 93.88,
+   "state": "completed"
+  },
+  "mac-gray-opus-5-5-medium-r1": {
+   "arm": "opus-5-5-medium",
+   "astra": 93.5,
+   "claude": 93.5,
+   "deal": "mac-gray",
+   "replicate": 1,
+   "score": 93.5,
+   "state": "completed"
+  },
+  "synacor-gpt-6-sol-high-r1": {
+   "arm": "gpt-6-sol-high",
+   "astra": 81.75,
+   "claude": 82.25,
+   "deal": "synacor",
+   "replicate": 1,
+   "score": 82.0,
+   "state": "completed"
+  },
+  "synacor-gpt-6-sol-xhigh-r1": {
+   "arm": "gpt-6-sol-xhigh",
+   "astra": 86.5,
+   "claude": 90.25,
+   "deal": "synacor",
+   "replicate": 1,
+   "score": 88.38,
+   "state": "completed"
+  },
+  "synacor-opus-5-5-high-r1": {
+   "arm": "opus-5-5-high",
+   "astra": 95.25,
+   "claude": 95.25,
+   "deal": "synacor",
+   "replicate": 1,
+   "score": 95.25,
+   "state": "completed"
+  },
+  "synacor-opus-5-5-medium-r1": {
+   "arm": "opus-5-5-medium",
+   "astra": 92.25,
+   "claude": 96.75,
+   "deal": "synacor",
+   "replicate": 1,
+   "score": 94.5,
+   "state": "completed"
+  }
+ },
+ "decision": {
+  "opus": {
+   "deals_where_higher_clears": [],
+   "gap_by_deal": {
+    "datalink": -4.0,
+    "mac-gray": 0.38,
+    "synacor": 0.75
+   },
+   "higher": "opus-5-5-high",
+   "lower": "opus-5-5-medium",
+   "mean_gap": -0.96,
+   "pooled_replicate_spread": null,
+   "recommended": "opus-5-5-medium",
+   "threshold": 2.0
+  },
+  "sol": {
+   "deals_where_higher_clears": [
+    "mac-gray",
+    "synacor"
+   ],
+   "gap_by_deal": {
+    "datalink": 1.12,
+    "mac-gray": 13.13,
+    "synacor": 6.38
+   },
+   "higher": "gpt-6-sol-xhigh",
+   "lower": "gpt-6-sol-high",
+   "mean_gap": 6.88,
+   "pooled_replicate_spread": null,
+   "recommended": "gpt-6-sol-xhigh",
+   "threshold": 2.0
+  }
+ },
+ "full_level": [
+  {
+   "deal": "synacor",
+   "label": "32b33295",
+   "marks": {
+    "astra": "fail",
+    "claude1": "pass",
+    "claude2": "pass"
+   },
+   "reasons": {
+    "astra": "The re-solicitation round and CLP bid assignments are correct, but its Rounds line explicitly excludes H from participation, and no stated partial-credit condition applies.",
+    "claude1": "Round 3 opens 10/27/2020, separate from E's exclusive round and CLP's round 4, with Due dates none stated. CLP's $1.88 and $2.00 bids and the 12/08, 12/14 and 12/29 rows all sit in round 3 consistently. The Rounds line lists CLP and names H, though it marks H contact-only; that non-entry is penalised under SY-P07.",
+    "claude2": "A distinct round 3 opens 10/27/2020 with Due dates none stated, and CLP's $1.88 and $2.00 bids and the 12/08, 12/14 and 12/29 rows are all in it, consistent with that opening; CLP is listed as a participant, but H is named only as 'contact only, not admitted', a deviation that follows from the H entry reading scored under SY-P07 and that no stated fail or partial condition covers."
+   },
+   "test": "SY-R05",
+   "weight": 4.5
+  },
+  {
+   "deal": "mac-gray",
+   "label": "cd007b5d",
+   "marks": {
+    "astra": "fail",
+    "claude1": "pass",
+    "claude2": "pass"
+   },
+   "reasons": {
+    "astra": "Party A's September 18 priced bid row is missing, although the existing bids have accepted round assignments, including the explained round-2 placement of Party C's written July bid.",
+    "claude1": "All bid-bearing rows sit in the expected rounds; Party C's 07/25 written bid is in round 2 under the accepted alternative, with a Note that it came after round 2 opened, and Party A's 09/18 row is in round 3.",
+    "claude2": "Each bid is in the correct round; Party C's 07/25 written bid sits in round 2 with a Note that it came after round 2 opened, which is the accepted alternative."
+   },
+   "test": "MG-R08",
+   "weight": 3
+  },
+  {
+   "deal": "mac-gray",
+   "label": "cd007b5d",
+   "marks": {
+    "astra": "fail",
+    "claude1": "pass",
+    "claude2": "pass"
+   },
+   "reasons": {
+    "astra": "Only 12 priced bidder observations are recorded because Party A's September 18 offer lacks a priced bid row.",
+    "claude1": "There are no invented bid rows (none for 04/08, 06/28, Party C after 09/18 or BofA analyses), and price cells on non-bid rows are blank.",
+    "claude2": "There are no invented bid rows for the 04/08 call, the 06/28 conversations, Party C after 09/18 or banker valuations, and non-bid rows carry no prices."
+   },
+   "test": "MG-B05",
+   "weight": 1.5
+  }
+ ]
+}

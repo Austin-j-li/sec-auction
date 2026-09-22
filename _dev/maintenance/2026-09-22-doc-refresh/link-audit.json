@@ -1,0 +1,168 @@
+{
+  "captured_utc": "2026-09-22T11:51:51.544769+00:00",
+  "markdown_files": 56,
+  "link_counts": {
+    "local_exists": 188,
+    "external": 2,
+    "local_missing": 1
+  },
+  "missing_local_links": [
+    {
+      "file": "_dev/side-notes/2026-09-21-astra-mac-gray/extractor-response.md",
+      "line": 1,
+      "target": "/home/uctpiaj/work/extraction/mac-gray.xlsx",
+      "kind": "local_missing",
+      "resolved": "/home/uctpiaj/work/extraction/mac-gray.xlsx"
+    }
+  ],
+  "active_missing_local_links": [],
+  "git_pointer_count": 24,
+  "broken_git_pointers": [],
+  "git_pointers": [
+    {
+      "file": "_dev/CHRONOLOGY.md",
+      "line": 8,
+      "ref": "407a6e4:_dev/OPEN_QUESTIONS_for_Alex.md",
+      "exists": true
+    },
+    {
+      "file": "_dev/CHRONOLOGY.md",
+      "line": 8,
+      "ref": "f1de7d9:_dev/instruction_audit_2026-09-19/",
+      "exists": true
+    },
+    {
+      "file": "_dev/CHRONOLOGY.md",
+      "line": 9,
+      "ref": "f1de7d9:_dev/contaminated_runs_2026-09-19/",
+      "exists": true
+    },
+    {
+      "file": "_dev/CHRONOLOGY.md",
+      "line": 10,
+      "ref": "f1de7d9:_dev/clean_run_comparison_2026-09-19/",
+      "exists": true
+    },
+    {
+      "file": "_dev/CHRONOLOGY.md",
+      "line": 11,
+      "ref": "407a6e4:_dev/model_comparison/",
+      "exists": true
+    },
+    {
+      "file": "_dev/CHRONOLOGY.md",
+      "line": 11,
+      "ref": "f1de7d9:_dev/model_comparison_2026-09-19/",
+      "exists": true
+    },
+    {
+      "file": "_dev/CHRONOLOGY.md",
+      "line": 12,
+      "ref": "407a6e4:_dev/jev_checker/",
+      "exists": true
+    },
+    {
+      "file": "_dev/CHRONOLOGY.md",
+      "line": 12,
+      "ref": "f1de7d9:_dev/jev_experiments_2026-09-19/",
+      "exists": true
+    },
+    {
+      "file": "_dev/CHRONOLOGY.md",
+      "line": 12,
+      "ref": "87aae86:_dev/jev_research_2026-09-19/",
+      "exists": true
+    },
+    {
+      "file": "_dev/CHRONOLOGY.md",
+      "line": 14,
+      "ref": "407a6e4:_dev/jev_checker/README.md",
+      "exists": true
+    },
+    {
+      "file": "_dev/CHRONOLOGY.md",
+      "line": 15,
+      "ref": "407a6e4:_dev/revision_loop/",
+      "exists": true
+    },
+    {
+      "file": "_dev/CHRONOLOGY.md",
+      "line": 16,
+      "ref": "407a6e4:_dev/OPEN_QUESTIONS_recommendations_2026-09-20.md",
+      "exists": true
+    },
+    {
+      "file": "_dev/CHRONOLOGY.md",
+      "line": 18,
+      "ref": "59e2325:_dev/DECISIONS_v1.11.md",
+      "exists": true
+    },
+    {
+      "file": "_dev/CHRONOLOGY.md",
+      "line": 20,
+      "ref": "3216a85:extraction/",
+      "exists": true
+    },
+    {
+      "file": "_dev/CHRONOLOGY.md",
+      "line": 21,
+      "ref": "acc9986:_dev/reviews/2026-09-21/README.md",
+      "exists": true
+    },
+    {
+      "file": "_dev/CHRONOLOGY.md",
+      "line": 22,
+      "ref": "3216a85:_dev/DECISIONS_v1.12.md",
+      "exists": true
+    },
+    {
+      "file": "_dev/CHRONOLOGY.md",
+      "line": 23,
+      "ref": "acc9986:_dev/reviews/2026-09-21/instruction_comparison.md",
+      "exists": true
+    },
+    {
+      "file": "_dev/DECISIONS_v1.13.md",
+      "line": 5,
+      "ref": "3216a85:_dev/DECISIONS_v1.12.md",
+      "exists": true
+    },
+    {
+      "file": "_dev/DECISIONS_v1.13.md",
+      "line": 5,
+      "ref": "59e2325:_dev/DECISIONS_v1.11.md",
+      "exists": true
+    },
+    {
+      "file": "_dev/DECISIONS_v1.13.md",
+      "line": 25,
+      "ref": "acc9986:_dev/reviews/2026-09-21/instruction_comparison.md",
+      "exists": true
+    },
+    {
+      "file": "_dev/RESEARCH_QUESTIONS.md",
+      "line": 38,
+      "ref": "407a6e4:_dev/OPEN_QUESTIONS_recommendations_2026-09-20.md",
+      "exists": true
+    },
+    {
+      "file": "_dev/RESEARCH_QUESTIONS.md",
+      "line": 38,
+      "ref": "407a6e4:_dev/OPEN_QUESTIONS_for_Alex.md",
+      "exists": true
+    },
+    {
+      "file": "_dev/maintenance/2026-09-22-doc-refresh/README.md",
+      "line": 11,
+      "ref": "3216a85:extraction/",
+      "exists": true
+    },
+    {
+      "file": "_dev/tools/README.md",
+      "line": 31,
+      "ref": "407a6e4:_dev/revision_loop/RESULTS.md",
+      "exists": true
+    }
+  ],
+  "scope_note": "Markdown inline/image targets checked for file existence; external links not fetched; anchors not validated. Historical evidence bytes retained."
+}

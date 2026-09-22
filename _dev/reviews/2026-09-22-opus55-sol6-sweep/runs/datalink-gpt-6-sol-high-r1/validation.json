@@ -1,0 +1,13 @@
+{
+  "bytes": 23861,
+  "exists": true,
+  "path": "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/2026-09-22-opus55-sol6-sweep/datalink-gpt-6-sol-high-r1/extraction/datalink.xlsx",
+  "sha256": "ff222e81117e7a2659ff500203a2e2a4eeeb95639795ded3532090d191a840bb",
+  "sheet_names": [
+    "Deal ledger",
+    "Rounds",
+    "Questions",
+    "Deal facts"
+  ],
+  "valid_xlsx": true
+}

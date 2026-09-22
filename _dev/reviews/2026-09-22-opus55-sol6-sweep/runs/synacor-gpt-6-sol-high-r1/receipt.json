@@ -1,0 +1,26 @@
+{
+  "cell": {
+    "arm": "gpt-6-sol-high",
+    "deal": "synacor",
+    "effort": "high",
+    "filing": "synacor_2021-03-03_SCTO-T.htm",
+    "id": "synacor-gpt-6-sol-high-r1",
+    "model": "gpt-6-sol",
+    "provider": "sol",
+    "replicate": 1,
+    "timeout_minutes": 150
+  },
+  "check_summary": {
+    "errors": 0,
+    "information": 0,
+    "total_issues": 5,
+    "warnings": 5
+  },
+  "failure_reason": null,
+  "mismatches": [],
+  "network_commands": [],
+  "recorded_at": "2026-09-22T20:09:55.315450+00:00",
+  "state": "completed",
+  "web_or_delegation": [],
+  "workbook_sha256": "ec09602771341e71c0c088486b3358bc6e1415f171534dbcfb65cf7903c8ab3d"
+}

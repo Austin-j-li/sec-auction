@@ -1,5 +1,7 @@
 # Nine-deal v1.13.2 cockpit import
 
+**Retired, 22 September 2026:** the seven raw workbooks this report lists (formerly `raw/extraction/<deal>.xlsx` in this packet) have left the checkout. Each is recoverable with `git show 03d59b1:_dev/reviews/2026-09-21-v1132-cockpit/raw/extraction/<deal>.xlsx`; the SHA-256 values below identify them. Paths to them in this packet's JSON records are historical. The cockpit catalog described below has also been replaced by one Opus 5.5 medium version per deal.
+
 All seven authorized isolated Claude Opus 5 high extractions completed once. Their prepared instruction and source hashes match the frozen inputs; provider success, readable four-sheet XLSX, reported model, output hashes and separately run mechanical checks were verified from preserved receipts. The checker is mechanical and does not certify substantive correctness. Austin's source review remains pending for these seven drafts.
 
 Frozen instruction SHA-256: `513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304`.

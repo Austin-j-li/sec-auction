@@ -1,0 +1,161 @@
+{
+  "checker": "lean-mechanical",
+  "checker_version": "1.5",
+  "checker_revision": "Adds two cross-column checks: an exact-day When must equal Date from, Date to and Sort date (E8), and an inferred exit carries Exit reason 'Not stated' (E14). Checks instruction v1.13.1.",
+  "workbook": "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/opus55-meredith/extraction/meredith.xlsx",
+  "filing": "raw_filing/meredith_2021-11-08_DEFM14A.htm",
+  "status": "pass_with_warnings",
+  "scope_note": "Mechanical checks only. Quote occurrence proves source occurrence, not semantic support. No bidder-population arithmetic or substantive extraction grading is performed.",
+  "summary": {
+    "errors": 0,
+    "warnings": 16,
+    "information": 0,
+    "total_issues": 16
+  },
+  "issues": [
+    {
+      "severity": "warning",
+      "code": "ledger.note_length",
+      "sheet": "Deal ledger",
+      "row": 3,
+      "column": "Note",
+      "message": "Note has 42 words; aim for 40. Retain the excess only for required facts that cannot be shortened.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "ledger.note_length",
+      "sheet": "Deal ledger",
+      "row": 8,
+      "column": "Note",
+      "message": "Note has 43 words; aim for 40. Retain the excess only for required facts that cannot be shortened.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "ledger.note_length",
+      "sheet": "Deal ledger",
+      "row": 13,
+      "column": "Note",
+      "message": "Note has 43 words; aim for 40. Retain the excess only for required facts that cannot be shortened.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "ledger.note_length",
+      "sheet": "Deal ledger",
+      "row": 30,
+      "column": "Note",
+      "message": "Note has 41 words; aim for 40. Retain the excess only for required facts that cannot be shortened.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "ledger.note_length",
+      "sheet": "Deal ledger",
+      "row": 33,
+      "column": "Note",
+      "message": "Note has 42 words; aim for 40. Retain the excess only for required facts that cannot be shortened.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "ledger.note_length",
+      "sheet": "Deal ledger",
+      "row": 52,
+      "column": "Note",
+      "message": "Note has 42 words; aim for 40. Retain the excess only for required facts that cannot be shortened.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.length",
+      "sheet": "Questions",
+      "row": 2,
+      "column": null,
+      "message": "Question entry has about 208 words across its review fields; the instruction asks for about 60.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.length",
+      "sheet": "Questions",
+      "row": 3,
+      "column": null,
+      "message": "Question entry has about 112 words across its review fields; the instruction asks for about 60.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.length",
+      "sheet": "Questions",
+      "row": 5,
+      "column": null,
+      "message": "Question entry has about 177 words across its review fields; the instruction asks for about 60.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.length",
+      "sheet": "Questions",
+      "row": 7,
+      "column": null,
+      "message": "Question entry has about 136 words across its review fields; the instruction asks for about 60.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.length",
+      "sheet": "Questions",
+      "row": 8,
+      "column": null,
+      "message": "Question entry has about 139 words across its review fields; the instruction asks for about 60.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.length",
+      "sheet": "Questions",
+      "row": 9,
+      "column": null,
+      "message": "Question entry has about 123 words across its review fields; the instruction asks for about 60.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.length",
+      "sheet": "Questions",
+      "row": 10,
+      "column": null,
+      "message": "Question entry has about 94 words across its review fields; the instruction asks for about 60.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.length",
+      "sheet": "Questions",
+      "row": 11,
+      "column": null,
+      "message": "Question entry has about 109 words across its review fields; the instruction asks for about 60.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.length",
+      "sheet": "Questions",
+      "row": 12,
+      "column": null,
+      "message": "Question entry has about 156 words across its review fields; the instruction asks for about 60.",
+      "basis": "mechanical"
+    },
+    {
+      "severity": "warning",
+      "code": "questions.deadline_outcomes",
+      "sheet": "Questions",
+      "row": null,
+      "column": null,
+      "message": "The ledger has a reached Deadline, but no Question visibly mentions deadline outcomes.",
+      "basis": "mechanical"
+    }
+  ]
+}

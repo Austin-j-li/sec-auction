@@ -1,0 +1,13 @@
+{
+  "bytes": 25917,
+  "exists": true,
+  "path": "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/calibration-opus55-medium-providence-2/extraction/providence-worcester.xlsx",
+  "sha256": "22ec30d8fc2381afddd981ea740ed3fe8d7e9f32fb67ecab8405cefd4776e616",
+  "sheet_names": [
+    "Deal ledger",
+    "Rounds",
+    "Questions",
+    "Deal facts"
+  ],
+  "valid_xlsx": true
+}

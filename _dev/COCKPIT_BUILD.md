@@ -1,12 +1,14 @@
-# Editable cockpit build
+# Editable cockpit build contract and delivery record
 
 ## Authorized objective and model roles
 
-Complete the nine-deal v1.13.2 set and deliver a usable editable cockpit. Reuse Datalink and Mac-Gray's isolated v1.13.2 extractions; extract the seven remaining deals once using Opus 5 high. Preserve originals, check outside the provider sandbox, and expose working copies and recorded findings in the cockpit. Stop after the cockpit is built and verified. Austin will review and adjudicate tomorrow.
+The original authorized build completed the nine-deal v1.13.2 set and delivered an editable cockpit. It reused Datalink and Mac-Gray's isolated v1.13.2 extractions and ran the seven remaining deals once using Opus 5 high. Originals were preserved, checked outside the provider sandbox and exposed alongside working copies and recorded findings. Austin's source review and adjudication remain separate work; the original delivery did not establish research acceptance.
 
-Austin's subsequent instruction: **GPT Sol subagents write code. Astra designs, reviews and reasons; Sol executes.** The available goal API exposed status updates only, so the role assignment was recorded here as well as in the conversation. The original build did not authorize a commit, push or instruction edit. On 22 September Austin separately authorized consolidation and a local commit; see [HANDOFF.md](HANDOFF.md). New substantive audits and corrections to the fresh drafts still require a separate command.
+Austin's subsequent instruction: **GPT Sol subagents write code. Astra designs, reviews and reasons; Sol executes.** The original build did not authorize a commit, push or instruction edit. On 22 September Austin separately authorized consolidation and a local commit; see [HANDOFF.md](HANDOFF.md). New substantive audits and corrections to the fresh drafts still require a separate command.
 
-**Delivered, 22 September 2026:** all nine v1.13.2 raw versions are preserved and the editable cockpit is deployed. Datalink's verified correction pass and Mac-Gray's latest correction candidate (R01 pending) are the initial working bases for those deals. See the [review guide](cockpit/README.md), [handoff](HANDOFF.md) and [verification evidence](reviews/2026-09-21-v1132-cockpit/cockpit-verification/VERIFICATION.md). Stop at this delivery; Austin's substantive review and adjudication remain next.
+**Original delivery, 22 September 2026:** all nine v1.13.2 raw versions were preserved and the editable cockpit was deployed. Datalink's verified correction pass and Mac-Gray's latest correction candidate (R01 pending) became the initial working bases for those deals. The [original verification evidence](reviews/2026-09-21-v1132-cockpit/cockpit-verification/VERIFICATION.md) describes that delivery and its limits. Since 22 September the cockpit shows only the nine Opus 5.5 medium extractions, one version per deal; the [review guide](cockpit/README.md), [handoff](HANDOFF.md) and [re-extraction packet](reviews/2026-09-22-opus55-reextraction/README.md) describe the current state.
+
+The current working tree also contains filing/workspace and sheet list/editor dividers, with mouse and keyboard resizing, browser-local size memory, and resizable multiline fields. The frontend source is in `tools/cockpit/frontend/src/`; the isolated synthetic browser check is `tools/cockpit/acceptance/test_resize.mjs`. These later changes are outside the original delivery and consolidation test receipts. On 22 September, a read-only loopback check confirmed that the running service served the current `dist/index.html` and both new JS/CSS assets byte-for-byte. Browser interaction with the resize controls and authenticated viewing through the public route were not tested in this documentation pass.
 
 ## Design
 
@@ -16,7 +18,7 @@ The requested design-taste-frontend skill explicitly excludes dense dashboards f
 
 Layout: restrained navigation, a compact nine-deal overview, a version-aware deal toolbar, filing and editable record panes. Ledger supports a compact event list and a full editor for the selected event. Tabs retain Rounds, Questions and Deal facts and add Review, Changes and History. Evidence navigation works both from rows and findings. On narrow screens switch Filing/Workspace without losing selections; do not stack two huge scrolling regions. Inputs have visible labels, error/saved/unsaved states, keyboard access and strong contrast.
 
-## Ownership
+## Original build ownership
 
 - Sol backend: `_dev/tools/cockpit/workspace.py`, `server.py`, necessary `data.py` integration, and backend tests.
 - Sol frontend: `_dev/tools/cockpit/frontend/` including package/lock, source, public fonts, Vite build, plus root `.gitignore` additions for its node_modules. Build output belongs in `_dev/tools/cockpit/dist/`.
@@ -33,11 +35,11 @@ All existing GET routes remain. Backend serves Vite `dist/index.html` for the ex
 
 `GET /api/deal/<slug>?version=working` extends the existing payload:
 
-- `versions`: array of `{id,label,instruction_version,kind,sha256,review_status}`. Include `working`, immutable `v1132-raw`, any `v113-baseline`, and separately recorded revisions. Never silently overwrite a raw output.
+- `versions`: array of `{id,label,instruction_version,kind,sha256,review_status}`. Include `working` and every immutable catalog version. The original build listed `v1132-raw`, any `v113-baseline` and separately recorded revisions; since 22 September the catalog holds one `opus55-medium` version per deal. Never silently overwrite a raw output.
 - `workspace`: `{revision,base_version,base_sha256,updated_at,updated_by,editable,selected_version}`. Revision is an integer, initially zero. For an immutable version, `editable=false`.
 - Each ledger, rounds and questions row gains `uid` (stable across inserts/moves/saves) and retains `cells`, `excel_row`, `id`, `issues` and source quote data. `cells` are display strings; the backend stores typed values separately.
 - Facts gain `uid` while retaining `field` and `value`.
-- `findings`: array of `{id,title,detail,rule,source_version,source_label,source_rows,evidence,proposed_change,needs_recheck,judgment,implementation,verification,note,actor,at}`. Evidence is an array of `{quote,page}`. Original source row numbers are not links to a different extraction. Existing lead judgments remain attributed; fresh drafts inherit no human acceptance.
+- `findings`: array of `{id,title,detail,rule,source_version,source_label,source_rows,evidence,proposed_change,needs_recheck,judgment,implementation,verification,note,actor,at}`. Evidence is an array of `{quote,page}`. A case-level decision that does not depend on any workbook's rows has a null `source_version`. Original source row numbers are not links to a different extraction. Existing lead judgments remain attributed; fresh drafts inherit no human acceptance.
 - `documents`: array of `{id,label,source_version,kind}`. `GET /api/document/<slug>/<id>` returns `{title,text}` for an allowlisted recorded report.
 - `row_review`: mapping stable uid to `{status,note,actor,at}`. Status is `unreviewed`, `reviewed`, or `needs_decision`.
 - `choices`: mapping field names to allowed labels from the checker. Preserve existing unusual values visibly; do not silently normalize old data.
@@ -64,11 +66,13 @@ Ledger sequence numbers and explicit references (`#n`, Questions' parseable Rows
 
 ## Storage/catalog contract
 
-Catalog path: `_dev/cockpit/catalog.json`. Format: `{schema_version:1,deals:{slug:{name,default_base,versions:[{id,label,path,sha256,instruction_version,kind,review_status}],findings:[],documents:[]}}}`. Document entries also contain an allowlisted relative `path`. Paths resolve inside the repository, never `ref/`. `v1132-raw` exists for every deal when the batch completes. A verified revision may be the default working base; keep raw available. Datalink revision is owned by another task and must not be presumed verified from provider completion alone.
+Catalog path: `_dev/cockpit/catalog.json`. Format: `{schema_version:1,deals:{slug:{name,default_base,versions:[{id,label,path,sha256,instruction_version,kind,review_status}],findings:[],documents:[]}}}`. Document entries also contain an allowlisted relative `path`. Paths resolve inside the repository, never `ref/`. In the original build `v1132-raw` existed for every deal, and Datalink's verified correction pass was its default base on the strength of its separate review record. Since 22 September each deal has one version, its Opus 5.5 medium extraction `opus55-medium`, which is also the default base; earlier workbooks remain only as packet evidence.
 
 Working state: SQLite under `_dev/cockpit/state/` (ignored), with an original base hash, stable record identifiers, transactional revision snapshots and audit metadata. State survives process restart and browser/device changes. Keep GETs read-only where possible, and initialize or write only when necessary. Never write back to catalog source workbooks.
 
-## Acceptance evidence required
+## Original acceptance requirements
+
+The numbered checks below governed the original build. The [verification evidence](reviews/2026-09-21-v1132-cockpit/cockpit-verification/VERIFICATION.md) records what was exercised; the [consolidation record](maintenance/2026-09-22-consolidation/README.md) covers later maintenance. Neither record is a test receipt for subsequent interface changes.
 
 1. Seven successful isolated Opus outputs plus the two reused v1.13.2 originals, with recorded instruction/source/output hashes and separate mechanical reports. No substantive revision of these seven.
 2. All nine appear in the deployed cockpit with correct versions, counts, evidence links and honest review states.

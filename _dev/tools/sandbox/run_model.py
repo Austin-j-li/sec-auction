@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-"""Prepare, launch, and monitor isolated Sol/Opus extraction runs."""
+"""Prepare, launch, and monitor isolated extraction runs (Opus; Sol and DeepSeek transports retained)."""
 
 from __future__ import annotations
 
 import argparse
+import base64
+import contextlib
 import datetime as dt
 import hashlib
 import importlib.metadata
@@ -27,10 +29,41 @@ INSTRUCTION_NAME = "SEC_Deal_Ledger_Extraction_Instruction.md"
 CODEX_BIN = Path(os.environ.get("SEC_CODEX_BIN") or shutil.which("codex") or "/missing/codex").resolve()
 CODEX_RELEASE = CODEX_BIN.parent.parent
 CLAUDE_BIN = Path(os.environ.get("SEC_CLAUDE_BIN") or shutil.which("claude") or "/missing/claude").resolve()
+# A long-lived subscription token from `claude setup-token`, readable only by its owner. It reaches
+# the sandboxed CLI through an inherited pipe, never argv, environment or disk. The host login's
+# credentials file is never shared: a sandboxed refresh would rotate its refresh token, which the
+# read-only sandbox cannot write back, and so log the host out.
+CLAUDE_TOKEN_FILE = Path(os.environ.get("SEC_CLAUDE_OAUTH_TOKEN_FILE")
+                         or HOME_HOST / ".config/sec-extraction/claude-oauth-token")
 OPENCODE_BIN = Path(os.environ.get("SEC_OPENCODE_BIN") or shutil.which("opencode") or "/missing/opencode").resolve()
 OPENCODE_SANDBOX = Path("/opt/opencode")
 OPENCODE_AUTH = HOME_HOST / ".local/share/opencode/auth.json"
-MODELS = {"sol": ("gpt-5.6-sol", "xhigh"), "opus": ("claude-opus-5", "high"), "deepseek": ("deepseek/deepseek-flash", "max")}
+# Models and effort levels each provider may be prepared with. The first model is the default.
+MODELS = {"sol": ("gpt-6-sol", "gpt-5.6-sol"), "opus": ("claude-opus-5-5", "claude-opus-5"), "deepseek": ("deepseek/deepseek-flash",)}
+# Codex's "ultra" level delegates to subagents automatically, so it is not offered.
+EFFORTS = {"sol": ("low", "medium", "high", "xhigh", "max"), "opus": ("low", "medium", "high", "xhigh", "max"), "deepseek": ("max",)}
+DEFAULT_EFFORT = {"sol": "xhigh", "opus": "medium", "deepseek": "max"}  # Opus: 22 Sep 2026 effort sweep
+# Claude Code settings for every Opus run. A classifier refusal fails the run instead of switching
+# models; the prompt-cache lifetime stays the subscription default; and the "user hasn't heard
+# from you" reminder never fires, since no one reads a sandboxed run while it works.
+CLAUDE_ENV = {
+    "CLAUDE_CODE_DISABLE_REFUSAL_FALLBACK": "1",
+    "CLAUDE_CODE_PROMPT_CACHE_TTL": "1h",
+    "CLAUDE_CODE_SILENT_TURN_REMINDER_TURNS": "1000000",
+}
+# Codex features switched off for every Sol run. By default `codex exec` offers the account's
+# ChatGPT app connectors (mail, GitLab, site deploys, a remote shell), web browsing, image
+# generation and subagents; a sandboxed extraction gets shell commands and file patches only.
+# Code mode stays on because GPT-6-Sol calls every tool through it.
+CODEX_DISABLED_FEATURES = (
+    "apps", "plugins", "remote_plugin", "plugin_sharing", "browser_use", "browser_use_external",
+    "browser_use_full_cdp_access", "in_app_browser", "computer_use", "image_generation", "multi_agent",
+    "goals", "sleep_tool", "tool_suggest", "view_image", "skill_search", "skill_mcp_dependency_install",
+    "mentions_v2", "workspace_dependencies", "hooks",
+)
+CODEX_TOKEN_MARGIN_HOURS = 7  # longer than the longest run, so a sandboxed Codex never refreshes its login
+MAX_CONTINUATIONS = 2  # Opus 5.5 can end a turn with a progress report before saving the workbook
+SHEETS = ["Deal ledger", "Rounds", "Questions", "Deal facts"]
 CODEX_SANDBOX = Path("/opt/codex")
 CLAUDE_SANDBOX = Path("/opt/claude")
 MINIFORGE = HOME_HOST / "miniforge3"  # Ubuntu laptop; absent on the VM, where system Python is used
@@ -39,6 +72,7 @@ PYLIB_HOST = Path(_openpyxl.__file__).resolve().parents[1]  # site-packages that
 PYLIB = Path("/opt/pylib")
 REPORT_NAME = "checker_report.md"
 TIMEOUT_SECONDS = 90 * 60
+TIMEOUT_BOUNDS = (10 * 60, 6 * 60 * 60)
 RUNS = PROJECT / "_dev" / "runs"
 
 
@@ -72,48 +106,104 @@ def library_versions() -> dict[str, str | None]:
     return versions
 
 
+def events(events_path: Path):
+    """JSON objects from a provider's event log, skipping lines that are not JSON objects."""
+    with events_path.open(encoding="utf-8", errors="replace") as lines:
+        for line in lines:
+            try:
+                event = json.loads(line)
+            except ValueError:
+                continue
+            if isinstance(event, dict):
+                yield event
+
+
 def run_usage(events_path: Path) -> dict[str, object] | None:
     """Tokens and cost from the provider's event log; None if it reports none.
 
-    Claude ends with one "result" event carrying usage and total_cost_usd.
+    Claude ends each invocation with one "result" event. Its usage covers that invocation, so
+    usage is summed over a run and its continuations; total_cost_usd is cumulative for the
+    session, so the last one is the run's cost.
     Codex reports usage per "turn.completed" event and no cost; turns are summed.
     opencode reports tokens and cost per "step_finish" event; steps are summed.
     """
     totals: dict[str, float] = {}
     cost = None
     found = False
-    with events_path.open(encoding="utf-8", errors="replace") as events:
-        for line in events:
-            try:
-                event = json.loads(line)
-            except ValueError:
-                continue
-            if isinstance(event, dict) and event.get("type") == "step_finish":
-                part = event.get("part") or {}
-                tokens = dict(part.get("tokens") or {})
-                cache = tokens.pop("cache", None) or {}
-                tokens.update({f"cache_{key}": value for key, value in cache.items()})
-                for key, value in tokens.items():
-                    if key != "total" and isinstance(value, (int, float)):
-                        totals[f"{key}_tokens"] = totals.get(f"{key}_tokens", 0) + value
-                cost = (cost or 0) + (part.get("cost") or 0)
-                found = True
-                continue
-            if not isinstance(event, dict) or event.get("type") not in ("result", "turn.completed"):
-                continue
-            usage = event.get("usage")
-            if not isinstance(usage, dict):
-                continue
+    for event in events(events_path):
+        if event.get("type") == "step_finish":
+            part = event.get("part") or {}
+            tokens = dict(part.get("tokens") or {})
+            cache = tokens.pop("cache", None) or {}
+            tokens.update({f"cache_{key}": value for key, value in cache.items()})
+            for key, value in tokens.items():
+                if key != "total" and isinstance(value, (int, float)):
+                    totals[f"{key}_tokens"] = totals.get(f"{key}_tokens", 0) + value
+            cost = (cost or 0) + (part.get("cost") or 0)
             found = True
-            if event["type"] == "result":
-                totals = {}
-                cost = event.get("total_cost_usd")
-            for key, value in usage.items():
-                if key.endswith("_tokens") and isinstance(value, (int, float)):
-                    totals[key] = totals.get(key, 0) + value
+            continue
+        if event.get("type") not in ("result", "turn.completed"):
+            continue
+        usage = event.get("usage")
+        if not isinstance(usage, dict):
+            continue
+        found = True
+        if event["type"] == "result":
+            cost = event.get("total_cost_usd")
+        for key, value in usage.items():
+            if key.endswith("_tokens") and isinstance(value, (int, float)):
+                totals[key] = totals.get(key, 0) + value
     if not found:
         return None
     return {"tokens": totals, "cost_usd": cost}
+
+
+def claude_results(events_path: Path) -> list[dict]:
+    """The Claude CLI's result events, one per invocation."""
+    return [event for event in events(events_path) if event.get("type") == "result"]
+
+
+def claude_summary(events_path: Path) -> dict[str, object] | None:
+    """What the Claude CLI reported about a run and its continuations; None if it reported nothing.
+
+    modelUsage and duration_api_ms are cumulative for the session, like total_cost_usd.
+    """
+    init, results, refusal = None, [], False
+    for event in events(events_path):
+        if event.get("type") == "system" and event.get("subtype") == "init" and init is None:
+            init = event
+        elif event.get("type") == "assistant" and (event.get("message") or {}).get("stop_reason") == "refusal":
+            refusal = True
+        elif event.get("type") == "result":
+            results.append(event)
+    if init is None and not results and not refusal:
+        return None
+    init, last = init or {}, results[-1] if results else {}
+
+    def total(field) -> int:
+        return sum(field(result.get("usage") or {}) or 0 for result in results)
+
+    return {
+        "claude_code_version": init.get("claude_code_version"),
+        "session_model": init.get("model"),
+        "tools": init.get("tools"),
+        "invocations": len(results),
+        "served_models": sorted({model for result in results for model in result.get("modelUsage") or {}}),
+        "subtype": last.get("subtype"),
+        "is_error": last.get("is_error"),
+        "stop_reason": last.get("stop_reason"),
+        "stop_details": last.get("stop_details"),
+        "terminal_reason": last.get("terminal_reason"),
+        "api_error_status": last.get("api_error_status"),
+        "refusal": refusal or any(result.get("stop_reason") == "refusal" for result in results),
+        "num_turns": sum(result.get("num_turns") or 0 for result in results),
+        "duration_api_ms": last.get("duration_api_ms"),
+        "thinking_tokens": total(lambda usage: (usage.get("output_tokens_details") or {}).get("thinking_tokens")),
+        "cache_write_1h_tokens": total(lambda usage: (usage.get("cache_creation") or {}).get("ephemeral_1h_input_tokens")),
+        "cache_write_5m_tokens": total(lambda usage: (usage.get("cache_creation") or {}).get("ephemeral_5m_input_tokens")),
+        "permission_denials": sum(len(result.get("permission_denials") or []) for result in results),
+        "subagents_spawned": sum((result.get("subagent_stats") or {}).get("spawned") or 0 for result in results),
+    }
 
 
 def prepare(args: argparse.Namespace) -> None:
@@ -123,6 +213,14 @@ def prepare(args: argparse.Namespace) -> None:
         raise SystemExit("--filing and --deal must be bare names, not paths")
     if args.revise_from and (not Path(args.revise_from).is_file() or not Path(args.report).is_file()):
         raise SystemExit("revision workbook or findings report is missing")
+    model = args.model or MODELS[args.provider][0]
+    effort = args.effort or DEFAULT_EFFORT[args.provider]
+    if model not in MODELS[args.provider] or effort not in EFFORTS[args.provider]:
+        raise SystemExit(f"{args.provider} runs one of {', '.join(MODELS[args.provider])} "
+                         f"at effort {', '.join(EFFORTS[args.provider])}")
+    timeout = TIMEOUT_SECONDS if args.timeout_minutes is None else args.timeout_minutes * 60
+    if not TIMEOUT_BOUNDS[0] <= timeout <= TIMEOUT_BOUNDS[1]:
+        raise SystemExit("--timeout-minutes must be between 10 and 360")
     run_dir = Path(args.run_dir).resolve()
     if run_dir.exists() and any(run_dir.iterdir()):
         raise SystemExit(f"refusing to overwrite non-empty run directory: {run_dir}")
@@ -173,9 +271,9 @@ def prepare(args: argparse.Namespace) -> None:
         "mode": "revise" if args.revise_from else "extract",
         "revised_from_sha256": sha256(output_dir / f"{args.deal}.xlsx") if args.revise_from else None,
         "report_sha256": sha256(input_dir / REPORT_NAME) if args.revise_from else None,
-        "model": MODELS[args.provider][0],
-        "effort": MODELS[args.provider][1],
-        "timeout_seconds": TIMEOUT_SECONDS,
+        "model": model,
+        "effort": effort,
+        "timeout_seconds": timeout,
         "runner_sha256": sha256(Path(__file__)),
         "python_version": sys.version,
         "library_versions": library_versions(),
@@ -185,7 +283,12 @@ def prepare(args: argparse.Namespace) -> None:
     print(json.dumps(metadata, sort_keys=True))
 
 
-def bwrap_base(run_dir: Path, provider: str, state: Path) -> list[str]:
+def bwrap_base(run_dir: Path, provider: str, state: Path, scratch: Path) -> list[str]:
+    """The sandbox: fresh provider state, one instruction, one filing, one output directory.
+
+    Home and /tmp are scratch directories kept for all invocations of one run, so a continuation
+    finds the working files its session made; the worker deletes them with the provider state.
+    """
     metadata = prepared_metadata(run_dir, provider)
     instruction = run_dir / "input" / INSTRUCTION_NAME
     filings = list((run_dir / "input" / "raw_filing").glob("*"))
@@ -193,6 +296,8 @@ def bwrap_base(run_dir: Path, provider: str, state: Path) -> list[str]:
         raise SystemExit(f"expected exactly one filing in {run_dir}")
     filing = filings[0]
     output = run_dir / "extraction"
+    for name in ("home", "tmp"):
+        (scratch / name).mkdir(parents=True, exist_ok=True)
     h = str(SANDBOX_HOME)
     work = str(WORK)
 
@@ -211,8 +316,8 @@ def bwrap_base(run_dir: Path, provider: str, state: Path) -> list[str]:
         "--ro-bind", "/etc/passwd", "/etc/passwd",
         "--ro-bind", "/etc/group", "/etc/group",
         "--ro-bind", "/etc/localtime", "/etc/localtime",
-        "--proc", "/proc", "--dev", "/dev", "--tmpfs", "/tmp", "--tmpfs", "/run",
-        "--dir", "/home", "--tmpfs", h,
+        "--proc", "/proc", "--dev", "/dev", "--bind", str(scratch / "tmp"), "/tmp", "--tmpfs", "/run",
+        "--dir", "/home", "--bind", str(scratch / "home"), h,
         "--dir", work,
         "--dir", f"{work}/raw_filing",
         "--dir", f"{work}/extraction",
@@ -258,36 +363,64 @@ def bwrap_base(run_dir: Path, provider: str, state: Path) -> list[str]:
         command += [
             "--ro-bind", str(CLAUDE_BIN), str(CLAUDE_SANDBOX),
             "--bind", str(state), str(SANDBOX_HOME / ".claude"),
-            "--ro-bind", str(HOME_HOST / ".claude/.credentials.json"), str(SANDBOX_HOME / ".claude/.credentials.json"),
         ]
+        for name, value in CLAUDE_ENV.items():
+            command += ["--setenv", name, value]
     command += ["--chdir", work]
     return command
 
 
-def provider_command(run_dir: Path, provider: str) -> list[str]:
-    prompt = (run_dir / "prompt.txt").read_text(encoding="utf-8").strip()
+def provider_command(run_dir: Path, provider: str, metadata: dict,
+                     prompt: str | None = None, resume: str | None = None) -> list[str]:
+    """The provider's argv, built from the verified prepared model and effort.
+
+    A continuation resumes the Claude session with a new prompt; the session lives in the
+    temporary provider state, so it is deleted with it.
+    """
+    prompt = prompt or (run_dir / "prompt.txt").read_text(encoding="utf-8").strip()
+    model, effort = metadata["model"], metadata["effort"]
     if provider == "sol":
         codex = CODEX_SANDBOX / "bin/codex"
+        disabled = [part for feature in CODEX_DISABLED_FEATURES for part in ("--disable", feature)]
         return [
             str(codex), "exec", "--ephemeral", "--ignore-user-config", "--ignore-rules",
             "--skip-git-repo-check", "--dangerously-bypass-approvals-and-sandbox",
-            "--json", "--color", "never", "--model", "gpt-5.6-sol",
-            "-c", 'model_reasoning_effort="xhigh"', "-C", str(WORK), prompt,
+            "--json", "--color", "never", "--model", model,
+            "-c", f'model_reasoning_effort="{effort}"', "-c", 'web_search="disabled"', *disabled,
+            "-C", str(WORK), prompt,
         ]
     if provider == "deepseek":
-        model, variant = MODELS[provider]
         return [
             str(OPENCODE_SANDBOX), "run", "--pure", "--auto", "--agent", "build",
-            "--model", model, "--variant", variant, "--format", "json", prompt,
+            "--model", model, "--variant", effort, "--format", "json", prompt,
         ]
-    return [
+    command = [
         str(CLAUDE_SANDBOX), "--print", "--output-format", "stream-json", "--verbose",
-        "--model", "claude-opus-5", "--effort", "high", "--safe-mode",
+        "--model", model, "--effort", effort, "--safe-mode",
         "--disable-slash-commands", "--no-chrome", "--strict-mcp-config",
-        "--mcp-config", '{"mcpServers":{}}', "--allowedTools", "Bash,Read,Write",
-        "--disallowedTools", "WebFetch,WebSearch,Task", "--dangerously-skip-permissions",
-        "--no-session-persistence", prompt,
+        "--mcp-config", '{"mcpServers":{}}', "--tools", "Bash,Read,Write", "--allowedTools", "Bash,Read,Write",
+        "--disallowedTools", "WebFetch,WebSearch,Agent", "--dangerously-skip-permissions",
     ]
+    if resume:
+        command += ["--resume", resume]
+    return command + [prompt]
+
+
+def unfinished(run_dir: Path, metadata: dict) -> bool:
+    """Whether a run still owes its deliverable: revision notes, or a readable four-sheet workbook."""
+    if metadata.get("mode") == "revise":
+        return not (run_dir / "extraction" / "revision_notes.md").is_file()
+    validation = validate_workbook(run_dir)
+    return not validation.get("valid_xlsx") or validation.get("sheet_names") != SHEETS
+
+
+def continuation_prompt(metadata: dict) -> str:
+    if metadata.get("mode") == "revise":
+        owed = "extraction/revision_notes.md has not been written. Continue until the revised workbook and its notes are saved."
+    else:
+        owed = (f"extraction/{metadata['expected_output']} is not yet saved as the finished four-sheet workbook. "
+                f"Continue until it is.")
+    return f"The task is not finished: {owed} If something blocks you, say what it is."
 
 
 def validate_workbook(run_dir: Path) -> dict[str, object]:
@@ -320,6 +453,31 @@ def validate_workbook(run_dir: Path) -> dict[str, object]:
     return result
 
 
+@contextlib.contextmanager
+def claude_token(provider: str):
+    """Sandbox arguments and inherited descriptors that hand the Claude CLI its OAuth token."""
+    if provider != "opus":
+        yield [], ()
+        return
+    read, write = os.pipe()
+    try:
+        os.write(write, CLAUDE_TOKEN_FILE.read_bytes().strip())  # far below the pipe buffer
+        os.close(write)
+        yield ["--setenv", "CLAUDE_CODE_OAUTH_TOKEN_FILE_DESCRIPTOR", str(read)], (read,)
+    finally:
+        os.close(read)
+
+
+def codex_token_hours_left(auth: Path) -> float | None:
+    """Hours until the host Codex login's access token expires; None if it has no readable expiry."""
+    try:
+        payload = json.loads(auth.read_text(encoding="utf-8"))["tokens"]["access_token"].split(".")[1]
+        claims = json.loads(base64.urlsafe_b64decode(payload + "=" * (-len(payload) % 4)))
+        return (claims["exp"] - time.time()) / 3600
+    except (OSError, ValueError, KeyError, IndexError, TypeError, AttributeError):
+        return None
+
+
 def preflight(provider: str) -> Path:
     if not shutil.which("bwrap"):
         raise SystemExit("bubblewrap (bwrap) is required")
@@ -328,10 +486,22 @@ def preflight(provider: str) -> Path:
         raise SystemExit(f"provider executable not found: {binary}; set SEC_CODEX_BIN, SEC_CLAUDE_BIN or SEC_OPENCODE_BIN")
     if provider == "sol" and (binary.parent.name != "bin" or binary.name != "codex"):
         raise SystemExit("SEC_CODEX_BIN must resolve to a standalone release's bin/codex")
-    credential = {"sol": HOME_HOST / ".codex/auth.json", "deepseek": OPENCODE_AUTH}.get(
-        provider, HOME_HOST / ".claude/.credentials.json")
+    if provider == "opus":
+        if not CLAUDE_TOKEN_FILE.is_file():
+            raise SystemExit(f"no Claude token for the sandbox: run `claude setup-token` and save the token "
+                             f"to {CLAUDE_TOKEN_FILE} (chmod 600), or set SEC_CLAUDE_OAUTH_TOKEN_FILE")
+        if CLAUDE_TOKEN_FILE.stat().st_mode & 0o077:
+            raise SystemExit(f"{CLAUDE_TOKEN_FILE} must be readable by its owner only (chmod 600)")
+        return binary
+    credential = {"sol": HOME_HOST / ".codex/auth.json", "deepseek": OPENCODE_AUTH}[provider]
     if not credential.is_file():
         raise SystemExit(f"provider authentication file is missing: {credential}")
+    # The Codex login is bound read-only. A sandboxed refresh would rotate its refresh token and
+    # log the host out, so a run starts only while the access token outlasts any run.
+    hours = codex_token_hours_left(credential) if provider == "sol" else None
+    if hours is not None and hours < CODEX_TOKEN_MARGIN_HOURS:
+        raise SystemExit(f"the host Codex login expires in {hours:.1f} h; renew it on the host (codex login) "
+                         f"so a sandboxed run never has to")
     return binary
 
 
@@ -355,6 +525,11 @@ def prepared_metadata(run_dir: Path, provider: str) -> dict:
         raise SystemExit(f"prepared provider is {metadata.get('provider')}, not {provider}")
     if metadata.get("instruction_name") != INSTRUCTION_NAME:
         raise SystemExit("prepared instruction name does not match the runner")
+    if metadata.get("model") not in MODELS[provider] or metadata.get("effort") not in EFFORTS[provider]:
+        raise SystemExit("prepared model or effort is not allowed for this provider; prepare a new run directory")
+    timeout = metadata.get("timeout_seconds")
+    if type(timeout) is not int or not TIMEOUT_BOUNDS[0] <= timeout <= TIMEOUT_BOUNDS[1]:
+        raise SystemExit("prepared timeout_seconds is missing or out of range; prepare a new run directory")
     for key in ("filing_name", "expected_output"):
         name = metadata.get(key)
         if not isinstance(name, str) or name in ("", ".", "..") or Path(name).name != name:
@@ -387,9 +562,9 @@ def prepared_metadata(run_dir: Path, provider: str) -> dict:
     return metadata
 
 
-def run_worker(args: argparse.Namespace, state: Path) -> int:
+def run_worker(args: argparse.Namespace, state: Path, scratch: Path) -> int:
     run_dir = Path(args.run_dir).resolve()
-    prepared_metadata(run_dir, args.provider)
+    metadata = prepared_metadata(run_dir, args.provider)
     binary = preflight(args.provider)
     if args.provider == "sol":
         cache = HOME_HOST / ".codex/models_cache.json"
@@ -411,28 +586,104 @@ def run_worker(args: argparse.Namespace, state: Path) -> int:
         if models.is_file():
             shutil.copy2(models, state / "cache/opencode/models.json")
 
-    provider_argv = provider_command(run_dir, args.provider)
-    command = bwrap_base(run_dir, args.provider, state) + provider_argv
+    base = bwrap_base(run_dir, args.provider, state, scratch)
     started = time.monotonic()
+    deadline = started + metadata["timeout_seconds"]
     started_at = now_iso()
-    write_json(run_dir / "command.json", {
+    record = {
         "provider": args.provider,
-        "provider_argv": provider_argv,
-        "credential_delivery": "read-only external credential bind; no credential copied to run directory",
+        "provider_argv": None,
+        "continuation_argv": [],
+        **({"provider_environment": CLAUDE_ENV} if args.provider == "opus" else {}),
+        "credential_delivery": ("long-lived OAuth token through an inherited pipe (CLAUDE_CODE_OAUTH_TOKEN_FILE_DESCRIPTOR); "
+                                "not in argv, environment or run directory" if args.provider == "opus" else
+                                "read-only external credential bind; no credential copied to run directory"),
         "runtime_state": "temporary directory outside the run; removed after worker completion",
         "provider_binary": str(binary),
         "provider_binary_sha256": sha256(binary),
+        "runner_sha256": sha256(Path(__file__)),
         "started_at": started_at,
-    })
+    }
     write_json(run_dir / "status.json", {
         "state": "running", "worker_pid": os.getpid(), "started_at": started_at,
     })
 
     stdout_path = run_dir / "events.jsonl"
-    stderr_path = run_dir / "stderr.log"
-    exit_code: int | None = None
-    timed_out = False
-    with stdout_path.open("wb") as stdout, stderr_path.open("wb") as stderr:
+    prompt = resume = None
+    for attempt in range(MAX_CONTINUATIONS + 1):
+        provider_argv = provider_command(run_dir, args.provider, metadata, prompt, resume)
+        if attempt == 0:
+            record["provider_argv"] = provider_argv
+        else:
+            record["continuation_argv"].append(provider_argv)
+        write_json(run_dir / "command.json", record)
+        with claude_token(args.provider) as (token_args, token_fds):
+            exit_code, timed_out, client_pid = run_provider(
+                base + token_args + provider_argv, run_dir, started_at, max(deadline - time.monotonic(), 1), token_fds)
+        if timed_out or exit_code != 0 or args.provider != "opus" or not unfinished(run_dir, metadata):
+            break
+        # A clean end of turn with the deliverable still owed is a progress report, not a finished
+        # task: resume the session and ask for the rest, a bounded number of times.
+        results = claude_results(stdout_path)
+        last = results[-1] if results else {}
+        if (last.get("subtype") != "success" or last.get("is_error")
+                or last.get("stop_reason") == "refusal" or not last.get("session_id")):
+            break
+        prompt, resume = continuation_prompt(metadata), last["session_id"]
+
+    validation = validate_workbook(run_dir)
+    write_json(run_dir / "validation.json", validation)
+    summary = None
+    if args.provider == "opus":
+        write_json(run_dir / "provider-results.json", claude_results(stdout_path))
+        summary = claude_summary(stdout_path) or {}
+    ended_at = now_iso()
+    if timed_out:
+        outcome, failure_reason = "timed_out", "timeout"
+    elif summary and summary["refusal"]:
+        outcome, failure_reason = "failed", "provider_refusal"
+    elif exit_code != 0:
+        outcome, failure_reason = "failed", "provider_exit"
+    elif summary is not None and (summary.get("subtype") != "success" or summary.get("is_error")):
+        outcome, failure_reason = "failed", "provider_error"
+    elif summary is not None and summary["served_models"] != [metadata["model"]]:
+        outcome, failure_reason = "failed", "model_mismatch"
+    elif not validation.get("exists"):
+        outcome, failure_reason = "failed", "workbook_missing"
+    elif not validation.get("valid_xlsx"):
+        outcome, failure_reason = "failed", "workbook_unreadable"
+    elif validation.get("sheet_names") != SHEETS:
+        outcome, failure_reason = "failed", "workbook_incomplete"
+    elif metadata.get("mode") == "revise" and not (run_dir / "extraction" / "revision_notes.md").is_file():
+        outcome, failure_reason = "failed", "revision_notes_missing"
+    else:
+        outcome, failure_reason = "completed", None
+    result = {
+        # Completion is execution success only; no checker or substantive review runs here.
+        "state": outcome,
+        "failure_reason": failure_reason,
+        "worker_pid": os.getpid(),
+        "client_pid": client_pid,
+        "started_at": started_at,
+        "ended_at": ended_at,
+        "elapsed_seconds": round(time.monotonic() - started, 3),
+        "exit_code": exit_code,
+        "timed_out": timed_out,
+        "continuations": len(record["continuation_argv"]),
+        "workbook_exists": validation.get("exists", False),
+        "workbook_valid_xlsx": validation.get("valid_xlsx", False),
+        "usage": run_usage(stdout_path),
+    }
+    if summary is not None:
+        result["provider"] = summary
+    write_json(run_dir / "status.json", result)
+    return 0 if outcome == "completed" else 1
+
+
+def run_provider(command: list[str], run_dir: Path, started_at: str, timeout: float,
+                 pass_fds: tuple[int, ...] = ()) -> tuple[int, bool, int]:
+    """Run one provider invocation, appending to the run's event and error logs."""
+    with (run_dir / "events.jsonl").open("ab") as stdout, (run_dir / "stderr.log").open("ab") as stderr:
         proc = subprocess.Popen(
             command,
             stdin=subprocess.DEVNULL,
@@ -440,51 +691,21 @@ def run_worker(args: argparse.Namespace, state: Path) -> int:
             stderr=stderr,
             start_new_session=True,
             close_fds=True,
+            pass_fds=pass_fds,
         )
         write_json(run_dir / "status.json", {
             "state": "running", "worker_pid": os.getpid(), "client_pid": proc.pid,
             "started_at": started_at,
         })
         try:
-            exit_code = proc.wait(timeout=TIMEOUT_SECONDS)
+            return proc.wait(timeout=timeout), False, proc.pid
         except subprocess.TimeoutExpired:
-            timed_out = True
             os.killpg(proc.pid, signal.SIGTERM)
             try:
-                exit_code = proc.wait(timeout=20)
+                return proc.wait(timeout=20), True, proc.pid
             except subprocess.TimeoutExpired:
                 os.killpg(proc.pid, signal.SIGKILL)
-                exit_code = proc.wait()
-
-    validation = validate_workbook(run_dir)
-    write_json(run_dir / "validation.json", validation)
-    ended_at = now_iso()
-    if timed_out:
-        outcome, failure_reason = "timed_out", "timeout"
-    elif exit_code != 0:
-        outcome, failure_reason = "failed", "provider_exit"
-    elif not validation.get("exists"):
-        outcome, failure_reason = "failed", "workbook_missing"
-    elif not validation.get("valid_xlsx"):
-        outcome, failure_reason = "failed", "workbook_unreadable"
-    else:
-        outcome, failure_reason = "completed", None
-    write_json(run_dir / "status.json", {
-        # Completion is execution success only; no checker or substantive review runs here.
-        "state": outcome,
-        "failure_reason": failure_reason,
-        "worker_pid": os.getpid(),
-        "client_pid": proc.pid,
-        "started_at": started_at,
-        "ended_at": ended_at,
-        "elapsed_seconds": round(time.monotonic() - started, 3),
-        "exit_code": exit_code,
-        "timed_out": timed_out,
-        "workbook_exists": validation.get("exists", False),
-        "workbook_valid_xlsx": validation.get("valid_xlsx", False),
-        "usage": run_usage(stdout_path),
-    })
-    return 0 if outcome == "completed" else 1
+                return proc.wait(), True, proc.pid
 
 
 def worker(args: argparse.Namespace) -> int:
@@ -492,8 +713,9 @@ def worker(args: argparse.Namespace) -> int:
     if path.exists():
         raise SystemExit(f"refusing to overwrite prior run status: {path.parent}")
     try:
-        with tempfile.TemporaryDirectory(prefix="sec-extraction-state-") as state:
-            return run_worker(args, Path(state))
+        with tempfile.TemporaryDirectory(prefix="sec-extraction-state-") as state, \
+                tempfile.TemporaryDirectory(prefix="sec-extraction-scratch-") as scratch:
+            return run_worker(args, Path(state), Path(scratch))
     except (Exception, SystemExit) as exc:
         # A detached worker must leave an outcome even if input verification or
         # provider startup fails before the normal completion record is written.
@@ -552,6 +774,9 @@ def parser() -> argparse.ArgumentParser:
     p.add_argument("--deal", required=True)
     p.add_argument("--filing", required=True)
     p.add_argument("--instruction", help="candidate instruction file to test (default: the working instruction)")
+    p.add_argument("--model", help="model to run (default: the provider's first allowed model, e.g. claude-opus-5-5)")
+    p.add_argument("--effort", help="effort level (Opus: low, medium, high, xhigh or max; default: DEFAULT_EFFORT)")
+    p.add_argument("--timeout-minutes", type=int, help="wall-clock limit for the run, 10-360 (default: 90)")
     p.add_argument("--revise-from", help="finished workbook to revise (revision pass)")
     p.add_argument("--report", help="checker findings in plain text, required with --revise-from")
     p.set_defaults(func=prepare)

@@ -1,0 +1,1159 @@
+{
+  "deal": "providence-worcester",
+  "filing": "raw_filing/providence-worcester_2016-09-20_DEFM14A.htm",
+  "instruction": "SEC_Deal_Ledger_Extraction_Instruction.md v1.13.2 (sha256 513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304)",
+  "weights": {
+    "participation": 30,
+    "rounds": 25,
+    "formality_conditions": 20,
+    "chronology": 10,
+    "bids_prices": 10,
+    "other": 5
+  },
+  "tests": [
+    {
+      "id": "PR-P01",
+      "category": "participation",
+      "weight": 3,
+      "item": "First contacts: 11 strategic / 18 financial wave; Party A and re-contacts not counted twice",
+      "check": "Deal ledger: Contact rows for GHF's week-of-03/28/2016 outreach record 18 financial buyers (Type Financial, Count 18) and the strategic wave without counting Party A twice as a first contact. Where Party A's Q4 2015 approach already has its own first-contact row (Bidder interest or equivalent carrying Count 1), the strategic wave Contact row holds the remainder (e.g., '10 potential strategic buyers other than Party A', Type Strategic, Count 10), with the filing's total of 11 including Party A in its Note. Management's approach to 'two additional Class I railroads' (reported 04/07/2016) appears as a Contact row (Count 2, Strategic) with no NDA or entry asserted for them. Re-contacts are not silently added as new first contacts: any row for the 04/03-04/06/2016 convention meetings with five strategic buyers (incl. G&W), for the 04/07/2016 authorization to confirm NDA signers' continuing interest, or for Party B's 04/21/2016 introductory meeting is either omitted or acknowledged somewhere in the workbook (qualified Count, the row's Note, an NDA-cohort Note or a Question) as possibly overlapping the 11 contacted in the March wave.",
+      "expected": "Strategic wave Contact Count 10 (the filing's 11 incl. Party A, whose first contact is the Q4 2015 row) + financial Contact Count 18, both week of 03/28/2016; separate Contact Count 2 for the two additional Class I railroads (by 04/07/2016), not treated as entrants; convention meetings (04/03-04/06), 04/07 confirmations and Party B's 04/21 meeting omitted or flagged as possibly overlapping the 11, never silently added to first contacts.",
+      "partial_credit": "0.5 if exactly one of: (i) Party A counted twice (strategic wave Count 11 while Party A also has its own first-contact row with Count 1); (ii) the Class I railroad contact missing, or an NDA or entry asserted for the railroads (keeping them as a disclosed possibility inside a range is not penalised); (iii) a re-contact row (convention five, 04/07 confirmations, Party B 04/21) carries an exact Count presented as new first contacts with no overlap caveat anywhere in the workbook. None if two or more.",
+      "accepted_alternatives": [
+        "If Party A's Q4 2015 row is not coded as a first contact about a sale (e.g., Other material event for the JV/equity approach), a strategic wave Contact row with Count 11 including Party A is correct.",
+        "Strategic wave row with Count blank and a Note such as 'Count: 11 including Party A, already recorded at #n' (no double count).",
+        "Convention meetings as a Contact row with Count blank and 'Count: 0-5 new first contacts', or with Count 5 where its Note or a Question states that overlap with the 11 is unknown.",
+        "Party B's 04/21 meeting recorded as its first contact where the workbook keeps Party B outside the 11 as a disclosed possibility (PR-P02)."
+      ],
+      "source_pages": [
+        "27",
+        "28"
+      ],
+      "source_quote": "representatives of GHF contacted 11 potential strategic buyers (including Party A) and 18 potential financial buyers",
+      "provenance": [
+        "filing p. 27 (Party A Q4 2015 meeting), p. 28 (week-of-03/28 wave; 04/03-04/06 convention meetings with five strategic buyers incl. G&W; 04/07 authorization to confirm NDA signers' continuing interest; two additional Class I railroads; Party B 04/21)",
+        "filing A-48 (G&W's confidentiality agreement dated 04/03/2016, the first convention day)",
+        "instruction E7 (first contacts; a Bidder interest row carries the fact without a duplicate Contact row), E3",
+        "git show acc9986:_dev/reviews/2026-09-21/providence-worcester.md, Finding 1 (Party A double count, confirmed error)",
+        "v1.8 reference test P01 (f1de7d9)",
+        "v1.13.2 Opus draft #1 (Party A Bidder interest Count 1) and #6 (Count 11 incl. Party A); #11 Party B Contact with overlap flagged",
+        "v1.13 Opus draft #6 (Count 10 other than Party A); #10 convention Contact Count 5 with overlap flagged",
+        "git show f1de7d9:_dev/clean_run_comparison_2026-09-19/gold/providence-worcester_alex_voice_notes.txt items 4-6 (strategics 'later contacted by the target again' double counted)",
+        "coverage verifier (re-contact clause added)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "The unreviewed v1.13.2 draft repeats the v1.11 error the reviewer confirmed (Party A counted in #1 and in the 11-count wave); the v1.13 draft nets Party A out. Alex's voice note 5 names double-counting strategics the target contacted again as the typical Providence participation error; careless runs add the convention five or Party B's 04/21 meeting as fresh first contacts."
+    },
+    {
+      "id": "PR-P02",
+      "category": "participation",
+      "weight": 3,
+      "item": "March-wave NDA cohorts 11 strategic + 14 financial; no double count; total conflict disclosed",
+      "check": "Deal ledger NDA signed rows for the March-wave confidentiality agreements sum to 25 = 11 Strategic + 14 Financial (type-split cohort rows, or named members with their own NDA rows plus a remainder cohort holding the rest), with no named signer (Party A, Party B, G&W) counted both individually and inside a cohort Count, and the 29 contacts not treated as entrants. Party C's July NDA is a separate row, not folded into the 25. The workbook discloses somewhere (a Note, a Question or Deal facts) that the background's figures (25 before Party C, 26 with it, or more if G&W/Party B lie outside the 11) conflict with p. 33's statement that 25 parties signed confidentiality agreements, six of whom (Party C among them) submitted LOIs.",
+      "expected": "11 Strategic + 14 Financial = 25 March-wave NDA entrants; Party C a separate later NDA (26 cumulative on the background's figures); the p. 33 '25' conflict disclosed.",
+      "partial_credit": "0.5 if the 11 + 14 structure is right with no double count but the p. 33 conflict is not disclosed anywhere, or if the 25 are recorded as one unsplit Unknown cohort.",
+      "accepted_alternatives": [
+        "G&W and/or Party B recorded as NDA signers outside the 11, giving a disclosed range (e.g., 25-27 March-wave signers, 26-28 cumulative), provided the uncertainty is stated and nobody is double counted.",
+        "A disclosed range whose upper bound also allows for the two additional Class I railroads (e.g., 25-29 pre-July signers), provided no NDA is asserted for them and nobody is double counted.",
+        "Named members (Party A, Party B, G&W) inside the 11 with a remainder strategic cohort (e.g., Count 8) whose Note gives the total of 11.",
+        "Party C's NDA excluded from the 25 and the p. 33 figure read as omitting Party C, or as including it, provided the conflict is stated."
+      ],
+      "source_pages": [
+        "28",
+        "29",
+        "33"
+      ],
+      "source_quote": "Each of the potential strategic buyers and 14 potential financial buyers subsequently executed confidentiality agreements.",
+      "provenance": [
+        "filing p. 28 (11 + 14 signers; memorandum to 'Party A, Party B and G&W, that had executed confidentiality agreements'; 04/07 reference to Class I railroads 'who had entered into confidentiality agreements'), p. 29 (Party C NDA), p. 33 ('25 of whom entered into confidentiality agreements ... and six of whom submitted non-binding letters of intent')",
+        "instruction E3 (a later-named party belongs to an earlier cohort only if the filing establishes it), F check 2",
+        "v1.8 reference P02 and A01",
+        "v1.13.2 draft #8 and Q4 (G&W and B inside the 11; auction screen 26) vs v1.13 draft #14-#15 and Q3 (outside; 25-28)",
+        "Alex row Excel 6027 ('25 parties, including Parties A, B'; 11S, 14F)",
+        "instruction-conformance verifier (Class I upper bound alternative)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "The two drafts disagree on whether G&W and Party B are inside the 11 (both accepted if disclosed). Careless runs double count named signers on top of the 11, treat contacts as entrants, or silently force the total to 25 by dropping Party C."
+    },
+    {
+      "id": "PR-P03",
+      "category": "participation",
+      "weight": 3,
+      "item": "Round-1 non-submitter closure as a qualified count; Party A kept inside the residual",
+      "check": "Deal ledger has an inferred Did not submit cohort row for NDA signers that submitted no IOI: Inferred = Y, Exit reason Not stated, When 'by' the IOI due date or evaluation (Date to no later than 06/01/2016), Note giving the arithmetic from the NDA signers (25 signers - 9 IOI bidders), not from contacts. Count is blank with a Note 'Count: at least 16', or a stated range starting at 16 (e.g., 16-18, or up to 20 if the two additional Class I railroads are allowed for). Party A has no individual exit row anywhere in the ledger; its unknown fate is carried inside an anonymous residual, and the workbook says somewhere (residual Note, Rounds or a Question) that Party A may be among the non-submitters or other unnamed exits. (The Round column of this row is graded only in PR-R07.)",
+      "expected": "Inferred Did not submit, Count blank with 'Count: at least 16' (25 - 9) or a range from 16, Exit reason Not stated; Party A inside the residual with the possibility named; no individual Party A exit.",
+      "partial_credit": "0.5 if exactly one of: Party A's possible membership in the residual is never mentioned; the Count cell holds an exact 16 (stated assumption or not: under Part B the subtraction is exact only if every IOI bidder, G&W and Party B included, is an established member of the 25, which the filing does not establish); Party A is given an individual exit flagged as uncertain and the residual is reduced so there is no double closure. None if the non-submitters have no closure, the arithmetic starts from contacts (29 - 9 = 20), the row is labelled Dropped by target, or Party A is both exited individually and left inside the residual.",
+      "accepted_alternatives": [
+        "Count blank with 'Count: at least 16', whatever the workbook assumes about G&W/Party B.",
+        "Range 16-18, or up to 20 when the two additional Class I railroads are allowed for, where G&W/Party B are kept outside the 11.",
+        "A lower bound of 15 (e.g., 'Count: 15-18') where the Note ties it explicitly to the p. 33 total of 25 signers read as including Party C.",
+        "Date to 05/19/2016 (operative due date) or 06/01/2016 (last evaluation meeting)."
+      ],
+      "source_pages": [
+        "28",
+        "29"
+      ],
+      "source_quote": "Between May 19, 2016 and June 1, 2016, the Company received nine written indications of interest (“IOIs”) from potential buyers",
+      "provenance": [
+        "filing pp. 28-29; p. 33 (25-signer total that includes the six LOI submitters)",
+        "instruction Part B ('A subtraction is exact only when its total is exact and every party subtracted is an established member of that total; otherwise state the range'), E3 Counts, E14 (a party whose residual membership is uncertain stays inside it)",
+        "v1.8 reference P03",
+        "Alex rows Excel 6030 ('16 parties' Drop 06/01) and 6042 (Party A Drop 07/22, not supported by the filing)",
+        "git show f1de7d9:_dev/clean_run_comparison_2026-09-19/gold/providence-worcester_alex_voice_notes.txt item 11 (infers A left in round 1 - an inference, not a reported fact)",
+        "acc9986 review, 'Party A after round one'",
+        "v1.13.2 draft #17 and v1.13 draft #19 (Count blank, qualified)",
+        "instruction-conformance verifier (exact 16 downgraded to partial)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Alex's hand coding gives Party A an individual 07/22 drop and an exact 16; both drafts keep A inside a qualified residual. Failures: no closure, arithmetic from contacts, a Dropped by target label, or Party A both exited individually and left inside the residual."
+    },
+    {
+      "id": "PR-P04",
+      "category": "participation",
+      "weight": 2,
+      "item": "Two low IOI bidders dropped",
+      "check": "Deal ledger: one reported (Inferred blank) Dropped by target row for the 'two low bidders' (Count 2; Type Unknown unless the workbook cites support), dated within 05/23/2016-06/01/2016 (the two Transaction Committee meetings), Exit reason Lower offer than rivals; no invented identities or individual prices. (The Round column of this row is graded only in PR-R07.)",
+      "expected": "Dropped by target, Count 2, window 05/23-06/01/2016, Exit reason Lower offer than rivals.",
+      "partial_credit": "0.5 if the exit is present but labelled Did not submit or Withdrew, typed Strategic/Financial without support, or dated outside 05/23-06/01/2016.",
+      "accepted_alternatives": [
+        "Exit reason Other stated reason or Terms or process (the stated rationale for excluding anyone is the management time the presentations would require).",
+        "Two unnamed individual rows of Count 1 each.",
+        "Sort date 05/27/2016 (midpoint) or 06/01/2016."
+      ],
+      "source_pages": [
+        "29"
+      ],
+      "source_quote": "the Transaction Committee concluded that the two low bidders should be excluded from that process",
+      "provenance": [
+        "filing p. 29",
+        "v1.8 reference P04",
+        "Alex row Excel 6031 (DropTarget, red-corrected)",
+        "both Opus drafts",
+        "instruction-conformance verifier (Terms or process accepted)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard"
+    },
+    {
+      "id": "PR-P05",
+      "category": "participation",
+      "weight": 2.5,
+      "item": "Party C late entry counted once, with catch-up access row",
+      "check": "Deal ledger records Party C (Type Strategic) as a new entrant in Process 1: a first-contact row for its early-July 2016 approach (Bidder interest, bidder-initiated, no price) and one NDA signed row (Count 1) whose window lies within 07/01/2016-07/12/2016 (after the approach, before the 07/12 IOI; no invented exact day), so Party C's entry is counted once and it is not inside the March cohorts. There is also an information-access row (Other material event or equivalent) for its catch-up access after its 07/12 IOI: data-site access and a telephone management presentation on 07/14/2016, unlike the in-person management presentations scheduled for the seven bidders admitted after the IOIs.",
+      "expected": "Party C: Bidder interest (early July) + NDA signed (window within 07/01-07/12/2016, Count 1) + catch-up information-access row 07/12-07/14/2016.",
+      "partial_credit": "0.5 if the entry is correct but the catch-up access appears only in a Note (no row), or the approach row is missing.",
+      "accepted_alternatives": [
+        "Catch-up steps combined in one row spanning 07/12-07/14/2016.",
+        "Approach and NDA sharing a 07/01-07/12/2016 window."
+      ],
+      "source_pages": [
+        "29"
+      ],
+      "source_quote": "Subsequently, Party C was provided access to the internet data site and the Company’s management held a management presentation with Party C by telephone on July 14, 2016.",
+      "provenance": [
+        "filing p. 29",
+        "instruction E2 (catch-up access for a late entrant earns a row), E3, E7, E8 ('early' = days 1-10; sequence bounds)",
+        "v1.8 reference P05 and inventory E19-E22",
+        "Alex row Excel 6033 (C NDA 07/01) and voice note item 9",
+        "v1.13.2 draft #20-#23; v1.13 draft #23-#26",
+        "source-fidelity verifier (NDA window; presentations not dated to June)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Both drafts have the catch-up row; careless runs fold it into a Note, count Party C twice (NDA plus admission), or put it in the round-1 cohort."
+    },
+    {
+      "id": "PR-P06",
+      "category": "participation",
+      "weight": 3,
+      "item": "Round-2 membership reconciliation and the two reported LOI non-submitters",
+      "check": "Deal ledger has reported (Inferred blank) Did not submit exits for one strategic and one financial bidder that elected not to submit an LOI (two rows of Count 1 typed Strategic and Financial, or one row of Count 2 with the 1S/1F split stated), Exit reason Not stated, neither identified as Party A or any named party. The Rounds sheet Round 2 'Who was in' reconciles: seven admitted after the IOIs (5 Strategic, 2 Financial: Party B, G&W, Party D, Party E, Party F plus one unnamed strategic and one unnamed financial, or seven with that split) plus late entrant Party C = 8 = 6 LOI bidders + 2 non-submitters. (The Round column of this row is graded only in PR-R07.)",
+      "expected": "Two reported Did not submit exits (1 Strategic, 1 Financial), Not stated; Round 2 membership 7 admitted (5S/2F) + Party C = 8.",
+      "partial_credit": "0.5 if the two exits are right but Round 2 membership is miscounted (e.g., 9, or Party C counted among the seven), or the exits are labelled Withdrew.",
+      "accepted_alternatives": [
+        "The seven listed as a count with type split but without names.",
+        "Named members given as inferred (from 6 LOIs + 2 non-submitters = 7 + Party C).",
+        "The unnamed strategic non-submitter's Note saying it could be Party A."
+      ],
+      "source_pages": [
+        "29",
+        "30"
+      ],
+      "source_quote": "One strategic buyer and one financial buyer elected not to submit an LOI.",
+      "provenance": [
+        "filing pp. 29-30",
+        "instruction E14 (Did not submit), D3 (Who was in by type, with names)",
+        "v1.8 reference P06 and participation checkpoints",
+        "v1.13.2 draft #30-#31 and Q7; v1.13 draft #28-#29 and Q5",
+        "Alex row Excel 6043 (only '1 party' Drop 07/22)",
+        "git show f1de7d9:_dev/clean_run_comparison_2026-09-19/gold/providence-worcester_alex_voice_notes.txt item 11",
+        "coverage verifier (weight raised; Round column moved to PR-R07)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Alex's sheet records only one non-submitter; careless runs omit one, assert the strategic one is Party A, or misstate the round-2 set."
+    },
+    {
+      "id": "PR-P07",
+      "category": "participation",
+      "weight": 2.5,
+      "item": "July eliminations of Parties C, D, E and F",
+      "check": "Deal ledger has four reported (Inferred blank) Dropped by target rows, one each for Party C (Strategic), Party D (Financial), Party E (Strategic) and Party F (Strategic), each Count 1, Exit reason Lower offer than rivals, dated at the Transaction Committee's selection decision: Sort date 07/27/2016 preferred; a 07/22-07/27/2016 decision window, or a later Sort date for the subsequent notification, is acceptable here. (Placement relative to G&W's 07/26 revision is scored only in PR-R03, and the Round column only in PR-R07.)",
+      "expected": "C, D, E, F: Dropped by target, Lower offer than rivals, decision 07/27/2016 (or a 07/22-07/27/2016 window).",
+      "partial_credit": "0.5 if all four exits exist but Exit reason is Terms or process / Other stated reason / Not stated, or they are marked Inferred, or one of the four is missing.",
+      "accepted_alternatives": [
+        "When 'after 07/27/2016' with Date from 07/27/2016 and Sort date 07/27/2016.",
+        "Date from 07/22/2016 and Date to 07/27/2016 or later, with any Sort date inside that window.",
+        "One cohort row of Count 4 naming all four with the 3S/1F split."
+      ],
+      "source_pages": [
+        "30"
+      ],
+      "source_quote": "representatives of GHF subsequently contacted the remaining bidders to inform them that they were no longer involved in the process",
+      "provenance": [
+        "filing p. 30 (decision 'because of the higher offers made by each of G&W and Party B relative to the other potential buyers'; meetings of 07/22 and 07/27)",
+        "instruction E14, E8 (decision day for an undated consequence)",
+        "v1.8 reference P07",
+        "Alex rows Excel 6046-6049 (DropTarget, red)",
+        "both Opus drafts",
+        "instruction-conformance and coverage verifiers (date window accepted; placement and Round column scored elsewhere; weight 3 -> 2.5)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard; failures are carrying C/D/E/F live past the selection or labelling the exits Withdrew."
+    },
+    {
+      "id": "PR-P08",
+      "category": "participation",
+      "weight": 3,
+      "item": "D and E re-entry; Party F's financing support is not a bidding unit",
+      "check": "Deal ledger has a Re-entered row for Party D and one for Party E (Process 1; dated at the 07/29/2016 calls or the 08/01/2016 submission), each placed before that bidder's 08/01/2016 Bid row. Party F has no Re-entered row, no Bid row of its own after its July drop, no second exit row (e.g., an inferred Not selected at signing) after that drop, and there is no Bidding group changed row; Party E's 08/01 Bid keeps Who = Party E and Type Strategic (not Mixed, not 'Party E/F'), with Party F's financing support recorded in that Bid's Note or in an Other material event row.",
+      "expected": "Re-entered for D and E (07/29 or 08/01/2016) before their 08/01 bids; Party F support noted, with no F re-entry, no second F exit and no joint E/F unit.",
+      "partial_credit": "0.5 if both re-entries exist but one is placed after its bid, or the text calls F a co-bidder while Who/Type and counts stay correct, or Party F is closed a second time.",
+      "accepted_alternatives": [
+        "Re-entered dated 07/29/2016 (expressed interest) or 08/01/2016 (revised LOIs).",
+        "Financing support as a separate Other material event row or only in Party E's Bid Note."
+      ],
+      "source_pages": [
+        "30"
+      ],
+      "source_quote": "On August 1, 2016, Party D submitted a revised LOI at a price of $24.00 per share and Party E submitted a revised LOI, along with financing support, from Party F, at a price of $23.81 per share.",
+      "provenance": [
+        "filing p. 30",
+        "instruction E4 (financing support does not make a group), E14 (Re-entered before resumed participation; each period of participation ends once)",
+        "v1.8 reference P08 (lists 'second F exit' as a failure) and A05",
+        "Alex rows Excel 6050-6052, 6057 ('Party E/F', S/F joint bidder)",
+        "both Opus drafts",
+        "coverage verifier (second F closure clause)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Alex's hand coding treats E/F as a joint S/F bidder, contrary to E4; careless runs post D/E bids with no Re-entered row or close Party F again at signing."
+    },
+    {
+      "id": "PR-P09",
+      "category": "participation",
+      "weight": 2,
+      "item": "Party D's withdrawal after its August bid",
+      "check": "Deal ledger: after its 08/01/2016 bid, Party D has one reported (Inferred blank) Withdrew row, Exit reason Terms or process, whose Note says D stopped after the Company declined to commit not to sign with another bidder during D's 30-day diligence period and keeps the words 'at that time'; dated after 08/01/2016 (Date from 08/01 or 08/02, no unsupported exact date).",
+      "expected": "Withdrew, Terms or process, after 08/01/2016, 'at that time' preserved.",
+      "partial_credit": "0.5 if labelled Dropped by target (reading the refusal as a target exclusion) or Exit reason Not stated, or the 'at that time' qualifier is lost while label and reason are right.",
+      "accepted_alternatives": [
+        "Exit reason Other stated reason with the refused commitment in the Note.",
+        "Sort date 08/01/2016 or 08/02/2016 with Date from 08/01/2016."
+      ],
+      "source_pages": [
+        "30"
+      ],
+      "source_quote": "In light of the active interest of Party B and G&W, the Company declined to make such a commitment, at which point Party D indicated that it would not proceed with further due diligence at that time.",
+      "provenance": [
+        "filing p. 30",
+        "instruction E14 (Withdrew includes 'for now'; keep the words)",
+        "v1.8 reference P09 and inventory E39",
+        "Alex row Excel 6053 (Drop 08/02)",
+        "both drafts (Withdrew, Terms or process); v1.13.2 draft Q8 alternative"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Failures: D left live to signing, exit dated before its 08/01 bid, or the temporary qualifier dropped."
+    },
+    {
+      "id": "PR-P10",
+      "category": "participation",
+      "weight": 3,
+      "item": "Party E: 08/02 reversion is a bid, not a withdrawal; inferred closure",
+      "check": "Deal ledger records Party E's 08/02/2016 event as a Bid at $21.26 (reversion to its original proposal after withdrawing the $23.81 revision), not as a Withdrew exit. Party E's participation is then closed exactly once by an inferred exit (Inferred = Y, Exit reason Not stated): Not selected at signing by 08/12/2016, or Dropped by target by 08/04/2016 (continuation named with G&W and Party B only) or by 08/09/2016, with the basis in the Note.",
+      "expected": "08/02 Bid $21.26 (reversion); Party E closed once by an inferred exit, e.g., Not selected at signing by 08/12/2016, Exit reason Not stated.",
+      "partial_credit": "0.5 if the closure exists but is not marked Inferred, or carries a substantive Exit reason (e.g., Lower offer than rivals) the filing does not state; or the 08/02 $21.26 row is labelled Bid reaffirmed instead of Bid (E10 reserves that label for a bidder the target is finalizing an agreement with).",
+      "accepted_alternatives": [
+        "Dropped by target, Inferred = Y, by 08/04/2016 or 08/09/2016.",
+        "Not selected at signing, Inferred = Y, Date to 08/12/2016."
+      ],
+      "source_pages": [
+        "30",
+        "31"
+      ],
+      "source_quote": "Party E withdrew its revised proposal on August 2, 2016 (but confirmed its original proposal of $21.26 per share)",
+      "provenance": [
+        "filing pp. 30-31",
+        "instruction E10 (reversion to an older price is its own Bid row; Bid reaffirmed only when the target is finalizing with the bidder) and E14 (inferred closure)",
+        "v1.8 reference P09, A05, E38, E41 (preferred Dropped by target by 08/04)",
+        "both Opus drafts (Not selected at signing, inferred)",
+        "Alex rows Excel 6052 (reversion bid) and 6057 (Drop 08/12, 'did not engage for a while')",
+        "instruction-conformance verifier (Bid reaffirmed mislabel as partial)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Reading 'withdrew its revised proposal' as an exit is the trap; reviewers split between Not selected at signing (drafts) and Dropped by target by 08/04 (v1.8), both accepted. Fail: Withdrew on 08/02, E left open, or closed twice."
+    },
+    {
+      "id": "PR-P11",
+      "category": "participation",
+      "weight": 2,
+      "item": "Party B's final exit; G&W wins; no exclusivity invented",
+      "check": "Deal ledger: Party B has one reported Not selected at signing row dated 08/12/2016, Exit reason Would not improve earlier offer (BMO asked at the Board's request whether B would increase; B declined). G&W has no exit, Dropped or Re-entered row around the 08/09 notice that the Company intended to sign with another bidder. No row records an executed or granted exclusivity (G&W's three-week exclusive diligence, E's 60-day exclusivity and D's no-other-agreement commitment were requests, not granted), and no bidder is dropped by an exclusivity request. (The Round column of this row is graded only in PR-R07.)",
+      "expected": "Party B: Not selected at signing, 08/12/2016, Would not improve earlier offer; G&W no exit; no executed exclusivity.",
+      "partial_credit": "0.5 if Party B's label is right but Exit reason is Lower offer than rivals, or the label is Dropped by target with the right reason.",
+      "accepted_alternatives": [
+        "Exclusivity changed rows recording the requests as requested and not granted."
+      ],
+      "source_pages": [
+        "29",
+        "30",
+        "31",
+        "32"
+      ],
+      "source_quote": "representatives of BMO then contacted Party B to determine if it would increase its offer price. Party B indicated that it would not increase its price.",
+      "provenance": [
+        "filing pp. 29-30 (exclusivity requests; D's refused commitment), 31 (08/09 notice; G&W's diligence request granted), 32 (B declines)",
+        "instruction E14 ('A bidder asked to improve that declines takes Would not improve earlier offer'; 'a request for exclusivity drops no one')",
+        "v1.8 reference P10",
+        "Alex row Excel 6056 (Drop, 'Refused to increase offer')",
+        "both Opus drafts",
+        "source-fidelity verifier (pages 29-30 added)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard; the exit-reason choice separates careful from careless runs."
+    },
+    {
+      "id": "PR-P12",
+      "category": "participation",
+      "weight": 1,
+      "item": "Bidder types and non-participants",
+      "check": "Deal ledger Type: G&W, Party A, Party B, Party C, Party E and Party F Strategic; Party D Financial; the unnamed round-2 non-submitters one Strategic and one Financial; the nine-IOI cohort and the two low bidders Unknown (no split given). No participant or entrant rows for GATX (director Smith's employer, recused as a possible buyer), Pullman Acquisition Sub Inc. (G&W's merger subsidiary, same unit) or the Eder Trusts (voting agreement).",
+      "expected": "Party F Strategic, Party D Financial, all other named bidders Strategic; no GATX/Pullman/Eder Trusts participants.",
+      "partial_credit": "0.5 if exactly one named bidder is mistyped (notably Party F as Financial) or one non-participant is added.",
+      "accepted_alternatives": [
+        "IOI cohort and low bidders typed Unknown or with Type blank on a clearly unsplit cohort row."
+      ],
+      "source_pages": [
+        "1",
+        "21",
+        "28",
+        "29",
+        "30"
+      ],
+      "source_quote": "Party F (a strategic buyer) submitted an LOI to acquire the Company for a price of $19.20 per share (subject to a 30-day due diligence period).",
+      "provenance": [
+        "filing pp. 1/21 (G&W owns or leases 121 freight railroads), 28-30, 30 (GATX recusal)",
+        "instruction E3",
+        "Alex rows Excel 6039 and 6049 (Party F typed Financial), 6051 (E/F S/F)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Alex's hand coding types Party F as financial; the filing says strategic."
+    },
+    {
+      "id": "PR-R01",
+      "category": "rounds",
+      "weight": 3,
+      "item": "One process; round 0 content; round 1 opening",
+      "check": "All ledger rows are Process 1 with no Process terminated or Process restarted row, and Deal facts Number of processes = 1. Party A's Q4 2015 approach, the GHF engagement (01/27/2016) and the 03/14/2016 board decision sit in Round 0 with no Round opened row for round 0. Round 1 has exactly one Round opened row with Sort date 03/24/2016 (Transaction Committee authorization) or within 03/28-04/03/2016 (GHF's outreach wave), and Rounds sheet Round 1 Opened equals it. (Grade process, round 0 and round 1 only; the round-2/3 boundaries are graded in PR-R02/PR-R03.)",
+      "expected": "One process; round 0 = Party A Q4 2015, GHF 01/27, board 03/14; Round 1 opened 03/24/2016 or week of 03/28/2016.",
+      "partial_credit": "0.5 if, with one process and the rest right, exactly one of: Round 1 opens on 03/14/2016 (outreach came two weeks later after a separate 03/24 authorization); round 1 has two Round opened rows; Party A's Q4 2015 approach has no ledger row (only Deal facts Earlier approaches).",
+      "accepted_alternatives": [
+        "Round 1 Opened 03/24/2016.",
+        "Round 1 Opened within 03/28/2016-04/03/2016 (e.g., 03/28 or 03/31)."
+      ],
+      "source_pages": [
+        "27",
+        "28"
+      ],
+      "source_quote": "The Transaction Committee authorized GHF to contact Party A as well as other potential buyers to determine their level of interest in a change in control transaction.",
+      "provenance": [
+        "filing p. 27 (subcommittee 'to interview potential investment bankers to represent the Company in possible negotiations with Party A'; 03/14 process to 'proceed with discussions with Party A and also solicit interest'), p. 28",
+        "instruction E5(a) (Party A kept in view), E6 round-1 opening and round 0",
+        "v1.8 reference R01 and A03",
+        "both Opus drafts (Round 1 03/24; one process)",
+        "Alex row Excel 6026 ('large time gap, so perhaps this is Target Sale?')",
+        "_dev/RESEARCH_QUESTIONS.md provisional item 1 (process-boundary convention; Providence as the carry-forward case)",
+        "instruction-conformance verifier (missing Party A row as partial); coverage verifier (weight 4 -> 3)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Under v1.13.2 E5(a) fails (GHF was hired for possible negotiations with Party A), so one process; a two-process split or Party A's approach in round 1 fails. Near ceiling for both drafts; the convention itself awaits Alex's confirmation (RESEARCH_QUESTIONS item 1)."
+    },
+    {
+      "id": "PR-R02",
+      "category": "rounds",
+      "weight": 4,
+      "item": "Round 2: one round from the seven-bidder selection through the LOI solicitation",
+      "check": "Exactly one Round opened row for Round 2, dated at the Transaction Committee's selection of seven bidders for management presentations and data-site diligence (within 05/23-06/01/2016) or at the mid-June 2016 LOI request (06/11-06/19/2016). The LOI request (due 07/20/2016, markups requested), Party C's July admission and its 07/12 IOI all sit inside this round: neither the LOI request (when round 2 opened at the selection) nor Party C's admission opens another round.",
+      "expected": "Round 2 opened at the 05/23-06/01/2016 selection of seven (or the mid-June LOI request); one round covering the information stage, LOI solicitation and Party C's late entry.",
+      "partial_credit": "0.5 if round 2 exists but a further round is opened for the mid-June LOI request or for Party C's admission.",
+      "accepted_alternatives": [
+        "Opened anywhere in 05/23-06/01/2016 (e.g., 05/27 midpoint or 06/01).",
+        "Opened within 06/11-06/19/2016 (e.g., 06/15) at the LOI request, with the selection recorded as how round 1 ended."
+      ],
+      "source_pages": [
+        "29"
+      ],
+      "source_quote": "The Transaction Committee authorized representatives of GHF to schedule in-person management presentations with the remaining seven potential buyers and allow these parties to conduct additional due diligence.",
+      "provenance": [
+        "filing p. 29",
+        "instruction E6 ('the target selects who advances and asks for updated offers; opens a distinct information stage tied to new offers'; 'one round for each such change, and only those')",
+        "v1.8 reference R02, A03, A09",
+        "both Opus drafts (05/27 opening)",
+        "Alex rows Excel 6032 (mid-June 'Final Round Inf Ann') and 6040 (07/20 'Final Round Inf') marker vocabulary"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Alex's markers suggest boundaries at mid-June and 07/20; the drafts open at the selection. Over-splitting selection and LOI request, or merging IOIs and LOIs into one round, are the failures."
+    },
+    {
+      "id": "PR-R03",
+      "category": "rounds",
+      "weight": 4,
+      "item": "Round 3 opened 07/27 at definitive negotiation with G&W and Party B; no August over-splitting",
+      "check": "Exactly one Round opened row for Round 3 with Sort date 07/27/2016 (the Transaction Committee's decision to proceed with confirmatory due diligence and negotiations with G&W and Party B, after G&W's 07/26 revision). Rounds Round 3 'Who was in' lists G&W and Party B (2 Strategic) as admitted; Parties D and E, if their August bids are placed in this round, appear as still being received (not admitted) or as re-entrants from 07/29, not among the bidders admitted at the opening. No further round is opened for the D/E re-engagement (07/29-08/01), the 08/04 prioritization of Party B, the 08/09 notice to G&W, G&W's 08/12 bid or the Board's 08/12 request that Party B improve; any rows recording those events carry Round 3. (Whether the 08/04, 08/09 and 08/12 target actions have rows is graded in PR-R08.)",
+      "expected": "Three rounds in total; Round 3 opened 07/27/2016 with G&W and Party B admitted; August events are within-round rows.",
+      "partial_credit": "0.5 if Round 3 is opened on 07/22/2016 (placing G&W's 07/26 revision in round 3), or a fourth round is added for an August event.",
+      "accepted_alternatives": [
+        "Round opened row with Date from 07/22/2016 or 07/26/2016 and Sort date 07/27/2016."
+      ],
+      "source_pages": [
+        "30",
+        "31",
+        "32"
+      ],
+      "source_quote": "The Transaction Committee concluded that the Company should proceed with confirmatory due diligence and negotiations with G&W and Party B because of the higher offers made by each of G&W and Party B relative to the other potential buyers.",
+      "provenance": [
+        "filing p. 29 (G&W 07/21 $21.15 below E's $21.26), p. 30 (selection), p. 31 ('From July 27, 2016 through August 11, 2016, Party B and G&W conducted on-site ... due diligence'), p. 32",
+        "instruction E6 ('where no round has been opened as final, moves to definitive negotiation with selected bidders'; asking bidders to improve continues the round) and D3 ('still being received, not admitted')",
+        "v1.8 reference R03 and A03 (an 08/04 opening was accepted under v1.8's round rule, not v1.13.2's)",
+        "v1.13.2 draft #35 (window 07/26-07/27); v1.13 draft #43",
+        "Alex rows Excel 6045 (07/27 'Final Round Ann') and 6058 (08/12 'Final Round')",
+        "all three verifiers (notice-row clause moved to PR-R08)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Alex marks a new final round on 08/12 and v1.8 accepted an 08/04 opening; under v1.13.2 both are within-round events. G&W's $21.15 was below Party E's $21.26, so the 'higher offers' decision must follow the 07/26 revision. Fail: no round 3, or round 3 opened on/after 08/04."
+    },
+    {
+      "id": "PR-R04",
+      "category": "rounds",
+      "weight": 3,
+      "item": "Round-1 due dates 05/10 -> 05/19 and outcome",
+      "check": "Deal ledger has a Deadline set row for the 05/10/2016 IOI due date and a Deadline revised row for the postponement to 05/19/2016 (revision day not stated: no invented exact date), plus a Deadline row for 05/19/2016. Rounds Round 1 Due dates reads 05/10/2016 -> 05/19/2016; 05/10 is either marked superseded before arrival (no Deadline row, no outcome) or given outcome Extended, with the unknown revision timing acknowledged in a Note or Question; the 05/19 outcome is Late bids accepted or Unclear.",
+      "expected": "Due dates 05/10/2016 -> 05/19/2016; 05/10 superseded (or Extended); 05/19 Late bids accepted (IOIs arrived 05/19-06/01) or Unclear.",
+      "partial_credit": "0.5 if the 05/19 outcome is Enforced, or the Deadline revised row is missing while both dates appear in Due dates, or the revision is given an invented exact day.",
+      "accepted_alternatives": [
+        "05/10 recorded as reached with a Deadline row and outcome Extended, provided the timing uncertainty is stated.",
+        "05/19 outcome Unclear (individual IOI arrival days unstated)."
+      ],
+      "source_pages": [
+        "29"
+      ],
+      "source_quote": "each potential buyer had been advised to submit a non-binding indication of interest by May 10, 2016 (which deadline was subsequently postponed to May 19, 2016",
+      "provenance": [
+        "filing p. 29",
+        "instruction E9",
+        "v1.8 reference R05 and A04 (Enforced preferred then)",
+        "acc9986 review, 'May 10 deadline timing' (supersession is an assumption; 05/19 Unclear)",
+        "both Opus drafts (05/10 superseded; 05/19 Late bids accepted)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Reviewers split three ways on the 05/19 outcome (Enforced v1.8, Unclear v1.11 review, Late bids accepted drafts); scored failures are omitting 05/10, inventing a revision date, or treating the postponement as a new round."
+    },
+    {
+      "id": "PR-R05",
+      "category": "rounds",
+      "weight": 3,
+      "item": "Round-2 07/20 due date Late bids accepted; round 3 has no deadline",
+      "check": "Rounds Round 2 Due dates 07/20/2016 with Deadline outcome Late bids accepted (G&W's LOI dated 07/21/2016 was considered; no extension is reported), with a ledger Deadline row for 07/20/2016. Rounds Round 3 Due dates 'none stated' and Deadline outcome No deadline stated; G&W's offer expiry (6:00 p.m. on 08/13/2016) is not recorded as a bid due date, Deadline row or outcome.",
+      "expected": "Round 2: 07/20/2016, Late bids accepted. Round 3: none stated / No deadline stated; offer expiry noted only in G&W's bid Note.",
+      "partial_credit": "0.5 if one half is wrong: the 07/20 outcome is Enforced or Unclear or an extension to 07/21 is invented; or round 3 treats the offer expiry as a deadline.",
+      "accepted_alternatives": [
+        "Deadline set for 07/20 carried on the Round opened row when round 2 opens at the mid-June request."
+      ],
+      "source_pages": [
+        "29",
+        "31"
+      ],
+      "source_quote": "G&W submitted an LOI on July 21, 2016 to acquire the Company for a price of $21.15 per share (subject to a three-week exclusive diligence period).",
+      "provenance": [
+        "filing pp. 29 (07/20 due; G&W 07/21), 31 (offer expires next day)",
+        "instruction E9 (Late bids accepted; only bid due dates are deadlines)",
+        "v1.8 reference R05 and A04",
+        "both Opus drafts",
+        "Alex rows Excel 6035 ('Late july -- but the deadline was july 20'), 6055 ('Expire 8/13/2016'), 6058 ('deadline apparently was not announced')"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Alex's 08/12 'Final Round' marker and the offer expiry invite a spurious round-3 deadline; G&W's one-day-late LOI makes Late bids accepted the only supported 07/20 outcome."
+    },
+    {
+      "id": "PR-R06",
+      "category": "rounds",
+      "weight": 3,
+      "item": "Finality of each round",
+      "check": "Rounds Finality: Round 1 Not final; Round 2 Not final (the target asked for non-binding LOIs; requested markups do not make it an announced final or binding stage); Round 3 Inferred final (no announcement to bidders; the target moved to definitive negotiation with selected bidders).",
+      "expected": "Not final / Not final / Inferred final.",
+      "partial_credit": "0.5 if exactly one of the three is wrong (e.g., Round 3 Announced as final, or Round 2 Inferred final).",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "29",
+        "30"
+      ],
+      "source_quote": "representatives of GHF instructed all potential buyers to submit non-binding letters of intent (“LOIs”) by July 20, 2016, together with mark-ups of the forms of merger agreement, disclosure letter and voting agreement",
+      "provenance": [
+        "filing pp. 29-30",
+        "instruction E6 Finality",
+        "v1.8 reference R02-R03",
+        "both Opus drafts",
+        "Alex rows Excel 6032/6045 ('Final Round Inf Ann', 'Final Round Ann' - his own marker vocabulary) and voice note item 12"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Alex's markers call 07/27 an announced final round; the filing reports no announcement, so Inferred final. Markups in the round-2 request tempt a wrong 'final' label."
+    },
+    {
+      "id": "PR-R07",
+      "category": "rounds",
+      "weight": 3,
+      "item": "Bid-to-round and exit-to-round assignment (sole grader of the Round column)",
+      "check": "Deal ledger Round column, graded against the workbook's own round boundaries: nine-IOI cohort Bid = 1; Party C's 07/12 IOI, the six late-July LOIs and G&W's 07/21 and 07/26 bids = 2; G&W's 08/12 bid and any Party B Bid reaffirmed = 3; D's and E's 08/01 bids and E's 08/02 reversion = 3 (or 2 with a Question explaining that reading). Exits carry the round left: round-1 non-submitters and the two low bidders = 1; round-2 non-submitters and the July C/D/E/F eliminations = 2; D's withdrawal, E's closure and B's Not selected at signing = 3 (or consistent with the chosen D/E placement); Merger agreement signed = 3; Merger announced = post. Rounds 'Bids received' counts bidders, not bid rows (Round 2: 6 bidders). If Round 3 opens on 07/22/2016 (penalised in PR-R03), G&W's 07/26 revision in round 3 is not penalised again here. This is the only test that grades the Round column of Bid, Bid reaffirmed and exit rows.",
+      "expected": "IOIs R1; Party C IOI, six LOIs, G&W 07/21 and 07/26 R2; D/E August bids R3; B reaffirmation and G&W 08/12 R3; exits in the round left; announcement post.",
+      "partial_credit": "0.5 if exactly one class of rows is misassigned relative to the workbook's own boundaries (e.g., Party C's 07/12 IOI in round 1, an exit carrying the round entered rather than left, or Bids received counting rows).",
+      "accepted_alternatives": [
+        "D's and E's 08/01 bids, E's 08/02 reversion and their Re-entered rows in Round 2, when a Question explains that the revised LOIs answer the round-2 solicitation."
+      ],
+      "source_pages": [
+        "29",
+        "30",
+        "31",
+        "32"
+      ],
+      "source_quote": "In late July 2016, the Company received six LOIs with offer prices per share ranging from $19.20 to $24.00",
+      "provenance": [
+        "filing pp. 29-32",
+        "instruction E6 ('A bid belongs to the solicitation it answers; an exit row carries the round being left') and D3",
+        "v1.8 reference R04",
+        "both Opus drafts (D/E bids in round 3); v1.13 draft Q2 (round-2 placement rejected)",
+        "instruction-conformance verifier (own-boundary grading); coverage verifier (sole Round-column grader; weight 4 -> 3)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Placement of the D/E August bids varies across readings (both accepted); Party C's catch-up IOI belongs in round 2 because round 1 had closed at the selection. The rest is a guard."
+    },
+    {
+      "id": "PR-R08",
+      "category": "rounds",
+      "weight": 2,
+      "item": "Round-3 endgame target actions recorded as within-round rows",
+      "check": "Deal ledger, Round 3, has its own rows (none of them a Round opened row) for: (a) the Transaction Committee's 08/04/2016 preferred-bidder decision to keep negotiating with both G&W and Party B but prioritize Party B and complete its merger agreement (Other material event or equivalent); (b) the 08/09/2016 notice to G&W that the Company intended to sign with another bidder, with G&W's request for continued diligence (physical diligence 08/10-08/11/2016) granted, stated in that row or its Note; (c) the 08/12/2016 notice to Party B that another party had submitted a revised LOI at a higher price, and the Board's same-day request that Party B improve. (Whether any of these wrongly opens a round is graded in PR-R03; their order in PR-C05.)",
+      "expected": "Within-round rows: 08/04/2016 prioritize Party B; 08/09/2016 G&W told the Company intends to sign with another bidder, continued diligence granted; 08/12/2016 Party B told a rival bid higher and asked to improve.",
+      "partial_credit": "0.5 if exactly one of (a)-(c) is missing (appears nowhere, or only as a passing mention in an unrelated row's Note); none if two or more are missing.",
+      "accepted_alternatives": [
+        "(b) and (c) with Who = the target, or Who = the bidder informed.",
+        "(a) with Who = the target and Party B named in the Note.",
+        "(c) as one row dated 08/12/2016 combining the notice and the improvement request, or carried in Party B's Round 3 Not selected at signing row whose Note records both the notice of a higher bid and the request to improve."
+      ],
+      "source_pages": [
+        "31",
+        "32"
+      ],
+      "source_quote": "Following that discussion, the Transaction Committee directed representatives of BMO to inform G&W that the Company intended to enter into a merger agreement with another bidder.",
+      "provenance": [
+        "filing p. 31 (08/04 'given the higher price offered by Party B, to prioritize Party B and proceed to complete the negotiation of the merger agreement with Party B'; 08/09 notice and 'which request was granted'; 08/12 10:30 a.m. direction 'to inform Party B that another party had submitted a revised LOI at a higher price')",
+        "filing p. 32 (Board's request that BMO ask Party B to increase)",
+        "instruction D2 (Other material event: 'a target decision on admission, a price requirement or a preferred bidder'), E2 (a row when an event changes what a bidder knows), E6 (asking bidders to improve continues the round)",
+        "v1.13.2 draft #48, #50, #53; v1.13 draft #52, #54, #57",
+        "v1.8 reference M02 ('B prioritization while G&W retained access')",
+        "Alex row Excel 6058 (08/12 'Final Round': 'the time when the English auction was stopped by the target')",
+        "coverage verifier (new test; notice rows formerly a clause in draft PR-R03)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "These rows record the information behind G&W's jump from $22.15 to $25.00 and Party B's refusal to improve. Both Opus drafts have all three; low-effort runs tend to fold them into bid Notes or skip the 08/04 preferred-bidder decision that D2 names explicitly."
+    },
+    {
+      "id": "PR-F01",
+      "category": "formality_conditions",
+      "weight": 2.5,
+      "item": "IOIs: Informal, Conditions Unclear",
+      "check": "Deal ledger: the nine-IOI cohort Bid row (05/19-06/01/2016) and Party C's 07/12/2016 IOI row both have Formality Informal and Conditions Unclear (the filing reports no conditions, and diligence was still to come: data-site access followed).",
+      "expected": "Informal / Unclear on both IOI rows.",
+      "partial_credit": "0.5 if Formality is Informal on both but Conditions is Heavy (pre-diligence context read as a further diligence period).",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "29"
+      ],
+      "source_quote": "On July 12, 2016, Party C submitted an IOI with an offer price per share of $21.00 (implying an equity value of $108 million).",
+      "provenance": [
+        "filing p. 29",
+        "instruction E11 (Informal default), E12 ('Unclear ... the narrative shows diligence still open while the bid states no condition'; 'Non-binding ... does not alone establish Heavy')",
+        "v1.8 reference F01/C01 (Heavy under the v1.8 text)",
+        "both Opus drafts (Unclear)",
+        "Alex rows Excel 6029, 6034 (Informal)",
+        "coverage verifier (weight 2 -> 2.5)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "The v1.8 reference used Heavy; v1.13.2 E12 points to Unclear. Formal, Light or None on either row fails."
+    },
+    {
+      "id": "PR-F02",
+      "category": "formality_conditions",
+      "weight": 2.5,
+      "item": "Party B's $24 LOI: Formal, Light",
+      "check": "Party B's late-July $24.00 LOI Bid row: Formality Formal (markups of the draft merger agreement and voting agreement accompanied it) and Conditions Light (subject only to an expedited diligence review), or Heavy/Unclear where the Note cites the p. 30 statement that the LOI prices rested on transaction-expense and change-in-control assumptions that could affect the ultimate offer price.",
+      "expected": "Formal / Light (Heavy or Unclear accepted with the p. 30 basis cited).",
+      "partial_credit": "0.5 if exactly one field is wrong: Informal (e.g., because 'non-binding'), or Conditions Heavy, Unclear or None without the p. 30 basis.",
+      "accepted_alternatives": [
+        "Conditions Heavy or Unclear where the Note cites the p. 30 statement that the LOI prices 'were based on different assumptions and requirements related to transaction expenses and change in control payments' which 'could affect the ultimate offer price'."
+      ],
+      "source_pages": [
+        "29",
+        "30"
+      ],
+      "source_quote": "Party B submitted an LOI to acquire the Company for a price of $24.00 per share (subject to an expedited diligence review).",
+      "provenance": [
+        "filing p. 29 (B's markups; expedited diligence), p. 30 (LOI price assumptions 'could affect the ultimate offer price')",
+        "instruction E11(1), E12 (Apply Heavy first; Heavy includes 'a right to reprice'; Light = 'subject only to ... expedited ... diligence')",
+        "v1.8 reference F02/C02",
+        "both Opus drafts (Light)",
+        "Alex row Excel 6035 (Formal; 'expedited DD')",
+        "all three verifiers (Heavy/Unclear alternative)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Formal is the guard (Informal because 'non-binding' is the careless error); the Conditions level has a defensible second reading from p. 30."
+    },
+    {
+      "id": "PR-F03",
+      "category": "formality_conditions",
+      "weight": 2.5,
+      "item": "G&W's July LOIs: Formal with Heavy conditions",
+      "check": "G&W 07/21/2016 $21.15 Bid: Formality Formal (markups of the merger agreement, voting agreement and disclosure letter) and Conditions Heavy (three-week exclusive diligence period). G&W 07/26/2016 $22.15 revision: Formality Formal (its markups remained its proposed terms; only price changed, and on 08/03 the Company answered 'the marked-up documents included with G&W's LOI') and Conditions Heavy (the exclusive-diligence condition is not reported removed) or Unclear (conditions not restated while diligence remained open).",
+      "expected": "07/21: Formal / Heavy. 07/26: Formal / Heavy or Unclear.",
+      "partial_credit": "0.5 if 07/21 is right but 07/26 is Informal or Light/None; or 07/21 Formal with Conditions Unclear.",
+      "accepted_alternatives": [
+        "07/26 Conditions Unclear."
+      ],
+      "source_pages": [
+        "29",
+        "30"
+      ],
+      "source_quote": "G&W submitted an LOI on July 21, 2016 to acquire the Company for a price of $21.15 per share (subject to a three-week exclusive diligence period).",
+      "provenance": [
+        "filing p. 29 (markups; disclosure letter markup; 07/26 revision 'in response to feedback'), p. 30 (08/03 revised agreement 'reflecting changes from the marked-up documents included with G&W's LOI')",
+        "instruction E11 ('Heavy conditions do not change the label'), E12 Heavy (stated multi-week or exclusive period)",
+        "v1.8 reference F02/C02 (07/26 Heavy)",
+        "both Opus drafts (07/26 Unclear)",
+        "Alex rows Excel 6041 (07/21 Informal, red-corrected) and 6044 (07/26 Formal)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Alex marks G&W's 07/21 LOI Informal because of its exclusive-diligence demand; v1.13.2 routes that into Conditions Heavy while the markup makes it Formal. Fail: 07/21 Informal, or 07/21 Light/None."
+    },
+    {
+      "id": "PR-F04",
+      "category": "formality_conditions",
+      "weight": 2.5,
+      "item": "Party D's $21 LOI: Formal, Heavy",
+      "check": "Party D's late-July $21.00 LOI Bid row: Formality Formal (D provided markups of the draft merger agreement and voting agreement) and Conditions Heavy (four-week diligence period).",
+      "expected": "Formal / Heavy.",
+      "partial_credit": "0.5 if exactly one field is wrong.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "29",
+        "30"
+      ],
+      "source_quote": "Party B, G&W and another bidder (“Party D”) also provided mark-ups of the draft merger agreement and voting agreement.",
+      "provenance": [
+        "filing pp. 29-30",
+        "instruction E11(1), E12",
+        "v1.8 reference F02",
+        "acc9986 review ('D's $21 proposal is likewise Formal ... despite older deal_details!Z6037 calling it Informal')",
+        "Alex row Excel 6037 (Informal)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Alex's hand coding has D Informal; the markup sentence makes it Formal under E11."
+    },
+    {
+      "id": "PR-F05",
+      "category": "formality_conditions",
+      "weight": 2.5,
+      "item": "Party E, C and F LOIs: Informal, Heavy",
+      "check": "Party E's $21.26 LOI: Formality Informal (only a summary of material issues and proposed changes, not a markup) and Conditions Heavy (60-day exclusivity period for diligence and documentation). Party C's $19.30 LOI and Party F's $19.20 LOI: Informal and Heavy (30-day diligence periods).",
+      "expected": "E, C, F LOIs: Informal / Heavy.",
+      "partial_credit": "0.5 if exactly one of the three rows has one wrong field.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "29",
+        "30"
+      ],
+      "source_quote": "One bidder (“Party E”) provided a summary of material issues and proposed changes to the merger agreement and voting agreement with respect to those issues.",
+      "provenance": [
+        "filing pp. 29-30",
+        "instruction E11 ('comments or an issues list on a draft are not a markup'), E12 Heavy",
+        "v1.8 reference F03/C03",
+        "both Opus drafts",
+        "Alex rows Excel 6036 (Informal, red), 6038, 6039"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Party E's issues list is the trap for a Formal label; fail if E is Formal or two rows are wrong."
+    },
+    {
+      "id": "PR-F06",
+      "category": "formality_conditions",
+      "weight": 2.5,
+      "item": "August revisions and E's reversion",
+      "check": "Party D 08/01/2016 $24.00: Formality Formal (its July markups read as still supporting the revised LOI) or Informal where a Note or Question explains that no markup is reported with the revision after D's July exit and re-entry; Conditions Heavy (30-day due diligence period). Party E 08/01/2016 $23.81: Informal and Heavy (30-day diligence; Party F's 'financing support' is not reported as committed financing). Party E 08/02/2016 $21.26 reversion: Informal and Heavy (its original 60-day exclusivity terms confirmed).",
+      "expected": "D 08/01 Formal/Heavy (Informal accepted with explanation); E 08/01 Informal/Heavy; E 08/02 Informal/Heavy.",
+      "partial_credit": "0.5 if exactly one field is wrong: e.g., D 08/01 Informal with no explanation, E 08/02 Conditions Unclear, or one other single field. Fail if two or more fields are wrong or any of these rows is Light or None.",
+      "accepted_alternatives": [
+        "D 08/01 Informal where a Note or Question explains that no markup is reported with the revised LOI after D's July exit and re-entry."
+      ],
+      "source_pages": [
+        "30"
+      ],
+      "source_quote": "Both revised proposals contained a 30-day due diligence period.",
+      "provenance": [
+        "filing p. 30",
+        "instruction E11(1) ('put forward, with a priced proposal or expressly in support of one, a markup'), E12 (silence about financing proves nothing; support is not commitment), Part F",
+        "v1.8 reference F03/C03",
+        "both Opus drafts (D Formal, flagged in a Question)",
+        "Alex rows Excel 6050-6052 (D Informal; E/F Informal)",
+        "instruction-conformance verifier (D Informal with explanation accepted); source-fidelity and coverage verifiers (partial cases removed from accepted alternatives)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Both drafts raise a Question on D's 08/01 formality and Alex codes it Informal, so both labels are accepted when reasoned. E's rows and the Heavy conditions are the scored substance."
+    },
+    {
+      "id": "PR-F07",
+      "category": "formality_conditions",
+      "weight": 2.5,
+      "item": "G&W's winning bid; Party B's reaffirmation if recorded",
+      "check": "G&W 08/12/2016 $25.00 Bid: Formality Formal (markups of the merger and voting agreements) and Conditions None (physical diligence completed 08/11, offer expiring the next day, no financing condition and a sufficient-funds representation, pp. 34 and A-22) or Light (only final documentation remained). If the workbook records a Party B Bid reaffirmed (08/04/2016 return of its own revised draft merger agreement, or the 08/12 refusal to raise), it has Formality Formal with the $24.00 price carried from its LOI; its Conditions level is not scored.",
+      "expected": "G&W 08/12: Formal, Conditions None or Light. Any Party B reaffirmation: Formal at $24.00.",
+      "partial_credit": "0.5 if G&W's 08/12 Conditions is Unclear, or a recorded Party B reaffirmation is Informal or priced other than $24.00.",
+      "accepted_alternatives": [
+        "G&W 08/12 Conditions None.",
+        "G&W 08/12 Conditions Light.",
+        "No Party B Bid reaffirmed row (not penalised here; see unscored open calls)."
+      ],
+      "source_pages": [
+        "31",
+        "34",
+        "A-22"
+      ],
+      "source_quote": "G&W submitted a revised LOI to acquire the Company for a price of $25.00 per share in cash, which excluded the previously proposed CVR, together with mark-ups of the merger agreement and the voting agreement.",
+      "provenance": [
+        "filing p. 31 ('having just completed its physical diligence of the Company’s track infrastructure'), p. 34 (no financing condition), A-22 (Section 4.5 sufficient funds)",
+        "instruction E10, E11, E12",
+        "v1.8 reference F04/C04, A06, A08",
+        "v1.13 draft None vs v1.13.2 draft Light",
+        "Alex rows Excel 6054 (B 08/04 Formal 'Executed') and 6055",
+        "coverage verifier (weight 3 -> 2.5)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Drafts split None vs Light for G&W (both accepted). Fail: G&W 08/12 Informal or Heavy. Party B's 08/04 Conditions is left to the open calls (RESEARCH_QUESTIONS item 3)."
+    },
+    {
+      "id": "PR-F08",
+      "category": "formality_conditions",
+      "weight": 2.5,
+      "item": "All cash",
+      "check": "All cash: G&W 08/12 $25.00 = Yes. G&W 07/21 ($20.02 cash + $1.13 CVR) and 07/26 ($21.02 cash + $1.13 CVR) = Not stated (CVR settlement form not stated), or Yes only with a Note explaining a cash-settled-CVR inference. The nine-IOI cohort and Party C's 07/12 IOI = Not stated. The B, C, D, E and F late-July LOIs and the D/E August bids = Not stated, or Yes where the Note cites the mid-June instruction to value the Company on a dollar per share basis 'or the financial terms of any non-cash proposal' (p. 29).",
+      "expected": "G&W 08/12 Yes; G&W July CVR bids Not stated (Yes with a cash-CVR inference accepted); IOIs Not stated; other LOI-stage bids Not stated or Yes with the p. 29 basis cited.",
+      "partial_credit": "0.5 if G&W 08/12 is Yes but the July CVR bids are No, or IOI or LOI-stage bids are marked Yes with no stated basis.",
+      "accepted_alternatives": [
+        "G&W July bids Yes with a Note explaining a cash-settled-CVR inference.",
+        "Late-July LOIs of Parties B, C, D, E and F and the D/E August revisions Yes where the Note cites the mid-June instruction contrasting a dollar per share valuation with 'the financial terms of any non-cash proposal' (p. 29).",
+        "Party B's rows Yes with a Note citing the Board's finding that B's and G&W's draft agreements were substantively the same apart from price, fee and STB process."
+      ],
+      "source_pages": [
+        "29",
+        "31"
+      ],
+      "source_quote": "The price included $20.02 cash at closing and $1.13 in the form of a contingent value right, the value of which was based on the subsequent sale of the Company’s South Quay property",
+      "provenance": [
+        "filing p. 29 (CVR; mid-June instruction 'on a dollar per share basis ... or the financial terms of any non-cash proposal'), pp. 31-32",
+        "instruction E13 (CVR paid in cash is cash; a dollar price alone is Not stated)",
+        "v1.8 reference A07 and B03",
+        "both Opus drafts (Not stated)",
+        "Alex rows Excel 6041, 6044 (all_cash = 1 for the July CVR bids), 6055",
+        "all three verifiers (Yes-with-solicitation-basis alternative)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Alex codes the July CVR bids all cash; v1.8 accepted Yes or Not stated; drafts Not stated. Fail: G&W 08/12 not Yes, or both partial errors."
+    },
+    {
+      "id": "PR-C01",
+      "category": "chronology",
+      "weight": 2.5,
+      "item": "G&W's confidentiality agreement dated 04/03/2016 (Annex A)",
+      "check": "The workbook records that G&W's confidentiality agreement with the Company is dated 04/03/2016, citing Annex A (the merger agreement's definition, p. A-48): either an individual G&W NDA signed row with When, Date from, Date to and Sort date 04/03/2016, or the strategic NDA cohort's Note or a Question stating G&W's agreement date. G&W's entry is counted once: inside the 11 strategic signers (cohort Note or remainder cohort), or as a separate signer whose extra entry sits in a disclosed range (PR-P02); the 04/03 date does not create a second G&W entry.",
+      "expected": "G&W's confidentiality agreement dated 04/03/2016 (Annex A p. A-48), with G&W counted once, whether inside the 11 or as a separate signer within a disclosed range.",
+      "partial_credit": "0.5 if G&W's NDA sits only in a cohort row (or an individual row) whose window includes 04/03/2016 but the date is never stated.",
+      "accepted_alternatives": [
+        "Individual G&W NDA row dated 04/03/2016.",
+        "Cohort Note or Question giving the 04/03/2016 date with the A-48 source."
+      ],
+      "source_pages": [
+        "A-1",
+        "A-48"
+      ],
+      "source_quote": "the Confidentiality Agreement between the Company and Parent dated April 3, 2016",
+      "provenance": [
+        "filing A-1 (Parent = Genesee & Wyoming Inc.), A-48 (definition)",
+        "AM01 adjudication: git show f1de7d9:_dev/model_comparison_2026-09-19/grading/providence-worcester/work/output/adjudicate/adjudication.md",
+        "instruction C.1 (annexes included), E7 (NDA dated at execution), E3",
+        "Alex row Excel 6028 (G&W dated 04/13/2016)",
+        "v1.13 draft #14 ('execution date not given'); v1.13.2 draft #8 (cohort, no date)",
+        "source-fidelity and instruction-conformance verifiers (membership-neutral wording)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Annex-sourced fact missed by both Opus drafts and by the original v1.8 reference; only the AM01 amendment found it. Fail: a window excluding 04/03 (e.g., Alex's 04/13 or on/after the 04/21 memorandum), another exact day, or G&W double counted."
+    },
+    {
+      "id": "PR-C02",
+      "category": "chronology",
+      "weight": 1.5,
+      "item": "Early-stage dates and windows",
+      "check": "Deal ledger dates: Party A's approach When 'Q4 2015' with Date from 10/01/2015 and Date to 12/31/2015; GHF Adviser 01/27/2016; board Target sale decision 03/14/2016; outreach Contact rows Date from 03/28/2016, Date to 04/03/2016; Class I railroad contacts Date to 04/07/2016; IOI Deadline set 'by 04/27/2016' with Date to 04/27/2016; the March-wave NDA cohort rows carry no single invented execution day.",
+      "expected": "Q4 2015 = 10/01-12/31/2015; 01/27/2016; 03/14/2016; week of 03/28 = 03/28-04/03/2016; by 04/07/2016; by 04/27/2016.",
+      "partial_credit": "0.5 if one or two windows are overprecise or wrong (e.g., the wave dated 03/28 only, Q4 2015 as a single day, deadline set exactly 04/27) while order is right.",
+      "accepted_alternatives": [
+        "Deadline set with Date from at the outreach (03/28/2016) and Date to 04/27/2016."
+      ],
+      "source_pages": [
+        "27",
+        "28",
+        "29"
+      ],
+      "source_quote": "During the week of March 28, 2016, in accordance with the Transaction Committee’s directives, representatives of GHF contacted 11 potential strategic buyers (including Party A) and 18 potential financial buyers.",
+      "provenance": [
+        "filing pp. 27-29",
+        "instruction E8",
+        "v1.8 reference T01",
+        "git show f1de7d9:_dev/clean_run_comparison_2026-09-19/gold/providence-worcester_alex_voice_notes.txt item 1 (Q4 and week-of windows as common AI errors)",
+        "both Opus drafts"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Alex flags these windows as typical errors; fail if three or more are wrong or early events are out of order."
+    },
+    {
+      "id": "PR-C03",
+      "category": "chronology",
+      "weight": 2.5,
+      "item": "Late-July LOI window narrowed; Party C's sequence first",
+      "check": "The five undated late-July LOIs (Parties B, D, E, C, F) have Date from 07/20/2016 and Date to 07/22/2016 (first Transaction Committee review) or 07/27/2016 (selection meeting), not 07/31/2016, with Sort dates inside that window; G&W's LOIs carry exact dates 07/21/2016 and 07/26/2016. In # order, Party C's early-July approach and NDA (window within 07/01-07/12/2016), its 07/12 IOI and its 07/12-07/14 catch-up access come before every late-July LOI row; where the workbook dates the round-3 opening and the July exits 07/27, G&W's 07/26 revision precedes them (choosing 07/27 over 07/22 is scored in PR-R03, not here).",
+      "expected": "Late-July LOIs 07/20-07/22 (or 07/20-07/27); Party C's July steps before them; G&W 07/21 and 07/26 exact.",
+      "partial_credit": "0.5 if the order is right but the late-July LOIs keep Date to 07/31/2016, or the windows are narrowed but Party C's steps (or, on a 07/27 dating, G&W's 07/26 revision) are out of order.",
+      "accepted_alternatives": [
+        "Date to 07/22/2016.",
+        "Date to 07/27/2016."
+      ],
+      "source_pages": [
+        "29",
+        "30"
+      ],
+      "source_quote": "The Transaction Committee met by telephone conference on July 22, 2016 and in person after the regular quarterly Board meeting on July 27, 2016, to review the LOIs with representatives of GHF.",
+      "provenance": [
+        "filing pp. 29-30",
+        "instruction E8 ('a meeting that considered a set of offers bounds their receipt')",
+        "git show f1de7d9:_dev/clean_run_comparison_2026-09-19/gold/providence-worcester_alex_voice_notes.txt item 9 (narrows round-2 bids to 07/20-07/22; Party C before rivals)",
+        "v1.8 reference T03 and A09",
+        "v1.13.2 draft Date to 07/22; v1.13 draft Date to 07/27",
+        "instruction-conformance verifier (07/26 ordering made conditional to avoid a repeat of PR-R03)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Alex identifies this cross-paragraph narrowing and ordering as a characteristic AI failure; the drafts chose different (both accepted) upper bounds."
+    },
+    {
+      "id": "PR-C04",
+      "category": "chronology",
+      "weight": 1.5,
+      "item": "IOI-stage windows",
+      "check": "Nine-IOI cohort row Date from 05/19/2016 and Date to 06/01/2016 (no single invented receipt day; Sort date 05/19 acceptable); the two-low-bidder exclusion (and the seven-bidder admission, where it has its own row) within 05/23-06/01/2016; the mid-June LOI request dated 06/11-06/19/2016.",
+      "expected": "IOIs 05/19-06/01/2016; exclusion/admission 05/23-06/01/2016; LOI request 06/11-06/19/2016.",
+      "partial_credit": "0.5 if exactly one of the three windows is overprecise or wrong.",
+      "accepted_alternatives": [
+        "Exclusion/admission Sort date 05/27/2016 or 06/01/2016."
+      ],
+      "source_pages": [
+        "29"
+      ],
+      "source_quote": "The Transaction Committee met by telephone conference on May 23, 2016 and again on June 1, 2016 to consider the IOIs.",
+      "provenance": [
+        "filing p. 29",
+        "instruction E8",
+        "v1.8 reference T02 and A09",
+        "both Opus drafts"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard"
+    },
+    {
+      "id": "PR-C05",
+      "category": "chronology",
+      "weight": 2,
+      "item": "August sequence; signing and announcement separate",
+      "check": "Among the rows the workbook has (a missing row is graded elsewhere, not here), # order with non-decreasing Sort dates follows: July C/D/E/F exits -> D/E Re-entered (07/29 or 08/01) -> D and E 08/01 bids -> E's 08/02 reversion -> 08/04 prioritization of Party B and B's returned draft -> 08/09 notice to G&W -> G&W's 08/12 $25.00 bid -> notice to Party B of a higher bid -> Merger agreement signed 08/12/2016 -> Merger announced 08/15/2016 on its own row. Party D's withdrawal must come after D's 08/01 bid and before signing; its position relative to E's reversion and the 08/04 and 08/09 rows is not scored, because the filing does not date it. Same-day Not selected at signing rows (Party B, and any inferred Party E closure) may sit immediately before or after the signing row, provided B's request-to-improve and refusal are not presented as occurring after signing.",
+      "expected": "Sequence as listed; D's withdrawal between its 08/01 bid and signing; signing 08/12/2016 and announcement 08/15/2016 on two rows.",
+      "partial_credit": "0.5 if there is one inversion (e.g., a separate notice-to-B or refusal row placed after signing, the 08/09 notice after G&W's 08/12 bid, D's withdrawal before its 08/01 bid, G&W's 08/12 bid after signing) or signing and announcement share one row.",
+      "accepted_alternatives": [
+        "Party D's withdrawal anywhere after its 08/01 bid and before signing.",
+        "Party B's Not selected at signing row, carrying the request to improve and the refusal in its Note, placed immediately after the 08/12 signing row."
+      ],
+      "source_pages": [
+        "30",
+        "31",
+        "32"
+      ],
+      "source_quote": "The Company issued a press release publicly announcing the transaction on Monday, August 15, 2016 prior to the opening of trading of the Company’s common stock on the NASDAQ.",
+      "provenance": [
+        "filing pp. 30-32 (D's withdrawal undated; the 08/01 Hinckley Allen paragraph restarts the thread; B declines before 'Shortly thereafter ... executed the merger agreement')",
+        "instruction E8 and D2 (signing and announcement are two rows); E14 (Not selected at signing = still in when the target signed)",
+        "v1.8 reference T04",
+        "Alex rows Excel 6058-6059 ('Executed' with precise date 08/15)",
+        "both Opus drafts (v1.13 #59 signing, #60 B's exit)",
+        "all three verifiers (D withdrawal ordering unscored; post-signing exit placement accepted; missing rows not inversions)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Alex's sheet dates execution 08/15; the filing separates signing (08/12) from announcement (08/15). Fail: two or more inversions."
+    },
+    {
+      "id": "PR-B01",
+      "category": "bids_prices",
+      "weight": 2.5,
+      "item": "IOI cohort range and Party C's IOI",
+      "check": "One cohort Bid row for the nine IOIs (Count 9, or a remainder cohort whose Note gives the total of nine) with Price low 17.93 and Price high 26.50, no individual IOI prices invented and the range on no individual bidder's row; Party C's 07/12/2016 IOI with Price low = Price high = 21.00 as a Bid row separate from its later $19.30 LOI.",
+      "expected": "Cohort 17.93-26.50 (Count 9); Party C 07/12/2016 21.00.",
+      "partial_credit": "0.5 if one of the two elements is wrong or the cohort range is copied onto individual rows.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "29"
+      ],
+      "source_quote": "Between May 19, 2016 and June 1, 2016, the Company received nine written indications of interest (“IOIs”) from potential buyers, with offer prices per share ranging from $17.93 to $26.50",
+      "provenance": [
+        "filing p. 29",
+        "instruction E13 (a group range belongs on the cohort row only)",
+        "v1.8 reference B01",
+        "Alex rows Excel 6029, 6034",
+        "both Opus drafts"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard"
+    },
+    {
+      "id": "PR-B02",
+      "category": "bids_prices",
+      "weight": 2.5,
+      "item": "Six late-July LOIs",
+      "check": "Bid rows with point prices in both price cells: Party B 24.00; G&W 21.15 (07/21/2016); Party E 21.26; Party D 21.00; Party C 19.30; Party F 19.20; the $19.20-$24.00 aggregate is not a separate Bid row.",
+      "expected": "B 24.00; G&W 21.15; E 21.26; D 21.00; C 19.30; F 19.20.",
+      "partial_credit": "0.5 if exactly one price is missing or wrong.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "29",
+        "30"
+      ],
+      "source_quote": "Party D (a financial buyer) submitted an LOI to acquire the Company for a price of $21.00 per share (subject to a four-week diligence period).",
+      "provenance": [
+        "filing pp. 29-30",
+        "v1.8 reference B02",
+        "Alex rows Excel 6035-6041",
+        "both Opus drafts"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard"
+    },
+    {
+      "id": "PR-B03",
+      "category": "bids_prices",
+      "weight": 2.5,
+      "item": "G&W's three priced offers at full package value",
+      "check": "G&W Bid rows: 07/21/2016 21.15 (not 20.02) and 07/26/2016 22.15 (not 21.02), each Note recording the $1.13 South Quay CVR; 08/12/2016 25.00 with the CVR dropped. Three separate rows.",
+      "expected": "21.15 (07/21), 22.15 (07/26), 25.00 (08/12).",
+      "partial_credit": "0.5 if exactly one price is wrong (e.g., only the cash component entered) or two offers are merged.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "29",
+        "31"
+      ],
+      "source_quote": "G&W submitted a revised LOI, which increased its offer to $22.15 per share (including $21.02 in cash and $1.13 CVR).",
+      "provenance": [
+        "filing pp. 29, 31",
+        "instruction E13 (a stated per-share package value goes in the price cells)",
+        "v1.8 reference B03",
+        "Alex rows Excel 6041, 6044, 6055",
+        "both Opus drafts"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard"
+    },
+    {
+      "id": "PR-B04",
+      "category": "bids_prices",
+      "weight": 2.5,
+      "item": "August revisions, E's reversion and non-bids",
+      "check": "Bid rows: Party D 08/01/2016 24.00; Party E 08/01/2016 23.81; Party E 08/02/2016 21.26 as its own Bid row (reversion); any Party B Bid reaffirmed carries 24.00. The Merger agreement signed row has blank Price low, Price high, All cash, Formality and Conditions. There is no priced or whole-company Bid for Party A's Q4 2015 equity/JV interest and no Bid for G&W's 08/11 'possible intention'.",
+      "expected": "D 24.00 (08/01); E 23.81 (08/01); E 21.26 (08/02); signing row price cells blank; no Party A or 08/11 bid.",
+      "partial_credit": "0.5 if exactly one element is wrong (most often the E reversion row missing, or signing carrying 25.00 in price cells).",
+      "accepted_alternatives": [
+        "Party A's Q4 2015 approach as an Other-scope bid with blank prices and unresolved scope."
+      ],
+      "source_pages": [
+        "27",
+        "30",
+        "31",
+        "32"
+      ],
+      "source_quote": "On August 1, 2016, Party D submitted a revised LOI at a price of $24.00 per share",
+      "provenance": [
+        "filing pp. 27, 30-32",
+        "instruction E1, E10 (reversion is a Bid row), D2 (signing is not another bid)",
+        "v1.8 reference B04",
+        "Alex rows Excel 6050-6052, 6054",
+        "both Opus drafts"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "The E reversion row is the price observation most easily dropped."
+    },
+    {
+      "id": "PR-O01",
+      "category": "other",
+      "weight": 2,
+      "item": "Deal facts: acquirer, type, price, dates",
+      "check": "Deal facts: Acquirer Genesee & Wyoming Inc. (G&W) (naming Pullman Acquisition Sub Inc. as the merger subsidiary is optional, but it must not appear as a separate acquirer); Acquirer type Strategic; Agreed price and consideration $25.00 per common share in cash (the preferred conversion is optional detail); Merger agreement signed 08/12/2016; Merger announced 08/15/2016.",
+      "expected": "G&W, Strategic, $25.00 cash, signed 08/12/2016, announced 08/15/2016.",
+      "partial_credit": "0.5 if exactly one field is wrong.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "1",
+        "21",
+        "27",
+        "32"
+      ],
+      "source_quote": "Shortly thereafter, Hinckley Allen and Simpson Thacher finalized the transaction documents and the Company and G&W executed the merger agreement",
+      "provenance": [
+        "filing shareholder letter and pp. 1/21, 27 ('$25.00 in cash, without interest'), 32",
+        "instruction D5",
+        "v1.8 reference deal_facts",
+        "both Opus drafts",
+        "Alex DateAnnounced 08/15/2016",
+        "source-fidelity and instruction-conformance verifiers (optional detail not required)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard"
+    },
+    {
+      "id": "PR-O02",
+      "category": "other",
+      "weight": 1.5,
+      "item": "Advisers: GHF/BMO one relationship; Hinckley Allen",
+      "check": "Deal ledger has one Adviser row for GHF dated 01/27/2016 whose Note records BMO Capital Markets' 08/01/2016 acquisition of GHF's business as a continuation (no Adviser ended row and no separate new BMO engagement row); Hinckley, Allen & Snyder LLP recorded as target legal adviser (Adviser row, first shown acting 03/24/2016). Deal facts Target financial advisers names GHF/BMO as one relationship and Target legal advisers names Hinckley Allen.",
+      "expected": "GHF (01/27/2016) continued by BMO from 08/01/2016 as one adviser; Hinckley Allen target counsel.",
+      "partial_credit": "0.5 if both advisers appear but GHF and BMO are treated as two relationships, or Hinckley Allen is missing from one sheet.",
+      "accepted_alternatives": [
+        "Unnamed STB regulatory counsel listed additionally.",
+        "Simpson Thacher (G&W's counsel) as an additional Adviser row."
+      ],
+      "source_pages": [
+        "27",
+        "28",
+        "30"
+      ],
+      "source_quote": "BMO (which acquired the business of GHF on August 1, 2016)",
+      "provenance": [
+        "filing pp. 27, 28, 30",
+        "instruction D2 Adviser (one row per relationship)",
+        "v1.8 reference M01",
+        "git show f1de7d9:_dev/clean_run_comparison_2026-09-19/gold/providence-worcester_alex_voice_notes.txt item 13 (renamed bank is one adviser)",
+        "Alex row Excel 6025"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Alex flags the renamed-bank trap."
+    },
+    {
+      "id": "PR-O03",
+      "category": "other",
+      "weight": 1.5,
+      "item": "Auction screen, processes, whole-company bids, initiation",
+      "check": "Deal facts: Auction screen begins 'Met (process 1)' with a supported number of at least 25 (25, 26, or a stated range such as 25-28); Number of processes 1; Whole-company bids Yes; Initiation mixed, bidder-led or target-led (activist-influenced or unclear counts as a wrong field).",
+      "expected": "Met (process 1): 25+ parties; 1 process; Whole-company bids Yes; Initiation mixed (bidder-led or target-led accepted).",
+      "partial_credit": "0.5 if exactly one field is wrong.",
+      "accepted_alternatives": [
+        "Initiation target-led or bidder-led.",
+        "Auction screen count 26 (background) or 25 (p. 33) or a range, preferably noting the conflict."
+      ],
+      "source_pages": [
+        "27",
+        "28",
+        "33"
+      ],
+      "source_quote": "25 of whom entered into confidentiality agreements with the Company and received information related to the Company and six of whom submitted non-binding letters of intent",
+      "provenance": [
+        "filing pp. 27-28, 33",
+        "instruction E1 (auction screen form; 'A supported lower bound above one establishes Met'), D5",
+        "v1.8 reference deal_facts",
+        "v1.13.2 draft (Met, 26) and v1.13 draft (Met, 25-28)",
+        "instruction-conformance verifier (bare initiation values accepted)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "guard; fail if the auction screen is Not met/Uncertain or two fields are wrong."
+    }
+  ],
+  "unscored_open_calls": [
+    {
+      "item": "Party B's 08/04/2016 Bid reaffirmed: whether it must be recorded, and its Conditions level (Light vs Unclear vs None)",
+      "why": "E10 says 'Record Bid reaffirmed only where...' (a restriction, not a mandate). _dev/RESEARCH_QUESTIONS.md provisional item 3 names 'Providence's August 4 event' and its interaction with Conditions as awaiting Alex. Alex's voice note 14 wants a 'formal unconditional offer', while on-site diligence ran to 08/11 (p. 31), which supports Light or Unclear under E12. Only guards are scored (PR-F07, PR-B04: if recorded, Formal at $24.00)."
+    },
+    {
+      "item": "Whether G&W and Party B are among the 11 March-wave strategic NDA signers, and whether p. 33's total of 25 includes Party C (24-29 pre-July signers)",
+      "why": "The filing never places G&W or B in the 11. Party B's first meeting is 04/21 as 'another potential strategic buyer', and p. 33's '25 of whom ... six of whom submitted' LOIs reads as including Party C, contradicting 11 + 14 + C. PR-P02, PR-P03, PR-C01 and PR-O03 score only disclosure, qualified counts and the absence of double counting, not the membership choice."
+    },
+    {
+      "item": "Party A's fate after signing its NDA (IOI bidder, unnamed advancing strategic, low bidder or round-1 non-submitter)",
+      "why": "The filing is silent. Alex infers that A left in round 1 (voice note 11) and his old sheet drops A on 07/22, but neither is reported. Only an unsupported individual exit or double closure is scored (PR-P03)."
+    },
+    {
+      "item": "Choice between Late bids accepted and Unclear for the 05/19/2016 IOI deadline, and whether 05/10 was reached before the postponement",
+      "why": "The revision date is not stated and IOIs arrived 05/19-06/01 without individual days. Reviewers split three ways; Enforced earns partial credit only (PR-R04)."
+    },
+    {
+      "item": "Party E's closure label and date (Not selected at signing by 08/12 vs Dropped by target by 08/04 or 08/09)",
+      "why": "E14 offers both transitions. E was never admitted to round 3, and the 08/04 continuation names only G&W and Party B. Both are accepted in PR-P10."
+    },
+    {
+      "item": "Round placement of Parties D and E's August bids (round 3 'still being received, not admitted' vs round 2 revisions of LOIs), and their status in Round 3 'Who was in'",
+      "why": "E6's 'a bid belongs to the solicitation it answers' and D3's 'still being received, not admitted' point different ways, and the target did engage them (clarification requests) before the 08/04 direction named only G&W and B. PR-R07 accepts round 2 when explained; PR-R03 accepts either 'still being received' or re-entrant wording."
+    },
+    {
+      "item": "Party D's 08/01/2016 formality (Formal via its standing July markup vs Informal after its July exit and re-entry)",
+      "why": "E11(1) requires a markup put forward with or expressly in support of the priced proposal; the filing reports none with the revised LOI and D had been told it was out. Both drafts raised a Question; PR-F06 accepts either label when reasoned."
+    },
+    {
+      "item": "Exclusivity-request rows (G&W three-week exclusive diligence, E 60-day exclusivity, D's no-other-agreement commitment)",
+      "why": "D2 allows Exclusivity changed rows for requests, but whether requests alone earn rows is a granularity choice. Only 'no executed exclusivity invented and no one dropped by a request' is scored (PR-P11)."
+    },
+    {
+      "item": "G&W termination fee negotiated from 3.85% to 3% before the 08/12 signing",
+      "why": "Whether a material fee change earns its own Bid or Other material event row is the pending Mac-Gray R01 decision (_dev/RESEARCH_QUESTIONS.md). The change is undated here."
+    },
+    {
+      "item": "Process-boundary convention (RESEARCH_QUESTIONS provisional item 1)",
+      "why": "Frozen E5(a) makes Providence one process: Party A was kept in view and the Q4 2015 step is quarter-dated only. PR-R01 scores that, but Alex has not confirmed the convention, and his old comment floats a 'Target Sale' reading of the 03/14 decision."
+    },
+    {
+      "item": "Label of Party A's Q4 2015 approach (Bidder interest vs Other material event vs blank-price Other-scope bid) and the resulting initiation label",
+      "why": "Party A expressed 'some interest in acquiring equity', not in the whole company. Labels and initiation (mixed/bidder-led/target-led) are accepted alternatives; only the contact netting follows from the label (PR-P01)."
+    },
+    {
+      "item": "Row vs Note for GHF's 07/21-07/26 feedback to G&W that its price and CVR structure were not competitive",
+      "why": "E2 gives rows to changes in what a bidder knows, but the feedback is undated within the window and directly prompted G&W's 07/26 revision, so it can reasonably sit in that bid's Note. The drafts differ (v1.13.2 row #33; v1.13 Note)."
+    },
+    {
+      "item": "Whether the convention five or Party B were in fact new first contacts outside the 11",
+      "why": "Overlap with the week-of-03/28 wave is not stated. PR-P01 scores only that re-contacts are not silently added as new first contacts; which of them, if any, were new is not scored."
+    }
+  ],
+  "notes": "Method. This reference reconciles the draft with three independent verifier reports (source fidelity, v1.13.2 instruction conformance, coverage). I re-checked every contested point against the filing and the instruction myself. The draft method stands: the frozen v1.13.2 instruction was read in full, along with RESEARCH_QUESTIONS.md and DECISIONS_v1.13.md. The filing reading covered the whole Background (pp. 27-32), the Reasons (pp. 32-35, including the p. 33 '25 of whom' total and the p. 34 financing statement), the party descriptions (pp. 1/21) and Annex A (A-1, A-22, A-48). Leads, used only to locate disagreement, were:\n- both unreviewed Opus drafts (v1.13.2 and v1.13);\n- the v1.8 reference and its AM01 adjudication (f1de7d9);\n- the v1.11 review (acc9986);\n- Alex's rows Excel 6024-6059;\n- Alex's Providence voice notes (git show f1de7d9:_dev/clean_run_comparison_2026-09-19/gold/providence-worcester_alex_voice_notes.txt).\nAll 40 source quotes were re-checked mechanically against the flattened filing text, including the new PR-R08 quote.\n\nChange log.\nFixed:\n- PR-P01: now also scores silent re-contact inflation, the error Alex's voice note 5 describes (the 04/03-04/06 convention five incl. G&W, whose NDA is dated 04/03; the 04/07 confirmations; Party B 04/21). Keeping the Class I railroads as a disclosed possibility in a range is no longer penalised.\n- PR-P02: accepts a disclosed Class I upper bound.\n- PR-P03: an exact Count 16 now earns partial only. Part B makes a subtraction exact only if every subtracted party is an established member, and G&W/B are not. Accepts ranges to 20, and a lower bound of 15 where it rests on p. 33's 25 read as including Party C.\n- PR-P04: accepts Terms or process.\n- PR-P05: the NDA window is 07/01-07/12; the in-person presentations are no longer said to be 'in June'.\n- PR-P06 and PR-P07: weights rebalanced. PR-P07 accepts a 07/22-07/27 decision window; its placement against G&W's 07/26 revision is scored only in PR-R03.\n- PR-P08: forbids a second Party F closure.\n- PR-P10: a Bid reaffirmed label on E's reversion earns partial.\n- PR-P11: pages 29-30 added.\n- PR-R01: weight 4 to 3; a missing Party A row earns partial.\n- PR-R03: the notice-row clause moved to the new PR-R08, and D/E Who-was-in wording softened.\n- PR-R07: weight 4 to 3; now the sole grader of the Round column, graded against the workbook's own boundaries (the Round clauses in PR-P03, P04, P06, P07 and P11 are neutralised).\n- PR-F01: weight 2 to 2.5, offset by PR-F07 3 to 2.5.\n- PR-F02: accepts Heavy or Unclear when the p. 30 price-assumption sentence is cited.\n- PR-F06: partial-credit text removed from accepted_alternatives; D 08/01 Informal is accepted with explanation.\n- PR-F08: accepts Yes on LOI-stage bids citing the mid-June dollar-per-share vs non-cash instruction.\n- PR-C01: wording is now neutral on whether G&W is inside the 11.\n- PR-C03: the 07/26 ordering is made conditional, so the 07/22-vs-07/27 choice is not penalised twice.\n- PR-C05: D's undated withdrawal is only required to fall between its 08/01 bid and signing; Not selected at signing rows may follow the signing row; missing rows are not inversions.\n- PR-O01: Pullman and the preferred conversion are optional.\n- PR-O03: bare target-led or bidder-led initiation accepted.\nAdded:\n- PR-R08 (weight 2): the 08/04 preferred-bidder decision (named in D2), the 08/09 notice to G&W and the 08/12 notice/request to Party B as within-round rows.\nDropped: none; no draft test was shown unsupported.\nUnscored calls: the Party D formality call was added, and the membership and contact items were narrowed.\nTotals: 40 tests; category weights 30/25/20/10/10/5 = 100.\n\nLimits.\n- This is a model-built reference. It is not human-adjudicated, has not been tried on candidate workbooks, and is not a gold ledger.\n- Every expected value rests on filing text. Several traps come from leads and were re-verified against the filing: Party A's double count (acc9986 Finding 1), G&W's Annex NDA date (AM01), Alex's E/F joint-bidder, Party F-financial and D/G&W-Informal codings, the August over-splitting markers, and the re-contact inflation (voice note 5). The round map, participation arithmetic, conditions and deadline outcomes rest on the filing and the instruction alone.\n- The filing never names the nine IOI bidders. It never dates the individual NDAs other than G&W's, the May postponement, D's withdrawal or the individual late-July LOIs. It never resolves whether G&W and Party B are among the 11, and its NDA totals conflict (11 + 14 + C against p. 33's 25).\n- Several conventions are provisional and await Alex: E5 process boundaries, the formal timing of Providence's August 4 event, and the Mac-Gray fee-row decision. Items that depend on them carry accepted alternatives or are unscored.\n- Weights within categories are judgmental.\n\nNo repo files were modified. The reconciled JSON is also saved at /home/uctpiaj/work/tmp/claude-1001/-home-uctpiaj-work-Projects-sec-extraction/f40a7cfe-b924-48c0-a4af-8188cd3279d3/scratchpad/final.json (builder: build.py in the same folder)."
+}

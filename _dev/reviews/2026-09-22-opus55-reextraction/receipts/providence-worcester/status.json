@@ -1,0 +1,50 @@
+{
+  "client_pid": 2163812,
+  "continuations": 0,
+  "elapsed_seconds": 668.382,
+  "ended_at": "2026-09-22T21:33:05.584969+00:00",
+  "exit_code": 0,
+  "failure_reason": null,
+  "provider": {
+    "api_error_status": null,
+    "cache_write_1h_tokens": 145330,
+    "cache_write_5m_tokens": 0,
+    "claude_code_version": "2.1.280",
+    "duration_api_ms": 663086,
+    "invocations": 1,
+    "is_error": false,
+    "num_turns": 22,
+    "permission_denials": 0,
+    "refusal": false,
+    "served_models": [
+      "claude-opus-5-5"
+    ],
+    "session_model": "claude-opus-5-5",
+    "stop_details": null,
+    "stop_reason": "end_turn",
+    "subagents_spawned": 0,
+    "subtype": "success",
+    "terminal_reason": "completed",
+    "thinking_tokens": 51969,
+    "tools": [
+      "Bash",
+      "Read",
+      "Write"
+    ]
+  },
+  "started_at": "2026-09-22T21:21:57.203387+00:00",
+  "state": "completed",
+  "timed_out": false,
+  "usage": {
+    "cost_usd": 2.9289523999999996,
+    "tokens": {
+      "cache_creation_input_tokens": 145330,
+      "cache_read_input_tokens": 1186322,
+      "input_tokens": 42,
+      "output_tokens": 76444
+    }
+  },
+  "workbook_exists": true,
+  "workbook_valid_xlsx": true,
+  "worker_pid": 2163231
+}

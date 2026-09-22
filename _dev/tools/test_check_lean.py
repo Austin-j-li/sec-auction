@@ -175,6 +175,7 @@ def build_valid_fixture(directory: Path) -> tuple[Path, Path]:
         "10",
         "target-led",
         1,
+        "None reported",
         "Not met: 0 qualifying NDAs",
         "Yes",
         "US dollars per share",
@@ -263,7 +264,7 @@ class LeanCheckerTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             workbook, filing = build_valid_fixture(Path(tmp))
             wb = check_lean.openpyxl.load_workbook(workbook)
-            wb["Deal facts"]["B12"] = "Uncertain: count unknown"
+            wb["Deal facts"]["B13"] = "Uncertain: count unknown"
             wb.save(workbook)
             report = check_lean.LeanChecker(workbook, filing).run()
             self.assertEqual(report["summary"]["errors"], 0, report["issues"])
@@ -337,7 +338,7 @@ class LeanCheckerTests(unittest.TestCase):
             ledger["Q2"] = f"{QUOTES[0]} (p. 10)"
             ledger["Q3"] = f"\u201c{QUOTES[1]} (pp. 10\u201311)\u201d"
             ledger["Q4"] = f'"{QUOTES[2]}" p. 10'
-            wb["Deal facts"]["A17"] = "Account"
+            wb["Deal facts"]["A18"] = "Account (five or six plain sentences)"
             wb.save(workbook)
 
             report = check_lean.LeanChecker(workbook, filing).run()
@@ -352,12 +353,34 @@ class LeanCheckerTests(unittest.TestCase):
             facts["A10"] = "Initiation (target-led, bidder-led, activist-influenced, mixed or unclear)"
             facts["B10"] = "Target-led - the board initiated outreach"
             facts["B11"] = 1
-            facts["A12"] = "Auction screen (C1)"
-            facts["A13"] = "Whole-company bids (Yes, or No with what was bid for)"
+            facts["A12"] = "Earlier approaches (E5; “None reported” if none)"
+            facts["A13"] = "Auction screen (E1)"
+            facts["A14"] = "Whole-company bids (Yes, or No with what was bid for)"
             wb.save(workbook)
 
             report = check_lean.LeanChecker(workbook, filing).run()
             self.assertEqual(report["status"], "pass", report["issues"])
+
+    def test_superseded_deal_fact_labels_are_rejected(self) -> None:
+        for cell, label in (("A13", "Auction screen (C1)"), ("A12", "Earlier approaches (C7)")):
+            with self.subTest(label=label), tempfile.TemporaryDirectory() as tmp:
+                workbook, filing = build_valid_fixture(Path(tmp))
+                wb = check_lean.openpyxl.load_workbook(workbook)
+                wb["Deal facts"][cell] = label
+                wb.save(workbook)
+                report = check_lean.LeanChecker(workbook, filing).run()
+                self.assertEqual(report["status"], "fail")
+                self.assertIn("facts.fields", {issue["code"] for issue in report["issues"]})
+
+    def test_missing_earlier_approaches_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            workbook, filing = build_valid_fixture(Path(tmp))
+            wb = check_lean.openpyxl.load_workbook(workbook)
+            wb["Deal facts"].delete_rows(12)
+            wb.save(workbook)
+            report = check_lean.LeanChecker(workbook, filing).run()
+            self.assertEqual(report["status"], "fail")
+            self.assertIn("facts.fields", {issue["code"] for issue in report["issues"]})
 
     def test_date_formatted_process_count_is_not_silently_accepted(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

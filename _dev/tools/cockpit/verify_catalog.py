@@ -1,4 +1,4 @@
-"""Read-only live integration check of the completed nine-deal catalog."""
+"""Read-only live integration check of the one-version nine-deal catalog."""
 
 from __future__ import annotations
 
@@ -61,12 +61,6 @@ def verify(root: Path) -> dict:
     catalog = json.loads((root / "_dev/cockpit/catalog.json").read_text())
     if set(catalog["deals"]) != set(imp.DEALS):
         raise RuntimeError("Catalog does not have exactly nine deals")
-    for slug in imp.NEW_DEALS:
-        item = catalog["deals"][slug]
-        if item["findings"] or item["documents"]:
-            raise RuntimeError(f"Fresh draft has imported prior review material: {slug}")
-    if "2026-09-21-three-models" in json.dumps(catalog):
-        raise RuntimeError("Catalog still references the retired comparison")
     before = state_files(root)
     cockpit = data.Cockpit(root)
     if not cockpit.workspace.available:
@@ -76,9 +70,13 @@ def verify(root: Path) -> dict:
         began = time.monotonic()
         item = catalog["deals"][slug]
         versions = {v["id"]: v for v in item["versions"]}
-        required = {"v1132-raw"} if slug == "datalink" else {"v1132-raw", "v113-baseline"}
-        if not required.issubset(versions) or item["default_base"] not in versions:
-            raise RuntimeError(f"Version list incomplete: {slug}")
+        if list(versions) != [imp.VERSION_ID] or item["default_base"] != imp.VERSION_ID:
+            raise RuntimeError(f"Catalog is not the single current version: {slug}")
+        if versions[imp.VERSION_ID]["path"] != f"extraction/{slug}.xlsx":
+            raise RuntimeError(f"Current version path differs: {slug}")
+        if any(record.get("source_version") is not None
+               for record in item["findings"] + item["documents"]):
+            raise RuntimeError(f"Review record is tied to a removed version: {slug}")
         payload = cockpit.deal(slug)
         if payload["workspace"]["base_version"] != item["default_base"]:
             raise RuntimeError(f"Wrong default base: {slug}")
@@ -87,18 +85,6 @@ def verify(root: Path) -> dict:
         api_ids = [v["id"] for v in payload["versions"]]
         if api_ids != ["working", *versions]:
             raise RuntimeError(f"API version list differs: {slug}")
-        if slug == "mac-gray":
-            r01 = [f for f in payload["findings"] if f["id"] == "mac-gray-r01"]
-            docs = {d["id"] for d in payload["documents"]}
-            if (item["default_base"] != "mac-gray-candidate"
-                    or "mac-gray-verified" not in versions
-                    or len(r01) != 1 or r01[0]["source_version"] != "mac-gray-candidate"
-                    or r01[0]["judgment"] != "unreviewed"
-                    or r01[0]["implementation"] != "unassessed"
-                    or "recorded_correction" in r01[0]
-                    or not {"mac-gray-acceptance", "mac-gray-r01", "mac-gray-analytical-use",
-                            "mac-gray-filing-coverage"}.issubset(docs)):
-                raise RuntimeError("Mac-Gray candidate or pending R01 record differs")
         base = versions[item["default_base"]]
         base_path = root / base["path"]
         expected_counts = rows_in_book(base_path)
@@ -124,8 +110,9 @@ def verify(root: Path) -> dict:
                           versions=api_ids, counts=shown_counts,
                           check_summary=fresh["summary"],
                           checker_findings=len(fresh["issues"]),
-                          raw_sha256=versions["v1132-raw"]["sha256"],
-                          pending_r01=(slug == "mac-gray"),
+                          sha256=base["sha256"],
+                          findings=[f["id"] for f in payload["findings"]],
+                          documents=[d["id"] for d in payload["documents"]],
                           seconds=round(time.monotonic() - began, 3))
     after = state_files(root)
     if before != after:
@@ -140,7 +127,7 @@ def verify(root: Path) -> dict:
 def main() -> None:
     root = imp.ROOT
     outcome = verify(root)
-    output = root / imp.REVIEW / "catalog-verification.json"
+    output = root / imp.REEXTRACT / "catalog-verification.json"
     imp.atomic_json(output, outcome)
     print(f"Verified {len(outcome['deals'])} deals in {outcome['seconds']}s; no production state writes")
 

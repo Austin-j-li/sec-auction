@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "/usr/bin/python3",
+    "/home/uctpiaj/work/Projects/sec-extraction/_dev/tools/sandbox/run_model.py",
+    "worker",
+    "--provider",
+    "sol",
+    "--run-dir",
+    "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/2026-09-22-opus55-sol6-sweep/mac-gray-gpt-6-sol-xhigh-r1"
+  ],
+  "launched_at": "2026-09-22T19:44:39.406007+00:00",
+  "launcher_pid": 2003784
+}

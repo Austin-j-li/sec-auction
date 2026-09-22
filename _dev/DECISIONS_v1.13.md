@@ -18,7 +18,7 @@ v1.13 is 5,569 words against v1.12's 8,645. The workbook format is unchanged: fo
 | **v1.13.2: one-sentence E6 clarification, approved 21 September.** | Replace the finality paragraph's duplicate round-opening trigger with the sentence recorded below. Preserve the earlier first-final-request and repeated-improvement rules. No other instruction content changes; freeze the text for unseen-filing testing. |
 | v1.12's seven edits carry over. | The honesty sentence, whole-background reading with annexes, the paragraph-by-paragraph reread, the exact-value support check, exact-subtraction examples, and finality describing the round as the target ran it. |
 
-Q3 (one-sided prices) needs no text change. Q7 (Company H continuing invitation) stays unadopted.
+At the time of this rewrite, Q3 (one-sided prices) needed no text change and Q7 (Company H continuing invitation) remained unadopted. **Status correction, 22 September:** Austin confirmed that Q3 and Q7 are no longer withheld. The earlier disposition is historical and must not be presented as a current approval hold. His clarification does not restate a replacement coding treatment or establish that workbook corrections were implemented; see the current [research-question record](RESEARCH_QUESTIONS.md).
 
 ## Evidence and its limits
 

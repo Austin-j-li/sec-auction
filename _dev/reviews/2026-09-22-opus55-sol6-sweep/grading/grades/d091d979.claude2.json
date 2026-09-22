@@ -1,0 +1,275 @@
+{
+ "grader": "claude2",
+ "grades": [
+  {
+   "id": "DA-P01",
+   "grade": "pass",
+   "rows": "Deal ledger R2, R7, R9, R10, R16",
+   "reason": "Party A enters once with its 01/19 round-0 Bid, the 02/04 NDA is a later step, 04/20 is an Other material event rather than an exit, and there is no April-May exit or June Re-entered row."
+  },
+  {
+   "id": "DA-P02",
+   "grade": "pass",
+   "rows": "Deal ledger R7, R17, R18, R19",
+   "reason": "The June strategic NDA rows sum to 9 (Insight 1, Party B 1, 7 others), plus Party A's 02/04 row, giving 10; all are typed Strategic, Insight appears once, and the R19 Note keeps the total of 10."
+  },
+  {
+   "id": "DA-P03",
+   "grade": "pass",
+   "rows": "Deal ledger R22, R23",
+   "reason": "Party C (Count 1) plus 12 other sponsors (Count 12) gives 13 financial NDA signers, typed Financial, in process 1 at the broad-auction stage."
+  },
+  {
+   "id": "DA-P04",
+   "grade": "pass",
+   "rows": "Deal ledger R14, R15, R16, R20, R21, R31, R35",
+   "reason": "Contact rows give 12 strategic (Party A's January contact excluded, an accepted alternative) and 14 financial, and the non-submitter cohorts cover only NDA signers, so contacted non-signers get no exit."
+  },
+  {
+   "id": "DA-P05",
+   "grade": "partial",
+   "rows": "Deal ledger R29, R30, R33, R34; Rounds R2",
+   "reason": "Insight, Party B and Party C are right, there is no synthetic Party A bid, and Rounds counts nine new bids, but the six other submitters sit in one Unknown-type Count-6 cohort instead of the typed 2-strategic and 4-financial rows."
+  },
+  {
+   "id": "DA-P06",
+   "grade": "fail",
+   "rows": "Deal ledger R31, R35; Rounds R2",
+   "reason": "The strategic range 5-7 is right, but the financial non-submitter range is 8-12 rather than 8-9: it ignores the 14-sponsor contact total, which allows at most one non-signer submitter. Neither stated partial-credit condition applies."
+  },
+  {
+   "id": "DA-P07",
+   "grade": "pass",
+   "rows": "Deal ledger R37, R38",
+   "reason": "The not-selected bidders are closed by 07/27 in the round being left: a Count-4 Unknown-type Dropped by target with Lower offer than rivals, plus a separate Party A closure, which totals 5 not selected."
+  },
+  {
+   "id": "DA-P08",
+   "grade": "fail",
+   "rows": "Deal ledger R37, R38; Rounds R2; Questions Q3",
+   "reason": "Party A gets an individual inferred Dropped by target at 07/27 whose Note asserts it is outside the advancing set, and no Note or Question names the possibility that Party A was one of the two unnamed advancers."
+  },
+  {
+   "id": "DA-P09",
+   "grade": "partial",
+   "rows": "Deal ledger R41, R54",
+   "reason": "The two unnamed advancers are closed once, typed Unknown, as an inferred Dropped by target by 09/02 at Insight's exclusivity, and the Note records that they ultimately submitted no proposal; this is the stated half-credit case."
+  },
+  {
+   "id": "DA-P10",
+   "grade": "pass",
+   "rows": "Deal ledger R52, R53, R59, R60",
+   "reason": "Party B and Party C each have an inferred Dropped by target, Not stated, by 09/02 in the final-proposal round, followed by a Re-entered row on 10/01 in the re-engagement round."
+  },
+  {
+   "id": "DA-P11",
+   "grade": "pass",
+   "rows": "Deal ledger R61, R65",
+   "reason": "Party B has a reported Withdrew on 10/24 in the re-engagement round, with Other stated reason and 'at that time' in the Note; the 10/03 disclosure is an Other material event, not an exit."
+  },
+  {
+   "id": "DA-P12",
+   "grade": "pass",
+   "rows": "Deal ledger R64, R68",
+   "reason": "Party C is closed with an inferred Dropped by target, Not stated, by 10/26 at the second exclusivity in the re-engagement round, and the 10/20 withholding is not an exit."
+  },
+  {
+   "id": "DA-P13",
+   "grade": "pass",
+   "rows": "Deal ledger R37, R38, R52-R54, R59, R60, R65, R68; Rounds R3, R4, R5",
+   "reason": "No named bidder has two exits without an intervening re-entry, Insight has no exit, and each of A, B and C is closed exactly once with no cohort double-counting; Rounds 'Who was in' gives 5, then 3 plus 2, then 3, matching the ledger."
+  },
+  {
+   "id": "DA-R01",
+   "grade": "pass",
+   "rows": "Deal facts R11; Deal ledger R2-R74",
+   "reason": "Number of processes is 1, there is no Process terminated or restarted row, and every row is Process 1."
+  },
+  {
+   "id": "DA-R02",
+   "grade": "partial",
+   "rows": "Deal ledger R2, R9, R13; Rounds R2; Questions Q1",
+   "reason": "All January-May Party A activity, including the 03/29 bid, is in round 0, and round 1 opens at the 06/06 outreach; this is the literal E6 ordering that earns half credit, so the other round tests are graded by stage."
+  },
+  {
+   "id": "DA-R03",
+   "grade": "pass",
+   "rows": "Deal ledger R13; Rounds R2",
+   "reason": "There is exactly one Round opened row for the broad-auction stage, dated 06/06/2016, and its Rounds line's How opened describes the banker outreach."
+  },
+  {
+   "id": "DA-R04",
+   "grade": "pass",
+   "rows": "Deal ledger R36; Rounds R3",
+   "reason": "The five-party stage opens 07/27/2016, and its Rounds line lists 5 (Insight, B, C and two unnamed of unknown type), none stated, No deadline stated, Not final, and 0 bids."
+  },
+  {
+   "id": "DA-R05",
+   "grade": "pass",
+   "rows": "Deal ledger R40, R42; Rounds R4",
+   "reason": "The final-proposal stage opens 08/16/2016 with a Round opened row, and the Rounds line names Insight, B and C as invited and accounts for the two other advancers."
+  },
+  {
+   "id": "DA-R06",
+   "grade": "pass",
+   "rows": "Deal ledger R58-R73; Rounds R5",
+   "reason": "A Round opened row dated 10/01/2016 is explained in its Note and in Q1; the Rounds line shows 3 bidders, no due date and an ending in the 11/06 signing, and B's withdrawal, C's exit, the November bids and the signing all sit in that round."
+  },
+  {
+   "id": "DA-R07",
+   "grade": "pass",
+   "rows": "Rounds R2; Deal ledger R28, R32",
+   "reason": "The broad-auction Rounds line keeps both due dates, 07/18 strategic and 07/21 financial, with 'Enforced; Enforced', and the ledger has Deadline rows on both dates."
+  },
+  {
+   "id": "DA-R08",
+   "grade": "pass",
+   "rows": "Rounds R4; Deal ledger R42, R45",
+   "reason": "The final-proposal Rounds line has due date 08/30/2016 and Late bids accepted, with an 08/30 Deadline row and Insight's 08/31 proposal in the same round."
+  },
+  {
+   "id": "DA-R09",
+   "grade": "pass",
+   "rows": "Rounds R2, R3, R4, R5",
+   "reason": "By stage, the auction and five-party rounds are Not final, the final-proposal round is Announced as final, and the re-engagement round is Inferred final."
+  },
+  {
+   "id": "DA-R10",
+   "grade": "pass",
+   "rows": "Deal ledger R40, R46-R51, R55, R58; Rounds R4",
+   "reason": "No Round opened row falls between 08/17 and 09/28; the improvement requests, the revisions, Insight's $12.00, the exclusivity and the September conditions are all in the final-proposal round, and its How it ended records the 09/02 exclusivity."
+  },
+  {
+   "id": "DA-R11",
+   "grade": "pass",
+   "rows": "Deal ledger R48, R62; Rounds R5",
+   "reason": "Party C's 10/04 reaffirmation is a price-less Other material event, its standing offer stays the $11.25 row, and the round's Bids received counts only Insight as a new bidder."
+  },
+  {
+   "id": "DA-F01",
+   "grade": "pass",
+   "rows": "Deal ledger R2, R9, R29, R30, R33, R34",
+   "reason": "The 01/19 bid is Informal, the 03/29 bid is Informal and Heavy, and every IOI row is Informal with Conditions Unclear."
+  },
+  {
+   "id": "DA-F03",
+   "grade": "pass",
+   "rows": "Deal ledger R43, R44, R45, R48, R49",
+   "reason": "All five final-stage bids are Formal."
+  },
+  {
+   "id": "DA-F04",
+   "grade": "pass",
+   "rows": "Deal ledger R44, R45",
+   "reason": "Party C's 08/30 $11.00 bid and Insight's 08/31 $11.75 bid are both Heavy."
+  },
+  {
+   "id": "DA-F05",
+   "grade": "pass",
+   "rows": "Deal ledger R43, R47",
+   "reason": "Party B's 08/30 $12.00 bid and its revised financing row are both Heavy, not None."
+  },
+  {
+   "id": "DA-F06",
+   "grade": "pass",
+   "rows": "Deal ledger R49",
+   "reason": "Insight's 09/01 $12.00 bid is Formal and Heavy, and there is no separate $11.75 revision row."
+  },
+  {
+   "id": "DA-F07",
+   "grade": "pass",
+   "rows": "Deal ledger R69, R70",
+   "reason": "Insight's 11/01 $11.00 and 11/02 $11.25 bids are Formal and Heavy (accepted), neither Light nor None."
+  },
+  {
+   "id": "DA-F08",
+   "grade": "pass",
+   "rows": "Deal ledger R2, R9, R29, R30, R33, R34, R43-R45, R47-R49, R69, R70, R73; Deal facts R5",
+   "reason": "All cash is Yes only on the 01/19 bid and Not stated on every other Bid row, and the signed cash terms appear in the signing Note and in Deal facts."
+  },
+  {
+   "id": "DA-F09",
+   "grade": "pass",
+   "rows": "Deal ledger R48",
+   "reason": "Party C's revised $11.25 bid is Formal and Heavy in the final-proposal round."
+  },
+  {
+   "id": "DA-C01",
+   "grade": "partial",
+   "rows": "Deal ledger R17",
+   "reason": "Insight has its own NDA signed row, but it carries a June window (06/06-06/30, sort 06/15) and a p.28 quote instead of the exact 06/14/2016 date from Annex A, which matches the stated half-credit case."
+  },
+  {
+   "id": "DA-C02",
+   "grade": "pass",
+   "rows": "Deal ledger R17-R19, R22, R23, R28-R35, R47-R49",
+   "reason": "The IOI rows run to 07/27 with the strategic ones sorted at 07/18 before the strategic non-submitter row, the June NDA cohorts carry windows, and the 09/01-reported revisions carry an 08/31-09/01 window or a blank Date from and sort before Insight's $12.00."
+  },
+  {
+   "id": "DA-C03",
+   "grade": "partial",
+   "rows": "Deal ledger R45, R49, R51, R57, R67",
+   "reason": "The 09/02 execution, the 09/30 lapse and the 10/26 second execution are rows, but Insight's 30-day exclusivity request appears only in bid Notes, not as its own Exclusivity changed row."
+  },
+  {
+   "id": "DA-C04",
+   "grade": "pass",
+   "rows": "Deal ledger R55",
+   "reason": "An Other material event dated 09/28/2016 records Insight's pre-closing pro forma 8-K and auditor-consent requirements as conditions of signing, before the 09/29 board decision."
+  },
+  {
+   "id": "DA-C05",
+   "grade": "pass",
+   "rows": "Deal ledger R24, R25, R64",
+   "reason": "The 10/20 row records the Q3 and Q4 information going to Insight and B and being withheld from C for lower price and closing certainty, and the eight-party executive presentations (Insight 06/28, seven others 06/21-07/07) are recorded."
+  },
+  {
+   "id": "DA-B01",
+   "grade": "pass",
+   "rows": "Deal ledger R2, R9",
+   "reason": "Party A's prices are 10/10 on 01/19 and 10.30/10.75 on 03/29."
+  },
+  {
+   "id": "DA-B02",
+   "grade": "pass",
+   "rows": "Deal ledger R29, R30, R33, R34",
+   "reason": "Insight 10.75-11.75, B 10.50-11.00 and C 11.00 are right, and 8.80-10.50 sits only on a single combined six-bidder cohort row, an accepted alternative."
+  },
+  {
+   "id": "DA-B03",
+   "grade": "pass",
+   "rows": "Deal ledger R43, R44, R45, R48, R49",
+   "reason": "B 12.00 (08/30), C 11.00 (08/30), Insight 11.75 (08/31), C 11.25 (by 09/01) and Insight 12.00 (09/01), each with both price cells filled."
+  },
+  {
+   "id": "DA-B04",
+   "grade": "pass",
+   "rows": "Deal ledger R69, R70, R73",
+   "reason": "Insight's bids are 11.00 on 11/01 and 11.25 on 11/02 in the final round, and the signing row has blank price, cash, formality and conditions cells with $11.25 cash in its Note."
+  },
+  {
+   "id": "DA-O01",
+   "grade": "pass",
+   "rows": "Deal facts R3-R7; Deal ledger R73, R74",
+   "reason": "The acquirer is Insight (through Reef), Strategic, at $11.25 cash, signed 11/06 and announced 11/07, with separate signing and announcement rows."
+  },
+  {
+   "id": "DA-O02",
+   "grade": "pass",
+   "rows": "Deal facts R16, R17",
+   "reason": "The target advisers are Raymond James & Associates, Inc. and Faegre Baker Daniels LLP."
+  },
+  {
+   "id": "DA-O03",
+   "grade": "pass",
+   "rows": "Deal facts R13, R14",
+   "reason": "Auction screen is Met (process 1) with 23 parties, 10 strategic and 13 financial, and Whole-company bids is Yes."
+  },
+  {
+   "id": "DA-O04",
+   "grade": "pass",
+   "rows": "Deal facts R10",
+   "reason": "Initiation is bidder-led, an accepted alternative."
+  }
+ ]
+}

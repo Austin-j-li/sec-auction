@@ -1,0 +1,112 @@
+{
+  "opus55_medium": {
+    "datalink": {
+      "workbook_sha256": "f28c711cf1ffdcc4b7f35ffd160719ed712c1dc022a89ed3ab878e557ea8217b",
+      "previous_sha256": "499d2f2259f10bcb3895a08538bcbf4f686c55a4d568c0a6ded9096ee9449358",
+      "checker_summary": {
+        "errors": 0,
+        "warnings": 21,
+        "information": 0,
+        "total_issues": 21
+      },
+      "reported_cost_usd": 3.0314004000000003,
+      "continuations": 0
+    },
+    "kraton": {
+      "workbook_sha256": "20cc6986afb8b301e2a38a8d06e2c191c0cf7d3621d7dcf84121d9265b3d780c",
+      "previous_sha256": "b1388206612abde5df19564951c3a897673fb5c7b2a6eb8b3d8e26f75c27a7d2",
+      "checker_summary": {
+        "errors": 0,
+        "warnings": 20,
+        "information": 0,
+        "total_issues": 20
+      },
+      "reported_cost_usd": 3.57392,
+      "continuations": 0
+    },
+    "mac-gray": {
+      "workbook_sha256": "407615092e6dc33be22a8f80ab41d365083de0813f93b48897cbd7605a68ec0e",
+      "previous_sha256": "6c8b583bd9b948cd8e6dee6aa2f7fba43acc5598c5bf73c6f55ae7efab13a852",
+      "checker_summary": {
+        "errors": 1,
+        "warnings": 26,
+        "information": 0,
+        "total_issues": 27
+      },
+      "reported_cost_usd": 2.8615405999999997,
+      "continuations": 0
+    },
+    "meredith": {
+      "workbook_sha256": "fae16e4a2ba8b6c6a233b9d029f94dacbfaacdabd4771b6b62fffdbaf4609c9e",
+      "previous_sha256": "dbcca62b71624101fb17698736cf4faee112bca09d59223de780e77ce4fdf8ac",
+      "checker_summary": {
+        "errors": 0,
+        "warnings": 16,
+        "information": 0,
+        "total_issues": 16
+      },
+      "reported_cost_usd": 3.6704496,
+      "continuations": 0
+    },
+    "penford": {
+      "workbook_sha256": "14f6c9c8e7c697b477e98f8f163c9180a236d1210e226cc0fdaeac98d50380d5",
+      "previous_sha256": "b2a25f75d3334e70962cf4782157aa42fb85bc6055ec0ef6410125a44d91758c",
+      "checker_summary": {
+        "errors": 0,
+        "warnings": 15,
+        "information": 0,
+        "total_issues": 15
+      },
+      "reported_cost_usd": 2.1435416,
+      "continuations": 0
+    },
+    "petsmart": {
+      "workbook_sha256": "04c7d952864f1a122bb72bf489712cc0434465cc1b3957d8a686f15e174ec20c",
+      "previous_sha256": "05073372db646a9a219f893de8dabac90218ef3b7621315cf63bb366ca1f7c94",
+      "checker_summary": {
+        "errors": 1,
+        "warnings": 22,
+        "information": 0,
+        "total_issues": 23
+      },
+      "reported_cost_usd": 2.5932454,
+      "continuations": 0
+    },
+    "providence-worcester": {
+      "workbook_sha256": "394a8cea099340df499697247c68430fef2010177ce91aae3930608d95cc3d00",
+      "previous_sha256": "fa7c8f382a9931e649cb402043618b19da73eed0a623a5bf1deddad11b9f9f22",
+      "checker_summary": {
+        "errors": 0,
+        "warnings": 12,
+        "information": 0,
+        "total_issues": 12
+      },
+      "reported_cost_usd": 2.9289523999999996,
+      "continuations": 0
+    },
+    "stec": {
+      "workbook_sha256": "467f739dea7b540eec2d3fb664ec1a4bb6479394820fc66b750e6ec3821fbc1d",
+      "previous_sha256": "6e97cd3ad27116387cd7348f413f317a1173b1cd7c6a9190a776a73e7b2fbc62",
+      "checker_summary": {
+        "errors": 0,
+        "warnings": 21,
+        "information": 0,
+        "total_issues": 21
+      },
+      "reported_cost_usd": 2.8387792000000003,
+      "continuations": 0
+    },
+    "synacor": {
+      "workbook_sha256": "4d2610753b2b6a06d6a4a4408306cc094999ddb8be1c5904e5f9eab3b2e025af",
+      "previous_sha256": "13703aed7f4ae51dbef3b40bdc12c36b935e283a056adce93fd9c813d0e4dda9",
+      "checker_summary": {
+        "errors": 1,
+        "warnings": 8,
+        "information": 0,
+        "total_issues": 9
+      },
+      "reported_cost_usd": 4.0480594,
+      "continuations": 0
+    }
+  }
+}

@@ -1,6 +1,6 @@
 # R01 — material commitment terms versus routine drafting
 
-Status: awaiting Austin's answer to the question sent during the acceptance review. Do not infer approval from elapsed time. This choice is excluded from the first acceptance-correction pass.
+Status: **decided by Austin, 22 September 2026.** The test is whether a term changes the bidder's ability to walk away. Changes to the bidder's commitment (a reverse termination fee, a sponsor damages cap or guarantee, adding or dropping a financing or closing condition) are same-price Bids carrying the standing price. The target termination fee is deal protection for the target, not bidder commitment, and stays in a dated Note. Target requirements on the bidder's commitment are Other material event (E2). For Mac-Gray this makes the September 21–23 final package and the October 5 and October 8 sponsor-liability proposals Bids; the October 7 $15m target-fee proposal and the October 11 acceptance of $11m go in dated Notes. The decision reads E10's "material economic terms"; the frozen instruction is unchanged. The analysis below predates the decision.
 
 The frozen instruction says material economic changes communicated by a bidder receive their own Bid (E10), while routine legal negotiation folds into Notes (E2). It does not expressly settle termination-fee and damages-guarantee negotiations. The prior adjudication left this boundary open; the user-authorized acceptance plan reserved consequential research choices for Austin.
 

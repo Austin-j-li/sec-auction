@@ -1,0 +1,275 @@
+{
+ "grader": "astra",
+ "grades": [
+  {
+   "id": "DA-P01",
+   "grade": "pass",
+   "rows": "Deal ledger 2, 8, 12, 15; Rounds 2-3",
+   "reason": "Party A enters once in January and remains live through the June outreach without an April exit or June re-entry."
+  },
+  {
+   "id": "DA-P02",
+   "grade": "pass",
+   "rows": "Deal ledger 8, 17-19",
+   "reason": "Party A's February NDA plus nine June strategic signers reconcile to ten distinct signers, counting Insight once."
+  },
+  {
+   "id": "DA-P03",
+   "grade": "pass",
+   "rows": "Deal ledger 21-22",
+   "reason": "Party C and the twelve-member residual total thirteen financial NDA signers in the broad-auction stage."
+  },
+  {
+   "id": "DA-P04",
+   "grade": "pass",
+   "rows": "Deal ledger 2, 16, 20, 29, 33",
+   "reason": "Contacts reconcile to thirteen strategic and fourteen financial parties, with no exits assigned merely for declining an NDA."
+  },
+  {
+   "id": "DA-P05",
+   "grade": "pass",
+   "rows": "Deal ledger 25-27, 30-31, 34; Rounds 3",
+   "reason": "Nine new IOIs have the required named bidders and typed residuals, while Party A's standing proposal creates no synthetic July bid."
+  },
+  {
+   "id": "DA-P06",
+   "grade": "fail",
+   "rows": "Deal ledger 29, 33; Rounds 3; Questions 3",
+   "reason": "The financial range of 8\u201312 and total range of 13\u201319 exceed the permitted 8\u20139 and 13\u201316 and meet neither partial-credit condition."
+  },
+  {
+   "id": "DA-P07",
+   "grade": "pass",
+   "rows": "Deal ledger 34-35; Rounds 4",
+   "reason": "Five unknown-type bidders are dropped by July 27 for lower offers, leaving the specified five advancers."
+  },
+  {
+   "id": "DA-P08",
+   "grade": "pass",
+   "rows": "Deal ledger 34, 53; Questions 5",
+   "reason": "Party A is closed through mutually exclusive residual cohorts, with its possible advancement explicitly acknowledged."
+  },
+  {
+   "id": "DA-P09",
+   "grade": "pass",
+   "rows": "Deal ledger 53; Questions 8",
+   "reason": "The two unnamed advancers are closed once as unknown-type non-submitters after September 1 with no stated exit reason."
+  },
+  {
+   "id": "DA-P10",
+   "grade": "pass",
+   "rows": "Deal ledger 55-56, 61-62",
+   "reason": "Both bidders have inferred exits by September 2 with reason Not stated and re-enter on October 1 in the corresponding stages."
+  },
+  {
+   "id": "DA-P11",
+   "grade": "pass",
+   "rows": "Deal ledger 63, 70",
+   "reason": "Party B's reported October 24 withdrawal cites the Q3 financial statements, while October 3 is recorded as a non-exit event."
+  },
+  {
+   "id": "DA-P12",
+   "grade": "pass",
+   "rows": "Deal ledger 62, 69, 72",
+   "reason": "Party C's final participation ends through an inferred drop by October 26 with reason Not stated, rather than at the information withholding."
+  },
+  {
+   "id": "DA-P13",
+   "grade": "pass",
+   "rows": "Deal ledger 34-35, 53-56, 60-62, 70-72; Rounds 3-5",
+   "reason": "Named bidders and residual cohorts close without duplication, and stage populations reconcile under the merged round map."
+  },
+  {
+   "id": "DA-R01",
+   "grade": "pass",
+   "rows": "Deal ledger 2-78; Deal facts 11",
+   "reason": "The workbook records one process throughout, with no termination or restart."
+  },
+  {
+   "id": "DA-R02",
+   "grade": "pass",
+   "rows": "Deal ledger 2, 7, 10; Rounds 2; Questions 2",
+   "reason": "The January offer is in round 0 and the explained February 4 opening establishes round 1 containing the March proposal and required round attributes."
+  },
+  {
+   "id": "DA-R03",
+   "grade": "pass",
+   "rows": "Deal ledger 15; Rounds 3",
+   "reason": "Exactly one broad-auction opening is dated June 6 and attributed to Raymond James's outreach."
+  },
+  {
+   "id": "DA-R04",
+   "grade": "partial",
+   "rows": "Deal ledger 35, 39; Rounds 4; Questions 2",
+   "reason": "The July selection and August final-proposal stages are merged, with the alternative split explicitly identified in the map Question."
+  },
+  {
+   "id": "DA-R05",
+   "grade": "pass",
+   "rows": "Deal ledger 39; Rounds 4",
+   "reason": "The August 16 deadline-setting row records the three invitees, markup requirement and deadline, while Rounds accounts for both unnamed advancers."
+  },
+  {
+   "id": "DA-R06",
+   "grade": "pass",
+   "rows": "Deal ledger 60-62, 70, 72, 74, 76, 78; Rounds 5",
+   "reason": "An explained October 1 opening establishes the three-bidder re-engagement stage with no deadline and contains the later exits, bids and signing."
+  },
+  {
+   "id": "DA-R07",
+   "grade": "pass",
+   "rows": "Deal ledger 28, 32; Rounds 3",
+   "reason": "Both July deadlines have separate ledger rows and separate Enforced outcomes."
+  },
+  {
+   "id": "DA-R08",
+   "grade": "pass",
+   "rows": "Deal ledger 42-43; Rounds 4",
+   "reason": "The final-stage deadline is August 30 at 5 p.m. ET and its outcome is Late bids accepted, matching Insight's August 31 submission."
+  },
+  {
+   "id": "DA-R09",
+   "grade": "pass",
+   "rows": "Rounds 2-5",
+   "reason": "Under the merged map, preliminary rounds are Not final, the final-proposal stage is Announced as final and the October stage is Inferred final."
+  },
+  {
+   "id": "DA-R10",
+   "grade": "pass",
+   "rows": "Deal ledger 44-59; Rounds 4",
+   "reason": "All improvement, revision and September exclusivity events remain in the same final-proposal stage without an intervening round opening."
+  },
+  {
+   "id": "DA-R11",
+   "grade": "fail",
+   "rows": "Deal ledger 64; Rounds 5; Questions 7",
+   "reason": "Party C's October 4 reaffirmation is recorded as a new Bid and counted among the October stage's bidders."
+  },
+  {
+   "id": "DA-F01",
+   "grade": "pass",
+   "rows": "Deal ledger 2, 10, 25-27, 30-31",
+   "reason": "The early offers and July IOIs are Informal, with Heavy conditions on Party A's March offer and Unclear conditions on every July IOI."
+  },
+  {
+   "id": "DA-F03",
+   "grade": "pass",
+   "rows": "Deal ledger 40-41, 43, 49, 51",
+   "reason": "All five required final-stage offers and price revisions are Formal."
+  },
+  {
+   "id": "DA-F04",
+   "grade": "pass",
+   "rows": "Deal ledger 41, 43",
+   "reason": "Party C's August 30 offer and Insight's August 31 offer both carry Heavy conditions with the relevant contingencies explained."
+  },
+  {
+   "id": "DA-F05",
+   "grade": "pass",
+   "rows": "Deal ledger 40, 48",
+   "reason": "Party B's initial final proposal and financing revision both use the accepted Heavy conditions label."
+  },
+  {
+   "id": "DA-F06",
+   "grade": "pass",
+   "rows": "Deal ledger 47, 51",
+   "reason": "Insight's employment-condition deletion and subsequent $12.00 offer are both Formal with Heavy conditions."
+  },
+  {
+   "id": "DA-F07",
+   "grade": "pass",
+   "rows": "Deal ledger 74, 76",
+   "reason": "Both November Insight bids are Formal with Unclear conditions reflecting unfinished diligence."
+  },
+  {
+   "id": "DA-F08",
+   "grade": "partial",
+   "rows": "Deal ledger 2, 10-11, 25-27, 30-31, 40-41, 43, 47-49, 51, 64, 74, 76, 78; Deal facts 5",
+   "reason": "The sole cash-label error is Yes on Insight's November 2 bid, inferred from the signed consideration."
+  },
+  {
+   "id": "DA-F09",
+   "grade": "pass",
+   "rows": "Deal ledger 49",
+   "reason": "Party C's revised $11.25 offer is Formal with Heavy conditions and acknowledges uncommitted financing and remaining diligence."
+  },
+  {
+   "id": "DA-C01",
+   "grade": "partial",
+   "rows": "Deal ledger 17",
+   "reason": "Insight has an individual strategic NDA row, but it uses an open June window instead of the exact annex-sourced June 14 date."
+  },
+  {
+   "id": "DA-C02",
+   "grade": "pass",
+   "rows": "Deal ledger 17-19, 21-22, 25-33, 47-49, 51",
+   "reason": "IOI windows and ordering, undated NDA windows and September revision windows all satisfy the required date conventions."
+  },
+  {
+   "id": "DA-C03",
+   "grade": "partial",
+   "rows": "Deal ledger 43, 50, 54, 59, 71",
+   "reason": "Both exclusivity executions and the September lapse are correct, but the initial thirty-day request appears only in Notes."
+  },
+  {
+   "id": "DA-C04",
+   "grade": "pass",
+   "rows": "Deal ledger 57",
+   "reason": "A dedicated September 28 material-event row records Insight's pro forma closing requirements and refusal to sign without them."
+  },
+  {
+   "id": "DA-C05",
+   "grade": "pass",
+   "rows": "Deal ledger 24, 69",
+   "reason": "The workbook records both the eight-party executive presentations and October 20 information withholding from Party C with the stated reasons."
+  },
+  {
+   "id": "DA-B01",
+   "grade": "pass",
+   "rows": "Deal ledger 2, 10",
+   "reason": "Party A's January price is $10.00 in both cells and its March range is $10.30\u2013$10.75."
+  },
+  {
+   "id": "DA-B02",
+   "grade": "pass",
+   "rows": "Deal ledger 25-27, 30-31",
+   "reason": "Named IOI prices are correct and the other bidders' $8.80\u2013$10.50 range appears only in Notes on blank-priced typed cohorts."
+  },
+  {
+   "id": "DA-B03",
+   "grade": "pass",
+   "rows": "Deal ledger 40-41, 43, 49, 51",
+   "reason": "All five required final-stage point prices fill both price cells and have the correct dates or bounds."
+  },
+  {
+   "id": "DA-B04",
+   "grade": "pass",
+   "rows": "Deal ledger 74, 76, 78",
+   "reason": "Insight's November bids have the correct prices and dates in the re-engagement stage, and the signing row leaves bid fields blank."
+  },
+  {
+   "id": "DA-O01",
+   "grade": "pass",
+   "rows": "Deal ledger 78-79; Deal facts 3-7",
+   "reason": "The strategic acquirer, $11.25 cash consideration and distinct November 6 signing and November 7 announcement are correctly recorded."
+  },
+  {
+   "id": "DA-O02",
+   "grade": "pass",
+   "rows": "Deal facts 16-17",
+   "reason": "The financial and legal advisers are correctly identified as Raymond James and Faegre Baker Daniels."
+  },
+  {
+   "id": "DA-O03",
+   "grade": "pass",
+   "rows": "Deal facts 13-14",
+   "reason": "The auction screen is Met for process 1 with twenty-three correctly split parties, and whole-company bids are Yes."
+  },
+  {
+   "id": "DA-O04",
+   "grade": "pass",
+   "rows": "Deal facts 10",
+   "reason": "Initiation is bidder-led and explains both Party A's unsolicited approach and the subsequent target-run auction."
+  }
+ ]
+}

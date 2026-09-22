@@ -1,0 +1,231 @@
+{
+  "verified_at": "2026-09-22T21:50:12.638736+00:00",
+  "deals": {
+    "datalink": {
+      "default_base": "opus55-medium",
+      "versions": [
+        "working",
+        "opus55-medium"
+      ],
+      "counts": {
+        "Deal ledger": 71,
+        "Rounds": 4,
+        "Questions": 8,
+        "Deal facts": 17
+      },
+      "check_summary": {
+        "errors": 0,
+        "warnings": 21,
+        "information": 0,
+        "total_issues": 21
+      },
+      "checker_findings": 21,
+      "sha256": "f28c711cf1ffdcc4b7f35ffd160719ed712c1dc022a89ed3ab878e557ea8217b",
+      "findings": [
+        "datalink-f9"
+      ],
+      "documents": [],
+      "seconds": 2.131
+    },
+    "kraton": {
+      "default_base": "opus55-medium",
+      "versions": [
+        "working",
+        "opus55-medium"
+      ],
+      "counts": {
+        "Deal ledger": 73,
+        "Rounds": 3,
+        "Questions": 8,
+        "Deal facts": 17
+      },
+      "check_summary": {
+        "errors": 0,
+        "warnings": 20,
+        "information": 0,
+        "total_issues": 20
+      },
+      "checker_findings": 20,
+      "sha256": "20cc6986afb8b301e2a38a8d06e2c191c0cf7d3621d7dcf84121d9265b3d780c",
+      "findings": [],
+      "documents": [],
+      "seconds": 1.75
+    },
+    "mac-gray": {
+      "default_base": "opus55-medium",
+      "versions": [
+        "working",
+        "opus55-medium"
+      ],
+      "counts": {
+        "Deal ledger": 53,
+        "Rounds": 3,
+        "Questions": 9,
+        "Deal facts": 17
+      },
+      "check_summary": {
+        "errors": 1,
+        "warnings": 26,
+        "information": 0,
+        "total_issues": 27
+      },
+      "checker_findings": 27,
+      "sha256": "407615092e6dc33be22a8f80ab41d365083de0813f93b48897cbd7605a68ec0e",
+      "findings": [
+        "mac-gray-r01"
+      ],
+      "documents": [
+        "mac-gray-r01"
+      ],
+      "seconds": 1.836
+    },
+    "meredith": {
+      "default_base": "opus55-medium",
+      "versions": [
+        "working",
+        "opus55-medium"
+      ],
+      "counts": {
+        "Deal ledger": 85,
+        "Rounds": 3,
+        "Questions": 11,
+        "Deal facts": 17
+      },
+      "check_summary": {
+        "errors": 0,
+        "warnings": 16,
+        "information": 0,
+        "total_issues": 16
+      },
+      "checker_findings": 16,
+      "sha256": "fae16e4a2ba8b6c6a233b9d029f94dacbfaacdabd4771b6b62fffdbaf4609c9e",
+      "findings": [],
+      "documents": [],
+      "seconds": 3.495
+    },
+    "penford": {
+      "default_base": "opus55-medium",
+      "versions": [
+        "working",
+        "opus55-medium"
+      ],
+      "counts": {
+        "Deal ledger": 50,
+        "Rounds": 2,
+        "Questions": 7,
+        "Deal facts": 17
+      },
+      "check_summary": {
+        "errors": 0,
+        "warnings": 15,
+        "information": 0,
+        "total_issues": 15
+      },
+      "checker_findings": 15,
+      "sha256": "14f6c9c8e7c697b477e98f8f163c9180a236d1210e226cc0fdaeac98d50380d5",
+      "findings": [],
+      "documents": [],
+      "seconds": 1.665
+    },
+    "petsmart": {
+      "default_base": "opus55-medium",
+      "versions": [
+        "working",
+        "opus55-medium"
+      ],
+      "counts": {
+        "Deal ledger": 47,
+        "Rounds": 2,
+        "Questions": 9,
+        "Deal facts": 17
+      },
+      "check_summary": {
+        "errors": 1,
+        "warnings": 22,
+        "information": 0,
+        "total_issues": 23
+      },
+      "checker_findings": 23,
+      "sha256": "04c7d952864f1a122bb72bf489712cc0434465cc1b3957d8a686f15e174ec20c",
+      "findings": [],
+      "documents": [],
+      "seconds": 1.613
+    },
+    "providence-worcester": {
+      "default_base": "opus55-medium",
+      "versions": [
+        "working",
+        "opus55-medium"
+      ],
+      "counts": {
+        "Deal ledger": 63,
+        "Rounds": 3,
+        "Questions": 8,
+        "Deal facts": 17
+      },
+      "check_summary": {
+        "errors": 0,
+        "warnings": 12,
+        "information": 0,
+        "total_issues": 12
+      },
+      "checker_findings": 12,
+      "sha256": "394a8cea099340df499697247c68430fef2010177ce91aae3930608d95cc3d00",
+      "findings": [],
+      "documents": [],
+      "seconds": 1.639
+    },
+    "stec": {
+      "default_base": "opus55-medium",
+      "versions": [
+        "working",
+        "opus55-medium"
+      ],
+      "counts": {
+        "Deal ledger": 61,
+        "Rounds": 3,
+        "Questions": 9,
+        "Deal facts": 17
+      },
+      "check_summary": {
+        "errors": 0,
+        "warnings": 21,
+        "information": 0,
+        "total_issues": 21
+      },
+      "checker_findings": 21,
+      "sha256": "467f739dea7b540eec2d3fb664ec1a4bb6479394820fc66b750e6ec3821fbc1d",
+      "findings": [],
+      "documents": [],
+      "seconds": 2.096
+    },
+    "synacor": {
+      "default_base": "opus55-medium",
+      "versions": [
+        "working",
+        "opus55-medium"
+      ],
+      "counts": {
+        "Deal ledger": 77,
+        "Rounds": 6,
+        "Questions": 9,
+        "Deal facts": 17
+      },
+      "check_summary": {
+        "errors": 1,
+        "warnings": 8,
+        "information": 0,
+        "total_issues": 9
+      },
+      "checker_findings": 9,
+      "sha256": "4d2610753b2b6a06d6a4a4408306cc094999ddb8be1c5904e5f9eab3b2e025af",
+      "findings": [],
+      "documents": [],
+      "seconds": 0.657
+    }
+  },
+  "production_state_before": {},
+  "production_state_after": {},
+  "production_state_unchanged": true,
+  "seconds": 16.888
+}

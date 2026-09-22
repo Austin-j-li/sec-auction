@@ -33,10 +33,6 @@ PAGE_PATH_RE = re.compile(r"/deal/[^/]*/?")
 MAX_JSON = 1024 * 1024
 
 
-def reader_for(email: str | None) -> str:
-    return READER_EMAILS.get((email or "").strip().lower(), "local")
-
-
 class Handler(BaseHTTPRequestHandler):
     cockpit: data.Cockpit = data.default()
     server_version = "LedgerCockpit/2"

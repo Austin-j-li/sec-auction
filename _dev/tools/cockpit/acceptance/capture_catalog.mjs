@@ -42,9 +42,9 @@ async function run() {
   for (const slug of ['datalink', 'mac-gray']) {
     details[slug] = await request(base, `/api/deal/${slug}`);
     assert.equal(details[slug].workspace.editable, true); // version capability; read-only session still prevents edits
-    assert.ok(details[slug].versions.some(version => version.id === 'v1132-raw'));
-    assert.ok(details[slug].workspace.base_version.endsWith('verified'));
-    const immutable = await request(base, `/api/deal/${slug}?version=v1132-raw`);
+    assert.deepEqual(details[slug].versions.map(version => version.id), ['working', 'opus55-medium']);
+    assert.equal(details[slug].workspace.base_version, 'opus55-medium');
+    const immutable = await request(base, `/api/deal/${slug}?version=opus55-medium`);
     assert.equal(immutable.workspace.editable, false);
     files.push(`raw_filing/${details[slug].filing.file}`);
     before[`raw_filing/${details[slug].filing.file}`] = await digest(resolve(REPO, `raw_filing/${details[slug].filing.file}`));
@@ -68,14 +68,14 @@ async function run() {
     await page.goto(`${base}/deal/${slug}#row-${late.id}`, { waitUntil: 'networkidle', timeout: 90000 });
     await page.locator('.event-item.selected').waitFor({ timeout: 60000 });
     assert.equal(await page.locator('.event-item').count(), deal.ledger.rows.length);
-    assert.ok((await page.locator('.deal-subline').innerText()).includes('Verified correction pass'));
+    assert.ok((await page.locator('.deal-subline').innerText()).includes('Opus 5.5 medium extraction'));
     assert.equal(await page.getByRole('button', { name: 'Save changes' }).isDisabled(), true);
     await page.screenshot({ path: resolve(EVIDENCE, `catalog-${slug}-working.png`), fullPage: false });
     await page.getByRole('tab', { name: /^Review/ }).click();
     await page.getByRole('heading', { name: 'Review findings' }).waitFor();
     assert.equal(await page.locator('.finding').count(), deal.findings.length);
     await page.screenshot({ path: resolve(EVIDENCE, `catalog-${slug}-review.png`), fullPage: false });
-    await page.getByRole('combobox', { name: 'Version' }).selectOption('v1132-raw');
+    await page.getByRole('combobox', { name: 'Version' }).selectOption('opus55-medium');
     await page.getByText('Source version').waitFor();
     assert.equal(await page.getByRole('button', { name: 'Save changes' }).isDisabled(), true);
     await page.screenshot({ path: resolve(EVIDENCE, `catalog-${slug}-raw.png`), fullPage: false });

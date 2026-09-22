@@ -1,0 +1,89 @@
+{
+  "checker": "lean-mechanical",
+  "checker_revision": "Adds two cross-column checks: an exact-day When must equal Date from, Date to and Sort date (E8), and an inferred exit carries Exit reason 'Not stated' (E14). Checks instruction v1.13.1.",
+  "checker_version": "1.5",
+  "filing": "/home/uctpiaj/work/Projects/sec-extraction/raw_filing/synacor_2021-03-03_SCTO-T.htm",
+  "issues": [
+    {
+      "basis": "mechanical",
+      "code": "exit.inferred_reason",
+      "column": "Exit reason",
+      "message": "An inferred exit carries Exit reason 'Not stated' (E14); found 'Value below earlier offer'.",
+      "row": 9,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "exit.inferred_reason",
+      "column": "Exit reason",
+      "message": "An inferred exit carries Exit reason 'Not stated' (E14); found 'Terms or process'.",
+      "row": 47,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "exit.inferred_reason",
+      "column": "Exit reason",
+      "message": "An inferred exit carries Exit reason 'Not stated' (E14); found 'Terms or process'.",
+      "row": 48,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "exit.inferred_reason",
+      "column": "Exit reason",
+      "message": "An inferred exit carries Exit reason 'Not stated' (E14); found 'Terms or process'.",
+      "row": 49,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.length",
+      "column": null,
+      "message": "Question entry has about 176 words across its review fields; the instruction asks for about 60.",
+      "row": 2,
+      "severity": "warning",
+      "sheet": "Questions"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.length",
+      "column": null,
+      "message": "Question entry has about 99 words across its review fields; the instruction asks for about 60.",
+      "row": 3,
+      "severity": "warning",
+      "sheet": "Questions"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.length",
+      "column": null,
+      "message": "Question entry has about 94 words across its review fields; the instruction asks for about 60.",
+      "row": 4,
+      "severity": "warning",
+      "sheet": "Questions"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.deadline_outcomes",
+      "column": null,
+      "message": "The ledger has a reached Deadline, but no Question visibly mentions deadline outcomes.",
+      "row": null,
+      "severity": "warning",
+      "sheet": "Questions"
+    }
+  ],
+  "scope_note": "Mechanical checks only. Quote occurrence proves source occurrence, not semantic support. No bidder-population arithmetic or substantive extraction grading is performed.",
+  "status": "pass_with_warnings",
+  "summary": {
+    "errors": 0,
+    "information": 0,
+    "total_issues": 8,
+    "warnings": 8
+  },
+  "workbook": "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/2026-09-22-opus55-sol6-sweep/synacor-gpt-6-sol-xhigh-r1/extraction/synacor.xlsx"
+}

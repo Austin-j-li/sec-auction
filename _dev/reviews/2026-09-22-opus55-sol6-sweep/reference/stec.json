@@ -1,0 +1,1124 @@
+{
+  "deal": "stec",
+  "filing": "raw_filing/stec_2013-08-08_DEFM14A.htm",
+  "instruction": "SEC_Deal_Ledger_Extraction_Instruction.md v1.13.2 (sha256 513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304)",
+  "weights": {
+    "participation": 30,
+    "rounds": 25,
+    "formality_conditions": 20,
+    "chronology": 10,
+    "bids_prices": 10,
+    "other": 5
+  },
+  "tests": [
+    {
+      "id": "ST-P01",
+      "category": "participation",
+      "weight": 4,
+      "item": "Six NDA entrants, their execution dates, one entry each",
+      "check": "Deal ledger: exactly one entry row for each of the six parties that executed a confidentiality agreement in the sale. Each has Type Strategic and Count 1, dated as follows: Company E 04/04/2013; Company D 04/10/2013; Company F 04/11/2013; Company G 04/17/2013; WDC 04/17/2013, the addendum to its existing NDA, either as an NDA signed row or as a reuse note on WDC's first row in the process dated 04/17; Company H 05/08/2013, not 05/02/2013, the day BofA sent it the draft. WDC's entry is not dated 01/29/2009, the original agreement defined in Annex A (p. A-3). None of the following is a second WDC entry: the 2009 agreement, the 2011 and summer-2012 lunches, WDC's 05/03 bid, or its data-room access. No other party has an NDA signed row. Company A's and Company D's draft NDAs are not executions, D's mid-March approach is not an entry, and the 06/18 clean team agreement is not a new NDA. No cohort NDA row (e.g. '6 NDA signers') duplicates the six individual rows.",
+      "expected": "6 entrants, one entry each: E 04/04, D 04/10, F 04/11, G 04/17, WDC 04/17 (addendum), H 05/08/2013",
+      "partial_credit": "Half credit in any of these cases: 5 of the 6 are right; all 6 are present but one date is wrong (typically H at 05/02); or exactly one entry is duplicated (e.g. a separate or earlier WDC NDA row for the 2009 agreement, or a cohort NDA row on top of the individual rows).",
+      "accepted_alternatives": [
+        "WDC's entry recorded as an expressly reused agreement noted on its 04/17/2013 first row instead of the NDA signed label"
+      ],
+      "source_pages": [
+        "27",
+        "28",
+        "29",
+        "A-3"
+      ],
+      "source_quote": "In total sTec executed six non-disclosure agreements related to the exploration of a potential sale of the company.",
+      "provenance": [
+        "filing pp. 27-29; Annex A p. A-3 (Mutual Non-Disclosure Agreement dated January 29, 2009 with Special Addendum dated April 17, 2013)",
+        "v1.13.2 draft #17, #19, #20, #22, #23, #36; v1.13 draft #16-#18, #20, #21, #32",
+        "Alex rows 7147-7151, 7159; Alex voice notes V0121",
+        "git acc9986 stec.md 'Exactly six NDA parties'; 'WDC April 17 special addendum ... no new 2009 sale-process entry or duplicate count'",
+        "absorbs dropped draft ST-P02"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Guard. It catches H dated to the day the NDA was sent, and WDC's addendum dropped, dated to the annexed 2009 agreement, or counted twice."
+    },
+    {
+      "id": "ST-P03",
+      "category": "participation",
+      "weight": 4,
+      "item": "BofA outreach population reconciles to 18 without double counting",
+      "check": "Deal ledger first-contact rows (individual and cohort) for BofA's outreach reconcile to the filing's 18 prospective acquirers: 17 technology companies plus 1 financial sponsor. (1) The sponsor has its own row or is split out as Financial. (2) Each named member of the 18 is counted exactly once for its first contact in the process, on its own row or inside the technology cohort, never both. Company D counts through its mid-March approach row and Company H through its 05/01 approach row. Company A counts through its 11/14/2012 row under one process; under two processes, its 2013 outreach contact or decline counts, individually or inside the cohort. WDC counts through its own outreach Contact row or inside the cohort. Companies E, F and G, the outreach NDA signers, normally sit inside the cohort, though own first-contact rows are allowed. (3) The technology cohort Count equals 17 minus the technology companies given their own first-contact rows. That is 14 with WDC inside the cohort, 13 with WDC individual, and fewer if G, E or F also have rows. Alternatively, Count is blank and the Note gives a bound (e.g. 'Count: 12-14'). Subtracting Company B or Company C, whose membership in the 18 is not established, requires a bound rather than an exact Count. A Note on uncertain membership is welcome but not required for credit. FAIL: first-contact Counts attributable to the outreach exceed 18 by two or more, or no cohort row or Note accounts for the remainder of the 18.",
+      "expected": "18 = sponsor 1 + technology members with own first-contact rows (D, H and, under one process, A; WDC, G, E, F optional) + technology cohort (17 minus those: typically 14 or 13), or a bound",
+      "partial_credit": "Half credit if exactly one member is counted both individually and inside the cohort (rows sum to 19), or if an exact Count rests on subtracting Company B or Company C.",
+      "accepted_alternatives": [
+        "Cohort Count 14 with WDC inside the cohort (the v1.13 draft uses a 12-14 bound with WDC inside)",
+        "Cohort Count 13 with WDC's own Contact row (v1.13.2 draft)",
+        "Count 12 or fewer where G, E or F also have individual first-contact rows",
+        "Count blank with a bounded 'Count:' range in the Note",
+        "Under two processes, Company A's 2013 contact or decline as its process-2 first contact, individually or inside the cohort (cohort Count one higher)"
+      ],
+      "source_pages": [
+        "27",
+        "28",
+        "36"
+      ],
+      "source_quote": "In total, BofA Merrill Lynch had discussions with 18 prospective acquirers, 17 of which were technology companies and one of which was a financial sponsor.",
+      "provenance": [
+        "filing p. 27; p. 28 (BofA 'held additional discussions with' WDC, D and G); p. 36 ('17 other potential buyers', consistent with 18 in total)",
+        "instruction E3 (remainder rows; established membership), E7 (no duplicate Contact row), Part B (exact subtraction)",
+        "Alex voice notes V0121 (WDC and Company H contacts recorded twice in earlier AI output), V0148",
+        "v1.13.2 draft #15, #16, #18 (13 exact, WDC individual); v1.13 draft #14, #15 (12-14, WDC inside cohort)",
+        "all three verifiers (fix)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "The drafts used different cohort arithmetic, and Alex flagged duplicated WDC/H contacts. The test scores reconciliation and no double counting, not one number."
+    },
+    {
+      "id": "ST-P04",
+      "category": "participation",
+      "weight": 2,
+      "item": "Company F exit label",
+      "check": "Deal ledger: Company F's exit row is Event Withdrew, dated 04/24/2013 (Date from = Date to = 04/24/2013), round 1, Exit reason Other stated reason (interested only in limited, select assets), Inferred blank. It is not Dropped by target, because the filing reports no target decision on F.",
+      "expected": "Withdrew 04/24/2013; Other stated reason",
+      "partial_credit": "Half credit for Withdrew with Exit reason Not stated. None for Dropped by target.",
+      "accepted_alternatives": [
+        "Exit reason Terms or process (scope preference)"
+      ],
+      "source_pages": [
+        "28"
+      ],
+      "source_quote": "on April 24, Company F declined the invitation to schedule a management presentation, indicating it was only interested in purchasing limited, select assets of sTec",
+      "provenance": [
+        "filing p. 28",
+        "Alex row 7154 (DropTarget, red, with Company E's wording)",
+        "git acc9986 stec.md coverage note: 'current Withdrew is preferable'",
+        "v1.13.2 draft #27; v1.13 draft #24"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Alex's hand-coding says DropTarget by copying E's target-decision language. A careful reader separates F's own refusal from E's exclusion."
+    },
+    {
+      "id": "ST-P05",
+      "category": "participation",
+      "weight": 2,
+      "item": "Company E exit label",
+      "check": "Deal ledger: Company E's exit row is Dropped by target, round 1, Exit reason Other stated reason. The special committee decided not to continue discussions after E said it wanted only limited, select assets. Grade the label and reason only; the date window is graded in ST-C01.",
+      "expected": "Dropped by target, shortly after 04/24/2013; Other stated reason",
+      "partial_credit": "Half credit for Withdrew with the asset-only reason, which misattributes the decision.",
+      "accepted_alternatives": [
+        "Exit reason Terms or process"
+      ],
+      "source_pages": [
+        "28"
+      ],
+      "source_quote": "Shortly thereafter, Company E indicated it was also only interested in purchasing limited, select assets of sTec, and as a result the special committee decided not to continue discussions with Company E.",
+      "provenance": [
+        "filing p. 28",
+        "v1.13.2 draft #28 and Q4; v1.13 draft #25",
+        "Alex row 7155 (DropTarget)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Paired with ST-P04. The two asset-only exits differ only in whose decision ended them."
+    },
+    {
+      "id": "ST-P06",
+      "category": "participation",
+      "weight": 1,
+      "item": "Company G exit",
+      "check": "Deal ledger: Company G has a Withdrew row dated 05/03/2013 (the due date of its 04/26 process letter), round 1, Exit reason Not stated, and no Bid row.",
+      "expected": "Withdrew 05/03/2013; Not stated",
+      "partial_credit": "Half credit for Did not submit dated by 05/03/2013, because the reported withdrawal takes precedence.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "29"
+      ],
+      "source_quote": "Also on May 3, 2013, Company G indicated it would not continue in the process.",
+      "provenance": [
+        "filing p. 29",
+        "Alex row 7157 (Drop 05/03)",
+        "v1.13.2 draft #34; v1.13 draft #30"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Guard."
+    },
+    {
+      "id": "ST-P07",
+      "category": "participation",
+      "weight": 5,
+      "item": "Company H closure (adjudicated trap)",
+      "check": "Deal ledger and Rounds: Company H (entered by its 05/08 NDA; bid 05/15) has exactly one exit and is not admitted to the round opened by the 05/16 final-round letters. PASS under any one of three options. (a) Preferred: Dropped by target, Inferred = Y, When 'by 05/16/2013', Round 1, Exit reason Not stated, tied in the Note to the final-round letters going only to WDC and Company D. Date from may be blank, 05/15 or 05/16. Date to is 05/16/2013, or the end of the workbook's own window for the 05/16 letters, no later than 05/28. (b) Dropped by target at BofA's undated message that H's range 'was not sufficient to move them forward', Round 1. Its window lies inside 05/13-05/26 and is not a single exact day unless Inferred = Y; the precision is graded in ST-C01. Exit reason is Not stated, Other stated reason, Lower offer than rivals, or Would not improve earlier offer. (c) Not selected at signing by 06/23/2013, Inferred = Y, with H shown in Rounds as 'still being received, not admitted' after 05/16. Round is not graded under (c). Under every option, H's 05/23 statement is recorded (row or Note) as continued interest without the ability to raise its range, not as a target act or a withdrawal. FAIL: a reported exact-05/23 target drop, meaning Dropped by target with Date from = Date to = 05/23/2013 and Inferred blank. A 05/13-05/26 or 05/15-05/23 window whose Sort date is 05/23 counts as option (b). Also FAIL: Withdrew (H 'remained interested'); H admitted to the 05/16 round; or two exits for H with no Re-entered between them.",
+      "expected": "Inferred Dropped by target by 05/16/2013, Exit reason Not stated (options b and c accepted)",
+      "partial_credit": "Half credit in any of these cases: Dropped by target at 05/16 with Inferred blank (E14 treats complete-advancing-set closure as an inference); an exit dated exactly 05/23 but marked Inferred = Y, with the Note naming the 05/16 advancement decision; option (a) with an Exit reason other than Not stated (E14 fixes Not stated on inferred closures); or an otherwise acceptable option (a) or (b) exit carrying Round 2, a round H never entered.",
+      "accepted_alternatives": [
+        "(b) Dropped by target at BofA's 'not sufficient to move them forward' message, window inside 05/13-05/26, with a stated or Not stated reason as listed",
+        "(c) Not selected at signing by 06/23/2013, Inferred = Y, H 'still being received, not admitted' (opportunity-based reading, per adjudication)"
+      ],
+      "source_pages": [
+        "30",
+        "34"
+      ],
+      "source_quote": "BofA Merrill Lynch sent final round process letters and a draft merger agreement to WDC and Company D, requesting a response by May 28, 2013.",
+      "provenance": [
+        "git acc9986 adjudication.md section 3 (sTec Company H)",
+        "git acc9986 stec.md S1",
+        "_dev/RESEARCH_QUESTIONS.md Q7 (disposition not recorded)",
+        "instruction E14 (inferred closure: Inferred = Y, Exit reason Not stated; 'Would not improve earlier offer' for a bidder asked to improve that declines), E8 ('by [day]': Date to only)",
+        "v1.13.2 draft #52 and v1.13 draft #42 (both exact 05/23 Dropped by target, not inferred; v1.13 tags round 2)",
+        "Alex row 7163 (Drop 05/23)",
+        "filing p. 30 (H told range insufficient; 05/23 statement), p. 34 (H repeatedly restated its range)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Both unreviewed Opus drafts and Alex's row make the exact-05/23 target-exclusion error that the adjudication rejected. Only careful reading of the advancement closure passes."
+    },
+    {
+      "id": "ST-P08",
+      "category": "participation",
+      "weight": 3,
+      "item": "WDC's 05/31 pull-back and 06/10 return",
+      "check": "Deal ledger: WDC's 05/31/2013 statement is recorded and dated 05/31: it was reevaluating its interest, was 'not prepared to move forward ... at that time', and discontinued due diligence. Preferred treatment: Withdrew on 05/31/2013, with the Note keeping the 'at that time' qualifier and Exit reason Other stated reason, Not stated, or Terms or process. It is followed by Re-entered dated 06/10/2013 (or a window of 06/01-06/10 ending by the bid), placed before WDC's 06/10 Bid row. WDC then signs with no open exit. Accepted alternative (open RQ4): WDC treated as continuously live, with the 05/31 statement as a non-exit row. A Question on the choice is expected but not graded here. FAIL: Withdrew with no later Re-entered, so the winner is closed before it signs; or the 05/31 statement omitted.",
+      "expected": "Withdrew 05/31/2013 ('at that time'); Re-entered 06/10/2013 before the 06/10 bid (or continuous participation)",
+      "partial_credit": "Half credit if Withdrew and Re-entered are both present but either the Re-entered row comes after the 06/10 Bid row (by # or Sort date), or the Exit reason is a Value ... comparison label.",
+      "accepted_alternatives": [
+        "WDC continuously live, with the 05/31 statement as an Other material event (RESEARCH_QUESTIONS provisional item 4)",
+        "Exit reason Other stated reason, Not stated or Terms or process on the 05/31 Withdrew"
+      ],
+      "source_pages": [
+        "31",
+        "32"
+      ],
+      "source_quote": "WDC was reevaluating its interest in acquiring sTec, and that WDC was not prepared to move forward with a transaction with sTec at that time.",
+      "provenance": [
+        "filing pp. 31-32",
+        "instruction E14 ('for now' withdrawal; Re-entered before the resumed participation)",
+        "git acc9986 stec.md price audit: withdrawal and re-entry comply with the 'for now' rule",
+        "_dev/RESEARCH_QUESTIONS.md provisional item 4",
+        "v1.13.2 draft #62, #66; v1.13 draft #52, #56",
+        "Alex rows 7164-7170 omit the temporary withdrawal"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Tests E14's 'for now' rule and the requirement to reopen before the resumed bid. Careless ledgers either skip the pull-back or never reopen the winner."
+    },
+    {
+      "id": "ST-P09",
+      "category": "participation",
+      "weight": 3,
+      "item": "Company D continuity, non-submissions and final exit",
+      "check": "Deal ledger: Company D's participation from its 04/10 NDA ends with Withdrew on 06/05/2013 ('disengaging from the process'), Exit reason Other stated reason. Its 05/28 and 05/30 requests for more time are recorded, as rows or in the Note of the 05/28 or 05/30 Deadline or board-decision rows. Either they are non-exit events, or (accepted) each is a Did not submit exit followed by a Re-entered row before the 06/05 Withdrew (e.g. at the 05/29 request or the 05/31 invitation to continue). D's 05/10 exclusivity request is recorded as requested only, by an Exclusivity changed row or a Note on the 05/10 bid. No exclusivity is recorded as executed with anyone. FAIL: a reported (Inferred blank) Dropped by target of D on 05/30, or any 05/30 drop of D without a later Re-entered; a Did not submit with no Re-entered followed by another exit (double closure); D left open at signing; or an executed exclusivity row.",
+      "expected": "Single live period ending Withdrew 06/05/2013, Other stated reason (Did not submit plus Re-entered pairs accepted)",
+      "partial_credit": "Half credit for Dropped by target, Inferred = Y, by 05/30 (the WDC selection), followed by Re-entered at the 05/31 invitation and Withdrew on 06/05. Half credit if D is closed at 05/30 by Did not submit and the 06/05 disengagement is recorded only as a non-exit row. Half credit if the 06/05 Withdrew carries Exit reason Not stated.",
+      "accepted_alternatives": [
+        "Did not submit at 05/28 and/or 05/30, each followed by Re-entered before the 06/05 Withdrew",
+        "Exit reason Terms or process on 06/05",
+        "D's time requests carried in Notes rather than own rows"
+      ],
+      "source_pages": [
+        "30",
+        "31",
+        "32"
+      ],
+      "source_quote": "Company D would not be in a position to actively conduct due diligence for more than two weeks and was disengaging from the process.",
+      "provenance": [
+        "filing pp. 30-32",
+        "instruction E6 (winner selection ends a final round), E14 ('a request for exclusivity drops no one'; Did not submit 'not necessarily permanent')",
+        "git acc9986 stec.md S5",
+        "v1.13.2 draft Q8, #55, #59, #65; v1.13 draft Q6, #45, #49, #55",
+        "Alex row 7168 (Drop 06/05)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "The board's 05/30 preference for WDC, with no executed exclusivity, tempts a false target drop of D. The re-invitation on 05/31 tests continuity accounting."
+    },
+    {
+      "id": "ST-P10",
+      "category": "participation",
+      "weight": 2,
+      "item": "No exits for non-entrants; no false bidding groups",
+      "check": "Deal ledger: no exit-label row (Dropped by target, Withdrew, Did not submit, Not selected at signing) for Company A, Company B, Company C, the financial sponsor, or the not-interested and asset-only outreach cohorts. None of them signed an NDA, bid, or was admitted to a stage, so their declines and ends of discussion appear as Other material event rows or Notes. No Bidding group changed row exists: special-committee changes, Mr. Bahri's appointment, the Moshayedi voting and ancillary agreements, and Balch Hill/Potomac's joint holding are not bidding groups.",
+      "expected": "Zero exit rows for A, B, C, sponsor and never-NDA cohorts; zero Bidding group changed rows",
+      "partial_credit": "Half credit for exactly one violation.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "26",
+        "28"
+      ],
+      "source_quote": "Company C indicated that it was only interested in purchasing limited, select assets of the company, and as a result, the special committee decided not to continue discussions with Company C.",
+      "provenance": [
+        "instruction E14 ('Only participants that entered get exits'), E4",
+        "Alex voice notes V0120 (board addition recorded as consortium), V0151 (dropouts for parties never engaged)",
+        "v1.13.2 draft #10, #21, #41-#44; v1.13 draft #8, #19"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Company C's 04/15 end of discussions reads like Company E's exclusion. Earlier AI output mislabelled a board change as a consortium."
+    },
+    {
+      "id": "ST-P11",
+      "category": "participation",
+      "weight": 2,
+      "item": "Post-IOI selection: D kept in on 05/15 subject to a price increase; H told its range is insufficient",
+      "check": "Deal ledger: a row dated 05/15/2013 (Other material event or another target-decision row) records BofA's call, made at the chairman's direction for the special committee. BofA told Company D it would be allowed to continue in the process, on the understanding that it would need to meaningfully increase its $5.75 proposal after more information and management access. This row is not an exit, a Re-entered row, a Bid or an executed exclusivity, and D stays live into the 05/16 round. BofA's undated message is also recorded as a target decision, either as its own row or as H's exit row under ST-P07 option (b). The message said Company H's range 'was not sufficient to move them forward' and invited a revised indication for the special committee to consider. It is not a Bid, a Re-entered row or an admission to the 05/16 round. The H message's date window is graded in ST-C01 and H's exit in ST-P07, not here.",
+      "expected": "05/15/2013 target decision: D may continue if it meaningfully increases its $5.75; H's non-advancement message (with invitation to revise) recorded as a target decision",
+      "partial_credit": "Half credit if one of the two decisions appears only inside another row's Note or is missing.",
+      "accepted_alternatives": [
+        "D's continuation as an Other material event led 'Price requirement' or 'Admission' (v1.13.2 draft #47; v1.13 draft #38)",
+        "H message recorded as H's reported Dropped by target (ST-P07 option b)"
+      ],
+      "source_pages": [
+        "29",
+        "30"
+      ],
+      "source_quote": "Company D would be allowed to continue in the process with the understanding that Company D would need to meaningfully increase its proposal after being provided additional information and access to the management team.",
+      "provenance": [
+        "filing p. 29 (05/15 D call), p. 30 (H 'not sufficient to move them forward'; revised indication would be considered)",
+        "instruction D2 Other material event ('a target decision on admission, a price requirement'), E2 row test",
+        "v1.13.2 draft #47, #49; v1.13 draft #38, #41",
+        "coverage verifier (added)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "The target keeps D, the late bidder at $5.75, while telling H, whose range tops out at the same $5.75, that it is insufficient. This is selection evidence the model uses. Low-effort runs fold both decisions into bid Notes."
+    },
+    {
+      "id": "ST-P12",
+      "category": "participation",
+      "weight": 2,
+      "item": "Outreach outcome split (3 IOIs, 6 asset-only, 9 not interested) and cohort types",
+      "check": "Deal ledger, as rows or in the Notes of the outreach rows, records the filing's outcome split of BofA's 18 prospective acquirers: three whole-company written indications (WDC, Company H, Company D), six strategic parties interested only in limited, select assets, and nine not interested, including the financial sponsor and Company A. The sponsor and Company A appear in the not-interested group, not in the asset-only group and not with Bid rows. Types: a cohort made up only of technology companies, or of the asset-only parties, is Strategic, and the sponsor is Financial. An unsplit cohort containing the sponsor may be Unknown (E3). Counts: an exact Count on a decline cohort must not rest on subtracting Company B, Company C or Company G, whose placement in the split is not established. Such a remainder is blank, with a bound in the Note. The following are accepted: the not-interested remainder 7 (9 - sponsor - Company A); the asset-only remainder 4 (6 - Company E - Company F, whose asset-only statements the filing reports) or a bound such as 'Count: 3-6' or '4-6'; and the stated totals on unsplit rows. Whether decline rows carry exit labels is graded in ST-P10, not here.",
+      "expected": "18 = 3 IOIs (WDC, H, D) + 6 asset-only + 9 not interested (incl. sponsor and Company A); technology cohorts Strategic, sponsor Financial; no exact Count resting on B, C or G",
+      "partial_credit": "Half credit if the split is recorded but one element is wrong: the sponsor or Company A outside the nine; a technology-only or asset-only cohort typed Unknown; or an exact Count that subtracts B, C or G.",
+      "accepted_alternatives": [
+        "Split recorded only in the Note of the outreach contact row(s) (v1.13 draft #15)",
+        "Separate decline rows for the sponsor, Company A, the not-interested remainder (7) and the asset-only remainder (Count blank, 4-6) (v1.13.2 draft #41-#44)",
+        "Asset-only remainder Count 4 exact (6 - E - F)"
+      ],
+      "source_pages": [
+        "27",
+        "36"
+      ],
+      "source_quote": "six potential strategic acquirers expressed an interest in purchasing limited, select assets of sTec, and nine prospective acquirers, including the financial sponsor and Company A, indicated they were not interested in a potential transaction.",
+      "provenance": [
+        "filing p. 27; p. 28 (E and F asset-only statements); p. 36 ('17 other potential buyers')",
+        "instruction E3 (split by type where the filing gives the split; exact counts only from exact arithmetic), Part B, Part F check 2",
+        "Alex voice notes V0148 ('of nine, one financial and eight strategic')",
+        "v1.13.2 draft #41-#44 and Q2; v1.13 draft #14-#15 and Q2",
+        "coverage verifier (added)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "This is the second stated population total for the same 18, and Part F requires every stated total to reconcile. Careless runs omit it, type the technology cohorts Unknown, or give a remainder an exact count that assumes unestablished members."
+    },
+    {
+      "id": "ST-R01",
+      "category": "rounds",
+      "weight": 3,
+      "item": "Process map: one process, or two processes split at 02/13/2013",
+      "check": "Deal ledger and Deal facts are consistent with one of two maps. (a) One process: every row is Process 1, Deal facts Number of processes = 1, and there are no Process terminated or Process restarted rows. (b) Two processes split at the Nov 2012-Feb 2013 gap. Process 1 holds the late-2012 attempt: the mid-November 2012 board authorization, Company A's 11/14/2012 approach, and the activist rows. Process 2 begins with a Process restarted row, Inferred = Y, dated 02/13/2013 (special committee formation or Company B's approach), which precedes every 2013 acquirer event. There is no Process terminated row. Deal facts Number of processes = 2, and Auction screen is given per process. FAIL: any 2013 acquirer event left in process 1, meaning Company B's 02/13 approach, Company C's 03/13 interest, or Company D's mid-March approach. That covers a split at 03/26/2013 or later, including 05/31/2013, when Company D was expressly carried forward; such splits fail E5(a) and (b). Also FAIL: any Process terminated row (the filing never reports that the attempt ended), or ledger and Deal facts that are inconsistent.",
+      "expected": "Either one process, or two with an inferred Process restarted on 02/13/2013 preceding all 2013 acquirer events",
+      "partial_credit": "Half credit for a split at the Nov 2012-Feb 2013 gap (every 2013 row in process 2) whose Process restarted row is not marked Inferred = Y, or is dated on a different day that still precedes every process-2 row.",
+      "accepted_alternatives": [
+        "One process (both Opus drafts)",
+        "Two processes split at 02/13/2013 (Alex voice notes V0118, V0132)"
+      ],
+      "source_pages": [
+        "24",
+        "25",
+        "27"
+      ],
+      "source_quote": "Although sTec did not engage a financial advisor at that time, our board of directors made a determination to continue to review sTec’s strategic alternatives.",
+      "provenance": [
+        "instruction E5 (all three tests; Process restarted at the first fresh-start event, Inferred = Y where the attempt lapsed; Process terminated only where reported)",
+        "_dev/RESEARCH_QUESTIONS.md provisional item 1",
+        "git acc9986 stec.md S3",
+        "Alex voice notes V0118, V0132",
+        "v1.13.2 draft Q1; v1.13 draft Q1",
+        "conformance verifier (03/26 split fails E5(a)/(b))"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Disputed convention with both readings accepted. It separates a consistent map from an arbitrary split or an invented termination."
+    },
+    {
+      "id": "ST-R02",
+      "category": "rounds",
+      "weight": 1,
+      "item": "Map Question lists the Nov 2012-Feb 2013 gap and the E5 tests",
+      "check": "Questions sheet: the process-and-round-map Question does three things. (i) It lists the interval with no reported acquirer contact, running from 11/14/2012 (Company A's approach) to 02/13/2013 (Company B's approach and special committee formation). 'After 11/14/2012' is also acceptable as the start, since the follow-up and cancellation are undated. (ii) It states the result of each of the three E5 tests. (iii) It names at least one alternative process or round boundary, with the rows it would move: e.g. two processes split at 02/13/2013, or a round boundary at 03/26 vs 04/01, 05/29, 05/31 or 06/11.",
+      "expected": "Gap 11/14/2012 (or after, undated) to 02/13/2013 listed; E5 (a), (b), (c) results stated; an alternative boundary named",
+      "partial_credit": "Half credit if the map Question exists but omits the gap dates, the E5 results, or any alternative boundary.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "24",
+        "25"
+      ],
+      "source_quote": "On November 14, 2012, an investment bank representing Company A, a participant in the storage industry, contacted our management to request a preliminary meeting between sTec and Company A.",
+      "provenance": [
+        "instruction Part F (map Question requirements), E5(b) (undated endpoint: give the range)",
+        "filing p. 24 (Company A), p. 25 (Company B, special committee)",
+        "v1.13.2 draft Q1; v1.13 draft Q1"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Required content that careless runs omit. The undated cancellation is what makes E5(b) uncertain."
+    },
+    {
+      "id": "ST-R03",
+      "category": "rounds",
+      "weight": 3,
+      "item": "Round 1: outreach stage and its bids",
+      "check": "Deal ledger and Rounds: the Round opened row for round 1 is dated either 03/26/2013 (the board decision, executed by the 04/01 outreach) or 04/01/2013 (BofA's first outreach). The Rounds line for round 1 has Finality Not final, Due dates 05/03/2013, and Bids received naming WDC, D and H. 'Who was in' names either the six NDA entrants, as admitted or as entering or leaving during the round, or the process-letter recipients (WDC, D, G) with E and F noted as out before the letters. Company H may be listed as a later entrant with no due date, or as 'still being received, not admitted'. D's 04/23 and 05/10 bids, WDC's 05/03 bid and H's 05/15 bid carry Round 1. The 04/23 and 04/26 process letters are events inside round 1, not a separate round. The Company A, B and C approaches and D's mid-March approach are round 0. Every round from 1 up has exactly one Round opened row and one Rounds line.",
+      "expected": "Round 1 opened 03/26 or 04/01/2013; Not final; due 05/03; entrants or letter recipients as 'Who was in'; bids from WDC, D, H",
+      "partial_credit": "Half credit in any of these cases: a separate round is opened at the 04/23 process letters; round 1 itself opens at the 04/23 letters with the April outreach and NDAs left in round 0 (as in Alex rows 7152/7158; E6 opens round 1 at the first outreach wave); round 1 opens at another date between 03/27 and 04/22; or one round lacks its single Round opened row or Rounds line.",
+      "accepted_alternatives": [
+        "Round 1 opened 03/26/2013 (v1.13.2 draft)",
+        "Round 1 opened 04/01/2013 (v1.13 draft)",
+        "Company H listed in round 1 as 'still being received, not admitted' (v1.13 draft)",
+        "'Who was in' as the process-letter recipients (WDC, D, G) with E and F out before the letters"
+      ],
+      "source_pages": [
+        "27",
+        "28"
+      ],
+      "source_quote": "On April 1, 2013, as directed by the special committee, BofA Merrill Lynch began contacting potential acquirers of sTec.",
+      "provenance": [
+        "instruction E6 round-1 rule; D3 'Who was in'",
+        "v1.13.2 draft #14 and Rounds row 1; v1.13 draft #13 and Rounds row 1",
+        "Alex rows 7152, 7158 (informal round opened at the 04/23 letters)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "The drafts disagree on the opening date, and both dates are accepted. It guards against splitting the IOI request into its own round or starting round 1 at the letters."
+    },
+    {
+      "id": "ST-R04",
+      "category": "rounds",
+      "weight": 3,
+      "item": "Round opened by the 05/16 final-round letters to WDC and D only",
+      "check": "Deal ledger and Rounds: a Round opened row records BofA's final-round process letters and draft merger agreement to WDC and Company D, due 05/28/2013. Its Date from is 05/16/2013. Date to may run to 05/28, since the letters went 'after the meeting', and Rounds.Opened is its Sort date. The Rounds line shows 'Who was in' = 2 strategic (WDC, Company D), with Company H absent or listed only as 'still being received, not admitted'. WDC's 05/28 $9.15 bid carries this round's number. Live units reconcile: 6 entrants - F - E - G - H = 2, or WDC and D admitted with H still live but not admitted under ST-P07(c). FAIL: H admitted to this round; a Round opened row with Date from later than 05/16 (e.g. the round anchored on the 05/28 bid or the 05/29 request); or the 05/28 bid left in round 1.",
+      "expected": "Round opened 05/16/2013 (window to 05/28 accepted); WDC and D admitted; due 05/28/2013",
+      "partial_credit": "Half credit if the round and date are right but 'Who was in' omits D or does not reconcile with the ledger's exits.",
+      "accepted_alternatives": [
+        "Round opened row windowed 05/16-05/28/2013 with Date from 05/16"
+      ],
+      "source_pages": [
+        "30"
+      ],
+      "source_quote": "After the meeting, at the direction of the board, BofA Merrill Lynch sent final round process letters and a draft merger agreement to WDC and Company D, requesting a response by May 28, 2013.",
+      "provenance": [
+        "filing p. 30",
+        "instruction E6 (selecting who advances opens a round), E8",
+        "git acc9986 stec.md 'Final round May 16'",
+        "Alex row 7162 (Final Round Ann 05/16); Alex voice notes V0124",
+        "v1.13.2 draft #48; v1.13 draft #39"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Selecting who advances is the canonical new-round trigger. It anchors H's non-admission and the bid-to-round assignment."
+    },
+    {
+      "id": "ST-R05",
+      "category": "rounds",
+      "weight": 4,
+      "item": "05/29 best-and-final request placed consistently",
+      "check": "Deal ledger and Rounds: the board's 05/29/2013 request (a 'best and final' proposal from WDC and a written one from Company D, due 05/30) appears in one of two internally consistent ways. (a) Inside the 05/16 round, as a Deadline revised row (or equivalent) dated 05/29. That round's Rounds line shows Due dates '05/28/2013 -> 05/30/2013' and Finality Announced as final. (b) As the Round opened row of a new round dated 05/29, with the 05/30 due date and Finality Announced as final, provided the 05/16 round is recorded Not final. This reads the 05/16 letters as a second non-binding round, which the board's later reference to 'non-binding proposals' supports. FAIL: the 05/29 request is not recorded.",
+      "expected": "(a) Deadline revised inside the announced-final 05/16 round, or (b) new round at 05/29 with the 05/16 round Not final",
+      "partial_credit": "Half credit for (b) with the 05/16 round also marked Announced as final. That is the v1.13-era map, and it conflicts with E6 because only the first final request opens a round. Half credit if the 05/29 request is recorded but the 05/30 due date is missing from Rounds.",
+      "accepted_alternatives": [
+        "(a) 05/29 continues the 05/16 round: due dates 05/28 -> 05/30 (v1.13.2 draft)",
+        "(b) 05/29 opens a new announced-final round and the 05/16 round is Not final (Alex's 'second informal round' reading)"
+      ],
+      "source_pages": [
+        "30"
+      ],
+      "source_quote": "our board of directors directed BofA Merrill Lynch to request a “best and final” proposal from WDC and a “best and final” written proposal from Company D by May 30, 2013.",
+      "provenance": [
+        "_dev/RESEARCH_QUESTIONS.md provisional item 2 (sTec round structure)",
+        "_dev/DECISIONS_v1.13.md (v1.13.2 finality clarification)",
+        "v1.13 draft #47 and Rounds rows 2-3 (round 3 at 05/29 with round 2 Announced as final); v1.13.2 draft #57",
+        "Alex rows 7165-7167 (Final Round Ext, supporting map a); Alex voice notes V0124-V0125 (supporting map b)",
+        "filing p. 30 ('request for non-binding proposals on May 28, 2013')"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "The v1.13 and v1.13.2 drafts split here. v1.13.2's clarified E6 separates a coherent map from double-counting final requests."
+    },
+    {
+      "id": "ST-R06",
+      "category": "rounds",
+      "weight": 3,
+      "item": "WDC's June sequence sits in one final round",
+      "check": "Deal ledger and Rounds: WDC's June rows carry one round number. They are its 06/10 range (and Re-entered, if recorded), the board's 06/11 request for a specific best offer, the 06/14 $6.85 bid, and the 06/15-06/16 decision. That round is either (a) the round in which WDC was selected on 05/30 (the 05/16 round, or the 05/29 round under ST-R05(b)), or (b) one new round opened after the selection collapsed. Under (b), its Round opened row is dated 05/31/2013 (the board-requested invitation to Company D and the board-directed talks with WDC); a window ending by 06/10/2013 is accepted. Under (a), BofA's invitation to Company D and D's 06/05 Withdrew also carry that round. Under (b), if the Round opened row is dated after the invitation to D, the invitation and D's 06/05 Withdrew may carry the preceding round's number. The Rounds line for the round containing the 06/14 bid has Finality Announced as final or Inferred final, not Not final. None of WDC's June rows is round 0, round 1 or post.",
+      "expected": "WDC's June rows in one round (continuing the 05/30 selection round, or one new round opened 05/31, window to 06/10); that round Announced as final or Inferred final",
+      "partial_credit": "Half credit if a new round is opened on 06/11, splitting the 06/10 and 06/14 bids (E6 treats a request to name a single price as continuing the round). Half credit if the final round's Finality is Not final.",
+      "accepted_alternatives": [
+        "June events continue the round of the 05/30 selection (v1.13 draft)",
+        "One new round opened 05/31/2013 after the selection collapsed (v1.13.2 draft)"
+      ],
+      "source_pages": [
+        "31",
+        "32"
+      ],
+      "source_quote": "requested that WDC submit a specific proposal reflecting its best offer and provide confirmation that such offer was supported by WDC’s senior management.",
+      "provenance": [
+        "instruction E6 (a request to name a single price continues the round; an unannounced round needs the previous round plainly ended)",
+        "v1.13.2 draft #63 and Q1/Q10; v1.13 draft Q1 alternative (iii)",
+        "git acc9986 stec.md 'Two organized rounds ... later improvement requests within the already-final second round'",
+        "source-fidelity verifier (D rows may sit in the preceding round)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Three prior readings disagree. The test accepts the coherent ones and penalises splitting the WDC price sequence across rounds."
+    },
+    {
+      "id": "ST-R07",
+      "category": "rounds",
+      "weight": 4,
+      "item": "Round-1 due date 05/03 and its outcome (soft deadline)",
+      "check": "Deal ledger and Rounds: Deadline set rows record the 04/23/2013 letters to WDC and D. G's 04/26/2013 letter is also recorded, as Deadline set or in a row or Note. A Round opened row that carries the 04/23 letters and the 05/03 due date satisfies the Deadline set requirement (E9). A Deadline row is dated 05/03/2013. The Rounds round-1 Deadline outcome is 'Late bids accepted'. Company D was given the 05/03 date, said on 05/02 that it needed another week, submitted on 05/10, and was allowed to continue on 05/15. Company H entered after the letters and had no due date, so it is not treated as a late bidder. No target-granted extension is invented.",
+      "expected": "Deadline 05/03/2013; outcome Late bids accepted",
+      "partial_credit": "Half credit for 'Passed without action' (Alex's soft-deadline description), or for the right outcome with the Deadline row or G's letter missing. None for Extended or Enforced.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "28",
+        "29"
+      ],
+      "source_quote": "Company D’s representatives indicated they would need an additional week to confirm their verbal indication of interest in writing.",
+      "provenance": [
+        "filing pp. 28-29",
+        "instruction E9 ('Late bids accepted'; a Round opened row that sets the due date needs no Deadline set row)",
+        "git acc9986 stec.md 'Soft May 3 deadline: Late bids accepted ... more precise'",
+        "Alex voice notes V0122-V0123, V0143 (soft deadline, new in sTec, critical)",
+        "v1.13.2 draft #25, #29, #35 and Q3; v1.13 draft #22, #26, #31 and Q3"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Alex notes that the soft deadline is new in sTec. The test separates a considered late bid from an extension or enforcement."
+    },
+    {
+      "id": "ST-R08",
+      "category": "rounds",
+      "weight": 2,
+      "item": "05/28 and 05/30 due dates and outcomes",
+      "check": "Deal ledger has Deadline rows dated 05/28/2013 and 05/30/2013, and the Rounds outcomes match the map adopted in ST-R05. Under map (a), the 05/16 round reads 'Extended; Enforced': 05/28 was extended to 05/30 in the same round, and the board moved forward with WDC on 05/30. 'Extended; Late bids accepted' is also accepted if WDC's June bids stay in that round. Under map (b), the 05/16 round's 05/28 outcome is 'Enforced', and the 05/29 round's 05/30 outcome is 'Enforced'. It may instead be 'Late bids accepted' if the June bids sit in that round. The 05/30 outcome is never 'Extended', because the 06/11 request set no due date.",
+      "expected": "(a) 05/28 -> 05/30: Extended; Enforced, or (b) 05/28 Enforced and 05/30 Enforced",
+      "partial_credit": "Half credit if the outcomes fit the map but one Deadline row is missing. Half credit if one outcome is inconsistent with the adopted map (e.g. Enforced for 05/28 while 05/29 stays in the same round).",
+      "accepted_alternatives": [
+        "05/30 outcome 'Late bids accepted' when WDC's 06/10 and 06/14 bids are in the same round (stec.md S4)"
+      ],
+      "source_pages": [
+        "30",
+        "31"
+      ],
+      "source_quote": "Our board of directors unanimously determined to move forward with WDC on their proposed terms, including endeavoring to complete diligence and negotiation of the merger agreement and ancillary agreements",
+      "provenance": [
+        "instruction E9",
+        "git acc9986 stec.md S4 (05/30 outcome)",
+        "v1.13.2 draft #56, #57, #60 and Q5; v1.13 draft #46, #50 and Q5, Q8",
+        "Alex rows 7166-7167 (7167's 'extended until 6/10' has no stated due date)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Outcomes must follow the round map. Mixed maps produce contradictory Extended/Enforced labels."
+    },
+    {
+      "id": "ST-R09",
+      "category": "rounds",
+      "weight": 2,
+      "item": "Live units at the opening of the round holding WDC's June bids",
+      "check": "Rounds: 'Who was in' for the round that holds WDC's 06/10 and 06/14 bids reconciles with the Deal ledger's entries, exits and re-entries at that round's opening (Part F check 1). Under ST-R06(b), a new round opened 05/31-06/10: Company D is listed as live if the round opens before its 06/05 exit. WDC is listed as re-entering on 06/10 where the ledger has its 05/31 Withdrew, or as live under the continuous alternative. Under ST-R06(a), June events continue the 05/16 or 05/29 round: 'Who was in' lists WDC and Company D, both live at that round's opening. 'How it ended' or a Note records D's 06/05 exit, and WDC's pull-back and return where the ledger records them. Under either map, Company H is absent, or listed only as 'still being received, not admitted' under ST-P07(c), and Companies E, F and G do not appear as admitted. FAIL: 'Who was in' lists as admitted a party the ledger has closed, with no Re-entered row, before that round opened; or it omits Company D while D is open in the ledger at that opening.",
+      "expected": "June round's 'Who was in' reconciles with the ledger: D live (until 06/05) and WDC re-entered 06/10 or continuous (map b), or WDC and D live at a 05/16 or 05/29 opening (map a); H not admitted",
+      "partial_credit": "Half credit if membership reconciles but WDC's re-entry is not annotated where the ledger records Withdrew and Re-entered, or if D's 06/05 exit is not recorded in the round's line.",
+      "accepted_alternatives": [
+        "Map (b): Company D admitted, WDC re-entered 06/10/2013 (v1.13.2 draft Rounds row 3)",
+        "Map (a): WDC and Company D in the continuing final round (v1.13 draft Rounds row 3)"
+      ],
+      "source_pages": [
+        "31",
+        "32"
+      ],
+      "source_quote": "they informed Company D’s representatives that timing for sTec’s process had been delayed, and that Company D had an opportunity to continue in the process.",
+      "provenance": [
+        "instruction Part F check 1 ('entries and closures reconcile to the live bidder units at each round opening'); D3; E14 live-unit rule",
+        "v1.13.2 draft Rounds row 3; v1.13 draft Rounds row 3",
+        "filing pp. 31-32",
+        "conformance verifier (added)"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "The drafts disagree on who was in the June round. After WDC's pull-back and D's re-invitation, careless runs list WDC as live while the ledger has it out, or drop D."
+    },
+    {
+      "id": "ST-F01",
+      "category": "formality_conditions",
+      "weight": 3,
+      "item": "WDC 05/28 $9.15 is Formal",
+      "check": "Deal ledger: the WDC 05/28/2013 Bid row has Formality Formal. It is a priced proposal with a merger-agreement markup and draft ancillary agreements.",
+      "expected": "Formal",
+      "partial_credit": "none",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "30"
+      ],
+      "source_quote": "WDC submitted a written second-round indication of interest at a price per share of $9.15 in cash, with a mark-up of the merger agreement and drafts of ancillary agreements",
+      "provenance": [
+        "filing p. 30",
+        "instruction E11(1)",
+        "Alex row 7164 (Formal); Alex voice notes V0125, V0152",
+        "v1.13.2 draft #53; v1.13 draft #44"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Guard. The filing calls it an 'indication of interest', but under E11 the markup decides."
+    },
+    {
+      "id": "ST-F02",
+      "category": "formality_conditions",
+      "weight": 5,
+      "item": "WDC 05/28 $9.15 Conditions (adjudicated trap)",
+      "check": "Deal ledger: Conditions on the WDC 05/28/2013 $9.15 Bid row, and on any 05/30 $9.15 row, is Unclear or Heavy. Unclear is preferred: no condition is stated, but the narrative shows diligence still open. On 05/30 the board was 'endeavoring to complete diligence', and WDC discontinued due diligence on 05/31. Heavy is accepted if the Note rests on the founders' covenant not to sue and ancillary agreements as a material requirement. Light fails, because the contemplated 06/03 signing date does not establish confirmatory or limited diligence. None fails.",
+      "expected": "Unclear (Heavy accepted)",
+      "partial_credit": "none",
+      "accepted_alternatives": [
+        "Heavy, grounded in the founders' covenant-not-to-sue and ancillary-agreement requirements"
+      ],
+      "source_pages": [
+        "30",
+        "31"
+      ],
+      "source_quote": "Our board of directors unanimously determined to move forward with WDC on their proposed terms, including endeavoring to complete diligence and negotiation of the merger agreement and ancillary agreements",
+      "provenance": [
+        "git acc9986 adjudication.md section 4 (WDC May 28/May 30 conditions)",
+        "git acc9986 stec.md S2",
+        "v1.13 draft #44 and #48 (Light: error); v1.13.2 draft #53 (Unclear)",
+        "instruction E12 (Unclear where narrative diligence is open and the bid states no condition)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "The v1.13 draft inferred 'expedited diligence' from the signing target, which the adjudication found unsupported. It directly tests E12's affirmative-support rule."
+    },
+    {
+      "id": "ST-F03",
+      "category": "formality_conditions",
+      "weight": 3,
+      "item": "WDC 06/14 $6.85 formality and conditions",
+      "check": "Deal ledger: the WDC 06/14/2013 Bid row has Formality Formal. It responds to the board's request for a specific best offer, is called WDC's 'best and final price', and otherwise stands on the 05/28 terms with the markup. Conditions is Light (subsequent diligence 'including confirmatory') or Unclear (additional diligence and clean-team access still to come). Heavy is accepted only where the workbook uses the same founders'-agreements ground it applied to make 05/28 Heavy. None fails.",
+      "expected": "Formal; Light or Unclear",
+      "partial_credit": "Half credit for Formal with Conditions None, or for Informal with acceptable Conditions.",
+      "accepted_alternatives": [
+        "Conditions Unclear",
+        "Conditions Heavy only if consistent with a Heavy 05/28 row on the founders'-agreements ground"
+      ],
+      "source_pages": [
+        "32",
+        "33"
+      ],
+      "source_quote": "From June 16 to June 22, 2013, WDC conducted additional due diligence, including confirmatory due diligence calls.",
+      "provenance": [
+        "filing pp. 32-33",
+        "instruction E11(1)-(2), E12",
+        "git acc9986 stec.md price audit (#55: 'Light is more supportable here')",
+        "Alex row 7170 (Formal)",
+        "v1.13.2 draft #69; v1.13 draft #59"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Guard on the winning bid. It checks that 'best offer' plus the standing markup yields Formal, and that None is not read back from the later signing."
+    },
+    {
+      "id": "ST-F04",
+      "category": "formality_conditions",
+      "weight": 2,
+      "item": "WDC 06/10 range: own row, formality open, conditions",
+      "check": "Deal ledger: WDC's 06/10/2013 proposal is its own Bid row, neither merged with the 05/03 row nor labelled Bid reaffirmed. Formality is Formal, because the proposal stands expressly on the 05/28 markup terms, or Informal, following the hand-coding convention (open question). Conditions is Unclear: diligence is open, since WDC discontinued diligence on 05/31 and conducted additional diligence from 06/16 to 06/22/2013. Heavy is accepted only where the workbook applies the same founders'-agreements ground it used for a Heavy 05/28 row, since the 06/10 proposal otherwise stands on the 05/28 terms. None fails.",
+      "expected": "Own Bid row; Formal or Informal; Unclear (Heavy only if consistent with a Heavy 05/28 row)",
+      "partial_credit": "Half credit for Conditions Light, or for Heavy resting only on WDC's discontinued diligence or reconsideration.",
+      "accepted_alternatives": [
+        "Formality Formal (both drafts)",
+        "Formality Informal (Alex row 7169, red; RESEARCH_QUESTIONS provisional item 4)",
+        "Conditions Heavy only if consistent with a Heavy 05/28 row on the founders'-agreements ground"
+      ],
+      "source_pages": [
+        "31",
+        "32",
+        "33"
+      ],
+      "source_quote": "WDC was otherwise prepared to move forward on the transaction terms previously proposed on May 28, 2013.",
+      "provenance": [
+        "_dev/RESEARCH_QUESTIONS.md provisional item 4",
+        "instruction E10 (reversion to an older price is its own row), E12 (Unclear where diligence is open and no condition is stated)",
+        "Alex row 7169 (Informal, red correction)",
+        "git acc9986 stec.md price audit (#53 Formal defensible)",
+        "v1.13.2 draft #67; v1.13 draft #57"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Formality is left open, so the test scores conditions and separate-row treatment. Careless runs merge the June range with the identical May range."
+    },
+    {
+      "id": "ST-F05",
+      "category": "formality_conditions",
+      "weight": 1,
+      "item": "Round-1 indications are Informal",
+      "check": "Deal ledger: these four Bid rows all have Formality Informal: Company D 04/23 oral indication (>$5.60), WDC 05/03 ($6.60-$7.10), Company D 05/10 ($5.75, with a draft exclusivity agreement), and Company H 05/15 ($5.00-$5.75).",
+      "expected": "All four Informal",
+      "partial_credit": "Half credit if three of the four are Informal.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "28",
+        "29"
+      ],
+      "source_quote": "Company D submitted a written non-binding indication of interest to acquire the company at a purchase price of $5.75 per share in cash, along with a draft exclusivity agreement.",
+      "provenance": [
+        "filing pp. 28-29",
+        "instruction E11 (an exclusivity request does not change the label)",
+        "Alex rows 7153, 7156, 7160, 7161 (Informal)",
+        "both drafts"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Guard. An exclusivity request does not make D's bid Formal."
+    },
+    {
+      "id": "ST-F06",
+      "category": "formality_conditions",
+      "weight": 3,
+      "item": "Round-1 Conditions levels",
+      "check": "Deal ledger Conditions, graded per bid. Company D 04/23 is Heavy (reported additional diligence requirements) or Unclear. Company D 05/10 is Heavy, because the draft exclusivity agreement seeks an exclusive period, which E12 counts; Unclear is accepted. WDC 05/03 and Company H 05/15 are Unclear: no condition is reported for either bid, and the narrative shows diligence still open (WDC's data room opened only on 05/10; H had only a management presentation). None or Light on any of the four fails that bid. Heavy on WDC 05/03 or H 05/15 also fails that bid, unless its Note cites a condition the filing reports for that bid; E12 says non-binding status or a range does not establish Heavy.",
+      "expected": "D 04/23 and 05/10 Heavy (Unclear accepted); WDC 05/03 and H 05/15 Unclear",
+      "partial_credit": "Half credit if three of the four are acceptable.",
+      "accepted_alternatives": [
+        "Unclear on Company D's 04/23 and 05/10 rows"
+      ],
+      "source_pages": [
+        "28",
+        "29"
+      ],
+      "source_quote": "Company D provided a verbal indication of its interest to pursue a transaction at a price greater than $5.60 per share and detailed their additional diligence requirements for submitting a written indication of interest.",
+      "provenance": [
+        "filing pp. 28-29",
+        "instruction E12 ('Apply Heavy first'; exclusive period counts; Unclear where diligence is open and no condition is stated; non-binding or a range does not alone establish Heavy)",
+        "v1.13.2 draft #26, #33, #39, #46; v1.13 draft #23, #29, #34, #37 (both: D Heavy, WDC and H Unclear)",
+        "conformance and coverage verifiers (tightened)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Guards against reading None or Light from silence, and against reading Heavy from non-binding status alone (E12)."
+    },
+    {
+      "id": "ST-F07",
+      "category": "formality_conditions",
+      "weight": 3,
+      "item": "All cash, including the Not stated trap",
+      "check": "Deal ledger All cash: Not stated on Company D's 04/23 oral indication, which gives 'a price greater than $5.60 per share' without saying cash. Yes on WDC 05/03, D 05/10, H 05/15, WDC 05/28, WDC 06/10 and WDC 06/14, each stated 'in cash'. Any 05/30 WDC row may be Yes or Not stated.",
+      "expected": "D 04/23 Not stated; all other bids Yes",
+      "partial_credit": "Half credit if every 'Yes' row is right but D 04/23 is Yes. None if two or more rows are wrong.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "28",
+        "29",
+        "30",
+        "32"
+      ],
+      "source_quote": "Company D provided a verbal indication of its interest to pursue a transaction at a price greater than $5.60 per share and detailed their additional diligence requirements for submitting a written indication of interest.",
+      "provenance": [
+        "instruction E13 ('A dollar price alone does not establish cash')",
+        "filing pp. 28-32",
+        "both drafts (D 04/23 Not stated)",
+        "Alex row 7153 (all_cash NA)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "E13's cash rule is easy to miss on the single oral bid that does not say 'in cash'."
+    },
+    {
+      "id": "ST-B01",
+      "category": "bids_prices",
+      "weight": 2,
+      "item": "Company D 04/23 oral indication as a one-sided Bid",
+      "check": "Deal ledger: Company D 04/23/2013 is a Bid row, round 1: a whole-company oral indication, not Bidder interest. Price low is 5.60 and Price high is blank, since the statement is one-sided ('greater than').",
+      "expected": "Bid; low 5.60; high blank; 04/23/2013",
+      "partial_credit": "Half credit for a point price of 5.60/5.60, or for correct prices recorded under a non-Bid label.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "28"
+      ],
+      "source_quote": "Company D provided a verbal indication of its interest to pursue a transaction at a price greater than $5.60 per share and detailed their additional diligence requirements for submitting a written indication of interest.",
+      "provenance": [
+        "filing p. 28",
+        "instruction E13 one-sided rule; E1",
+        "Alex row 7153 (lower 5.6, upper NA)",
+        "both drafts"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Guard for E13's one-sided rule."
+    },
+    {
+      "id": "ST-B02",
+      "category": "bids_prices",
+      "weight": 3,
+      "item": "Round-1 written indications priced",
+      "check": "Deal ledger Bid rows: WDC 05/03/2013 low 6.60, high 7.10; Company D 05/10/2013 5.75/5.75; Company H 05/15/2013 5.00/5.75.",
+      "expected": "WDC 6.60-7.10 (05/03); D 5.75 (05/10); H 5.00-5.75 (05/15)",
+      "partial_credit": "Half credit if two of the three are right.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "29"
+      ],
+      "source_quote": "WDC submitted a written indication of interest to acquire the company at a purchase price in the range of $6.60 – $7.10 per share in cash.",
+      "provenance": [
+        "filing p. 29",
+        "Alex rows 7156, 7160, 7161",
+        "both drafts"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Guard."
+    },
+    {
+      "id": "ST-B03",
+      "category": "bids_prices",
+      "weight": 2,
+      "item": "WDC $9.15 and its 05/30 best-price confirmation",
+      "check": "Deal ledger: WDC 05/28/2013 Bid at 9.15/9.15. WDC's 05/30 confirmation that $9.15 is its best possible price is recorded and dated 05/30. Under map (a) it may be a non-bid row. Under map (b), where it answers the round opened on 05/29, the expected form is a Bid or Bid reaffirmed row at 9.15/9.15, Formal, carried from 05/28; at minimum, the Rounds line records it as WDC's response. No 05/30 row carries any other price.",
+      "expected": "05/28 9.15/9.15; 05/30 confirmation recorded (priced at 9.15 if priced)",
+      "partial_credit": "Half credit if the 05/28 row is right but the 05/30 confirmation is absent.",
+      "accepted_alternatives": [
+        "No priced 05/30 row under map (a) (v1.13.2 draft #58, Other material event)",
+        "05/30 Bid or Bid reaffirmed at $9.15 Formal (v1.13 draft #48)"
+      ],
+      "source_pages": [
+        "30",
+        "31"
+      ],
+      "source_quote": "representatives of WDC verbally indicated that WDC’s indication of interest to acquire the company at a price of $9.15 per share was WDC’s best possible price",
+      "provenance": [
+        "filing pp. 30-31",
+        "instruction E10 (Bid reaffirmed only where it changes the record)",
+        "v1.13 draft #48 (Bid row) vs v1.13.2 draft #58 (no Bid row)",
+        "Alex row 7164"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "The drafts differ on whether the confirmation is a priced row. Both forms are accepted, provided the event is captured at the unchanged price."
+    },
+    {
+      "id": "ST-B04",
+      "category": "bids_prices",
+      "weight": 2,
+      "item": "WDC's June prices",
+      "check": "Deal ledger Bid rows: WDC 06/10/2013 at 6.60/7.10 (a separate row from the 05/03 row) and WDC 06/14/2013 at 6.85/6.85.",
+      "expected": "06/10 6.60-7.10; 06/14 6.85",
+      "partial_credit": "Half credit if one of the two is right.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "32"
+      ],
+      "source_quote": "On June 10, 2013, WDC submitted a revised written indication of interest to acquire the company at a price range of $6.60 to $7.10 per share in cash.",
+      "provenance": [
+        "filing p. 32",
+        "instruction E10 (reversion to an older price is its own row)",
+        "Alex rows 7169, 7170",
+        "both drafts"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Guard. It checks that the price cut after the withdrawal is kept as its own observation."
+    },
+    {
+      "id": "ST-B05",
+      "category": "bids_prices",
+      "weight": 1,
+      "item": "No invented priced rows",
+      "check": "Deal ledger: the Merger agreement signed row has blank Price low/high, All cash, Formality and Conditions. There is no Bid or Other-scope bid row for Company A, Company B, Company C, the sponsor, the asset-only cohorts, or WDC's 2011/2012 lunches. There is no Bid or Bid reaffirmed row for Company H on 05/23, which brought no new price or terms.",
+      "expected": "No such rows or cells",
+      "partial_credit": "Half credit for exactly one violation.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "26",
+        "28",
+        "30",
+        "35"
+      ],
+      "source_quote": "Company H remained interested in a potential acquisition of the company but that Company H was not able to increase its indicated value range.",
+      "provenance": [
+        "instruction D2 (signing is not another bid), E1, E10",
+        "filing pp. 26-35"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Guard."
+    },
+    {
+      "id": "ST-C01",
+      "category": "chronology",
+      "weight": 2,
+      "item": "Date windows keep the filing's precision",
+      "check": "Deal ledger date cells, in three parts. (i) Company E's exit: When 'shortly after 04/24/2013' or equivalent, Date from 04/24 or 04/25/2013, Date to blank or a later bound (not the same exact day as Date from), and Sort date on or after 04/24. (ii) BofA's message to H that its range was insufficient, where the workbook dates it (its own row, or H's exit row under ST-P07(b)): a window within 05/13-05/26/2013, Date from on or after 05/13 and different from Date to, and Sort date on or after 05/15. Two windows are accepted. One is 05/15-05/23 or 05/15-05/26: the 'during this time period' window after H's range, answered by H on 05/23. The other is 05/15-05/16: an E8 sequence narrowing, since the paragraph precedes the 05/16 meeting. (iii) Company D's approach: 'mid-March 2013' with Date to 03/19/2013 and Date from 03/11/2013, or 03/13-03/14/2013 where the workbook narrows by the filing's sequence (E8). If the H message has no dated row (graded in ST-P11), grade (i) and (iii) only.",
+      "expected": "E: from 04/24 or 04/25, not an exact day; H message: window within 05/13-05/26, not a single day; D: Date from 03/11 (03/13-03/14 accepted), Date to 03/19/2013",
+      "partial_credit": "Half credit if two of the three parts are right, or one of the two where part (ii) is not graded.",
+      "accepted_alternatives": [
+        "H message window 05/15-05/16 by E8 sequence placement",
+        "D approach Date from 03/13 or 03/14 by E8 sequence placement"
+      ],
+      "source_pages": [
+        "27",
+        "28",
+        "29",
+        "30"
+      ],
+      "source_quote": "Shortly thereafter, Company E indicated it was also only interested in purchasing limited, select assets of sTec, and as a result the special committee decided not to continue discussions with Company E.",
+      "provenance": [
+        "instruction B and E8 (no window narrower than the filing; 'mid' = days 11-19; sequence narrowing)",
+        "v1.13.2 draft #28, #49 (05/15-05/23), #12; v1.13 draft #25, #41, #10",
+        "source-fidelity and conformance verifiers (part ii disagreement resolved by accepting both narrowings)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Low-effort runs give undated events exact days. This tests Part B precision."
+    },
+    {
+      "id": "ST-C02",
+      "category": "chronology",
+      "weight": 2,
+      "item": "Order of the late-May to June sequence",
+      "check": "Deal ledger # order and non-decreasing Sort dates follow this sequence: WDC $9.15 (05/28) -> best-and-final request (05/29) -> WDC best-price confirmation (05/30) -> board decision and BofA's message to WDC (05/30) -> WDC pull-back (05/31) -> BofA's invitation to D (on or after 05/31, before 06/05) -> D disengages (06/05) -> WDC re-entry and range (06/10) -> request for a specific best offer (06/11) -> $6.85 bid (06/14) -> decision to proceed (06/15-06/16) -> signing (06/23) -> announcement (06/24). Grade only the listed events the workbook records as rows. A missing or merged event is not an inversion, and same-day items may share one row.",
+      "expected": "Sequence as listed, with no inversions among recorded rows",
+      "partial_credit": "Half credit for exactly one inversion.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "30",
+        "31",
+        "32",
+        "33",
+        "35"
+      ],
+      "source_quote": "representatives of BofA Merrill Lynch informed WDC that sTec would move forward to effect a transaction at a purchase price of $9.15 per share, subject to satisfactory negotiations of the merger agreement and ancillary agreements.",
+      "provenance": [
+        "filing pp. 30-35",
+        "instruction E8"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Several same-day events on 05/30 and 05/31 must be ordered as the narrative establishes."
+    },
+    {
+      "id": "ST-C03",
+      "category": "chronology",
+      "weight": 2,
+      "item": "Information-access differences among live bidders",
+      "check": "Deal ledger: separate dated rows (Other material event or similar) record three events: WDC's virtual data-room access on 05/10/2013, Company D's on 05/14/2013, and Company H's 05/10/2013 management presentation, which was catch-up access for the late entrant. No statement about H's data-room access is required. The filing reports none, so a Note saying none is reported is correct, but a claim that H was refused access is not supported. The follow-up diligence materials that went to WDC, D and G in the weeks of 04/22 and 04/29 earn credit in a row or Note but are not required.",
+      "expected": "WDC data room 05/10; D data room 05/14; H presentation 05/10",
+      "partial_credit": "Half credit if one of the three dated items is missing.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "28",
+        "29"
+      ],
+      "source_quote": "On May 14, 2013, sTec granted access to Company D to the virtual data room.",
+      "provenance": [
+        "instruction E2 (information-access differences earn rows)",
+        "git acc9986 stec.md 'Information differences'",
+        "v1.13.2 draft #30, #37, #38, #45; v1.13 draft #33, #36",
+        "source-fidelity and conformance verifiers (H's data-room access is unreported, not refused)"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Required by E2, but usually buried in routine diligence paragraphs."
+    },
+    {
+      "id": "ST-C04",
+      "category": "chronology",
+      "weight": 2,
+      "item": "Projections given to WDC after price agreement (non-background source)",
+      "check": "Deal ledger: a row dated 06/19/2013 records that the standalone Cost-Reduction Projections went to WDC and Wells Fargo Securities after the price was agreed, citing the projections section (pp. 45-46). The same row, another row, or a Note states that bidders with data-room access had received only the Operating Projections, which were marked as not reflecting the standalone plan.",
+      "expected": "06/19/2013 information-access row sourced to pp. 45-46",
+      "partial_credit": "Half credit if the 06/19 row is present without the Operating Projections contrast, or if the contrast is noted but there is no dated 06/19 row.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "45",
+        "46"
+      ],
+      "source_quote": "The Cost-Reduction Projections were also provided to WDC and Wells Fargo Securities, LLC, WDC’s financial advisor, on June 19, 2013, after the parties had agreed upon the per share merger consideration.",
+      "provenance": [
+        "filing pp. 45-46 (Certain Financial Projections)",
+        "instruction C.3, E2",
+        "git acc9986 stec.md '#59 records the June 19 Cost-Reduction Projections'",
+        "v1.13.2 draft #73; v1.13 draft #64"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "A secondary-section event that a background-only reading misses."
+    },
+    {
+      "id": "ST-C05",
+      "category": "chronology",
+      "weight": 1,
+      "item": "Signing and announcement as two rows",
+      "check": "Deal ledger: a Merger agreement signed row dated 06/23/2013, and a separate Merger announced row dated 06/24/2013 (joint press release before the market opened) at Round post.",
+      "expected": "Signed 06/23/2013; announced 06/24/2013 (post)",
+      "partial_credit": "Half credit if both dates are right but the rows are merged, or the announcement is not post.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "35"
+      ],
+      "source_quote": "On June 24, 2013, prior to the opening of trading on the U.S. stock exchanges, WDC and sTec announced in a joint press release the execution of the merger agreement.",
+      "provenance": [
+        "filing p. 35",
+        "instruction D2, E6",
+        "Alex voice notes V0126, V0137"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Guard. Alex flagged this as a repeated conflation."
+    },
+    {
+      "id": "ST-C06",
+      "category": "chronology",
+      "weight": 1,
+      "item": "Early (round-0) record",
+      "check": "Deal ledger has round-0 rows for four events. (1) Company A's 11/14/2012 approach through its investment bank, with no NDA and a meeting later cancelled (undated). (2) Balch Hill's activist involvement: the 11/16/2012 13D and/or the 12/06/2012 letter, Event Activist. (3) Company B's 02/13/2013 approach and its later decline. (4) Company C's 03/13/2013 asset-only interest. Under the two-process map, (1) and (2) are in process 1, and (3) and (4) are in process 2, round 0. None of these is an entry.",
+      "expected": "A 11/14/2012; Balch Hill 11/16 and/or 12/06/2012; B 02/13/2013; C 03/13/2013; all round 0",
+      "partial_credit": "Half credit if three of the four are present.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "24",
+        "25",
+        "26"
+      ],
+      "source_quote": "On November 14, 2012, an investment bank representing Company A, a participant in the storage industry, contacted our management to request a preliminary meeting between sTec and Company A.",
+      "provenance": [
+        "filing pp. 24-26",
+        "instruction E6 (earlier approaches are round 0), E5",
+        "Alex row 7144 (Company B bidder interest 02/13/2013; Alex has no Company A or Balch Hill row); Alex voice notes V0119",
+        "both drafts"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Guard. These rows carry the evidence for the process-gap question."
+    },
+    {
+      "id": "ST-O01",
+      "category": "other",
+      "weight": 2,
+      "item": "Deal facts: acquirer, price, dates",
+      "check": "Deal facts: Acquirer is Western Digital Corporation (WDC); listing Lodi Ventures, Inc. as merger sub is optional. Acquirer type is Strategic. Agreed price and consideration is $6.85 per share in cash. Merger agreement signed is 06/23/2013. Merger announced is 06/24/2013.",
+      "expected": "WDC; Strategic; $6.85 cash; 06/23/2013; 06/24/2013",
+      "partial_credit": "Half credit if exactly one field is wrong.",
+      "accepted_alternatives": [],
+      "source_pages": [
+        "7",
+        "8",
+        "35"
+      ],
+      "source_quote": "you will be entitled to receive $6.85 in cash, without interest and less applicable withholding taxes, in exchange for each share of our common stock",
+      "provenance": [
+        "filing pp. 7-8, 35",
+        "both drafts"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Guard."
+    },
+    {
+      "id": "ST-O02",
+      "category": "other",
+      "weight": 1,
+      "item": "Advisers",
+      "check": "Deal facts: the target financial adviser is BofA Merrill Lynch, and the target legal adviser is Gibson, Dunn & Crutcher (listing Latham & Watkins as litigation counsel is optional). Deal ledger has Adviser rows for Gibson Dunn (engaged October 2012), BofA Merrill Lynch (approved 03/26/2013 or engaged 03/28/2013), and WDC's named advisers Shearman & Sterling and Wells Fargo Securities. Company A's unnamed investment bank is not recorded as a target adviser.",
+      "expected": "BofA; Gibson Dunn; ledger rows including WDC's Shearman and Wells Fargo; no misattributed Company A bank",
+      "partial_credit": "Half credit if Deal facts are right but one required ledger Adviser row is missing.",
+      "accepted_alternatives": [
+        "Latham & Watkins listed or not listed as target legal adviser",
+        "BofA Adviser row dated 03/26/2013 (approval) or 03/28/2013 (engagement letter)"
+      ],
+      "source_pages": [
+        "25",
+        "27",
+        "33",
+        "46"
+      ],
+      "source_quote": "which had been engaged in October 2012 as the company’s outside corporate counsel",
+      "provenance": [
+        "filing pp. 25, 27, 33, 46; merger agreement summary p. 64",
+        "instruction D2 (Adviser rows, other parties' named advisers)",
+        "Alex voice notes V0152 (unnamed bank misattributed to the target)",
+        "both drafts"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Earlier AI output attributed Company A's bank to sTec."
+    },
+    {
+      "id": "ST-O03",
+      "category": "other",
+      "weight": 1,
+      "item": "Auction screen and whole-company bids",
+      "check": "Deal facts: Auction screen 'Met' with 6 parties for the process containing the 2013 outreach. Under a two-process map, the earlier process is Not met or 0. Whole-company bids is 'Yes'.",
+      "expected": "Met: 6 parties; Whole-company bids Yes",
+      "partial_credit": "Half credit if the screen is Met but with a wrong or unqualified count (e.g. 7 from double-counting WDC's 2009 agreement).",
+      "accepted_alternatives": [
+        "Two-process form: 'Not met (process 1): 0; Met (process 2): 6 parties'"
+      ],
+      "source_pages": [
+        "27",
+        "28"
+      ],
+      "source_quote": "In total sTec executed six non-disclosure agreements related to the exploration of a potential sale of the company.",
+      "provenance": [
+        "instruction E1",
+        "both drafts"
+      ],
+      "convention_dependent": false,
+      "discriminating_note": "Guard."
+    },
+    {
+      "id": "ST-O04",
+      "category": "other",
+      "weight": 1,
+      "item": "Initiation and earlier approaches",
+      "check": "Deal facts: Initiation is target-led, mixed, or activist-influenced (not bidder-led or unclear). Earlier approaches is not 'None reported'. It records WDC's 2011 and summer-2012 lunch contacts and/or the general exploratory approaches made without terms. Under a two-process map it may instead point to process 1.",
+      "expected": "Target-led (mixed or activist-influenced accepted); Earlier approaches lists the WDC lunches or general approaches",
+      "partial_credit": "Half credit if one of the two fields is acceptable.",
+      "accepted_alternatives": [
+        "mixed",
+        "activist-influenced"
+      ],
+      "source_pages": [
+        "24",
+        "25"
+      ],
+      "source_quote": "such approaches have been general and exploratory in nature, and no specific transaction terms were proposed.",
+      "provenance": [
+        "filing pp. 23-25",
+        "instruction D5, E5 (vaguer approaches go under Earlier approaches)",
+        "Alex voice notes V0119 (activist present but not driving the sale)",
+        "both drafts"
+      ],
+      "convention_dependent": true,
+      "discriminating_note": "Guard."
+    }
+  ],
+  "unscored_open_calls": [
+    {
+      "item": "One process versus two processes split at 02/13/2013",
+      "why": "RESEARCH_QUESTIONS provisional item 1. Alex's voice notes (V0118, V0132) read two processes; both Opus drafts read one, because the Company A cancellation is undated and a gap of at most 91 days does not clearly establish E5(b). ST-R01 scores only internal consistency and E5-compatible placement."
+    },
+    {
+      "item": "Whether the 05/16 letters opened the announced-final round or a second non-binding round",
+      "why": "RESEARCH_QUESTIONS provisional item 2. The filing calls them 'final round process letters', but the board later refers to 'non-binding proposals on May 28'. Alex's rows code 05/29 as a final-round extension, while voice note V0124 calls 05/16 a second informal round. ST-R05 accepts both coherent maps."
+    },
+    {
+      "item": "Formality of WDC's 06/10 $6.60-$7.10 range",
+      "why": "RESEARCH_QUESTIONS provisional item 4. Alex's red correction is Informal; under E11, the express reliance on the 05/28 markup supports Formal. ST-F04 accepts both."
+    },
+    {
+      "item": "Whether WDC was out of the process between 05/31 and 06/10",
+      "why": "RESEARCH_QUESTIONS provisional item 4. E14's 'for now' rule supports Withdrew plus Re-entered, but continuous participation is an open convention. ST-P08 and ST-R09 accept both."
+    },
+    {
+      "item": "Final disposition of Company H's exit (inferred 05/16 drop, reported undated drop, or Not selected at signing)",
+      "why": "Q7 is no longer withheld, but its substantive outcome is not recorded. ST-P07 fails only the adjudicated error (a reported exact-05/23 target drop) and a few instruction-excluded readings."
+    },
+    {
+      "item": "Date to of BofA's undated message to Company H",
+      "why": "E8's sequence rule (the paragraph precedes the 05/16 meeting) supports a 05/16 upper bound. The content link to H's 05/23 reply and 'during this time period' support 05/23-05/26. ST-C01 accepts both."
+    },
+    {
+      "item": "Company D's 05/10 Conditions: Heavy (draft exclusivity agreement as an exclusive period sought, E12) versus Unclear",
+      "why": "E12 counts an exclusive period toward Heavy, but the filing does not say D conditioned its bid on exclusivity or give its length. ST-F06 prefers Heavy and accepts Unclear."
+    },
+    {
+      "item": "Whether WDC's 05/30 confirmation needs a priced Bid or Bid reaffirmed row under the two-round map",
+      "why": "E10 records a reaffirmation only where it changes the record. The latest priced row (05/28) is already Formal, and the target had not yet moved to finalize when WDC confirmed. The drafts differ, and ST-B03 accepts both."
+    },
+    {
+      "item": "05/30 due-date outcome, Enforced versus Late bids accepted, when WDC's June bids sit in the same round",
+      "why": "The board acted on the bid in hand on 05/30 and later considered WDC's post-deadline June bids (stec.md S4). ST-R08 accepts both."
+    },
+    {
+      "item": "Membership of Companies B, C, E, F and G in the 18 outreach contacts and in the six asset-only and nine not-interested buckets",
+      "why": "The filing names only WDC, H, D, A and the sponsor as members of the 18 and its split. G is probably in the 18, and E and F in the asset-only six, but none is stated. ST-P03 and ST-P12 score only reconciliation, no double counting, and Part B exactness (no exact Count resting on B, C or G)."
+    },
+    {
+      "item": "Exit reasons for E, F, D and WDC: Other stated reason versus Terms or process (and Not stated for WDC's 05/31 pull-back)",
+      "why": "Their stated scope, timing and internal-reevaluation reasons fit either label. No valuation comparison is reported."
+    },
+    {
+      "item": "Whether Company D's 05/28 and 05/30 non-submissions are Did not submit exits with re-entries",
+      "why": "E14 says Did not submit is 'not necessarily permanent'. The target kept inviting D, so ST-P09 accepts both treatments."
+    },
+    {
+      "item": "Whether H's 05/23 statement, the 06/18 clean team agreement and the 06/20-06/23 don't-ask-don't-waive dispute earn their own rows",
+      "why": "This is a row-test judgment with little effect on participation, rounds or prices. It is not scored beyond ST-P07's requirement that the 05/23 statement be recorded somewhere."
+    },
+    {
+      "item": "Tracking the target's share price through the process",
+      "why": "Alex (V0117) wants it, but v1.13.2 requires share prices only as dated reference notes beside bids. Not scored."
+    }
+  ],
+  "notes": "METHOD. I reconciled the draft reference against three verifier reports (source fidelity, instruction conformance, coverage), re-reading the frozen v1.13.2 instruction in full and the whole Background of the Merger (pp. 23-35 of raw_filing/stec_2013-08-08_DEFM14A.htm), plus p. 36, pp. 45-46 and Annex A p. A-3. I also read the acc9986 adjudication sections 3-4 and RESEARCH_QUESTIONS provisional items 1, 2 and 4. I spot-checked both Opus draft workbooks (Rounds sheets; bid, contact and Company H rows; the rows cited by the new tests). All source_quotes were checked mechanically against the whitespace-normalized filing text, and printed pages were assigned from page footers. New quotes were verified at p. 29 (P11), p. 27 (P12), p. 31 (R09), and p. 36 and p. A-3 (provenance). Result: 42 tests. Weights: participation 30, rounds 25, formality_conditions 20, chronology 10, bids_prices 10, other 5; total 100.\n\nCHANGE LOG.\nDropped:\n- ST-P02: each clause was already scored in P01, P08, P09 or O03, so one error would be penalized twice. Its unique trap (WDC's entry dated to the annexed 01/29/2009 agreement or duplicated) moved into P01.\n\nParticipation fixes:\n- P01: added the Annex A trap and a half credit for one duplicated entry.\n- P03: now accepts cohort Count 14 (WDC inside the cohort, as in the v1.13 draft), 13, or 12 or fewer where G, E or F have their own rows, or a bound. Dropped the Note-content gate. Fixed the self-contradictory partial credit (a double count sums to 19). Now convention_dependent. Added the p. 28 G evidence and the p. 36 corroboration.\n- P07: defined the fail precisely (Date from = Date to = 05/23, Inferred blank). Option (a) allows a blank Date from and a Date to up to the letters' window end. Listed the exit reasons accepted under (b), including Would not improve earlier offer (E14). Added half credit for an uninferred 05/16 drop, for a non-Not-stated reason under (a), and for a Round 2 tag (the v1.13 draft's error).\n- P08: removed the FAIL/half-credit contradiction; a Re-entered row after the bid is now half credit. Listed accepted exit reasons. A Question is not a gate.\n- P09: D's time requests may sit in Notes. An inferred 05/30 drop followed by Re-entered earns half credit; a reported drop, or a drop with no re-entry, still fails.\n- Reweighted: P06 2->1, P10 3->2.\n\nRounds fixes:\n- R01: resolved the draft's 03/26 fail/half-credit contradiction as a FAIL. A 03/26 split leaves D's mid-March approach, which carries forward, in process 1 (E5(a)), and no three-month gap precedes 03/26 (E5(b)). This follows the conformance verifier over the source-fidelity verifier. Half credit is kept only for a correctly placed gap split with a defective marker.\n- R02: the gap may start 'after 11/14/2012'; any named alternative boundary counts. Weight 2->1.\n- R03: 'Who was in' broadened (H as still being received; the letter recipients). Half credit for round 1 opened at the 04/23 letters (Alex's coding).\n- R04: date rule made gradeable (Date from 05/16, Date to up to 05/28). Weight 4->3.\n- R06: WDC's June rows must share one round; D's invitation and exit may sit in the preceding round when the new round opens after the invitation.\n- R07: a Round opened row carrying the letters satisfies Deadline set (E9). Weight 3->4, since Alex flags the soft deadline.\n- R08: weight 3->2.\n\nFormality and conditions fixes:\n- F04: Heavy is allowed only on the founders'-agreements ground, consistent with a Heavy 05/28 row. Discontinued diligence is an E12 Unclear ground.\n- F06: tightened (weight 2->3). WDC 05/03 and H 05/15 must be Unclear, since no reported condition exists and E12 says non-binding status or a range is not Heavy. D rows are Heavy, with Unclear accepted.\n- F05: weight 2->1.\n\nChronology fixes:\n- C01: part (ii) is graded only where the H message is dated. A 05/15-05/16 window is accepted as an E8 sequence narrowing; the source-fidelity proposal to require Date to on or after 05/23 was not adopted because E8's sequence rule supports the narrower bound. Part (iii) accepts a sequence-narrowed Date from of 03/13-03/14.\n- C02: missing or merged rows are not inversions.\n- C03: no longer rewards asserting that H lacked data-room access (the filing is silent); the follow-up materials are optional.\n- C06: two-process placement corrected (B and C are process 2, round 0); the Alex provenance is corrected (row 7144 is Company B; Alex has no A or Balch Hill row).\n\nAdded:\n- P11 (coverage verifier): the 05/15 decision to keep D subject to a meaningful price increase, and the H non-advancement message, as target-decision rows (D2, E2).\n- P12 (coverage verifier): the 3/6/9 outcome split of the 18, cohort types, and no exact Count resting on B, C or G.\n- R09 (conformance verifier): reconciliation of the June round's 'Who was in' with the ledger (Part F check 1).\n\nLIMITS. This reference is model-built and not human-adjudicated; it is not a gold ledger. It does not grade Notes, row counts, every Sort date, or Questions beyond the map Question's required content.\n\nItems resting on lead-verified corrections:\n- P07 (Company H) and F02 (WDC 05/28 Conditions) follow the acc9986 adjudication, itself a model review, re-checked here against the filing text.\n- R01, R05, R06, R08, R09, P08 and F04 rest on conventions still open in RESEARCH_QUESTIONS provisional items 1, 2 and 4, so they score internal consistency and accept each coherent map.\n- Alex's hand-coding and voice notes supplied traps and emphasis (F as DropTarget, the soft deadline, the duplicated contacts) but no expected values.\n- Both Opus workbooks consulted are unreviewed drafts.\n\nEverything else rests on the filing plus the frozen instruction alone. Because many alternatives are accepted, several round and participation tests are lenient by design. P07, F02, F06, R05, R07, P03, P09, P12 and F07 carry most of the discrimination.\n\nGraders should read the Rounds sheet first, identify the workbook's adopted process and round map, and then apply the matching accepted-alternative branch of each test.\n\nNo repo file was changed. The scratch filing text and quote checker used here are under /home/uctpiaj/work/tmp/claude-1001/stecv/."
+}

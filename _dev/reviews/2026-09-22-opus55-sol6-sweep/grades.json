@@ -1,0 +1,242 @@
+{
+ "datalink-gpt-6-sol-high-r1": {
+  "astra": 85.0,
+  "claude_mean": 87.0,
+  "graders": {
+   "astra": {
+    "missing": [],
+    "score": 85.0
+   },
+   "claude1": {
+    "missing": [],
+    "score": 87.0
+   },
+   "claude2": {
+    "missing": [],
+    "score": 87.0
+   }
+  },
+  "label": "d091d979",
+  "score": 86.0
+ },
+ "datalink-gpt-6-sol-xhigh-r1": {
+  "astra": 87.0,
+  "claude_mean": 87.25,
+  "graders": {
+   "astra": {
+    "missing": [],
+    "score": 87.0
+   },
+   "claude1": {
+    "missing": [],
+    "score": 86.5
+   },
+   "claude2": {
+    "missing": [],
+    "score": 88.0
+   }
+  },
+  "label": "4257d407",
+  "score": 87.12
+ },
+ "datalink-opus-5-5-high-r1": {
+  "astra": 88.0,
+  "claude_mean": 89.0,
+  "graders": {
+   "astra": {
+    "missing": [],
+    "score": 88.0
+   },
+   "claude1": {
+    "missing": [],
+    "score": 90.0
+   },
+   "claude2": {
+    "missing": [],
+    "score": 88.0
+   }
+  },
+  "label": "f762733f",
+  "score": 88.5
+ },
+ "datalink-opus-5-5-medium-r1": {
+  "astra": 92.5,
+  "claude_mean": 92.5,
+  "graders": {
+   "astra": {
+    "missing": [],
+    "score": 92.5
+   },
+   "claude1": {
+    "missing": [],
+    "score": 92.5
+   },
+   "claude2": {
+    "missing": [],
+    "score": 92.5
+   }
+  },
+  "label": "08319c86",
+  "score": 92.5
+ },
+ "mac-gray-gpt-6-sol-high-r1": {
+  "astra": 82.0,
+  "claude_mean": 87.5,
+  "graders": {
+   "astra": {
+    "missing": [],
+    "score": 82.0
+   },
+   "claude1": {
+    "missing": [],
+    "score": 87.5
+   },
+   "claude2": {
+    "missing": [],
+    "score": 87.5
+   }
+  },
+  "label": "cd007b5d",
+  "score": 84.75
+ },
+ "mac-gray-gpt-6-sol-xhigh-r1": {
+  "astra": 98.5,
+  "claude_mean": 97.25,
+  "graders": {
+   "astra": {
+    "missing": [],
+    "score": 98.5
+   },
+   "claude1": {
+    "missing": [],
+    "score": 97.25
+   },
+   "claude2": {
+    "missing": [],
+    "score": 97.25
+   }
+  },
+  "label": "31aeb785",
+  "score": 97.88
+ },
+ "mac-gray-opus-5-5-high-r1": {
+  "astra": 94.5,
+  "claude_mean": 93.25,
+  "graders": {
+   "astra": {
+    "missing": [],
+    "score": 94.5
+   },
+   "claude1": {
+    "missing": [],
+    "score": 93.25
+   },
+   "claude2": {
+    "missing": [],
+    "score": 93.25
+   }
+  },
+  "label": "66353e67",
+  "score": 93.88
+ },
+ "mac-gray-opus-5-5-medium-r1": {
+  "astra": 93.5,
+  "claude_mean": 93.5,
+  "graders": {
+   "astra": {
+    "missing": [],
+    "score": 93.5
+   },
+   "claude1": {
+    "missing": [],
+    "score": 93.5
+   },
+   "claude2": {
+    "missing": [],
+    "score": 93.5
+   }
+  },
+  "label": "8c07ac2a",
+  "score": 93.5
+ },
+ "synacor-gpt-6-sol-high-r1": {
+  "astra": 81.75,
+  "claude_mean": 82.25,
+  "graders": {
+   "astra": {
+    "missing": [],
+    "score": 81.75
+   },
+   "claude1": {
+    "missing": [],
+    "score": 81.25
+   },
+   "claude2": {
+    "missing": [],
+    "score": 83.25
+   }
+  },
+  "label": "23d3fe85",
+  "score": 82.0
+ },
+ "synacor-gpt-6-sol-xhigh-r1": {
+  "astra": 86.5,
+  "claude_mean": 90.25,
+  "graders": {
+   "astra": {
+    "missing": [],
+    "score": 86.5
+   },
+   "claude1": {
+    "missing": [],
+    "score": 90.25
+   },
+   "claude2": {
+    "missing": [],
+    "score": 90.25
+   }
+  },
+  "label": "92bdeeca",
+  "score": 88.38
+ },
+ "synacor-opus-5-5-high-r1": {
+  "astra": 95.25,
+  "claude_mean": 95.25,
+  "graders": {
+   "astra": {
+    "missing": [],
+    "score": 95.25
+   },
+   "claude1": {
+    "missing": [],
+    "score": 95.25
+   },
+   "claude2": {
+    "missing": [],
+    "score": 95.25
+   }
+  },
+  "label": "e11520e3",
+  "score": 95.25
+ },
+ "synacor-opus-5-5-medium-r1": {
+  "astra": 92.25,
+  "claude_mean": 96.75,
+  "graders": {
+   "astra": {
+    "missing": [],
+    "score": 92.25
+   },
+   "claude1": {
+    "missing": [],
+    "score": 96.75
+   },
+   "claude2": {
+    "missing": [],
+    "score": 96.75
+   }
+  },
+  "label": "32b33295",
+  "score": 94.5
+ }
+}

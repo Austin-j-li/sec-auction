@@ -1,6 +1,6 @@
 # Historical side note: Astra on Mac-Gray
 
-**Disposition, 22 September 2026:** Austin asked to retain this experiment as a side note and ruled out Astra as the normal extraction model because of cost. Claude Opus 5 high remains the extraction model. This packet is not imported into the cockpit, is not part of the current development plan, and does not authorize another trial. Astra's engineering design/review role is separate.
+**Disposition, 22 September 2026:** Austin asked to retain this experiment as a side note and ruled out Astra as the normal extraction model because of cost. Claude Opus 5 high was then the extraction model; since the 22 September re-extraction, Claude Opus 5.5 medium is. This packet is not imported into the cockpit, is not part of the current development plan, and does not authorize another trial. Astra's engineering design/review role is separate.
 
 The [original report](REPORT.md) and [assessment](ASSESSMENT.md) describe a single isolated Astra high extraction under v1.13.2. Its raw workbook has 74 events, 13 bids and three rounds. The recorded review found useful improvements over raw Opus on this familiar case, with one mechanical ordering error, presentation issues and unresolved conventions remaining. This is not a general model ranking or research acceptance.
 

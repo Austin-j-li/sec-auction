@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Mechanical validator for the lean deal-ledger workbook (instruction v1.13.1).
+"""Mechanical validator for the lean deal-ledger workbook (instruction v1.13.2).
 
 This checker intentionally does not decide whether events, bidders, rounds, or
 classifications are substantively correct. In particular, it does not sum
@@ -38,7 +38,8 @@ CHECKER_VERSION = "1.5"
 CHECKER_REVISION = (
     "Adds two cross-column checks: an exact-day When must equal Date from, Date to and "
     "Sort date (E8), and an inferred exit carries Exit reason 'Not stated' (E14). "
-    "Checks instruction v1.13.1."
+    "Deal facts must list all 17 v1.13.2 D5 fields in order, including Earlier approaches. "
+    "Checks instruction v1.13.2."
 )
 
 SHEETS = ["Deal ledger", "Rounds", "Questions", "Deal facts"]
@@ -104,22 +105,23 @@ FACT_FIELDS = [
     "Background pages",
     "Initiation",
     "Number of processes",
+    "Earlier approaches",
     "Auction screen",
     "Whole-company bids",
     "Currency and units of bid prices",
     "Target financial advisers",
     "Target legal advisers",
-    "Account (five or six plain sentences)",
+    "Account",
 ]
 ACCOUNT_FIELDS = {"Account", "Account (five or six plain sentences)"}
 INITIATION_FIELDS = {
     "Initiation",
     "Initiation (target-led, bidder-led, activist-influenced, mixed or unclear)",
 }
-AUCTION_SCREEN_FIELDS = {"Auction screen", "Auction screen (C1)", "Auction screen (E1)"}
+AUCTION_SCREEN_FIELDS = {"Auction screen", "Auction screen (E1)"}
 EARLIER_APPROACHES_FIELDS = {
-    "Earlier approaches", "Earlier approaches (C7)", "Earlier approaches (E5)",
-    "Earlier approaches (E5; “None reported” if none)",  # the field as v1.13 D5 prints it
+    "Earlier approaches", "Earlier approaches (E5)",
+    "Earlier approaches (E5; “None reported” if none)",  # the field as v1.13.2 D5 prints it
 }
 WHOLE_COMPANY_FIELDS = {
     "Whole-company bids",
@@ -127,9 +129,10 @@ WHOLE_COMPANY_FIELDS = {
 }
 FACT_FIELD_OPTIONS = [{field} for field in FACT_FIELDS]
 FACT_FIELD_OPTIONS[8] = INITIATION_FIELDS
-FACT_FIELD_OPTIONS[10] = AUCTION_SCREEN_FIELDS
-FACT_FIELD_OPTIONS[11] = WHOLE_COMPANY_FIELDS
-FACT_FIELD_OPTIONS[15] = ACCOUNT_FIELDS
+FACT_FIELD_OPTIONS[10] = EARLIER_APPROACHES_FIELDS
+FACT_FIELD_OPTIONS[11] = AUCTION_SCREEN_FIELDS
+FACT_FIELD_OPTIONS[12] = WHOLE_COMPANY_FIELDS
+FACT_FIELD_OPTIONS[16] = ACCOUNT_FIELDS
 
 EVENTS = {
     "Target interest",
@@ -1372,18 +1375,8 @@ class LeanChecker:
 
         rows = nonempty_rows(ws, len(FACT_COLUMNS))
         actual_fields = [ws.cell(row, 1).value for row in rows]
-        # "Earlier approaches" (v1.9, C7) follows Number of processes; workbooks made under v1.8 lack it.
-        required_fields = [
-            field
-            for index, field in enumerate(actual_fields)
-            if not (
-                field in EARLIER_APPROACHES_FIELDS
-                and index > 0
-                and actual_fields[index - 1] == "Number of processes"
-            )
-        ]
-        fields_match = len(required_fields) == len(FACT_FIELD_OPTIONS) and all(
-            actual in allowed for actual, allowed in zip(required_fields, FACT_FIELD_OPTIONS, strict=True)
+        fields_match = len(actual_fields) == len(FACT_FIELD_OPTIONS) and all(
+            actual in allowed for actual, allowed in zip(actual_fields, FACT_FIELD_OPTIONS, strict=True)
         )
         if not fields_match:
             self.add(

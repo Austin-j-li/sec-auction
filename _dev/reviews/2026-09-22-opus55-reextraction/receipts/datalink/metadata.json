@@ -1,0 +1,25 @@
+{
+  "deal": "datalink",
+  "effort": "medium",
+  "expected_output": "datalink.xlsx",
+  "filing_name": "datalink_2016-11-29_DEFM14A.htm",
+  "filing_sha256": "437e0e7a76ea1326ddfcc81c2b287b2b15354752ae1bab6798b02a014ff7d4d3",
+  "instruction_name": "SEC_Deal_Ledger_Extraction_Instruction.md",
+  "instruction_sha256": "513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304",
+  "library_versions": {
+    "beautifulsoup4": "4.15.0",
+    "lxml": "5.2.1",
+    "openpyxl": "3.1.5"
+  },
+  "mode": "extract",
+  "model": "claude-opus-5-5",
+  "prepared_at": "2026-09-22T21:21:49.625919+00:00",
+  "prompt_sha256": "17ce4db3d2df9790581d753f3ea8a340c1f22aaf51add2746e963f1c297acb9c",
+  "provider": "opus",
+  "python_version": "3.12.13 (main, Apr 16 2026, 00:00:00) [GCC 14.3.1 20251022 (Red Hat 14.3.1-4)]",
+  "report_sha256": null,
+  "revised_from_sha256": null,
+  "runner_sha256": "b74fc6b74eec6a3061a5ac809610fdcb48c0793ac90cabd925132f5531c2f485",
+  "sandbox": "bubblewrap fresh home/state/tmp; one instruction; one filing; one output directory",
+  "timeout_seconds": 9000
+}

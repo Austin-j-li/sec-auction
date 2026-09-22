@@ -968,15 +968,3 @@ def default() -> Cockpit:
     if _DEFAULT is None:
         _DEFAULT = Cockpit()
     return _DEFAULT
-
-
-def list_deals() -> list[dict[str, Any]]:
-    return default().list_deals()
-
-
-def deal_payload(slug: str) -> dict[str, Any]:
-    return default().deal(slug)
-
-
-def filing_payload(slug: str) -> dict[str, Any]:
-    return default().filing_payload(slug)
