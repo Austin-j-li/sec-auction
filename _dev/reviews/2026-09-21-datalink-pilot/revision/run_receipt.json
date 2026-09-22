@@ -1,0 +1,47 @@
+{
+  "preserved_at": "2026-09-21T23:41:31.296399+00:00",
+  "run_dir": "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/datalink-revision-20260921-controlled",
+  "revised_workbook_sha256": "aa14e6fedd7b5dd2b5bfd2f12bcee2fcab31fa5e70c5a945e19db51ff6ce6ce9",
+  "revision_notes_sha256": "cdc0221100213098f95ea3cd58f0701906252fc39fb01e29c9db795aca756ec2",
+  "provider_events_sha256": "3042977f890c66e533a358156bfd876331f0265eb0f57816070b74a09385d380",
+  "provider_events_bytes": 694128,
+  "provider_event_count": 252,
+  "requested_model": "claude-opus-5",
+  "requested_effort": "high",
+  "reported_models": [
+    "claude-opus-5"
+  ],
+  "provider_result_count": 1,
+  "status": {
+    "client_pid": 1675239,
+    "elapsed_seconds": 357.109,
+    "ended_at": "2026-09-21T23:40:19.391883+00:00",
+    "exit_code": 0,
+    "failure_reason": null,
+    "started_at": "2026-09-21T23:34:22.283176+00:00",
+    "state": "completed",
+    "timed_out": false,
+    "usage": {
+      "cost_usd": 2.918622000000001,
+      "tokens": {
+        "cache_creation_input_tokens": 115590,
+        "cache_read_input_tokens": 1561214,
+        "input_tokens": 48,
+        "output_tokens": 39275
+      }
+    },
+    "workbook_exists": true,
+    "workbook_valid_xlsx": true,
+    "worker_pid": 1675174
+  },
+  "temporary_state_removed": {
+    "/home/uctpiaj/work/tmp/sec-extraction-state-uobaug_6": true
+  },
+  "input_copy_hashes": {
+    "instruction": "513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304",
+    "filing": "437e0e7a76ea1326ddfcc81c2b287b2b15354752ae1bab6798b02a014ff7d4d3",
+    "brief": "1a37a45d41e42dc273b1700cd423f7a4c9efae3f109a3174ccf2b471e22549df",
+    "prompt": "3b45dd1176274381ef37bd02f2df113eeee7ed78da84412a476a419fdfa49fbe"
+  },
+  "log_retention": "Exact provider result, delivery, status, command, metadata and revision notes retained. Full event log measured and hashed; disposable full trace removed with run after verification."
+}

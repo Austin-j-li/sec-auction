@@ -1,0 +1,33 @@
+{
+  "state": "completed",
+  "run_dir": "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/meredith-20260921-cockpit",
+  "provider": "opus",
+  "worker_pid": 1679413,
+  "dispatched_at": "2026-09-21T23:43:40.141724+00:00",
+  "client_pid": 1679622,
+  "elapsed_seconds": 664.267,
+  "ended_at": "2026-09-21T23:54:44.645143+00:00",
+  "exit_code": 0,
+  "failure_reason": null,
+  "started_at": "2026-09-21T23:43:40.377785+00:00",
+  "timed_out": false,
+  "usage": {
+    "cost_usd": 4.084876,
+    "tokens": {
+      "cache_creation_input_tokens": 143738,
+      "cache_read_input_tokens": 1596822,
+      "input_tokens": 52,
+      "output_tokens": 73953
+    }
+  },
+  "workbook_exists": true,
+  "workbook_valid_xlsx": true,
+  "preserved_workbook": "_dev/reviews/2026-09-21-v1132-cockpit/raw/extraction/meredith.xlsx",
+  "workbook_sha256": "178c1f0c8419ef19503ad52e1b1fa40132d5f3b35e1d32f62e8c62205d951c89",
+  "check_summary": {
+    "errors": 0,
+    "warnings": 12,
+    "information": 0,
+    "total_issues": 12
+  }
+}

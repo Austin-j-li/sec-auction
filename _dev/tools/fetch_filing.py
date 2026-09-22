@@ -11,8 +11,8 @@ saves its bytes unchanged as raw_filing/<deal>_<date filed>_<FORM>.htm. Every sa
 line in raw_filing/MANIFEST.csv (source link, time, size, SHA-256). Files already
 present are left alone unless --force is given.
 
-Tender offers (SC TO-T) are refused for now: their background section is in an
-exhibit, not the main document. Seed rows marked "review" are refused too.
+For tender offers (SC TO-T), the offer-to-purchase exhibit EX-99.(A)(1)(A)
+is saved instead of the cover form. Seed rows marked "review" are refused.
 
 Standard library only. SEC asks for a named User-Agent and at most 10 requests
 a second; this script makes at most 4.
@@ -63,28 +63,34 @@ def get(url):
             _last_request[0] = time.monotonic()
 
 
-def main_document(index_url, form_type):
-    """Return (submission link, document name, document bytes) for the filing's main document.
+def main_document(index_url, form_type, document=None):
+    """Return (submission link, document name, document bytes) for the selected document.
 
     The document is cut out of the filing's complete submission text file, not
     downloaded as a web page: EDGAR adds a tracking script to the HTML pages it
     serves, so a page download is not the filing as filed. The text file is
     served untouched, and a document block from it equals the served page minus
-    that script.
+    that script. Tender offers use the offer-to-purchase exhibit. If a manifest
+    filename is supplied, require that exact document as well as its type.
     """
+    document_type = "EX-99.(A)(1)(A)" if form_type == "SC TO-T" else form_type
     url = re.sub(r"-index\.html?$", ".txt", index_url)
     text = get(url)
     hits = []
     for m in re.finditer(rb"<DOCUMENT>\n<TYPE>([^\n]*)\n.*?</DOCUMENT>", text, re.S):
-        if m.group(1).decode("ascii", "replace").strip() == form_type:
-            hits.append(m.group(0) + b"\n")
+        if m.group(1).decode("ascii", "replace").strip() != document_type:
+            continue
+        name = re.search(rb"<FILENAME>([^\n]*)\n", m.group(0))
+        name = name.group(1).decode("ascii", "replace").strip() if name else ""
+        if not document or name == document:
+            hits.append((name, m.group(0) + b"\n"))
     if len(hits) != 1:
-        raise FetchError("%s: expected one %s document, found %d" % (url, form_type, len(hits)))
-    name = re.search(rb"<FILENAME>([^\n]*)\n", hits[0])
-    name = name.group(1).decode("ascii", "replace").strip() if name else ""
+        wanted = document_type + (" named " + document if document else "")
+        raise FetchError("%s: expected one %s document, found %d" % (url, wanted, len(hits)))
+    name, data = hits[0]
     if not name.lower().endswith((".htm", ".html")):
         raise FetchError("%s: main document is not HTML (%s)" % (url, name or "no name"))
-    return url, name, hits[0]
+    return url, name, data
 
 
 def read_csv(path):
@@ -128,9 +134,7 @@ def fetch(seed_row, manifest, force):
             raise FetchError("%s: local file differs from its manifest; inspect it or use --force to refetch" % name)
         return "%s: already present; local hash verified" % name
 
-    # In a tender offer the background sits in the offer to purchase, exhibit (a)(1)(A), not the cover form.
-    document_type = "EX-99.(A)(1)(A)" if seed_row["form_type"] == "SC TO-T" else seed_row["form_type"]
-    url, document, data = main_document(seed_row["index_url"], document_type)
+    url, document, data = main_document(seed_row["index_url"], seed_row["form_type"])
     if path.exists() and not force:  # a file from before the manifest: keep it, record what EDGAR has now
         if path.read_bytes() != data:
             raise FetchError("%s: differs from EDGAR's copy; rerun with --force to replace it" % name)
@@ -154,7 +158,7 @@ def verify(manifest):
         path = RAW / r["file"]
         local = hashlib.sha256(path.read_bytes()).hexdigest() if path.exists() else None
         index_url = r["source_url"][:-len(".txt")] + "-index.htm"
-        remote = hashlib.sha256(main_document(index_url, r["form_type"])[2]).hexdigest()
+        remote = hashlib.sha256(main_document(index_url, r["form_type"], r.get("document"))[2]).hexdigest()
         ok = local == r["sha256"] == remote
         bad += not ok
         print("%-60s %s" % (r["file"], "ok" if ok else "MISMATCH (local %s, EDGAR %s)" % (

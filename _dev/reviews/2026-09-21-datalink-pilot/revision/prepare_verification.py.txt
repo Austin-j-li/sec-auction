@@ -1,0 +1,41 @@
+#!/usr/bin/env python3
+"""Read-only evidence snapshots; nothing here enters the provider sandbox."""
+import datetime as dt
+import hashlib
+import json
+from pathlib import Path
+import sys
+from openpyxl import load_workbook
+
+ROOT = Path(__file__).resolve().parents[4]
+OUT = Path(__file__).resolve().parent
+RUN = ROOT / '_dev/runs/datalink-revision-20260921-controlled'
+sys.path.insert(0, str(ROOT / '_dev/tools'))
+from cockpit.data import Filing
+
+def write(name, value):
+    (OUT / name).write_text(json.dumps(value, indent=2, ensure_ascii=False, default=str) + '\n')
+
+def main():
+    raw = load_workbook(ROOT / 'extraction/datalink.xlsx', data_only=False)
+    write('raw_workbook_cells.json', {s.title: [[{'value':c.value,'type':c.data_type,'format':c.number_format} for c in row] for row in s] for s in raw})
+    filing = Filing((ROOT / 'raw_filing/datalink_2016-11-29_DEFM14A.htm').read_bytes())
+    pages = {}
+    for b in filing.blocks_payload():
+        pages.setdefault(str(b['page']), []).append(b['text'])
+    wanted = [str(x) for x in range(27, 37)] + ['A-1', 'A-32', '48']
+    selected = {page: '\n\n'.join(pages.get(page, [])) for page in wanted}
+    write('source_pages.json', selected)
+    (OUT / 'source_pages.txt').write_text('\n\n'.join('PRINTED PAGE '+k+'\n\n'+v for k,v in selected.items()))
+    status = json.loads((RUN / 'status.json').read_text())
+    pid = status.get('client_pid')
+    proc = Path(f'/proc/{pid}/cmdline')
+    argv = proc.read_bytes().decode().split('\x00') if proc.exists() else []
+    states = [x for x in argv if x.startswith('/') and 'sec-extraction-state-' in x]
+    write('runtime_observation.json', {'recorded_at':dt.datetime.now(dt.timezone.utc).isoformat(),
+        'status':status,'provider_state_paths':sorted(set(states)),
+        'command_available':bool(argv),'filing_pages_reliable':filing.pages_reliable})
+    print(json.dumps({'pages':{k:len(v) for k,v in selected.items()},'runtime_states':states}))
+
+if __name__ == '__main__':
+    main()

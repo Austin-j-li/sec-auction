@@ -1,0 +1,33 @@
+{
+  "state": "completed",
+  "run_dir": "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/petsmart-20260921-cockpit",
+  "provider": "opus",
+  "worker_pid": 1682395,
+  "dispatched_at": "2026-09-21T23:51:41.573370+00:00",
+  "client_pid": 1682459,
+  "elapsed_seconds": 558.773,
+  "ended_at": "2026-09-22T00:01:00.584270+00:00",
+  "exit_code": 0,
+  "failure_reason": null,
+  "started_at": "2026-09-21T23:51:41.811582+00:00",
+  "timed_out": false,
+  "usage": {
+    "cost_usd": 4.096163,
+    "tokens": {
+      "cache_creation_input_tokens": 139828,
+      "cache_read_input_tokens": 2294616,
+      "input_tokens": 60,
+      "output_tokens": 62011
+    }
+  },
+  "workbook_exists": true,
+  "workbook_valid_xlsx": true,
+  "preserved_workbook": "_dev/reviews/2026-09-21-v1132-cockpit/raw/extraction/petsmart.xlsx",
+  "workbook_sha256": "e6e46be37e22030f3ad8116815988a37c570c99281928d7c38276fcd5bd04bc9",
+  "check_summary": {
+    "errors": 0,
+    "warnings": 10,
+    "information": 0,
+    "total_issues": 10
+  }
+}

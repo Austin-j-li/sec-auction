@@ -1,0 +1,59 @@
+{
+  "run_at": "2026-09-22T00:17:44.076Z",
+  "mode": "actual catalog ephemeral localhost server; forced read-only session",
+  "nine_deals": [
+    "datalink",
+    "kraton",
+    "mac-gray",
+    "meredith",
+    "penford",
+    "petsmart",
+    "providence-worcester",
+    "stec",
+    "synacor"
+  ],
+  "pages": [
+    {
+      "slug": "datalink",
+      "working_base": "datalink-verified",
+      "working_rows": 68,
+      "findings": 13,
+      "versions": [
+        "working",
+        "v1132-raw",
+        "datalink-verified"
+      ],
+      "selected_late_row": 68
+    },
+    {
+      "slug": "mac-gray",
+      "working_base": "mac-gray-verified",
+      "working_rows": 55,
+      "findings": 14,
+      "versions": [
+        "working",
+        "v1132-raw",
+        "v113-baseline",
+        "mac-gray-verified"
+      ],
+      "selected_late_row": 55
+    }
+  ],
+  "protected_sha256": {
+    "_dev/cockpit/catalog.json": "0ec1b86441f34c944a6201dfaeaf494c9730481abff6ea8a6ac1ad5c43b0d5f0",
+    "extraction/datalink.xlsx": "499d2f2259f10bcb3895a08538bcbf4f686c55a4d568c0a6ded9096ee9449358",
+    "extraction/mac-gray.xlsx": "6c8b583bd9b948cd8e6dee6aa2f7fba43acc5598c5bf73c6f55ae7efab13a852",
+    "raw_filing/datalink_2016-11-29_DEFM14A.htm": "437e0e7a76ea1326ddfcc81c2b287b2b15354752ae1bab6798b02a014ff7d4d3",
+    "raw_filing/mac-gray_2013-12-04_DEFM14A.htm": "e6ea7bd00cfc389c28e5139a3d23aafcc684f7b65ff54d699f3c5be11bbc4301"
+  },
+  "browser_errors": [],
+  "screenshots": [
+    "catalog-nine-overview.png",
+    "catalog-datalink-working.png",
+    "catalog-datalink-review.png",
+    "catalog-datalink-raw.png",
+    "catalog-mac-gray-working.png",
+    "catalog-mac-gray-review.png",
+    "catalog-mac-gray-raw.png"
+  ]
+}

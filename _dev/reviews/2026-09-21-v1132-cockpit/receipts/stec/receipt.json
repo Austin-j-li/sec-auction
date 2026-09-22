@@ -1,0 +1,33 @@
+{
+  "state": "completed",
+  "run_dir": "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/stec-20260921-cockpit",
+  "provider": "opus",
+  "worker_pid": 1686099,
+  "dispatched_at": "2026-09-21T23:55:34.332649+00:00",
+  "client_pid": 1686163,
+  "elapsed_seconds": 721.783,
+  "ended_at": "2026-09-22T00:07:36.286326+00:00",
+  "exit_code": 0,
+  "failure_reason": null,
+  "started_at": "2026-09-21T23:55:34.503074+00:00",
+  "timed_out": false,
+  "usage": {
+    "cost_usd": 4.684291,
+    "tokens": {
+      "cache_creation_input_tokens": 138756,
+      "cache_read_input_tokens": 2506162,
+      "input_tokens": 70,
+      "output_tokens": 81732
+    }
+  },
+  "workbook_exists": true,
+  "workbook_valid_xlsx": true,
+  "preserved_workbook": "_dev/reviews/2026-09-21-v1132-cockpit/raw/extraction/stec.xlsx",
+  "workbook_sha256": "85f28228f875a8ac8cfae9059cf5442f4724d94e999dd2f1974adba82b93305a",
+  "check_summary": {
+    "errors": 0,
+    "warnings": 18,
+    "information": 0,
+    "total_issues": 18
+  }
+}

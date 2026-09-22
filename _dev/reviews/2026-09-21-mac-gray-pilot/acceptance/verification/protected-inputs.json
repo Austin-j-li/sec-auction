@@ -1,0 +1,38 @@
+{
+  "SEC_Deal_Ledger_Extraction_Instruction.md": {
+    "expected": "513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304",
+    "actual": "513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304",
+    "unchanged": true,
+    "bytes": 33624
+  },
+  "raw_filing/mac-gray_2013-12-04_DEFM14A.htm": {
+    "expected": "e6ea7bd00cfc389c28e5139a3d23aafcc684f7b65ff54d699f3c5be11bbc4301",
+    "actual": "e6ea7bd00cfc389c28e5139a3d23aafcc684f7b65ff54d699f3c5be11bbc4301",
+    "unchanged": true,
+    "bytes": 1279957
+  },
+  "extraction/mac-gray.xlsx": {
+    "expected": "6c8b583bd9b948cd8e6dee6aa2f7fba43acc5598c5bf73c6f55ae7efab13a852",
+    "actual": "6c8b583bd9b948cd8e6dee6aa2f7fba43acc5598c5bf73c6f55ae7efab13a852",
+    "unchanged": true,
+    "bytes": 24859
+  },
+  "_dev/reviews/2026-09-21-mac-gray-pilot/raw/extraction/mac-gray.xlsx": {
+    "expected": "9422bc6b0d14c19033771a51bb6432e2054f16ba55e9b07df02c73c3d28ac279",
+    "actual": "9422bc6b0d14c19033771a51bb6432e2054f16ba55e9b07df02c73c3d28ac279",
+    "unchanged": true,
+    "bytes": 23961
+  },
+  "_dev/reviews/2026-09-21-mac-gray-pilot/revision/extraction/mac-gray.xlsx": {
+    "expected": "f54295a242057b0e6f72fddf9555d6b4c007eea10c9fc13b1202b659439e112e",
+    "actual": "f54295a242057b0e6f72fddf9555d6b4c007eea10c9fc13b1202b659439e112e",
+    "unchanged": true,
+    "bytes": 25253
+  },
+  "_dev/tools/sandbox/run_model.py": {
+    "expected": "cc9b8b0b9397e8c12469eb63d645b6123c7037c0c679615ab36e13f534946618",
+    "actual": "cc9b8b0b9397e8c12469eb63d645b6123c7037c0c679615ab36e13f534946618",
+    "unchanged": true,
+    "bytes": 26347
+  }
+}

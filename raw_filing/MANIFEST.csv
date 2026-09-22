@@ -1,4 +1,5 @@
 file,deal,form_type,date_filed,source_url,document,fetched_utc,bytes,sha256
+datalink_2016-11-29_DEFM14A.htm,datalink,DEFM14A,2016-11-29,https://www.sec.gov/Archives/edgar/data/1056923/0001047469-16-016984.txt,a2230384zdefm14a.htm,2026-09-21T22:16:19Z,1382197,437e0e7a76ea1326ddfcc81c2b287b2b15354752ae1bab6798b02a014ff7d4d3
 kraton_2021-11-04_DEFM14A.htm,kraton,DEFM14A,2021-11-04,https://www.sec.gov/Archives/edgar/data/1321646/0001193125-21-320389.txt,d210874ddefm14a.htm,2026-09-20T23:32:18Z,1467260,c0d2abbd80aa02fe55c8c1cc11f9d0a0e4a92bdde3045654cce11997781ae322
 mac-gray_2013-12-04_DEFM14A.htm,mac-gray,DEFM14A,2013-12-04,https://www.sec.gov/Archives/edgar/data/1038280/0001047469-13-010973.txt,a2217482zdefm14a.htm,2026-09-20T10:22:49Z,1279957,e6ea7bd00cfc389c28e5139a3d23aafcc684f7b65ff54d699f3c5be11bbc4301
 meredith_2021-11-08_DEFM14A.htm,meredith,DEFM14A,2021-11-08,https://www.sec.gov/Archives/edgar/data/65011/0001193125-21-323133.txt,d379619ddefm14a.htm,2026-09-20T23:32:18Z,2709877,d6783298bccf365153f3951c6054f04df7a925493a03ef9f9057f740b0b6728b

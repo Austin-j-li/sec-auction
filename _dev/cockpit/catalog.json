@@ -1,0 +1,1263 @@
+{
+  "schema_version": 1,
+  "deals": {
+    "datalink": {
+      "name": "Datalink",
+      "default_base": "datalink-verified",
+      "versions": [
+        {
+          "id": "v1132-raw",
+          "label": "v1.13.2 raw",
+          "path": "extraction/datalink.xlsx",
+          "sha256": "499d2f2259f10bcb3895a08538bcbf4f686c55a4d568c0a6ded9096ee9449358",
+          "instruction_version": "v1.13.2",
+          "kind": "raw",
+          "review_status": "lead_reviewed; human review pending"
+        },
+        {
+          "id": "datalink-verified",
+          "label": "Verified correction pass (lead)",
+          "path": "_dev/reviews/2026-09-21-datalink-pilot/revision/datalink_revised.xlsx",
+          "sha256": "aa14e6fedd7b5dd2b5bfd2f12bcee2fcab31fa5e70c5a945e19db51ff6ce6ce9",
+          "instruction_version": "v1.13.2",
+          "kind": "revision",
+          "review_status": "lead-verified corrections; 1 documented checker quotation exception; human review pending"
+        }
+      ],
+      "findings": [
+        {
+          "id": "datalink-audit-f1",
+          "title": "Audit F1: The exact Counts on the two round-2 'Did not submit' cohorts (5 strategic, 8 financial) break Part B",
+          "detail": "The exact Counts on the two round-2 'Did not submit' cohorts (5 strategic, 8 financial) break Part B's subtraction test. The filing never establishes that the unnamed IOI submitters were among the NDA signers.",
+          "rule": "B (subtraction exact only when every party subtracted is an established member of the total); E3 Counts; E14 Did not submit ('a range where a submitter's membership is uncertain'); F check 3",
+          "source_version": "v1132-raw",
+          "source_label": "Datalink v1.13.2 raw audit",
+          "source_rows": [
+            24,
+            28
+          ],
+          "evidence": [
+            {
+              "quote": "10 of which (including Party A, Party B and Insight) signed a non-disclosure agreement",
+              "page": "28"
+            },
+            {
+              "quote": "five financial sponsors, including Party C, submitted initial indications of interest",
+              "page": "29"
+            },
+            {
+              "quote": "Raymond James also communicated to the interested parties that initial indications of interest were due",
+              "page": "29"
+            }
+          ],
+          "proposed_change": "Blank Count on #24 and #28. Begin the Notes 'Count: 5–7' (strategic: 10 − Party A, Insight, Party B − 0 to 2 unnamed submitters that are established signers) and 'Count: 8–9' (financial: 13 − Party C − 3 to 4, since only one of the 14 sponsors did not sign). Change Rounds round 2 'How it ended' to 'thirteen to sixteen did not submit'. Update Q5's recommendation to match.",
+          "needs_recheck": true,
+          "judgment": "unreviewed",
+          "implementation": "unassessed",
+          "verification": "unchecked",
+          "note": "Development lead assessed this as supported for correction. See the original audit and adjudication documents. Other lead assessments are not Austin acceptance.",
+          "actor": "",
+          "at": "",
+          "recorded_correction": {
+            "version": "datalink-verified",
+            "scope": "Exact non-submitter Counts replaced with qualified ranges; linked summaries revised.",
+            "status": "lead_verified",
+            "actor": "Codex development lead",
+            "source_document": "datalink-verification"
+          }
+        },
+        {
+          "id": "datalink-audit-f2",
+          "title": "Audit F2: The six-member 'other IOI submitters' cohort has Type Unknown even though the filing gives its split",
+          "detail": "The six-member 'other IOI submitters' cohort has Type Unknown even though the filing gives its split (2 strategic, 4 financial). It is also sorted 07/21, so the two strategic IOIs sit after the 07/18 strategic deadline and the strategic did-not-submit row they answered.",
+          "rule": "E3 Cohorts ('split by type only where the filing gives the split'; Unknown only for an unsplit population); E8 Sort date (due date for a response with no arrival day); E13 (a group range belongs on that group's cohort row only)",
+          "source_version": "v1132-raw",
+          "source_label": "Datalink v1.13.2 raw audit",
+          "source_rows": [
+            26,
+            23,
+            24
+          ],
+          "evidence": [
+            {
+              "quote": "Four strategic parties (in addition to Party A, which submitted the proposal described above on March 29, 2016), including Insight and Party B",
+              "page": "29"
+            },
+            {
+              "quote": "The other initial indications of interest included prices from a low of $8.80 per share to a high of $10.50 per share.",
+              "page": "29"
+            },
+            {
+              "quote": "initial indications of interest were due on July 18, 2016 from strategic buyers and July 21, 2016 from financial sponsors",
+              "page": "29"
+            }
+          ],
+          "proposed_change": "Split into '2 other strategic IOI submitters' (Strategic, Count 2, Sort 07/18/2016, placed with #21–#22 before #23) and '4 other financial IOI submitters' (Financial, Count 4, Sort 07/21/2016). For the $8.80–$10.50 range, either leave the price cells blank on both rows and quote the range in each Note, or keep the range only on one combined price-bearing row. E13 ties a group range to 'that group's cohort row', so which option to use is a convention call to raise in a Question.",
+          "needs_recheck": true,
+          "judgment": "unreviewed",
+          "implementation": "unassessed",
+          "verification": "unchecked",
+          "note": "Development lead assessed type and timing split as supported; price placement was narrowed in adjudication. See the original audit and adjudication documents. Other lead assessments are not Austin acceptance.",
+          "actor": "",
+          "at": "",
+          "recorded_correction": {
+            "version": "datalink-verified",
+            "scope": "Known strategic and financial IOI cohorts split; combined price range retained only in Notes.",
+            "status": "lead_verified",
+            "actor": "Codex development lead",
+            "source_document": "datalink-verification"
+          }
+        },
+        {
+          "id": "datalink-audit-f3",
+          "title": "Audit F3: The annexed merger agreement dates Insight's confidentiality agreement to 06/14/2016. The winner's e",
+          "detail": "The annexed merger agreement dates Insight's confidentiality agreement to 06/14/2016. The winner's entry therefore has a reported day, but the ledger leaves Insight inside the undated strategic NDA cohort.",
+          "rule": "C3 (a fact found outside the background earns a row on the same test; quote that page and say where it comes from); E7 (NDA signed dated at execution); E3 Cohorts (members with their own rows are removed; the cohort holds the remainder, with the total in the Note)",
+          "source_version": "v1132-raw",
+          "source_label": "Datalink v1.13.2 raw audit",
+          "source_rows": [
+            16
+          ],
+          "evidence": [
+            {
+              "quote": "provisions of the Confidentiality Agreement dated June 14, 2016 between Parent and the Company",
+              "page": "A-32"
+            },
+            {
+              "quote": "Beginning June 6, Raymond James contacted 13 strategic acquirers (including Party A, Party B and Insight)",
+              "page": "28"
+            }
+          ],
+          "proposed_change": "Insert an 'NDA signed' row: Insight, Strategic, Process 1, Round 2, Count 1, When 06/14/2016, Sort/Date from/Date to 06/14/2016. Quote the Annex A §5.6(b) text (p. A-32), and say in the Note that the date comes from the merger agreement. Place it after #16 and before #17 (Sort 06/18). Reduce #16 to '8 strategic NDA signers (incl. Party B)', Count 8, with the Note giving the filing's total of 10 (Party A #7, Insight new row). Optionally set Date to on the Insight contact inside #15 no later than 06/14.",
+          "needs_recheck": true,
+          "judgment": "unreviewed",
+          "implementation": "unassessed",
+          "verification": "unchecked",
+          "note": "Development lead assessed the dated NDA omission as supported. See the original audit and adjudication documents. Other lead assessments are not Austin acceptance.",
+          "actor": "",
+          "at": "",
+          "recorded_correction": {
+            "version": "datalink-verified",
+            "scope": "Insight's dated June 14 NDA added from Annex A.",
+            "status": "lead_verified",
+            "actor": "Codex development lead",
+            "source_document": "datalink-verification"
+          }
+        },
+        {
+          "id": "datalink-audit-f4",
+          "title": "Audit F4: Insight's 11/01 cut to $11.00 and its 11/02 agreement to $11.25 carry Conditions = Light. The suppor",
+          "detail": "Insight's 11/01 cut to $11.00 and its 11/02 agreement to $11.25 carry Conditions = Light. The support is diligence that finished later (11/02–11/06), but the narrative shows substantive diligence still open when each bid was made, and neither bid states a condition. Under E12 that is Unclear, not Light.",
+          "rule": "E12 (Light only for confirmatory/expedited/limited diligence or documentation; Unclear where the narrative shows diligence still open while the bid states no condition; later changes do not rewrite rows); A ('Classify each offer ... as it stood at the time')",
+          "source_version": "v1132-raw",
+          "source_label": "Datalink v1.13.2 raw audit",
+          "source_rows": [
+            63,
+            65
+          ],
+          "evidence": [
+            {
+              "quote": "Insight would continue its due diligence",
+              "page": "33"
+            },
+            {
+              "quote": "would like to conduct a detailed financial review of the third quarter results and expectations for the fourth quarter",
+              "page": "34"
+            },
+            {
+              "quote": "Additional commercial and legal due diligence continued during this period as well.",
+              "page": "34"
+            },
+            {
+              "quote": "Insight completed its due diligence investigation of the Company",
+              "page": "34"
+            }
+          ],
+          "proposed_change": "Set Conditions = Unclear on #63 and #65. Begin each Note with the driving fact, e.g. 'Unclear: diligence (commercial, legal, Q3/Q4 financial review) still open under the exclusivity to 11/07; no condition stated; no new financing needed.' Revise Q7. A reader could argue Heavy because the diligence ran inside a stated exclusive period, so state that alternative in Q7.",
+          "needs_recheck": true,
+          "judgment": "unreviewed",
+          "implementation": "unassessed",
+          "verification": "unchecked",
+          "note": "Development lead assessed the hindsight-based Conditions label as unsupported. See the original audit and adjudication documents. Other lead assessments are not Austin acceptance.",
+          "actor": "",
+          "at": "",
+          "recorded_correction": {
+            "version": "datalink-verified",
+            "scope": "November Conditions changed to Unclear; September Conditions remain qualified interpretations.",
+            "status": "lead_verified",
+            "actor": "Codex development lead",
+            "source_document": "datalink-verification"
+          }
+        },
+        {
+          "id": "datalink-audit-f5",
+          "title": "Audit F5: The 11/02 $11.25 bid row has All cash = Yes, justified by the later signed consideration. The bid as",
+          "detail": "The 11/02 $11.25 bid row has All cash = Yes, justified by the later signed consideration. The bid as reported states only a dollar price, and Insight's other rows say Not stated.",
+          "rule": "E13 ('A dollar price alone does not establish cash: use Not stated'); A (classify as it stood at the time)",
+          "source_version": "v1132-raw",
+          "source_label": "Datalink v1.13.2 raw audit",
+          "source_rows": [
+            65
+          ],
+          "evidence": [
+            {
+              "quote": "Mr. Lamneck agreed to the increased offer price of $11.25 per share",
+              "page": "34"
+            },
+            {
+              "quote": "The merger consideration will be $11.25 per share in cash",
+              "page": "62"
+            }
+          ],
+          "proposed_change": "Set All cash = Not stated on #65, as on #63 and Insight's earlier bids, and keep the cash consideration on #66 (signing).",
+          "needs_recheck": true,
+          "judgment": "unreviewed",
+          "implementation": "unassessed",
+          "verification": "unchecked",
+          "note": "Development lead assessed the cash inference as unsupported. See the original audit and adjudication documents. Other lead assessments are not Austin acceptance.",
+          "actor": "",
+          "at": "",
+          "recorded_correction": {
+            "version": "datalink-verified",
+            "scope": "November 2 All cash changed to Not stated; signed consideration remains separately recorded.",
+            "status": "lead_verified",
+            "actor": "Codex development lead",
+            "source_document": "datalink-verification"
+          }
+        },
+        {
+          "id": "datalink-audit-f6",
+          "title": "Audit F6: The filing counts Party A's 03/29 proposal as one of the round-2 IOIs, and the Rounds sheet counts i",
+          "detail": "The filing counts Party A's 03/29 proposal as one of the round-2 IOIs, and the Rounds sheet counts it among round-2 'Bids received' (10). The ledger has no round-2 row for Party A, however: its only priced rows are #9/#10 in round 1. The two sheets disagree, and nothing in the ledger records Party A as a round-2 bidder.",
+          "rule": "E6 ('A bid belongs to the solicitation it answers'); E10 (a new Bid row only for a change of price/terms; Bid reaffirmed only when finalizing); F (Question for a call that could go either way and matters)",
+          "source_version": "v1132-raw",
+          "source_label": "Datalink v1.13.2 raw audit",
+          "source_rows": [
+            9,
+            24,
+            30
+          ],
+          "evidence": [
+            {
+              "quote": "Four strategic parties (in addition to Party A, which submitted the proposal described above on March 29, 2016), including Insight and Party B",
+              "page": "29"
+            }
+          ],
+          "proposed_change": "Raise a Question and choose one representation. (a) Add a round-2 'Other material event' on 07/27/2016 (Party A, Count 1): 'Target counts Party A's 03/29 proposal (#9/#10) as its round-2 IOI.' (b) Or make the Rounds line say '9 new IOIs plus Party A's round-1 proposal counted by the target'. Recommended: (a), so the ledger alone shows 10 round-2 bidder units.",
+          "needs_recheck": true,
+          "judgment": "unreviewed",
+          "implementation": "unassessed",
+          "verification": "unchecked",
+          "note": "Development lead supported a clearer round summary but rejected an extra event. See the original audit and adjudication documents. Other lead assessments are not Austin acceptance.",
+          "actor": "",
+          "at": "",
+          "recorded_correction": {
+            "version": "datalink-verified",
+            "scope": "Round 2 summary clarified as nine new IOIs plus Party A's standing offer; no duplicate July bid added.",
+            "status": "lead_verified",
+            "actor": "Codex development lead",
+            "source_document": "datalink-verification"
+          }
+        },
+        {
+          "id": "datalink-audit-f7",
+          "title": "Audit F7: Party C's 10/04 reaffirmation of $11.25 is recorded as a new Bid, although nothing changed. Read lit",
+          "detail": "Party C's 10/04 reaffirmation of $11.25 is recorded as a new Bid, although nothing changed. Read literally, E10 creates a Bid row only for a change of price or material terms, and allows Bid reaffirmed only when the target is finalizing with that bidder, which it was not with Party C. Q2 recommends keeping the row, citing round accounting ('its only round-5 response'). That argument is not the E10 test.",
+          "rule": "E10 (Bid rows for changes; Bid reaffirmed only after target moves to finalize with the bidder and where it changes the record); E6 (bid belongs to the solicitation it answers)",
+          "source_version": "v1132-raw",
+          "source_label": "Datalink v1.13.2 raw audit",
+          "source_rows": [
+            55,
+            10
+          ],
+          "evidence": [
+            {
+              "quote": "On October 4, 2016, Party C reaffirmed its earlier offer of $11.25 per share.",
+              "page": "32"
+            },
+            {
+              "quote": "requiring Insight, Party B and Party C to submit and affirm best and final acquisition proposals",
+              "page": "36"
+            },
+            {
+              "quote": "Party A affirmed substantially all of these transaction terms, including the price per share",
+              "page": "27"
+            }
+          ],
+          "proposed_change": "Keep Q2, but set out the literal E10 reading as the leading alternative. Under it, #55 becomes an 'Other material event' ('Party C confirms its $11.25 offer (#40) stands'), with no price, formality or conditions cells, and round 5 has no new Party C bid. Add the p.36 evidence ('submit and affirm best and final') to Q2. Keep #10 as a Bid only if the 'updated indication of interest' is read as changing terms, and say so.",
+          "needs_recheck": true,
+          "judgment": "unreviewed",
+          "implementation": "unassessed",
+          "verification": "unchecked",
+          "note": "Development lead assessed the unchanged confirmations as unsupported new Bid rows. See the original audit and adjudication documents. Other lead assessments are not Austin acceptance.",
+          "actor": "",
+          "at": "",
+          "recorded_correction": {
+            "version": "datalink-verified",
+            "scope": "Duplicate unchanged-confirmation Bid rows removed while reported confirmations stay in Notes.",
+            "status": "lead_verified",
+            "actor": "Codex development lead",
+            "source_document": "datalink-verification"
+          }
+        },
+        {
+          "id": "datalink-audit-f8",
+          "title": "Audit F8: Party C's final exit is inferred from the 10/26 exclusivity, with Exit reason 'Not stated'. The fili",
+          "detail": "Party C's final exit is inferred from the 10/26 exclusivity, with Exit reason 'Not stated'. The filing, however, gives the target's reasons for sidelining Party C: on 10/20 it refused Party C the Q3/Q4 information because its price was lower and its closing less certain, and the 10/26 board repeated the point. Two readings are available: a reported 'Dropped by target' on 10/20 (refused the next stage), or an exit reason of 'Lower offer than rivals'. The 09/02 inferred drops of Party B and Party C likewise come after 09/01 board reasons that the filing reports.",
+          "rule": "E14 (Dropped by target includes refusing a participant the next stage; inferred exits take Exit reason Not stated; reported exits first); B (an exit label or reason the filing does not establish)",
+          "source_version": "v1132-raw",
+          "source_label": "Datalink v1.13.2 raw audit",
+          "source_rows": [
+            62,
+            46,
+            47,
+            58
+          ],
+          "evidence": [
+            {
+              "quote": "Party C was not provided this financial information because its re-affirmed proposed price of $11.25 per share was less than the price of $12.00",
+              "page": "33"
+            },
+            {
+              "quote": "Our board discussed Party C's lower proposed price of $11.25 per share and the greater certainty of closing offered by the Insight proposal.",
+              "page": "33"
+            },
+            {
+              "quote": "the financing structure and third-party diligence requests proposed by Party B were problematic when compared with the Insight proposal",
+              "page": "31"
+            }
+          ],
+          "proposed_change": "Raise a Question, or extend Q9. For Party C, the alternative is 'Dropped by target' on 10/20/2016, reported rather than inferred, with Exit reason 'Lower offer than rivals' and a Note on the certainty-of-closing ground. If the inferred 10/26 exclusivity exit is kept, keep 'Not stated' as E14 requires, but put the p.33 reasons in the Note. Treat #46/#47 the same way (Party B: Terms or process; Party C: Lower offer than rivals) only if those drops are reclassified as reported.",
+          "needs_recheck": true,
+          "judgment": "unreviewed",
+          "implementation": "unassessed",
+          "verification": "unchecked",
+          "note": "Development lead rejected the proposed earlier exits as corrections. See the original audit and adjudication documents. Other lead assessments are not Austin acceptance.",
+          "actor": "",
+          "at": ""
+        },
+        {
+          "id": "datalink-audit-f9",
+          "title": "Audit F9: The draft opens round 1 on 01/29 as a bilateral stage with Party A. E6's opening rule lists the trig",
+          "detail": "The draft opens round 1 on 01/29 as a bilateral stage with Party A. E6's opening rule lists the triggers 'in order', beginning with 'the first outreach wave'. The bilateral trigger is the last fallback. Read literally, that ordering puts round 1 at the 06/06 outreach and Party A's pre-June activity in round 0, which is Q1's alternative (i). The mid-March request for a written proposal is, however, a target solicitation, and that supports the draft.",
+          "rule": "E6 Round 1 opening order; round 0 for earlier approaches and unsolicited proposals; E6 new round when the set changes",
+          "source_version": "v1132-raw",
+          "source_label": "Datalink v1.13.2 raw audit",
+          "source_rows": [
+            5,
+            7,
+            8,
+            9,
+            10,
+            11,
+            14
+          ],
+          "evidence": [
+            {
+              "quote": "determined that our management should continue to pursue the opportunity with Party A",
+              "page": "27"
+            },
+            {
+              "quote": "As we requested in mid-March 2016, on March 29, 2016, Party A provided a written proposal",
+              "page": "27"
+            },
+            {
+              "quote": "On June 6, 2016, Raymond James began contacting potential strategic acquirers",
+              "page": "28"
+            }
+          ],
+          "proposed_change": "No silent change. In Q1, note that E6's priority wording favours alternative (i), and that the target-requested 03/29 proposal favours the draft. Let the research team decide. If (i) is adopted, #5–#11 move to round 0, #5 and the Rounds round-1 line are deleted, and rounds 2–5 become 1–4.",
+          "needs_recheck": true,
+          "judgment": "unreviewed",
+          "implementation": "unassessed",
+          "verification": "unchecked",
+          "note": "Austin ruled on 2026-09-21 to retain January as round 1 and June as round 2; January 29 remains inferred. See the original audit and adjudication documents. Other lead assessments are not Austin acceptance.",
+          "actor": "",
+          "at": "",
+          "recorded_decision": {
+            "actor": "Austin Li",
+            "at": "2026-09-21",
+            "decision": "Retain January's bilateral stage as round 1 and June's broad outreach as round 2; keep five rounds. January 29 remains inferred.",
+            "source_document": "datalink-adjudication"
+          },
+          "recorded_correction": {
+            "version": "datalink-verified",
+            "scope": "Q1 records Austin's retained five-round ruling; January opening remains inferred.",
+            "status": "lead_verified",
+            "actor": "Codex development lead",
+            "source_document": "datalink-verification"
+          }
+        },
+        {
+          "id": "datalink-audit-f10",
+          "title": "Audit F10: Insight's standing $12.00 offer gained new closing conditions: pre-closing pro forma 8-K adjustments",
+          "detail": "Insight's standing $12.00 offer gained new closing conditions: pre-closing pro forma 8-K adjustments and auditor consent. Insight made them a requirement for signing. The draft records this as an 'Other material event', so Insight's latest bid row (#44) still shows the pre-change conditions.",
+          "rule": "E10 (every change of price or material economic terms is its own Bid row); E12 (Heavy: another material stated condition, such as an identified obstacle to completion)",
+          "source_version": "v1132-raw",
+          "source_label": "Datalink v1.13.2 raw audit",
+          "source_rows": [
+            48,
+            44
+          ],
+          "evidence": [
+            {
+              "quote": "a provision requiring the receipt of the consent of our independent auditors",
+              "page": "32"
+            },
+            {
+              "quote": "Insight would not be willing to enter into the merger agreement",
+              "page": "32"
+            }
+          ],
+          "proposed_change": "Keep #48 as recorded, or recast it as an Insight Bid row at $12.00 ('conditions revised from #44'; Formal; Heavy: auditor-consent closing condition). The deciding question is whether a new closing condition counts as a 'material economic term'. Mention it in Q7.",
+          "needs_recheck": true,
+          "judgment": "unreviewed",
+          "implementation": "unassessed",
+          "verification": "unchecked",
+          "note": "Development lead assessed the material new closing conditions as supported. See the original audit and adjudication documents. Other lead assessments are not Austin acceptance.",
+          "actor": "",
+          "at": "",
+          "recorded_correction": {
+            "version": "datalink-verified",
+            "scope": "A separate September 26 bid records newly proposed closing conditions; its cross-page quotation has a documented checker exception.",
+            "status": "lead_verified",
+            "actor": "Codex development lead",
+            "source_document": "datalink-verification"
+          }
+        },
+        {
+          "id": "datalink-audit-f11",
+          "title": "Audit F11: The projections section says the management Projections were given to Insight for its due diligence.",
+          "detail": "The projections section says the management Projections were given to Insight for its due diligence. It does not say whether Party B, Party C or other bidders received them. No ledger row or Note mentions this.",
+          "rule": "E2 (difference in information access earns a row wherever the filing reports it); C1/C3 (read the projections section; facts outside the background)",
+          "source_version": "v1132-raw",
+          "source_label": "Datalink v1.13.2 raw audit",
+          "source_rows": [],
+          "evidence": [
+            {
+              "quote": "The Projections were also provided to Insight in connection with its due diligence review of a possible transaction",
+              "page": "39"
+            }
+          ],
+          "proposed_change": "No new row: the filing does not report a difference in access, only that Insight received them. Add a sentence to the Note of an Insight diligence row (e.g., #57), citing p.39, that Insight received the Projections and that other bidders' access is not stated.",
+          "needs_recheck": true,
+          "judgment": "unreviewed",
+          "implementation": "unassessed",
+          "verification": "unchecked",
+          "note": "Development lead found no required separate projections event. See the original audit and adjudication documents. Other lead assessments are not Austin acceptance.",
+          "actor": "",
+          "at": ""
+        },
+        {
+          "id": "datalink-lead-l1",
+          "title": "Lead L1: separate requested exclusivity event",
+          "detail": "The lead source inventory found the requested 30-day exclusivity period recorded only in a Note in the raw draft. The later controlled revision records the request separately.",
+          "rule": "E2",
+          "source_version": "v1132-raw",
+          "source_label": "Datalink source-first lead assessment",
+          "source_rows": [],
+          "evidence": [],
+          "proposed_change": "See the separate request representation and its bounded date in the verified revision.",
+          "needs_recheck": true,
+          "judgment": "unreviewed",
+          "implementation": "unassessed",
+          "verification": "unchecked",
+          "note": "Development lead assessment from ADJUDICATION.md, not an Austin-adopted finding. The revised workbook's correction was lead-verified within the documented scope.",
+          "actor": "",
+          "at": "",
+          "recorded_correction": {
+            "version": "datalink-verified",
+            "scope": "Requested exclusivity event added with no lower date bound or rival exit.",
+            "status": "lead_verified",
+            "actor": "Codex development lead",
+            "source_document": "datalink-verification"
+          }
+        },
+        {
+          "id": "datalink-mechanical-m1",
+          "title": "Mechanical M1: round-opening row order",
+          "detail": "The raw checker reported a round-opening order error. The verified revision reorders the same-day opening before events assigned to that round.",
+          "rule": "E6",
+          "source_version": "v1132-raw",
+          "source_label": "Datalink checker and lead adjudication",
+          "source_rows": [],
+          "evidence": [],
+          "proposed_change": "Keep January as round 1 under Austin's recorded F9 decision; check row ordering.",
+          "needs_recheck": true,
+          "judgment": "unreviewed",
+          "implementation": "unassessed",
+          "verification": "unchecked",
+          "note": "Mechanical finding, not a substantive certification. The original checker report and revision verification remain available.",
+          "actor": "",
+          "at": "",
+          "recorded_correction": {
+            "version": "datalink-verified",
+            "scope": "Same-day round opening moved before assigned events; round boundary unchanged.",
+            "status": "lead_verified",
+            "actor": "Codex development lead",
+            "source_document": "datalink-verification"
+          }
+        }
+      ],
+      "documents": [
+        {
+          "id": "datalink-audit",
+          "label": "Fresh independent audit",
+          "source_version": "v1132-raw",
+          "kind": "review",
+          "path": "_dev/reviews/2026-09-21-datalink-pilot/fresh_review.md"
+        },
+        {
+          "id": "datalink-adjudication",
+          "label": "Lead adjudication and Austin F9 ruling",
+          "source_version": "v1132-raw",
+          "kind": "adjudication",
+          "path": "_dev/reviews/2026-09-21-datalink-pilot/ADJUDICATION.md"
+        },
+        {
+          "id": "datalink-inventory",
+          "label": "Source-first inventory comparison",
+          "source_version": "v1132-raw",
+          "kind": "inventory",
+          "path": "_dev/reviews/2026-09-21-datalink-pilot/inventory_comparison.md"
+        },
+        {
+          "id": "datalink-correction-brief",
+          "label": "Accepted correction brief for controlled revision",
+          "source_version": "v1132-raw",
+          "kind": "correction_brief",
+          "path": "_dev/reviews/2026-09-21-datalink-pilot/revision/CORRECTION_BRIEF.md"
+        },
+        {
+          "id": "datalink-verification",
+          "label": "Verified correction pass and checker exception",
+          "source_version": "datalink-verified",
+          "kind": "verification",
+          "path": "_dev/reviews/2026-09-21-datalink-pilot/revision/VERIFICATION.md"
+        },
+        {
+          "id": "datalink-inventory-verification",
+          "label": "Frozen inventory revisit",
+          "source_version": "datalink-verified",
+          "kind": "inventory",
+          "path": "_dev/reviews/2026-09-21-datalink-pilot/revision/INVENTORY_VERIFICATION.md"
+        }
+      ]
+    },
+    "kraton": {
+      "name": "Kraton",
+      "default_base": "v1132-raw",
+      "versions": [
+        {
+          "id": "v1132-raw",
+          "label": "v1.13.2 raw",
+          "path": "_dev/reviews/2026-09-21-v1132-cockpit/raw/extraction/kraton.xlsx",
+          "sha256": "be4549979af56dcb7fc56b9b6e33295989d28e1be84ddbb02c4c683a3c0dd2e9",
+          "instruction_version": "v1.13.2",
+          "kind": "raw",
+          "review_status": "unreviewed; Austin review pending"
+        },
+        {
+          "id": "v113-baseline",
+          "label": "v1.13 original baseline",
+          "path": "extraction/kraton.xlsx",
+          "sha256": "b1388206612abde5df19564951c3a897673fb5c7b2a6eb8b3d8e26f75c27a7d2",
+          "instruction_version": "v1.13",
+          "kind": "raw",
+          "review_status": "historical original; human review pending"
+        }
+      ],
+      "findings": [],
+      "documents": []
+    },
+    "mac-gray": {
+      "name": "Mac-Gray",
+      "default_base": "mac-gray-candidate",
+      "versions": [
+        {
+          "id": "v1132-raw",
+          "label": "v1.13.2 raw",
+          "path": "_dev/reviews/2026-09-21-mac-gray-pilot/raw/extraction/mac-gray.xlsx",
+          "sha256": "9422bc6b0d14c19033771a51bb6432e2054f16ba55e9b07df02c73c3d28ac279",
+          "instruction_version": "v1.13.2",
+          "kind": "raw",
+          "review_status": "lead_reviewed; human review pending"
+        },
+        {
+          "id": "v113-baseline",
+          "label": "v1.13 original baseline",
+          "path": "extraction/mac-gray.xlsx",
+          "sha256": "6c8b583bd9b948cd8e6dee6aa2f7fba43acc5598c5bf73c6f55ae7efab13a852",
+          "instruction_version": "v1.13",
+          "kind": "raw",
+          "review_status": "historical original; human review pending"
+        },
+        {
+          "id": "mac-gray-verified",
+          "label": "Verified correction pass (lead)",
+          "path": "_dev/reviews/2026-09-21-mac-gray-pilot/revision/extraction/mac-gray.xlsx",
+          "sha256": "f54295a242057b0e6f72fddf9555d6b4c007eea10c9fc13b1202b659439e112e",
+          "instruction_version": "v1.13.2",
+          "kind": "revision",
+          "review_status": "lead-verified corrections; human review pending"
+        },
+        {
+          "id": "mac-gray-candidate",
+          "label": "Latest correction candidate (R01 pending)",
+          "path": "_dev/reviews/2026-09-21-mac-gray-pilot/acceptance/extraction/mac-gray.xlsx",
+          "sha256": "db85a39b00bb98702e73ad3e891cb4ab50202f2e032fcb3278ef0e6e45f351e1",
+          "instruction_version": "v1.13.2",
+          "kind": "revision",
+          "review_status": "source review and supported corrections verified; R01 pending; not research-ready"
+        }
+      ],
+      "findings": [
+        {
+          "id": "mac-gray-audit-f01",
+          "title": "Audit F01: Q9 says that if the round-3 responses are read as Informal, 'the deal has no formal bid before signi",
+          "detail": "Q9 says that if the round-3 responses are read as Informal, 'the deal has no formal bid before signing'. That is wrong under the rules. On 10/07/2013, during exclusivity and with its $21.25 price standing, CSC/Pamplona's counsel returned its own revised draft (markup) of the merger agreement; on 10/05 it returned a revised draft of the Pamplona commitment letter engaging definitive terms. Under E10/E11 rule 1, that returned markup establishes a Formal offer through a Bid reaffirmed row whenever the latest priced row is Informal.",
+          "rule": "E10 (Bid reaffirmed by returning its own markup); E11 rule 1; Part F (Questions must state what changes if answered differently)",
+          "source_version": "v1132-raw",
+          "source_label": "Mac-Gray v1.13.2 raw audit",
+          "source_rows": [
+            "Questions: Q9 (Excel row 10)",
+            "Deal ledger #38 (Excel row 39)",
+            "#39 (row 40)",
+            "#40 (row 41)",
+            "#44 (row 45)"
+          ],
+          "evidence": [
+            {
+              "quote": "Kirkland delivered to Goodwin Procter a revised draft of the merger agreement which, among other things, proposed a $15 million Mac-Gray termination fee",
+              "page": "39"
+            }
+          ],
+          "proposed_change": "Rewrite Q9 'What changes if answered differently' along these lines: 'If round-3 responses are Informal, #38/#39/#40/#44 become Informal and a Bid reaffirmed row is required for CSC/Pamplona on 10/07/2013 ($21.25 carried from #44, Formal via its returned merger-agreement markup, Conditions as they stood then), with a Question; Party A and Party B would then have no formal bid.' Leave the current rows unchanged while Q9 recommends Formal.",
+          "needs_recheck": true,
+          "judgment": "unreviewed",
+          "implementation": "unassessed",
+          "verification": "unchecked",
+          "note": "Development lead supported a correction to Q9's counterfactual. A separate verified revision addresses accepted corrections within its documented scope; this finding remains sourced to the raw draft. Human review is pending. See original adjudication and verification.",
+          "actor": "",
+          "at": "",
+          "recorded_correction": {
+            "version": "mac-gray-verified",
+            "scope": "Q9 alternative-formality counterfactual corrected; no new reaffirmation under retained Formal classification.",
+            "status": "lead_verified",
+            "actor": "Codex development lead",
+            "source_document": "mac-gray-verification"
+          }
+        },
+        {
+          "id": "mac-gray-audit-f02",
+          "title": "Audit F02: The filing defines a distinct 'CSC/Pamplona final proposal', negotiated 09/21–09/23. It adds to the ",
+          "detail": "The filing defines a distinct 'CSC/Pamplona final proposal', negotiated 09/21–09/23. It adds to the 09/21 $21.25 offer (#44) a $15 million reverse termination fee, an agreed absence of any financing contingency, Pamplona's commitment to fund 100%, and automatic termination of exclusivity if CSC adversely changes those terms. No row records it; the terms appear only in #44's Note ('Terms settled 09/21–09/23'), attached to an earlier bid whose conditions they post-date.",
+          "rule": "E10 (every change of price or material economic terms the bidder communicates is its own Bid row); E12 (later changes do not rewrite earlier rows); E2 (legal-term negotiation folds)",
+          "source_version": "v1132-raw",
+          "source_label": "Mac-Gray v1.13.2 raw audit",
+          "source_rows": [
+            "Deal ledger: no row exists; belongs after #44 (Excel row 45) and before #45",
+            "#44 (row 45)",
+            "#46 (row 47)"
+          ],
+          "evidence": [
+            {
+              "quote": "Representatives from Goodwin Procter reviewed the terms of the CSC/Pamplona final proposal with the Special Committee, including the $21.25 per share cash consideration, the $15 million CSC reverse termination fee",
+              "page": "38"
+            }
+          ],
+          "proposed_change": "Either add a Bid row: When 'between 09/21/2013 and 09/23/2013', Who CSC/Pamplona, Strategic, Process 1, Round 3, Price 21.25/21.25, All cash Yes, Formal (same final round), Conditions Heavy (two-week exclusive period still part of the proposal; state in Note that financing is now reported committed with no contingency and a $15m reverse fee), Sort date 09/22/2013, Date from 09/21, Date to 09/23, Note 'revises #44 terms; price unchanged'; then trim #44's Note to what was offered on 09/21. Or keep the fold and raise a Question recording the choice.",
+          "needs_recheck": true,
+          "judgment": "unreviewed",
+          "implementation": "unassessed",
+          "verification": "unchecked",
+          "note": "Development lead identified a genuine economic-terms boundary for Austin. A separate verified revision addresses accepted corrections within its documented scope; this finding remains sourced to the raw draft. Human review is pending. See original adjudication and verification.",
+          "actor": "",
+          "at": ""
+        },
+        {
+          "id": "mac-gray-audit-f03",
+          "title": "Audit F03: Party A was live from its 06/21 bid (#8). Throughout round 1, every NDA signer received the informat",
+          "detail": "Party A was live from its 06/21 bid (#8). Throughout round 1, every NDA signer received the informational package used to formulate preliminary indications, but Party A did not: NDA talks stalled on non-solicitation terms between 07/11 and 07/23, and it got the package only on 08/05. On 07/25 its uninformed 06/21 proposal was reviewed alongside the three informed indications. The ledger records this only in #28's Note and in the Rounds 'not admitted' remark; no row records the information difference.",
+          "rule": "E2 (a difference in information access among live bidders earns a row wherever the filing reports it); E3 (Party A live from its 06/21 bid)",
+          "source_version": "v1132-raw",
+          "source_label": "Mac-Gray v1.13.2 raw audit",
+          "source_rows": [
+            "Deal ledger: no row exists; belongs between #20 (Excel row 21) and #21 (row 22)",
+            "#28 (row 29)",
+            "Rounds: round 1 'Who was in' (row 2)"
+          ],
+          "evidence": [
+            {
+              "quote": "did not come to agreement on the terms of the customer and employee non-solicitation provisions",
+              "page": "33"
+            }
+          ],
+          "proposed_change": "Add an Other material event row: When 'between 07/11/2013 and 07/23/2013', Who Mac-Gray (or Party A), Process 1, Round 1, Sort date 07/17/2013, Date from 07/11, Date to 07/23. Note: 'Information access: Party A (live since #8) had no NDA and no informational package during round 1, because NDA talks stalled over customer/employee non-solicitation terms; its 06/21 proposal was reviewed 07/25 against indications from package recipients; package given 08/05 (#28).' Quote the passage above.",
+          "needs_recheck": true,
+          "judgment": "unreviewed",
+          "implementation": "unassessed",
+          "verification": "unchecked",
+          "note": "Development lead called this a representation judgment, not a confirmed omission. A separate verified revision addresses accepted corrections within its documented scope; this finding remains sourced to the raw draft. Human review is pending. See original adjudication and verification.",
+          "actor": "",
+          "at": ""
+        },
+        {
+          "id": "mac-gray-audit-f04",
+          "title": "Audit F04: The 04/05 authorization is to explore 'transactional opportunities', including a business combinatio",
+          "detail": "The 04/05 authorization is to explore 'transactional opportunities', including a business combination with Party A. It is not a decision to explore a sale: the Board deferred the sale question to 05/09, and on 05/09 it again deferred ('would discuss ... engaging in a potential sale process, at its next meeting'). The row's own Note says 'not yet a sale decision', which contradicts its label. The first board-level step toward a sale is the 05/30 adviser mandate 'including a potential sale process', and the explicit decision is 06/24 (#9).",
+          "rule": "D2 (Target sale decision: the board decides to explore or pursue a sale; keep its qualifications); Part A (classify as it stood at the time)",
+          "source_version": "v1132-raw",
+          "source_label": "Mac-Gray v1.13.2 raw audit",
+          "source_rows": [
+            "Deal ledger #1 (Excel row 2)",
+            "Deal facts: Initiation (row 10)"
+          ],
+          "evidence": [
+            {
+              "quote": "authorized Mac-Gray management to work with BofA Merrill Lynch to explore transactional opportunities that might be available to Mac-Gray, including opportunities with another strategic party",
+              "page": "27"
+            }
+          ],
+          "proposed_change": "Relabel #1 as Other material event, beginning the Note 'Board authorized exploration of transactional opportunities (not a sale decision) ...'. Keep #9 (06/24) as the Target sale decision. Optionally raise a Question if the label is kept.",
+          "needs_recheck": true,
+          "judgment": "unreviewed",
+          "implementation": "unassessed",
+          "verification": "unchecked",
+          "note": "Development lead called this a classification judgment. A separate verified revision addresses accepted corrections within its documented scope; this finding remains sourced to the raw draft. Human review is pending. See original adjudication and verification.",
+          "actor": "",
+          "at": ""
+        },
+        {
+          "id": "mac-gray-audit-f05",
+          "title": "Audit F05: Q5's 'Why' states: 'Party A's NDA (08/05) shows that some signings came after 07/23.' Party A is not",
+          "detail": "Q5's 'Why' states: 'Party A's NDA (08/05) shows that some signings came after 07/23.' Party A is not among the 16 unnamed financial signers in #17/#23. Its late NDA therefore shows nothing about when those 16 signed. The filing gives no signing date for any of the 16, so the reasoning presents the possibility of late signers as evidenced when it is merely open.",
+          "rule": "Part B (inferences must rest on the reported fact); E14 (Did not submit only for participants eligible for the solicitation); Part F",
+          "source_version": "v1132-raw",
+          "source_label": "Mac-Gray v1.13.2 raw audit",
+          "source_rows": [
+            "Questions: Q5 (Excel row 6)",
+            "Deal ledger #17 (row 18)",
+            "#23 (row 24)"
+          ],
+          "evidence": [
+            {
+              "quote": "Over the next two months a total of 20 potential bidders, including two strategic bidders (Party A and CSC/Pamplona) and 18 financial bidders",
+              "page": "32"
+            }
+          ],
+          "proposed_change": "Revise Q5's 'Why': 'The 20 NDAs were signed over roughly two months from 06/24 (p. 32), and the only dated post-07/23 signing is Party A (08/05), which is outside the cohort. The 16 have no reported dates, so whether any signed after 07/23 is unknown. On 07/25 only four ‘interested bidders’ were named (pp. 33–34).' Keep the recommendation and #23 as is, or state in #23's Note 'Count: 16 exits; label Did not submit assumes all 16 signed by 07/23'.",
+          "needs_recheck": true,
+          "judgment": "unreviewed",
+          "implementation": "unassessed",
+          "verification": "unchecked",
+          "note": "Development lead did not accept this as stated; the separate cohort timing concern appears in the adjudication. A separate verified revision addresses accepted corrections within its documented scope; this finding remains sourced to the raw draft. Human review is pending. See original adjudication and verification.",
+          "actor": "",
+          "at": ""
+        },
+        {
+          "id": "mac-gray-audit-f06",
+          "title": "Audit F06: Row #2 dates BofA's role in the target's review to 04/05/2013 but quotes 'Mac-Gray engaged BofA Merr",
+          "detail": "Row #2 dates BofA's role in the target's review to 04/05/2013 but quotes 'Mac-Gray engaged BofA Merrill Lynch on October 23, 2012'. That quotation concerns the buy-side mandate for Mac-Gray's possible acquisition of CSC, not BofA acting in this process on 04/05, so it does not support the row's claim. Relatedly, the ledger gives BofA three rows (#2 Adviser, #5 Adviser ended for the buy-side letter, #6 Adviser for the sale mandate), although the terminated 2012 letter belonged to the target's attempt to buy CSC, which E1 places outside the sale process.",
+          "rule": "Part B (the quotation supports that row's specific claim); D2 (one Adviser row per relationship, at the earliest date the filing shows that adviser selected or acting); E1 (a target's attempt to buy another company is not its sale process)",
+          "source_version": "v1132-raw",
+          "source_label": "Mac-Gray v1.13.2 raw audit",
+          "source_rows": [
+            "Deal ledger #2 (Excel row 3)",
+            "#5 (row 6)",
+            "#6 (row 7)"
+          ],
+          "evidence": [
+            {
+              "quote": "authorized Mac-Gray management to work with BofA Merrill Lynch to explore transactional opportunities",
+              "page": "27"
+            }
+          ],
+          "proposed_change": "Replace #2's quotation with the 04/05 passage quoted here (p. 27) or the 04/08 call ('representatives of BofA Merrill Lynch, as instructed by the Board, telephoned a representative of Party A', p. 27). Consider treating BofA as one sale-process relationship at 04/05 (Note: acting under a pre-existing buy-side letter, terminated 05/15, re-engaged for the strategic review 05/30–05/31), and removing #5/#6 or folding them into #2's Note. If the three rows are kept, record the choice in a Question.",
+          "needs_recheck": true,
+          "judgment": "unreviewed",
+          "implementation": "unassessed",
+          "verification": "unchecked",
+          "note": "Development lead supported only a quotation correction. A separate verified revision addresses accepted corrections within its documented scope; this finding remains sourced to the raw draft. Human review is pending. See original adjudication and verification.",
+          "actor": "",
+          "at": "",
+          "recorded_correction": {
+            "version": "mac-gray-verified",
+            "scope": "April adviser quotation replaced; adviser events retained.",
+            "status": "lead_verified",
+            "actor": "Codex development lead",
+            "source_document": "mac-gray-verification"
+          }
+        },
+        {
+          "id": "mac-gray-audit-f07",
+          "title": "Audit F07: The row's claim is a target action ('Allowed Moab to resume equity-rollover talks with CSC/Pamplona'",
+          "detail": "The row's claim is a target action ('Allowed Moab to resume equity-rollover talks with CSC/Pamplona'). Its quotation, 'Mr. Rothenberg indicated he would like to discuss the possibility of an equity rollover with CSC/Pamplona', records only Moab's wish, not the target's permission.",
+          "rule": "Part B (quotation supports the row's specific claim); D2 (Other material event: begin the Note with the action)",
+          "source_version": "v1132-raw",
+          "source_label": "Mac-Gray v1.13.2 raw audit",
+          "source_rows": [
+            "Deal ledger #45 (Excel row 46)"
+          ],
+          "evidence": [
+            {
+              "quote": "to provide Moab with the opportunity to resume discussions with CSC/Pamplona regarding a possible equity rollover of Moab's shares in the transaction",
+              "page": "38"
+            }
+          ],
+          "proposed_change": "Replace the quotation with the passage above (p. 38, 30 words or fewer) and keep the Note.",
+          "needs_recheck": true,
+          "judgment": "unreviewed",
+          "implementation": "unassessed",
+          "verification": "unchecked",
+          "note": "Development lead supported a quotation correction. A separate verified revision addresses accepted corrections within its documented scope; this finding remains sourced to the raw draft. Human review is pending. See original adjudication and verification.",
+          "actor": "",
+          "at": "",
+          "recorded_correction": {
+            "version": "mac-gray-verified",
+            "scope": "Rollover-permission quotation replaced with clause supporting target authorization.",
+            "status": "lead_verified",
+            "actor": "Codex development lead",
+            "source_document": "mac-gray-verification"
+          }
+        },
+        {
+          "id": "mac-gray-audit-f08",
+          "title": "Audit F08: The When cells read 'late June–July 2013 (during the next several weeks after 06/24/2013)'. The fili",
+          "detail": "The When cells read 'late June–July 2013 (during the next several weeks after 06/24/2013)'. The filing gives no end date for the outreach. NDAs from it were signed 'over the next two months' (to about late August), so 'July' as the end is narrower than the evidence. Date to is correctly left empty, so When and Date to are inconsistent.",
+          "rule": "Part B (a date no narrower than its evidence); E8 (When keeps the filing's precision)",
+          "source_version": "v1132-raw",
+          "source_label": "Mac-Gray v1.13.2 raw audit",
+          "source_rows": [
+            "Deal ledger #11 (Excel row 12)",
+            "#12 (row 13)"
+          ],
+          "evidence": [
+            {
+              "quote": "During the next several weeks, in accordance with the directives of the Special Committee, BofA Merrill Lynch contacted the strategic and financial parties identified",
+              "page": "32"
+            }
+          ],
+          "proposed_change": "Set When on #11 and #12 to 'from 06/24/2013, during the next several weeks'. Keep Date from 06/24/2013 and Date to empty.",
+          "needs_recheck": true,
+          "judgment": "unreviewed",
+          "implementation": "unassessed",
+          "verification": "unchecked",
+          "note": "Development lead supported a precision correction. A separate verified revision addresses accepted corrections within its documented scope; this finding remains sourced to the raw draft. Human review is pending. See original adjudication and verification.",
+          "actor": "",
+          "at": "",
+          "recorded_correction": {
+            "version": "mac-gray-verified",
+            "scope": "Outreach timing wording corrected without an invented July endpoint.",
+            "status": "lead_verified",
+            "actor": "Codex development lead",
+            "source_document": "mac-gray-verification"
+          }
+        },
+        {
+          "id": "mac-gray-audit-f09",
+          "title": "Audit F09: #52 (Merger agreement signed) has Who = CSC/Pamplona, a bidder, but Type is blank. Every other CSC/P",
+          "detail": "#52 (Merger agreement signed) has Who = CSC/Pamplona, a bidder, but Type is blank. Every other CSC/Pamplona row, including the non-bid Exclusivity changed rows #46 and #51, carries Strategic.",
+          "rule": "D1 column 4 (Type: Strategic, Financial, Mixed or Unknown for bidders and cohorts); E3",
+          "source_version": "v1132-raw",
+          "source_label": "Mac-Gray v1.13.2 raw audit",
+          "source_rows": [
+            "Deal ledger #52 (Excel row 53)"
+          ],
+          "evidence": [
+            {
+              "quote": "Later in the day, on October 14, 2013, the merger agreement was executed, the Pamplona commitment letter was delivered",
+              "page": "41"
+            }
+          ],
+          "proposed_change": "Set Type on #52 to Strategic.",
+          "needs_recheck": true,
+          "judgment": "unreviewed",
+          "implementation": "unassessed",
+          "verification": "unchecked",
+          "note": "Development lead rejected this false blank-cell claim. A separate verified revision addresses accepted corrections within its documented scope; this finding remains sourced to the raw draft. Human review is pending. See original adjudication and verification.",
+          "actor": "",
+          "at": ""
+        },
+        {
+          "id": "mac-gray-audit-f10",
+          "title": "Audit F10: #22's Note says Party B and Party C '(07/24 oral, 07/25 written) bid after it and were considered on",
+          "detail": "#22's Note says Party B and Party C '(07/24 oral, 07/25 written) bid after it and were considered on 07/25/2013'. Party C's written indication came 'later on July 25', after the meeting that reviewed the indications and chose the four (p. 34). Only its 07/24 oral indication can have been considered. Q4 states this correctly, so the Note contradicts Q4.",
+          "rule": "Part B; E8/E9 (what the target considered at the due date's next step)",
+          "source_version": "v1132-raw",
+          "source_label": "Mac-Gray v1.13.2 raw audit",
+          "source_rows": [
+            "Deal ledger #22 (Excel row 23)"
+          ],
+          "evidence": [
+            {
+              "quote": "Later on July 25, 2013, Party C submitted a written indication of interest at an all-cash purchase price of $16.00 to $16.50 per share.",
+              "page": "34"
+            }
+          ],
+          "proposed_change": "Revise the Note: 'Due date for preliminary indications. CSC/Pamplona bid on the day; Party B (07/24 written) and Party C (07/24 oral) bid after it and were reviewed on 07/25/2013; Party C's written revision (#27) followed the meeting.'",
+          "needs_recheck": true,
+          "judgment": "unreviewed",
+          "implementation": "unassessed",
+          "verification": "unchecked",
+          "note": "Development lead supported a narrow chronology correction. A separate verified revision addresses accepted corrections within its documented scope; this finding remains sourced to the raw draft. Human review is pending. See original adjudication and verification.",
+          "actor": "",
+          "at": "",
+          "recorded_correction": {
+            "version": "mac-gray-verified",
+            "scope": "July 25 oral and later written bid sequence clarified; both bids retained.",
+            "status": "lead_verified",
+            "actor": "Codex development lead",
+            "source_document": "mac-gray-verification"
+          }
+        },
+        {
+          "id": "mac-gray-lead-l01",
+          "title": "Lead L01: Anonymous cohort timing",
+          "detail": "The lead assessment found that the raw draft closes all sixteen anonymous financial NDA signers by July 23 without evidence they were all eligible then.",
+          "rule": "B; E3; E8; E14",
+          "source_version": "v1132-raw",
+          "source_label": "Mac-Gray lead adjudication",
+          "source_rows": [],
+          "evidence": [],
+          "proposed_change": "Preserve the eventual total but represent first-round eligibility and individual exit timing as uncertain.",
+          "needs_recheck": true,
+          "judgment": "unreviewed",
+          "implementation": "unassessed",
+          "verification": "unchecked",
+          "note": "Development lead assessment from ADJUDICATION.md. The separate final revision reports this correction as lead-verified; human review remains pending.",
+          "actor": "",
+          "at": "",
+          "recorded_correction": {
+            "version": "mac-gray-verified",
+            "scope": "Preserve the eventual total but represent first-round eligibility and individual exit timing as uncertain. Final revision reports this task implemented.",
+            "status": "lead_verified",
+            "actor": "Codex development lead",
+            "source_document": "mac-gray-verification"
+          }
+        },
+        {
+          "id": "mac-gray-lead-l03",
+          "title": "Lead L03: September 27 voting agreements",
+          "detail": "The lead assessment found a separately dated shareholder-support event missing from the raw ledger.",
+          "rule": "E2; D2",
+          "source_version": "v1132-raw",
+          "source_label": "Mac-Gray lead adjudication",
+          "source_rows": [],
+          "evidence": [],
+          "proposed_change": "Record the dated execution separately from the later signing effect.",
+          "needs_recheck": true,
+          "judgment": "unreviewed",
+          "implementation": "unassessed",
+          "verification": "unchecked",
+          "note": "Development lead assessment from ADJUDICATION.md. The separate final revision reports this correction as lead-verified; human review remains pending.",
+          "actor": "",
+          "at": "",
+          "recorded_correction": {
+            "version": "mac-gray-verified",
+            "scope": "Record the dated execution separately from the later signing effect. Final revision reports this task implemented.",
+            "status": "lead_verified",
+            "actor": "Codex development lead",
+            "source_document": "mac-gray-verification"
+          }
+        },
+        {
+          "id": "mac-gray-lead-l04",
+          "title": "Lead L04: Party B option terms",
+          "detail": "The lead assessment found material option-package terms missing from the raw Note.",
+          "rule": "D1; E13",
+          "source_version": "v1132-raw",
+          "source_label": "Mac-Gray lead adjudication",
+          "source_rows": [],
+          "evidence": [],
+          "proposed_change": "Restore the stated strike, vesting, equity share and valuation limits.",
+          "needs_recheck": true,
+          "judgment": "unreviewed",
+          "implementation": "unassessed",
+          "verification": "unchecked",
+          "note": "Development lead assessment from ADJUDICATION.md. The separate final revision reports this correction as lead-verified; human review remains pending.",
+          "actor": "",
+          "at": "",
+          "recorded_correction": {
+            "version": "mac-gray-verified",
+            "scope": "Restore the stated strike, vesting, equity share and valuation limits. Final revision reports this task implemented.",
+            "status": "lead_verified",
+            "actor": "Codex development lead",
+            "source_document": "mac-gray-verification"
+          }
+        },
+        {
+          "id": "mac-gray-lead-l05",
+          "title": "Lead L05: Exclusivity extension request",
+          "detail": "The lead assessment found the request to extend exclusivity folded into later execution in the raw draft.",
+          "rule": "D2; E2; E8",
+          "source_version": "v1132-raw",
+          "source_label": "Mac-Gray lead adjudication",
+          "source_rows": [],
+          "evidence": [],
+          "proposed_change": "Represent the bounded-date request separately from execution.",
+          "needs_recheck": true,
+          "judgment": "unreviewed",
+          "implementation": "unassessed",
+          "verification": "unchecked",
+          "note": "Development lead assessment from ADJUDICATION.md. The separate final revision reports this correction as lead-verified; human review remains pending.",
+          "actor": "",
+          "at": "",
+          "recorded_correction": {
+            "version": "mac-gray-verified",
+            "scope": "Represent the bounded-date request separately from execution. Final revision reports this task implemented.",
+            "status": "lead_verified",
+            "actor": "Codex development lead",
+            "source_document": "mac-gray-verification"
+          }
+        },
+        {
+          "id": "mac-gray-r01",
+          "title": "R01: fee and guarantee changes as same-price bids",
+          "detail": "The acceptance review leaves a consequential convention decision open: whether material termination-fee and guarantee changes communicated by bidders receive separate same-price Bid events, or remain dated terms in existing Notes. The current candidate retains 13 Bid rows; no R01 choice was applied.",
+          "rule": "E2; E10",
+          "source_version": "mac-gray-candidate",
+          "source_label": "Mac-Gray acceptance candidate: R01 pending",
+          "source_rows": [],
+          "evidence": [],
+          "proposed_change": "Austin's decision is required before any R01 correction pass or research freeze. See the research-decision document for both treatments.",
+          "needs_recheck": true,
+          "judgment": "unreviewed",
+          "implementation": "unassessed",
+          "verification": "unchecked",
+          "note": "The acceptance packet explicitly states that R01 was excluded from the verified A01–A11 correction pass. This is a pending research choice, not an accepted correction.",
+          "actor": "",
+          "at": ""
+        }
+      ],
+      "documents": [
+        {
+          "id": "mac-gray-pilot-report",
+          "label": "Pilot report and provenance",
+          "source_version": "v1132-raw",
+          "kind": "report",
+          "path": "_dev/reviews/2026-09-21-mac-gray-pilot/REPORT.md"
+        },
+        {
+          "id": "mac-gray-audit",
+          "label": "Fresh independent audit",
+          "source_version": "v1132-raw",
+          "kind": "review",
+          "path": "_dev/reviews/2026-09-21-mac-gray-pilot/audit/review.md"
+        },
+        {
+          "id": "mac-gray-adjudication",
+          "label": "Lead adjudication",
+          "source_version": "v1132-raw",
+          "kind": "adjudication",
+          "path": "_dev/reviews/2026-09-21-mac-gray-pilot/ADJUDICATION.md"
+        },
+        {
+          "id": "mac-gray-corrections",
+          "label": "Accepted correction brief for controlled revision",
+          "source_version": "v1132-raw",
+          "kind": "correction_brief",
+          "path": "_dev/reviews/2026-09-21-mac-gray-pilot/revision/ACCEPTED_CORRECTIONS.md"
+        },
+        {
+          "id": "mac-gray-verification",
+          "label": "Verified correction pass",
+          "source_version": "mac-gray-verified",
+          "kind": "verification",
+          "path": "_dev/reviews/2026-09-21-mac-gray-pilot/revision/VERIFICATION.md"
+        },
+        {
+          "id": "mac-gray-acceptance",
+          "label": "Latest acceptance review; R01 pending",
+          "source_version": "mac-gray-candidate",
+          "kind": "review",
+          "path": "_dev/reviews/2026-09-21-mac-gray-pilot/acceptance/ACCEPTANCE.md"
+        },
+        {
+          "id": "mac-gray-acceptance-corrections",
+          "label": "Verified A01–A11 correction brief",
+          "source_version": "mac-gray-candidate",
+          "kind": "correction_brief",
+          "path": "_dev/reviews/2026-09-21-mac-gray-pilot/acceptance/ACCEPTED_CORRECTIONS.md"
+        },
+        {
+          "id": "mac-gray-r01",
+          "label": "Pending R01 research decision",
+          "source_version": "mac-gray-candidate",
+          "kind": "research_decision",
+          "path": "_dev/reviews/2026-09-21-mac-gray-pilot/acceptance/RESEARCH_DECISION.md"
+        },
+        {
+          "id": "mac-gray-analytical-use",
+          "label": "Analytical-use restrictions",
+          "source_version": "mac-gray-candidate",
+          "kind": "limitations",
+          "path": "_dev/reviews/2026-09-21-mac-gray-pilot/acceptance/ANALYTICAL_USE.md"
+        },
+        {
+          "id": "mac-gray-filing-coverage",
+          "label": "Filing coverage and boundary",
+          "source_version": "mac-gray-candidate",
+          "kind": "coverage",
+          "path": "_dev/reviews/2026-09-21-mac-gray-pilot/acceptance/FILING_COVERAGE.md"
+        }
+      ]
+    },
+    "meredith": {
+      "name": "Meredith",
+      "default_base": "v1132-raw",
+      "versions": [
+        {
+          "id": "v1132-raw",
+          "label": "v1.13.2 raw",
+          "path": "_dev/reviews/2026-09-21-v1132-cockpit/raw/extraction/meredith.xlsx",
+          "sha256": "178c1f0c8419ef19503ad52e1b1fa40132d5f3b35e1d32f62e8c62205d951c89",
+          "instruction_version": "v1.13.2",
+          "kind": "raw",
+          "review_status": "unreviewed; Austin review pending"
+        },
+        {
+          "id": "v113-baseline",
+          "label": "v1.13 original baseline",
+          "path": "extraction/meredith.xlsx",
+          "sha256": "dbcca62b71624101fb17698736cf4faee112bca09d59223de780e77ce4fdf8ac",
+          "instruction_version": "v1.13",
+          "kind": "raw",
+          "review_status": "historical original; human review pending"
+        }
+      ],
+      "findings": [],
+      "documents": []
+    },
+    "penford": {
+      "name": "Penford",
+      "default_base": "v1132-raw",
+      "versions": [
+        {
+          "id": "v1132-raw",
+          "label": "v1.13.2 raw",
+          "path": "_dev/reviews/2026-09-21-v1132-cockpit/raw/extraction/penford.xlsx",
+          "sha256": "e860a97753bd73758dc1c788fb2403e3c78f48a41a28811c91b921db287f14f7",
+          "instruction_version": "v1.13.2",
+          "kind": "raw",
+          "review_status": "unreviewed; Austin review pending"
+        },
+        {
+          "id": "v113-baseline",
+          "label": "v1.13 original baseline",
+          "path": "extraction/penford.xlsx",
+          "sha256": "b2a25f75d3334e70962cf4782157aa42fb85bc6055ec0ef6410125a44d91758c",
+          "instruction_version": "v1.13",
+          "kind": "raw",
+          "review_status": "historical original; human review pending"
+        }
+      ],
+      "findings": [],
+      "documents": []
+    },
+    "petsmart": {
+      "name": "PetSmart",
+      "default_base": "v1132-raw",
+      "versions": [
+        {
+          "id": "v1132-raw",
+          "label": "v1.13.2 raw",
+          "path": "_dev/reviews/2026-09-21-v1132-cockpit/raw/extraction/petsmart.xlsx",
+          "sha256": "e6e46be37e22030f3ad8116815988a37c570c99281928d7c38276fcd5bd04bc9",
+          "instruction_version": "v1.13.2",
+          "kind": "raw",
+          "review_status": "unreviewed; Austin review pending"
+        },
+        {
+          "id": "v113-baseline",
+          "label": "v1.13 original baseline",
+          "path": "extraction/petsmart.xlsx",
+          "sha256": "05073372db646a9a219f893de8dabac90218ef3b7621315cf63bb366ca1f7c94",
+          "instruction_version": "v1.13",
+          "kind": "raw",
+          "review_status": "historical original; human review pending"
+        }
+      ],
+      "findings": [],
+      "documents": []
+    },
+    "providence-worcester": {
+      "name": "Providence & Worcester",
+      "default_base": "v1132-raw",
+      "versions": [
+        {
+          "id": "v1132-raw",
+          "label": "v1.13.2 raw",
+          "path": "_dev/reviews/2026-09-21-v1132-cockpit/raw/extraction/providence-worcester.xlsx",
+          "sha256": "b73bf344f07b32e75837118f8edabc1418e28f31a1163d986bc352a94c3e270e",
+          "instruction_version": "v1.13.2",
+          "kind": "raw",
+          "review_status": "unreviewed; Austin review pending"
+        },
+        {
+          "id": "v113-baseline",
+          "label": "v1.13 original baseline",
+          "path": "extraction/providence-worcester.xlsx",
+          "sha256": "fa7c8f382a9931e649cb402043618b19da73eed0a623a5bf1deddad11b9f9f22",
+          "instruction_version": "v1.13",
+          "kind": "raw",
+          "review_status": "historical original; human review pending"
+        }
+      ],
+      "findings": [],
+      "documents": []
+    },
+    "stec": {
+      "name": "sTec",
+      "default_base": "v1132-raw",
+      "versions": [
+        {
+          "id": "v1132-raw",
+          "label": "v1.13.2 raw",
+          "path": "_dev/reviews/2026-09-21-v1132-cockpit/raw/extraction/stec.xlsx",
+          "sha256": "85f28228f875a8ac8cfae9059cf5442f4724d94e999dd2f1974adba82b93305a",
+          "instruction_version": "v1.13.2",
+          "kind": "raw",
+          "review_status": "unreviewed; Austin review pending"
+        },
+        {
+          "id": "v113-baseline",
+          "label": "v1.13 original baseline",
+          "path": "extraction/stec.xlsx",
+          "sha256": "6e97cd3ad27116387cd7348f413f317a1173b1cd7c6a9190a776a73e7b2fbc62",
+          "instruction_version": "v1.13",
+          "kind": "raw",
+          "review_status": "historical original; human review pending"
+        }
+      ],
+      "findings": [],
+      "documents": []
+    },
+    "synacor": {
+      "name": "Synacor",
+      "default_base": "v1132-raw",
+      "versions": [
+        {
+          "id": "v1132-raw",
+          "label": "v1.13.2 raw",
+          "path": "_dev/reviews/2026-09-21-v1132-cockpit/raw/extraction/synacor.xlsx",
+          "sha256": "b9a746897d987d96200542b72cee3c19067e5b9d877ccb94aaf725c3f5023f2b",
+          "instruction_version": "v1.13.2",
+          "kind": "raw",
+          "review_status": "unreviewed; Austin review pending"
+        },
+        {
+          "id": "v113-baseline",
+          "label": "v1.13 original baseline",
+          "path": "extraction/synacor.xlsx",
+          "sha256": "13703aed7f4ae51dbef3b40bdc12c36b935e283a056adce93fd9c813d0e4dda9",
+          "instruction_version": "v1.13",
+          "kind": "raw",
+          "review_status": "historical original; human review pending"
+        }
+      ],
+      "findings": [],
+      "documents": []
+    }
+  }
+}

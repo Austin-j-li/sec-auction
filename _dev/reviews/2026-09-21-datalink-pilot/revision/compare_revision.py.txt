@@ -1,0 +1,137 @@
+#!/usr/bin/env python3
+"""Read-only event-aligned comparison, including complete inserted/removed rows."""
+import collections
+import datetime as dt
+import json
+from pathlib import Path
+import re
+import sys
+from xml.etree.ElementTree import tostring
+from openpyxl import load_workbook
+
+ROOT = Path(__file__).resolve().parents[4]
+OUT = Path(__file__).resolve().parent
+RAW = ROOT / 'extraction/datalink.xlsx'
+NEW = OUT / 'datalink_revised.xlsx'
+
+def jvalue(value):
+    if isinstance(value, (dt.datetime,dt.date)): return value.isoformat()
+    return value
+
+def typed(c):
+    return {'value':jvalue(c.value),'python_type':type(c.value).__name__,'excel_type':c.data_type}
+
+def xml(obj):
+    return None if obj is None else tostring(obj.to_tree(), encoding='unicode')
+
+def style(c):
+    return {'font':xml(c.font),'fill':xml(c.fill),'border':xml(c.border),
+            'alignment':xml(c.alignment),'protection':xml(c.protection),'number_format':c.number_format,
+            'quote_prefix':c.quotePrefix}
+
+def rows(s):
+    headers=[c.value for c in s[1]]
+    return {int(row[0].value):{'excel_row':row[0].row,'values':dict(zip(headers,[jvalue(c.value) for c in row]))} for row in list(s)[1:] if row[0].value is not None}
+
+def one(candidates, reason):
+    assert len(candidates)==1, (reason,candidates)
+    return candidates[0]
+
+def identify(raw,new):
+    mapping={}
+    for old,event in raw.items():
+        values=event['values']
+        if old in (10,55): mapping[old]=[]; continue
+        if old==26:
+            got=[]
+            for kind,count in [('Strategic',2),('Financial',4)]:
+                got.append(one([n for n,e in new.items() if e['values']['Event']=='Bid' and e['values']['Type']==kind and e['values']['Count']==count and e['values']['Round']==2],f'split {kind}'))
+            mapping[old]=got; continue
+        if old in (16,24,28):
+            got=[n for n,e in new.items() if e['values']['Event']==values['Event'] and e['values']['Type']==values['Type'] and e['values']['When']==values['When'] and e['values']['Round']==2]
+            mapping[old]=[one(got,f'cohort {old}')]; continue
+        if old==48:
+            got=[n for n,e in new.items() if e['values']['Who']=='Insight' and e['values']['Event']=='Bid' and e['values']['When']=='09/26/2016']
+            mapping[old]=[one(got,'new September terms')]; continue
+        key=('Who','Event','When','Round')
+        got=[n for n,e in new.items() if all(e['values'][k]==values[k] for k in key)]
+        mapping[old]=[one(got,f'identity {old}')]
+    allocated=[x for group in mapping.values() for x in group]
+    assert len(allocated)==len(set(allocated)), 'Identity matched more than once'
+    additions=sorted(set(new)-set(allocated))
+    assert len(additions)==2, ('Expected NDA and exclusivity request insertions',additions)
+    return mapping,additions
+
+def remap(value,mapping):
+    if not isinstance(value,str): return value
+    return re.sub(r'#(\d+)\b',lambda m:'#'+str(mapping[int(m[1])][0]) if len(mapping.get(int(m[1]),[]))==1 else m[0],value)
+
+def layout(s):
+    return {'dimensions':[s.max_row,s.max_column], 'freeze_panes':s.freeze_panes,
+        'auto_filter':xml(s.auto_filter),'merged_cells':str(s.merged_cells),
+        'column_dimensions':{k:xml(v) for k,v in s.column_dimensions.items()},
+        'row_dimensions':{str(k):xml(v) for k,v in s.row_dimensions.items()},
+        'views':xml(s.views),'sheet_format':xml(s.sheet_format),'sheet_properties':xml(s.sheet_properties),
+        'protection':xml(s.protection),'data_validations':xml(s.data_validations),
+        'conditional_formatting':[{'range':str(k),'rules':[xml(x) for x in v]} for k,v in s.conditional_formatting._cf_rules.items()],
+        'tables':{k:xml(v) for k,v in s.tables.items()},
+        'print_options':xml(s.print_options),'page_setup':xml(s.page_setup),'page_margins':xml(s.page_margins),
+        'sheet_state':s.sheet_state,'images':len(s._images),'charts':len(s._charts)}
+
+def main():
+    raw=load_workbook(RAW,data_only=False); new=load_workbook(NEW,data_only=False)
+    assert raw.sheetnames==new.sheetnames, ('Sheet names changed',raw.sheetnames,new.sheetnames)
+    rrows,nrows=rows(raw['Deal ledger']),rows(new['Deal ledger'])
+    mapping,additions=identify(rrows,nrows)
+    changes=[]; styles=[]; annotations=[]
+    def compare_cells(sheet,old_row,new_row,old_event=None,new_event=None):
+        rs,ns=raw[sheet],new[sheet]
+        for col in range(1,max(rs.max_column,ns.max_column)+1):
+            a,b=rs.cell(old_row,col),ns.cell(new_row,col)
+            entry={'sheet':sheet,'raw_cell':a.coordinate,'revised_cell':b.coordinate,'raw_event':old_event,'revised_event':new_event,'column':rs.cell(1,col).value}
+            if typed(a)!=typed(b):
+                kind='semantic_or_dependency'
+                if sheet=='Deal ledger' and col==1: kind='numbering_only'
+                elif isinstance(a.value,str) and remap(a.value,mapping)==b.value and a.data_type==b.data_type: kind='reference_only'
+                changes.append({**entry,'kind':kind,'before':typed(a),'after':typed(b)})
+            if style(a)!=style(b): styles.append({**entry,'before':style(a),'after':style(b)})
+            aa={'comment':a.comment.text if a.comment else None,'hyperlink':a.hyperlink.target if a.hyperlink else None}
+            bb={'comment':b.comment.text if b.comment else None,'hyperlink':b.hyperlink.target if b.hyperlink else None}
+            if aa!=bb: annotations.append({**entry,'before':aa,'after':bb})
+    compare_cells('Deal ledger',1,1)
+    for a,bs in mapping.items():
+        if len(bs)==1: compare_cells('Deal ledger',rrows[a]['excel_row'],nrows[bs[0]]['excel_row'],a,bs[0])
+    for sheet in raw.sheetnames[1:]:
+        assert raw[sheet].max_row==new[sheet].max_row, ('Unexpected summary sheet size',sheet)
+        for row in range(1,raw[sheet].max_row+1): compare_cells(sheet,row,row)
+    structures={}
+    for sheet in raw.sheetnames:
+        a,b=layout(raw[sheet]),layout(new[sheet])
+        structures[sheet]={k:{'before':a[k],'after':b[k]} for k in a if a[k]!=b[k]}
+    unmapped_before={str(n):rrows[n] for n,bs in mapping.items() if len(bs)!=1}
+    inserted={str(n):nrows[n] for n in additions}
+    split={str(n):{'raw':rrows[n],'revised':[nrows[x] for x in bs]} for n,bs in mapping.items() if len(bs)>1}
+    defined_before={k:xml(v) for k,v in raw.defined_names.items()}; defined_after={k:xml(v) for k,v in new.defined_names.items()}
+    integrity={'formula_cells':[f'{s.title}!{c.coordinate}' for s in new for row in s for c in row if c.data_type=='f'],
+        'error_cells':[f'{s.title}!{c.coordinate}' for s in new for row in s for c in row if c.data_type=='e'],
+        'defined_names_before':defined_before,'defined_names_after':defined_after,
+        'calculation_before':xml(raw.calculation),'calculation_after':xml(new.calculation),
+        'external_links_before':len(raw._external_links),'external_links_after':len(new._external_links)}
+    summary={'raw_events':len(rrows),'revised_events':len(nrows),'one_to_one_events':sum(len(x)==1 for x in mapping.values()),
+        'removed_event_ids':[n for n,bs in mapping.items() if not bs],'split_event_ids':[n for n,bs in mapping.items() if len(bs)>1],
+        'inserted_event_ids':additions,'cell_changes':len(changes),'changes_by_kind':dict(collections.Counter(x['kind'] for x in changes)),
+        'aligned_cell_style_changes':len(styles),'annotation_changes':len(annotations)}
+    result={'created_at':dt.datetime.now(dt.timezone.utc).isoformat(),'alignment_method':'Manual expected transformations keyed by original event identity (Who, Event, When, Round), with explicit overrides for the authorized split, cohort changes, removals and September condition event. Every new event allocated exactly once; additions enumerated independently.',
+        'summary':summary,'event_map':{str(k):v for k,v in mapping.items()},'inserted_events':inserted,'removed_or_split_source_events':unmapped_before,'split_events':split,
+        'cell_changes':changes,'style_changes':styles,'annotation_changes':annotations,'structural_changes':structures,'workbook_integrity':integrity}
+    (OUT/'complete_diff.json').write_text(json.dumps(result,indent=2,ensure_ascii=False,default=str)+'\n')
+    (OUT/'event_map.json').write_text(json.dumps({'mapping':result['event_map'],'insertions':inserted,'removals':summary['removed_event_ids'],'splits':summary['split_event_ids']},indent=2,ensure_ascii=False)+'\n')
+    semantic=[x for x in changes if x['kind']=='semantic_or_dependency']
+    lines=['# Complete revision comparison','',json.dumps(summary,indent=2),'','## Semantic changes and dependencies','']
+    for i,x in enumerate(semantic,1):
+        lines += [f"### D{i:03d}: {x['sheet']} {x['raw_cell']} → {x['revised_cell']} ({x['column']}; event {x['raw_event']} → {x['revised_event']})",'','Before: '+str(x['before']['value']),'','After: '+str(x['after']['value']),'']
+    lines += ['## Numbering and reference-only changes','','Every such changed cell is included in complete_diff.json.','', '## Insertions, removals and split','','Full source and target row values, including all nulls, are included in complete_diff.json.','', '## Schema and style','','```json',json.dumps(structures,indent=2), '```','']
+    (OUT/'DIFF.md').write_text('\n'.join(lines))
+    print(json.dumps(summary,indent=2))
+
+if __name__=='__main__': main()

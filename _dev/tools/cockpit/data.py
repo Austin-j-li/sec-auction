@@ -645,6 +645,8 @@ class Cockpit:
         self._workbooks: dict[Path, tuple[tuple[int, int], Any]] = {}
         self._checks: dict[tuple[Any, ...], dict[str, Any]] = {}
         self._payloads: dict[str, tuple[tuple[Any, ...], dict[str, Any]]] = {}
+        from cockpit.workspace import Workspace
+        self.workspace = Workspace(self)
 
     def _path_lock(self, key: str) -> threading.Lock:
         with self._lock:
@@ -726,8 +728,11 @@ class Cockpit:
 
     # -- payloads ---------------------------------------------------------
 
-    def deal(self, slug: str, manifest: dict[str, dict[str, str]] | None = None) -> dict[str, Any]:
+    def deal(self, slug: str, manifest: dict[str, dict[str, str]] | None = None, version: str = "working") -> dict[str, Any]:
         """The /api/deal payload (without the reader). DealUnavailable if an input cannot be read."""
+
+        if self.workspace.available:
+            return self.workspace.deal(slug, version)
 
         workbook_path, filing_path, entry = self.resolve(slug, manifest)
         try:
@@ -809,6 +814,11 @@ class Cockpit:
                     },
                     "quotes_located": sum(1 for quote in quotes if quote["located"]),
                     "quotes_total": len(quotes),
+                    "name": self.workspace.item(slug).get("name", slug) if self.workspace.available else slug,
+                    "instruction_version": next((v.get("instruction_version") for v in payload.get("versions", []) if v.get("id") == payload.get("workspace", {}).get("base_version")), None),
+                    "review_status": next((v.get("review_status") for v in payload.get("versions", []) if v.get("id") == payload.get("workspace", {}).get("base_version")), None),
+                    "working_revision": payload.get("workspace", {}).get("revision", 0),
+                    "base_label": next((v.get("label") for v in payload.get("versions", []) if v.get("id") == payload.get("workspace", {}).get("base_version")), None),
                 }
             )
         return deals

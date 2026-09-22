@@ -1,0 +1,34 @@
+{
+  "event_log_sha256": "c0432feca94dfff611d29102e14f1b9a9aa93b79007008207b3731485c90ebb6",
+  "event_log_bytes": 1025635,
+  "raw_workbook_sha256": "ee14d55c1f3aea0b793c5ad01507beefb12cb575071a696cf4489a6b30660f42",
+  "result": {
+    "type": "turn.completed",
+    "usage": {
+      "input_tokens": 3168686,
+      "cached_input_tokens": 2978176,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 19362,
+      "reasoning_output_tokens": 3034
+    }
+  },
+  "thread_started": {
+    "type": "thread.started",
+    "thread_id": "01a0c63b-1196-7bd2-a047-2829d3750387"
+  },
+  "item_counts": {
+    "agent_message": 7,
+    "command_execution": 32
+  },
+  "completed_commands": 32,
+  "stderr": "Reading additional input from stdin...\n",
+  "completed_at": "2026-09-21T23:20:21.597720+00:00",
+  "command_audit": {
+    "commands_inspected": 32,
+    "all_completed_items_are_messages_or_shell_commands": true,
+    "network_or_nested_model_command_candidates": [],
+    "requested_model_and_effort": "gpt-6-astra / high",
+    "independent_model_identifier_in_completion_event": null,
+    "one_thread_one_turn": true
+  }
+}

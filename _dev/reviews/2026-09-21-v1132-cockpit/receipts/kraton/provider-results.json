@@ -1,0 +1,99 @@
+[
+  {
+    "duration_api_ms": 685353,
+    "stop_reason": "end_turn",
+    "session_id": "fa0788d2-640a-4e7b-b50c-f8505b33d981",
+    "total_cost_usd": 3.8360315,
+    "usage": {
+      "input_tokens": 46,
+      "cache_creation_input_tokens": 127700,
+      "cache_read_input_tokens": 1277003,
+      "output_tokens": 76812,
+      "output_tokens_details": {
+        "thinking_tokens": 49317
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 127700,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1636,
+          "cache_read_input_tokens": 137217,
+          "cache_creation_input_tokens": 6005,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6005
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-opus-5": {
+        "inputTokens": 46,
+        "outputTokens": 76812,
+        "cacheReadInputTokens": 1277003,
+        "cacheCreationInputTokens": 127700,
+        "webSearchRequests": 0,
+        "costUSD": 3.8360315,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 49317,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 25,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "I've saved the workbook to `extraction/kraton.xlsx`. It has the four sheets in the required order: a 71-row Deal ledger, 2 Rounds lines, 7 Questions and the Deal facts. A script confirmed that all 71 quotations appear word-for-word in the filing on the cited page and are 30 words or fewer. It also confirmed that Sort dates never go down the ledger and always sit inside each row's date window. The participant and population counts reconcile, with the uncertain ones given as ranges.\n\n## How the sale went\nIn December 2020 Kraton's board adopted a plan to grow its polymer business and sell its CST business, a small part of its chemical segment. That plan got nowhere. On 05/20/2021 the board decided to explore selling the whole company, and J.P. Morgan contacted 14 listed buyers; one more party approached on its own. Ten parties signed confidentiality agreements (6 strategic, 4 financial). The first-round offers (non-binding \"indications of interest\") were:\n\n| Bidder | Price per share |\n|---|---|\n| Party A | $42\u201345 |\n| Party H | $41\u201343 |\n| Parent (DL Chemical) | $41 |\n| Party I | $40 |\n| Party J (late) | $38\u201341 |\n\nParties C, G and K also made offers for parts of the business only. After a request for higher offers by 07/19, the board took A, H and Parent into a second, final round on 07/20. H dropped out on 08/20. Parent sent its markup of the merger agreement and bid $46.00, then accepted the board's request for $46.50 as its best and final offer. The board turned down A's lower offers, which came with an earnout (a later extra payment tied to a chemical-segment sale), and turned down selling the company in pieces. Kraton signed with Parent at $46.50 cash on 09/27/2021.\n\n**Structure:** one sale process with two rounds.\n\n## Questions and my recommendations\n- **Q1 \u2013 Bidders for parts of the business:** count Parties C, D, E, G (CST business) and Party K (chemical segment) as bidders for less than the whole company. Put them in round 1, with K's requested 09/09 offer in round 2. If they're left out, the number of live bidders when round 2 opened drops from 6 to 3.\n- **Q2 \u2013 Rounds:** keep one process and two rounds. The main alternative makes the mid-August \"final bid procedures letter\" open a third round, because the instruction starts a new round at the first request for final offers. I didn't, because round 2 was run as the final stage from the start. The only possible gap of two months or more with no buyer contact is between the undated end of the early-2021 CST talks and late May 2021. On the instruction's three tests, it is one process.\n- **Q3 \u2013 Who signed the confidentiality agreements:** treat Parties A, J, K and Parent (strategic) and H and I (financial) as among the 10 signers. The filing implies this but never says it. On that reading, 3 signers never bid; otherwise it could be up to 9.\n- **Q4 \u2013 Round 1 deadlines:** 06/29 \u2192 Extended; 07/19 \u2192 Enforced. \"Late bids accepted\" is a defensible alternative for 06/29, because J's offer came in mid-July.\n- **Q5 \u2013 Round 2 deadline:** 09/15 \u2192 Late bids accepted, since A bid on 09/17 and the board considered it. I didn't treat the 09/08 merger-agreement markup date as a bid deadline.\n- **Q6 \u2013 Post-Reuters inquiries:** the six parties that approached after the 07/06 Reuters report have no dates. I placed them at the midpoint of their date window (08/16), in round 1.\n- **Q7 \u2013 Formal vs informal in round 2:** Parent's 09/08 markup is recorded as a formal bid with the price left blank. A's markup is recorded as an \"other material event\" because the filing gives none of its terms. A's later bids are Formal. Parent's final bids have Light conditions.\n\n## What I could not do\n- **Unnamed signers:** the filing never names the confidentiality-agreement signers or the unsolicited early party, so those counts are ranges or inferences (Q3).\n- **Undated events:** several have no date, including the CST contacts, the post-Reuters inquiries and the final bid letter. For the letter, I inferred it went out by 08/20 because Party H received it before dropping out.\n- **Typo in the filing:** it prints the round-1 re-bid deadline as \"July 19, 2020\". The quotation keeps that text, and the Note says it is evidently 2021.\n- **Parent's adviser:** Goldman Sachs (Asia), Seoul Branch, appears only in the merger agreement's list of Parent's fee-earning bankers, so its role is not described.",
+    "ttft_ms": 1230,
+    "type": "result",
+    "duration_ms": 706874,
+    "uuid": "f0a0d25b-d568-435f-bc11-7786f747e79a",
+    "ttft_stream_ms": 903,
+    "time_to_request_ms": 81,
+    "first_content_frame_ms": 903,
+    "queued_turn_count": 0,
+    "result_index": 0
+  }
+]

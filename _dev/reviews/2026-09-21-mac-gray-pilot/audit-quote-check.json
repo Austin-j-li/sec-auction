@@ -1,0 +1,62 @@
+[
+  {
+    "id": "F01",
+    "quote_present": true,
+    "page_claim": "39",
+    "quote_words": 23
+  },
+  {
+    "id": "F02",
+    "quote_present": true,
+    "page_claim": "38",
+    "quote_words": 30
+  },
+  {
+    "id": "F03",
+    "quote_present": true,
+    "page_claim": "33",
+    "quote_words": 15
+  },
+  {
+    "id": "F04",
+    "quote_present": true,
+    "page_claim": "27",
+    "quote_words": 25
+  },
+  {
+    "id": "F05",
+    "quote_present": true,
+    "page_claim": "32",
+    "quote_words": 23
+  },
+  {
+    "id": "F06",
+    "quote_present": true,
+    "page_claim": "27",
+    "quote_words": 13
+  },
+  {
+    "id": "F07",
+    "quote_present": true,
+    "page_claim": "38",
+    "quote_words": 22
+  },
+  {
+    "id": "F08",
+    "quote_present": true,
+    "page_claim": "32",
+    "quote_words": 24
+  },
+  {
+    "id": "F09",
+    "quote_present": true,
+    "page_claim": "41",
+    "quote_words": 19
+  },
+  {
+    "id": "F10",
+    "quote_present": true,
+    "page_claim": "34",
+    "quote_words": 24
+  }
+]

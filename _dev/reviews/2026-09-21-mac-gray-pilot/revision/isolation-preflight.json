@@ -1,0 +1,17 @@
+{
+  "visible_work_files": [
+    "SEC_Deal_Ledger_Extraction_Instruction.md",
+    "checker_report.md",
+    "extraction",
+    "raw_filing"
+  ],
+  "filings": [
+    "mac-gray_2013-12-04_DEFM14A.htm"
+  ],
+  "workbooks": [
+    "mac-gray.xlsx"
+  ],
+  "dev_absent": true,
+  "ref_absent": true,
+  "report_exists": true
+}

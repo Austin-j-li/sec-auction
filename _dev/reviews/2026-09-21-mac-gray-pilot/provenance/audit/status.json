@@ -1,0 +1,34 @@
+{
+  "client_pid": 1656797,
+  "elapsed_seconds": 535.525,
+  "ended_at": "2026-09-21T22:35:29.897136+00:00",
+  "exit_code": 0,
+  "input_hashes_unchanged": true,
+  "mode": "audit",
+  "outputs": {
+    "findings.json": "1be9e5f1c83f8c6b344882adff4e2b22bfbb3101abcd03adb0c453889d933e17",
+    "review.md": "bab21a4bfcecbd1e7bfe60013de2c9c6af9a2b63ee823cff38bb2809aceeffe0"
+  },
+  "problems": [],
+  "provider_result": {
+    "duration_ms": 534314,
+    "is_error": false,
+    "num_turns": 34,
+    "subtype": "success",
+    "total_cost_usd": 4.002606
+  },
+  "started_at": "2026-09-21T22:26:34.371852+00:00",
+  "state": "completed",
+  "temporary_state_removed": true,
+  "timed_out": false,
+  "usage": {
+    "cost_usd": 4.002606,
+    "tokens": {
+      "cache_creation_input_tokens": 134912,
+      "cache_read_input_tokens": 2428762,
+      "input_tokens": 66,
+      "output_tokens": 57551
+    }
+  },
+  "worker_pid": 1656732
+}

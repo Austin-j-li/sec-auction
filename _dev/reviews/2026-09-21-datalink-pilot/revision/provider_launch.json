@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "/usr/bin/python3",
+    "/home/uctpiaj/work/Projects/sec-extraction/_dev/tools/sandbox/run_model.py",
+    "worker",
+    "--provider",
+    "opus",
+    "--run-dir",
+    "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/datalink-revision-20260921-controlled"
+  ],
+  "launched_at": "2026-09-21T23:34:22.063243+00:00",
+  "launcher_pid": 1675174
+}

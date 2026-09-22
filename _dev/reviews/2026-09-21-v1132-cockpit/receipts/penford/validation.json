@@ -1,0 +1,13 @@
+{
+  "bytes": 23743,
+  "exists": true,
+  "path": "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/penford-20260921-cockpit/extraction/penford.xlsx",
+  "sha256": "e860a97753bd73758dc1c788fb2403e3c78f48a41a28811c91b921db287f14f7",
+  "sheet_names": [
+    "Deal ledger",
+    "Rounds",
+    "Questions",
+    "Deal facts"
+  ],
+  "valid_xlsx": true
+}

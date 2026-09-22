@@ -1,0 +1,22 @@
+{
+  "before_sha256": "f54295a242057b0e6f72fddf9555d6b4c007eea10c9fc13b1202b659439e112e",
+  "after_sha256": "db85a39b00bb98702e73ad3e891cb4ab50202f2e032fcb3278ef0e6e45f351e1",
+  "existing_cells_checked": 1378,
+  "changed_existing_cells": 19,
+  "added_rows": 3,
+  "added_cells_checked": 66,
+  "unexpected_content_or_control_changes": [],
+  "resolved_style_changes": [],
+  "changed_package_parts": [
+    "docProps/core.xml",
+    "xl/worksheets/sheet1.xml",
+    "xl/worksheets/sheet3.xml",
+    "xl/worksheets/sheet4.xml",
+    "xl/workbook.xml"
+  ],
+  "bid_rows_unchanged": 13,
+  "all_quotes_found_on_cited_page": 58,
+  "internal_reference_occurrences_valid": 74,
+  "flags_equal_question_row_lists": true,
+  "R01": "not decided; no economic-term bids added"
+}

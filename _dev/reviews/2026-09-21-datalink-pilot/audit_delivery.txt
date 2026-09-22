@@ -1,0 +1,22 @@
+I've written `extraction/review.md` and `extraction/findings.json`; the workbook is unchanged. The ledger is careful overall. All 67 quotations match the filing word for word on the cited pages, and every flag matches its Question. The single-process, five-round map, the exits and re-entries, and the prices all follow the filing. I found no missing bid, exit, deadline or round, but that doesn't prove the ledger is complete.
+
+There are 11 candidate findings.
+
+**Clear errors under the existing rules**
+- **F1 (#24, #28):** The "did not submit" counts of 5 strategic and 8 financial are recorded as exact. They assume every unnamed IOI submitter had signed an NDA, which the filing never says. Under the instruction's subtraction rule the Count cells should be blank, with "Count: 5–7" and "Count: 8–9" in the Notes. The draft states this assumption in Q5 but keeps the exact numbers.
+- **F2 (#26):** The cohort of 6 other IOI submitters has Type Unknown, although the filing gives the split (2 strategic, 4 financial). The row is also sorted 07/21, so the two strategic IOIs appear after the 07/18 strategic deadline that applied to them. Where to put the group's $8.80–$10.50 price range after splitting the row is a convention call.
+- **F4 (#63, #65):** Insight's November bids are marked Conditions = Light because diligence finished on 11/02–11/06. When the bids were made, commercial, legal and Q3/Q4 financial diligence was still open (pp.33–34). By the rule that makes them Unclear, and Heavy is arguable.
+- **F5 (#65):** The 11/02 bid has All cash = Yes, based on the later signing. The bid itself states only a dollar price, so it should be Not stated.
+
+**Missing event**
+- **F3:** The merger agreement in Annex A dates Insight's confidentiality agreement to 06/14/2016 (p. A‑32). Insight should get its own NDA row, and cohort #16 drops from 9 to 8.
+
+**Convention calls the research team should decide**
+- **F6:** The filing counts Party A's 03/29 proposal as one of the round‑2 IOIs, and the Rounds sheet counts it among round 2's 10 bids. The ledger has no round‑2 row for Party A, so the two sheets disagree.
+- **F7 (#55, #10):** Party C's 10/04 reaffirmation, with no change in terms, is recorded as a new Bid. Read literally, the bid rule (E10) doesn't allow that. The draft's Q2 argues otherwise, and p.36's "submit and affirm best and final" wording bears on the choice.
+- **F8 (#62, #46, #47):** Party C's final exit is inferred from the 10/26 exclusivity, with reason "Not stated". The filing gives the target's reasons: on 10/20 it withheld the Q3 data from Party C because of its lower price and less certain closing. That supports a reported drop on 10/20 or a "Lower offer than rivals" reason.
+- **F9:** The instruction lists the "first outreach wave" first among the events that open round 1, which favours starting round 1 on 06/06 rather than 01/29. The target's request for Party A's March proposal supports the draft's map, so the team should choose.
+- **F10 (#48, low):** Insight's added auditor-consent and pro forma closing conditions could be recorded as a revised Bid row rather than an "Other material event".
+- **F11 (low, uncertain):** p.39 says the Projections went to Insight, but not whether other bidders got them. This belongs in a Note, not a new row.
+
+**Limitations:** I read the whole background and the supporting sections (reasons, projections, parties, financing, the adviser's opinion and fees, the no‑shop terms). I only searched and spot‑read the annexed merger agreement, the opinion letter, the valuation analyses and the litigation material. Page numbers come from the printed page footers in a text conversion of the HTML filing.

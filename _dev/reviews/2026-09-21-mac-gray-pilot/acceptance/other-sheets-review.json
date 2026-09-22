@@ -1,0 +1,146 @@
+{
+  "Rounds": [
+    {
+      "row": 2,
+      "ruling": "R1 June24; 3 named NDA-admitted by July23 plus0–16 unknown; A received not admitted;3 submitting bidders, C twice; July23 late bids accepted. No inference that19 admitted at opening."
+    },
+    {
+      "row": 3,
+      "ruling": "R2 July25 stage selection;4 named candidates, A conditional untilAug5; known admitted stage set differs from unresolved anonymous process-live population. September9 late bids accepted."
+    },
+    {
+      "row": 4,
+      "ruling": "R3 first final solicitationSept11,4 invited,3 respond bySept18. Enforced underE9, final underE6; winner/exclusivity does not open R4. Additional same-price events depend onR01, bidder count stays3."
+    }
+  ],
+  "Questions": [
+    {
+      "Q": "Q1",
+      "ruling": "One continuing process; April8–June21 gap74days, A carried forward, no termination, three-month break not met; June24 fresh decision does not alone restart."
+    },
+    {
+      "Q": "Q2",
+      "ruling": "A pre-NDA bid is entry but not admission; final response is Bid per final solicitation."
+    },
+    {
+      "Q": "Q3",
+      "ruling": "Reported entity count retained;49–50 units unresolved, contact count not used as NDA entry count."
+    },
+    {
+      "Q": "Q4",
+      "ruling": "Late accepted; remove unsupported one-day tolerance alternative(A09)."
+    },
+    {
+      "Q": "Q5",
+      "ruling": "Conservative final-stage closure, not uniquely earliest bound; replace recommendation(A10). Timing not recoverable by further reading."
+    },
+    {
+      "Q": "Q6",
+      "ruling": "Late accepted; remove unsupported one-day tolerance alternative(A09)."
+    },
+    {
+      "Q": "Q7",
+      "ruling": "Apply frozen E12 Heavy; alternative requires convention reinterpretation, not a finding of current error."
+    },
+    {
+      "Q": "Q8",
+      "ruling": "Enforced; subsequent counteroffer does not undo target action(A09)."
+    },
+    {
+      "Q": "Q9",
+      "ruling": "Formal underE11; earlier corrected counterfactual valid only if adopting a different reading of finality. No extra reaffirmation under current convention."
+    }
+  ],
+  "Deal facts": [
+    {
+      "field": "Target",
+      "value": "Mac-Gray Corporation",
+      "ruling": "Supported against filing and source event review"
+    },
+    {
+      "field": "Acquirer",
+      "value": "CSC ServiceWorks, Inc. (with CSC ServiceWorks Holdings, Inc.; acquisition vehicles Spin Holdco Inc. and CSC Fenway, Inc.), a portfolio company of Pamplona Capital, which funds the deal",
+      "ruling": "Supported against filing and source event review"
+    },
+    {
+      "field": "Acquirer type",
+      "value": "Strategic (sponsor-owned laundry operating company; Pamplona Capital Partners III, L.P. equity commitment)",
+      "ruling": "Supported against filing and source event review"
+    },
+    {
+      "field": "Agreed price and consideration",
+      "value": "$21.25 per share in cash; Pamplona commitment of $594 million; no financing condition",
+      "ruling": "Supported against filing and source event review"
+    },
+    {
+      "field": "Merger agreement signed",
+      "value": "10/14/2013",
+      "ruling": "Supported against filing and source event review"
+    },
+    {
+      "field": "Merger announced",
+      "value": "10/15/2013",
+      "ruling": "Supported against filing and source event review"
+    },
+    {
+      "field": "Filing type and date",
+      "value": "DEFM14A (definitive proxy statement), 12/04/2013",
+      "ruling": "Supported against filing and source event review"
+    },
+    {
+      "field": "Background pages",
+      "value": "27–41",
+      "ruling": "Supported against filing and source event review"
+    },
+    {
+      "field": "Initiation",
+      "value": "target-led",
+      "ruling": "Supported against filing and source event review"
+    },
+    {
+      "field": "Number of processes",
+      "value": "1",
+      "ruling": "Supported against filing and source event review"
+    },
+    {
+      "field": "Earlier approaches",
+      "value": "Strategic transactions were discussed from time to time between Mac-Gray, CSC and others in the industry, including talks in winter 2011 into 2012 about Mac-Gray acquiring CSC (the 2011-2012 Discussions; target as buyer, not a sale). CSC ran its own sale process in fall/winter 2012 and was bought by Pamplona in May 2013 (p. 27).",
+      "ruling": "Supported against filing and source event review"
+    },
+    {
+      "field": "Auction screen",
+      "value": "Met (process 1): 20 parties (2 strategic, 18 financial)",
+      "ruling": "Supported against filing and source event review"
+    },
+    {
+      "field": "Whole-company bids",
+      "value": "Yes",
+      "ruling": "Supported against filing and source event review"
+    },
+    {
+      "field": "Currency and units of bid prices",
+      "value": "US dollars per share. Party B's 09/18 bid is a package of $19.00 cash plus options, which Party B valued at $2.50 per share ($21.50 total)",
+      "ruling": "Supported against filing and source event review"
+    },
+    {
+      "field": "Target financial advisers",
+      "value": "BofA Merrill Lynch (Merrill Lynch, Pierce, Fenner & Smith Incorporated)",
+      "ruling": "Supported against filing and source event review"
+    },
+    {
+      "field": "Target legal advisers",
+      "value": "Goodwin Procter LLP",
+      "ruling": "Supported against filing and source event review"
+    },
+    {
+      "field": "Account",
+      "value": "After Party A was sounded out in April 2013, Mac-Gray's board hired BofA Merrill Lynch and, on 06/24/2013, had its Special Committee approach 50 parties. Twenty signed NDAs, but only CSC/Pamplona, Party B and Party C gave preliminary indications, alongside Party A's unsolicited $17–$19 proposal of 06/21. The Committee advanced those four to a staged-diligence round, in which strategic bidders saw less customer data, and then asked for final indications by 09/18. CSC/Pamplona bid $20.75 with fully committed Pamplona funding, Party B offered a $21.50 package including options, Party A stood at $18–$19, and Party C dropped out. The Committee chose CSC/Pamplona, obtained $21.25 in exchange for two weeks of exclusivity (later extended), and signed on 10/14/2013.",
+      "ruling": "Account precision correctionA11; otherwise matches source"
+    }
+  ],
+  "limitations": [
+    "Acceptance still pending R01 and post-revision verification.",
+    "This lead review is familiar-case, not blinded or independent of the earlier adjudication.",
+    "No human active review-time saving has been measured."
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "deal": "mac-gray",
+  "effort": "high",
+  "expected_output": "mac-gray.xlsx",
+  "filing_name": "mac-gray_2013-12-04_DEFM14A.htm",
+  "filing_sha256": "e6ea7bd00cfc389c28e5139a3d23aafcc684f7b65ff54d699f3c5be11bbc4301",
+  "instruction_name": "SEC_Deal_Ledger_Extraction_Instruction.md",
+  "instruction_sha256": "513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304",
+  "library_versions": {
+    "beautifulsoup4": "4.15.0",
+    "lxml": "5.2.1",
+    "openpyxl": "3.1.5"
+  },
+  "mode": "revise",
+  "model": "claude-opus-5",
+  "preparation_note": "Fresh controlled revision; adapted prompt and hash pinned before first launch. Research decision R01 excluded.",
+  "prepared_at": "2026-09-21T23:52:18.008910+00:00",
+  "prompt_sha256": "d4daa085577dd5e7b995a59cae56050fe76b45ff4805028c8bc21ebd88574a95",
+  "provider": "opus",
+  "python_version": "3.12.13 (main, Apr 16 2026, 00:00:00) [GCC 14.3.1 20251022 (Red Hat 14.3.1-4)]",
+  "report_kind": "lead_adjudicated_acceptance_corrections",
+  "report_sha256": "ce83e998adecf78b74bf17a8e4842f8ce20b3ec07f624bd0aa35b0088bdc3722",
+  "revised_from_sha256": "f54295a242057b0e6f72fddf9555d6b4c007eea10c9fc13b1202b659439e112e",
+  "runner_sha256": "cc9b8b0b9397e8c12469eb63d645b6123c7037c0c679615ab36e13f534946618",
+  "sandbox": "bubblewrap fresh home/state/tmp; one instruction; one filing; one output directory",
+  "timeout_seconds": 5400
+}

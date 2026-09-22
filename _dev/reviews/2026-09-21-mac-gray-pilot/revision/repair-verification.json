@@ -1,0 +1,23 @@
+{
+  "changes": [
+    {
+      "sheet": "Rounds",
+      "cell": "E2",
+      "before": "Named NDA signers: 1 strategic (CSC/Pamplona); 2 financial (Party B, Party C). Unnamed: some of 16 other financial NDA signers (#17), number signed by the 07/23 due date unknown (signing continued after it: Party A 08/05; Q5). Party A: still being received, not admitted (June 21 proposal reviewed; NDA only on 08/05)",
+      "after": "Named NDA signers: 1 strategic (CSC/Pamplona); 2 financial (Party B, Party C). Unnamed financial NDA signers admitted by the 07/23 due date: 0–16, unknown (no individual signing dates; 16 is the eventual total of other financial NDA signers, not a known population at the deadline, #17; signing continued after it: Party A 08/05; Q5). Party A: still being received, not admitted (June 21 proposal reviewed; NDA only on 08/05)"
+    },
+    {
+      "sheet": "Questions",
+      "cell": "D6",
+      "before": "The 20 NDAs were signed 'over the next two months' (p. 32); only Party B, Party C, CSC/Pamplona and Party A are dated, and Party A's 08/05 NDA shows signing continued after 07/23. Only three indications were reviewed on 07/25 (p. 33); the 07/25, 08/27 and 09/11 requests name only the four (pp. 34–36).",
+      "after": "The 20 NDAs were signed 'over the next two months' (p. 32); only Party B, Party C, CSC/Pamplona and Party A are dated, and Party A's 08/05 NDA shows signing continued after 07/23. Three round-1 indications and Party A's June 21 proposal were reviewed on 07/25 (p. 33); the 07/25, 08/27 and 09/11 requests name only the four (pp. 34–36)."
+    }
+  ],
+  "only_the_two_authorized_cells_changed": true,
+  "all_styles_and_annotations_unchanged": true,
+  "changed_ooxml_parts": [
+    "xl/worksheets/sheet2.xml",
+    "xl/worksheets/sheet3.xml"
+  ],
+  "all_other_ooxml_parts_byte_identical": true
+}

@@ -1,0 +1,21 @@
+# R01 — material commitment terms versus routine drafting
+
+Status: awaiting Austin's answer to the question sent during the acceptance review. Do not infer approval from elapsed time. This choice is excluded from the first acceptance-correction pass.
+
+The frozen instruction says material economic changes communicated by a bidder receive their own Bid (E10), while routine legal negotiation folds into Notes (E2). It does not expressly settle termination-fee and damages-guarantee negotiations. The prior adjudication left this boundary open; the user-authorized acceptance plan reserved consequential research choices for Austin.
+
+Recommendation: preserve communicated material fee/guarantee changes in dated events, with unchanged $21.25 cash share consideration explicitly carried forward. Bidder proposals are Bids; target counterproposals/requirements are Other material event. Unspecified routine covenant drafting is not a new event. No new round, rival exit or price movement follows merely from these events. A decline from a $15m to $11m fee payable by the target improves the target's terms; it does not reduce the per-share offer.
+
+| Source | Change needing a disposition if this convention is adopted |
+| --- | --- |
+| pp. 37–38, September 21–23 | Final package adds $15m reverse fee for regulatory failure and expressly no financing contingency; Pamplona's 100% funding repeats an earlier commitment. Separate same-price Bid. |
+| p. 38, September 25–October 7 | Target proposes buyer and sponsor breach liability and a target termination fee about 2.5% of equity value. Target requirement, not bidder offer; preserve interval, no invented dollar amount. |
+| p. 39, October 5 | Buyer counsel proposes sponsor backing with damages limited to an unspecified amount. Bid; do not impute a $50m cap before October 8. |
+| p. 39, October 7 | Buyer merger markup proposes $15m target termination fee, approximately 4.4% of equity value. Bid; not a duplicate reaffirmation. |
+| pp. 39–40, October 8 | Buyer proposes $50m sponsor damages cap; separate Bid. Target later accepts cap and counters $10.5m target fee (approximately 3.0%); Other material event. Agreement on cap reported October 9, not a new proposal. |
+| p. 40, October 11 | Target conditions extension of exclusivity on target fee no more than $11m. Other material event. |
+| pp. 40–41, later October 11 | Buyer accepts $11m target fee. Separate same-price Bid. |
+
+Alternative: retain all these negotiations as dated terms in existing Notes, retaining 13 Bid rows. The final package, the change in the target fee from $15m to $11m, and the $50m sponsor damages limit must still be preserved explicitly; there is no permission to discard them.
+
+Either choice should be recorded with the accepted version and applied consistently when building a cross-deal dataset. It does not authorize an edit to the frozen instruction.

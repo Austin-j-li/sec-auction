@@ -1,0 +1,1022 @@
+[
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "Q3",
+    "after_cell": "Q3",
+    "column": "Quote and page",
+    "before": {
+      "type": "s",
+      "value": "“Mac-Gray engaged BofA Merrill Lynch on October 23, 2012” (p. 27)"
+    },
+    "after": {
+      "type": "s",
+      "value": "“authorized Mac-Gray management to work with BofA Merrill Lynch to explore transactional opportunities that might be available to Mac-Gray” (p. 27)"
+    },
+    "scope": "C02"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "M4",
+    "after_cell": "M4",
+    "column": "Count",
+    "before": {
+      "type": "blank",
+      "value": null
+    },
+    "after": {
+      "type": "n",
+      "value": 1
+    },
+    "scope": "C11"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "A10",
+    "after_cell": "A11",
+    "column": "#",
+    "before": {
+      "type": "n",
+      "value": 9
+    },
+    "after": {
+      "type": "n",
+      "value": 10
+    },
+    "scope": "event_renumbering"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "A11",
+    "after_cell": "A10",
+    "column": "#",
+    "before": {
+      "type": "n",
+      "value": 10
+    },
+    "after": {
+      "type": "n",
+      "value": 9
+    },
+    "scope": "event_renumbering"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "B12",
+    "after_cell": "B12",
+    "column": "When",
+    "before": {
+      "type": "s",
+      "value": "late June–July 2013 (during the next several weeks after 06/24/2013)"
+    },
+    "after": {
+      "type": "s",
+      "value": "during the next several weeks after 06/24/2013"
+    },
+    "scope": "C04"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "B13",
+    "after_cell": "B13",
+    "column": "When",
+    "before": {
+      "type": "s",
+      "value": "late June–July 2013 (during the next several weeks after 06/24/2013)"
+    },
+    "after": {
+      "type": "s",
+      "value": "during the next several weeks after 06/24/2013"
+    },
+    "scope": "C04"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "O15",
+    "after_cell": "O15",
+    "column": "Inferred",
+    "before": {
+      "type": "blank",
+      "value": null
+    },
+    "after": {
+      "type": "s",
+      "value": "Y"
+    },
+    "scope": "C12"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "P18",
+    "after_cell": "P18",
+    "column": "Note",
+    "before": {
+      "type": "s",
+      "value": "18 financial signers − Party B − Party C = 16; individual dates not given. Total of 20 signers = these 16 + Party B, Party C, CSC/Pamplona, Party A. Signers got the informational package."
+    },
+    "after": {
+      "type": "s",
+      "value": "18 financial signers − Party B − Party C = 16; individual dates not given. Total of 20 signers = these 16 + Party B, Party C, CSC/Pamplona, Party A. Signers got the informational package. Placement and Sort date are sort keys only, not evidence that any of the 16 had signed or been admitted by the 07/23 due date (Party A signed 08/05). Exit: #37."
+    },
+    "scope": "C06"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "P23",
+    "after_cell": "P23",
+    "column": "Note",
+    "before": {
+      "type": "s",
+      "value": "Due date for preliminary indications. CSC/Pamplona bid on the day; Party B (07/24) and Party C (07/24 oral, 07/25 written) bid after it and were considered on 07/25/2013."
+    },
+    "after": {
+      "type": "s",
+      "value": "Due date for preliminary indications. CSC/Pamplona bid on the day; Party B (07/24) and Party C (07/24 oral) bid after it and were reviewed at the 07/25/2013 meeting; Party C's written revision (#26) followed later on 07/25, after that meeting."
+    },
+    "scope": "C05"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "A24",
+    "after_cell": "A38",
+    "column": "#",
+    "before": {
+      "type": "n",
+      "value": 23
+    },
+    "after": {
+      "type": "n",
+      "value": 37
+    },
+    "scope": "event_renumbering"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "B24",
+    "after_cell": "B38",
+    "column": "When",
+    "before": {
+      "type": "s",
+      "value": "by 07/23/2013"
+    },
+    "after": {
+      "type": "s",
+      "value": "by 09/11/2013"
+    },
+    "scope": "C06"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "E24",
+    "after_cell": "E38",
+    "column": "Event",
+    "before": {
+      "type": "s",
+      "value": "Did not submit"
+    },
+    "after": {
+      "type": "s",
+      "value": "Dropped by target"
+    },
+    "scope": "C06"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "P24",
+    "after_cell": "P38",
+    "column": "Note",
+    "before": {
+      "type": "s",
+      "value": "Only three indications (Party B, Party C, CSC/Pamplona) reviewed 07/25: 18 financial signers − Party B − Party C = 16 with none reported. Signing dates unknown; any signing after 07/23 left instead at the 07/25 selection (#26)."
+    },
+    "after": {
+      "type": "s",
+      "value": "Inferred bound, not an exit date. Count: 18 financial signers − Party B − Party C = 16. None is among the four asked for final indications on 09/11 (#36), and the filing places all 20 NDAs 'over the next two months' after the 06/24 decision. Each member's signing date, 07/23 eligibility and actual exit are unknown: eligible members may have not submitted by 07/23; others may have left at the 07/25 selection (#25) or the 08/27 letter (#29)."
+    },
+    "scope": "C06"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "Q24",
+    "after_cell": "Q38",
+    "column": "Quote and page",
+    "before": {
+      "type": "s",
+      "value": "“BofA Merrill Lynch reviewed the preliminary indications of interest received from Party B, Party C and CSC/Pamplona as well as the Party A June 21 proposal” (p. 33)"
+    },
+    "after": {
+      "type": "s",
+      "value": "“to call each of Party A, Party B, Party C and CSC/Pamplona to request final indications of interest by September 18, 2013” (p. 36)"
+    },
+    "scope": "C06"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "T24",
+    "after_cell": "T38",
+    "column": "Sort date",
+    "before": {
+      "type": "d",
+      "value": "2013-07-23T00:00:00"
+    },
+    "after": {
+      "type": "d",
+      "value": "2013-09-11T00:00:00"
+    },
+    "scope": "C06"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "V24",
+    "after_cell": "V38",
+    "column": "Date to",
+    "before": {
+      "type": "d",
+      "value": "2013-07-23T00:00:00"
+    },
+    "after": {
+      "type": "d",
+      "value": "2013-09-11T00:00:00"
+    },
+    "scope": "C06"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "A25",
+    "after_cell": "A24",
+    "column": "#",
+    "before": {
+      "type": "n",
+      "value": 24
+    },
+    "after": {
+      "type": "n",
+      "value": 23
+    },
+    "scope": "event_renumbering"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "A26",
+    "after_cell": "A25",
+    "column": "#",
+    "before": {
+      "type": "n",
+      "value": 25
+    },
+    "after": {
+      "type": "n",
+      "value": 24
+    },
+    "scope": "event_renumbering"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "A27",
+    "after_cell": "A26",
+    "column": "#",
+    "before": {
+      "type": "n",
+      "value": 26
+    },
+    "after": {
+      "type": "n",
+      "value": 25
+    },
+    "scope": "event_renumbering"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "A28",
+    "after_cell": "A27",
+    "column": "#",
+    "before": {
+      "type": "n",
+      "value": 27
+    },
+    "after": {
+      "type": "n",
+      "value": 26
+    },
+    "scope": "event_renumbering"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "P28",
+    "after_cell": "P27",
+    "column": "Note",
+    "before": {
+      "type": "s",
+      "value": "Conditions unclear: no financing or diligence terms reported. Written indication revising #25 (from $15.00–$17.00); sent after the 07/25 meeting and answers the round-1 request."
+    },
+    "after": {
+      "type": "s",
+      "value": "Conditions unclear: no financing or diligence terms reported. Written indication revising #24 (from $15.00–$17.00); sent after the 07/25 meeting and answers the round-1 request."
+    },
+    "scope": "reference_renumbering"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "A29",
+    "after_cell": "A28",
+    "column": "#",
+    "before": {
+      "type": "n",
+      "value": 28
+    },
+    "after": {
+      "type": "n",
+      "value": 27
+    },
+    "scope": "event_renumbering"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "A30",
+    "after_cell": "A29",
+    "column": "#",
+    "before": {
+      "type": "n",
+      "value": 29
+    },
+    "after": {
+      "type": "n",
+      "value": 28
+    },
+    "scope": "event_renumbering"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "A31",
+    "after_cell": "A30",
+    "column": "#",
+    "before": {
+      "type": "n",
+      "value": 30
+    },
+    "after": {
+      "type": "n",
+      "value": 29
+    },
+    "scope": "event_renumbering"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "A32",
+    "after_cell": "A31",
+    "column": "#",
+    "before": {
+      "type": "n",
+      "value": 31
+    },
+    "after": {
+      "type": "n",
+      "value": 30
+    },
+    "scope": "event_renumbering"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "A33",
+    "after_cell": "A32",
+    "column": "#",
+    "before": {
+      "type": "n",
+      "value": 32
+    },
+    "after": {
+      "type": "n",
+      "value": 31
+    },
+    "scope": "event_renumbering"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "P33",
+    "after_cell": "P32",
+    "column": "Note",
+    "before": {
+      "type": "s",
+      "value": "Heavy: \"did not include a firm financing commitment\"; affiliated-fund equity plus third-party debt. Revised indication, on the due date; revises #24."
+    },
+    "after": {
+      "type": "s",
+      "value": "Heavy: \"did not include a firm financing commitment\"; affiliated-fund equity plus third-party debt. Revised indication, on the due date; revises #23."
+    },
+    "scope": "reference_renumbering"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "A34",
+    "after_cell": "A33",
+    "column": "#",
+    "before": {
+      "type": "n",
+      "value": 33
+    },
+    "after": {
+      "type": "n",
+      "value": 32
+    },
+    "scope": "event_renumbering"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "A35",
+    "after_cell": "A34",
+    "column": "#",
+    "before": {
+      "type": "n",
+      "value": 34
+    },
+    "after": {
+      "type": "n",
+      "value": 33
+    },
+    "scope": "event_renumbering"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "A36",
+    "after_cell": "A35",
+    "column": "#",
+    "before": {
+      "type": "n",
+      "value": 35
+    },
+    "after": {
+      "type": "n",
+      "value": 34
+    },
+    "scope": "event_renumbering"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "P36",
+    "after_cell": "P35",
+    "column": "Note",
+    "before": {
+      "type": "s",
+      "value": "Heavy: no firm financing commitment reported. Oral revised indication by phone to BofA, one day after the due date; revises #27."
+    },
+    "after": {
+      "type": "s",
+      "value": "Heavy: no firm financing commitment reported. Oral revised indication by phone to BofA, one day after the due date; revises #26."
+    },
+    "scope": "reference_renumbering"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "A37",
+    "after_cell": "A36",
+    "column": "#",
+    "before": {
+      "type": "n",
+      "value": 36
+    },
+    "after": {
+      "type": "n",
+      "value": 35
+    },
+    "scope": "event_renumbering"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "A38",
+    "after_cell": "A37",
+    "column": "#",
+    "before": {
+      "type": "n",
+      "value": 37
+    },
+    "after": {
+      "type": "n",
+      "value": 36
+    },
+    "scope": "event_renumbering"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "P39",
+    "after_cell": "P39",
+    "column": "Note",
+    "before": {
+      "type": "s",
+      "value": "Heavy: again requested two weeks of exclusive negotiations. Pamplona committed to 100% of the capital. Final-round response; revises #31."
+    },
+    "after": {
+      "type": "s",
+      "value": "Heavy: again requested two weeks of exclusive negotiations. Pamplona committed to 100% of the capital. Final-round response; revises #30."
+    },
+    "scope": "reference_renumbering"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "P40",
+    "after_cell": "P40",
+    "column": "Note",
+    "before": {
+      "type": "s",
+      "value": "Heavy: no firm financing commitment (per #34). Party A reiterated by phone that its 09/10 range ($18.00–$19.00, #34) was its best and final offer, in response to the final-round request."
+    },
+    "after": {
+      "type": "s",
+      "value": "Heavy: no firm financing commitment (per #33). Party A reiterated by phone that its 09/10 range ($18.00–$19.00, #33) was its best and final offer, in response to the final-round request."
+    },
+    "scope": "reference_renumbering"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "P41",
+    "after_cell": "P41",
+    "column": "Note",
+    "before": {
+      "type": "s",
+      "value": "Conditions unclear: no commitment stated; Special Committee said Party B would likely use affiliated equity and third-party debt. Package valued by Party B: $19.00 cash plus options (10% of new equity) Party B valued at $2.50."
+    },
+    "after": {
+      "type": "s",
+      "value": "Conditions unclear: no commitment stated; Special Committee said Party B would likely use affiliated equity and third-party debt. Package valued by Party B at $21.50: $19.00 cash at closing plus options Party B valued at $2.50 per share, representing 10% of the new equity, strike price equal to Party B's initial cost basis, vesting on achievement of the base case management projections (over five years), excluding future acquisitions."
+    },
+    "scope": "C08"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "P42",
+    "after_cell": "P42",
+    "column": "Note",
+    "before": {
+      "type": "s",
+      "value": "Party C neither submitted nor reiterated its $16.00–$17.00 indication (#35) and gave no reason. Reported at the 09/19/2013 meeting."
+    },
+    "after": {
+      "type": "s",
+      "value": "Party C neither submitted nor reiterated its $16.00–$17.00 indication (#34) and gave no reason. Reported at the 09/19/2013 meeting."
+    },
+    "scope": "reference_renumbering"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "Q46",
+    "after_cell": "Q46",
+    "column": "Quote and page",
+    "before": {
+      "type": "s",
+      "value": "“Mr. Rothenberg indicated he would like to discuss the possibility of an equity rollover with CSC/Pamplona” (p. 38)"
+    },
+    "after": {
+      "type": "s",
+      "value": "“to provide Moab with the opportunity to resume discussions with CSC/Pamplona regarding a possible equity rollover of Moab's shares in the transaction” (p. 38)"
+    },
+    "scope": "C03"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "A51",
+    "after_cell": "A52",
+    "column": "#",
+    "before": {
+      "type": "n",
+      "value": 50
+    },
+    "after": {
+      "type": "n",
+      "value": 51
+    },
+    "scope": "event_renumbering"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "A52",
+    "after_cell": "A54",
+    "column": "#",
+    "before": {
+      "type": "n",
+      "value": 51
+    },
+    "after": {
+      "type": "n",
+      "value": 53
+    },
+    "scope": "event_renumbering"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "P52",
+    "after_cell": "P54",
+    "column": "Note",
+    "before": {
+      "type": "s",
+      "value": "Extended exclusivity to 11:59 p.m. ET 10/15/2013 at CSC/Pamplona's request (reported 10/09). Special Committee made the extension conditional on a Mac-Gray termination fee of at most $11m; CSC/Pamplona agreed to $11m on 10/11."
+    },
+    "after": {
+      "type": "s",
+      "value": "Extended exclusivity to 11:59 p.m. ET 10/15/2013 at CSC/Pamplona's request (#52). Special Committee made the extension conditional on a Mac-Gray termination fee of at most $11m; CSC/Pamplona agreed to $11m on 10/11."
+    },
+    "scope": "C09_dependency"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "A53",
+    "after_cell": "A55",
+    "column": "#",
+    "before": {
+      "type": "n",
+      "value": 52
+    },
+    "after": {
+      "type": "n",
+      "value": 54
+    },
+    "scope": "event_renumbering"
+  },
+  {
+    "sheet": "Deal ledger",
+    "before_cell": "A54",
+    "after_cell": "A56",
+    "column": "#",
+    "before": {
+      "type": "n",
+      "value": 53
+    },
+    "after": {
+      "type": "n",
+      "value": 55
+    },
+    "scope": "event_renumbering"
+  },
+  {
+    "sheet": "Rounds",
+    "before_cell": "D2",
+    "after_cell": "D2",
+    "column": "How opened",
+    "before": {
+      "type": "s",
+      "value": "Special Committee decision to approach 50 parties (15 strategic, 35 financial); BofA outreach, NDAs and informational packages (#10)"
+    },
+    "after": {
+      "type": "s",
+      "value": "Special Committee decision to approach 50 parties (15 strategic, 35 financial); BofA outreach, NDAs and informational packages (#9)"
+    },
+    "scope": "reference_renumbering"
+  },
+  {
+    "sheet": "Rounds",
+    "before_cell": "E2",
+    "after_cell": "E2",
+    "column": "Who was in",
+    "before": {
+      "type": "s",
+      "value": "19 admitted NDA signers: 1 strategic (CSC/Pamplona); 18 financial (Party B, Party C, 16 unnamed; some unnamed may have signed after the due date, Q5). Party A: still being received, not admitted (June 21 proposal reviewed; NDA only on 08/05)"
+    },
+    "after": {
+      "type": "s",
+      "value": "Named NDA signers: 1 strategic (CSC/Pamplona); 2 financial (Party B, Party C). Unnamed financial NDA signers admitted by the 07/23 due date: 0–16, unknown (no individual signing dates; 16 is the eventual total of other financial NDA signers, not a known population at the deadline, #17; signing continued after it: Party A 08/05; Q5). Party A: still being received, not admitted (June 21 proposal reviewed; NDA only on 08/05)"
+    },
+    "scope": "C06_dependency"
+  },
+  {
+    "sheet": "Rounds",
+    "before_cell": "J2",
+    "after_cell": "J2",
+    "column": "How it ended",
+    "before": {
+      "type": "s",
+      "value": "Four advanced (Party A, Party B, Party C, CSC/Pamplona); 16 out (inferred did not submit)"
+    },
+    "after": {
+      "type": "s",
+      "value": "Four advanced (Party A, Party B, Party C, CSC/Pamplona); the 16 unnamed financial signers were not among them. Their exit dates are unknown; accounted for once by an inferred exit by 09/11/2013 (#37, Q5)"
+    },
+    "scope": "C06_dependency"
+  },
+  {
+    "sheet": "Rounds",
+    "before_cell": "D3",
+    "after_cell": "D3",
+    "column": "How opened",
+    "before": {
+      "type": "s",
+      "value": "Special Committee selected four bidders for a second stage: management meetings, staged disclosure, then revised indications (#26)"
+    },
+    "after": {
+      "type": "s",
+      "value": "Special Committee selected four bidders for a second stage: management meetings, staged disclosure, then revised indications (#25)"
+    },
+    "scope": "reference_renumbering"
+  },
+  {
+    "sheet": "Rounds",
+    "before_cell": "E3",
+    "after_cell": "E3",
+    "column": "Who was in",
+    "before": {
+      "type": "s",
+      "value": "4: 2 strategic (Party A, once it signed an NDA on 08/05; CSC/Pamplona); 2 financial (Party B, Party C)"
+    },
+    "after": {
+      "type": "s",
+      "value": "4: 2 strategic (Party A, once it signed an NDA on 08/05; CSC/Pamplona); 2 financial (Party B, Party C). Unnamed financial NDA signers were not admitted (#17, Q5)"
+    },
+    "scope": "C06_dependency"
+  },
+  {
+    "sheet": "Rounds",
+    "before_cell": "J3",
+    "after_cell": "J3",
+    "column": "How it ended",
+    "before": {
+      "type": "s",
+      "value": "All four invited to submit final indications"
+    },
+    "after": {
+      "type": "s",
+      "value": "All four invited to submit final indications; any unnamed NDA signer still under NDA was out by then (#37)"
+    },
+    "scope": "C06_dependency"
+  },
+  {
+    "sheet": "Rounds",
+    "before_cell": "D4",
+    "after_cell": "D4",
+    "column": "How opened",
+    "before": {
+      "type": "s",
+      "value": "Special Committee requested final indications from all four by 09/18, with possible short exclusivity for one bidder (#37)"
+    },
+    "after": {
+      "type": "s",
+      "value": "Special Committee requested final indications from all four by 09/18, with possible short exclusivity for one bidder (#36)"
+    },
+    "scope": "reference_renumbering"
+  },
+  {
+    "sheet": "Questions",
+    "before_cell": "D2",
+    "after_cell": "D2",
+    "column": "Why, with page",
+    "before": {
+      "type": "s",
+      "value": "Gap with no reported acquirer contact of about two months or more: 04/08/2013 (BofA call to Party A, p. 27) to 06/21/2013 (Party A proposal, p. 30). E5 tests: (a) fails, since Party A was kept in view (May 9 report, June 24 plan to approach Party A, pp. 27, 31); (b) fails, 74 days with no reported end; (c) met by the 06/24 decision. Most plausible alternative: 09/11 is a further improvement request within round 2."
+    },
+    "after": {
+      "type": "s",
+      "value": "Gap with no reported acquirer contact of about two months or more: 04/08/2013 (BofA call to Party A, p. 27) to 06/21/2013 (Party A proposal, p. 30). E5 tests: (a) fails, since Party A was kept in view (May 9 report, June 24 plan to approach Party A, pp. 27, 31); (b) fails, 74 days with no reported end; (c) met by the 06/24 decision. Alternative boundary: no supported alternative. E6 makes the first request for final indications (09/11) a new round even with the same four bidders, and 07/25 changed both the set and the stage."
+    },
+    "scope": "C10"
+  },
+  {
+    "sheet": "Questions",
+    "before_cell": "E2",
+    "after_cell": "E2",
+    "column": "Rows affected",
+    "before": {
+      "type": "s",
+      "value": "#3, #8, #10, #26, #37"
+    },
+    "after": {
+      "type": "s",
+      "value": "#3, #8, #9, #25, #36"
+    },
+    "scope": "reference_renumbering"
+  },
+  {
+    "sheet": "Questions",
+    "before_cell": "F2",
+    "after_cell": "F2",
+    "column": "What changes if answered differently",
+    "before": {
+      "type": "s",
+      "value": "Merging rounds 2 and 3 would put #37–#53 in round 2, drop one Rounds line, and make #38, #39, #40 and #44 Informal, since they would no longer answer a final solicitation."
+    },
+    "after": {
+      "type": "s",
+      "value": "No supported alternative boundary, so no rows move. Formality follows E11, not the round numeral: the 09/18 and 09/21 bids answer the final-indications request (E11 rule 2) whatever the round is numbered; the counterfactual on that reading is in Q9."
+    },
+    "scope": "C10"
+  },
+  {
+    "sheet": "Questions",
+    "before_cell": "E3",
+    "after_cell": "E3",
+    "column": "Rows affected",
+    "before": {
+      "type": "s",
+      "value": "#8, #28, #39"
+    },
+    "after": {
+      "type": "s",
+      "value": "#8, #27, #39"
+    },
+    "scope": "reference_renumbering"
+  },
+  {
+    "sheet": "Questions",
+    "before_cell": "F3",
+    "after_cell": "F3",
+    "column": "What changes if answered differently",
+    "before": {
+      "type": "s",
+      "value": "Dropping #39 would leave Party A with no round-3 submission and make its exit read as a non-submitter's. Treating it as admitted to round 1 would change the round-1 bidder count from 19 to 20."
+    },
+    "after": {
+      "type": "s",
+      "value": "Dropping #39 would leave Party A with no round-3 submission and make its exit read as a non-submitter's. Treating it as admitted to round 1 would add it to the round-1 admitted set (three named signers plus an unknown number of the 16 unnamed, Q5)."
+    },
+    "scope": "C06_dependency"
+  },
+  {
+    "sheet": "Questions",
+    "before_cell": "D5",
+    "after_cell": "D5",
+    "column": "Why, with page",
+    "before": {
+      "type": "s",
+      "value": "CSC/Pamplona bid on 07/23. Party B (07/24) and Party C (oral 07/24) bid after the due date, and both were reviewed and advanced on 07/25 (p. 33). Party C's written revision (#27) came later on 07/25, after the meeting (p. 34). It is placed in round 1 because it answers the round-1 request."
+    },
+    "after": {
+      "type": "s",
+      "value": "CSC/Pamplona bid on 07/23. Party B (07/24) and Party C (oral 07/24) bid after the due date, and both were reviewed and advanced on 07/25 (p. 33). Party C's written revision (#26) came later on 07/25, after the meeting (p. 34). It is placed in round 1 because it answers the round-1 request."
+    },
+    "scope": "reference_renumbering"
+  },
+  {
+    "sheet": "Questions",
+    "before_cell": "E5",
+    "after_cell": "E5",
+    "column": "Rows affected",
+    "before": {
+      "type": "s",
+      "value": "#14, #22, #24, #25, #27"
+    },
+    "after": {
+      "type": "s",
+      "value": "#14, #22, #23, #24, #26"
+    },
+    "scope": "reference_renumbering"
+  },
+  {
+    "sheet": "Questions",
+    "before_cell": "F5",
+    "after_cell": "F5",
+    "column": "What changes if answered differently",
+    "before": {
+      "type": "s",
+      "value": "If the one-day lag is read as within tolerance, the outcome would be Enforced. #27 could instead be placed in round 2."
+    },
+    "after": {
+      "type": "s",
+      "value": "If the one-day lag is read as within tolerance, the outcome would be Enforced. #26 could instead be placed in round 2."
+    },
+    "scope": "reference_renumbering"
+  },
+  {
+    "sheet": "Questions",
+    "before_cell": "B6",
+    "after_cell": "B6",
+    "column": "Question",
+    "before": {
+      "type": "s",
+      "value": "Did the 16 unnamed financial NDA signers all fail to submit by 07/23, or did some sign after it?"
+    },
+    "after": {
+      "type": "s",
+      "value": "When did the 16 unnamed financial NDA signers sign and leave, and were they eligible for the 07/23 due date?"
+    },
+    "scope": "C06"
+  },
+  {
+    "sheet": "Questions",
+    "before_cell": "C6",
+    "after_cell": "C6",
+    "column": "Recommended answer",
+    "before": {
+      "type": "s",
+      "value": "Record one inferred Did not submit cohort by 07/23 (Count 16), with the caveat noted."
+    },
+    "after": {
+      "type": "s",
+      "value": "Unresolved timing. Account for the cohort once by an inferred Dropped by target by 09/11/2013 (#37), the first transition by which all 16 are established as out; leave individual signing dates, 07/23 eligibility and actual exit dates unknown."
+    },
+    "scope": "C06"
+  },
+  {
+    "sheet": "Questions",
+    "before_cell": "D6",
+    "after_cell": "D6",
+    "column": "Why, with page",
+    "before": {
+      "type": "s",
+      "value": "Only three round-1 indications are reported (p. 33), and the 20 NDAs were signed 'over the next two months' (p. 32) with no individual dates. Party A's NDA (08/05) shows that some signings came after 07/23."
+    },
+    "after": {
+      "type": "s",
+      "value": "The 20 NDAs were signed 'over the next two months' (p. 32); only Party B, Party C, CSC/Pamplona and Party A are dated, and Party A's 08/05 NDA shows signing continued after 07/23. Three round-1 indications and Party A's June 21 proposal were reviewed on 07/25 (p. 33); the 07/25, 08/27 and 09/11 requests name only the four (pp. 34–36)."
+    },
+    "scope": "C06"
+  },
+  {
+    "sheet": "Questions",
+    "before_cell": "E6",
+    "after_cell": "E6",
+    "column": "Rows affected",
+    "before": {
+      "type": "s",
+      "value": "#17, #23"
+    },
+    "after": {
+      "type": "s",
+      "value": "#17, #37"
+    },
+    "scope": "reference_renumbering"
+  },
+  {
+    "sheet": "Questions",
+    "before_cell": "F6",
+    "after_cell": "F6",
+    "column": "What changes if answered differently",
+    "before": {
+      "type": "s",
+      "value": "Signers after 07/23 would leave by Dropped by target at the 07/25 selection (#26), or later if they signed after 07/25. This would split #23 and change the round-1 admitted count below 19."
+    },
+    "after": {
+      "type": "s",
+      "value": "With signing dates, members eligible at 07/23 would take Did not submit by 07/23, other signers by 07/25 Dropped by target at the selection (#25), and later signers an exit at 08/27 or 09/11; the round-1 admitted count (three named plus up to 16) would become exact."
+    },
+    "scope": "C06"
+  },
+  {
+    "sheet": "Questions",
+    "before_cell": "E7",
+    "after_cell": "E7",
+    "column": "Rows affected",
+    "before": {
+      "type": "s",
+      "value": "#30, #33, #34, #35"
+    },
+    "after": {
+      "type": "s",
+      "value": "#29, #32, #33, #34"
+    },
+    "scope": "reference_renumbering"
+  },
+  {
+    "sheet": "Questions",
+    "before_cell": "E8",
+    "after_cell": "E8",
+    "column": "Rows affected",
+    "before": {
+      "type": "s",
+      "value": "#31, #38, #44"
+    },
+    "after": {
+      "type": "s",
+      "value": "#30, #38, #44"
+    },
+    "scope": "reference_renumbering"
+  },
+  {
+    "sheet": "Questions",
+    "before_cell": "E9",
+    "after_cell": "E9",
+    "column": "Rows affected",
+    "before": {
+      "type": "s",
+      "value": "#37, #41, #42"
+    },
+    "after": {
+      "type": "s",
+      "value": "#36, #41, #42"
+    },
+    "scope": "reference_renumbering"
+  },
+  {
+    "sheet": "Questions",
+    "before_cell": "D10",
+    "after_cell": "D10",
+    "column": "Why, with page",
+    "before": {
+      "type": "s",
+      "value": "BofA asked for 'final indications of interest by September 18', with exclusivity for one bidder to follow (p. 36). Party A called its bid 'best and final', and CSC/Pamplona's $21.25 was a 'last and best offer' (pp. 36–37). No bidder markup of the merger agreement is reported."
+    },
+    "after": {
+      "type": "s",
+      "value": "BofA asked for 'final indications of interest by September 18', with exclusivity for one bidder to follow (p. 36). Party A called its bid 'best and final', and CSC/Pamplona's $21.25 was a 'last and best offer' (pp. 36–37). During finalization Kirkland, CSC/Pamplona's counsel, returned a revised merger-agreement draft on 10/07 (p. 39)."
+    },
+    "scope": "C01"
+  },
+  {
+    "sheet": "Questions",
+    "before_cell": "F10",
+    "after_cell": "F10",
+    "column": "What changes if answered differently",
+    "before": {
+      "type": "s",
+      "value": "If 'final indications' is read as not a genuine final or binding solicitation, #38, #39, #40 and #44 become Informal, and the deal has no formal bid before signing."
+    },
+    "after": {
+      "type": "s",
+      "value": "If 'final indications' were not a genuine final solicitation, #38, #39, #40 and #44 would be Informal. CSC/Pamplona's standing $21.25 (#44) would then need a Formal Bid reaffirmed row at 10/07/2013, carried from #44, for Kirkland's returned markup (E10, E11); Party A and Party B would have no Formal bid. Under the current map #44 is already Formal in a final round, so no reaffirmation row is added."
+    },
+    "scope": "C01"
+  }
+]

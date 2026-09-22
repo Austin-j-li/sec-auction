@@ -1,6 +1,6 @@
 # Current research questions
 
-The working instruction is v1.13; its conventions are sections E1–E14 (C1–C16 in v1.12 and earlier). Its conventions are provisional where Alex's hand-coding, written rules and voice notes disagree. This list supersedes the old “16 questions” assessment as a navigation document; it authorizes no instruction or workbook changes.
+The working instruction is v1.13.2; its conventions are sections E1–E14 (C1–C16 in v1.12 and earlier). Its conventions are provisional where Alex's hand-coding, written rules and voice notes disagree. This list supersedes the old “16 questions” assessment as a navigation document; it authorizes no instruction or workbook changes.
 
 ## Decisions still withheld by Austin
 
@@ -8,6 +8,12 @@ The working instruction is v1.13; its conventions are sections E1–E14 (C1–C1
 - **Q7, Company H:** neither the proposed continuing-invitation exception nor its revised exit-reason wording was adopted. Keep the current exit rule (E14) until Austin decides otherwise.
 
 These Q numbers refer to the 20 September recommendations, not the IDs in a deal workbook.
+
+## Current deal-level decisions
+
+- **Mac-Gray R01 remains pending:** whether material termination-fee and sponsor-guarantee changes receive separate same-price Bid events or remain dated Notes. The latest 58-event correction candidate excludes that choice and is not frozen. Read the [source-backed decision context](reviews/2026-09-21-mac-gray-pilot/acceptance/RESEARCH_DECISION.md).
+- **Datalink F9 is resolved:** Austin retained January's bilateral stage as round 1, June as round 2 and five rounds overall. January 29 remains inferred. The [verified revision](reviews/2026-09-21-datalink-pilot/revision/VERIFICATION.md) implements the ruling; its retained September Conditions interpretations remain qualified.
+- **Meredith economic scope remains unresolved:** distinguish the economic business being acquired from the surviving legal entity before deciding whole-company coding. This does not excuse missing dated economic changes required by existing E2/E10.
 
 ## Ask Alex
 
@@ -23,4 +29,4 @@ Also settle the source hierarchy: which governs when spring hand-coding and late
 
 Show the adopted handling of superseding/reused NDAs, WDC's addendum, conditions supported by reported facts, reconciled contact cohorts, the June 19 projections and Wells Fargo, soft deadlines, and reference share prices with their own dates. Keep these confirmations distinct from the unadopted Q3/Q7 changes above.
 
-Evidence and row references are preserved in the September 20 recommendations (`git show 407a6e4:_dev/OPEN_QUESTIONS_recommendations_2026-09-20.md`), especially “Send to Alex,” and the earlier assessment (`git show 407a6e4:_dev/OPEN_QUESTIONS_for_Alex.md`). Some references describe v1.8 trial rows and predate the v1.11 extractions. The [v1.12 decision record](DECISIONS_v1.12.md) governs the current instruction.
+Evidence and row references are preserved in the September 20 recommendations (`git show 407a6e4:_dev/OPEN_QUESTIONS_recommendations_2026-09-20.md`), especially “Send to Alex,” and the earlier assessment (`git show 407a6e4:_dev/OPEN_QUESTIONS_for_Alex.md`). Some references describe v1.8 trial rows and predate the v1.11 extractions. The [v1.13–v1.13.2 decision record](DECISIONS_v1.13.md) records the current instruction's conventions and freeze.

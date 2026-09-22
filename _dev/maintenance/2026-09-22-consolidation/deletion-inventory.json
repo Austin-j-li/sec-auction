@@ -1,0 +1,3705 @@
+{
+  "grok_worktree": {
+    "root": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113",
+    "count": 153,
+    "total_bytes": 42866709,
+    "entries": [
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/.git",
+        "relative_path": ".git",
+        "type": "file",
+        "bytes": 91,
+        "sha256": "11bb80a7ed622227d6257a3b99f302a28d3a9f8ad51ed4c3a34637821c79faaf"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/.gitignore",
+        "relative_path": ".gitignore",
+        "type": "file",
+        "bytes": 222,
+        "sha256": "a5687288b9c1b0eb270d85c05fa112678a8b36dc77ef7fe525a984e8e41c65e2"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/AGENTS.md",
+        "relative_path": "AGENTS.md",
+        "type": "file",
+        "bytes": 2771,
+        "sha256": "d06a843d0bb596e856235e4241804961927af7eab7ab6514e0923bf940f5e786"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/SEC_Deal_Ledger_Extraction_Instruction.md",
+        "relative_path": "SEC_Deal_Ledger_Extraction_Instruction.md",
+        "type": "file",
+        "bytes": 33712,
+        "sha256": "c208d4a7a43ee228cb2c5b5c7b657c80493d9fa3dac11604e77c4a621993d2f0"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/CHRONOLOGY.md",
+        "relative_path": "_dev/CHRONOLOGY.md",
+        "type": "file",
+        "bytes": 4769,
+        "sha256": "c23f2b894c36de5746db77e5585a55b3b0e28631b2876adfbb025e52bd7c1ded"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/DECISIONS_v1.13.md",
+        "relative_path": "_dev/DECISIONS_v1.13.md",
+        "type": "file",
+        "bytes": 3142,
+        "sha256": "e07d811e6c3c5a47e5bd96e896960676e20081af9bf6815b017898a4cf2defba"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/HANDOFF.md",
+        "relative_path": "_dev/HANDOFF.md",
+        "type": "file",
+        "bytes": 6135,
+        "sha256": "b1dfdcd356d03c29a4728944993dce8eb46fe3a002262b0a077cff3ab10cf022"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/RESEARCH_QUESTIONS.md",
+        "relative_path": "_dev/RESEARCH_QUESTIONS.md",
+        "type": "file",
+        "bytes": 2799,
+        "sha256": "565fbe44daab78ccd1889ef84cbd9dc08b0b593c350ab3db11f92f6237472aca"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-kraton/check.json",
+        "relative_path": "_dev/runs/grok47-high-kraton/check.json",
+        "type": "file",
+        "bytes": 5808,
+        "sha256": "3e6f06b55414565978b40a4828cdfbe3787d04b83ce9a9fa6f94c985a164d1c9"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-kraton/command.json",
+        "relative_path": "_dev/runs/grok47-high-kraton/command.json",
+        "type": "file",
+        "bytes": 1219,
+        "sha256": "8fa1300a01eefe94ce1cc50b634a34ecb5340e7bb996ccde81503b331b106639"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-kraton/events.jsonl",
+        "relative_path": "_dev/runs/grok47-high-kraton/events.jsonl",
+        "type": "file",
+        "bytes": 1900782,
+        "sha256": "766504c7aa010b1ddeec62d9b4ad2222fe4a5f8add59734047e14ffa569036a4"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-kraton/extraction/kraton.xlsx",
+        "relative_path": "_dev/runs/grok47-high-kraton/extraction/kraton.xlsx",
+        "type": "file",
+        "bytes": 27125,
+        "sha256": "4dbf414ce16b3ac9ec9219a87c0bac2069ef4e1b2e35ca90b4e6886a15690429"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-kraton/input/SEC_Deal_Ledger_Extraction_Instruction.md",
+        "relative_path": "_dev/runs/grok47-high-kraton/input/SEC_Deal_Ledger_Extraction_Instruction.md",
+        "type": "file",
+        "bytes": 33712,
+        "sha256": "c208d4a7a43ee228cb2c5b5c7b657c80493d9fa3dac11604e77c4a621993d2f0"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-kraton/input/raw_filing/kraton_2021-11-04_DEFM14A.htm",
+        "relative_path": "_dev/runs/grok47-high-kraton/input/raw_filing/kraton_2021-11-04_DEFM14A.htm",
+        "type": "file",
+        "bytes": 1467260,
+        "sha256": "c0d2abbd80aa02fe55c8c1cc11f9d0a0e4a92bdde3045654cce11997781ae322"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-kraton/launch.json",
+        "relative_path": "_dev/runs/grok47-high-kraton/launch.json",
+        "type": "file",
+        "bytes": 365,
+        "sha256": "7f3ea78ef80e361ea390f893179f8386fde835372c13cc4cc2d07a6384e2675e"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-kraton/launcher.log",
+        "relative_path": "_dev/runs/grok47-high-kraton/launcher.log",
+        "type": "file",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-kraton/metadata.json",
+        "relative_path": "_dev/runs/grok47-high-kraton/metadata.json",
+        "type": "file",
+        "bytes": 1034,
+        "sha256": "e56bb0b017ec2f4e094f0df3bda5d4050b7061ab388f22215bf9b2770494ee45"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-kraton/prompt.txt",
+        "relative_path": "_dev/runs/grok47-high-kraton/prompt.txt",
+        "type": "file",
+        "bytes": 236,
+        "sha256": "4762bf0a795f0a2a08f0e192c91a2962c8368447b1b94dd4f3177c471be608bd"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-kraton/status.json",
+        "relative_path": "_dev/runs/grok47-high-kraton/status.json",
+        "type": "file",
+        "bytes": 516,
+        "sha256": "0ad1b66e6c230c559aabf0846d831b5b681d8cddf7e6a824ea34333fa836651e"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-kraton/stderr.log",
+        "relative_path": "_dev/runs/grok47-high-kraton/stderr.log",
+        "type": "file",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-kraton/validation.json",
+        "relative_path": "_dev/runs/grok47-high-kraton/validation.json",
+        "type": "file",
+        "bytes": 350,
+        "sha256": "a9ca7a364b0ae3bad9df38592094d1ea3be06d52b15c9d06fe6e57eb5e6eda84"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-mac-gray/check.json",
+        "relative_path": "_dev/runs/grok47-high-mac-gray/check.json",
+        "type": "file",
+        "bytes": 4951,
+        "sha256": "851267f0474cc81e2d89aebf0e280d22ae8dc8dedfdae9d7408d0f4ba67523b9"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-mac-gray/command.json",
+        "relative_path": "_dev/runs/grok47-high-mac-gray/command.json",
+        "type": "file",
+        "bytes": 1221,
+        "sha256": "648aad57eb9621cebaf7bd1286d47e0a22c5768647ed6e65d8f724770515fbc8"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-mac-gray/events.jsonl",
+        "relative_path": "_dev/runs/grok47-high-mac-gray/events.jsonl",
+        "type": "file",
+        "bytes": 1869240,
+        "sha256": "6ecf383d5512f648aba88c01907f8dd2a405c4771f812a10f69c7e797c165af4"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-mac-gray/extraction/mac-gray.xlsx",
+        "relative_path": "_dev/runs/grok47-high-mac-gray/extraction/mac-gray.xlsx",
+        "type": "file",
+        "bytes": 24183,
+        "sha256": "1db55877aced55d0495ab089e3d39880b124591391fe3e9077de30328e3ce55b"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-mac-gray/input/SEC_Deal_Ledger_Extraction_Instruction.md",
+        "relative_path": "_dev/runs/grok47-high-mac-gray/input/SEC_Deal_Ledger_Extraction_Instruction.md",
+        "type": "file",
+        "bytes": 33712,
+        "sha256": "c208d4a7a43ee228cb2c5b5c7b657c80493d9fa3dac11604e77c4a621993d2f0"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-mac-gray/input/raw_filing/mac-gray_2013-12-04_DEFM14A.htm",
+        "relative_path": "_dev/runs/grok47-high-mac-gray/input/raw_filing/mac-gray_2013-12-04_DEFM14A.htm",
+        "type": "file",
+        "bytes": 1279957,
+        "sha256": "e6ea7bd00cfc389c28e5139a3d23aafcc684f7b65ff54d699f3c5be11bbc4301"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-mac-gray/launch.json",
+        "relative_path": "_dev/runs/grok47-high-mac-gray/launch.json",
+        "type": "file",
+        "bytes": 367,
+        "sha256": "d6852d26c4ca3a85ed444eece8b7eaa812655c0aa8f7968386f540c07a0caae3"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-mac-gray/launcher.log",
+        "relative_path": "_dev/runs/grok47-high-mac-gray/launcher.log",
+        "type": "file",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-mac-gray/metadata.json",
+        "relative_path": "_dev/runs/grok47-high-mac-gray/metadata.json",
+        "type": "file",
+        "bytes": 1040,
+        "sha256": "ca2a758c0706b85b54edd4883de217b6ec0bf4284daeba5a5c2710ad0b1894d0"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-mac-gray/prompt.txt",
+        "relative_path": "_dev/runs/grok47-high-mac-gray/prompt.txt",
+        "type": "file",
+        "bytes": 238,
+        "sha256": "500f54a95b46052b2707f6ff97f4597f7e6f825b5f40e5023f3b4b085182d9d2"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-mac-gray/status.json",
+        "relative_path": "_dev/runs/grok47-high-mac-gray/status.json",
+        "type": "file",
+        "bytes": 516,
+        "sha256": "42113efdff7f7bc2c7e73539157571b983b21aa75d43fbe80463ea833775b534"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-mac-gray/stderr.log",
+        "relative_path": "_dev/runs/grok47-high-mac-gray/stderr.log",
+        "type": "file",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-mac-gray/validation.json",
+        "relative_path": "_dev/runs/grok47-high-mac-gray/validation.json",
+        "type": "file",
+        "bytes": 354,
+        "sha256": "dbf3431955056e899156c88cfd583aaf8f588d7ca3c089b18d457fc941d5d06f"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-meredith/check.json",
+        "relative_path": "_dev/runs/grok47-high-meredith/check.json",
+        "type": "file",
+        "bytes": 14999,
+        "sha256": "63497fe6dec75b5faffec6a705edfc251f62b1e5c58cb341e6e20dfd339a4d21"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-meredith/command.json",
+        "relative_path": "_dev/runs/grok47-high-meredith/command.json",
+        "type": "file",
+        "bytes": 1221,
+        "sha256": "041ea194458a5dcebd545b0078c9ca4eb6f2704f30ece10e3c678685d6597a4b"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-meredith/events.jsonl",
+        "relative_path": "_dev/runs/grok47-high-meredith/events.jsonl",
+        "type": "file",
+        "bytes": 2319456,
+        "sha256": "cac4f008631048c7750a15e9d6a779aaf3b66bfa4ce3df4cd4e8c225091a10f0"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-meredith/extraction/meredith.xlsx",
+        "relative_path": "_dev/runs/grok47-high-meredith/extraction/meredith.xlsx",
+        "type": "file",
+        "bytes": 32225,
+        "sha256": "48782ca0459a60ddab3ddf2d03dcca4aaca36c72a76a161542b7d07f95384b7f"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-meredith/input/SEC_Deal_Ledger_Extraction_Instruction.md",
+        "relative_path": "_dev/runs/grok47-high-meredith/input/SEC_Deal_Ledger_Extraction_Instruction.md",
+        "type": "file",
+        "bytes": 33712,
+        "sha256": "c208d4a7a43ee228cb2c5b5c7b657c80493d9fa3dac11604e77c4a621993d2f0"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-meredith/input/raw_filing/meredith_2021-11-08_DEFM14A.htm",
+        "relative_path": "_dev/runs/grok47-high-meredith/input/raw_filing/meredith_2021-11-08_DEFM14A.htm",
+        "type": "file",
+        "bytes": 2709877,
+        "sha256": "d6783298bccf365153f3951c6054f04df7a925493a03ef9f9057f740b0b6728b"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-meredith/launch.json",
+        "relative_path": "_dev/runs/grok47-high-meredith/launch.json",
+        "type": "file",
+        "bytes": 367,
+        "sha256": "56b36e2c83f74f2b54798dc35527c36a8125567f9b9ceffcd2951d3429a7757b"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-meredith/launcher.log",
+        "relative_path": "_dev/runs/grok47-high-meredith/launcher.log",
+        "type": "file",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-meredith/metadata.json",
+        "relative_path": "_dev/runs/grok47-high-meredith/metadata.json",
+        "type": "file",
+        "bytes": 1040,
+        "sha256": "674aaf10eb7c5fcf7c7b3b65822a9d12f6662859c70bc547755c86c5c48acb10"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-meredith/prompt.txt",
+        "relative_path": "_dev/runs/grok47-high-meredith/prompt.txt",
+        "type": "file",
+        "bytes": 238,
+        "sha256": "6f2f135500259521b5e4525b76b63571044a3001514353d47a4c5c9f2db5ccd8"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-meredith/status.json",
+        "relative_path": "_dev/runs/grok47-high-meredith/status.json",
+        "type": "file",
+        "bytes": 515,
+        "sha256": "30041d216d598b1b97149ee5c2311ed22c714da50485e465df51d7f9edd7b5df"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-meredith/stderr.log",
+        "relative_path": "_dev/runs/grok47-high-meredith/stderr.log",
+        "type": "file",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-meredith/validation.json",
+        "relative_path": "_dev/runs/grok47-high-meredith/validation.json",
+        "type": "file",
+        "bytes": 354,
+        "sha256": "b4dd9be5ead4d54aaabf2596268f95a06b744dcde830291ae60c5c5d1496ac41"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-penford/check.json",
+        "relative_path": "_dev/runs/grok47-high-penford/check.json",
+        "type": "file",
+        "bytes": 7599,
+        "sha256": "bd90f5ffed6eb62585282e7a55077425c0ee1e637ad540d259a5c089f6f3c4a5"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-penford/command.json",
+        "relative_path": "_dev/runs/grok47-high-penford/command.json",
+        "type": "file",
+        "bytes": 1220,
+        "sha256": "ba4f259e9fee53e0fe234b9881c2f9ddfa981198057d94b2394f97397c4727d5"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-penford/events.jsonl",
+        "relative_path": "_dev/runs/grok47-high-penford/events.jsonl",
+        "type": "file",
+        "bytes": 1846216,
+        "sha256": "db48744d7157e8b8d6e13b90238b8640cdb2f2c302e558bb6bbf0ce0a68d75ac"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-penford/extraction/penford.xlsx",
+        "relative_path": "_dev/runs/grok47-high-penford/extraction/penford.xlsx",
+        "type": "file",
+        "bytes": 23602,
+        "sha256": "8ba8f4ba03800772e0f27fffe4ccca65e8ae2ca7f67152c6099f6d75a10a8f55"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-penford/input/SEC_Deal_Ledger_Extraction_Instruction.md",
+        "relative_path": "_dev/runs/grok47-high-penford/input/SEC_Deal_Ledger_Extraction_Instruction.md",
+        "type": "file",
+        "bytes": 33712,
+        "sha256": "c208d4a7a43ee228cb2c5b5c7b657c80493d9fa3dac11604e77c4a621993d2f0"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-penford/input/raw_filing/penford_2014-12-29_DEFM14A.htm",
+        "relative_path": "_dev/runs/grok47-high-penford/input/raw_filing/penford_2014-12-29_DEFM14A.htm",
+        "type": "file",
+        "bytes": 1301510,
+        "sha256": "5bd50713b2ce136b9b80d28360b6281d6890d0d95b35cfe36a3eacd288bb53aa"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-penford/launch.json",
+        "relative_path": "_dev/runs/grok47-high-penford/launch.json",
+        "type": "file",
+        "bytes": 366,
+        "sha256": "750a24b7b10c2da5d437cff71ce9d9702da304a8747745ba3154d7b5edb86fe4"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-penford/launcher.log",
+        "relative_path": "_dev/runs/grok47-high-penford/launcher.log",
+        "type": "file",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-penford/metadata.json",
+        "relative_path": "_dev/runs/grok47-high-penford/metadata.json",
+        "type": "file",
+        "bytes": 1037,
+        "sha256": "7b4086f0a87715becede311fc5692e2d9a8547516255353e8cbd377d19e26628"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-penford/prompt.txt",
+        "relative_path": "_dev/runs/grok47-high-penford/prompt.txt",
+        "type": "file",
+        "bytes": 237,
+        "sha256": "bbaad82152ca1d44d150868001fc0a6d22ef8f1eeecd1026c34559968930442b"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-penford/status.json",
+        "relative_path": "_dev/runs/grok47-high-penford/status.json",
+        "type": "file",
+        "bytes": 515,
+        "sha256": "2c4137071b7eb7d519c5ed40c91f8e7477d4a10691d307ea19a1cf5944e6ed6a"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-penford/stderr.log",
+        "relative_path": "_dev/runs/grok47-high-penford/stderr.log",
+        "type": "file",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-penford/validation.json",
+        "relative_path": "_dev/runs/grok47-high-penford/validation.json",
+        "type": "file",
+        "bytes": 352,
+        "sha256": "e0c8bd24fabb4ad09208752431b9c51a2f6d32b64b639257563f789467c86b2b"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-petsmart/check.json",
+        "relative_path": "_dev/runs/grok47-high-petsmart/check.json",
+        "type": "file",
+        "bytes": 10280,
+        "sha256": "ea69deb86f5844d21e89fc26d4d2e4cff915a51b1c8fb911cb938d8a86e33826"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-petsmart/command.json",
+        "relative_path": "_dev/runs/grok47-high-petsmart/command.json",
+        "type": "file",
+        "bytes": 1221,
+        "sha256": "9c672d0cdb70c51872b7ce2fb546a9ef289565118479cbc7da670d34696f4d61"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-petsmart/events.jsonl",
+        "relative_path": "_dev/runs/grok47-high-petsmart/events.jsonl",
+        "type": "file",
+        "bytes": 1935422,
+        "sha256": "d33f8328d4721c19a4cc2c8db6cc5176c5cd2286e71d6f06a79f200502d0af52"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-petsmart/extraction/petsmart.xlsx",
+        "relative_path": "_dev/runs/grok47-high-petsmart/extraction/petsmart.xlsx",
+        "type": "file",
+        "bytes": 25792,
+        "sha256": "157ee71d0c6b49a99727e755450257b1a0a00e65c80961f877ee9761aac25187"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-petsmart/input/SEC_Deal_Ledger_Extraction_Instruction.md",
+        "relative_path": "_dev/runs/grok47-high-petsmart/input/SEC_Deal_Ledger_Extraction_Instruction.md",
+        "type": "file",
+        "bytes": 33712,
+        "sha256": "c208d4a7a43ee228cb2c5b5c7b657c80493d9fa3dac11604e77c4a621993d2f0"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-petsmart/input/raw_filing/petsmart_2015-02-02_DEFM14A.htm",
+        "relative_path": "_dev/runs/grok47-high-petsmart/input/raw_filing/petsmart_2015-02-02_DEFM14A.htm",
+        "type": "file",
+        "bytes": 1641964,
+        "sha256": "52c93afa5897d1878441e76050f3c9607972624ea1e4105c29be815f4bf04ca9"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-petsmart/launch.json",
+        "relative_path": "_dev/runs/grok47-high-petsmart/launch.json",
+        "type": "file",
+        "bytes": 367,
+        "sha256": "411cc6f3ffb222e92d1e786953db64ffc1e470676cb6595accc47dcfbcb7bd51"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-petsmart/launcher.log",
+        "relative_path": "_dev/runs/grok47-high-petsmart/launcher.log",
+        "type": "file",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-petsmart/metadata.json",
+        "relative_path": "_dev/runs/grok47-high-petsmart/metadata.json",
+        "type": "file",
+        "bytes": 1040,
+        "sha256": "11d1e268a3409c6025ce596aae5c7747105a39f48fb8b0e6895522325e797592"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-petsmart/prompt.txt",
+        "relative_path": "_dev/runs/grok47-high-petsmart/prompt.txt",
+        "type": "file",
+        "bytes": 238,
+        "sha256": "c6077bb28fb46769848ab3190a61b6bcbbc6b48f00e8550cf7cd912dc2dc9852"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-petsmart/status.json",
+        "relative_path": "_dev/runs/grok47-high-petsmart/status.json",
+        "type": "file",
+        "bytes": 515,
+        "sha256": "7287d4a3ba91a7ad485658deddba9479173814a1cda7f7fe0c5907a3cbbda648"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-petsmart/stderr.log",
+        "relative_path": "_dev/runs/grok47-high-petsmart/stderr.log",
+        "type": "file",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-petsmart/validation.json",
+        "relative_path": "_dev/runs/grok47-high-petsmart/validation.json",
+        "type": "file",
+        "bytes": 354,
+        "sha256": "780ee4ae5182d21e0e19dffcb9c536c4a5a941bc08e0c13754bd4a0ad5b3cabb"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-providence-worcester/check.json",
+        "relative_path": "_dev/runs/grok47-high-providence-worcester/check.json",
+        "type": "file",
+        "bytes": 5261,
+        "sha256": "ed950553f9c5e3b2201b849ddf5bf45afb746f02f253deebb49c5aa1c081eb13"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-providence-worcester/command.json",
+        "relative_path": "_dev/runs/grok47-high-providence-worcester/command.json",
+        "type": "file",
+        "bytes": 1233,
+        "sha256": "dedd665e577cc7ba5e78e4b924740e370bd6ad296ad19ac4fc4aacf729e64490"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-providence-worcester/events.jsonl",
+        "relative_path": "_dev/runs/grok47-high-providence-worcester/events.jsonl",
+        "type": "file",
+        "bytes": 2111847,
+        "sha256": "00b2f89619024e9cef2ae3aeeafa758e790c4498ed15797807d96fa6d2761392"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-providence-worcester/extraction/providence-worcester.xlsx",
+        "relative_path": "_dev/runs/grok47-high-providence-worcester/extraction/providence-worcester.xlsx",
+        "type": "file",
+        "bytes": 25490,
+        "sha256": "690e946a0bc441895689ecf80afd409445d312f2826a37dd198a8586685e5cc2"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-providence-worcester/input/SEC_Deal_Ledger_Extraction_Instruction.md",
+        "relative_path": "_dev/runs/grok47-high-providence-worcester/input/SEC_Deal_Ledger_Extraction_Instruction.md",
+        "type": "file",
+        "bytes": 33712,
+        "sha256": "c208d4a7a43ee228cb2c5b5c7b657c80493d9fa3dac11604e77c4a621993d2f0"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-providence-worcester/input/raw_filing/providence-worcester_2016-09-20_DEFM14A.htm",
+        "relative_path": "_dev/runs/grok47-high-providence-worcester/input/raw_filing/providence-worcester_2016-09-20_DEFM14A.htm",
+        "type": "file",
+        "bytes": 1218389,
+        "sha256": "32d7a2738c95c29fa98fccc6a874a5e2acbfd0b7fc87a1f3e9145c60f627378a"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-providence-worcester/launch.json",
+        "relative_path": "_dev/runs/grok47-high-providence-worcester/launch.json",
+        "type": "file",
+        "bytes": 379,
+        "sha256": "d928f079e86d67d1bbd927acbc577ecb19c3a3ff1288579765487672f0af5e7d"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-providence-worcester/launcher.log",
+        "relative_path": "_dev/runs/grok47-high-providence-worcester/launcher.log",
+        "type": "file",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-providence-worcester/metadata.json",
+        "relative_path": "_dev/runs/grok47-high-providence-worcester/metadata.json",
+        "type": "file",
+        "bytes": 1076,
+        "sha256": "6385f83d37b005eede004f0adaf13d74822964e8adb5c5ffb79ef9cb52efc3e6"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-providence-worcester/prompt.txt",
+        "relative_path": "_dev/runs/grok47-high-providence-worcester/prompt.txt",
+        "type": "file",
+        "bytes": 250,
+        "sha256": "c4859c2794750ab014a8c9409a5e54b20a5ee9d5ce27436c393d09d38866fca3"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-providence-worcester/status.json",
+        "relative_path": "_dev/runs/grok47-high-providence-worcester/status.json",
+        "type": "file",
+        "bytes": 515,
+        "sha256": "c49cd963a93c5166c2f06752403cc3ba8f8bd58c6c84bb57cd3b34a00ce6fb73"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-providence-worcester/stderr.log",
+        "relative_path": "_dev/runs/grok47-high-providence-worcester/stderr.log",
+        "type": "file",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-providence-worcester/validation.json",
+        "relative_path": "_dev/runs/grok47-high-providence-worcester/validation.json",
+        "type": "file",
+        "bytes": 378,
+        "sha256": "7944578e34016ff1813290201cc1c40ec40adcd04955db1052fcfea0a0242579"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-stec/check.json",
+        "relative_path": "_dev/runs/grok47-high-stec/check.json",
+        "type": "file",
+        "bytes": 12036,
+        "sha256": "6c4830185949c1a77b3884731442815d0c65c98f7d7ecc074b09efb1b575eb35"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-stec/command.json",
+        "relative_path": "_dev/runs/grok47-high-stec/command.json",
+        "type": "file",
+        "bytes": 1217,
+        "sha256": "3bb6873990aace473501b42f6e1eae977c660ca172a1588079ed7d32c4bb6a2f"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-stec/events.jsonl",
+        "relative_path": "_dev/runs/grok47-high-stec/events.jsonl",
+        "type": "file",
+        "bytes": 2169867,
+        "sha256": "5905fc3569db80209e1bcf96c6e868f6f0fa2017738ff9d62bd25dd80e8b6269"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-stec/extraction/stec.xlsx",
+        "relative_path": "_dev/runs/grok47-high-stec/extraction/stec.xlsx",
+        "type": "file",
+        "bytes": 27686,
+        "sha256": "b89d8da1a702e2e27ceb8b8c4e55c95f2570f8a05e9f18c45a64be1d66861d78"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-stec/input/SEC_Deal_Ledger_Extraction_Instruction.md",
+        "relative_path": "_dev/runs/grok47-high-stec/input/SEC_Deal_Ledger_Extraction_Instruction.md",
+        "type": "file",
+        "bytes": 33712,
+        "sha256": "c208d4a7a43ee228cb2c5b5c7b657c80493d9fa3dac11604e77c4a621993d2f0"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-stec/input/raw_filing/stec_2013-08-08_DEFM14A.htm",
+        "relative_path": "_dev/runs/grok47-high-stec/input/raw_filing/stec_2013-08-08_DEFM14A.htm",
+        "type": "file",
+        "bytes": 1376551,
+        "sha256": "b29adcd8c221c55b48593b339bbe768552a21e1fa8836e2f355d6ffe9b86f36b"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-stec/launch.json",
+        "relative_path": "_dev/runs/grok47-high-stec/launch.json",
+        "type": "file",
+        "bytes": 363,
+        "sha256": "23e3bee276b09a0ad5253fee6c8aed488cabb107e3330e0e16c9cf05700ead0b"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-stec/launcher.log",
+        "relative_path": "_dev/runs/grok47-high-stec/launcher.log",
+        "type": "file",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-stec/metadata.json",
+        "relative_path": "_dev/runs/grok47-high-stec/metadata.json",
+        "type": "file",
+        "bytes": 1028,
+        "sha256": "ca56b1798dca6125bdb2166d2d54d2ac70c79b7bbc50daccf2dd5bb19717cc88"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-stec/prompt.txt",
+        "relative_path": "_dev/runs/grok47-high-stec/prompt.txt",
+        "type": "file",
+        "bytes": 234,
+        "sha256": "55fb335a717acef763194fd65b627e652c87aff3e41674a11ba7dffa127d7871"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-stec/status.json",
+        "relative_path": "_dev/runs/grok47-high-stec/status.json",
+        "type": "file",
+        "bytes": 516,
+        "sha256": "4a5db7ddc31a870865d92180e1b8c1615b9ff08e8f01fedc4b8f3bc03f0f7ebb"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-stec/stderr.log",
+        "relative_path": "_dev/runs/grok47-high-stec/stderr.log",
+        "type": "file",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-stec/validation.json",
+        "relative_path": "_dev/runs/grok47-high-stec/validation.json",
+        "type": "file",
+        "bytes": 346,
+        "sha256": "b1e39f854b195dd5dd3893f8ad5f117f9d63855f625d5fbb76ae3a345c6b4f5d"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-synacor/check.json",
+        "relative_path": "_dev/runs/grok47-high-synacor/check.json",
+        "type": "file",
+        "bytes": 9014,
+        "sha256": "9c32fd3ecd373acff628e997b95fef575c9ecf3c10cba6eefbdb3a2476c6bb5e"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-synacor/command.json",
+        "relative_path": "_dev/runs/grok47-high-synacor/command.json",
+        "type": "file",
+        "bytes": 1220,
+        "sha256": "cb0c3099a63de26de9b650b1283d4bb89506a589a9538dd3424c474f7503c8b1"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-synacor/events.jsonl",
+        "relative_path": "_dev/runs/grok47-high-synacor/events.jsonl",
+        "type": "file",
+        "bytes": 2136652,
+        "sha256": "e3a7530684d3847819a0c581cac059ea441bafd8c18a3ab38aaa4edef7b16266"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-synacor/extraction/synacor.xlsx",
+        "relative_path": "_dev/runs/grok47-high-synacor/extraction/synacor.xlsx",
+        "type": "file",
+        "bytes": 31372,
+        "sha256": "cb813dcdc233c1f14ba46dbe71fe915a5d9c843b8dcaa5ddbea616e37f81bba3"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-synacor/input/SEC_Deal_Ledger_Extraction_Instruction.md",
+        "relative_path": "_dev/runs/grok47-high-synacor/input/SEC_Deal_Ledger_Extraction_Instruction.md",
+        "type": "file",
+        "bytes": 33712,
+        "sha256": "c208d4a7a43ee228cb2c5b5c7b657c80493d9fa3dac11604e77c4a621993d2f0"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-synacor/input/raw_filing/synacor_2021-03-03_SCTO-T.htm",
+        "relative_path": "_dev/runs/grok47-high-synacor/input/raw_filing/synacor_2021-03-03_SCTO-T.htm",
+        "type": "file",
+        "bytes": 517155,
+        "sha256": "2ea05ceef8c7315f7bf81743a70f67a2574e545cb303e48152efd6803b749b0e"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-synacor/launch.json",
+        "relative_path": "_dev/runs/grok47-high-synacor/launch.json",
+        "type": "file",
+        "bytes": 366,
+        "sha256": "dbfb196a3789c825f9e810ad65bb9f2a2570796bac1b22610d8c42c37ca915a1"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-synacor/launcher.log",
+        "relative_path": "_dev/runs/grok47-high-synacor/launcher.log",
+        "type": "file",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-synacor/metadata.json",
+        "relative_path": "_dev/runs/grok47-high-synacor/metadata.json",
+        "type": "file",
+        "bytes": 1036,
+        "sha256": "7bcd4f9c298b4a9ebecc2011c9b415ac5b9708757f96cd42a2771ff633a6923e"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-synacor/prompt.txt",
+        "relative_path": "_dev/runs/grok47-high-synacor/prompt.txt",
+        "type": "file",
+        "bytes": 237,
+        "sha256": "16138707e81ac7be2ebdfcbbbc652779c1740b1aa0f280b2de630015c3711e37"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-synacor/status.json",
+        "relative_path": "_dev/runs/grok47-high-synacor/status.json",
+        "type": "file",
+        "bytes": 516,
+        "sha256": "70cd7c47805f4cd91b40d14486a0c310763bacee45912c700e69a8d3a1908a91"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-synacor/stderr.log",
+        "relative_path": "_dev/runs/grok47-high-synacor/stderr.log",
+        "type": "file",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/runs/grok47-high-synacor/validation.json",
+        "relative_path": "_dev/runs/grok47-high-synacor/validation.json",
+        "type": "file",
+        "bytes": 352,
+        "sha256": "469d4f4b607c0004159d54dbc3abbbf249d22c4d85007e3ed7f099ac322763b8"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/tools/README.md",
+        "relative_path": "_dev/tools/README.md",
+        "type": "file",
+        "bytes": 6613,
+        "sha256": "0baf2386bd712ab84de47d7fc9c21284fcfaeb4a4da97c3f78588fb4248567e4"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/tools/check_lean.py",
+        "relative_path": "_dev/tools/check_lean.py",
+        "type": "file",
+        "bytes": 61100,
+        "sha256": "36874442d1407ce2d75fed0d807567b9a04ae6bd6fb5f2312dee61f83949e1f5"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/tools/cockpit/__init__.py",
+        "relative_path": "_dev/tools/cockpit/__init__.py",
+        "type": "file",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/tools/cockpit/app.js",
+        "relative_path": "_dev/tools/cockpit/app.js",
+        "type": "file",
+        "bytes": 30658,
+        "sha256": "dce6d2b2a745c32751e50bb6af73cf8d82460863853c3758be808f30d6c42182"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/tools/cockpit/data.py",
+        "relative_path": "_dev/tools/cockpit/data.py",
+        "type": "file",
+        "bytes": 38369,
+        "sha256": "618e6cb2ec2e59588459be85cfad0e97beebb19b9b54336dc5da23de0b05fe99"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/tools/cockpit/index.html",
+        "relative_path": "_dev/tools/cockpit/index.html",
+        "type": "file",
+        "bytes": 1014,
+        "sha256": "2ac5a86d75621e74cf7b1a54fdadc28243808d95f7fc6fcd84d2220e80ae7f1f"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/tools/cockpit/server.py",
+        "relative_path": "_dev/tools/cockpit/server.py",
+        "type": "file",
+        "bytes": 6911,
+        "sha256": "ee7a31f22d2c13ee65c4110868b49aa539c1b41a3f1caa97af19c8e3246ca206"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/tools/cockpit/style.css",
+        "relative_path": "_dev/tools/cockpit/style.css",
+        "type": "file",
+        "bytes": 11146,
+        "sha256": "37ad0ed0c22cbf95379b71ec35e317bedfccfc5e8cc937b29ad62853054cf64f"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/tools/diff_workbooks.py",
+        "relative_path": "_dev/tools/diff_workbooks.py",
+        "type": "file",
+        "bytes": 2814,
+        "sha256": "a99a3ee76c76d0d287f8c3cb8d3ee5147371b54037d6b73db34e87fe82ab1a3e"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/tools/fetch_filing.py",
+        "relative_path": "_dev/tools/fetch_filing.py",
+        "type": "file",
+        "bytes": 8598,
+        "sha256": "e92f4ee49ed03625be4bb7cabb3dddbb3daffcf3c40c7bc5b5e7c53eef6aabb6"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/tools/findings_text.py",
+        "relative_path": "_dev/tools/findings_text.py",
+        "type": "file",
+        "bytes": 1421,
+        "sha256": "dc40cb7cd696d89a0a3d8ea595c1f88f26fddbe24cea0bdaa7e501a68ae3ad97"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/tools/make_seed.py",
+        "relative_path": "_dev/tools/make_seed.py",
+        "type": "file",
+        "bytes": 3857,
+        "sha256": "a9947c8879f3733a416c9b6610a455513ef4d67beb202f50f9c5a1d4dcdbba5d"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/tools/requirements.txt",
+        "relative_path": "_dev/tools/requirements.txt",
+        "type": "file",
+        "bytes": 51,
+        "sha256": "673d95c082c1abe931d5e3614533fb0d2f720848b5bdd5d3c7da2f2fb3a11fc2"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/tools/sandbox/__pycache__/run_model.cpython-312.pyc",
+        "relative_path": "_dev/tools/sandbox/__pycache__/run_model.cpython-312.pyc",
+        "type": "file",
+        "bytes": 34428,
+        "sha256": "faa205e22cf4ae55708deb0ddc2fa5a8ff13a7b72b406b7c6ee8bf9afabacd27"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/tools/sandbox/run_model.py",
+        "relative_path": "_dev/tools/sandbox/run_model.py",
+        "type": "file",
+        "bytes": 24710,
+        "sha256": "cebe05e4b0e80e306cfa6ad8f471f168859eab9a2770d1d58ff3f8ebf2406cab"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/tools/test_check_lean.py",
+        "relative_path": "_dev/tools/test_check_lean.py",
+        "type": "file",
+        "bytes": 18095,
+        "sha256": "caf6ef4d3a7af80275d4908fb04dcca84bd2d07ff10e2109c6252c0d393f7f02"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/tools/test_cockpit.py",
+        "relative_path": "_dev/tools/test_cockpit.py",
+        "type": "file",
+        "bytes": 26061,
+        "sha256": "397e344a723a748e2603df43b1692ebc53acb432b0100240c990797eb39fd0e4"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/tools/test_fetch_filing.py",
+        "relative_path": "_dev/tools/test_fetch_filing.py",
+        "type": "file",
+        "bytes": 1859,
+        "sha256": "3e8408b08420c3ce09a8eb5956185afc6f4502a15164ead17e11ab404994af4d"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/tools/test_review_helpers.py",
+        "relative_path": "_dev/tools/test_review_helpers.py",
+        "type": "file",
+        "bytes": 2591,
+        "sha256": "6798ba655e9a96d799d8f4fc83cfcd67f0504dbaebd4e9311decaebcf0af42a3"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/_dev/tools/test_run_model.py",
+        "relative_path": "_dev/tools/test_run_model.py",
+        "type": "file",
+        "bytes": 8189,
+        "sha256": "f7b965e89c5f528e515a240c1484df3c719b1832eacd253f8d229493f76bd5b9"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/extraction/kraton.xlsx",
+        "relative_path": "extraction/kraton.xlsx",
+        "type": "file",
+        "bytes": 26155,
+        "sha256": "bebe9a591b4f1ec9319c9574eb360cd22bf96caff59b7869a6f329c62f726b55"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/extraction/mac-gray.xlsx",
+        "relative_path": "extraction/mac-gray.xlsx",
+        "type": "file",
+        "bytes": 23075,
+        "sha256": "547b02b457df2411d8bfcb9c3dadf209c92088542713cd1e01f7e5964dda8cd8"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/extraction/meredith.xlsx",
+        "relative_path": "extraction/meredith.xlsx",
+        "type": "file",
+        "bytes": 29671,
+        "sha256": "e269b88d10a5498c254c3d02652e419c7cc0399e22d9d92c50873b3ee96086e0"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/extraction/penford.xlsx",
+        "relative_path": "extraction/penford.xlsx",
+        "type": "file",
+        "bytes": 22894,
+        "sha256": "1fc34fa4d6801f5292e80e7ba7ef05f638e4eedec1a4408cc0293e280be90bc1"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/extraction/petsmart.xlsx",
+        "relative_path": "extraction/petsmart.xlsx",
+        "type": "file",
+        "bytes": 22423,
+        "sha256": "69a8d8fda12c86acb49a22379b4416410b30dd061be9d58f62667f83ee7532a3"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/extraction/providence-worcester.xlsx",
+        "relative_path": "extraction/providence-worcester.xlsx",
+        "type": "file",
+        "bytes": 24051,
+        "sha256": "0a08871b4d57a67518ae773fc5b64c42af693e72ee70aebb96d31eddbda063c0"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/extraction/stec.xlsx",
+        "relative_path": "extraction/stec.xlsx",
+        "type": "file",
+        "bytes": 27064,
+        "sha256": "ccbae8d5de1861a5ffc08da399bf9706a30c533797e2a08977c6e22805b0f409"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/extraction/synacor.xlsx",
+        "relative_path": "extraction/synacor.xlsx",
+        "type": "file",
+        "bytes": 30723,
+        "sha256": "cbbd55f598451c3a49f08c781e982945a169495de330a86e9e6c9c1a58c16811"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/raw_filing/MANIFEST.csv",
+        "relative_path": "raw_filing/MANIFEST.csv",
+        "type": "file",
+        "bytes": 2064,
+        "sha256": "879ce2507326852396f9e96c8bd4127c3d122ff188069e8d3976031d686ff371"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/raw_filing/kraton_2021-11-04_DEFM14A.htm",
+        "relative_path": "raw_filing/kraton_2021-11-04_DEFM14A.htm",
+        "type": "file",
+        "bytes": 1467260,
+        "sha256": "c0d2abbd80aa02fe55c8c1cc11f9d0a0e4a92bdde3045654cce11997781ae322"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/raw_filing/mac-gray_2013-12-04_DEFM14A.htm",
+        "relative_path": "raw_filing/mac-gray_2013-12-04_DEFM14A.htm",
+        "type": "file",
+        "bytes": 1279957,
+        "sha256": "e6ea7bd00cfc389c28e5139a3d23aafcc684f7b65ff54d699f3c5be11bbc4301"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/raw_filing/meredith_2021-11-08_DEFM14A.htm",
+        "relative_path": "raw_filing/meredith_2021-11-08_DEFM14A.htm",
+        "type": "file",
+        "bytes": 2709877,
+        "sha256": "d6783298bccf365153f3951c6054f04df7a925493a03ef9f9057f740b0b6728b"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/raw_filing/penford_2014-12-29_DEFM14A.htm",
+        "relative_path": "raw_filing/penford_2014-12-29_DEFM14A.htm",
+        "type": "file",
+        "bytes": 1301510,
+        "sha256": "5bd50713b2ce136b9b80d28360b6281d6890d0d95b35cfe36a3eacd288bb53aa"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/raw_filing/petsmart_2015-02-02_DEFM14A.htm",
+        "relative_path": "raw_filing/petsmart_2015-02-02_DEFM14A.htm",
+        "type": "file",
+        "bytes": 1641964,
+        "sha256": "52c93afa5897d1878441e76050f3c9607972624ea1e4105c29be815f4bf04ca9"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/raw_filing/providence-worcester_2016-09-20_DEFM14A.htm",
+        "relative_path": "raw_filing/providence-worcester_2016-09-20_DEFM14A.htm",
+        "type": "file",
+        "bytes": 1218389,
+        "sha256": "32d7a2738c95c29fa98fccc6a874a5e2acbfd0b7fc87a1f3e9145c60f627378a"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/raw_filing/stec_2013-08-08_DEFM14A.htm",
+        "relative_path": "raw_filing/stec_2013-08-08_DEFM14A.htm",
+        "type": "file",
+        "bytes": 1376551,
+        "sha256": "b29adcd8c221c55b48593b339bbe768552a21e1fa8836e2f355d6ffe9b86f36b"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/raw_filing/synacor_2021-03-03_SCTO-T.htm",
+        "relative_path": "raw_filing/synacor_2021-03-03_SCTO-T.htm",
+        "type": "file",
+        "bytes": 517155,
+        "sha256": "2ea05ceef8c7315f7bf81743a70f67a2574e545cb303e48152efd6803b749b0e"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/ref/CollectionInstructions_Alex_2026.pdf",
+        "relative_path": "ref/CollectionInstructions_Alex_2026.pdf",
+        "type": "file",
+        "bytes": 68007,
+        "sha256": "0dd72b0ab97801cb7cf8bb2a635965a6b4de883399f738968c9985d7f7b56e37"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/ref/alex_voice_notes_2026-08.docx",
+        "relative_path": "ref/alex_voice_notes_2026-08.docx",
+        "type": "file",
+        "bytes": 929458,
+        "sha256": "9ddb0a38f3ffcabdbf7693ced379df3aa8b53a1c4d065990d09d57978af220fb"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/ref/deal_details_Alex_2026.xlsx",
+        "relative_path": "ref/deal_details_Alex_2026.xlsx",
+        "type": "file",
+        "bytes": 1359698,
+        "sha256": "b0bd73ddc016028974fcddb18b164d370efd7b776734b814a99d96d7f923b00a"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-grok-v113/ref/seed.csv",
+        "relative_path": "ref/seed.csv",
+        "type": "file",
+        "bytes": 57458,
+        "sha256": "c4b7ed0fac065839070510c67bd723171fa8728d1d8c74ce5a5b4d775e464c2c"
+      }
+    ]
+  },
+  "sol_worktree": {
+    "root": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113",
+    "count": 217,
+    "total_bytes": 17425002,
+    "entries": [
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/.git",
+        "relative_path": ".git",
+        "type": "file",
+        "bytes": 95,
+        "sha256": "580a0c4b8e31f2202d321fee281dc1d34c563456e0643c3ed32d2b1f9ae559d0"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/.gitignore",
+        "relative_path": ".gitignore",
+        "type": "file",
+        "bytes": 222,
+        "sha256": "a5687288b9c1b0eb270d85c05fa112678a8b36dc77ef7fe525a984e8e41c65e2"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/AGENTS.md",
+        "relative_path": "AGENTS.md",
+        "type": "file",
+        "bytes": 2771,
+        "sha256": "d06a843d0bb596e856235e4241804961927af7eab7ab6514e0923bf940f5e786"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/SEC_Deal_Ledger_Extraction_Instruction.md",
+        "relative_path": "SEC_Deal_Ledger_Extraction_Instruction.md",
+        "type": "file",
+        "bytes": 33712,
+        "sha256": "c208d4a7a43ee228cb2c5b5c7b657c80493d9fa3dac11604e77c4a621993d2f0"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/CHRONOLOGY.md",
+        "relative_path": "_dev/CHRONOLOGY.md",
+        "type": "file",
+        "bytes": 4769,
+        "sha256": "c23f2b894c36de5746db77e5585a55b3b0e28631b2876adfbb025e52bd7c1ded"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/DECISIONS_v1.13.md",
+        "relative_path": "_dev/DECISIONS_v1.13.md",
+        "type": "file",
+        "bytes": 3142,
+        "sha256": "e07d811e6c3c5a47e5bd96e896960676e20081af9bf6815b017898a4cf2defba"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/HANDOFF.md",
+        "relative_path": "_dev/HANDOFF.md",
+        "type": "file",
+        "bytes": 7519,
+        "sha256": "ced95de144c569261db3c5354fb70247266babda8289f289e67ab251352d6baa"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/RESEARCH_QUESTIONS.md",
+        "relative_path": "_dev/RESEARCH_QUESTIONS.md",
+        "type": "file",
+        "bytes": 2799,
+        "sha256": "565fbe44daab78ccd1889ef84cbd9dc08b0b593c350ab3db11f92f6237472aca"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/README.md",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/README.md",
+        "type": "file",
+        "bytes": 2166,
+        "sha256": "c16abf85b8dc7f12a65868b7fae564eeb5af5ca962b2be123c4c00f23062bc16"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/REPORT.md",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/REPORT.md",
+        "type": "file",
+        "bytes": 29417,
+        "sha256": "1bbb7c77b92a7f4cace11738f568df522d5ccec277e195b2ecb9494f188014d1"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/analyze.py",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/analyze.py",
+        "type": "file",
+        "bytes": 3233,
+        "sha256": "e7c3a2275c5dafe220e564b687b4a83dbb08e90de1e9ef9cd4c4554a815c662d"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/artifact.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/artifact.json",
+        "type": "file",
+        "bytes": 40734,
+        "sha256": "31500fbe5da22f641d8764cbf15b31db588b6687c199cbfd4f97407ba24687e9"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/build_report.py",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/build_report.py",
+        "type": "file",
+        "bytes": 4202,
+        "sha256": "accf314033b5aefdd6a1445efad31bc0e8b783e4be14a562f88d1b96cb7d8c7e"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/comparison.ipynb",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/comparison.ipynb",
+        "type": "file",
+        "bytes": 6149,
+        "sha256": "3323792bf00285b5f4b2bf236fbb438ede14d552dea84d46702df3f7c56cb7d5"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/completion.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/completion.json",
+        "type": "file",
+        "bytes": 994,
+        "sha256": "ff106266581bffd3d46661349e74122568b635fa6e96b4481b0d107c8fb07f30"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/finalize.py",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/finalize.py",
+        "type": "file",
+        "bytes": 5390,
+        "sha256": "f0b385afec230df4a20f72d24ce2c9963235acc24c21a40b92fe69444ce71e26"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/findings.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/findings.json",
+        "type": "file",
+        "bytes": 23366,
+        "sha256": "bc422c67653dab9b4c08fc304568d0d4b1ae4e8cb6b916f172fa05631ac5b1d8"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/kraton/check.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/kraton/check.json",
+        "type": "file",
+        "bytes": 6111,
+        "sha256": "146dbdd76c9b28a07fcfb83f7a77f9c2040495e5646e8698b5ab14d6a556246a"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/kraton/command.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/kraton/command.json",
+        "type": "file",
+        "bytes": 1208,
+        "sha256": "809055691b102ee0bcdeccaf864765384791a222e3dbdb1ffe38676d20022f12"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/kraton/kraton.xlsx",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/kraton/kraton.xlsx",
+        "type": "file",
+        "bytes": 27515,
+        "sha256": "b1388206612abde5df19564951c3a897673fb5c7b2a6eb8b3d8e26f75c27a7d2"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/kraton/launch.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/kraton/launch.json",
+        "type": "file",
+        "bytes": 339,
+        "sha256": "791a7492463f7c4476c60c72b7398221cd5a7f799d857b5b85f3f2d482704f1c"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/kraton/metadata.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/kraton/metadata.json",
+        "type": "file",
+        "bytes": 1038,
+        "sha256": "0037030a359dcb14bd1ca4af8405aee5971be189cdca95756d355a884bcb95a6"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/kraton/review.txt",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/kraton/review.txt",
+        "type": "file",
+        "bytes": 48463,
+        "sha256": "ca3c6bf333c8a9f616ca4ff0af1305cd9a8a359e496e9ecb19e15ec253847b71"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/kraton/status.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/kraton/status.json",
+        "type": "file",
+        "bytes": 515,
+        "sha256": "506cee84d8c921066d384d19a6df89e1a97beab116a178274a8198df7bbaca85"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/kraton/stderr.log",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/kraton/stderr.log",
+        "type": "file",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/kraton/validation.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/kraton/validation.json",
+        "type": "file",
+        "bytes": 334,
+        "sha256": "6682faa1d524eb72866da55d6bcc23ddf197ed5441b73e4f074d423ea4aa1f2d"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/kraton/workbook.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/kraton/workbook.json",
+        "type": "file",
+        "bytes": 83220,
+        "sha256": "85f07d56f1a494bcc9658ecadfe2b95dd621e36d29c44fb9aa10ce916a1e8f76"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/mac-gray/check.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/mac-gray/check.json",
+        "type": "file",
+        "bytes": 4049,
+        "sha256": "e70b5f430cdee71d1299c8307df186a9c313835b54fd77eb9ba8511c8270db13"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/mac-gray/command.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/mac-gray/command.json",
+        "type": "file",
+        "bytes": 1210,
+        "sha256": "da6cce90c4aa4713e908036e3a947c39d89a9daa7e4107c7a19d6126f4bb2dc8"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/mac-gray/launch.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/mac-gray/launch.json",
+        "type": "file",
+        "bytes": 341,
+        "sha256": "cafdd93ba8eca6d404b570b61c0bf7a4f8f658b13d98461787d69e345801c252"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/mac-gray/mac-gray.xlsx",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/mac-gray/mac-gray.xlsx",
+        "type": "file",
+        "bytes": 24859,
+        "sha256": "6c8b583bd9b948cd8e6dee6aa2f7fba43acc5598c5bf73c6f55ae7efab13a852"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/mac-gray/metadata.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/mac-gray/metadata.json",
+        "type": "file",
+        "bytes": 1044,
+        "sha256": "4a4b70cced6954845da9749d44c8dcda52e0b0d4be1d4d9dd460caaeb11c9781"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/mac-gray/review.txt",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/mac-gray/review.txt",
+        "type": "file",
+        "bytes": 40152,
+        "sha256": "328c03f9c65e1efba6d5613f4917a74b117b6d68cbc1004f106794ff9400d2d6"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/mac-gray/status.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/mac-gray/status.json",
+        "type": "file",
+        "bytes": 525,
+        "sha256": "47d6a007b08a4b9a32324cd2f29d710d890ae4d31ff8a7e84ef8142cefa7745c"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/mac-gray/stderr.log",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/mac-gray/stderr.log",
+        "type": "file",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/mac-gray/validation.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/mac-gray/validation.json",
+        "type": "file",
+        "bytes": 338,
+        "sha256": "037b202086e4c1065081ea82320e3b7c80d3399c609b8e1b7dfa603ec5027d67"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/mac-gray/workbook.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/mac-gray/workbook.json",
+        "type": "file",
+        "bytes": 65499,
+        "sha256": "b21f70ec93a67d6174ddfdffce7a1510ac437915f7f7841c0be96781109f4a71"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/meredith/check.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/meredith/check.json",
+        "type": "file",
+        "bytes": 9352,
+        "sha256": "635c63424a5985571eec716be3cc8df106ad9ddef9228d745f1c053a0a2deb47"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/meredith/command.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/meredith/command.json",
+        "type": "file",
+        "bytes": 1210,
+        "sha256": "e56047c6fa0179bb06d76841ad83530b6fed84f8027d48982b83a92feda0073b"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/meredith/launch.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/meredith/launch.json",
+        "type": "file",
+        "bytes": 341,
+        "sha256": "de80e23e3a065d0bb6ac2129487754702bb1d18885a95d664a52760390d75269"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/meredith/meredith.xlsx",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/meredith/meredith.xlsx",
+        "type": "file",
+        "bytes": 29788,
+        "sha256": "dbcca62b71624101fb17698736cf4faee112bca09d59223de780e77ce4fdf8ac"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/meredith/metadata.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/meredith/metadata.json",
+        "type": "file",
+        "bytes": 1044,
+        "sha256": "f9f1ca1cf90fa478b6c44d338ba91f0af04115c872baa56b1cec0ac2b675c3cf"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/meredith/review.txt",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/meredith/review.txt",
+        "type": "file",
+        "bytes": 54763,
+        "sha256": "dd4763f88452d3e89a4183deae02934dc86a5e891f7a3d2521066907368411a1"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/meredith/status.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/meredith/status.json",
+        "type": "file",
+        "bytes": 523,
+        "sha256": "82982ff8c3a0c201b676d57c166e16b072a5d24f04e7f54339660c2a71c6e335"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/meredith/stderr.log",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/meredith/stderr.log",
+        "type": "file",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/meredith/validation.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/meredith/validation.json",
+        "type": "file",
+        "bytes": 338,
+        "sha256": "964b2cd0554ab293028440203d159b299a5c5713957aff7b5f0e5c3e4a4acf7f"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/meredith/workbook.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/meredith/workbook.json",
+        "type": "file",
+        "bytes": 91563,
+        "sha256": "befb6674688a514db8cc8721fbb329e16c666cb3211c6fd5ee9d21cdd492270a"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/penford/check.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/penford/check.json",
+        "type": "file",
+        "bytes": 3164,
+        "sha256": "5cf97fdedfea75ce95ac315a3e02c7e8f794dc460e1d84dbb3c45cef9ae92d74"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/penford/command.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/penford/command.json",
+        "type": "file",
+        "bytes": 1209,
+        "sha256": "846d388526c8937611391172896779fa648581a9d3474c7c5ce40d1e839ce386"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/penford/launch.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/penford/launch.json",
+        "type": "file",
+        "bytes": 340,
+        "sha256": "64600b408868c75b594c916c9a608643c16b68d52991939d1e9d68a98e39245b"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/penford/metadata.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/penford/metadata.json",
+        "type": "file",
+        "bytes": 1041,
+        "sha256": "bcd4c0b21e96970d1be21d2fd3dadb1549beb2697d175364a2c985423fc7fb1f"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/penford/penford.xlsx",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/penford/penford.xlsx",
+        "type": "file",
+        "bytes": 23001,
+        "sha256": "b2a25f75d3334e70962cf4782157aa42fb85bc6055ec0ef6410125a44d91758c"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/penford/review.txt",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/penford/review.txt",
+        "type": "file",
+        "bytes": 34379,
+        "sha256": "95b51eb2f2aa35c62456151e741f9023d3db430508ba0a675a8f998d9c0661c2"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/penford/status.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/penford/status.json",
+        "type": "file",
+        "bytes": 524,
+        "sha256": "11c426cede45ea27dcc10ae091b1f67660fd1edacd5f9b3fc4b5249bfde25009"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/penford/stderr.log",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/penford/stderr.log",
+        "type": "file",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/penford/validation.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/penford/validation.json",
+        "type": "file",
+        "bytes": 336,
+        "sha256": "697e482a4864b5cc35729eecc41dd22d594a386e78d3620fce287d0befd47c99"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/penford/workbook.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/penford/workbook.json",
+        "type": "file",
+        "bytes": 59358,
+        "sha256": "7aa5978920d31cccce009c9e673ad3fa6f40b44ef6c93b16ff370685967a69d8"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/petsmart/check.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/petsmart/check.json",
+        "type": "file",
+        "bytes": 4173,
+        "sha256": "e0afd638b01ed118ca217fca6c5e901ae5388bc8b5d44aa36998a61556abf67e"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/petsmart/command.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/petsmart/command.json",
+        "type": "file",
+        "bytes": 1210,
+        "sha256": "cc8943b84631da7919132eb26a14773ec418f338c60502423fd6f7a98cc92b07"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/petsmart/launch.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/petsmart/launch.json",
+        "type": "file",
+        "bytes": 341,
+        "sha256": "5849e573b26ef8a5e7f03839cc493b7f0b10148d578441f44e15c809ef3d9f3e"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/petsmart/metadata.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/petsmart/metadata.json",
+        "type": "file",
+        "bytes": 1044,
+        "sha256": "9c388aab680a6ad6bcbf4e2b307c550957653338ecef4b3f8ed3603cdeb108c8"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/petsmart/petsmart.xlsx",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/petsmart/petsmart.xlsx",
+        "type": "file",
+        "bytes": 22751,
+        "sha256": "05073372db646a9a219f893de8dabac90218ef3b7621315cf63bb366ca1f7c94"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/petsmart/review.txt",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/petsmart/review.txt",
+        "type": "file",
+        "bytes": 33681,
+        "sha256": "1cd877b304a042b4653c11c9e6fddbf0f52fb3561c8c902d7ef6cb2989f2fd57"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/petsmart/status.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/petsmart/status.json",
+        "type": "file",
+        "bytes": 516,
+        "sha256": "03df6e25e63ef0653ea7ab99a7e2ba2099024df7d68a394812371241e72a7f1d"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/petsmart/stderr.log",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/petsmart/stderr.log",
+        "type": "file",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/petsmart/validation.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/petsmart/validation.json",
+        "type": "file",
+        "bytes": 338,
+        "sha256": "aa1cb84f342d0abda976e779cb89dec3a4befd5f94430f44ac11fc7da2214cd0"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/petsmart/workbook.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/petsmart/workbook.json",
+        "type": "file",
+        "bytes": 54969,
+        "sha256": "659c3782ab84ce5725eec31545e1faaf721572a2c9fb3116d71bb5a1e5916a91"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/providence-worcester/check.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/providence-worcester/check.json",
+        "type": "file",
+        "bytes": 4923,
+        "sha256": "d57fc2b58cb00ef53f9d139cff3c078b015a2eaf4242637466071b0a38832380"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/providence-worcester/command.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/providence-worcester/command.json",
+        "type": "file",
+        "bytes": 1222,
+        "sha256": "4b7dbe3575b64e9428e6ee539083d470902bf9ac7cbfbf47a1f260319ebe627e"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/providence-worcester/launch.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/providence-worcester/launch.json",
+        "type": "file",
+        "bytes": 353,
+        "sha256": "a99a3eb60f97f9a6b761c205bc3bbb5f2f219dad911cabbcecc59cc069810e45"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/providence-worcester/metadata.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/providence-worcester/metadata.json",
+        "type": "file",
+        "bytes": 1080,
+        "sha256": "3950a93d10b7e487ff77212334d3a405d687580487e20292cd718e281e1dbda3"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/providence-worcester/providence-worcester.xlsx",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/providence-worcester/providence-worcester.xlsx",
+        "type": "file",
+        "bytes": 25686,
+        "sha256": "fa7c8f382a9931e649cb402043618b19da73eed0a623a5bf1deddad11b9f9f22"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/providence-worcester/review.txt",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/providence-worcester/review.txt",
+        "type": "file",
+        "bytes": 42584,
+        "sha256": "6ba46ee1a00d2c3caee92534acfc797a7de6960044c906f783c0d4c24b65638f"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/providence-worcester/status.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/providence-worcester/status.json",
+        "type": "file",
+        "bytes": 525,
+        "sha256": "6b2ddbd21cc458bebd7fa2a5f0b333ecee343e678a292d3608b2af49db263c9d"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/providence-worcester/stderr.log",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/providence-worcester/stderr.log",
+        "type": "file",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/providence-worcester/validation.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/providence-worcester/validation.json",
+        "type": "file",
+        "bytes": 362,
+        "sha256": "80110e4dbb15d95f094417e8fdfad51e6a42b6d455e558ab480248fe9bf7c75b"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/providence-worcester/workbook.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/providence-worcester/workbook.json",
+        "type": "file",
+        "bytes": 71513,
+        "sha256": "3b5d242d47e01bf08596ed138cdcf9066030f7435ef420c72c787d712e8abd37"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/stec/check.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/stec/check.json",
+        "type": "file",
+        "bytes": 3755,
+        "sha256": "cb77f8b2adce27ff02234bb6908157a4e4073ca6abc518497e08a5dc2896e3c0"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/stec/command.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/stec/command.json",
+        "type": "file",
+        "bytes": 1206,
+        "sha256": "d8a68f3ddb2a6e62feb5f413c6ffecde07d59619db74dcf2f1488b4d0a921edb"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/stec/launch.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/stec/launch.json",
+        "type": "file",
+        "bytes": 337,
+        "sha256": "2f1b76526838eb6c99e4781ab7850c8b9c21c399d5ca3243c3748ad8a05eede8"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/stec/metadata.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/stec/metadata.json",
+        "type": "file",
+        "bytes": 1032,
+        "sha256": "f6262c81eae50dbce9480e7a3c97755487dedc685c2a39a9593bcf28cbfc951c"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/stec/review.txt",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/stec/review.txt",
+        "type": "file",
+        "bytes": 45052,
+        "sha256": "2170365768a91a8e8a55ec77131199077775c04d718a5f73793aeef91f096c5b"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/stec/status.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/stec/status.json",
+        "type": "file",
+        "bytes": 525,
+        "sha256": "c056561e50f699fdf71e52740cfbbb5465000f7e829bf678865f7f71ace57ded"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/stec/stderr.log",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/stec/stderr.log",
+        "type": "file",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/stec/stec.xlsx",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/stec/stec.xlsx",
+        "type": "file",
+        "bytes": 27270,
+        "sha256": "6e97cd3ad27116387cd7348f413f317a1173b1cd7c6a9190a776a73e7b2fbc62"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/stec/validation.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/stec/validation.json",
+        "type": "file",
+        "bytes": 330,
+        "sha256": "a7808d1d0f33998f454587a437888e8675c68b7a795ce2ea46ff3dd342c1e12a"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/stec/workbook.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/stec/workbook.json",
+        "type": "file",
+        "bytes": 77648,
+        "sha256": "4d8babdf901241cbad53c7f3944b7e3c456361e948e2ed5d0baf538e04161551"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/synacor/check.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/synacor/check.json",
+        "type": "file",
+        "bytes": 6337,
+        "sha256": "632890ff8cbf7bfd9304fcff8192d21a6f90fe372583fdd684d26a4202c278c9"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/synacor/command.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/synacor/command.json",
+        "type": "file",
+        "bytes": 1209,
+        "sha256": "2fde442eeafa0b04750c1707e6569637052fdd9136af6fb649e726045b702b4b"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/synacor/launch.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/synacor/launch.json",
+        "type": "file",
+        "bytes": 340,
+        "sha256": "25f1104cbb528b9e3e6943a055cd5a246d1f709b2ef45b6040e7650f28ea51e4"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/synacor/metadata.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/synacor/metadata.json",
+        "type": "file",
+        "bytes": 1040,
+        "sha256": "3dd5feb3027b83f3a06c0d458ca1b56656c459455b9fda28d82053c555623b7e"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/synacor/review.txt",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/synacor/review.txt",
+        "type": "file",
+        "bytes": 56401,
+        "sha256": "242872cdace81318f09da7e8ef5e161c4c3825c0af94ec9977574efea3f39db4"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/synacor/status.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/synacor/status.json",
+        "type": "file",
+        "bytes": 517,
+        "sha256": "2921dcc2eeb543a729c68250a4637185c57133faa133c7f294ece4f093be0d30"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/synacor/stderr.log",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/synacor/stderr.log",
+        "type": "file",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/synacor/synacor.xlsx",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/synacor/synacor.xlsx",
+        "type": "file",
+        "bytes": 31793,
+        "sha256": "13703aed7f4ae51dbef3b40bdc12c36b935e283a056adce93fd9c813d0e4dda9"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/synacor/validation.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/synacor/validation.json",
+        "type": "file",
+        "bytes": 336,
+        "sha256": "c2765e648e2a5701c8ab94600533d7a27ef30a725c750254b4b573c7b2db7ce1"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/opus/synacor/workbook.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/opus/synacor/workbook.json",
+        "type": "file",
+        "bytes": 93617,
+        "sha256": "799e42d0da451159c064e6a8d61acc8348013bceb1e029a0e1df0fd61d69452a"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/profiles.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/profiles.json",
+        "type": "file",
+        "bytes": 178495,
+        "sha256": "4c29c54a450d0fe3cb73221cc3041c5b610b7e65d14f11e97e273607c0e7309a"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/provenance.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/provenance.json",
+        "type": "file",
+        "bytes": 3851,
+        "sha256": "3b3fde06294a2df4959c25e9bea4e3018733d5d60ed7f565f5168f754aeeb92b"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/report-qa.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/report-qa.json",
+        "type": "file",
+        "bytes": 360,
+        "sha256": "6976ee3046b79855a846759c8acf4a9daad413bc6e61969516e7e97318373ed8"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/report.html",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/report.html",
+        "type": "file",
+        "bytes": 481637,
+        "sha256": "642090b98f05b4626b9184e68b02e3132e252306971809bf220bafdcc20d9fe2"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/kraton/check.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/kraton/check.json",
+        "type": "file",
+        "bytes": 3607,
+        "sha256": "5f2722d492f1069455740d6ec56f7e4b1f238c3ac5bb9df14640ca14f16bc752"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/kraton/command.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/kraton/command.json",
+        "type": "file",
+        "bytes": 1134,
+        "sha256": "cbd6137b68871a128952d14c632551016bd4fe7403c74720e3facacb71187a43"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/kraton/metadata.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/kraton/metadata.json",
+        "type": "file",
+        "bytes": 1036,
+        "sha256": "1d56b7bb212ef0574d8272c811a26bdd99fabeb3dc15d176d0801fdaca6f433d"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/kraton/model-final.txt",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/kraton/model-final.txt",
+        "type": "file",
+        "bytes": 769,
+        "sha256": "99a9d59da655822b36303cd266ce7ab43f21a0823a73cd00dd8b15d4c6fc1270"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/kraton/review.txt",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/kraton/review.txt",
+        "type": "file",
+        "bytes": 41951,
+        "sha256": "4481e22aceb140371470c53950e4fd4b42947e8166f70bff9793f86160604095"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/kraton/status.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/kraton/status.json",
+        "type": "file",
+        "bytes": 545,
+        "sha256": "e8ab917a814cc1e3d22449a8b7fb438ed1d9ef8aa6996db19a9872b0640e9254"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/kraton/stderr.log",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/kraton/stderr.log",
+        "type": "file",
+        "bytes": 39,
+        "sha256": "1aa26269eb1cc57f86b235a03cda53c004edb5b1e9fc99d4da4f00843293d721"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/kraton/validation.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/kraton/validation.json",
+        "type": "file",
+        "bytes": 352,
+        "sha256": "399fee1874969e469e88e6ac7f7c11a0cb9f1dc3ebba7f8aac2ba433f1f1833a"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/kraton/workbook.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/kraton/workbook.json",
+        "type": "file",
+        "bytes": 73837,
+        "sha256": "4cdd077b0898232a214453f3696f56a1283380e6511533c140c0126e8da99c86"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/mac-gray/check.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/mac-gray/check.json",
+        "type": "file",
+        "bytes": 44206,
+        "sha256": "8f3b4f2628112e654059ed2e56bf35526725e2f648545e89e2091b3bcbae12bd"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/mac-gray/command.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/mac-gray/command.json",
+        "type": "file",
+        "bytes": 1136,
+        "sha256": "ddc1e8a4d9127fdc470f55718eb531716e58d12fefb2e005a40fc8434bee7354"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/mac-gray/metadata.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/mac-gray/metadata.json",
+        "type": "file",
+        "bytes": 1042,
+        "sha256": "4a2b0e31cd3f38d86e6bfc015642458902da20051a39f296c55c4f0342374c7b"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/mac-gray/model-final.txt",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/mac-gray/model-final.txt",
+        "type": "file",
+        "bytes": 878,
+        "sha256": "0cf6af2328d0d619cd47140403edec59149bdfe63b69a5281f72f0c26bf24ea4"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/mac-gray/review.txt",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/mac-gray/review.txt",
+        "type": "file",
+        "bytes": 31061,
+        "sha256": "b1d115c87ef553054026c9c3d3df709003ed0cf9de94ef20336bc437645d4c08"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/mac-gray/status.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/mac-gray/status.json",
+        "type": "file",
+        "bytes": 545,
+        "sha256": "3ecf90e4d36da363e6d85b26b6b883356ca6f16403608714c4cf0be263ed8f96"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/mac-gray/stderr.log",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/mac-gray/stderr.log",
+        "type": "file",
+        "bytes": 39,
+        "sha256": "1aa26269eb1cc57f86b235a03cda53c004edb5b1e9fc99d4da4f00843293d721"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/mac-gray/validation.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/mac-gray/validation.json",
+        "type": "file",
+        "bytes": 356,
+        "sha256": "97034ab74334b446fdd6fbb3376b10be01481b7d2b92fe3dbd8ce10dee329e44"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/mac-gray/workbook.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/mac-gray/workbook.json",
+        "type": "file",
+        "bytes": 56961,
+        "sha256": "ea8192ede4e7ccdbdf1d1a4e4dbee874662a59bc4fa785271852cca5c2051756"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/meredith/check.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/meredith/check.json",
+        "type": "file",
+        "bytes": 2272,
+        "sha256": "1c65c5b202b7bed5b2c08e56c58184372486c5122ad72aee927d8a0b6c7ed7b6"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/meredith/command.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/meredith/command.json",
+        "type": "file",
+        "bytes": 1136,
+        "sha256": "1b666aad1d0626cf0e73149d46ca2f1d080b6411d99d1a0a01fd17357e19c17b"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/meredith/metadata.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/meredith/metadata.json",
+        "type": "file",
+        "bytes": 1042,
+        "sha256": "80eacd1dec2841dafbe7cd2733d0784e1ffa892427d27361e6f08b479fbf8a78"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/meredith/model-final.txt",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/meredith/model-final.txt",
+        "type": "file",
+        "bytes": 966,
+        "sha256": "49e2532b9ad683336a6c92237b1b6e9be947a5c922b112f31a78cc4f99acd6a3"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/meredith/review.txt",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/meredith/review.txt",
+        "type": "file",
+        "bytes": 46792,
+        "sha256": "99686467ef1f9d9f0d9b0f492ab7e5b62f6d26b1a404cad279dbc73a1c29d1ee"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/meredith/status.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/meredith/status.json",
+        "type": "file",
+        "bytes": 545,
+        "sha256": "98ac68dbcb94322102993f08a1ee24f474f4c5a690d242f5ae2d05d1713d16bd"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/meredith/stderr.log",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/meredith/stderr.log",
+        "type": "file",
+        "bytes": 39,
+        "sha256": "1aa26269eb1cc57f86b235a03cda53c004edb5b1e9fc99d4da4f00843293d721"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/meredith/validation.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/meredith/validation.json",
+        "type": "file",
+        "bytes": 356,
+        "sha256": "87f4ae17e05f4679ade01d5469d4f4d47424d14993f02c53cfbcdc8c0153e3b7"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/meredith/workbook.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/meredith/workbook.json",
+        "type": "file",
+        "bytes": 86074,
+        "sha256": "ec0ed57f0b449de6c0ef31e35cb35c40d14538e199aff99116cdf8c70b9718c7"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/penford/check.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/penford/check.json",
+        "type": "file",
+        "bytes": 39447,
+        "sha256": "250d2feeecda453a65244f6cfb6052e5f0fcd16d3ba015532a8ee037685ef270"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/penford/command.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/penford/command.json",
+        "type": "file",
+        "bytes": 1135,
+        "sha256": "6b2d8660a2dd31419c5bf054e7d6e51ad62546a20a2c8b99bde139127bf14cef"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/penford/metadata.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/penford/metadata.json",
+        "type": "file",
+        "bytes": 1039,
+        "sha256": "0ae77f7ae279981497fd34fcc6eb25a2263f2e19984607bc4fd47102908f86b2"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/penford/model-final.txt",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/penford/model-final.txt",
+        "type": "file",
+        "bytes": 800,
+        "sha256": "aeabea67affa1978ed938190bff6b965457676caf3a93781cae75b1523d47929"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/penford/review.txt",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/penford/review.txt",
+        "type": "file",
+        "bytes": 26741,
+        "sha256": "ad5685b7fc8a60f04c24875b88ed0e661188b88f3c8ea40dd642995aa589ffa7"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/penford/status.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/penford/status.json",
+        "type": "file",
+        "bytes": 545,
+        "sha256": "f47dd82501be7e44dc32a610c03fb51e240bbccab0f20b739bc3eca4d480fee9"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/penford/stderr.log",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/penford/stderr.log",
+        "type": "file",
+        "bytes": 39,
+        "sha256": "1aa26269eb1cc57f86b235a03cda53c004edb5b1e9fc99d4da4f00843293d721"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/penford/validation.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/penford/validation.json",
+        "type": "file",
+        "bytes": 354,
+        "sha256": "405c9cbedce7e8b78d0792611f1ed3642b1df8c03af3901b670dab60831d8032"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/penford/workbook.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/penford/workbook.json",
+        "type": "file",
+        "bytes": 51394,
+        "sha256": "783d5756a394991660b99c9621df4ae8eaa3cb64c211400c6efa9748151d29ca"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/petsmart/check.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/petsmart/check.json",
+        "type": "file",
+        "bytes": 3587,
+        "sha256": "882a3dcbf39535a620ea2e84b02608a470898ad4814c7858766c782da0416fe0"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/petsmart/command.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/petsmart/command.json",
+        "type": "file",
+        "bytes": 1136,
+        "sha256": "ddfd79813bdbf30e7720cd7aab86d649ce00cf6e512076d8e4fe4225c6aeb2e7"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/petsmart/metadata.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/petsmart/metadata.json",
+        "type": "file",
+        "bytes": 1042,
+        "sha256": "0455fb0fbb4e33533fbd2e153c60c6adcc4e09ae75734153e1cd86c3f1eaca18"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/petsmart/model-final.txt",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/petsmart/model-final.txt",
+        "type": "file",
+        "bytes": 726,
+        "sha256": "f68a44bcce292c765ebdabd1ecc35f6e347e08184f226f6db7c0c51c07c259db"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/petsmart/review.txt",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/petsmart/review.txt",
+        "type": "file",
+        "bytes": 26851,
+        "sha256": "105b1ef95ed8adb4c881f501770a364b53826f6daa8ba237c2c512a29f92b744"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/petsmart/status.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/petsmart/status.json",
+        "type": "file",
+        "bytes": 545,
+        "sha256": "46ec7c0bcbecf31eaa2b1f12f7b02258e6ea508aff1aa23c05c4fcbfe1685b1d"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/petsmart/stderr.log",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/petsmart/stderr.log",
+        "type": "file",
+        "bytes": 452,
+        "sha256": "93415464106d7a4ddd3afc0add6a14eb32c4f52418d32f19cf7588f2c752ca11"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/petsmart/validation.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/petsmart/validation.json",
+        "type": "file",
+        "bytes": 356,
+        "sha256": "5c3e504ae2b79d10076ae1f28bbe62fe7ceae3b30dc589b94f6568e16cd097a1"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/petsmart/workbook.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/petsmart/workbook.json",
+        "type": "file",
+        "bytes": 47010,
+        "sha256": "b0882d75dc5aae62be052bdeb3bf451dd8f1485a02b444b0a5555f54dce2ae06"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/providence-worcester/check.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/providence-worcester/check.json",
+        "type": "file",
+        "bytes": 1708,
+        "sha256": "dce4cbff0d74989c0af6a18c5b014b53bfd55dde3b07743a3e2ee80c182ad00b"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/providence-worcester/command.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/providence-worcester/command.json",
+        "type": "file",
+        "bytes": 1148,
+        "sha256": "4fc6859e5c52b7a397148e4a1636be6d94df6efa4ebaa2d8fb18c457716701c3"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/providence-worcester/metadata.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/providence-worcester/metadata.json",
+        "type": "file",
+        "bytes": 1078,
+        "sha256": "79c22ffd829533eb219fbb0272f81c4dedca5375b4d74da57af09ad5a3f33669"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/providence-worcester/model-final.txt",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/providence-worcester/model-final.txt",
+        "type": "file",
+        "bytes": 147,
+        "sha256": "54fdf5c0be3a8bdd02fc67d399f6bee389a8c0eac8ec78d66b929e1d3135c1cc"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/providence-worcester/review.txt",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/providence-worcester/review.txt",
+        "type": "file",
+        "bytes": 32286,
+        "sha256": "ee706a9210d7473423f27c0de55f5b9bf7f3d257d4f2fe170f3781966a796f1b"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/providence-worcester/status.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/providence-worcester/status.json",
+        "type": "file",
+        "bytes": 545,
+        "sha256": "a3068e778f99412c56c45c3d3f3d1efa59115bd84d4dfd7e32bc023e09355240"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/providence-worcester/stderr.log",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/providence-worcester/stderr.log",
+        "type": "file",
+        "bytes": 39,
+        "sha256": "1aa26269eb1cc57f86b235a03cda53c004edb5b1e9fc99d4da4f00843293d721"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/providence-worcester/validation.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/providence-worcester/validation.json",
+        "type": "file",
+        "bytes": 380,
+        "sha256": "3349151e2d3c6ed6772c77281fa877287d8c55130d74235c6f39af446953f51b"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/providence-worcester/workbook.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/providence-worcester/workbook.json",
+        "type": "file",
+        "bytes": 57787,
+        "sha256": "47c569a1cb6c9220c4525077376d2aaf32763c7df5d5304b941397ca469ade57"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/stec/check.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/stec/check.json",
+        "type": "file",
+        "bytes": 3287,
+        "sha256": "defa6b6aa4915fe6562d8c920622c627997b2f03315f1b0dc2610b6880ac741f"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/stec/command.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/stec/command.json",
+        "type": "file",
+        "bytes": 1132,
+        "sha256": "d9ae2f674c9d9f38c95e3a3d4bb461fab0e1fa453f2aedadd64470e017a9f817"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/stec/metadata.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/stec/metadata.json",
+        "type": "file",
+        "bytes": 1030,
+        "sha256": "85021645361cb1e8de5eb3bc978e2bf9143150131073f9fad62d18b8b4ccf1f5"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/stec/model-final.txt",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/stec/model-final.txt",
+        "type": "file",
+        "bytes": 804,
+        "sha256": "097d04652b1d4103fa37b2ddd5b4722b7e8687da1213ac7a228065e202e5b05b"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/stec/review.txt",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/stec/review.txt",
+        "type": "file",
+        "bytes": 35930,
+        "sha256": "904b9b7fd5dcb532a2be142db563f5c1517fdd51f8ef2b5adf25c8b6dff0e046"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/stec/status.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/stec/status.json",
+        "type": "file",
+        "bytes": 544,
+        "sha256": "45d46f0938bd893730678f6e80eda47dbc7c7925c06d8b1a926ab3189db24638"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/stec/stderr.log",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/stec/stderr.log",
+        "type": "file",
+        "bytes": 39,
+        "sha256": "1aa26269eb1cc57f86b235a03cda53c004edb5b1e9fc99d4da4f00843293d721"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/stec/validation.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/stec/validation.json",
+        "type": "file",
+        "bytes": 348,
+        "sha256": "75f6d13d481db545f354ea8273f3c20664930c2f71b2b4f90e4163a5325de69c"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/stec/workbook.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/stec/workbook.json",
+        "type": "file",
+        "bytes": 66749,
+        "sha256": "f387e1ffbd2d50e45bf02a4215614fba7899d55d2cb193ce944ec5326574ce30"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/synacor/check.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/synacor/check.json",
+        "type": "file",
+        "bytes": 4364,
+        "sha256": "d64697cc741a6dd0b503676837952d6faf1f6b8c975ec7b278e19d20d79c3953"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/synacor/command.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/synacor/command.json",
+        "type": "file",
+        "bytes": 1135,
+        "sha256": "0df268a5704edd78cef1a7b935f6578bc9b48b54cd39809c6d98768c466c9e88"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/synacor/metadata.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/synacor/metadata.json",
+        "type": "file",
+        "bytes": 1038,
+        "sha256": "0d529ca9d2f11415efc80cd5bb29ac0730a57c831087c41c71028565de4c77cd"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/synacor/model-final.txt",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/synacor/model-final.txt",
+        "type": "file",
+        "bytes": 772,
+        "sha256": "c81c7ef26500eadbc623fecb28e208a69ce888e3b3850819488c0817850d5057"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/synacor/review.txt",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/synacor/review.txt",
+        "type": "file",
+        "bytes": 44649,
+        "sha256": "64df2214b5ed3649dc6329ef369543b970e60cc7ca54ca311af34c59b3174837"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/synacor/status.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/synacor/status.json",
+        "type": "file",
+        "bytes": 545,
+        "sha256": "166457147ad67371d539d3633e16f6f922e1919ea1eaa0d2538607ab8c63ba06"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/synacor/stderr.log",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/synacor/stderr.log",
+        "type": "file",
+        "bytes": 39,
+        "sha256": "1aa26269eb1cc57f86b235a03cda53c004edb5b1e9fc99d4da4f00843293d721"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/synacor/validation.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/synacor/validation.json",
+        "type": "file",
+        "bytes": 354,
+        "sha256": "791661450aa76ce3882d11d8162b1ed5e797a1764c193722c0016b349ca673c2"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/sol/synacor/workbook.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/sol/synacor/workbook.json",
+        "type": "file",
+        "bytes": 81968,
+        "sha256": "f15f45b6645051008a7d11e38bbb690e2c6bf3c7462cea3bdc487476ac87c3f5"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/source-notes.md",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/source-notes.md",
+        "type": "file",
+        "bytes": 3677,
+        "sha256": "8875315e2a532b9f1b4718eacdbb19a96d821086278ad37f70f317ef18fc05a7"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/summary.json",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/summary.json",
+        "type": "file",
+        "bytes": 671,
+        "sha256": "09f7726ecf93218d369d665b65d6782559a90d8de9721be9cfe537515f5bd7ca"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/comparison-v1.13-sol-opus/write_report.py",
+        "relative_path": "_dev/comparison-v1.13-sol-opus/write_report.py",
+        "type": "file",
+        "bytes": 9803,
+        "sha256": "0a57e04c66fe7154e78ba11d174f6cc9cc64f1c9a3954290a53eff62d76fbc34"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/tools/README.md",
+        "relative_path": "_dev/tools/README.md",
+        "type": "file",
+        "bytes": 6613,
+        "sha256": "0baf2386bd712ab84de47d7fc9c21284fcfaeb4a4da97c3f78588fb4248567e4"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/tools/check_lean.py",
+        "relative_path": "_dev/tools/check_lean.py",
+        "type": "file",
+        "bytes": 61100,
+        "sha256": "36874442d1407ce2d75fed0d807567b9a04ae6bd6fb5f2312dee61f83949e1f5"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/tools/cockpit/__init__.py",
+        "relative_path": "_dev/tools/cockpit/__init__.py",
+        "type": "file",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/tools/cockpit/app.js",
+        "relative_path": "_dev/tools/cockpit/app.js",
+        "type": "file",
+        "bytes": 30658,
+        "sha256": "dce6d2b2a745c32751e50bb6af73cf8d82460863853c3758be808f30d6c42182"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/tools/cockpit/data.py",
+        "relative_path": "_dev/tools/cockpit/data.py",
+        "type": "file",
+        "bytes": 38369,
+        "sha256": "618e6cb2ec2e59588459be85cfad0e97beebb19b9b54336dc5da23de0b05fe99"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/tools/cockpit/index.html",
+        "relative_path": "_dev/tools/cockpit/index.html",
+        "type": "file",
+        "bytes": 1014,
+        "sha256": "2ac5a86d75621e74cf7b1a54fdadc28243808d95f7fc6fcd84d2220e80ae7f1f"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/tools/cockpit/server.py",
+        "relative_path": "_dev/tools/cockpit/server.py",
+        "type": "file",
+        "bytes": 6911,
+        "sha256": "ee7a31f22d2c13ee65c4110868b49aa539c1b41a3f1caa97af19c8e3246ca206"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/tools/cockpit/style.css",
+        "relative_path": "_dev/tools/cockpit/style.css",
+        "type": "file",
+        "bytes": 11146,
+        "sha256": "37ad0ed0c22cbf95379b71ec35e317bedfccfc5e8cc937b29ad62853054cf64f"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/tools/diff_workbooks.py",
+        "relative_path": "_dev/tools/diff_workbooks.py",
+        "type": "file",
+        "bytes": 2814,
+        "sha256": "a99a3ee76c76d0d287f8c3cb8d3ee5147371b54037d6b73db34e87fe82ab1a3e"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/tools/fetch_filing.py",
+        "relative_path": "_dev/tools/fetch_filing.py",
+        "type": "file",
+        "bytes": 8598,
+        "sha256": "e92f4ee49ed03625be4bb7cabb3dddbb3daffcf3c40c7bc5b5e7c53eef6aabb6"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/tools/findings_text.py",
+        "relative_path": "_dev/tools/findings_text.py",
+        "type": "file",
+        "bytes": 1421,
+        "sha256": "dc40cb7cd696d89a0a3d8ea595c1f88f26fddbe24cea0bdaa7e501a68ae3ad97"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/tools/make_seed.py",
+        "relative_path": "_dev/tools/make_seed.py",
+        "type": "file",
+        "bytes": 3857,
+        "sha256": "a9947c8879f3733a416c9b6610a455513ef4d67beb202f50f9c5a1d4dcdbba5d"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/tools/requirements.txt",
+        "relative_path": "_dev/tools/requirements.txt",
+        "type": "file",
+        "bytes": 51,
+        "sha256": "673d95c082c1abe931d5e3614533fb0d2f720848b5bdd5d3c7da2f2fb3a11fc2"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/tools/sandbox/__pycache__/run_model.cpython-312.pyc",
+        "relative_path": "_dev/tools/sandbox/__pycache__/run_model.cpython-312.pyc",
+        "type": "file",
+        "bytes": 31933,
+        "sha256": "f05171df74279ee809b28301c171a0a8d1a19329cd7045f9e64c35c177d36ba2"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/tools/sandbox/run_model.py",
+        "relative_path": "_dev/tools/sandbox/run_model.py",
+        "type": "file",
+        "bytes": 22471,
+        "sha256": "7fcb7e8bddc4473c90ce873544ff5d8b4b699b1463c81f0143580cc61f2fb43b"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/tools/test_check_lean.py",
+        "relative_path": "_dev/tools/test_check_lean.py",
+        "type": "file",
+        "bytes": 18095,
+        "sha256": "caf6ef4d3a7af80275d4908fb04dcca84bd2d07ff10e2109c6252c0d393f7f02"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/tools/test_cockpit.py",
+        "relative_path": "_dev/tools/test_cockpit.py",
+        "type": "file",
+        "bytes": 26061,
+        "sha256": "397e344a723a748e2603df43b1692ebc53acb432b0100240c990797eb39fd0e4"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/tools/test_fetch_filing.py",
+        "relative_path": "_dev/tools/test_fetch_filing.py",
+        "type": "file",
+        "bytes": 1859,
+        "sha256": "3e8408b08420c3ce09a8eb5956185afc6f4502a15164ead17e11ab404994af4d"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/tools/test_review_helpers.py",
+        "relative_path": "_dev/tools/test_review_helpers.py",
+        "type": "file",
+        "bytes": 2591,
+        "sha256": "6798ba655e9a96d799d8f4fc83cfcd67f0504dbaebd4e9311decaebcf0af42a3"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/_dev/tools/test_run_model.py",
+        "relative_path": "_dev/tools/test_run_model.py",
+        "type": "file",
+        "bytes": 6090,
+        "sha256": "507f8cee5cc10fd25a9d63e9f0bdc7517db3a7c3aff5ef9de1af875762d515b2"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/extraction/kraton.xlsx",
+        "relative_path": "extraction/kraton.xlsx",
+        "type": "file",
+        "bytes": 25569,
+        "sha256": "4de9c59da8b935ed033d3c3168edc1445168cea31ae9a47422c56720213d11ed"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/extraction/mac-gray.xlsx",
+        "relative_path": "extraction/mac-gray.xlsx",
+        "type": "file",
+        "bytes": 21236,
+        "sha256": "e2597d7a78551ffc2d8464401b17712ab36adf665b311b2be66756a016309028"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/extraction/meredith.xlsx",
+        "relative_path": "extraction/meredith.xlsx",
+        "type": "file",
+        "bytes": 28303,
+        "sha256": "c6e57d0067b4fc3a58889c2f4c62ad7f3b2b67b6ff07db2c9acf4bfaee7e49c4"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/extraction/penford.xlsx",
+        "relative_path": "extraction/penford.xlsx",
+        "type": "file",
+        "bytes": 20415,
+        "sha256": "110311c55c9221327065093b02a54e257dddb845bc5a027aabfbff8a8d943b62"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/extraction/petsmart.xlsx",
+        "relative_path": "extraction/petsmart.xlsx",
+        "type": "file",
+        "bytes": 19873,
+        "sha256": "12a795a92e66f29c568ed730560fb7dd9a93f4c9dd0e359b387d290be6baa07c"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/extraction/providence-worcester.xlsx",
+        "relative_path": "extraction/providence-worcester.xlsx",
+        "type": "file",
+        "bytes": 21882,
+        "sha256": "fca98218d96085de62831101d4b7c9570f04d40c22bb321cce4e90529a7c77c0"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/extraction/stec.xlsx",
+        "relative_path": "extraction/stec.xlsx",
+        "type": "file",
+        "bytes": 23870,
+        "sha256": "16a1f15bbf9b833891e8bab80dc4be843876afad3ed5fedaf2e21e46b20927ec"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/extraction/synacor.xlsx",
+        "relative_path": "extraction/synacor.xlsx",
+        "type": "file",
+        "bytes": 26870,
+        "sha256": "2eca8acd8237c7a70da769be1e74add3b02608bb049de090974331ced7f57dab"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/raw_filing/MANIFEST.csv",
+        "relative_path": "raw_filing/MANIFEST.csv",
+        "type": "file",
+        "bytes": 2064,
+        "sha256": "879ce2507326852396f9e96c8bd4127c3d122ff188069e8d3976031d686ff371"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/raw_filing/kraton_2021-11-04_DEFM14A.htm",
+        "relative_path": "raw_filing/kraton_2021-11-04_DEFM14A.htm",
+        "type": "file",
+        "bytes": 1467260,
+        "sha256": "c0d2abbd80aa02fe55c8c1cc11f9d0a0e4a92bdde3045654cce11997781ae322"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/raw_filing/mac-gray_2013-12-04_DEFM14A.htm",
+        "relative_path": "raw_filing/mac-gray_2013-12-04_DEFM14A.htm",
+        "type": "file",
+        "bytes": 1279957,
+        "sha256": "e6ea7bd00cfc389c28e5139a3d23aafcc684f7b65ff54d699f3c5be11bbc4301"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/raw_filing/meredith_2021-11-08_DEFM14A.htm",
+        "relative_path": "raw_filing/meredith_2021-11-08_DEFM14A.htm",
+        "type": "file",
+        "bytes": 2709877,
+        "sha256": "d6783298bccf365153f3951c6054f04df7a925493a03ef9f9057f740b0b6728b"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/raw_filing/penford_2014-12-29_DEFM14A.htm",
+        "relative_path": "raw_filing/penford_2014-12-29_DEFM14A.htm",
+        "type": "file",
+        "bytes": 1301510,
+        "sha256": "5bd50713b2ce136b9b80d28360b6281d6890d0d95b35cfe36a3eacd288bb53aa"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/raw_filing/petsmart_2015-02-02_DEFM14A.htm",
+        "relative_path": "raw_filing/petsmart_2015-02-02_DEFM14A.htm",
+        "type": "file",
+        "bytes": 1641964,
+        "sha256": "52c93afa5897d1878441e76050f3c9607972624ea1e4105c29be815f4bf04ca9"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/raw_filing/providence-worcester_2016-09-20_DEFM14A.htm",
+        "relative_path": "raw_filing/providence-worcester_2016-09-20_DEFM14A.htm",
+        "type": "file",
+        "bytes": 1218389,
+        "sha256": "32d7a2738c95c29fa98fccc6a874a5e2acbfd0b7fc87a1f3e9145c60f627378a"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/raw_filing/stec_2013-08-08_DEFM14A.htm",
+        "relative_path": "raw_filing/stec_2013-08-08_DEFM14A.htm",
+        "type": "file",
+        "bytes": 1376551,
+        "sha256": "b29adcd8c221c55b48593b339bbe768552a21e1fa8836e2f355d6ffe9b86f36b"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/raw_filing/synacor_2021-03-03_SCTO-T.htm",
+        "relative_path": "raw_filing/synacor_2021-03-03_SCTO-T.htm",
+        "type": "file",
+        "bytes": 517155,
+        "sha256": "2ea05ceef8c7315f7bf81743a70f67a2574e545cb303e48152efd6803b749b0e"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/ref/CollectionInstructions_Alex_2026.pdf",
+        "relative_path": "ref/CollectionInstructions_Alex_2026.pdf",
+        "type": "file",
+        "bytes": 68007,
+        "sha256": "0dd72b0ab97801cb7cf8bb2a635965a6b4de883399f738968c9985d7f7b56e37"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/ref/alex_voice_notes_2026-08.docx",
+        "relative_path": "ref/alex_voice_notes_2026-08.docx",
+        "type": "file",
+        "bytes": 929458,
+        "sha256": "9ddb0a38f3ffcabdbf7693ced379df3aa8b53a1c4d065990d09d57978af220fb"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/ref/deal_details_Alex_2026.xlsx",
+        "relative_path": "ref/deal_details_Alex_2026.xlsx",
+        "type": "file",
+        "bytes": 1359698,
+        "sha256": "b0bd73ddc016028974fcddb18b164d370efd7b776734b814a99d96d7f923b00a"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction-sol-opus-v113/ref/seed.csv",
+        "relative_path": "ref/seed.csv",
+        "type": "file",
+        "bytes": 57458,
+        "sha256": "c4b7ed0fac065839070510c67bd723171fa8728d1d8c74ce5a5b4d775e464c2c"
+      }
+    ]
+  },
+  "detached_7877_worktree": {
+    "root": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction",
+    "count": 141,
+    "total_bytes": 18523456,
+    "entries": [
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/.git",
+        "relative_path": ".git",
+        "type": "file",
+        "bytes": 81,
+        "sha256": "0b43219fa8bb9c14fe3b7946be973195773b1d960462da1efd15c773f40aac6b"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/.gitignore",
+        "relative_path": ".gitignore",
+        "type": "file",
+        "bytes": 222,
+        "sha256": "a5687288b9c1b0eb270d85c05fa112678a8b36dc77ef7fe525a984e8e41c65e2"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/AGENTS.md",
+        "relative_path": "AGENTS.md",
+        "type": "file",
+        "bytes": 2970,
+        "sha256": "5e3ab64f1c06bea2a7f02338da2b38be194b41e702d6f6856418463964e76219"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/SEC_Deal_Ledger_Extraction_Instruction.md",
+        "relative_path": "SEC_Deal_Ledger_Extraction_Instruction.md",
+        "type": "file",
+        "bytes": 33624,
+        "sha256": "513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/CHRONOLOGY.md",
+        "relative_path": "_dev/CHRONOLOGY.md",
+        "type": "file",
+        "bytes": 8737,
+        "sha256": "ae9fd7854f6d5ae2f5963bd9b2fdac13ad771e2ecc884b1a6d319bfba7998034"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/DECISIONS_v1.13.md",
+        "relative_path": "_dev/DECISIONS_v1.13.md",
+        "type": "file",
+        "bytes": 5888,
+        "sha256": "df3ddbee61bab6ea0c1ca39076c6388a310a6826322455f084de829b4f5da09a"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/HANDOFF.md",
+        "relative_path": "_dev/HANDOFF.md",
+        "type": "file",
+        "bytes": 24120,
+        "sha256": "f67e2de88214cef8f13afc9137d89de421cb44c773055e8829bb7dd78320eacc"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/RESEARCH_QUESTIONS.md",
+        "relative_path": "_dev/RESEARCH_QUESTIONS.md",
+        "type": "file",
+        "bytes": 2836,
+        "sha256": "b97bace3f00ec4f556cdb6b62681c2a44fa635d36eee8a35ae998ddca0c0fd76"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-datalink-pilot/ADJUDICATION.md",
+        "relative_path": "_dev/reviews/2026-09-21-datalink-pilot/ADJUDICATION.md",
+        "type": "file",
+        "bytes": 17153,
+        "sha256": "a92e66fa7cd90c2c1508ba0b977592eb28a2c1eb4deb274d71a8f52dd2950452"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-datalink-pilot/DEAL_CONTEXT.md",
+        "relative_path": "_dev/reviews/2026-09-21-datalink-pilot/DEAL_CONTEXT.md",
+        "type": "file",
+        "bytes": 4984,
+        "sha256": "87f37a51b3d009c5fa218ea823a4f47b5a0c835aaf4e174eb661f6f4b1c9a5be"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-datalink-pilot/audit_delivery.txt",
+        "relative_path": "_dev/reviews/2026-09-21-datalink-pilot/audit_delivery.txt",
+        "type": "file",
+        "bytes": 3706,
+        "sha256": "bda7f7101f8a42cf6f192d2b0df6dd3ae16eba0bdb19466d25c0f2870f39856d"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-datalink-pilot/audit_harness.py.txt",
+        "relative_path": "_dev/reviews/2026-09-21-datalink-pilot/audit_harness.py.txt",
+        "type": "file",
+        "bytes": 8716,
+        "sha256": "5ce2653ec320bd73611d8dcf570b564c0014f8969ccaecea4ebd011eae3bee25"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-datalink-pilot/audit_prompt.txt",
+        "relative_path": "_dev/reviews/2026-09-21-datalink-pilot/audit_prompt.txt",
+        "type": "file",
+        "bytes": 2421,
+        "sha256": "e147bd25d8184704d91b438eb52fe8133c0320795e28f5b2ca414744bf44184a"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-datalink-pilot/cockpit_verification.json",
+        "relative_path": "_dev/reviews/2026-09-21-datalink-pilot/cockpit_verification.json",
+        "type": "file",
+        "bytes": 268,
+        "sha256": "e32b8d4f8f73b7136e6cfa89c8225458435a20371d6357c8fb31f11fd20ed880"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-datalink-pilot/extraction_delivery.txt",
+        "relative_path": "_dev/reviews/2026-09-21-datalink-pilot/extraction_delivery.txt",
+        "type": "file",
+        "bytes": 4303,
+        "sha256": "e3b62871c675d60cc9039639a44af91061325766bc137d3f93391189ea0e1dbd"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-datalink-pilot/extraction_prompt.txt",
+        "relative_path": "_dev/reviews/2026-09-21-datalink-pilot/extraction_prompt.txt",
+        "type": "file",
+        "bytes": 238,
+        "sha256": "17ce4db3d2df9790581d753f3ea8a340c1f22aaf51add2746e963f1c297acb9c"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-datalink-pilot/extraction_provider_result.json",
+        "relative_path": "_dev/reviews/2026-09-21-datalink-pilot/extraction_provider_result.json",
+        "type": "file",
+        "bytes": 6735,
+        "sha256": "f00aee38bfe92f871507fcaa8d967bdfdc49ac0202cf29fe4f95bfb70bb501f2"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-datalink-pilot/final_verification.json",
+        "relative_path": "_dev/reviews/2026-09-21-datalink-pilot/final_verification.json",
+        "type": "file",
+        "bytes": 1472,
+        "sha256": "28cbc8d778fae7b6cfc3e83949eefe0dbba257ff17e5268904e317288d9af8e5"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-datalink-pilot/fresh_findings.json",
+        "relative_path": "_dev/reviews/2026-09-21-datalink-pilot/fresh_findings.json",
+        "type": "file",
+        "bytes": 27720,
+        "sha256": "00d82ba123ad731d77b3492f9db3bceda160377aa5941427191cf588363963b9"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-datalink-pilot/fresh_review.md",
+        "relative_path": "_dev/reviews/2026-09-21-datalink-pilot/fresh_review.md",
+        "type": "file",
+        "bytes": 29384,
+        "sha256": "491989b0854b7bb0a73c25eeaf74e57045d9cde9c94c1567cd6e3c77a0fac9b8"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-datalink-pilot/inventory_comparison.freeze.json",
+        "relative_path": "_dev/reviews/2026-09-21-datalink-pilot/inventory_comparison.freeze.json",
+        "type": "file",
+        "bytes": 176,
+        "sha256": "35f8ae7f987a61234d78308cec773d1add8540595c0eff8414c67521fb507168"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-datalink-pilot/inventory_comparison.md",
+        "relative_path": "_dev/reviews/2026-09-21-datalink-pilot/inventory_comparison.md",
+        "type": "file",
+        "bytes": 3924,
+        "sha256": "1aadd12258f27d0db4775bc0554d0ac85bab1798bb4b499693677196c74fb30c"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-datalink-pilot/mechanical_check.json",
+        "relative_path": "_dev/reviews/2026-09-21-datalink-pilot/mechanical_check.json",
+        "type": "file",
+        "bytes": 4757,
+        "sha256": "56d28694250f31f50ee290682deed463d30aa1a7aa35c81a174154f8b9860c01"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-datalink-pilot/provenance.json",
+        "relative_path": "_dev/reviews/2026-09-21-datalink-pilot/provenance.json",
+        "type": "file",
+        "bytes": 10031,
+        "sha256": "be0454e0ea3fe59c84ef53745fe790d7719b08eae9742dd1cddb30c04c826e67"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-datalink-pilot/review_quote_verification.json",
+        "relative_path": "_dev/reviews/2026-09-21-datalink-pilot/review_quote_verification.json",
+        "type": "file",
+        "bytes": 5594,
+        "sha256": "20904d49dbbeb5887aa5f3223fb306730eef26a7043e6013279634c8faaa1482"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-datalink-pilot/run_cleanup.json",
+        "relative_path": "_dev/reviews/2026-09-21-datalink-pilot/run_cleanup.json",
+        "type": "file",
+        "bytes": 1201,
+        "sha256": "1c3219e186c923b47c7b6023a14abfef47fc2db1baad1e3bcb092e7c71912a5f"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-datalink-pilot/screening_cleanup.json",
+        "relative_path": "_dev/reviews/2026-09-21-datalink-pilot/screening_cleanup.json",
+        "type": "file",
+        "bytes": 489,
+        "sha256": "d67f21070da93375c46338843a57771993879af41d28e0fab2cdebf8b5d41bff"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-datalink-pilot/selection.json",
+        "relative_path": "_dev/reviews/2026-09-21-datalink-pilot/selection.json",
+        "type": "file",
+        "bytes": 4363,
+        "sha256": "e42196c17542f623692405d405bf3885a5a90fed15d57d7a35ed9a69527790ea"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-datalink-pilot/selection_sources.json",
+        "relative_path": "_dev/reviews/2026-09-21-datalink-pilot/selection_sources.json",
+        "type": "file",
+        "bytes": 3066,
+        "sha256": "382bedae7f9a6e48af3fc45c72f1d2c378d8565bd3026c6020e7440a511a985c"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-datalink-pilot/source_inventory.freeze.json",
+        "relative_path": "_dev/reviews/2026-09-21-datalink-pilot/source_inventory.freeze.json",
+        "type": "file",
+        "bytes": 220,
+        "sha256": "ec724e7965a60087ed7d5220db12420cffa8368ca25429a9f8d96e1be33ca7b6"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-datalink-pilot/source_inventory.md",
+        "relative_path": "_dev/reviews/2026-09-21-datalink-pilot/source_inventory.md",
+        "type": "file",
+        "bytes": 7895,
+        "sha256": "f566d23123c3458b7c650ab3557644b0b5124e2f767024559ae9a39f74e3fd2c"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-astra-pilot/ASSESSMENT.md",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-astra-pilot/ASSESSMENT.md",
+        "type": "file",
+        "bytes": 12485,
+        "sha256": "a01551c1752cd0d3651675ac85d85847a2f81a5732cbcd17ce54dbb39c403d9e"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-astra-pilot/EVIDENCE_MANIFEST.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-astra-pilot/EVIDENCE_MANIFEST.json",
+        "type": "file",
+        "bytes": 3233,
+        "sha256": "bd82b80dfc3be31b22c7a47a483a0df122385f0226a99647a8e0d55d9ae04ef5"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-astra-pilot/PROTOCOL.md",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-astra-pilot/PROTOCOL.md",
+        "type": "file",
+        "bytes": 5187,
+        "sha256": "d1da53d9676b68b25eaf90526cd24a092906cd656f1b41eef4fa8509b705f788"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-astra-pilot/REPORT.md",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-astra-pilot/REPORT.md",
+        "type": "file",
+        "bytes": 6965,
+        "sha256": "76a97b02ed8af20223cbf2dc0217907a71a4999d9d86087d2bad7d8047d6f222"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-astra-pilot/extractor-response.md",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-astra-pilot/extractor-response.md",
+        "type": "file",
+        "bytes": 1064,
+        "sha256": "9159317e86d711133c1e98cbe350ae85586e7bce11fba1ee0f3acad0fcf89a56"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-astra-pilot/mechanical-check.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-astra-pilot/mechanical-check.json",
+        "type": "file",
+        "bytes": 2168,
+        "sha256": "a9f586b7952ff3411a4a2667450a5d128b9496211a8ee804a20acc99105584ec"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-astra-pilot/model-registry.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-astra-pilot/model-registry.json",
+        "type": "file",
+        "bytes": 807,
+        "sha256": "3df996af353e6a26e246420679add23a2ea328e95606633a0e67d05384f6efd4"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-astra-pilot/participation-check.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-astra-pilot/participation-check.json",
+        "type": "file",
+        "bytes": 1411,
+        "sha256": "38fca058917e96a9611f34f2423aeee239c2f1a304f37c2682448a607aca306a"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-astra-pilot/protocol-freeze.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-astra-pilot/protocol-freeze.json",
+        "type": "file",
+        "bytes": 3456,
+        "sha256": "a67ff5afb5c6cfe5dd7f205ca6b7d2a38361bab526547e6ff7136a141c8ece70"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-astra-pilot/provenance/cleanup.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-astra-pilot/provenance/cleanup.json",
+        "type": "file",
+        "bytes": 654,
+        "sha256": "e78c2e7a2b03f24dc2e9194d66e309f6dca13aa8717aaf12dea28d1cdd607f6d"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-astra-pilot/provenance/command.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-astra-pilot/provenance/command.json",
+        "type": "file",
+        "bytes": 1220,
+        "sha256": "7ea30c3e1f28386e94978f265ebf6d4201ef58d463fdf94d7d45ea069aa6e052"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-astra-pilot/provenance/isolation-preflight.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-astra-pilot/provenance/isolation-preflight.json",
+        "type": "file",
+        "bytes": 297,
+        "sha256": "ea991f01c7d87b65c87670e56bf34ed55ed749fce9828b9151b143d5482d9fe4"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-astra-pilot/provenance/metadata.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-astra-pilot/provenance/metadata.json",
+        "type": "file",
+        "bytes": 1276,
+        "sha256": "63beaff165ad1e9062775732c212fdddbaa1ae2ed6f06772a60a6b7b42f2171a"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-astra-pilot/provenance/prompt.txt",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-astra-pilot/provenance/prompt.txt",
+        "type": "file",
+        "bytes": 238,
+        "sha256": "500f54a95b46052b2707f6ff97f4597f7e6f825b5f40e5023f3b4b085182d9d2"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-astra-pilot/provenance/provider-summary.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-astra-pilot/provenance/provider-summary.json",
+        "type": "file",
+        "bytes": 1111,
+        "sha256": "5adde9dbcf4dce13bbcc97db5cde1eba4dbd398223ff39d144e242b2ae8f5059"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-astra-pilot/provenance/runtime-cleanup.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-astra-pilot/provenance/runtime-cleanup.json",
+        "type": "file",
+        "bytes": 149,
+        "sha256": "74abede21c5c32b654bbf466e973145cdb555d2a72599e085b2500d93e601121"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-astra-pilot/provenance/runtime.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-astra-pilot/provenance/runtime.json",
+        "type": "file",
+        "bytes": 3709,
+        "sha256": "22116014707bb1728cfdfff3357aed39131315c11683fd1fde7cedc59797db4a"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-astra-pilot/provenance/status.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-astra-pilot/provenance/status.json",
+        "type": "file",
+        "bytes": 569,
+        "sha256": "bc45428bcddcd3d5d07c59934aa9a0c3fa96ca309231cbe9f24aa6d5292898e2"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-astra-pilot/provenance/validation.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-astra-pilot/provenance/validation.json",
+        "type": "file",
+        "bytes": 390,
+        "sha256": "9d7b9ddda70dfe35ca4cb93190f32cad75deb971e1998607826a1e8fac1a0784"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-astra-pilot/provenance/verification.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-astra-pilot/provenance/verification.json",
+        "type": "file",
+        "bytes": 2850,
+        "sha256": "91c58891647e87dba57444ad9fe393eca19b6790a9d08c222e0786f30024b462"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-astra-pilot/quote-page-check.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-astra-pilot/quote-page-check.json",
+        "type": "file",
+        "bytes": 18701,
+        "sha256": "559c2d74a09f2255c4622d54e2d2160843266aba06d1843ba81e6718e473e653"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-astra-pilot/raw/extraction/mac-gray.xlsx",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-astra-pilot/raw/extraction/mac-gray.xlsx",
+        "type": "file",
+        "bytes": 27767,
+        "sha256": "ee14d55c1f3aea0b793c5ad01507beefb12cb575071a696cf4489a6b30660f42"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-astra-pilot/structured-comparison.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-astra-pilot/structured-comparison.json",
+        "type": "file",
+        "bytes": 3829,
+        "sha256": "351643c9137107708eac61715788e8257fc1f31bf050568b6cb61e36ad826509"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/ADJUDICATION.md",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/ADJUDICATION.md",
+        "type": "file",
+        "bytes": 15053,
+        "sha256": "fcf06536fecba05227048ae5170fd6198c79b41de6fb176fa815a2b954e1463d"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/EVIDENCE_MANIFEST.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/EVIDENCE_MANIFEST.json",
+        "type": "file",
+        "bytes": 4775,
+        "sha256": "00e2c31bcb65f98340f2884f32eee4f724efb6e38e2d08ff4029ae419784d7aa"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/REPORT.md",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/REPORT.md",
+        "type": "file",
+        "bytes": 8475,
+        "sha256": "f5c21036615f410eca6e5ed164bf63e4ea444453d510682822d9e4a80dcacffc"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/alex-criteria.md",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/alex-criteria.md",
+        "type": "file",
+        "bytes": 3581,
+        "sha256": "ae68d7906ba3410e35d8be43836cf7df672dfdf8b598838dce7fb834d770c0b7"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/audit-prompt.md",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/audit-prompt.md",
+        "type": "file",
+        "bytes": 2498,
+        "sha256": "5074723543232b90e1099a099a8b4f3f012f68e41a5794e622ca1cebdf447012"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/audit-quote-check.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/audit-quote-check.json",
+        "type": "file",
+        "bytes": 993,
+        "sha256": "ec6b2dd3b57429918ba1f520f5909eaacfc16d14cf2ded872a344caf218d4fc8"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/audit/findings.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/audit/findings.json",
+        "type": "file",
+        "bytes": 18333,
+        "sha256": "1be9e5f1c83f8c6b344882adff4e2b22bfbb3101abcd03adb0c453889d933e17"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/audit/review.md",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/audit/review.md",
+        "type": "file",
+        "bytes": 27137,
+        "sha256": "bab21a4bfcecbd1e7bfe60013de2c9c6af9a2b63ee823cff38bb2809aceeffe0"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/baseline-check.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/baseline-check.json",
+        "type": "file",
+        "bytes": 3903,
+        "sha256": "89209418b69424b86da6494f5b5a4271e964ad341bfdb4ac11753da77aa19627"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/inventory-comparison.md",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/inventory-comparison.md",
+        "type": "file",
+        "bytes": 3041,
+        "sha256": "8fafc45931147cb11a555ce0a4683b67a74e1fd0816c40f4abe0d5eb726afb8b"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/lead-findings-before-audit.md",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/lead-findings-before-audit.md",
+        "type": "file",
+        "bytes": 5548,
+        "sha256": "70ca1d8c4d5363f3b2c85864485a9d96862e97d13aaf6ab234e43760f02eaebf"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/lead-findings-freeze.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/lead-findings-freeze.json",
+        "type": "file",
+        "bytes": 167,
+        "sha256": "683281abcf16e33ecc3d1a2fcc6cf9b4e779fa83ffb8117458452fbbe7268c0f"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/protocol-freeze.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/protocol-freeze.json",
+        "type": "file",
+        "bytes": 334,
+        "sha256": "7022de5cca4c3af43071de96167b05a626fe9675c3afd80b60b1211a20a80efa"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/provenance/audit/command.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/provenance/audit/command.json",
+        "type": "file",
+        "bytes": 6273,
+        "sha256": "bca8aaff6686a9eea31297951f39622e3ecf27f1eddaddc80dc93ea4738e65e7"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/provenance/audit/isolation-preflight.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/provenance/audit/isolation-preflight.json",
+        "type": "file",
+        "bytes": 230,
+        "sha256": "06ebc796d9d7ff476b2a77ea5995656e1428b90b3b709bb498f7aebafc491932"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/provenance/audit/metadata.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/provenance/audit/metadata.json",
+        "type": "file",
+        "bytes": 1162,
+        "sha256": "be0542b83580465adbec024e4f123a4fb4127c0dab905efe0b2748aecba7821c"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/provenance/audit/prompt.txt",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/provenance/audit/prompt.txt",
+        "type": "file",
+        "bytes": 2498,
+        "sha256": "5074723543232b90e1099a099a8b4f3f012f68e41a5794e622ca1cebdf447012"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/provenance/audit/provider-summary.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/provenance/audit/provider-summary.json",
+        "type": "file",
+        "bytes": 1741,
+        "sha256": "a80a1f4b4f89de1eeaac12fc5321a5cdbfae61727a8d7a4ec17defc4799b1885"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/provenance/audit/status.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/provenance/audit/status.json",
+        "type": "file",
+        "bytes": 912,
+        "sha256": "f0ad3e0c07c004527153de63c7ef716b51c9299e1df90e06596e7cd88c10c595"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/provenance/cleanup.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/provenance/cleanup.json",
+        "type": "file",
+        "bytes": 2261,
+        "sha256": "779bdc23c3bfb93c516070afe952b1f0cb94636c4cb76907153246b2f7528a46"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/provenance/extraction/checker-command-result.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/provenance/extraction/checker-command-result.json",
+        "type": "file",
+        "bytes": 190,
+        "sha256": "5f599e30e94babdd255cec281ce626b12ae272daa5c2957b73458a5e773acbf6"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/provenance/extraction/command.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/provenance/extraction/command.json",
+        "type": "file",
+        "bytes": 1210,
+        "sha256": "301c3e6e4260a56344fa28b10122aa98552ce952bea6456d5b07b7493ae5cf00"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/provenance/extraction/metadata.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/provenance/extraction/metadata.json",
+        "type": "file",
+        "bytes": 1069,
+        "sha256": "c44fa73d4aa8b08306de7135e3e84fc8a77d2b5c5103e1f8514efd3c05beeabd"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/provenance/extraction/prompt.txt",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/provenance/extraction/prompt.txt",
+        "type": "file",
+        "bytes": 238,
+        "sha256": "500f54a95b46052b2707f6ff97f4597f7e6f825b5f40e5023f3b4b085182d9d2"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/provenance/extraction/provider-summary.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/provenance/extraction/provider-summary.json",
+        "type": "file",
+        "bytes": 1782,
+        "sha256": "88e25d98cf56316cf5c3d545f09f29159ac5ee54b5e140b0d19e608c99bd51c8"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/provenance/extraction/status.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/provenance/extraction/status.json",
+        "type": "file",
+        "bytes": 542,
+        "sha256": "dad91125a544cc386666a1f3bd76acd46a85bc0cf5cbbc136aae5369270517a3"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/provenance/extraction/validation.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/provenance/extraction/validation.json",
+        "type": "file",
+        "bytes": 346,
+        "sha256": "bb67ca08f15d26d4d14613bd448f4b1c47b7ebe2b0962e048ca0239c8cf35a79"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/provenance/verification.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/provenance/verification.json",
+        "type": "file",
+        "bytes": 2867,
+        "sha256": "5cb694751c02930e4b8a42353b835c4be01045d5d330ad9d4af8fe5787e44a3e"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/raw-check.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/raw-check.json",
+        "type": "file",
+        "bytes": 3390,
+        "sha256": "0c60400ec40bdb6ca15a11a7941b0366f0f008328e0fa8f60ee068548f9fd73b"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/raw/extraction/mac-gray.xlsx",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/raw/extraction/mac-gray.xlsx",
+        "type": "file",
+        "bytes": 23961,
+        "sha256": "9422bc6b0d14c19033771a51bb6432e2054f16ba55e9b07df02c73c3d28ac279"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/selection.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/selection.json",
+        "type": "file",
+        "bytes": 2237,
+        "sha256": "492c35c33d63ec797e3edf04829d9d47fd1564297371d60d8f3ff83e542f7aad"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/source-inventory.md",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/source-inventory.md",
+        "type": "file",
+        "bytes": 7474,
+        "sha256": "442297f1fbc41c6103e6a4ffa0ca8efea8cb80681302fbbbb4c09e497916536c"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-mac-gray-pilot/structured-comparison.json",
+        "relative_path": "_dev/reviews/2026-09-21-mac-gray-pilot/structured-comparison.json",
+        "type": "file",
+        "bytes": 349,
+        "sha256": "56813f38f4cc7c4a57b3cbc8030cfcb5b895d4d344dc2154fef0866b38bf8b51"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-three-models/REPORT.md",
+        "relative_path": "_dev/reviews/2026-09-21-three-models/REPORT.md",
+        "type": "file",
+        "bytes": 13716,
+        "sha256": "664399b26dbd13330fce896364091267228187c063867209aff13decf6c95f58"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-three-models/artifact.json",
+        "relative_path": "_dev/reviews/2026-09-21-three-models/artifact.json",
+        "type": "file",
+        "bytes": 24201,
+        "sha256": "2423132288cdea39f6cd0da8968cd2ad731fed8ece88bb38ba212538b45f8e20"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-three-models/checker-provenance.json",
+        "relative_path": "_dev/reviews/2026-09-21-three-models/checker-provenance.json",
+        "type": "file",
+        "bytes": 255,
+        "sha256": "77616a0bd3cab053091a9bf0a9c501273d30544a527891f0980aad73efdb7076"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-three-models/checks.json",
+        "relative_path": "_dev/reviews/2026-09-21-three-models/checks.json",
+        "type": "file",
+        "bytes": 224156,
+        "sha256": "3be6af5066d9908790e3686a3bbd4ba1a2c0ab2dc7bf06ae6d59a7feca565281"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-three-models/inventory.json",
+        "relative_path": "_dev/reviews/2026-09-21-three-models/inventory.json",
+        "type": "file",
+        "bytes": 35666,
+        "sha256": "d5ce35a10ffc45135ece0ede8e76429f11a7f6b8ae6e288c37256973c76922f6"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-three-models/report-qa.json",
+        "relative_path": "_dev/reviews/2026-09-21-three-models/report-qa.json",
+        "type": "file",
+        "bytes": 525,
+        "sha256": "e5e8d8f673ad7c199065e27c723be92a8b9e8a870bc0524c0b5a8a323851dcd9"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-three-models/report.html",
+        "relative_path": "_dev/reviews/2026-09-21-three-models/report.html",
+        "type": "file",
+        "bytes": 510910,
+        "sha256": "11994fb2bd6fa1dc56a4fb8ef15c92099c0ceed4f9a6acc35c1c5382226dfb5c"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-three-models/source-notes.md",
+        "relative_path": "_dev/reviews/2026-09-21-three-models/source-notes.md",
+        "type": "file",
+        "bytes": 1117,
+        "sha256": "240bc341134778018dac59d4f18b68ea9eaffb47afbedb2e4a7fa64e2ffad5b8"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-three-models/verification.ipynb",
+        "relative_path": "_dev/reviews/2026-09-21-three-models/verification.ipynb",
+        "type": "file",
+        "bytes": 4074,
+        "sha256": "6608a0c6b093704037e2b905fdb5e67f802b9b202ead04bdb39a9d420928a1a6"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-three-models/verification.txt",
+        "relative_path": "_dev/reviews/2026-09-21-three-models/verification.txt",
+        "type": "file",
+        "bytes": 284,
+        "sha256": "8a5ead0b2f9e82e174ed3a3fc3c18c8c44ee4e0742eb44803a9b9d5725e21b93"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-three-models/verify_review.py",
+        "relative_path": "_dev/reviews/2026-09-21-three-models/verify_review.py",
+        "type": "file",
+        "bytes": 2367,
+        "sha256": "109395efe2bfa2c056832d627c3716c22f7ac49db2dff59b6eda31735d20fcfe"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/reviews/2026-09-21-three-models/workbooks.json",
+        "relative_path": "_dev/reviews/2026-09-21-three-models/workbooks.json",
+        "type": "file",
+        "bytes": 1401504,
+        "sha256": "a4067b7161f9cff4b50640ecfde2fd6e32c8c0fdb96941d7cce6250383eb6214"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/tools/README.md",
+        "relative_path": "_dev/tools/README.md",
+        "type": "file",
+        "bytes": 8135,
+        "sha256": "cb92b4f547c4203b3da8fb9b0466e334e1a000e7e2cf688c2cd11b6f4718c356"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/tools/check_lean.py",
+        "relative_path": "_dev/tools/check_lean.py",
+        "type": "file",
+        "bytes": 61206,
+        "sha256": "4a8628d7131bce48700fae9f8be1c6dbdf661a23ba9d5f6c5354437ffc75f1f7"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/tools/cockpit/__init__.py",
+        "relative_path": "_dev/tools/cockpit/__init__.py",
+        "type": "file",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/tools/cockpit/app.js",
+        "relative_path": "_dev/tools/cockpit/app.js",
+        "type": "file",
+        "bytes": 30658,
+        "sha256": "dce6d2b2a745c32751e50bb6af73cf8d82460863853c3758be808f30d6c42182"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/tools/cockpit/data.py",
+        "relative_path": "_dev/tools/cockpit/data.py",
+        "type": "file",
+        "bytes": 38369,
+        "sha256": "618e6cb2ec2e59588459be85cfad0e97beebb19b9b54336dc5da23de0b05fe99"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/tools/cockpit/index.html",
+        "relative_path": "_dev/tools/cockpit/index.html",
+        "type": "file",
+        "bytes": 1014,
+        "sha256": "2ac5a86d75621e74cf7b1a54fdadc28243808d95f7fc6fcd84d2220e80ae7f1f"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/tools/cockpit/server.py",
+        "relative_path": "_dev/tools/cockpit/server.py",
+        "type": "file",
+        "bytes": 6911,
+        "sha256": "ee7a31f22d2c13ee65c4110868b49aa539c1b41a3f1caa97af19c8e3246ca206"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/tools/cockpit/style.css",
+        "relative_path": "_dev/tools/cockpit/style.css",
+        "type": "file",
+        "bytes": 11146,
+        "sha256": "37ad0ed0c22cbf95379b71ec35e317bedfccfc5e8cc937b29ad62853054cf64f"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/tools/diff_workbooks.py",
+        "relative_path": "_dev/tools/diff_workbooks.py",
+        "type": "file",
+        "bytes": 2814,
+        "sha256": "a99a3ee76c76d0d287f8c3cb8d3ee5147371b54037d6b73db34e87fe82ab1a3e"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/tools/fetch_filing.py",
+        "relative_path": "_dev/tools/fetch_filing.py",
+        "type": "file",
+        "bytes": 8820,
+        "sha256": "0622dda05a5238b556d943fff255badfadeed4b4a228aac83ff43c4f79945c0e"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/tools/findings_text.py",
+        "relative_path": "_dev/tools/findings_text.py",
+        "type": "file",
+        "bytes": 1421,
+        "sha256": "dc40cb7cd696d89a0a3d8ea595c1f88f26fddbe24cea0bdaa7e501a68ae3ad97"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/tools/make_seed.py",
+        "relative_path": "_dev/tools/make_seed.py",
+        "type": "file",
+        "bytes": 3857,
+        "sha256": "a9947c8879f3733a416c9b6610a455513ef4d67beb202f50f9c5a1d4dcdbba5d"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/tools/requirements.txt",
+        "relative_path": "_dev/tools/requirements.txt",
+        "type": "file",
+        "bytes": 51,
+        "sha256": "673d95c082c1abe931d5e3614533fb0d2f720848b5bdd5d3c7da2f2fb3a11fc2"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/tools/sandbox/run_model.py",
+        "relative_path": "_dev/tools/sandbox/run_model.py",
+        "type": "file",
+        "bytes": 26347,
+        "sha256": "cc9b8b0b9397e8c12469eb63d645b6123c7037c0c679615ab36e13f534946618"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/tools/test_check_lean.py",
+        "relative_path": "_dev/tools/test_check_lean.py",
+        "type": "file",
+        "bytes": 18095,
+        "sha256": "caf6ef4d3a7af80275d4908fb04dcca84bd2d07ff10e2109c6252c0d393f7f02"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/tools/test_cockpit.py",
+        "relative_path": "_dev/tools/test_cockpit.py",
+        "type": "file",
+        "bytes": 26061,
+        "sha256": "397e344a723a748e2603df43b1692ebc53acb432b0100240c990797eb39fd0e4"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/tools/test_fetch_filing.py",
+        "relative_path": "_dev/tools/test_fetch_filing.py",
+        "type": "file",
+        "bytes": 7548,
+        "sha256": "0cbb7444cc4249fb04fcb15a80a0faca7bbec3360d48e2a8447f370fd15a8bf7"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/tools/test_review_helpers.py",
+        "relative_path": "_dev/tools/test_review_helpers.py",
+        "type": "file",
+        "bytes": 2591,
+        "sha256": "6798ba655e9a96d799d8f4fc83cfcd67f0504dbaebd4e9311decaebcf0af42a3"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/tools/test_run_model.py",
+        "relative_path": "_dev/tools/test_run_model.py",
+        "type": "file",
+        "bytes": 16396,
+        "sha256": "b4349ba7878069634093da71fa1e5dc9e8c778d5b74066fcd536ac9381ae0e92"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/extraction/datalink.xlsx",
+        "relative_path": "extraction/datalink.xlsx",
+        "type": "file",
+        "bytes": 27394,
+        "sha256": "499d2f2259f10bcb3895a08538bcbf4f686c55a4d568c0a6ded9096ee9449358"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/extraction/kraton.xlsx",
+        "relative_path": "extraction/kraton.xlsx",
+        "type": "file",
+        "bytes": 27515,
+        "sha256": "b1388206612abde5df19564951c3a897673fb5c7b2a6eb8b3d8e26f75c27a7d2"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/extraction/mac-gray.xlsx",
+        "relative_path": "extraction/mac-gray.xlsx",
+        "type": "file",
+        "bytes": 24859,
+        "sha256": "6c8b583bd9b948cd8e6dee6aa2f7fba43acc5598c5bf73c6f55ae7efab13a852"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/extraction/meredith.xlsx",
+        "relative_path": "extraction/meredith.xlsx",
+        "type": "file",
+        "bytes": 29788,
+        "sha256": "dbcca62b71624101fb17698736cf4faee112bca09d59223de780e77ce4fdf8ac"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/extraction/penford.xlsx",
+        "relative_path": "extraction/penford.xlsx",
+        "type": "file",
+        "bytes": 23001,
+        "sha256": "b2a25f75d3334e70962cf4782157aa42fb85bc6055ec0ef6410125a44d91758c"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/extraction/petsmart.xlsx",
+        "relative_path": "extraction/petsmart.xlsx",
+        "type": "file",
+        "bytes": 22751,
+        "sha256": "05073372db646a9a219f893de8dabac90218ef3b7621315cf63bb366ca1f7c94"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/extraction/providence-worcester.xlsx",
+        "relative_path": "extraction/providence-worcester.xlsx",
+        "type": "file",
+        "bytes": 25686,
+        "sha256": "fa7c8f382a9931e649cb402043618b19da73eed0a623a5bf1deddad11b9f9f22"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/extraction/stec.xlsx",
+        "relative_path": "extraction/stec.xlsx",
+        "type": "file",
+        "bytes": 27270,
+        "sha256": "6e97cd3ad27116387cd7348f413f317a1173b1cd7c6a9190a776a73e7b2fbc62"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/extraction/synacor.xlsx",
+        "relative_path": "extraction/synacor.xlsx",
+        "type": "file",
+        "bytes": 31793,
+        "sha256": "13703aed7f4ae51dbef3b40bdc12c36b935e283a056adce93fd9c813d0e4dda9"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/raw_filing/MANIFEST.csv",
+        "relative_path": "raw_filing/MANIFEST.csv",
+        "type": "file",
+        "bytes": 2303,
+        "sha256": "684281870252ab0abbc7eade98917c67a4ecca9096eb732e3f32503b44581565"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/raw_filing/datalink_2016-11-29_DEFM14A.htm",
+        "relative_path": "raw_filing/datalink_2016-11-29_DEFM14A.htm",
+        "type": "file",
+        "bytes": 1382197,
+        "sha256": "437e0e7a76ea1326ddfcc81c2b287b2b15354752ae1bab6798b02a014ff7d4d3"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/raw_filing/kraton_2021-11-04_DEFM14A.htm",
+        "relative_path": "raw_filing/kraton_2021-11-04_DEFM14A.htm",
+        "type": "file",
+        "bytes": 1467260,
+        "sha256": "c0d2abbd80aa02fe55c8c1cc11f9d0a0e4a92bdde3045654cce11997781ae322"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/raw_filing/mac-gray_2013-12-04_DEFM14A.htm",
+        "relative_path": "raw_filing/mac-gray_2013-12-04_DEFM14A.htm",
+        "type": "file",
+        "bytes": 1279957,
+        "sha256": "e6ea7bd00cfc389c28e5139a3d23aafcc684f7b65ff54d699f3c5be11bbc4301"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/raw_filing/meredith_2021-11-08_DEFM14A.htm",
+        "relative_path": "raw_filing/meredith_2021-11-08_DEFM14A.htm",
+        "type": "file",
+        "bytes": 2709877,
+        "sha256": "d6783298bccf365153f3951c6054f04df7a925493a03ef9f9057f740b0b6728b"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/raw_filing/penford_2014-12-29_DEFM14A.htm",
+        "relative_path": "raw_filing/penford_2014-12-29_DEFM14A.htm",
+        "type": "file",
+        "bytes": 1301510,
+        "sha256": "5bd50713b2ce136b9b80d28360b6281d6890d0d95b35cfe36a3eacd288bb53aa"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/raw_filing/petsmart_2015-02-02_DEFM14A.htm",
+        "relative_path": "raw_filing/petsmart_2015-02-02_DEFM14A.htm",
+        "type": "file",
+        "bytes": 1641964,
+        "sha256": "52c93afa5897d1878441e76050f3c9607972624ea1e4105c29be815f4bf04ca9"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/raw_filing/providence-worcester_2016-09-20_DEFM14A.htm",
+        "relative_path": "raw_filing/providence-worcester_2016-09-20_DEFM14A.htm",
+        "type": "file",
+        "bytes": 1218389,
+        "sha256": "32d7a2738c95c29fa98fccc6a874a5e2acbfd0b7fc87a1f3e9145c60f627378a"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/raw_filing/stec_2013-08-08_DEFM14A.htm",
+        "relative_path": "raw_filing/stec_2013-08-08_DEFM14A.htm",
+        "type": "file",
+        "bytes": 1376551,
+        "sha256": "b29adcd8c221c55b48593b339bbe768552a21e1fa8836e2f355d6ffe9b86f36b"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/raw_filing/synacor_2021-03-03_SCTO-T.htm",
+        "relative_path": "raw_filing/synacor_2021-03-03_SCTO-T.htm",
+        "type": "file",
+        "bytes": 517155,
+        "sha256": "2ea05ceef8c7315f7bf81743a70f67a2574e545cb303e48152efd6803b749b0e"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/ref/CollectionInstructions_Alex_2026.pdf",
+        "relative_path": "ref/CollectionInstructions_Alex_2026.pdf",
+        "type": "file",
+        "bytes": 68007,
+        "sha256": "0dd72b0ab97801cb7cf8bb2a635965a6b4de883399f738968c9985d7f7b56e37"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/ref/alex_voice_notes_2026-08.docx",
+        "relative_path": "ref/alex_voice_notes_2026-08.docx",
+        "type": "file",
+        "bytes": 929458,
+        "sha256": "9ddb0a38f3ffcabdbf7693ced379df3aa8b53a1c4d065990d09d57978af220fb"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/ref/deal_details_Alex_2026.xlsx",
+        "relative_path": "ref/deal_details_Alex_2026.xlsx",
+        "type": "file",
+        "bytes": 1359698,
+        "sha256": "b0bd73ddc016028974fcddb18b164d370efd7b776734b814a99d96d7f923b00a"
+      },
+      {
+        "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/ref/seed.csv",
+        "relative_path": "ref/seed.csv",
+        "type": "file",
+        "bytes": 57458,
+        "sha256": "c4b7ed0fac065839070510c67bd723171fa8728d1d8c74ce5a5b4d775e464c2c"
+      }
+    ]
+  },
+  "three_model_report": {
+    "root": "/home/uctpiaj/work/Projects/sec-extraction/_dev/reviews/2026-09-21-three-models",
+    "count": 12,
+    "total_bytes": 2218775,
+    "entries": [
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction/_dev/reviews/2026-09-21-three-models/REPORT.md",
+        "relative_path": "REPORT.md",
+        "type": "file",
+        "bytes": 13716,
+        "sha256": "664399b26dbd13330fce896364091267228187c063867209aff13decf6c95f58"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction/_dev/reviews/2026-09-21-three-models/artifact.json",
+        "relative_path": "artifact.json",
+        "type": "file",
+        "bytes": 24201,
+        "sha256": "2423132288cdea39f6cd0da8968cd2ad731fed8ece88bb38ba212538b45f8e20"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction/_dev/reviews/2026-09-21-three-models/checker-provenance.json",
+        "relative_path": "checker-provenance.json",
+        "type": "file",
+        "bytes": 255,
+        "sha256": "77616a0bd3cab053091a9bf0a9c501273d30544a527891f0980aad73efdb7076"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction/_dev/reviews/2026-09-21-three-models/checks.json",
+        "relative_path": "checks.json",
+        "type": "file",
+        "bytes": 224156,
+        "sha256": "3be6af5066d9908790e3686a3bbd4ba1a2c0ab2dc7bf06ae6d59a7feca565281"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction/_dev/reviews/2026-09-21-three-models/inventory.json",
+        "relative_path": "inventory.json",
+        "type": "file",
+        "bytes": 35666,
+        "sha256": "d5ce35a10ffc45135ece0ede8e76429f11a7f6b8ae6e288c37256973c76922f6"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction/_dev/reviews/2026-09-21-three-models/report-qa.json",
+        "relative_path": "report-qa.json",
+        "type": "file",
+        "bytes": 525,
+        "sha256": "e5e8d8f673ad7c199065e27c723be92a8b9e8a870bc0524c0b5a8a323851dcd9"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction/_dev/reviews/2026-09-21-three-models/report.html",
+        "relative_path": "report.html",
+        "type": "file",
+        "bytes": 510910,
+        "sha256": "11994fb2bd6fa1dc56a4fb8ef15c92099c0ceed4f9a6acc35c1c5382226dfb5c"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction/_dev/reviews/2026-09-21-three-models/source-notes.md",
+        "relative_path": "source-notes.md",
+        "type": "file",
+        "bytes": 1117,
+        "sha256": "240bc341134778018dac59d4f18b68ea9eaffb47afbedb2e4a7fa64e2ffad5b8"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction/_dev/reviews/2026-09-21-three-models/verification.ipynb",
+        "relative_path": "verification.ipynb",
+        "type": "file",
+        "bytes": 4074,
+        "sha256": "6608a0c6b093704037e2b905fdb5e67f802b9b202ead04bdb39a9d420928a1a6"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction/_dev/reviews/2026-09-21-three-models/verification.txt",
+        "relative_path": "verification.txt",
+        "type": "file",
+        "bytes": 284,
+        "sha256": "8a5ead0b2f9e82e174ed3a3fc3c18c8c44ee4e0742eb44803a9b9d5725e21b93"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction/_dev/reviews/2026-09-21-three-models/verify_review.py",
+        "relative_path": "verify_review.py",
+        "type": "file",
+        "bytes": 2367,
+        "sha256": "109395efe2bfa2c056832d627c3716c22f7ac49db2dff59b6eda31735d20fcfe"
+      },
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction/_dev/reviews/2026-09-21-three-models/workbooks.json",
+        "relative_path": "workbooks.json",
+        "type": "file",
+        "bytes": 1401504,
+        "sha256": "a4067b7161f9cff4b50640ecfde2fd6e32c8c0fdb96941d7cce6250383eb6214"
+      }
+    ]
+  },
+  "superseded_pipeline_direction": {
+    "root": "/home/uctpiaj/work/Projects/sec-extraction/_dev/PIPELINE_DIRECTION.md",
+    "count": 1,
+    "total_bytes": 8486,
+    "entries": [
+      {
+        "path": "/home/uctpiaj/work/Projects/sec-extraction/_dev/PIPELINE_DIRECTION.md",
+        "relative_path": "_dev/PIPELINE_DIRECTION.md",
+        "type": "file",
+        "bytes": 8486,
+        "sha256": "cd54314fae3de70e754049d5e7b2da5d1ea08aa4bf1023e4b07b93cc5f5038ff"
+      }
+    ]
+  }
+}

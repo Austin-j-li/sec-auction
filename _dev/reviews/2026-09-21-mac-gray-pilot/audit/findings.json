@@ -1,0 +1,168 @@
+{
+  "findings": [
+    {
+      "id": "F01",
+      "category": "incorrect_row",
+      "affected_rows": [
+        "Questions: Q9 (Excel row 10)",
+        "Deal ledger #38 (Excel row 39)",
+        "#39 (row 40)",
+        "#40 (row 41)",
+        "#44 (row 45)"
+      ],
+      "source_date": "10/07/2013 (also 10/05/2013 commitment letter)",
+      "page": "39",
+      "quote": "Kirkland delivered to Goodwin Procter a revised draft of the merger agreement which, among other things, proposed a $15 million Mac-Gray termination fee",
+      "rule": "E10 (Bid reaffirmed by returning its own markup); E11 rule 1; Part F (Questions must state what changes if answered differently)",
+      "problem": "Q9 says that if the round-3 responses are read as Informal, 'the deal has no formal bid before signing'. That is wrong under the rules. On 10/07/2013, during exclusivity and with its $21.25 price standing, CSC/Pamplona's counsel returned its own revised draft (markup) of the merger agreement; on 10/05 it returned a revised draft of the Pamplona commitment letter engaging definitive terms. Under E10/E11 rule 1, that returned markup establishes a Formal offer through a Bid reaffirmed row whenever the latest priced row is Informal.",
+      "proposed_correction": "Rewrite Q9 'What changes if answered differently' along these lines: 'If round-3 responses are Informal, #38/#39/#40/#44 become Informal and a Bid reaffirmed row is required for CSC/Pamplona on 10/07/2013 ($21.25 carried from #44, Formal via its returned merger-agreement markup, Conditions as they stood then), with a Question; Party A and Party B would then have no formal bid.' Leave the current rows unchanged while Q9 recommends Formal.",
+      "material_consequence": "Formality is research use 3. The adjudicator of Q9 is told that the alternative leaves the deal with no formal bid at all. Under the rules, the winner still has a formal (reaffirmed) bid, so the alternative's real effect falls only on the losing bidders.",
+      "counter_reading": "If Q9 is answered as recommended (Formal), no Bid reaffirmed row is needed because #44 is already Formal in a final round (E10), so the ledger rows themselves are unaffected; only the Question's stated consequence is wrong."
+    },
+    {
+      "id": "F02",
+      "category": "convention_question",
+      "affected_rows": [
+        "Deal ledger: no row exists; belongs after #44 (Excel row 45) and before #45",
+        "#44 (row 45)",
+        "#46 (row 47)"
+      ],
+      "source_date": "between 09/21/2013 and 09/23/2013 (reviewed by Special Committee 09/23/2013)",
+      "page": "38",
+      "quote": "Representatives from Goodwin Procter reviewed the terms of the CSC/Pamplona final proposal with the Special Committee, including the $21.25 per share cash consideration, the $15 million CSC reverse termination fee",
+      "rule": "E10 (every change of price or material economic terms the bidder communicates is its own Bid row); E12 (later changes do not rewrite earlier rows); E2 (legal-term negotiation folds)",
+      "problem": "The filing defines a distinct 'CSC/Pamplona final proposal', negotiated 09/21–09/23. It adds to the 09/21 $21.25 offer (#44) a $15 million reverse termination fee, an agreed absence of any financing contingency, Pamplona's commitment to fund 100%, and automatic termination of exclusivity if CSC adversely changes those terms. No row records it; the terms appear only in #44's Note ('Terms settled 09/21–09/23'), attached to an earlier bid whose conditions they post-date.",
+      "proposed_correction": "Either add a Bid row: When 'between 09/21/2013 and 09/23/2013', Who CSC/Pamplona, Strategic, Process 1, Round 3, Price 21.25/21.25, All cash Yes, Formal (same final round), Conditions Heavy (two-week exclusive period still part of the proposal; state in Note that financing is now reported committed with no contingency and a $15m reverse fee), Sort date 09/22/2013, Date from 09/21, Date to 09/23, Note 'revises #44 terms; price unchanged'; then trim #44's Note to what was offered on 09/21. Or keep the fold and raise a Question recording the choice.",
+      "material_consequence": "The winning bid's commitment terms (financing certainty, reverse fee) are part of what the model reads for formality and conditionality, and E12 requires them to sit on the row where they were made, not on the earlier 09/21 row. The price is unchanged, so price series are unaffected.",
+      "counter_reading": "E2 folds 'negotiation of legal terms'. A reverse termination fee and financing-contingency terms can be read as negotiated deal terms rather than a new economic offer from the bidder, and Conditions would stay Heavy under E12 either way because of the exclusive period. So the fold is defensible, provided it is recorded as a choice."
+    },
+    {
+      "id": "F03",
+      "category": "convention_question",
+      "affected_rows": [
+        "Deal ledger: no row exists; belongs between #20 (Excel row 21) and #21 (row 22)",
+        "#28 (row 29)",
+        "Rounds: round 1 'Who was in' (row 2)"
+      ],
+      "source_date": "between 07/11/2013 and 07/23/2013 (resolved 07/27, NDA and package 08/05/2013)",
+      "page": "33",
+      "quote": "did not come to agreement on the terms of the customer and employee non-solicitation provisions",
+      "rule": "E2 (a difference in information access among live bidders earns a row wherever the filing reports it); E3 (Party A live from its 06/21 bid)",
+      "problem": "Party A was live from its 06/21 bid (#8). Throughout round 1, every NDA signer received the informational package used to formulate preliminary indications, but Party A did not: NDA talks stalled on non-solicitation terms between 07/11 and 07/23, and it got the package only on 08/05. On 07/25 its uninformed 06/21 proposal was reviewed alongside the three informed indications. The ledger records this only in #28's Note and in the Rounds 'not admitted' remark; no row records the information difference.",
+      "proposed_correction": "Add an Other material event row: When 'between 07/11/2013 and 07/23/2013', Who Mac-Gray (or Party A), Process 1, Round 1, Sort date 07/17/2013, Date from 07/11, Date to 07/23. Note: 'Information access: Party A (live since #8) had no NDA and no informational package during round 1, because NDA talks stalled over customer/employee non-solicitation terms; its 06/21 proposal was reviewed 07/25 against indications from package recipients; package given 08/05 (#28).' Quote the passage above.",
+      "material_consequence": "Research use 5 (differences in what bidders were told or shown). The model compares Party A's $17–$19 with the round-1 indications at the 07/25 selection, and Party A's bid was made without the data the others had.",
+      "counter_reading": "The difference arose from a failed bilateral negotiation, not a target decision to withhold, and Party A had not been admitted to round 1. Recording it in #28's Note and in Rounds may be considered enough, since E2 targets access 'given to some and not others'."
+    },
+    {
+      "id": "F04",
+      "category": "convention_question",
+      "affected_rows": [
+        "Deal ledger #1 (Excel row 2)",
+        "Deal facts: Initiation (row 10)"
+      ],
+      "source_date": "04/05/2013",
+      "page": "27",
+      "quote": "authorized Mac-Gray management to work with BofA Merrill Lynch to explore transactional opportunities that might be available to Mac-Gray, including opportunities with another strategic party",
+      "rule": "D2 (Target sale decision: the board decides to explore or pursue a sale; keep its qualifications); Part A (classify as it stood at the time)",
+      "problem": "The 04/05 authorization is to explore 'transactional opportunities', including a business combination with Party A. It is not a decision to explore a sale: the Board deferred the sale question to 05/09, and on 05/09 it again deferred ('would discuss ... engaging in a potential sale process, at its next meeting'). The row's own Note says 'not yet a sale decision', which contradicts its label. The first board-level step toward a sale is the 05/30 adviser mandate 'including a potential sale process', and the explicit decision is 06/24 (#9).",
+      "proposed_correction": "Relabel #1 as Other material event, beginning the Note 'Board authorized exploration of transactional opportunities (not a sale decision) ...'. Keep #9 (06/24) as the Target sale decision. Optionally raise a Question if the label is kept.",
+      "material_consequence": "Two Target sale decision rows date the start of the sale effort to April rather than June, and this is inconsistent with round 0 treatment of the April contact. Anyone using the first Target sale decision to time initiation or measure pre-launch contacts will get it wrong.",
+      "counter_reading": "'Business combination' with a competitor could be read as a sale, and BofA's 04/08 call was about Party A potentially combining with Mac-Gray, so a qualified Target sale decision label is arguable. Initiation remains target-led under either label."
+    },
+    {
+      "id": "F05",
+      "category": "incorrect_row",
+      "affected_rows": [
+        "Questions: Q5 (Excel row 6)",
+        "Deal ledger #17 (row 18)",
+        "#23 (row 24)"
+      ],
+      "source_date": "late June–August 2013 ('over the next two months' from 06/24/2013)",
+      "page": "32",
+      "quote": "Over the next two months a total of 20 potential bidders, including two strategic bidders (Party A and CSC/Pamplona) and 18 financial bidders",
+      "rule": "Part B (inferences must rest on the reported fact); E14 (Did not submit only for participants eligible for the solicitation); Part F",
+      "problem": "Q5's 'Why' states: 'Party A's NDA (08/05) shows that some signings came after 07/23.' Party A is not among the 16 unnamed financial signers in #17/#23. Its late NDA therefore shows nothing about when those 16 signed. The filing gives no signing date for any of the 16, so the reasoning presents the possibility of late signers as evidenced when it is merely open.",
+      "proposed_correction": "Revise Q5's 'Why': 'The 20 NDAs were signed over roughly two months from 06/24 (p. 32), and the only dated post-07/23 signing is Party A (08/05), which is outside the cohort. The 16 have no reported dates, so whether any signed after 07/23 is unknown. On 07/25 only four ‘interested bidders’ were named (pp. 33–34).' Keep the recommendation and #23 as is, or state in #23's Note 'Count: 16 exits; label Did not submit assumes all 16 signed by 07/23'.",
+      "material_consequence": "This bears on research use 1 (participation and exit type for 16 of 20 NDA signers) and on the round-1 admitted count. The adjudicator should decide Q5 on the correct evidence.",
+      "counter_reading": "The two-month window extends to about 08/24, so late signings among the 16 remain possible. The recommendation itself is reasonable; only the stated evidence is wrong."
+    },
+    {
+      "id": "F06",
+      "category": "incorrect_row",
+      "affected_rows": [
+        "Deal ledger #2 (Excel row 3)",
+        "#5 (row 6)",
+        "#6 (row 7)"
+      ],
+      "source_date": "04/05/2013 (row date); quotation is of 10/23/2012",
+      "page": "27",
+      "quote": "authorized Mac-Gray management to work with BofA Merrill Lynch to explore transactional opportunities",
+      "rule": "Part B (the quotation supports that row's specific claim); D2 (one Adviser row per relationship, at the earliest date the filing shows that adviser selected or acting); E1 (a target's attempt to buy another company is not its sale process)",
+      "problem": "Row #2 dates BofA's role in the target's review to 04/05/2013 but quotes 'Mac-Gray engaged BofA Merrill Lynch on October 23, 2012'. That quotation concerns the buy-side mandate for Mac-Gray's possible acquisition of CSC, not BofA acting in this process on 04/05, so it does not support the row's claim. Relatedly, the ledger gives BofA three rows (#2 Adviser, #5 Adviser ended for the buy-side letter, #6 Adviser for the sale mandate), although the terminated 2012 letter belonged to the target's attempt to buy CSC, which E1 places outside the sale process.",
+      "proposed_correction": "Replace #2's quotation with the 04/05 passage quoted here (p. 27) or the 04/08 call ('representatives of BofA Merrill Lynch, as instructed by the Board, telephoned a representative of Party A', p. 27). Consider treating BofA as one sale-process relationship at 04/05 (Note: acting under a pre-existing buy-side letter, terminated 05/15, re-engaged for the strategic review 05/30–05/31), and removing #5/#6 or folding them into #2's Note. If the three rows are kept, record the choice in a Question.",
+      "material_consequence": "Low for estimation (advisers are not bidders), but the quotation mismatch would fail the reviewer's claim check. An 'Adviser ended' row in the middle of the process misreads as a lapse in the target's representation.",
+      "counter_reading": "The filing does describe a formal termination (05/15) and a new engagement (05/30–05/31), so reading these as two relationships with an Adviser ended in between is defensible. Only the quotation on #2 is clearly deficient."
+    },
+    {
+      "id": "F07",
+      "category": "incorrect_row",
+      "affected_rows": [
+        "Deal ledger #45 (Excel row 46)"
+      ],
+      "source_date": "09/23/2013",
+      "page": "38",
+      "quote": "to provide Moab with the opportunity to resume discussions with CSC/Pamplona regarding a possible equity rollover of Moab's shares in the transaction",
+      "rule": "Part B (quotation supports the row's specific claim); D2 (Other material event: begin the Note with the action)",
+      "problem": "The row's claim is a target action ('Allowed Moab to resume equity-rollover talks with CSC/Pamplona'). Its quotation, 'Mr. Rothenberg indicated he would like to discuss the possibility of an equity rollover with CSC/Pamplona', records only Moab's wish, not the target's permission.",
+      "proposed_correction": "Replace the quotation with the passage above (p. 38, 30 words or fewer) and keep the Note.",
+      "material_consequence": "Low. It is a claim/quotation mismatch on the rollover-relationship row that reopened Moab's 9% stake to the leading bidder, and the reviewer checks quotations mechanically against claims.",
+      "counter_reading": "The same sentence goes on to say BofA 'would arrange and facilitate such a discussion', which implies permission; the existing quotation is adjacent but still not the supporting clause."
+    },
+    {
+      "id": "F08",
+      "category": "incorrect_row",
+      "affected_rows": [
+        "Deal ledger #11 (Excel row 12)",
+        "#12 (row 13)"
+      ],
+      "source_date": "from 06/24/2013, 'during the next several weeks'",
+      "page": "32",
+      "quote": "During the next several weeks, in accordance with the directives of the Special Committee, BofA Merrill Lynch contacted the strategic and financial parties identified",
+      "rule": "Part B (a date no narrower than its evidence); E8 (When keeps the filing's precision)",
+      "problem": "The When cells read 'late June–July 2013 (during the next several weeks after 06/24/2013)'. The filing gives no end date for the outreach. NDAs from it were signed 'over the next two months' (to about late August), so 'July' as the end is narrower than the evidence. Date to is correctly left empty, so When and Date to are inconsistent.",
+      "proposed_correction": "Set When on #11 and #12 to 'from 06/24/2013, during the next several weeks'. Keep Date from 06/24/2013 and Date to empty.",
+      "material_consequence": "Minor. It affects the stated timing of the outreach (research use 4) and consistency with the E8 date columns.",
+      "counter_reading": "'Several weeks' from 06/24 would ordinarily end in July, so the label is a natural reading, but it is still not stated."
+    },
+    {
+      "id": "F09",
+      "category": "incorrect_row",
+      "affected_rows": [
+        "Deal ledger #52 (Excel row 53)"
+      ],
+      "source_date": "10/14/2013",
+      "page": "41",
+      "quote": "Later in the day, on October 14, 2013, the merger agreement was executed, the Pamplona commitment letter was delivered",
+      "rule": "D1 column 4 (Type: Strategic, Financial, Mixed or Unknown for bidders and cohorts); E3",
+      "problem": "#52 (Merger agreement signed) has Who = CSC/Pamplona, a bidder, but Type is blank. Every other CSC/Pamplona row, including the non-bid Exclusivity changed rows #46 and #51, carries Strategic.",
+      "proposed_correction": "Set Type on #52 to Strategic.",
+      "material_consequence": "Minor. A filter on the winner's signing row by bidder type drops it.",
+      "counter_reading": "One could treat the signing row as a deal-level event like an announcement, but D1 ties Type to the Who, which is a bidder here."
+    },
+    {
+      "id": "F10",
+      "category": "incorrect_row",
+      "affected_rows": [
+        "Deal ledger #22 (Excel row 23)"
+      ],
+      "source_date": "07/25/2013",
+      "page": "34",
+      "quote": "Later on July 25, 2013, Party C submitted a written indication of interest at an all-cash purchase price of $16.00 to $16.50 per share.",
+      "rule": "Part B; E8/E9 (what the target considered at the due date's next step)",
+      "problem": "#22's Note says Party B and Party C '(07/24 oral, 07/25 written) bid after it and were considered on 07/25/2013'. Party C's written indication came 'later on July 25', after the meeting that reviewed the indications and chose the four (p. 34). Only its 07/24 oral indication can have been considered. Q4 states this correctly, so the Note contradicts Q4.",
+      "proposed_correction": "Revise the Note: 'Due date for preliminary indications. CSC/Pamplona bid on the day; Party B (07/24 written) and Party C (07/24 oral) bid after it and were reviewed on 07/25/2013; Party C's written revision (#27) followed the meeting.'",
+      "material_consequence": "Minor. It affects the account of which late bids were accepted at the round-1 deadline (E9), though the outcome label (Late bids accepted) is unchanged.",
+      "counter_reading": "The Note may have meant Party C as a bidder, not each of its submissions; the wording is still inaccurate."
+    }
+  ]
+}

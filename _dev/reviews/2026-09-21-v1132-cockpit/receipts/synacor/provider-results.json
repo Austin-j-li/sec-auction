@@ -1,0 +1,99 @@
+[
+  {
+    "duration_api_ms": 776013,
+    "stop_reason": "end_turn",
+    "session_id": "e5a5445d-f9fb-443d-8f20-5be9d2747799",
+    "total_cost_usd": 4.852857499999999,
+    "usage": {
+      "input_tokens": 44,
+      "cache_creation_input_tokens": 170801,
+      "cache_read_input_tokens": 1804405,
+      "output_tokens": 89697,
+      "output_tokens_details": {
+        "thinking_tokens": 60540
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 170801,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1539,
+          "cache_read_input_tokens": 185969,
+          "cache_creation_input_tokens": 354,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 354
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-opus-5": {
+        "inputTokens": 44,
+        "outputTokens": 89697,
+        "cacheReadInputTokens": 1804405,
+        "cacheCreationInputTokens": 170801,
+        "webSearchRequests": 0,
+        "costUSD": 4.852857499999999,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 60540,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 23,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "I've saved the workbook as `extraction/synacor.xlsx`, with the four sheets in order: Deal ledger (79 rows), Rounds (6 lines), Questions (8) and Deal facts. A script confirmed that every quotation appears exactly in the filing on the page cited and is 30 words or fewer. It also confirmed that Sort dates never go backwards and stay inside each row's date window, that each round has exactly one Round opened row, and that every bid row has All cash, Formality and Conditions filled.\n\n**How the sale went.** The filing is CLP's tender offer document (SC TO-T, 03/03/2021), and I read it as three sale processes:\n1. **2018:** Company A, a private investment firm, signed an NDA and made two unpriced bids. Liontree then contacted about 12 parties. On 06/20/2018 Company A said it could not support the value it had proposed, and the effort lapsed.\n2. **2019:** Company C, a software company, made a cash-and-stock offer, and Synacor tried to sell its portal and advertising business (bids from Companies E and F for that business). Canaccord contacted 18 more parties. Nothing came of it.\n3. **2020\u201321:**\n   - **Round 1:** Director Kevin Rendino passed on Company E's interest, and Canaccord contacted 37 parties, 14 of which signed NDAs. By the 09/17/2020 deadline, E offered $2.00 in cash, CLP offered $1.35\u2013$1.41, and G bid only for the software business.\n   - **Round 2:** Synacor gave E exclusivity until 10/23/2020. It expired without a deal.\n   - **Round 3:** Synacor went back to earlier bidders. E switched to a bid for 35% of the shares at $2.00 and then dropped out. Company I bid only for the portal business, and Company H never bid. CLP returned, bidding $1.88 and then $2.00.\n   - **Round 4:** Synacor signed a letter of intent with CLP on 01/07/2021. The board asked for $2.20, CLP agreed, and the merger agreement was signed on 02/10/2021 and announced on 02/11/2021.\n\n**Questions, with my recommendations:**\n- **Q1, the process and round map:** keep the reading above. The main alternative is to start round 3 in December 2020 rather than on 10/27/2020. I left out Company B's proposed \"merger of equals\" and the Company D deal, because the filing presents both as Synacor combining with or buying another company, not being sold.\n- **Q2, exits in 2018\u201319:** Company A is recorded as Withdrew because its value fell below its own earlier bid. Company C is Withdrew with no reason given, since the decision to stop was mutual. Company F has no exit row of its own; the row that starts the 2020 process closes it.\n- **Q3, the 09/17/2020 deadline:** Enforced. Synacor acted on the bids it had and gave E exclusivity on 09/23.\n- **Q4, the 14 NDA signers:** the filing doesn't say whether CLP, E or G were among them. I recorded the other signers as 11\u201314 rather than an exact number; the most likely figure is 12.\n- **Q5, CLP's 09/22/2020 remark:** CLP said it \"would consider\" raising its price by 10\u201325%. I recorded this as a statement of value, not a bid.\n- **Q6, Company E's exit:** one exit on 01/04/2021, as \"would not improve earlier offer\", because E declined to bid again for the whole company.\n- **Q7, Companies H and I:** H joins on 12/30/2020 and drops out by 01/06/2021 without bidding. I is out by 01/04/2021; both exits are my inference.\n- **Q8, CLP's later bids:** CLP's draft merger agreement on 01/21/2021 is recorded as a formal reaffirmation of its $2.00 bid, with conditions unclear. The $2.20 bid of 02/10/2021 is formal, with no conditions.\n\n**What I couldn't pin down:**\n- None of the price terms are disclosed for Companies A, C, F, G or I.\n- The filing does not say whether CLP's 30-day exclusivity request was granted.\n- Some dates are ranges because the filing gives none. These are the undated outreach waves and the day the 09/17 deadline was set.\n- The filing sends readers to Synacor's own response document (Schedule 14D-9) for Canaccord's fairness analysis and the management projections. That document isn't among the files provided, so I didn't use it.",
+    "ttft_ms": 1314,
+    "type": "result",
+    "duration_ms": 779292,
+    "uuid": "191585d8-4d6d-4d6e-a847-44357ede5bb5",
+    "ttft_stream_ms": 1033,
+    "time_to_request_ms": 65,
+    "first_content_frame_ms": 1033,
+    "queued_turn_count": 0,
+    "result_index": 0
+  }
+]

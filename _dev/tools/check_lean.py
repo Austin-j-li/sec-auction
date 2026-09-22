@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Mechanical validator for the lean deal-ledger workbook (instruction v1.13).
+"""Mechanical validator for the lean deal-ledger workbook (instruction v1.13.1).
 
 This checker intentionally does not decide whether events, bidders, rounds, or
 classifications are substantively correct. In particular, it does not sum
@@ -38,7 +38,7 @@ CHECKER_VERSION = "1.5"
 CHECKER_REVISION = (
     "Adds two cross-column checks: an exact-day When must equal Date from, Date to and "
     "Sort date (E8), and an inferred exit carries Exit reason 'Not stated' (E14). "
-    "Checks instruction v1.13."
+    "Checks instruction v1.13.1."
 )
 
 SHEETS = ["Deal ledger", "Rounds", "Questions", "Deal facts"]
@@ -117,7 +117,10 @@ INITIATION_FIELDS = {
     "Initiation (target-led, bidder-led, activist-influenced, mixed or unclear)",
 }
 AUCTION_SCREEN_FIELDS = {"Auction screen", "Auction screen (C1)", "Auction screen (E1)"}
-EARLIER_APPROACHES_FIELDS = {"Earlier approaches", "Earlier approaches (C7)", "Earlier approaches (E5)"}
+EARLIER_APPROACHES_FIELDS = {
+    "Earlier approaches", "Earlier approaches (C7)", "Earlier approaches (E5)",
+    "Earlier approaches (E5; “None reported” if none)",  # the field as v1.13 D5 prints it
+}
 WHOLE_COMPANY_FIELDS = {
     "Whole-company bids",
     "Whole-company bids (Yes, or No with what was bid for)",

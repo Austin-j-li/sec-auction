@@ -1,0 +1,20 @@
+{
+  "changed_parts": [
+    "docProps/core.xml",
+    "xl/worksheets/sheet1.xml",
+    "xl/worksheets/sheet2.xml",
+    "xl/worksheets/sheet3.xml",
+    "xl/styles.xml",
+    "xl/workbook.xml"
+  ],
+  "all_other_parts_byte_identical": true,
+  "resolved_format_cells_compared": 1334,
+  "all_resolved_cell_formats_unchanged": true,
+  "style_serialization_change": "openpyxl removed an unused date format, renumbered the retained MM/DD/YYYY format and emitted an equivalent duplicate style; every mapped cell retains the same resolved font, fill, border, alignment, protection and number format.",
+  "workbook_xml_change": "Only the Deal ledger hidden filter named range expands from A1:V54 to A1:V56 for the two added rows.",
+  "core_xml_change": "Only the modification timestamp changes.",
+  "unchanged_parts_include": [
+    "xl/worksheets/sheet4.xml",
+    "xl/theme/theme1.xml"
+  ]
+}

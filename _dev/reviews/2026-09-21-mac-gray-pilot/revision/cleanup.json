@@ -1,0 +1,60 @@
+{
+  "completed_at": "2026-09-21T23:29:07.909648+00:00",
+  "removed": [
+    {
+      "path": "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/mac-gray-v1132-revision",
+      "kind": "completed_run_directory",
+      "bytes": 2098417,
+      "output_sha256": "d08e369a5b7939a121b600b6421a7c2317ce678c24a0a07a821124d3ceff2929"
+    },
+    {
+      "path": "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/mac-gray-v1132-revision-repair",
+      "kind": "completed_run_directory",
+      "bytes": 1461335,
+      "output_sha256": "f54295a242057b0e6f72fddf9555d6b4c007eea10c9fc13b1202b659439e112e"
+    },
+    {
+      "path": "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/mac-gray-revision-verify.py",
+      "kind": "disposable_verification_scaffolding",
+      "sha256": "b9bcebf486daed8cd2d44ff36936bfede2382a3494c178e09564de2dfc208aa1",
+      "bytes": 9801
+    },
+    {
+      "path": "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/mac-gray-revision-baseline-preview.png",
+      "kind": "disposable_verification_scaffolding",
+      "sha256": "4100ae5c12d530f56d9030a4f27ba3d01e70ad8313a5bb032d804a2c3af0a94c",
+      "bytes": 82151
+    },
+    {
+      "path": "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/mac-gray-revision-final-preview.png",
+      "kind": "disposable_verification_scaffolding",
+      "sha256": "2f7a26c6e21d083cb09b630ba0d4a44b64a222ef9689271716ecb2efa6a64b4f",
+      "bytes": 153304
+    },
+    {
+      "path": "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/mac-gray-revision-rounds-preview.png",
+      "kind": "disposable_verification_scaffolding",
+      "sha256": "808c60f54d2361e6320fa8ddc2703779da4037e2032b92bd32a2bb3841e58cd0",
+      "bytes": 51410
+    },
+    {
+      "path": "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/mac-gray-revision-question-preview.png",
+      "kind": "disposable_verification_scaffolding",
+      "sha256": "778e59d937687cb9b4c3a35a96973cbd01669c1db1b891d17d2c0ee69428fa22",
+      "bytes": 35162
+    },
+    {
+      "path": "/tmp/sec-mac-gray-revision-filing.txt",
+      "kind": "disposable_verification_scaffolding",
+      "sha256": "2f4996c6f87c17856be4bdf14829e010d655bbcad375d0dc2fc770c5af7fdcbd",
+      "bytes": 667326
+    }
+  ],
+  "all_listed_paths_absent": true,
+  "all_protected_inputs_unchanged": true,
+  "every_run_output_and_notes_preserved_verbatim": true,
+  "every_prepared_instruction_filing_prompt_report_hash_verified_at_completion": true,
+  "both_reported_models_are_claude_opus_5": true,
+  "no_web_or_task_tool_used": true,
+  "other_task_files_not_removed": true
+}

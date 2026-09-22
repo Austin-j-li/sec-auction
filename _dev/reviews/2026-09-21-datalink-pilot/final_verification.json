@@ -1,0 +1,30 @@
+{
+  "verified_at": "2026-09-21T22:48:22.704223+00:00",
+  "preexisting_instruction_workbook_and_filing_hashes_unchanged": {
+    "SEC_Deal_Ledger_Extraction_Instruction.md": "unchanged",
+    "extraction/kraton.xlsx": "unchanged",
+    "extraction/mac-gray.xlsx": "unchanged",
+    "extraction/meredith.xlsx": "unchanged",
+    "extraction/penford.xlsx": "unchanged",
+    "extraction/petsmart.xlsx": "unchanged",
+    "extraction/providence-worcester.xlsx": "unchanged",
+    "extraction/stec.xlsx": "unchanged",
+    "extraction/synacor.xlsx": "unchanged",
+    "raw_filing/datalink_2016-11-29_DEFM14A.htm": "unchanged",
+    "raw_filing/kraton_2021-11-04_DEFM14A.htm": "unchanged",
+    "raw_filing/mac-gray_2013-12-04_DEFM14A.htm": "unchanged",
+    "raw_filing/meredith_2021-11-08_DEFM14A.htm": "unchanged",
+    "raw_filing/penford_2014-12-29_DEFM14A.htm": "unchanged",
+    "raw_filing/petsmart_2015-02-02_DEFM14A.htm": "unchanged",
+    "raw_filing/providence-worcester_2016-09-20_DEFM14A.htm": "unchanged",
+    "raw_filing/stec_2013-08-08_DEFM14A.htm": "unchanged",
+    "raw_filing/synacor_2021-03-03_SCTO-T.htm": "unchanged"
+  },
+  "raw_datalink_sha256": "499d2f2259f10bcb3895a08538bcbf4f686c55a4d568c0a6ded9096ee9449358",
+  "frozen_inventory_and_comparison_unchanged": true,
+  "packet_markdown_links_resolve": true,
+  "git_diff_check_passed": true,
+  "manifest_rows_verify_locally": 9,
+  "boundary_decision": "pending; Austin requested context",
+  "revision_performed": false
+}

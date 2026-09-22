@@ -1,0 +1,249 @@
+{
+  "started_at": "2026-09-21T23:43:37.514735+00:00",
+  "administrator_pid": 1678678,
+  "instruction_version": "v1.13.2",
+  "instruction_sha256": "513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304",
+  "model": "claude-opus-5",
+  "effort": "high",
+  "max_concurrent": 3,
+  "reused": [
+    "datalink",
+    "mac-gray"
+  ],
+  "runs": {
+    "kraton": {
+      "state": "completed",
+      "run_dir": "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/kraton-20260921-cockpit",
+      "provider": "opus",
+      "worker_pid": 1679284,
+      "dispatched_at": "2026-09-21T23:43:39.818682+00:00",
+      "client_pid": 1679546,
+      "elapsed_seconds": 708.149,
+      "ended_at": "2026-09-21T23:55:28.195124+00:00",
+      "exit_code": 0,
+      "failure_reason": null,
+      "started_at": "2026-09-21T23:43:40.046641+00:00",
+      "timed_out": false,
+      "usage": {
+        "cost_usd": 3.8360315,
+        "tokens": {
+          "cache_creation_input_tokens": 127700,
+          "cache_read_input_tokens": 1277003,
+          "input_tokens": 46,
+          "output_tokens": 76812
+        }
+      },
+      "workbook_exists": true,
+      "workbook_valid_xlsx": true,
+      "preserved_workbook": "_dev/reviews/2026-09-21-v1132-cockpit/raw/extraction/kraton.xlsx",
+      "workbook_sha256": "be4549979af56dcb7fc56b9b6e33295989d28e1be84ddbb02c4c683a3c0dd2e9",
+      "check_summary": {
+        "errors": 0,
+        "warnings": 10,
+        "information": 0,
+        "total_issues": 10
+      }
+    },
+    "meredith": {
+      "state": "completed",
+      "run_dir": "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/meredith-20260921-cockpit",
+      "provider": "opus",
+      "worker_pid": 1679413,
+      "dispatched_at": "2026-09-21T23:43:40.141724+00:00",
+      "client_pid": 1679622,
+      "elapsed_seconds": 664.267,
+      "ended_at": "2026-09-21T23:54:44.645143+00:00",
+      "exit_code": 0,
+      "failure_reason": null,
+      "started_at": "2026-09-21T23:43:40.377785+00:00",
+      "timed_out": false,
+      "usage": {
+        "cost_usd": 4.084876,
+        "tokens": {
+          "cache_creation_input_tokens": 143738,
+          "cache_read_input_tokens": 1596822,
+          "input_tokens": 52,
+          "output_tokens": 73953
+        }
+      },
+      "workbook_exists": true,
+      "workbook_valid_xlsx": true,
+      "preserved_workbook": "_dev/reviews/2026-09-21-v1132-cockpit/raw/extraction/meredith.xlsx",
+      "workbook_sha256": "178c1f0c8419ef19503ad52e1b1fa40132d5f3b35e1d32f62e8c62205d951c89",
+      "check_summary": {
+        "errors": 0,
+        "warnings": 12,
+        "information": 0,
+        "total_issues": 12
+      }
+    },
+    "penford": {
+      "state": "completed",
+      "run_dir": "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/penford-20260921-cockpit",
+      "provider": "opus",
+      "worker_pid": 1679548,
+      "dispatched_at": "2026-09-21T23:43:40.444383+00:00",
+      "client_pid": 1679633,
+      "elapsed_seconds": 475.581,
+      "ended_at": "2026-09-21T23:51:36.194325+00:00",
+      "exit_code": 0,
+      "failure_reason": null,
+      "started_at": "2026-09-21T23:43:40.613018+00:00",
+      "timed_out": false,
+      "usage": {
+        "cost_usd": 3.074,
+        "tokens": {
+          "cache_creation_input_tokens": 114881,
+          "cache_read_input_tokens": 1159750,
+          "input_tokens": 48,
+          "output_tokens": 53803
+        }
+      },
+      "workbook_exists": true,
+      "workbook_valid_xlsx": true,
+      "preserved_workbook": "_dev/reviews/2026-09-21-v1132-cockpit/raw/extraction/penford.xlsx",
+      "workbook_sha256": "e860a97753bd73758dc1c788fb2403e3c78f48a41a28811c91b921db287f14f7",
+      "check_summary": {
+        "errors": 0,
+        "warnings": 18,
+        "information": 0,
+        "total_issues": 18
+      }
+    },
+    "petsmart": {
+      "state": "completed",
+      "run_dir": "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/petsmart-20260921-cockpit",
+      "provider": "opus",
+      "worker_pid": 1682395,
+      "dispatched_at": "2026-09-21T23:51:41.573370+00:00",
+      "client_pid": 1682459,
+      "elapsed_seconds": 558.773,
+      "ended_at": "2026-09-22T00:01:00.584270+00:00",
+      "exit_code": 0,
+      "failure_reason": null,
+      "started_at": "2026-09-21T23:51:41.811582+00:00",
+      "timed_out": false,
+      "usage": {
+        "cost_usd": 4.096163,
+        "tokens": {
+          "cache_creation_input_tokens": 139828,
+          "cache_read_input_tokens": 2294616,
+          "input_tokens": 60,
+          "output_tokens": 62011
+        }
+      },
+      "workbook_exists": true,
+      "workbook_valid_xlsx": true,
+      "preserved_workbook": "_dev/reviews/2026-09-21-v1132-cockpit/raw/extraction/petsmart.xlsx",
+      "workbook_sha256": "e6e46be37e22030f3ad8116815988a37c570c99281928d7c38276fcd5bd04bc9",
+      "check_summary": {
+        "errors": 0,
+        "warnings": 10,
+        "information": 0,
+        "total_issues": 10
+      }
+    },
+    "providence-worcester": {
+      "state": "completed",
+      "run_dir": "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/providence-worcester-20260921-cockpit",
+      "provider": "opus",
+      "worker_pid": 1685145,
+      "dispatched_at": "2026-09-21T23:54:53.211243+00:00",
+      "client_pid": 1685209,
+      "elapsed_seconds": 521.588,
+      "ended_at": "2026-09-22T00:03:34.949743+00:00",
+      "exit_code": 0,
+      "failure_reason": null,
+      "started_at": "2026-09-21T23:54:53.362022+00:00",
+      "timed_out": false,
+      "usage": {
+        "cost_usd": 2.8076375000000002,
+        "tokens": {
+          "cache_creation_input_tokens": 96818,
+          "cache_read_input_tokens": 748625,
+          "input_tokens": 34,
+          "output_tokens": 58599
+        }
+      },
+      "workbook_exists": true,
+      "workbook_valid_xlsx": true,
+      "preserved_workbook": "_dev/reviews/2026-09-21-v1132-cockpit/raw/extraction/providence-worcester.xlsx",
+      "workbook_sha256": "b73bf344f07b32e75837118f8edabc1418e28f31a1163d986bc352a94c3e270e",
+      "check_summary": {
+        "errors": 0,
+        "warnings": 12,
+        "information": 0,
+        "total_issues": 12
+      }
+    },
+    "stec": {
+      "state": "completed",
+      "run_dir": "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/stec-20260921-cockpit",
+      "provider": "opus",
+      "worker_pid": 1686099,
+      "dispatched_at": "2026-09-21T23:55:34.332649+00:00",
+      "client_pid": 1686163,
+      "elapsed_seconds": 721.783,
+      "ended_at": "2026-09-22T00:07:36.286326+00:00",
+      "exit_code": 0,
+      "failure_reason": null,
+      "started_at": "2026-09-21T23:55:34.503074+00:00",
+      "timed_out": false,
+      "usage": {
+        "cost_usd": 4.684291,
+        "tokens": {
+          "cache_creation_input_tokens": 138756,
+          "cache_read_input_tokens": 2506162,
+          "input_tokens": 70,
+          "output_tokens": 81732
+        }
+      },
+      "workbook_exists": true,
+      "workbook_valid_xlsx": true,
+      "preserved_workbook": "_dev/reviews/2026-09-21-v1132-cockpit/raw/extraction/stec.xlsx",
+      "workbook_sha256": "85f28228f875a8ac8cfae9059cf5442f4724d94e999dd2f1974adba82b93305a",
+      "check_summary": {
+        "errors": 0,
+        "warnings": 18,
+        "information": 0,
+        "total_issues": 18
+      }
+    },
+    "synacor": {
+      "state": "completed",
+      "run_dir": "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/synacor-20260921-cockpit",
+      "provider": "opus",
+      "worker_pid": 1690899,
+      "dispatched_at": "2026-09-22T00:01:05.476574+00:00",
+      "client_pid": 1690973,
+      "elapsed_seconds": 780.544,
+      "ended_at": "2026-09-22T00:14:06.191625+00:00",
+      "exit_code": 0,
+      "failure_reason": null,
+      "started_at": "2026-09-22T00:01:05.647876+00:00",
+      "timed_out": false,
+      "usage": {
+        "cost_usd": 4.852857499999999,
+        "tokens": {
+          "cache_creation_input_tokens": 170801,
+          "cache_read_input_tokens": 1804405,
+          "input_tokens": 44,
+          "output_tokens": 89697
+        }
+      },
+      "workbook_exists": true,
+      "workbook_valid_xlsx": true,
+      "preserved_workbook": "_dev/reviews/2026-09-21-v1132-cockpit/raw/extraction/synacor.xlsx",
+      "workbook_sha256": "b9a746897d987d96200542b72cee3c19067e5b9d877ccb94aaf725c3f5023f2b",
+      "check_summary": {
+        "errors": 1,
+        "warnings": 8,
+        "information": 0,
+        "total_issues": 9
+      }
+    }
+  },
+  "updated_at": "2026-09-22T00:14:07.823727+00:00",
+  "ended_at": "2026-09-22T00:14:07.824559+00:00",
+  "state": "completed"
+}

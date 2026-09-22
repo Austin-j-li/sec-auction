@@ -1,0 +1,99 @@
+[
+  {
+    "duration_api_ms": 471294,
+    "stop_reason": "end_turn",
+    "session_id": "3485c698-6397-463b-826a-a939e9cd788e",
+    "total_cost_usd": 3.074,
+    "usage": {
+      "input_tokens": 48,
+      "cache_creation_input_tokens": 114881,
+      "cache_read_input_tokens": 1159750,
+      "output_tokens": 53803,
+      "output_tokens_details": {
+        "thinking_tokens": 31829
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 114881,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1425,
+          "cache_read_input_tokens": 126799,
+          "cache_creation_input_tokens": 3777,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3777
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-opus-5": {
+        "inputTokens": 48,
+        "outputTokens": 53803,
+        "cacheReadInputTokens": 1159750,
+        "cacheCreationInputTokens": 114881,
+        "webSearchRequests": 0,
+        "costUSD": 3.074,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 31829,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 25,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "I've saved the workbook as `extraction/penford.xlsx`, with the four sheets in the required order. The ledger has 51 rows, the Rounds sheet has 2 lines, and there are 6 Questions. A script confirmed that every quotation appears word for word on its cited page and is 30 words or fewer. It also confirmed that sort dates never go backwards, every bid row has All cash, Formality and Conditions filled, and each row's flags match its Questions.\n\n**How the sale went.** Ingredion, a strategic buyer, approached Penford in July 2014, while SEACOR (about 9% of the shares) was running a proxy contest. Ingredion suggested $17.00 per share on 08/06, then made an $18.00 cash indication on 08/10. Penford refused exclusivity and gave Ingredion diligence access to push the price up. From early September, Deutsche Bank ran a market check of six strategic companies. Parties C, D and A signed confidentiality agreements; B and F declined, E never replied, and G was deliberately not approached. Ingredion raised its offer to $18.25\u2013$18.50, then $18.50 and $19.00 on 10/02, while the board said it wanted at least $20.00. On 10/03 the board moved to finalizing a deal with Ingredion alone. Ingredion confirmed $19.00 on 10/14 despite weaker draft 2014 results. Party A offered only $16.00, and Party D withdrew. The merger agreement was signed on 10/14/2014 and announced on 10/15.\n\n**How I mapped it.** There is one sale process. Round 0 covers everything before the market check. Round 1 starts with the market-check outreach in early September; it had no final announcement. Round 2 starts on 10/03 with the move to finalize a deal with Ingredion; I treat it as final by inference. No bid due date was ever set, so no deadline Questions were needed. Four bidders signed confidentiality agreements (Ingredion, A, C, D), so the auction screen is met.\n\n**Questions and my recommendations:**\n- **Q1:** I record Ingredion's 08/06 $17.00 as an informal bid. I record its 07/19 reference to the $16.00 52-week high as a valuation statement, not a bid.\n- **Q2 (process and round map):** Keep the map as described. The main alternative starts round 1 on 08/14, when direct engagement with Ingredion began; that moves five rows from round 0 to round 1. There is no gap of two months or more without buyer contact.\n- **Q3:** The filing says six companies were contacted in early to mid-September, but it also counts Party F, contacted on 09/24, in a total of six. I read the total as Parties A\u2013F, with no unnamed seventh party.\n- **Q4:** Ingredion's $19.00 letter of 10/02 stays informal. Its price confirmation on 10/14 is recorded as a reaffirmed bid: formal, with no conditions. The alternatives are to treat Ingredion's 09/06 draft merger agreement as making its bids formal, or to date the reaffirmation to its lawyers' returned draft on 10/08.\n- **Q5:** Parties A, C and D stayed live after 10/03 rather than being dropped. D withdrew on 10/08; A and C are marked (by inference) as not selected at signing.\n- **Q6:** Party A's oral price statements on 10/04 and 10/13 count as informal bids. The 10/04 row fills only the upper price ($18.00), because Party A said its offer would be \"below $17.50 - $18.00\".\n\n**Limits:**\n- SEACOR's buyer type is Unknown, because the filing never describes its business.\n- The Secrecy Agreement with Ingredion is dated by its stated effective date (07/20/2014); the filing doesn't give the day it was signed.\n- The Reviewer note columns are left empty, as the instruction requires.",
+    "ttft_ms": 1225,
+    "type": "result",
+    "duration_ms": 474410,
+    "uuid": "dc0d1f67-4a85-44f0-9005-56a50f7bd20b",
+    "ttft_stream_ms": 936,
+    "time_to_request_ms": 77,
+    "first_content_frame_ms": 936,
+    "queued_turn_count": 0,
+    "result_index": 0
+  }
+]

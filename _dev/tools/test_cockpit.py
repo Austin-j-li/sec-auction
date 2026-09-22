@@ -346,8 +346,8 @@ class HelperTests(unittest.TestCase):
     def test_reader_mapping(self) -> None:
         self.assertEqual(server.reader_for("A.Gorbenko@ucl.ac.uk"), "alex")
         self.assertEqual(server.reader_for("junyu.li.24@ucl.ac.uk"), "austin")
-        self.assertEqual(server.reader_for(None), "austin")
-        self.assertEqual(server.reader_for("someone@example.com"), "austin")
+        self.assertEqual(server.reader_for(None), "local")
+        self.assertEqual(server.reader_for("someone@example.com"), "local")
 
 
 class CockpitTests(unittest.TestCase):
@@ -509,7 +509,7 @@ class ServerTests(unittest.TestCase):
         status, _, body = self.request("/api/deal/alpha-deal", headers={"Cf-Access-Authenticated-User-Email": "a.gorbenko@ucl.ac.uk"})
         self.assertEqual(status, 200)
         payload = json.loads(body)
-        self.assertEqual(payload["reader"], "alex")
+        self.assertEqual(payload["reader"], "local")
         self.assertEqual(payload["slug"], "alpha-deal")
         status, _, body = self.request("/api/filing/alpha-deal")
         self.assertEqual(status, 200)

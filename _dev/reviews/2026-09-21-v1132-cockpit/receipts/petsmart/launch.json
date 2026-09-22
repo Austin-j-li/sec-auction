@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "/usr/bin/python3",
+    "/home/uctpiaj/work/Projects/sec-extraction/_dev/tools/sandbox/run_model.py",
+    "worker",
+    "--provider",
+    "opus",
+    "--run-dir",
+    "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/petsmart-20260921-cockpit"
+  ],
+  "launched_at": "2026-09-21T23:51:41.530998+00:00",
+  "launcher_pid": 1682395
+}

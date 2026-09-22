@@ -1,0 +1,13 @@
+{
+  "bytes": 27767,
+  "exists": true,
+  "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/worktrees/7877/sec-extraction/_dev/runs/mac-gray-astra-high-v1132/extraction/mac-gray.xlsx",
+  "sha256": "ee14d55c1f3aea0b793c5ad01507beefb12cb575071a696cf4489a6b30660f42",
+  "sheet_names": [
+    "Deal ledger",
+    "Rounds",
+    "Questions",
+    "Deal facts"
+  ],
+  "valid_xlsx": true
+}

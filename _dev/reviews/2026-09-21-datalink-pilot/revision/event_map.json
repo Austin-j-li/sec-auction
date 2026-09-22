@@ -1,0 +1,265 @@
+{
+  "mapping": {
+    "1": [
+      1
+    ],
+    "2": [
+      2
+    ],
+    "3": [
+      4
+    ],
+    "4": [
+      5
+    ],
+    "5": [
+      3
+    ],
+    "6": [
+      6
+    ],
+    "7": [
+      7
+    ],
+    "8": [
+      8
+    ],
+    "9": [
+      9
+    ],
+    "10": [],
+    "11": [
+      10
+    ],
+    "12": [
+      11
+    ],
+    "13": [
+      12
+    ],
+    "14": [
+      13
+    ],
+    "15": [
+      14
+    ],
+    "16": [
+      15
+    ],
+    "17": [
+      17
+    ],
+    "18": [
+      18
+    ],
+    "19": [
+      19
+    ],
+    "20": [
+      20
+    ],
+    "21": [
+      21
+    ],
+    "22": [
+      22
+    ],
+    "23": [
+      24
+    ],
+    "24": [
+      25
+    ],
+    "25": [
+      26
+    ],
+    "26": [
+      23,
+      27
+    ],
+    "27": [
+      28
+    ],
+    "28": [
+      29
+    ],
+    "29": [
+      30
+    ],
+    "30": [
+      31
+    ],
+    "31": [
+      32
+    ],
+    "32": [
+      33
+    ],
+    "33": [
+      34
+    ],
+    "34": [
+      35
+    ],
+    "35": [
+      36
+    ],
+    "36": [
+      37
+    ],
+    "37": [
+      38
+    ],
+    "38": [
+      39
+    ],
+    "39": [
+      40
+    ],
+    "40": [
+      41
+    ],
+    "41": [
+      43
+    ],
+    "42": [
+      44
+    ],
+    "43": [
+      45
+    ],
+    "44": [
+      46
+    ],
+    "45": [
+      47
+    ],
+    "46": [
+      48
+    ],
+    "47": [
+      49
+    ],
+    "48": [
+      50
+    ],
+    "49": [
+      51
+    ],
+    "50": [
+      52
+    ],
+    "51": [
+      53
+    ],
+    "52": [
+      54
+    ],
+    "53": [
+      55
+    ],
+    "54": [
+      56
+    ],
+    "55": [],
+    "56": [
+      57
+    ],
+    "57": [
+      58
+    ],
+    "58": [
+      59
+    ],
+    "59": [
+      60
+    ],
+    "60": [
+      61
+    ],
+    "61": [
+      62
+    ],
+    "62": [
+      63
+    ],
+    "63": [
+      64
+    ],
+    "64": [
+      65
+    ],
+    "65": [
+      66
+    ],
+    "66": [
+      67
+    ],
+    "67": [
+      68
+    ]
+  },
+  "insertions": {
+    "16": {
+      "excel_row": 17,
+      "values": {
+        "#": 16,
+        "When": "06/14/2016",
+        "Who": "Insight",
+        "Type": "Strategic",
+        "Event": "NDA signed",
+        "Process": 1,
+        "Round": 2,
+        "Price low": null,
+        "Price high": null,
+        "All cash": null,
+        "Formality": null,
+        "Conditions": null,
+        "Count": 1,
+        "Exit reason": null,
+        "Inferred": null,
+        "Note": "Reported outside the background: the merger agreement (Annex A §5.6(b), p.A-32; Parent = Insight, Company = Datalink, p.A-1) names the Confidentiality Agreement dated 06/14/2016 between Insight and Datalink. Insight is one of the 10 strategic NDA signers (p.28); its standstill ended on signing.",
+        "Quote and page": "The provisions of the Confidentiality Agreement dated June 14, 2016 between Parent and the Company (p. A-32)",
+        "Flag": null,
+        "Reviewer note": null,
+        "Sort date": "2016-06-14T00:00:00",
+        "Date from": "2016-06-14T00:00:00",
+        "Date to": "2016-06-14T00:00:00"
+      }
+    },
+    "42": {
+      "excel_row": 43,
+      "values": {
+        "#": 42,
+        "When": "by 09/01/2016",
+        "Who": "Insight",
+        "Type": "Strategic",
+        "Event": "Exclusivity changed",
+        "Process": 1,
+        "Round": 4,
+        "Price low": null,
+        "Price high": null,
+        "All cash": null,
+        "Formality": null,
+        "Conditions": null,
+        "Count": 1,
+        "Exit reason": null,
+        "Inferred": null,
+        "Note": "Requested, not executed: Insight asks for a 30-day exclusivity period; the request is before the 09/01 board, which defers it pending further negotiation (#43). Date of the request not given. Drops no rival. Executed 09/02 (#47); expired 09/30 (#52).",
+        "Quote and page": "before our board would consider Insight's request for a 30-day exclusivity period (p. 31)",
+        "Flag": null,
+        "Reviewer note": null,
+        "Sort date": "2016-09-01T00:00:00",
+        "Date from": null,
+        "Date to": "2016-09-01T00:00:00"
+      }
+    }
+  },
+  "removals": [
+    10,
+    55
+  ],
+  "splits": [
+    26
+  ]
+}

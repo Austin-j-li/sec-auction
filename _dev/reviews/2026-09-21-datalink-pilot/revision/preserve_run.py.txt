@@ -1,0 +1,46 @@
+#!/usr/bin/env python3
+"""Preserve provider evidence before verification and later scoped cleanup."""
+import datetime as dt
+import hashlib
+import json
+from pathlib import Path
+import shutil
+
+ROOT=Path(__file__).resolve().parents[4]
+OUT=Path(__file__).resolve().parent
+RUN=ROOT/'_dev/runs/datalink-revision-20260921-controlled'
+
+def sha(path): return hashlib.sha256(path.read_bytes()).hexdigest()
+
+def main():
+    status=json.loads((RUN/'status.json').read_text())
+    assert status['state']=='completed'
+    target=OUT/'datalink_revised.xlsx'
+    assert not target.exists(), 'Never overwrite a preserved provider result'
+    shutil.copy2(RUN/'extraction/datalink.xlsx',target)
+    shutil.copy2(RUN/'extraction/revision_notes.md',OUT/'revision_notes.md')
+    for name in ('metadata.json','status.json','command.json','launch.json','validation.json','prompt.txt','stderr.log','launcher.log'):
+        shutil.copy2(RUN/name,OUT/('provider_'+name))
+    events=[json.loads(line) for line in (RUN/'events.jsonl').read_text().splitlines() if line.strip()]
+    results=[x for x in events if x.get('type')=='result']
+    messages=[c['text'] for x in events if x.get('type')=='assistant' for c in x.get('message',{}).get('content',[]) if c.get('type')=='text']
+    (OUT/'provider_result.json').write_text(json.dumps(results,indent=2,ensure_ascii=False)+'\n')
+    (OUT/'provider_delivery.txt').write_text(messages[-1]+'\n')
+    observation=json.loads((OUT/'runtime_observation.json').read_text())
+    states=observation['provider_state_paths']
+    assert states, 'Actual provider temporary state must have been observed'
+    receipt={'preserved_at':dt.datetime.now(dt.timezone.utc).isoformat(),'run_dir':str(RUN),
+        'revised_workbook_sha256':sha(target),'revision_notes_sha256':sha(OUT/'revision_notes.md'),
+        'provider_events_sha256':sha(RUN/'events.jsonl'),'provider_events_bytes':(RUN/'events.jsonl').stat().st_size,
+        'provider_event_count':len(events),'requested_model':'claude-opus-5','requested_effort':'high',
+        'reported_models':sorted({x.get('message',{}).get('model') for x in events if x.get('message',{}).get('model')}),
+        'provider_result_count':len(results),'status':status,
+        'temporary_state_removed':{p:not Path(p).exists() for p in states},
+        'input_copy_hashes':{'instruction':sha(RUN/'input/SEC_Deal_Ledger_Extraction_Instruction.md'),
+            'filing':sha(RUN/'input/raw_filing/datalink_2016-11-29_DEFM14A.htm'),
+            'brief':sha(RUN/'input/checker_report.md'),'prompt':sha(RUN/'prompt.txt')},
+        'log_retention':'Exact provider result, delivery, status, command, metadata and revision notes retained. Full event log measured and hashed; disposable full trace removed with run after verification.'}
+    (OUT/'run_receipt.json').write_text(json.dumps(receipt,indent=2,ensure_ascii=False)+'\n')
+    print(json.dumps({'hash':receipt['revised_workbook_sha256'],'state_removed':receipt['temporary_state_removed'],'models':receipt['reported_models']}))
+
+if __name__=='__main__': main()

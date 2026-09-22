@@ -1,0 +1,28 @@
+{
+  "selected_at": "2026-09-21T22:18:38.229103+00:00",
+  "deal": "mac-gray",
+  "instruction": "v1.13.2",
+  "task_id": "01a0c60a-57c3-7622-821b-68156f5e21f1",
+  "scope": "One fresh Opus extraction and one fresh Opus audit, adjudication before any revision. Familiar-case companion to separately administered Datalink pilot.",
+  "selection_reason": "Alex voice notes section II explicitly proposes Mac-Gray as a litmus test, with concrete checks on entry counts, stages, conditions and exits.",
+  "comparison_baseline": "Existing canonical extraction/mac-gray.xlsx, raw Opus v1.13. Preserve unchanged.",
+  "review_protocol": "Fresh Opus 5 high sees only v1.13.2 instruction, filing, and read-only new raw workbook. No Alex notes, baseline workbook, checker, inventory or earlier reports.",
+  "inventory_scope": "Background passage from June 24, 2013 sale-process decision through August 5, 2013 Party A NDA (printed pp.32-34), with supporting source passages for participants and totals. Freeze before opening either workbook for this comparison or seeing audit output.",
+  "evaluation_dimensions": [
+    "initiation and first contact",
+    "outreach and NDA totals with timing",
+    "round boundaries and bid deadlines",
+    "bid formality and conditions",
+    "exits and their dates/reasons",
+    "advisers and event ordering",
+    "missing events inside predeclared passage",
+    "unsupported new errors introduced by rerun or proposed by reviewer"
+  ],
+  "success_definition": "Source-supported material improvements over the fixed baseline and useful supported audit findings, while separately reporting regressions, missed events, existing-rule mistakes, unresolved conventions and unsupported claims. No revision, time-saving or general accuracy claim in this stage.",
+  "hashes": {
+    "SEC_Deal_Ledger_Extraction_Instruction.md": "513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304",
+    "raw_filing/mac-gray_2013-12-04_DEFM14A.htm": "e6ea7bd00cfc389c28e5139a3d23aafcc684f7b65ff54d699f3c5be11bbc4301",
+    "extraction/mac-gray.xlsx": "6c8b583bd9b948cd8e6dee6aa2f7fba43acc5598c5bf73c6f55ae7efab13a852",
+    "ref/alex_voice_notes_2026-08.docx": "9ddb0a38f3ffcabdbf7693ced379df3aa8b53a1c4d065990d09d57978af220fb"
+  }
+}

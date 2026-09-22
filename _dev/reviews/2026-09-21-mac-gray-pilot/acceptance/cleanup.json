@@ -1,0 +1,71 @@
+{
+  "completed_utc": "2026-09-22T00:05:13.796924+00:00",
+  "removed_owned_run_dir": "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/mac-gray-acceptance-corrections-20260922",
+  "run_dir_absent": true,
+  "removed_files": [
+    {
+      "path": "command.json",
+      "bytes": 1863
+    },
+    {
+      "path": "events.jsonl",
+      "bytes": 473748
+    },
+    {
+      "path": "extraction/mac-gray.xlsx",
+      "bytes": 25938
+    },
+    {
+      "path": "extraction/revision_notes.md",
+      "bytes": 4912
+    },
+    {
+      "path": "input/SEC_Deal_Ledger_Extraction_Instruction.md",
+      "bytes": 33624
+    },
+    {
+      "path": "input/checker_report.md",
+      "bytes": 8046
+    },
+    {
+      "path": "input/raw_filing/mac-gray_2013-12-04_DEFM14A.htm",
+      "bytes": 1279957
+    },
+    {
+      "path": "launch.json",
+      "bytes": 367
+    },
+    {
+      "path": "launcher.log",
+      "bytes": 0
+    },
+    {
+      "path": "metadata.json",
+      "bytes": 1388
+    },
+    {
+      "path": "prompt.txt",
+      "bytes": 891
+    },
+    {
+      "path": "status.json",
+      "bytes": 548
+    },
+    {
+      "path": "stderr.log",
+      "bytes": 0
+    },
+    {
+      "path": "validation.json",
+      "bytes": 364
+    }
+  ],
+  "observed_temporary_provider_state": [
+    {
+      "path": "/home/uctpiaj/work/tmp/sec-extraction-state-_mc98msm",
+      "absent": true
+    }
+  ],
+  "preserved_outputs": "extraction/ and provenance/ in this acceptance packet",
+  "other_threads_runs_touched": false
+}

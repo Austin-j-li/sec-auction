@@ -1,0 +1,15 @@
+# Deployed cockpit: Astra review
+
+On 22 September 2026 at approximately 00:17–00:20 UTC, the lead inspected the deployed application in the persistent visible VM Chrome session. Production research data were not edited.
+
+- The local overview listed all nine deals, their current bases, counts, quote-location aids and mechanical results.
+- Datalink opened at its actual corrected event #68. The event list and complete editor were visible beside the located source quotation. The toolbar identified the verified correction pass as the working base. [Screenshot](deployed-datalink-vm.png).
+- The Review tab exposed thirteen recorded findings and the supporting documents. F9 separately displayed Austin's January-round ruling, the attributed prior lead-verified correction and an unassessed current review. Its March-solicitation evidence link located one matching source passage on printed page 27.
+- The public URL opened through the VM browser's existing authenticated session. The header showed **austin — Edit access**, and the overview showed all nine deals. [Initial public screenshot](deployed-overview-public-vm.png). This verifies the existing public session and read path; it does not exercise a new sign-in/OTP challenge or a production save. Unauthenticated HTTP requests separately retain the Cloudflare Access redirect.
+- All production working versions remained at revision zero; `_dev/cockpit/state/workspace.sqlite3` did not exist after this review. The full Python suite passed 110 tests and 38 subtests in 14.00 seconds. `git diff --check` passed.
+
+The visible browser reported one nonfunctional resource error for a missing `/favicon.ico`; no application exception was observed. Editing and authenticated-write policy were exercised by the disposable HTTP/browser tests recorded in [VERIFICATION.md](VERIFICATION.md). No source adjudication was performed during this deployment review.
+
+The initial public overview screenshot predates the later import of the separately completed 58-event Mac-Gray acceptance candidate. That import retains the earlier 55-event correction copy and the pending R01 research decision; its targeted verification is recorded separately.
+
+At 00:28–00:31 UTC, the lead reopened Mac-Gray through the same authenticated public session. The toolbar showed **Latest correction candidate (R01 pending)** at revision zero, with 58 Ledger events, three Rounds, nine Questions and fifteen recorded findings. The version menu retained the earlier verified correction pass and both raw/baseline versions. Review exposed the separate acceptance, R01 decision, analytical-use and coverage documents. Expanding R01 showed the pending choice, no applied treatment, Unreviewed judgment, Not assessed implementation and Unchecked verification. [Public candidate screenshot](deployed-mac-gray-candidate-public-vm.png). A final API check confirmed all nine working revisions remained zero and the production SQLite database was still absent. `git diff --check` passed after the handoff merge.

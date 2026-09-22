@@ -1,0 +1,42 @@
+{
+  "run_at": "2026-09-22T00:15:11.655Z",
+  "mode": "copied real inputs in isolated read-only localhost server",
+  "original_workbook_sha256": "499d2f2259f10bcb3895a08538bcbf4f686c55a4d568c0a6ded9096ee9449358",
+  "original_source_sha256": "437e0e7a76ea1326ddfcc81c2b287b2b15354752ae1bab6798b02a014ff7d4d3",
+  "raw_rows": 67,
+  "selected_late_row": 67,
+  "results": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "label": "desktop"
+      },
+      "selected_row": 67,
+      "late_event_visible": true,
+      "editor_heading": "#67 Merger announced",
+      "filing_blocks": 2502,
+      "horizontal": {
+        "width": 1440,
+        "scrollWidth": 1440
+      },
+      "browser_errors": []
+    },
+    {
+      "viewport": {
+        "width": 1024,
+        "height": 768,
+        "label": "laptop"
+      },
+      "selected_row": 67,
+      "late_event_visible": true,
+      "editor_heading": "#67 Merger announced",
+      "filing_blocks": 2502,
+      "horizontal": {
+        "width": 1024,
+        "scrollWidth": 1024
+      },
+      "browser_errors": []
+    }
+  ]
+}

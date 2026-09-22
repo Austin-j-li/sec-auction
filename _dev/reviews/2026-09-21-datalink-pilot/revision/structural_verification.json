@@ -1,0 +1,34 @@
+{
+  "four_sheets_in_required_order": true,
+  "schema_preserved": true,
+  "sequential_event_numbers": true,
+  "sort_dates_monotonic": true,
+  "round_maps_openings_deadlines_outcomes_finality_unchanged": true,
+  "each_opening_precedes_events_in_round": true,
+  "january29_remains_inferred": true,
+  "inserted_and_split_styles": [
+    {
+      "revised_event": 16,
+      "raw_template_event": 7,
+      "all_22_column_styles_match": true
+    },
+    {
+      "revised_event": 42,
+      "raw_template_event": 45,
+      "all_22_column_styles_match": true
+    },
+    {
+      "revised_event": 23,
+      "raw_template_event": 26,
+      "all_22_column_styles_match": true
+    },
+    {
+      "revised_event": 27,
+      "raw_template_event": 26,
+      "all_22_column_styles_match": true
+    }
+  ],
+  "all_retained_cell_styles_identical": true,
+  "only_layout_change": "Ledger filter range extends from A1:V68 to A1:V69 for the one net additional event.",
+  "native_visual_rendering": "Not performed: no bundled spreadsheet runtime or native Excel/LibreOffice renderer is installed. Resolved cell styles and layout objects were compared; no retained style changed and new rows match existing templates."
+}

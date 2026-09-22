@@ -1,0 +1,23 @@
+{
+  "removed_at": "2026-09-21T22:48:57.610776+00:00",
+  "removed_paths": [
+    "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/datalink-v1132-extract",
+    "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/datalink-v1132-audit",
+    "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/datalink_fresh_audit.py",
+    "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/datalink-audit-launcher.log",
+    "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/datalink_workbook_dump.json",
+    "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/datalink_source_blocks.json",
+    "/home/uctpiaj/work/Projects/sec-extraction/_dev/runs/__pycache__/datalink_fresh_audit.cpython-312.pyc",
+    "/tmp/sec-adams-filing.txt",
+    "/tmp/sec-advent-filing.txt",
+    "/tmp/sec-dental-filing.txt",
+    "/tmp/sec-blue-coat-filing.txt",
+    "/tmp/sec-measurement-filing.txt",
+    "/tmp/sec-interline-filing.txt",
+    "/tmp/sec-datalink-filing.txt"
+  ],
+  "raw_workbook_preserved": "/home/uctpiaj/work/Projects/sec-extraction/extraction/datalink.xlsx",
+  "review_outputs_preserved_byte_for_byte": true,
+  "provenance_and_prompts_recorded": true,
+  "provider_state_cleanup_verified_before_removal": true
+}

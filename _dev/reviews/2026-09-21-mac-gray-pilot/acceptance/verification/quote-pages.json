@@ -1,0 +1,408 @@
+[
+  {
+    "event": 1,
+    "word_count": 25,
+    "cited_page": "27",
+    "found_page": "27",
+    "located": true
+  },
+  {
+    "event": 2,
+    "word_count": 19,
+    "cited_page": "27",
+    "found_page": "27",
+    "located": true
+  },
+  {
+    "event": 3,
+    "word_count": 23,
+    "cited_page": "27",
+    "found_page": "27",
+    "located": true
+  },
+  {
+    "event": 4,
+    "word_count": 18,
+    "cited_page": "27",
+    "found_page": "27",
+    "located": true
+  },
+  {
+    "event": 5,
+    "word_count": 17,
+    "cited_page": "29",
+    "found_page": "29",
+    "located": true
+  },
+  {
+    "event": 6,
+    "word_count": 17,
+    "cited_page": "29",
+    "found_page": "29",
+    "located": true
+  },
+  {
+    "event": 7,
+    "word_count": 21,
+    "cited_page": "29",
+    "found_page": "29",
+    "located": true
+  },
+  {
+    "event": 8,
+    "word_count": 27,
+    "cited_page": "30",
+    "found_page": "30",
+    "located": true
+  },
+  {
+    "event": 9,
+    "word_count": 25,
+    "cited_page": "32",
+    "found_page": "32",
+    "located": true
+  },
+  {
+    "event": 10,
+    "word_count": 21,
+    "cited_page": "31",
+    "found_page": "31",
+    "located": true
+  },
+  {
+    "event": 11,
+    "word_count": 19,
+    "cited_page": "32",
+    "found_page": "32",
+    "located": true
+  },
+  {
+    "event": 12,
+    "word_count": 24,
+    "cited_page": "32",
+    "found_page": "32",
+    "located": true
+  },
+  {
+    "event": 13,
+    "word_count": 25,
+    "cited_page": "32",
+    "found_page": "32",
+    "located": true
+  },
+  {
+    "event": 14,
+    "word_count": 30,
+    "cited_page": "32",
+    "found_page": "32",
+    "located": true
+  },
+  {
+    "event": 15,
+    "word_count": 23,
+    "cited_page": "32",
+    "found_page": "32",
+    "located": true
+  },
+  {
+    "event": 16,
+    "word_count": 22,
+    "cited_page": "32",
+    "found_page": "32",
+    "located": true
+  },
+  {
+    "event": 17,
+    "word_count": 28,
+    "cited_page": "32",
+    "found_page": "32",
+    "located": true
+  },
+  {
+    "event": 18,
+    "word_count": 25,
+    "cited_page": "32",
+    "found_page": "32",
+    "located": true
+  },
+  {
+    "event": 19,
+    "word_count": 27,
+    "cited_page": "33",
+    "found_page": "33",
+    "located": true
+  },
+  {
+    "event": 20,
+    "word_count": 14,
+    "cited_page": "33",
+    "found_page": "33",
+    "located": true
+  },
+  {
+    "event": 21,
+    "word_count": 20,
+    "cited_page": "33",
+    "found_page": "33",
+    "located": true
+  },
+  {
+    "event": 22,
+    "word_count": 10,
+    "cited_page": "32",
+    "found_page": "32",
+    "located": true
+  },
+  {
+    "event": 23,
+    "word_count": 23,
+    "cited_page": "33",
+    "found_page": "33",
+    "located": true
+  },
+  {
+    "event": 24,
+    "word_count": 27,
+    "cited_page": "33",
+    "found_page": "33",
+    "located": true
+  },
+  {
+    "event": 25,
+    "word_count": 30,
+    "cited_page": "34",
+    "found_page": "34",
+    "located": true
+  },
+  {
+    "event": 26,
+    "word_count": 24,
+    "cited_page": "34",
+    "found_page": "34",
+    "located": true
+  },
+  {
+    "event": 27,
+    "word_count": 22,
+    "cited_page": "34",
+    "found_page": "34",
+    "located": true
+  },
+  {
+    "event": 28,
+    "word_count": 24,
+    "cited_page": "34",
+    "found_page": "34",
+    "located": true
+  },
+  {
+    "event": 29,
+    "word_count": 24,
+    "cited_page": "35",
+    "found_page": "35",
+    "located": true
+  },
+  {
+    "event": 30,
+    "word_count": 27,
+    "cited_page": "35",
+    "found_page": "35",
+    "located": true
+  },
+  {
+    "event": 31,
+    "word_count": 29,
+    "cited_page": "35",
+    "found_page": "35",
+    "located": true
+  },
+  {
+    "event": 32,
+    "word_count": 24,
+    "cited_page": "35",
+    "found_page": "35",
+    "located": true
+  },
+  {
+    "event": 33,
+    "word_count": 30,
+    "cited_page": "35",
+    "found_page": "35",
+    "located": true
+  },
+  {
+    "event": 34,
+    "word_count": 27,
+    "cited_page": "35",
+    "found_page": "35",
+    "located": true
+  },
+  {
+    "event": 35,
+    "word_count": 22,
+    "cited_page": "35",
+    "found_page": "35",
+    "located": true
+  },
+  {
+    "event": 36,
+    "word_count": 29,
+    "cited_page": "36",
+    "found_page": "36",
+    "located": true
+  },
+  {
+    "event": 37,
+    "word_count": 22,
+    "cited_page": "36",
+    "found_page": "36",
+    "located": true
+  },
+  {
+    "event": 38,
+    "word_count": 28,
+    "cited_page": "36",
+    "found_page": "36",
+    "located": true
+  },
+  {
+    "event": 39,
+    "word_count": 22,
+    "cited_page": "36",
+    "found_page": "36",
+    "located": true
+  },
+  {
+    "event": 40,
+    "word_count": 30,
+    "cited_page": "36",
+    "found_page": "36",
+    "located": true
+  },
+  {
+    "event": 41,
+    "word_count": 28,
+    "cited_page": "36",
+    "found_page": "36",
+    "located": true
+  },
+  {
+    "event": 42,
+    "word_count": 29,
+    "cited_page": "36",
+    "found_page": "36",
+    "located": true
+  },
+  {
+    "event": 43,
+    "word_count": 17,
+    "cited_page": "37",
+    "found_page": "37",
+    "located": true
+  },
+  {
+    "event": 44,
+    "word_count": 29,
+    "cited_page": "37",
+    "found_page": "37",
+    "located": true
+  },
+  {
+    "event": 45,
+    "word_count": 22,
+    "cited_page": "38",
+    "found_page": "38",
+    "located": true
+  },
+  {
+    "event": 46,
+    "word_count": 20,
+    "cited_page": "38",
+    "found_page": "38",
+    "located": true
+  },
+  {
+    "event": 47,
+    "word_count": 20,
+    "cited_page": "38",
+    "found_page": "38",
+    "located": true
+  },
+  {
+    "event": 48,
+    "word_count": 20,
+    "cited_page": "38",
+    "found_page": "38",
+    "located": true
+  },
+  {
+    "event": 49,
+    "word_count": 9,
+    "cited_page": "38",
+    "found_page": "38",
+    "located": true
+  },
+  {
+    "event": 50,
+    "word_count": 30,
+    "cited_page": "39",
+    "found_page": "39",
+    "located": true
+  },
+  {
+    "event": 51,
+    "word_count": 20,
+    "cited_page": "38",
+    "found_page": "38",
+    "located": true
+  },
+  {
+    "event": 52,
+    "word_count": 24,
+    "cited_page": "40",
+    "found_page": "40",
+    "located": true
+  },
+  {
+    "event": 53,
+    "word_count": 18,
+    "cited_page": "41",
+    "found_page": "41",
+    "located": true
+  },
+  {
+    "event": 54,
+    "word_count": 27,
+    "cited_page": "A-30",
+    "found_page": "A-30",
+    "located": true
+  },
+  {
+    "event": 55,
+    "word_count": 27,
+    "cited_page": "A-30",
+    "found_page": "A-30",
+    "located": true
+  },
+  {
+    "event": 56,
+    "word_count": 27,
+    "cited_page": "A-30",
+    "found_page": "A-30",
+    "located": true
+  },
+  {
+    "event": 57,
+    "word_count": 27,
+    "cited_page": "41",
+    "found_page": "41",
+    "located": true
+  },
+  {
+    "event": 58,
+    "word_count": 17,
+    "cited_page": "41",
+    "found_page": "41",
+    "located": true
+  }
+]

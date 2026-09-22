@@ -1,0 +1,99 @@
+[
+  {
+    "duration_api_ms": 351211,
+    "stop_reason": "end_turn",
+    "session_id": "7554d239-9635-4c45-9197-2ca0ecb041b6",
+    "total_cost_usd": 2.918622000000001,
+    "usage": {
+      "input_tokens": 48,
+      "cache_creation_input_tokens": 115590,
+      "cache_read_input_tokens": 1561214,
+      "output_tokens": 39275,
+      "output_tokens_details": {
+        "thinking_tokens": 17924
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 115590,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1488,
+          "cache_read_input_tokens": 124738,
+          "cache_creation_input_tokens": 5896,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5896
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-opus-5": {
+        "inputTokens": 48,
+        "outputTokens": 39275,
+        "cacheReadInputTokens": 1561214,
+        "cacheCreationInputTokens": 115590,
+        "webSearchRequests": 0,
+        "costUSD": 2.918622000000001,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 17924,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 24,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "I've applied every finding in the brief and saved the revised workbook at `extraction/datalink.xlsx`. It still has the same four sheets, columns and formatting. The ledger now has 68 events instead of 67: four rows were added, two removed, one split in two and one replaced. I checked each finding against the filing before applying it. The instruction is unchanged.\n\n**What changed:**\n- **F1:** The two groups of NDA signers who didn't submit an initial offer now show ranges, 5–7 strategic and 8–9 financial, with the Count cells left blank. Rounds 2 says 13–16 did not submit, and Q5 explains how the numbers add up without counting anyone twice. The exact total of 23 NDA signers is kept.\n- **F2:** The row for the six other initial offers is split into 2 strategic (#23) and 4 financial (#27) bidders, each sorted on its own due date. Price cells are blank, and both Notes keep the combined $8.80–$10.50 range.\n- **F3:** Added Insight's NDA dated 06/14/2016, citing the merger agreement's §5.6(b) on p.A-32 (#16). The remaining strategic signers row drops to 8, so 8 + Party A + Insight = 10.\n- **F4 / F5:** Insight's 11/01 and 11/02 offers are now Conditions = Unclear, because diligence was still open when each was made. On 11/02, All cash is now Not stated. Q7 was rewritten, and the Notes on the August–September offers now call the 30-day and 30–45-day figures signing expectations rather than required diligence periods. Their Conditions values are unchanged.\n- **F6:** Rounds 2 now says 9 new offers plus Party A's standing March offer were considered, 10 bidders in all. I made the same wording fix where Party A's proposal was still called an initial offer: two ledger Notes, Q3, Q4 and the Deal facts Account.\n- **F7:** Removed the separate rows for Party A's 04/12 and Party C's 10/04 confirmations. Their details now sit in the Notes of #9 and #55. Q2 and the Rounds summaries were updated to match.\n- **F9:** The five-round map stays as it was. Q1 now records the researcher's decision to keep the January one-on-one round with Party A as round 1, with its exact start still inferred.\n- **F10:** The 09/28 event is replaced by Insight's 09/26 offer (#50) at the unchanged $12.00, Formal and Heavy, listing the new pre-closing accounting requirements.\n- **L1:** Added Insight's 30-day exclusivity request (#42), dated \"by 09/01/2016\", as requested but not executed.\n- **M1:** The 01/29 round-opening row now comes before the same-day rows (it is #3). All row references, flags and \"Rows affected\" were renumbered to match.\n\n**Checks run:**\n- Every quotation matches the filing text exactly and is 30 words or fewer.\n- Sort dates never go backwards.\n- Every flag matches its Question's \"Rows affected\".\n- Each round has exactly one opening row.\n- Every surviving original row was compared with its revised version, and the only differences are the ones listed above.\n\n`extraction/revision_notes.md` has the action and source for each finding and the full original-to-revised event mapping. It also lists six concerns I left out of the workbook because they fall outside the brief:\n- Insight's initial offer (#21) may be dated too early; the NDA date suggests a later start, but the filing doesn't establish it.\n- The new financial offers row (#27) starts on 06/07, not 06/06, matching the existing rule for Party C and the sponsor rows.\n- Insight's 09/01 and 08/31–09/01 offers (#46, #39) are Heavy only because of a *requested* exclusivity period, which is a judgment call.\n- Party B's Note (#34) says it \"needs debt financing\" while also recording its commitment letters.\n- Rounds 4 doesn't mention that exclusivity lapsed on 09/30.\n- Some Notes run over the 40-word target, as needed to keep required evidence.\n\nI did not re-extract the whole filing or run any external checker.",
+    "ttft_ms": 1528,
+    "type": "result",
+    "duration_ms": 355838,
+    "uuid": "44ef98d4-63c2-4597-9644-0d66be9ba5ae",
+    "ttft_stream_ms": 1226,
+    "time_to_request_ms": 78,
+    "first_content_frame_ms": 1227,
+    "queued_turn_count": 0,
+    "result_index": 0
+  }
+]

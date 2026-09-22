@@ -171,7 +171,8 @@ def prepare(args: argparse.Namespace) -> None:
         "prompt_sha256": hashlib.sha256((prompt + "\n").encode()).hexdigest(),
         "expected_output": f"{args.deal}.xlsx",
         "mode": "revise" if args.revise_from else "extract",
-        "revised_from_sha256": sha256(Path(args.revise_from)) if args.revise_from else None,
+        "revised_from_sha256": sha256(output_dir / f"{args.deal}.xlsx") if args.revise_from else None,
+        "report_sha256": sha256(input_dir / REPORT_NAME) if args.revise_from else None,
         "model": MODELS[args.provider][0],
         "effort": MODELS[args.provider][1],
         "timeout_seconds": TIMEOUT_SECONDS,
@@ -297,15 +298,22 @@ def validate_workbook(run_dir: Path) -> dict[str, object]:
         result["valid_xlsx"] = False
         result["error"] = "expected workbook missing"
         return result
-    result["bytes"] = workbook.stat().st_size
-    result["sha256"] = sha256(workbook)
     try:
         from openpyxl import load_workbook
 
+        result["bytes"] = workbook.stat().st_size
+        result["sha256"] = sha256(workbook)
         opened = load_workbook(workbook, read_only=True, data_only=False)
-        result["sheet_names"] = opened.sheetnames
-        result["valid_xlsx"] = True
-        opened.close()
+        try:
+            # Read-only worksheets are lazy: opening the ZIP alone misses broken sheet XML.
+            for sheet in opened:
+                sheet.reset_dimensions()
+                for _ in sheet.iter_rows(values_only=True):
+                    pass
+            result["sheet_names"] = opened.sheetnames
+            result["valid_xlsx"] = True
+        finally:
+            opened.close()
     except Exception as exc:  # validation evidence, not repair
         result["valid_xlsx"] = False
         result["error"] = f"{type(exc).__name__}: {exc}"
@@ -328,16 +336,58 @@ def preflight(provider: str) -> Path:
 
 
 def prepared_metadata(run_dir: Path, provider: str) -> dict:
+    """Verify the prepared bytes before launch and again inside the worker.
+
+    Old extraction metadata already records all necessary hashes. Old revisions
+    lacking the report hash must be prepared again; silently trusting them would
+    leave a model-visible input outside the integrity check.
+    """
     path = run_dir / "metadata.json"
     if not path.is_file():
         raise SystemExit(f"run is not prepared: {run_dir}")
-    metadata = json.loads(path.read_text(encoding="utf-8"))
-    if metadata["provider"] != provider:
-        raise SystemExit(f"prepared provider is {metadata['provider']}, not {provider}")
+    try:
+        metadata = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        raise SystemExit(f"cannot read prepared metadata: {exc}") from exc
+    if not isinstance(metadata, dict):
+        raise SystemExit("prepared metadata must be a JSON object")
+    if metadata.get("provider") != provider:
+        raise SystemExit(f"prepared provider is {metadata.get('provider')}, not {provider}")
+    if metadata.get("instruction_name") != INSTRUCTION_NAME:
+        raise SystemExit("prepared instruction name does not match the runner")
+    for key in ("filing_name", "expected_output"):
+        name = metadata.get(key)
+        if not isinstance(name, str) or name in ("", ".", "..") or Path(name).name != name:
+            raise SystemExit(f"prepared {key} must be a bare filename")
+    mode = metadata.get("mode", "extract")
+    if mode not in ("extract", "revise"):
+        raise SystemExit(f"unknown prepared mode: {mode}")
+    filing = run_dir / "input" / "raw_filing" / metadata["filing_name"]
+    if not filing.parent.is_dir() or list(filing.parent.iterdir()) != [filing]:
+        raise SystemExit(f"expected exactly the recorded filing in {filing.parent}")
+    inputs = [
+        ("instruction_sha256", run_dir / "input" / INSTRUCTION_NAME),
+        ("filing_sha256", filing),
+        ("prompt_sha256", run_dir / "prompt.txt"),
+    ]
+    if mode == "revise":
+        inputs += [
+            ("revised_from_sha256", run_dir / "extraction" / metadata["expected_output"]),
+            ("report_sha256", run_dir / "input" / REPORT_NAME),
+        ]
+    for key, source in inputs:
+        if not metadata.get(key):
+            raise SystemExit(f"prepared metadata lacks {key}; prepare a new run directory")
+        try:
+            actual = sha256(source)
+        except OSError as exc:
+            raise SystemExit(f"cannot read prepared input {source}: {exc}") from exc
+        if actual != metadata[key]:
+            raise SystemExit(f"prepared input hash mismatch: {source}; prepare a new run directory")
     return metadata
 
 
-def run_worker(args: argparse.Namespace, state: Path) -> None:
+def run_worker(args: argparse.Namespace, state: Path) -> int:
     run_dir = Path(args.run_dir).resolve()
     prepared_metadata(run_dir, args.provider)
     binary = preflight(args.provider)
@@ -409,8 +459,20 @@ def run_worker(args: argparse.Namespace, state: Path) -> None:
     validation = validate_workbook(run_dir)
     write_json(run_dir / "validation.json", validation)
     ended_at = now_iso()
+    if timed_out:
+        outcome, failure_reason = "timed_out", "timeout"
+    elif exit_code != 0:
+        outcome, failure_reason = "failed", "provider_exit"
+    elif not validation.get("exists"):
+        outcome, failure_reason = "failed", "workbook_missing"
+    elif not validation.get("valid_xlsx"):
+        outcome, failure_reason = "failed", "workbook_unreadable"
+    else:
+        outcome, failure_reason = "completed", None
     write_json(run_dir / "status.json", {
-        "state": "timed_out" if timed_out else "completed",
+        # Completion is execution success only; no checker or substantive review runs here.
+        "state": outcome,
+        "failure_reason": failure_reason,
         "worker_pid": os.getpid(),
         "client_pid": proc.pid,
         "started_at": started_at,
@@ -422,11 +484,26 @@ def run_worker(args: argparse.Namespace, state: Path) -> None:
         "workbook_valid_xlsx": validation.get("valid_xlsx", False),
         "usage": run_usage(stdout_path),
     })
+    return 0 if outcome == "completed" else 1
 
 
-def worker(args: argparse.Namespace) -> None:
-    with tempfile.TemporaryDirectory(prefix="sec-extraction-state-") as state:
-        run_worker(args, Path(state))
+def worker(args: argparse.Namespace) -> int:
+    path = Path(args.run_dir).resolve() / "status.json"
+    if path.exists():
+        raise SystemExit(f"refusing to overwrite prior run status: {path.parent}")
+    try:
+        with tempfile.TemporaryDirectory(prefix="sec-extraction-state-") as state:
+            return run_worker(args, Path(state))
+    except (Exception, SystemExit) as exc:
+        # A detached worker must leave an outcome even if input verification or
+        # provider startup fails before the normal completion record is written.
+        previous = json.loads(path.read_text(encoding="utf-8")) if path.is_file() else {}
+        write_json(path, {
+            **previous, "state": "failed", "worker_pid": os.getpid(),
+            "failure_reason": "worker_error", "error": f"{type(exc).__name__}: {exc}",
+            "ended_at": now_iso(),
+        })
+        raise
 
 
 def launch(args: argparse.Namespace) -> None:
@@ -494,4 +571,4 @@ def parser() -> argparse.ArgumentParser:
 
 if __name__ == "__main__":
     parsed = parser().parse_args()
-    parsed.func(parsed)
+    sys.exit(parsed.func(parsed))

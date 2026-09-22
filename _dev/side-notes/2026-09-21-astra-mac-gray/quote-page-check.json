@@ -1,0 +1,598 @@
+{
+  "scope": "All 74 ledger quotations, with normalized whitespace and the checker normalization; occurrence is not semantic support.",
+  "rows": [
+    {
+      "event": 1,
+      "excel_row": 2,
+      "page": "27",
+      "quote": "Mac-Gray engaged BofA Merrill Lynch on October 23, 2012.",
+      "word_count": 9,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 2,
+      "excel_row": 3,
+      "page": "27",
+      "quote": "authorized Mac-Gray management to work with BofA Merrill Lynch to explore transactional opportunities that might be available to Mac-Gray",
+      "word_count": 19,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 3,
+      "excel_row": 4,
+      "page": "27",
+      "quote": "telephoned a representative of Party A to discuss generally a possible business combination between Party A and Mac-Gray.",
+      "word_count": 18,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 4,
+      "excel_row": 5,
+      "page": "27",
+      "quote": "representatives from BofA Merrill Lynch and Goodwin Procter LLP, outside legal counsel to Mac-Gray",
+      "word_count": 14,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 5,
+      "excel_row": 6,
+      "page": "28",
+      "quote": "the Board formed a transaction committee at this meeting",
+      "word_count": 9,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 6,
+      "excel_row": 7,
+      "page": "29",
+      "quote": "On May 15, 2013, Mac-Gray sent a letter to BofA Merrill Lynch terminating their engagement",
+      "word_count": 15,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 7,
+      "excel_row": 8,
+      "page": "29",
+      "quote": "the Board unanimously approved the engagement of BofA Merrill Lynch on the terms discussed at this meeting.",
+      "word_count": 17,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 8,
+      "excel_row": 9,
+      "page": "29",
+      "quote": "Mac-Gray and Moab engaged in a proxy contest leading up to the annual meeting",
+      "word_count": 14,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 9,
+      "excel_row": 10,
+      "page": "30",
+      "quote": "to the extent Moab might have an interest in an equity rollover of all or a portion of Moab's shares",
+      "word_count": 20,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 10,
+      "excel_row": 11,
+      "page": "30",
+      "quote": "offering to purchase Mac-Gray for an all-cash purchase price of $17.00 to $19.00 per share",
+      "word_count": 15,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 11,
+      "excel_row": 12,
+      "page": "30",
+      "quote": "the Board then established the Special Committee, comprised of the six independent and disinterested members of the Board",
+      "word_count": 18,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 12,
+      "excel_row": 13,
+      "page": "31",
+      "quote": "it would be in the best interests of stockholders to consider a potential sale of Mac-Gray",
+      "word_count": 16,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 13,
+      "excel_row": 14,
+      "page": "32",
+      "quote": "50 parties, including CSC and Pamplona, who together we refer to as CSC/Pamplona, and Party A, to solicit potential interest in a transaction with Mac-Gray",
+      "word_count": 25,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 14,
+      "excel_row": 15,
+      "page": "32",
+      "quote": "15 of which were potential strategic buyers and 35 of which were potential financial buyers",
+      "word_count": 15,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 15,
+      "excel_row": 16,
+      "page": "32",
+      "quote": "BofA Merrill Lynch contacted the strategic and financial parties identified at the June 24th Special Committee meeting.",
+      "word_count": 17,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 16,
+      "excel_row": 17,
+      "page": "32",
+      "quote": "they had spoken with representatives of Pamplona, as instructed by the Special Committee, who expressed interest in a transaction",
+      "word_count": 19,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 17,
+      "excel_row": 18,
+      "page": "32",
+      "quote": "BofA Merrill Lynch contacted the strategic and financial parties identified at the June 24th Special Committee meeting.",
+      "word_count": 17,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 18,
+      "excel_row": 19,
+      "page": "32",
+      "quote": "BofA Merrill Lynch contacted the strategic and financial parties identified at the June 24th Special Committee meeting.",
+      "word_count": 17,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 19,
+      "excel_row": 20,
+      "page": "32",
+      "quote": "Party B, entered into a confidentiality and standstill agreement with Mac-Gray and was provided with an informational package",
+      "word_count": 18,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 20,
+      "excel_row": 21,
+      "page": "32",
+      "quote": "Party C entered into a confidentiality and standstill agreement with Mac-Gray and was provided with an informational package",
+      "word_count": 18,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 21,
+      "excel_row": 22,
+      "page": "32",
+      "quote": "with Moab agreeing to exclusively engage with CSC/Pamplona.",
+      "word_count": 8,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 22,
+      "excel_row": 23,
+      "page": "33",
+      "quote": "the Special Committee decided to deny the exclusivity request at this stage of the process",
+      "word_count": 15,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 23,
+      "excel_row": 24,
+      "page": "32",
+      "quote": "they were instructed to submit by July 23, 2013.",
+      "word_count": 9,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 24,
+      "excel_row": 25,
+      "page": "33",
+      "quote": "On July 11, 2013, CSC/Pamplona entered into a confidentiality and standstill agreement with Mac-Gray",
+      "word_count": 14,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 25,
+      "excel_row": 26,
+      "page": "32",
+      "quote": "they were instructed to submit by July 23, 2013.",
+      "word_count": 9,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 26,
+      "excel_row": 27,
+      "page": "33",
+      "quote": "CSC/Pamplona submitted a preliminary indication of interest at an all-cash purchase price of $18.50 per share.",
+      "word_count": 16,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 27,
+      "excel_row": 28,
+      "page": "32",
+      "quote": "18 financial bidders (including Party B and Party C), entered into confidentiality agreements with Mac-Gray",
+      "word_count": 15,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 28,
+      "excel_row": 29,
+      "page": "33",
+      "quote": "Party B submitted a preliminary indication of interest at an all-cash purchase price of $17.00 to $18.00 per share.",
+      "word_count": 19,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 29,
+      "excel_row": 30,
+      "page": "33",
+      "quote": "presented an oral preliminary indication of interest at an all-cash purchase price of $15.00 to $17.00 per share.",
+      "word_count": 18,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 30,
+      "excel_row": 31,
+      "page": "33",
+      "quote": "Mr. Rothenberg should be asked to recuse himself from participating in Board meetings for the duration of the sale process",
+      "word_count": 20,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 31,
+      "excel_row": 32,
+      "page": "34",
+      "quote": "to reach out to each of the four interested bidders and arrange management meetings.",
+      "word_count": 14,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 32,
+      "excel_row": 33,
+      "page": "34",
+      "quote": "Party C submitted a written indication of interest at an all-cash purchase price of $16.00 to $16.50 per share.",
+      "word_count": 19,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 33,
+      "excel_row": 34,
+      "page": "34",
+      "quote": "On August 5, 2013, Party A entered into a confidentiality and standstill agreement with Mac-Gray",
+      "word_count": 15,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 34,
+      "excel_row": 35,
+      "page": "34",
+      "quote": "was provided with an informational package for the purpose of providing Party A with data to potentially improve the terms of the Party A June 21 proposal.",
+      "word_count": 27,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 35,
+      "excel_row": 36,
+      "page": "34",
+      "quote": "Party B and Party C, in light of the fact that they were financial bidders, were given broad access to an electronic data site",
+      "word_count": 24,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 36,
+      "excel_row": 37,
+      "page": "34",
+      "quote": "with access to customer data, including customer locations, being reserved until later in the process",
+      "word_count": 15,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 37,
+      "excel_row": 38,
+      "page": "35",
+      "quote": "sent a letter to each of Party A, Party B, Party C and CSC/Pamplona instructing such bidders to submit revised written proposals",
+      "word_count": 22,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 38,
+      "excel_row": 39,
+      "page": "35",
+      "quote": "submit revised written proposals no later than September 9, 2013",
+      "word_count": 10,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 39,
+      "excel_row": 40,
+      "page": "35",
+      "quote": "submit revised written proposals no later than September 9, 2013",
+      "word_count": 10,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 40,
+      "excel_row": 41,
+      "page": "35",
+      "quote": "CSC/Pamplona submitted a revised indication of interest with an all-cash purchase price of $19.50 per share",
+      "word_count": 16,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 41,
+      "excel_row": 42,
+      "page": "35",
+      "quote": "requesting that CSC/Pamplona and Mac-Gray agree to exclusive negotiations for two weeks.",
+      "word_count": 12,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 42,
+      "excel_row": 43,
+      "page": "35",
+      "quote": "Party B's revised indication of interest did not include a firm financing commitment.",
+      "word_count": 13,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 43,
+      "excel_row": 44,
+      "page": "35",
+      "quote": "Party A submitted a revised indication of interest with an all-cash purchase price of $18.00 to $19.00 per share",
+      "word_count": 19,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 44,
+      "excel_row": 45,
+      "page": "35",
+      "quote": "it was submitting a revised oral indication of interest with an all-cash purchase price of $16.00 to $17.00 per share.",
+      "word_count": 20,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 45,
+      "excel_row": 46,
+      "page": "35",
+      "quote": "he had decided that he was not interested in rolling over any of his shares in any transaction.",
+      "word_count": 18,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 46,
+      "excel_row": 47,
+      "page": "36",
+      "quote": "request final indications of interest by September 18, 2013",
+      "word_count": 9,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 47,
+      "excel_row": 48,
+      "page": "36",
+      "quote": "he expressed his view that Mac-Gray should continue to seek a higher value for stockholders.",
+      "word_count": 15,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 48,
+      "excel_row": 49,
+      "page": "36",
+      "quote": "request final indications of interest by September 18, 2013",
+      "word_count": 9,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 49,
+      "excel_row": 50,
+      "page": "36",
+      "quote": "CSC/Pamplona submitted a proposal for an all-cash purchase price of $20.75 per share",
+      "word_count": 13,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 50,
+      "excel_row": 51,
+      "page": "36",
+      "quote": "requesting that CSC/Pamplona and Mac-Gray agree to engage in exclusive negotiations for two weeks.",
+      "word_count": 14,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 51,
+      "excel_row": 52,
+      "page": "36",
+      "quote": "its previous indication of interest with an all-cash purchase price of $18.00 to $19.00 per share was its best and final offer.",
+      "word_count": 22,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 52,
+      "excel_row": 53,
+      "page": "36",
+      "quote": "Party B also submitted a revised indication of interest with a purchase price that Party B valued at $21.50 per share",
+      "word_count": 21,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 53,
+      "excel_row": 54,
+      "page": "36",
+      "quote": "Party C did not submit a revised indication of interest or reiterate its prior indication of interest",
+      "word_count": 17,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 54,
+      "excel_row": 55,
+      "page": "37",
+      "quote": "the Special Committee would be prepared to move into exclusivity at a price of $21.25 per share",
+      "word_count": 17,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 55,
+      "excel_row": 56,
+      "page": "37",
+      "quote": "subject to CSC/Pamplona increasing their all-cash purchase price to $21.25 per share.",
+      "word_count": 12,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 56,
+      "excel_row": 57,
+      "page": "37",
+      "quote": "willing to increase their all-cash purchase price to $21.25 per share as a last and best offer",
+      "word_count": 17,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 57,
+      "excel_row": 58,
+      "page": "37",
+      "quote": "provided that Mac-Gray agree to a two week period of exclusive negotiations.",
+      "word_count": 12,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 58,
+      "excel_row": 59,
+      "page": "38",
+      "quote": "provide Moab with the opportunity to resume discussions with CSC/Pamplona regarding a possible equity rollover",
+      "word_count": 15,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 59,
+      "excel_row": 60,
+      "page": "38",
+      "quote": "CSC, Pamplona and Mac-Gray executed the exclusivity agreement providing for exclusive negotiations until 5 p.m. ET on October 12, 2013",
+      "word_count": 20,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 60,
+      "excel_row": 61,
+      "page": "38",
+      "quote": "CSC, Pamplona and Mac-Gray executed the exclusivity agreement",
+      "word_count": 8,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 61,
+      "excel_row": 62,
+      "page": "38",
+      "quote": "CSC, Pamplona and Mac-Gray executed the exclusivity agreement",
+      "word_count": 8,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 62,
+      "excel_row": 63,
+      "page": "38",
+      "quote": "Kirkland & Ellis LLP, outside legal counsel to CSC/Pamplona",
+      "word_count": 9,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 63,
+      "excel_row": 64,
+      "page": "39",
+      "quote": "entered into by Mr. MacDonald, his wife and one of his trusts on September 27, 2013",
+      "word_count": 16,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 64,
+      "excel_row": 65,
+      "page": "38",
+      "quote": "CSC and Pamplona were granted full access to the electronic data site and access to certain members of management",
+      "word_count": 19,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 65,
+      "excel_row": 66,
+      "page": "38",
+      "quote": "it was determined that Moab would not rollover any Moab shares in the transaction.",
+      "word_count": 14,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 66,
+      "excel_row": 67,
+      "page": "40",
+      "quote": "Kirkland had requested on behalf of CSC/Pamplona that the exclusivity agreement, due to expire at 5 p.m. ET on October 12, 2013, be extended",
+      "word_count": 24,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 67,
+      "excel_row": 68,
+      "page": "40",
+      "quote": "would not be willing to extend exclusivity unless a lower amount were agreed to.",
+      "word_count": 14,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 68,
+      "excel_row": 69,
+      "page": "41",
+      "quote": "On October 12, 2013, CSC, Pamplona and Mac-Gray executed a letter agreement extending exclusivity until 11:59 p.m. ET on October 15, 2013.",
+      "word_count": 22,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 69,
+      "excel_row": 70,
+      "page": "A-30",
+      "quote": "Except for Morgan Stanley & Co. LLC, Deutsche Bank Securities Inc. and Evercore Group L.L.C.",
+      "word_count": 15,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 70,
+      "excel_row": 71,
+      "page": "A-30",
+      "quote": "Except for Morgan Stanley & Co. LLC, Deutsche Bank Securities Inc. and Evercore Group L.L.C.",
+      "word_count": 15,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 71,
+      "excel_row": 72,
+      "page": "A-30",
+      "quote": "Except for Morgan Stanley & Co. LLC, Deutsche Bank Securities Inc. and Evercore Group L.L.C.",
+      "word_count": 15,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 72,
+      "excel_row": 73,
+      "page": "59",
+      "quote": "an aggregate of $594 million of capital (the Pamplona commitment amount)",
+      "word_count": 11,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 73,
+      "excel_row": 74,
+      "page": "41",
+      "quote": "Later in the day, on October 14, 2013, the merger agreement was executed",
+      "word_count": 13,
+      "occurs_on_cited_page": true
+    },
+    {
+      "event": 74,
+      "excel_row": 75,
+      "page": "41",
+      "quote": "Mac-Gray and CSC jointly announced the execution of the merger agreement.",
+      "word_count": 11,
+      "occurs_on_cited_page": true
+    }
+  ],
+  "all_found_on_cited_pages": true
+}
