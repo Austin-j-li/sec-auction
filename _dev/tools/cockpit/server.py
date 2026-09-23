@@ -25,7 +25,6 @@ from cockpit.workspace import WorkspaceError  # noqa: E402
 
 DEFAULT_PORT = 8778
 READER_EMAILS = {"junyu.li.24@ucl.ac.uk": "austin", "a.gorbenko@ucl.ac.uk": "alex"}
-STATIC_FILES = {"app.js": "text/javascript; charset=utf-8", "style.css": "text/css; charset=utf-8", "index.html": "text/html; charset=utf-8"}
 SLUG_PATH_RE = re.compile(r"/api/(deal|filing)/([^/]*)")
 DEAL_ACTION_RE = re.compile(r"/api/deal/([^/]*)/(history|changes|export|edit)")
 DOCUMENT_RE = re.compile(r"/api/document/([^/]*)/([^/]*)")
@@ -128,22 +127,16 @@ class Handler(BaseHTTPRequestHandler):
                 if not self.cockpit.workspace.available: return self._json({"error": "workspace unavailable"}, 404)
                 return self._json(self.cockpit.workspace.document(unquote(match.group(1)), unquote(match.group(2))))
             if path.startswith("/api/"): return self._json({"error": "not found"}, 404)
-            if path.startswith(("/assets/", "/fonts/")):
-                prefix = "assets" if path.startswith("/assets/") else "fonts"
-                relative = unquote(path.removeprefix(f"/{prefix}/"))
-                dist = HERE / "dist" / prefix
+            if path.startswith("/assets/"):
+                relative = unquote(path.removeprefix("/assets/"))
+                dist = HERE / "dist" / "assets"
                 file = (dist / relative).resolve()
                 if dist.resolve() not in file.parents or not file.is_file(): return self._json({"error": "not found"}, 404)
                 return self._send(file.read_bytes(), mimetypes.guess_type(file.name)[0] or "application/octet-stream")
-            if path.startswith("/static/"):
-                name = path.removeprefix("/static/")
-                file = HERE / name
-                if name not in STATIC_FILES or not file.is_file(): return self._json({"error": "not found"}, 404)
-                return self._send(file.read_bytes(), STATIC_FILES[name])
             if path in ("/", "/index.html") or PAGE_PATH_RE.fullmatch(path):
                 index = HERE / "dist/index.html"
-                if not index.is_file(): index = HERE / "index.html"
-                return self._send(index.read_bytes(), STATIC_FILES["index.html"])
+                if not index.is_file(): return self._json({"error": "frontend not built: _dev/tools/cockpit/dist/index.html is missing"}, 503)
+                return self._send(index.read_bytes(), "text/html; charset=utf-8")
             return self._json({"error": "not found"}, 404)
         except data.DealNotFound as exc: return self._json({"error": str(exc)}, 404)
         except data.DealUnavailable as exc: return self._json({"error": str(exc)}, 409)

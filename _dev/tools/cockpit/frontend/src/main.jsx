@@ -1,44 +1,31 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { Button, Field, FluentProvider, Input, Select, Spinner, Textarea, webLightTheme } from '@fluentui/react-components';
-import { ArrowClockwiseIcon, ArrowDownIcon, ArrowLeftIcon, ArrowRightIcon, ArrowUpIcon, CaretDownIcon, DownloadSimpleIcon, FloppyDiskIcon, ListIcon, PlusIcon, TrashIcon, WarningCircleIcon, XIcon } from '@phosphor-icons/react';
+import { Button, Field, FluentProvider, Input, Select } from '@fluentui/react-components';
+import { ArrowLeftIcon, DownloadSimpleIcon, FloppyDiskIcon, LockSimpleIcon, XIcon } from '@phosphor-icons/react';
 import gsap from 'gsap';
 import Filing from './Filing';
 import SplitPane from './SplitPane';
 import TabScroller from './TabScroller';
+import Overview from './Overview';
+import { compact, LedgerTab, SheetTab } from './Records';
+import { ChangesTab, DocumentText, friendlyDate, HistoryTab, ReviewTab } from './Review';
+import { Dot, Loading, Message } from './ui';
+import { cockpitTheme } from './theme';
 import { count, json, recordValues, rowId, saveDeal, sheetColumns, sheetRows, text } from './api';
 import './style.css';
 
 const SHEETS = { ledger: 'Deal ledger', rounds: 'Rounds', questions: 'Questions', facts: 'Deal facts' };
 const TABS = [['ledger', 'Ledger'], ['rounds', 'Rounds'], ['questions', 'Questions'], ['facts', 'Deal facts'], ['review', 'Review'], ['changes', 'Changes'], ['history', 'History']];
-const LONG_FIELDS = new Set(['Note', 'Quote and page', 'Reviewer note', 'Question', 'Recommended answer', 'Why, with page', 'Rows affected', 'What changes if answered differently', 'How opened', 'Who was in', 'Due dates', 'Deadline outcome', 'Bids received', 'How it ended', 'Value']);
-const DATE_FIELDS = new Set(['Sort date', 'Date from', 'Date to', 'Opened']);
-const NUMERIC_FIELDS = new Set(['#', 'Process', 'Count', 'Price low', 'Price high']);
 const EMPTY = { user: '', can_edit: false, csrf_token: '' };
+const NO_FIELDS = new Set();
 
 function routeFromLocation() {
   const match = location.pathname.match(/^\/deal\/([a-z0-9][a-z0-9-]*)\/?$/);
   return match ? { slug: match[1] } : { slug: null };
 }
 function clone(value) { return structuredClone(value); }
-function labelStatus(value) { return text(value).replaceAll('_', ' '); }
-function compact(value, length = 118) { const s = text(value); return s.length > length ? `${s.slice(0, length - 1)}…` : s; }
-function revealSelectedListItem(container, selector, horizontalChild = null) {
-  const target = container?.querySelector(selector);
-  if (!container || !target) return;
-  if (container.parentElement?.classList.contains('split-horizontal')) {
-    const scroller = horizontalChild ? container.querySelector(horizontalChild) : container;
-    if (!scroller) return;
-    const item = target.getBoundingClientRect(), view = scroller.getBoundingClientRect();
-    if (item.left < view.left + 12) scroller.scrollLeft += item.left - view.left - 12;
-    else if (item.right > view.right - 12) scroller.scrollLeft += item.right - view.right + 12;
-  } else {
-    const item = target.getBoundingClientRect(), view = container.getBoundingClientRect();
-    if (item.top < view.top + 12 || item.bottom > view.bottom - 12) container.scrollTop += item.top - view.top - Math.min(90, container.clientHeight * 0.22);
-  }
-}
-function friendlyDate(value) { if (!value) return ''; const d = new Date(value); return Number.isNaN(d.getTime()) ? text(value) : d.toLocaleString(); }
 function confirmLoss() { return window.confirm('You have unsaved edits. Discard them and leave this view?'); }
+function failure(title, err) { return { title, detail: err?.message || text(err) }; }
 
 function App() {
   const [route, setRoute] = useState(routeFromLocation);
@@ -47,8 +34,9 @@ function App() {
   const [filing, setFiling] = useState(null);
   const [session, setSession] = useState(EMPTY);
   const [loading, setLoading] = useState(false);
+  const [versionLoading, setVersionLoading] = useState(false);
   const [filingLoading, setFilingLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState(null);
   const [filingError, setFilingError] = useState('');
   const [saveState, setSaveState] = useState('');
   const [ops, setOps] = useState([]);
@@ -75,24 +63,30 @@ function App() {
   const modalReturnFocus = useRef(null);
   const routeSerial = useRef(0);
   const filingCache = useRef(new Map());
+  const loadedSlug = useRef(null);
+  const reviewTouched = useRef(new Map());
+  const findingBase = useRef(new Map());
   const dirty = ops.length > 0;
-  const editable = Boolean(session.can_edit && deal?.workspace?.editable && saveState !== 'saving');
+  const editable = Boolean(session.can_edit && deal?.workspace?.editable && saveState !== 'saving' && !versionLoading);
   const slug = route.slug;
 
-  useEffect(() => { json('/api/session').then(setSession).catch(err => setError(`Session: ${err.message}`)); }, []);
+  useEffect(() => { json('/api/session').then(setSession).catch(err => setError(failure('Your session could not be loaded.', err))); }, []);
   useEffect(() => {
     const listener = event => { if (dirty) { event.preventDefault(); event.returnValue = ''; } };
     window.addEventListener('beforeunload', listener);
     return () => window.removeEventListener('beforeunload', listener);
   }, [dirty]);
   useEffect(() => {
-    const listener = () => { if (saveState === 'saving' || (dirty && !confirmLoss())) { history.pushState(null, '', slug ? `/deal/${slug}${location.hash}` : '/'); return; } setRoute(routeFromLocation()); };
+    const listener = () => {
+      if (saveState === 'saving' || (dirty && !confirmLoss())) { history.pushState(null, '', slug ? `/deal/${slug}${location.hash}` : '/'); return; }
+      setRoute(routeFromLocation());
+    };
     window.addEventListener('popstate', listener);
     return () => window.removeEventListener('popstate', listener);
   }, [dirty, slug, saveState]);
   useEffect(() => {
     const listener = event => {
-      if (!deal || event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey || event.target?.closest?.('[role="separator"]') || /^(INPUT|TEXTAREA|SELECT)$/.test(event.target?.tagName || '')) return;
+      if (!deal || deletePrompt || documentOpen || event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey || event.target?.closest?.('[role="separator"]') || /^(INPUT|TEXTAREA|SELECT)$/.test(event.target?.tagName || '')) return;
       if (event.key === 'j' || event.key === 'ArrowDown') { event.preventDefault(); stepRow(1); }
       if (event.key === 'k' || event.key === 'ArrowUp') { event.preventDefault(); stepRow(-1); }
     };
@@ -101,7 +95,7 @@ function App() {
   });
   useEffect(() => {
     if (!saveFlash.current || saveState !== 'saved' || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const tween = gsap.fromTo(saveFlash.current, { opacity: 0, y: -4 }, { opacity: 1, y: 0, duration: 0.28, ease: 'power2.out' });
+    const tween = gsap.fromTo(saveFlash.current, { opacity: 0 }, { opacity: 1, duration: 0.24, ease: 'power2.out' });
     return () => tween.kill();
   }, [saveState]);
   useEffect(() => {
@@ -119,6 +113,25 @@ function App() {
     window.addEventListener('keydown', onKeyDown);
     return () => { window.removeEventListener('keydown', onKeyDown); modalReturnFocus.current?.focus?.(); };
   }, [Boolean(deletePrompt), Boolean(documentOpen)]);
+  useEffect(() => { if (!ops.length) { reviewTouched.current = new Map(); findingBase.current = new Map(); } }, [ops.length]);
+
+  // Which fields carry a staged value, by sheet and record: drives the per-field "edited" marker.
+  const dirtyFields = useMemo(() => {
+    const map = new Map();
+    const add = (key, fields) => { if (!map.has(key)) map.set(key, new Set()); fields.forEach(field => map.get(key).add(field)); };
+    for (const op of ops) {
+      if (op.type === 'update') add(`${op.sheet}|${op.uid}`, Object.keys(op.values || {}));
+      if (op.type === 'insert') add(`${op.sheet}|${op.client_uid}`, Object.entries(op.values || {}).filter(([, value]) => text(value) !== '').map(([field]) => field));
+    }
+    return map;
+  }, [ops]);
+  const dirtyFor = useCallback((sheet, uid) => dirtyFields.get(`${sheet}|${uid}`) || NO_FIELDS, [dirtyFields]);
+  const reviewDirty = useCallback(uid => (ops.some(op => op.type === 'review' && op.uid === uid) && reviewTouched.current.get(uid)) || NO_FIELDS, [ops]);
+  // A finding field is edited when its staged value differs from the value loaded before the first edit.
+  const findingDirty = useCallback(id => {
+    const base = findingBase.current.get(id), op = ops.find(item => item.type === 'finding' && item.id === id);
+    return base && op ? new Set(Object.keys(base).filter(field => op[field] !== base[field])) : NO_FIELDS;
+  }, [ops]);
 
   function navigate(path) {
     if (saveState === 'saving') return;
@@ -128,7 +141,11 @@ function App() {
   }
   const load = useCallback(async (currentSlug, currentVersion = 'working') => {
     const token = ++routeSerial.current;
-    setLoading(true); setError(''); setConflict(false); setDeal(null); setOps([]); setSaveState(''); setHistoryData(null); setChangesData(null); setFindingOpen(null); setDocumentOpen(null);
+    // A version switch keeps the current deal (and the filing pane) mounted; only the workspace waits.
+    const sameDeal = Boolean(currentSlug) && loadedSlug.current === currentSlug;
+    setError(null); setConflict(false); setOps([]); setSaveState(''); setHistoryData(null); setChangesData(null); setFindingOpen(null); setDocumentOpen(null);
+    if (sameDeal) setVersionLoading(true);
+    else { setLoading(true); setDeal(null); loadedSlug.current = null; }
     try {
       if (!currentSlug) {
         const list = await json('/api/deals');
@@ -136,6 +153,7 @@ function App() {
       } else {
         const data = await json(`/api/deal/${currentSlug}?version=${encodeURIComponent(currentVersion)}`);
         if (token !== routeSerial.current) return;
+        loadedSlug.current = currentSlug;
         setDeal(data); setVersion(currentVersion); setTab('ledger');
         const hash = location.hash.match(/^#row-(.+)$/);
         const target = hash && data.ledger?.rows?.find(row => rowId(row) === decodeURIComponent(hash[1]));
@@ -146,18 +164,27 @@ function App() {
         if (cached) { setFiling(cached); setFilingLoading(false); }
         else {
           setFiling(null); setFilingLoading(true); setFilingError('');
-          json(`/api/filing/${currentSlug}`).then(source => { filingCache.current.set(currentSlug, source); if (token === routeSerial.current) setFiling(source); }).catch(err => { if (token === routeSerial.current) setFilingError(err.message); }).finally(() => { if (token === routeSerial.current) setFilingLoading(false); });
+          json(`/api/filing/${currentSlug}`)
+            .then(source => { filingCache.current.set(currentSlug, source); if (token === routeSerial.current) setFiling(source); })
+            .catch(err => { if (token === routeSerial.current) setFilingError(err.message); })
+            .finally(() => { if (token === routeSerial.current) setFilingLoading(false); });
         }
       }
-    } catch (err) { if (token === routeSerial.current) setError(err.message); }
-    finally { if (token === routeSerial.current) setLoading(false); }
+    } catch (err) {
+      if (token === routeSerial.current) setError(failure(currentSlug ? 'This deal could not be loaded.' : 'The deal list could not be loaded.', err));
+    } finally {
+      if (token === routeSerial.current) { setLoading(false); setVersionLoading(false); }
+    }
   }, []);
   useEffect(() => { load(slug, 'working'); }, [slug, load]);
   useEffect(() => {
     if (!slug || !deal || !['changes', 'history'].includes(tab)) return;
     let alive = true;
     setAuxLoading(true);
-    json(`/api/deal/${slug}/${tab}`).then(data => { if (alive) { if (tab === 'changes') setChangesData(data); else setHistoryData(data); } }).catch(err => { if (alive) setError(err.message); }).finally(() => { if (alive) setAuxLoading(false); });
+    json(`/api/deal/${slug}/${tab}`)
+      .then(data => { if (alive) { if (tab === 'changes') setChangesData(data); else setHistoryData(data); } })
+      .catch(err => { if (alive) setError(failure(tab === 'changes' ? 'Changes could not be loaded.' : 'History could not be loaded.', err)); })
+      .finally(() => { if (alive) setAuxLoading(false); });
     return () => { alive = false; };
   }, [slug, deal?.workspace?.revision, tab]);
 
@@ -234,7 +261,9 @@ function App() {
   function requestDelete(sheet, uid) {
     const row = sheetRows(deal, sheet).find(item => item.uid === uid);
     if (!row || !editable) return;
-    setDeletePrompt({ sheet, uid, hasReferences: Boolean(row.has_references), label: sheet === 'Deal ledger' ? `#${rowId(row)} ${compact(row.cells?.Event, 50)}` : sheet === 'Deal facts' ? row.field : compact(row.cells?.Q || row.cells?.Question || row.cells?.Round, 70), replacement: '' });
+    const idLabel = sheet === 'Deal ledger' ? `#${rowId(row)}` : '';
+    const label = sheet === 'Deal ledger' ? compact(row.cells?.Event, 50) : sheet === 'Deal facts' ? row.field : compact(row.cells?.Q || row.cells?.Question || row.cells?.Round, 70);
+    setDeletePrompt({ sheet, uid, hasReferences: Boolean(row.has_references), idLabel, label, replacement: '' });
   }
   function deleteRow() {
     if (!deletePrompt) return;
@@ -254,25 +283,39 @@ function App() {
     setDeletePrompt(null); setSaveState('');
   }
   function setReview(uid, status, note) {
+    const previous = deal.row_review?.[uid] || { status: 'unreviewed', note: '' };
+    const touched = new Set(reviewTouched.current.get(uid) || []);
+    if ((previous.status || 'unreviewed') !== status) touched.add('status');
+    if ((previous.note || '') !== note) touched.add('note');
+    reviewTouched.current.set(uid, touched);
     setDeal(current => { const next = clone(current); next.row_review = { ...next.row_review, [uid]: { ...(next.row_review?.[uid] || {}), status, note } }; return next; });
-    setOps(previous => {
-      const next = clone(previous), existing = next.find(op => op.type === 'review' && op.uid === uid);
+    setOps(previousOps => {
+      const next = clone(previousOps), existing = next.find(op => op.type === 'review' && op.uid === uid);
       if (existing) Object.assign(existing, { status, note }); else next.push({ type: 'review', uid, status, note });
       return next;
-    }); setSaveState('');
+    });
+    setSaveState('');
   }
   function setFinding(id, field, value) {
+    if (!findingBase.current.has(id)) {
+      const finding = deal.findings.find(item => item.id === id);
+      findingBase.current.set(id, { judgment: finding.judgment || 'unreviewed', implementation: finding.implementation || 'unassessed', verification: finding.verification || 'unchecked', note: finding.note || '' });
+    }
     setDeal(current => { const next = clone(current), finding = next.findings?.find(item => item.id === id); if (finding) finding[field] = value; return next; });
     setOps(previous => {
       const next = clone(previous), existing = next.find(op => op.type === 'finding' && op.id === id);
       if (existing) existing[field] = value;
-      else { const finding = deal.findings.find(item => item.id === id); next.push({ type: 'finding', id, judgment: finding.judgment || 'unreviewed', implementation: finding.implementation || 'unassessed', verification: finding.verification || 'unchecked', note: finding.note || '', [field]: value }); }
+      else {
+        const finding = deal.findings.find(item => item.id === id);
+        next.push({ type: 'finding', id, judgment: finding.judgment || 'unreviewed', implementation: finding.implementation || 'unassessed', verification: finding.verification || 'unchecked', note: finding.note || '', [field]: value });
+      }
       return next;
-    }); setSaveState('');
+    });
+    setSaveState('');
   }
   async function save() {
     if (!dirty || !editable || saveState === 'saving' || conflict) return;
-    setSaveState('saving'); setError('');
+    setSaveState('saving'); setError(null);
     const operations = ops.map(op => ({ ...op }));
     try {
       const result = await saveDeal(slug, session, { revision: deal.workspace.revision, base_sha256: deal.workspace.base_sha256, reason: reason.trim() || 'Cockpit edit', operations });
@@ -286,7 +329,10 @@ function App() {
       setDeal(result); setOps([]); setReason(''); setSaveState('saved'); setConflict(false); setChangesData(null); setHistoryData(null);
       setSelectedUid(result.ledger?.rows?.find(row => row.uid === stable)?.uid || result.ledger?.rows?.[localLedgerIndex]?.uid || result.ledger?.rows?.find(row => rowId(row) === rowId(selectedRow))?.uid || result.ledger?.rows?.[0]?.uid || null);
       setSelectedBySheet(savedSheetSelection);
-    } catch (err) { setError(err.message); setConflict(err.status === 409); setSaveState('error'); }
+    } catch (err) {
+      setError(err.status === 409 ? failure('Another editor saved a newer revision. Your unsaved edits remain in this browser.', err) : failure('Your changes could not be saved.', err));
+      setConflict(err.status === 409); setSaveState('error');
+    }
   }
   function downloadDraft() {
     const draft = { deal: slug, based_on_revision: deal.workspace.revision, base_sha256: deal.workspace.base_sha256, reason, operations: ops };
@@ -299,13 +345,16 @@ function App() {
     if (!editable) return;
     if (dirty && !confirmLoss()) return;
     if (!window.confirm(`Restore revision ${revision} as a new working revision? The current version remains in history.`)) return;
-    setError(''); setSaveState('saving');
+    setError(null); setSaveState('saving');
     try {
       const result = await saveDeal(slug, session, { revision: deal.workspace.revision, base_sha256: deal.workspace.base_sha256, reason: `Restore revision ${revision}`, operations: [{ type: 'restore', target_revision: revision }] });
       setDeal(result); setOps([]); setHistoryData(null); setChangesData(null); setSaveState('saved');
       setSelectedUid(result.ledger?.rows?.some(row => row.uid === selectedUid) ? selectedUid : result.ledger?.rows?.[0]?.uid || null);
       setSelectedBySheet({});
-    } catch (err) { setError(err.message); setConflict(err.status === 409); setSaveState('error'); }
+    } catch (err) {
+      setError(err.status === 409 ? failure('Another editor saved a newer revision. Your unsaved edits remain in this browser.', err) : failure('The revision could not be restored.', err));
+      setConflict(err.status === 409); setSaveState('error');
+    }
   }
   async function openDocument(item) {
     setDocumentOpen(item); setDocumentData(null); setDocumentError(''); setDocLoading(true);
@@ -316,7 +365,7 @@ function App() {
   function chooseQuote(selection) {
     if (!editable) return;
     const row = deal.ledger?.rows?.find(item => item.uid === selectedUid);
-    if (!row) { setError('Select a ledger event before using filing text.'); return; }
+    if (!row) { setError({ title: 'Select a ledger event before using filing text.' }); return; }
     const quote = selection.quote.replace(/\s+/g, ' ').trim();
     editValue('Deal ledger', row.uid, 'Quote and page', `“${quote}”${selection.pageLabel ? ` (${selection.pageLabel})` : ''}`);
     setMobilePane('workspace');
@@ -330,105 +379,150 @@ function App() {
     setMobilePane('filing');
   }
 
-  if (!slug) return <><Header onHome={() => navigate('/')} session={session}/><main className="overview-wrap">{loading && <div className="center-state"><Spinner label="Loading deals"/></div>}{error && <Message type="error">{error}</Message>}{deals && <Overview deals={deals} onOpen={s => navigate(`/deal/${s}`)}/>}</main></>;
+  if (!slug) {
+    return <>
+      <Header onHome={() => navigate('/')} session={session}/>
+      <main className="overview-wrap">
+        {loading && <Loading label="Loading deals"/>}
+        {error && <Message type="error" title={error.title} detail={error.detail}/>}
+        {deals && <Overview deals={deals} onOpen={s => navigate(`/deal/${s}`)}/>}
+      </main>
+    </>;
+  }
+
   const ledgerRows = deal?.ledger?.rows || [];
   const selected = ledgerRows.find(row => row.uid === selectedUid);
-  return <><Header onHome={() => navigate('/')} session={session} deal={deal}/>
+  const lastSaved = deal?.workspace?.updated_by ? `Last saved by ${deal.workspace.updated_by}${deal.workspace.updated_at ? ` · ${friendlyDate(deal.workspace.updated_at)}` : ''}` : '';
+  const immutable = deal?.workspace?.selected_version !== 'working';
+  const sublineParts = deal ? [deal.filing?.form_type, deal.filing?.date_filed, ...(immutable
+    ? ['Source version']
+    : [`from ${deal.versions?.find(item => item.id === deal.workspace?.base_version)?.label || deal.workspace?.base_version || 'base'}`, `Revision ${deal.workspace?.revision}`])] : [];
+  const showDock = dirty && session.can_edit && deal?.workspace?.editable;
+  const workState = versionLoading ? { tone: 'muted', label: 'Loading version' }
+    : dirty
+    ? { tone: 'warning', label: `${ops.length} unsaved ${count(ops.length, 'change').split(' ').slice(1).join(' ')}` }
+    : saveState === 'saved' ? { tone: 'success', label: 'Saved' }
+    : editable ? { tone: 'muted', label: 'No unsaved edits' }
+    : { tone: 'muted', label: 'Read only version' };
+
+  return <>
+    <Header onHome={() => navigate('/')} session={session} deal={deal}/>
     <main className="deal-shell">
-      {loading && <div className="center-state"><Spinner label={`Loading ${slug}`}/></div>}
-      {error && <Message type={conflict ? 'warning' : 'error'}>{conflict ? 'Another editor saved a newer revision. Your unsaved edits remain in this browser. ' : ''}{error}{conflict && <span className="conflict-actions"><Button size="small" onClick={downloadDraft}>Download staged edits</Button><Button size="small" onClick={discardAndReload}>Discard edits and load latest</Button></span>}</Message>}
+      {loading && <Loading label={`Loading ${slug}`}/>}
+      {error && <Message type={conflict ? 'warning' : 'error'} title={error.title} detail={error.detail}>
+        {conflict && <span className="message-actions">
+          <Button appearance="secondary" onClick={downloadDraft}>Download staged edits</Button>
+          <Button appearance="secondary" onClick={discardAndReload}>Discard edits and load latest</Button>
+        </span>}
+        {!deal && !loading && <span className="message-actions">
+          <Button appearance="subtle" className="link-button" icon={<ArrowLeftIcon size={16}/>} onClick={() => navigate('/')}>All deals</Button>
+        </span>}
+      </Message>}
       {deal && <>
-        <div className="deal-toolbar">
-          <div className="deal-identity"><button className="back-link" onClick={() => navigate('/')}><ArrowLeftIcon size={17}/> All deals</button><h1>{deal.name || deal.facts?.find(f => f.field === 'Target')?.value || slug}</h1><div className="deal-subline">{deal.filing?.form_type} · {deal.filing?.date_filed} · {deal.workspace?.selected_version === 'working' ? `Working from ${deal.versions?.find(item => item.id === deal.workspace?.base_version)?.label || deal.workspace?.base_version || 'base'} · Revision ${deal.workspace?.revision}` : 'Source version'}</div></div>
-          <div className="toolbar-actions"><label className="version-control">Version <Select aria-label="Version" value={version} onChange={(_, data) => switchVersion(data.value)} disabled={saveState === 'saving'}>{(deal.versions || []).map(item => <option value={item.id} key={item.id}>{item.label || item.id}{item.instruction_version ? ` · ${item.instruction_version}` : ''}</option>)}</Select></label><a className="export-link" href={`/api/deal/${slug}/export?version=${encodeURIComponent(version)}`} download><DownloadSimpleIcon size={18}/> Export Excel</a><Button appearance="primary" icon={<FloppyDiskIcon size={18}/>} disabled={!dirty || !editable || saveState === 'saving' || conflict} onClick={save}>{saveState === 'saving' ? 'Saving…' : 'Save changes'}</Button></div>
-          <div className="save-line"><span className={`work-state ${dirty ? 'unsaved' : ''}`} aria-live="polite">{dirty ? `${ops.length} unsaved ${count(ops.length, 'change').split(' ').slice(1).join(' ')}` : saveState === 'saved' ? 'Saved' : editable ? 'No unsaved edits' : 'Read only version'}</span><span ref={saveFlash} className="save-feedback">{saveState === 'saved' ? 'Revision saved' : ''}</span>{deal.workspace?.updated_by && <span>Last saved by {deal.workspace.updated_by}{deal.workspace.updated_at ? ` · ${friendlyDate(deal.workspace.updated_at)}` : ''}</span>}</div>
-        </div>
-        <div className="mobile-switch" role="group" aria-label="Visible pane"><Button appearance={mobilePane === 'filing' ? 'primary' : 'secondary'} onClick={() => setMobilePane('filing')}>Filing</Button><Button appearance={mobilePane === 'workspace' ? 'primary' : 'secondary'} onClick={() => setMobilePane('workspace')}>Workspace</Button></div>
-        <SplitPane className="workbench" name="Filing and workspace" storageKey="workbench" collapsible defaultSize={width => width * 0.47} minStart={280} minEnd={400}>
-          <div className={`filing-column ${mobilePane === 'filing' ? 'mobile-active' : ''}`}><Filing filing={filing} loading={filingLoading} error={filingError} deal={deal} selectedUid={selectedUid} scrollRequest={filingScrollRequest} searchRequest={filingSearchRequest} onSelectRow={selectRow} onQuoteSelection={editable ? chooseQuote : null}/></div>
-          <section className={`workspace-column ${mobilePane === 'workspace' ? 'mobile-active' : ''}`} aria-label="Deal workspace">
-            <TabScroller activeTab={tab}>{TABS.map(([key, label]) => <button key={key} role="tab" aria-selected={tab === key} className={tab === key ? 'active' : ''} onClick={() => setTab(key)}>{label}{['ledger', 'rounds', 'questions'].includes(key) && <small>{sheetRows(deal, SHEETS[key]).length}</small>}{key === 'review' && deal.findings?.length > 0 && <small>{deal.findings.length}</small>}</button>)}</TabScroller>
-            <div className={`workspace-scroll ${['ledger', 'rounds', 'questions', 'facts'].includes(tab) ? 'editor-scroll' : ''}`} role="tabpanel">
-              {tab === 'ledger' && <LedgerTab deal={deal} selectedUid={selectedUid} onSelect={selectRow} onShowFiling={showRowEvidence} onOpenQuestion={openQuestion} onStep={stepRow} onAdd={addRow} onMove={moveRow} onDelete={requestDelete} onEdit={editValue} onReview={setReview} editable={editable} selection={selected}/>}
-              {['rounds', 'questions', 'facts'].includes(tab) && <SheetTab deal={deal} sheet={SHEETS[tab]} selectedUid={selectedBySheet[SHEETS[tab]]} onSelect={selectOther} onAdd={addRow} onMove={moveRow} onDelete={requestDelete} onEdit={editValue} editable={editable} onJumpRow={selectRow}/>}
-              {tab === 'review' && <ReviewTab deal={deal} editable={editable} open={findingOpen} onToggle={setFindingOpen} onEdit={setFinding} onFindEvidence={findEvidence} onOpenDocument={openDocument}/>}
-              {tab === 'changes' && <ChangesTab data={changesData} loading={auxLoading}/>}
-              {tab === 'history' && <HistoryTab data={historyData} loading={auxLoading} editable={editable} onRestore={restore}/>}
+        <header className="deal-toolbar">
+          <div className="deal-identity">
+            <Button appearance="subtle" className="back-link" icon={<ArrowLeftIcon size={16}/>} onClick={() => navigate('/')}>All deals</Button>
+            <h1>{deal.name || deal.facts?.find(f => f.field === 'Target')?.value || slug}</h1>
+            <div className="deal-subline mono">
+              {sublineParts.map((part, i) => <React.Fragment key={i}>{i > 0 && ' '}<span>{i > 0 && '· '}{part}</span></React.Fragment>)}
             </div>
+          </div>
+          <div className="toolbar-actions">
+            <label className="version-control">
+              <span>Version</span>
+              {immutable && <LockSimpleIcon size={14} className="tone-muted" aria-hidden="true"/>}
+              <Select aria-label="Version" title={immutable ? 'Read only version' : undefined} value={version} onChange={(_, data) => switchVersion(data.value)} disabled={saveState === 'saving'}>
+                {(deal.versions || []).map(item => <option value={item.id} key={item.id}>{item.label || item.id}{item.instruction_version ? ` · ${item.instruction_version}` : ''}</option>)}
+              </Select>
+            </label>
+            <Button as="a" appearance="secondary" className="export-button" href={`/api/deal/${slug}/export?version=${encodeURIComponent(version)}`} download icon={<DownloadSimpleIcon size={16}/>}>Export Excel</Button>
+            <div className="save-line">
+              <span className={`work-state ${dirty ? 'unsaved' : ''}`} aria-live="polite" title={lastSaved || undefined}><Dot tone={workState.tone}/>{workState.label}</span>
+              <span ref={saveFlash} className="save-feedback">{saveState === 'saved' ? 'Revision saved' : ''}</span>
+            </div>
+            <Button appearance="primary" className="save-button" icon={<FloppyDiskIcon size={16}/>} disabled={!dirty || !editable || saveState === 'saving' || conflict} onClick={save}>{saveState === 'saving' ? 'Saving…' : 'Save changes'}</Button>
+          </div>
+        </header>
+        <div className="mobile-switch" role="group" aria-label="Visible pane">
+          <Button appearance={mobilePane === 'filing' ? 'primary' : 'secondary'} aria-pressed={mobilePane === 'filing'} onClick={() => setMobilePane('filing')}>Filing</Button>
+          <Button appearance={mobilePane === 'workspace' ? 'primary' : 'secondary'} aria-pressed={mobilePane === 'workspace'} onClick={() => setMobilePane('workspace')}>Workspace</Button>
+        </div>
+        <SplitPane className="workbench" name="Filing and workspace" storageKey="workbench" collapsible defaultSize={width => width * 0.47} minStart={280} minEnd={400}>
+          <div className={`filing-column ${mobilePane === 'filing' ? 'mobile-active' : ''}`}>
+            <Filing filing={filing} loading={filingLoading} error={filingError} deal={deal} selectedUid={selectedUid} scrollRequest={filingScrollRequest} searchRequest={filingSearchRequest} onSelectRow={selectRow} onQuoteSelection={editable ? chooseQuote : null}/>
+          </div>
+          <section className={`workspace-column ${mobilePane === 'workspace' ? 'mobile-active' : ''} ${showDock ? 'has-dock' : ''}`} aria-label="Deal workspace">
+            <TabScroller activeTab={tab}>
+              {TABS.map(([key, label]) => {
+                const tabCount = ['ledger', 'rounds', 'questions'].includes(key) ? sheetRows(deal, SHEETS[key]).length : key === 'review' && deal.findings?.length > 0 ? deal.findings.length : null;
+                return <button key={key} id={`tab-${key}`} role="tab" aria-selected={tab === key} aria-controls="workspace-panel" tabIndex={tab === key ? 0 : -1} className={tab === key ? 'active' : ''} onClick={() => setTab(key)}>
+                  {label}{tabCount != null && <span className="tab-count mono">{tabCount}</span>}
+                </button>;
+              })}
+            </TabScroller>
+            <div id="workspace-panel" className={`workspace-scroll ${['ledger', 'rounds', 'questions', 'facts'].includes(tab) ? 'editor-scroll' : ''}`} role="tabpanel" aria-labelledby={`tab-${tab}`}>
+              {versionLoading && <Loading label="Loading version"/>}
+              {!versionLoading && <>
+                {tab === 'ledger' && <LedgerTab deal={deal} selectedUid={selectedUid} onSelect={selectRow} onShowFiling={showRowEvidence} onOpenQuestion={openQuestion} onStep={stepRow} onAdd={addRow} onMove={moveRow} onDelete={requestDelete} onEdit={editValue} onReview={setReview} editable={editable} selection={selected} dirtyFor={dirtyFor} reviewDirty={reviewDirty}/>}
+                {['rounds', 'questions', 'facts'].includes(tab) && <SheetTab deal={deal} sheet={SHEETS[tab]} selectedUid={selectedBySheet[SHEETS[tab]]} onSelect={selectOther} onAdd={addRow} onMove={moveRow} onDelete={requestDelete} onEdit={editValue} editable={editable} onJumpRow={selectRow} dirtyFor={dirtyFor}/>}
+                {tab === 'review' && <ReviewTab deal={deal} editable={editable} open={findingOpen} onToggle={setFindingOpen} onEdit={setFinding} dirtyFor={findingDirty} onFindEvidence={findEvidence} onOpenDocument={openDocument}/>}
+                {tab === 'changes' && <ChangesTab data={changesData} loading={auxLoading}/>}
+                {tab === 'history' && <HistoryTab data={historyData} loading={auxLoading} editable={editable} onRestore={restore} lastSaved={lastSaved}/>}
+              </>}
+            </div>
+            {showDock && <div className="save-dock">
+              <Field label="Reason for this revision" hint="Appears in history" orientation="horizontal">
+                <Input value={reason} title="Appears in history" disabled={saveState === 'saving'} onChange={(_, data) => setReason(data.value)} placeholder="Describe the edit"/>
+              </Field>
+              <Button appearance="primary" className="save-button" icon={<FloppyDiskIcon size={16}/>} disabled={saveState === 'saving' || conflict} onClick={save}>Save {count(ops.length, 'change')}</Button>
+            </div>}
           </section>
         </SplitPane>
-        {dirty && session.can_edit && deal?.workspace?.editable && <div className="save-dock"><Field label="Reason for this revision" hint="Appears in history"><Input value={reason} disabled={saveState === 'saving'} onChange={(_, data) => setReason(data.value)} placeholder="Describe the edit"/></Field><Button appearance="primary" icon={<FloppyDiskIcon size={17}/>} disabled={saveState === 'saving' || conflict} onClick={save}>Save {count(ops.length, 'change')}</Button></div>}
       </>}
     </main>
-    {deletePrompt && <div className="modal-backdrop" role="presentation"><div className="modal" ref={modalRef} role="dialog" aria-modal="true" aria-label="Delete record"><div className="modal-head"><h2>Delete {deletePrompt.label}?</h2><button onClick={() => setDeletePrompt(null)} aria-label="Close"><XIcon size={20}/></button></div><p>This deletion is staged until you save. The record can be recovered from history after saving.</p>{deletePrompt.sheet === 'Deal ledger' && deletePrompt.hasReferences && <Field label="Replacement event" hint="This event has explicit references. Choose the event they should point to before deleting."><Select value={deletePrompt.replacement} onChange={(_, data) => setDeletePrompt(value => ({ ...value, replacement: data.value }))}><option value="">Choose a replacement</option>{ledgerRows.filter(row => row.uid !== deletePrompt.uid).map(row => <option key={row.uid} value={row.uid}>{row.uid.startsWith('new-') ? 'New event' : `#${rowId(row)}`} · {compact(row.cells?.Event, 35)}</option>)}</Select></Field>}<div className="modal-actions"><Button onClick={() => setDeletePrompt(null)}>Cancel</Button><Button appearance="primary" disabled={deletePrompt.hasReferences && !deletePrompt.replacement} onClick={deleteRow}>Stage deletion</Button></div></div></div>}
-    {documentOpen && <div className="modal-backdrop" role="presentation"><div className="modal document-modal" ref={modalRef} role="dialog" aria-modal="true" aria-label="Recorded document"><div className="modal-head"><h2>{documentData?.title || documentOpen.label}</h2><button onClick={() => setDocumentOpen(null)} aria-label="Close"><XIcon size={20}/></button></div>{docLoading ? <Spinner label="Loading document"/> : documentError ? <Message type="error">{documentError}</Message> : <pre>{documentData?.text}</pre>}</div></div>}
+    {deletePrompt && <div className="modal-backdrop" role="presentation">
+      <div className="modal" ref={modalRef} role="dialog" aria-modal="true" aria-label="Delete record">
+        <div className="modal-head">
+          <h2>Delete {deletePrompt.idLabel && <><span className="mono">{deletePrompt.idLabel}</span> </>}{deletePrompt.label}?</h2>
+          <Button appearance="subtle" className="icon-button" onClick={() => setDeletePrompt(null)} aria-label="Close" icon={<XIcon size={16}/>}/>
+        </div>
+        <p>This deletion is staged until you save. The record can be recovered from history after saving.</p>
+        {deletePrompt.sheet === 'Deal ledger' && deletePrompt.hasReferences && <Field label="Replacement event" hint="This event has explicit references. Choose the event they should point to before deleting.">
+          <Select value={deletePrompt.replacement} onChange={(_, data) => setDeletePrompt(value => ({ ...value, replacement: data.value }))}>
+            <option value="">Choose a replacement</option>
+            {ledgerRows.filter(row => row.uid !== deletePrompt.uid).map(row => <option key={row.uid} value={row.uid}>{row.uid.startsWith('new-') ? 'New event' : `#${rowId(row)}`} · {compact(row.cells?.Event, 35)}</option>)}
+          </Select>
+        </Field>}
+        <div className="modal-actions">
+          <Button appearance="secondary" onClick={() => setDeletePrompt(null)}>Cancel</Button>
+          <Button appearance="secondary" className="danger-outline" disabled={deletePrompt.hasReferences && !deletePrompt.replacement} onClick={deleteRow}>Stage deletion</Button>
+        </div>
+      </div>
+    </div>}
+    {documentOpen && <div className="modal-backdrop" role="presentation">
+      <div className="modal document-modal" ref={modalRef} role="dialog" aria-modal="true" aria-label="Recorded document">
+        <div className="modal-head">
+          <h2>{documentData?.title || documentOpen.label}</h2>
+          <Button appearance="subtle" className="icon-button" onClick={() => setDocumentOpen(null)} aria-label="Close" icon={<XIcon size={16}/>}/>
+        </div>
+        {docLoading ? <Loading label="Loading document"/>
+          : documentError ? <Message type="error" title="The document could not be loaded." detail={documentError}/>
+          : <DocumentText value={documentData?.text}/>}
+      </div>
+    </div>}
   </>;
 }
 
-function Header({ onHome, session, deal }) { return <header className="global-header"><button className="wordmark" onClick={onHome}><span className="brand-mark">L</span> Ledger cockpit</button><span className="header-context">{deal ? 'Deal workspace' : 'Deal ledgers'}</span><div className="header-user">{session.user ? <>{session.user}{session.can_edit ? <span className="edit-access">Edit access</span> : <span>Read only</span>}</> : 'Loading session'}</div></header>; }
-function Message({ type, children }) { return <div className={`message ${type}`} role="alert"><WarningCircleIcon size={19}/><div>{children}</div></div>; }
-
-function Overview({ deals, onOpen }) { return <><div className="overview-title"><div><span className="eyebrow">Research workspace</span><h1>Deal ledgers</h1><p>{count(deals.length, 'deal')} available. Open a deal to inspect the filing and edit its working copy.</p></div><span className="overview-total">{deals.length}</span></div><div className="deal-table-wrap"><table className="deal-table"><thead><tr><th>Deal</th><th>Filing</th><th>Working copy</th><th className="number">Events</th><th className="number">Rounds</th><th className="number">Questions</th><th>Source evidence</th><th>Review state</th></tr></thead><tbody>{deals.map(item => <tr key={item.slug} onClick={() => onOpen(item.slug)} tabIndex={0} onKeyDown={event => { if (event.key === 'Enter') onOpen(item.slug); }}><td><strong>{item.name || item.target || item.slug}</strong><small>{item.slug}</small></td><td>{item.form_type || '—'}<small>{item.date_filed || ''}</small></td><td>{item.base_label || item.instruction_version || 'Working'}<small>{item.working_revision != null ? `Revision ${item.working_revision}` : ''}</small></td><td className="number">{item.rows ?? '—'}</td><td className="number">{item.rounds ?? '—'}</td><td className="number">{item.questions ?? '—'}</td><td>{item.quotes_total != null ? `${item.quotes_located ?? 0} / ${item.quotes_total} quotes located` : '—'}<small>Location aid, not validation</small>{item.check && <small>{item.check.errors ?? 0} mechanical errors · {item.check.warnings ?? 0} warnings</small>}</td><td><span className="status-text">{labelStatus(item.review_status || 'unreviewed')}</span>{item.error && <small className="error-text">{item.error}</small>}</td></tr>)}</tbody></table></div>{!deals.length && <div className="empty">No deal workbooks are available yet.</div>}</>; }
-
-function Issues({ issues, pageHint }) { if (!issues?.length && !pageHint) return null; return <div className="issues">{(issues || []).map((issue, i) => <div key={i} className={`issue ${issue.severity || 'info'}`}><strong>{issue.code || issue.severity}</strong> {issue.column && <span>{issue.column} · </span>}{issue.message}</div>)}{pageHint && <div className="issue info">{pageHint}</div>}</div>; }
-function EventSummary({ row, selected, onClick, review }) { const c = row.cells || {}; return <button id={`row-${rowId(row)}`} className={`event-item ${selected ? 'selected' : ''}`} onClick={onClick}><div className="event-line"><span className="event-number">{row.uid.startsWith('new-') ? 'New' : `#${rowId(row)}`}</span><span className="event-date">{c.When || 'Date unstated'}</span><span className="event-review">{review?.status === 'reviewed' ? 'Reviewed' : review?.status === 'needs_decision' ? 'Needs decision' : ''}</span></div><strong>{c.Event || 'Untitled event'}</strong><span className="event-detail">{[c.Who, c.Process && `Process ${c.Process}`, c.Round !== '' && c.Round != null && `Round ${c.Round}`].filter(Boolean).join(' · ')}</span>{row.quote && <span className={`quote-location ${row.quote.located ? '' : 'missing'}`}>{row.quote.located ? 'Source located' : 'Quote not located'}</span>}</button>; }
-function QuestionLinks({ flag, questions, onOpen }) { const ids = [...new Set([...text(flag).matchAll(/\bQ\d+\b/gi)].map(match => match[0].toUpperCase()))]; const linked = ids.map(id => questions.find(question => text(question.id).toUpperCase() === id || text(question.cells?.Q).toUpperCase() === id)).filter(Boolean); return linked.length ? <div className="reference-links"><strong>Linked questions</strong>{linked.map(question => <Button key={question.uid} size="small" aria-label={`Open question ${question.id || question.cells?.Q}`} onClick={() => onOpen(question.uid)}>{question.id || question.cells?.Q} · {compact(question.cells?.Question, 58)}</Button>)}</div> : null; }
-
-function LedgerTab({ deal, selectedUid, onSelect, onShowFiling, onOpenQuestion, onStep, onAdd, onMove, onDelete, onEdit, onReview, editable, selection }) {
-  const rows = deal.ledger?.rows || [], index = rows.findIndex(row => row.uid === selectedUid), row = selection || rows[0], review = row ? deal.row_review?.[row.uid] || { status: 'unreviewed', note: '' } : null;
-  const editorRef = useRef(null);
-  const listRef = useRef(null);
-  useEffect(() => { if (editorRef.current) editorRef.current.scrollTop = 0; }, [row?.uid]);
-  useEffect(() => {
-    const container = listRef.current;
-    if (!container) return;
-    const reveal = () => revealSelectedListItem(container, '.event-item.selected', '.event-list');
-    const frame = requestAnimationFrame(reveal);
-    const observer = new ResizeObserver(reveal);
-    observer.observe(container);
-    return () => { cancelAnimationFrame(frame); observer.disconnect(); };
-  }, [row?.uid]);
-  return <SplitPane className="ledger-layout" name="Event list and editor" storageKey="ledger" mobileStack defaultSize={230} minStart={140} minEnd={360}><div className="record-list" ref={listRef}><div className="section-head"><div><h2>Events</h2><span>{count(rows.length, 'event')}</span></div>{editable && <Button size="small" icon={<PlusIcon size={15}/>} onClick={() => onAdd('Deal ledger')}>Add</Button>}</div><div className="event-list">{rows.length ? rows.map(item => <EventSummary key={item.uid} row={item} selected={item.uid === row?.uid} onClick={() => onSelect(item.uid)} review={deal.row_review?.[item.uid]}/>) : <div className="empty">No events in this ledger. Add the first event to begin.</div>}</div></div><div className="record-editor" ref={editorRef}>{row ? <><div className="editor-head"><div><span className="eyebrow">Selected event</span><h2>{row.uid.startsWith('new-') ? 'New' : `#${rowId(row)}`} {row.cells?.Event || 'event'}</h2><p>{row.cells?.When || 'Date unstated'}{row.cells?.Who ? ` · ${row.cells.Who}` : ''}</p></div><div className="editor-nav"><Button aria-label="Previous event" icon={<ArrowUpIcon size={16}/>} disabled={index <= 0} onClick={() => onStep(-1)}/><Button aria-label="Next event" icon={<ArrowDownIcon size={16}/>} disabled={index < 0 || index >= rows.length - 1} onClick={() => onStep(1)}/></div></div><div className="record-actions">{editable && <><Button size="small" disabled={index <= 0} icon={<ArrowUpIcon size={15}/>} onClick={() => onMove('Deal ledger', row.uid, -1)}>Move up</Button><Button size="small" disabled={index < 0 || index >= rows.length - 1} icon={<ArrowDownIcon size={15}/>} onClick={() => onMove('Deal ledger', row.uid, 1)}>Move down</Button><Button size="small" onClick={() => onAdd('Deal ledger', row.uid)}>Clone to split</Button><Button size="small" icon={<TrashIcon size={15}/>} onClick={() => onDelete('Deal ledger', row.uid)}>Delete</Button></>}</div><div className="source-summary"><strong>Source evidence</strong><span>{row.quote?.located ? `Quote located${row.quote.found_page ? ` on page ${row.quote.found_page}` : ''}${row.quote.occurrences > 1 ? ` · ${row.quote.occurrences} occurrences` : ''}` : row.cells?.['Quote and page'] ? 'Quote not located in filing' : 'No quote recorded'}</span>{row.quote?.located && <Button size="small" onClick={() => onShowFiling(row.uid)}>Show in filing</Button>}</div><Issues issues={row.issues} pageHint={deal.pages_reliable ? row.page_hint : null}/><RecordForm sheet="Deal ledger" columns={deal.ledger.columns} row={row} choices={deal.choices} editable={editable} onEdit={onEdit}/><QuestionLinks flag={row.cells?.Flag} questions={deal.questions?.rows || []} onOpen={onOpenQuestion}/><div className="review-box"><div><h3>Row review</h3><p>Review status records a reader’s judgment; it does not certify that the filing is complete.</p></div><Field label="Status"><Select value={review.status || 'unreviewed'} disabled={!editable} onChange={(_, data) => onReview(row.uid, data.value, review.note || '')}><option value="unreviewed">Unreviewed</option><option value="reviewed">Reviewed</option><option value="needs_decision">Needs decision</option></Select></Field><Field label="Review note"><Textarea value={review.note || ''} disabled={!editable} onChange={(_, data) => onReview(row.uid, review.status || 'unreviewed', data.value)} resize="none" className="resizable-textarea"/></Field></div></> : <div className="empty">Select an event or add a new one.</div>}</div></SplitPane>;
+function Header({ onHome, session, deal }) {
+  const access = !session.user ? { tone: 'warning', label: 'Loading session' } : session.can_edit ? { tone: 'success', label: 'Edit access' } : { tone: 'muted', label: 'Read only' };
+  return <header className="global-header">
+    <Button appearance="subtle" className="wordmark" onClick={onHome}>Ledger cockpit</Button>
+    <span className="header-context">{deal ? 'Deal workspace' : 'Deal ledgers'}</span>
+    <div className="header-user">
+      {session.user && <span className="header-name">{session.user}</span>}
+      <span className="access-state"><Dot tone={access.tone}/>{access.label}</span>
+    </div>
+  </header>;
 }
 
-function RecordForm({ sheet, columns, row, choices, editable, onEdit }) { const values = recordValues(row, sheet); return <div className="field-grid">{columns.map(field => {
-    const rawChoices = choices?.[field] || choices?.[sheet]?.[field];
-    const options = Array.isArray(rawChoices) ? rawChoices : null;
-    const value = text(values[field]);
-    const isDate = DATE_FIELDS.has(field);
-    const isNumber = NUMERIC_FIELDS.has(field) && field !== '#' && !(field === 'Round');
-    const isLong = LONG_FIELDS.has(field) || value.length > 140;
-    const hint = field === 'Count' ? 'Leave blank when the cohort size is uncertain.' : field === 'Sort date' ? 'Excel date used to order events.' : field === 'Quote and page' ? 'Exact source wording and printed page; select filing text to fill.' : undefined;
-    const input = options && (!value || options.includes(value)) ? <Select value={value} disabled={!editable} onChange={(_, data) => onEdit(sheet, row.uid, field, data.value)}><option value="">Blank</option>{options.map(option => <option key={option} value={option}>{option}</option>)}</Select>
-      : isLong ? <Textarea value={value} disabled={!editable} resize="none" className="resizable-textarea" rows={value.length > 350 ? 5 : 3} onChange={(_, data) => onEdit(sheet, row.uid, field, data.value)}/>
-      : <Input type={isDate && /^\d{4}-\d{2}-\d{2}$/.test(value) ? 'date' : 'text'} inputMode={isNumber ? 'decimal' : undefined} value={value} disabled={!editable || (sheet === 'Deal ledger' && field === '#')} onChange={(_, data) => onEdit(sheet, row.uid, field, data.value)}/>;
-    return <Field key={field} label={field} hint={hint} className={`${isLong ? 'span-all' : ''} ${field === 'Quote and page' ? 'evidence-field' : ''}`}>{input}</Field>;
-  })}</div>; }
-
-function SheetTab({ deal, sheet, selectedUid, onSelect, onAdd, onMove, onDelete, onEdit, editable, onJumpRow }) {
-  const rows = sheetRows(deal, sheet), selected = rows.find(row => row.uid === selectedUid) || rows[0], index = rows.findIndex(row => row.uid === selected?.uid), columns = sheetColumns(deal, sheet);
-  const editorRef = useRef(null), listRef = useRef(null);
-  useEffect(() => { if (editorRef.current) editorRef.current.scrollTop = 0; }, [selected?.uid]);
-  useEffect(() => {
-    const container = listRef.current;
-    if (!container) return;
-    const reveal = () => revealSelectedListItem(container, '.sheet-item.selected');
-    const frame = requestAnimationFrame(reveal);
-    const observer = new ResizeObserver(reveal);
-    observer.observe(container);
-    return () => { cancelAnimationFrame(frame); observer.disconnect(); };
-  }, [selected?.uid]);
-  return <div className="other-sheet"><div className="section-head"><div><h2>{sheet}</h2><span>{count(rows.length, sheet === 'Deal facts' ? 'fact' : sheet === 'Questions' ? 'question' : 'round')}</span></div>{editable && <Button icon={<PlusIcon size={16}/>} size="small" onClick={() => onAdd(sheet)}>Add row</Button>}</div><SplitPane className="sheet-body" name={`${sheet} list and editor`} storageKey={`sheet.${sheet.toLowerCase().replaceAll(' ', '-')}`} mobileStack defaultSize={220} minStart={140} minEnd={360}><div className="sheet-list" ref={listRef}>{rows.map(row => { const values = recordValues(row, sheet), title = sheet === 'Deal facts' ? values.Field : sheet === 'Questions' ? values.Q || values.Question : `Process ${values.Process || '—'} · Round ${values.Round || '—'}`; return <button key={row.uid} className={`sheet-item ${row.uid === selected?.uid ? 'selected' : ''}`} onClick={() => onSelect(sheet, row.uid)}><strong>{title || 'New row'}</strong><span>{sheet === 'Deal facts' ? compact(values.Value) : sheet === 'Questions' ? compact(values.Question) : compact(values['How opened'])}</span></button>; })}{!rows.length && <div className="empty">No records on this sheet.</div>}</div><div className="sheet-editor" ref={editorRef}>{selected ? <><div className="editor-head"><h3>{sheet === 'Deal facts' ? selected.field || 'New fact' : sheet === 'Questions' ? selected.cells?.Q || 'New question' : `Round ${selected.cells?.Round || '—'}`}</h3></div><div className="record-actions">{editable && <><Button size="small" disabled={index <= 0} icon={<ArrowUpIcon size={15}/>} onClick={() => onMove(sheet, selected.uid, -1)}>Move up</Button><Button size="small" disabled={index >= rows.length - 1} icon={<ArrowDownIcon size={15}/>} onClick={() => onMove(sheet, selected.uid, 1)}>Move down</Button><Button size="small" icon={<TrashIcon size={15}/>} onClick={() => onDelete(sheet, selected.uid)}>Delete</Button></>}</div><Issues issues={selected.issues}/><RecordForm sheet={sheet} columns={columns} row={selected} choices={deal.choices} editable={editable} onEdit={onEdit}/>{sheet === 'Questions' && selected.cells?.['Rows affected'] && <ReferenceLinks value={selected.cells['Rows affected']} deal={deal} onJumpRow={onJumpRow}/>}</> : <div className="empty">Select a record or add one.</div>}</div></SplitPane></div>; }
-
-function ReferenceLinks({ value, deal, onJumpRow }) { const source = text(value), numbers = new Set(); for (const match of source.matchAll(/#?(\d+)\s*(?:-|–|to)\s*#?(\d+)/g)) { const start = Number(match[1]), end = Number(match[2]); if (end >= start && end - start <= 50) for (let n = start; n <= end; n++) numbers.add(n); } for (const match of source.matchAll(/(?:^|[,;\s])#?(\d+)\b/g)) numbers.add(Number(match[1])); const rows = deal.ledger?.rows?.filter(row => numbers.has(Number(rowId(row)))) || []; return rows.length ? <div className="reference-links"><strong>Referenced events</strong>{rows.map(row => <Button key={row.uid} size="small" onClick={() => onJumpRow(row.uid, true)}>#{rowId(row)} {row.cells?.Event}</Button>)}</div> : null; }
-
-function MechanicalPanel({ deal }) { const check = deal.check || {}, summary = check.summary || {}, warnings = deal.workspace?.reference_warnings || []; const allIssues = [...(deal.ledger?.rows || []).flatMap(row => (row.issues || []).map(issue => ({ ...issue, sheet: 'Deal ledger', row: rowId(row) }))), ...(deal.rounds?.rows || []).flatMap(row => (row.issues || []).map(issue => ({ ...issue, sheet: 'Rounds', row: row.excel_row }))), ...(deal.questions?.rows || []).flatMap(row => (row.issues || []).map(issue => ({ ...issue, sheet: 'Questions', row: rowId(row) }))), ...(check.other_issues || [])]; return <details className="mechanical-panel"><summary>Mechanical check · {summary.errors ?? check.errors ?? 0} errors, {summary.warnings ?? check.warnings ?? 0} warnings · {labelStatus(check.status || 'not checked')}</summary><div className="mechanical-content"><p>Automated checks cover workbook structure and selected consistency rules. They do not establish source completeness or human review.</p>{check.scope_note && <p>{check.scope_note}</p>}{warnings.length > 0 && <div className="reference-warnings"><strong>Reference warnings</strong>{warnings.map((warning, i) => <div key={i}>{warning.message || text(warning)}{warning.question ? ` · ${warning.question}` : ''}</div>)}</div>}{allIssues.length > 0 ? allIssues.map((issue, i) => <div key={i} className={`issue ${issue.severity || 'info'}`}><strong>{issue.sheet || 'Workbook'}{issue.row ? ` · ${issue.row}` : ''} · {issue.code || issue.severity}</strong> {issue.message}</div>) : <p>No mechanical issues listed for this version.</p>}</div></details>; }
-
-function ReviewTab({ deal, editable, open, onToggle, onEdit, onFindEvidence, onOpenDocument }) { const findings = deal.findings || [], documents = deal.documents || []; return <div className="review-tab"><div className="section-head"><div><h2>Review findings</h2><span>{count(findings.length, 'recorded finding')}</span></div></div><p className="section-intro">A finding is a recorded candidate or judgment. Deciding it here does not edit the workbook; a correction needs a separate data edit and verification.</p><MechanicalPanel deal={deal}/>{documents.length > 0 && <div className="documents"><strong>Recorded documents</strong>{documents.map(item => <Button key={item.id} size="small" onClick={() => onOpenDocument(item)}>{item.label}</Button>)}</div>}{findings.length ? findings.map(finding => <article key={finding.id} className="finding"><button className="finding-title" onClick={() => onToggle(open === finding.id ? null : finding.id)} aria-expanded={open === finding.id}><span><strong>{finding.title || finding.id}</strong><small>{[finding.source_label || finding.source_version, finding.rule].filter(Boolean).join(' · ')}</small></span><span className="finding-state">{labelStatus(finding.judgment || 'unreviewed')}<CaretDownIcon size={16}/></span></button>{open === finding.id && <div className="finding-body"><p>{finding.detail}</p>{finding.proposed_change && <div className="finding-proposal"><strong>Recorded reviewer/lead proposal</strong><p>{finding.proposed_change}</p></div>}{finding.recorded_decision && <div className="recorded-decision"><strong>Recorded prior decision by {finding.recorded_decision.actor}</strong><span>{finding.recorded_decision.at}</span><p>{finding.recorded_decision.decision}</p></div>}{finding.recorded_correction && <div className="recorded-decision"><strong>Recorded prior correction{finding.recorded_correction.actor ? ` by ${finding.recorded_correction.actor}` : ""}</strong><span>{[finding.recorded_correction.status && labelStatus(finding.recorded_correction.status), finding.recorded_correction.version, finding.recorded_correction.source_document].filter(Boolean).join(" · ")}</span>{finding.recorded_correction.scope && <p>{finding.recorded_correction.scope}</p>}{finding.recorded_correction.qualification && <p>{finding.recorded_correction.qualification}</p>}</div>}{finding.needs_recheck && <Message type="warning">This finding needs rechecking against the displayed version.</Message>}{finding.evidence?.length > 0 && <div className="finding-evidence"><strong>Recorded evidence</strong>{finding.evidence.map((evidence, index) => <blockquote key={index}>{evidence.quote}<cite>{evidence.page ? `Page ${evidence.page}` : 'Page not recorded'}</cite>{evidence.quote && <Button size="small" onClick={() => onFindEvidence(evidence)}>Find quote in filing</Button>}</blockquote>)}</div>}{finding.source_rows?.length > 0 && <div className="source-rows"><strong>Source row references</strong><span>{finding.source_rows.join(', ')} · These refer to {finding.source_label || finding.source_version || 'the recorded source version'}.</span></div>}<div className="decision-grid"><Field label="Finding judgment"><Select value={finding.judgment || 'unreviewed'} disabled={!editable} onChange={(_, data) => onEdit(finding.id, 'judgment', data.value)}><option value="unreviewed">Unreviewed</option><option value="supported">Supported</option><option value="rejected">Rejected</option><option value="deferred">Deferred</option></Select></Field><Field label="Correction implementation"><Select value={finding.implementation || 'unassessed'} disabled={!editable} onChange={(_, data) => onEdit(finding.id, 'implementation', data.value)}><option value="unassessed">Not assessed</option><option value="not_applied">Not applied</option><option value="applied">Applied</option></Select></Field><Field label="Verification"><Select value={finding.verification || 'unchecked'} disabled={!editable} onChange={(_, data) => onEdit(finding.id, 'verification', data.value)}><option value="unchecked">Unchecked</option><option value="verified">Verified</option></Select></Field></div><Field label="Decision note"><Textarea resize="none" className="resizable-textarea" rows={3} value={finding.note || ''} disabled={!editable} onChange={(_, data) => onEdit(finding.id, 'note', data.value)}/></Field>{finding.actor && <p className="audit-line">Last decision by {finding.actor}{finding.at ? ` · ${friendlyDate(finding.at)}` : ''}</p>}</div>}</article>) : <div className="empty">No recorded findings for this version.</div>}</div>; }
-
-function ChangesTab({ data, loading }) { return <div className="changes-tab"><div className="section-head"><div><h2>Changes from base</h2><span>{data?.base_label ? `Compared with ${data.base_label}` : 'Working copy comparison'}</span></div></div>{loading && <Spinner label="Loading changes"/>}{!loading && !data?.changes?.length && <div className="empty">No differences from this working copy’s base.</div>}{!loading && data?.changes?.map((change, index) => <Change key={index} change={change}/>)}</div>; }
-function formatChangeValue(value) { return typeof value === 'object' ? JSON.stringify(value, null, 2) : text(value); }
-function Change({ change }) { return <div className="change"><div className="change-head"><strong>{change.sheet || 'Record'}{change.record_label ? ` · ${change.record_label}` : change.uid ? ` · ${change.uid}` : ''}{change.field ? ` · ${change.field}` : ''}</strong><span>{labelStatus(change.type)}</span></div>{change.before != null && change.before !== '' && <div><span className="change-label">Before</span><pre>{formatChangeValue(change.before)}</pre></div>}{change.after != null && change.after !== '' && <div><span className="change-label">After</span><pre>{formatChangeValue(change.after)}</pre></div>}</div>; }
-function HistoryTab({ data, loading, editable, onRestore }) { return <div className="history-tab"><div className="section-head"><div><h2>Revision history</h2><span>Restoring creates a new revision and preserves this record.</span></div></div>{loading && <Spinner label="Loading history"/>}{!loading && !data?.history?.length && <div className="empty">No saved revisions yet.</div>}{!loading && data?.history?.map(item => <article className="history-item" key={item.revision}><div className="history-head"><div><strong>Revision {item.revision}</strong><span>{friendlyDate(item.at)} · {item.actor}</span></div>{editable && <Button size="small" icon={<ArrowClockwiseIcon size={16}/>} onClick={() => onRestore(item.revision)}>Restore</Button>}</div><p>{item.reason || 'Saved edit'}</p>{item.summary && <div className="history-summary">{typeof item.summary === 'string' ? item.summary : JSON.stringify(item.summary)}</div>}{item.changes?.length > 0 && <details><summary>{count(item.changes.length, 'change')}</summary>{item.changes.map((change, i) => <Change key={i} change={change}/>)}</details>}</article>)}</div>; }
-
-createRoot(document.getElementById('root')).render(<FluentProvider theme={webLightTheme}><App/></FluentProvider>);
+createRoot(document.getElementById('root')).render(<FluentProvider theme={cockpitTheme} className="cockpit"><App/></FluentProvider>);

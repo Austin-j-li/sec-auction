@@ -12,7 +12,7 @@ import playwright from '/home/uctpiaj/work/vm-browser/node_modules/playwright/in
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const REPO = resolve(HERE, '../../../..');
-const EVIDENCE = resolve(process.env.COCKPIT_BROWSER_EVIDENCE || resolve(REPO, '_dev/reviews/2026-09-21-v1132-cockpit/cockpit-verification'));
+const EVIDENCE = resolve(process.env.COCKPIT_BROWSER_EVIDENCE || '/tmp/cockpit-browser-acceptance');
 const STAGED_DIST = process.env.COCKPIT_TEST_DIST ? resolve(process.env.COCKPIT_TEST_DIST) : null;
 const results = [];
 const screenshots = [];

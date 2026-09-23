@@ -518,13 +518,21 @@ class ServerTests(unittest.TestCase):
             self.assertIn("error", json.loads(body))
             self.assertEqual(headers["Cache-Control"], "no-store")
 
-    def test_pages_and_static(self) -> None:
+    def test_pages_and_assets(self) -> None:
         for path in ("/", "/deal/alpha-deal"):
             status, headers, _ = self.request(path)
             self.assertEqual(status, 200, path)
             self.assertTrue(headers["Content-Type"].startswith("text/html"))
-        self.assertEqual(self.request("/static/server.py")[0], 404)
-        self.assertEqual(self.request("/static/../data.py")[0], 404)
+        for path in ("/static/app.js", "/fonts/x.woff2", "/assets/../server.py", "/assets/%2e%2e/server.py"):
+            self.assertEqual(self.request(path)[0], 404, path)
+
+    def test_missing_frontend_build_is_explicit_error(self) -> None:
+        from unittest import mock
+        real_is_file = Path.is_file
+        with mock.patch.object(Path, "is_file", lambda p: False if p.name == "index.html" and p.parent.name == "dist" else real_is_file(p)):
+            status, _, body = self.request("/")
+        self.assertEqual(status, 503)
+        self.assertIn("not built", json.loads(body)["error"])
 
     def test_other_methods_rejected(self) -> None:
         for method in ("POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD", "TRACE", "PROPFIND", "FOO"):

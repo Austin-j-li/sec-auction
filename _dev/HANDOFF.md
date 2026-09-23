@@ -1,4 +1,4 @@
-# Development handoff — 22 September 2026
+# Development handoff — 23 September 2026
 
 ## Current direction
 
@@ -37,6 +37,7 @@ The nine workbooks total **3 mechanical errors and 161 warnings**. Those are che
 | `_dev/cockpit/state/workspace.sqlite3` | Ignored working revisions and decisions, created on the first save. Preserve it across deployments. |
 | `_dev/tools/cockpit/` | Python API/storage/import tools, React frontend source, built assets and tests. |
 | `_dev/maintenance/2026-09-22-consolidation/` | Exact deletion inventory, preservation checks and consolidation verification. |
+| `_dev/maintenance/2026-09-22-cockpit-redesign/` | Design brief, audit and implementation/review log for the redesign deployed 23 September. |
 | `_dev/maintenance/2026-09-22-doc-refresh/` | Documentation inventory, protected-file baseline, link audit and current-navigation refresh. |
 
 The Grok and Sol comparison worktrees, their local branches, their raw results, the derived three-model packet and the superseded pre-build pipeline proposal are retired. Their contents are hard-deleted, not archived as a competing development tree. Deletion records contain paths and hashes rather than workbook cells or report copies. The former detached `7877` checkout is unregistered and retains only a relocation note: live tool processes still use its directory, so its directory inode is retained without stale project files. The main checkout is the sole development worktree.
@@ -53,7 +54,7 @@ Filing fetch/verification share the selected document and verification pins its 
 
 The delivered build passed 110 Python tests and 38 subtests, three frontend tests, and 46 synthetic browser assertions. The original [acceptance record](reviews/2026-09-21-v1132-cockpit/cockpit-verification/VERIFICATION.md), [deployment receipt](reviews/2026-09-21-v1132-cockpit/cockpit-verification/deployment.json), and [VM review](reviews/2026-09-21-v1132-cockpit/cockpit-verification/VM_REVIEW.md) state their exact boundaries. The later [consolidation verification](maintenance/2026-09-22-consolidation/README.md) reran 99 Python unit tests, 11 HTTP acceptance tests, three frontend tests, the build and post-deletion catalog/live-document checks; all passed. An existing authenticated public session was verified; a fresh sign-in/OTP challenge, real production save and live EDGAR re-verification remain outside that evidence.
 
-The current frontend source and built assets add mouse/keyboard split-pane resizing, mobile list-height resizing, localStorage persistence and two-dimensional multiline-field resizing. On 22 September a read-only loopback check confirmed the running service served the current built HTML, JavaScript and CSS byte-for-byte. The earlier acceptance and consolidation test counts predate these changes; browser resize interaction and the authenticated public route were not retested in this documentation pass. The [cockpit guide](cockpit/README.md) and [build contract](COCKPIT_BUILD.md) describe the current controls and their verification limits.
+The current frontend source and built assets add mouse/keyboard split-pane resizing, mobile list-height resizing, localStorage persistence and two-dimensional multiline-field resizing. On 23 September the "working papers" visual redesign was deployed to `dist/` and the service restarted. The brief, audit and progress log are in `maintenance/2026-09-22-cockpit-redesign/`, and the design is summarised in the "Design" section of the [build contract](COCKPIT_BUILD.md). Against the redesign build, all suites passed: 46/46 synthetic browser assertions (rerun against the deployed `dist/`), resize, responsive, 11 HTTP, 3 vitest and 128 Python unit tests. The authenticated public route was checked only up to its Cloudflare Access redirect. The [cockpit guide](cockpit/README.md) and [build contract](COCKPIT_BUILD.md) describe the current controls and their verification limits.
 
 ## Next work
 

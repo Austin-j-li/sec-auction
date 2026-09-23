@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Button, Input, Spinner } from '@fluentui/react-components';
-import { ArrowDownIcon, ArrowUpIcon, MagnifyingGlassIcon } from '@phosphor-icons/react';
+import { ArrowDownIcon, ArrowUpIcon, MagnifyingGlassIcon, WarningCircleIcon, WarningIcon } from '@phosphor-icons/react';
 import { filingRanges, segments, text } from './api';
+import { Message } from './ui';
 
 export default function Filing({ filing, loading, error, deal, selectedUid, scrollRequest, searchRequest, onSelectRow, onQuoteSelection }) {
   const pane = useRef(null);
@@ -95,26 +96,52 @@ export default function Filing({ filing, loading, error, deal, selectedUid, scro
 
   function renderText(block, index) {
     const pieces = segments(block.text, ranges.get(index) || [], needle, matchesByBlock.get(index) || []);
-    return pieces.map((piece, pieceIndex) => piece.rows.length || piece.search
-      ? <mark key={pieceIndex} className={`${piece.rows.length ? 'quote-mark' : ''} ${piece.rows.includes(selectedIndex) ? 'selected' : ''} ${piece.search ? 'search-mark' : ''}`} data-row-index={piece.rows.join(' ')} data-search-index={piece.search ? matchByPosition.get(`${index}:${piece.from}`) : undefined} onClick={() => piece.rows.length && onSelectRow(rows[piece.rows[0]].uid, true)} title={piece.rows.length ? piece.rows.map(i => `#${text(rows[i]?.id)}`).join(', ') : undefined}>{piece.text}</mark>
-      : <React.Fragment key={pieceIndex}>{piece.text}</React.Fragment>);
+    return pieces.map((piece, pieceIndex) => {
+      if (!piece.rows.length && !piece.search) return <React.Fragment key={pieceIndex}>{piece.text}</React.Fragment>;
+      const searchIndex = piece.search ? matchByPosition.get(`${index}:${piece.from}`) : undefined;
+      const classes = [
+        piece.rows.length && 'quote-mark',
+        piece.rows.includes(selectedIndex) && 'selected',
+        piece.search && 'search-mark',
+        piece.search && searchIndex === Math.min(activeMatch, matches.length - 1) && 'current',
+      ].filter(Boolean).join(' ');
+      return <mark key={pieceIndex} className={classes} data-row-index={piece.rows.join(' ')} data-search-index={searchIndex}
+        onClick={() => piece.rows.length && onSelectRow(rows[piece.rows[0]].uid, true)}
+        title={piece.rows.length ? piece.rows.map(i => `#${text(rows[i]?.id)}`).join(', ') : undefined}>{piece.text}</mark>;
+    });
   }
 
+  const filingMeta = [deal?.filing?.form_type, deal?.filing?.date_filed].filter(Boolean).join(' · ');
   return <section className="filing-pane" aria-label="SEC filing">
     <div className="filing-tools">
-      <div className="filing-caption"><strong>SEC filing</strong><span>{[deal?.filing?.form_type, deal?.filing?.date_filed].filter(Boolean).join(' · ')}</span></div>
-      <div className="filing-search"><Input aria-label="Search filing" contentBefore={<MagnifyingGlassIcon size={16}/>} placeholder="Search filing" value={query} onChange={(_, data) => setQuery(data.value)}/><span className="search-count">{query ? `${matches.length ? activeMatch + 1 : 0} / ${matches.length}` : ''}</span><Button appearance="subtle" icon={<ArrowUpIcon size={16}/>} aria-label="Previous match" disabled={!matches.length} onClick={() => setActiveMatch(i => (i - 1 + matches.length) % matches.length)}/><Button appearance="subtle" icon={<ArrowDownIcon size={16}/>} aria-label="Next match" disabled={!matches.length} onClick={() => setActiveMatch(i => (i + 1) % matches.length)}/></div>
-      <form className="page-jump" onSubmit={jumpPage}><label htmlFor="filing-page">Page</label><Input id="filing-page" size="small" value={page} onChange={(_, data) => { setPage(data.value); setPageError(''); }} placeholder="e.g. 31"/><Button size="small" type="submit" disabled={!page.trim()}>Go</Button></form>
+      <div className="filing-caption"><strong>SEC filing</strong><span className="mono">{filingMeta}</span></div>
+      <div className="filing-search">
+        <Input aria-label="Search filing" contentBefore={<MagnifyingGlassIcon size={16}/>} placeholder="Search filing" value={query} onChange={(_, data) => setQuery(data.value)}/>
+        <span className="search-count mono" aria-live="polite">{query ? `${matches.length ? activeMatch + 1 : 0} / ${matches.length}` : ''}</span>
+        <Button appearance="subtle" className="icon-button" icon={<ArrowUpIcon size={16}/>} aria-label="Previous match" disabled={!matches.length} onClick={() => setActiveMatch(i => (i - 1 + matches.length) % matches.length)}/>
+        <Button appearance="subtle" className="icon-button" icon={<ArrowDownIcon size={16}/>} aria-label="Next match" disabled={!matches.length} onClick={() => setActiveMatch(i => (i + 1) % matches.length)}/>
+      </div>
+      <form className="page-jump" onSubmit={jumpPage}>
+        <label htmlFor="filing-page">Page</label>
+        <Input id="filing-page" input={{ className: 'mono' }} value={page} onChange={(_, data) => { setPage(data.value); setPageError(''); }} placeholder="e.g. 31"/>
+        <Button appearance="secondary" type="submit" disabled={!page.trim()}>Go</Button>
+      </form>
     </div>
-    {pageError && <div className="page-error" role="alert">{pageError}</div>}
-    {selection && onQuoteSelection && <div className="selection-action"><span>{selection.quote.slice(0, 90)}{selection.quote.length > 90 ? '…' : ''}</span><Button size="small" onClick={() => { onQuoteSelection(selection); setSelection(null); }}>Use selected text for quote</Button></div>}
-    {loading && <div className="pane-state"><Spinner label="Loading filing"/></div>}
-    {error && <div className="pane-state error" role="alert">{error}</div>}
+    {pageError && <div className="page-error" role="alert"><WarningCircleIcon size={16} aria-hidden="true"/>{pageError}</div>}
+    {selection && onQuoteSelection && <div className="selection-action">
+      <span>{selection.quote}</span>
+      <Button appearance="primary" onClick={() => { onQuoteSelection(selection); setSelection(null); }}>Use selected text for quote</Button>
+    </div>}
+    {loading && <div className="pane-state"><Spinner size="tiny" label="Loading filing"/></div>}
+    {error && <div className="pane-state"><Message type="error" title="The filing could not be loaded." detail={error}/></div>}
     {!loading && !error && <div className="filing-scroll" ref={pane} onMouseUp={captureSelection} onKeyUp={captureSelection}>
       <div className="filing-paper">
         {blocks.map((block, index) => <React.Fragment key={index}>
-          {pageMap.has(index) && <div className={`page-marker ${deal?.pages_reliable ? '' : 'approximate'}`}>Page {pageMap.get(index)}{deal?.pages_reliable ? '' : ' (approximate)'}</div>}
-          <div data-block={index} className={`filing-block ${block.kind === 'h' ? 'heading' : block.kind === 'row' ? 'table-row' : ''} ${index === deal?.background_block ? 'background-start' : ''}`}>{renderText(block, index)}</div>
+          {pageMap.has(index) && <div className={`page-marker ${deal?.pages_reliable ? '' : 'approximate'}`}>
+            Page <span className="mono">{pageMap.get(index)}</span>
+            {!deal?.pages_reliable && <span className="approximate-note"><WarningIcon size={12} aria-hidden="true"/> (approximate)</span>}
+          </div>}
+          <div data-block={index} tabIndex={block.kind === 'row' ? -1 : undefined} className={`filing-block ${block.kind === 'h' ? 'heading' : block.kind === 'row' ? 'table-row' : ''} ${index === deal?.background_block ? 'background-start' : ''}`}>{renderText(block, index)}</div>
         </React.Fragment>)}
       </div>
     </div>}

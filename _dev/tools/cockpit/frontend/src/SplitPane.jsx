@@ -96,7 +96,7 @@ export default function SplitPane({ className, name, storageKey, defaultSize, mi
   const [first, second] = React.Children.toArray(children);
   return <div ref={root} className={`${className} resizable-split ${compact ? 'split-horizontal' : 'split-vertical'}`} style={{ '--split-size': `${size}px` }}>
     {first}
-    <div className="split-handle" role="separator" tabIndex={hidden ? -1 : 0} aria-label={`Resize ${name}`} aria-orientation={compact ? 'horizontal' : 'vertical'} aria-valuemin={Math.round(minimum)} aria-valuemax={Math.round(maximum)} aria-valuenow={Math.round(size)} title={`Drag to resize ${name}. Double-click to reset. Use arrow keys, Home, or End.`} onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={onPointerUp} onLostPointerCapture={() => { drag.current = null; }} onKeyDown={onKeyDown} onDoubleClick={reset}><span aria-hidden="true"/></div>
+    <div className="split-handle" role="separator" tabIndex={hidden ? -1 : 0} aria-label={`Resize ${name}`} aria-orientation={compact ? 'horizontal' : 'vertical'} aria-valuemin={Math.round(minimum)} aria-valuemax={Math.round(maximum)} aria-valuenow={Math.round(size)} title={`Drag to resize ${name}. Double-click to reset. Use arrow keys, Home, or End.`} onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={onPointerUp} onLostPointerCapture={() => { drag.current = null; }} onKeyDown={onKeyDown} onDoubleClick={reset}/>
     {second}
   </div>;
 }
