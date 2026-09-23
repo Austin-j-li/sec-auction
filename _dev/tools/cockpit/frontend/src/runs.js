@@ -1,0 +1,147 @@
+import { text } from './api';
+import { displayName, shortTime } from './trace';
+
+// Pure helpers for accounts, extraction runs and versions (phase 2).
+
+export const INSTRUCTION_VERSION = 'v1.13.2';
+export const ENGINE_LABEL = 'Claude Opus 5.5';
+export const EFFORTS = ['low', 'medium', 'high', 'xhigh', 'max'];
+export const DEFAULT_EFFORT = 'medium';
+export const DEFAULT_TIMEOUT = 90;
+export const TIMEOUT_RANGE = [10, 360];
+export const ACTIVE_STATES = new Set(['queued', 'preparing', 'running', 'checking', 'importing']);
+export const CANCELLABLE_STATES = new Set(['queued', 'preparing', 'running']);
+export const CONNECT_ACTIVE_STATES = new Set(['queued', 'waiting_for_code', 'completing']);
+export const STATE_LABELS = {
+  queued: 'Queued', preparing: 'Preparing', running: 'Running', checking: 'Checking', importing: 'Importing',
+  completed: 'Completed', failed: 'Failed', timed_out: 'Timed out', cancelled: 'Cancelled',
+};
+export const STATE_TONES = { completed: 'success', failed: 'error', timed_out: 'error', cancelled: 'muted' };
+
+export const isActive = job => ACTIVE_STATES.has(job?.state);
+export const stateTone = state => ACTIVE_STATES.has(state) ? 'warning' : STATE_TONES[state] || 'muted';
+
+// The failed or cancelled outcome of a run, in words. Null for a run that has not failed.
+export function failureText(job) {
+  const reason = job?.failure_reason || (job?.state === 'timed_out' ? 'timed_out' : job?.state === 'cancelled' ? 'cancelled' : null);
+  if (!reason) return job?.state === 'failed' ? 'Failed' : null;
+  const name = displayName(job.actor);
+  switch (reason) {
+    case 'usage_limit': {
+      const resets = job.result?.usage_limit_resets_at;
+      return `${name}’s Claude plan hit its usage limit${resets ? `; it resets ${shortTime(resets)}` : ''}`;
+    }
+    case 'provider_refusal': return 'The model refused';
+    case 'timeout':
+    case 'timed_out': return 'Ran past the time limit';
+    case 'not_connected': return 'No Claude account connected';
+    case 'cancelled': return `Cancelled by ${displayName(job.cancelled_by || job.actor)}`;
+    case 'worker_restart': return 'Interrupted by a server restart';
+    default: return `Failed (${reason})`;
+  }
+}
+
+// "45 s", "12 min 05 s", "1 h 02 min".
+export function formatElapsed(seconds) {
+  if (seconds == null || !Number.isFinite(seconds) || seconds < 0) return '';
+  const total = Math.floor(seconds), h = Math.floor(total / 3600), m = Math.floor((total % 3600) / 60), s = total % 60;
+  const pad = n => String(n).padStart(2, '0');
+  if (h) return `${h} h ${pad(m)} min`;
+  if (m) return `${m} min ${pad(s)} s`;
+  return `${s} s`;
+}
+
+const time = value => { const t = Date.parse(value); return Number.isNaN(t) ? null : t; };
+// Seconds a job has run: ticking from its start while active, else the recorded or measured duration.
+export function jobElapsed(job, now = Date.now()) {
+  const start = time(job?.started_at);
+  if (isActive(job)) return start == null ? null : Math.max(0, (now - start) / 1000);
+  if (Number.isFinite(job?.result?.elapsed_seconds)) return job.result.elapsed_seconds;
+  const end = time(job?.ended_at);
+  return start == null || end == null ? null : Math.max(0, (end - start) / 1000);
+}
+
+// Header badge for a deal's active runs: "Extracting · 2 min 30 s", "Queued", or "2 extractions running".
+export function activeRunLabel(jobs, now = Date.now()) {
+  const active = (jobs || []).filter(isActive);
+  if (active.length === 0) return '';
+  if (active.length > 1) return `${active.length} extractions running`;
+  const [job] = active;
+  if (job.state === 'queued') return 'Extraction queued';
+  const elapsed = formatElapsed(jobElapsed(job, now));
+  return elapsed ? `Extracting · ${elapsed}` : 'Extracting';
+}
+
+// "1.2 M tokens · $3.40" from a runner usage record ({tokens: {...}, cost_usd}); '' when absent.
+export function usageText(usage) {
+  if (!usage || typeof usage !== 'object') return '';
+  const tokens = Object.values(usage.tokens || {}).filter(Number.isFinite).reduce((sum, n) => sum + n, 0);
+  const parts = [];
+  if (tokens > 0) parts.push(tokens >= 1e6 ? `${(tokens / 1e6).toFixed(1)} M tokens` : tokens >= 1e3 ? `${Math.round(tokens / 1e3)} k tokens` : `${tokens} tokens`);
+  if (Number.isFinite(usage.cost_usd)) parts.push(`$${usage.cost_usd.toFixed(2)}`);
+  return parts.join(' · ');
+}
+
+// Utilization arrives as a fraction (0.1) or a percentage (10); show a whole percentage.
+function percent(value) {
+  if (!Number.isFinite(value)) return null;
+  return `${Math.round(value <= 1 ? value * 100 : value)}%`;
+}
+// "5-hour: 10% · weekly: 29% · as of 23 Sep 14:05". Accepts the account's normalised record
+// ({at, five_hour: {utilization}, seven_day: {…}}) or a raw rate_limit_info ({unifiedWindows: {…}}).
+export function planUsageText(plan, at) {
+  if (!plan || typeof plan !== 'object') return '';
+  const windows = plan.unifiedWindows || plan;
+  const five = percent(windows.five_hour?.utilization), week = percent(windows.seven_day?.utilization);
+  const parts = [five && `5-hour: ${five}`, week && `weekly: ${week}`].filter(Boolean);
+  if (!parts.length) return '';
+  const when = plan.at || at;
+  if (when) parts.push(`as of ${shortTime(when)}`);
+  return parts.join(' · ');
+}
+
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+// "23 Sep 2027": a date far enough away that the year matters.
+export function dateWithYear(value) {
+  const d = new Date(value);
+  return Number.isNaN(d.getTime()) ? text(value) : `${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
+}
+
+// "Opus 5.5 · medium · v1.13.2 · on Austin's Claude plan · usually 10–15 minutes"
+export function runSummary(effort, user) {
+  return `Opus 5.5 · ${effort} · ${INSTRUCTION_VERSION} · on ${displayName(user)}’s Claude plan · usually 10–15 minutes`;
+}
+
+export function validTimeout(value) {
+  const n = Number(value);
+  return Number.isInteger(n) && n >= TIMEOUT_RANGE[0] && n <= TIMEOUT_RANGE[1];
+}
+
+// Versions produced by a cockpit run carry who started them and when; catalog versions do not.
+export const isImported = version => Boolean(version?.imported ?? version?.started_at);
+
+// The version dropdown: the working copy first, then originals newest first by started_at, catalog versions last
+// (in catalog order). Hidden versions are left out unless asked for, or unless one is the version on screen.
+export function orderVersions(versions, { baseId = null, showHidden = false, selected = null } = {}) {
+  // When the server marks the base (is_base), trust it for every version; otherwise match the workspace base id.
+  const reported = (versions || []).some(version => version?.is_base != null);
+  const list = (versions || []).map((version, index) => ({ ...version, index, hidden: Boolean(version.hidden),
+    is_base: version.kind !== 'working' && (reported ? Boolean(version.is_base) : Boolean(baseId) && version.id === baseId) }));
+  const working = list.filter(version => version.kind === 'working' || version.id === 'working');
+  const originals = list.filter(version => !working.includes(version) && (showHidden || !version.hidden || version.id === selected));
+  originals.sort((a, b) => {
+    const ta = time(a.started_at), tb = time(b.started_at);
+    if (ta != null && tb != null) return tb - ta || a.index - b.index;
+    if (ta != null) return -1;
+    if (tb != null) return 1;
+    return a.index - b.index;
+  });
+  return { working, originals, hiddenCount: list.filter(version => version.hidden).length };
+}
+
+export function versionOptionLabel(version) {
+  if (version.kind === 'working' || version.id === 'working') return 'Working copy · editable';
+  const label = text(version.label || version.id);
+  const instruction = version.instruction_version && !label.includes(version.instruction_version) ? ` · ${version.instruction_version}` : '';
+  return `${label}${instruction}${version.hidden ? ' · hidden' : ''}${version.is_base ? ' · base' : ''}`;
+}

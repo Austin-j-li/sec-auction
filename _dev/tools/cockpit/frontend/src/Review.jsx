@@ -195,14 +195,30 @@ function Change({ change }) {
   </div>;
 }
 
-export function ChangesTab({ data, loading }) {
+// Changes: the working copy against its base by default; "Compare" picks any two versions (rows matched by sheet key).
+export function ChangesTab({ data, loading, compare, onCompare }) {
+  const custom = compare && !compare.isDefault;
+  const heading = custom ? 'Compare versions' : 'Changes from base';
+  const note = custom
+    ? [data?.from_label, data?.to_label].every(Boolean) ? `${data.from_label} → ${data.to_label}` : 'Version comparison'
+    : data?.base_label ? `Compared with ${data.base_label}` : 'Working copy comparison';
   return <div className="changes-tab paper-column">
     <div className="section-head">
-      <h2>Changes from base</h2>
-      <span className="head-count">{data?.base_label ? `Compared with ${data.base_label}` : 'Working copy comparison'}</span>
+      <h2>{heading}</h2>
+      <span className="head-count">{note}</span>
     </div>
+    {compare?.options?.length > 1 && <div className="compare-controls" role="group" aria-label="Compare">
+      <Field label="From"><Select value={compare.from} onChange={(_, value) => onCompare({ from: value.value, to: compare.to })}>
+        {compare.options.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}
+      </Select></Field>
+      <Field label="To"><Select value={compare.to} onChange={(_, value) => onCompare({ from: compare.from, to: value.value })}>
+        {compare.options.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}
+      </Select></Field>
+      {custom && <Button appearance="subtle" className="link-button" onClick={() => onCompare(null)}>Base against working copy</Button>}
+    </div>}
+    {custom && data?.same_instruction === false && <p className="section-note compare-note">These versions were made under different instructions, so some differences may come from the instruction rather than the extraction.</p>}
     {loading && <Loading label="Loading changes"/>}
-    {!loading && !data?.changes?.length && <Empty>No differences from this working copy’s base.</Empty>}
+    {!loading && !data?.changes?.length && <Empty>{custom ? 'No differences between these versions.' : 'No differences from this working copy’s base.'}</Empty>}
     {!loading && data?.changes?.length > 0 && <div className="change-list">
       {data.changes.map((change, index) => <Change key={index} change={change}/>)}
     </div>}

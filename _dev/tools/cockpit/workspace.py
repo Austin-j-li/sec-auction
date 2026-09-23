@@ -25,6 +25,7 @@ QID = re.compile(r"Q[1-9][0-9]*\Z")
 REF_EXPR = re.compile(r"(?<![\w])#\s*(\d+)(?:\s*[-–—]\s*#?\s*(\d+))?\b")
 QREF = re.compile(r"(?<![\w])Q[1-9][0-9]*\b")
 SAFE_ID = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.-]*\Z")
+VERSION_FIELDS = ("id", "label", "instruction_version", "kind", "sha256", "review_status", "engine", "effort", "started_by", "started_at", "hidden", "checker")
 
 class WorkspaceError(ValueError):
     status = 400
@@ -91,6 +92,17 @@ def record_label(sheet: str, previous: dict[str, Any] | None, current: dict[str,
     return f"Deal fact {values.get('Field') or '?'}"
 
 
+def _engine(version: dict[str, Any]) -> dict[str, Any]:
+    """Engine and effort for catalog versions, read from labels such as "Opus 5.5 medium extraction"."""
+    if version.get("engine"):
+        return {}
+    found = re.match(r"(Opus \d(?:\.\d)?) (low|medium|high|xhigh|max)\b", version.get("label") or "")
+    return {"engine": found.group(1), "effort": found.group(2)} if found else {}
+
+
+COMPARE_KEYS = {data.LEDGER_SHEET: ("#",), data.ROUNDS_SHEET: ("Process", "Round"), data.QUESTIONS_SHEET: ("Q",), data.FACTS_SHEET: ("Field",)}
+
+
 class Workspace:
     def __init__(self, cockpit: data.Cockpit):
         self.cockpit = cockpit
@@ -117,6 +129,10 @@ class Workspace:
         item = self.catalog()["deals"].get(slug)
         if not isinstance(item, dict):
             raise data.DealNotFound("unknown deal")
+        from cockpit import runs  # imported here: runs builds on this module
+        imported = runs.imported_versions(self, slug)
+        if imported:
+            item = {**item, "versions": [*item.get("versions", []), *imported]}
         return item
 
     def _path(self, relative: str) -> Path:
@@ -137,10 +153,27 @@ class Workspace:
         return found
 
     def base(self, item: dict[str, Any]) -> dict[str, Any]:
+        """The catalog's starting base, which is also the base of revision 0."""
         ident = item.get("default_base")
         if not isinstance(ident, str) or not ident:
             raise WorkspaceError("catalog deal has no default_base")
         return self.version(item, ident)
+
+    def _revision_base(self, item: dict[str, Any], row: sqlite3.Row | None) -> dict[str, Any]:
+        """A revision's base: the version it was saved against (rebases change it), else the catalog's."""
+        if row is None:
+            return self.base(item)
+        base = self.version(item, row["base_id"])
+        if base["sha256"] != row["base_sha256"]:
+            raise Conflict("working base hash does not match its version")
+        return base
+
+    def working_base(self, slug: str, item: dict[str, Any]) -> dict[str, Any]:
+        conn = self._connect()
+        try:
+            return self._revision_base(item, self._latest(conn, slug))
+        finally:
+            if conn: conn.close()
 
     def _connect(self, write: bool = False) -> sqlite3.Connection | None:
         if not write and not self.db_path.is_file():
@@ -153,8 +186,10 @@ class Workspace:
             conn.execute("PRAGMA journal_mode=WAL")
             conn.execute("CREATE TABLE IF NOT EXISTS revisions (slug TEXT NOT NULL, revision INTEGER NOT NULL, base_id TEXT NOT NULL, base_sha256 TEXT NOT NULL, at TEXT NOT NULL, actor TEXT NOT NULL, reason TEXT NOT NULL, summary TEXT NOT NULL, changes TEXT NOT NULL, snapshot TEXT NOT NULL, PRIMARY KEY (slug, revision))")
             from cockpit import trace  # imported here: trace builds on this module
+            from cockpit import runs
             try:
                 trace.ensure_schema(conn)
+                runs.ensure_schema(conn)
             except Exception:
                 conn.close()
                 raise
@@ -195,11 +230,9 @@ class Workspace:
         row = self._latest(conn, slug, revision)
         if revision is not None and row is None and revision != 0:
             raise Missing("unknown revision")
-        base = self.base(item)
         if row:
-            if row["base_id"] != base["id"] or row["base_sha256"] != base["sha256"]:
-                raise Conflict("working base differs from catalog; migration required")
-            return json.loads(row["snapshot"]), row, base
+            return json.loads(row["snapshot"]), row, self._revision_base(item, row)
+        base = self.base(item)
         if revision == 0 and self._latest(conn, slug):
             raise Missing("unknown revision")
         return self._base_state(slug, item, base), None, base
@@ -282,9 +315,9 @@ class Workspace:
         for shown in payload["ledger"]["rows"]:
             number = shown["id"]
             shown["has_references"] = self._references(state, number, shown["uid"])
-        working_base = self.base(item)
+        working_base = base if selected == "working" else self.working_base(slug, item)
         payload["versions"] = [{"id": "working", "label": "Working copy", "instruction_version": working_base.get("instruction_version"), "kind": "working", "sha256": working_base["sha256"], "review_status": "in_review" if row else working_base.get("review_status", "unreviewed")}] + [
-            {key: version.get(key) for key in ("id", "label", "instruction_version", "kind", "sha256", "review_status")}
+            {**{key: version.get(key) for key in VERSION_FIELDS}, **_engine(version), "is_base": version.get("id") == working_base["id"]}
             for version in item.get("versions", [])]
         payload["workspace"] = {"revision": row["revision"] if row else 0, "base_version": working_base["id"], "base_sha256": working_base["sha256"], "updated_at": row["at"] if row else None, "updated_by": row["actor"] if row else None, "editable": selected == "working", "selected_version": selected}
         payload["workspace"]["reference_warnings"] = state.get("reference_warnings", [])
@@ -361,6 +394,38 @@ class Workspace:
             return {"base_label": base.get("label", base["id"]), "changes": self._diff(original, state)}
         finally:
             if conn: conn.close()
+
+    def compare(self, slug: str, left: str, right: str) -> dict[str, Any]:
+        """Differences between two versions (or the working copy), matching rows by sheet key, not uid."""
+        item = self.item(slug)
+        conn = self._connect()
+        try:
+            def load(ident: str) -> tuple[dict[str, Any], dict[str, Any], str]:
+                if ident == "working":
+                    state, _, base = self._state(slug, item, conn)
+                    return state, base, "Working copy"
+                if not SAFE_ID.fullmatch(ident or ""): raise Missing("unknown version")
+                version = self.version(item, ident)
+                return self._base_state(slug, item, version), version, version.get("label", ident)
+            before, before_base, before_label = load(left)
+            after, after_base, after_label = load(right)
+        finally:
+            if conn: conn.close()
+        after = copy.deepcopy(after)
+        for sheet, keys in COMPARE_KEYS.items():
+            def key(record: dict[str, Any]) -> tuple:
+                return tuple(data.display_value(_decode(record["values"].get(field))) for field in keys)
+            available: dict[tuple, str] = {}
+            for record in before["sheets"][sheet]["rows"]:
+                available.setdefault(key(record), record["uid"])
+            for record in after["sheets"][sheet]["rows"]:
+                match = available.pop(key(record), None)
+                record["uid"] = match or f"right-{record['uid']}"
+        for part in (before, after):
+            part["findings"], part["row_review"] = {}, {}
+        hashes = (before_base.get("instruction_sha256"), after_base.get("instruction_sha256"))
+        same = hashes[0] == hashes[1] if all(hashes) else None
+        return {"from_label": before_label, "to_label": after_label, "same_instruction": same, "changes": self._diff(before, after)}
 
     def _diff(self, before: dict[str, Any], after: dict[str, Any]) -> list[dict[str, Any]]:
         changes = []
@@ -623,15 +688,27 @@ class Workspace:
             if request["revision"] != revision or request["base_sha256"] != base["sha256"]: raise Conflict("stale revision or base hash")
             before = copy.deepcopy(current)
             original_questions = {r["values"].get("Q") for r in before["sheets"][data.QUESTIONS_SHEET]["rows"]}
-            if any(op.get("type") == "restore" for op in ops):
-                if len(ops) != 1: raise WorkspaceError("restore must be the only operation")
+            whole = next((op.get("type") for op in ops if op.get("type") in ("restore", "rebase")), None)
+            if whole and len(ops) != 1: raise WorkspaceError(f"{whole} must be the only operation")
+            if whole == "restore":
                 target = ops[0].get("target_revision")
                 if type(target) is not int or target < 0: raise WorkspaceError("invalid target_revision")
-                if target == 0: current = self._base_state(slug, item, base)
+                if target == 0:
+                    base = self.base(item)
+                    current = self._base_state(slug, item, base)
                 else:
                     target_row = self._latest(conn, slug, target)
                     if target_row is None: raise WorkspaceError("unknown target revision")
                     current = json.loads(target_row["snapshot"])
+                    base = self._revision_base(item, target_row)
+            elif whole == "rebase":
+                ident = ops[0].get("target_version")
+                if not isinstance(ident, str) or not SAFE_ID.fullmatch(ident): raise WorkspaceError("invalid target_version")
+                target_version = self.version(item, ident)
+                if target_version.get("hidden"): raise WorkspaceError("a hidden version cannot become the base")
+                if target_version["id"] == base["id"]: raise WorkspaceError("that version is already the base")
+                base = target_version
+                current = self._base_state(slug, item, base)
             else:
                 client_uids: dict[str, str] = {}
                 old_ledger = {int(r["values"].get("#")): r["uid"] for r in current["sheets"][data.LEDGER_SHEET]["rows"] if str(r["values"].get("#", "")).isdigit()}
@@ -665,7 +742,7 @@ class Workspace:
             summary = f"{len(changes)} change{'s' if len(changes) != 1 else ''}"
             conn.execute("INSERT INTO revisions VALUES (?,?,?,?,?,?,?,?,?,?)", (slug, revision + 1, base["id"], base["sha256"], at, actor, reason.strip(), summary, _dump(changes), _dump(current)))
             from cockpit import trace
-            trace.record_revision(conn, slug, actor, revision + 1, reason.strip(), restore=any(op.get("type") == "restore" for op in ops), at=at)
+            trace.record_revision(conn, slug, actor, revision + 1, reason.strip(), kind=whole or "revision", at=at)
             saved = self._latest(conn, slug)
             payload = self._payload(slug, item, current, saved, base, "working")
             conn.commit()

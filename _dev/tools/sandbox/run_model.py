@@ -17,6 +17,7 @@ import signal
 import subprocess
 import sys
 import tempfile
+import threading
 import time
 
 
@@ -71,6 +72,8 @@ REPORT_NAME = "checker_report.md"
 TIMEOUT_SECONDS = 90 * 60
 TIMEOUT_BOUNDS = (10 * 60, 6 * 60 * 60)
 RUNS = PROJECT / "_dev" / "runs"
+# The running provider's process group and whether SIGTERM asked the worker to cancel the run.
+_PROVIDER = {"pgid": None, "cancelled": False}
 
 
 def now_iso() -> str:
@@ -146,6 +149,18 @@ def run_usage(events_path: Path) -> dict[str, object] | None:
 def claude_results(events_path: Path) -> list[dict]:
     """The Claude CLI's result events, one per invocation."""
     return [event for event in events(events_path) if event.get("type") == "result"]
+
+
+def rate_limits(events_path: Path) -> tuple[dict | None, dict | None]:
+    """The last rate-limit report in a Claude event log, and the last rejected one (plan limit hit)."""
+    last = rejected = None
+    for event in events(events_path):
+        info = event.get("rate_limit_info") if event.get("type") == "rate_limit_event" else None
+        if isinstance(info, dict):
+            last = info
+            if info.get("status") == "rejected":
+                rejected = info
+    return last, rejected
 
 
 def claude_summary(events_path: Path) -> dict[str, object] | None:
@@ -580,7 +595,7 @@ def run_worker(args: argparse.Namespace, state: Path, scratch: Path) -> int:
         with claude_token(args.provider) as (token_args, token_fds):
             exit_code, timed_out, client_pid = run_provider(
                 base + token_args + provider_argv, run_dir, started_at, max(deadline - time.monotonic(), 1), token_fds)
-        if timed_out or exit_code != 0 or args.provider != "opus" or not unfinished(run_dir, metadata):
+        if _PROVIDER["cancelled"] or timed_out or exit_code != 0 or args.provider != "opus" or not unfinished(run_dir, metadata):
             break
         # A clean end of turn with the deliverable still owed is a progress report, not a finished
         # task: resume the session and ask for the rest, a bounded number of times.
@@ -598,10 +613,15 @@ def run_worker(args: argparse.Namespace, state: Path, scratch: Path) -> int:
         write_json(run_dir / "provider-results.json", claude_results(stdout_path))
         summary = claude_summary(stdout_path) or {}
     ended_at = now_iso()
-    if timed_out:
+    plan_usage, rejected = rate_limits(stdout_path) if args.provider == "opus" else (None, None)
+    if _PROVIDER["cancelled"]:
+        outcome, failure_reason = "cancelled", "cancelled"
+    elif timed_out:
         outcome, failure_reason = "timed_out", "timeout"
     elif summary and summary["refusal"]:
         outcome, failure_reason = "failed", "provider_refusal"
+    elif rejected is not None and not (validation.get("valid_xlsx") and validation.get("sheet_names") == SHEETS):
+        outcome, failure_reason = "failed", "usage_limit"
     elif exit_code != 0:
         outcome, failure_reason = "failed", "provider_exit"
     elif summary is not None and (summary.get("subtype") != "success" or summary.get("is_error")):
@@ -633,7 +653,10 @@ def run_worker(args: argparse.Namespace, state: Path, scratch: Path) -> int:
         "workbook_exists": validation.get("exists", False),
         "workbook_valid_xlsx": validation.get("valid_xlsx", False),
         "usage": run_usage(stdout_path),
+        "plan_usage": plan_usage,
     }
+    if failure_reason == "usage_limit" and isinstance(rejected.get("resetsAt"), (int, float)):
+        result["usage_limit_resets_at"] = dt.datetime.fromtimestamp(rejected["resetsAt"], dt.timezone.utc).isoformat(timespec="seconds")
     if summary is not None:
         result["provider"] = summary
     write_json(run_dir / "status.json", result)
@@ -653,10 +676,13 @@ def run_provider(command: list[str], run_dir: Path, started_at: str, timeout: fl
             close_fds=True,
             pass_fds=pass_fds,
         )
+        _PROVIDER["pgid"] = proc.pid
         write_json(run_dir / "status.json", {
             "state": "running", "worker_pid": os.getpid(), "client_pid": proc.pid,
             "started_at": started_at,
         })
+        if _PROVIDER["cancelled"]:
+            _terminate(proc.pid)
         try:
             return proc.wait(timeout=timeout), False, proc.pid
         except subprocess.TimeoutExpired:
@@ -668,7 +694,31 @@ def run_provider(command: list[str], run_dir: Path, started_at: str, timeout: fl
                 return proc.wait(), True, proc.pid
 
 
+def _terminate(pgid: int) -> None:
+    """Stop a provider process group: SIGTERM, then SIGKILL if it outlives a grace period."""
+    try:
+        os.killpg(pgid, signal.SIGTERM)
+    except ProcessLookupError:
+        return
+    def kill_later() -> None:
+        time.sleep(20)
+        try:
+            os.killpg(pgid, signal.SIGKILL)
+        except ProcessLookupError:
+            pass
+    threading.Thread(target=kill_later, daemon=True).start()
+
+
+def _cancel(signum, frame) -> None:
+    """SIGTERM to the worker cancels the run: stop the provider and record the outcome."""
+    _PROVIDER["cancelled"] = True
+    if _PROVIDER["pgid"]:
+        _terminate(_PROVIDER["pgid"])
+
+
 def worker(args: argparse.Namespace) -> int:
+    _PROVIDER.update(pgid=None, cancelled=False)
+    signal.signal(signal.SIGTERM, _cancel)
     path = Path(args.run_dir).resolve() / "status.json"
     if path.exists():
         raise SystemExit(f"refusing to overwrite prior run status: {path.parent}")

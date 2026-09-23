@@ -649,6 +649,8 @@ class Cockpit:
         self.workspace = Workspace(self)
         from cockpit.trace import Trace  # imported here: trace builds on the workspace module
         self.trace = Trace(self.workspace)
+        from cockpit.runs import Runs
+        self.runs = Runs(self.workspace)
 
     def _path_lock(self, key: str) -> threading.Lock:
         with self._lock:

@@ -4,9 +4,29 @@
 
 **Use the main `extraction-v2` checkout and the editable [Ledger cockpit](https://lines.dealextract.org). Claude Opus 5.5 at medium effort is the extraction model.** The [22 September effort sweep](reviews/2026-09-22-opus55-sol6-sweep/REPORT.md) found no reliable gain from high effort. GPT-6-Sol at xhigh was not distinguishable from it on quality; Austin chose Opus for now (22 September). The current workbooks in `extraction/` are Opus 5.5 medium extractions of all nine deals ([re-extraction packet](reviews/2026-09-22-opus55-reextraction/README.md)); the replaced Opus 5 high originals are archived outside the checkout and recoverable from Git at `03d59b1`. The working instruction is **v1.13.2, frozen**. Austin authorized consolidation, deletion of the retired Grok/Sol extraction results, and a local commit on 22 September. This maintenance does not authorize another model run or a research-convention change.
 
-**Approved next build (23 September):** Austin approved the [shared extraction app spec](COCKPIT_APP_SPEC.md), including its §13 defaults. Austin and Alex will each connect their own Claude and ChatGPT subscriptions, add deals from `ref/seed.csv` or an EDGAR link, start isolated extractions (Opus 5.5 medium by default; Fable 5.1, GPT-6-Sol and GPT-6-Astra selectable at any allowed effort), version instructions in the app with either able to change the default, and see each other's edits and comments through threads and a since-last-visit digest. The build starts with the spec's four spikes. Real model runs during the build still need Austin's go-ahead.
+**Approved next build (23 September):** Austin approved the [shared extraction app spec](COCKPIT_APP_SPEC.md), including its §13 defaults. Austin and Alex will each connect their own Claude and ChatGPT subscriptions, add deals from `ref/seed.csv` or an EDGAR link, start isolated extractions (Opus 5.5 medium by default; Fable 5.1, GPT-6-Sol and GPT-6-Astra selectable at any allowed effort), version instructions in the app with either able to change the default, and see each other's edits and comments through threads and a since-last-visit digest. Spikes S1–S4 are done, and phases 1 and 2 are deployed (see Session state below). Fable 5.1 stays an experimental engine. Real model runs during the build still need Austin's go-ahead.
 
 For engineering, choose models by task rather than by a fixed split. Astra (GPT-6-Astra) is the strongest reasoner but expensive and sometimes erratic, so check its output; it suits hard design and review. Sol (GPT-6-Sol) is a capable, literal implementer for well-specified code. Opus 5.5 and Fable 5.1 (Fable's safeguards sometimes block requests) can design, implement and integrate too, and a session with clean context may lead the work itself (Austin, 23 September).
+
+## Session state (23 September, 13:15 UTC, for the next laptop)
+
+- **Phase 2 of the app is deployed but not committed.** Everything since `e4b06db` (phase 1) is uncommitted in this checkout. That covers the backend (`runs.py`, `worker.py`, and edits to `server.py`, `workspace.py`, `trace.py`, `data.py`), the runner (`sandbox/run_model.py`), the frontend (`Settings.jsx`, `Runs.jsx`, `runs.js` and edits), the rebuilt `dist/`, the tests and the docs. Austin has not yet approved the commit. The build record is [PROGRESS.md](maintenance/2026-09-23-cockpit-phase2-runs/PROGRESS.md) and the contract is in the same folder.
+- **Services:**
+  - `ledger-cockpit.service` and the new `ledger-worker.service` (enabled, `~/.config/systemd/user/`) are running from this checkout.
+  - Worker logs: `journalctl _SYSTEMD_USER_UNIT=ledger-worker.service`.
+  - After changing `worker.py`, `runs.py` or the server code, restart both: `systemctl --user restart ledger-cockpit ledger-worker`.
+- **Tests:**
+  - 162 Python tests pass (`python3 -m pytest -q _dev/tools`), as do 28 vitest tests.
+  - All five browser suites pass. The new `test_runs.mjs` uses a fake runner and a fake `claude`.
+  - Fable 5.1 reviewed the backend once; its four worker defects are fixed (see PROGRESS).
+- **Accounts:** no Claude account is connected yet.
+  - Austin's first live connect (13:03 UTC) failed after he pasted the code. A probe showed that Claude answers a rejected code with `OAuth error … status code 400`. The likely cause is an expired or partly copied code.
+  - The retry at 15:12 also failed, for a different reason: the worker sent the code and Enter in one write, which Claude treats as a paste, so the code was never submitted. Fixed at 15:20 (Enter now goes separately; see PROGRESS). The worker also shows Claude's own message on the page and logs a redacted tail. **Next step: Austin retries on `/settings`.** If it fails again, read the worker log line `sign-in <job> for austin: no token; Claude printed: …`.
+- **Waiting on Austin:**
+  1. Go-ahead for the first real extraction: one deal at Opus 5.5 medium, on his plan, started from the cockpit. This is the spec's acceptance step; Alex later does the same on his plan.
+  2. Approval to commit phase 2.
+- **Shared VM browser:** its tab 1 is open at `https://lines.dealextract.org/settings` (see `/home/uctpiaj/CONDENSER_BROWSER_HANDOFF.md`). From another laptop, open it with VS Code **VM Browser: Open** or with the `connect-viewer` SSH helper.
+- **Build approach (Austin, 23 September):** the build is Claude-only. Opus 5.5 leads, and Fable 5.1 is called very occasionally for a second opinion. Later phases: 3 (add deals from `ref/seed.csv` or an EDGAR link); 4 (instruction editor, plus the Fable, Sol and Astra engines with ChatGPT device-auth); 5 (backups, restore rehearsal, docs).
 
 ## What is ready for Austin
 
@@ -59,7 +79,7 @@ The current frontend source and built assets add mouse/keyboard split-pane resiz
 
 ## Next work
 
-0. Build the shared extraction app in the [spec](COCKPIT_APP_SPEC.md)'s phases. Spikes S1–S4 are recorded in its §14; phase 1 (comments, since-last-visit digest, last-changed-by, activity page) was deployed on 23 September ([build record](maintenance/2026-09-23-cockpit-phase1-trace/PROGRESS.md)). Next: phase 2, accounts and runs.
+0. Build the shared extraction app in the [spec](COCKPIT_APP_SPEC.md)'s phases. Spikes S1–S4 are recorded in its §14; phase 1 (comments, since-last-visit digest, last-changed-by, activity page) was deployed on 23 September ([build record](maintenance/2026-09-23-cockpit-phase1-trace/PROGRESS.md)). Phase 2 (per-user Claude accounts, Opus 5.5 runs from the cockpit, run versions, rebase, compare, hide) was deployed the same day ([build record](maintenance/2026-09-23-cockpit-phase2-runs/PROGRESS.md)); it still needs one real run by each of Austin and Alex on their own plans. Next: phase 3, adding deals.
 1. Austin reviews the nine current workbooks in the cockpit, including applying the Mac-Gray R01 decision. Check Datalink against the accepted January-round ruling.
 2. Check both directions: ledger rows against source support, and bounded source passages against events that should appear. Mechanical cleanliness, matching models and located quotations do not establish complete extraction.
 3. Separate mistakes under existing rules, research choices requiring Austin, and unsupported reviewer claims. Only an explicitly authorized correction pass should receive an accepted correction brief. Verify its entire diff and dependent references afterward.

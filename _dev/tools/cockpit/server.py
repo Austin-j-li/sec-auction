@@ -26,9 +26,9 @@ from cockpit.workspace import WorkspaceError  # noqa: E402
 DEFAULT_PORT = 8778
 READER_EMAILS = {"junyu.li.24@ucl.ac.uk": "austin", "a.gorbenko@ucl.ac.uk": "alex"}
 SLUG_PATH_RE = re.compile(r"/api/(deal|filing)/([^/]*)")
-DEAL_ACTION_RE = re.compile(r"/api/deal/([^/]*)/(history|changes|export|edit|comments|activity|seen)")
+DEAL_ACTION_RE = re.compile(r"/api/deal/([^/]*)/(history|changes|export|edit|comments|activity|seen|jobs|versions|compare)")
 DOCUMENT_RE = re.compile(r"/api/document/([^/]*)/([^/]*)")
-PAGE_PATH_RE = re.compile(r"/deal/[^/]*/?|/activity/?")
+PAGE_PATH_RE = re.compile(r"/deal/[^/]*/?|/activity/?|/settings/?")
 MAX_JSON = 1024 * 1024
 
 
@@ -107,7 +107,13 @@ class Handler(BaseHTTPRequestHandler):
                 deals = self.cockpit.list_deals()
                 if self.cockpit.workspace.available and actor != "unknown":
                     for deal in deals: deal["unseen"] = self.cockpit.trace.unseen(deal["slug"], actor)
+                if self.cockpit.workspace.available:
+                    for deal in deals: deal["active_jobs"] = self.cockpit.runs.active_jobs(deal["slug"])
                 return self._json(deals)
+            if path == "/api/account":
+                actor, _ = self._identity()
+                if actor == "unknown": return self._json({"user": actor, "claude": {"connected": False}, "connect": None})
+                return self._json(self.cockpit.runs.account(actor))
             if path == "/api/activity":
                 if not self.cockpit.workspace.available: return self._json({"error": "workspace unavailable"}, 404)
                 actor, _ = self._identity()
@@ -132,7 +138,13 @@ class Handler(BaseHTTPRequestHandler):
                 if not self.cockpit.workspace.available: return self._json({"error": "workspace unavailable"}, 404)
                 if action == "history": return self._json(self.cockpit.workspace.history(slug))
                 if action == "changes": return self._json(self.cockpit.workspace.changes(slug))
-                if action in ("edit", "seen"): return self._not_allowed()
+                if action in ("edit", "seen", "versions"): return self._not_allowed()
+                if action == "jobs": return self._json(self.cockpit.runs.jobs(slug))
+                if action == "compare":
+                    workspace = self.cockpit.workspace
+                    left, right = (query.get("from") or ["base"])[0], (query.get("to") or ["working"])[0]
+                    if left == "base": left = workspace.working_base(slug, workspace.item(slug))["id"]
+                    return self._json(workspace.compare(slug, left, right))
                 if action == "comments": return self._json(self.cockpit.trace.comments(slug))
                 if action == "activity":
                     actor, _ = self._identity()
@@ -172,8 +184,9 @@ class Handler(BaseHTTPRequestHandler):
         except (BrokenPipeError, ConnectionResetError): pass
 
     def _route_post(self) -> None:
-        match = DEAL_ACTION_RE.fullmatch(urlparse(self.path).path)
-        if not match or match.group(2) not in ("edit", "comments", "seen"): return self._not_allowed()
+        path = urlparse(self.path).path
+        match = DEAL_ACTION_RE.fullmatch(path)
+        if path != "/api/account/claude" and (not match or match.group(2) not in ("edit", "comments", "seen", "jobs", "versions")): return self._not_allowed()
         if not self.cockpit.workspace.available: return self._json({"error": "workspace unavailable"}, 404)
         actor, can_edit = self._identity()
         if not can_edit or not self._origin_ok() or not secrets.compare_digest(self.headers.get("X-Cockpit-CSRF") or "", self.csrf_token):
@@ -184,7 +197,10 @@ class Handler(BaseHTTPRequestHandler):
         if length <= 0 or length > MAX_JSON: return self._json({"error": "request body size out of range"}, 413)
         try:
             body = json.loads(self.rfile.read(length))
+            if match is None: return self._json(self.cockpit.runs.account_action(actor, body))
             slug, action = unquote(match.group(1)), match.group(2)
+            if action == "jobs": return self._json(self.cockpit.runs.job_action(slug, actor, body))
+            if action == "versions": return self._json(self.cockpit.runs.version_action(slug, actor, body))
             if action == "comments": return self._json(self.cockpit.trace.comment(slug, body, actor))
             if action == "seen": return self._json(self.cockpit.trace.mark_seen(slug, body, actor))
             payload = self.cockpit.workspace.edit(slug, body, actor)

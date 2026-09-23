@@ -9,6 +9,8 @@ import { displayName, groupSessions, KIND_LABELS, shortTime, tally, tallyText, t
 function itemLabel(item) {
   if (item.kind === 'revision') return `Revision ${item.revision ?? ''}`.trim();
   if (item.kind === 'restore') return `Restore · revision ${item.revision ?? ''}`.trim();
+  if (item.kind === 'rebase') return `Rebase${item.revision != null ? ` · revision ${item.revision}` : ''}`;
+  if (!item.thread_id && KIND_LABELS[item.kind]) return KIND_LABELS[item.kind];
   const where = item.target?.kind === 'deal' ? 'the deal' : item.target?.label ? compact(item.target.label, 70) : '';
   return `${KIND_LABELS[item.kind] || item.kind}${where ? ` on ${where}` : ''}`;
 }

@@ -15,10 +15,10 @@ function CheckLine({ check }) {
   </small>;
 }
 
-// "Alex · 12 edits, 3 comments since you last looked"; nothing when nothing is new.
+// "Alex · 1 run, 12 edits, 3 comments since you last looked"; nothing when nothing is new.
 function UnseenLine({ unseen }) {
   const parts = Object.entries(unseen?.by || {})
-    .map(([actor, counts]) => [actor, tallyText({ edits: counts?.edits || 0, comments: counts?.comments || 0 })])
+    .map(([actor, counts]) => [actor, tallyText({ runs: counts?.runs || 0, edits: counts?.edits || 0, comments: counts?.comments || 0 })])
     .filter(([, summary]) => summary)
     .map(([actor, summary]) => `${displayName(actor)} · ${summary}`);
   if (!parts.length) return null;
@@ -63,6 +63,7 @@ export default function Overview({ deals, onOpen }) {
             <td>
               <a className="deal-link" href={`/deal/${item.slug}`} tabIndex={-1} onClick={event => onLinkClick(event, item.slug)}>{item.name || item.target || item.slug}</a>
               <small className="mono">{item.slug}</small>
+              {item.active_jobs > 0 && <small className="running-line">Extraction running</small>}
               <UnseenLine unseen={item.unseen}/>
             </td>
             <td className="mono">

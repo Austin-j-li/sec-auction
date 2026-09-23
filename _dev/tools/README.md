@@ -46,6 +46,15 @@ Otherwise the run is `failed`, with one of these `failure_reason`s: `provider_re
 
 The cockpit importer (`cockpit/import_results.py`) builds the catalog with one version per deal: the Opus 5.5 medium extraction in `extraction/<deal>.xlsx`, confirmed from the receipts in `_dev/reviews/2026-09-22-opus55-reextraction/`, plus the Datalink F9 and Mac-Gray R01 case-level decisions. `cockpit/verify_catalog.py` is the read-only live check of that catalog; it writes its result to the same packet.
 
+## Cockpit worker
+
+`cockpit/worker.py` runs as the user service `ledger-worker.service` (unit in `~/.config/systemd/user/`, `KillMode=process`). It takes jobs the cockpit writes to its SQLite database: Claude sign-ins, which drive `claude setup-token` in a pseudo-terminal, and extractions, which call this runner's `prepare` and `worker` with the starting user's token (`SEC_CLAUDE_OAUTH_TOKEN_FILE` pointing to `~/.config/sec-extraction/users/<user>/claude-oauth-token`, mode 0600). It runs the checker outside the sandbox and imports the workbook and receipts into `_dev/cockpit/state/versions/<deal>/<version>/`; failed runs keep their receipts in `_dev/cockpit/state/jobs/<job>/`. The run folder under `_dev/runs/` is deleted either way. The runner's `worker` stops on SIGTERM with `state: cancelled`, records the last Claude rate-limit report as `plan_usage`, and names a rejected plan limit `usage_limit` with `usage_limit_resets_at`. Runner processes outlive a worker restart; the restarted worker reattaches by pid or finishes them from their `status.json`.
+
+```bash
+systemctl --user restart ledger-worker
+journalctl --user -u ledger-worker -f
+```
+
 ## Effort sweeps
 
 `effort_sweep.py` runs the same filings under several arms through the isolated runner. An arm is `provider:model:effort`. It requires Austin's authorization, as any extraction does.
@@ -122,13 +131,14 @@ systemctl --user restart ledger-cockpit.service   # also needed after any Python
 
 Remove `dist.old` once the site checks out. After a restart, verify `/api/session`, `/api/deals` and `/api/deal/<deal>?version=working`, compare checker findings with a fresh run, and preserve source hashes and working state. Catalog updates are read on later requests; changing a default base must not silently replace a saved working revision. Logs: `journalctl _SYSTEMD_USER_UNIT=ledger-cockpit.service` (or `cloudflared.service`). Verification evidence is linked from [HANDOFF.md](../HANDOFF.md).
 
-Acceptance suites run against a synthetic fixture (`acceptance/serve_fixture.py`; `--two-users` makes it take identities from the Cloudflare Access email header, for `test_trace.mjs`) on a private port and a private headless Chrome; they never touch production workbooks, the catalog, working state or the live service. Run from the repository root:
+Acceptance suites run against a synthetic fixture (`acceptance/serve_fixture.py`; `--two-users` makes it take identities from the Cloudflare Access email header, for `test_trace.mjs`; `--runs` adds the real worker loop driving the fake runner and fake `claude` from `test_cockpit_runs.py`, for `test_runs.mjs`) on a private port and a private headless Chrome; they never touch production workbooks, the catalog, working state or the live service. Run from the repository root:
 
 ```bash
 COCKPIT_BROWSER_EVIDENCE=/tmp/cockpit-browser node _dev/tools/cockpit/acceptance/test_browser.mjs
 COCKPIT_RESIZE_EVIDENCE=/tmp/cockpit-resize node _dev/tools/cockpit/acceptance/test_resize.mjs
 COCKPIT_RESPONSIVE_EVIDENCE=/tmp/cockpit-responsive node _dev/tools/cockpit/acceptance/test_responsive.mjs
 COCKPIT_TRACE_EVIDENCE=/tmp/cockpit-trace node _dev/tools/cockpit/acceptance/test_trace.mjs
+COCKPIT_RUNS_EVIDENCE=/tmp/cockpit-runs node _dev/tools/cockpit/acceptance/test_runs.mjs
 python3 -m pytest -q _dev/tools/cockpit/acceptance/test_http.py
 (cd _dev/tools/cockpit/frontend && npx vitest run)
 ```

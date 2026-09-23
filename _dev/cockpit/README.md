@@ -23,6 +23,14 @@ If another editor has saved first, the cockpit keeps your staged edits and block
 
 The mechanical checker runs again on saved working copies. Its errors and warnings remain visible; it does not certify source completeness or research acceptance.
 
+## Connecting your Claude account and running extractions
+
+Each person runs extractions on their own Claude plan. Open **Settings** (your name in the header), choose **Connect Claude account**, open the link, approve with your claude.ai login and paste the code it shows. The connection lasts a year; Settings shows when it expires and how much of your plan's 5-hour and weekly limits the last run reported. If the link flow fails, run `claude setup-token` on any computer and paste the token under "Paste a token instead". **Disconnect** deletes the stored token; you can also revoke it on claude.ai.
+
+In a deal, **Extract** starts an isolated run of Claude Opus 5.5 under the repository instruction (v1.13.2), at the effort you choose (default medium). The run sees only the instruction and the filing, exactly as in the command-line runner. The **Runs** tab shows queued, running and finished runs, who started them, time, cost at list price and checker counts; **Cancel** stops a run. At most four runs go at once, two per person; others wait in the queue. A run that hits your plan's usage limit says so and when the limit resets.
+
+A finished run becomes a new read-only version, labelled with engine, effort, instruction, who ran it and when. It never changes the working copy. To work from it, open that version and choose **Use as working-copy base…** with a reason; the previous working state stays in History and can be restored. The Changes tab compares any two versions, or a version and the working copy, matching events by number. **Hide** removes a version you no longer need from the list (it is never deleted; "Show hidden versions" brings it back).
+
 ## Seeing each other's work
 
 Everything you save or comment is signed with your login, so Austin and Alex can each see what the other did. None of it pushes notifications; look when you want to.

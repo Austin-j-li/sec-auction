@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { Button, Field, FluentProvider, Input, Select } from '@fluentui/react-components';
-import { ArrowLeftIcon, DownloadSimpleIcon, FloppyDiskIcon, LockSimpleIcon, XIcon } from '@phosphor-icons/react';
+import { Button, Field, FluentProvider, Input, Select, Textarea } from '@fluentui/react-components';
+import { ArrowLeftIcon, ArrowsClockwiseIcon, DownloadSimpleIcon, EyeIcon, EyeSlashIcon, FloppyDiskIcon, LockSimpleIcon, PlayIcon, XIcon } from '@phosphor-icons/react';
 import gsap from 'gsap';
 import Filing from './Filing';
 import SplitPane from './SplitPane';
@@ -9,24 +9,31 @@ import TabScroller from './TabScroller';
 import Overview from './Overview';
 import ActivityPage from './Activity';
 import WhatsNew from './WhatsNew';
+import SettingsPage from './Settings';
+import { ExtractDialog, RunBadge, RunsTab } from './Runs';
 import { compact, LedgerTab, SheetTab } from './Records';
 import { ChangesTab, DocumentText, friendlyDate, HistoryTab, ReviewTab } from './Review';
 import { Dot, Loading, Message } from './ui';
 import { cockpitTheme } from './theme';
-import { commentAction, count, json, markSeen, markSeenOnLeave, recordValues, rowId, saveDeal, sheetColumns, sheetRows, text } from './api';
-import { countThreads, displayName, EDIT_KINDS, knownUser } from './trace';
+import { commentAction, compareQuery, count, jobAction, json, markSeen, markSeenOnLeave, recordValues, rowId, saveDeal, sheetColumns, sheetRows, text, versionAction } from './api';
+import { countThreads, displayName, EDIT_KINDS, knownUser, RUN_KINDS, VERSION_KINDS } from './trace';
+import { isActive, isImported, orderVersions, versionOptionLabel } from './runs';
 import './style.css';
 
 const SHEETS = { ledger: 'Deal ledger', rounds: 'Rounds', questions: 'Questions', facts: 'Deal facts' };
 const SHEET_TABS = Object.fromEntries(Object.entries(SHEETS).map(([key, sheet]) => [sheet, key]));
-const TABS = [['ledger', 'Ledger'], ['rounds', 'Rounds'], ['questions', 'Questions'], ['facts', 'Deal facts'], ['review', 'Review'], ['changes', 'Changes'], ['history', 'History']];
+const TABS = [['ledger', 'Ledger'], ['rounds', 'Rounds'], ['questions', 'Questions'], ['facts', 'Deal facts'], ['review', 'Review'], ['changes', 'Changes'], ['history', 'History'], ['runs', 'Runs']];
 const EMPTY = { user: '', can_edit: false, csrf_token: '' };
 const NO_FIELDS = new Set();
+const JOB_POLL_MS = 5000;
+const PAGES = { activity: '/activity', settings: '/settings' };
 
 function routeFromLocation() {
   const match = location.pathname.match(/^\/deal\/([a-z0-9][a-z0-9-]*)\/?$/);
-  if (match) return { slug: match[1], page: 'deal' };
-  return { slug: null, page: /^\/activity\/?$/.test(location.pathname) ? 'activity' : 'overview' };
+  // ?version=<id> opens a deal at one of its versions (links from Activity to an imported run).
+  if (match) return { slug: match[1], page: 'deal', version: new URLSearchParams(location.search).get('version') || 'working' };
+  const page = Object.keys(PAGES).find(key => new RegExp(`^${PAGES[key]}/?$`).test(location.pathname));
+  return { slug: null, page: page || 'overview' };
 }
 function clone(value) { return structuredClone(value); }
 function confirmLoss() { return window.confirm('You have unsaved edits. Discard them and leave this view?'); }
@@ -68,6 +75,16 @@ function App() {
   const [news, setNews] = useState(null);
   const [focusThread, setFocusThread] = useState(null);
   const [focusRevision, setFocusRevision] = useState(null);
+  const [jobs, setJobs] = useState(null);
+  const [jobsError, setJobsError] = useState('');
+  const [showHidden, setShowHidden] = useState(false);
+  const [compare, setCompare] = useState(null);
+  const [rebasePrompt, setRebasePrompt] = useState(null);
+  const [extract, setExtract] = useState(null);
+  const [versionBusy, setVersionBusy] = useState(false);
+  const slugRef = useRef(null);
+  const versionRef = useRef('working');
+  const jobStates = useRef(new Map());
   const sessionRef = useRef(session);
   const leaveMark = useRef(null);
   const leaving = useRef(null);
@@ -82,7 +99,10 @@ function App() {
   const dirty = ops.length > 0;
   const editable = Boolean(session.can_edit && deal?.workspace?.editable && saveState !== 'saving' && !versionLoading);
   const slug = route.slug;
+  const modalOpen = Boolean(deletePrompt || documentOpen || rebasePrompt || extract);
   sessionRef.current = session;
+  slugRef.current = slug;
+  versionRef.current = version;
 
   useEffect(() => { json('/api/session').then(setSession).catch(err => setError(failure('Your session could not be loaded.', err))); }, []);
   useEffect(() => {
@@ -92,7 +112,7 @@ function App() {
   }, [dirty]);
   useEffect(() => {
     const listener = () => {
-      if (saveState === 'saving' || (dirty && !confirmLoss())) { history.pushState(null, '', slug ? `/deal/${slug}${location.hash}` : route.page === 'activity' ? '/activity' : '/'); return; }
+      if (saveState === 'saving' || (dirty && !confirmLoss())) { history.pushState(null, '', slug ? `/deal/${slug}${location.hash}` : PAGES[route.page] || '/'); return; }
       setRoute(routeFromLocation());
     };
     window.addEventListener('popstate', listener);
@@ -100,7 +120,7 @@ function App() {
   }, [dirty, slug, saveState, route.page]);
   useEffect(() => {
     const listener = event => {
-      if (!deal || deletePrompt || documentOpen || event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey || event.target?.closest?.('[role="separator"]') || /^(INPUT|TEXTAREA|SELECT)$/.test(event.target?.tagName || '')) return;
+      if (!deal || modalOpen || event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey || event.target?.closest?.('[role="separator"]') || /^(INPUT|TEXTAREA|SELECT)$/.test(event.target?.tagName || '')) return;
       if (event.key === 'j' || event.key === 'ArrowDown') { event.preventDefault(); stepRow(1); }
       if (event.key === 'k' || event.key === 'ArrowUp') { event.preventDefault(); stepRow(-1); }
     };
@@ -113,11 +133,11 @@ function App() {
     return () => tween.kill();
   }, [saveState]);
   useEffect(() => {
-    if (!deletePrompt && !documentOpen) return;
+    if (!modalOpen) return;
     modalReturnFocus.current = document.activeElement;
     modalRef.current?.querySelector('button')?.focus();
     const onKeyDown = event => {
-      if (event.key === 'Escape') { event.preventDefault(); setDeletePrompt(null); setDocumentOpen(null); return; }
+      if (event.key === 'Escape') { event.preventDefault(); setDeletePrompt(null); setDocumentOpen(null); setRebasePrompt(current => current?.busy ? current : null); setExtract(current => current?.busy ? current : null); return; }
       if (event.key !== 'Tab' || !modalRef.current) return;
       const focusables = [...modalRef.current.querySelectorAll('button:not(:disabled), input:not(:disabled), select:not(:disabled), textarea:not(:disabled), a[href]')];
       if (!focusables.length) return;
@@ -126,7 +146,7 @@ function App() {
     };
     window.addEventListener('keydown', onKeyDown);
     return () => { window.removeEventListener('keydown', onKeyDown); modalReturnFocus.current?.focus?.(); };
-  }, [Boolean(deletePrompt), Boolean(documentOpen)]);
+  }, [modalOpen]);
   useEffect(() => { if (!ops.length) { reviewTouched.current = new Map(); findingBase.current = new Map(); } }, [ops.length]);
 
   // Which fields carry a staged value, by sheet and record: drives the per-field "edited" marker.
@@ -157,7 +177,7 @@ function App() {
     const token = ++routeSerial.current;
     // A version switch keeps the current deal (and the filing pane) mounted; only the workspace waits.
     const sameDeal = Boolean(currentSlug) && loadedSlug.current === currentSlug;
-    setError(null); setConflict(false); setOps([]); setSaveState(''); setHistoryData(null); setChangesData(null); setFindingOpen(null); setDocumentOpen(null);
+    setError(null); setConflict(false); setOps([]); setSaveState(''); setHistoryData(null); setChangesData(null); setFindingOpen(null); setDocumentOpen(null); setCompare(null); setRebasePrompt(null);
     if (sameDeal) setVersionLoading(true);
     else { setLoading(true); setDeal(null); loadedSlug.current = null; }
     try {
@@ -191,7 +211,7 @@ function App() {
       if (token === routeSerial.current) { setLoading(false); setVersionLoading(false); }
     }
   }, []);
-  useEffect(() => { load(slug, 'working'); }, [slug, route.page, load]);
+  useEffect(() => { load(slug, route.version || 'working'); }, [slug, route.page, route.version, load]);
   // Comment threads are deal-level (shared by every version); immutable versions show them read only.
   useEffect(() => {
     setThreads(null); setThreadsError(''); setFocusThread(null); setFocusRevision(null);
@@ -228,16 +248,56 @@ function App() {
     window.addEventListener('pagehide', flush);
     return () => { window.removeEventListener('pagehide', flush); flush(); };
   }, [slug]);
+  const baseId = deal?.workspace?.base_version || null;
+  const compareFrom = compare?.from ?? baseId, compareTo = compare?.to ?? 'working';
+  const compareDefault = compareFrom === baseId && compareTo === 'working';
   useEffect(() => {
     if (!slug || !deal || !['changes', 'history'].includes(tab)) return;
     let alive = true;
     setAuxLoading(true);
-    json(`/api/deal/${slug}/${tab}`)
+    // The default comparison is the working copy against its base (uid-matched); any other pair uses /compare.
+    json(tab === 'changes' && !compareDefault ? compareQuery(slug, compareFrom, compareTo) : `/api/deal/${slug}/${tab}`)
       .then(data => { if (alive) { if (tab === 'changes') setChangesData(data); else setHistoryData(data); } })
       .catch(err => { if (alive) setError(failure(tab === 'changes' ? 'Changes could not be loaded.' : 'History could not be loaded.', err)); })
       .finally(() => { if (alive) setAuxLoading(false); });
     return () => { alive = false; };
-  }, [slug, deal?.workspace?.revision, tab]);
+  }, [slug, deal?.workspace?.revision, tab, compareFrom, compareTo]);
+
+  // Extraction runs. A deal's versions list is refreshed (without touching unsaved edits) when a run finishes.
+  const refreshVersions = useCallback(async currentSlug => {
+    try {
+      const data = await json(`/api/deal/${currentSlug}?version=${encodeURIComponent(versionRef.current)}`);
+      if (currentSlug !== slugRef.current || loadedSlug.current !== currentSlug) return;
+      setDeal(current => current && ({ ...current, versions: data?.versions || current.versions, workspace: { ...current.workspace, base_version: data?.workspace?.base_version ?? current.workspace?.base_version } }));
+    } catch { /* the next poll or reload catches up */ }
+  }, []);
+  const applyJobs = useCallback((currentSlug, list) => {
+    const previous = jobStates.current;
+    const finished = list.some(job => job.state === 'completed' && previous.has(job.id) && previous.get(job.id) !== 'completed');
+    jobStates.current = new Map(list.map(job => [job.id, job.state]));
+    setJobs(list); setJobsError('');
+    if (finished) refreshVersions(currentSlug);
+  }, [refreshVersions]);
+  const fetchJobs = useCallback(async currentSlug => {
+    try {
+      const data = await json(`/api/deal/${currentSlug}/jobs`);
+      if (currentSlug === slugRef.current) applyJobs(currentSlug, Array.isArray(data?.jobs) ? data.jobs : []);
+    } catch (err) {
+      if (currentSlug === slugRef.current) setJobsError(err.message);
+    }
+  }, [applyJobs]);
+  useEffect(() => {
+    setJobs(null); setJobsError(''); setShowHidden(false); setExtract(null); jobStates.current = new Map();
+    if (slug) fetchJobs(slug);
+  }, [slug, fetchJobs]);
+  // Opening the Runs tab picks up runs the other person started since the deal was opened.
+  useEffect(() => { if (slug && tab === 'runs') fetchJobs(slug); }, [slug, tab, fetchJobs]);
+  const jobsActive = Boolean(jobs?.some(isActive));
+  useEffect(() => {
+    if (!slug || !jobsActive) return;
+    const timer = setInterval(() => fetchJobs(slug), JOB_POLL_MS);
+    return () => clearInterval(timer);
+  }, [slug, jobsActive, fetchJobs]);
 
   function selectRow(uid, fromFiling = false) {
     const row = deal?.ledger?.rows?.find(item => item.uid === uid);
@@ -281,13 +341,73 @@ function App() {
     }
     setMobilePane('workspace');
   }
+  function openRuns() { setTab('runs'); setMobilePane('workspace'); }
   function openActivityItem(item) {
     if (EDIT_KINDS.has(item.kind)) openRevision(item.revision);
+    else if (RUN_KINDS.has(item.kind) || VERSION_KINDS.has(item.kind)) {
+      // An extraction item opens the version it produced when the feed names it; otherwise the Runs tab.
+      if (item.kind !== 'extraction_failed' && item.version_id && deal?.versions?.some(v => v.id === item.version_id)) switchVersion(item.version_id);
+      else openRuns();
+    }
     else openThread(item.target, item.thread_id);
   }
   async function postComment(action) {
     const data = await commentAction(slug, session, action);
     setThreads(data?.threads || []);
+  }
+
+  async function openExtract() {
+    setExtract({ account: null, accountError: '', busy: false, error: '' });
+    try {
+      const account = await json('/api/account');
+      setExtract(current => current && { ...current, account: account || {} });
+    } catch (err) {
+      setExtract(current => current && { ...current, accountError: err.message });
+    }
+  }
+  async function startExtract(params) {
+    setExtract(current => ({ ...current, busy: true, error: '' }));
+    try {
+      const data = await jobAction(slug, session, { action: 'extract', ...params });
+      applyJobs(slug, Array.isArray(data?.jobs) ? data.jobs : []);
+      setExtract(null); openRuns();
+    } catch (err) {
+      setExtract(current => current && { ...current, busy: false, error: `The extraction could not be started: ${err.message}` });
+    }
+  }
+  async function cancelJob(job) {
+    if (!window.confirm('Cancel this extraction run? Its receipts are kept, but no version is made.')) return;
+    try {
+      const data = await jobAction(slug, session, { action: 'cancel', job_id: job.id });
+      applyJobs(slug, Array.isArray(data?.jobs) ? data.jobs : []);
+    } catch (err) {
+      setError(failure('The run could not be cancelled.', err));
+    }
+  }
+  async function setVersionHidden(item, hide) {
+    setVersionBusy(true); setError(null);
+    try {
+      await versionAction(slug, session, { action: hide ? 'hide' : 'unhide', version_id: item.id });
+      await refreshVersions(slug);
+    } catch (err) {
+      setError(failure(hide ? 'The version could not be hidden.' : 'The version could not be unhidden.', err));
+    } finally {
+      setVersionBusy(false);
+    }
+  }
+  // Rebase: the working copy takes the selected original as its new base, in one new revision.
+  async function rebase() {
+    const reasonText = rebasePrompt?.reason.trim();
+    if (!reasonText || rebasePrompt.busy) return;
+    setRebasePrompt(current => ({ ...current, busy: true, error: '' }));
+    try {
+      await saveDeal(slug, session, { revision: deal.workspace.revision, base_sha256: deal.workspace.base_sha256, reason: reasonText, operations: [{ type: 'rebase', target_version: rebasePrompt.version.id }] });
+      setRebasePrompt(null);
+      await load(slug, 'working');
+    } catch (err) {
+      const detail = err.status === 409 ? `Another editor saved a newer revision, or this version cannot be the base (${err.message}).` : err.message;
+      setRebasePrompt(current => current && { ...current, busy: false, error: detail });
+    }
   }
 
   function editValue(sheet, uid, field, value) {
@@ -466,13 +586,15 @@ function App() {
   }
 
   if (!slug) {
-    const activity = route.page === 'activity';
+    const activity = route.page === 'activity', settings = route.page === 'settings';
     return <>
       <Header onNavigate={navigate} session={session} page={route.page}/>
       <main className="overview-wrap">
-        {loading && !activity && <Loading label="Loading deals"/>}
-        {error && <Message type="error" title={error.title} detail={error.detail}/>}
-        {activity ? <ActivityPage deals={deals} onOpenDeal={s => navigate(`/deal/${s}`)}/> : deals && <Overview deals={deals} onOpen={s => navigate(`/deal/${s}`)}/>}
+        {loading && route.page === 'overview' && <Loading label="Loading deals"/>}
+        {error && !settings && <Message type="error" title={error.title} detail={error.detail}/>}
+        {settings ? <SettingsPage session={session}/>
+          : activity ? <ActivityPage deals={deals} onOpenDeal={(s, v) => navigate(`/deal/${s}${v ? `?version=${encodeURIComponent(v)}` : ''}`)}/>
+          : deals && <Overview deals={deals} onOpen={s => navigate(`/deal/${s}`)}/>}
       </main>
     </>;
   }
@@ -480,11 +602,17 @@ function App() {
   const ledgerRows = deal?.ledger?.rows || [];
   const selected = ledgerRows.find(row => row.uid === selectedUid);
   const baseLabel = deal?.versions?.find(item => item.id === deal.workspace?.base_version)?.label || deal?.workspace?.base_version || 'base';
-  const versionLabel = item => item.kind === 'working'
-    ? `Working copy · editable`
-    : `${item.label || item.id}${item.instruction_version ? ` · ${item.instruction_version}` : ''} · original, read only`;
+  const orderedVersions = orderVersions(deal?.versions, { baseId, showHidden, selected: version });
+  const allVersions = orderVersions(deal?.versions, { baseId, showHidden: true });
+  const compareState = deal && {
+    from: compareFrom, to: compareTo, isDefault: compareDefault,
+    options: [...allVersions.working, ...allVersions.originals].map(item => ({ id: item.id, label: item.id === 'working' ? 'Working copy' : versionOptionLabel(item) })),
+  };
+  const shownVersion = orderedVersions.originals.find(item => item.id === version);
+  const canRun = Boolean(session.can_edit && knownUser(session.user));
   const lastSaved = deal?.workspace?.updated_by ? `Last saved by ${deal.workspace.updated_by}${deal.workspace.updated_at ? ` · ${friendlyDate(deal.workspace.updated_at)}` : ''}` : '';
   const immutable = deal?.workspace?.selected_version !== 'working';
+  const versionActions = Boolean(canRun && immutable && shownVersion && !shownVersion.is_base && !versionLoading);
   const sublineParts = deal ? [deal.filing?.form_type, deal.filing?.date_filed, ...(immutable
     ? ['Original extraction, read only']
     : [`Working copy from ${baseLabel}`, `Revision ${deal.workspace?.revision}`])] : [];
@@ -529,9 +657,16 @@ function App() {
               <span>Version</span>
               {immutable && <LockSimpleIcon size={14} className="tone-muted" aria-hidden="true"/>}
               <Select aria-label="Version" title={immutable ? 'Read only version' : undefined} value={version} onChange={(_, data) => switchVersion(data.value)} disabled={saveState === 'saving'}>
-                {(deal.versions || []).map(item => <option value={item.id} key={item.id}>{versionLabel(item)}</option>)}
+                {orderedVersions.working.map(item => <option value={item.id} key={item.id}>{versionOptionLabel(item)}</option>)}
+                {orderedVersions.originals.length > 0 && <optgroup label="Originals · read only">
+                  {orderedVersions.originals.map(item => <option value={item.id} key={item.id}>{versionOptionLabel(item)}</option>)}
+                </optgroup>}
               </Select>
             </label>
+            {versionActions && !shownVersion.hidden && <Button appearance="secondary" icon={<ArrowsClockwiseIcon size={16}/>} disabled={versionBusy} onClick={() => setRebasePrompt({ version: shownVersion, reason: '', busy: false, error: '' })}>Use as working-copy base…</Button>}
+            {versionActions && isImported(shownVersion) && <Button appearance="secondary" icon={shownVersion.hidden ? <EyeIcon size={16}/> : <EyeSlashIcon size={16}/>} disabled={versionBusy} onClick={() => setVersionHidden(shownVersion, !shownVersion.hidden)}>{shownVersion.hidden ? 'Unhide' : 'Hide'}</Button>}
+            <RunBadge jobs={jobs} onOpen={openRuns}/>
+            {canRun && <Button appearance="secondary" className="extract-button" icon={<PlayIcon size={16}/>} onClick={openExtract}>Extract</Button>}
             <Button as="a" appearance="secondary" className="export-button" href={`/api/deal/${slug}/export?version=${encodeURIComponent(version)}`} download icon={<DownloadSimpleIcon size={16}/>}>Export Excel</Button>
             <div className="save-line">
               <span className={`work-state ${dirty ? 'unsaved' : ''}`} aria-live="polite" title={lastSaved || undefined}><Dot tone={workState.tone}/>{workState.label}</span>
@@ -552,7 +687,7 @@ function App() {
             {news?.slug === slug && <WhatsNew news={news} onMarkRead={() => setSeen('read')} onMarkUnread={() => setSeen('unread')} onOpenItem={openActivityItem}/>}
             <TabScroller activeTab={tab}>
               {TABS.map(([key, label]) => {
-                const tabCount = ['ledger', 'rounds', 'questions'].includes(key) ? sheetRows(deal, SHEETS[key]).length : key === 'review' && deal.findings?.length > 0 ? deal.findings.length : null;
+                const tabCount = ['ledger', 'rounds', 'questions'].includes(key) ? sheetRows(deal, SHEETS[key]).length : key === 'review' && deal.findings?.length > 0 ? deal.findings.length : key === 'runs' && jobsActive ? jobs.filter(isActive).length : null;
                 return <button key={key} id={`tab-${key}`} role="tab" aria-selected={tab === key} aria-controls="workspace-panel" tabIndex={tab === key ? 0 : -1} className={tab === key ? 'active' : ''} onClick={() => setTab(key)}>
                   {label}{tabCount != null && <span className="tab-count mono">{tabCount}</span>}
                 </button>;
@@ -564,8 +699,10 @@ function App() {
                 {tab === 'ledger' && <LedgerTab deal={deal} selectedUid={selectedUid} onSelect={selectRow} onShowFiling={showRowEvidence} onOpenQuestion={openQuestion} onStep={stepRow} onAdd={addRow} onMove={moveRow} onDelete={requestDelete} onEdit={editValue} onReview={setReview} editable={editable} selection={selected} dirtyFor={dirtyFor} reviewDirty={reviewDirty} trace={trace}/>}
                 {['rounds', 'questions', 'facts'].includes(tab) && <SheetTab deal={deal} sheet={SHEETS[tab]} selectedUid={selectedBySheet[SHEETS[tab]]} onSelect={selectOther} onAdd={addRow} onMove={moveRow} onDelete={requestDelete} onEdit={editValue} editable={editable} onJumpRow={selectRow} dirtyFor={dirtyFor} trace={trace}/>}
                 {tab === 'review' && <ReviewTab deal={deal} editable={editable} open={findingOpen} onToggle={setFindingOpen} onEdit={setFinding} dirtyFor={findingDirty} onFindEvidence={findEvidence} onOpenDocument={openDocument} trace={trace}/>}
-                {tab === 'changes' && <ChangesTab data={changesData} loading={auxLoading}/>}
+                {tab === 'changes' && <ChangesTab data={changesData} loading={auxLoading} compare={compareState} onCompare={setCompare}/>}
                 {tab === 'history' && <HistoryTab data={historyData} loading={auxLoading} editable={editable} onRestore={restore} lastSaved={lastSaved} focus={focusRevision}/>}
+                {tab === 'runs' && <RunsTab jobs={jobs} error={jobsError} loading={!jobs && !jobsError} canCancel={canRun} onCancel={cancelJob} onOpenVersion={switchVersion} versions={deal.versions}
+                  hiddenCount={orderedVersions.hiddenCount} showHidden={showHidden} onShowHidden={setShowHidden}/>}
               </>}
             </div>
             {showDock && <div className="save-dock">
@@ -597,6 +734,25 @@ function App() {
         </div>
       </div>
     </div>}
+    {rebasePrompt && <div className="modal-backdrop" role="presentation">
+      <div className="modal" ref={modalRef} role="dialog" aria-modal="true" aria-label="Use as working-copy base">
+        <div className="modal-head">
+          <h2>Use {rebasePrompt.version.label || rebasePrompt.version.id} as the working-copy base?</h2>
+          <Button appearance="subtle" className="icon-button" disabled={rebasePrompt.busy} onClick={() => setRebasePrompt(null)} aria-label="Close" icon={<XIcon size={16}/>}/>
+        </div>
+        <p>The working copy is replaced by this version in one new revision. Earlier revisions stay in history and can be restored.</p>
+        <Field label="Reason" required hint="Appears in history">
+          <Textarea value={rebasePrompt.reason} disabled={rebasePrompt.busy} onChange={(_, data) => setRebasePrompt(current => ({ ...current, reason: data.value }))}/>
+        </Field>
+        {rebasePrompt.error && <p className="run-failure tone-error" role="alert">{rebasePrompt.error}</p>}
+        <div className="modal-actions">
+          <Button appearance="secondary" disabled={rebasePrompt.busy} onClick={() => setRebasePrompt(null)}>Cancel</Button>
+          <Button appearance="primary" disabled={rebasePrompt.busy || !rebasePrompt.reason.trim()} onClick={rebase}>{rebasePrompt.busy ? 'Rebasing…' : 'Use as base'}</Button>
+        </div>
+      </div>
+    </div>}
+    {extract && <ExtractDialog user={session.user} account={extract.account} accountError={extract.accountError} busy={extract.busy} error={extract.error} dialogRef={modalRef}
+      onStart={startExtract} onClose={() => setExtract(null)} onSettings={() => { setExtract(null); navigate('/settings'); }}/>}
     {documentOpen && <div className="modal-backdrop" role="presentation">
       <div className="modal document-modal" ref={modalRef} role="dialog" aria-modal="true" aria-label="Recorded document">
         <div className="modal-head">
@@ -619,10 +775,12 @@ function Header({ onNavigate, session, page }) {
   };
   return <header className="global-header">
     <Button appearance="subtle" className="wordmark" onClick={() => onNavigate('/')}>Ledger cockpit</Button>
-    <span className="header-context">{page === 'deal' ? 'Deal workspace' : page === 'activity' ? 'Activity' : 'Deal ledgers'}</span>
+    <span className="header-context">{{ deal: 'Deal workspace', activity: 'Activity', settings: 'Settings' }[page] || 'Deal ledgers'}</span>
     <div className="header-user">
       {page !== 'activity' && <a className="header-link" href="/activity" onClick={follow('/activity')}>Activity</a>}
-      {session.user && <span className="header-name">{displayName(session.user)}</span>}
+      {session.user && (knownUser(session.user)
+        ? <a className="header-link header-name" href="/settings" title="Settings" aria-current={page === 'settings' ? 'page' : undefined} onClick={follow('/settings')}>{displayName(session.user)}</a>
+        : <span className="header-name">{displayName(session.user)}</span>)}
       <span className="access-state"><Dot tone={access.tone}/>{access.label}</span>
     </div>
   </header>;

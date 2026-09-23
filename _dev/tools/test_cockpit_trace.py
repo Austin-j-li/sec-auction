@@ -118,8 +118,8 @@ class TraceTests(unittest.TestCase):
         self.save([{"type": "update", "sheet": "Deal ledger", "uid": uid, "values": {"Who": "Party A"}}], actor="alex")
         self.post("alex", action="create", target={"kind": "deal"}, body="Look at round 2")
         self.post("austin", action="create", target={"kind": "deal"}, body="My own note")
-        self.assertEqual(self.trace.unseen(SLUG, "austin")["by"], {"alex": {"edits": 1, "comments": 1}})
-        self.assertEqual(self.trace.unseen(SLUG, "alex")["by"], {"austin": {"edits": 0, "comments": 1}})
+        self.assertEqual(self.trace.unseen(SLUG, "austin")["by"], {"alex": {"edits": 1, "comments": 1, "runs": 0}})
+        self.assertEqual(self.trace.unseen(SLUG, "alex")["by"], {"austin": {"edits": 0, "comments": 1, "runs": 0}})
         feed = self.trace.activity("austin", SLUG)
         self.assertEqual([i["unseen"] for i in feed["items"]], [False, True, True])
         latest = feed["items"][0]["id"]
@@ -128,7 +128,7 @@ class TraceTests(unittest.TestCase):
         self.assertEqual(self.trace.unseen(SLUG, "austin")["by"], {})
         self.assertEqual(self.trace.deal_extras(SLUG, "austin")["seen"]["activity_id"], latest)
         self.trace.mark_seen(SLUG, {"activity_id": 0}, "austin")
-        self.assertEqual(self.trace.unseen(SLUG, "austin")["by"], {"alex": {"edits": 1, "comments": 1}})
+        self.assertEqual(self.trace.unseen(SLUG, "austin")["by"], {"alex": {"edits": 1, "comments": 1, "runs": 0}})
         for bad in ({"activity_id": 999}, {"activity_id": -1}, {"activity_id": "1"}, {}):
             with self.assertRaises(WorkspaceError): self.trace.mark_seen(SLUG, bad, "austin")
         account = self.trace.activity("austin", None, account=True, actor="alex")
@@ -184,7 +184,7 @@ class TraceHTTPTests(unittest.TestCase):
         status, payload = self.request(f"/api/deal/{SLUG}/comments", {"action": "create", "target": {"kind": "deal"}, "body": "Please check round 2"}, alex)
         self.assertEqual((status, payload["threads"][0]["created_by"]), (200, "alex"))
         deals = self.request("/api/deals", headers=austin)[1]
-        self.assertEqual(next(d for d in deals if d["slug"] == SLUG)["unseen"]["by"], {"alex": {"edits": 0, "comments": 1}})
+        self.assertEqual(next(d for d in deals if d["slug"] == SLUG)["unseen"]["by"], {"alex": {"edits": 0, "comments": 1, "runs": 0}})
         self.assertNotIn("unseen", next(d for d in self.request("/api/deals", headers={"Host": "lines.dealextract.org"})[1] if d["slug"] == SLUG))
         feed = self.request(f"/api/deal/{SLUG}/activity", headers=austin)[1]
         self.assertTrue(feed["items"][0]["unseen"])

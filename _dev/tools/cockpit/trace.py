@@ -17,16 +17,17 @@ SCHEMA = (
     "CREATE TABLE IF NOT EXISTS threads (id TEXT PRIMARY KEY, slug TEXT NOT NULL, target_kind TEXT NOT NULL CHECK (target_kind IN ('deal','row','finding')), target_sheet TEXT, target_uid TEXT, target_label TEXT NOT NULL, created_by TEXT NOT NULL, created_at TEXT NOT NULL, resolved_by TEXT, resolved_at TEXT)",
     "CREATE TABLE IF NOT EXISTS comments (id TEXT PRIMARY KEY, thread_id TEXT NOT NULL REFERENCES threads(id), parent_id TEXT, actor TEXT NOT NULL, at TEXT NOT NULL, body TEXT NOT NULL, edited_at TEXT, deleted_by TEXT, deleted_at TEXT)",
     "CREATE TABLE IF NOT EXISTS comment_edits (comment_id TEXT NOT NULL, at TEXT NOT NULL, previous_body TEXT NOT NULL)",
-    "CREATE TABLE IF NOT EXISTS activity (id INTEGER PRIMARY KEY AUTOINCREMENT, slug TEXT NOT NULL, at TEXT NOT NULL, actor TEXT NOT NULL, kind TEXT NOT NULL, revision INTEGER, thread_id TEXT, comment_id TEXT, summary TEXT NOT NULL)",
+    "CREATE TABLE IF NOT EXISTS activity (id INTEGER PRIMARY KEY AUTOINCREMENT, slug TEXT NOT NULL, at TEXT NOT NULL, actor TEXT NOT NULL, kind TEXT NOT NULL, revision INTEGER, thread_id TEXT, comment_id TEXT, summary TEXT NOT NULL, version_id TEXT)",
     "CREATE TABLE IF NOT EXISTS seen (user TEXT NOT NULL, slug TEXT NOT NULL, activity_id INTEGER NOT NULL, at TEXT NOT NULL, PRIMARY KEY (user, slug))",
     "CREATE TABLE IF NOT EXISTS migrations (key TEXT PRIMARY KEY)",
     "CREATE INDEX IF NOT EXISTS activity_slug ON activity (slug, id)",
     "CREATE INDEX IF NOT EXISTS threads_slug ON threads (slug)",
     "CREATE INDEX IF NOT EXISTS comments_thread ON comments (thread_id)",
 )
-EDIT_KINDS = ("revision", "restore")
+EDIT_KINDS = ("revision", "restore", "rebase")
+RUN_KINDS = ("extraction", "extraction_failed")
 COMMENT_KINDS = ("comment", "reply")
-KINDS = EDIT_KINDS + COMMENT_KINDS + ("resolve", "reopen", "comment_edit", "comment_delete")
+KINDS = EDIT_KINDS + COMMENT_KINDS + RUN_KINDS + ("resolve", "reopen", "comment_edit", "comment_delete", "hide", "unhide")
 MAX_BODY = 20000
 
 
@@ -34,6 +35,8 @@ def ensure_schema(conn: sqlite3.Connection) -> None:
     """Create the trace tables and migrate legacy notes once. Called on every write connection."""
     for statement in SCHEMA:
         conn.execute(statement)
+    if "version_id" not in {row[1] for row in conn.execute("PRAGMA table_info(activity)")}:
+        conn.execute("ALTER TABLE activity ADD COLUMN version_id TEXT")
     conn.commit()
     if conn.execute("SELECT 1 FROM migrations WHERE key='notes-v1'").fetchone():
         return
@@ -73,9 +76,11 @@ def _migrate_notes(conn: sqlite3.Connection) -> None:
     conn.execute("INSERT INTO migrations VALUES ('notes-v1')")
 
 
-def record_revision(conn: sqlite3.Connection, slug: str, actor: str, revision: int, reason: str, restore: bool, at: str) -> None:
-    """Called by Workspace.edit inside its transaction, with the revision's own timestamp."""
-    _activity(conn, slug, actor, "restore" if restore else "revision", revision=revision, summary=_summary(reason), at=at)
+def record_revision(conn: sqlite3.Connection, slug: str, actor: str, revision: int, reason: str, kind: str, at: str) -> None:
+    """Called by Workspace.edit inside its transaction, with the revision's own timestamp.
+
+    kind is "revision", "restore" or "rebase"."""
+    _activity(conn, slug, actor, kind, revision=revision, summary=_summary(reason), at=at)
 
 
 def _summary(text: str) -> str:
@@ -83,8 +88,8 @@ def _summary(text: str) -> str:
     return line if len(line) <= 140 else line[:139] + "…"
 
 
-def _activity(conn: sqlite3.Connection, slug: str, actor: str, kind: str, *, revision: int | None = None, thread_id: str | None = None, comment_id: str | None = None, summary: str = "", at: str | None = None) -> int:
-    cursor = conn.execute("INSERT INTO activity (slug, at, actor, kind, revision, thread_id, comment_id, summary) VALUES (?,?,?,?,?,?,?,?)", (slug, at or _now(), actor, kind, revision, thread_id, comment_id, summary))
+def _activity(conn: sqlite3.Connection, slug: str, actor: str, kind: str, *, revision: int | None = None, thread_id: str | None = None, comment_id: str | None = None, summary: str = "", at: str | None = None, version_id: str | None = None) -> int:
+    cursor = conn.execute("INSERT INTO activity (slug, at, actor, kind, revision, thread_id, comment_id, summary, version_id) VALUES (?,?,?,?,?,?,?,?,?)", (slug, at or _now(), actor, kind, revision, thread_id, comment_id, summary, version_id))
     return int(cursor.lastrowid)
 
 
@@ -166,10 +171,11 @@ class Trace:
             after = seen["activity_id"] if seen else 0
             by: dict[str, dict[str, int]] = {}
             for row in _rows(conn, "SELECT actor, kind, COUNT(*) AS n FROM activity WHERE slug=? AND id>? AND actor<>? GROUP BY actor, kind", (slug, after, user)):
-                entry = by.setdefault(row["actor"], {"edits": 0, "comments": 0})
+                entry = by.setdefault(row["actor"], {"edits": 0, "comments": 0, "runs": 0})
                 if row["kind"] in EDIT_KINDS: entry["edits"] += row["n"]
                 elif row["kind"] in COMMENT_KINDS: entry["comments"] += row["n"]
-            by = {actor: counts for actor, counts in by.items() if counts["edits"] or counts["comments"]}
+                elif row["kind"] in RUN_KINDS: entry["runs"] += row["n"]
+            by = {actor: counts for actor, counts in by.items() if any(counts.values())}
             latest = _rows(conn, "SELECT MAX(id) AS id FROM activity WHERE slug=?", (slug,))
             return {"since": seen["at"] if seen else None, "by": by, "latest_activity_id": (latest[0]["id"] if latest else None) or 0}
         finally:
@@ -230,7 +236,7 @@ class Trace:
                 if row["slug"] not in seen_cache:
                     seen_cache[row["slug"]] = self._seen(conn, user, row["slug"])
                 seen = seen_cache[row["slug"]]
-                entry = {"id": row["id"], "at": row["at"], "actor": row["actor"], "kind": row["kind"], "summary": row["summary"], "revision": row["revision"], "thread_id": row["thread_id"], "comment_id": row["comment_id"],
+                entry = {"id": row["id"], "at": row["at"], "actor": row["actor"], "kind": row["kind"], "summary": row["summary"], "revision": row["revision"], "thread_id": row["thread_id"], "comment_id": row["comment_id"], "version_id": row["version_id"],
                          "unseen": user != "unknown" and row["actor"] != user and row["id"] > (seen["activity_id"] if seen else 0)}
                 if row["target_kind"]:
                     entry["target"] = self._target(row)

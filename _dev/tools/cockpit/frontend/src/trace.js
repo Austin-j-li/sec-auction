@@ -5,10 +5,14 @@ import { count, text } from './api';
 const NAMES = { austin: 'Austin', alex: 'Alex', local: 'Local' };
 const INITIALS = { austin: 'AL', alex: 'AG', local: 'LO' };
 export const SESSION_GAP_MS = 30 * 60 * 1000;
-export const EDIT_KINDS = new Set(['revision', 'restore']);
+// A rebase saves a revision too, so it opens History like an edit.
+export const EDIT_KINDS = new Set(['revision', 'restore', 'rebase']);
+export const RUN_KINDS = new Set(['extraction', 'extraction_failed']);
+export const VERSION_KINDS = new Set(['hide', 'unhide']);
 export const COMMENT_KINDS = new Set(['comment', 'reply']);
 export const THREAD_KINDS = new Set(['comment', 'reply', 'resolve', 'reopen', 'comment_edit', 'comment_delete']);
-export const KIND_LABELS = { revision: 'Revision', restore: 'Restore', comment: 'Comment', reply: 'Reply', resolve: 'Resolved', reopen: 'Reopened', comment_edit: 'Comment edited', comment_delete: 'Comment deleted' };
+export const KIND_LABELS = { revision: 'Revision', restore: 'Restore', comment: 'Comment', reply: 'Reply', resolve: 'Resolved', reopen: 'Reopened', comment_edit: 'Comment edited', comment_delete: 'Comment deleted',
+  extraction: 'Extraction', extraction_failed: 'Extraction failed', rebase: 'Rebase', hide: 'Version hidden', unhide: 'Version unhidden' };
 
 export function displayName(actor) {
   const key = text(actor);
@@ -52,10 +56,14 @@ export function groupSessions(items, gap = SESSION_GAP_MS) {
 export function tally(items) {
   const edits = items.filter(item => EDIT_KINDS.has(item.kind)).length;
   const comments = items.filter(item => COMMENT_KINDS.has(item.kind)).length;
-  return { edits, comments, other: items.length - edits - comments };
+  const runs = items.filter(item => RUN_KINDS.has(item.kind)).length;
+  const result = { edits, comments, other: items.length - edits - comments - runs };
+  if (runs) result.runs = runs;
+  return result;
 }
-export function tallyText({ edits = 0, comments = 0, other = 0 }) {
-  return [edits && count(edits, 'edit'), comments && count(comments, 'comment'), other && `${other} other`].filter(Boolean).join(', ');
+// "1 run, 2 edits, 3 comments"
+export function tallyText({ runs = 0, edits = 0, comments = 0, other = 0 }) {
+  return [runs && count(runs, 'run'), edits && count(edits, 'edit'), comments && count(comments, 'comment'), other && `${other} other`].filter(Boolean).join(', ');
 }
 
 // The other actor who changed any field of this row in a revision after the reader's last visit, or null.

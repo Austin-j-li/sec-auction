@@ -344,11 +344,11 @@ svg.tone-success, svg.tone-warning, svg.tone-error, svg.tone-muted, svg.tone-quo
 }
 .deal-identity {
   display: flex;
-  flex: 1 1 auto;
+  flex: 1 1 0;
   flex-wrap: wrap;
   align-items: baseline;
   gap: var(--sp-1) var(--sp-4);
-  min-width: 0;
+  min-width: min(260px, 100%);
 }
 .cockpit .fui-Button.back-link,
 .cockpit .fui-Button.back-link:hover,
@@ -364,7 +364,8 @@ svg.tone-success, svg.tone-warning, svg.tone-error, svg.tone-muted, svg.tone-quo
 }
 .deal-subline { font-size: var(--fs-12); line-height: var(--lh-12); color: var(--ink-3); }
 .deal-subline > span { white-space: nowrap; }
-.toolbar-actions { display: flex; flex: none; align-items: center; gap: var(--sp-4); }
+/* Wide screens: when an original shows its extra actions, the actions wrap under each other before the deal name is squeezed. */
+.toolbar-actions { display: flex; flex: 0 1 auto; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: var(--sp-2) var(--sp-4); }
 .version-control { display: flex; align-items: center; gap: 6px; font-size: var(--fs-12); color: var(--ink-3); }
 .version-control .fui-Select { width: 240px; }
 .save-line { display: flex; align-items: center; gap: var(--sp-3); font-size: var(--fs-12); white-space: nowrap; }
@@ -1122,11 +1123,13 @@ details[open] > summary .caret,
 .whats-new-item:focus-visible,
 .thread-collapsed:focus-visible,
 .history-item summary:focus-visible,
+.settings-fallback > summary:focus-visible,
 .tab-scroll-control:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 /* Splitters show focus with their thickened 2 px accent rule (see .split-handle::before), not a second outline. */
 .split-handle:focus-visible { outline: none; }
 .header-link:focus-visible,
-.deal-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.deal-link:focus-visible,
+.connect-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 /* ── Motion ─────────────────────────────────────────────────────────── */
 @keyframes appear { from { opacity: 0; } to { opacity: 1; } }
@@ -1164,6 +1167,55 @@ details[open] > summary .caret,
 .split-horizontal .event-text .event-detail { margin: var(--sp-1) 0 0; }
 .split-horizontal .record-editor,
 .split-horizontal .sheet-editor { min-width: 0; min-height: 0; }
+
+/* ── Runs, versions and settings (phase 2) ─────────────────────────── */
+.run-badge { display: inline-flex; align-items: center; gap: var(--sp-2); padding: var(--sp-1) var(--sp-3); border: 1px solid var(--warning); border-radius: 999px; background: var(--warning-bg); color: var(--ink); font-size: var(--fs-12); line-height: var(--lh-12); white-space: nowrap; cursor: pointer; }
+.run-badge:hover { background: var(--tint); }
+.run-badge:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+.run-badge .dot { animation: run-pulse 1.6s ease-in-out infinite; }
+@keyframes run-pulse { 50% { opacity: .35; } }
+@media (prefers-reduced-motion: reduce) { .run-badge .dot { animation: none; } }
+.deal-table small.running-line { margin-top: var(--sp-2); color: var(--ink-2); }
+.cockpit .hidden-toggle { margin: calc(-1 * var(--sp-2)) 0 var(--sp-3) calc(-1 * var(--sp-3)); font-size: var(--fs-12); color: var(--ink-3); }
+.cockpit .hidden-toggle .fui-Checkbox__label { padding-left: var(--sp-2); }
+.run-item { padding: var(--sp-4) 0; border-top: var(--divider); }
+.run-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--sp-4); }
+.run-head strong { display: inline-flex; align-items: center; font-size: var(--fs-14); line-height: var(--lh-14); font-weight: var(--fw-medium); }
+.run-head > div > span { display: block; font-size: var(--fs-12); line-height: var(--lh-12); color: var(--ink-3); }
+.run-actions { display: flex; flex: none; align-items: center; gap: var(--sp-3); }
+.run-meta { margin-top: 6px; font-size: var(--fs-12); line-height: var(--lh-12); color: var(--ink-2); overflow-wrap: anywhere; }
+.run-failure { margin-top: 6px; font-size: var(--fs-13); line-height: var(--lh-13); }
+.run-error { margin-top: var(--sp-2); font-size: var(--fs-12); line-height: var(--lh-12); color: var(--ink-3); overflow-wrap: anywhere; }
+.compare-controls { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--sp-3) var(--sp-4); padding-bottom: var(--sp-4); border-bottom: var(--hairline); }
+.compare-controls .fui-Field { flex: 1 1 220px; min-width: 0; }
+.compare-controls .fui-Select { width: 100%; }
+.compare-note { margin-top: var(--sp-3); }
+.extract-fixed { margin-top: var(--sp-2); }
+.extract-fixed > div, .settings-status > div { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: var(--sp-3); padding: var(--sp-2) 0; border-top: var(--hairline); }
+.extract-fixed dt, .settings-status dt { font-size: var(--fs-12); color: var(--ink-3); }
+.extract-fixed dd, .settings-status dd { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 var(--sp-3); }
+.extract-fixed small { font-size: var(--fs-12); color: var(--ink-3); }
+.modal .extract-summary { margin-top: var(--sp-5); padding-top: var(--sp-3); border-top: var(--hairline); font-size: var(--fs-12); color: var(--ink); }
+.modal .extract-usage { margin-top: var(--sp-1); font-size: var(--fs-12); color: var(--ink-3); }
+.modal .run-failure { margin-top: var(--sp-3); }
+.settings-section { max-width: 720px; }
+.settings-section .section-head { padding: 0; border: 0; background: none; }
+.settings-status { margin: var(--sp-4) 0 0; border-bottom: var(--hairline); }
+.settings-status dd { align-items: center; }
+.settings-line, .settings-error { margin-top: var(--sp-3); font-size: var(--fs-13); }
+.settings-line { display: flex; align-items: center; color: var(--ink-2); }
+.settings-actions { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin-top: var(--sp-5); }
+.connect-flow { margin-top: var(--sp-5); padding-top: var(--sp-4); border-top: var(--divider); }
+.connect-flow ol { margin: 0 0 var(--sp-4); padding-left: 20px; list-style: decimal; }
+.connect-flow li + li { margin-top: var(--sp-4); }
+.connect-flow li > span { display: block; font-weight: var(--fw-medium); }
+.connect-link { display: inline-flex; align-items: center; gap: var(--sp-2); margin-top: var(--sp-2); font-size: var(--fs-12); overflow-wrap: anywhere; word-break: break-all; }
+.settings-inline { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--sp-3); margin-top: var(--sp-3); }
+.settings-inline .fui-Field { flex: 1 1 260px; min-width: 0; }
+.settings-fallback { margin-top: var(--sp-6); padding-top: var(--sp-3); border-top: var(--hairline); }
+.settings-fallback > summary { display: inline-flex; align-items: center; gap: var(--sp-2); list-style: none; cursor: pointer; color: var(--ink-2); }
+.settings-fallback > summary::-webkit-details-marker { display: none; }
+.settings-fallback > p { margin-top: var(--sp-3); max-width: 640px; color: var(--ink-2); }
 
 /* ── Container queries ──────────────────────────────────────────────── */
 @container (max-width: 440px) {

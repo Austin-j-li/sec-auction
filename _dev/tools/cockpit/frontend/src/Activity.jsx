@@ -36,15 +36,17 @@ export default function ActivityPage({ deals, onOpenDeal }) {
   useEffect(() => { document.title = 'Activity · Ledger cockpit'; }, []);
   useEffect(() => { fetchPage(); }, [filters.actor, filters.slug, filters.kind]);
   const setFilter = key => (_, data) => setFilters(current => ({ ...current, [key]: data.value }));
-  function onLinkClick(event, slug) {
+  function onLinkClick(event, slug, version) {
     if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-    event.preventDefault(); onOpenDeal(slug);
+    event.preventDefault(); onOpenDeal(slug, version);
   }
+  // A finished extraction links to the version it produced (when the feed names it).
+  const versionHref = item => `/deal/${item.slug}?version=${encodeURIComponent(item.version_id)}`;
 
   return <>
     <div className="overview-title">
       <h1>Activity</h1>
-      <p>Every saved revision and comment action across deals, newest first</p>
+      <p>Every saved revision, comment action and extraction run across deals, newest first</p>
     </div>
     <div className="activity-filters">
       <Field label="Person"><Select value={filters.actor} onChange={setFilter('actor')}>
@@ -73,6 +75,7 @@ export default function ActivityPage({ deals, onOpenDeal }) {
             <td className="activity-detail">
               {text(item.summary)}
               {item.target && <small>{item.target.kind === 'deal' ? 'Deal discussion' : item.target.label || item.target.uid}</small>}
+              {item.kind === 'extraction' && item.version_id && <small><a className="deal-link" href={versionHref(item)} onClick={event => onLinkClick(event, item.slug, item.version_id)}>Open version</a></small>}
             </td>
           </tr>)}
         </tbody>

@@ -336,6 +336,43 @@ class RunnerTests(unittest.TestCase):
                 self.assertEqual(json.loads((run / "provider-results.json").read_text()),
                                  [event for step in steps for event in step[1]])
 
+    def rate_limit(self, status="allowed", resets=1790165400, weekly=0.29):
+        return {"type": "rate_limit_event", "rate_limit_info": {
+            "status": status, "rateLimitType": "five_hour", "resetsAt": resets,
+            "unifiedWindows": {"five_hour": {"utilization": 0.1, "resetsAt": resets}, "seven_day": {"utilization": weekly, "resetsAt": resets + 3600}}}}
+
+    def test_plan_usage_is_recorded_and_a_rejected_limit_is_named(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            run = self.prepare_fixture(Path(tmp))
+            _, result, _ = self.run_worker(run, (0, [self.rate_limit(weekly=0.2), self.rate_limit(weekly=0.3), self.result_event()], True))
+            self.assertEqual((result["state"], result["plan_usage"]["unifiedWindows"]["seven_day"]["utilization"]), ("completed", 0.3))
+            self.assertNotIn("usage_limit_resets_at", result)
+        with tempfile.TemporaryDirectory() as tmp:
+            run = self.prepare_fixture(Path(tmp))
+            limited = self.result_event(subtype="error_during_execution", is_error=True)
+            _, result, popen = self.run_worker(run, (1, [self.rate_limit(), self.rate_limit(status="rejected"), limited], False))
+            self.assertEqual((result["state"], result["failure_reason"], popen.call_count), ("failed", "usage_limit", 1))
+            self.assertEqual(result["usage_limit_resets_at"], "2026-09-23T12:10:00+00:00")
+            self.assertEqual(result["plan_usage"]["status"], "rejected")
+
+    def test_sigterm_cancels_the_run_and_stops_the_provider(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            run = self.prepare_fixture(Path(tmp))
+            killed = []
+            def wait(timeout=None):
+                run_model._cancel(run_model.signal.SIGTERM, None)  # as if the cockpit worker sent SIGTERM mid-run
+                return -15
+            proc = mock.Mock(pid=4321, wait=mock.Mock(side_effect=wait))
+            with mock.patch.object(run_model, "preflight", return_value=Path(run_model.__file__)), \
+                    mock.patch.object(run_model.subprocess, "Popen", return_value=proc) as popen, \
+                    mock.patch.object(run_model.os, "killpg", side_effect=lambda pgid, sig: killed.append((pgid, sig))), \
+                    mock.patch.object(run_model.threading, "Thread"):
+                self.assertEqual(run_model.worker(argparse.Namespace(run_dir=run, provider="opus")), 1)
+            result = json.loads((run / "status.json").read_text())
+            self.assertEqual((result["state"], result["failure_reason"], popen.call_count), ("cancelled", "cancelled", 1))
+            self.assertEqual(killed, [(4321, run_model.signal.SIGTERM)])
+            self.assertTrue((run / "validation.json").is_file())
+
     def test_unreadable_workbook_and_timeout_are_distinguished(self):
         with tempfile.TemporaryDirectory() as tmp:
             run = self.prepare_fixture(Path(tmp))
