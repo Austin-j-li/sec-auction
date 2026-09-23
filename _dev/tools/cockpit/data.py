@@ -653,6 +653,8 @@ class Cockpit:
         self.runs = Runs(self.workspace)
         from cockpit.deals import Deals
         self.deals = Deals(self.workspace)
+        from cockpit.instructions import Instructions
+        self.instructions = Instructions(self.workspace)
 
     def _path_lock(self, key: str) -> threading.Lock:
         with self._lock:

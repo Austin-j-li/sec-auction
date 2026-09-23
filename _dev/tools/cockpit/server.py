@@ -29,7 +29,8 @@ SLUG_PATH_RE = re.compile(r"/api/(deal|filing)/([^/]*)")
 DEAL_ACTION_RE = re.compile(r"/api/deal/([^/]*)/(history|changes|export|edit|comments|activity|seen|jobs|versions|compare)")
 DOCUMENT_RE = re.compile(r"/api/document/([^/]*)/([^/]*)")
 LOOKUP_RE = re.compile(r"/api/lookup/([0-9a-f]{32})")
-PAGE_PATH_RE = re.compile(r"/deal/[^/]*/?|/activity/?|/settings/?")
+INSTRUCTION_RE = re.compile(r"/api/instructions/([0-9a-f]{12})")
+PAGE_PATH_RE = re.compile(r"/deal/[^/]*/?|/activity/?|/settings/?|/instructions/?")
 MAX_JSON = 1024 * 1024
 
 
@@ -113,8 +114,17 @@ class Handler(BaseHTTPRequestHandler):
                 return self._json(deals)
             if path == "/api/account":
                 actor, _ = self._identity()
-                if actor == "unknown": return self._json({"user": actor, "claude": {"connected": False}, "connect": None})
+                if actor == "unknown": return self._json({"user": actor, "claude": {"connected": False}, "connect": None, "chatgpt": {"connected": False}, "chatgpt_connect": None, "engines": []})
                 return self._json(self.cockpit.runs.account(actor))
+            if path == "/api/instructions":
+                if not self.cockpit.workspace.available: return self._json({"error": "workspace unavailable"}, 404)
+                return self._json(self.cockpit.instructions.list())
+            match = INSTRUCTION_RE.fullmatch(path)
+            if match:
+                if not self.cockpit.workspace.available: return self._json({"error": "workspace unavailable"}, 404)
+                seq = (query.get("seq") or [None])[0]
+                if seq is not None and not seq.isdigit(): return self._json({"error": "invalid seq"}, 400)
+                return self._json(self.cockpit.instructions.detail(match.group(1), int(seq) if seq else None))
             if path == "/api/seed":
                 if not self.cockpit.workspace.available: return self._json({"error": "workspace unavailable"}, 404)
                 return self._json(self.cockpit.deals.seed_search((query.get("q") or [""])[0][:100]))
@@ -194,7 +204,7 @@ class Handler(BaseHTTPRequestHandler):
     def _route_post(self) -> None:
         path = urlparse(self.path).path
         match = DEAL_ACTION_RE.fullmatch(path)
-        if path not in ("/api/account/claude", "/api/deals") and (not match or match.group(2) not in ("edit", "comments", "seen", "jobs", "versions")): return self._not_allowed()
+        if path not in ("/api/account/claude", "/api/account/chatgpt", "/api/deals", "/api/instructions") and (not match or match.group(2) not in ("edit", "comments", "seen", "jobs", "versions")): return self._not_allowed()
         if not self.cockpit.workspace.available: return self._json({"error": "workspace unavailable"}, 404)
         actor, can_edit = self._identity()
         if not can_edit or not self._origin_ok() or not secrets.compare_digest(self.headers.get("X-Cockpit-CSRF") or "", self.csrf_token):
@@ -206,6 +216,8 @@ class Handler(BaseHTTPRequestHandler):
         try:
             body = json.loads(self.rfile.read(length))
             if path == "/api/deals": return self._json(self.cockpit.deals.request(actor, body))
+            if path == "/api/instructions": return self._json(self.cockpit.instructions.request(actor, body))
+            if path == "/api/account/chatgpt": return self._json(self.cockpit.runs.chatgpt_action(actor, body))
             if match is None: return self._json(self.cockpit.runs.account_action(actor, body))
             slug, action = unquote(match.group(1)), match.group(2)
             if action == "jobs": return self._json(self.cockpit.runs.job_action(slug, actor, body))

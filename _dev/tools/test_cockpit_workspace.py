@@ -35,6 +35,7 @@ def fixture(root: Path) -> tuple[data.Cockpit, bytes]:
     (root / "_dev/reviews").mkdir(parents=True)
     (root / "_dev/reviews/report.md").write_text("A report", encoding="utf-8")
     (root / "_dev/cockpit/catalog.json").write_text(json.dumps(catalog), encoding="utf-8")
+    (root / "SEC_Deal_Ledger_Extraction_Instruction.md").write_text("# Synthetic instruction\n\n**Revision of 1 January 2026, v1.13.2.**\n\nRead the filing.\n", encoding="utf-8")
     return data.Cockpit(root), original
 
 

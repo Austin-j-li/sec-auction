@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Button, Field, Input } from '@fluentui/react-components';
 import { ArrowSquareOutIcon, CaretRightIcon } from '@phosphor-icons/react';
-import { accountAction, json } from './api';
-import { CONNECT_ACTIVE_STATES, dateWithYear, planUsageText } from './runs';
+import { accountAction, chatgptAction, json } from './api';
+import { CHATGPT_CONNECT_ACTIVE_STATES, CONNECT_ACTIVE_STATES, dateWithYear, planUsageText } from './runs';
 import { displayName, knownUser, shortTime } from './trace';
 import { Dot, Loading } from './ui';
 
-// Settings: the signed-in person's Claude account, which pays for the extractions they start.
+// Settings: the signed-in person's Claude and ChatGPT accounts, which pay for the extractions they start.
 
 const POLL_MS = 2000;
 const CONNECT_STEPS = { queued: 'Starting the sign-in…', completing: 'Checking the code…' };
@@ -35,11 +35,12 @@ export default function SettingsPage({ session }) {
   const claude = account?.claude || {};
   const connect = account?.connect || null;
   const connecting = Boolean(connect && CONNECT_ACTIVE_STATES.has(connect.state));
+  const gptConnecting = Boolean(account?.chatgpt_connect && CHATGPT_CONNECT_ACTIVE_STATES.has(account.chatgpt_connect.state));
   useEffect(() => {
-    if (!connecting) return;
+    if (!connecting && !gptConnecting) return;
     const timer = setInterval(refresh, POLL_MS);
     return () => clearInterval(timer);
-  }, [connecting, refresh]);
+  }, [connecting, gptConnecting, refresh]);
 
   async function act(action, after) {
     setBusy(true); setActionError('');
@@ -97,7 +98,76 @@ export default function SettingsPage({ session }) {
         </form>
       </details>}
     </section>
+    <ChatGPTSection session={session} account={account} canWrite={canWrite} onAccount={data => { setAccount(data || {}); setLoadError(''); }} alive={alive}/>
   </>;
+}
+
+// ChatGPT: a device sign-in (link + one-time code) whose login the server keeps for this person's GPT runs.
+function ChatGPTSection({ session, account, canWrite, onAccount, alive }) {
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState('');
+  const [disconnected, setDisconnected] = useState(false);
+  const chatgpt = account?.chatgpt || {};
+  const connect = account?.chatgpt_connect || null;
+  const connecting = Boolean(connect && CHATGPT_CONNECT_ACTIVE_STATES.has(connect.state));
+  async function act(action, after) {
+    setBusy(true); setError('');
+    try {
+      const data = await chatgptAction(session, action);
+      if (alive.current) { onAccount(data); after?.(); }
+    } catch (err) {
+      if (alive.current) setError(err.message);
+    } finally {
+      if (alive.current) setBusy(false);
+    }
+  }
+  function disconnect() {
+    if (!window.confirm('Disconnect your ChatGPT account? The cockpit deletes its copy of your login, and GPT runs you start will not run until you connect again. To revoke the login at OpenAI as well, open chatgpt.com → Settings → Security.')) return;
+    act({ action: 'disconnect' }, () => setDisconnected(true));
+  }
+  return <section className="settings-section" aria-labelledby="chatgpt-account-head">
+    <div className="section-head"><h2 id="chatgpt-account-head">ChatGPT account</h2></div>
+    <p className="section-note">GPT-6-Sol and GPT-6-Astra runs you start use your own ChatGPT plan, through a login saved on the cockpit server. It is never used for anyone else’s runs.</p>
+    {!canWrite && <p className="settings-line">Sign in with edit access to connect a ChatGPT account.</p>}
+    <dl className="settings-status">
+      <div><dt>Status</dt><dd>{chatgpt.connected
+        ? <><Dot tone="success"/>Connected{chatgpt.connected_at && <> since <span className="mono">{shortTime(chatgpt.connected_at)}</span></>}</>
+        : <><Dot tone="muted"/>Not connected</>}</dd></div>
+      {chatgpt.connected && chatgpt.expires_at && <div><dt>Login expires</dt><dd className="mono">{shortTime(chatgpt.expires_at)}</dd></div>}
+      {chatgpt.connected && <div><dt>Last refreshed</dt><dd className="mono">{chatgpt.last_refresh ? shortTime(chatgpt.last_refresh) : 'Not yet'}</dd></div>}
+    </dl>
+    {chatgpt.connected && <p className="settings-line">The server renews the login before it expires. If a renewal fails, GPT runs stop with “login has expired” until you reconnect.</p>}
+    {canWrite && !connecting && <div className="settings-actions">
+      <Button appearance={chatgpt.connected ? 'secondary' : 'primary'} disabled={busy} onClick={() => act({ action: 'connect' }, () => setDisconnected(false))}>{chatgpt.connected ? 'Reconnect ChatGPT account' : 'Connect ChatGPT account'}</Button>
+      {chatgpt.connected && <Button appearance="secondary" className="danger-outline" disabled={busy} onClick={disconnect}>Disconnect</Button>}
+    </div>}
+    {disconnected && !chatgpt.connected && <p className="settings-line">Disconnected. To revoke the login at OpenAI too, open chatgpt.com → Settings → Security.</p>}
+    {connect && <ChatGPTConnectFlow connect={connect} busy={busy} canWrite={canWrite} onCancel={() => act({ action: 'cancel', job_id: connect.job_id })}/>}
+    {error && <p className="settings-error tone-error" role="alert">{error}</p>}
+  </section>;
+}
+
+function ChatGPTConnectFlow({ connect, busy, canWrite, onCancel }) {
+  if (connect.state === 'completed') return <p className="settings-line tone-success">ChatGPT account connected.</p>;
+  if (connect.state === 'cancelled') return <p className="settings-line">Connecting was cancelled.</p>;
+  if (connect.state === 'failed') return <p className="settings-error tone-error">Connecting failed{connect.error ? `: ${connect.error}` : '.'}</p>;
+  if (!CHATGPT_CONNECT_ACTIVE_STATES.has(connect.state)) return null;
+  return <div className="connect-flow" aria-live="polite">
+    {connect.state === 'waiting_for_approval' && connect.link ? <>
+      <ol>
+        <li>
+          <span>Open this link and sign in with your ChatGPT account</span>
+          <a className="connect-link mono" href={connect.link} target="_blank" rel="noopener noreferrer">{connect.link}<ArrowSquareOutIcon size={12} aria-hidden="true"/></a>
+        </li>
+        <li>
+          <span>Enter this code: <strong className="device-code mono">{connect.code || '…'}</strong></span>
+        </li>
+      </ol>
+      <p className="settings-line"><Dot tone="warning"/>Waiting for you to approve…</p>
+    </> : <p className="settings-line"><Dot tone="warning"/>Starting the sign-in…</p>}
+    {connect.error && <p className="settings-error tone-error">{connect.error}</p>}
+    {canWrite && <Button appearance="secondary" disabled={busy} onClick={onCancel}>Cancel</Button>}
+  </div>;
 }
 
 function ConnectFlow({ connect, busy, code, onCode, onSubmit, onCancel, canWrite }) {

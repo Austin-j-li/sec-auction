@@ -25,12 +25,18 @@ export function markSeenOnLeave(slug, session, activityId) {
 }
 // Phase 2. Claude account: {action: connect | code | cancel | token | disconnect, ...}; the response is GET /api/account.
 export function accountAction(session, action) { return post('/api/account/claude', session, action); }
-// Extraction jobs: {action: 'extract', effort, timeout_minutes} or {action: 'cancel', job_id}; the response is the jobs list.
+// Extraction jobs: {action: 'extract', engine, effort, timeout_minutes, instruction_id} or {action: 'cancel', job_id}; the response is the jobs list.
 export function jobAction(slug, session, action) { return post(dealPath(slug, 'jobs'), session, action); }
 // Imported versions: {action: 'hide' | 'unhide', version_id}.
 export function versionAction(slug, session, action) { return post(dealPath(slug, 'versions'), session, action); }
 // Phase 3. Add a deal: {action: 'lookup', url, seed_deal?} -> {lookup}; {action: 'add', lookup_id, document, slug, name} -> {slug}.
 export function dealsAction(session, action) { return post('/api/deals', session, action); }
+// Phase 4. ChatGPT account: {action: connect | cancel (job_id) | disconnect}; the response is GET /api/account.
+export function chatgptAction(session, action) { return post('/api/account/chatgpt', session, action); }
+// Instruction versions: {action: 'draft', from} | {action: 'save', id, text, base_sha256} | {action: 'publish', id, name, note}
+// return the detail payload; {action: 'default', id} returns the list payload.
+export function instructionsAction(session, action) { return post('/api/instructions', session, action); }
+export function instructionPath(id, seq = null) { return `/api/instructions/${encodeURIComponent(id)}${seq != null ? `?seq=${encodeURIComponent(seq)}` : ''}`; }
 export function compareQuery(slug, from, to) { return `${dealPath(slug, 'compare')}?${new URLSearchParams({ from, to })}`; }
 export function activityQuery({ actor = '', slug = '', kind = '', before = '', limit = 100 } = {}) {
   const params = new URLSearchParams(Object.entries({ actor, slug, kind, before, limit }).filter(([, value]) => value !== '' && value != null));

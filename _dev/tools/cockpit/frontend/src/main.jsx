@@ -10,6 +10,7 @@ import Overview from './Overview';
 import ActivityPage from './Activity';
 import WhatsNew from './WhatsNew';
 import SettingsPage from './Settings';
+import InstructionsPage from './Instructions';
 import { ExtractDialog, RunBadge, RunsTab } from './Runs';
 import AddDealDialog from './AddDeal';
 import { compact, LedgerTab, SheetTab } from './Records';
@@ -17,7 +18,7 @@ import { ChangesTab, DocumentText, friendlyDate, HistoryTab, ReviewTab } from '.
 import { Dot, Loading, Message } from './ui';
 import { cockpitTheme } from './theme';
 import { commentAction, compareQuery, count, jobAction, json, markSeen, markSeenOnLeave, recordValues, rowId, saveDeal, sheetColumns, sheetRows, text, versionAction } from './api';
-import { countThreads, displayName, EDIT_KINDS, knownUser, RUN_KINDS, VERSION_KINDS } from './trace';
+import { countThreads, displayName, EDIT_KINDS, INSTRUCTION_KINDS, knownUser, RUN_KINDS, VERSION_KINDS } from './trace';
 import { isActive, isImported, orderVersions, versionOptionLabel } from './runs';
 import './style.css';
 
@@ -27,7 +28,7 @@ const TABS = [['ledger', 'Ledger'], ['rounds', 'Rounds'], ['questions', 'Questio
 const EMPTY = { user: '', can_edit: false, csrf_token: '' };
 const NO_FIELDS = new Set();
 const JOB_POLL_MS = 5000;
-const PAGES = { activity: '/activity', settings: '/settings' };
+const PAGES = { activity: '/activity', settings: '/settings', instructions: '/instructions' };
 
 function routeFromLocation() {
   const match = location.pathname.match(/^\/deal\/([a-z0-9][a-z0-9-]*)\/?$/);
@@ -36,6 +37,7 @@ function routeFromLocation() {
   const page = Object.keys(PAGES).find(key => new RegExp(`^${PAGES[key]}/?$`).test(location.pathname));
   return { slug: null, page: page || 'overview' };
 }
+const instructionsPath = id => `/instructions${id ? `?id=${encodeURIComponent(id)}` : ''}`;
 function clone(value) { return structuredClone(value); }
 function confirmLoss() { return window.confirm('You have unsaved edits. Discard them and leave this view?'); }
 function failure(title, err) { return { title, detail: err?.message || text(err) }; }
@@ -84,6 +86,8 @@ function App() {
   const [extract, setExtract] = useState(null);
   const [addDeal, setAddDeal] = useState(false);
   const [versionBusy, setVersionBusy] = useState(false);
+  // Unsaved text on a page outside the deal workspace (an instruction draft) guards navigation like unsaved edits.
+  const [pageDirty, setPageDirty] = useState(false);
   const slugRef = useRef(null);
   const versionRef = useRef('working');
   const jobStates = useRef(new Map());
@@ -101,6 +105,7 @@ function App() {
   const reviewTouched = useRef(new Map());
   const findingBase = useRef(new Map());
   const dirty = ops.length > 0;
+  const unsaved = dirty || pageDirty;
   const editable = Boolean(session.can_edit && deal?.workspace?.editable && saveState !== 'saving' && !versionLoading);
   const slug = route.slug;
   const modalOpen = Boolean(deletePrompt || documentOpen || rebasePrompt || extract || addDeal);
@@ -111,18 +116,18 @@ function App() {
 
   useEffect(() => { json('/api/session').then(setSession).catch(err => setError(failure('Your session could not be loaded.', err))); }, []);
   useEffect(() => {
-    const listener = event => { if (dirty) { event.preventDefault(); event.returnValue = ''; } };
+    const listener = event => { if (unsaved) { event.preventDefault(); event.returnValue = ''; } };
     window.addEventListener('beforeunload', listener);
     return () => window.removeEventListener('beforeunload', listener);
-  }, [dirty]);
+  }, [unsaved]);
   useEffect(() => {
     const listener = () => {
-      if (saveState === 'saving' || (dirty && !confirmLoss())) { history.pushState(null, '', slug ? `/deal/${slug}${location.hash}` : PAGES[route.page] || '/'); return; }
+      if (saveState === 'saving' || (unsaved && !confirmLoss())) { history.pushState(null, '', slug ? `/deal/${slug}${location.hash}` : PAGES[route.page] || '/'); return; }
       setRoute(routeFromLocation());
     };
     window.addEventListener('popstate', listener);
     return () => window.removeEventListener('popstate', listener);
-  }, [dirty, slug, saveState, route.page]);
+  }, [unsaved, slug, saveState, route.page]);
   useEffect(() => {
     const listener = event => {
       if (!deal || modalOpen || event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey || event.target?.closest?.('[role="separator"]') || /^(INPUT|TEXTAREA|SELECT)$/.test(event.target?.tagName || '')) return;
@@ -174,7 +179,7 @@ function App() {
 
   function navigate(path) {
     if (saveState === 'saving') return;
-    if (dirty && !confirmLoss()) return;
+    if (unsaved && !confirmLoss()) return;
     history.pushState(null, '', path);
     setRoute(routeFromLocation());
   }
@@ -353,7 +358,8 @@ function App() {
   }
   function openRuns() { setTab('runs'); setMobilePane('workspace'); }
   function openActivityItem(item) {
-    if (EDIT_KINDS.has(item.kind)) openRevision(item.revision);
+    if (INSTRUCTION_KINDS.has(item.kind)) navigate(instructionsPath(item.instruction_id));
+    else if (EDIT_KINDS.has(item.kind)) openRevision(item.revision);
     else if (RUN_KINDS.has(item.kind) || VERSION_KINDS.has(item.kind)) {
       // An extraction item opens the version it produced when the feed names it; otherwise the Runs tab.
       if (item.kind !== 'extraction_failed' && item.version_id && deal?.versions?.some(v => v.id === item.version_id)) switchVersion(item.version_id);
@@ -367,7 +373,10 @@ function App() {
   }
 
   async function openExtract() {
-    setExtract({ account: null, accountError: '', busy: false, error: '' });
+    setExtract({ account: null, accountError: '', instructions: null, instructionsError: '', busy: false, error: '' });
+    json('/api/instructions')
+      .then(data => setExtract(current => current && { ...current, instructions: data || { items: [] } }))
+      .catch(err => setExtract(current => current && { ...current, instructionsError: err.message }));
     try {
       const account = await json('/api/account');
       setExtract(current => current && { ...current, account: account || {} });
@@ -596,14 +605,15 @@ function App() {
   }
 
   if (!slug) {
-    const activity = route.page === 'activity', settings = route.page === 'settings';
+    const activity = route.page === 'activity', settings = route.page === 'settings', instructions = route.page === 'instructions';
     return <>
       <Header onNavigate={navigate} session={session} page={route.page}/>
       <main className="overview-wrap">
         {loading && route.page === 'overview' && <Loading label="Loading deals"/>}
-        {error && !settings && <Message type="error" title={error.title} detail={error.detail}/>}
+        {error && !settings && !instructions && <Message type="error" title={error.title} detail={error.detail}/>}
         {settings ? <SettingsPage session={session}/>
-          : activity ? <ActivityPage deals={deals} onOpenDeal={(s, v) => navigate(`/deal/${s}${v ? `?version=${encodeURIComponent(v)}` : ''}`)}/>
+          : instructions ? <InstructionsPage session={session} onDirtyChange={setPageDirty}/>
+          : activity ? <ActivityPage deals={deals} onOpenDeal={(s, v) => navigate(`/deal/${s}${v ? `?version=${encodeURIComponent(v)}` : ''}`)} onOpenInstructions={id => navigate(instructionsPath(id))}/>
           : deals && <Overview deals={deals} onOpen={s => navigate(`/deal/${s}`)} onAdd={session.can_edit && knownUser(session.user) ? () => setAddDeal(true) : null}/>}
       </main>
       {addDeal && <AddDealDialog session={session} dialogRef={modalRef} onClose={() => setAddDeal(false)}
@@ -780,7 +790,7 @@ function App() {
         </div>
       </div>
     </div>}
-    {extract && <ExtractDialog user={session.user} account={extract.account} accountError={extract.accountError} busy={extract.busy} error={extract.error} dialogRef={modalRef}
+    {extract && <ExtractDialog user={session.user} account={extract.account} accountError={extract.accountError} instructions={extract.instructions} instructionsError={extract.instructionsError} busy={extract.busy} error={extract.error} dialogRef={modalRef}
       onStart={startExtract} onClose={() => setExtract(null)} onSettings={() => { setExtract(null); navigate('/settings'); }}/>}
     {documentOpen && <div className="modal-backdrop" role="presentation">
       <div className="modal document-modal" ref={modalRef} role="dialog" aria-modal="true" aria-label="Recorded document">
@@ -804,8 +814,9 @@ function Header({ onNavigate, session, page }) {
   };
   return <header className="global-header">
     <Button appearance="subtle" className="wordmark" onClick={() => onNavigate('/')}>Ledger cockpit</Button>
-    <span className="header-context">{{ deal: 'Deal workspace', activity: 'Activity', settings: 'Settings' }[page] || 'Deal ledgers'}</span>
+    <span className="header-context">{{ deal: 'Deal workspace', activity: 'Activity', settings: 'Settings', instructions: 'Instructions' }[page] || 'Deal ledgers'}</span>
     <div className="header-user">
+      {page !== 'instructions' && <a className="header-link" href="/instructions" onClick={follow('/instructions')}>Instructions</a>}
       {page !== 'activity' && <a className="header-link" href="/activity" onClick={follow('/activity')}>Activity</a>}
       {session.user && (knownUser(session.user)
         ? <a className="header-link header-name" href="/settings" title="Settings" aria-current={page === 'settings' ? 'page' : undefined} onClick={follow('/settings')}>{displayName(session.user)}</a>

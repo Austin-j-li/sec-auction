@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Checkbox, Field, Input, Select } from '@fluentui/react-components';
-import { StopIcon, XIcon } from '@phosphor-icons/react';
+import { StopIcon, WarningIcon, XIcon } from '@phosphor-icons/react';
 import { count } from './api';
-import { activeRunLabel, CANCELLABLE_STATES, DEFAULT_EFFORT, DEFAULT_TIMEOUT, EFFORTS, ENGINE_LABEL, failureText, formatElapsed, isActive, jobElapsed, planUsageText, runSummary, STATE_LABELS, stateTone, TIMEOUT_RANGE, usageText, validTimeout } from './runs';
+import { defaultInstructionId, instructionOptionLabel, orderInstructions } from './instructions';
+import { accountEngines, accountLabel, activeRunLabel, CANCELLABLE_STATES, connectHint, DEFAULT_EFFORT, DEFAULT_TIMEOUT, effortFor, FABLE_WARNING, failureText, formatElapsed, isActive, jobElapsed, jobEngineLabel, jobInstructionLabel, pickEngine, planUsageText, runSummary, STATE_LABELS, stateTone, TIMEOUT_RANGE, usageText, validTimeout } from './runs';
 import { displayName, shortTime } from './trace';
 import { Dot, Empty, Loading, Message } from './ui';
 
@@ -52,7 +53,7 @@ export function RunsTab({ jobs, error, loading, canCancel, onCancel, onOpenVersi
         <div className="run-head">
           <div>
             <strong><Dot tone={stateTone(job.state)}/>{STATE_LABELS[job.state] || job.state}{job.cancel_requested && isActive(job) ? ' · cancelling' : ''}</strong>
-            <span className="mono">{[`Opus 5.5 · ${job.params?.effort || '—'}`, displayName(job.actor), shortTime(job.created_at)].join(' · ')}</span>
+            <span className="mono">{[`${jobEngineLabel(job)} · ${job.params?.effort || '—'}`, jobInstructionLabel(job), displayName(job.actor), shortTime(job.created_at)].join(' · ')}</span>
           </div>
           <span className="run-actions">
             {job.state === 'completed' && job.version_id && known.has(job.version_id) && <Button appearance="subtle" className="link-button" onClick={() => onOpenVersion(job.version_id)}>Open version</Button>}
@@ -67,45 +68,87 @@ export function RunsTab({ jobs, error, loading, canCancel, onCancel, onOpenVersi
   </div>;
 }
 
-// Start an extraction. Without a connected Claude account the dialog explains and links to Settings.
-export function ExtractDialog({ user, account, accountError, busy, error, onStart, onClose, onSettings, dialogRef }) {
+// Start an extraction: engine, effort, instruction and time limit. An engine whose account (Claude or ChatGPT) is not
+// connected is listed but disabled; with no usable engine at all the dialog explains and links to Settings.
+export function ExtractDialog({ user, account, accountError, instructions, instructionsError, busy, error, onStart, onClose, onSettings, dialogRef }) {
+  const engines = accountEngines(account);
+  const [engineId, setEngineId] = useState(null);
   const [effort, setEffort] = useState(DEFAULT_EFFORT);
+  const [instructionId, setInstructionId] = useState(null);
   const [timeout, setTimeoutMinutes] = useState(String(DEFAULT_TIMEOUT));
-  const connected = Boolean(account?.claude?.connected);
-  const usage = planUsageText(account?.claude?.plan_usage);
+  const engine = pickEngine(engines, engineId);
+  const items = orderInstructions(instructions?.items);
+  const instruction = items.find(item => item.id === instructionId) || items.find(item => item.id === defaultInstructionId(instructions)) || items[0] || null;
+  // Once the account arrives, settle on an engine and its default effort.
+  useEffect(() => { if (engine && engine.id !== engineId) { setEngineId(engine.id); setEffort(current => engineId ? effortFor(engine, current) : engine.default_effort); } }, [engine?.id]);
   const timeoutOk = validTimeout(timeout);
+  const usage = engine?.account === 'claude' ? planUsageText(account?.claude?.plan_usage) : '';
+  const unavailable = engines.filter(item => !item.connected);
+  const openSettings = event => { if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) { event.preventDefault(); onSettings(); } };
+  const missing = [...new Set(unavailable.map(item => item.account))]
+    .map(name => `${unavailable.filter(item => item.account === name).map(item => item.label).join(' and ')}: ${connectHint({ account: name })}.`).join(' ');
+  const warning = engine?.id === 'fable51' ? FABLE_WARNING : engine?.experimental ? engine.note : '';
+  function chooseEngine(id) {
+    const next = engines.find(item => item.id === id);
+    if (!next?.connected) return;
+    setEngineId(id); setEffort(current => effortFor(next, current));
+  }
+  function submit(event) {
+    event.preventDefault();
+    if (!timeoutOk || !engine) return;
+    onStart({ engine: engine.id, effort: effortFor(engine, effort), timeout_minutes: Number(timeout), ...(instruction ? { instruction_id: instruction.id } : {}) });
+  }
   return <div className="modal-backdrop" role="presentation">
     <div className="modal extract-modal" ref={dialogRef} role="dialog" aria-modal="true" aria-label="Start an extraction">
       <div className="modal-head">
         <h2>Start an extraction</h2>
         <Button appearance="subtle" className="icon-button" onClick={onClose} aria-label="Close" icon={<XIcon size={16}/>}/>
       </div>
-      {!account && !accountError && <Loading label="Checking your Claude account"/>}
-      {accountError || (account && !connected) ? <>
-        <p>Extractions run on the Claude plan of the person who starts them, and {accountError ? 'your account status could not be loaded' : 'you have not connected a Claude account yet'}.</p>
-        {accountError && <p className="run-error mono">{accountError}</p>}
+      {!account && !accountError && <Loading label="Checking your accounts"/>}
+      {accountError ? <>
+        <p>Extractions run on the Claude or ChatGPT plan of the person who starts them, and your account status could not be loaded.</p>
+        <p className="run-error mono">{accountError}</p>
         <div className="modal-actions">
           <Button appearance="secondary" onClick={onClose}>Close</Button>
-          <Button as="a" appearance="primary" href="/settings" onClick={event => { if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) { event.preventDefault(); onSettings(); } }}>Open settings</Button>
+          <Button as="a" appearance="primary" href="/settings" onClick={openSettings}>Open settings</Button>
         </div>
-      </> : account && <form onSubmit={event => { event.preventDefault(); if (timeoutOk) onStart({ effort, timeout_minutes: Number(timeout) }); }}>
-        <dl className="extract-fixed">
-          <div><dt>Engine</dt><dd>{ENGINE_LABEL} <small>More engines come later.</small></dd></div>
-        </dl>
-        <Field label="Effort">
-          <Select value={effort} onChange={(_, data) => setEffort(data.value)}>
-            {EFFORTS.map(value => <option key={value} value={value}>{value}</option>)}
+      </> : account && !engine ? <>
+        <Field label="Engine" hint="Every engine needs a connected account.">
+          <Select value={engines[0]?.id || ''} disabled={engines.length === 0}>
+            {engines.map(item => <option key={item.id} value={item.id} disabled>{item.label}{item.experimental ? ' (experimental)' : ''} — {connectHint(item)}</option>)}
           </Select>
+        </Field>
+        <p className="extract-explain">Extractions run on the Claude or ChatGPT plan of the person who starts them, and you have not connected an account yet.</p>
+        <div className="modal-actions">
+          <Button appearance="secondary" onClick={onClose}>Close</Button>
+          <Button as="a" appearance="primary" href="/settings" onClick={openSettings}>Open settings</Button>
+        </div>
+      </> : account && <form onSubmit={submit}>
+        <Field label="Engine" hint={missing ? <>{missing} <a className="header-link" href="/settings" onClick={openSettings}>Open settings</a></> : undefined}>
+          <Select value={engine.id} onChange={(_, data) => chooseEngine(data.value)}>
+            {engines.map(item => <option key={item.id} value={item.id} disabled={!item.connected}>{item.label}{item.experimental ? ' (experimental)' : ''}{item.connected ? '' : ` — ${connectHint(item)}`}</option>)}
+          </Select>
+        </Field>
+        {warning && <p className="extract-warning tone-warning"><WarningIcon size={16} aria-hidden="true"/><span>{warning}</span></p>}
+        <Field label="Effort">
+          <Select value={effortFor(engine, effort)} onChange={(_, data) => setEffort(data.value)}>
+            {engine.efforts.map(value => <option key={value} value={value}>{value}</option>)}
+          </Select>
+        </Field>
+        <Field label="Instruction" hint={instructionsError ? `The instruction list could not be loaded (${instructionsError}); the run uses the default instruction.` : undefined}>
+          {instructions ? <Select value={instruction?.id || ''} onChange={(_, data) => setInstructionId(data.value)}>
+            {items.map(item => <option key={item.id} value={item.id}>{instructionOptionLabel(item)}</option>)}
+          </Select> : !instructionsError && <Loading label="Loading instructions"/>}
         </Field>
         <Field label="Time limit (minutes)" validationState={timeoutOk ? 'none' : 'error'} validationMessage={timeoutOk ? undefined : `A whole number from ${TIMEOUT_RANGE[0]} to ${TIMEOUT_RANGE[1]}`}>
           <Input className="mono" type="number" min={TIMEOUT_RANGE[0]} max={TIMEOUT_RANGE[1]} step={1} value={timeout} onChange={(_, data) => setTimeoutMinutes(data.value)}/>
         </Field>
-        <p className="extract-summary mono">{runSummary(effort, user)}</p>
-        {usage && <p className="extract-usage mono">Plan usage · {usage}</p>}
+        <p className="extract-summary mono">{runSummary(effortFor(engine, effort), user, engine, instruction?.label || (instructionsError ? 'default instruction' : '…'))}</p>
+        {usage && <p className="extract-usage mono">{accountLabel(engine.account)} plan usage · {usage}</p>}
         {error && <p className="run-failure tone-error" role="alert">{error}</p>}
         <div className="modal-actions">
           <Button appearance="secondary" onClick={onClose}>Cancel</Button>
-          <Button type="submit" appearance="primary" disabled={busy || !timeoutOk}>{busy ? 'Starting…' : 'Start extraction'}</Button>
+          <Button type="submit" appearance="primary" disabled={busy || !timeoutOk || (!instructions && !instructionsError)}>{busy ? 'Starting…' : 'Start extraction'}</Button>
         </div>
       </form>}
     </div>

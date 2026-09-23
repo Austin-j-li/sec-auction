@@ -1,15 +1,17 @@
-"""Claude accounts, extraction jobs and imported versions for the cockpit.
+"""Claude and ChatGPT accounts, extraction jobs and imported versions for the cockpit.
 
 The HTTP server only reads and writes these rows; `worker.py` starts processes, runs
-the isolated extraction, checks and imports the result. Tokens live outside the
+the isolated extraction, checks and imports the result. Credentials live outside the
 repository, readable only by their owner, and never leave the server.
 """
 from __future__ import annotations
 
+import base64
 import datetime as dt
 import json
 import os
 import re
+import shutil
 import sqlite3
 import uuid
 from pathlib import Path
@@ -29,8 +31,19 @@ NAMES = {"austin": "Austin", "alex": "Alex", "local": "Local"}
 EFFORTS = ("low", "medium", "high", "xhigh", "max")
 MODEL = "claude-opus-5-5"
 ENGINE = "Opus 5.5"
+# Extraction engines. "provider" is the runner's transport: "opus" drives Claude Code, "sol" Codex.
+# "account" is whose plan pays: the starting user's Claude or ChatGPT subscription.
+FABLE_NOTE = "Fable's safety filter often blocks runs partway (6 of 11 test prompts); a blocked run fails and must be restarted."
+ENGINES = {
+    "opus55": {"label": "Opus 5.5", "name": "Claude Opus 5.5", "provider": "opus", "model": "claude-opus-5-5", "account": "claude", "experimental": False, "note": None},
+    "fable51": {"label": "Fable 5.1", "name": "Claude Fable 5.1", "provider": "opus", "model": "claude-fable-5-1", "account": "claude", "experimental": True, "note": FABLE_NOTE},
+    "sol6": {"label": "GPT-6-Sol", "name": "GPT-6-Sol", "provider": "sol", "model": "gpt-6-sol", "account": "chatgpt", "experimental": False, "note": None},
+    "astra6": {"label": "GPT-6-Astra", "name": "GPT-6-Astra", "provider": "sol", "model": "gpt-6-astra", "account": "chatgpt", "experimental": False, "note": None},
+}
+DEFAULT_ENGINE = "opus55"
 ACTIVE = ("queued", "preparing", "running", "checking", "importing")
 CONNECT_ACTIVE = ("queued", "waiting_for_code", "completing")
+CHATGPT_CONNECT_ACTIVE = ("queued", "waiting_for_approval")
 TOKEN_RE = re.compile(r"sk-ant-oat\d\d-[A-Za-z0-9_-]{20,}")
 CAPS = {"total": 4, "per_user": 2}
 
@@ -40,6 +53,8 @@ def ensure_schema(conn: sqlite3.Connection) -> None:
         conn.execute(statement)
     if "cancelled_by" not in {row[1] for row in conn.execute("PRAGMA table_info(jobs)")}:
         conn.execute("ALTER TABLE jobs ADD COLUMN cancelled_by TEXT")
+    if "instruction_id" not in {row[1] for row in conn.execute("PRAGMA table_info(versions)")}:
+        conn.execute("ALTER TABLE versions ADD COLUMN instruction_id TEXT")
     conn.commit()
 
 
@@ -64,6 +79,36 @@ def save_token(user: str, token: str) -> None:
     os.chmod(path, 0o600)
 
 
+def codex_home(user: str) -> Path:
+    """The user's own Codex login folder (CODEX_HOME), holding auth.json."""
+    if user not in USERS:
+        raise WorkspaceError("unknown user")
+    return token_root() / user / "codex"
+
+
+def codex_login(auth: Path) -> dict[str, Any] | None:
+    """Expiry, hours left and last refresh of a Codex login; None if there is no readable login."""
+    try:
+        document = json.loads(auth.read_text(encoding="utf-8"))
+        payload = document["tokens"]["access_token"].split(".")[1]
+        claims = json.loads(base64.urlsafe_b64decode(payload + "=" * (-len(payload) % 4)))
+        expires = dt.datetime.fromtimestamp(claims["exp"], dt.timezone.utc)
+    except (OSError, ValueError, KeyError, IndexError, TypeError, AttributeError):
+        return None
+    return {"expires_at": expires.isoformat(timespec="seconds"), "last_refresh": document.get("last_refresh"),
+            "hours_left": (expires - dt.datetime.now(dt.timezone.utc)).total_seconds() / 3600}
+
+
+def job_account(params: dict[str, Any] | None) -> str:
+    """Whose plan a job uses; jobs from before phase 4 are Opus 5.5 on Claude."""
+    return ENGINES.get((params or {}).get("engine"), ENGINES[DEFAULT_ENGINE])["account"]
+
+
+def active_jobs_on(conn: sqlite3.Connection, user: str, account: str) -> bool:
+    rows = conn.execute(f"SELECT params FROM jobs WHERE kind='extract' AND actor=? AND state IN ({','.join('?' * len(ACTIVE))})", (user, *ACTIVE)).fetchall()
+    return any(job_account(_json(row["params"])) == account for row in rows)
+
+
 def _json(value: str | None) -> Any:
     return json.loads(value) if value else None
 
@@ -82,7 +127,8 @@ def version_json(row: sqlite3.Row) -> dict[str, Any]:
             "instruction_version": row["instruction_version"], "instruction_sha256": row["instruction_sha256"],
             "filing_sha256": row["filing_sha256"], "review_status": "unreviewed", "engine": row["engine"], "model": row["model"],
             "effort": row["effort"], "started_by": row["started_by"], "started_at": row["started_at"], "finished_at": row["finished_at"],
-            "receipts": row["receipts"], "checker": _json(row["checker"]), "hidden": bool(row["hidden"])}
+            "receipts": row["receipts"], "checker": _json(row["checker"]), "hidden": bool(row["hidden"]),
+            "instruction_id": row["instruction_id"] if "instruction_id" in row.keys() else None}
 
 
 def imported_versions(workspace: Workspace, slug: str) -> list[dict[str, Any]]:
@@ -139,8 +185,22 @@ class Runs:
             connect = None
             if job and (job[0]["state"] != "completed" or (job[0]["ended_at"] or "") >= _minutes_ago(10)):
                 connect = {"job_id": job[0]["id"], "state": job[0]["state"], "link": (_json(job[0]["result"]) or {}).get("link"), "error": job[0]["error"]}
+            chatgpt = _rows(conn, "SELECT * FROM accounts WHERE user=? AND provider='chatgpt'", (user,))
+            login = codex_login(codex_home(user) / "auth.json") if user in USERS and chatgpt else None
+            gpt = {"connected": bool(login), "connected_at": chatgpt[0]["connected_at"] if login else None,
+                   "expires_at": login["expires_at"] if login else None, "last_refresh": login["last_refresh"] if login else None}
+            job = _rows(conn, "SELECT * FROM jobs WHERE kind='connect_chatgpt' AND actor=? ORDER BY created_at DESC, rowid DESC LIMIT 1", (user,))
+            gpt_connect = None
+            if job and (job[0]["state"] != "completed" or (job[0]["ended_at"] or "") >= _minutes_ago(10)):
+                shown = _json(job[0]["result"]) or {}
+                gpt_connect = {"job_id": job[0]["id"], "state": job[0]["state"], "link": shown.get("link"), "code": shown.get("code"), "error": job[0]["error"]}
+            accounts = {"claude": connected, "chatgpt": gpt["connected"]}
+            engines = [{"id": ident, "label": engine["label"], "name": engine["name"], "account": engine["account"], "efforts": list(EFFORTS),
+                        "default_effort": "medium", "experimental": engine["experimental"], "note": engine["note"], "connected": accounts[engine["account"]]}
+                       for ident, engine in ENGINES.items()]
             return {"user": user, "claude": {"connected": connected, "connected_at": found[0]["connected_at"] if connected else None,
-                                              "expires_at": found[0]["expires_at"] if connected else None, "plan_usage": plan}, "connect": connect}
+                                              "expires_at": found[0]["expires_at"] if connected else None, "plan_usage": plan}, "connect": connect,
+                    "chatgpt": gpt, "chatgpt_connect": gpt_connect, "engines": engines}
         finally:
             if conn: conn.close()
 
@@ -173,10 +233,34 @@ class Runs:
                 save_token(user, token)
                 connected(conn, user)
             elif action == "disconnect":
-                if conn.execute(f"SELECT 1 FROM jobs WHERE kind='extract' AND actor=? AND state IN ({','.join('?' * len(ACTIVE))})", (user, *ACTIVE)).fetchone():
+                if active_jobs_on(conn, user, "claude"):
                     raise Conflict("your runs are still using this account; wait for them or cancel them first")
                 token_path(user).unlink(missing_ok=True)
                 conn.execute("DELETE FROM accounts WHERE user=? AND provider='claude'", (user,))
+            else:
+                raise WorkspaceError("unknown account action")
+        self._transaction(run)
+        return self.account(user)
+
+    def chatgpt_action(self, user: str, request: dict[str, Any]) -> dict[str, Any]:
+        if user not in USERS:
+            raise WorkspaceError("unknown user")
+        action = request.get("action") if isinstance(request, dict) else None
+
+        def run(conn: sqlite3.Connection) -> None:
+            if action == "connect":
+                conn.execute("UPDATE jobs SET cancel_requested=1 WHERE kind='connect_chatgpt' AND actor=? AND state IN ('queued','waiting_for_approval')", (user,))
+                conn.execute("INSERT INTO jobs (id, kind, slug, actor, created_at, state, params) VALUES (?, 'connect_chatgpt', NULL, ?, ?, 'queued', '{}')", (uuid.uuid4().hex, user, _now()))
+            elif action == "cancel":
+                job = conn.execute("SELECT * FROM jobs WHERE id=? AND kind='connect_chatgpt' AND actor=?", (request.get("job_id"), user)).fetchone()
+                if job is None: raise Missing("unknown connect job")
+                if job["state"] not in CHATGPT_CONNECT_ACTIVE: raise Conflict("connect is not in progress")
+                conn.execute("UPDATE jobs SET cancel_requested=1 WHERE id=?", (job["id"],))
+            elif action == "disconnect":
+                if active_jobs_on(conn, user, "chatgpt"):
+                    raise Conflict("your GPT runs are still using this account; wait for them or cancel them first")
+                shutil.rmtree(codex_home(user), ignore_errors=True)
+                conn.execute("DELETE FROM accounts WHERE user=? AND provider='chatgpt'", (user,))
             else:
                 raise WorkspaceError("unknown account action")
         self._transaction(run)
@@ -203,15 +287,26 @@ class Runs:
     def job_action(self, slug: str, user: str, request: dict[str, Any]) -> dict[str, Any]:
         self.workspace.item(slug)
         action = request.get("action") if isinstance(request, dict) else None
+        instruction = None
+        if action == "extract":
+            # The run's instruction is frozen now: its text hash, whatever later happens to a draft.
+            from cockpit.instructions import Instructions
+            instruction = Instructions(self.workspace).resolve(request.get("instruction_id"))
 
         def run(conn: sqlite3.Connection) -> None:
             if action == "extract":
                 effort, minutes = request.get("effort", "medium"), request.get("timeout_minutes", 90)
+                engine_id = request.get("engine", DEFAULT_ENGINE)
+                if engine_id not in ENGINES: raise WorkspaceError("unknown engine")
+                engine = ENGINES[engine_id]
                 if effort not in EFFORTS: raise WorkspaceError("invalid effort")
                 if type(minutes) is not int or not 10 <= minutes <= 360: raise WorkspaceError("time limit must be 10 to 360 minutes")
-                if not conn.execute("SELECT 1 FROM accounts WHERE user=? AND provider='claude'", (user,)).fetchone() or not token_path(user).is_file():
+                if engine["account"] == "claude" and (not conn.execute("SELECT 1 FROM accounts WHERE user=? AND provider='claude'", (user,)).fetchone() or not token_path(user).is_file()):
                     raise Conflict("connect your Claude account in Settings first")
-                params = {"engine": ENGINE, "model": MODEL, "effort": effort, "timeout_minutes": minutes}
+                if engine["account"] == "chatgpt" and (not conn.execute("SELECT 1 FROM accounts WHERE user=? AND provider='chatgpt'", (user,)).fetchone() or not (codex_home(user) / "auth.json").is_file()):
+                    raise Conflict("connect your ChatGPT account in Settings first")
+                params = {"engine": engine_id, "engine_label": engine["label"], "model": engine["model"], "provider": engine["provider"], "account": engine["account"],
+                          "effort": effort, "timeout_minutes": minutes, "instruction": instruction}
                 conn.execute("INSERT INTO jobs (id, kind, slug, actor, created_at, state, params) VALUES (?, 'extract', ?, ?, ?, 'queued', ?)", (uuid.uuid4().hex, slug, user, _now(), json.dumps(params)))
             elif action == "cancel":
                 job = conn.execute("SELECT * FROM jobs WHERE id=? AND slug=? AND kind='extract'", (request.get("job_id"), slug)).fetchone()

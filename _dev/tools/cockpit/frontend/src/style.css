@@ -1334,3 +1334,73 @@ details[open] > summary .caret,
   html { scroll-behavior: auto; }
   mark.quote-mark.selected, .message, .selection-action, .save-dock { animation: none; }
 }
+
+/* ── Instructions and engines (phase 4) ────────────────────────────── */
+.settings-section + .settings-section { margin-top: var(--sp-7); }
+.connect-flow .settings-line + .fui-Button { margin-top: var(--sp-4); }
+.device-code { margin-left: var(--sp-2); font-size: var(--fs-16); letter-spacing: 0.08em; color: var(--ink); }
+.modal .extract-warning { display: flex; align-items: flex-start; gap: var(--sp-2); margin-top: var(--sp-3); font-size: var(--fs-12); line-height: var(--lh-12); color: var(--warning); }
+.modal .extract-warning svg { flex: none; }
+.extract-modal { max-height: 90dvh; overflow-y: auto; }
+.instructions-layout { display: grid; grid-template-columns: minmax(220px, 300px) minmax(0, 1fr); gap: var(--sp-6); align-items: start; }
+.instruction-list ul { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--ink); }
+.instruction-entry { display: block; width: 100%; padding: var(--sp-3) var(--sp-3); border: 0; border-bottom: var(--hairline); border-left: 2px solid transparent; background: none; color: var(--ink); font: inherit; text-align: left; cursor: pointer; transition: background-color var(--dur-1) var(--ease); }
+.instruction-entry:hover { background: var(--tint); }
+.instruction-entry.selected { border-left-color: var(--accent); background: var(--accent-tint); }
+.instruction-entry:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.instruction-entry strong { display: flex; align-items: baseline; gap: var(--sp-3); font-size: var(--fs-13); line-height: var(--lh-13); font-weight: var(--fw-medium); overflow-wrap: anywhere; }
+.instruction-entry small { display: flex; align-items: center; margin-top: var(--sp-1); font-size: var(--fs-12); line-height: var(--lh-12); color: var(--ink-3); }
+.default-mark { display: inline-flex; align-items: center; gap: var(--sp-1); font-size: var(--fs-12); font-weight: var(--fw-regular); color: var(--ink-2); }
+.instruction-detail { min-width: 0; }
+.instruction-detail > .message { margin: var(--sp-3) 0; }
+.instruction-head { flex-wrap: wrap; align-items: baseline; gap: var(--sp-2) var(--sp-4); padding: 0; border: 0; background: none; }
+.instruction-head h2 { font-size: var(--fs-16); line-height: var(--lh-16); font-weight: var(--fw-medium); overflow-wrap: anywhere; }
+.instruction-status { display: inline-flex; align-items: center; font-size: var(--fs-12); color: var(--ink-2); }
+.instruction-actions { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin-left: auto; }
+.instruction-meta { margin-top: var(--sp-4); }
+.instruction-meta .sha { font-size: var(--fs-12); overflow-wrap: anywhere; word-break: break-all; }
+.text-link { padding: 0; border: 0; background: none; color: var(--accent); font: inherit; cursor: pointer; }
+.text-link:hover { text-decoration: underline; }
+.text-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.instruction-note { margin-top: var(--sp-4); }
+.instruction-note h3, .instruction-history h3 { font-size: var(--fs-12); line-height: var(--lh-12); font-weight: var(--fw-medium); color: var(--ink-3); }
+.instruction-note p { margin-top: var(--sp-2); max-width: 720px; font-size: var(--fs-13); white-space: pre-wrap; overflow-wrap: anywhere; }
+.instruction-detail .reminder { margin: var(--sp-5) 0 0; max-width: 720px; color: var(--ink-2); }
+.modal .reminder { margin: var(--sp-4) 0 0; }
+.history-view-line { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--sp-3); margin-top: var(--sp-5); padding: var(--sp-2) 0; border-top: 2px solid var(--accent); font-size: var(--fs-13); color: var(--ink-2); }
+.instruction-view-bar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-3) var(--sp-4); margin: var(--sp-4) 0 var(--sp-3); font-size: var(--fs-12); }
+.instruction-view-bar .section-note { margin: 0; }
+.instruction-view-bar .work-state { margin-left: auto; }
+.cockpit .fui-Textarea.instruction-editor { display: flex; width: 100%; }
+.cockpit .instruction-editor textarea { min-height: 60dvh; font-family: var(--font-mono); font-size: var(--fs-12); line-height: 18px; white-space: pre-wrap; }
+.instruction-text { max-height: 70dvh; margin: 0; padding: var(--sp-4); overflow: auto; border: var(--hairline); border-radius: var(--radius-1); background: var(--paper); font-family: var(--font-mono); font-size: var(--fs-12); line-height: 18px; color: var(--ink); white-space: pre-wrap; overflow-wrap: anywhere; }
+.instruction-history { margin-top: var(--sp-6); }
+.instruction-history ol { margin: var(--sp-2) 0 0; padding: 0; list-style: none; }
+.instruction-history li { display: grid; grid-template-columns: minmax(140px, auto) minmax(0, 1fr) auto; align-items: center; gap: var(--sp-4); padding: var(--sp-2) 0; border-top: var(--hairline); font-size: var(--fs-12); color: var(--ink-2); }
+.instruction-history li.selected { border-top: 2px solid var(--accent); }
+.instruction-history li strong { font-weight: var(--fw-medium); color: var(--ink); }
+.cockpit .instruction-history .fui-Button.link-button { min-height: 0; padding: 2px 6px; font-size: var(--fs-12); }
+.diff-summary { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2) var(--sp-4); margin-bottom: var(--sp-2); font-size: var(--fs-12); color: var(--ink-2); }
+.diff-summary .fui-Checkbox { margin-left: auto; }
+.diff-scroll { max-height: 70dvh; overflow: auto; border: var(--hairline); border-radius: var(--radius-1); background: var(--paper); }
+.diff-table { width: 100%; min-width: 720px; border-collapse: collapse; table-layout: fixed; font-family: var(--font-mono); font-size: var(--fs-12); line-height: 18px; }
+.diff-table col.diff-num { width: 44px; }
+.diff-table th { position: sticky; top: 0; z-index: var(--z-sticky); padding: var(--sp-2) var(--sp-3); border-bottom: var(--divider); background: var(--ground); font-family: var(--font-ui); font-weight: var(--fw-medium); color: var(--ink-3); text-align: left; }
+.diff-table td { padding: 1px var(--sp-3); vertical-align: top; }
+.diff-table td + td + td { border-left: var(--hairline); }
+.diff-n { color: var(--ink-3); text-align: right; user-select: none; }
+.diff-line { white-space: pre-wrap; overflow-wrap: anywhere; color: var(--ink); }
+.diff-del { background: var(--error-bg); }
+.diff-add { background: var(--success-bg); }
+.diff-del .diff-mid { box-shadow: inset 0 -2px 0 var(--error); }
+.diff-add .diff-mid { box-shadow: inset 0 -2px 0 var(--success); }
+.diff-empty { background: var(--ground); }
+.diff-gap td { padding: var(--sp-1) var(--sp-3); border-top: var(--hairline); border-bottom: var(--hairline); background: var(--ground); font-family: var(--font-ui); color: var(--ink-3); text-align: center; }
+@media (max-width: 820px) {
+  .instructions-layout { grid-template-columns: minmax(0, 1fr); }
+  .instruction-list ul { max-height: 40dvh; overflow-y: auto; }
+  .instruction-actions { margin-left: 0; }
+  .instruction-history li { grid-template-columns: minmax(0, 1fr) auto; }
+  .instruction-history li > span:nth-child(2) { grid-column: 1; }
+}
+.modal .extract-explain { margin-top: var(--sp-4); }

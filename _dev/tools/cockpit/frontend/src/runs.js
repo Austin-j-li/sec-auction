@@ -4,37 +4,67 @@ import { displayName, shortTime } from './trace';
 // Pure helpers for accounts, extraction runs and versions (phase 2).
 
 export const INSTRUCTION_VERSION = 'v1.13.2';
-export const ENGINE_LABEL = 'Claude Opus 5.5';
 export const EFFORTS = ['low', 'medium', 'high', 'xhigh', 'max'];
 export const DEFAULT_EFFORT = 'medium';
+export const FABLE_WARNING = 'Fable’s safety filter often blocks runs partway (6 of 11 test prompts); a blocked run fails and must be restarted.';
+const ACCOUNT_NAMES = { claude: 'Claude', chatgpt: 'ChatGPT' };
+export const DEFAULT_ENGINE = { id: 'opus55', label: 'Opus 5.5', account: 'claude', efforts: EFFORTS, default_effort: DEFAULT_EFFORT };
 export const DEFAULT_TIMEOUT = 90;
 export const TIMEOUT_RANGE = [10, 360];
 export const ACTIVE_STATES = new Set(['queued', 'preparing', 'running', 'checking', 'importing']);
 export const CANCELLABLE_STATES = new Set(['queued', 'preparing', 'running']);
 export const CONNECT_ACTIVE_STATES = new Set(['queued', 'waiting_for_code', 'completing']);
+export const CHATGPT_CONNECT_ACTIVE_STATES = new Set(['queued', 'waiting_for_approval']);
 export const STATE_LABELS = {
   queued: 'Queued', preparing: 'Preparing', running: 'Running', checking: 'Checking', importing: 'Importing',
   completed: 'Completed', failed: 'Failed', timed_out: 'Timed out', cancelled: 'Cancelled',
 };
 export const STATE_TONES = { completed: 'success', failed: 'error', timed_out: 'error', cancelled: 'muted' };
 
+// The engines the signed-in person may choose, from GET /api/account. Before phase 4 the server sends none:
+// then Opus 5.5 alone, available when the Claude account is connected. "ultra" is never offered.
+export function accountEngines(account) {
+  const list = Array.isArray(account?.engines) && account.engines.length ? account.engines
+    : [{ ...DEFAULT_ENGINE, connected: Boolean(account?.claude?.connected) }];
+  return list.map(engine => {
+    const efforts = (engine.efforts?.length ? engine.efforts : EFFORTS).filter(effort => effort !== 'ultra');
+    const fallback = efforts.includes(DEFAULT_EFFORT) ? DEFAULT_EFFORT : efforts[0];
+    return { ...engine, label: engine.label || engine.id, efforts, default_effort: efforts.includes(engine.default_effort) ? engine.default_effort : fallback, connected: Boolean(engine.connected) };
+  });
+}
+// The engine to preselect: Opus 5.5 when usable, else the first connected engine, else null.
+export function pickEngine(engines, current = null) {
+  const usable = (engines || []).filter(engine => engine.connected);
+  return usable.find(engine => engine.id === current) || usable.find(engine => engine.id === DEFAULT_ENGINE.id) || usable[0] || null;
+}
+// Keep the chosen effort when the new engine offers it, else use the engine's default.
+export const effortFor = (engine, current) => engine?.efforts?.includes(current) ? current : engine?.default_effort || DEFAULT_EFFORT;
+export const accountLabel = account => ACCOUNT_NAMES[account] || text(account);
+export const connectHint = engine => `connect your ${accountLabel(engine?.account)} account in Settings`;
+
 export const isActive = job => ACTIVE_STATES.has(job?.state);
 export const stateTone = state => ACTIVE_STATES.has(state) ? 'warning' : STATE_TONES[state] || 'muted';
+
+// Which plan a run used: "Claude plan" or "ChatGPT plan", from the job's recorded account (Claude before phase 4).
+export const planName = account => account === 'chatgpt' ? 'ChatGPT plan' : 'Claude plan';
+export const jobEngineLabel = job => text(job?.params?.engine_label) || 'Opus 5.5';
+export const jobInstructionLabel = job => text(job?.params?.instruction?.label) || INSTRUCTION_VERSION;
 
 // The failed or cancelled outcome of a run, in words. Null for a run that has not failed.
 export function failureText(job) {
   const reason = job?.failure_reason || (job?.state === 'timed_out' ? 'timed_out' : job?.state === 'cancelled' ? 'cancelled' : null);
   if (!reason) return job?.state === 'failed' ? 'Failed' : null;
-  const name = displayName(job.actor);
+  const name = displayName(job.actor), account = job.params?.account;
   switch (reason) {
     case 'usage_limit': {
-      const resets = job.result?.usage_limit_resets_at;
-      return `${name}’s Claude plan hit its usage limit${resets ? `; it resets ${shortTime(resets)}` : ''}`;
+      const resets = job.result?.usage_limit_resets_at, message = text(job.result?.usage_limit_message).trim();
+      return `${name}’s ${planName(account)} hit its usage limit${resets ? `; it resets ${shortTime(resets)}` : ''}${message ? `. ${message}` : ''}`;
     }
-    case 'provider_refusal': return 'The model refused';
+    case 'provider_refusal': return job.params?.engine === 'fable51' ? 'Blocked by Fable’s safety filter' : 'The model refused';
+    case 'login_expired': return `${name}’s ChatGPT login has expired; reconnect in Settings`;
     case 'timeout':
     case 'timed_out': return 'Ran past the time limit';
-    case 'not_connected': return 'No Claude account connected';
+    case 'not_connected': return `No ${account === 'chatgpt' ? 'ChatGPT' : 'Claude'} account connected`;
     case 'cancelled': return `Cancelled by ${displayName(job.cancelled_by || job.actor)}`;
     case 'worker_restart': return 'Interrupted by a server restart';
     default: return `Failed (${reason})`;
@@ -107,9 +137,11 @@ export function dateWithYear(value) {
   return Number.isNaN(d.getTime()) ? text(value) : `${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
 }
 
-// "Opus 5.5 · medium · v1.13.2 · on Austin's Claude plan · usually 10–15 minutes"
-export function runSummary(effort, user) {
-  return `Opus 5.5 · ${effort} · ${INSTRUCTION_VERSION} · on ${displayName(user)}’s Claude plan · usually 10–15 minutes`;
+// "Fable 5.1 · high · draft 3f2a9c1 (Alex) · on Austin’s Claude plan"; Opus 5.5 at medium adds "· usually 10–15 minutes".
+export function runSummary(effort, user, engine = DEFAULT_ENGINE, instructionLabel = INSTRUCTION_VERSION) {
+  const parts = [engine.label, effort, instructionLabel || INSTRUCTION_VERSION, `on ${displayName(user)}’s ${planName(engine.account)}`];
+  if (engine.id === 'opus55' && effort === 'medium') parts.push('usually 10–15 minutes');
+  return parts.join(' · ');
 }
 
 export function validTimeout(value) {

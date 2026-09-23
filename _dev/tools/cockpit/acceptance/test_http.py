@@ -39,6 +39,7 @@ def synthetic_repo(root: Path) -> tuple[Path, str]:
     docs = root / "_dev/reviews/synthetic"
     for directory in (extraction, filings, catalog_dir, docs):
         directory.mkdir(parents=True, exist_ok=True)
+    (root / "SEC_Deal_Ledger_Extraction_Instruction.md").write_text("# Synthetic instruction\n\n**Revision of 1 January 2026, v1.13.2.**\n\nRead the filing.\nSave the workbook.\n", encoding="utf-8")
 
     filing = ("""<html><body><h1>Background of the Merger</h1>
     <p>1</p><p>Acme invited bids from three parties.</p>
@@ -491,3 +492,30 @@ def test_catalog_allowlist_rejects_ref_and_symlink_escape(env):
         assert secret not in response.text
     finally:
         outside.unlink(missing_ok=True)
+
+
+def test_instruction_versions_and_engines_over_http(env, monkeypatch):
+    http, _, _ = env
+    listing = http.get("/api/instructions").json()
+    [base] = listing["items"]
+    assert (base["name"], base["is_default"]) == ("v1.13.2", True)
+    assert http.get("/instructions").status_code == 200
+    assert http.get("/api/instructions/zzz").status_code == 404
+    assert http.get(f"/api/instructions/{base['id']}?seq=x").status_code == 400
+    draft = http.post("/api/instructions", {"action": "draft", "from": base["id"]})
+    assert draft.status_code == 200, draft.text
+    item = draft.json()["item"]
+    saved = http.post("/api/instructions", {"action": "save", "id": item["id"], "text": "New text\n", "base_sha256": item["sha256"]})
+    stale = http.post("/api/instructions", {"action": "save", "id": item["id"], "text": "Other\n", "base_sha256": item["sha256"]})
+    assert (saved.status_code, stale.status_code) == (200, 409)
+    assert http.get(f"/api/instructions/{item['id']}?seq=1").json()["text"] == draft.json()["text"]
+    assert http.post("/api/instructions", {"action": "save", "id": item["id"], "text": "x"}, csrf="wrong").status_code == 403
+    monkeypatch.setenv("COCKPIT_PUBLIC_ORIGIN", "https://lines.example.invalid")
+    public = {"Host": "lines.example.invalid", "Origin": "https://lines.example.invalid", "Cf-Access-Authenticated-User-Email": "intruder@example.invalid"}
+    assert http.post("/api/instructions", {"action": "default", "id": base["id"]}, headers=public).status_code == 403
+    assert http.post("/api/account/chatgpt", {"action": "connect"}, headers=public).status_code == 403
+    account = http.get("/api/account").json()
+    assert [engine["id"] for engine in account["engines"]] == ["opus55", "fable51", "sol6", "astra6"]
+    assert account["chatgpt"]["connected"] is False
+    refused = http.post("/api/deal/synthetic/jobs", {"action": "extract", "engine": "sol6"})
+    assert refused.status_code == 409 and "ChatGPT" in refused.json()["error"]

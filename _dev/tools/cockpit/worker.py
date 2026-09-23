@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
-"""Background worker for the cockpit: Claude sign-ins and isolated extraction runs.
+"""Background worker for the cockpit: sign-ins and isolated extraction runs.
 
 Runs as `ledger-worker.service`. It polls the jobs table in the workspace database,
 fetches filings from EDGAR for "add deal" lookups (one at a time, at SEC's pace),
 starts `run_model.py` for queued extractions (at most 4 at once, 2 per user) with the
-starting user's own token, checks each finished workbook outside the sandbox and imports
-it as an immutable version. Connect jobs drive `claude setup-token` in a pseudo-terminal
-so a user can sign in from the Settings page. Runner processes live in their own session,
-so they survive a worker restart; a restarted worker reattaches to them by pid.
+chosen engine, the frozen instruction text and the starting user's own credential, checks
+each finished workbook outside the sandbox and imports it as an immutable version. Claude
+connect jobs drive `claude setup-token` in a pseudo-terminal; ChatGPT connect jobs drive
+`codex login --device-auth`, and the worker keeps each ChatGPT login refreshed outside the
+sandbox. Runner processes live in their own session, so they survive a worker restart; a
+restarted worker reattaches to them by pid.
 
     python3 _dev/tools/cockpit/worker.py            # run forever
     python3 _dev/tools/cockpit/worker.py --once     # one pass (tests)
@@ -47,11 +49,22 @@ REPO = HERE.parents[2]
 RUNNER = Path(os.environ.get("COCKPIT_RUNNER") or HERE.parent / "sandbox/run_model.py")
 CHECKER = HERE.parent / "check_lean.py"
 CLAUDE = os.environ.get("COCKPIT_CLAUDE_BIN") or shutil.which("claude") or "claude"
+CODEX = os.environ.get("COCKPIT_CODEX_BIN") or shutil.which("codex") or "codex"
 INSTRUCTION = REPO / "SEC_Deal_Ledger_Extraction_Instruction.md"
 LINK_RE = re.compile(r"https://claude\.com/cai/oauth/authorize\S+")
 ANSI_RE = re.compile(r"\x1b\[[0-9;?]*[A-Za-z]|\x1b\][^\x07]*\x07|\x1b[()][A-Za-z0-9]|\x1b[=>]")
 CLAUDE_ERROR_RE = re.compile(r"(OAuth error:.*?)(?:Press Enter|$)", re.S)
 CONNECT_TIMEOUT = 10 * 60
+CHATGPT_CONNECT_TIMEOUT = 15 * 60
+DEVICE_LINK_RE = re.compile(r"https://auth\.openai\.com/\S+")
+DEVICE_CODE_RE = re.compile(r"\b[A-Z0-9]{4}-[A-Z0-9]{4,6}\b")
+# A sandboxed run cannot write back a refreshed Codex login, so the runner refuses one within
+# 7 hours of expiry. The worker refreshes a login outside the sandbox once it is within a day.
+REFRESH_BELOW_HOURS = 24
+RUN_MARGIN_HOURS = 7
+REFRESH_INTERVAL = 3600
+REFRESH_COMMAND = ["exec", "--ephemeral", "--skip-git-repo-check", "-s", "read-only", "-m", "gpt-6-sol",
+                   "-c", 'model_reasoning_effort="low"', "Reply with OK."]
 TERMINAL = {"completed", "failed", "timed_out", "cancelled"}
 
 
@@ -62,6 +75,12 @@ def log(message: str) -> None:
 def instruction_version(path: Path = INSTRUCTION) -> str | None:
     found = re.search(r"\bv(\d+\.\d+(?:\.\d+)?)\b", path.read_text(encoding="utf-8")[:600])
     return f"v{found.group(1)}" if found else None
+
+
+def engine_of(params: dict[str, Any]) -> tuple[str, dict[str, Any]]:
+    """The job's engine; jobs queued before phase 4 are Opus 5.5."""
+    ident = params.get("engine") if params.get("engine") in runs.ENGINES else runs.DEFAULT_ENGINE
+    return ident, runs.ENGINES[ident]
 
 
 def alive(pid: int | None, run_dir: str | None) -> bool:
@@ -87,6 +106,9 @@ class Worker:
         self.connects: dict[str, threading.Thread] = {}
         self.lookup_lock = threading.Lock()
         self.pruned = 0.0
+        # ChatGPT login refreshes, per user: the running thread and the last attempt's time and outcome.
+        self.refreshing: dict[str, threading.Thread] = {}
+        self.refreshed: dict[str, tuple[float, bool]] = {}
 
     # ---- database helpers -------------------------------------------------------
 
@@ -125,6 +147,8 @@ class Worker:
             self.guarded(job, self.finish)
         for job in self.jobs("kind='connect_claude' AND (state IN ('waiting_for_code','completing') OR (state='queued' AND started_at IS NOT NULL))"):
             self.update(job["id"], state="failed", input=None, error="Interrupted by a server restart; connect again.", ended_at=_now())
+        for job in self.jobs("kind='connect_chatgpt' AND (state='waiting_for_approval' OR (state='queued' AND started_at IS NOT NULL))"):
+            self.update(job["id"], state="failed", error="Interrupted by a server restart; connect again.", ended_at=_now())
         for job in self.jobs("kind='lookup' AND (state='running' OR (state='queued' AND started_at IS NOT NULL))"):
             self.update(job["id"], state="failed", error="Interrupted by a server restart; look the filing up again.", ended_at=_now())
 
@@ -162,6 +186,8 @@ class Worker:
             mine = sum(1 for other in running if other["actor"] == job["actor"])
             if len(running) >= runs.CAPS["total"] or mine >= runs.CAPS["per_user"]:
                 continue
+            if engine_of(json.loads(job["params"]))[1]["account"] == "chatgpt" and not self.chatgpt_ready(job):
+                continue
             if self.guarded(job, self.start):
                 running = self.jobs("kind='extract' AND state='running'")
         for job in self.jobs("kind='connect_claude' AND state='queued' AND started_at IS NULL"):
@@ -172,6 +198,13 @@ class Worker:
             self.update(job["id"], started_at=_now())
             self.connects[job["id"]] = thread
             thread.start()
+        for job in self.jobs("kind='connect_chatgpt' AND state='queued' AND started_at IS NULL"):
+            if job["cancel_requested"]:
+                self.update(job["id"], state="cancelled", ended_at=_now())
+                continue
+            self.update(job["id"], started_at=_now())
+            threading.Thread(target=self.chatgpt_sign_in, args=(job["id"], job["actor"]), daemon=True).start()
+        self.refresh_logins()
         for job in self.jobs("kind='lookup' AND state='queued' AND started_at IS NULL"):
             self.update(job["id"], started_at=_now())
             threading.Thread(target=self.lookup, args=(job["id"],), daemon=True).start()
@@ -202,15 +235,29 @@ class Worker:
 
     def start(self, job: sqlite3.Row) -> bool:
         params = json.loads(job["params"])
-        token = runs.token_path(job["actor"])
-        if not token.is_file():
-            self.fail(job, "not_connected", "No Claude account is connected for this user.")
+        _, engine = engine_of(params)
+        if engine["account"] == "claude":
+            credential = runs.token_path(job["actor"])
+            environment = {**os.environ, "SEC_CLAUDE_OAUTH_TOKEN_FILE": str(credential)}
+        else:
+            credential = runs.codex_home(job["actor"]) / "auth.json"
+            environment = {**os.environ, "SEC_CODEX_AUTH_FILE": str(credential)}
+        if not credential.is_file():
+            self.fail(job, "not_connected", f"No {'Claude' if engine['account'] == 'claude' else 'ChatGPT'} account is connected for this user.")
             return False
         try:
             _, filing, _ = self.cockpit.resolve(job["slug"])
         except data.DealNotFound:
             self.fail(job, "unknown_deal", "The deal's filing is not available.")
             return False
+        frozen = params.get("instruction")
+        if frozen:  # the exact text the run was requested with, checked against its hash
+            instruction = self.cockpit.instructions.path(frozen["sha256"])
+            if not instruction.is_file() or hashlib.sha256(instruction.read_bytes()).hexdigest() != frozen["sha256"]:
+                self.fail(job, "instruction_missing", f"The stored instruction {frozen['sha256'][:7]} is missing or altered.")
+                return False
+        else:
+            instruction = self.repo / INSTRUCTION.name
         run_dir = self.repo / "_dev/runs" / f"cockpit-{job['id']}"
         conn = self.connect()
         try:  # claim the job, so a second worker cannot start it too
@@ -220,16 +267,15 @@ class Worker:
             conn.close()
         if not claimed:
             return False
-        prepare = subprocess.run([sys.executable, str(RUNNER), "prepare", "--provider", "opus", "--run-dir", str(run_dir),
-                                  "--deal", job["slug"], "--filing", filing.name, "--filing-dir", str(filing.parent), "--model", params["model"],
-                                  "--effort", params["effort"], "--timeout-minutes", str(params["timeout_minutes"])],
+        prepare = subprocess.run([sys.executable, str(RUNNER), "prepare", "--provider", engine["provider"], "--run-dir", str(run_dir),
+                                  "--deal", job["slug"], "--filing", filing.name, "--filing-dir", str(filing.parent), "--model", engine["model"],
+                                  "--effort", params["effort"], "--timeout-minutes", str(params["timeout_minutes"]), "--instruction", str(instruction)],
                                  cwd=self.repo, capture_output=True, text=True)
         if prepare.returncode != 0:
             self.fail(self.job(job["id"]), "prepare_failed", (prepare.stderr or prepare.stdout).strip()[-500:])
             return False
-        environment = {**os.environ, "SEC_CLAUDE_OAUTH_TOKEN_FILE": str(token)}
         with (run_dir / "cockpit-worker.log").open("ab") as output:
-            child = subprocess.Popen([sys.executable, str(RUNNER), "worker", "--provider", "opus", "--run-dir", str(run_dir)],
+            child = subprocess.Popen([sys.executable, str(RUNNER), "worker", "--provider", engine["provider"], "--run-dir", str(run_dir)],
                                      cwd=self.repo, env=environment, stdin=subprocess.DEVNULL, stdout=output, stderr=output,
                                      start_new_session=True, close_fds=True)
         self.children[job["id"]] = child
@@ -241,9 +287,9 @@ class Worker:
         run_dir = Path(job["run_dir"]) if job["run_dir"] else None
         status_path = run_dir / "status.json" if run_dir else None
         status = json.loads(status_path.read_text()) if status_path and status_path.is_file() else {}
-        if status.get("plan_usage"):
+        if status.get("plan_usage") and engine_of(json.loads(job["params"]))[1]["account"] == "claude":
             self.plan_usage(job["actor"], status["plan_usage"])
-        result = {key: status.get(key) for key in ("usage", "plan_usage", "continuations", "elapsed_seconds", "usage_limit_resets_at") if status.get(key) is not None}
+        result = {key: status.get(key) for key in ("usage", "plan_usage", "continuations", "elapsed_seconds", "usage_limit_resets_at", "usage_limit_message") if status.get(key) is not None}
         state = status.get("state")
         if state != "completed":
             reason = status.get("failure_reason") or ("worker_restart" if state in (None, "running") else state)
@@ -280,28 +326,36 @@ class Worker:
 
     def describe(self, job: sqlite3.Row, what: str) -> str:
         params = json.loads(job["params"])
-        return f"{params.get('engine', runs.ENGINE)} · {params.get('effort')} · {instruction_version() or 'instruction'} {what}"
+        instruction = (params.get("instruction") or {}).get("label") or instruction_version() or "instruction"
+        return f"{engine_of(params)[1]['label']} · {params.get('effort')} · {instruction} {what}"
 
     def import_version(self, job: sqlite3.Row, run_dir: Path, workbook: Path, status: dict[str, Any], checker: dict[str, int]) -> str:
         metadata = json.loads((run_dir / "metadata.json").read_text())
         digest = hashlib.sha256(workbook.read_bytes()).hexdigest()
         started = dt.datetime.fromisoformat(status.get("started_at") or job["started_at"])
-        version_id = f"opus55-{metadata['effort']}-{started:%Y%m%d-%H%M}-{digest[:6]}"
+        params = json.loads(job["params"])
+        engine_id, engine = engine_of(params)
+        version_id = f"{engine_id}-{metadata['effort']}-{started:%Y%m%d-%H%M}-{digest[:6]}"
         destination = self.repo / "_dev/cockpit/state/versions" / job["slug"] / version_id
         destination.mkdir(parents=True, exist_ok=True)
         shutil.copy2(workbook, destination / f"{job['slug']}.xlsx")
         for name in ("metadata.json", "command.json", "status.json", "validation.json", "provider-results.json", "prompt.txt", "check.json"):
             if (run_dir / name).is_file():
                 shutil.copy2(run_dir / name, destination / name)
-        version = instruction_version()
+        frozen = params.get("instruction")
+        if frozen and frozen["sha256"] != metadata["instruction_sha256"]:
+            raise RuntimeError("the run's instruction hash differs from the one it was requested with")
+        version = frozen["name"] if frozen else instruction_version()
+        shown = frozen["label"] if frozen else version or "instruction " + metadata["instruction_sha256"][:7]
         name = runs.NAMES.get(job["actor"], job["actor"])
-        label = f"{runs.ENGINE} · {metadata['effort']} · {version or 'instruction ' + metadata['instruction_sha256'][:7]} — {name}, {started:%-d %b %H:%M}"
+        label = f"{engine['label']} · {metadata['effort']} · {shown} — {name}, {started:%-d %b %H:%M}"
         conn = self.connect()
         try:  # the version row and the job's completion land together; a retry after a crash replaces the row
-            conn.execute("INSERT OR REPLACE INTO versions (slug, id, label, path, sha256, kind, engine, model, effort, instruction_version, instruction_sha256, filing_sha256, started_by, started_at, finished_at, receipts, checker) VALUES (?,?,?,?,?,'raw',?,?,?,?,?,?,?,?,?,?,?)",
-                         (job["slug"], version_id, label, str((destination / f"{job['slug']}.xlsx").relative_to(self.repo)), digest, runs.ENGINE,
+            conn.execute("INSERT OR REPLACE INTO versions (slug, id, label, path, sha256, kind, engine, model, effort, instruction_version, instruction_sha256, filing_sha256, started_by, started_at, finished_at, receipts, checker, instruction_id) VALUES (?,?,?,?,?,'raw',?,?,?,?,?,?,?,?,?,?,?,?)",
+                         (job["slug"], version_id, label, str((destination / f"{job['slug']}.xlsx").relative_to(self.repo)), digest, engine["label"],
                           metadata["model"], metadata["effort"], version, metadata["instruction_sha256"], metadata["filing_sha256"], job["actor"],
-                          status.get("started_at") or job["started_at"], status.get("ended_at") or _now(), str(destination.relative_to(self.repo)), json.dumps(checker)))
+                          status.get("started_at") or job["started_at"], status.get("ended_at") or _now(), str(destination.relative_to(self.repo)), json.dumps(checker),
+                          frozen["id"] if frozen else None))
             conn.execute("UPDATE jobs SET state='completed', version_id=?, ended_at=? WHERE id=?", (version_id, _now(), job["id"]))
             conn.commit()
         finally:
@@ -441,6 +495,145 @@ class Worker:
                         pass
             shutil.rmtree(home, ignore_errors=True)
             self.connects.pop(job_id, None)
+
+
+    # ---- ChatGPT sign-in and refresh --------------------------------------------------
+
+    def chatgpt_sign_in(self, job_id: str, user: str) -> None:
+        """Drive `codex login --device-auth` in a fresh folder; on approval it becomes the user's Codex login."""
+        home = runs.codex_home(user)
+        home.parent.mkdir(parents=True, exist_ok=True)
+        os.chmod(home.parent, 0o700)
+        staging = Path(tempfile.mkdtemp(prefix="codex-signin-", dir=home.parent))
+        process = None
+        try:
+            process = subprocess.Popen([CODEX, "login", "--device-auth"], stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                                       cwd=staging, start_new_session=True, close_fds=True,
+                                       env={"HOME": os.environ.get("HOME", str(Path.home())), "PATH": os.environ.get("PATH", ""), "CODEX_HOME": str(staging), "NO_COLOR": "1"})
+            output, shown, ended = "", False, False
+            deadline = time.monotonic() + CHATGPT_CONNECT_TIMEOUT
+            os.set_blocking(process.stdout.fileno(), False)
+            while not ended:
+                ready, _, _ = select.select([process.stdout], [], [], 0.5)
+                if ready:
+                    chunk = process.stdout.read()
+                    if chunk == b"":
+                        ended = True  # end of output: the login finished or failed
+                    elif chunk:
+                        output = ANSI_RE.sub("", output + chunk.decode("utf-8", "replace"))
+                if not shown:
+                    link, code = DEVICE_LINK_RE.search(output), DEVICE_CODE_RE.search(output.split("one-time code", 1)[-1]) if "one-time code" in output else None
+                    if link and code:
+                        self.update(job_id, state="waiting_for_approval", result=json.dumps({"link": link.group(0), "code": code.group(0)}))
+                        shown = True
+                if self.job(job_id)["cancel_requested"]:
+                    raise TimeoutError("cancelled")
+                if time.monotonic() > deadline:
+                    raise TimeoutError("The sign-in was not approved within fifteen minutes.")
+            process.wait(timeout=30)
+            auth = staging / "auth.json"
+            if process.returncode != 0 or runs.codex_login(auth) is None:
+                last = " ".join(output.strip().splitlines()[-1:]).strip() if output.strip() else ""
+                raise RuntimeError(f"ChatGPT sign-in did not complete{': ' + last[:300] if last else '.'}")
+            os.chmod(staging, 0o700)
+            os.chmod(auth, 0o600)
+            old = home.with_name(f"codex-old-{job_id}")
+            if home.exists():
+                os.replace(home, old)
+            os.replace(staging, home)
+            shutil.rmtree(old, ignore_errors=True)
+            login = runs.codex_login(home / "auth.json")
+            conn = self.connect()
+            try:
+                conn.execute("INSERT INTO accounts VALUES (?, 'chatgpt', ?, ?) ON CONFLICT(user, provider) DO UPDATE SET connected_at=excluded.connected_at, expires_at=excluded.expires_at",
+                             (user, _now(), login["expires_at"]))
+                conn.execute("UPDATE jobs SET state='completed', ended_at=?, error=NULL WHERE id=?", (_now(), job_id))
+                conn.commit()
+            finally:
+                conn.close()
+            self.refreshed.pop(user, None)
+            log(f"ChatGPT account connected for {user}")
+        except TimeoutError as exc:
+            cancelled = str(exc) == "cancelled"
+            self.update(job_id, state="cancelled" if cancelled else "failed", error=None if cancelled else str(exc), ended_at=_now())
+        except Exception as exc:  # noqa: BLE001 - report every sign-in failure to the page
+            self.update(job_id, state="failed", error=str(exc) or type(exc).__name__, ended_at=_now())
+        finally:
+            if process and process.poll() is None:
+                try:
+                    os.killpg(process.pid, signal.SIGTERM)
+                except ProcessLookupError:
+                    pass
+            shutil.rmtree(staging, ignore_errors=True)
+
+    def chatgpt_users(self) -> list[str]:
+        conn = self.connect()
+        try:
+            return [row["user"] for row in conn.execute("SELECT user FROM accounts WHERE provider='chatgpt'")]
+        finally:
+            conn.close()
+
+    def gpt_running(self, user: str) -> bool:
+        return bool(self.jobs("kind='extract' AND actor=? AND state IN ('preparing','running','checking','importing') AND params LIKE '%\"account\": \"chatgpt\"%'", (user,)))
+
+    def refresh_logins(self) -> None:
+        """Refresh any ChatGPT login within a day of expiry, at most hourly, never during that user's GPT run."""
+        for user in self.chatgpt_users():
+            login = runs.codex_login(runs.codex_home(user) / "auth.json")
+            if login is None or login["hours_left"] >= REFRESH_BELOW_HOURS or user in self.refreshing:
+                continue
+            last = self.refreshed.get(user)
+            if last and time.monotonic() - last[0] < REFRESH_INTERVAL:
+                continue
+            if self.gpt_running(user):
+                continue
+            thread = threading.Thread(target=self.refresh_login, args=(user,), daemon=True)
+            self.refreshing[user] = thread
+            thread.start()
+
+    def refresh_login(self, user: str) -> None:
+        """One short Codex call outside the sandbox with the user's writable login, so Codex renews it."""
+        home = runs.codex_home(user)
+        before = runs.codex_login(home / "auth.json") or {}
+        renewed = False
+        try:
+            with tempfile.TemporaryDirectory(prefix="codex-refresh-") as folder:
+                done = subprocess.run([CODEX, *REFRESH_COMMAND], cwd=folder, stdin=subprocess.DEVNULL, capture_output=True, text=True, timeout=300,
+                                      env={"HOME": os.environ.get("HOME", str(Path.home())), "PATH": os.environ.get("PATH", ""), "CODEX_HOME": str(home), "NO_COLOR": "1"})
+            after = runs.codex_login(home / "auth.json") or {}
+            renewed = bool(after) and (after.get("last_refresh") != before.get("last_refresh") or after.get("expires_at") != before.get("expires_at"))
+            log(f"ChatGPT login refresh for {user}: exit {done.returncode}, {'renewed until ' + after['expires_at'] if renewed else 'not renewed'}")
+            if renewed:
+                conn = self.connect()
+                try:
+                    conn.execute("UPDATE accounts SET expires_at=? WHERE user=? AND provider='chatgpt'", (after["expires_at"], user))
+                    conn.commit()
+                finally:
+                    conn.close()
+        except Exception as exc:  # noqa: BLE001 - a failed refresh is retried later
+            log(f"ChatGPT login refresh for {user} failed: {type(exc).__name__}: {exc}")
+        finally:
+            self.refreshed[user] = (time.monotonic(), renewed)
+            self.refreshing.pop(user, None)
+
+    def chatgpt_ready(self, job: sqlite3.Row) -> bool:
+        """Whether a queued GPT job may start now; a login too close to expiry waits for one refresh, then fails."""
+        user = job["actor"]
+        if user in self.refreshing:
+            return False
+        login = runs.codex_login(runs.codex_home(user) / "auth.json")
+        if login is None or login["hours_left"] >= RUN_MARGIN_HOURS:
+            return True  # a missing login fails in start() as not_connected
+        if self.gpt_running(user):
+            return False  # refresh only between this user's GPT runs
+        last = self.refreshed.get(user)
+        if last is None or (not last[1] and time.monotonic() - last[0] >= REFRESH_INTERVAL):
+            thread = threading.Thread(target=self.refresh_login, args=(user,), daemon=True)
+            self.refreshing[user] = thread
+            thread.start()
+            return False
+        self.fail(job, "login_expired", "The ChatGPT login is too close to expiry and a refresh did not renew it; reconnect in Settings.")
+        return False
 
 
 def main(argv: list[str] | None = None) -> int:

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prepare, launch, and monitor isolated extraction runs (Opus; Sol transport retained)."""
+"""Prepare, launch, and monitor isolated extraction runs (Claude and Codex transports)."""
 
 from __future__ import annotations
 
@@ -36,8 +36,12 @@ CLAUDE_BIN = Path(os.environ.get("SEC_CLAUDE_BIN") or shutil.which("claude") or 
 # read-only sandbox cannot write back, and so log the host out.
 CLAUDE_TOKEN_FILE = Path(os.environ.get("SEC_CLAUDE_OAUTH_TOKEN_FILE")
                          or HOME_HOST / ".config/sec-extraction/claude-oauth-token")
+# The Codex login bound read-only into a Sol run: the cockpit names each user's own login.
+# Unset means the host login, ~/.codex/auth.json.
+CODEX_AUTH_FILE = Path(os.environ["SEC_CODEX_AUTH_FILE"]) if os.environ.get("SEC_CODEX_AUTH_FILE") else None
 # Models and effort levels each provider may be prepared with. The first model is the default.
-MODELS = {"sol": ("gpt-6-sol", "gpt-5.6-sol"), "opus": ("claude-opus-5-5", "claude-opus-5")}
+# "opus" is the Claude transport (Opus and Fable); "sol" is the Codex transport (Sol and Astra).
+MODELS = {"sol": ("gpt-6-sol", "gpt-6-astra", "gpt-5.6-sol"), "opus": ("claude-opus-5-5", "claude-fable-5-1", "claude-opus-5")}
 # Codex's "ultra" level delegates to subagents automatically, so it is not offered.
 EFFORTS = {"sol": ("low", "medium", "high", "xhigh", "max"), "opus": ("low", "medium", "high", "xhigh", "max")}
 DEFAULT_EFFORT = {"sol": "xhigh", "opus": "medium"}  # Opus: 22 Sep 2026 effort sweep
@@ -60,6 +64,9 @@ CODEX_DISABLED_FEATURES = (
     "mentions_v2", "workspace_dependencies", "hooks",
 )
 CODEX_TOKEN_MARGIN_HOURS = 7  # longer than the longest run, so a sandboxed Codex never refreshes its login
+# Fable 5.1's safeguard classifier ends a turn with "Fable 5.1's safeguards flagged this message …".
+SAFEGUARD_BLOCK = "safeguards flagged"
+CODEX_USAGE_LIMIT = "hit your usage limit"
 MAX_CONTINUATIONS = 2  # Opus 5.5 can end a turn with a progress report before saving the workbook
 SHEETS = ["Deal ledger", "Rounds", "Questions", "Deal facts"]
 CODEX_SANDBOX = Path("/opt/codex")
@@ -151,6 +158,34 @@ def claude_results(events_path: Path) -> list[dict]:
     return [event for event in events(events_path) if event.get("type") == "result"]
 
 
+def codex_usage_limit(run_dir: Path) -> str | None:
+    """The Codex CLI's "hit your usage limit" sentence, from an error event or stderr; None if absent.
+
+    Only error and failed-turn events are read, so filing text echoed by a command cannot match.
+    """
+    found = []
+    if (run_dir / "events.jsonl").is_file():
+        found = [value for event in events(run_dir / "events.jsonl") if event.get("type") in ("error", "turn.failed")
+                 for value in _strings(event)]
+    if (run_dir / "stderr.log").is_file():
+        found += (run_dir / "stderr.log").read_text(encoding="utf-8", errors="replace").splitlines()
+    for value in found:
+        if CODEX_USAGE_LIMIT in value.lower():
+            return " ".join(value.split())[:300]
+    return None
+
+
+def _strings(value):
+    if isinstance(value, str):
+        yield value
+    elif isinstance(value, dict):
+        for item in value.values():
+            yield from _strings(item)
+    elif isinstance(value, list):
+        for item in value:
+            yield from _strings(item)
+
+
 def rate_limits(events_path: Path) -> tuple[dict | None, dict | None]:
     """The last rate-limit report in a Claude event log, and the last rejected one (plan limit hit)."""
     last = rejected = None
@@ -172,10 +207,12 @@ def claude_summary(events_path: Path) -> dict[str, object] | None:
     for event in events(events_path):
         if event.get("type") == "system" and event.get("subtype") == "init" and init is None:
             init = event
-        elif event.get("type") == "assistant" and (event.get("message") or {}).get("stop_reason") == "refusal":
+        elif event.get("type") == "assistant" and ((event.get("message") or {}).get("stop_reason") == "refusal"
+                                                   or SAFEGUARD_BLOCK in json.dumps(event.get("message") or {})):
             refusal = True
         elif event.get("type") == "result":
             results.append(event)
+            refusal = refusal or SAFEGUARD_BLOCK in str(event.get("result") or "")
     if init is None and not results and not refusal:
         return None
     init, last = init or {}, results[-1] if results else {}
@@ -355,7 +392,7 @@ def bwrap_base(run_dir: Path, provider: str, state: Path, scratch: Path) -> list
         ]
         command += [
             "--ro-bind", str(CODEX_RELEASE), str(CODEX_SANDBOX),
-            "--ro-bind", str(HOME_HOST / ".codex/auth.json"), str(SANDBOX_HOME / ".codex/auth.json"),
+            "--ro-bind", str(codex_auth_file()), str(SANDBOX_HOME / ".codex/auth.json"),
             "--setenv", "CODEX_HOME", str(SANDBOX_HOME / ".codex"),
         ]
     else:
@@ -462,6 +499,10 @@ def claude_token(provider: str):
         os.close(read)
 
 
+def codex_auth_file() -> Path:
+    return CODEX_AUTH_FILE or HOME_HOST / ".codex/auth.json"
+
+
 def codex_token_hours_left(auth: Path) -> float | None:
     """Hours until the host Codex login's access token expires; None if it has no readable expiry."""
     try:
@@ -487,15 +528,15 @@ def preflight(provider: str) -> Path:
         if CLAUDE_TOKEN_FILE.stat().st_mode & 0o077:
             raise SystemExit(f"{CLAUDE_TOKEN_FILE} must be readable by its owner only (chmod 600)")
         return binary
-    credential = HOME_HOST / ".codex/auth.json"
+    credential = codex_auth_file()
     if not credential.is_file():
         raise SystemExit(f"provider authentication file is missing: {credential}")
     # The Codex login is bound read-only. A sandboxed refresh would rotate its refresh token and
     # log the host out, so a run starts only while the access token outlasts any run.
     hours = codex_token_hours_left(credential)
     if hours is not None and hours < CODEX_TOKEN_MARGIN_HOURS:
-        raise SystemExit(f"the host Codex login expires in {hours:.1f} h; renew it on the host (codex login) "
-                         f"so a sandboxed run never has to")
+        raise SystemExit(f"the Codex login {credential} expires in {hours:.1f} h; renew it outside the sandbox "
+                         f"(codex login, or a call with its CODEX_HOME) so a sandboxed run never has to")
     return binary
 
 
@@ -618,13 +659,15 @@ def run_worker(args: argparse.Namespace, state: Path, scratch: Path) -> int:
         summary = claude_summary(stdout_path) or {}
     ended_at = now_iso()
     plan_usage, rejected = rate_limits(stdout_path) if args.provider == "opus" else (None, None)
+    codex_limit = codex_usage_limit(run_dir) if args.provider == "sol" else None
+    finished = validation.get("valid_xlsx") and validation.get("sheet_names") == SHEETS
     if _PROVIDER["cancelled"]:
         outcome, failure_reason = "cancelled", "cancelled"
     elif timed_out:
         outcome, failure_reason = "timed_out", "timeout"
     elif summary and summary["refusal"]:
         outcome, failure_reason = "failed", "provider_refusal"
-    elif rejected is not None and not (validation.get("valid_xlsx") and validation.get("sheet_names") == SHEETS):
+    elif (rejected is not None or codex_limit) and not finished:
         outcome, failure_reason = "failed", "usage_limit"
     elif exit_code != 0:
         outcome, failure_reason = "failed", "provider_exit"
@@ -659,7 +702,9 @@ def run_worker(args: argparse.Namespace, state: Path, scratch: Path) -> int:
         "usage": run_usage(stdout_path),
         "plan_usage": plan_usage,
     }
-    if failure_reason == "usage_limit" and isinstance(rejected.get("resetsAt"), (int, float)):
+    if failure_reason == "usage_limit" and codex_limit:
+        result["usage_limit_message"] = codex_limit
+    if failure_reason == "usage_limit" and rejected is not None and isinstance(rejected.get("resetsAt"), (int, float)):
         result["usage_limit_resets_at"] = dt.datetime.fromtimestamp(rejected["resetsAt"], dt.timezone.utc).isoformat(timespec="seconds")
     if summary is not None:
         result["provider"] = summary

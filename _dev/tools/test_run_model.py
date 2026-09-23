@@ -378,6 +378,72 @@ class RunnerTests(unittest.TestCase):
             self.assertEqual(result["usage_limit_resets_at"], "2026-09-23T12:10:00+00:00")
             self.assertEqual(result["plan_usage"]["status"], "rejected")
 
+    def test_fable_is_allowed_and_its_safeguard_block_is_a_refusal(self):
+        blocked = self.result_event(model="claude-fable-5-1", subtype="success", is_error=True,
+                                    result="API Error: Fable 5.1's safeguards flagged this message. Claude Code can't respond to this message with Fable 5.1.")
+        for reason, steps in ((None, [(0, [self.result_event(model="claude-fable-5-1")], True)]), ("provider_refusal", [(1, [blocked], False)])):
+            with self.subTest(reason=reason), tempfile.TemporaryDirectory() as tmp:
+                run = self.prepare_fixture(Path(tmp), extra=("--model", "claude-fable-5-1", "--effort", "high"))
+                self.assertEqual(run_model.prepared_metadata(run, "opus")["model"], "claude-fable-5-1")
+                _, result, popen = self.run_worker(run, *steps)
+                self.assertEqual((result["failure_reason"], popen.call_count), (reason, 1))
+
+    def prepare_sol(self, root, model="gpt-6-astra"):
+        project = root / "project"
+        (project / "raw_filing").mkdir(parents=True)
+        (project / run_model.INSTRUCTION_NAME).write_text("Synthetic instruction")
+        (project / "raw_filing" / "sample.htm").write_text("Synthetic filing")
+        run = root / "runs" / "sample"
+        args = run_model.parser().parse_args(["prepare", "--provider", "sol", "--run-dir", str(run), "--deal", "sample",
+                                              "--filing", "sample.htm", "--model", model, "--effort", "high"])
+        with mock.patch.object(run_model, "PROJECT", project), contextlib.redirect_stdout(io.StringIO()):
+            run_model.prepare(args)
+        return run
+
+    def test_astra_binds_the_named_codex_login_and_a_usage_limit_is_named(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            run = self.prepare_sol(root)
+            auth = root / "users/alex/codex/auth.json"
+            auth.parent.mkdir(parents=True)
+            auth.write_text("{}")
+            with mock.patch.object(run_model, "CODEX_AUTH_FILE", auth):
+                command = run_model.bwrap_base(run, "sol", root / "state", root / "scratch")
+            at = command.index(str(auth))
+            self.assertEqual((command[at - 1], command[at + 1]), ("--ro-bind", str(run_model.SANDBOX_HOME / ".codex/auth.json")))
+            host = str(run_model.HOME_HOST / ".codex/auth.json")
+            self.assertFalse(any(command[i] == "--ro-bind" and command[i + 1] == host for i in range(len(command) - 1)))
+            self.assertIn("gpt-6-astra", run_model.provider_command(run, "sol", run_model.prepared_metadata(run, "sol")))
+            limited = {"type": "error", "message": "You've hit your usage limit. Upgrade to Pro or try again at 3:05 PM."}
+            echoed = {"type": "item.completed", "item": {"type": "command_execution", "aggregated_output": "we hit your usage limit"}}
+            with mock.patch.object(run_model, "preflight", return_value=Path(run_model.__file__)), \
+                    self.processes(run, (1, [echoed, limited], False)):
+                self.assertEqual(run_model.worker(argparse.Namespace(run_dir=run, provider="sol")), 1)
+            result = json.loads((run / "status.json").read_text())
+            self.assertEqual((result["failure_reason"], result["usage_limit_message"]),
+                             ("usage_limit", "You've hit your usage limit. Upgrade to Pro or try again at 3:05 PM."))
+        with tempfile.TemporaryDirectory() as tmp:  # filing text echoed by a command is not a usage limit
+            run = self.prepare_sol(Path(tmp))
+            with mock.patch.object(run_model, "preflight", return_value=Path(run_model.__file__)), \
+                    self.processes(run, (1, [echoed], False)):
+                run_model.worker(argparse.Namespace(run_dir=run, provider="sol"))
+            self.assertEqual(json.loads((run / "status.json").read_text())["failure_reason"], "provider_exit")
+
+    def test_codex_login_margin_uses_the_named_login(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            import base64 as b64
+            claims = b64.urlsafe_b64encode(json.dumps({"exp": int(time.time()) + 3600}).encode()).decode().rstrip("=")
+            auth = Path(tmp) / "auth.json"
+            auth.write_text(json.dumps({"tokens": {"access_token": f"x.{claims}.y"}}))
+            binary = Path(tmp) / "bin/codex"
+            binary.parent.mkdir()
+            binary.write_text("")
+            binary.chmod(0o755)
+            with mock.patch.object(run_model, "CODEX_AUTH_FILE", auth), mock.patch.object(run_model, "CODEX_BIN", binary), \
+                    mock.patch.object(run_model.shutil, "which", return_value="/usr/bin/bwrap"):
+                with self.assertRaisesRegex(SystemExit, "expires in 1.0 h"):
+                    run_model.preflight("sol")
+
     def test_sigterm_cancels_the_run_and_stops_the_provider(self):
         with tempfile.TemporaryDirectory() as tmp:
             run = self.prepare_fixture(Path(tmp))
@@ -627,7 +693,7 @@ class RunnerTests(unittest.TestCase):
                     mock.patch.object(run_model.os, "access", return_value=True), \
                     mock.patch.object(run_model.shutil, "which", return_value="/usr/bin/bwrap"):
                 (home / ".codex/auth.json").write_text(json.dumps(token(2)))
-                with self.assertRaisesRegex(SystemExit, "renew it on the host"):
+                with self.assertRaisesRegex(SystemExit, "renew it outside the sandbox"):
                     run_model.preflight("sol")
                 (home / ".codex/auth.json").write_text(json.dumps(token(30)))
                 self.assertEqual(run_model.preflight("sol"), codex)

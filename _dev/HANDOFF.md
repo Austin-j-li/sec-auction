@@ -11,14 +11,15 @@ For engineering, choose models by task rather than by a fixed split. Astra (GPT-
 ## Session state (23 September, 16:40 UTC, for the next laptop)
 
 - **Phase 2 is committed** (`c28f150`). Austin connected his Claude account at 15:26 UTC and ran the first real extraction from the cockpit: PetSmart, Opus 5.5 medium, 9 min 21 s, imported as `opus55-medium-20260923-1528-4d8363` (1 error, 6 warnings). It is not the working copy's base; whether to rebase onto it is Austin's review call. Alex has not yet connected or run.
-- **Phase 3 (add deals) is committed** (commit "Cockpit phase 3: add deals…") and deployed. Build record: [PROGRESS.md](maintenance/2026-09-23-cockpit-phase3-deals/PROGRESS.md); contract in the same folder. No deal has been added on the live site yet.
+- **Phase 4 (instructions and engines) is committed** (commit "Cockpit phase 4: instruction versions…") and deployed (23 September, 16:57 UTC). Instruction versions (drafts, publish, default; v1.13.2 imported as the default), Fable 5.1, GPT-6-Sol and GPT-6-Astra in the Extract dialog, and per-user ChatGPT sign-in with background login refresh. Build record: [PROGRESS.md](maintenance/2026-09-23-cockpit-phase4-instructions-engines/PROGRESS.md); contract in the same folder. Its acceptance (a draft and a published run on one filing; one run per new engine) needs real runs and Austin's go-ahead.
+- **Phase 3 (add deals) is committed** (commit "Cockpit phase 3: add deals…") and deployed. Build record: [PROGRESS.md](maintenance/2026-09-23-cockpit-phase3-deals/PROGRESS.md); contract in the same folder. Austin added Medivation on the live site.
 - **Services:** `ledger-cockpit.service` and `ledger-worker.service` (enabled, `~/.config/systemd/user/`) run from this checkout; both were restarted at 16:24 UTC. Worker logs: `journalctl _SYSTEMD_USER_UNIT=ledger-worker.service`. After changing worker, runs, deals or server code, restart both: `systemctl --user restart ledger-cockpit ledger-worker`.
 - **Tests:** 174 Python tests, 11 HTTP tests, 31 vitest tests and all six browser suites pass (see phase 3 PROGRESS for which ran on the staged build).
 - **Waiting on Austin:**
   1. Phase 3 acceptance: add one seed deal and one pasted-link deal and extract each (two real Opus 5.5 runs, need his go-ahead).
   2. Alex's own connect and one run on his plan (phase 2 acceptance).
 - **Shared VM browser:** its tab 0 is open at the PetSmart deal (see `/home/uctpiaj/CONDENSER_BROWSER_HANDOFF.md`).
-- **Build approach (Austin, 23 September):** the build is Claude-only. Opus 5.5 leads, and Fable 5.1 is called very occasionally for a second opinion. Remaining phases: 4 (instruction editor, plus the Fable, Sol and Astra engines with ChatGPT device-auth; the host Codex login expires 24 September 11:38 UTC, the first chance to confirm token refresh); 5 (backups, restore rehearsal, docs, hiding deals).
+- **Build approach (Austin, 23 September):** the build is Claude-only. Opus 5.5 leads, and Fable 5.1 is called very occasionally for a second opinion. Remaining: phase 4 acceptance (the host Codex login expires 24 September 11:38 UTC, the first chance to confirm that a refresh call renews a login); phase 5 (backups, restore rehearsal, docs, hiding deals).
 
 ## What is ready for Austin
 

@@ -14,9 +14,13 @@ from test_http import HttpFixture, synthetic_repo
 
 
 def start_fake_worker(root: Path) -> None:
-    """Run the real worker loop against the fake runner and fake Claude CLI from the unit tests. No model is called."""
+    """Run the real worker loop against the fake runner, Claude CLI and Codex CLI from the unit tests. No model is called.
+
+    The fake Codex sign-in waits until `<root>/codex-flag` holds "approve" (or anything else, to fail).
+    """
     import openpyxl
     from cockpit import worker
+    from test_cockpit_phase4 import FAKE_CODEX
     from test_cockpit_runs import FAKE_CLAUDE, FAKE_RUNNER
 
     (root / "fake_runner.py").write_text(FAKE_RUNNER)
@@ -24,12 +28,16 @@ def start_fake_worker(root: Path) -> None:
     claude = root / "claude"
     claude.write_text(f"#!/bin/sh\nexec {sys.executable} {root / 'fake_claude.py'}\n")
     claude.chmod(0o755)
+    (root / "fake_codex.py").write_text(FAKE_CODEX)
+    codex = root / "codex"
+    codex.write_text(f"#!/bin/sh\nexport FAKE_CODEX_FLAG={root / 'codex-flag'} FAKE_CODEX_CALLS={root / 'codex-calls'}\nexec {sys.executable} {root / 'fake_codex.py'} \"$@\"\n")
+    codex.chmod(0o755)
     # The fake run returns the fixture workbook with one bidder renamed, so Compare has a difference to show.
     workbook = openpyxl.load_workbook(root / "extraction/synthetic.xlsx")
     workbook["Deal ledger"]["C3"] = "Party A (new run)"
     workbook.save(root / "fake_run.xlsx")
     os.environ.update({"COCKPIT_TOKEN_ROOT": str(root / "tokens"), "FAKE_WORKBOOK": str(root / "fake_run.xlsx")})
-    worker.RUNNER, worker.CLAUDE = root / "fake_runner.py", str(claude)
+    worker.RUNNER, worker.CLAUDE, worker.CODEX = root / "fake_runner.py", str(claude), str(codex)
     loop = worker.Worker(root)
 
     def forever() -> None:
@@ -98,7 +106,7 @@ def main() -> None:
         if "--runs" in sys.argv[1:]:
             start_fake_worker(root)
         signal.signal(signal.SIGTERM, lambda *_: fixture.httpd.shutdown())
-        print(json.dumps({"url": fixture.base}), flush=True)
+        print(json.dumps({"url": fixture.base, "root": str(root)}), flush=True)
         try:
             fixture.thread.join()
         finally:

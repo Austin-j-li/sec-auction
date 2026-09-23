@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { activeRunLabel, dateWithYear, failureText, formatElapsed, jobElapsed, orderVersions, planUsageText, runSummary, usageText, validTimeout, versionOptionLabel } from './runs';
+import { accountEngines, activeRunLabel, dateWithYear, effortFor, failureText, jobEngineLabel, jobInstructionLabel, pickEngine, formatElapsed, jobElapsed, orderVersions, planUsageText, runSummary, usageText, validTimeout, versionOptionLabel } from './runs';
 import { shortTime, tally, tallyText } from './trace';
 import { compareQuery } from './api';
 
@@ -19,6 +19,19 @@ describe('failure reasons in words', () => {
     expect(failureText({ state: 'cancelled', actor: 'austin', failure_reason: 'cancelled' })).toBe('Cancelled by Austin');
     expect(failureText({ state: 'cancelled', actor: 'austin', cancelled_by: 'alex' })).toBe('Cancelled by Alex');
     expect(failureText(job('worker_restart'))).toBe('Interrupted by a server restart');
+  });
+  it('names the ChatGPT plan and account for GPT runs, and adds the provider message', () => {
+    const gpt = { account: 'chatgpt', engine: 'sol6' };
+    expect(failureText(job('usage_limit', { params: gpt, result: { usage_limit_message: 'You have hit your usage limit. Try again at 3 PM.' } })))
+      .toBe('Alex’s ChatGPT plan hit its usage limit. You have hit your usage limit. Try again at 3 PM.');
+    expect(failureText(job('usage_limit', { params: gpt }))).toBe('Alex’s ChatGPT plan hit its usage limit');
+    expect(failureText(job('not_connected', { params: gpt }))).toBe('No ChatGPT account connected');
+    expect(failureText(job('login_expired', { params: gpt }))).toBe('Alex’s ChatGPT login has expired; reconnect in Settings');
+    expect(failureText(job('usage_limit', { params: { account: 'claude' } }))).toBe('Alex’s Claude plan hit its usage limit');
+  });
+  it('names Fable’s safety filter for a Fable refusal only', () => {
+    expect(failureText(job('provider_refusal', { params: { engine: 'fable51', account: 'claude' } }))).toBe('Blocked by Fable’s safety filter');
+    expect(failureText(job('provider_refusal', { params: { engine: 'astra6', account: 'chatgpt' } }))).toBe('The model refused');
   });
   it('shows any other reason verbatim and nothing for a successful run', () => {
     expect(failureText(job('provider_error'))).toBe('Failed (provider_error)');
@@ -63,6 +76,9 @@ describe('plan usage and cost', () => {
   });
   it('summarises a run and validates the time limit', () => {
     expect(runSummary('medium', 'austin')).toBe('Opus 5.5 · medium · v1.13.2 · on Austin’s Claude plan · usually 10–15 minutes');
+    expect(runSummary('high', 'austin')).toBe('Opus 5.5 · high · v1.13.2 · on Austin’s Claude plan');
+    expect(runSummary('high', 'austin', { id: 'fable51', label: 'Fable 5.1', account: 'claude' }, 'draft 3f2a9c1 (Alex)')).toBe('Fable 5.1 · high · draft 3f2a9c1 (Alex) · on Austin’s Claude plan');
+    expect(runSummary('medium', 'alex', { id: 'sol6', label: 'GPT-6-Sol', account: 'chatgpt' }, 'v1.14')).toBe('GPT-6-Sol · medium · v1.14 · on Alex’s ChatGPT plan');
     expect([validTimeout('90'), validTimeout('9'), validTimeout('361'), validTimeout('12.5'), validTimeout('')]).toEqual([true, false, false, false, false]);
   });
 });
@@ -120,5 +136,41 @@ describe('active run badge', () => {
     expect(activeRunLabel([{ state: 'running', started_at: at(0) }, { state: 'checking', started_at: at(1) }], now)).toBe('2 extractions running');
     expect(activeRunLabel([{ state: 'failed' }], now)).toBe('');
     expect(activeRunLabel(null, now)).toBe('');
+  });
+});
+
+describe('engines', () => {
+  const engines = [
+    { id: 'opus55', label: 'Opus 5.5', account: 'claude', efforts: ['low', 'medium', 'high', 'xhigh', 'max', 'ultra'], default_effort: 'medium', connected: false },
+    { id: 'fable51', label: 'Fable 5.1', account: 'claude', efforts: ['low', 'medium', 'high'], default_effort: 'medium', connected: false, experimental: true },
+    { id: 'sol6', label: 'GPT-6-Sol', account: 'chatgpt', efforts: ['low', 'medium', 'high'], default_effort: 'high', connected: true },
+    { id: 'astra6', label: 'GPT-6-Astra', account: 'chatgpt', efforts: ['low', 'medium'], connected: true },
+  ];
+  it('reads the account’s engines without ultra, and falls back to Opus 5.5 before phase 4', () => {
+    const list = accountEngines({ engines });
+    expect(list[0].efforts).toEqual(['low', 'medium', 'high', 'xhigh', 'max']);
+    expect(list[3].default_effort).toBe('medium');
+    expect(accountEngines({ claude: { connected: true } })).toMatchObject([{ id: 'opus55', label: 'Opus 5.5', account: 'claude', connected: true, default_effort: 'medium' }]);
+    expect(accountEngines(null)[0].connected).toBe(false);
+  });
+  it('preselects Opus 5.5 when usable, else the first connected engine', () => {
+    const list = accountEngines({ engines });
+    expect(pickEngine(list).id).toBe('sol6');
+    expect(pickEngine(list, 'astra6').id).toBe('astra6');
+    expect(pickEngine(list, 'fable51').id).toBe('sol6');
+    expect(pickEngine(accountEngines({ engines: engines.map(e => ({ ...e, connected: true })) })).id).toBe('opus55');
+    expect(pickEngine(list.map(e => ({ ...e, connected: false })))).toBe(null);
+  });
+  it('keeps an effort the new engine offers, else its default', () => {
+    const [, , sol, astra] = accountEngines({ engines });
+    expect(effortFor(sol, 'low')).toBe('low');
+    expect(effortFor(astra, 'high')).toBe('medium');
+    expect(effortFor(sol, 'max')).toBe('high');
+  });
+  it('labels a run’s engine and instruction, with the phase 2 defaults', () => {
+    expect(jobEngineLabel({ params: { engine_label: 'GPT-6-Astra' } })).toBe('GPT-6-Astra');
+    expect(jobEngineLabel({ params: { effort: 'high' } })).toBe('Opus 5.5');
+    expect(jobInstructionLabel({ params: { instruction: { label: 'draft 3f2a9c1 (Alex)' } } })).toBe('draft 3f2a9c1 (Alex)');
+    expect(jobInstructionLabel({})).toBe('v1.13.2');
   });
 });

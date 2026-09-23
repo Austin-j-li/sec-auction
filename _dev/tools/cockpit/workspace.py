@@ -201,6 +201,8 @@ class Workspace:
                 runs.ensure_schema(conn)
                 from cockpit import deals
                 deals.ensure_schema(conn)
+                from cockpit import instructions
+                instructions.ensure_schema(conn)
             except Exception:
                 conn.close()
                 raise
@@ -453,9 +455,22 @@ class Workspace:
                 record["uid"] = match or f"right-{record['uid']}"
         for part in (before, after):
             part["findings"], part["row_review"] = {}, {}
-        hashes = (before_base.get("instruction_sha256"), after_base.get("instruction_sha256"))
+        hashes = (self._instruction_hash(before_base), self._instruction_hash(after_base))
         same = hashes[0] == hashes[1] if all(hashes) else None
         return {"from_label": before_label, "to_label": after_label, "same_instruction": same, "changes": self._diff(before, after)}
+
+    def _instruction_hash(self, version: dict[str, Any]) -> str | None:
+        """A version's instruction hash; catalog versions name a published instruction instead."""
+        if version.get("instruction_sha256") or not version.get("instruction_version"):
+            return version.get("instruction_sha256")
+        conn = self._connect()
+        try:
+            row = conn.execute("SELECT sha256 FROM instructions WHERE status='published' AND name=?", (version["instruction_version"],)).fetchone() if conn else None
+        except sqlite3.OperationalError:
+            row = None
+        finally:
+            if conn: conn.close()
+        return row["sha256"] if row else None
 
     def _diff(self, before: dict[str, Any], after: dict[str, Any]) -> list[dict[str, Any]]:
         changes = []

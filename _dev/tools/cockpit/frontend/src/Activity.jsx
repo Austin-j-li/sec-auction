@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Button, Field, Select } from '@fluentui/react-components';
 import { activityQuery, json, text } from './api';
-import { displayName, KIND_LABELS, shortTime } from './trace';
+import { displayName, INSTRUCTION_KINDS, KIND_LABELS, shortTime } from './trace';
 import { Empty, Loading, Message } from './ui';
 
 // Account-wide activity: every save and comment action across deals, newest first, filterable by person, deal and type.
@@ -9,7 +9,7 @@ import { Empty, Loading, Message } from './ui';
 const PAGE = 100;
 const PEOPLE = ['austin', 'alex', 'local'];
 
-export default function ActivityPage({ deals, onOpenDeal }) {
+export default function ActivityPage({ deals, onOpenDeal, onOpenInstructions }) {
   const [filters, setFilters] = useState({ actor: '', slug: '', kind: '' });
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -40,13 +40,19 @@ export default function ActivityPage({ deals, onOpenDeal }) {
     if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault(); onOpenDeal(slug, version);
   }
+  // Instruction events are account-wide (slug ""): they link to the Instructions page, at the version when the feed names it.
+  const instructionHref = item => `/instructions${item.instruction_id ? `?id=${encodeURIComponent(item.instruction_id)}` : ''}`;
+  function onInstructionClick(event, item) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault(); onOpenInstructions(item.instruction_id || null);
+  }
   // A finished extraction links to the version it produced (when the feed names it).
   const versionHref = item => `/deal/${item.slug}?version=${encodeURIComponent(item.version_id)}`;
 
   return <>
     <div className="overview-title">
       <h1>Activity</h1>
-      <p>Every saved revision, comment action and extraction run across deals, newest first</p>
+      <p>Every saved revision, comment action, extraction run and instruction change, newest first</p>
     </div>
     <div className="activity-filters">
       <Field label="Person"><Select value={filters.actor} onChange={setFilter('actor')}>
@@ -67,10 +73,13 @@ export default function ActivityPage({ deals, onOpenDeal }) {
       <table className="deal-table activity-table">
         <thead><tr><th>When</th><th>Person</th><th>Deal</th><th>Type</th><th>Detail</th></tr></thead>
         <tbody>
-          {items.map(item => <tr key={`${item.slug}-${item.id}`}>
+          {items.map(item => <tr key={`${item.slug || '-'}-${item.kind}-${item.id}`}>
             <td className="mono">{shortTime(item.at)}</td>
             <td>{displayName(item.actor)}</td>
-            <td><a className="deal-link" href={`/deal/${item.slug}`} onClick={event => onLinkClick(event, item.slug)}>{item.name || names.get(item.slug) || item.slug}</a></td>
+            <td>{item.slug
+              ? <a className="deal-link" href={`/deal/${item.slug}`} onClick={event => onLinkClick(event, item.slug)}>{item.name || names.get(item.slug) || item.slug}</a>
+              : INSTRUCTION_KINDS.has(item.kind) ? <a className="deal-link" href={instructionHref(item)} onClick={event => onInstructionClick(event, item)}>Instructions</a>
+              : <span className="tone-muted">All deals</span>}</td>
             <td>{KIND_LABELS[item.kind] || item.kind}{item.revision != null && <small className="mono">Revision {item.revision}</small>}</td>
             <td className="activity-detail">
               {text(item.summary)}

@@ -23,7 +23,7 @@ SLUG = "alpha-deal"
 TOKEN = "sk-ant-oat01-" + "A" * 40
 
 FAKE_RUNNER = r'''
-import json, os, shutil, signal, sys, time
+import hashlib, json, os, shutil, signal, sys, time
 from pathlib import Path
 command, args = sys.argv[1], sys.argv[2:]
 value = lambda flag: args[args.index(flag) + 1]
@@ -33,12 +33,18 @@ if command == "prepare":
     assert (Path(value("--filing-dir")) / value("--filing")).is_file(), "filing not in --filing-dir"
     run.mkdir(parents=True)
     (run / "extraction").mkdir()
-    json.dump({"effort": value("--effort"), "model": value("--model"), "instruction_sha256": "i" * 64, "filing_sha256": "f" * 64,
-               "deal": value("--deal")}, open(run / "metadata.json", "w"))
+    instruction = hashlib.sha256(open(value("--instruction"), "rb").read()).hexdigest()
+    json.dump({"effort": value("--effort"), "model": value("--model"), "provider": value("--provider"), "instruction_sha256": instruction,
+               "filing_sha256": "f" * 64, "deal": value("--deal")}, open(run / "metadata.json", "w"))
     sys.exit(0)
-deal = json.load(open(run / "metadata.json"))["deal"]
+metadata = json.load(open(run / "metadata.json"))
+deal = metadata["deal"]
 outcome = os.environ.get("FAKE_OUTCOME", "completed")
-assert os.environ["SEC_CLAUDE_OAUTH_TOKEN_FILE"].endswith("claude-oauth-token")
+assert value("--provider") == metadata["provider"]
+if metadata["provider"] == "opus":
+    assert os.environ["SEC_CLAUDE_OAUTH_TOKEN_FILE"].endswith("claude-oauth-token") and "SEC_CODEX_AUTH_FILE" not in os.environ
+else:
+    assert os.environ["SEC_CODEX_AUTH_FILE"].endswith("codex/auth.json") and "SEC_CLAUDE_OAUTH_TOKEN_FILE" not in os.environ
 status = {"started_at": "2026-09-23T10:00:00+00:00", "ended_at": "2026-09-23T10:12:00+00:00", "continuations": 0,
           "usage": {"tokens": {"output_tokens": 5}, "cost_usd": 3.0},
           "plan_usage": {"status": "allowed", "unifiedWindows": {"five_hour": {"utilization": 0.4, "resetsAt": 1}, "seven_day": {"utilization": 0.5, "resetsAt": 2}}}}
