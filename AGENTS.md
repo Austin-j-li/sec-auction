@@ -9,7 +9,7 @@ This project turns the "Background of the Merger" section of an SEC merger filin
 - Do not use the web. Do not identify anonymous bidders from outside knowledge.
 
 ## Layout
-- `SEC_Deal_Ledger_Extraction_Instruction.md`: the working instruction (v1.13.2, frozen; further edits require Austin's approval).
+- `SEC_Deal_Ledger_Extraction_Instruction.md`: the working instruction (v1.13.2, frozen). Agents edit it only with Austin's approval. Once the cockpit app's instruction editor exists, Austin and Alex may version instructions there (see below).
 - `raw_filing/`: filings to extract, fetched from EDGAR by `_dev/tools/fetch_filing.py`. `MANIFEST.csv` records each file's source link and SHA-256.
 - `extraction/`: the current blind extractions, made by Claude Opus 5.5 at medium effort under v1.13.2 on 22 September (`_dev/reviews/2026-09-22-opus55-reextraction/`; the replaced Opus 5 high workbooks are archived outside the checkout and recoverable from Git at `03d59b1`). `_dev/cockpit/catalog.json` holds one immutable version per deal, these nine extractions, which are unreviewed and not research-ready. Earlier Opus 5 drafts and correction passes remain only as evidence in their review packets. Preserve raw outputs when a separate revision is authorized.
 - `ref/`: Alex's collection instructions, voice notes and hand-coded deals. For evaluation only. `seed.csv` (built by `_dev/tools/make_seed.py`) lists each deal's filing link and holds no answers.
@@ -17,8 +17,9 @@ This project turns the "Background of the Merger" section of an SEC merger filin
 
 ## If you are asked to work on the pipeline itself
 - Read `_dev/HANDOFF.md` first.
-- Astra handles design, reasoning and review; GPT Sol subagents handle code implementation and engineering execution. Claude Opus 5.5 at medium effort is the extraction model (22 September effort sweep, `_dev/reviews/2026-09-22-opus55-sol6-sweep/`); Astra is not the routine extractor because Austin considers it too expensive.
-- Change the instruction only with Austin's approval, and run extractions only on his command. Change it only where the change is general (objective, work process, honesty about uncertainty, a repaired contradiction, a deletion); never add a rule justified by one reviewed deal.
+- Astra handles design, reasoning and review; GPT Sol subagents handle code implementation and engineering execution. Claude Opus 5.5 at medium effort is the default extraction model (22 September effort sweep, `_dev/reviews/2026-09-22-opus55-sol6-sweep/`).
+- The cockpit is being extended into a shared extraction app; the approved spec is `_dev/COCKPIT_APP_SPEC.md` (23 September). In that app, Austin and Alex may each add deals and start extractions on their own subscription, choosing Opus 5.5, Fable 5.1, GPT-6-Sol or GPT-6-Astra at any allowed effort, and may create, run and publish instruction versions and change the default (frozen versions never change). Each app action is attributed to the person who takes it.
+- Outside the app, an agent changes the instruction only with Austin's approval and runs extractions only on his command. Building or testing the app does not authorize a real model run. Change it only where the change is general (objective, work process, honesty about uncertainty, a repaired contradiction, a deletion); never add a rule justified by one reviewed deal.
 - Comparison runs must be isolated: one instruction and one filing per sandboxed session (`_dev/tools/sandbox/run_model.py`; usage in `_dev/tools/README.md`). Run the checker after the run, never where the extracting agent can see it. Revision mode is a separate, explicitly requested pass that may see the selected workbook and findings.
 - Checking is mechanical and offline. Delete run folders and other scaffolding once their results are recorded.
 - Commit and push only when asked.

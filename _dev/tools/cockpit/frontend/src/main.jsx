@@ -392,11 +392,15 @@ function App() {
 
   const ledgerRows = deal?.ledger?.rows || [];
   const selected = ledgerRows.find(row => row.uid === selectedUid);
+  const baseLabel = deal?.versions?.find(item => item.id === deal.workspace?.base_version)?.label || deal?.workspace?.base_version || 'base';
+  const versionLabel = item => item.kind === 'working'
+    ? `Working copy (editable, based on ${baseLabel})`
+    : `${item.label || item.id}${item.instruction_version ? ` · ${item.instruction_version}` : ''} (original, read only)`;
   const lastSaved = deal?.workspace?.updated_by ? `Last saved by ${deal.workspace.updated_by}${deal.workspace.updated_at ? ` · ${friendlyDate(deal.workspace.updated_at)}` : ''}` : '';
   const immutable = deal?.workspace?.selected_version !== 'working';
   const sublineParts = deal ? [deal.filing?.form_type, deal.filing?.date_filed, ...(immutable
-    ? ['Source version']
-    : [`from ${deal.versions?.find(item => item.id === deal.workspace?.base_version)?.label || deal.workspace?.base_version || 'base'}`, `Revision ${deal.workspace?.revision}`])] : [];
+    ? ['Original extraction, read only']
+    : [`Working copy from ${baseLabel}`, `Revision ${deal.workspace?.revision}`])] : [];
   const showDock = dirty && session.can_edit && deal?.workspace?.editable;
   const workState = versionLoading ? { tone: 'muted', label: 'Loading version' }
     : dirty
@@ -432,7 +436,7 @@ function App() {
               <span>Version</span>
               {immutable && <LockSimpleIcon size={14} className="tone-muted" aria-hidden="true"/>}
               <Select aria-label="Version" title={immutable ? 'Read only version' : undefined} value={version} onChange={(_, data) => switchVersion(data.value)} disabled={saveState === 'saving'}>
-                {(deal.versions || []).map(item => <option value={item.id} key={item.id}>{item.label || item.id}{item.instruction_version ? ` · ${item.instruction_version}` : ''}</option>)}
+                {(deal.versions || []).map(item => <option value={item.id} key={item.id}>{versionLabel(item)}</option>)}
               </Select>
             </label>
             <Button as="a" appearance="secondary" className="export-button" href={`/api/deal/${slug}/export?version=${encodeURIComponent(version)}`} download icon={<DownloadSimpleIcon size={16}/>}>Export Excel</Button>

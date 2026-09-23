@@ -4,6 +4,8 @@
 
 **Use the main `extraction-v2` checkout and the editable [Ledger cockpit](https://lines.dealextract.org). Claude Opus 5.5 at medium effort is the extraction model.** The [22 September effort sweep](reviews/2026-09-22-opus55-sol6-sweep/REPORT.md) found no reliable gain from high effort. GPT-6-Sol at xhigh was not distinguishable from it on quality; Austin chose Opus for now (22 September). The current workbooks in `extraction/` are Opus 5.5 medium extractions of all nine deals ([re-extraction packet](reviews/2026-09-22-opus55-reextraction/README.md)); the replaced Opus 5 high originals are archived outside the checkout and recoverable from Git at `03d59b1`. The working instruction is **v1.13.2, frozen**. Austin authorized consolidation, deletion of the retired Grok/Sol extraction results, and a local commit on 22 September. This maintenance does not authorize another model run or a research-convention change.
 
+**Approved next build (23 September):** Austin approved the [shared extraction app spec](COCKPIT_APP_SPEC.md), including its §13 defaults. Austin and Alex will each connect their own Claude and ChatGPT subscriptions, add deals from `ref/seed.csv` or an EDGAR link, start isolated extractions (Opus 5.5 medium by default; Fable 5.1, GPT-6-Sol and GPT-6-Astra selectable at any allowed effort), version instructions in the app with either able to change the default, and see each other's edits and comments through threads and a since-last-visit digest. The build starts with the spec's four spikes. Real model runs during the build still need Austin's go-ahead.
+
 For engineering, **Astra designs, reasons and reviews; GPT Sol subagents write code and execute the implementation**. Removing Sol's extraction experiment does not change that engineering assignment.
 
 ## What is ready for Austin
@@ -41,7 +43,7 @@ The nine workbooks total **3 mechanical errors and 161 warnings**. Those are che
 
 The Grok and Sol comparison worktrees, their local branches, their raw results, the derived three-model packet and the superseded pre-build pipeline proposal are retired. Their contents are hard-deleted, not archived as a competing development tree. Deletion records contain paths and hashes rather than workbook cells or report copies. The former detached `7877` checkout is unregistered and retains only a relocation note: live tool processes still use its directory, so its directory inode is retained without stale project files. The main checkout is the sole development worktree.
 
-**Historical side note only:** the [Astra/Mac-Gray experiment](side-notes/2026-09-21-astra-mac-gray/README.md) and its evidence are retained separately. Austin rejected Astra as the normal extraction model because of cost. It is excluded from the cockpit and current development plan; the old report's suggested follow-up experiment is not an active task.
+**Historical side note only:** the [Astra/Mac-Gray experiment](side-notes/2026-09-21-astra-mac-gray/README.md) and its evidence are retained separately. Austin rejected Astra as the normal extraction model because of cost. Its experiment is excluded from the cockpit; the old report's suggested follow-up experiment is not an active task. Under the approved app spec, GPT-6-Astra becomes a selectable engine on a user's own ChatGPT plan; Opus 5.5 medium stays the default.
 
 ## Engineering status and operation
 
@@ -57,9 +59,10 @@ The current frontend source and built assets add mouse/keyboard split-pane resiz
 
 ## Next work
 
+0. Build the shared extraction app in the [spec](COCKPIT_APP_SPEC.md)'s phases, starting with spikes S1–S4.
 1. Austin reviews the nine current workbooks in the cockpit, including applying the Mac-Gray R01 decision. Check Datalink against the accepted January-round ruling.
 2. Check both directions: ledger rows against source support, and bounded source passages against events that should appear. Mechanical cleanliness, matching models and located quotations do not establish complete extraction.
 3. Separate mistakes under existing rules, research choices requiring Austin, and unsupported reviewer claims. Only an explicitly authorized correction pass should receive an accepted correction brief. Verify its entire diff and dependent references afterward.
 4. Keep [research questions](RESEARCH_QUESTIONS.md) explicit. Austin confirmed on 22 September that Q3 and Q7 are no longer withheld; do not repeat the earlier approval holds. Remaining deal decisions and provisional conventions for Alex are tracked separately from that status correction. No automatic revision loops, new provider comparisons or instruction tuning are part of this maintenance. Human review-time savings and whole-filing accuracy remain unmeasured.
 
-Instruction edits require Austin's approval and must be general, not a new rule justified by one reviewed deal. Extract only on command in an isolated one-instruction/one-filing session; run the checker afterward. Commit and push only when asked. Historical instruction evidence remains in Git and is indexed in [CHRONOLOGY.md](CHRONOLOGY.md); never restore an old instruction into the working checkout.
+Instruction edits must be general, not a new rule justified by one reviewed deal. An agent edits the repository instruction only with Austin's approval and extracts only on command, in an isolated one-instruction/one-filing session, running the checker afterward. Once built, the cockpit app lets Austin and Alex themselves start such isolated runs and publish instruction versions ([spec](COCKPIT_APP_SPEC.md) §§6, 9). Commit and push only when asked. Historical instruction evidence remains in Git and is indexed in [CHRONOLOGY.md](CHRONOLOGY.md); never restore an old instruction into the working checkout.
