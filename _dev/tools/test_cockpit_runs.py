@@ -29,6 +29,8 @@ command, args = sys.argv[1], sys.argv[2:]
 value = lambda flag: args[args.index(flag) + 1]
 run = Path(value("--run-dir"))
 if command == "prepare":
+    # The worker names the deal's filing folder; the filing must be there.
+    assert (Path(value("--filing-dir")) / value("--filing")).is_file(), "filing not in --filing-dir"
     run.mkdir(parents=True)
     (run / "extraction").mkdir()
     json.dump({"effort": value("--effort"), "model": value("--model"), "instruction_sha256": "i" * 64, "filing_sha256": "f" * 64,

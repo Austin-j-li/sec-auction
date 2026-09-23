@@ -31,6 +31,12 @@ In a deal, **Extract** starts an isolated run of Claude Opus 5.5 under the repos
 
 A finished run becomes a new read-only version, labelled with engine, effort, instruction, who ran it and when. It never changes the working copy. To work from it, open that version and choose **Use as working-copy base…** with a reason; the previous working state stays in History and can be restored. The Changes tab compares any two versions, or a version and the working copy, matching events by number. **Hide** removes a version you no longer need from the list (it is never deleted; "Show hidden versions" brings it back).
 
+## Adding a deal
+
+**Add deal** on the overview adds a filing without a terminal. **Search the seed** finds a deal in `ref/seed.csv` by name; **Paste a link** takes an EDGAR filing index (`…-index.htm`), a complete submission (`.txt`) or a document under `www.sec.gov/Archives/edgar/data/`. The cockpit fetches the filing from EDGAR (a few seconds) and lists its documents with the main one preselected: the proxy for DEFM14A and PREM14A, the offer to purchase (`EX-99.(A)(1)(A)`) for SC TO-T. Seed rows marked for review preselect nothing, and one without a usable link asks you to paste it. A document without a "Background of the Merger" or similar heading is flagged but can still be added. Check the deal name and short name (the short name is permanent), then **Add**, or **Add and extract** to open the Extract dialog at once.
+
+The chosen document is saved byte for byte, exactly as the command-line fetcher saves it, with its source link and SHA-256. Until its first run finishes, the deal shows only its filing and "No extraction yet"; the first finished run becomes its working copy's base, and later runs are added as versions like any other. The activity feed records who added which deal and from where.
+
 ## Seeing each other's work
 
 Everything you save or comment is signed with your login, so Austin and Alex can each see what the other did. None of it pushes notifications; look when you want to.

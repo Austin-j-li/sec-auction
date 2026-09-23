@@ -203,6 +203,29 @@ class RunnerTests(unittest.TestCase):
             run = self.prepare_fixture(Path(tmp), extra=("--model", "claude-opus-5", "--effort", "high"))
             self.assertEqual(run_model.prepared_metadata(run, "opus")["model"], "claude-opus-5")
 
+    def test_filing_dir_is_raw_filing_or_a_cockpit_deal_folder(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            project = root / "project"
+            added = project / "_dev/cockpit/state/filings/added-deal"
+            added.mkdir(parents=True)
+            (added / "added.htm").write_text("Added filing")
+            (project / "ref").mkdir()
+            (project / "ref" / "added.htm").write_text("Not a filing folder")
+            (project / run_model.INSTRUCTION_NAME).write_text("Synthetic instruction")
+            for folder, allowed in ((added, True), (project / "ref", False), (added.parent, False)):
+                run = root / "runs" / folder.name
+                args = run_model.parser().parse_args(["prepare", "--provider", "opus", "--run-dir", str(run), "--deal", "added-deal",
+                                                      "--filing", "added.htm", "--filing-dir", str(folder)])
+                with self.subTest(folder=folder.name), mock.patch.object(run_model, "PROJECT", project), contextlib.redirect_stdout(io.StringIO()):
+                    if allowed:
+                        run_model.prepare(args)
+                        self.assertEqual((run / "input/raw_filing/added.htm").read_text(), "Added filing")
+                    else:
+                        with self.assertRaisesRegex(SystemExit, "--filing-dir must be"):
+                            run_model.prepare(args)
+                        self.assertFalse(run.exists())
+
     def test_half_specified_revision_fails_before_creating_run(self):
         with tempfile.TemporaryDirectory() as tmp:
             for flag in ["--revise-from", "--report"]:

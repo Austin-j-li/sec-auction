@@ -29,6 +29,8 @@ export function accountAction(session, action) { return post('/api/account/claud
 export function jobAction(slug, session, action) { return post(dealPath(slug, 'jobs'), session, action); }
 // Imported versions: {action: 'hide' | 'unhide', version_id}.
 export function versionAction(slug, session, action) { return post(dealPath(slug, 'versions'), session, action); }
+// Phase 3. Add a deal: {action: 'lookup', url, seed_deal?} -> {lookup}; {action: 'add', lookup_id, document, slug, name} -> {slug}.
+export function dealsAction(session, action) { return post('/api/deals', session, action); }
 export function compareQuery(slug, from, to) { return `${dealPath(slug, 'compare')}?${new URLSearchParams({ from, to })}`; }
 export function activityQuery({ actor = '', slug = '', kind = '', before = '', limit = 100 } = {}) {
   const params = new URLSearchParams(Object.entries({ actor, slug, kind, before, limit }).filter(([, value]) => value !== '' && value != null));

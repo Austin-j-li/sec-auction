@@ -225,7 +225,11 @@ def prepare(args: argparse.Namespace) -> None:
     if run_dir.exists() and any(run_dir.iterdir()):
         raise SystemExit(f"refusing to overwrite non-empty run directory: {run_dir}")
     instruction_src = Path(args.instruction).resolve() if args.instruction else PROJECT / INSTRUCTION_NAME
-    filing_src = PROJECT / "raw_filing" / args.filing
+    filing_dir = Path(args.filing_dir).resolve() if args.filing_dir else PROJECT / "raw_filing"
+    added = PROJECT / "_dev/cockpit/state/filings"
+    if filing_dir != (PROJECT / "raw_filing").resolve() and filing_dir.parent != added.resolve():
+        raise SystemExit("--filing-dir must be raw_filing/ or a deal folder in _dev/cockpit/state/filings/")
+    filing_src = filing_dir / args.filing
     if not instruction_src.is_file() or not filing_src.is_file():
         raise SystemExit("instruction or filing source is missing")
 
@@ -783,6 +787,7 @@ def parser() -> argparse.ArgumentParser:
     p.add_argument("--run-dir", required=True)
     p.add_argument("--deal", required=True)
     p.add_argument("--filing", required=True)
+    p.add_argument("--filing-dir", help="folder holding the filing: raw_filing/ (default) or a cockpit deal folder in _dev/cockpit/state/filings/")
     p.add_argument("--instruction", help="candidate instruction file to test (default: the working instruction)")
     p.add_argument("--model", help="model to run (default: the provider's first allowed model, e.g. claude-opus-5-5)")
     p.add_argument("--effort", help="effort level (Opus: low, medium, high, xhigh or max; default: DEFAULT_EFFORT)")

@@ -11,6 +11,7 @@ import ActivityPage from './Activity';
 import WhatsNew from './WhatsNew';
 import SettingsPage from './Settings';
 import { ExtractDialog, RunBadge, RunsTab } from './Runs';
+import AddDealDialog from './AddDeal';
 import { compact, LedgerTab, SheetTab } from './Records';
 import { ChangesTab, DocumentText, friendlyDate, HistoryTab, ReviewTab } from './Review';
 import { Dot, Loading, Message } from './ui';
@@ -81,10 +82,13 @@ function App() {
   const [compare, setCompare] = useState(null);
   const [rebasePrompt, setRebasePrompt] = useState(null);
   const [extract, setExtract] = useState(null);
+  const [addDeal, setAddDeal] = useState(false);
   const [versionBusy, setVersionBusy] = useState(false);
   const slugRef = useRef(null);
   const versionRef = useRef('working');
   const jobStates = useRef(new Map());
+  const pendingRef = useRef(false);
+  const extractAfterAdd = useRef(null);
   const sessionRef = useRef(session);
   const leaveMark = useRef(null);
   const leaving = useRef(null);
@@ -99,7 +103,8 @@ function App() {
   const dirty = ops.length > 0;
   const editable = Boolean(session.can_edit && deal?.workspace?.editable && saveState !== 'saving' && !versionLoading);
   const slug = route.slug;
-  const modalOpen = Boolean(deletePrompt || documentOpen || rebasePrompt || extract);
+  const modalOpen = Boolean(deletePrompt || documentOpen || rebasePrompt || extract || addDeal);
+  pendingRef.current = Boolean(deal?.pending);
   sessionRef.current = session;
   slugRef.current = slug;
   versionRef.current = version;
@@ -135,9 +140,9 @@ function App() {
   useEffect(() => {
     if (!modalOpen) return;
     modalReturnFocus.current = document.activeElement;
-    modalRef.current?.querySelector('button')?.focus();
+    (modalRef.current?.querySelector('[data-autofocus]') || modalRef.current?.querySelector('button'))?.focus();
     const onKeyDown = event => {
-      if (event.key === 'Escape') { event.preventDefault(); setDeletePrompt(null); setDocumentOpen(null); setRebasePrompt(current => current?.busy ? current : null); setExtract(current => current?.busy ? current : null); return; }
+      if (event.key === 'Escape') { event.preventDefault(); setDeletePrompt(null); setDocumentOpen(null); setRebasePrompt(current => current?.busy ? current : null); setExtract(current => current?.busy ? current : null); setAddDeal(false); return; }
       if (event.key !== 'Tab' || !modalRef.current) return;
       const focusables = [...modalRef.current.querySelectorAll('button:not(:disabled), input:not(:disabled), select:not(:disabled), textarea:not(:disabled), a[href]')];
       if (!focusables.length) return;
@@ -268,9 +273,10 @@ function App() {
     try {
       const data = await json(`/api/deal/${currentSlug}?version=${encodeURIComponent(versionRef.current)}`);
       if (currentSlug !== slugRef.current || loadedSlug.current !== currentSlug) return;
+      if (pendingRef.current && !data?.pending) { load(currentSlug); return; } // the first run finished: open the new working copy
       setDeal(current => current && ({ ...current, versions: data?.versions || current.versions, workspace: { ...current.workspace, base_version: data?.workspace?.base_version ?? current.workspace?.base_version } }));
     } catch { /* the next poll or reload catches up */ }
-  }, []);
+  }, [load]);
   const applyJobs = useCallback((currentSlug, list) => {
     const previous = jobStates.current;
     const finished = list.some(job => job.state === 'completed' && previous.has(job.id) && previous.get(job.id) !== 'completed');
@@ -290,6 +296,10 @@ function App() {
     setJobs(null); setJobsError(''); setShowHidden(false); setExtract(null); jobStates.current = new Map();
     if (slug) fetchJobs(slug);
   }, [slug, fetchJobs]);
+  // "Add and extract": once the new deal has loaded, open its Extract dialog.
+  useEffect(() => {
+    if (deal && slug && extractAfterAdd.current === slug && loadedSlug.current === slug) { extractAfterAdd.current = null; openExtract(); }
+  }, [deal, slug]);
   // Opening the Runs tab picks up runs the other person started since the deal was opened.
   useEffect(() => { if (slug && tab === 'runs') fetchJobs(slug); }, [slug, tab, fetchJobs]);
   const jobsActive = Boolean(jobs?.some(isActive));
@@ -594,8 +604,11 @@ function App() {
         {error && !settings && <Message type="error" title={error.title} detail={error.detail}/>}
         {settings ? <SettingsPage session={session}/>
           : activity ? <ActivityPage deals={deals} onOpenDeal={(s, v) => navigate(`/deal/${s}${v ? `?version=${encodeURIComponent(v)}` : ''}`)}/>
-          : deals && <Overview deals={deals} onOpen={s => navigate(`/deal/${s}`)}/>}
+          : deals && <Overview deals={deals} onOpen={s => navigate(`/deal/${s}`)} onAdd={session.can_edit && knownUser(session.user) ? () => setAddDeal(true) : null}/>}
       </main>
+      {addDeal && <AddDealDialog session={session} dialogRef={modalRef} onClose={() => setAddDeal(false)}
+        onOpen={s => { setAddDeal(false); navigate(`/deal/${s}`); }}
+        onAdded={(s, extractNow) => { setAddDeal(false); extractAfterAdd.current = extractNow ? s : null; navigate(`/deal/${s}`); }}/>}
     </>;
   }
 
@@ -613,7 +626,8 @@ function App() {
   const lastSaved = deal?.workspace?.updated_by ? `Last saved by ${deal.workspace.updated_by}${deal.workspace.updated_at ? ` · ${friendlyDate(deal.workspace.updated_at)}` : ''}` : '';
   const immutable = deal?.workspace?.selected_version !== 'working';
   const versionActions = Boolean(canRun && immutable && shownVersion && !shownVersion.is_base && !versionLoading);
-  const sublineParts = deal ? [deal.filing?.form_type, deal.filing?.date_filed, ...(immutable
+  const sublineParts = deal?.pending ? [deal.filing?.form_type, deal.filing?.date_filed, 'No extraction yet']
+    : deal ? [deal.filing?.form_type, deal.filing?.date_filed, ...(immutable
     ? ['Original extraction, read only']
     : [`Working copy from ${baseLabel}`, `Revision ${deal.workspace?.revision}`])] : [];
   const showDock = dirty && session.can_edit && deal?.workspace?.editable;
@@ -653,6 +667,10 @@ function App() {
             </div>
           </div>
           <div className="toolbar-actions">
+            {deal.pending ? <>
+              <RunBadge jobs={jobs} onOpen={openRuns}/>
+              {canRun && <Button appearance="primary" className="extract-button" icon={<PlayIcon size={16}/>} onClick={openExtract}>Extract</Button>}
+            </> : <>
             <label className="version-control">
               <span>Version</span>
               {immutable && <LockSimpleIcon size={14} className="tone-muted" aria-hidden="true"/>}
@@ -673,6 +691,7 @@ function App() {
               <span ref={saveFlash} className="save-feedback">{saveState === 'saved' ? 'Revision saved' : ''}</span>
             </div>
             <Button appearance="primary" className="save-button" icon={<FloppyDiskIcon size={16}/>} disabled={!dirty || !editable || saveState === 'saving' || conflict} onClick={save}>{saveState === 'saving' ? 'Saving…' : 'Save changes'}</Button>
+            </>}
           </div>
         </header>
         <div className="mobile-switch" role="group" aria-label="Visible pane">
@@ -683,7 +702,17 @@ function App() {
           <div className={`filing-column ${mobilePane === 'filing' ? 'mobile-active' : ''}`}>
             <Filing filing={filing} loading={filingLoading} error={filingError} deal={deal} selectedUid={selectedUid} scrollRequest={filingScrollRequest} searchRequest={filingSearchRequest} onSelectRow={selectRow} onQuoteSelection={editable ? chooseQuote : null}/>
           </div>
-          <section className={`workspace-column ${mobilePane === 'workspace' ? 'mobile-active' : ''} ${showDock ? 'has-dock' : ''}`} aria-label="Deal workspace">
+          {deal.pending ? <section className={`workspace-column ${mobilePane === 'workspace' ? 'mobile-active' : ''}`} aria-label="Deal workspace">
+            <div className="workspace-scroll">
+              <div className="pending-intro paper-column">
+                <h2>No extraction yet</h2>
+                <p>{canRun ? 'Start one with Extract. ' : ''}When the first run finishes it becomes this deal’s first version and the base of its working copy, and this page opens it.</p>
+                <p className="mono pending-source">{`Added by ${displayName(deal.added?.added_by)}`}{deal.added?.added_at ? ` · ${friendlyDate(deal.added.added_at)}` : ''}{` · ${deal.added?.source_kind === 'seed' ? `seed row ${deal.added.seed_deal}` : 'pasted link'}`}{deal.added?.document ? ` · ${deal.added.document}` : ''}
+                  {deal.added?.index_url && <> · <a href={deal.added.index_url} target="_blank" rel="noreferrer">EDGAR index</a></>}</p>
+              </div>
+              <RunsTab jobs={jobs} error={jobsError} loading={!jobs && !jobsError} canCancel={canRun} onCancel={cancelJob} onOpenVersion={switchVersion} versions={deal.versions}/>
+            </div>
+          </section> : <section className={`workspace-column ${mobilePane === 'workspace' ? 'mobile-active' : ''} ${showDock ? 'has-dock' : ''}`} aria-label="Deal workspace">
             {news?.slug === slug && <WhatsNew news={news} onMarkRead={() => setSeen('read')} onMarkUnread={() => setSeen('unread')} onOpenItem={openActivityItem}/>}
             <TabScroller activeTab={tab}>
               {TABS.map(([key, label]) => {
@@ -711,7 +740,7 @@ function App() {
               </Field>
               <Button appearance="primary" className="save-button" icon={<FloppyDiskIcon size={16}/>} disabled={saveState === 'saving' || conflict} onClick={save}>Save {count(ops.length, 'change')}</Button>
             </div>}
-          </section>
+          </section>}
         </SplitPane>
       </>}
     </main>

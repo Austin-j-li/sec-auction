@@ -651,6 +651,8 @@ class Cockpit:
         self.trace = Trace(self.workspace)
         from cockpit.runs import Runs
         self.runs = Runs(self.workspace)
+        from cockpit.deals import Deals
+        self.deals = Deals(self.workspace)
 
     def _path_lock(self, key: str) -> threading.Lock:
         with self._lock:
@@ -671,6 +673,12 @@ class Cockpit:
                     continue
                 if (self.filing_dir / name).is_file():
                     entries[deal] = row
+        if self.workspace.available:  # deals added in the cockpit keep their filings in the state folder
+            for row in self.deals.added():
+                path = self.deals.filing_path(row)
+                if row["slug"] not in entries and path.is_file():
+                    entries[row["slug"]] = {**{key: str(row[key]) for key in ("file", "form_type", "date_filed", "source_url", "document", "fetched_utc", "bytes", "sha256")},
+                                            "deal": row["slug"], "path": str(path)}
         return entries
 
     def slugs(self) -> list[str]:
@@ -693,9 +701,11 @@ class Cockpit:
         if manifest is None:
             manifest = self.manifest()
         workbook = self.extraction_dir / f"{slug}.xlsx"
-        if slug not in manifest or not workbook.is_file():
+        entry = manifest.get(slug)
+        if entry and entry.get("path"):  # an added deal: its workbooks are imported versions, read through the workspace
+            return None, Path(entry["path"]), entry
+        if entry is None or not workbook.is_file():
             raise DealNotFound(f"unknown deal {slug!r}")
-        entry = manifest[slug]
         return workbook, self.filing_dir / entry["file"], entry
 
     def filing(self, path: Path) -> Filing:
@@ -773,7 +783,17 @@ class Cockpit:
 
         deals = []
         manifest = self.manifest()
-        for slug in self.slugs():
+        added = self.deals.added() if self.workspace.available else []
+        slugs = self.slugs()
+        slugs += [row["slug"] for row in added if row["slug"] not in slugs and row["slug"] in manifest]
+        pending = {row["slug"]: row for row in added if not self.workspace.item(row["slug"]).get("versions")} if added else {}
+        for slug in slugs:
+            if slug in pending:
+                row = pending[slug]
+                deals.append({"slug": slug, "target": row["name"], "name": row["name"], "pending": True, "filing": row["file"],
+                              "form_type": row["form_type"], "date_filed": row["date_filed"], "rows": None, "rounds": None, "questions": None,
+                              "check": None, "quotes_located": None, "quotes_total": None, "added_by": row["added_by"], "review_status": "no extraction yet"})
+                continue
             try:
                 payload = self.deal(slug, manifest)
             except DealNotFound:

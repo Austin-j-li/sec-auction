@@ -1,5 +1,6 @@
 import React from 'react';
-import { WarningCircleIcon } from '@phosphor-icons/react';
+import { Button } from '@fluentui/react-components';
+import { PlusIcon, WarningCircleIcon } from '@phosphor-icons/react';
 import { count } from './api';
 import { Empty } from './ui';
 import { displayName, tallyText } from './trace';
@@ -25,7 +26,7 @@ function UnseenLine({ unseen }) {
   return <small className="unseen-line">{parts.join('; ')} since you last looked</small>;
 }
 
-export default function Overview({ deals, onOpen }) {
+export default function Overview({ deals, onOpen, onAdd }) {
   // Plain left-click and keyboard go through the in-app navigation (unsaved-edit guard);
   // modified clicks and middle-click keep the link's native behaviour.
   function onLinkClick(event, slug) {
@@ -43,6 +44,7 @@ export default function Overview({ deals, onOpen }) {
     <div className="overview-title">
       <h1>Deal ledgers</h1>
       <p><span className="mono">{count(deals.length, 'deal')}</span> · open one to inspect the filing and edit its working copy</p>
+      {onAdd && <Button appearance="secondary" className="add-deal-button" icon={<PlusIcon size={16}/>} onClick={onAdd}>Add deal</Button>}
     </div>
     <div className="deal-table-wrap">
       <table className="deal-table">
@@ -71,8 +73,8 @@ export default function Overview({ deals, onOpen }) {
               <small>{item.date_filed || ''}</small>
             </td>
             <td>
-              {item.base_label || item.instruction_version || 'Working'}
-              <small className="mono">{item.working_revision != null ? `Revision ${item.working_revision}` : ''}</small>
+              {item.pending ? 'No extraction yet' : item.base_label || item.instruction_version || 'Working'}
+              <small className="mono">{item.pending ? '' : item.working_revision != null ? `Revision ${item.working_revision}` : ''}</small>
             </td>
             <td className="number mono">{item.rows ?? '—'}</td>
             <td className="number mono">{item.rounds ?? '—'}</td>

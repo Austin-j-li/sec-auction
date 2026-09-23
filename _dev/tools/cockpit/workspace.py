@@ -127,10 +127,17 @@ class Workspace:
         if not data.SLUG_RE.fullmatch(slug or ""):
             raise data.DealNotFound("unknown deal")
         item = self.catalog()["deals"].get(slug)
-        if not isinstance(item, dict):
-            raise data.DealNotFound("unknown deal")
         from cockpit import runs  # imported here: runs builds on this module
         imported = runs.imported_versions(self, slug)
+        if item is None:
+            # A deal added in the cockpit: its versions are its runs, and the oldest is its starting base.
+            added = self.cockpit.deals.added(slug)
+            if not added:
+                raise data.DealNotFound("unknown deal")
+            return {"name": added[0]["name"], "added": added[0], "versions": imported, "pending": not imported,
+                    "default_base": imported[0]["id"] if imported else None, "findings": [], "documents": []}
+        if not isinstance(item, dict):
+            raise data.DealNotFound("unknown deal")
         if imported:
             item = {**item, "versions": [*item.get("versions", []), *imported]}
         return item
@@ -155,6 +162,8 @@ class Workspace:
     def base(self, item: dict[str, Any]) -> dict[str, Any]:
         """The catalog's starting base, which is also the base of revision 0."""
         ident = item.get("default_base")
+        if item.get("pending"):
+            raise Conflict("this deal has no extraction yet")
         if not isinstance(ident, str) or not ident:
             raise WorkspaceError("catalog deal has no default_base")
         return self.version(item, ident)
@@ -190,6 +199,8 @@ class Workspace:
             try:
                 trace.ensure_schema(conn)
                 runs.ensure_schema(conn)
+                from cockpit import deals
+                deals.ensure_schema(conn)
             except Exception:
                 conn.close()
                 raise
@@ -333,8 +344,27 @@ class Workspace:
         }
         return payload
 
+    def pending_payload(self, slug: str, item: dict[str, Any]) -> dict[str, Any]:
+        """An added deal before its first run: the filing, no sheets and nothing editable."""
+        added = item["added"]
+        empty = {"columns": [], "rows": []}
+        _, filing_path, _ = self.cockpit.resolve(slug)
+        filing = self.cockpit.filing(filing_path)
+        return {"slug": slug, "name": item["name"], "pending": True,
+                "filing": {key: added[key] for key in ("file", "form_type", "date_filed", "source_url")},
+                "added": {key: added[key] for key in ("added_by", "added_at", "source_kind", "seed_deal", "index_url", "document")},
+                "facts": [], "ledger": empty, "rounds": empty, "questions": empty,
+                "check": {"status": "pending", "summary": {}, "scope_note": "", "checker_version": None, "other_issues": []},
+                "background_block": filing.background_block, "pages_reliable": filing.pages_reliable, "versions": [], "findings": [], "documents": [], "row_review": {}, "choices": {},
+                "workspace": {"revision": 0, "base_version": None, "base_sha256": None, "updated_at": None, "updated_by": None,
+                              "editable": False, "selected_version": "working", "reference_warnings": []}}
+
     def deal(self, slug: str, version: str = "working") -> dict[str, Any]:
         item = self.item(slug)
+        if item.get("pending"):
+            if version != "working":
+                raise Missing("unknown version")
+            return self.pending_payload(slug, item)
         conn = self._connect()
         try:
             if version == "working":

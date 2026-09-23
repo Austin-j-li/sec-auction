@@ -12,7 +12,7 @@ export const VERSION_KINDS = new Set(['hide', 'unhide']);
 export const COMMENT_KINDS = new Set(['comment', 'reply']);
 export const THREAD_KINDS = new Set(['comment', 'reply', 'resolve', 'reopen', 'comment_edit', 'comment_delete']);
 export const KIND_LABELS = { revision: 'Revision', restore: 'Restore', comment: 'Comment', reply: 'Reply', resolve: 'Resolved', reopen: 'Reopened', comment_edit: 'Comment edited', comment_delete: 'Comment deleted',
-  extraction: 'Extraction', extraction_failed: 'Extraction failed', rebase: 'Rebase', hide: 'Version hidden', unhide: 'Version unhidden' };
+  extraction: 'Extraction', extraction_failed: 'Extraction failed', rebase: 'Rebase', hide: 'Version hidden', unhide: 'Version unhidden', deal_added: 'Deal added' };
 
 export function displayName(actor) {
   const key = text(actor);

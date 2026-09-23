@@ -27,7 +27,7 @@ SCHEMA = (
 EDIT_KINDS = ("revision", "restore", "rebase")
 RUN_KINDS = ("extraction", "extraction_failed")
 COMMENT_KINDS = ("comment", "reply")
-KINDS = EDIT_KINDS + COMMENT_KINDS + RUN_KINDS + ("resolve", "reopen", "comment_edit", "comment_delete", "hide", "unhide")
+KINDS = EDIT_KINDS + COMMENT_KINDS + RUN_KINDS + ("resolve", "reopen", "comment_edit", "comment_delete", "hide", "unhide", "deal_added")
 MAX_BODY = 20000
 
 
@@ -260,6 +260,8 @@ class Trace:
 
     def comment(self, slug: str, request: dict[str, Any], actor: str) -> dict[str, Any]:
         item = self.workspace.item(slug)
+        if item.get("pending"):
+            raise Conflict("this deal has no extraction yet")
         if not isinstance(request, dict):
             raise WorkspaceError("comment action required")
         action = request.get("action")

@@ -28,6 +28,7 @@ READER_EMAILS = {"junyu.li.24@ucl.ac.uk": "austin", "a.gorbenko@ucl.ac.uk": "ale
 SLUG_PATH_RE = re.compile(r"/api/(deal|filing)/([^/]*)")
 DEAL_ACTION_RE = re.compile(r"/api/deal/([^/]*)/(history|changes|export|edit|comments|activity|seen|jobs|versions|compare)")
 DOCUMENT_RE = re.compile(r"/api/document/([^/]*)/([^/]*)")
+LOOKUP_RE = re.compile(r"/api/lookup/([0-9a-f]{32})")
 PAGE_PATH_RE = re.compile(r"/deal/[^/]*/?|/activity/?|/settings/?")
 MAX_JSON = 1024 * 1024
 
@@ -114,6 +115,13 @@ class Handler(BaseHTTPRequestHandler):
                 actor, _ = self._identity()
                 if actor == "unknown": return self._json({"user": actor, "claude": {"connected": False}, "connect": None})
                 return self._json(self.cockpit.runs.account(actor))
+            if path == "/api/seed":
+                if not self.cockpit.workspace.available: return self._json({"error": "workspace unavailable"}, 404)
+                return self._json(self.cockpit.deals.seed_search((query.get("q") or [""])[0][:100]))
+            match = LOOKUP_RE.fullmatch(path)
+            if match:
+                if not self.cockpit.workspace.available: return self._json({"error": "workspace unavailable"}, 404)
+                return self._json(self.cockpit.deals.lookup(match.group(1)))
             if path == "/api/activity":
                 if not self.cockpit.workspace.available: return self._json({"error": "workspace unavailable"}, 404)
                 actor, _ = self._identity()
@@ -186,7 +194,7 @@ class Handler(BaseHTTPRequestHandler):
     def _route_post(self) -> None:
         path = urlparse(self.path).path
         match = DEAL_ACTION_RE.fullmatch(path)
-        if path != "/api/account/claude" and (not match or match.group(2) not in ("edit", "comments", "seen", "jobs", "versions")): return self._not_allowed()
+        if path not in ("/api/account/claude", "/api/deals") and (not match or match.group(2) not in ("edit", "comments", "seen", "jobs", "versions")): return self._not_allowed()
         if not self.cockpit.workspace.available: return self._json({"error": "workspace unavailable"}, 404)
         actor, can_edit = self._identity()
         if not can_edit or not self._origin_ok() or not secrets.compare_digest(self.headers.get("X-Cockpit-CSRF") or "", self.csrf_token):
@@ -197,6 +205,7 @@ class Handler(BaseHTTPRequestHandler):
         if length <= 0 or length > MAX_JSON: return self._json({"error": "request body size out of range"}, 413)
         try:
             body = json.loads(self.rfile.read(length))
+            if path == "/api/deals": return self._json(self.cockpit.deals.request(actor, body))
             if match is None: return self._json(self.cockpit.runs.account_action(actor, body))
             slug, action = unquote(match.group(1)), match.group(2)
             if action == "jobs": return self._json(self.cockpit.runs.job_action(slug, actor, body))

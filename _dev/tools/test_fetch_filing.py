@@ -145,5 +145,43 @@ class FilingIntegrityTests(unittest.TestCase):
             self.assertEqual(list(path.parent.iterdir()), [path])
 
 
+class SubmissionTests(unittest.TestCase):
+    HEADER = (b"<SEC-DOCUMENT>0000000002-21-000009.txt : 20210303\n<SEC-HEADER>\nACCESSION NUMBER:\t\t0000000002-21-000009\n"
+              b"CONFORMED SUBMISSION TYPE:\tSC TO-T\nFILED AS OF DATE:\t\t20210303\n\nSUBJECT COMPANY:\t\n\n\tCOMPANY DATA:\t\n"
+              b"\t\tCOMPANY CONFORMED NAME:\t\t\tTarget Co, Inc.\n\nFILED BY:\t\t\n\n\tCOMPANY DATA:\t\n"
+              b"\t\tCOMPANY CONFORMED NAME:\t\t\tBuyer Merger Sub\n</SEC-HEADER>\n")
+
+    def test_links_resolve_to_the_complete_submission(self):
+        base = "https://www.sec.gov/Archives/edgar/data/1635581/"
+        for url, expected in (
+            (base + "0001193125-18-110072-index.htm", (base + "0001193125-18-110072.txt", None)),
+            (base + "000119312518110072/0001193125-18-110072-index.html", (base + "0001193125-18-110072.txt", None)),
+            ("http://www.sec.gov/Archives/edgar/data/1635581/0001193125-18-110072.txt", (base + "0001193125-18-110072.txt", None)),
+            (base + "000119312518110072/d527171ddefm14a.htm#toc", (base + "0001193125-18-110072.txt", "d527171ddefm14a.htm")),
+        ):
+            with self.subTest(url=url):
+                self.assertEqual(fetch_filing.submission_link(url), expected)
+        for url in ("https://example.com/x-index.htm", base + "../../secret", "https://www.sec.gov/cgi-bin/browse-edgar?CIK=1", ""):
+            with self.subTest(url=url), self.assertRaises(fetch_filing.FetchError):
+                fetch_filing.submission_link(url)
+
+    def test_parse_submission_lists_documents_and_finds_the_background(self):
+        cover = document_block("SC TO-T", "cover.htm", b"Cover form")
+        offer = document_block("EX-99.(A)(1)(A)", "offer.htm", b"<p>BACKGROUND OF</p><p>THE&nbsp;OFFER</p>")
+        image = document_block("GRAPHIC", "logo.jpg", b"binary")
+        submission = self.HEADER + cover + offer + image
+        parsed = fetch_filing.parse_submission(submission)
+        self.assertEqual({k: parsed[k] for k in ("form_type", "date_filed", "subject_company", "filer")},
+                         {"form_type": "SC TO-T", "date_filed": "2021-03-03", "subject_company": "Target Co, Inc.", "filer": "Buyer Merger Sub"})
+        self.assertEqual([(d["type"], d["filename"], d["html"], d["background"]) for d in parsed["documents"]],
+                         [("SC TO-T", "cover.htm", True, False), ("EX-99.(A)(1)(A)", "offer.htm", True, True), ("GRAPHIC", "logo.jpg", False, False)])
+        self.assertEqual(fetch_filing.default_document(parsed["documents"], "SC TO-T"), "offer.htm")
+        self.assertIsNone(fetch_filing.default_document(parsed["documents"], "S-4"))
+        self.assertEqual(fetch_filing.document_bytes(submission, "offer.htm"), offer)
+        self.assertEqual(parsed["documents"][1]["bytes"], len(offer))
+        with self.assertRaises(fetch_filing.FetchError):
+            fetch_filing.document_bytes(submission, "missing.htm")
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -2,6 +2,7 @@
 """Background worker for the cockpit: Claude sign-ins and isolated extraction runs.
 
 Runs as `ledger-worker.service`. It polls the jobs table in the workspace database,
+fetches filings from EDGAR for "add deal" lookups (one at a time, at SEC's pace),
 starts `run_model.py` for queued extractions (at most 4 at once, 2 per user) with the
 starting user's own token, checks each finished workbook outside the sandbox and imports
 it as an immutable version. Connect jobs drive `claude setup-token` in a pseudo-terminal
@@ -38,6 +39,7 @@ from typing import Any
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
 
+import fetch_filing  # noqa: E402
 from cockpit import data, runs, trace  # noqa: E402
 from cockpit.workspace import _now  # noqa: E402
 
@@ -83,6 +85,8 @@ class Worker:
         self.children: dict[str, subprocess.Popen] = {}
         self.signalled: set[str] = set()
         self.connects: dict[str, threading.Thread] = {}
+        self.lookup_lock = threading.Lock()
+        self.pruned = 0.0
 
     # ---- database helpers -------------------------------------------------------
 
@@ -121,6 +125,8 @@ class Worker:
             self.guarded(job, self.finish)
         for job in self.jobs("kind='connect_claude' AND (state IN ('waiting_for_code','completing') OR (state='queued' AND started_at IS NOT NULL))"):
             self.update(job["id"], state="failed", input=None, error="Interrupted by a server restart; connect again.", ended_at=_now())
+        for job in self.jobs("kind='lookup' AND (state='running' OR (state='queued' AND started_at IS NOT NULL))"):
+            self.update(job["id"], state="failed", error="Interrupted by a server restart; look the filing up again.", ended_at=_now())
 
     def guarded(self, job: sqlite3.Row, step) -> Any:
         """Run one job's step; an unexpected error fails that job instead of stopping every later job."""
@@ -166,6 +172,31 @@ class Worker:
             self.update(job["id"], started_at=_now())
             self.connects[job["id"]] = thread
             thread.start()
+        for job in self.jobs("kind='lookup' AND state='queued' AND started_at IS NULL"):
+            self.update(job["id"], started_at=_now())
+            threading.Thread(target=self.lookup, args=(job["id"],), daemon=True).start()
+        if time.monotonic() - self.pruned > 3600:
+            self.pruned = time.monotonic()
+            self.cockpit.deals.prune_lookups()
+
+    # ---- add-deal lookups -----------------------------------------------------------
+
+    def lookup(self, job_id: str) -> None:
+        """Fetch one filing's submission from EDGAR and describe it. Lookups run one at a time."""
+        with self.lookup_lock:
+            self.update(job_id, state="running")
+            job = self.job(job_id)
+            try:
+                result = self.cockpit.deals.run_lookup(job)
+            except fetch_filing.FetchError as exc:
+                self.update(job_id, state="failed", error=str(exc)[:500], ended_at=_now())
+                log(f"lookup {job_id} failed: {exc}")
+            except Exception as exc:  # noqa: BLE001 - report every lookup failure to the page
+                self.update(job_id, state="failed", error=f"{type(exc).__name__}: {exc}"[:500], ended_at=_now())
+                log(f"lookup {job_id} failed: {type(exc).__name__}: {exc}")
+            else:
+                self.update(job_id, state="completed", result=json.dumps(result), ended_at=_now())
+                log(f"lookup {job_id} by {job['actor']}: {len(result['documents'])} documents from {result['source_url']}")
 
     # ---- extraction ---------------------------------------------------------------
 
@@ -190,7 +221,7 @@ class Worker:
         if not claimed:
             return False
         prepare = subprocess.run([sys.executable, str(RUNNER), "prepare", "--provider", "opus", "--run-dir", str(run_dir),
-                                  "--deal", job["slug"], "--filing", filing.name, "--model", params["model"],
+                                  "--deal", job["slug"], "--filing", filing.name, "--filing-dir", str(filing.parent), "--model", params["model"],
                                   "--effort", params["effort"], "--timeout-minutes", str(params["timeout_minutes"])],
                                  cwd=self.repo, capture_output=True, text=True)
         if prepare.returncode != 0:

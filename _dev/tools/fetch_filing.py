@@ -20,6 +20,7 @@ a second; this script makes at most 4.
 import argparse
 import csv
 import hashlib
+import html
 import io
 import os
 import re
@@ -63,6 +64,82 @@ def get(url):
             _last_request[0] = time.monotonic()
 
 
+DOCUMENT_RE = re.compile(rb"<DOCUMENT>\n<TYPE>([^\n]*)\n.*?</DOCUMENT>", re.S)
+ARCHIVE = r"https://www\.sec\.gov/Archives/edgar/data/(\d+)/"
+INDEX_LINK = re.compile(ARCHIVE + r"(?:\d{18}/)?(\d{10}-\d{2}-\d{6})-index\.html?$")
+SUBMISSION_LINK = re.compile(ARCHIVE + r"(?:\d{18}/)?(\d{10}-\d{2}-\d{6})\.txt$")
+DOCUMENT_LINK = re.compile(ARCHIVE + r"(\d{18})/([A-Za-z0-9][A-Za-z0-9._-]*)$")
+BACKGROUND = re.compile(r"background\s+of\s+the\s+(?:merger|offer|transaction|proposed|acquisition)", re.I)
+
+
+def submission_link(url):
+    """Return (complete submission link, document name or None) for an EDGAR archive link.
+
+    Accepts a filing index page, the complete submission text file, or one document
+    in the filing's folder. Anything else raises FetchError.
+    """
+    url = (url or "").strip().split("#")[0].split("?")[0].replace("http://", "https://", 1)
+    for pattern in (INDEX_LINK, SUBMISSION_LINK):
+        m = pattern.match(url)
+        if m:
+            return "https://www.sec.gov/Archives/edgar/data/%s/%s.txt" % m.groups(), None
+    m = DOCUMENT_LINK.match(url)
+    if m:
+        cik, folder, name = m.groups()
+        accession = "%s-%s-%s" % (folder[:10], folder[10:12], folder[12:])
+        return "https://www.sec.gov/Archives/edgar/data/%s/%s.txt" % (cik, accession), name
+    raise FetchError("not an EDGAR filing link: use a filing index (…-index.htm), a complete submission (.txt) "
+                     "or a document under https://www.sec.gov/Archives/edgar/data/")
+
+
+def _header_value(header, key):
+    m = re.search(r"^\s*" + re.escape(key) + r":\s*(.+?)\s*$", header, re.M)
+    return m.group(1) if m else ""
+
+
+def parse_submission(data):
+    """The header and document list of a complete submission text file."""
+    head = data.split(b"<DOCUMENT>", 1)[0].decode("latin-1")
+    filed = _header_value(head, "FILED AS OF DATE")
+    names = {}
+    for section in ("SUBJECT COMPANY", "FILER", "FILED BY"):
+        m = re.search(r"^" + section + r":\s*$(.*?)(?=^\S|\Z)", head, re.M | re.S)
+        if m:
+            names[section] = _header_value(m.group(1), "COMPANY CONFORMED NAME")
+    documents = []
+    for m in DOCUMENT_RE.finditer(data):
+        block = m.group(0)
+        field = lambda tag: (re.search(rb"<" + tag + rb">([^\n]*)\n", block) or [None, b""])[1].decode("latin-1").strip()
+        name = field(b"FILENAME")
+        is_html = name.lower().endswith((".htm", ".html"))
+        text = " ".join(html.unescape(re.sub(r"<[^>]*>", " ", block.decode("utf-8", "replace"))).split()) if is_html else ""
+        documents.append({"type": m.group(1).decode("latin-1").strip(), "filename": name, "description": field(b"DESCRIPTION"),
+                          "bytes": len(block) + 1, "html": is_html, "background": bool(BACKGROUND.search(text))})
+    return {
+        "form_type": _header_value(head, "CONFORMED SUBMISSION TYPE"),
+        "date_filed": "%s-%s-%s" % (filed[:4], filed[4:6], filed[6:8]) if re.fullmatch(r"\d{8}", filed) else "",
+        "subject_company": names.get("SUBJECT COMPANY", ""),
+        "filer": names.get("FILER", "") or names.get("FILED BY", ""),
+        "documents": documents,
+    }
+
+
+def default_document(documents, form_type):
+    """The main document by the seed rule, or None when the rule does not pick exactly one."""
+    wanted = "EX-99.(A)(1)(A)" if form_type == "SC TO-T" else form_type if form_type in ("DEFM14A", "PREM14A") else None
+    hits = [d["filename"] for d in documents if wanted and d["type"] == wanted and d["html"]]
+    return hits[0] if len(hits) == 1 else None
+
+
+def document_bytes(data, filename):
+    """The saved bytes of one named document: its <DOCUMENT> block and a newline."""
+    hits = [m.group(0) + b"\n" for m in DOCUMENT_RE.finditer(data)
+            if (re.search(rb"<FILENAME>([^\n]*)\n", m.group(0)) or [None, b""])[1].decode("latin-1").strip() == filename]
+    if len(hits) != 1:
+        raise FetchError("expected one document named %s, found %d" % (filename, len(hits)))
+    return hits[0]
+
+
 def main_document(index_url, form_type, document=None):
     """Return (submission link, document name, document bytes) for the selected document.
 
@@ -77,7 +154,7 @@ def main_document(index_url, form_type, document=None):
     url = re.sub(r"-index\.html?$", ".txt", index_url)
     text = get(url)
     hits = []
-    for m in re.finditer(rb"<DOCUMENT>\n<TYPE>([^\n]*)\n.*?</DOCUMENT>", text, re.S):
+    for m in DOCUMENT_RE.finditer(text):
         if m.group(1).decode("ascii", "replace").strip() != document_type:
             continue
         name = re.search(rb"<FILENAME>([^\n]*)\n", m.group(0))
