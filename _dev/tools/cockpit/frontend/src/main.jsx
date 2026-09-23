@@ -7,21 +7,26 @@ import Filing from './Filing';
 import SplitPane from './SplitPane';
 import TabScroller from './TabScroller';
 import Overview from './Overview';
+import ActivityPage from './Activity';
+import WhatsNew from './WhatsNew';
 import { compact, LedgerTab, SheetTab } from './Records';
 import { ChangesTab, DocumentText, friendlyDate, HistoryTab, ReviewTab } from './Review';
 import { Dot, Loading, Message } from './ui';
 import { cockpitTheme } from './theme';
-import { count, json, recordValues, rowId, saveDeal, sheetColumns, sheetRows, text } from './api';
+import { commentAction, count, json, markSeen, markSeenOnLeave, recordValues, rowId, saveDeal, sheetColumns, sheetRows, text } from './api';
+import { countThreads, displayName, EDIT_KINDS, knownUser } from './trace';
 import './style.css';
 
 const SHEETS = { ledger: 'Deal ledger', rounds: 'Rounds', questions: 'Questions', facts: 'Deal facts' };
+const SHEET_TABS = Object.fromEntries(Object.entries(SHEETS).map(([key, sheet]) => [sheet, key]));
 const TABS = [['ledger', 'Ledger'], ['rounds', 'Rounds'], ['questions', 'Questions'], ['facts', 'Deal facts'], ['review', 'Review'], ['changes', 'Changes'], ['history', 'History']];
 const EMPTY = { user: '', can_edit: false, csrf_token: '' };
 const NO_FIELDS = new Set();
 
 function routeFromLocation() {
   const match = location.pathname.match(/^\/deal\/([a-z0-9][a-z0-9-]*)\/?$/);
-  return match ? { slug: match[1] } : { slug: null };
+  if (match) return { slug: match[1], page: 'deal' };
+  return { slug: null, page: /^\/activity\/?$/.test(location.pathname) ? 'activity' : 'overview' };
 }
 function clone(value) { return structuredClone(value); }
 function confirmLoss() { return window.confirm('You have unsaved edits. Discard them and leave this view?'); }
@@ -58,6 +63,14 @@ function App() {
   const [documentData, setDocumentData] = useState(null);
   const [documentError, setDocumentError] = useState('');
   const [docLoading, setDocLoading] = useState(false);
+  const [threads, setThreads] = useState(null);
+  const [threadsError, setThreadsError] = useState('');
+  const [news, setNews] = useState(null);
+  const [focusThread, setFocusThread] = useState(null);
+  const [focusRevision, setFocusRevision] = useState(null);
+  const sessionRef = useRef(session);
+  const leaveMark = useRef(null);
+  const leaving = useRef(null);
   const saveFlash = useRef(null);
   const modalRef = useRef(null);
   const modalReturnFocus = useRef(null);
@@ -69,6 +82,7 @@ function App() {
   const dirty = ops.length > 0;
   const editable = Boolean(session.can_edit && deal?.workspace?.editable && saveState !== 'saving' && !versionLoading);
   const slug = route.slug;
+  sessionRef.current = session;
 
   useEffect(() => { json('/api/session').then(setSession).catch(err => setError(failure('Your session could not be loaded.', err))); }, []);
   useEffect(() => {
@@ -78,12 +92,12 @@ function App() {
   }, [dirty]);
   useEffect(() => {
     const listener = () => {
-      if (saveState === 'saving' || (dirty && !confirmLoss())) { history.pushState(null, '', slug ? `/deal/${slug}${location.hash}` : '/'); return; }
+      if (saveState === 'saving' || (dirty && !confirmLoss())) { history.pushState(null, '', slug ? `/deal/${slug}${location.hash}` : route.page === 'activity' ? '/activity' : '/'); return; }
       setRoute(routeFromLocation());
     };
     window.addEventListener('popstate', listener);
     return () => window.removeEventListener('popstate', listener);
-  }, [dirty, slug, saveState]);
+  }, [dirty, slug, saveState, route.page]);
   useEffect(() => {
     const listener = event => {
       if (!deal || deletePrompt || documentOpen || event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey || event.target?.closest?.('[role="separator"]') || /^(INPUT|TEXTAREA|SELECT)$/.test(event.target?.tagName || '')) return;
@@ -148,6 +162,7 @@ function App() {
     else { setLoading(true); setDeal(null); loadedSlug.current = null; }
     try {
       if (!currentSlug) {
+        await leaving.current; // the overview's "since you last looked" must reflect a deal just left
         const list = await json('/api/deals');
         if (token === routeSerial.current) { setDeals(list); document.title = 'Ledger cockpit'; }
       } else {
@@ -176,7 +191,43 @@ function App() {
       if (token === routeSerial.current) { setLoading(false); setVersionLoading(false); }
     }
   }, []);
-  useEffect(() => { load(slug, 'working'); }, [slug, load]);
+  useEffect(() => { load(slug, 'working'); }, [slug, route.page, load]);
+  // Comment threads are deal-level (shared by every version); immutable versions show them read only.
+  useEffect(() => {
+    setThreads(null); setThreadsError(''); setFocusThread(null); setFocusRevision(null);
+    if (!slug) return;
+    let alive = true;
+    json(`/api/deal/${slug}/comments`)
+      .then(data => { if (alive) setThreads(data?.threads || []); })
+      .catch(err => { if (alive) setThreadsError(err.message); });
+    return () => { alive = false; };
+  }, [slug]);
+  // What's new: a snapshot of the unseen activity when the deal opens. Signed-in users only.
+  useEffect(() => {
+    setNews(null);
+    if (!slug || !knownUser(session.user)) return;
+    let alive = true;
+    json(`/api/deal/${slug}/activity?limit=200`)
+      .then(data => {
+        const items = data?.items || [], unseen = items.filter(item => item.unseen);
+        if (!alive || !unseen.length) return;
+        setNews({ slug, items: unseen, previous: data.seen?.activity_id ?? 0, newest: items[0].id, status: 'pending', busy: false, error: '' });
+        leaveMark.current = { slug, id: items[0].id };
+      })
+      .catch(() => {});
+    return () => { alive = false; };
+  }, [slug, session.user]);
+  // Leaving a deal whose What's new panel was shown marks it read, unless the reader already chose read or unread.
+  useEffect(() => {
+    if (!slug) return;
+    const flush = () => {
+      const pending = leaveMark.current;
+      leaveMark.current = null;
+      if (pending && sessionRef.current.csrf_token) leaving.current = markSeenOnLeave(pending.slug, sessionRef.current, pending.id);
+    };
+    window.addEventListener('pagehide', flush);
+    return () => { window.removeEventListener('pagehide', flush); flush(); };
+  }, [slug]);
   useEffect(() => {
     if (!slug || !deal || !['changes', 'history'].includes(tab)) return;
     let alive = true;
@@ -203,6 +254,41 @@ function App() {
     selectRow(rows[Math.max(0, Math.min(rows.length - 1, index + delta))].uid);
   }
   function switchVersion(id) { if (dirty && !confirmLoss()) return; load(slug, id); }
+  async function setSeen(status) {
+    if (!news) return;
+    leaveMark.current = null;
+    setNews(current => ({ ...current, busy: true, error: '' }));
+    try {
+      const result = await markSeen(slug, session, status === 'read' ? news.newest : news.previous);
+      if (result?.seen !== undefined) setDeal(current => current && ({ ...current, seen: result.seen }));
+      setNews(current => ({ ...current, status, busy: false }));
+    } catch (err) {
+      setNews(current => ({ ...current, busy: false, error: `${status === 'read' ? 'Marking as read' : 'Marking unread'} failed: ${err.message}` }));
+    }
+  }
+  function openRevision(revision) {
+    if (revision == null) return;
+    setTab('history'); setFocusRevision({ revision, nonce: Date.now() }); setMobilePane('workspace');
+  }
+  function openThread(target, threadId) {
+    setFocusThread({ threadId, nonce: Date.now() });
+    if (target?.kind === 'row' && sheetRows(deal, target.sheet).some(row => row.uid === target.uid)) {
+      if (target.sheet === 'Deal ledger') selectRow(target.uid);
+      else { selectOther(target.sheet, target.uid); setTab(SHEET_TABS[target.sheet]); }
+    } else {
+      if (target?.kind === 'finding') setFindingOpen(target.uid);
+      setTab('review');
+    }
+    setMobilePane('workspace');
+  }
+  function openActivityItem(item) {
+    if (EDIT_KINDS.has(item.kind)) openRevision(item.revision);
+    else openThread(item.target, item.thread_id);
+  }
+  async function postComment(action) {
+    const data = await commentAction(slug, session, action);
+    setThreads(data?.threads || []);
+  }
 
   function editValue(sheet, uid, field, value) {
     setDeal(current => {
@@ -282,16 +368,16 @@ function App() {
     if (sheet === 'Deal ledger') setSelectedUid(left[0]?.uid || null);
     setDeletePrompt(null); setSaveState('');
   }
-  function setReview(uid, status, note) {
-    const previous = deal.row_review?.[uid] || { status: 'unreviewed', note: '' };
+  // Review notes became comments (phase 1): the review operation carries only the status and an empty note.
+  function setReview(uid, status) {
+    const previous = deal.row_review?.[uid] || { status: 'unreviewed' };
     const touched = new Set(reviewTouched.current.get(uid) || []);
     if ((previous.status || 'unreviewed') !== status) touched.add('status');
-    if ((previous.note || '') !== note) touched.add('note');
     reviewTouched.current.set(uid, touched);
-    setDeal(current => { const next = clone(current); next.row_review = { ...next.row_review, [uid]: { ...(next.row_review?.[uid] || {}), status, note } }; return next; });
+    setDeal(current => { const next = clone(current); next.row_review = { ...next.row_review, [uid]: { ...(next.row_review?.[uid] || {}), status } }; return next; });
     setOps(previousOps => {
       const next = clone(previousOps), existing = next.find(op => op.type === 'review' && op.uid === uid);
-      if (existing) Object.assign(existing, { status, note }); else next.push({ type: 'review', uid, status, note });
+      if (existing) Object.assign(existing, { status, note: '' }); else next.push({ type: 'review', uid, status, note: '' });
       return next;
     });
     setSaveState('');
@@ -299,7 +385,7 @@ function App() {
   function setFinding(id, field, value) {
     if (!findingBase.current.has(id)) {
       const finding = deal.findings.find(item => item.id === id);
-      findingBase.current.set(id, { judgment: finding.judgment || 'unreviewed', implementation: finding.implementation || 'unassessed', verification: finding.verification || 'unchecked', note: finding.note || '' });
+      findingBase.current.set(id, { judgment: finding.judgment || 'unreviewed', implementation: finding.implementation || 'unassessed', verification: finding.verification || 'unchecked' });
     }
     setDeal(current => { const next = clone(current), finding = next.findings?.find(item => item.id === id); if (finding) finding[field] = value; return next; });
     setOps(previous => {
@@ -307,7 +393,7 @@ function App() {
       if (existing) existing[field] = value;
       else {
         const finding = deal.findings.find(item => item.id === id);
-        next.push({ type: 'finding', id, judgment: finding.judgment || 'unreviewed', implementation: finding.implementation || 'unassessed', verification: finding.verification || 'unchecked', note: finding.note || '', [field]: value });
+        next.push({ type: 'finding', id, judgment: finding.judgment || 'unreviewed', implementation: finding.implementation || 'unassessed', verification: finding.verification || 'unchecked', note: '', [field]: value });
       }
       return next;
     });
@@ -380,12 +466,13 @@ function App() {
   }
 
   if (!slug) {
+    const activity = route.page === 'activity';
     return <>
-      <Header onHome={() => navigate('/')} session={session}/>
+      <Header onNavigate={navigate} session={session} page={route.page}/>
       <main className="overview-wrap">
-        {loading && <Loading label="Loading deals"/>}
+        {loading && !activity && <Loading label="Loading deals"/>}
         {error && <Message type="error" title={error.title} detail={error.detail}/>}
-        {deals && <Overview deals={deals} onOpen={s => navigate(`/deal/${s}`)}/>}
+        {activity ? <ActivityPage deals={deals} onOpenDeal={s => navigate(`/deal/${s}`)}/> : deals && <Overview deals={deals} onOpen={s => navigate(`/deal/${s}`)}/>}
       </main>
     </>;
   }
@@ -394,8 +481,8 @@ function App() {
   const selected = ledgerRows.find(row => row.uid === selectedUid);
   const baseLabel = deal?.versions?.find(item => item.id === deal.workspace?.base_version)?.label || deal?.workspace?.base_version || 'base';
   const versionLabel = item => item.kind === 'working'
-    ? `Working copy (editable, based on ${baseLabel})`
-    : `${item.label || item.id}${item.instruction_version ? ` · ${item.instruction_version}` : ''} (original, read only)`;
+    ? `Working copy · editable`
+    : `${item.label || item.id}${item.instruction_version ? ` · ${item.instruction_version}` : ''} · original, read only`;
   const lastSaved = deal?.workspace?.updated_by ? `Last saved by ${deal.workspace.updated_by}${deal.workspace.updated_at ? ` · ${friendlyDate(deal.workspace.updated_at)}` : ''}` : '';
   const immutable = deal?.workspace?.selected_version !== 'working';
   const sublineParts = deal ? [deal.filing?.form_type, deal.filing?.date_filed, ...(immutable
@@ -408,9 +495,15 @@ function App() {
     : saveState === 'saved' ? { tone: 'success', label: 'Saved' }
     : editable ? { tone: 'muted', label: 'No unsaved edits' }
     : { tone: 'muted', label: 'Read only version' };
+  const trace = deal && {
+    user: session.user, threads, threadsError, focus: focusThread, post: postComment, onOpenRevision: openRevision,
+    canComment: Boolean(session.can_edit && knownUser(session.user) && !immutable && !versionLoading && threads && !threadsError),
+    counts: threads ? countThreads(threads) : deal.thread_counts || {},
+    authors: deal.field_authors || {}, seenRevision: deal.seen?.revision,
+  };
 
   return <>
-    <Header onHome={() => navigate('/')} session={session} deal={deal}/>
+    <Header onNavigate={navigate} session={session} page={route.page}/>
     <main className="deal-shell">
       {loading && <Loading label={`Loading ${slug}`}/>}
       {error && <Message type={conflict ? 'warning' : 'error'} title={error.title} detail={error.detail}>
@@ -456,6 +549,7 @@ function App() {
             <Filing filing={filing} loading={filingLoading} error={filingError} deal={deal} selectedUid={selectedUid} scrollRequest={filingScrollRequest} searchRequest={filingSearchRequest} onSelectRow={selectRow} onQuoteSelection={editable ? chooseQuote : null}/>
           </div>
           <section className={`workspace-column ${mobilePane === 'workspace' ? 'mobile-active' : ''} ${showDock ? 'has-dock' : ''}`} aria-label="Deal workspace">
+            {news?.slug === slug && <WhatsNew news={news} onMarkRead={() => setSeen('read')} onMarkUnread={() => setSeen('unread')} onOpenItem={openActivityItem}/>}
             <TabScroller activeTab={tab}>
               {TABS.map(([key, label]) => {
                 const tabCount = ['ledger', 'rounds', 'questions'].includes(key) ? sheetRows(deal, SHEETS[key]).length : key === 'review' && deal.findings?.length > 0 ? deal.findings.length : null;
@@ -467,11 +561,11 @@ function App() {
             <div id="workspace-panel" className={`workspace-scroll ${['ledger', 'rounds', 'questions', 'facts'].includes(tab) ? 'editor-scroll' : ''}`} role="tabpanel" aria-labelledby={`tab-${tab}`}>
               {versionLoading && <Loading label="Loading version"/>}
               {!versionLoading && <>
-                {tab === 'ledger' && <LedgerTab deal={deal} selectedUid={selectedUid} onSelect={selectRow} onShowFiling={showRowEvidence} onOpenQuestion={openQuestion} onStep={stepRow} onAdd={addRow} onMove={moveRow} onDelete={requestDelete} onEdit={editValue} onReview={setReview} editable={editable} selection={selected} dirtyFor={dirtyFor} reviewDirty={reviewDirty}/>}
-                {['rounds', 'questions', 'facts'].includes(tab) && <SheetTab deal={deal} sheet={SHEETS[tab]} selectedUid={selectedBySheet[SHEETS[tab]]} onSelect={selectOther} onAdd={addRow} onMove={moveRow} onDelete={requestDelete} onEdit={editValue} editable={editable} onJumpRow={selectRow} dirtyFor={dirtyFor}/>}
-                {tab === 'review' && <ReviewTab deal={deal} editable={editable} open={findingOpen} onToggle={setFindingOpen} onEdit={setFinding} dirtyFor={findingDirty} onFindEvidence={findEvidence} onOpenDocument={openDocument}/>}
+                {tab === 'ledger' && <LedgerTab deal={deal} selectedUid={selectedUid} onSelect={selectRow} onShowFiling={showRowEvidence} onOpenQuestion={openQuestion} onStep={stepRow} onAdd={addRow} onMove={moveRow} onDelete={requestDelete} onEdit={editValue} onReview={setReview} editable={editable} selection={selected} dirtyFor={dirtyFor} reviewDirty={reviewDirty} trace={trace}/>}
+                {['rounds', 'questions', 'facts'].includes(tab) && <SheetTab deal={deal} sheet={SHEETS[tab]} selectedUid={selectedBySheet[SHEETS[tab]]} onSelect={selectOther} onAdd={addRow} onMove={moveRow} onDelete={requestDelete} onEdit={editValue} editable={editable} onJumpRow={selectRow} dirtyFor={dirtyFor} trace={trace}/>}
+                {tab === 'review' && <ReviewTab deal={deal} editable={editable} open={findingOpen} onToggle={setFindingOpen} onEdit={setFinding} dirtyFor={findingDirty} onFindEvidence={findEvidence} onOpenDocument={openDocument} trace={trace}/>}
                 {tab === 'changes' && <ChangesTab data={changesData} loading={auxLoading}/>}
-                {tab === 'history' && <HistoryTab data={historyData} loading={auxLoading} editable={editable} onRestore={restore} lastSaved={lastSaved}/>}
+                {tab === 'history' && <HistoryTab data={historyData} loading={auxLoading} editable={editable} onRestore={restore} lastSaved={lastSaved} focus={focusRevision}/>}
               </>}
             </div>
             {showDock && <div className="save-dock">
@@ -517,13 +611,18 @@ function App() {
   </>;
 }
 
-function Header({ onHome, session, deal }) {
+function Header({ onNavigate, session, page }) {
   const access = !session.user ? { tone: 'warning', label: 'Loading session' } : session.can_edit ? { tone: 'success', label: 'Edit access' } : { tone: 'muted', label: 'Read only' };
+  const follow = path => event => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault(); onNavigate(path);
+  };
   return <header className="global-header">
-    <Button appearance="subtle" className="wordmark" onClick={onHome}>Ledger cockpit</Button>
-    <span className="header-context">{deal ? 'Deal workspace' : 'Deal ledgers'}</span>
+    <Button appearance="subtle" className="wordmark" onClick={() => onNavigate('/')}>Ledger cockpit</Button>
+    <span className="header-context">{page === 'deal' ? 'Deal workspace' : page === 'activity' ? 'Activity' : 'Deal ledgers'}</span>
     <div className="header-user">
-      {session.user && <span className="header-name">{session.user}</span>}
+      {page !== 'activity' && <a className="header-link" href="/activity" onClick={follow('/activity')}>Activity</a>}
+      {session.user && <span className="header-name">{displayName(session.user)}</span>}
       <span className="access-state"><Dot tone={access.tone}/>{access.label}</span>
     </div>
   </header>;

@@ -10,12 +10,22 @@ export async function json(path, options = {}) {
   return body;
 }
 
-export function saveDeal(slug, session, payload) {
-  return json(`/api/deal/${encodeURIComponent(slug)}/edit`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'X-Cockpit-CSRF': session.csrf_token },
-    body: JSON.stringify(payload),
-  });
+const writeHeaders = session => ({ 'Content-Type': 'application/json', 'X-Cockpit-CSRF': session.csrf_token });
+const post = (path, session, payload) => json(path, { method: 'POST', headers: writeHeaders(session), body: JSON.stringify(payload) });
+const dealPath = (slug, rest) => `/api/deal/${encodeURIComponent(slug)}/${rest}`;
+
+export function saveDeal(slug, session, payload) { return post(dealPath(slug, 'edit'), session, payload); }
+// One comment action (create, reply, edit, delete, resolve, reopen); the response is the deal's full thread list.
+export function commentAction(slug, session, action) { return post(dealPath(slug, 'comments'), session, action); }
+export function markSeen(slug, session, activityId) { return post(dealPath(slug, 'seen'), session, { activity_id: activityId }); }
+// Leaving a deal: the request must survive navigation and page unload. Resolves (never rejects) when it lands.
+export function markSeenOnLeave(slug, session, activityId) {
+  try { return fetch(dealPath(slug, 'seen'), { method: 'POST', keepalive: true, headers: writeHeaders(session), body: JSON.stringify({ activity_id: activityId }) }).catch(() => {}); }
+  catch { return Promise.resolve(); }
+}
+export function activityQuery({ actor = '', slug = '', kind = '', before = '', limit = 100 } = {}) {
+  const params = new URLSearchParams(Object.entries({ actor, slug, kind, before, limit }).filter(([, value]) => value !== '' && value != null));
+  return `/api/activity?${params}`;
 }
 
 export const text = value => value == null ? '' : String(value);

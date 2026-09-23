@@ -122,12 +122,13 @@ systemctl --user restart ledger-cockpit.service   # also needed after any Python
 
 Remove `dist.old` once the site checks out. After a restart, verify `/api/session`, `/api/deals` and `/api/deal/<deal>?version=working`, compare checker findings with a fresh run, and preserve source hashes and working state. Catalog updates are read on later requests; changing a default base must not silently replace a saved working revision. Logs: `journalctl _SYSTEMD_USER_UNIT=ledger-cockpit.service` (or `cloudflared.service`). Verification evidence is linked from [HANDOFF.md](../HANDOFF.md).
 
-Acceptance suites run against a synthetic fixture (`acceptance/serve_fixture.py`) on a private port and a private headless Chrome; they never touch production workbooks, the catalog, working state or the live service. Run from the repository root:
+Acceptance suites run against a synthetic fixture (`acceptance/serve_fixture.py`; `--two-users` makes it take identities from the Cloudflare Access email header, for `test_trace.mjs`) on a private port and a private headless Chrome; they never touch production workbooks, the catalog, working state or the live service. Run from the repository root:
 
 ```bash
 COCKPIT_BROWSER_EVIDENCE=/tmp/cockpit-browser node _dev/tools/cockpit/acceptance/test_browser.mjs
 COCKPIT_RESIZE_EVIDENCE=/tmp/cockpit-resize node _dev/tools/cockpit/acceptance/test_resize.mjs
 COCKPIT_RESPONSIVE_EVIDENCE=/tmp/cockpit-responsive node _dev/tools/cockpit/acceptance/test_responsive.mjs
+COCKPIT_TRACE_EVIDENCE=/tmp/cockpit-trace node _dev/tools/cockpit/acceptance/test_trace.mjs
 python3 -m pytest -q _dev/tools/cockpit/acceptance/test_http.py
 (cd _dev/tools/cockpit/frontend && npx vitest run)
 ```

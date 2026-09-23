@@ -22,6 +22,10 @@ def main() -> None:
         else:
             synthetic_repo(root)
         fixture = HttpFixture(root)
+        if "--two-users" in sys.argv[1:]:
+            # Identities come from the Cloudflare Access email header, as on the public route.
+            os.environ["COCKPIT_REQUIRE_ACCESS"] = "1"
+            os.environ["COCKPIT_PUBLIC_ORIGIN"] = fixture.base
         signal.signal(signal.SIGTERM, lambda *_: fixture.httpd.shutdown())
         print(json.dumps({"url": fixture.base}), flush=True)
         try:

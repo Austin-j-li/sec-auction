@@ -6,7 +6,7 @@
 
 **Approved next build (23 September):** Austin approved the [shared extraction app spec](COCKPIT_APP_SPEC.md), including its §13 defaults. Austin and Alex will each connect their own Claude and ChatGPT subscriptions, add deals from `ref/seed.csv` or an EDGAR link, start isolated extractions (Opus 5.5 medium by default; Fable 5.1, GPT-6-Sol and GPT-6-Astra selectable at any allowed effort), version instructions in the app with either able to change the default, and see each other's edits and comments through threads and a since-last-visit digest. The build starts with the spec's four spikes. Real model runs during the build still need Austin's go-ahead.
 
-For engineering, **Astra designs, reasons and reviews; GPT Sol subagents write code and execute the implementation**. Removing Sol's extraction experiment does not change that engineering assignment.
+For engineering, choose models by task rather than by a fixed split. Astra (GPT-6-Astra) is the strongest reasoner but expensive and sometimes erratic, so check its output; it suits hard design and review. Sol (GPT-6-Sol) is a capable, literal implementer for well-specified code. Opus 5.5 and Fable 5.1 (Fable's safeguards sometimes block requests) can design, implement and integrate too, and a session with clean context may lead the work itself (Austin, 23 September).
 
 ## What is ready for Austin
 
@@ -59,7 +59,7 @@ The current frontend source and built assets add mouse/keyboard split-pane resiz
 
 ## Next work
 
-0. Build the shared extraction app in the [spec](COCKPIT_APP_SPEC.md)'s phases, starting with spikes S1–S4.
+0. Build the shared extraction app in the [spec](COCKPIT_APP_SPEC.md)'s phases. Spikes S1–S4 are recorded in its §14; phase 1 (comments, since-last-visit digest, last-changed-by, activity page) was deployed on 23 September ([build record](maintenance/2026-09-23-cockpit-phase1-trace/PROGRESS.md)). Next: phase 2, accounts and runs.
 1. Austin reviews the nine current workbooks in the cockpit, including applying the Mac-Gray R01 decision. Check Datalink against the accepted January-round ruling.
 2. Check both directions: ledger rows against source support, and bounded source passages against events that should appear. Mechanical cleanliness, matching models and located quotations do not establish complete extraction.
 3. Separate mistakes under existing rules, research choices requiring Austin, and unsupported reviewer claims. Only an explicitly authorized correction pass should receive an accepted correction brief. Verify its entire diff and dependent references afterward.

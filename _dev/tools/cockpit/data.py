@@ -647,6 +647,8 @@ class Cockpit:
         self._payloads: dict[str, tuple[tuple[Any, ...], dict[str, Any]]] = {}
         from cockpit.workspace import Workspace
         self.workspace = Workspace(self)
+        from cockpit.trace import Trace  # imported here: trace builds on the workspace module
+        self.trace = Trace(self.workspace)
 
     def _path_lock(self, key: str) -> threading.Lock:
         with self._lock:

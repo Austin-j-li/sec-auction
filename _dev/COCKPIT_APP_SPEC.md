@@ -210,7 +210,7 @@ An **Instructions** page lists every version: name (for example v1.13.2), status
 
 ## 12. Build phases
 
-Following HANDOFF's roles (Astra designs and reviews; Sol implements).
+Models are chosen per task (see HANDOFF). Phase 1 is Claude-only: Opus 5.5 builds it, with Fable 5.1 as an occasional second opinion.
 
 | Phase | Content | Done when |
 |---|---|---|

@@ -26,9 +26,9 @@ from cockpit.workspace import WorkspaceError  # noqa: E402
 DEFAULT_PORT = 8778
 READER_EMAILS = {"junyu.li.24@ucl.ac.uk": "austin", "a.gorbenko@ucl.ac.uk": "alex"}
 SLUG_PATH_RE = re.compile(r"/api/(deal|filing)/([^/]*)")
-DEAL_ACTION_RE = re.compile(r"/api/deal/([^/]*)/(history|changes|export|edit)")
+DEAL_ACTION_RE = re.compile(r"/api/deal/([^/]*)/(history|changes|export|edit|comments|activity|seen)")
 DOCUMENT_RE = re.compile(r"/api/document/([^/]*)/([^/]*)")
-PAGE_PATH_RE = re.compile(r"/deal/[^/]*/?")
+PAGE_PATH_RE = re.compile(r"/deal/[^/]*/?|/activity/?")
 MAX_JSON = 1024 * 1024
 
 
@@ -102,7 +102,20 @@ class Handler(BaseHTTPRequestHandler):
             if path == "/api/session":
                 actor, can_edit = self._identity()
                 return self._json({"user": actor, "can_edit": can_edit, "csrf_token": self.csrf_token if can_edit else None})
-            if path == "/api/deals": return self._json(self.cockpit.list_deals())
+            if path == "/api/deals":
+                actor, _ = self._identity()
+                deals = self.cockpit.list_deals()
+                if self.cockpit.workspace.available and actor != "unknown":
+                    for deal in deals: deal["unseen"] = self.cockpit.trace.unseen(deal["slug"], actor)
+                return self._json(deals)
+            if path == "/api/activity":
+                if not self.cockpit.workspace.available: return self._json({"error": "workspace unavailable"}, 404)
+                actor, _ = self._identity()
+                one = lambda key: (query.get(key) or [None])[0] or None
+                try: before, limit = (int(one("before")) if one("before") else None), int(one("limit") or 100)
+                except ValueError: return self._json({"error": "invalid paging"}, 400)
+                if before is not None and not 0 <= before < 2**63: return self._json({"error": "invalid paging"}, 400)
+                return self._json(self.cockpit.trace.activity(actor, one("slug"), actor=one("actor"), kind=one("kind"), before=before, limit=limit, account=True))
             match = SLUG_PATH_RE.fullmatch(path)
             if match:
                 kind, slug = match.group(1), unquote(match.group(2))
@@ -110,6 +123,7 @@ class Handler(BaseHTTPRequestHandler):
                     version = query.get("version", ["working"])[0]
                     payload = self.cockpit.deal(slug, version=version)
                     actor, _ = self._identity()
+                    if self.cockpit.workspace.available: payload.update(self.cockpit.trace.deal_extras(slug, actor, version))
                     return self._json({**payload, "reader": actor})
                 return self._json(self.cockpit.filing_payload(slug))
             match = DEAL_ACTION_RE.fullmatch(path)
@@ -118,7 +132,13 @@ class Handler(BaseHTTPRequestHandler):
                 if not self.cockpit.workspace.available: return self._json({"error": "workspace unavailable"}, 404)
                 if action == "history": return self._json(self.cockpit.workspace.history(slug))
                 if action == "changes": return self._json(self.cockpit.workspace.changes(slug))
-                if action == "edit": return self._not_allowed()
+                if action in ("edit", "seen"): return self._not_allowed()
+                if action == "comments": return self._json(self.cockpit.trace.comments(slug))
+                if action == "activity":
+                    actor, _ = self._identity()
+                    try: limit = int(query.get("limit", ["200"])[0])
+                    except ValueError: return self._json({"error": "invalid limit"}, 400)
+                    return self._json(self.cockpit.trace.activity(actor, slug, limit=limit))
                 version = query.get("version", ["working"])[0]
                 content = self.cockpit.workspace.export(slug, version)
                 return self._send(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", Content_Disposition=f'attachment; filename="{slug}-{version}.xlsx"')
@@ -153,7 +173,7 @@ class Handler(BaseHTTPRequestHandler):
 
     def _route_post(self) -> None:
         match = DEAL_ACTION_RE.fullmatch(urlparse(self.path).path)
-        if not match or match.group(2) != "edit": return self._not_allowed()
+        if not match or match.group(2) not in ("edit", "comments", "seen"): return self._not_allowed()
         if not self.cockpit.workspace.available: return self._json({"error": "workspace unavailable"}, 404)
         actor, can_edit = self._identity()
         if not can_edit or not self._origin_ok() or not secrets.compare_digest(self.headers.get("X-Cockpit-CSRF") or "", self.csrf_token):
@@ -164,7 +184,11 @@ class Handler(BaseHTTPRequestHandler):
         if length <= 0 or length > MAX_JSON: return self._json({"error": "request body size out of range"}, 413)
         try:
             body = json.loads(self.rfile.read(length))
-            payload = self.cockpit.workspace.edit(unquote(match.group(1)), body, actor)
+            slug, action = unquote(match.group(1)), match.group(2)
+            if action == "comments": return self._json(self.cockpit.trace.comment(slug, body, actor))
+            if action == "seen": return self._json(self.cockpit.trace.mark_seen(slug, body, actor))
+            payload = self.cockpit.workspace.edit(slug, body, actor)
+            payload.update(self.cockpit.trace.deal_extras(slug, actor))
             return self._json({**payload, "reader": actor})
         except (UnicodeDecodeError, json.JSONDecodeError): return self._json({"error": "invalid JSON"}, 400)
         except data.DealNotFound as exc: return self._json({"error": str(exc)}, 404)

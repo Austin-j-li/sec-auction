@@ -73,6 +73,24 @@ def _hash(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def record_label(sheet: str, previous: dict[str, Any] | None, current: dict[str, Any] | None) -> str:
+    """A readable label for a sheet record, as used in change lists and comment targets."""
+    record = current or previous
+    if record is None: return sheet
+    values = {key: data.display_value(_decode(value)) for key, value in record["values"].items()}
+    if sheet == data.LEDGER_SHEET:
+        earlier = data.display_value(_decode(previous["values"].get("#"))) if previous else ""
+        later = data.display_value(_decode(current["values"].get("#"))) if current else ""
+        number = f"#{earlier} → #{later}" if earlier and later and earlier != later else f"#{later or earlier or '?'}"
+        details = [values.get(field, "") for field in ("When", "Who", "Event")]
+        return " · ".join([f"Event {number}"] + [part for part in details if part])
+    if sheet == data.QUESTIONS_SHEET:
+        return f"Question {values.get('Q') or '?'}"
+    if sheet == data.ROUNDS_SHEET:
+        return f"Process {values.get('Process') or '?'} / Round {values.get('Round') or '?'}"
+    return f"Deal fact {values.get('Field') or '?'}"
+
+
 class Workspace:
     def __init__(self, cockpit: data.Cockpit):
         self.cockpit = cockpit
@@ -134,6 +152,12 @@ class Workspace:
         if write:
             conn.execute("PRAGMA journal_mode=WAL")
             conn.execute("CREATE TABLE IF NOT EXISTS revisions (slug TEXT NOT NULL, revision INTEGER NOT NULL, base_id TEXT NOT NULL, base_sha256 TEXT NOT NULL, at TEXT NOT NULL, actor TEXT NOT NULL, reason TEXT NOT NULL, summary TEXT NOT NULL, changes TEXT NOT NULL, snapshot TEXT NOT NULL, PRIMARY KEY (slug, revision))")
+            from cockpit import trace  # imported here: trace builds on this module
+            try:
+                trace.ensure_schema(conn)
+            except Exception:
+                conn.close()
+                raise
         return conn
 
     def _latest(self, conn: sqlite3.Connection | None, slug: str, revision: int | None = None) -> sqlite3.Row | None:
@@ -339,48 +363,32 @@ class Workspace:
             if conn: conn.close()
 
     def _diff(self, before: dict[str, Any], after: dict[str, Any]) -> list[dict[str, Any]]:
-        def label(sheet: str, previous: dict[str, Any] | None, current: dict[str, Any] | None) -> str:
-            record = current or previous
-            if record is None: return sheet
-            values = {key: data.display_value(_decode(value)) for key, value in record["values"].items()}
-            if sheet == data.LEDGER_SHEET:
-                earlier = data.display_value(_decode(previous["values"].get("#"))) if previous else ""
-                later = data.display_value(_decode(current["values"].get("#"))) if current else ""
-                number = f"#{earlier} → #{later}" if earlier and later and earlier != later else f"#{later or earlier or '?'}"
-                details = [values.get(field, "") for field in ("When", "Who", "Event")]
-                return " · ".join([f"Event {number}"] + [part for part in details if part])
-            if sheet == data.QUESTIONS_SHEET:
-                return f"Question {values.get('Q') or '?'}"
-            if sheet == data.ROUNDS_SHEET:
-                return f"Process {values.get('Process') or '?'} / Round {values.get('Round') or '?'}"
-            return f"Deal fact {values.get('Field') or '?'}"
-
         changes = []
         for sheet in SHEETS:
             old = {r["uid"]: r for r in before["sheets"][sheet]["rows"]}
             new = {r["uid"]: r for r in after["sheets"][sheet]["rows"]}
             for uid in old.keys() | new.keys():
                 a, b = old.get(uid), new.get(uid)
-                record_label = label(sheet, a, b)
+                row_label = record_label(sheet, a, b)
                 if a is None or b is None:
-                    changes.append({"sheet": sheet, "uid": uid, "record_label": record_label, "field": None, "before": None if a is None else {k: data.display_value(_decode(v)) for k,v in a["values"].items()}, "after": None if b is None else {k: data.display_value(_decode(v)) for k,v in b["values"].items()}, "type": "insert" if a is None else "delete"})
+                    changes.append({"sheet": sheet, "uid": uid, "record_label": row_label, "field": None, "before": None if a is None else {k: data.display_value(_decode(v)) for k,v in a["values"].items()}, "after": None if b is None else {k: data.display_value(_decode(v)) for k,v in b["values"].items()}, "type": "insert" if a is None else "delete"})
                 else:
                     for field in after["sheets"][sheet]["columns"]:
                         va, vb = a["values"].get(field), b["values"].get(field)
                         if va != vb:
-                            changes.append({"sheet": sheet, "uid": uid, "record_label": record_label, "field": field, "before": data.display_value(_decode(va)), "after": data.display_value(_decode(vb)), "type": "update"})
+                            changes.append({"sheet": sheet, "uid": uid, "record_label": row_label, "field": field, "before": data.display_value(_decode(va)), "after": data.display_value(_decode(vb)), "type": "update"})
             old_order = [r["uid"] for r in before["sheets"][sheet]["rows"] if r["uid"] in new]
             new_order = [r["uid"] for r in after["sheets"][sheet]["rows"] if r["uid"] in old]
             if old_order != new_order:
-                changes.append({"sheet": sheet, "uid": None, "record_label": f"{sheet} order", "field": "order", "before": [{"uid": uid, "label": label(sheet, old[uid], None)} for uid in old_order], "after": [{"uid": uid, "label": label(sheet, None, new[uid])} for uid in new_order], "type": "move"})
+                changes.append({"sheet": sheet, "uid": None, "record_label": f"{sheet} order", "field": "order", "before": [{"uid": uid, "label": record_label(sheet, old[uid], None)} for uid in old_order], "after": [{"uid": uid, "label": record_label(sheet, None, new[uid])} for uid in new_order], "type": "move"})
         for key in ("findings", "row_review"):
             for uid in before[key].keys() | after[key].keys():
                 if before[key].get(uid) != after[key].get(uid):
                     if key == "findings":
-                        record_label = f"Finding {uid}"
+                        row_label = f"Finding {uid}"
                     else:
-                        record_label = next((label(sheet, next((r for r in before["sheets"][sheet]["rows"] if r["uid"] == uid), None), next((r for r in after["sheets"][sheet]["rows"] if r["uid"] == uid), None)) for sheet in SHEETS if any(r["uid"] == uid for r in before["sheets"][sheet]["rows"] + after["sheets"][sheet]["rows"])), f"Row {uid}")
-                    changes.append({"sheet": key, "uid": uid, "record_label": record_label, "field": None, "before": before[key].get(uid), "after": after[key].get(uid), "type": "decision"})
+                        row_label = next((record_label(sheet, next((r for r in before["sheets"][sheet]["rows"] if r["uid"] == uid), None), next((r for r in after["sheets"][sheet]["rows"] if r["uid"] == uid), None)) for sheet in SHEETS if any(r["uid"] == uid for r in before["sheets"][sheet]["rows"] + after["sheets"][sheet]["rows"])), f"Row {uid}")
+                    changes.append({"sheet": key, "uid": uid, "record_label": row_label, "field": None, "before": before[key].get(uid), "after": after[key].get(uid), "type": "decision"})
         return changes
 
     def _coerce(self, sheet: str, field: str, value: Any) -> Any:
@@ -656,6 +664,8 @@ class Workspace:
             at = _now()
             summary = f"{len(changes)} change{'s' if len(changes) != 1 else ''}"
             conn.execute("INSERT INTO revisions VALUES (?,?,?,?,?,?,?,?,?,?)", (slug, revision + 1, base["id"], base["sha256"], at, actor, reason.strip(), summary, _dump(changes), _dump(current)))
+            from cockpit import trace
+            trace.record_revision(conn, slug, actor, revision + 1, reason.strip(), restore=any(op.get("type") == "restore" for op in ops), at=at)
             saved = self._latest(conn, slug)
             payload = self._payload(slug, item, current, saved, base, "working")
             conn.commit()

@@ -1,6 +1,7 @@
-import React from 'react';
-import { Button, Field, Select, Textarea } from '@fluentui/react-components';
-import { ArrowClockwiseIcon, CaretRightIcon, FileTextIcon, MinusIcon, PlusIcon } from '@phosphor-icons/react';
+import React, { useEffect } from 'react';
+import { Button, Field, Select } from '@fluentui/react-components';
+import { ArrowClockwiseIcon, CaretRightIcon, ChatCircleIcon, FileTextIcon, MinusIcon, PlusIcon } from '@phosphor-icons/react';
+import Comments from './Comments';
 import { count, rowId, text } from './api';
 import { Dot, Empty, Loading, Message, SeverityGlyph } from './ui';
 import { fieldLabel } from './Records';
@@ -61,8 +62,9 @@ function MechanicalPanel({ deal }) {
   </details>;
 }
 
-function Finding({ finding, open, editable, dirty, onToggle, onEdit, onFindEvidence }) {
+function Finding({ finding, open, editable, dirty, onToggle, onEdit, onFindEvidence, trace }) {
   const judgment = finding.judgment || 'unreviewed';
+  const openThreads = trace?.counts?.[finding.id]?.open || 0;
   const decision = finding.recorded_decision, correction = finding.recorded_correction;
   return <article className="finding">
     <button className="finding-title" onClick={onToggle} aria-expanded={open}>
@@ -70,6 +72,7 @@ function Finding({ finding, open, editable, dirty, onToggle, onEdit, onFindEvide
         <strong>{finding.title || finding.id}</strong>
         <small>{[finding.source_label || finding.source_version, finding.rule].filter(Boolean).join(' · ')}{' · '}<span className="mono">{finding.id}</span></small>
       </span>
+      {openThreads > 0 && <span className="thread-mark mono" title={count(openThreads, 'open thread')}><ChatCircleIcon size={12} aria-hidden="true"/>{openThreads}<span className="sr-only"> open threads</span></span>}
       <span className={`finding-state mono tone-${JUDGMENT_TONE[judgment] || 'muted'}`}><Dot tone={JUDGMENT_TONE[judgment] || 'muted'}/>{judgment}</span>
       <CaretRightIcon size={16} className="caret" aria-hidden="true"/>
     </button>
@@ -127,15 +130,13 @@ function Finding({ finding, open, editable, dirty, onToggle, onEdit, onFindEvide
           </Select>
         </Field>
       </div>
-      <Field label={fieldLabel('Decision note', null, dirty.has('note'))} className={dirty.has('note') ? 'is-dirty' : ''}>
-        <Textarea resize="none" className="resizable-textarea" rows={3} value={finding.note || ''} disabled={!editable} onChange={(_, data) => onEdit(finding.id, 'note', data.value)}/>
-      </Field>
       {finding.actor && <p className="audit-line mono">Last decision by {finding.actor}{finding.at ? ` · ${friendlyDate(finding.at)}` : ''}</p>}
+      {trace && <Comments trace={trace} target={{ kind: 'finding', uid: finding.id }}/>}
     </div>}
   </article>;
 }
 
-export function ReviewTab({ deal, editable, open, onToggle, onEdit, dirtyFor, onFindEvidence, onOpenDocument }) {
+export function ReviewTab({ deal, editable, open, onToggle, onEdit, dirtyFor, onFindEvidence, onOpenDocument, trace }) {
   const findings = deal.findings || [], documents = deal.documents || [];
   return <div className="review-tab paper-column">
     <div className="section-head">
@@ -151,9 +152,10 @@ export function ReviewTab({ deal, editable, open, onToggle, onEdit, dirtyFor, on
     {findings.length
       ? <div className="finding-list">
           {findings.map(finding => <Finding key={finding.id} finding={finding} open={open === finding.id} editable={editable} dirty={dirtyFor(finding.id)}
-            onToggle={() => onToggle(open === finding.id ? null : finding.id)} onEdit={onEdit} onFindEvidence={onFindEvidence}/>)}
+            onToggle={() => onToggle(open === finding.id ? null : finding.id)} onEdit={onEdit} onFindEvidence={onFindEvidence} trace={trace}/>)}
         </div>
       : <Empty>No recorded findings for this version.</Empty>}
+    {trace && <div className="discussion"><Comments trace={trace} target={{ kind: 'deal' }} heading="Discussion"/></div>}
   </div>;
 }
 
@@ -207,7 +209,12 @@ export function ChangesTab({ data, loading }) {
   </div>;
 }
 
-export function HistoryTab({ data, loading, editable, onRestore, lastSaved }) {
+export function HistoryTab({ data, loading, editable, onRestore, lastSaved, focus }) {
+  useEffect(() => {
+    if (!focus || !data) return;
+    const frame = requestAnimationFrame(() => document.getElementById(`revision-${focus.revision}`)?.scrollIntoView({ block: 'start' }));
+    return () => cancelAnimationFrame(frame);
+  }, [focus?.nonce, data]);
   return <div className="history-tab paper-column">
     <div className="section-head">
       <h2>Revision history</h2>
@@ -216,7 +223,7 @@ export function HistoryTab({ data, loading, editable, onRestore, lastSaved }) {
     {lastSaved && <p className="section-note">{lastSaved}</p>}
     {loading && <Loading label="Loading history"/>}
     {!loading && !data?.history?.length && <Empty>No saved revisions yet.</Empty>}
-    {!loading && data?.history?.map(item => <article className="history-item" key={item.revision}>
+    {!loading && data?.history?.map(item => <article className={`history-item ${focus?.revision === item.revision ? 'focused' : ''}`} id={`revision-${item.revision}`} key={item.revision}>
       <div className="history-head">
         <div>
           <strong>Revision <span className="mono">{item.revision}</span></strong>
@@ -226,7 +233,7 @@ export function HistoryTab({ data, loading, editable, onRestore, lastSaved }) {
       </div>
       <p>{item.reason || 'Saved edit'}</p>
       {item.summary && item.summary !== count(item.changes?.length || 0, 'change') && <div className="history-summary mono">{typeof item.summary === 'string' ? item.summary : JSON.stringify(item.summary)}</div>}
-      {item.changes?.length > 0 && <details>
+      {item.changes?.length > 0 && <details open={focus?.revision === item.revision || undefined}>
         <summary><CaretRightIcon size={16} className="caret" aria-hidden="true"/><span className="mono">{count(item.changes.length, 'change')}</span></summary>
         {item.changes.map((change, i) => <Change key={i} change={change}/>)}
       </details>}

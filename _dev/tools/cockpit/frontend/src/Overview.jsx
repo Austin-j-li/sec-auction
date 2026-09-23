@@ -2,6 +2,7 @@ import React from 'react';
 import { WarningCircleIcon } from '@phosphor-icons/react';
 import { count } from './api';
 import { Empty } from './ui';
+import { displayName, tallyText } from './trace';
 
 function CheckLine({ check }) {
   if (!check) return null;
@@ -12,6 +13,16 @@ function CheckLine({ check }) {
       : count(errors, 'error')}
     {' · '}{count(warnings, 'warning')}
   </small>;
+}
+
+// "Alex · 12 edits, 3 comments since you last looked"; nothing when nothing is new.
+function UnseenLine({ unseen }) {
+  const parts = Object.entries(unseen?.by || {})
+    .map(([actor, counts]) => [actor, tallyText({ edits: counts?.edits || 0, comments: counts?.comments || 0 })])
+    .filter(([, summary]) => summary)
+    .map(([actor, summary]) => `${displayName(actor)} · ${summary}`);
+  if (!parts.length) return null;
+  return <small className="unseen-line">{parts.join('; ')} since you last looked</small>;
 }
 
 export default function Overview({ deals, onOpen }) {
@@ -52,6 +63,7 @@ export default function Overview({ deals, onOpen }) {
             <td>
               <a className="deal-link" href={`/deal/${item.slug}`} tabIndex={-1} onClick={event => onLinkClick(event, item.slug)}>{item.name || item.target || item.slug}</a>
               <small className="mono">{item.slug}</small>
+              <UnseenLine unseen={item.unseen}/>
             </td>
             <td className="mono">
               {item.form_type || '—'}

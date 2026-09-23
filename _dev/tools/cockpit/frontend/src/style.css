@@ -256,6 +256,8 @@ svg.tone-success, svg.tone-warning, svg.tone-error, svg.tone-muted, svg.tone-quo
   white-space: nowrap;
 }
 .access-state { display: inline-flex; align-items: center; font-size: var(--fs-12); }
+.header-link { color: var(--accent); text-decoration: none; }
+.header-link:hover { text-decoration: underline; }
 
 /* ── Overview ───────────────────────────────────────────────────────── */
 .overview-wrap {
@@ -308,6 +310,16 @@ svg.tone-success, svg.tone-warning, svg.tone-error, svg.tone-muted, svg.tone-quo
 .deal-link { color: var(--accent); font-weight: var(--fw-medium); text-decoration: none; }
 .deal-link:hover { text-decoration: underline; }
 .status-text { color: var(--ink-2); }
+.deal-table small.unseen-line { margin-top: var(--sp-2); color: var(--ink-2); }
+.activity-filters { display: flex; flex-wrap: wrap; gap: var(--sp-4); margin-bottom: var(--sp-5); }
+.activity-filters .fui-Select { width: 200px; }
+.activity-table { min-width: 760px; }
+.activity-table tbody tr { cursor: default; }
+.activity-table tbody tr:hover { background: none; }
+.activity-table td { vertical-align: top; }
+.activity-table td.mono { white-space: nowrap; }
+.activity-detail { max-width: 560px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.cockpit .fui-Button.load-more { margin-top: var(--sp-4); }
 .table-footnote { margin-top: var(--sp-3); font-size: var(--fs-12); line-height: var(--lh-12); color: var(--ink-3); }
 
 /* ── Deal shell and deal bar ────────────────────────────────────────── */
@@ -679,6 +691,10 @@ mark.search-mark.current { outline: 2px solid var(--accent); outline-offset: 1px
 .event-review { display: inline-flex; flex: none; align-self: center; margin-left: auto; }
 .quote-location + .event-review { margin-left: 0; }
 .event-review .dot { margin-right: 0; }
+/* Row marks: the other person's initials (changed since your last visit) and the open-thread count. Text only. */
+.row-marks { display: inline-flex; flex: none; align-items: baseline; gap: 6px; color: var(--ink-2); font-size: var(--fs-12); }
+.initials-mark { font-weight: var(--fw-medium); letter-spacing: 0.02em; }
+.thread-mark { display: inline-flex; align-items: center; gap: 2px; color: var(--ink-3); font-size: var(--fs-12); }
 .event-text {
   display: block;
   margin-top: var(--sp-1);
@@ -690,8 +706,9 @@ mark.search-mark.current { outline: 2px solid var(--accent); outline-offset: 1px
 }
 .event-text strong { font-weight: var(--fw-medium); }
 .event-detail { margin-left: 6px; font-size: var(--fs-12); color: var(--ink-3); }
-.sheet-item strong { display: block; font-size: var(--fs-12); line-height: var(--lh-12); font-weight: var(--fw-medium); }
-.sheet-item span {
+.sheet-item strong { display: block; min-width: 0; font-size: var(--fs-12); line-height: var(--lh-12); font-weight: var(--fw-medium); }
+.sheet-item-head { display: flex; align-items: baseline; gap: 6px; min-width: 0; }
+.sheet-item .sheet-item-body {
   display: block;
   margin-top: var(--sp-1);
   overflow: hidden;
@@ -813,6 +830,57 @@ mark.search-mark.current { outline: 2px solid var(--accent); outline-offset: 1px
 .review-box h3 { font-size: var(--fs-13); line-height: var(--lh-13); font-weight: var(--fw-medium); }
 .review-fields { display: grid; gap: var(--sp-4); margin-top: var(--sp-3); }
 .review-box .fui-Select, .review-box .fui-Textarea { width: 100%; }
+/* Last changed by: shown on the label line only while the field is hovered or focused. */
+.field-cell { position: relative; min-width: 0; }
+.field-author { position: absolute; top: -3px; right: 0; max-width: 70%; visibility: hidden; font-family: var(--font-mono); }
+.field-cell:hover .field-author,
+.field-cell:focus-within .field-author { visibility: visible; }
+.cockpit .field-author .fui-Button.link-button { min-height: 0; padding: 3px 0 3px 6px; font-family: var(--font-mono); font-size: var(--fs-12); line-height: var(--lh-12); }
+
+/* ── Comments: threads on a row, a finding or the deal ─────────────── */
+.comments { margin-top: var(--sp-6); padding-top: var(--sp-5); border-top: var(--divider); }
+.finding-body .comments { margin-top: var(--sp-5); padding-top: var(--sp-4); border-top: var(--hairline); }
+.discussion { margin-top: var(--sp-7); }
+.discussion .comments h4 { font-size: var(--fs-16); line-height: var(--lh-16); }
+.comments-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--sp-3); margin-bottom: var(--sp-2); }
+.comments h4 { font-size: var(--fs-13); line-height: var(--lh-13); font-weight: var(--fw-medium); }
+.comments-note { margin: var(--sp-2) 0; font-size: var(--fs-12); line-height: var(--lh-12); color: var(--ink-3); }
+.comments .message { margin: var(--sp-3) 0; }
+.thread { padding: var(--sp-3) 0; border-bottom: var(--hairline); }
+.thread.focused { border-left: 2px solid var(--accent); padding-left: var(--sp-3); }
+.thread-context { margin-bottom: var(--sp-2); font-size: var(--fs-12); line-height: var(--lh-12); color: var(--warning); }
+.thread-collapsed {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-3);
+  width: 100%;
+  min-width: 0;
+  padding: var(--sp-1) 0;
+  border: 0;
+  background: none;
+  font-size: var(--fs-12);
+  line-height: var(--lh-12);
+  color: var(--ink-3);
+  text-align: left;
+}
+.thread-collapsed .caret { align-self: center; }
+.thread-collapsed[aria-expanded="true"] .caret { transform: rotate(90deg); }
+.thread-collapsed:hover { color: var(--ink); }
+.thread-resolved-by { flex: none; }
+.thread-excerpt { flex: 1; min-width: 0; overflow: hidden; color: var(--ink-2); text-overflow: ellipsis; white-space: nowrap; }
+.comment + .comment { margin-top: var(--sp-3); }
+.comment-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 4px; font-size: var(--fs-12); line-height: var(--lh-12); color: var(--ink-3); }
+.comment-author { font-weight: var(--fw-medium); color: var(--ink); }
+.comment-tools { display: inline-flex; margin-left: auto; }
+.cockpit .comment-tools .fui-Button.link-button, .cockpit .thread-actions .fui-Button.link-button { padding: 2px 6px; font-size: var(--fs-12); line-height: var(--lh-12); }
+.comment-body { margin-top: var(--sp-1); font-size: var(--fs-13); line-height: var(--lh-13); color: var(--ink); white-space: pre-wrap; overflow-wrap: anywhere; }
+.comment.deleted .comment-meta { font-style: italic; }
+.replies { margin: var(--sp-3) 0 0 var(--sp-5); padding-left: var(--sp-4); border-left: var(--hairline); }
+.thread-actions { display: flex; gap: var(--sp-2); margin: var(--sp-2) 0 0 -6px; }
+.comment-draft { margin-top: var(--sp-3); }
+.comment-draft .fui-Textarea { width: 100%; }
+.cockpit .workspace-column .fui-Textarea.comment-textarea { min-height: 64px; }
+.comment-draft-actions { display: flex; gap: var(--sp-2); margin-top: var(--sp-2); }
 .other-sheet { display: flex; flex-direction: column; }
 .other-sheet > .section-head { flex: none; }
 .other-sheet > .sheet-body { flex: 1; min-height: 0; }
@@ -872,6 +940,7 @@ details[open] > summary .caret,
 .finding-title:hover { background: var(--tint); }
 .finding-heading strong { display: block; font-size: var(--fs-14); line-height: var(--lh-14); font-weight: var(--fw-medium); }
 .finding-heading small { display: block; margin-top: var(--sp-1); font-size: var(--fs-12); line-height: var(--lh-12); color: var(--ink-3); }
+.finding-title:has(.thread-mark) { grid-template-columns: minmax(0, 1fr) auto auto 16px; }
 .finding-state { display: inline-flex; align-items: center; font-size: var(--fs-12); white-space: nowrap; }
 .finding-state.tone-muted { color: var(--ink-3); }
 .finding-body { padding: 0 0 20px; font-size: var(--fs-14); line-height: var(--lh-14); color: var(--ink-2); }
@@ -914,6 +983,7 @@ details[open] > summary .caret,
 .change-fields dd { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
 .change-fields.removed dd { color: var(--error); text-decoration: line-through; }
 .history-item { padding: var(--sp-4) 0; border-top: var(--divider); }
+.history-item.focused { border-top: 2px solid var(--accent); }
 .history-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--sp-4); }
 .history-head strong { display: block; font-size: var(--fs-14); line-height: var(--lh-14); font-weight: var(--fw-medium); }
 .history-head span { display: block; font-size: var(--fs-12); line-height: var(--lh-12); color: var(--ink-3); }
@@ -923,6 +993,51 @@ details[open] > summary .caret,
 .history-item details { margin-top: var(--sp-3); color: var(--ink); }
 .history-item summary { display: inline-flex; align-items: center; gap: var(--sp-2); padding: var(--sp-2) 0; font-size: var(--fs-12); }
 .history-item details .change { margin-left: 20px; }
+
+/* ── What's new: the other person's unseen activity, above the workspace tabs ── */
+.whats-new { flex: none; padding: var(--sp-2) var(--sp-5); background: var(--paper); border-bottom: var(--divider); font-size: var(--fs-13); line-height: var(--lh-13); }
+.whats-new-head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-1) var(--sp-3); }
+.whats-new-toggle {
+  display: flex;
+  flex: 1 1 260px;
+  align-items: baseline;
+  gap: var(--sp-3);
+  min-width: 0;
+  padding: var(--sp-2) 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  text-align: left;
+}
+.whats-new-toggle .caret { align-self: center; }
+.whats-new-toggle[aria-expanded="true"] .caret { transform: rotate(90deg); }
+.whats-new-toggle strong { flex: none; font-weight: var(--fw-medium); }
+.whats-new-meta { min-width: 0; font-size: var(--fs-12); line-height: var(--lh-12); color: var(--ink-3); }
+.whats-new-actions { display: inline-flex; align-items: center; gap: var(--sp-2); }
+.whats-new-error { font-size: var(--fs-12); line-height: var(--lh-12); }
+.whats-new-body { max-height: 32vh; margin: 0 0 var(--sp-2) 22px; overflow: auto; }
+.whats-new-group { border-top: var(--hairline); }
+.whats-new-group > summary { display: flex; align-items: baseline; gap: var(--sp-2); padding: 6px 0; list-style: none; cursor: pointer; font-size: var(--fs-12); line-height: var(--lh-12); color: var(--ink-2); }
+.whats-new-group > summary::-webkit-details-marker { display: none; }
+.whats-new-group > summary .caret { align-self: center; }
+.whats-new-group > summary strong { font-weight: var(--fw-medium); color: var(--ink); }
+.whats-new-group ul { margin: 0 0 var(--sp-2) 22px; }
+.whats-new-item {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 0 var(--sp-3);
+  width: 100%;
+  padding: var(--sp-1) var(--sp-2);
+  border: 0;
+  background: none;
+  font-size: var(--fs-12);
+  line-height: var(--lh-12);
+  color: var(--ink-2);
+  text-align: left;
+}
+.whats-new-item:hover { background: var(--tint); }
+.whats-new-kind { color: var(--accent); }
+.whats-new-summary { grid-column: 2; overflow: hidden; color: var(--ink); text-overflow: ellipsis; white-space: nowrap; }
 
 /* ── Save dock: docked under the workspace column, never over the form ── */
 .save-dock {
@@ -1002,10 +1117,15 @@ details[open] > summary .caret,
 .finding-title:focus-visible,
 .deal-table tbody tr:focus-visible,
 .mechanical-panel > summary:focus-visible,
+.whats-new-toggle:focus-visible,
+.whats-new-group > summary:focus-visible,
+.whats-new-item:focus-visible,
+.thread-collapsed:focus-visible,
 .history-item summary:focus-visible,
 .tab-scroll-control:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 /* Splitters show focus with their thickened 2 px accent rule (see .split-handle::before), not a second outline. */
 .split-handle:focus-visible { outline: none; }
+.header-link:focus-visible,
 .deal-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 /* ── Motion ─────────────────────────────────────────────────────────── */

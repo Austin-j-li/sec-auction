@@ -155,7 +155,6 @@ async function run() {
   await page.waitForFunction(() => document.querySelector('input[aria-label="Search filing"]')?.value.startsWith('Acme received'));
   record('finding to source search', (await page.getByRole('textbox', { name: 'Search filing' }).inputValue()).startsWith('Acme received'));
   await page.getByRole('combobox', { name: 'Finding judgment' }).selectOption('supported');
-  await page.getByRole('textbox', { name: 'Decision note' }).fill('Synthetic browser decision');
   await screenshot(page, 'desktop-review-edit.png');
   await saveUi(page, 'Browser edited all four sheets');
   const saved = await api(page, '/api/deal/synthetic');

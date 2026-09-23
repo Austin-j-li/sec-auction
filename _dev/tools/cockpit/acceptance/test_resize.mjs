@@ -151,15 +151,15 @@ async function run() {
   }
   await page.getByRole('tab', { name: /^Review/ }).click();
   await page.locator('.finding-title').first().click();
-  const decision = page.locator('.finding-body .resizable-textarea').first();
-  const decisionHeight = await height(decision);
-  await drag(page, decision, -35, 60, true);
-  assert.ok(await height(decision) > decisionHeight + 25, 'decision note resizes');
+  const findingComment = page.locator('.finding-body .comments .resizable-textarea').first();
+  const findingHeight = await height(findingComment);
+  await drag(page, findingComment, -35, 60, true);
+  assert.ok(await height(findingComment) > findingHeight + 25, 'finding comment box resizes');
   await page.getByRole('tab', { name: /^Ledger/ }).click();
-  const reviewNote = page.locator('.review-box .resizable-textarea');
-  const reviewHeight = await height(reviewNote);
-  await drag(page, reviewNote, -35, 60, true);
-  assert.ok(await height(reviewNote) > reviewHeight + 25, 'review note resizes');
+  const rowComment = page.locator('.comments .resizable-textarea').first();
+  const rowHeight = await height(rowComment);
+  await drag(page, rowComment, -35, 60, true);
+  assert.ok(await height(rowComment) > rowHeight + 25, 'event comment box resizes');
 
   await main.focus();
   await page.keyboard.press('Home');

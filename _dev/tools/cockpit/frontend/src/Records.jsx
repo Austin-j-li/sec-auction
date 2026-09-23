@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Button, Field, Input, Select, Textarea } from '@fluentui/react-components';
-import { ArrowDownIcon, ArrowsSplitIcon, ArrowUpIcon, InfoIcon, PlusIcon, QuotesIcon, TrashIcon, WarningIcon } from '@phosphor-icons/react';
+import { ArrowDownIcon, ArrowsSplitIcon, ArrowUpIcon, ChatCircleIcon, InfoIcon, PlusIcon, QuotesIcon, TrashIcon, WarningIcon } from '@phosphor-icons/react';
 import SplitPane from './SplitPane';
+import Comments from './Comments';
 import { count, recordValues, rowId, sheetColumns, sheetRows, text } from './api';
+import { changedByOther, displayName, initials, shortTime } from './trace';
 import { Dot, Empty, SeverityGlyph } from './ui';
 
 const LONG_FIELDS = new Set(['Note', 'Quote and page', 'Reviewer note', 'Question', 'Recommended answer', 'Why, with page', 'Rows affected', 'What changes if answered differently', 'How opened', 'Who was in', 'Due dates', 'Deadline outcome', 'Bids received', 'How it ended', 'Value']);
@@ -92,7 +94,27 @@ export function fieldLabel(field, severity, dirty) {
   };
 }
 
-function RecordForm({ sheet, columns, row, choices, editable, onEdit, dirtyFields }) {
+// Last changed by: hidden until the field is hovered or focused; links to that revision in History.
+function FieldAuthor({ author, field, onOpenRevision }) {
+  if (!author?.actor) return null;
+  const label = [displayName(author.actor), author.at && shortTime(author.at), author.revision != null && `revision ${author.revision}`].filter(Boolean).join(' · ');
+  return <span className="field-author">
+    <Button appearance="subtle" className="link-button" aria-label={`${field} last changed by ${label}; open history`} onClick={() => onOpenRevision?.(author.revision)}>{label}</Button>
+  </span>;
+}
+
+// Initials of the other person who changed this row since the reader's last visit, and its open-thread count.
+function RowMarks({ trace, uid }) {
+  const other = changedByOther(trace?.authors?.[uid], trace?.user, trace?.seenRevision);
+  const open = trace?.counts?.[uid]?.open || 0;
+  if (!other && !open) return null;
+  return <span className="row-marks mono">
+    {other && <span className="initials-mark" title={`Changed by ${displayName(other)} since your last visit`}>{initials(other)}</span>}
+    {open > 0 && <span className="thread-mark" title={count(open, 'open thread')}><ChatCircleIcon size={12} aria-hidden="true"/>{open}<span className="sr-only"> open threads</span></span>}
+  </span>;
+}
+
+function RecordForm({ sheet, columns, row, choices, editable, onEdit, dirtyFields, authors, onOpenRevision }) {
   const values = recordValues(row, sheet);
   const severities = worstSeverityByField(row.issues);
   const ordered = columns.includes(EVIDENCE_FIELD) ? [EVIDENCE_FIELD, ...columns.filter(field => field !== EVIDENCE_FIELD)] : columns;
@@ -128,13 +150,16 @@ function RecordForm({ sheet, columns, row, choices, editable, onEdit, dirtyField
           disabled={!editable || (sheet === 'Deal ledger' && field === '#')}
           onChange={change}/>;
       }
-      const classes = [isLong && 'span-all', isEvidence && 'evidence-field', dirty && 'is-dirty'].filter(Boolean).join(' ');
-      return <Field key={field} label={fieldLabel(field, severities.get(field), dirty)} hint={hint} className={classes}>{input}</Field>;
+      const classes = ['field-cell', isLong && 'span-all', isEvidence && 'evidence-field', dirty && 'is-dirty'].filter(Boolean).join(' ');
+      return <div key={field} className={classes}>
+        <Field label={fieldLabel(field, severities.get(field), dirty)} hint={hint}>{input}</Field>
+        <FieldAuthor author={authors?.[field]} field={field} onOpenRevision={onOpenRevision}/>
+      </div>;
     })}
   </div>;
 }
 
-function EventSummary({ row, selected, onClick, review }) {
+function EventSummary({ row, selected, onClick, review, trace }) {
   const c = row.cells || {};
   const isNew = row.uid.startsWith('new-');
   const date = c.When || 'Date unstated';
@@ -146,6 +171,7 @@ function EventSummary({ row, selected, onClick, review }) {
         ? <span className="event-number mono tone-warning"><Dot tone="warning"/> New</span>
         : <span className="event-number mono">#{rowId(row)}</span>}
       <span className="event-date mono" title={date}>{date}</span>
+      <RowMarks trace={trace} uid={row.uid}/>
       {row.quote && (row.quote.located
         ? <span className="quote-location mono">{row.quote.found_page ? `p. ${row.quote.found_page}` : 'located'}</span>
         : <span className="quote-location missing"><WarningIcon size={12} className="tone-warning" aria-hidden="true"/> no quote</span>)}
@@ -214,11 +240,11 @@ function SourceSummary({ row, onShowFiling }) {
   </div>;
 }
 
-export function LedgerTab({ deal, selectedUid, onSelect, onShowFiling, onOpenQuestion, onStep, onAdd, onMove, onDelete, onEdit, onReview, editable, selection, dirtyFor, reviewDirty }) {
+export function LedgerTab({ deal, selectedUid, onSelect, onShowFiling, onOpenQuestion, onStep, onAdd, onMove, onDelete, onEdit, onReview, editable, selection, dirtyFor, reviewDirty, trace }) {
   const rows = deal.ledger?.rows || [];
   const index = rows.findIndex(row => row.uid === selectedUid);
   const row = selection || rows[0];
-  const review = row ? deal.row_review?.[row.uid] || { status: 'unreviewed', note: '' } : null;
+  const review = row ? deal.row_review?.[row.uid] || { status: 'unreviewed' } : null;
   const reviewTouched = row ? reviewDirty(row.uid) : new Set();
   const editorRef = useRef(null);
   const listRef = useRef(null);
@@ -234,7 +260,7 @@ export function LedgerTab({ deal, selectedUid, onSelect, onShowFiling, onOpenQue
       </div>
       <div className="event-list">
         {rows.length
-          ? rows.map(item => <EventSummary key={item.uid} row={item} selected={item.uid === row?.uid} onClick={() => onSelect(item.uid)} review={deal.row_review?.[item.uid]}/>)
+          ? rows.map(item => <EventSummary key={item.uid} row={item} selected={item.uid === row?.uid} onClick={() => onSelect(item.uid)} review={deal.row_review?.[item.uid]} trace={trace}/>)
           : <Empty>No events in this ledger. Add the first event to begin.</Empty>}
       </div>
     </div>
@@ -255,29 +281,27 @@ export function LedgerTab({ deal, selectedUid, onSelect, onShowFiling, onOpenQue
           onClone={() => onAdd('Deal ledger', row.uid)} onDelete={() => onDelete('Deal ledger', row.uid)}/>
         <SourceSummary row={row} onShowFiling={onShowFiling}/>
         <Issues key={row.uid} issues={row.issues} pageHint={deal.pages_reliable ? row.page_hint : null}/>
-        <RecordForm sheet="Deal ledger" columns={deal.ledger.columns} row={row} choices={deal.choices} editable={editable} onEdit={onEdit} dirtyFields={dirtyFor('Deal ledger', row.uid)}/>
+        <RecordForm sheet="Deal ledger" columns={deal.ledger.columns} row={row} choices={deal.choices} editable={editable} onEdit={onEdit} dirtyFields={dirtyFor('Deal ledger', row.uid)} authors={trace?.authors?.[row.uid]} onOpenRevision={trace?.onOpenRevision}/>
         <QuestionLinks flag={row.cells?.Flag} questions={deal.questions?.rows || []} onOpen={onOpenQuestion}/>
         <section className="review-box">
           <h3>Row review</h3>
           <div className="review-fields">
             <Field label={fieldLabel('Status', null, reviewTouched.has('status'))} className={reviewTouched.has('status') ? 'is-dirty' : ''} hint="Records a reader’s judgment; it does not certify that the filing is complete.">
-              <Select value={review.status || 'unreviewed'} disabled={!editable} onChange={(_, data) => onReview(row.uid, data.value, review.note || '')}>
+              <Select value={review.status || 'unreviewed'} disabled={!editable} onChange={(_, data) => onReview(row.uid, data.value)}>
                 <option value="unreviewed">Unreviewed</option>
                 <option value="reviewed">Reviewed</option>
                 <option value="needs_decision">Needs decision</option>
               </Select>
             </Field>
-            <Field label={fieldLabel('Review note', null, reviewTouched.has('note'))} className={reviewTouched.has('note') ? 'is-dirty' : ''}>
-              <Textarea value={review.note || ''} disabled={!editable} onChange={(_, data) => onReview(row.uid, review.status || 'unreviewed', data.value)} resize="none" className="resizable-textarea"/>
-            </Field>
           </div>
         </section>
+        {trace && <Comments key={row.uid} trace={trace} target={{ kind: 'row', sheet: 'Deal ledger', uid: row.uid }}/>}
       </> : <Empty>Select an event or add a new one.</Empty>}
     </div>
   </SplitPane>;
 }
 
-export function SheetTab({ deal, sheet, selectedUid, onSelect, onAdd, onMove, onDelete, onEdit, editable, onJumpRow, dirtyFor }) {
+export function SheetTab({ deal, sheet, selectedUid, onSelect, onAdd, onMove, onDelete, onEdit, editable, onJumpRow, dirtyFor, trace }) {
   const rows = sheetRows(deal, sheet);
   const selected = rows.find(row => row.uid === selectedUid) || rows[0];
   const index = rows.findIndex(row => row.uid === selected?.uid);
@@ -300,8 +324,8 @@ export function SheetTab({ deal, sheet, selectedUid, onSelect, onAdd, onMove, on
           const title = sheet === 'Deal facts' ? values.Field : sheet === 'Questions' ? values.Q || values.Question : `Process ${values.Process || '—'} · Round ${values.Round || '—'}`;
           const body = sheet === 'Deal facts' ? values.Value : sheet === 'Questions' ? values.Question : values['How opened'];
           return <button key={row.uid} className={`sheet-item ${row.uid === selected?.uid ? 'selected' : ''}`} onClick={() => onSelect(sheet, row.uid)}>
-            <strong className={sheet === 'Deal facts' ? '' : 'mono'}>{title || 'New row'}</strong>
-            <span title={text(body)}>{text(body)}</span>
+            <span className="sheet-item-head"><strong className={sheet === 'Deal facts' ? '' : 'mono'}>{title || 'New row'}</strong><RowMarks trace={trace} uid={row.uid}/></span>
+            <span className="sheet-item-body" title={text(body)}>{text(body)}</span>
           </button>;
         })}
         {!rows.length && <Empty>No records on this sheet.</Empty>}
@@ -315,8 +339,9 @@ export function SheetTab({ deal, sheet, selectedUid, onSelect, onAdd, onMove, on
             onUp={() => onMove(sheet, selected.uid, -1)} onDown={() => onMove(sheet, selected.uid, 1)}
             onDelete={() => onDelete(sheet, selected.uid)}/>
           <Issues key={selected.uid} issues={selected.issues}/>
-          <RecordForm sheet={sheet} columns={columns} row={selected} choices={deal.choices} editable={editable} onEdit={onEdit} dirtyFields={dirtyFor(sheet, selected.uid)}/>
+          <RecordForm sheet={sheet} columns={columns} row={selected} choices={deal.choices} editable={editable} onEdit={onEdit} dirtyFields={dirtyFor(sheet, selected.uid)} authors={trace?.authors?.[selected.uid]} onOpenRevision={trace?.onOpenRevision}/>
           {sheet === 'Questions' && selected.cells?.['Rows affected'] && <ReferenceLinks value={selected.cells['Rows affected']} deal={deal} onJumpRow={onJumpRow}/>}
+          {trace && <Comments key={`${sheet}:${selected.uid}`} trace={trace} target={{ kind: 'row', sheet, uid: selected.uid }}/>}
         </> : <Empty>Select a record or add one.</Empty>}
       </div>
     </SplitPane>
