@@ -1,5 +1,7 @@
 # Deployed cockpit: Astra review
 
+> Note (23 Sep 2026): the screenshots this record cites showed the pre-redesign, multi-version interface and were deleted from the repository. They remain in Git history at `2dfb68f`.
+
 On 22 September 2026 at approximately 00:17–00:20 UTC, the lead inspected the deployed application in the persistent visible VM Chrome session. Production research data were not edited.
 
 - The local overview listed all nine deals, their current bases, counts, quote-location aids and mechanical results.

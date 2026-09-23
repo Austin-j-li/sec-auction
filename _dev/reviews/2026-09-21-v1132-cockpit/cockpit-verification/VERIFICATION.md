@@ -1,5 +1,7 @@
 # Cockpit acceptance, 22 September 2026
 
+> Note (23 Sep 2026): the screenshots this record cites showed the pre-redesign, multi-version interface and were deleted from the repository. They remain in Git history at `2dfb68f`.
+
 The editable cockpit passed the disposable HTTP contract suite, the synthetic browser workflow, a long-ledger raw preview, and read-only previews of the nine-deal catalog. These checks establish working software behavior; they do not adjudicate extraction content or prove public Cloudflare authentication.
 
 ## Exact checks and evidence

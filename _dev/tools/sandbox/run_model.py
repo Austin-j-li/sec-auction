@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prepare, launch, and monitor isolated extraction runs (Opus; Sol and DeepSeek transports retained)."""
+"""Prepare, launch, and monitor isolated extraction runs (Opus; Sol transport retained)."""
 
 from __future__ import annotations
 
@@ -35,14 +35,11 @@ CLAUDE_BIN = Path(os.environ.get("SEC_CLAUDE_BIN") or shutil.which("claude") or 
 # read-only sandbox cannot write back, and so log the host out.
 CLAUDE_TOKEN_FILE = Path(os.environ.get("SEC_CLAUDE_OAUTH_TOKEN_FILE")
                          or HOME_HOST / ".config/sec-extraction/claude-oauth-token")
-OPENCODE_BIN = Path(os.environ.get("SEC_OPENCODE_BIN") or shutil.which("opencode") or "/missing/opencode").resolve()
-OPENCODE_SANDBOX = Path("/opt/opencode")
-OPENCODE_AUTH = HOME_HOST / ".local/share/opencode/auth.json"
 # Models and effort levels each provider may be prepared with. The first model is the default.
-MODELS = {"sol": ("gpt-6-sol", "gpt-5.6-sol"), "opus": ("claude-opus-5-5", "claude-opus-5"), "deepseek": ("deepseek/deepseek-flash",)}
+MODELS = {"sol": ("gpt-6-sol", "gpt-5.6-sol"), "opus": ("claude-opus-5-5", "claude-opus-5")}
 # Codex's "ultra" level delegates to subagents automatically, so it is not offered.
-EFFORTS = {"sol": ("low", "medium", "high", "xhigh", "max"), "opus": ("low", "medium", "high", "xhigh", "max"), "deepseek": ("max",)}
-DEFAULT_EFFORT = {"sol": "xhigh", "opus": "medium", "deepseek": "max"}  # Opus: 22 Sep 2026 effort sweep
+EFFORTS = {"sol": ("low", "medium", "high", "xhigh", "max"), "opus": ("low", "medium", "high", "xhigh", "max")}
+DEFAULT_EFFORT = {"sol": "xhigh", "opus": "medium"}  # Opus: 22 Sep 2026 effort sweep
 # Claude Code settings for every Opus run. A classifier refusal fails the run instead of switching
 # models; the prompt-cache lifetime stays the subscription default; and the "user hasn't heard
 # from you" reminder never fires, since no one reads a sandboxed run while it works.
@@ -125,23 +122,11 @@ def run_usage(events_path: Path) -> dict[str, object] | None:
     usage is summed over a run and its continuations; total_cost_usd is cumulative for the
     session, so the last one is the run's cost.
     Codex reports usage per "turn.completed" event and no cost; turns are summed.
-    opencode reports tokens and cost per "step_finish" event; steps are summed.
     """
     totals: dict[str, float] = {}
     cost = None
     found = False
     for event in events(events_path):
-        if event.get("type") == "step_finish":
-            part = event.get("part") or {}
-            tokens = dict(part.get("tokens") or {})
-            cache = tokens.pop("cache", None) or {}
-            tokens.update({f"cache_{key}": value for key, value in cache.items()})
-            for key, value in tokens.items():
-                if key != "total" and isinstance(value, (int, float)):
-                    totals[f"{key}_tokens"] = totals.get(f"{key}_tokens", 0) + value
-            cost = (cost or 0) + (part.get("cost") or 0)
-            found = True
-            continue
         if event.get("type") not in ("result", "turn.completed"):
             continue
         usage = event.get("usage")
@@ -354,11 +339,6 @@ def bwrap_base(run_dir: Path, provider: str, state: Path, scratch: Path) -> list
             "--ro-bind", str(HOME_HOST / ".codex/auth.json"), str(SANDBOX_HOME / ".codex/auth.json"),
             "--setenv", "CODEX_HOME", str(SANDBOX_HOME / ".codex"),
         ]
-    elif provider == "deepseek":
-        xdg = SANDBOX_HOME / ".xdg"
-        command += ["--bind", str(state), str(xdg), "--ro-bind", str(OPENCODE_BIN), str(OPENCODE_SANDBOX)]
-        for name in ("data", "config", "state", "cache"):
-            command += ["--setenv", f"XDG_{name.upper()}_HOME", str(xdg / name)]
     else:
         command += [
             "--ro-bind", str(CLAUDE_BIN), str(CLAUDE_SANDBOX),
@@ -388,11 +368,6 @@ def provider_command(run_dir: Path, provider: str, metadata: dict,
             "--json", "--color", "never", "--model", model,
             "-c", f'model_reasoning_effort="{effort}"', "-c", 'web_search="disabled"', *disabled,
             "-C", str(WORK), prompt,
-        ]
-    if provider == "deepseek":
-        return [
-            str(OPENCODE_SANDBOX), "run", "--pure", "--auto", "--agent", "build",
-            "--model", model, "--variant", effort, "--format", "json", prompt,
         ]
     command = [
         str(CLAUDE_SANDBOX), "--print", "--output-format", "stream-json", "--verbose",
@@ -481,9 +456,9 @@ def codex_token_hours_left(auth: Path) -> float | None:
 def preflight(provider: str) -> Path:
     if not shutil.which("bwrap"):
         raise SystemExit("bubblewrap (bwrap) is required")
-    binary = {"sol": CODEX_BIN, "deepseek": OPENCODE_BIN}.get(provider, CLAUDE_BIN)
+    binary = CODEX_BIN if provider == "sol" else CLAUDE_BIN
     if not binary.is_file() or not os.access(binary, os.X_OK):
-        raise SystemExit(f"provider executable not found: {binary}; set SEC_CODEX_BIN, SEC_CLAUDE_BIN or SEC_OPENCODE_BIN")
+        raise SystemExit(f"provider executable not found: {binary}; set SEC_CODEX_BIN or SEC_CLAUDE_BIN")
     if provider == "sol" and (binary.parent.name != "bin" or binary.name != "codex"):
         raise SystemExit("SEC_CODEX_BIN must resolve to a standalone release's bin/codex")
     if provider == "opus":
@@ -493,12 +468,12 @@ def preflight(provider: str) -> Path:
         if CLAUDE_TOKEN_FILE.stat().st_mode & 0o077:
             raise SystemExit(f"{CLAUDE_TOKEN_FILE} must be readable by its owner only (chmod 600)")
         return binary
-    credential = {"sol": HOME_HOST / ".codex/auth.json", "deepseek": OPENCODE_AUTH}[provider]
+    credential = HOME_HOST / ".codex/auth.json"
     if not credential.is_file():
         raise SystemExit(f"provider authentication file is missing: {credential}")
     # The Codex login is bound read-only. A sandboxed refresh would rotate its refresh token and
     # log the host out, so a run starts only while the access token outlasts any run.
-    hours = codex_token_hours_left(credential) if provider == "sol" else None
+    hours = codex_token_hours_left(credential)
     if hours is not None and hours < CODEX_TOKEN_MARGIN_HOURS:
         raise SystemExit(f"the host Codex login expires in {hours:.1f} h; renew it on the host (codex login) "
                          f"so a sandboxed run never has to")
@@ -570,21 +545,6 @@ def run_worker(args: argparse.Namespace, state: Path, scratch: Path) -> int:
         cache = HOME_HOST / ".codex/models_cache.json"
         if cache.is_file():
             shutil.copy2(cache, state / "models_cache.json")
-
-    if args.provider == "deepseek":
-        # opencode state lives in the temporary directory: the DeepSeek key alone, web access denied.
-        for name in ("data/opencode", "config/opencode", "state", "cache/opencode"):
-            (state / name).mkdir(parents=True)
-        key = json.loads(OPENCODE_AUTH.read_text(encoding="utf-8"))["deepseek"]
-        auth = state / "data/opencode/auth.json"
-        write_json(auth, {"deepseek": key})
-        write_json(state / "config/opencode/opencode.jsonc", {
-            "$schema": "https://opencode.ai/config.json",
-            "permission": {"edit": "allow", "bash": "allow", "webfetch": "deny", "external_directory": "allow"},
-        })
-        models = HOME_HOST / ".cache/opencode/models.json"
-        if models.is_file():
-            shutil.copy2(models, state / "cache/opencode/models.json")
 
     base = bwrap_base(run_dir, args.provider, state, scratch)
     started = time.monotonic()
@@ -769,7 +729,7 @@ def parser() -> argparse.ArgumentParser:
     root = argparse.ArgumentParser()
     sub = root.add_subparsers(dest="command", required=True)
     p = sub.add_parser("prepare")
-    p.add_argument("--provider", choices=["sol", "opus", "deepseek"], required=True)
+    p.add_argument("--provider", choices=["sol", "opus"], required=True)
     p.add_argument("--run-dir", required=True)
     p.add_argument("--deal", required=True)
     p.add_argument("--filing", required=True)
@@ -781,11 +741,11 @@ def parser() -> argparse.ArgumentParser:
     p.add_argument("--report", help="checker findings in plain text, required with --revise-from")
     p.set_defaults(func=prepare)
     p = sub.add_parser("launch")
-    p.add_argument("--provider", choices=["sol", "opus", "deepseek"], required=True)
+    p.add_argument("--provider", choices=["sol", "opus"], required=True)
     p.add_argument("--run-dir", required=True)
     p.set_defaults(func=launch)
     p = sub.add_parser("worker")
-    p.add_argument("--provider", choices=["sol", "opus", "deepseek"], required=True)
+    p.add_argument("--provider", choices=["sol", "opus"], required=True)
     p.add_argument("--run-dir", required=True)
     p.set_defaults(func=worker)
     p = sub.add_parser("status")

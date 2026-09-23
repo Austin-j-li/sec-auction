@@ -38,7 +38,6 @@ The nine workbooks total **3 mechanical errors and 161 warnings**. Those are che
 | `_dev/tools/cockpit/` | Python API/storage/import tools, React frontend source, built assets and tests. |
 | `_dev/maintenance/2026-09-22-consolidation/` | Exact deletion inventory, preservation checks and consolidation verification. |
 | `_dev/maintenance/2026-09-22-cockpit-redesign/` | Design brief, audit and implementation/review log for the redesign deployed 23 September. |
-| `_dev/maintenance/2026-09-22-doc-refresh/` | Documentation inventory, protected-file baseline, link audit and current-navigation refresh. |
 
 The Grok and Sol comparison worktrees, their local branches, their raw results, the derived three-model packet and the superseded pre-build pipeline proposal are retired. Their contents are hard-deleted, not archived as a competing development tree. Deletion records contain paths and hashes rather than workbook cells or report copies. The former detached `7877` checkout is unregistered and retains only a relocation note: live tool processes still use its directory, so its directory inode is retained without stale project files. The main checkout is the sole development worktree.
 

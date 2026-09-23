@@ -127,12 +127,6 @@ class RunnerTests(unittest.TestCase):
             self.assertEqual(run_model.run_usage(events), {
                 "tokens": {"input_tokens": 4, "output_tokens": 6}, "cost_usd": None,
             })
-            events.write_text("".join(json.dumps({"type": "step_finish", "part": {
-                "tokens": {"total": 9, "input": 1, "output": 2, "cache": {"read": 6, "write": 0}}, "cost": 0.25,
-            }}) + "\n" for _ in range(2)))
-            self.assertEqual(run_model.run_usage(events), {"tokens": {
-                "input_tokens": 2, "output_tokens": 4, "cache_read_tokens": 12, "cache_write_tokens": 0,
-            }, "cost_usd": 0.5})
             events.write_text("")
             self.assertIsNone(run_model.run_usage(events))
 
