@@ -29,6 +29,7 @@ SLUG_PATH_RE = re.compile(r"/api/(deal|filing)/([^/]*)")
 DEAL_ACTION_RE = re.compile(r"/api/deal/([^/]*)/(history|changes|export|edit|comments|activity|seen|jobs|versions|compare)")
 DOCUMENT_RE = re.compile(r"/api/document/([^/]*)/([^/]*)")
 LOOKUP_RE = re.compile(r"/api/lookup/([0-9a-f]{32})")
+DEAL_VISIBILITY_RE = re.compile(r"/api/deals/([^/]*)/visibility")
 INSTRUCTION_RE = re.compile(r"/api/instructions/([0-9a-f]{12})")
 PAGE_PATH_RE = re.compile(r"/deal/[^/]*/?|/activity/?|/settings/?|/instructions/?")
 MAX_JSON = 1024 * 1024
@@ -147,7 +148,7 @@ class Handler(BaseHTTPRequestHandler):
                     version = query.get("version", ["working"])[0]
                     payload = self.cockpit.deal(slug, version=version)
                     actor, _ = self._identity()
-                    if self.cockpit.workspace.available: payload.update(self.cockpit.trace.deal_extras(slug, actor, version))
+                    if self.cockpit.workspace.available: payload.update(self._deal_extras(slug, actor, version))
                     return self._json({**payload, "reader": actor})
                 return self._json(self.cockpit.filing_payload(slug))
             match = DEAL_ACTION_RE.fullmatch(path)
@@ -172,6 +173,7 @@ class Handler(BaseHTTPRequestHandler):
                 version = query.get("version", ["working"])[0]
                 content = self.cockpit.workspace.export(slug, version)
                 return self._send(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", Content_Disposition=f'attachment; filename="{slug}-{version}.xlsx"')
+            if DEAL_VISIBILITY_RE.fullmatch(path): return self._not_allowed()
             match = DOCUMENT_RE.fullmatch(path)
             if match:
                 if not self.cockpit.workspace.available: return self._json({"error": "workspace unavailable"}, 404)
@@ -204,7 +206,8 @@ class Handler(BaseHTTPRequestHandler):
     def _route_post(self) -> None:
         path = urlparse(self.path).path
         match = DEAL_ACTION_RE.fullmatch(path)
-        if path not in ("/api/account/claude", "/api/account/chatgpt", "/api/deals", "/api/instructions") and (not match or match.group(2) not in ("edit", "comments", "seen", "jobs", "versions")): return self._not_allowed()
+        visibility = DEAL_VISIBILITY_RE.fullmatch(path)
+        if path not in ("/api/account/claude", "/api/account/chatgpt", "/api/deals", "/api/instructions") and not visibility and (not match or match.group(2) not in ("edit", "comments", "seen", "jobs", "versions")): return self._not_allowed()
         if not self.cockpit.workspace.available: return self._json({"error": "workspace unavailable"}, 404)
         actor, can_edit = self._identity()
         if not can_edit or not self._origin_ok() or not secrets.compare_digest(self.headers.get("X-Cockpit-CSRF") or "", self.csrf_token):
@@ -218,6 +221,7 @@ class Handler(BaseHTTPRequestHandler):
             if path == "/api/deals": return self._json(self.cockpit.deals.request(actor, body))
             if path == "/api/instructions": return self._json(self.cockpit.instructions.request(actor, body))
             if path == "/api/account/chatgpt": return self._json(self.cockpit.runs.chatgpt_action(actor, body))
+            if visibility: return self._json(self.cockpit.deals.visibility(unquote(visibility.group(1)), actor, body))
             if match is None: return self._json(self.cockpit.runs.account_action(actor, body))
             slug, action = unquote(match.group(1)), match.group(2)
             if action == "jobs": return self._json(self.cockpit.runs.job_action(slug, actor, body))
@@ -225,7 +229,7 @@ class Handler(BaseHTTPRequestHandler):
             if action == "comments": return self._json(self.cockpit.trace.comment(slug, body, actor))
             if action == "seen": return self._json(self.cockpit.trace.mark_seen(slug, body, actor))
             payload = self.cockpit.workspace.edit(slug, body, actor)
-            payload.update(self.cockpit.trace.deal_extras(slug, actor))
+            payload.update(self._deal_extras(slug, actor))
             return self._json({**payload, "reader": actor})
         except (UnicodeDecodeError, json.JSONDecodeError): return self._json({"error": "invalid JSON"}, 400)
         except data.DealNotFound as exc: return self._json({"error": str(exc)}, 404)
@@ -233,6 +237,10 @@ class Handler(BaseHTTPRequestHandler):
         except Exception as exc:
             traceback.print_exc(file=sys.stderr)
             return self._json({"error": f"internal error ({type(exc).__name__}); see the server log"}, 500)
+
+    def _deal_extras(self, slug: str, actor: str, version: str = "working") -> dict[str, Any]:
+        """Additions to a deal payload: trace extras plus whether the deal is hidden (and by whom, when)."""
+        return {**self.cockpit.trace.deal_extras(slug, actor, version), **self.cockpit.deals.visibility_of(slug)}
 
     def _not_allowed(self) -> None:
         return self._json({"error": "method not allowed"}, 405)

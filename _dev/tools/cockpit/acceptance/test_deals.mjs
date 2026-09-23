@@ -1,4 +1,4 @@
-/* Add-deal acceptance: seed search, pasted link with document choice, pending page, Add and extract through the fake runner. No network or model is used. */
+/* Add-deal acceptance: seed search, pasted link with document choice, pending page, Add and extract through the fake runner, then hiding and unhiding deals. No network or model is used. */
 /* Run from repo root: node _dev/tools/cockpit/acceptance/test_deals.mjs (COCKPIT_TEST_DIST=<dist> to test a staged build) */
 
 import assert from 'node:assert/strict';
@@ -44,8 +44,8 @@ async function userPage(browser, base, user) {
   });
   const page = await context.newPage();
   page.on('pageerror', error => browserErrors.push(`${user}: ${error.message}`));
-  // The refused link below answers 400 on purpose; any other console error counts.
-  page.on('console', message => { if (message.type() === 'error' && !message.text().includes('status of 400')) browserErrors.push(`${user}: ${message.text()}`); });
+  // The refused link below answers 400 and the refused run on a hidden deal 409, on purpose; any other console error counts.
+  page.on('console', message => { if (message.type() === 'error' && !/status of (400|409)/.test(message.text())) browserErrors.push(`${user}: ${message.text()}`); });
   await page.goto(base + '/');
   return page;
 }
@@ -132,6 +132,42 @@ async function run() {
     // Alex sees who added what.
     const feed = (await api(alex, '/api/activity?kind=deal_added')).body.items;
     record('alex sees both additions by austin', feed.length === 2 && feed.every(item => item.actor === 'austin'), JSON.stringify(feed));
+
+    // Hiding (phase 5): Austin hides Echo Labs from its overflow menu; it leaves the list for both, still opens by URL with a banner, and can be unhidden.
+    await austin.goto(base + '/deal/echo-labs');
+    await austin.getByRole('button', { name: 'More deal actions' }).click();
+    await austin.getByRole('menuitem', { name: 'Hide deal…' }).click();
+    const hide = austin.getByRole('dialog', { name: 'Hide deal' });
+    record('hide asks first', (await hide.textContent()).includes('for both of you?It stays in the store and can be shown again.'), await hide.textContent());
+    await hide.getByRole('button', { name: 'Hide deal' }).click();
+    const banner = austin.locator('.hidden-banner');
+    await banner.waitFor();
+    record('hidden deal shows the banner and no Extract', /^Hidden by Austin on \d+ \w{3}·Unhide$/.test(await banner.textContent()) && (await austin.getByRole('button', { name: 'Extract' }).count()) === 0, await banner.textContent());
+    await austin.screenshot({ path: resolve(EVIDENCE, 'hidden-deal.png') });
+    const refusedRun = await api(austin, '/api/deal/echo-labs/jobs', { action: 'extract' });
+    record('extract on a hidden deal is refused', refusedRun.status === 409 && refusedRun.body.error.includes('unhide the deal first'), JSON.stringify(refusedRun));
+    await alex.goto(base + '/');
+    await alex.locator('.deal-table').waitFor();
+    record('hidden deal leaves alex\'s list', (await alex.locator('.deal-table tr', { hasText: 'echo-labs' }).count()) === 0);
+    await alex.getByRole('checkbox', { name: 'Show hidden (1)' }).check();
+    const hiddenRow = alex.locator('.deal-table tr.hidden-deal', { hasText: 'echo-labs' });
+    record('show hidden lists it dimmed and marked', (await hiddenRow.count()) === 1 && (await hiddenRow.locator('.hidden-mark').textContent()) === 'Hidden');
+    await alex.screenshot({ path: resolve(EVIDENCE, 'hidden-list.png') });
+    await hiddenRow.locator('.deal-link').click();
+    await alex.locator('.hidden-banner', { hasText: 'Hidden by Austin on' }).waitFor();
+    record('hidden deal opens by URL for alex', alex.url().endsWith('/deal/echo-labs'));
+    await alex.locator('.hidden-banner').getByRole('button', { name: 'Unhide' }).click();
+    await alex.locator('.hidden-banner').waitFor({ state: 'detached' });
+    record('unhide from the banner', (await api(alex, '/api/deals')).body.find(item => item.slug === 'echo-labs').hidden === false);
+    // Unhide from the list: Delta Systems hidden over the API, shown again from its row.
+    record('pending deal hides', (await api(austin, '/api/deals/delta-systems/visibility', { action: 'hide' })).status === 200);
+    await alex.goto(base + '/');
+    await alex.getByRole('checkbox', { name: 'Show hidden (1)' }).check();
+    await alex.locator('.deal-table tr.hidden-deal', { hasText: 'delta-systems' }).getByRole('button', { name: 'Unhide' }).click();
+    await alex.getByRole('checkbox', { name: /Show hidden/ }).waitFor({ state: 'detached' });
+    record('unhide from the list', (await alex.locator('.deal-table tr.hidden-deal').count()) === 0 && (await alex.locator('.deal-table tr', { hasText: 'delta-systems' }).count()) === 1);
+    const kinds = (await api(austin, '/api/activity?limit=10')).body.items.map(item => `${item.actor}:${item.kind}:${item.slug}`);
+    record('hiding is in the activity feed', ['alex:unhide_deal:delta-systems', 'austin:hide_deal:delta-systems', 'alex:unhide_deal:echo-labs', 'austin:hide_deal:echo-labs'].every((entry, i) => kinds[i] === entry), JSON.stringify(kinds));
     record('no browser errors', browserErrors.length === 0, browserErrors.join('\n'));
   } finally {
     await browser.close();

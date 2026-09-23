@@ -9,12 +9,14 @@ export const SESSION_GAP_MS = 30 * 60 * 1000;
 export const EDIT_KINDS = new Set(['revision', 'restore', 'rebase']);
 export const RUN_KINDS = new Set(['extraction', 'extraction_failed']);
 export const VERSION_KINDS = new Set(['hide', 'unhide']);
+// Hiding or unhiding the deal itself: nothing further to open inside the deal.
+export const DEAL_KINDS = new Set(['hide_deal', 'unhide_deal']);
 // Account-wide instruction events (slug ""): they open the Instructions page, not a deal.
 export const INSTRUCTION_KINDS = new Set(['instruction_draft', 'instruction_published', 'instruction_default']);
 export const COMMENT_KINDS = new Set(['comment', 'reply']);
 export const THREAD_KINDS = new Set(['comment', 'reply', 'resolve', 'reopen', 'comment_edit', 'comment_delete']);
 export const KIND_LABELS = { revision: 'Revision', restore: 'Restore', comment: 'Comment', reply: 'Reply', resolve: 'Resolved', reopen: 'Reopened', comment_edit: 'Comment edited', comment_delete: 'Comment deleted',
-  extraction: 'Extraction', extraction_failed: 'Extraction failed', rebase: 'Rebase', hide: 'Version hidden', unhide: 'Version unhidden', deal_added: 'Deal added',
+  extraction: 'Extraction', extraction_failed: 'Extraction failed', rebase: 'Rebase', hide: 'Version hidden', unhide: 'Version unhidden', deal_added: 'Deal added', hide_deal: 'Deal hidden', unhide_deal: 'Deal unhidden',
   instruction_draft: 'Instruction draft', instruction_published: 'Instruction published', instruction_default: 'Default instruction' };
 
 export function displayName(actor) {
@@ -28,7 +30,7 @@ export const knownUser = user => Boolean(user) && user !== 'unknown';
 const time = value => { const t = Date.parse(value); return Number.isNaN(t) ? 0 : t; };
 const pad = n => String(n).padStart(2, '0');
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-const dayLabel = d => `${d.getDate()} ${MONTHS[d.getMonth()]}`;
+export const dayLabel = d => `${d.getDate()} ${MONTHS[d.getMonth()]}`;
 export function shortTime(value) {
   const d = new Date(value);
   return Number.isNaN(d.getTime()) ? text(value) : `${dayLabel(d)} ${pad(d.getHours())}:${pad(d.getMinutes())}`;

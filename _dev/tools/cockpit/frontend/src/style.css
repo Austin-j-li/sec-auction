@@ -1178,6 +1178,15 @@ details[open] > summary .caret,
 .deal-table small.running-line { margin-top: var(--sp-2); color: var(--ink-2); }
 .cockpit .hidden-toggle { margin: calc(-1 * var(--sp-2)) 0 var(--sp-3) calc(-1 * var(--sp-3)); font-size: var(--fs-12); color: var(--ink-3); }
 .cockpit .hidden-toggle .fui-Checkbox__label { padding-left: var(--sp-2); }
+/* Hidden deals (phase 5): left out of the deal list unless shown; then dimmed and marked. */
+.deal-table tr.hidden-deal td, .deal-table tr.hidden-deal .deal-link { color: var(--ink-3); }
+.deal-table small.hidden-line { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2) var(--sp-3); margin-top: var(--sp-2); }
+.hidden-mark { padding: 0 var(--sp-3); border: 1px solid var(--rule-strong); border-radius: 999px; color: var(--ink-2); }
+.cockpit .deal-table .hidden-line .fui-Button.link-button { min-height: 0; padding: 0 var(--sp-2); font-size: var(--fs-12); line-height: var(--lh-12); }
+.cockpit .deal-hidden-toggle { margin: var(--sp-3) 0 0 calc(-1 * var(--sp-3)); }
+.hidden-banner .message-title { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--sp-2); }
+.cockpit .hidden-banner .fui-Button.link-button { min-height: 0; padding: 0 var(--sp-2); }
+.cockpit .toolbar-actions > .fui-Button.icon-button { flex: none; }
 .run-item { padding: var(--sp-4) 0; border-top: var(--divider); }
 .run-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--sp-4); }
 .run-head strong { display: inline-flex; align-items: center; font-size: var(--fs-14); line-height: var(--lh-14); font-weight: var(--fw-medium); }

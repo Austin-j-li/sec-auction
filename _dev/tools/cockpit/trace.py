@@ -11,7 +11,7 @@ import sqlite3
 import uuid
 from typing import Any
 
-from cockpit.workspace import SHEETS, Conflict, Missing, Workspace, WorkspaceError, _now, record_label
+from cockpit.workspace import SHEETS, Conflict, Missing, Workspace, WorkspaceError, _now, add_column, record_label
 
 SCHEMA = (
     "CREATE TABLE IF NOT EXISTS threads (id TEXT PRIMARY KEY, slug TEXT NOT NULL, target_kind TEXT NOT NULL CHECK (target_kind IN ('deal','row','finding')), target_sheet TEXT, target_uid TEXT, target_label TEXT NOT NULL, created_by TEXT NOT NULL, created_at TEXT NOT NULL, resolved_by TEXT, resolved_at TEXT)",
@@ -27,7 +27,7 @@ SCHEMA = (
 EDIT_KINDS = ("revision", "restore", "rebase")
 RUN_KINDS = ("extraction", "extraction_failed")
 COMMENT_KINDS = ("comment", "reply")
-KINDS = EDIT_KINDS + COMMENT_KINDS + RUN_KINDS + ("resolve", "reopen", "comment_edit", "comment_delete", "hide", "unhide", "deal_added")
+KINDS = EDIT_KINDS + COMMENT_KINDS + RUN_KINDS + ("resolve", "reopen", "comment_edit", "comment_delete", "hide", "unhide", "deal_added", "hide_deal", "unhide_deal")
 MAX_BODY = 20000
 
 
@@ -35,8 +35,7 @@ def ensure_schema(conn: sqlite3.Connection) -> None:
     """Create the trace tables and migrate legacy notes once. Called on every write connection."""
     for statement in SCHEMA:
         conn.execute(statement)
-    if "version_id" not in {row[1] for row in conn.execute("PRAGMA table_info(activity)")}:
-        conn.execute("ALTER TABLE activity ADD COLUMN version_id TEXT")
+    add_column(conn, "activity", "version_id", "TEXT")
     conn.commit()
     if conn.execute("SELECT 1 FROM migrations WHERE key='notes-v1'").fetchone():
         return

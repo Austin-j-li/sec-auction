@@ -17,7 +17,7 @@ import uuid
 from pathlib import Path
 from typing import Any
 
-from cockpit.workspace import SAFE_ID, Conflict, Missing, Workspace, WorkspaceError, _now
+from cockpit.workspace import SAFE_ID, Conflict, Missing, Workspace, WorkspaceError, _now, add_column
 
 SCHEMA = (
     "CREATE TABLE IF NOT EXISTS jobs (id TEXT PRIMARY KEY, kind TEXT NOT NULL, slug TEXT, actor TEXT NOT NULL, created_at TEXT NOT NULL, state TEXT NOT NULL, params TEXT NOT NULL, cancel_requested INTEGER NOT NULL DEFAULT 0, input TEXT, pid INTEGER, run_dir TEXT, started_at TEXT, ended_at TEXT, failure_reason TEXT, error TEXT, result TEXT, version_id TEXT, cancelled_by TEXT)",
@@ -51,10 +51,8 @@ CAPS = {"total": 4, "per_user": 2}
 def ensure_schema(conn: sqlite3.Connection) -> None:
     for statement in SCHEMA:
         conn.execute(statement)
-    if "cancelled_by" not in {row[1] for row in conn.execute("PRAGMA table_info(jobs)")}:
-        conn.execute("ALTER TABLE jobs ADD COLUMN cancelled_by TEXT")
-    if "instruction_id" not in {row[1] for row in conn.execute("PRAGMA table_info(versions)")}:
-        conn.execute("ALTER TABLE versions ADD COLUMN instruction_id TEXT")
+    add_column(conn, "jobs", "cancelled_by", "TEXT")
+    add_column(conn, "versions", "instruction_id", "TEXT")
     conn.commit()
 
 
@@ -295,6 +293,7 @@ class Runs:
 
         def run(conn: sqlite3.Connection) -> None:
             if action == "extract":
+                if conn.execute("SELECT 1 FROM hidden_deals WHERE slug=?", (slug,)).fetchone(): raise Conflict("unhide the deal first")
                 effort, minutes = request.get("effort", "medium"), request.get("timeout_minutes", 90)
                 engine_id = request.get("engine", DEFAULT_ENGINE)
                 if engine_id not in ENGINES: raise WorkspaceError("unknown engine")

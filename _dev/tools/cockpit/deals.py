@@ -25,6 +25,8 @@ from cockpit.workspace import Conflict, Missing, Workspace, WorkspaceError, _now
 
 SCHEMA = (
     "CREATE TABLE IF NOT EXISTS added_deals (slug TEXT PRIMARY KEY, name TEXT NOT NULL, form_type TEXT NOT NULL, date_filed TEXT NOT NULL, file TEXT NOT NULL, source_kind TEXT NOT NULL, seed_deal TEXT, index_url TEXT, source_url TEXT NOT NULL, document TEXT NOT NULL, fetched_utc TEXT NOT NULL, bytes INTEGER NOT NULL, sha256 TEXT NOT NULL, added_by TEXT NOT NULL, added_at TEXT NOT NULL)",
+    # A row means the deal is hidden from the deal list for both users; unhiding deletes it. Nothing else changes.
+    "CREATE TABLE IF NOT EXISTS hidden_deals (slug TEXT PRIMARY KEY, hidden_by TEXT NOT NULL, hidden_at TEXT NOT NULL)",
 )
 SEED_COLUMNS = ("deal", "target_name", "form_type", "date_filed", "index_url", "status")
 LOOKUP_TTL = dt.timedelta(hours=24)
@@ -88,6 +90,53 @@ class Deals:
                 return []
         finally:
             conn.close()
+
+    def hidden(self) -> dict[str, dict[str, Any]]:
+        """Hidden deals by slug: {hidden_by, hidden_at}. Reads never create the database."""
+        conn = self.workspace._connect()
+        if conn is None:
+            return {}
+        try:
+            try:
+                return {row["slug"]: {"hidden_by": row["hidden_by"], "hidden_at": row["hidden_at"]} for row in conn.execute("SELECT * FROM hidden_deals")}
+            except sqlite3.OperationalError:
+                return {}
+        finally:
+            conn.close()
+
+    def visibility_of(self, slug: str, hidden: dict[str, dict[str, Any]] | None = None) -> dict[str, Any]:
+        """The deal's `hidden`, `hidden_by` and `hidden_at`, as the deal list and the deal payload carry them."""
+        found = (self.hidden() if hidden is None else hidden).get(slug)
+        return {"hidden": found is not None, "hidden_by": found["hidden_by"] if found else None, "hidden_at": found["hidden_at"] if found else None}
+
+    def visibility(self, slug: str, user: str, body: dict[str, Any]) -> dict[str, Any]:
+        """Hide or unhide a deal for both users. Its data, versions, comments and working copy are untouched."""
+        self.workspace.item(slug)
+        action = body.get("action") if isinstance(body, dict) else None
+        if action not in ("hide", "unhide"):
+            raise WorkspaceError("unknown visibility action")
+        from cockpit import runs, trace
+        conn = self.workspace._connect(write=True)
+        try:
+            conn.execute("BEGIN IMMEDIATE")
+            row = conn.execute("SELECT 1 FROM hidden_deals WHERE slug=?", (slug,)).fetchone()
+            if (row is not None) == (action == "hide"):
+                raise Conflict(f"deal already {'hidden' if row else 'shown'}")
+            now = _now()
+            if action == "hide":
+                if conn.execute(f"SELECT 1 FROM jobs WHERE slug=? AND state IN ({','.join('?' * len(runs.ACTIVE))})", (slug, *runs.ACTIVE)).fetchone():
+                    raise Conflict("a run on this deal is still going")
+                conn.execute("INSERT INTO hidden_deals (slug, hidden_by, hidden_at) VALUES (?, ?, ?)", (slug, user, now))
+            else:
+                conn.execute("DELETE FROM hidden_deals WHERE slug=?", (slug,))
+            trace._activity(conn, slug, user, f"{action}_deal", summary="Hid the deal" if action == "hide" else "Unhid the deal", at=now)
+            conn.commit()
+        except Exception:
+            conn.rollback()
+            raise
+        finally:
+            conn.close()
+        return {"slug": slug, **self.visibility_of(slug)}
 
     def in_use(self, slug: str) -> bool:
         return slug in self.workspace.catalog()["deals"] or bool(self.added(slug))

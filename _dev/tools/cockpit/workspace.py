@@ -70,6 +70,14 @@ def _now() -> str:
     return dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
 
 
+def add_column(conn: sqlite3.Connection, table: str, column: str, kind: str) -> None:
+    """Add a column once; two connections migrating a fresh database at the same moment must not fail."""
+    if column in {row[1] for row in conn.execute(f"PRAGMA table_info({table})")}: return
+    try: conn.execute(f"ALTER TABLE {table} ADD COLUMN {column} {kind}")
+    except sqlite3.OperationalError as exc:
+        if "duplicate column name" not in str(exc): raise
+
+
 def _hash(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 

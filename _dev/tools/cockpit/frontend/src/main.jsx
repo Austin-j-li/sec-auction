@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { Button, Field, FluentProvider, Input, Select, Textarea } from '@fluentui/react-components';
-import { ArrowLeftIcon, ArrowsClockwiseIcon, DownloadSimpleIcon, EyeIcon, EyeSlashIcon, FloppyDiskIcon, LockSimpleIcon, PlayIcon, XIcon } from '@phosphor-icons/react';
+import { Button, Field, FluentProvider, Input, Menu, MenuItem, MenuList, MenuPopover, MenuTrigger, Select, Textarea } from '@fluentui/react-components';
+import { ArrowLeftIcon, ArrowsClockwiseIcon, DotsThreeIcon, DownloadSimpleIcon, EyeIcon, EyeSlashIcon, FloppyDiskIcon, LockSimpleIcon, PlayIcon, XIcon } from '@phosphor-icons/react';
 import gsap from 'gsap';
 import Filing from './Filing';
 import SplitPane from './SplitPane';
@@ -17,9 +17,10 @@ import { compact, LedgerTab, SheetTab } from './Records';
 import { ChangesTab, DocumentText, friendlyDate, HistoryTab, ReviewTab } from './Review';
 import { Dot, Loading, Message } from './ui';
 import { cockpitTheme } from './theme';
-import { commentAction, compareQuery, count, jobAction, json, markSeen, markSeenOnLeave, recordValues, rowId, saveDeal, sheetColumns, sheetRows, text, versionAction } from './api';
-import { countThreads, displayName, EDIT_KINDS, INSTRUCTION_KINDS, knownUser, RUN_KINDS, VERSION_KINDS } from './trace';
+import { commentAction, compareQuery, count, dealVisibility, jobAction, json, markSeen, markSeenOnLeave, recordValues, rowId, saveDeal, sheetColumns, sheetRows, text, versionAction } from './api';
+import { countThreads, DEAL_KINDS, displayName, EDIT_KINDS, INSTRUCTION_KINDS, knownUser, RUN_KINDS, VERSION_KINDS } from './trace';
 import { isActive, isImported, orderVersions, versionOptionLabel } from './runs';
+import { hiddenLine } from './deals';
 import './style.css';
 
 const SHEETS = { ledger: 'Deal ledger', rounds: 'Rounds', questions: 'Questions', facts: 'Deal facts' };
@@ -86,6 +87,8 @@ function App() {
   const [extract, setExtract] = useState(null);
   const [addDeal, setAddDeal] = useState(false);
   const [versionBusy, setVersionBusy] = useState(false);
+  const [hidePrompt, setHidePrompt] = useState(null);
+  const [dealBusy, setDealBusy] = useState(false);
   // Unsaved text on a page outside the deal workspace (an instruction draft) guards navigation like unsaved edits.
   const [pageDirty, setPageDirty] = useState(false);
   const slugRef = useRef(null);
@@ -108,7 +111,7 @@ function App() {
   const unsaved = dirty || pageDirty;
   const editable = Boolean(session.can_edit && deal?.workspace?.editable && saveState !== 'saving' && !versionLoading);
   const slug = route.slug;
-  const modalOpen = Boolean(deletePrompt || documentOpen || rebasePrompt || extract || addDeal);
+  const modalOpen = Boolean(deletePrompt || documentOpen || rebasePrompt || extract || addDeal || hidePrompt);
   pendingRef.current = Boolean(deal?.pending);
   sessionRef.current = session;
   slugRef.current = slug;
@@ -147,7 +150,7 @@ function App() {
     modalReturnFocus.current = document.activeElement;
     (modalRef.current?.querySelector('[data-autofocus]') || modalRef.current?.querySelector('button'))?.focus();
     const onKeyDown = event => {
-      if (event.key === 'Escape') { event.preventDefault(); setDeletePrompt(null); setDocumentOpen(null); setRebasePrompt(current => current?.busy ? current : null); setExtract(current => current?.busy ? current : null); setAddDeal(false); return; }
+      if (event.key === 'Escape') { event.preventDefault(); setDeletePrompt(null); setDocumentOpen(null); setRebasePrompt(current => current?.busy ? current : null); setExtract(current => current?.busy ? current : null); setAddDeal(false); setHidePrompt(current => current?.busy ? current : null); return; }
       if (event.key !== 'Tab' || !modalRef.current) return;
       const focusables = [...modalRef.current.querySelectorAll('button:not(:disabled), input:not(:disabled), select:not(:disabled), textarea:not(:disabled), a[href]')];
       if (!focusables.length) return;
@@ -187,7 +190,7 @@ function App() {
     const token = ++routeSerial.current;
     // A version switch keeps the current deal (and the filing pane) mounted; only the workspace waits.
     const sameDeal = Boolean(currentSlug) && loadedSlug.current === currentSlug;
-    setError(null); setConflict(false); setOps([]); setSaveState(''); setHistoryData(null); setChangesData(null); setFindingOpen(null); setDocumentOpen(null); setCompare(null); setRebasePrompt(null);
+    setError(null); setConflict(false); setOps([]); setSaveState(''); setHistoryData(null); setChangesData(null); setFindingOpen(null); setDocumentOpen(null); setCompare(null); setRebasePrompt(null); setHidePrompt(null);
     if (sameDeal) setVersionLoading(true);
     else { setLoading(true); setDeal(null); loadedSlug.current = null; }
     try {
@@ -358,6 +361,7 @@ function App() {
   }
   function openRuns() { setTab('runs'); setMobilePane('workspace'); }
   function openActivityItem(item) {
+    if (DEAL_KINDS.has(item.kind)) return;
     if (INSTRUCTION_KINDS.has(item.kind)) navigate(instructionsPath(item.instruction_id));
     else if (EDIT_KINDS.has(item.kind)) openRevision(item.revision);
     else if (RUN_KINDS.has(item.kind) || VERSION_KINDS.has(item.kind)) {
@@ -412,6 +416,38 @@ function App() {
       setError(failure(hide ? 'The version could not be hidden.' : 'The version could not be unhidden.', err));
     } finally {
       setVersionBusy(false);
+    }
+  }
+  // Hiding a deal takes it out of the deal list for both users; it still opens here, untouched, with a banner.
+  async function hideDeal() {
+    if (!hidePrompt || hidePrompt.busy) return;
+    setHidePrompt(current => ({ ...current, busy: true, error: '' }));
+    try {
+      const result = await dealVisibility(slug, session, 'hide');
+      setDeal(current => current && { ...current, ...result });
+      setHidePrompt(null);
+    } catch (err) {
+      setHidePrompt(current => current && { ...current, busy: false, error: `The deal could not be hidden: ${err.message}` });
+    }
+  }
+  async function unhideDeal() {
+    setDealBusy(true); setError(null);
+    try {
+      const result = await dealVisibility(slug, session, 'unhide');
+      setDeal(current => current && { ...current, ...result });
+    } catch (err) {
+      setError(failure('The deal could not be unhidden.', err));
+    } finally {
+      setDealBusy(false);
+    }
+  }
+  async function unhideListed(listedSlug) {
+    setError(null);
+    try {
+      await dealVisibility(listedSlug, session, 'unhide');
+      setDeals(await json('/api/deals'));
+    } catch (err) {
+      setError(failure('The deal could not be unhidden.', err));
     }
   }
   // Rebase: the working copy takes the selected original as its new base, in one new revision.
@@ -614,7 +650,8 @@ function App() {
         {settings ? <SettingsPage session={session}/>
           : instructions ? <InstructionsPage session={session} onDirtyChange={setPageDirty}/>
           : activity ? <ActivityPage deals={deals} onOpenDeal={(s, v) => navigate(`/deal/${s}${v ? `?version=${encodeURIComponent(v)}` : ''}`)} onOpenInstructions={id => navigate(instructionsPath(id))}/>
-          : deals && <Overview deals={deals} onOpen={s => navigate(`/deal/${s}`)} onAdd={session.can_edit && knownUser(session.user) ? () => setAddDeal(true) : null}/>}
+          : deals && <Overview deals={deals} onOpen={s => navigate(`/deal/${s}`)} onAdd={session.can_edit && knownUser(session.user) ? () => setAddDeal(true) : null}
+            onUnhide={session.can_edit && knownUser(session.user) ? unhideListed : null}/>}
       </main>
       {addDeal && <AddDealDialog session={session} dialogRef={modalRef} onClose={() => setAddDeal(false)}
         onOpen={s => { setAddDeal(false); navigate(`/deal/${s}`); }}
@@ -633,6 +670,16 @@ function App() {
   };
   const shownVersion = orderedVersions.originals.find(item => item.id === version);
   const canRun = Boolean(session.can_edit && knownUser(session.user));
+  const dealMenu = canRun && !deal?.hidden && <Menu positioning="below-end">
+    <MenuTrigger disableButtonEnhancement>
+      <Button appearance="subtle" className="icon-button deal-menu" aria-label="More deal actions" title="More deal actions" icon={<DotsThreeIcon size={16} weight="bold"/>}/>
+    </MenuTrigger>
+    <MenuPopover>
+      <MenuList>
+        <MenuItem icon={<EyeSlashIcon size={16}/>} onClick={() => setHidePrompt({ busy: false, error: '' })}>Hide deal…</MenuItem>
+      </MenuList>
+    </MenuPopover>
+  </Menu>;
   const lastSaved = deal?.workspace?.updated_by ? `Last saved by ${deal.workspace.updated_by}${deal.workspace.updated_at ? ` · ${friendlyDate(deal.workspace.updated_at)}` : ''}` : '';
   const immutable = deal?.workspace?.selected_version !== 'working';
   const versionActions = Boolean(canRun && immutable && shownVersion && !shownVersion.is_base && !versionLoading);
@@ -679,7 +726,8 @@ function App() {
           <div className="toolbar-actions">
             {deal.pending ? <>
               <RunBadge jobs={jobs} onOpen={openRuns}/>
-              {canRun && <Button appearance="primary" className="extract-button" icon={<PlayIcon size={16}/>} onClick={openExtract}>Extract</Button>}
+              {canRun && !deal.hidden && <Button appearance="primary" className="extract-button" icon={<PlayIcon size={16}/>} onClick={openExtract}>Extract</Button>}
+              {dealMenu}
             </> : <>
             <label className="version-control">
               <span>Version</span>
@@ -694,16 +742,19 @@ function App() {
             {versionActions && !shownVersion.hidden && <Button appearance="secondary" icon={<ArrowsClockwiseIcon size={16}/>} disabled={versionBusy} onClick={() => setRebasePrompt({ version: shownVersion, reason: '', busy: false, error: '' })}>Use as working-copy base…</Button>}
             {versionActions && isImported(shownVersion) && <Button appearance="secondary" icon={shownVersion.hidden ? <EyeIcon size={16}/> : <EyeSlashIcon size={16}/>} disabled={versionBusy} onClick={() => setVersionHidden(shownVersion, !shownVersion.hidden)}>{shownVersion.hidden ? 'Unhide' : 'Hide'}</Button>}
             <RunBadge jobs={jobs} onOpen={openRuns}/>
-            {canRun && <Button appearance="secondary" className="extract-button" icon={<PlayIcon size={16}/>} onClick={openExtract}>Extract</Button>}
+            {canRun && !deal.hidden && <Button appearance="secondary" className="extract-button" icon={<PlayIcon size={16}/>} onClick={openExtract}>Extract</Button>}
             <Button as="a" appearance="secondary" className="export-button" href={`/api/deal/${slug}/export?version=${encodeURIComponent(version)}`} download icon={<DownloadSimpleIcon size={16}/>}>Export Excel</Button>
             <div className="save-line">
               <span className={`work-state ${dirty ? 'unsaved' : ''}`} aria-live="polite" title={lastSaved || undefined}><Dot tone={workState.tone}/>{workState.label}</span>
               <span ref={saveFlash} className="save-feedback">{saveState === 'saved' ? 'Revision saved' : ''}</span>
             </div>
             <Button appearance="primary" className="save-button" icon={<FloppyDiskIcon size={16}/>} disabled={!dirty || !editable || saveState === 'saving' || conflict} onClick={save}>{saveState === 'saving' ? 'Saving…' : 'Save changes'}</Button>
+            {dealMenu}
             </>}
           </div>
         </header>
+        {deal.hidden && <Message type="info" className="hidden-banner" title={<>{hiddenLine(deal)}{canRun && <><span aria-hidden="true">·</span>
+          <Button appearance="subtle" className="link-button" icon={<EyeIcon size={16}/>} disabled={dealBusy} onClick={unhideDeal}>Unhide</Button></>}</>}/>}
         <div className="mobile-switch" role="group" aria-label="Visible pane">
           <Button appearance={mobilePane === 'filing' ? 'primary' : 'secondary'} aria-pressed={mobilePane === 'filing'} onClick={() => setMobilePane('filing')}>Filing</Button>
           <Button appearance={mobilePane === 'workspace' ? 'primary' : 'secondary'} aria-pressed={mobilePane === 'workspace'} onClick={() => setMobilePane('workspace')}>Workspace</Button>
@@ -787,6 +838,20 @@ function App() {
         <div className="modal-actions">
           <Button appearance="secondary" disabled={rebasePrompt.busy} onClick={() => setRebasePrompt(null)}>Cancel</Button>
           <Button appearance="primary" disabled={rebasePrompt.busy || !rebasePrompt.reason.trim()} onClick={rebase}>{rebasePrompt.busy ? 'Rebasing…' : 'Use as base'}</Button>
+        </div>
+      </div>
+    </div>}
+    {hidePrompt && <div className="modal-backdrop" role="presentation">
+      <div className="modal" ref={modalRef} role="dialog" aria-modal="true" aria-label="Hide deal">
+        <div className="modal-head">
+          <h2>Hide {deal?.name || slug} for both of you?</h2>
+          <Button appearance="subtle" className="icon-button" disabled={hidePrompt.busy} onClick={() => setHidePrompt(null)} aria-label="Close" icon={<XIcon size={16}/>}/>
+        </div>
+        <p>It stays in the store and can be shown again.</p>
+        {hidePrompt.error && <p className="run-failure tone-error" role="alert">{hidePrompt.error}</p>}
+        <div className="modal-actions">
+          <Button appearance="secondary" disabled={hidePrompt.busy} onClick={() => setHidePrompt(null)}>Cancel</Button>
+          <Button appearance="primary" disabled={hidePrompt.busy} onClick={hideDeal}>{hidePrompt.busy ? 'Hiding…' : 'Hide deal'}</Button>
         </div>
       </div>
     </div>}

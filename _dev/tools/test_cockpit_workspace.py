@@ -236,6 +236,26 @@ class WorkspaceTests(unittest.TestCase):
             self.save([{"type": "delete", "sheet": "Questions", "uid": question}], revision=1)
 
 
+class MigrationTests(unittest.TestCase):
+    def test_add_column_tolerates_a_concurrent_migration(self):
+        import sqlite3
+        from cockpit.workspace import add_column
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "db.sqlite3"
+            first, second = sqlite3.connect(path), sqlite3.connect(path)
+            first.execute("CREATE TABLE jobs (id TEXT)"); first.commit()
+            second.execute("PRAGMA table_info(jobs)").fetchall()  # the second connection has already looked
+            add_column(first, "jobs", "cancelled_by", "TEXT"); first.commit()
+
+            class Stale:  # replays the second connection's stale view, then its ALTER meets the added column
+                def execute(self, sql, *args):
+                    return iter([(0, "id")]) if sql.startswith("PRAGMA") else second.execute(sql, *args)
+            add_column(Stale(), "jobs", "cancelled_by", "TEXT")
+            self.assertEqual([row[1] for row in second.execute("PRAGMA table_info(jobs)")], ["id", "cancelled_by"])
+            with self.assertRaises(sqlite3.OperationalError): add_column(Stale(), "missing", "x", "TEXT")
+            first.close(); second.close()
+
+
 class HTTPTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()

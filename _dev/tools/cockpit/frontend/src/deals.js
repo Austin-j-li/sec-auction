@@ -1,4 +1,6 @@
-// Add deal helpers: pure functions shared by the dialog and its tests.
+// Add deal and hide deal helpers: pure functions shared by the pages and their tests.
+
+import { dayLabel, displayName } from './trace';
 
 export const SLUG_PATTERN = /^[a-z0-9][a-z0-9-]*$/;
 export const validSlug = value => SLUG_PATTERN.test(value || '') && value.length <= 60;
@@ -23,4 +25,18 @@ export function seedReview(status) {
 export function seedAction(row) {
   if (row?.in_cockpit) return 'open';
   return row?.index_url ? 'lookup' : 'paste';
+}
+
+// The deal list leaves hidden deals out unless asked; `visible` counts the rest.
+export function listedDeals(deals, showHidden = false) {
+  const all = deals || [];
+  const hiddenCount = all.filter(item => item.hidden).length;
+  return { rows: showHidden ? all : all.filter(item => !item.hidden), hiddenCount, visible: all.length - hiddenCount };
+}
+
+// "Hidden by Alex on 23 Sep".
+export function hiddenLine(item) {
+  if (!item?.hidden) return '';
+  const when = new Date(item.hidden_at || NaN);
+  return `Hidden by ${displayName(item.hidden_by)}${Number.isNaN(when.getTime()) ? '' : ` on ${dayLabel(when)}`}`;
 }

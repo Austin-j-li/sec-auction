@@ -57,6 +57,70 @@ systemctl --user restart ledger-worker
 journalctl --user -u ledger-worker -f
 ```
 
+## Backups and restore
+
+`cockpit/backup.py` copies the cockpit's state. The working-state database is the only copy of working revisions and comments.
+
+```bash
+python3 _dev/tools/cockpit/backup.py create                      # -> ~/backups/ledger-cockpit/<YYYYMMDD-HHMMSS>Z/
+python3 _dev/tools/cockpit/backup.py rehearse                    # back up, restore to a temporary root, compare
+python3 _dev/tools/cockpit/backup.py restore <backup> --state <dir> [--replace]
+```
+
+- **What `create` copies:**
+  - The database, with SQLite's online backup API, integrity-checked and stored in rollback-journal mode.
+  - `filings/`, `instructions/`, `versions/` and `jobs/`.
+  - It leaves out `lookups/` (EDGAR caches), `worker.lock` and credentials (`~/.config/sec-extraction/users/`, never backed up; users reconnect after a restore).
+- **`manifest.json`:**
+  - every file's size and SHA-256;
+  - the database's hash and its per-table row counts;
+  - the git HEAD;
+  - a per-deal summary: the working revision, a hash of the working sheets, and thread and comment counts and hashes.
+- **Writing and pruning:**
+  - A backup is written under `.partial-*` and renamed when complete.
+  - Pruning keeps 14 days (`--keep-days`) and always the newest, and touches nothing else in the folder.
+- **Nightly job:**
+  - `ledger-backup.timer` runs `ledger-backup.service` at 03:30 UTC (`Persistent=true`, so a missed night runs at the next boot).
+  - The unit files are in `cockpit/deploy/`; install them with `cp _dev/tools/cockpit/deploy/ledger-backup.* ~/.config/systemd/user/ && systemctl --user daemon-reload && systemctl --user enable --now ledger-backup.timer`.
+- **`rehearse`** is the restore check. It:
+  1. backs up the live state;
+  2. restores the backup into a temporary repository root that links the checkout's catalog, filings and instruction;
+  3. compares the two through the cockpit's own data layer: working copies, revision history, comments with their edits, versions, added and hidden deals, and instructions. It also compares every database table row by row.
+
+  It prints a JSON report and exits 0 only with no differences.
+- **`restore`:**
+  - It checks every hash before writing anything.
+  - It restores into a new or empty directory; `--replace` moves an existing one aside to `<dir>.before-restore-<stamp>`.
+  - It refuses the live `_dev/cockpit/state/` while `ledger-cockpit` or `ledger-worker` is running.
+  - To replace the live state:
+    1. stop both services;
+    2. run `restore <backup> --state _dev/cockpit/state --replace`;
+    3. start both services.
+
+If `systemctl --user` fails with "Failed to connect to user scope bus via local transport", the user manager's private socket file has been replaced (on 23 September this happened while unit files were being checked with `systemd-analyze`). The manager is still reachable over D-Bus. Re-execute it, and running services carry on:
+
+```bash
+busctl --user call org.freedesktop.systemd1 /org/freedesktop/systemd1 org.freedesktop.systemd1.Manager Reexecute
+```
+
+## Export to the repository
+
+`cockpit/export_repo.py` copies a cockpit version into the repository for a commit Austin requests. It is an admin script, not a button. It never commits, and it never calls a model or the network.
+
+```bash
+python3 _dev/tools/cockpit/export_repo.py instruction v1.14                     # dry run: target, current hash -> new hash
+python3 _dev/tools/cockpit/export_repo.py instruction v1.14 --write             # writes SEC_Deal_Ledger_Extraction_Instruction.md
+python3 _dev/tools/cockpit/export_repo.py deal <slug> --version <id>|working [--write]
+```
+
+- **Instructions:** only published versions can be exported, and the stored text must match its content hash.
+- **Deals:**
+  - A deal export writes `extraction/<slug>.xlsx`, using the same bytes as the cockpit's Excel download.
+  - For a deal added in the cockpit, it also writes the filing to `raw_filing/` and adds or updates its `MANIFEST.csv` row.
+  - It refuses any path that `catalog.json` names as an immutable original, so in practice only added deals can be exported. Changing the catalog is a separate, requested edit.
+  - Once an exported added deal is committed, the cockpit reads its filing from `raw_filing/` like the original nine.
+- **Without `--write`** it is a dry run that writes nothing.
+
 ## Effort sweeps
 
 `effort_sweep.py` runs the same filings under several arms through the isolated runner. An arm is `provider:model:effort`. It requires Austin's authorization, as any extraction does.
@@ -142,8 +206,9 @@ COCKPIT_RESPONSIVE_EVIDENCE=/tmp/cockpit-responsive node _dev/tools/cockpit/acce
 COCKPIT_TRACE_EVIDENCE=/tmp/cockpit-trace node _dev/tools/cockpit/acceptance/test_trace.mjs
 COCKPIT_RUNS_EVIDENCE=/tmp/cockpit-runs node _dev/tools/cockpit/acceptance/test_runs.mjs
 COCKPIT_DEALS_EVIDENCE=/tmp/cockpit-deals node _dev/tools/cockpit/acceptance/test_deals.mjs
+COCKPIT_INSTRUCTIONS_EVIDENCE=/tmp/cockpit-instructions node _dev/tools/cockpit/acceptance/test_instructions.mjs
 python3 -m pytest -q _dev/tools/cockpit/acceptance/test_http.py
 (cd _dev/tools/cockpit/frontend && npx vitest run)
 ```
 
-The browser suites use the repository `dist/` read-only; set `COCKPIT_TEST_DIST` to test a staged build such as `dist.new` before swapping. Only `test_browser.mjs`, `test_resize.mjs`, `test_responsive.mjs` and `test_deals.mjs` honour it; `test_runs.mjs` and `test_trace.mjs` always use `dist/`, so run them again after the swap. Screenshots go to `/tmp/cockpit-*-acceptance` unless a `COCKPIT_*_EVIDENCE` variable says otherwise; keep them outside the repository. `test_http.py` needs `pytest` and `requests`, which are not in `requirements.txt`.
+The browser suites use the repository `dist/` read-only; set `COCKPIT_TEST_DIST` to test a staged build such as `dist.new` before swapping. Only `test_browser.mjs`, `test_resize.mjs`, `test_responsive.mjs`, `test_deals.mjs` and `test_instructions.mjs` honour it; `test_runs.mjs` and `test_trace.mjs` always use `dist/`, so run them again after the swap. Screenshots go to `/tmp/cockpit-*-acceptance` unless a `COCKPIT_*_EVIDENCE` variable says otherwise; keep them outside the repository. `test_http.py` needs `pytest` and `requests`, which are not in `requirements.txt`.

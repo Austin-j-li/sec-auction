@@ -17,9 +17,9 @@ export function SeverityGlyph({ severity, size = 16 }) {
 const BANNER_GLYPH = { error: XCircleIcon, warning: WarningIcon, info: InfoIcon };
 
 // Banner: human sentence first, the raw server string second in mono. role="alert" only for errors.
-export function Message({ type = 'info', title, detail, children }) {
+export function Message({ type = 'info', title, detail, children, className = '' }) {
   const Glyph = BANNER_GLYPH[type] || InfoIcon;
-  return <div className={`message ${type}`} role={type === 'error' ? 'alert' : 'status'}>
+  return <div className={`message ${type} ${className}`.trim()} role={type === 'error' ? 'alert' : 'status'}>
     <Glyph size={20} aria-hidden="true"/>
     <div className="message-body">
       {title && <p className="message-title">{title}</p>}

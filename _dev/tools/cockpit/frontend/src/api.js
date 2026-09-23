@@ -31,6 +31,8 @@ export function jobAction(slug, session, action) { return post(dealPath(slug, 'j
 export function versionAction(slug, session, action) { return post(dealPath(slug, 'versions'), session, action); }
 // Phase 3. Add a deal: {action: 'lookup', url, seed_deal?} -> {lookup}; {action: 'add', lookup_id, document, slug, name} -> {slug}.
 export function dealsAction(session, action) { return post('/api/deals', session, action); }
+// Phase 5. Hide a deal for both users: {action: 'hide' | 'unhide'} -> {slug, hidden, hidden_by, hidden_at}.
+export function dealVisibility(slug, session, action) { return post(`/api/deals/${encodeURIComponent(slug)}/visibility`, session, { action }); }
 // Phase 4. ChatGPT account: {action: connect | cancel (job_id) | disconnect}; the response is GET /api/account.
 export function chatgptAction(session, action) { return post('/api/account/chatgpt', session, action); }
 // Instruction versions: {action: 'draft', from} | {action: 'save', id, text, base_sha256} | {action: 'publish', id, name, note}

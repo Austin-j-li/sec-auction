@@ -847,6 +847,9 @@ class Cockpit:
                     "base_label": next((v.get("label") for v in payload.get("versions", []) if v.get("id") == payload.get("workspace", {}).get("base_version")), None),
                 }
             )
+        hidden = self.deals.hidden() if self.workspace.available else {}
+        for entry in deals:
+            entry.update(self.deals.visibility_of(entry["slug"], hidden))
         return deals
 
 

@@ -519,3 +519,36 @@ def test_instruction_versions_and_engines_over_http(env, monkeypatch):
     assert account["chatgpt"]["connected"] is False
     refused = http.post("/api/deal/synthetic/jobs", {"action": "extract", "engine": "sol6"})
     assert refused.status_code == 409 and "ChatGPT" in refused.json()["error"]
+
+
+def test_hide_and_unhide_a_deal_over_http(env, monkeypatch):
+    http, _, _ = env
+    route = "/api/deals/synthetic/visibility"
+    listed = lambda: next(d for d in http.get("/api/deals").json() if d["slug"] == "synthetic")
+    assert (listed()["hidden"], listed()["hidden_by"], deal(http)["hidden"]) == (False, None, False)
+    assert http.get(route).status_code == 405
+    assert http.post(route, {"action": "hide"}, csrf="wrong").status_code == 403
+    assert http.post(route, {"action": "hide"}, origin="https://evil.example").status_code == 403
+    assert http.post(route, {"action": "hide"}, content_type="text/plain").status_code == 415
+    assert http.post("/api/deals/nosuch/visibility", {"action": "hide"}).status_code == 404
+    assert http.post("/api/deals/%2e%2e%2fsynthetic/visibility", {"action": "hide"}).status_code == 404
+    assert http.post(route, {"action": "delete"}).status_code == 400
+    monkeypatch.setenv("COCKPIT_PUBLIC_ORIGIN", "https://lines.example.invalid")
+    public = {"Host": "lines.example.invalid", "Origin": "https://lines.example.invalid", "Cf-Access-Authenticated-User-Email": "intruder@example.invalid"}
+    assert http.post(route, {"action": "hide"}, headers=public).status_code == 403
+    assert listed()["hidden"] is False
+
+    hidden = http.post(route, {"action": "hide"})
+    assert hidden.status_code == 200, hidden.text
+    assert (hidden.json()["hidden"], hidden.json()["hidden_by"]) == (True, "local")
+    assert http.post(route, {"action": "hide"}).status_code == 409
+    assert listed()["hidden"] is True and listed()["hidden_at"]
+    opened = deal(http)  # a hidden deal still opens by URL, its working copy untouched
+    assert (opened["hidden"], opened["hidden_by"], opened["workspace"]["revision"]) == (True, "local", 0)
+    refused = http.post("/api/deal/synthetic/jobs", {"action": "extract"})
+    assert refused.status_code == 409 and "unhide the deal first" in refused.json()["error"]
+    shown = http.post(route, {"action": "unhide"})
+    assert shown.status_code == 200 and shown.json()["hidden"] is False
+    assert http.post(route, {"action": "unhide"}).status_code == 409
+    kinds = [item["kind"] for item in http.get("/api/activity?slug=synthetic").json()["items"]]
+    assert kinds[:2] == ["unhide_deal", "hide_deal"]

@@ -1,7 +1,8 @@
-import React from 'react';
-import { Button } from '@fluentui/react-components';
-import { PlusIcon, WarningCircleIcon } from '@phosphor-icons/react';
+import React, { useState } from 'react';
+import { Button, Checkbox } from '@fluentui/react-components';
+import { EyeIcon, PlusIcon, WarningCircleIcon } from '@phosphor-icons/react';
 import { count } from './api';
+import { hiddenLine, listedDeals } from './deals';
 import { Empty } from './ui';
 import { displayName, tallyText } from './trace';
 
@@ -26,7 +27,11 @@ function UnseenLine({ unseen }) {
   return <small className="unseen-line">{parts.join('; ')} since you last looked</small>;
 }
 
-export default function Overview({ deals, onOpen, onAdd }) {
+// onUnhide(slug) is given to people who may unhide; it resolves when the list has been reloaded.
+export default function Overview({ deals, onOpen, onAdd, onUnhide }) {
+  const [showHidden, setShowHidden] = useState(false);
+  const [unhiding, setUnhiding] = useState(null);
+  const { rows, hiddenCount, visible } = listedDeals(deals, showHidden);
   // Plain left-click and keyboard go through the in-app navigation (unsaved-edit guard);
   // modified clicks and middle-click keep the link's native behaviour.
   function onLinkClick(event, slug) {
@@ -40,10 +45,16 @@ export default function Overview({ deals, onOpen, onAdd }) {
     if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); onOpen(slug); }
   }
 
+  async function unhide(event, slug) {
+    event.stopPropagation();
+    setUnhiding(slug);
+    try { await onUnhide(slug); } finally { setUnhiding(null); }
+  }
+
   return <>
     <div className="overview-title">
       <h1>Deal ledgers</h1>
-      <p><span className="mono">{count(deals.length, 'deal')}</span> · open one to inspect the filing and edit its working copy</p>
+      <p><span className="mono">{count(visible, 'deal')}</span> · open one to inspect the filing and edit its working copy</p>
       {onAdd && <Button appearance="secondary" className="add-deal-button" icon={<PlusIcon size={16}/>} onClick={onAdd}>Add deal</Button>}
     </div>
     <div className="deal-table-wrap">
@@ -61,12 +72,14 @@ export default function Overview({ deals, onOpen, onAdd }) {
           </tr>
         </thead>
         <tbody>
-          {deals.map(item => <tr key={item.slug} tabIndex={0} onClick={() => onOpen(item.slug)} onKeyDown={event => onRowKey(event, item.slug)}>
+          {rows.map(item => <tr key={item.slug} className={item.hidden ? 'hidden-deal' : undefined} tabIndex={0} onClick={() => onOpen(item.slug)} onKeyDown={event => onRowKey(event, item.slug)}>
             <td>
               <a className="deal-link" href={`/deal/${item.slug}`} tabIndex={-1} onClick={event => onLinkClick(event, item.slug)}>{item.name || item.target || item.slug}</a>
               <small className="mono">{item.slug}</small>
               {item.active_jobs > 0 && <small className="running-line">Extraction running</small>}
-              <UnseenLine unseen={item.unseen}/>
+              {item.hidden ? <small className="hidden-line"><span className="hidden-mark" title={hiddenLine(item)}>Hidden</span>
+                {onUnhide && <Button appearance="subtle" className="link-button" icon={<EyeIcon size={14}/>} disabled={unhiding === item.slug} onClick={event => unhide(event, item.slug)}>Unhide</Button>}
+              </small> : <UnseenLine unseen={item.unseen}/>}
             </td>
             <td className="mono">
               {item.form_type || '—'}
@@ -91,7 +104,9 @@ export default function Overview({ deals, onOpen, onAdd }) {
         </tbody>
       </table>
     </div>
-    {deals.length > 0 && <p className="table-footnote">Quote location is a location aid, not validation.</p>}
+    {hiddenCount > 0 && <Checkbox className="hidden-toggle deal-hidden-toggle" label={`Show hidden (${hiddenCount})`} checked={showHidden} onChange={(_, data) => setShowHidden(Boolean(data.checked))}/>}
+    {rows.length > 0 && <p className="table-footnote">Quote location is a location aid, not validation.</p>}
     {!deals.length && <Empty>No deal workbooks are available yet.</Empty>}
+    {deals.length > 0 && !rows.length && <Empty>Every deal is hidden.</Empty>}
   </>;
 }

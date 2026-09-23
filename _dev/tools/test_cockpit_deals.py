@@ -185,6 +185,45 @@ class DealsTests(unittest.TestCase):
         self.assertNotIn("pending", listed)
         self.assertTrue(self.ws.export("beta-holdings").startswith(b"PK"))
 
+    # ---- hiding deals --------------------------------------------------------------------
+
+    def test_hide_and_unhide_deals(self):
+        added = self.add(self.looked_up(seed="beta-holdings"))["slug"]
+        listed = lambda: {d["slug"]: d for d in self.cockpit.list_deals()}
+        self.assertEqual({slug: d["hidden"] for slug, d in listed().items()}, {"alpha-deal": False, added: False})
+        from cockpit import data
+        with self.assertRaises(data.DealNotFound): self.deals.visibility("nosuch", "austin", {"action": "hide"})
+        with self.assertRaises(WorkspaceError): self.deals.visibility("alpha-deal", "austin", {"action": "remove"})
+        with self.assertRaises(Conflict): self.deals.visibility("alpha-deal", "austin", {"action": "unhide"})
+        # A queued or running job on the deal blocks hiding.
+        self.runs.account_action("austin", {"action": "token", "token": TOKEN})
+        job = self.runs.job_action("alpha-deal", "austin", {"action": "extract"})["jobs"][0]
+        with self.assertRaises(Conflict) as caught: self.deals.visibility("alpha-deal", "alex", {"action": "hide"})
+        self.assertIn("still going", str(caught.exception))
+        conn = sqlite3.connect(self.ws.db_path)
+        conn.execute("UPDATE jobs SET state='failed' WHERE id=?", (job["id"],)); conn.commit(); conn.close()
+        revision = self.ws.deal("alpha-deal")["workspace"]["revision"]
+        result = self.deals.visibility("alpha-deal", "alex", {"action": "hide"})
+        self.assertEqual((result["hidden"], result["hidden_by"]), (True, "alex"))
+        self.deals.visibility(added, "austin", {"action": "hide"})
+        with self.assertRaises(Conflict): self.deals.visibility("alpha-deal", "austin", {"action": "hide"})
+        with self.assertRaises(Conflict) as caught: self.runs.job_action("alpha-deal", "austin", {"action": "extract"})
+        self.assertIn("unhide the deal first", str(caught.exception))
+        # Nothing else changes, the flag survives a new process, and the deal still opens.
+        fresh = data.Cockpit(self.root)
+        self.assertEqual({slug: (d["hidden"], d["hidden_by"]) for slug, d in {d["slug"]: d for d in fresh.list_deals()}.items()},
+                         {"alpha-deal": (True, "alex"), added: (True, "austin")})
+        self.assertEqual(fresh.workspace.deal("alpha-deal")["workspace"]["revision"], revision)
+        self.assertTrue(fresh.workspace.item(added)["pending"])
+        feed = self.cockpit.trace.activity("austin", "alpha-deal")["items"]
+        self.assertEqual((feed[0]["kind"], feed[0]["actor"], feed[0]["summary"]), ("hide_deal", "alex", "Hid the deal"))
+        self.assertTrue(feed[0]["unseen"])
+        result = self.deals.visibility("alpha-deal", "austin", {"action": "unhide"})
+        self.assertEqual((result["hidden"], result["hidden_by"], result["hidden_at"]), (False, None, None))
+        self.assertEqual(self.cockpit.trace.activity("alex", "alpha-deal")["items"][0]["summary"], "Unhid the deal")
+        self.assertEqual({slug: d["hidden"] for slug, d in listed().items()}, {"alpha-deal": False, added: True})
+        self.assertEqual(self.runs.job_action("alpha-deal", "austin", {"action": "extract"})["jobs"][0]["state"], "queued")
+
     # ---- HTTP ------------------------------------------------------------------------------
 
     def test_routes_and_write_guards(self):
