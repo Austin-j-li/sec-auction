@@ -85,7 +85,7 @@ A **Settings → Accounts** page lists, per user: Claude (not connected / connec
 
 Opened from a deal's toolbar (**Extract**) or right after adding a deal.
 
-- **Engine**: Claude Opus 5.5 (default), Claude Fable 5.1, GPT-6-Sol, GPT-6-Astra.
+- **Engine**: Claude Opus 5.5 (default), Claude Fable 5.1 (marked *experimental*), GPT-6-Sol, GPT-6-Astra. Selecting Fable shows: "Fable's safety filter often blocks runs partway (6 of 11 test prompts); a blocked run fails and must be restarted."
 - **Effort**: `low`, `medium`, `high`, `xhigh`, `max`, restricted to what the engine supports; default `medium`. `ultra` is not offered because it delegates to subagents, which breaks isolation.
 - **Instruction**: the default published version, preselected. The list shows published versions, then drafts, each marked.
 - **Time limit**: default 90 minutes (runner range 10–360).
@@ -231,7 +231,7 @@ Every phase keeps the existing suites green (browser, resize, responsive, HTTP, 
 4. A new deal's first completed version becomes its working-copy base automatically.
 5. Versions and deals can be hidden, never deleted.
 6. The digest's session gap is 30 minutes.
-7. Fable 5.1 is offered only if spike S3 confirms that the Max plan serves it headlessly.
+7. Fable 5.1 is offered as *experimental* (Austin, 23 September, after spike S3). A safeguard block is recorded as `provider_refusal` and shown as "blocked by Fable's safety filter".
 
 ## 14. Spike results (23 September)
 
