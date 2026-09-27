@@ -68,5 +68,11 @@ Alex asked to record procedural Formality and conditionality separately and rein
 ## Operational, when the VM returns
 
 - Publish v0 in the app, make it the default, and decide what happens to the app's earlier instruction versions and working copies.
-- Reconcile this checkout's runner and checker with the VM source.
+- Reconcile the VM's tools with this checkout. The v0 tools here break things the VM code may rely on:
+  - The checker rejects any non-v0 ledger, which includes the app's older working copies.
+  - `check_lean.choice_lists()` is removed.
+  - `rounds.csv` drops the `deadline_legacy` and `not_admitted` columns.
+  - The derive manifest drops `contract`, `contract_version`, `rules_requested`, `switches_retired`, `columns_missing`, `columns_unexpected`, `readings.missing` and `input.working_copy`.
+  - `--rules` is gone.
+  - `run_model --provider sol` defaults to `gpt-6-sol`.
 - Take a fresh backup, and remove the old `dist.old` build on the VM.
