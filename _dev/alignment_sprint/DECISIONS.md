@@ -15,7 +15,7 @@ Nothing here changes the instruction by itself. When the sprint ends, the adopte
 
 ## Working rule (from 2026-09-27)
 
-Where Alex has spoken, adopt his view. Where he is silent, use the simplest wording. Where he contradicts the filing or himself, Austin judges on his behalf or asks him. Austin's attention goes to what the research depends on: round counts, who is live at each stage, and formal versus informal bids. After the amendment, re-extract the nine deals (on Austin's command) and compare with Alex's hand coding; let disagreements show which details matter.
+Where Alex has spoken, adopt his view. Where he is silent, use the simplest wording. Where he contradicts the filing or himself, Austin judges on his behalf or asks him. **Austin's earlier rulings are overturned where they contradict Alex** (Austin, 2026-09-27). Checked: only the same-offer rule contradicted Alex (V¶30), and F2 overturns it; the other settled rulings agree with Alex (V¶22, V¶41, V¶45, V¶95–97, V¶184, CI p.7) or he is silent on them. Austin's attention goes to what the research depends on: round counts, who is live at each stage, and formal versus informal bids. After the amendment, re-extract the nine deals (on Austin's command) and compare with Alex's hand coding; let disagreements show which details matter.
 
 ## Order of work
 
@@ -32,18 +32,18 @@ Where Alex has spoken, adopt his view. Where he is silent, use the simplest word
 |---|---|---|---|---|---|
 | R1 | Request to some but not all eligible parties opens a round | Adopt | **Adopt** | 2026-09-27 | As drafted |
 | R2 | Round opens at the decision on who advances | Adopt | **Adopt** | 2026-09-27 | As drafted; Datalink awaited parties to Alex (Q2) |
-| R3 | Trigger (d): pause or lapsed exclusivity | Adopt guard; rest to Alex | **Adopt guard; exclusivity restart to Alex** | 2026-09-27 | 30-day and exclusivity triggers kept until Alex answers (Q2) |
+| R3 | Trigger (d): pause or lapsed exclusivity | Adopt guard; rest to Alex | **Adopt guard; keep v0 triggers (Austin for Alex)** | 2026-09-27 | Restart after exclusivity lapses is a new round |
 | R4 | Finality: label or substance; informal final round | Ask Alex | **Adopt (Austin for Alex): substance over label; bids in negotiation Formal** | 2026-09-27 | Off the Alex list |
-| R5 | When round 1 starts | Adopt, confirm with Alex | **Adopt (Alex V¶71, V¶173); PetSmart Oct 3 anchor to Q8** | 2026-09-27 | Decision 1 batch |
+| R5 | When round 1 starts | Adopt, confirm with Alex | **Adopt (Alex V¶71, V¶173); plus V¶55 meeting rule (PetSmart Oct 3)** | 2026-09-27 | Decision 1 batch; Q8 decided |
 | R6 | Rounds only for the whole company | Adopt | **Adopt** | 2026-09-27 | Applies the settled partial rule (E1) to round rules; not a reopening |
 | R7 | Round dating and ordering details | Adopt | **Adopt (Alex's view)** | 2026-09-27 | (a) V¶25, (c) CI p.8; (b) Alex silent, simplest option; round-1 dating moved to R5 |
-| R8 | Process gap measurement | Ask Alex | open | | |
+| R8 | Process gap measurement | Ask Alex | **Adopt (Austin for Alex): measure from last dated contact** | 2026-09-27 | sTec 2 processes (V¶118) |
 | R9 | "Enforced" means decisive action | Adopt | **Adopt** | 2026-09-27 | Decision 1 batch |
 | F1 | When documents make a bid Formal | Ask Alex | **Adopt (Austin for Alex): markup must come with the bid** | 2026-09-27 | Reproduces V¶74 |
 | F2 | Late markup without a price | Ask Alex | **Adopt (Austin for Alex): confirmation by documents copies the latest price** | 2026-09-27 | Amends the settled same-offer rule; accepts Penford Oct 8 |
 | F3 | Price-only revision after a Formal bid | Ask Alex | **Adopt (Austin for Alex): Formality persists while markup on table** | 2026-09-27 | |
 | F4 | Diligence bundled with exclusivity is Heavy | Adopt | **Adopt** | 2026-09-27 | Decision 1 batch |
-| F5 | "None stated" against Unclear | Ask Alex | open | | |
+| F5 | "None stated" against Unclear | Ask Alex | **Adopt (Austin for Alex): silence is None for Formal bids; required exclusivity at least Light** | 2026-09-27 | V¶125, V¶183, V¶19, V¶49 |
 | F6 | "No firm commitment" means Contingent | Adopt | **Adopt** | 2026-09-27 | Decision 1 batch |
 | F7 | Legal bargaining against conditions on proceeding | Adopt | **Adopt (Alex silent; simplest)** | 2026-09-27 | Decision 1 batch |
 | F8 | Regulatory risk and Heavy | Defer | **Defer** | 2026-09-27 | Decision 1 batch |
@@ -55,7 +55,7 @@ Where Alex has spoken, adopt his view. Where he is silent, use the simplest word
 | P2 | Re-contacted parties double counted | Adopt | **Adopt** | 2026-09-27 | Decision 1 batch |
 | P3 | Inferred stage-opening exit against later withdrawal | Adopt | **Adopt** | 2026-09-27 | Decision 1 batch |
 | P4 | NDA dating and memoranda | Adopt | **Adopt** | 2026-09-27 | Decision 1 batch |
-| P5 | Activist and initiation | Ask Alex | open | | |
+| P5 | Activist and initiation | Ask Alex | **Adopt (Austin for Alex): record activists broadly; influence only if a sale demand comes first; 'mixed' initiation** | 2026-09-27 | V¶119, V¶39, CI p.5 |
 | P6 | Type split by exact arithmetic | Adopt | **Adopt** | 2026-09-27 | Decision 1 batch |
 | P7 | Advisers | Adopt | **Adopt** | 2026-09-27 | Decision 1 batch |
 | P8 | Date bounds from linked events | Adopt | **Adopt** | 2026-09-27 | Decision 1 batch |
@@ -63,7 +63,7 @@ Where Alex has spoken, adopt his view. Where he is silent, use the simplest word
 | P10 | Public/private and non-US status | Adopt | **Adopt** | 2026-09-27 | Decision 1 batch |
 | P11 | Contact rows for the opening outreach | Adopt | **Adopt** | 2026-09-27 | Decision 1 batch |
 | O1 | Mandatory review items | Adopt | **Adopt** | 2026-09-27 | Decision 1 batch |
-| O2 | Real-time review | Ask Alex | open | | |
+| O2 | Real-time review | Ask Alex | **Defer (Austin): work through the cockpit for now** | 2026-09-27 | No instruction change |
 | O3 | Count and Who on signing and announcements | Adopt | **Adopt (Austin's request)** | 2026-09-27 | Decision 1 batch |
 | O4 | Signed acquirer's post-signing revisions | Adopt | **Adopt** | 2026-09-27 | Decision 1 batch |
 | O5 | Price normalization inputs | Defer | **Defer** | 2026-09-27 | Decision 1 batch |
@@ -74,10 +74,13 @@ Where Alex has spoken, adopt his view. Where he is silent, use the simplest word
 
 ## Questions for Alex (built up as decisions are made)
 
-- **Q2 (stages), part: parties the target still awaits.** Datalink July 27 kept five parties; the August 16 final letters went to three; on September 1 the other two "remained in the process … still considering whether they would submit proposals" (p.30). The settled non-invitation rule drops them on August 16. Should a party the target is still expecting to hear from count as left out of the new stage? (From R2.)
-- **Q2 (stages), part: restart after exclusivity.** After a bidder's exclusivity ends and the target goes back to earlier bidders for offers (Datalink Oct 1, 2016: B and C re-contacted and sent revised drafts, C reaffirmed $11.25 on Oct 4; Synacor Dec 30, 2020: "continue to seek non-binding letters of intent"), is that a new round of the same process, or a continuation of the round that ended with exclusivity? Also: should a pause of 30 days or more with no solicitation start a new round when bidding resumes? v0's 30-day and exclusivity triggers are v0's own conventions, not Alex's. (From R3.)
+None open. Every item was decided by Austin on Alex's behalf or resolved from Alex's notes.
 
-Resolved without asking: Kraton Party J on July 6. V¶82 counts J among the six parties dropped ("out of 10 NDA agreements, only 4 bidders ... will continue"), so J is Dropped by target on July 6, Re-entered at its July 19 bid, and dropped again on July 20.
+Decided by Austin for Alex (off the list): finality (R4); process gap (R8); conditions (F5); initiation and activists (P5); PetSmart round-1 date (Q8, Alex's Oct 3); real-time review deferred to the cockpit (O2); negotiation-stage formality; F1–F3; Datalink parties "still considering" (dropped under the settled rule, CI p.7; Re-entered if they return); restart after exclusivity lapses is a new round (R3).
+
+Resolved from Alex's own notes: Kraton Party J on July 6 is dropped (V¶82: "out of 10 NDA agreements, only 4 bidders ... will continue"), Re-entered at its July 19 bid, dropped again on July 20.
+
+Possible slip in Alex's notes (filing fact, not a convention): V¶50 names Mac-Gray Parties B and C as dropped on Sep 24; the filing shows C did not submit on Sep 18 and A and B were dropped at CSC/Pamplona's exclusivity on Sep 24. Follow the filing.
 
 ## Decision records
 
@@ -190,3 +193,39 @@ E10 adds, after Same offer:
 E10 Same offer begins "When a bidder says its earlier offer stands (…), or confirms it by documents (below), copy that bid row …". E2 "successive drafts" becomes "successive drafts, except a bidder's confirmation by documents (E10)".
 
 Effects: Providence Aug 4 Party B, Bid reaffirmed at $24, Formal, conditions as the filing shows (on-site diligence to Aug 11, so not None). Penford Oct 8 Ingredion, Bid reaffirmed at $19, Formal (Alex dates Ingredion's formal offer Oct 14, V¶74); the Oct 14 phone confirmation is a second reaffirmation. Expect most deals' eventual winners to gain one such row at their first revised draft after negotiation began.
+
+### Stage questions (decided 2026-09-27, Austin judging for Alex)
+
+- **Parties the filing says remained in the process.** Austin: "if they didn't submit a new bid by the deadline, even if the filing said they were still considering, I will treat them as dropped. If they ever turn up later, they get a re-entry. A deadline becomes a joke if we allow them in." No exception to the settled rule (consistent with CI p.7). Datalink's two admitted parties not sent the Aug 16 final letters are Dropped by target at the Aug 16 opening; a later return would be Re-entered.
+- **Restart after exclusivity lapses.** A new round; E6 (d) stays as in v0 plus the R3 guard. Datalink: 4 rounds (Oct 1). Synacor: an added round from Dec 30, 2020.
+
+### R8 (adopted 2026-09-27, Austin judging for Alex)
+
+E5 (b) adds:
+
+> Measure the gap from the last dated sale contact. Undated follow-ups to that contact, and messages that only end or cancel talks, do not restart the clock. Talks in which the target is buying another company, or merger-of-equals talks outside the contest (E1), are not sale contacts.
+
+The 90-day threshold stays. Effects: sTec Nov 14, 2012 (Company A's bank) to Feb 13, 2013 (Company B) is 91 days, so 2 processes (V¶118). Synacor's Company D talks (target buying D) do not bridge Oct 2019 to Jul 2020, so the processes stay separate (V¶108).
+
+### F5 (adopted 2026-09-27, Austin judging for Alex)
+
+- **Silence.** E12 None adds: "or, for a Formal bid, the filing reports no remaining diligence, financing condition or regulatory concern for it." Informal bids with silence stay Unclear. sTec WDC May 28 (markup, nothing said) becomes None, as Alex reads it (V¶125, V¶183).
+- **Exclusivity.** E12 Light adds "or Exclusivity is Required"; None requires Exclusivity not Required. A.3 (l.16) and E12 (l.277) change to: exclusivity never makes a bid Heavy or changes Formality, but a required exclusivity makes it at least Light. Follows V¶19 (exclusivity is a condition) without breaking V¶49 (it must not downgrade a Formal bid).
+
+### P5 (adopted 2026-09-27, Austin judging for Alex)
+
+- D2 Activist: "a shareholder urges the target to sell itself or to explore strategic alternatives. The Note begins 'Demands sale' or 'Sale one option' and quotes the demand."
+- D5 Initiation: "activist-influenced only if an Activist row whose Note begins 'Demands sale' precedes the target's first sale step (Target interest, Target sale decision or a target-opened round)"; adds "mixed, where both a target-side first step (Target interest or Target sale decision) and a bidder's own Bid precede round 1; the Note names both with dates."
+- Effects: sTec gets a Balch Hill Dec 6 Activist row ("Sale one option") and is not activist-influenced (V¶119). Mac-Gray is mixed: Apr 8 Target interest, Jun 21 Party A bid (V¶39, CI p.5). PetSmart stays activist-influenced. `derive_analysis.py` must read the Note prefix and the new value.
+
+### Q8 PetSmart round 1 (decided 2026-09-27, Austin: Alex's date)
+
+Round 1 opens Oct 3, 2014, as V¶55 says. General wording, added to the R5 clause of E6 l.191 (from V¶55's own general statement):
+
+> Where the outreach itself is undated, round 1 opens at the board meeting on the sale process held immediately before the first confidentiality agreements.
+
+PetSmart: Oct 3 board meeting, NDAs in the first week of October, so round 1 opens Oct 3. Other deals have dated outreach and are unchanged. Note: the filing reports communications with 27 parties between Aug 13 and Oct 3; Austin follows Alex's date.
+
+### O2 (deferred 2026-09-27)
+
+Austin: "ignore this interaction for now, we just work with the cockpit." No instruction change; human checking happens in the cockpit workflow. Revisit when the VM is back.
