@@ -2,6 +2,8 @@
 
 Updated 27 September 2026 after checking the recovered files, original reference notes and decision records. This is the current entry point; Austin requested deletion of the old `_dev/HANDOFF.md`. Historical packets describe their dated work, not additional current approval holds.
 
+**Full Alex-alignment audit:** [Detailed account of the voice notes versus v1.14.1](reviews/2026-09-27-alex-alignment/REPORT.md). This reads the complete voice document and instruction, distinguishes direct disagreements from added defaults and implementation tasks, and provides a six-discussion work order. Important findings beyond the earlier queue are Mac-Gray's July 25 versus August 27 stage opening, sTec's activist attribution and soft-deadline interpretation, mandatory verification coverage, non-invitation versus exclusion, and missing market-price/EV-normalization work. The audit is not an instruction amendment or acceptance of any workbook.
+
 ## Evidence boundary and current state
 
 The latest saved cockpit observation is **27 September 2026, 10:55:33 UTC**. All 162 files in its [index](recovery/2026-09-27-cockpit/INDEX.json) match their recorded sizes and SHA-256 hashes. Later local decisions are included below. This is not a live VM check.
@@ -34,6 +36,8 @@ Kraton is to follow Alex's three-round interpretation, with July 6 starting its 
 
 The supplied Claude audit also identifies the 30-day/ended-exclusivity trigger, human-review flag coverage, sTec process splitting and smaller collection differences for investigation. These are an audit queue, not a verified exhaustive list or approved amendments. Alex's original voice notes explicitly require round/process and other uncertainty flags (paragraphs 169–178), and identify two sTec processes (paragraph 118). Verify rule omissions, run errors and intentional later rulings separately. No claim that v1.14.1 fully follows Alex is established.
 
+The full audit confirms additional material differences. Alex opens Mac-Gray's second informal stage on July 25; the new run opens it at the August 27 request. For sTec, the new run's single process and Activist-influenced initiation disagree with his stated reading. Its Extended deadline category captures late acceptance but not his distinct assessment that May 3 was soft. Part F's default-suppression and five-question ceiling do not implement his mandatory human-verification list. Resolve these as general definitions and review policy, then inspect their dependent rows. Datalink is not covered in this voice document and has no exact map established by it.
+
 ### 2. sTec: when did the final round begin?
 
 **Open reconciliation with Alex:** May 16's final-round letters versus May 29's best-and-final request. The [filing](../raw_filing/stec_2013-08-08_DEFM14A.htm), printed p. 30, calls the earlier letters final round process letters and later describes the proposals as non-binding. Alex's voice note explicitly calls May 16 the start of “round two of informal bidding” (body paragraph 124); paragraph 125 calls the May 28 offer formal but says its round was not final. His sTec voice-note section does not state when the final round starts.
@@ -41,6 +45,8 @@ The supplied Claude audit also identifies the 30-day/ended-exclusivity trigger, 
 Under current E6, finality describes the announced procedure; non-binding does not itself mean Not final. The v1.14.1 run has two rounds, consistent with questionnaire map A. Questionnaire map C reconstructs a May 29 final-stage opening and three rounds from that reading; this date and full map are not an explicit ruling by Alex. The old working copy's extra round after WDC's May 31 withdrawal has no identified v1.14.1 trigger; it is not another equally supported current-rule option.
 
 **Prior assistant recommendation withdrawn:** May 16 should not be recommended as research-final merely because the filing calls its letters final or because v1.14.1 says so. Alex explicitly calls it a second informal round. Resolve the general round/finality convention first; the exact subsequent final-round opening remains unconfirmed by Alex. Company H's exit is settled separately below.
+
+The older collection instructions, p. 8, explicitly allow a final round of informal bids. Therefore informal does not by itself imply non-final. For sTec, the stronger evidence is voice paragraph 125's explicit statement that the May 28 Formal bid is not in the final round. Keep stage numbering, finality and individual bid Formality separate.
 
 ### 3. Conflicting reference sources
 
