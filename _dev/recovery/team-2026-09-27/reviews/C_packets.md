@@ -1,9 +1,0 @@
-1. **Major — stale specification restored.** `_dev/maintenance/2026-09-26-v1141-streamline/V1141_SPEC.md:369,443–444` omits three corrections recorded at `2026-09-26T17:15:01.796Z` and confirmed by the complete `18:45:49.357Z` Read. These change the question-count evidence, row-count acceptance criterion, and rebase consequences. Line 5 also omits the `20:50:48.908Z` correction marking step 9 done. **Fix:** restore from that complete Read, apply subsequent edits once, and correct the report’s provenance claim.
-
-2. **Major — recoverable instruction draft marked missing.** `_dev/recovery/RESTORED_PACKETS.md:22` incorrectly lists `SEC_Deal_Ledger_Extraction_Instruction_v1.14_draft.md` as unavailable. Snapshot file `instructions/draft-a4ca26ecfa92_a4ca26ecfa92.md` matches the full SHA-256 `f9595d74…89aea97` recorded at `2026-09-26T18:54:45.749Z`; the creation script also survives. **Fix:** copy those exact bytes into the taxonomy packet and update the inventory and report.
-
-3. **Minor — status edits replayed twice.** Under `_dev/maintenance/2026-09-24-bid-terms-taxonomy/`, duplicate paragraphs appear in `release/README.md:3,5`, `release/PROPOSED_DOC_LINES.md:9,11`, and `migration/README.md:5,7`. The `2026-09-26T20:51:35.340Z` script inserts each once. **Fix:** remove one duplicate from each file.
-
-Checks passed: five instruction/builder hashes, all five workbook byte comparisons against the snapshot, five Python syntax checks, 61 questionnaire excerpts, ZIP integrity, and in-memory questionnaire regeneration with identical document XML and 5,198 words. Retest acceptance produced **26 PASS, 4 REVIEW, 1 FAIL**; the P&W failure is already explained in the historical README. No pytest files are assigned to this slice. Disk regeneration was not attempted in the read-only sandbox.
-
-ACCEPT-WITH-FIXES
