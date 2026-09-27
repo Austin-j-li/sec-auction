@@ -40,7 +40,7 @@ class RunnerTests(unittest.TestCase):
         ]
         if revise:
             workbook = root / "draft.xlsx"
-            self.write_workbook(workbook, "original")
+            self.write_workbook(workbook, header=run_model.checker().LEDGER_COLUMNS)
             report = root / "findings.md"
             report.write_text("Synthetic findings")
             argv += ["--revise-from", str(workbook), "--report", str(report)]
@@ -49,10 +49,10 @@ class RunnerTests(unittest.TestCase):
             run_model.prepare(args)
         return run
 
-    def write_workbook(self, path, value="synthetic", sheets=tuple(run_model.SHEETS)):
+    def write_workbook(self, path, value="synthetic", sheets=tuple(run_model.SHEETS), header=None):
         workbook = run_model._openpyxl.Workbook()
         workbook.active.title = sheets[0]
-        workbook.active.append([value])
+        workbook.active.append(list(header) if header else [value])
         for name in sheets[1:]:
             workbook.create_sheet(name)
         workbook.save(path)
@@ -179,27 +179,28 @@ class RunnerTests(unittest.TestCase):
         self.assertEqual((metadata["model"], metadata["effort"], metadata["timeout_seconds"]),
                          ("claude-opus-5-5", run_model.DEFAULT_EFFORT["opus"], run_model.TIMEOUT_SECONDS))
 
-    def test_explicit_sol_uses_astra_high(self):
+    def test_explicit_sol_defaults_to_sol_and_astra_keeps_high(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
-            metadata = json.loads((self.prepare_fixture(root, extra=("--provider", "sol")) / "metadata.json").read_text())
-        self.assertEqual((metadata["model"], metadata["effort"]), ("gpt-6-astra", "high"))
+            metadata = json.loads((self.prepare_fixture(root / "sol", extra=("--provider", "sol")) / "metadata.json").read_text())
+            self.assertEqual((metadata["model"], metadata["effort"]), ("gpt-6-sol", run_model.DEFAULT_EFFORT["sol"]))
+            astra = self.prepare_fixture(root / "astra", extra=("--provider", "sol", "--model", "gpt-6-astra"))
+            metadata = json.loads((astra / "metadata.json").read_text())
+            self.assertEqual((metadata["model"], metadata["effort"]), ("gpt-6-astra", "high"))
 
-    def test_revision_of_29_column_workbook_requires_its_instruction(self):
+    def test_revision_workbook_must_have_the_v0_ledger_header(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
-            workbook = root / "source.xlsx"
-            self.write_workbook(workbook, "Stock %")
             findings = root / "findings.md"
             findings.write_text("Synthetic findings")
-            with self.assertRaisesRegex(SystemExit, "pass --instruction"):
-                self.prepare_fixture(root / "missing", extra=("--revise-from", str(workbook), "--report", str(findings)))
-            instruction = root / "candidate.md"
-            instruction.write_text("Synthetic v1.14.1 instruction")
-            run = self.prepare_fixture(root / "with", extra=("--revise-from", str(workbook), "--report", str(findings),
-                                                   "--instruction", str(instruction)))
+            old = root / "old.xlsx"
+            self.write_workbook(old, "All cash")
+            with self.assertRaisesRegex(SystemExit, "not the v0 ledger"):
+                self.prepare_fixture(root / "old", extra=("--revise-from", str(old), "--report", str(findings)))
+            self.assertFalse((root / "old" / "runs").exists())
+            run = self.prepare_fixture(root / "v0", revise=True)
             metadata = json.loads((run / "metadata.json").read_text())
-            self.assertEqual(metadata["revised_from_ledger_schema"], "v1.14.1")
+            self.assertEqual(metadata["revised_from_ledger_schema"], "v0")
 
     def test_disallowed_model_effort_or_timeout_fails_before_creating_run(self):
         for extra, message in [(("--effort", "extreme"), "runs one of"), (("--model", "claude-sonnet-5"), "runs one of"),

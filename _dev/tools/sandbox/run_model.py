@@ -41,10 +41,10 @@ CLAUDE_TOKEN_FILE = Path(os.environ.get("SEC_CLAUDE_OAUTH_TOKEN_FILE")
 CODEX_AUTH_FILE = Path(os.environ["SEC_CODEX_AUTH_FILE"]) if os.environ.get("SEC_CODEX_AUTH_FILE") else None
 # Models and effort levels each provider may be prepared with. The first model is the default.
 # "opus" is the Claude transport (Opus and Fable); "sol" is the Codex transport (Sol and Astra).
-MODELS = {"sol": ("gpt-6-astra", "gpt-6-sol", "gpt-5.6-sol"), "opus": ("claude-opus-5-5", "claude-fable-5-1", "claude-opus-5")}
+MODELS = {"sol": ("gpt-6-sol", "gpt-6-astra", "gpt-5.6-sol"), "opus": ("claude-opus-5-5", "claude-fable-5-1", "claude-opus-5")}
 # Codex's "ultra" level delegates to subagents automatically, so it is not offered.
 EFFORTS = {"sol": ("low", "medium", "high", "xhigh", "max"), "opus": ("low", "medium", "high", "xhigh", "max")}
-DEFAULT_EFFORT = {"sol": "xhigh", "opus": "medium"}  # Opus: 22 Sep 2026 effort sweep
+DEFAULT_EFFORT = {"sol": "xhigh", "opus": "medium"}  # Opus 5.5 at medium is the project's default extraction
 MODEL_DEFAULT_EFFORT = {"gpt-6-astra": "high"}
 # Claude Code settings for every Opus run. A classifier refusal fails the run instead of switching
 # models; the prompt-cache lifetime stays the subscription default; and the "user hasn't heard
@@ -245,7 +245,7 @@ def claude_summary(events_path: Path) -> dict[str, object] | None:
 
 
 def checker():
-    """Import the checker only when a revision needs its schema detector."""
+    """Import the checker only when a revision needs its ledger header."""
     if str(BASE.parent) not in sys.path:
         sys.path.append(str(BASE.parent))
     import check_lean
@@ -253,8 +253,8 @@ def checker():
     return check_lean
 
 
-def revision_schema(workbook: Path, rules: str | None = None) -> str:
-    """Identify a revision workbook after checking its four-sheet shape."""
+def revision_schema(workbook: Path) -> str:
+    """Check that a revision workbook has the four sheets and the v0 Deal ledger header."""
     try:
         book = _openpyxl.load_workbook(workbook, read_only=True)
     except Exception as exc:
@@ -263,10 +263,14 @@ def revision_schema(workbook: Path, rules: str | None = None) -> str:
         if book.sheetnames != SHEETS:
             raise SystemExit(f"the revision workbook must have exactly the sheets {', '.join(SHEETS)}; "
                              f"it has {', '.join(book.sheetnames)}")
-        header = next(book["Deal ledger"].iter_rows(min_row=1, max_row=1, values_only=True), ())
+        header = list(next(book["Deal ledger"].iter_rows(min_row=1, max_row=1, values_only=True), ()))
     finally:
         book.close()
-    return checker().schema_for_header(header, rules)
+    while header and header[-1] in (None, ""):
+        header.pop()
+    if header != checker().LEDGER_COLUMNS:
+        raise SystemExit("the revision workbook's Deal ledger header is not the v0 ledger's")
+    return checker().LEDGER_SCHEMA
 
 
 def prepare(args: argparse.Namespace) -> None:
@@ -276,12 +280,7 @@ def prepare(args: argparse.Namespace) -> None:
         raise SystemExit("--filing and --deal must be bare names, not paths")
     if args.revise_from and (not Path(args.revise_from).is_file() or not Path(args.report).is_file()):
         raise SystemExit("revision workbook or findings report is missing")
-    rules = (checker().rules_for_instruction(sha256(Path(args.instruction)))
-             if args.revise_from and args.instruction and Path(args.instruction).is_file() else None)
-    revised_schema = revision_schema(Path(args.revise_from), rules) if args.revise_from else None
-    if args.revise_from and checker().is_29_column(revised_schema) and not args.instruction:
-        raise SystemExit("--revise-from is a v1.14 or v1.14.1 workbook: pass --instruction with the instruction it follows "
-                         "(the default is the working instruction, which may be older)")
+    revised_schema = revision_schema(Path(args.revise_from)) if args.revise_from else None
     model = args.model or MODELS[args.provider][0]
     effort = args.effort or MODEL_DEFAULT_EFFORT.get(model, DEFAULT_EFFORT[args.provider])
     if model not in MODELS[args.provider] or effort not in EFFORTS[args.provider]:
@@ -868,7 +867,7 @@ def parser() -> argparse.ArgumentParser:
     p.add_argument("--filing", required=True)
     p.add_argument("--filing-dir", help="folder holding the filing: raw_filing/ (default) or a cockpit deal folder in _dev/cockpit/state/filings/")
     p.add_argument("--instruction", help="candidate instruction file to test (default: the working instruction)")
-    p.add_argument("--model", help="model to run (default: claude-opus-5-5 for opus, gpt-6-astra for sol)")
+    p.add_argument("--model", help="model to run (default: claude-opus-5-5 for opus, gpt-6-sol for sol)")
     p.add_argument("--effort", help="effort: low, medium, high, xhigh or max (default: Claude medium, Astra high, other Codex models xhigh)")
     p.add_argument("--timeout-minutes", type=int, help="wall-clock limit for the run, 10-360 (default: 90)")
     p.add_argument("--revise-from", help="finished workbook to revise (revision pass)")

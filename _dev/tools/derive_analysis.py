@@ -1,30 +1,21 @@
 #!/usr/bin/env python3
-"""Turn one ledger workbook into estimation tables under analysis contract version 0.2.
+"""Turn one v0 ledger workbook into estimation tables.
 
-    python3 _dev/tools/derive_analysis.py LEDGER.xlsx --out DIR [--deal SLUG] [--rules v1.14|v1.14.1]
-    python3 _dev/tools/derive_analysis.py --working-copy SLUG [--repo-root R] --out DIR [--keep-export] [--rules ...]
+    python3 _dev/tools/derive_analysis.py LEDGER.xlsx --out DIR [--deal SLUG]
 
-The contract is `_dev/maintenance/2026-09-24-bid-terms-taxonomy/ANALYSIS_CONTRACT.md`. The tool is
-mechanical: it never corrects the ledger, and every research choice awaiting Alex is a switch with
-no default, emitted as side-by-side columns. It writes only into the --out folder, which must be new
-or empty, and never under `extraction/`, `raw_filing/`, `ref/` or `_dev/cockpit/`.
+The tool is mechanical: it never corrects the ledger, and every research choice awaiting Alex is a
+switch with no default, emitted as side-by-side columns. It writes only into the --out folder, which
+must be new or empty, and never under `extraction/`, `raw_filing/` or `ref/`.
 
 Outputs: bids.csv, other_scope.csv, rounds.csv, participation.csv, deal.csv and manifest.json. The
 manifest's "review" list holds what a person should look at: disagreements with the Rounds sheet,
 partial-only parties, counts that cannot be parsed, and the like.
 
-A 29-column workbook (a "Stock %" column, check_lean.ledger_schema) gives every column. Its headers
-are the same under v1.14 and v1.14.1, so --rules says which instruction made it; with no selection
-it is read under v1.14.1 (check_lean's default). Under v1.14.1 an exit's Inferred = Y is an inferred
-exit, Initiation is derived by D5's rule and checked against Deal facts, and the switches that rest
-on content v1.14.1 deleted (eligible but unadmitted bidders, merger-of-equals talks, process
-initiator) are retired; v1.14 workbooks keep the v1.14 readings. A v1.13.2 workbook is accepted with
-the columns it has: All cash gives all_cash, and the readings that rest on the Conditions level (T1,
-T1u) are missing. Every schema gets upfront_price_kind (a blank or invalid price is no price
-observation) and same_offer_of (a Note beginning "Same as #n"). A five-sheet cockpit download's Source sheet is read
-for provenance. --working-copy renders the cockpit working copy with the cockpit's own code in a
-temporary root, from a copy of the database made with SQLite's backup API over a read-only
-connection; the live state is never opened for writing.
+The workbook must have the v0 29-column Deal ledger; any other header is an error. An exit's
+Inferred = Y is an inferred exit, and Initiation is derived by D5's rule and checked against Deal
+facts. Every bid gets upfront_price_kind (a blank or invalid price is no price observation) and
+same_offer_of (a Note beginning "Same as #n"). A five-sheet cockpit download's Source sheet is read
+for provenance.
 """
 
 from __future__ import annotations
@@ -36,38 +27,29 @@ import hashlib
 import json
 import math
 import re
-import shutil
-import sqlite3
 import sys
-import tempfile
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
-from urllib.parse import quote
 
 import openpyxl
 
 import check_lean
-import diff_workbooks
 
-TOOL_VERSION = "0.3"
-CONTRACT_VERSION = "0.2"
-CONTRACT = "_dev/maintenance/2026-09-24-bid-terms-taxonomy/ANALYSIS_CONTRACT.md"
+TOOL_VERSION = "v0"
 PROJECT = Path(__file__).resolve().parents[2]
-FORBIDDEN_OUT = ("extraction", "raw_filing", "ref", "_dev/cockpit")
-# Settled (RESEARCH_QUESTIONS.md): Alex keeps Meredith for descriptive work only.
+FORBIDDEN_OUT = ("extraction", "raw_filing", "ref")
+# Settled: Alex keeps Meredith for descriptive work only.
 DESCRIPTIVE_ONLY = {"meredith"}
 
 WHOLE_BIDS = {"Bid", "Bid reaffirmed"}
 ENTRY_EVENTS = {"NDA signed", "Bid", "Bid reaffirmed"}
 FINAL = {"Announced as final", "Inferred final"}
-LEGACY_LATE = "Late bids accepted"
-# One class per due date (contract, "Rounds and deadlines"). Longest labels first for prefix matching.
+# One class per due date. Longest labels first for prefix matching.
 DEADLINE_CLASSES = {
     "Extended (late bid accepted)": "extended",
     "Passed without action": "soft",
     check_lean.NO_DEADLINE: "no deadline",
-    LEGACY_LATE: "extended",
     "Enforced": "hard",
     "Extended": "extended",
     "Unclear": "missing",
@@ -82,40 +64,11 @@ WITHDREW_CODES = {
     "Value below earlier offer": "DropBelowInf",
     "Value at earlier offer": "DropAtInf",
 }
-# What the Note says a CVR/earnout value is (E13: "a maximum, a face amount or someone's valuation"), read
-# from the Note's sentences that give the amount or name the CVR/earnout. More than one kind, or none, is
-# left to a reviewer; the package's value is unchanged either way.
-CVR_KINDS = {
-    "maximum": re.compile(r"\b(?:maximum|up to|as much as|at most|capped|cap of)\b", re.IGNORECASE),
-    "face amount": re.compile(r"\b(?:face|nominal)\s+(?:amount|value)\b", re.IGNORECASE),
-    "valuation": re.compile(r"\bvalu(?:ation|ations|ed|es|ing)\b|['’]s (?:value|figure|estimate)\b|\bworth\b"
-                            r"|\bestimated?\s+(?:value|worth|at)\b|\b(?:value|worth)\s+(?:is\s+|was\s+)?estimated\b", re.IGNORECASE),
-}
-CVR_WORDS = re.compile(r"\b(?:cvrs?|contingent value|contingent (?:payment|consideration)|earn-?outs?|milestones?)\b", re.IGNORECASE)
-# Field-level Inferred (v1.14 only, Part B): Inferred = Y marks an inferred event or an inferred field, and the Note names
-# the field. These read the Note of an exit row in a v1.14 workbook. v1.13.2 and v1.14.1 mark inferred events only, so
-# there Inferred = Y on an exit is an inferred exit and the Note is not read.
-INFERRED_FIELDS = r"dates?|timing|sort date|date from|date to|reason|type|count"
-INFERRED_FIELD_RE = re.compile(
-    rf"\binferred(?:\s+fields?)?\s*[:\-–]?\s*(?:the\s+)?(?:exit(?:'s)?\s+)?(?P<a>{INFERRED_FIELDS})\b"
-    rf"|\b(?P<b>{INFERRED_FIELDS})\s+(?:is\s+|was\s+|are\s+|were\s+)?inferred\b", re.IGNORECASE)
-INFERRED_EVENT_RE = re.compile(
-    rf"\binferred\s*[:\-–]?\s*(?:the\s+)?(?:exit|closure|departure|withdrawal|drop|non-submission|event)\b(?!(?:'s)?\s+(?:{INFERRED_FIELDS})\b)"
-    r"|\b(?:exit|closure|departure|withdrawal|non-submission|event)\s+(?:is\s+|was\s+)?inferred\b", re.IGNORECASE)
-# Signs in an exit row that the exit itself is inferred (E14): When "by [transition date]", silence, a transition or E14,
-# or cohort arithmetic ("25 NDA signers - 9 IOI bidders"). Any one keeps a Note that names an inferred field unresolved.
-INFERRED_EXIT_SIGNS = {
-    "silence": re.compile(r"\bnever\s+(?:mentioned|heard|seen|appears?|again)\b|\bnot\s+(?:mentioned|heard\s+from|seen)\b|\bsilen(?:ce|t)\b"
-                          r"|\bno\s+(?:further\s+)?(?:\w+\s+)?(?:mention|contact|word|response|reply|submission|bid|proposal|offer)s?\b"
-                          r"|\bno\s+further\b", re.IGNORECASE),
-    "a transition (E14)": re.compile(r"\bE14\b|\btransition\b", re.IGNORECASE),
-    "count arithmetic": re.compile(r"\b\d+(?:\s+[A-Za-z][\w/-]*){0,4}\s+(?:[-−–]|minus|less)\s+\d+\b", re.IGNORECASE),
-}
 INITIATION_EVENTS = {"Target interest": "target-led", "Target sale decision": "target-led",
                      "Bidder interest": "bidder-led", "Bid": "bidder-led", "Activist": "activist-influenced"}
 # P1: what the two price cells give, from validated values only.
 USABLE_PRICE_KINDS = {"point", "range", "lower_bound", "upper_bound"}
-# v1.14.1 E13 leaves a Stock % range to the Note ("Part stock", the range in the Note); a percentage range read there.
+# E13 leaves a Stock % range to the Note ("Part stock", the range in the Note); a percentage range read there.
 NOTE_STOCK_RANGE_RE = re.compile(r"(\d+(?:\.\d+)?)\s*%?\s*(?:[-–]|to)\s*(\d+(?:\.\d+)?)\s*%")
 
 SWITCHES = [
@@ -134,41 +87,18 @@ SWITCHES = [
     {"id": "same_price_revisions", "source": "D22; D13; Alex Decision 3b; P1",
      "question": "Whether a same-price revision of terms is a new price observation.",
      "variants": {"new observation": "price_obs__same_price_as_new", "change of terms only": "price_obs__same_price_as_terms"}},
-    {"id": "same_offer_restatements", "source": "v1.14.1 E10 (R1); questionnaire 3.3(b)",
+    {"id": "same_offer_restatements", "source": "E10 (R1); questionnaire 3.3(b)",
      "question": "Whether a Same-offer row (the bidder says its earlier offer stands) is kept as a bid observation.",
      "variants": {"kept": "every bids.csv row", "dropped": "bids.csv rows with same_offer_of blank"}},
     {"id": "inferred_exits", "source": "D22; Alex Decision 3b",
      "question": "Whether inferred exits enter as dropouts or as censoring.",
      "variants": {"dropout": "exit__inferred_as_dropout",
-                  "censoring": "exit__inferred_as_censoring (v1.14 only: \"unresolved\" where the Note does not show whether the exit or a field is inferred)"}},
-    {"id": "eligible_unadmitted", "source": "audit D §4; spec §7.10",
-     "question": "Whether eligible but unadmitted bidders count as live.",
-     "variants": {"admitted only": "rounds.csv who_was_in_count", "all live units": "rounds.csv live_open_* and live_max_hi"}},
+                  "censoring": "exit__inferred_as_censoring"}},
     {"id": "estimation_price", "source": "audit D §4; spec §7.10",
      "question": "Upfront or package (upfront + CVR/earnout value) as the estimation price.",
      "variants": {"upfront": "price_low, price_high", "package": "package_low, package_high, compared only within one package_basis"}},
-    {"id": "process_initiator", "source": "audit D §4; spec §7.10; Alex Q&A P96",
-     "question": "Which process initiator estimation uses.",
-     "variants": {"as recorded": "deal.csv initiation_recorded", "first initiating row": "deal.csv initiation_first_event"}},
-    {"id": "merger_of_equals", "source": "D17; audit D §4; spec §7.10",
-     "question": "Whether merger-of-equals talks count as a sale attempt with the counterparty as a bidder.",
-     "variants": {"not counted": "the ledger as recorded (every output)",
-                  "counted": "not derivable: the alternative map is in the Question's text; deal.csv merger_of_equals_rows lists the rows to rebuild it from"}},
 ]
-# Switches a v1.14.1 workbook cannot feed: the content they compare was deleted, or the rule became mechanical.
-RETIRED_V1141 = {
-    "eligible_unadmitted": "v1.14.1 deleted the Rounds 'Who was in' lists of eligible but unadmitted bidders; a bidder not invited "
-                           "into a stage gets a Dropped by target exit (E14, R5), so the live counts already exclude it",
-    "process_initiator": "v1.14.1 D5 derives Initiation mechanically from process 1's rows; deal.csv initiation_check compares "
-                         "the recorded value with initiation_first_event",
-    "merger_of_equals": "v1.14.1 deleted the alternative-map Question; the counterparty stays outside the whole-company contest "
-                        "(E1) and the talks are Other material event rows",
-}
 
-
-def switches(schema: str) -> list[dict[str, Any]]:
-    """The switches a workbook of this schema feeds."""
-    return [s for s in SWITCHES if schema != check_lean.SCHEMA_V1141 or s["id"] not in RETIRED_V1141]
 
 BID_COLUMNS = [
     "deal", "process", "round", "row", "when", "sort_date", "date_from", "date_to", "who", "unit", "type", "event",
@@ -182,8 +112,8 @@ BID_COLUMNS = [
 OTHER_COLUMNS = ["deal", "process", "round", "row", "when", "sort_date", "who", "type", "event", "reason", "count",
                  "price_low", "price_high", "stock_pct", "formality", "conditions", "note"]
 ROUND_COLUMNS = [
-    "deal", "process", "round", "opened", "how_opened", "finality", "who_was_in", "who_was_in_count", "not_admitted",
-    "due_dates", "due_dates_reached", "deadline_outcome", "deadline_values", "deadline_classes", "deadline_legacy",
+    "deal", "process", "round", "opened", "how_opened", "finality", "who_was_in", "who_was_in_count",
+    "due_dates", "due_dates_reached", "deadline_outcome", "deadline_values", "deadline_classes",
     "deadline_rows", "bids_received", "bids_received_count", "bidders_bid_lo", "bidders_bid_hi", "bidders_bid",
     "bids_received_check", "live_open_lo", "live_open_hi", "live_open_point", "live_max_hi", "how_it_ended",
 ]
@@ -201,9 +131,8 @@ DEAL_COLUMNS = [
     "initiation_check",
     "merger_of_equals_rows",
 ]
-MANIFEST_KEYS = ("tool", "tool_version", "contract", "contract_version", "generated_at", "deal", "input", "ledger_schema",
-                 "rules_requested", "checker_version", "columns_missing", "readings", "switches", "switches_retired",
-                 "deadline_outcomes", "outputs", "review", "warnings")
+MANIFEST_KEYS = ("tool", "tool_version", "generated_at", "deal", "input", "ledger_schema", "checker_version", "readings",
+                 "switches", "deadline_outcomes", "outputs", "review", "warnings")
 
 
 class DeriveError(ValueError):
@@ -282,30 +211,35 @@ def count_bounds(count: Any, note: Any) -> tuple[int | None, int | None, int | N
     return 1, None, None, "unknown (unparsed Count: prefix)"
 
 
-def stock_bounds(value: Any, note: Any = None, v1141: bool = False) -> tuple[str, float | None, float | None]:
-    """(kind, lo, hi) for a Stock % cell. v1.14 records a stated range in the cell; v1.14.1 (E13) records Part stock
-    with the range in the Note, so there a Part stock row takes its bounds from a percentage range in the Note."""
+def stock_bounds(value: Any, note: Any = None) -> tuple[str, float | None, float | None]:
+    """(kind, lo, hi) for a Stock % cell. E13 records a stated range as Part stock with the range in the Note, so a
+    Part stock row takes its bounds from a percentage range in the Note."""
     if check_lean.is_blank(value):
         return "blank", None, None
     if (n := number(value)) is not None:
         return "exact", n, n
     raw = text(value)
     if (m := check_lean.STOCK_RANGE_RE.fullmatch(raw)):
-        return ("range (not a v1.14.1 value)" if v1141 else "range"), float(m.group(1)), float(m.group(2))
-    if raw == "Part stock" and v1141 and (m := NOTE_STOCK_RANGE_RE.search(text(note))):
+        return "range (not a v0 value)", float(m.group(1)), float(m.group(2))
+    if raw == "Part stock" and (m := NOTE_STOCK_RANGE_RE.search(text(note))):
         lo, hi = float(m.group(1)), float(m.group(2))
         if 0 <= lo <= hi <= 100:
             return "part stock (range in the Note)", lo, hi
     return {"Part stock": "part stock", "Not stated": "not stated", "Varies": "varies"}.get(raw, "unparsed"), None, None
 
 
-def all_cash(schema: str, record: dict[str, Any]) -> int | None:
-    """1 if all cash, 0 if any stock, None if unknown (contract, "Prices").
-
-    v1.14's Stock % goes through S7's crosswalk (diff_workbooks.all_cash_for_stock) to the All cash value
-    it stands for, so the two schemas share one mapping: Yes is 1, No is 0, anything else is missing."""
-    cash = text(record.get("All cash")) if not check_lean.is_29_column(schema) else diff_workbooks.all_cash_for_stock(record.get("Stock %"))
-    return {"Yes": 1, "No": 0}.get(cash)
+def all_cash(record: dict[str, Any]) -> int | None:
+    """1 if all cash (Stock % 0), 0 if any stock, None if unknown."""
+    stock = record.get("Stock %")
+    if isinstance(stock, bool) or check_lean.is_blank(stock):
+        return None
+    if isinstance(stock, (int, float)):
+        return 1 if stock == 0 else 0 if 0 < stock <= 100 else None
+    value = str(stock).strip()
+    if value == "Part stock":
+        return 0
+    match = check_lean.STOCK_RANGE_RE.fullmatch(value)
+    return 0 if match and float(match.group(2)) > 0 else None
 
 
 def valid_price(value: Any) -> float | None:
@@ -328,25 +262,12 @@ def upfront_price_kind(record: dict[str, Any]) -> str:
     return "lower_bound" if low is not None else "upper_bound" if high is not None else "not_available"
 
 
-def cvr_basis(note: Any, value: float) -> list[str]:
-    """The kinds the Note gives the CVR/earnout value (maximum, face amount, valuation), from its sentences
-    that state the amount or name the CVR/earnout."""
-    shown = sorted({f"{value:.2f}", f"{value:g}"}, key=len, reverse=True)  # 2.5 is written "2.50" or "2.5"
-    amount = re.compile(r"(?<![\d.])(?:" + "|".join(map(re.escape, shown)) + r")(?!\.?\d)")
-    sentences = [s for s in re.split(r"(?<=[.;])\s+", text(note)) if amount.search(s) or CVR_WORDS.search(s)]
-    return [kind for kind, pattern in CVR_KINDS.items() if any(pattern.search(s) for s in sentences)]
-
-
-def package_basis(schema: str, record: dict[str, Any], low: float | None, high: float | None,
+def package_basis(record: dict[str, Any], low: float | None, high: float | None,
                   cvr: float | None) -> tuple[str, str | None]:
-    """(what package_low and package_high are, a review issue or None).
-
-    v1.14 E13: never add a maximum to a package valued on another basis, so packages are compared only within one
-    basis, read from the Note. v1.14.1 E13 fixes the basis instead: the CVR/earnout value is the stated per-share
-    amount, the maximum where several, and a package stated only as a whole leaves the price cells blank."""
+    """(what package_low and package_high are, a review issue or None). E13 fixes the basis: the CVR/earnout value is
+    the stated per-share amount, the maximum where several, and a package stated only as a whole leaves the price
+    cells blank."""
     marker = text(record.get("CVR/earnout"))
-    if not check_lean.is_29_column(schema):
-        return "not derivable: v1.13.2 has no CVR/earnout columns", None
     if low is None and high is None:
         return "missing: no upfront price", None
     if any(not check_lean.is_blank(record.get(c)) and valid_price(record.get(c)) is None for c in ("Price low", "Price high")):
@@ -355,73 +276,22 @@ def package_basis(schema: str, record: dict[str, Any], low: float | None, high: 
         return "missing: the price range is reversed", None
     if marker == "Varies":
         return "missing: CVR/earnout Varies on a cohort row (amounts in the Note)", None
-    if marker in check_lean.MARKER and cvr is None:
+    if marker == "Y" and cvr is None:
         return "missing: CVR/earnout marked without a value", None
     if cvr is None:
         return "upfront only (no CVR/earnout)", None
-    if marker not in check_lean.MARKER:
+    if marker != "Y":
         return ("upfront + CVR/earnout value, with CVR/earnout not marked Y",
                 "a CVR/earnout value without CVR/earnout Y: the package adds it anyway; check the row")
-    if schema == check_lean.SCHEMA_V1141:
-        return "upfront + CVR/earnout value (the stated per-share amount, the maximum where several; E13)", None
-    kinds = cvr_basis(record.get("Note"), cvr)
-    if kinds == ["maximum"]:
-        return ("upfront + CVR/earnout value (a maximum, per the Note): an upper bound, not comparable with packages on another basis",
-                "the CVR/earnout value is a maximum (Note): package_low/high add a maximum to the upfront price; E13 never "
-                "adds a maximum to a package valued on another basis, so compare it only with packages on the same basis")
-    if len(kinds) == 1:
-        return (f"upfront + CVR/earnout value (a {kinds[0]}, per the Note)",
-                f"the Note's wording reads the CVR/earnout value as a {kinds[0]} (E13): confirm the package basis")
-    if kinds:
-        return (f"upfront + CVR/earnout value (the Note reads as more than one basis: {', '.join(kinds)})",
-                f"the Note reads the CVR/earnout value as more than one basis ({', '.join(kinds)}): package basis unresolved")
-    return ("upfront + CVR/earnout value (basis not stated in the Note)",
-            "the Note does not say whether the CVR/earnout value is a maximum, a face amount or a valuation (E13): "
-            "package basis unknown, so the package is comparable only after review")
+    return "upfront + CVR/earnout value (the stated per-share amount, the maximum where several; E13)", None
 
 
-def inferred_fields(note: Any) -> list[str]:
-    """The inferred fields an exit row's Note names (Part B), in order."""
-    fields = []
-    for m in INFERRED_FIELD_RE.finditer(text(note)):
-        name = (m.group("a") or m.group("b")).casefold()
-        name = "date" if name in ("dates", "timing", "sort date", "date from", "date to") else "exit reason" if name == "reason" else name
-        if name not in fields:
-            fields.append(name)
-    return fields
-
-
-def inferred_exit_signs(record: dict[str, Any]) -> list[str]:
-    """What in an exit row points to an inferred exit (E14), whatever field its Note names."""
-    signs = ['When "by …"'] if text(record.get("When")).casefold().startswith("by ") else []
-    note = text(record.get("Note"))
-    return signs + [name for name, pattern in INFERRED_EXIT_SIGNS.items() if pattern.search(note)]
-
-
-def exit_inference(schema: str, record: dict[str, Any]) -> str:
-    """What Inferred = Y marks on an exit row: "" (not inferred), "inferred exit", "inferred field: …" or "unresolved".
-
-    v1.13.2's and v1.14.1's Inferred marks an inferred event (v1.14.1 Part B), so on an exit it is an inferred exit.
-    Under v1.14's field-level Inferred it may mark an inferred field of an exit the filing reports, and the Note
-    names the field. An inferred exit also carries inferred fields (E14: its date is the transition date), so a
-    named field counts only where nothing in the row points to an inferred exit; otherwise, and where the Note names
-    neither, it is unresolved."""
-    if text(record.get("Inferred")) != "Y":
-        return ""
-    if schema != check_lean.SCHEMA_V114:
-        return "inferred exit"
-    if INFERRED_EVENT_RE.search(INFERRED_FIELD_RE.sub(" ", text(record.get("Note")))):  # "Date inferred: withdrawal …" names a field
-        return "inferred exit"
-    fields = inferred_fields(record.get("Note"))
-    return f"inferred field: {', '.join(fields)}" if fields and not inferred_exit_signs(record) else "unresolved"
-
-
-def deadline_class(value: str) -> tuple[str, bool] | None:
-    """(class, legacy) for one Deadline outcome value; None if it matches no label."""
+def deadline_class(value: str) -> str | None:
+    """The class of one Deadline outcome value; None if it matches no label."""
     folded = value.casefold()
     for label, klass in DEADLINE_CLASSES.items():
         if folded == label.casefold() or (folded.startswith(label.casefold()) and not value[len(label)].isalnum()):
-            return klass, label == LEGACY_LATE
+            return klass
     return None
 
 
@@ -465,25 +335,22 @@ def read_source(ws: Any) -> dict[str, Any]:
     return found
 
 
-def check_rules(rules: str | None) -> None:
-    if rules is not None and rules not in check_lean.RULES_29_COLUMN:
-        raise DeriveError(f"--rules must be one of {', '.join(check_lean.RULES_29_COLUMN)}; found {rules!r}")
-
-
-def load(path: Path, rules: str | None = None) -> dict[str, Any]:
-    """Read a ledger workbook. `rules` (v1.14 or v1.14.1) says which instruction made a 29-column workbook, whose
-    headers are the same under both; None reads it under v1.14.1. A v1.13.2 workbook ignores it."""
-    check_rules(rules)
-    schema = check_lean.ledger_schema(path, rules)
-    if schema is None:
-        raise DeriveError(f"{path}: not a ledger workbook (no readable Deal ledger sheet)")
-    wb = openpyxl.load_workbook(path, data_only=True)
+def load(path: Path) -> dict[str, Any]:
+    """Read a v0 ledger workbook; any other Deal ledger header is an error."""
+    try:
+        wb = openpyxl.load_workbook(path, data_only=True)
+    except Exception as exc:
+        raise DeriveError(f"{path}: not a readable workbook ({type(exc).__name__}: {exc})") from exc
     try:
         missing = [s for s in check_lean.SHEETS if s not in wb.sheetnames]
         if missing:
             raise DeriveError(f"{path}: missing sheets {', '.join(missing)}")
-        header = [text(h) for h in next(wb["Deal ledger"].iter_rows(max_row=1, values_only=True))]
-        return {"schema": schema, "sheets": list(wb.sheetnames), "header": header,
+        header = [text(h) for h in next(wb["Deal ledger"].iter_rows(max_row=1, values_only=True), ())]
+        while header and not header[-1]:
+            header.pop()
+        if header != check_lean.LEDGER_COLUMNS:
+            raise DeriveError(f"{path}: the Deal ledger header is not the v0 ledger's {len(check_lean.LEDGER_COLUMNS)} columns")
+        return {"schema": check_lean.LEDGER_SCHEMA, "sheets": list(wb.sheetnames), "header": header,
                 "ledger": read_sheet(wb["Deal ledger"]), "rounds": read_sheet(wb["Rounds"]), "questions": read_sheet(wb["Questions"]),
                 "facts": {text(r.get("Field")): r.get("Value") for r in read_sheet(wb["Deal facts"])},
                 "source": read_source(wb["Source"]) if "Source" in wb.sheetnames else None}
@@ -496,18 +363,16 @@ def fact(facts: dict[str, Any], options: set[str] | str) -> str:
     return next((text(facts[k]) for k in facts if k in options), "")
 
 
-def auction_screen(value: str, uncertain: bool = True) -> dict[int, dict[str, Any]]:
-    """Per process: status (Met, Not met, and Uncertain where the schema has it) and the supported count as bounds.
-    v1.14.1 (E1) has no Uncertain: pass uncertain=False, and an Uncertain entry is not read."""
-    statuses = "Met|Not met|Uncertain" if uncertain else "Met|Not met"
-    marks = list(re.finditer(rf"\b({statuses})\b\s*(?:\(\s*process\s*(\d+)\s*\))?\s*:?", value, re.IGNORECASE))
+def auction_screen(value: str) -> dict[int, dict[str, Any]]:
+    """Per process: status (Met or Not met; E1 has no Uncertain) and the supported count as bounds."""
+    marks = list(re.finditer(r"\b(Met|Not met)\b\s*(?:\(\s*process\s*(\d+)\s*\))?\s*:?", value, re.IGNORECASE))
     out: dict[int, dict[str, Any]] = {}
     for i, m in enumerate(marks):
         body = value[m.end(): marks[i + 1].start() if i + 1 < len(marks) else len(value)]
         process = int(m.group(2)) if m.group(2) else (1 if len(marks) == 1 else None)
         if process is None or process in out:
             continue
-        status = {"met": "Met", "not met": "Not met", "uncertain": "Uncertain"}[m.group(1).casefold()]
+        status = {"met": "Met", "not met": "Not met"}[m.group(1).casefold()]
         lo = hi = None
         if (r := re.search(r"(\d+)\s*[-–]\s*(\d+)", body)):
             lo, hi = int(r.group(1)), int(r.group(2))
@@ -529,9 +394,6 @@ def reading(t0: str, formal_if: bool) -> str:
 
 
 def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
-    schema = ledger["schema"]
-    v114 = check_lean.is_29_column(schema)
-    v1141 = schema == check_lean.SCHEMA_V1141
     review: list[dict[str, Any]] = []
     warnings: list[str] = []
     rows = ledger["ledger"]
@@ -617,8 +479,7 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
                 pass
             elif prior == "exited":
                 if event in WHOLE_BIDS:
-                    note_review(r, "bid after this unit's exit with no Re-entered row"
-                                + (" (v1.13.2 Did not submit was not necessarily permanent)" if not v114 else ""))
+                    note_review(r, "bid after this unit's exit with no Re-entered row")
             elif key in scope_uncertain:
                 change, delta = "entry (scope uncertain)", (0, hi, 0)
                 status[(process, key)] = "live"
@@ -646,19 +507,13 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
                 status[(process, key)] = "won" if event == "Merger agreement signed" else "exited"
                 open_units[process].pop(key, None)
             if event in check_lean.EXIT_EVENTS:
-                inference = exit_inference(schema, r)
-                if inference == "unresolved" and (fields := inferred_fields(r.get("Note"))):
-                    note_review(r, f"Inferred = Y on an exit whose Note names an inferred field ({', '.join(fields)}) but whose row shows "
-                                f"signs of an inferred exit ({', '.join(inferred_exit_signs(r))}; E14): whether the departure itself is "
-                                "inferred (censoring variant) is for a reviewer")
-                elif inference == "unresolved":
-                    note_review(r, "Inferred = Y on an exit whose Note names neither the inferred field nor an inferred exit (Part B): "
-                                "whether the departure itself is inferred (censoring variant) is for a reviewer")
+                # Inferred = Y marks an inferred event (Part B), so on an exit it is an inferred exit.
+                inference = "inferred exit" if text(r.get("Inferred")) == "Y" else ""
                 extra = {"exit_inferred": inference, "exit_actor": EXIT_ACTOR[event], "exit_reason": text(r.get("Exit reason")),
                          "alex_drop_code": ("DropTarget" if event == "Dropped by target" else
                                             WITHDREW_CODES.get(text(r.get("Exit reason")), "Drop") if event == "Withdrew" else ""),
                          "exit__inferred_as_dropout": "dropout",
-                         "exit__inferred_as_censoring": {"inferred exit": "censored", "unresolved": "unresolved"}.get(inference, "dropout")}
+                         "exit__inferred_as_censoring": "censored" if inference else "dropout"}
         elif event == "Bidding group changed":
             m = re.search(r"(\d+)\s+(?:\w+\s+)?units?\s+becomes?\s+(\d+)", text(r.get("Note")), re.IGNORECASE)
             if m:
@@ -698,8 +553,8 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
                 **(dict(zip(("delta_lo", "delta_hi", "delta_point"), delta)) if delta else {}),
                 "live_lo": live_lo, "live_hi": live_hi, "live_point": live_point, "note": text(r.get("Note"))})
         live_at[id(r)] = live(process)
-        if v1141 and kind == "range":
-            note_review(r, "the Note gives a numeric Count range, which v1.14.1 does not create (B, E3): read as bounds")
+        if kind == "range":
+            note_review(r, "the Note gives a numeric Count range, which v0 does not create (B, E3): read as bounds")
         if kind.startswith("unknown (") and (event in ENTRY_EVENTS | check_lean.EXIT_EVENTS | {"Re-entered"}):
             note_review(r, f"Count is blank and the Note gives no parseable 'Count: ...' ({kind})")
     for process, units in open_units.items():
@@ -718,7 +573,7 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
         process, rnd = row_round(r)
         key = unit_key(r.get("Who"))
         low, high = number(r.get("Price low")), number(r.get("Price high"))
-        cvr = number(r.get("CVR/earnout value")) if v114 else None
+        cvr = number(r.get("CVR/earnout value"))
         # A Same-offer row (E10: "Same as #n") copies #n's price; it is a restatement, never a same-price revision.
         same_as = check_lean.SAME_AS_RE.match(text(r.get("Note")))
         same_offer_of = int(same_as.group(1)) if same_as else None
@@ -741,25 +596,25 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
         if price_kind == "invalid" and not any(not check_lean.is_blank(r.get(c)) and valid_price(r.get(c)) is None
                                                for c in ("Price low", "Price high")):
             note_review(r, "Price low is above Price high (a reversed range): upfront_price_kind invalid, no price observation")
-        kind, s_lo, s_hi = stock_bounds(r.get("Stock %"), r.get("Note"), v1141) if v114 else ("", None, None)
-        if kind == "range (not a v1.14.1 value)":
-            note_review(r, "Stock % holds a range; v1.14.1 (E13) records Part stock with the range in the Note: read as bounds")
+        kind, s_lo, s_hi = stock_bounds(r.get("Stock %"), r.get("Note"))
+        if kind == "range (not a v0 value)":
+            note_review(r, "Stock % holds a range; E13 records Part stock with the range in the Note: read as bounds")
         lo, hi, point, _ = count_bounds(r.get("Count"), r.get("Note"))
         formality, level = text(r.get("Formality")), text(r.get("Conditions"))
         t0 = formality if formality in ("Formal", "Informal") else ""
         finality = text(rounds.get((process, rnd), {}).get("Finality"))
         if isinstance(rnd, int) and rnd >= 1 and (process, rnd) not in rounds:
             note_review(r, f"bid in process {process} round {rnd}, which has no Rounds line (T3 reads it as not final)")
-        if v114 and t0 == "Formal" and level not in check_lean.CONDITIONS:
+        if t0 == "Formal" and level not in check_lean.CONDITIONS:
             note_review(r, (f"Conditions {level!r} is not a listed value" if level else "Conditions is blank")
                         + " on a Formal bid: T1 reads it as not Heavy (Formal), T1u as not None or Light (Informal)")
         # Package = upfront + CVR/earnout value; missing where a CVR is marked but its value is not given. package_basis
         # says what the sum is, so packages on different bases are not read as comparable (E13).
         # A price cell the checker rejects gives no package (price_low/high still show the cell as read).
-        cvr_unvalued = text(r.get("CVR/earnout")) in check_lean.MARKER and cvr is None
+        cvr_unvalued = text(r.get("CVR/earnout")) in {"Y", "Varies"} and cvr is None
         invalid = [c for c in ("Price low", "Price high") if not check_lean.is_blank(r.get(c)) and valid_price(r.get(c)) is None]
-        package = (lambda p: None if p is None or not v114 or cvr_unvalued or invalid or price_kind == "invalid" else p + (cvr or 0))
-        basis, basis_issue = package_basis(schema, r, low, high, cvr)
+        package = (lambda p: None if p is None or cvr_unvalued or invalid or price_kind == "invalid" else p + (cvr or 0))
+        basis, basis_issue = package_basis(r, low, high, cvr)
         if basis_issue:
             note_review(r, basis_issue)
         for column in invalid:
@@ -771,15 +626,15 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
             **base_cols(deal, r, process, rnd), "count": cell(r.get("Count")), "count_lo": lo, "count_hi": hi,
             "price_low": low, "price_high": high, "upfront_price_kind": price_kind, "cvr_earnout": text(r.get("CVR/earnout")), "cvr_value": cvr,
             "package_low": package(low), "package_high": package(high), "package_basis": basis,
-            "stock_pct": cell(r.get("Stock %")) if v114 else "", "stock_kind": kind, "stock_lo": s_lo, "stock_hi": s_hi,
-            "all_cash": all_cash(schema, r), "formality": formality, "conditions": level,
+            "stock_pct": cell(r.get("Stock %")), "stock_kind": kind, "stock_lo": s_lo, "stock_hi": s_hi,
+            "all_cash": all_cash(r), "formality": formality, "conditions": level,
             **{c.lower().replace(" ", "_"): text(r.get(c)) for c in ("Due diligence", "Financing", "Regulatory", "Antitrust", "Exclusivity")},
             "inferred": text(r.get("Inferred")), "flag": text(r.get("Flag")), "same_offer_of": same_offer_of,
             "same_price_revision": same,
             "price_obs__same_price_as_new": 1 if usable else 0, "price_obs__same_price_as_terms": 1 if usable and not same else 0,
             "round_finality": finality, "T0": t0,
-            "T1": reading(t0, level != "Heavy") if v114 else "",
-            "T1u": reading(t0, level in ("None", "Light")) if v114 else "",
+            "T1": reading(t0, level != "Heavy"),
+            "T1u": reading(t0, level in ("None", "Light")),
             # Two present, valid and equal prices make a point price; a blank or invalid cell does not (an unsplittable
             # package leaves both blank, E13). Round 0, post and a round with no Rounds line are not final.
             "T2": reading(t0, point_price),
@@ -797,17 +652,16 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
         max_hi[key] = None if hi_now is None or max_hi[key] is None else max(max_hi[key], hi_now)
     for (process, rnd), line in rounds.items():
         values = split_outcomes(line.get("Deadline outcome"))
-        classes, legacy = [], False
+        classes = []
         if not values:
-            deadline_log.append({"process": process, "round": rnd, "position": 1, "value": "", "class": "not reached", "legacy": False})
+            deadline_log.append({"process": process, "round": rnd, "position": 1, "value": "", "class": "not reached"})
         for i, value in enumerate(values, 1):
             found = deadline_class(value)
             if found is None:
                 note_review(line, f"Deadline outcome value {value!r} matches no label; class missing", "Rounds")
-                found = ("unmapped", False)
-            classes.append(found[0])
-            legacy |= found[1]
-            deadline_log.append({"process": process, "round": rnd, "position": i, "value": value, "class": found[0], "legacy": found[1]})
+                found = "unmapped"
+            classes.append(found)
+            deadline_log.append({"process": process, "round": rnd, "position": i, "value": value, "class": found})
         reached = []
         for part in re.split(r"\s*(?:→|->)\s*", text(line.get("Due dates"))):
             if re.search(r"superseded|future at filing", part, re.IGNORECASE):
@@ -839,51 +693,43 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
             "deal": deal, "process": process, "round": rnd, "opened": cell(as_date(line.get("Opened"))),
             "how_opened": text(line.get("How opened")), "finality": text(line.get("Finality")),
             "who_was_in": text(line.get("Who was in")), "who_was_in_count": admitted,
-            # v1.14.1 deleted the lists of bidders not admitted (a bidder not invited gets an exit, R5): never read there.
-            "not_admitted": "Y" if not v1141 and re.search(r"not admitted", text(line.get("Who was in")), re.IGNORECASE) else "",
             "due_dates": text(line.get("Due dates")), "due_dates_reached": "; ".join(reached),
             "deadline_outcome": text(line.get("Deadline outcome")), "deadline_values": "; ".join(values) or "(blank)",
-            "deadline_classes": "; ".join(classes) or "not reached", "deadline_legacy": "Y" if legacy else "",
+            "deadline_classes": "; ".join(classes) or "not reached",
             "deadline_rows": deadline_rows[(process, rnd)], "bids_received": text(line.get("Bids received")),
             "bids_received_count": received, "bidders_bid_lo": bid_lo, "bidders_bid_hi": bid_hi,
             "bidders_bid": "; ".join(sorted(units)), "bids_received_check": check,
             "live_open_lo": open_lo, "live_open_hi": open_hi, "live_open_point": open_point,
             "live_max_hi": max_hi.get((process, rnd)), "how_it_ended": text(line.get("How it ended"))})
-        if legacy:
-            warnings.append(f"process {process} round {rnd}: legacy Deadline outcome '{LEGACY_LATE}' classed extended and flagged legacy")
     ledger_rounds = {row_round(r) for r in whole if isinstance(row_round(r)[1], int) and row_round(r)[1] >= 1}
     for key in sorted(ledger_rounds - set(rounds), key=str):
         review.append({"sheet": "Rounds", "row": "", "who": "", "issue": f"process {key[0]} round {key[1]} has ledger rows but no Rounds line"})
 
     # Deal facts, per process.
     facts = ledger["facts"]
-    screen = auction_screen(fact(facts, check_lean.AUCTION_SCREEN_FIELDS), uncertain=not v1141)
+    screen = auction_screen(fact(facts, check_lean.AUCTION_SCREEN_FIELDS))
     whole_bids = fact(facts, check_lean.WHOLE_COMPANY_FIELDS)
     processes = sorted({p for p, _ in rounds} | {row_round(r)[0] for r in whole} | set(screen), key=str)
     moe = [r for r in rows if re.search(r"merger of equals", text(r.get("Note")), re.IGNORECASE)]
-    # v1.14.1 has no alternative-map Question (the switch is retired), so only rows are listed there.
-    moe_questions = [] if v1141 else [text(q.get("Q")) for q in ledger["questions"]
-                                      if re.search(r"merger of equals", " ".join(text(v) for v in q.values()), re.IGNORECASE)]
-    recorded_initiation = fact(facts, check_lean.INITIATION_FIELDS)
+    recorded_initiation = fact(facts, "Initiation")
     deal_rows = []
     for process in processes:
         s = screen.get(process, {})
         # A partial-only candidate with no exit row may never have been in the whole-company contest, so its rows do
         # not initiate it; where one would have come first, a reviewer decides.
         initiating = [r for r in whole if row_round(r)[0] == process and text(r.get("Event")) in INITIATION_EVENTS]
-        if v1141:
-            # D5: an Activist row before round 1 (Round 0) wins; otherwise the earliest Target interest or Target sale
-            # decision (target-led) or Bidder interest or Bid (bidder-led) row decides. A later Activist row does not.
-            activist = next((r for r in initiating if text(r.get("Event")) == "Activist" and row_round(r)[1] == 0), None)
-            initiating = [activist] if activist else [r for r in initiating if text(r.get("Event")) != "Activist"]
+        # D5: an Activist row before round 1 (Round 0) wins; otherwise the earliest Target interest or Target sale
+        # decision (target-led) or Bidder interest or Bid (bidder-led) row decides. A later Activist row does not.
+        activist = next((r for r in initiating if text(r.get("Event")) == "Activist" and row_round(r)[1] == 0), None)
+        initiating = [activist] if activist else [r for r in initiating if text(r.get("Event")) != "Activist"]
         first = next((r for r in initiating if unit_key(r.get("Who")) not in scope_uncertain), None)
         if initiating and initiating[0] is not first:
             note_review(initiating[0], f"process {process}: the first initiating row belongs to a partial-only candidate with no exit row; "
                         "initiation_first_event uses " + (f"#{cell(first.get('#'))} {text(first.get('Event'))}" if first else "no row"))
         derived = INITIATION_EVENTS[text(first.get("Event"))] if first else ""
         check = ""
-        if v1141 and process == 1:
-            # D5 decides Initiation from process 1; a v1.14.1 Deal facts value is checked against the rule, not a switch.
+        if process == 1:
+            # D5 decides Initiation from process 1; the Deal facts value is checked against the rule.
             check = ("not recorded" if not recorded_initiation else "not derivable (no initiating row)" if not derived
                      else "agrees" if recorded_initiation.casefold().startswith(derived) else "differs")
             if check == "differs":
@@ -908,11 +754,9 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
             "initiation_recorded": recorded_initiation, "initiation_first_event": derived,
             "initiation_first_row": f"#{cell(first.get('#'))} {text(first.get('Event'))}" if first else "",
             "initiation_check": check,
-            "merger_of_equals_rows": "; ".join([f"#{cell(r.get('#'))}" for r in moe] + moe_questions)})
+            "merger_of_equals_rows": "; ".join(f"#{cell(r.get('#'))}" for r in moe)})
         if not s:
             warnings.append(f"process {process}: no Auction screen entry could be parsed")
-    if (moe or moe_questions) and not v1141:
-        warnings.append("merger-of-equals talks mentioned; the 'counted' variant needs the alternative map in the Question")
 
     others = [{**base_cols(deal, r, *row_round(r)), "reason": reason, "count": cell(r.get("Count")),
                "price_low": number(r.get("Price low")), "price_high": number(r.get("Price high")),
@@ -935,76 +779,14 @@ def base_cols(deal: str, r: dict[str, Any], process: Any, rnd: Any) -> dict[str,
             "type": text(r.get("Type")), "event": text(r.get("Event"))}
 
 
-# ---- working copy ------------------------------------------------------------------------------
-
-def render_working_copy(repo_root: Path, slug: str, dest: Path) -> tuple[Path, dict[str, Any]]:
-    """Render a cockpit working copy with the cockpit's own code, never touching the live state.
-
-    The database is copied with the backup API from a mode=ro connection; the catalog and the
-    working base's workbook are copied; Workspace then runs on the copy in a temporary root.
-    """
-    repo_root = repo_root.resolve()
-    live_db = repo_root / "_dev/cockpit/state/workspace.sqlite3"
-    catalog_path = repo_root / "_dev/cockpit/catalog.json"
-    tmp = Path(tempfile.mkdtemp(prefix="derive-working-"))
-    try:
-        (tmp / "_dev/cockpit/state").mkdir(parents=True)
-        shutil.copy2(catalog_path, tmp / "_dev/cockpit/catalog.json")
-        copy_db = tmp / "_dev/cockpit/state/workspace.sqlite3"
-        revision, base_id, copied_at = 0, None, None
-        if live_db.is_file():
-            src = sqlite3.connect(f"file:{quote(str(live_db))}?mode=ro", uri=True)
-            try:
-                dst = sqlite3.connect(copy_db)
-                try:
-                    src.backup(dst)
-                    copied_at = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
-                    dst.execute("PRAGMA journal_mode=DELETE")
-                    try:
-                        found = dst.execute("SELECT revision, base_id FROM revisions WHERE slug=? ORDER BY revision DESC LIMIT 1", (slug,)).fetchone()
-                    except sqlite3.OperationalError:
-                        found = None
-                    if found:
-                        revision, base_id = found
-                    try:
-                        imported = {row[0]: row[1] for row in dst.execute("SELECT id, path FROM versions WHERE slug=? ORDER BY started_at, id", (slug,))}
-                    except sqlite3.OperationalError:
-                        imported = {}
-                finally:
-                    dst.close()
-            finally:
-                src.close()
-        else:
-            imported = {}
-        item = json.loads(catalog_path.read_text(encoding="utf-8"))["deals"].get(slug) or {}
-        # A deal added in the cockpit has no catalog entry: its oldest imported version is its base (Workspace.item).
-        base_id = base_id or item.get("default_base") or next(iter(imported), None)
-        paths = {v.get("id"): v.get("path") for v in item.get("versions", [])} | imported
-        relative = paths.get(base_id)
-        if not relative:
-            raise DeriveError(f"{slug}: working base {base_id!r} not found in the catalog or the database")
-        (tmp / relative).parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(repo_root / relative, tmp / relative)
-        from cockpit import data  # imported here: only this path needs the cockpit
-        workbook = data.Cockpit(tmp).workspace.export(slug)
-        out = dest / f"{slug}-working-r{revision}.xlsx"
-        out.write_bytes(workbook)
-        return out, {"slug": slug, "revision": revision, "copied_at": copied_at, "base_id": base_id, "base_path": relative,
-                     "base_sha256": sha256(tmp / relative), "database": "copied with the SQLite backup API from a mode=ro connection",
-                     "rendered_by": "cockpit Workspace.export in a temporary root"}
-    finally:
-        shutil.rmtree(tmp, ignore_errors=True)
-
-
 # ---- output ------------------------------------------------------------------------------------
 
-def check_out(out: Path, repo_root: Path | None = None) -> None:
+def check_out(out: Path) -> None:
     out = out.resolve()
-    for root in {PROJECT, (repo_root or PROJECT).resolve()}:
-        for part in FORBIDDEN_OUT:
-            forbidden = (root / part).resolve()
-            if out == forbidden or forbidden in out.parents:
-                raise DeriveError(f"--out must not be under {root / part}/")
+    for part in FORBIDDEN_OUT:
+        forbidden = (PROJECT / part).resolve()
+        if out == forbidden or forbidden in out.parents:
+            raise DeriveError(f"--out must not be under {PROJECT / part}/")
     if out.exists() and (not out.is_dir() or any(out.iterdir())):
         raise DeriveError(f"--out {out} exists and is not an empty folder; choose a new one")
 
@@ -1031,22 +813,18 @@ def manifest_complete(manifest: dict[str, Any]) -> list[str]:
 
 
 def known_deals() -> set[str]:
-    """Deal slugs of the seed and the catalog, to read a slug from a file name."""
+    """Deal slugs of the seed, to read a slug from a file name."""
     known = set(DESCRIPTIVE_ONLY)
     try:
         with (PROJECT / "ref/seed.csv").open(newline="", encoding="utf-8") as handle:
             known |= {row["deal"] for row in csv.DictReader(handle) if row.get("deal")}
     except (OSError, KeyError):
         pass
-    try:
-        known |= set(json.loads((PROJECT / "_dev/cockpit/catalog.json").read_text(encoding="utf-8"))["deals"])
-    except (OSError, ValueError, KeyError):
-        pass
     return known
 
 
 def deal_from_name(workbook: Path, source: dict[str, Any] | None, known: set[str]) -> tuple[str, str | None]:
-    """The deal slug from a file name, as the tool and the cockpit name files, and a warning when it is a guess.
+    """The deal slug from a file name, as the cockpit names downloads, and a warning when it is a guess.
 
     Cockpit downloads are "{slug}-{version}.xlsx", "{slug}-{version}-with-source.xlsx" and
     "{slug}-working-r{N}.xlsx"; the Source sheet's version ID, when present, is stripped as well.
@@ -1062,12 +840,11 @@ def deal_from_name(workbook: Path, source: dict[str, Any] | None, known: set[str
     if prefixes:
         slug = max(prefixes, key=len)
         return slug, f"deal slug {slug!r} read from the file name {workbook.name}; give --deal if that is wrong"
-    return stem, f"deal slug {stem!r} from the file name {workbook.name} is not a known deal (seed.csv, catalog.json); give --deal"
+    return stem, f"deal slug {stem!r} from the file name {workbook.name} is not a known deal (seed.csv); give --deal"
 
 
-def run(workbook: Path, out: Path, deal: str | None = None, working: dict[str, Any] | None = None,
-        rules: str | None = None) -> dict[str, Any]:
-    ledger = load(workbook, rules)
+def run(workbook: Path, out: Path, deal: str | None = None) -> dict[str, Any]:
+    ledger = load(workbook)
     guessed = None
     if not deal:
         deal, guessed = deal_from_name(workbook, ledger["source"], known_deals())
@@ -1080,26 +857,17 @@ def run(workbook: Path, out: Path, deal: str | None = None, working: dict[str, A
               "deal.csv": (DEAL_COLUMNS, result["deal"])}
     for name, (columns, rows) in tables.items():
         write_csv(out / name, columns, rows)
-    v114 = check_lean.is_29_column(ledger["schema"])
-    expected = check_lean.LEDGER_COLUMNS_V114 if v114 else check_lean.LEDGER_COLUMNS
-    kind = ("cockpit working-copy export" if working else
-            "five-sheet cockpit download" if ledger["source"] is not None else "four-sheet workbook")
+    kind = "five-sheet cockpit download" if ledger["source"] is not None else "four-sheet workbook"
     manifest = {
-        "tool": "derive_analysis.py", "tool_version": TOOL_VERSION, "contract": CONTRACT, "contract_version": CONTRACT_VERSION,
+        "tool": "derive_analysis.py", "tool_version": TOOL_VERSION,
         "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"), "deal": deal,
         "input": {"path": str(workbook), "sha256": sha256(workbook), "kind": kind, "sheets": ledger["sheets"],
-                  "source_sheet": ledger["source"], "working_copy": working},
-        "ledger_schema": ledger["schema"], "rules_requested": rules, "checker_version": check_lean.CHECKER_VERSION,
-        "columns_missing": [c for c in check_lean.LEDGER_COLUMNS_V114 if c not in ledger["header"]],
-        "columns_unexpected": [c for c in ledger["header"] if c and c not in expected],
-        "readings": {"computed": ["T0", "T1", "T1u", "T2", "T3"] if v114 else ["T0", "T2", "T3"],
-                     "missing": {} if v114 else {"T1": "v1.13.2 ledger: condition-based readings are missing",
-                                                 "T1u": "v1.13.2 ledger: condition-based readings are missing"},
-                     "all_cash_from": "Stock %" if v114 else "All cash",
-                     "package": "Price + CVR/earnout value; package_basis says what each sum is (E13)" if v114 else "not derivable: no CVR/earnout columns (v1.13.2 prices may include contingent value; see the Note)",
+                  "source_sheet": ledger["source"]},
+        "ledger_schema": ledger["schema"], "checker_version": check_lean.CHECKER_VERSION,
+        "readings": {"computed": ["T0", "T1", "T1u", "T2", "T3"], "all_cash_from": "Stock %",
+                     "package": "Price + CVR/earnout value; package_basis says what each sum is (E13)",
                      "default": None},
-        "switches": switches(ledger["schema"]),
-        "switches_retired": dict(RETIRED_V1141) if ledger["schema"] == check_lean.SCHEMA_V1141 else {},
+        "switches": SWITCHES,
         "deadline_outcomes": result["deadline_outcomes"],
         "outputs": {name: len(rows) for name, (_, rows) in tables.items()},
         "review": result["review"], "warnings": result["warnings"],
@@ -1111,32 +879,18 @@ def run(workbook: Path, out: Path, deal: str | None = None, working: dict[str, A
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    parser.add_argument("workbook", nargs="?", type=Path, help="a ledger workbook (raw version, export or download)")
-    parser.add_argument("--working-copy", metavar="SLUG", help="render this deal's cockpit working copy and derive from it")
-    parser.add_argument("--repo-root", type=Path, default=PROJECT, help="checkout whose cockpit state is read (read only)")
+    parser.add_argument("workbook", type=Path, help="a v0 ledger workbook (raw version or cockpit download)")
     parser.add_argument("--deal", help="deal slug (default: from the file name)")
     parser.add_argument("--out", type=Path, required=True, help="new or empty output folder")
-    parser.add_argument("--keep-export", action="store_true", help="keep the rendered working copy in --out (default: a temporary file)")
-    parser.add_argument("--rules", choices=check_lean.RULES_29_COLUMN,
-                        help="the instruction rules a 29-column workbook was made under (default: v1.14.1; a v1.13.2 workbook ignores it)")
-    args = parser.parse_args(argv)
-    if (args.workbook is None) == (args.working_copy is None):
-        parser.error("give either a workbook or --working-copy SLUG")
-    return args
+    return parser.parse_args(argv)
 
 
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     try:
-        check_out(args.out, args.repo_root)
+        check_out(args.out)
         args.out.mkdir(parents=True, exist_ok=True)
-        if not args.working_copy:
-            manifest = run(args.workbook.resolve(), args.out, args.deal, rules=args.rules)
-        else:
-            with tempfile.TemporaryDirectory(prefix="derive-export-") as tmp:
-                workbook, working = render_working_copy(args.repo_root, args.working_copy, args.out if args.keep_export else Path(tmp))
-                working["export_kept"] = args.keep_export
-                manifest = run(workbook.resolve(), args.out, args.deal or args.working_copy, working, args.rules)
+        manifest = run(args.workbook.resolve(), args.out, args.deal)
     except (DeriveError, OSError) as exc:
         print(f"derive_analysis: {exc}", file=sys.stderr)
         return 2

@@ -88,7 +88,7 @@ class CompareAlexTests(unittest.TestCase):
         self.tmp.cleanup()
 
     def test_alignment_readings_and_red_provenance(self):
-        result = compare_alex.compare(self.workbook, "alpha", self.alex, self.seed, rules="v1.14")
+        result = compare_alex.compare(self.workbook, "alpha", self.alex, self.seed)
         rows = {r["bidder_name"]: r for r in result["bids"]}
         self.assertEqual({name: (r.get("ledger_row"), r["alignment"], r.get("price_basis")) for name, r in rows.items()}, {
             "Party A": (2, "bidder, price, date", "upfront"),
@@ -104,9 +104,7 @@ class CompareAlexTests(unittest.TestCase):
         self.assertEqual(rows["Party Z"]["provenance"], "Alex: whole row in red (added or rewritten)")
         self.assertEqual(rows["Party A"]["provenance"], "Chicago coding (deal has no corrections)")
         self.assertEqual(result["summary"]["labelled_bids_with_red_bid_type"], 2)
-        newer = compare_alex.compare(self.workbook, "alpha", self.alex, self.seed)
-        self.assertEqual(newer["summary"]["ledger_schema"], "v1.14.1")
-        self.assertEqual(newer["summary"]["readings"], result["summary"]["readings"])
+        self.assertEqual(result["summary"]["ledger_schema"], "v0")
 
     def test_note_codes_and_seed_join(self):
         events = {(r["bidder_name"], r["bid_note"]): (r["status"], r.get("ledger_row"))
@@ -196,7 +194,7 @@ class CompareAlexTests(unittest.TestCase):
     def test_cli_writes_only_three_outputs(self):
         out = self.root / "out"
         args = [str(self.workbook), "--deal", "alpha", "--out", str(out), "--alex", str(self.alex),
-                "--seed", str(self.seed), "--rules", "v1.14"]
+                "--seed", str(self.seed)]
         with contextlib.redirect_stdout(io.StringIO()) as printed:
             self.assertEqual(compare_alex.main(args), 0)
         self.assertIn("4 of 5 labelled bids aligned", printed.getvalue())

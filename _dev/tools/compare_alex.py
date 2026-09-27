@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
 """Set a ledger beside Alex's hand coding of the same deal: a review aid, never a target.
 
-    python3 _dev/tools/compare_alex.py LEDGER.xlsx --out DIR [--deal SLUG] [--alex XLSX] [--seed CSV] [--rules v1.14|v1.14.1]
+    python3 _dev/tools/compare_alex.py LEDGER.xlsx --out DIR [--deal SLUG] [--alex XLSX] [--seed CSV]
 
 The deal is joined to `ref/deal_details_Alex_2026.xlsx` through `ref/seed.csv`'s deal_number. Each
 of Alex's labelled bids (bid_type Formal or Informal) is aligned to one whole-company Bid or Bid
 reaffirmed row by bidder, price (upfront, or upfront + CVR/earnout value) and nearest date. For
-aligned bids the output reports agreement of bid_type with each Formality reading of the analysis
-contract (T0, T1, T1u, T2, T3), of all_cash and of the per-share value. Every other coded row
+aligned bids the output reports agreement of bid_type with each Formality reading of
+derive_analysis.py (T0, T1, T1u, T2, T3), of all_cash and of the per-share value. The ledger must be
+a v0 workbook. Every other coded row
 (bid_note) is checked against the ledger's Event and Exit reason through audit D §3.3's code map.
 Each Alex row is marked as carrying his red-font correction or the earlier Chicago coding; only
 nine deals carry corrections.
 
-Nothing here may reach an extraction run or be used to tune the instruction (V114_SPEC §9.5). On a
+Nothing here may reach an extraction run or be used to tune the instruction. On a
 held-out deal, run it only at Austin's request. It writes only to the --out folder: alex_bids.csv,
 alex_events.csv and summary.json.
 """
@@ -281,8 +282,8 @@ def match_code(row: dict[str, Any], code: str, ledger: list[dict[str, Any]], fin
     return {"expected": expected, "status": "unaligned"}
 
 
-def compare(workbook: Path, deal: str, alex: Path, seed: Path, rules: str | None = None) -> dict[str, Any]:
-    ledger = derive.load(workbook, rules)
+def compare(workbook: Path, deal: str, alex: Path, seed: Path) -> dict[str, Any]:
+    ledger = derive.load(workbook)
     result = derive.derive(ledger, deal)
     number = seed_number(seed, deal)
     rows = alex_rows(alex, number)
@@ -351,7 +352,7 @@ def compare(workbook: Path, deal: str, alex: Path, seed: Path, rules: str | None
     for r in event_out:
         statuses[r["status"]] = statuses.get(r["status"], 0) + 1
     summary = {
-        "note": "Review aid only (V114_SPEC §9.5): never a target for the instruction, and never shown to an extraction run.",
+        "note": "Review aid only: never a target for the instruction, and never shown to an extraction run.",
         "deal": deal, "deal_number": number, "workbook": str(workbook), "workbook_sha256": derive.sha256(workbook),
         "ledger_schema": ledger["schema"], "alex_file": str(alex), "alex_sha256": derive.sha256(alex),
         "deal_has_alex_corrections": deal in CORRECTED,
@@ -375,13 +376,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--out", type=Path, required=True, help="new or empty output folder")
     parser.add_argument("--alex", type=Path, default=ALEX)
     parser.add_argument("--seed", type=Path, default=SEED)
-    parser.add_argument("--rules", choices=derive.check_lean.RULES_29_COLUMN,
-                        help="the instruction rules a 29-column workbook was made under (default: v1.14.1), as derive_analysis.py")
     args = parser.parse_args(argv)
     deal, guessed = (args.deal, None) if args.deal else derive.deal_from_name(args.workbook, None, derive.known_deals())
     try:
         derive.check_out(args.out)
-        result = compare(args.workbook.resolve(), deal, args.alex, args.seed, args.rules)
+        result = compare(args.workbook.resolve(), deal, args.alex, args.seed)
         if guessed:
             result["summary"]["warning"] = guessed
         args.out.mkdir(parents=True, exist_ok=True)

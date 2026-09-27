@@ -232,10 +232,7 @@ def record(cell: dict, run_dir: Path, packet: Path, pin: dict) -> dict:
     if status.get("workbook_valid_xlsx"):
         shutil.copy2(workbook, dest / workbook.name)
         receipt["workbook_sha256"] = run_model.sha256(workbook)
-        report = check_lean.LeanChecker(
-            workbook, filing_path(cell),
-            rules=check_lean.rules_for_instruction(pin.get("instruction_sha256")),
-        ).run()
+        report = check_lean.LeanChecker(workbook, filing_path(cell)).run()
         run_model.write_json(dest / "check.json", report)
         receipt["check_summary"] = report["summary"]
         receipt["checker_version"] = report.get("checker_version")
