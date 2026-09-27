@@ -1,0 +1,21 @@
+[Unit]
+Description=Ledger cockpit worker (sec-extraction): Claude sign-ins and isolated extraction runs
+After=network-online.target ledger-cockpit.service
+Wants=network-online.target
+
+[Service]
+WorkingDirectory=%h/work/Projects/sec-extraction
+ExecStart=/usr/bin/python3 _dev/tools/cockpit/worker.py
+Environment=PYTHONUSERBASE=%h/work/.local
+Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=OPENBLAS_NUM_THREADS=1
+Environment=PATH=%h/.local/bin:/usr/local/bin:/usr/bin:/bin
+# Extraction runners run in their own sessions and must outlive a worker restart;
+# the restarted worker reattaches to them by pid.
+KillMode=process
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

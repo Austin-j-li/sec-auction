@@ -104,7 +104,7 @@ class CompareAlexTests(unittest.TestCase):
         self.assertEqual(rows["Party Z"]["provenance"], "Alex: whole row in red (added or rewritten)")
         self.assertEqual(rows["Party A"]["provenance"], "Chicago coding (deal has no corrections)")
         self.assertEqual(result["summary"]["labelled_bids_with_red_bid_type"], 2)
-        self.assertEqual(result["summary"]["ledger_schema"], "v0")
+        self.assertEqual(result["summary"]["ledger_schema"], "Version 1")
 
     def test_note_codes_and_seed_join(self):
         events = {(r["bidder_name"], r["bid_note"]): (r["status"], r.get("ledger_row"))

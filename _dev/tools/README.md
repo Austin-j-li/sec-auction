@@ -1,6 +1,6 @@
 # Pipeline tools
 
-Run commands from the repository root. Read [AGENTS.md](../../AGENTS.md) first. Every tool here knows one instruction, Version 0, and one ledger: the v0 29-column Deal ledger. A workbook with any other ledger header is an error, not a fallback. Extractions, model experiments and workbook revisions need Austin's explicit instruction; these examples do not authorize a run.
+Run commands from the repository root. Read [AGENTS.md](../../AGENTS.md) first. The checker and analysis tools enforce Version 1 only, using the current 29-column Deal ledger. The Version 1 instruction is a draft in `_dev/alignment_sprint/draft/`; the root instruction remains Version 0 until Austin approves it. A workbook with any other ledger header is an error, not a fallback. Extractions, model experiments and workbook revisions need Austin's explicit instruction; these examples do not authorize a run.
 
 ## Environment
 
@@ -16,7 +16,7 @@ Opus runs use a long-lived subscription token made once with `claude setup-token
 python3 _dev/tools/check_lean.py --workbook extraction/<deal>.xlsx --filing raw_filing/<filing>.htm --output _dev/runs/<deal>/check.json
 ```
 
-The checker is offline. It checks workbook structure, dates, labels, links, that each quotation occurs in the filing, and agreement between columns of a row. It does not judge whether a classification is right or count live bidders. Its report gives `checker_version` and `ledger_schema`, both `v0`. Exit status is 0 with no errors, 1 with errors, 2 when an input cannot be read.
+The checker is offline. It checks workbook structure, dates, labels, links, that each quotation occurs in the filing, and agreement between columns of a row. It does not judge whether a classification is right or count live bidders. Its report gives `checker_version` and `ledger_schema`, both `Version 1`. Exit status is 0 with no errors, 1 with errors, 2 when an input cannot be read.
 
 ## Isolated runs
 
@@ -30,7 +30,7 @@ The default is Claude Opus 5.5 (`claude-opus-5-5`) at medium effort. `--provider
 
 Launch and worker startup check the prepared instruction, filing and prompt against their recorded SHA-256 hashes. A changed or missing input needs a newly prepared run directory.
 
-Revision is a separate mode: pass both `--revise-from <workbook>` and `--report <findings.md>`. The workbook must be a four-sheet v0 workbook. A revision deliberately shows the agent that workbook and the findings, so it is never a blind extraction.
+Revision is a separate mode: pass both `--revise-from <workbook>` and `--report <findings.md>`. The workbook must be a four-sheet Version 1 workbook. A revision deliberately shows the agent that workbook and the findings, so it is never a blind extraction.
 
 Every Opus run sees only the Bash, Read and Write tools and sets the variables in `CLAUDE_ENV`: a refusal fails the run instead of switching models, the prompt cache keeps the subscription lifetime, and the "user hasn't heard from you" reminder never fires. If a run ends while its deliverable is still owed, the worker resumes the same session at most twice (`MAX_CONTINUATIONS`) with a short message naming the deliverable. Sol runs disable connectors, web, image generation and subagents. Pin the Claude binary with `SEC_CLAUDE_BIN` for comparisons, because the installed CLI updates itself.
 
@@ -54,10 +54,13 @@ python3 _dev/tools/effort_sweep.py summarize --packet <packet dir>
 python3 _dev/tools/findings_text.py <check.json> <findings.md>
 python3 _dev/tools/diff_workbooks.py <before.xlsx> <after.xlsx> [--by-quote]
 python3 _dev/tools/derive_analysis.py <ledger.xlsx> --out <new dir> [--deal <deal>]
+python3 _dev/tools/review_list.py <ledger.xlsx> [--disable CATEGORY] [--output <review.json>]
 python3 _dev/tools/compare_alex.py <ledger.xlsx> --out <new dir> [--deal <deal>]
 ```
 
-`findings_text.py` turns a checker report into numbered findings for a revision pass, errors first; warnings stay review leads. `diff_workbooks.py` compares two v0 workbooks sheet by sheet and keeps cell types, so a number changed into text shows. `derive_analysis.py` turns a v0 ledger into estimation tables (bids, other-scope bids, rounds, participation, deal) with the T0–T3 Formality readings side by side and every open research choice listed as a switch with no default; it writes only into a new or empty folder outside `extraction/`, `raw_filing/` and `ref/`. `compare_alex.py` sets a ledger beside Alex's hand coding as a review aid; it reads `ref/`, so never run it where an extraction can see the output.
+`findings_text.py` turns a checker report into numbered findings for a revision pass, errors first; warnings stay review leads. `diff_workbooks.py` compares two Version 1 workbooks sheet by sheet and keeps cell types, so a number changed into text shows. `derive_analysis.py` turns a Version 1 ledger into estimation tables (bids, other-scope bids, rounds, participation, deal) with the T0–T3 Formality readings side by side and every open research choice listed as a switch with no default; it writes only into a new or empty folder outside `extraction/`, `raw_filing/` and `ref/`. `compare_alex.py` sets a ledger beside Alex's hand coding as a review aid; it reads `ref/`, so never run it where an extraction can see the output.
+
+`review_list.py` builds a review queue from workbook cells without changing the ledger. Repeat `--disable` to omit categories: `unknown_type`, `qualified_count`, `type_unsplit_count`, `inferred_exit`, `unexplained_exit`, `deadline_outcome`, `partial_only`, `non_per_share_price`, `non_dollar_price`, `round_opened`, `multi_process`. The queue is a set of review leads, not a source-accuracy verdict.
 
 ## Filing inputs
 

@@ -92,6 +92,15 @@ def submission_link(url):
                      "or a document under https://www.sec.gov/Archives/edgar/data/")
 
 
+def index_link(url):
+    """Derive an EDGAR filing index URL from a complete submission URL without fetching it."""
+    normalized = (url or "").strip().split("#")[0].split("?")[0].replace("http://", "https://", 1)
+    match = SUBMISSION_LINK.fullmatch(normalized)
+    if not match:
+        raise FetchError(f"not an EDGAR complete submission link (.txt): {url}")
+    return "https://www.sec.gov/Archives/edgar/data/%s/%s-index.htm" % match.groups()
+
+
 def _header_value(header, key):
     m = re.search(r"^\s*" + re.escape(key) + r":\s*(.+?)\s*$", header, re.M)
     return m.group(1) if m else ""

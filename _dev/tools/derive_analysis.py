@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Turn one v0 ledger workbook into estimation tables.
+"""Turn one Version 1 ledger workbook into estimation tables.
 
     python3 _dev/tools/derive_analysis.py LEDGER.xlsx --out DIR [--deal SLUG]
 
@@ -11,7 +11,7 @@ Outputs: bids.csv, other_scope.csv, rounds.csv, participation.csv, deal.csv and 
 manifest's "review" list holds what a person should look at: disagreements with the Rounds sheet,
 partial-only parties, counts that cannot be parsed, and the like.
 
-The workbook must have the v0 29-column Deal ledger; any other header is an error. An exit's
+The workbook must have the Version 1 29-column Deal ledger; any other header is an error. An exit's
 Inferred = Y is an inferred exit, and Initiation is derived by D5's rule and checked against Deal
 facts. Every bid gets upfront_price_kind (a blank or invalid price is no price observation) and
 same_offer_of (a Note beginning "Same as #n"). A five-sheet cockpit download's Source sheet is read
@@ -36,7 +36,7 @@ import openpyxl
 
 import check_lean
 
-TOOL_VERSION = "v0"
+TOOL_VERSION = "Version 1"
 PROJECT = Path(__file__).resolve().parents[2]
 FORBIDDEN_OUT = ("extraction", "raw_filing", "ref")
 # Settled: Alex keeps Meredith for descriptive work only.
@@ -88,7 +88,7 @@ SWITCHES = [
      "question": "Whether a same-price revision of terms is a new price observation.",
      "variants": {"new observation": "price_obs__same_price_as_new", "change of terms only": "price_obs__same_price_as_terms"}},
     {"id": "same_offer_restatements", "source": "E10 (R1); questionnaire 3.3(b)",
-     "question": "Whether a Same-offer row (the bidder says its earlier offer stands) is kept as a bid observation.",
+     "question": "Whether a Same-offer row (the bidder says its offer stands or confirms it by documents) is kept as a bid observation.",
      "variants": {"kept": "every bids.csv row", "dropped": "bids.csv rows with same_offer_of blank"}},
     {"id": "inferred_exits", "source": "D22; Alex Decision 3b",
      "question": "Whether inferred exits enter as dropouts or as censoring.",
@@ -220,7 +220,7 @@ def stock_bounds(value: Any, note: Any = None) -> tuple[str, float | None, float
         return "exact", n, n
     raw = text(value)
     if (m := check_lean.STOCK_RANGE_RE.fullmatch(raw)):
-        return "range (not a v0 value)", float(m.group(1)), float(m.group(2))
+        return "range (not a Version 1 value)", float(m.group(1)), float(m.group(2))
     if raw == "Part stock" and (m := NOTE_STOCK_RANGE_RE.search(text(note))):
         lo, hi = float(m.group(1)), float(m.group(2))
         if 0 <= lo <= hi <= 100:
@@ -336,7 +336,7 @@ def read_source(ws: Any) -> dict[str, Any]:
 
 
 def load(path: Path) -> dict[str, Any]:
-    """Read a v0 ledger workbook; any other Deal ledger header is an error."""
+    """Read the current ledger workbook; any other Deal ledger header is an error."""
     try:
         wb = openpyxl.load_workbook(path, data_only=True)
     except Exception as exc:
@@ -349,7 +349,7 @@ def load(path: Path) -> dict[str, Any]:
         while header and not header[-1]:
             header.pop()
         if header != check_lean.LEDGER_COLUMNS:
-            raise DeriveError(f"{path}: the Deal ledger header is not the v0 ledger's {len(check_lean.LEDGER_COLUMNS)} columns")
+            raise DeriveError(f"{path}: the Deal ledger header is not the Version 1 ledger's {len(check_lean.LEDGER_COLUMNS)} columns")
         return {"schema": check_lean.LEDGER_SCHEMA, "sheets": list(wb.sheetnames), "header": header,
                 "ledger": read_sheet(wb["Deal ledger"]), "rounds": read_sheet(wb["Rounds"]), "questions": read_sheet(wb["Questions"]),
                 "facts": {text(r.get("Field")): r.get("Value") for r in read_sheet(wb["Deal facts"])},
@@ -494,7 +494,8 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
                 cohort_seen.add(process)
             if change:
                 open_units[process][key] = r.get("#")
-        elif event in check_lean.EXIT_EVENTS or event == "Merger agreement signed" and prior in (None, "live"):
+        elif event in check_lean.EXIT_EVENTS or (event == "Merger agreement signed"
+                                                and check_lean.as_integer(r.get("Count")) == 1):
             if event == "Merger agreement signed" and prior is None:
                 note_review(r, "the signing party has no recorded entry")
             if prior in ("exited", "won"):
@@ -554,7 +555,7 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
                 "live_lo": live_lo, "live_hi": live_hi, "live_point": live_point, "note": text(r.get("Note"))})
         live_at[id(r)] = live(process)
         if kind == "range":
-            note_review(r, "the Note gives a numeric Count range, which v0 does not create (B, E3): read as bounds")
+            note_review(r, "the Note gives a numeric Count range, which the ledger does not create (B, E3): read as bounds")
         if kind.startswith("unknown (") and (event in ENTRY_EVENTS | check_lean.EXIT_EVENTS | {"Re-entered"}):
             note_review(r, f"Count is blank and the Note gives no parseable 'Count: ...' ({kind})")
     for process, units in open_units.items():
@@ -597,7 +598,7 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
                                                for c in ("Price low", "Price high")):
             note_review(r, "Price low is above Price high (a reversed range): upfront_price_kind invalid, no price observation")
         kind, s_lo, s_hi = stock_bounds(r.get("Stock %"), r.get("Note"))
-        if kind == "range (not a v0 value)":
+        if kind == "range (not a Version 1 value)":
             note_review(r, "Stock % holds a range; E13 records Part stock with the range in the Note: read as bounds")
         lo, hi, point, _ = count_bounds(r.get("Count"), r.get("Note"))
         formality, level = text(r.get("Formality")), text(r.get("Conditions"))
@@ -644,7 +645,36 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
     # Rounds.
     deadline_log, round_rows = [], []
     deadline_rows = Counter(row_round(r) for r in whole if text(r.get("Event")) == "Deadline")
-    opening_live = {row_round(r): live_at.get(id(r)) for r in whole if text(r.get("Event")) == "Round opened"}
+    exit_deltas = {p["row"]: (p.get("delta_lo"), p.get("delta_hi"), p.get("delta_point"))
+                   for p in participation if p.get("change") == "exit"}
+
+    def after_boundary_exit(live_before: tuple[int | None, int | None, int | None],
+                            delta: tuple[int | None, int | None, int | None]) -> tuple[int | None, int | None, int | None]:
+        lo, hi, point = live_before
+        d_lo, d_hi, d_point = delta
+        return (0 if d_lo is None else max(0, (lo or 0) + d_lo),
+                None if hi is None or d_hi is None else max(0, hi + d_hi),
+                None if point is None or d_point is None else max(0, point + d_point))
+
+    opening_live = {}
+    for opening_index, opening in enumerate(whole):
+        if text(opening.get("Event")) != "Round opened":
+            continue
+        process, rnd = row_round(opening)
+        opening_day = as_date(opening.get("Sort date"))
+        after = live_at.get(id(opening))
+        for later in whole[opening_index + 1:]:
+            if (as_date(later.get("Sort date")) != opening_day
+                    or row_round(later)[0] != process):
+                continue
+            previous_round = row_round(later)[1]
+            if (text(later.get("Event")) in check_lean.EXIT_EVENTS
+                    and isinstance(rnd, int) and isinstance(previous_round, int)
+                    and previous_round < rnd):
+                delta = exit_deltas.get(cell(later.get("#")))
+                if after is not None and delta is not None:
+                    after = after_boundary_exit(after, delta)
+        opening_live[(process, rnd)] = after
     max_hi = defaultdict(int)
     for r in whole:
         hi_now = live_at.get(id(r), (None, None, None))[1]
@@ -717,16 +747,34 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
         s = screen.get(process, {})
         # A partial-only candidate with no exit row may never have been in the whole-company contest, so its rows do
         # not initiate it; where one would have come first, a reviewer decides.
-        initiating = [r for r in whole if row_round(r)[0] == process and text(r.get("Event")) in INITIATION_EVENTS]
-        # D5: an Activist row before round 1 (Round 0) wins; otherwise the earliest Target interest or Target sale
-        # decision (target-led) or Bidder interest or Bid (bidder-led) row decides. A later Activist row does not.
-        activist = next((r for r in initiating if text(r.get("Event")) == "Activist" and row_round(r)[1] == 0), None)
+        target_names = {unit_key(fact(facts, "Target")), "target"}
+        initiating = [r for r in whole if row_round(r)[0] == process and
+                      (text(r.get("Event")) in INITIATION_EVENTS or
+                       text(r.get("Event")) == "Round opened" and row_round(r)[1] == 1
+                       and unit_key(r.get("Who")) in target_names)]
+        # D5: only a demand for sale before the target's first sale step makes the process activist-influenced.
+        # A target-side first step and a bidder's own Bid before round 1 make it mixed.
+        process_rows = [r for r in whole if row_round(r)[0] == process]
+        opening_index = next((i for i, r in enumerate(process_rows) if text(r.get("Event")) == "Round opened"
+                              and row_round(r)[1] == 1), len(process_rows))
+        preopening = process_rows[:opening_index]
+        target_steps = [r for r in preopening if text(r.get("Event")) in {"Target interest", "Target sale decision"}]
+        own_bids = [r for r in preopening if text(r.get("Event")) == "Bid"
+                    and unit_key(r.get("Who")) not in scope_uncertain]
+        first_target_index = next((i for i, r in enumerate(process_rows)
+                                   if text(r.get("Event")) in {"Target interest", "Target sale decision"}
+                                   or (text(r.get("Event")) == "Round opened" and
+                                       unit_key(r.get("Who")) in target_names)),
+                                  opening_index)
+        activist = next((r for r in process_rows[:first_target_index] if text(r.get("Event")) == "Activist"
+                         and text(r.get("Note")).startswith("Demands sale")), None)
         initiating = [activist] if activist else [r for r in initiating if text(r.get("Event")) != "Activist"]
         first = next((r for r in initiating if unit_key(r.get("Who")) not in scope_uncertain), None)
         if initiating and initiating[0] is not first:
             note_review(initiating[0], f"process {process}: the first initiating row belongs to a partial-only candidate with no exit row; "
                         "initiation_first_event uses " + (f"#{cell(first.get('#'))} {text(first.get('Event'))}" if first else "no row"))
-        derived = INITIATION_EVENTS[text(first.get("Event"))] if first else ""
+        derived = ("activist-influenced" if activist else "mixed" if target_steps and own_bids
+                   else INITIATION_EVENTS.get(text(first.get("Event")), "target-led") if first else "")
         check = ""
         if process == 1:
             # D5 decides Initiation from process 1; the Deal facts value is checked against the rule.
@@ -879,7 +927,7 @@ def run(workbook: Path, out: Path, deal: str | None = None) -> dict[str, Any]:
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    parser.add_argument("workbook", type=Path, help="a v0 ledger workbook (raw version or cockpit download)")
+    parser.add_argument("workbook", type=Path, help="a Version 1 ledger workbook (raw version or cockpit download)")
     parser.add_argument("--deal", help="deal slug (default: from the file name)")
     parser.add_argument("--out", type=Path, required=True, help="new or empty output folder")
     return parser.parse_args(argv)
@@ -901,4 +949,3 @@ def main(argv: list[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

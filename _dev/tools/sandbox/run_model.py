@@ -254,7 +254,7 @@ def checker():
 
 
 def revision_schema(workbook: Path) -> str:
-    """Check that a revision workbook has the four sheets and the v0 Deal ledger header."""
+    """Check that a revision workbook has the four sheets and the Version 1 Deal ledger header."""
     try:
         book = _openpyxl.load_workbook(workbook, read_only=True)
     except Exception as exc:
@@ -269,7 +269,7 @@ def revision_schema(workbook: Path) -> str:
     while header and header[-1] in (None, ""):
         header.pop()
     if header != checker().LEDGER_COLUMNS:
-        raise SystemExit("the revision workbook's Deal ledger header is not the v0 ledger's")
+        raise SystemExit("the revision workbook's Deal ledger header is not the Version 1 ledger's")
     return checker().LEDGER_SCHEMA
 
 

@@ -1,0 +1,19 @@
+[Unit]
+Description=Ledger review cockpit (sec-extraction, read-only) behind lines.dealextract.org
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+WorkingDirectory=%h/work/Projects/sec-extraction
+ExecStart=/usr/bin/python3 _dev/tools/cockpit/server.py --port 8778
+Environment=PYTHONUSERBASE=%h/work/.local
+Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONDONTWRITEBYTECODE=1
+# openpyxl imports numpy; one BLAS thread instead of an idle pool per CPU.
+Environment=OPENBLAS_NUM_THREADS=1
+KillMode=control-group
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

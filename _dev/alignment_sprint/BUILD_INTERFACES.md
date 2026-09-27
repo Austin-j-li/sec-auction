@@ -1,0 +1,13 @@
+# Version 1 build interfaces
+
+This is the shared implementation contract for the build authorized on 27 September 2026. BUILD_SPEC, DRAFTING_SPEC and DECISIONS govern the result.
+
+- All work happens in `/home/uctpiaj/work/Projects/sec-auction`, branch `version-1`. No extraction or live-service operation. The live and archived project folders are read-only to this build.
+- The root instruction, AGENTS.md, README.md and _dev/STATUS.md stay unchanged. The candidate instruction and its change map, round map, workbook comparison and mechanical report live in `_dev/alignment_sprint/draft/`.
+- `check_lean.LeanChecker(path, filing)` checks the current format only. There is no rules argument or instruction-hash selector. `choice_lists()` exports the current editor choices without arguments. The checker label is `Version 1`. Ledger columns are `LEDGER_COLUMNS`; stock ranges use the current checker's patterns. The tools owner confirms exact constant names to the app owners.
+- `fetch_filing.index_link` is restored by the tools owner for Add Deal and provenance. It produces the SEC filing-index URL from the existing filing link input; consumers retain their present call signature.
+- Q and R review IDs share save, rename, delete and reference validation. Q-only caps and process questions stay in the checker. R items may name an omitted source event rather than existing row numbers.
+- Catalog deals start with `versions: []` and no base workbook. Pending catalog payloads use catalog filing metadata; pending app-added deals use their added-deal row. The first successful stub run becomes the base using the same path for both kinds.
+- Fresh-state creation accepts an old state directory and a new, absent destination. It reads the old database through SQLite `mode=ro`, preserves only accounts and added_deals plus their filing files, and creates no instruction or default setting. Application initialization seeds the repository instruction. Its tests use synthetic secrets only.
+- Writers have disjoint ownership. Instruction writer: draft instruction and CHANGE_MAP. Tools writer: checker, derive, fetch and associated offline tests. App backend writer: cockpit Python modules and existing test_cockpit files, catalog and cockpit README; excludes fresh_state.py. Fresh-state writer: fresh_state.py and its new test file. Frontend writer: frontend sources, acceptance suites and dist. Source-check writer: ROUND_MAP and WORKBOOK_CHECK. Manager: integration, runbook, mechanical/build reports and final commit.
+- Workers do not commit or spawn workers. Any cross-owner fix is requested through the manager or owning worker. Test runs may use isolated synthetic roots and stub runners; never real model providers or copied account tokens.

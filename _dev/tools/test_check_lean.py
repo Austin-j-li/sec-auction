@@ -141,6 +141,67 @@ def build_valid_fixture(directory: Path) -> tuple[Path, Path]:
     return workbook, filing
 
 
+def build_version_1_smoke_fixture(directory: Path) -> tuple[Path, Path]:
+    """One small current-format workbook covering the Version 1 mechanical changes."""
+    workbook, filing = build_valid_fixture(directory)
+    quotes = [
+        "The target began exploring a sale on January 1.",
+        "Alpha proposed ten dollars per share on January 1.",
+        "The target opened a bidding round on January 2.",
+        "Alpha submitted a formal offer of ten dollars per share on January 3.",
+        "Beta submitted a proposal requiring exclusivity on January 3.",
+        "Alpha and the target signed a merger agreement on January 4.",
+    ]
+    filing.write_text("<html><body>" + "".join(f"<p>{q}</p>" for q in quotes) + "</body></html>", encoding="utf-8")
+    wb = check_lean.openpyxl.load_workbook(workbook)
+    ws = wb["Deal ledger"]
+    ws.delete_rows(2, ws.max_row)
+    day = dt.date
+    rows = [
+        {"When": "01/01/2020", "Who": "Target", "Event": "Target interest", "Round": 0, "date": day(2020, 1, 1)},
+        {"When": "01/01/2020", "Who": "Alpha", "Type": "Strategic", "Event": "Bid", "Round": 0,
+         "Price low": 10, "Price high": 10, "Stock %": 0, "Formality": "Informal", "Conditions": "Unclear",
+         "Due diligence": "Not begun", "Financing": "Not stated", "Regulatory": "Not stated",
+         "Exclusivity": "Not stated", "Count": 1, "Flag": "Q1", "date": day(2020, 1, 1)},
+        {"When": "01/02/2020", "Who": "Target", "Event": "Round opened", "Round": 1, "date": day(2020, 1, 2)},
+        {"When": "01/03/2020", "Who": "Alpha", "Type": "Strategic", "Event": "Bid", "Round": 1,
+         "Price low": 10, "Price high": 10, "Stock %": 0, "Formality": "Formal", "Conditions": "None",
+         "Due diligence": "Not stated", "Financing": "Not stated", "Regulatory": "Not stated",
+         "Exclusivity": "Not stated", "Count": 1, "Flag": "R1", "date": day(2020, 1, 3)},
+        {"When": "01/03/2020", "Who": "Beta", "Type": "Financial", "Event": "Bid", "Round": 1,
+         "Price low": 11, "Price high": 11, "Stock %": 0, "Formality": "Formal", "Conditions": "Light",
+         "Due diligence": "Not stated", "Financing": "Not stated", "Regulatory": "Not stated",
+         "Exclusivity": "Required", "Count": 1, "date": day(2020, 1, 3)},
+        {"When": "01/04/2020", "Who": "Alpha", "Type": "Strategic", "Event": "Merger agreement signed",
+         "Round": 1, "Count": 1, "date": day(2020, 1, 4)},
+    ]
+    for number, (record, quote) in enumerate(zip(rows, quotes, strict=True), 1):
+        date = record.pop("date")
+        record.update({"#": number, "Process": 1, "Quote and page": f"“{quote}” (p. 10)",
+                       "Sort date": date, "Date from": date, "Date to": date})
+        ws.append([record.get(c) for c in check_lean.LEDGER_COLUMNS])
+    for row_number in range(2, ws.max_row + 1):
+        for field in check_lean.DATE_COLUMNS:
+            ws.cell(row_number, check_lean.LEDGER_COLUMNS.index(field) + 1).number_format = "MM/DD/YYYY"
+    finish_sheet(ws, len(check_lean.LEDGER_COLUMNS))
+    rounds = wb["Rounds"]
+    rounds["C2"] = day(2020, 1, 2)
+    rounds["C2"].number_format = "MM/DD/YYYY"
+    rounds["E2"] = "2: Alpha and Beta"
+    rounds["I2"] = "2: Alpha and Beta"
+    finish_sheet(rounds, len(check_lean.ROUND_COLUMNS))
+    questions = wb["Questions"]
+    questions.delete_rows(2, questions.max_row)
+    questions.append(["Q1", "Was Alpha's early price a bid?", "Yes, an Informal Bid.",
+                      "Alpha proposed ten dollars (p. 10).", "#2", "The early bid would be omitted.", None])
+    questions.append(["R1", "Review Formal status", "Formal", "Alpha's submission (p. 10).", "#4", "—", None])
+    finish_sheet(questions, len(check_lean.QUESTION_COLUMNS))
+    wb["Deal facts"]["B10"] = "mixed"
+    finish_sheet(wb["Deal facts"], len(check_lean.FACT_COLUMNS))
+    wb.save(workbook)
+    return workbook, filing
+
+
 def set_ledger(workbook: Path, row: int, values: dict) -> None:
     wb = check_lean.openpyxl.load_workbook(workbook)
     ws = wb["Deal ledger"]
@@ -196,6 +257,17 @@ def issue_set(workbook: Path, filing: Path) -> set[tuple[str, str]]:
 
 
 class LeanCheckerTests(unittest.TestCase):
+    def test_version_1_smoke_fixture_and_negative_mutations(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            workbook, filing = build_version_1_smoke_fixture(Path(tmp))
+            report = check_lean.LeanChecker(workbook, filing).run()
+            self.assertEqual(report["status"], "pass", report["issues"])
+            set_ledger(workbook, 7, {"Count": 2})
+            self.assertIn("ledger.count_signing", {c for c, _ in issue_set(workbook, filing)})
+            set_ledger(workbook, 7, {"Count": 1})
+            set_ledger(workbook, 5, {"Exclusivity": "Required"})
+            self.assertIn("conditions.none_support", {c for c, _ in issue_set(workbook, filing)})
+
     def test_valid_minimal_fixture_passes(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             workbook, filing = build_valid_fixture(Path(tmp))
@@ -268,7 +340,7 @@ class LeanCheckerTests(unittest.TestCase):
             self.assertEqual(report["status"], "fail")
             self.assertIn("schema.columns", {issue["code"] for issue in report["issues"]})
 
-    def test_ledger_without_the_v0_header_is_an_error(self) -> None:
+    def test_ledger_without_the_current_header_is_an_error(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             workbook, filing = build_valid_fixture(Path(tmp))
             wb = check_lean.openpyxl.load_workbook(workbook)
@@ -276,10 +348,10 @@ class LeanCheckerTests(unittest.TestCase):
             wb["Deal ledger"].delete_cols(check_lean.LEDGER_COLUMNS.index("Stock %") + 1, 10)
             wb.save(workbook)
             report = check_lean.LeanChecker(workbook, filing).run()
-            self.assertEqual((report["status"], report["ledger_schema"]), ("fail", "v0"))
+            self.assertEqual((report["status"], report["ledger_schema"]), ("fail", "Version 1"))
             schema = [issue for issue in report["issues"] if issue["code"] == "schema.columns"]
             self.assertEqual(len(schema), 1, report["issues"])
-            self.assertIn("reads only the v0 ledger", schema[0]["message"])
+            self.assertIn("reads only the current ledger", schema[0]["message"])
 
     def test_account_and_quote_wrapper_variants_pass(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -437,7 +509,7 @@ class LeanCheckerTests(unittest.TestCase):
             codes = {(issue["code"], issue["column"]) for issue in report["issues"]}
             self.assertIn(("bid.fields_on_nonbid", "Financing"), codes, report["issues"])
 
-    def test_markers_and_exclusivity_add_no_issue_at_any_level(self) -> None:
+    def test_markers_and_exclusivity_follow_condition_level(self) -> None:
         levels = {
             "None": {"Conditions": "None", "Due diligence": "Complete", "Financing": "Committed", "Regulatory": "No concern"},
             "Light": {"Conditions": "Light", "Due diligence": "Incomplete"},
@@ -456,8 +528,13 @@ class LeanCheckerTests(unittest.TestCase):
                     before = check_lean.LeanChecker(workbook, filing).run()["issues"]
                     set_ledger(workbook, 3, extra)
                     after = check_lean.LeanChecker(workbook, filing).run()["issues"]
-                    self.assertEqual(before, after)
-                    self.assertEqual(after, [], after)
+                    if level == "None" and extra == {"Exclusivity": "Required"}:
+                        self.assertIn("conditions.none_support", {i["code"] for i in after})
+                    elif level == "Unclear" and extra == {"Exclusivity": "Required"}:
+                        self.assertIn("conditions.exclusivity_level", {i["code"] for i in after})
+                    else:
+                        self.assertEqual(before, after)
+                        self.assertEqual(after, [], after)
 
     def test_concern_and_cohort_financing_pass_where_allowed(self) -> None:
         accepted = [
@@ -664,9 +741,10 @@ def build_examples_fixture(directory: Path) -> tuple[Path, Path]:
         # Example 2: the same offer, restated in answer to the final-round letter.
         bid("Party C", day(2021, 3, 29), 30, 10, Round=2, When="by 03/29/2021", Formality="Formal", Financing="Contingent", Conditions="Heavy",
             **{"Due diligence": "Incomplete"}, Note="Same as #5. H1: financing not committed.", **{"from": None}),
-        # Example 4: a period that also covers negotiation is not H2.
+        # Example 4: the period explicitly covers remaining diligence, so H2 applies.
         bid("Party G", day(2021, 3, 29), None, 11, Round=2, When="by 03/29/2021", Formality="Formal", Exclusivity="Required",
-            **{"Stock %": "Not stated"}, Note="45 days' exclusivity.", **{"from": None}),
+            Conditions="Heavy", **{"Stock %": "Not stated"},
+            Note="H2: 45 days' exclusivity for diligence and negotiation.", **{"from": None}),
         bid("Party E", day(2021, 3, 29), 29, 12, Round=2, Formality="Formal", Financing="Committed", Conditions="Unclear"),
         {"Who": "Target", "Event": "Deadline", "Round": 2, "day": day(2021, 3, 29), "q": 9, "Note": "Final bids due."},
         # Example 5: a commitment-only revision; no price, not a price observation.
@@ -731,11 +809,11 @@ class LeanCheckerRuleTests(unittest.TestCase):
             found = {sev for c, sev in issue_set(workbook, filing) if c == code}
             self.assertEqual(found, {severity} if severity else set(), (values, issue_set(workbook, filing)))
 
-    def test_fixture_passes_and_reports_v0(self) -> None:
+    def test_fixture_passes_and_reports_version_1(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             workbook, filing = build_no_question_fixture(Path(tmp))
             report = check_lean.LeanChecker(workbook, filing).run()
-            self.assertEqual((report["status"], report["ledger_schema"], report["checker_version"]), ("pass", "v0", "v0"), report["issues"])
+            self.assertEqual((report["status"], report["ledger_schema"], report["checker_version"]), ("pass", "Version 1", "Version 1"), report["issues"])
 
     def test_five_examples_pass_with_no_errors(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -752,7 +830,7 @@ class LeanCheckerRuleTests(unittest.TestCase):
             self.assertEqual(check_lean.main(argv), 0)
             set_ledger(workbook, 3, {"Stock %": "40-60"})
             self.assertEqual(check_lean.main(argv), 1)
-            self.assertEqual(json.loads(output.read_text())["ledger_schema"], "v0")
+            self.assertEqual(json.loads(output.read_text())["ledger_schema"], "Version 1")
 
     def test_note_over_40_words_is_an_error(self) -> None:
         self.check_rule({"Note": " ".join(["word"] * 41)}, "ledger.note_length", "error")
@@ -790,8 +868,8 @@ class LeanCheckerRuleTests(unittest.TestCase):
         self.check_rule({**cohort, "CVR/earnout": "Varies"}, "controlled.cvr_earnout", "error")
         self.check_rule({**cohort, "Regulatory": "Varies", "Antitrust": "Varies"}, "controlled.antitrust", "error")
 
-    def test_initiation_takes_three_values(self) -> None:
-        for value, codes in (("mixed", {"controlled.initiation"}), ("unclear", {"controlled.initiation"}), ("bidder-led", set())):
+    def test_initiation_takes_four_values(self) -> None:
+        for value, codes in (("mixed", set()), ("unclear", {"controlled.initiation"}), ("bidder-led", set())):
             with self.subTest(value=value), tempfile.TemporaryDirectory() as tmp:
                 workbook, filing = build_no_question_fixture(Path(tmp))
                 wb = check_lean.openpyxl.load_workbook(workbook)
@@ -804,6 +882,116 @@ class LeanCheckerRuleTests(unittest.TestCase):
             wb["Deal facts"]["A10"] = "Initiation (target-led, bidder-led, activist-influenced, mixed or unclear)"
             wb.save(workbook)
             self.assertIn(("facts.fields", "error"), issue_set(workbook, filing))
+
+    def test_version_1_choice_lists_have_no_schema_selector(self) -> None:
+        self.assertIn("mixed", check_lean.choice_lists()["Initiation"])
+        self.assertIn("Required", check_lean.choice_lists()["Exclusivity"])
+        with self.assertRaises(TypeError):
+            check_lean.choice_lists("legacy")
+
+    def test_review_ids_have_their_own_sequence_and_source_events_need_no_flag(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            workbook, filing = build_no_question_fixture(Path(tmp))
+            set_ledger(workbook, 3, {"Flag": "R2, Q1"})
+            add_questions(workbook, [
+                question(1, rows="Rows 2"),
+                ["R1", "Check the omitted meeting", "Omitted", "Board minutes (p. 10).",
+                 "June 5 board meeting, not in ledger", "—", None],
+                ["R2", "Check bid coding", "Informal", "The proposal (p. 10).",
+                 "#2", None, None],
+            ])
+            codes = {c for c, _ in issue_set(workbook, filing)}
+            self.assertFalse(codes & {"controlled.flag", "questions.required", "questions.sequence",
+                                      "questions.count", "questions.unknown_flag", "questions.rows_unparsed",
+                                      "questions.flag_mismatch", "questions.reverse_link"}, codes)
+            add_questions(workbook, [[f"R{n}", "Check omitted event", "Omitted", "Filing (p. 10).",
+                                      f"Source event {n}, absent from ledger", None, None] for n in range(3, 9)])
+            self.assertNotIn("questions.count", {c for c, _ in issue_set(workbook, filing)})
+            set_ledger(workbook, 3, {"Flag": "R9"})
+            self.assertIn("questions.unknown_flag", {c for c, _ in issue_set(workbook, filing)})
+
+    def test_signing_count_depends_on_whole_company_bidder(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            workbook, filing = build_no_question_fixture(Path(tmp))
+            set_ledger(workbook, 4, {"Who": "Alpha", "Count": 1})
+            self.assertNotIn("ledger.count_signing", {c for c, _ in issue_set(workbook, filing)})
+            set_ledger(workbook, 4, {"Count": 2})
+            self.assertIn("ledger.count_signing", {c for c, _ in issue_set(workbook, filing)})
+            set_ledger(workbook, 4, {"Who": "Outside signer", "Count": None})
+            self.assertNotIn("ledger.count_signing", {c for c, _ in issue_set(workbook, filing)})
+
+    def test_signing_count_uses_current_participation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            workbook, filing = build_no_question_fixture(Path(tmp))
+            set_ledger(workbook, 3, {"Event": "NDA signed", "Price low": None, "Price high": None,
+                                     "Stock %": None, "Formality": None, "Conditions": None,
+                                     "Due diligence": None, "Financing": None, "Regulatory": None,
+                                     "Exclusivity": None})
+            set_ledger(workbook, 4, {"Who": "Alpha", "Count": 1})
+            self.assertNotIn("ledger.count_signing", {c for c, _ in issue_set(workbook, filing)})
+
+        with tempfile.TemporaryDirectory() as tmp:
+            workbook, filing = build_no_question_fixture(Path(tmp))
+            set_ledger(workbook, 3, {"Event": "Contact", "Price low": None, "Price high": None,
+                                     "Stock %": None, "Formality": None, "Conditions": None,
+                                     "Due diligence": None, "Financing": None, "Regulatory": None,
+                                     "Exclusivity": None, "Count": None})
+            set_ledger(workbook, 4, {"Who": "Alpha", "Count": 1})
+            self.assertNotIn("ledger.count_signing", {c for c, _ in issue_set(workbook, filing)})
+
+        with tempfile.TemporaryDirectory() as tmp:
+            workbook, filing = build_no_question_fixture(Path(tmp))
+            set_ledger(workbook, 4, {"Who": "Alpha", "Event": "Withdrew", "Count": 1,
+                                     "Exit reason": "Terms or process", "Note": "Continued on a partial basis."})
+            append_ledger(workbook, [
+                {"day": dt.date(2020, 1, 5), "Who": "Alpha", "Type": "Strategic", "Event": "Other-scope bid",
+                 "Count": 1, "Formality": "Informal", "Conditions": "Unclear", "Stock %": 0,
+                 "Due diligence": "Not stated", "Financing": "Not stated", "Regulatory": "Not stated",
+                 "Exclusivity": "Not stated", "Note": "Partial assets, $5 million."},
+                {"day": dt.date(2020, 1, 6), "Who": "Alpha", "Event": "Merger agreement signed", "Count": None},
+            ])
+            self.assertNotIn("ledger.count_signing", {c for c, _ in issue_set(workbook, filing)})
+
+    def test_non_bidder_events_keep_count_blank(self) -> None:
+        for event in ("Target sale decision", "Activist", "Go-shop changed"):
+            with self.subTest(event=event), tempfile.TemporaryDirectory() as tmp:
+                workbook, filing = build_no_question_fixture(Path(tmp))
+                set_ledger(workbook, 2, {"Event": event, "Count": 1})
+                self.assertIn("ledger.count_nonbidder", {c for c, _ in issue_set(workbook, filing)})
+
+    def test_formal_silence_and_required_exclusivity_in_conditions(self) -> None:
+        silent = {"Formality": "Formal", "Conditions": "None", "Due diligence": "Not stated",
+                  "Financing": "Not stated", "Regulatory": "Not stated"}
+        self.check_rule(silent, "conditions.none_support", None)
+        self.check_rule({**silent, "Formality": "Informal"}, "conditions.none_support", "error")
+        self.check_rule({**silent, "Exclusivity": "Required"}, "conditions.none_support", "error")
+        self.check_rule({**silent, "Conditions": "Light", "Exclusivity": "Required"}, "conditions.light_support", None)
+        self.check_rule({**silent, "Conditions": "Unclear", "Exclusivity": "Required"},
+                        "conditions.exclusivity_level", "error")
+        self.check_rule({**silent, "Conditions": "None", "Note": "H3: may not proceed unless standstill remains."},
+                        "conditions.heavy_trigger_level", "error")
+        self.check_rule({**silent, "Conditions": "None", "Note": "Same as #1. H3: may not proceed."},
+                        "conditions.heavy_trigger_level", "error")
+        self.check_rule({**silent, "Who": "Two financial bidders", "Count": 2,
+                         "Conditions": "Unclear", "Financing": "Varies",
+                         "Note": "H1: one member lacks committed financing."},
+                        "conditions.heavy_trigger_level", None)
+
+    def test_activist_prefix_and_initiation_support(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            workbook, filing = build_no_question_fixture(Path(tmp))
+            set_ledger(workbook, 2, {"Event": "Activist", "Who": "Fund X", "Note": "Sale one option: explore alternatives."})
+            wb = check_lean.openpyxl.load_workbook(workbook)
+            wb["Deal facts"]["B10"] = "activist-influenced"
+            wb.save(workbook)
+            codes = {c for c, _ in issue_set(workbook, filing)}
+            self.assertIn("initiation.activist_support", codes)
+            self.assertNotIn("activist.note_prefix", codes)
+            set_ledger(workbook, 2, {"Note": "Demands sale: seek a buyer."})
+            self.assertNotIn("initiation.activist_support", {c for c, _ in issue_set(workbook, filing)})
+            set_ledger(workbook, 2, {"Note": "Explore alternatives."})
+            self.assertIn("activist.note_prefix", {c for c, _ in issue_set(workbook, filing)})
+
     def test_auction_screen_is_met_or_not_met_with_a_number(self) -> None:
         cases = [("Uncertain: count unknown", True), ("Met: count unknown", True), ("Met (process 1): 3 parties", False),
                  ("Not met (process 1): 1 party; Met (process 2): 4 parties", False)]

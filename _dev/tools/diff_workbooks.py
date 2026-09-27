@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Show what changed between two v0 ledger workbooks, sheet by sheet.
+"""Show what changed between two Version 1 ledger workbooks, sheet by sheet.
 
     python3 _dev/tools/diff_workbooks.py before.xlsx after.xlsx [--by-quote] [--include-source]
 

@@ -1,4 +1,4 @@
-"""The analysis derive tool on synthetic v0 ledgers."""
+"""The analysis derive tool on synthetic Version 1 ledgers."""
 from __future__ import annotations
 
 import contextlib
@@ -29,7 +29,7 @@ def row(n, who, event, rnd=1, day=0, **values):
 
 def bid(n, who, low, high=None, rnd=1, day=0, formality="Informal", conditions="Unclear", **values):
     terms = {"Stock %": 0, "Due diligence": "Not stated", "Financing": "Not stated", "Regulatory": "Not stated", "Exclusivity": "Not stated"}
-    return row(n, who, values.pop("event", "Bid"), rnd, day, Type="Financial", Count=values.pop("Count", 1),
+    return row(n, who, values.pop("event", "Bid"), rnd, day, Type=values.pop("Type", "Financial"), Count=values.pop("Count", 1),
                **{"Price low": low, "Price high": high if high is not None else low, "Formality": formality,
                   "Conditions": conditions, **terms, **values})
 
@@ -140,7 +140,7 @@ class DeriveTests(unittest.TestCase):
         issues = " | ".join(r["issue"] for r in manifest["review"])
         self.assertIn("round 3, which has no Rounds line", issues)
         self.assertIn("Conditions is blank on a Formal bid", issues)
-        # A stated range (not a v0 value) still means some stock, so "0-50" is 0.
+        # A stated range (not a cell value) still means some stock, so "0-50" is 0.
         self.assertEqual({w: bids[w]["all_cash"] for w in bids},
                          {"Alpha": "1", "Beta": "0", "Gamma": "0", "Delta": "", "Eps": "0", "Zeta": "0", "Eta": "1", "Theta": "1", "Iota": "",
                           "Kappa": "1", "Lambda": "1", "Mu": "1"})
@@ -151,7 +151,7 @@ class DeriveTests(unittest.TestCase):
         self.assertEqual((bids["Kappa"]["price_low"], bids["Kappa"]["package_low"]), ("7", ""))  # a CVR with no value
         self.assertEqual(bids["Kappa"]["package_basis"], "missing: CVR/earnout marked without a value")
         self.assertEqual(bids["Alpha"]["package_basis"], "upfront only (no CVR/earnout)")
-        self.assertEqual((bids["Eps"]["stock_kind"], bids["Eps"]["stock_lo"], bids["Eps"]["stock_hi"]), ("range (not a v0 value)", "50", "75"))
+        self.assertEqual((bids["Eps"]["stock_kind"], bids["Eps"]["stock_lo"], bids["Eps"]["stock_hi"]), ("range (not a Version 1 value)", "50", "75"))
         self.assertIsNone(manifest["readings"]["default"])
 
     def test_same_price_revision_marker_and_its_two_variants(self):
@@ -216,7 +216,7 @@ class DeriveTests(unittest.TestCase):
         known = {"meredith", "mac-gray"}
         cases = [("meredith-opus55-medium-20260924-2241-abc123.xlsx", None, "meredith", True),
                  ("meredith-working.xlsx", None, "meredith", False), ("mac-gray-working-r8.xlsx", None, "mac-gray", False),
-                 ("meredith-v0-raw-with-source.xlsx", {"Version ID": "v0-raw"}, "meredith", False),
+                 ("meredith-version1-raw-with-source.xlsx", {"Version ID": "version1-raw"}, "meredith", False),
                  ("zz-unknown.xlsx", None, "zz-unknown", True)]
         for name, source, slug, warned in cases:
             with self.subTest(name=name):
@@ -347,12 +347,12 @@ class DeriveTests(unittest.TestCase):
         self.assertIn("Bids received says 3", issues)
         self.assertIn("round 2: 1 deadline outcome(s) but 0 Deadline row(s)", issues)
 
-    def test_a_workbook_without_the_v0_ledger_header_is_an_error(self):
+    def test_a_workbook_without_the_current_ledger_header_is_an_error(self):
         path = write(self.dir / "old.xlsx", [bid(1, "Alpha", 10)], [rounds_line(1, "Enforced")])
         wb = load_workbook(path)
         wb["Deal ledger"].delete_cols(check_lean.LEDGER_COLUMNS.index("Stock %") + 1, 10)
         wb.save(path)
-        with self.assertRaisesRegex(derive.DeriveError, "not the v0 ledger"):
+        with self.assertRaisesRegex(derive.DeriveError, "not the Version 1 ledger"):
             derive.load(path)
         self.assertEqual(quiet(derive.main, [str(path), "--out", str(self.dir / "old-out")]), 2)
         broken = self.dir / "broken.xlsx"
@@ -369,7 +369,7 @@ class DeriveTests(unittest.TestCase):
         self.assertEqual(sorted(p.name for p in out.iterdir()),
                          ["bids.csv", "deal.csv", "manifest.json", "other_scope.csv", "participation.csv", "rounds.csv"])
         self.assertEqual(derive.manifest_complete(json.loads((out / "manifest.json").read_text())), [])
-        self.assertEqual(manifest["ledger_schema"], "v0")
+        self.assertEqual(manifest["ledger_schema"], "Version 1")
         self.assertEqual({s["id"] for s in manifest["switches"]},
                          {"count_ranges", "unclear", "formality_reading", "same_price_revisions", "same_offer_restatements",
                           "inferred_exits", "estimation_price"})
@@ -401,14 +401,14 @@ class DeriveTests(unittest.TestCase):
 
     # ---- P1, same_offer_of and the E-rule readings -------------------------------------------------------------------
 
-    def test_the_manifest_is_labelled_v0_and_there_is_no_rules_option(self):
+    def test_the_manifest_is_labelled_version_1_and_there_is_no_rules_option(self):
         path = write(self.dir / "alpha.xlsx", [bid(1, "Alpha", 10)], [rounds_line(1, "Enforced", received="1: Alpha")])
-        self.assertEqual(derive.load(path)["schema"], "v0")
+        self.assertEqual(derive.load(path)["schema"], "Version 1")
         manifest = derive.run(path, self.dir / "out")
-        self.assertEqual((manifest["ledger_schema"], manifest["tool_version"], manifest["checker_version"]), ("v0", "v0", "v0"))
+        self.assertEqual((manifest["ledger_schema"], manifest["tool_version"], manifest["checker_version"]), ("Version 1", "Version 1", "Version 1"))
         self.assertNotIn("contract", manifest)
         with self.assertRaises(SystemExit):
-            quiet(derive.parse_args, [str(path), "--out", str(self.dir / "bad"), "--rules", "v0"])
+            quiet(derive.parse_args, [str(path), "--out", str(self.dir / "bad"), "--rules", "legacy"])
 
     def test_upfront_price_kind_and_the_price_observation_flags(self):
         # P1: only valid numeric price information is a price observation.
@@ -467,7 +467,7 @@ class DeriveTests(unittest.TestCase):
         original = workbook.read_bytes()
         out = self.dir / "examples-out"
         manifest = derive.run(workbook, out, "examples")
-        self.assertEqual(manifest["ledger_schema"], "v0")
+        self.assertEqual(manifest["ledger_schema"], "Version 1")
         bids = {r["row"]: r for r in read(out, "bids.csv")}
         # Example 2: "Same as #5" copies #5's price; it is a restatement, not a new same-price revision.
         self.assertEqual((bids["14"]["same_offer_of"], bids["14"]["same_price_revision"]), ("5", ""))
@@ -517,14 +517,14 @@ class DeriveTests(unittest.TestCase):
 
     def test_initiation_follows_d5_and_is_checked_against_deal_facts(self):
         activist_first = [row(1, "Alpha", "Bidder interest", rnd=0, Type="Financial", Count=1),
-                          row(2, "Fund X", "Activist", rnd=0, day=1), row(3, "Target", "Round opened", day=2)]
+                          row(2, "Fund X", "Activist", rnd=0, day=1, Note="Demands sale: seek a buyer."), row(3, "Target", "Round opened", day=2)]
         activist_late = [row(1, "Target", "Target sale decision", rnd=0), row(2, "Target", "Round opened", day=1),
                          row(3, "Fund X", "Activist", day=2)]
         bidder_first = [row(1, "Alpha", "Bid", rnd=0, Type="Financial", Count=1, **{"Price low": 10, "Price high": 10}),
                         row(2, "Target", "Target sale decision", rnd=0, day=1), row(3, "Target", "Round opened", day=2)]
-        cases = [(activist_first, "activist-influenced", "#2 Activist"),  # an Activist row before round 1 wins
+        cases = [(activist_first, "activist-influenced", "#2 Activist"),  # a sale demand before the target's first step wins
                  (activist_late, "target-led", "#1 Target sale decision"),  # a later Activist row does not count
-                 (bidder_first, "bidder-led", "#1 Bid")]
+                 (bidder_first, "mixed", "#1 Bid")]
         for i, (ledger, derived, first_row) in enumerate(cases):
             with self.subTest(case=i):
                 out, manifest = self.derive(ledger, [rounds_line(1, "Enforced", received="none")], name=f"init{i}.xlsx")
@@ -537,11 +537,63 @@ class DeriveTests(unittest.TestCase):
                              facts={k: v for k, v in FACTS.items() if k != "Initiation"})
         self.assertEqual(read(out, "deal.csv")[0]["initiation_check"], "not recorded")
 
+    def test_sale_one_option_does_not_override_mixed_initiation(self):
+        ledger = [row(1, "Fund X", "Activist", rnd=0, Note="Sale one option: explore alternatives."),
+                  row(2, "Target", "Target interest", rnd=0, day=1),
+                  bid(3, "Alpha", 10, rnd=0, day=2), row(4, "Target", "Round opened", day=3)]
+        out, _ = self.derive(ledger, [rounds_line(1, "Enforced")], facts={**FACTS, "Initiation": "mixed"})
+        deal = read(out, "deal.csv")[0]
+        self.assertEqual((deal["initiation_first_event"], deal["initiation_check"]), ("mixed", "agrees"))
+
+    def test_signing_outside_contest_does_not_subtract_or_win(self):
+        ledger = [row(1, "Alpha", "NDA signed", Type="Financial", Count=1),
+                  row(2, "Outside buyer", "Merger agreement signed", day=1)]
+        out, _ = self.derive(ledger, [rounds_line(1, "No deadline stated")])
+        participation = read(out, "participation.csv")
+        self.assertFalse([r for r in participation if r["change"] == "win"])
+        self.assertEqual(participation[-1]["live_point"], "1")
+
+    def test_opening_live_is_after_same_day_exits_in_previous_round(self):
+        ledger = [row(1, "Alpha", "NDA signed", Count=1), row(2, "Beta", "NDA signed", Count=1),
+                  row(3, "Target", "Round opened", rnd=2, day=1),
+                  row(4, "Gamma", "NDA signed", rnd=2, day=1, Count=1),
+                  row(5, "Beta", "Dropped by target", rnd=1, day=1, Count=1,
+                      **{"Exit reason": "Not stated"})]
+        out, _ = self.derive(ledger, [rounds_line(1, "No deadline stated"), rounds_line(2, "No deadline stated")])
+        rounds = {r["round"]: r for r in read(out, "rounds.csv")}
+        self.assertEqual(rounds["2"]["live_open_point"], "1")
+
+    def test_opening_live_carries_pending_exits_from_earlier_same_day_openings(self):
+        ledger = [row(1, "Alpha", "NDA signed", Count=1), row(2, "Beta", "NDA signed", Count=1),
+                  row(3, "Gamma", "NDA signed", Count=1),
+                  row(4, "Target", "Round opened", rnd=2, day=1),
+                  row(5, "Target", "Round opened", rnd=3, day=1),
+                  row(6, "Gamma", "Dropped by target", rnd=2, day=1, Count=1,
+                      **{"Exit reason": "Not stated"}),
+                  row(7, "Beta", "Dropped by target", rnd=1, day=1, Count=1,
+                      **{"Exit reason": "Not stated"})]
+        out, _ = self.derive(ledger, [rounds_line(1, "No deadline stated"), rounds_line(2, "No deadline stated"),
+                                      rounds_line(3, "No deadline stated")])
+        rounds = {r["round"]: r for r in read(out, "rounds.csv")}
+        self.assertEqual((rounds["2"]["live_open_point"], rounds["3"]["live_open_point"]), ("2", "1"))
+
+    def test_confirmation_by_documents_is_a_same_offer_restatement(self):
+        ledger = [bid(1, "Alpha", 10),
+                  bid(2, "Alpha", None, day=1, Note="Sponsor liability cap reduced."),
+                  bid(3, "Alpha", 10, day=2, event="Bid reaffirmed", formality="Formal",
+                      Note="Same as #1. Revised markup submitted.")]
+        out, manifest = self.derive(ledger, [rounds_line(1, "No deadline stated")])
+        bids = read(out, "bids.csv")
+        self.assertEqual((bids[2]["same_offer_of"], bids[2]["same_price_revision"]), ("1", ""))
+        self.assertEqual(bids[2]["price_obs__same_price_as_terms"], "1")
+        self.assertEqual([b["row"] for b in bids if not b["same_offer_of"]], ["1", "2"])
+        self.assertFalse([r for r in manifest["review"] if "Same as #1" in r["issue"]])
+
     def test_auction_screen_has_no_uncertain(self):
         facts = {**FACTS, "Auction screen": "Uncertain (process 1): count unknown"}
         out, manifest = self.derive([bid(1, "Alpha", 10)], [rounds_line(1, "Enforced", received="1: Alpha")], facts=facts)
         deal = read(out, "deal.csv")[0]
-        self.assertEqual((deal["auction_status"], deal["estimation_sample"]), ("", ""))  # not a v0 entry: unread, and listed
+        self.assertEqual((deal["auction_status"], deal["estimation_sample"]), ("", ""))  # unsupported entry: unread, and listed
         self.assertIn("process 1: no Auction screen entry could be parsed", manifest["warnings"])
         self.assertEqual(derive.auction_screen("Met (process 1): 3 parties; Not met (process 2): 1 party"),
                          {1: {"status": "Met", "lo": 3, "hi": 3, "text": "Met (process 1): 3 parties"},
@@ -570,7 +622,7 @@ class DeriveTests(unittest.TestCase):
         out, manifest = self.derive(ledger, [rounds_line(1, "Enforced", received="3: all")])
         stock = {r["who"]: (r["stock_kind"], r["stock_lo"], r["stock_hi"], r["all_cash"]) for r in read(out, "bids.csv")}
         self.assertEqual(stock, {"Alpha": ("part stock (range in the Note)", "40", "60", "0"),
-                                 "Beta": ("range (not a v0 value)", "50", "75", "0"),
+                                 "Beta": ("range (not a Version 1 value)", "50", "75", "0"),
                                  "Gamma": ("part stock", "", "", "0")})
         issues = {r["row"]: r["issue"] for r in manifest["review"]}
         self.assertIn("E13 records Part stock", issues[3])

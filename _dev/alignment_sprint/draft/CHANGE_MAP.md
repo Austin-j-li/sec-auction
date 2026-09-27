@@ -1,0 +1,260 @@
+# Version 1 instruction change map
+
+27 September 2026. This maps the draft only; the repository instruction remains unchanged pending Austin's approval. The authority is [DECISIONS.md](../DECISIONS.md), read with [DRAFTING_SPEC.md](../DRAFTING_SPEC.md). “V¶” denotes its numbered voice-note sources and “CI p.” its collection-instruction pages. No extraction was run for drafting.
+
+Line references below were generated from the draft and checked against its text. Each refers to the start of the relevant paragraph or list entry; the reverse map covers every substantive added or replaced line. D1–D5, E1–E14 and H1–H3 are retained; no rule ID or workbook column was added.
+
+## Decision to clause
+
+| Decision | Approved outcome | Draft clause |
+|---|---|---|
+| R1 | Common requests to fewer eligible parties; final-round continuation | E6 (a) [L195](SEC_Deal_Ledger_Extraction_Instruction.md#L195) |
+| R2 | A carried-out admission decision opens a stage; its own letters carry it out | E6 [L191](SEC_Deal_Ledger_Extraction_Instruction.md#L191), [L195](SEC_Deal_Ledger_Extraction_Instruction.md#L195); Example 6 [L372](SEC_Deal_Ledger_Extraction_Instruction.md#L372), [L373](SEC_Deal_Ledger_Extraction_Instruction.md#L373) |
+| R3 | Keep 30-day and ended-exclusivity openings, with the carry-out guard | E6 (d) [L201](SEC_Deal_Ledger_Extraction_Instruction.md#L201) |
+| R4 | Substance controls finality; bids during definitive negotiation are Formal | E6 (b), (c), Finality [L197](SEC_Deal_Ledger_Extraction_Instruction.md#L197), [L199](SEC_Deal_Ledger_Extraction_Instruction.md#L199), [L211](SEC_Deal_Ledger_Extraction_Instruction.md#L211); E10 definition [L259](SEC_Deal_Ledger_Extraction_Instruction.md#L259); E11 route 3 / re-entry [L277](SEC_Deal_Ledger_Extraction_Instruction.md#L277), [L279](SEC_Deal_Ledger_Extraction_Instruction.md#L279) |
+| R5 | Broad outreach, board-date rule, undated-outreach meeting rule, bilateral fallback | E6 Round 1 [L189](SEC_Deal_Ledger_Extraction_Instruction.md#L189) |
+| R6 | Whole-company-only sale decisions and rounds | D2 [L85](SEC_Deal_Ledger_Extraction_Instruction.md#L85); E6 [L187](SEC_Deal_Ledger_Extraction_Instruction.md#L187), [L189](SEC_Deal_Ledger_Extraction_Instruction.md#L189) |
+| R7 | Unreported openings have bounded dates; late answers use the current round; opening precedes caused exits | E6 [L203](SEC_Deal_Ledger_Extraction_Instruction.md#L203), [L207](SEC_Deal_Ledger_Extraction_Instruction.md#L207); E8 [L233](SEC_Deal_Ledger_Extraction_Instruction.md#L233) |
+| R8 | 90-day gap uses last dated sale contact; undated follow-ups and target-buying talks do not bridge it | E5 [L179](SEC_Deal_Ledger_Extraction_Instruction.md#L179) |
+| R9 | Enforced requires decisive action; late-response date recorded | D3 [L117](SEC_Deal_Ledger_Extraction_Instruction.md#L117); E9 [L243](SEC_Deal_Ledger_Extraction_Instruction.md#L243), [L244](SEC_Deal_Ledger_Extraction_Instruction.md#L244) |
+| F1 | Formality at communication; qualifying documents accompany the price or answer the joint request | B [L28](SEC_Deal_Ledger_Extraction_Instruction.md#L28); E11 route 1 [L273](SEC_Deal_Ledger_Extraction_Instruction.md#L273) |
+| F2 | First confirmation by bidder documents copies the price; changed commitments stay blank-price Bid rows | E2 [L153](SEC_Deal_Ledger_Extraction_Instruction.md#L153); E10 [L253](SEC_Deal_Ledger_Extraction_Instruction.md#L253), [L259](SEC_Deal_Ledger_Extraction_Instruction.md#L259), [L261](SEC_Deal_Ledger_Extraction_Instruction.md#L261), [L263](SEC_Deal_Ledger_Extraction_Instruction.md#L263), [L265](SEC_Deal_Ledger_Extraction_Instruction.md#L265); Example 7 [L377](SEC_Deal_Ledger_Extraction_Instruction.md#L377), [L378](SEC_Deal_Ledger_Extraction_Instruction.md#L378) |
+| F3 | A price, consideration or condition revision retains route 1 while its markup remains on the table | E11 route 1 / re-entry [L273](SEC_Deal_Ledger_Extraction_Instruction.md#L273), [L279](SEC_Deal_Ledger_Extraction_Instruction.md#L279) |
+| F4 | Two-week diligence can be bundled with negotiation or exclusivity | E12 H2 [L298](SEC_Deal_Ledger_Extraction_Instruction.md#L298); Example 4 [L363](SEC_Deal_Ledger_Extraction_Instruction.md#L363) |
+| F5 | Silent Formal summary may be None; required exclusivity makes it at least Light | A.3 [L16](SEC_Deal_Ledger_Extraction_Instruction.md#L16); E12 [L285](SEC_Deal_Ledger_Extraction_Instruction.md#L285), [L303](SEC_Deal_Ledger_Extraction_Instruction.md#L303), [L304](SEC_Deal_Ledger_Extraction_Instruction.md#L304), [L307](SEC_Deal_Ledger_Extraction_Instruction.md#L307) |
+| F6 | No firm financing arrangement is Contingent; preserve the express no-financing-condition precedence | E12 Financing [L288](SEC_Deal_Ledger_Extraction_Instruction.md#L288) |
+| F7 | Conditions on proceeding in drafts are Bid rows; routine legal bargaining and advisers' predictions are not | E10 [L255](SEC_Deal_Ledger_Extraction_Instruction.md#L255), [L265](SEC_Deal_Ledger_Extraction_Instruction.md#L265) |
+| F8 | Deferred: regulatory risk and Heavy | No new clause. Existing E12 Regulatory / H3 [L289](SEC_Deal_Ledger_Extraction_Instruction.md#L289), [L299](SEC_Deal_Ledger_Extraction_Instruction.md#L299) is retained. |
+| F9 | Commitment letter alone is not a Formality route | E11 route 1 [L273](SEC_Deal_Ledger_Extraction_Instruction.md#L273) |
+| F10 | Separately identified contingent extra payment is a CVR even with no payment date; retain the base price | E13 [L317](SEC_Deal_Ledger_Extraction_Instruction.md#L317) |
+| F11 | A later indication label alone does not create a proposal; bidder's own price level remains a Bid | E10 Valuation remarks [L267](SEC_Deal_Ledger_Extraction_Instruction.md#L267); E13 [L311](SEC_Deal_Ledger_Extraction_Instruction.md#L311) |
+| F12 | Record the target's preference on each alternative | E10 [L251](SEC_Deal_Ledger_Extraction_Instruction.md#L251) |
+| P1 | Distinguish entrant-total membership from membership of later groups | E3 [L167](SEC_Deal_Ledger_Extraction_Instruction.md#L167) |
+| P2 | Do not double-count re-contact; subtract only established or uniquely reconciled membership | E3 [L169](SEC_Deal_Ledger_Extraction_Instruction.md#L169) |
+| P3 | Earliest closing event wins; later withdrawal supplies reason without a duplicate exit | E14 [L326](SEC_Deal_Ledger_Extraction_Instruction.md#L326), [L328](SEC_Deal_Ledger_Extraction_Instruction.md#L328), [L330](SEC_Deal_Ledger_Extraction_Instruction.md#L330) |
+| P4 | Sent is not signed; sending is a lower bound, conditional information release an upper bound | E7 [L215](SEC_Deal_Ledger_Extraction_Instruction.md#L215) |
+| P5 | Activist prefixes; sale-demand precedence; mixed initiation | D2 Activist [L86](SEC_Deal_Ledger_Extraction_Instruction.md#L86); D5 [L133](SEC_Deal_Ledger_Extraction_Instruction.md#L133) |
+| P6 | Exact arithmetic may yield type split; preserve bounds on unsplit populations | E3 [L165](SEC_Deal_Ledger_Extraction_Instruction.md#L165) |
+| P7 | Adviser date, continuing bank identity, shareholder client and unclear-client review | D2 Adviser [L87](SEC_Deal_Ledger_Extraction_Instruction.md#L87); F [L387](SEC_Deal_Ledger_Extraction_Instruction.md#L387) |
+| P8 | Date bounds from linked steps; sorting is not evidence | E8 [L231](SEC_Deal_Ledger_Extraction_Instruction.md#L231) |
+| P9 | One bidder-unit name, using the later identified name throughout | E3 [L159](SEC_Deal_Ledger_Extraction_Instruction.md#L159) |
+| P10 | Filing-reported public, private and non-US status on first row | E3 Type [L163](SEC_Deal_Ledger_Extraction_Instruction.md#L163) |
+| P11 | Opening outreach itself may be Contact | D2 Contact [L88](SEC_Deal_Ledger_Extraction_Instruction.md#L88) |
+| O1 | Separate uncapped R items, capped Q items and bidirectional row flags | C [L39](SEC_Deal_Ledger_Extraction_Instruction.md#L39); D1 [L73](SEC_Deal_Ledger_Extraction_Instruction.md#L73); D4 [L123](SEC_Deal_Ledger_Extraction_Instruction.md#L123), [L125](SEC_Deal_Ledger_Extraction_Instruction.md#L125); F [L383](SEC_Deal_Ledger_Extraction_Instruction.md#L383), [L387](SEC_Deal_Ledger_Extraction_Instruction.md#L387), [L393](SEC_Deal_Ledger_Extraction_Instruction.md#L393) |
+| O2 | Deferred: real-time review through cockpit | No instruction clause; no interactive approval or response step added. |
+| O3 | Count and Who on signing and announcements; explicit blank-Count labels | D1 [L68](SEC_Deal_Ledger_Extraction_Instruction.md#L68); D2 [L99](SEC_Deal_Ledger_Extraction_Instruction.md#L99) |
+| O4 | Signed acquirer's post-signing changes; verify last agreed price | C step 4 [L37](SEC_Deal_Ledger_Extraction_Instruction.md#L37); E2 [L153](SEC_Deal_Ledger_Extraction_Instruction.md#L153) |
+| O5 | Deferred: price-normalization inputs | No new clause. Existing E13 [L313](SEC_Deal_Ledger_Extraction_Instruction.md#L313), [L315](SEC_Deal_Ledger_Extraction_Instruction.md#L315) remains; no external market-price join is added. |
+| O6 | Cross-page support pointer | B [L30](SEC_Deal_Ledger_Extraction_Instruction.md#L30) |
+| O7 | Deferred: filing link from runner | No instruction clause; no extra model-written provenance field or sheet. |
+| O8 | Go-shop definition and reported solicitation requirement | E6 [L209](SEC_Deal_Ledger_Extraction_Instruction.md#L209) |
+| O9 | Reconcile Rounds admissions and distinct bidders with ledger | D3 [L119](SEC_Deal_Ledger_Extraction_Instruction.md#L119) |
+| Q8 / R5 record | Undated outreach uses the board meeting immediately before first NDAs | E6 [L189](SEC_Deal_Ledger_Extraction_Instruction.md#L189); reconciliation 1 below. |
+| Stage questions | Parties omitted from next-stage invitations drop; renewed approach after lapsed exclusivity opens a round | E14 [L326](SEC_Deal_Ledger_Extraction_Instruction.md#L326), [L330](SEC_Deal_Ledger_Extraction_Instruction.md#L330), [L336](SEC_Deal_Ledger_Extraction_Instruction.md#L336); E6 (d) [L201](SEC_Deal_Ledger_Extraction_Instruction.md#L201); see flagged deadline wording below. |
+| Evening 1 | October 27 reopening; December 30 continues it | E6 (d) [L201](SEC_Deal_Ledger_Extraction_Instruction.md#L201); reconciliation 13, with deal evidence in ROUND_MAP. |
+| Evening 2 | Own offered ceiling or range is a Bid at stated figures | E10 [L267](SEC_Deal_Ledger_Extraction_Instruction.md#L267); E13 [L311](SEC_Deal_Ledger_Extraction_Instruction.md#L311) |
+| Evening 3 | All bids by invited final-round bidders qualify for route 2 | E11 [L275](SEC_Deal_Ledger_Extraction_Instruction.md#L275), [L279](SEC_Deal_Ledger_Extraction_Instruction.md#L279) |
+| Evening 4 | Considered, unchanged: Other-scope bid coding, process Question and nine reasons | D1 [L47](SEC_Deal_Ledger_Extraction_Instruction.md#L47); E14 [L340](SEC_Deal_Ledger_Extraction_Instruction.md#L340); F [L385](SEC_Deal_Ledger_Extraction_Instruction.md#L385), [L392](SEC_Deal_Ledger_Extraction_Instruction.md#L392) |
+| Evening 5 | Version 1 label | Header [L5](SEC_Deal_Ledger_Extraction_Instruction.md#L5) |
+| Evening 6 | Workbook comparison for judgment themes | No extraction instruction clause; WORKBOOK_CHECK.md is the separate deliverable. |
+| Evening 7 | VM build and later authorized switch-over | No extraction instruction clause; BUILD_SPEC and SWITCHOVER govern engineering. |
+| Working rule / source hierarchy | Voice notes, collection instructions/workbook, filing facts | Applied to drafting and the workbook check; absent from extraction prompt because its reader receives only the instruction and filing. |
+| Settled economic scope / reconciliation 12 | Whole company is judged before transaction-related separations | E1 [L143](SEC_Deal_Ledger_Extraction_Instruction.md#L143) |
+| Writing standard, DRAFTING_SPEC §5 | Injection defense first, consistent prompt, examples, unattended completion | Opening / header [L1](SEC_Deal_Ledger_Extraction_Instruction.md#L1), [L6](SEC_Deal_Ledger_Extraction_Instruction.md#L6); C [L39](SEC_Deal_Ledger_Extraction_Instruction.md#L39); E6 / E11 [L193](SEC_Deal_Ledger_Extraction_Instruction.md#L193), [L271](SEC_Deal_Ledger_Extraction_Instruction.md#L271), [L281](SEC_Deal_Ledger_Extraction_Instruction.md#L281); Examples [L367](SEC_Deal_Ledger_Extraction_Instruction.md#L367), [L372](SEC_Deal_Ledger_Extraction_Instruction.md#L372), [L373](SEC_Deal_Ledger_Extraction_Instruction.md#L373), [L377](SEC_Deal_Ledger_Extraction_Instruction.md#L377), [L378](SEC_Deal_Ledger_Extraction_Instruction.md#L378); F [L395](SEC_Deal_Ledger_Extraction_Instruction.md#L395) |
+
+## Changed clause to decision
+
+| Changed clause | Draft lines | Authority | What changed |
+|---|---|---|---|
+| Opening and subtitle | [L1](SEC_Deal_Ledger_Extraction_Instruction.md#L1), [L5](SEC_Deal_Ledger_Extraction_Instruction.md#L5), [L6](SEC_Deal_Ledger_Extraction_Instruction.md#L6) | Evening 5; DRAFTING_SPEC §5 | Move injection defense to first line; Version 1; preserve research purpose without researcher names or history. |
+| A.3 | [L16](SEC_Deal_Ledger_Extraction_Instruction.md#L16) | F5; reconciliations 6–7 | Replace independence statement with the exact one-way silent-Formal exception and exclusivity rule. |
+| B evidence window | [L28](SEC_Deal_Ledger_Extraction_Instruction.md#L28) | F1; F2 | Condition window remains; Formality uses bid communication. Same-offer term encompasses document confirmations under E10. |
+| B cross-page evidence | [L30](SEC_Deal_Ledger_Extraction_Instruction.md#L30) | O6 | Also p. N appended to existing Note. |
+| C reread / completion of price check | [L37](SEC_Deal_Ledger_Extraction_Instruction.md#L37) | O4; writing standard | Keep paragraph-by-paragraph reread; add final agreed-price check. |
+| C scope sentence | [L39](SEC_Deal_Ledger_Extraction_Instruction.md#L39) | O1; writing standard | Remove prohibition that could suppress mandated Review items; refer to Part F. |
+| D1 Count | [L68](SEC_Deal_Ledger_Extraction_Instruction.md#L68) | O3 | Enumerate signing exception, required transition counts and blank-count event labels. |
+| D1 Flag | [L73](SEC_Deal_Ledger_Extraction_Instruction.md#L73) | O1 | Q and R references use the same field. |
+| D2 Target sale decision | [L85](SEC_Deal_Ledger_Extraction_Instruction.md#L85) | R6 | Whole-company scope. |
+| D2 Activist | [L86](SEC_Deal_Ledger_Extraction_Instruction.md#L86) | P5 | Broader event coverage, exact prefixes. |
+| D2 Adviser | [L87](SEC_Deal_Ledger_Extraction_Instruction.md#L87) | P7 | Acting-date, continuing bank and shareholder adviser rules. |
+| D2 Contact | [L88](SEC_Deal_Ledger_Extraction_Instruction.md#L88) | P11 | At or after opening, including the opening outreach. |
+| D2 announcements | [L99](SEC_Deal_Ledger_Extraction_Instruction.md#L99) | O3 | Explicit Who. |
+| D3 How it ended | [L117](SEC_Deal_Ledger_Extraction_Instruction.md#L117) | R9 | Last accepted late-response date. |
+| D3 reconciliation | [L119](SEC_Deal_Ledger_Extraction_Instruction.md#L119) | O9 | Admissions and distinct bidder totals reconcile. |
+| D4 Questions | [L123](SEC_Deal_Ledger_Extraction_Instruction.md#L123), [L125](SEC_Deal_Ledger_Extraction_Instruction.md#L125) | O1; DRAFTING_SPEC §6 | Two id sequences, R field meanings, source-only events, same 60-word entry contract. |
+| D5 Initiation | [L133](SEC_Deal_Ledger_Extraction_Instruction.md#L133) | P5; interpretation I1 below | Sale-demand timing and mixed value; specify the existing Note destination. |
+| E1 scope | [L143](SEC_Deal_Ledger_Extraction_Instruction.md#L143) | Settled scope; reconciliation 12 | Scope before transaction-related separation. |
+| E2 row threshold | [L153](SEC_Deal_Ledger_Extraction_Instruction.md#L153) | F2; O4 | Document confirmation exception and signed-acquirer changes. |
+| E3 names | [L159](SEC_Deal_Ledger_Extraction_Instruction.md#L159) | P9 | One name per unit. |
+| E3 Type | [L163](SEC_Deal_Ledger_Extraction_Instruction.md#L163) | P10 | Reported public/private/non-US status. |
+| E3 cohort types | [L165](SEC_Deal_Ledger_Extraction_Instruction.md#L165) | P6 | Exact type arithmetic and unsplit bounds. |
+| E3 aggregate membership | [L167](SEC_Deal_Ledger_Extraction_Instruction.md#L167) | P1 | Entrant totals distinguished from later groups. |
+| E3 subtraction | [L169](SEC_Deal_Ledger_Extraction_Instruction.md#L169) | P2 | Evidence for subtraction; re-contact is not entry. |
+| E5 process gap | [L179](SEC_Deal_Ledger_Extraction_Instruction.md#L179) | R8 | Last dated contact, follow-up and non-sale exclusions. |
+| E6 round scope | [L187](SEC_Deal_Ledger_Extraction_Instruction.md#L187) | R6 | Whole-company rounds; partial procedure retained descriptively. |
+| E6 round 1 | [L189](SEC_Deal_Ledger_Extraction_Instruction.md#L189) | R5; Q8; reconciliation 1 | Dated launch rule, undated meeting rule, bilateral fallback; retain round 0. |
+| E6 admission-stage opening | [L191](SEC_Deal_Ledger_Extraction_Instruction.md#L191) | R2; reconciliations 2–3 | Selection-date opening, first letter carry-out, finality and trigger (c) cross-reference. |
+| E6 trigger organization | [L193](SEC_Deal_Ledger_Extraction_Instruction.md#L193) | R1–R4; writing standard | Prose reference to triggers follows admission-stage rule. |
+| E6 trigger (a) | [L195](SEC_Deal_Ledger_Extraction_Instruction.md#L195) | R1; R2; reconciliation 3 | Eligible population, common request, narrower admission exception, final-round continuation. |
+| E6 trigger (b) | [L197](SEC_Deal_Ledger_Extraction_Instruction.md#L197) | R4; reconciliation 2 | Final request opens only after current offers received or due. |
+| E6 trigger (c) | [L199](SEC_Deal_Ledger_Extraction_Instruction.md#L199) | R4; reconciliation 5 | Retain no-final-round-yet restriction; cross-reference single definitive-negotiation definition. |
+| E6 trigger (d) | [L201](SEC_Deal_Ledger_Extraction_Instruction.md#L201) | R3; evening 1; reconciliations 11, 13 | First approach after exclusivity, not advance decision; carry-out guard. |
+| E6 inferred opening | [L203](SEC_Deal_Ledger_Extraction_Instruction.md#L203) | R7(a) | Bounded date exception to E8. |
+| E6 continuation | [L205](SEC_Deal_Ledger_Extraction_Instruction.md#L205) | R1; R2; R3 | Replace blanket improvement continuation with continuation where no opening test applies. |
+| E6 bid and exit round assignment | [L207](SEC_Deal_Ledger_Extraction_Instruction.md#L207) | R7(b); evening 3 | Late and uninvited bids use current round; exit keeps round being left. |
+| E6 after signing | [L209](SEC_Deal_Ledger_Extraction_Instruction.md#L209) | O8 | Define go-shop and require reported solicitation. |
+| E6 finality | [L211](SEC_Deal_Ledger_Extraction_Instruction.md#L211) | R4; reconciliation 2 | Substance and non-binding override, stage-own final request. |
+| E7 NDA timing | [L215](SEC_Deal_Ledger_Extraction_Instruction.md#L215) | P4 | Execution evidence, lower/upper bounds; retain express reuse. |
+| E8 bounds | [L231](SEC_Deal_Ledger_Extraction_Instruction.md#L231) | P8 | Linked-event bounds and sorting-only clarification. |
+| E8 same-day ordering | [L233](SEC_Deal_Ledger_Extraction_Instruction.md#L233) | R7(c) | Opening precedes exits it causes. |
+| E9 outcome priority | [L243](SEC_Deal_Ledger_Extraction_Instruction.md#L243), [L244](SEC_Deal_Ledger_Extraction_Instruction.md#L244) | R9 | Decisive action versus review or feedback. |
+| E10 alternatives | [L251](SEC_Deal_Ledger_Extraction_Instruction.md#L251) | F12 | Target preference on every alternative. |
+| E10 revisions and price observations | [L253](SEC_Deal_Ledger_Extraction_Instruction.md#L253) | F2; preserved issue 8 | Document-copy price is a restatement, not new observation. |
+| E10 conditions on proceeding | [L255](SEC_Deal_Ledger_Extraction_Instruction.md#L255) | F7 | Draft location, routine bargaining and adviser prediction distinction. |
+| E10 definitive negotiation | [L259](SEC_Deal_Ledger_Extraction_Instruction.md#L259) | R4; F2; reconciliation 5 | Single definition for E10/E11. |
+| E10 Same offer / Bid reaffirmed | [L261](SEC_Deal_Ledger_Extraction_Instruction.md#L261), [L263](SEC_Deal_Ledger_Extraction_Instruction.md#L263) | F2; R4 | Document confirmations enter the Same-offer rule and remain Formal. |
+| E10 document confirmation | [L265](SEC_Deal_Ledger_Extraction_Instruction.md#L265) | F2; F7; reconciliations 10, 19 | First unchanged submission copies the latest stated-price offer; material changes receive one Bid, blank price unless restated. |
+| E10 valuation remarks | [L267](SEC_Deal_Ledger_Extraction_Instruction.md#L267) | F11; evening 2; reconciliation 14 | Own offered price qualifies; later labels alone do not. |
+| E11 introduction / label sentence | [L271](SEC_Deal_Ledger_Extraction_Instruction.md#L271), [L281](SEC_Deal_Ledger_Extraction_Instruction.md#L281) | F1–F3; F9; R4; writing standard | Split the three routes into short prose paragraphs; labels remain nondispositive. |
+| E11 route 1 | [L273](SEC_Deal_Ledger_Extraction_Instruction.md#L273) | F1; F3; F9; reconciliation 4 | Contemporaneous documents and retained-markup exception; commitment letter excluded. |
+| E11 route 2 | [L275](SEC_Deal_Ledger_Extraction_Instruction.md#L275) | Evening 3; reconciliations 8, 18 | All invited-bidder bids after the stage has been announced final, including improvements and late answers; no retroactive qualification. |
+| E11 route 3 | [L277](SEC_Deal_Ledger_Extraction_Instruction.md#L277) | R4; reconciliation 5 | All bids after definitive negotiation begins. |
+| E11 re-entry | [L279](SEC_Deal_Ledger_Extraction_Instruction.md#L279) | R4; F3; reconciliation 9 | Withdrawal ends markup and invitation qualification; fresh qualification required. |
+| E12 Financing | [L288](SEC_Deal_Ledger_Extraction_Instruction.md#L288) | F6; preserved V114 D5; reconciliation 16 | No firm commitment is Contingent; express no-financing-condition statement still takes precedence. |
+| E12 H2 | [L298](SEC_Deal_Ledger_Extraction_Instruction.md#L298) | F4 | Diligence bundled with exclusivity or negotiation qualifies. |
+| E12 summary levels | [L303](SEC_Deal_Ledger_Extraction_Instruction.md#L303), [L304](SEC_Deal_Ledger_Extraction_Instruction.md#L304), [L307](SEC_Deal_Ledger_Extraction_Instruction.md#L307) | F5; reconciliations 6–7 | Silent Formal exception affects summary only; Required exclusivity blocks None. |
+| E13 ceilings | [L311](SEC_Deal_Ledger_Extraction_Instruction.md#L311) | Evening 2; reconciliation 14 | Two stated range endpoints retained; single-figure floor/ceiling remains one-sided. |
+| E13 contingent payments | [L317](SEC_Deal_Ledger_Extraction_Instruction.md#L317) | F10 | Unstated payment date accepted; explicit upfront adjustment stays range. |
+| E14 miss versus stage exclusion | [L326](SEC_Deal_Ledger_Extraction_Instruction.md#L326) | Stage questions; P3; preserved V114 D10; reconciliation 17 | Miss alone is not exit; still-considering does not defeat next-stage non-invitation. |
+| E14 earliest closure | [L328](SEC_Deal_Ledger_Extraction_Instruction.md#L328), [L330](SEC_Deal_Ledger_Extraction_Instruction.md#L330) | P3 | Earliest event, later reason, no duplicate; not invited versus excluded. |
+| Example 4 | [L363](SEC_Deal_Ledger_Extraction_Instruction.md#L363), [L364](SEC_Deal_Ledger_Extraction_Instruction.md#L364) | F4 | Heavy H2 for bundled 45-day diligence. |
+| Example 5 | [L366](SEC_Deal_Ledger_Extraction_Instruction.md#L366), [L367](SEC_Deal_Ledger_Extraction_Instruction.md#L367) | R4; writing standard | Make absence of Formality route explicit so informal example is coherent. |
+| Example 6 | [L371](SEC_Deal_Ledger_Extraction_Instruction.md#L371), [L372](SEC_Deal_Ledger_Extraction_Instruction.md#L372), [L373](SEC_Deal_Ledger_Extraction_Instruction.md#L373), [L374](SEC_Deal_Ledger_Extraction_Instruction.md#L374) | R2; reconciliation 2; writing standard | Synthetic decision followed by own final request. |
+| Example 7 | [L376](SEC_Deal_Ledger_Extraction_Instruction.md#L376), [L377](SEC_Deal_Ledger_Extraction_Instruction.md#L377), [L378](SEC_Deal_Ledger_Extraction_Instruction.md#L378), [L379](SEC_Deal_Ledger_Extraction_Instruction.md#L379) | F2; reconciliation 10; writing standard | Synthetic unchanged bidder draft confirms price; contemporary diligence. |
+| F Questions / flags | [L383](SEC_Deal_Ledger_Extraction_Instruction.md#L383) | O1 | Default may trigger R; existing ledger row links only. |
+| F Review items | [L387](SEC_Deal_Ledger_Extraction_Instruction.md#L387) | O1 | Uncapped mandatory categories; no seven-day cutoff. |
+| F delivery links | [L393](SEC_Deal_Ledger_Extraction_Instruction.md#L393) | O1 | Q/R two-way references, including omitted-event exception in D4. |
+| F run ending | [L395](SEC_Deal_Ledger_Extraction_Instruction.md#L395) | DRAFTING_SPEC §5 | Unattended task, saved-workbook completion and inability-to-produce stop. |
+
+## Reconciliations applied
+
+Items 1–15 are the specified reconciliations in DRAFTING_SPEC §4; 16–19 record additional wording reconciliations identified during integration.
+
+1. **Round 1 dating:** E6 L189 uses the launching board decision only for outreach dated within the following week. Undated outreach uses the sale-process board meeting immediately before the first NDAs. The bilateral fallback applies only when no wider outreach occurs. This keeps the approved PetSmart date without extending the dated-launch rule to undated outreach.
+2. **A stage's first final request:** E6 L191 and L197 treat the first offer request as carrying out the admission stage, with its finality supplied by that request. Trigger (b) opens a round after the current stage's offers are received or due. Example 6 illustrates this without filing text.
+3. **A later request to fewer admitted parties:** E6 L195 opens a round on a later common request omitting some admitted parties even before the stage has received offers. The final-round exception remains. Datalink's July 27 and August 16 stages remain distinct; PetSmart's December extension does not open another.
+4. **Documents at another time and a retained markup:** E11 L273 puts the F3 carry-forward exception in the same paragraph as F1's timing restriction.
+5. **Definitive negotiation:** E10 L259 defines it once; E6 (c), E10 reaffirmations and E11 route 3 refer to it. It covers the target's definitive-negotiation decision, winner selection or executed exclusivity.
+6. **Silent Formal bids:** E12 L285 retains Not stated for silent individual columns. L303 permits None only for the summary under the exact Formal-bid tests, no H trigger and no Required exclusivity.
+7. **Exclusivity and Conditions:** A.3 L16 and E12 L303–307 express the same one-way relationship. Required exclusivity makes Conditions at least Light and never supplies Heavy by itself.
+8. **Invited bidder in final round:** E11 L275 covers every bid during that round, including a late answer or unrequested revision. This is confirmed by evening ruling 3, not an unresolved drafter proposal.
+9. **Withdrawal and re-entry:** E11 L279 ends the old markup and final invitation at withdrawal; fresh qualification is necessary. Referencing old terms is not a new markup. This prevents the earlier WDC qualification from carrying into its June 10 return.
+10. **Document submission with a material change:** E10 L265 gives one Bid row under the revision/condition rules, with a blank price unless restated; the unchanged first submission alone receives the F2 copied-price reaffirmation. Later changed submissions follow the same one-row rule. This preserves the June 20 standstill anchor.
+11. **Decision while rival exclusivity remains:** E6 (d) L201 dates the opening at the first renewed approach after exclusivity ends, not the earlier decision to approach. This preserves Datalink's October 1 anchor.
+12. **Economic scope:** E1 L143 carries the already-settled pre-separation scope ruling into the text. Buying every share of a remainder company is not, by itself, whole-company scope. This is not a new research decision.
+13. **Renewed interest outreach:** E6 (d) L201 includes the first renewed approach after exclusivity, whether or not it already asks for an offer; carry-out steps stay within that reopening. This preserves Synacor's October 27 anchor and excludes December 30 as another opening.
+14. **Bidder's own offered ceiling or range:** E10 L267 distinguishes it from a stock-price citation. E13 L311 clarifies that a ceiling stated as a range retains both stated figures and the ceiling wording; a single stated figure still uses the applicable one-sided cell. This is needed to reproduce evening ruling 2's 17.50–18.00 range without creating a conflict with E13.
+15. **Considered, unchanged:** Other-scope bid rows retain Formality and Conditions; the process Question stays required even when defaults decide the map; all nine exit reasons remain (see below).
+16. **Financing precedence retained:** E12 L288 states explicitly that a bid expressly not subject to a financing condition is Committed even where financing documents lack firm commitment. This carries forward V114_SPEC D5, specifically preserved by lane_C_decisions §3 (“F6 must not override it”), rather than adding an exception based on a reviewed deal. Otherwise F6's no-firm-arrangement rule is Contingent.
+17. **Missed deadline versus omitted invitation:** E14 L326 retains V114 D10's no-exit rule for a bidder that actually continues, while L330 closes a bidder omitted from the next stage even if it says it is still considering. This reproduces the stated Datalink outcome and the late-response rule. A broader interpretation of the Stage-questions quotation is flagged below; no universal new deadline-drop rule was invented.
+
+
+18. **Timing of final announcement and route 2:** E11 L275 applies at the bid communication, as Part B requires. CI p.9 says to record invited bidders' bids “after that date” (the final process letter) as formal; DRAFTING_SPEC §4.8 expressly describes the same after-letter rule. Thus a stage opened earlier by an admission decision can receive Announced as final on its Rounds line without retroactively changing earlier bids. All invited-bidder improvements, late answers and unsolicited revisions after the final announcement still qualify. This resolves the independent review's timing collision and is flagged for Austin below.
+19. **Latest stated price after an intervening blank-price Bid:** E10 L265 uses the latest offer stating the current price as the “Same as #n” antecedent, or the latest offer if no price has ever been stated. The adopted F2 decision-table text ([DECISIONS.md L43](../DECISIONS.md#L43)) says “copies the latest price”; the full record at L191 calls it the latest offer. This clarification resolves those wordings when a blank-price commitment row intervenes; a commitment-only row does not erase that standing price (the preserved root HANDOFF commitment-change ruling). Conditions are still coded from the current document-submission evidence. This gives the copied-price analysis an actual price-bearing antecedent and is flagged for Austin below.
+
+## Wording edits beyond copy-editing
+
+- **I1, mixed-initiation Note destination:** P5 requires a Note naming the two first steps and their dates, but Deal facts has only Field and Value. D5 L133 uses the existing Note on the target-side first step. It works without assuming a Round opened row exists. This is a destination interpretation for Austin to review; the mixed value and its timing test are unchanged.
+- The injection-defense sentence is moved to line 1. The research subtitle retains the topic but removes researcher names to follow §5's instruction to omit Austin, Alex and ruling history from the prompt.
+- Part C's blanket prohibition on extra output is replaced by the reference to Part F, so it cannot suppress required R items. It adds no new row category.
+- The lengthy E6 rule is organized as short judgment paragraphs; (a)–(d) remain recognizable triggers. E11's three routes are separate prose paragraphs, not a procedure. These edits preserve the approved priorities and exceptions.
+- E10's document-confirmation clause explicitly directs all later material changes to the existing Bid rule. The target's own drafts earn no *confirmation* row; a target act independently meeting E2 still follows E2. This avoids accidentally deleting required target-requirement events.
+- E6's “Other-scope rows” wording is made “Other-scope bid rows,” the actual D2 label, with procedural facts in their Notes and the Account. It adds no event label.
+- The existing synthetic liability example says no Formality route applies. Without that premise its Informal label would be misleading after the route-3 expansion. Example 4 is rewritten as required; only two new synthetic examples are added.
+- The existing Note may include the page with a later quoted exit reason under E14; O6's mandatory Also p. N rule remains limited to date/count/identity and is not expanded into a new requirement.
+- The entry-word limit remains 60 words for each Q or R entry; “uncapped” refers to the number of R items, not a new prose limit. The original 30-word quotation, 40-word Note and five-or-six-sentence Account contracts remain.
+
+## Earlier rulings overturned
+
+The identifiers C1–C18 below match [lane_C_decisions.md](../vm_check/lane_C_decisions.md). That audit predates the evening rulings, so C13 and C15 are reconciled to the later decisions rather than copied as still-open conflicts. Historical source files were read through `git show origin/vm-live-2026-09-26:<path>`, not the live checkout.
+
+| Item | Earlier ruling | Decision controlling Version 1 | Basis and result |
+|---|---|---|---|
+| C1 | Copy only when the bidder expressly says its offer stands | F2; reconciliation 10 | Austin adopted Alex V¶30; document confirmation can copy the latest price. The Penford October 8 versus V¶74 disagreement is knowingly retained for WORKBOOK_CHECK. |
+| C2 | Earlier Kraton/Datalink stage maps and partial-sale rounds | R1, R2, R5, R6; reconciliations 1–3, 12 | Alex V¶82, V¶173, V¶44, V¶71 and the settled pre-separation scope call. Kraton has three rounds; Datalink's four-round map moves its first opening to June and includes July 27; Meredith has no whole-company rounds. |
+| C3 | H2 only for a period tied to diligence alone; Party E not H2 | F4 | Alex V¶19. Bundled diligence periods qualify; Providence Party E becomes H2 Heavy. |
+| C4 | Silent diligence with committed financing remains Unclear even on Formal bids | F5; reconciliation 6 | Austin for Alex, V¶125 and V¶183. Formal silence can give summary None; individual values remain Not stated. |
+| C5 | Exclusivity never affects Conditions | F5; reconciliation 7 | Alex V¶19, retaining V¶49's Formality independence. Required exclusivity makes at least Light. |
+| C6 | Each price-only revision must qualify independently; route 3 only reaffirmations | F3 and R4 negotiation-stage formality | Austin for Alex; V¶27 supports definitive-stage formality. Retained markup preserves route 1; negotiation-stage price changes can be Formal. |
+| C7 | Offer-less selection opens no round; repeated improvements continue | R1, R2 | Alex V¶82, V¶173, V¶44. Carried-out selection opens a stage; a qualifying narrowed common request may open another. |
+| C8 | sTec one process, May 16 final round, two rounds | R4 and R8 | Austin judging for Alex, consistent with V¶118 and V¶124–125. Two processes; process 2 has three rounds and May 16 is not final. |
+| C9 | Enforced includes evaluation or price feedback | R9 | Alex V¶122–124. Selection, exclusion, stage opening or bidder choice is needed; review/feedback alone is Passed without action. |
+| C10 | No mandatory A–M flags; defaults never create review output | O1 | Alex V¶169–187. Mandatory uncapped R items coexist with capped Q items. |
+| C11 | Any early activist qualifies; mixed removed | P5 | Austin for Alex; V¶119, V¶39, CI p.5. Demand for sale before target's first sale step is required; mixed restored. |
+| C12 | First bilateral negotiation can open round 1 despite later wider outreach | R5 and Q8 | Alex V¶71, V¶173, V¶55; Austin selected Alex's PetSmart date. Datalink January–May and Penford August 10 are preliminary round 0. |
+| C13 | Audit identified a proposed move from October 27 to December 30 | Evening 1; reconciliation 13 | Later Austin correction, V¶109 context plus filing facts. October 27 survives, December 30 is continuation; this earlier VM outcome is preserved, not overturned. |
+| C14 | Commitment letter can qualify; document timing may be broader | F9 and F1 | F9: Alex V¶47. F1: Austin for Alex, reproducing V¶74. Commitment letter alone fails route 1; bid/document communication controls. |
+| C15 | Unsolicited final-round bid does not qualify under route 2 | Evening 3; reconciliation 8 | Austin expressly confirmed CI p.9 and V¶27. Every bid during the round by its invited bidder qualifies, subject to withdrawal lapse. |
+| C16 | Agreement sending date gives an upper bound on signing | P4 | Alex V¶12 and CI p.6. Sent-only agreements have no signing row; sending bounds an undated reported execution from below. |
+| C17 | Record reported exits before inferred exits | P3 | Settled Company H ruling, preserved by current decisions. Earliest supported closure controls; later report supplies reason. |
+| C18 | Version-keyed rules selector and compatibility fallback | Reset; DRAFTING_SPEC §6; BUILD_SPEC B2 | Austin's reset/build call. Tools enforce Version 1 only; no instruction-version selector. This is a tools/app change, not extraction prose. |
+
+## Considered, unchanged
+
+Evening ruling 4 settles the three formerly open items: Other-scope bid rows retain Formality and Conditions (D1 L47 and F L392; Alex's partial-bid workbook labels and V¶150); the process Question stays required for every multi-process deal and every (d) or inferred opening (F L385; V¶110, V¶132); all nine exit reasons stay (E14 L340; Alex's dropout codes).
+
+The other preserved earlier rulings are: a missed date alone is not an exit for an actually continuing bidder (V114 D10, subject to reconciliation 17); financing precedence (V114 D5, reconciliation 16); copied prices are not new observations (candidate issue 8, extended to F2); only documentation remains is Incomplete and Light; a CVR uses the maximum stated amount and lists the rest; later process-only exclusivity requests get their own event; alternative structures remain separate rows; unsplittable packages leave price cells blank; merger-of-equals counterparties remain outside the contest. Informal revisions still use their own condition evidence window and can be Unclear; F5 does not carry conditions forward for them.
+
+The source hierarchy is settled by the working rule and applied to this build; it is not another question for Alex. Penford Party A's own offered price levels are settled by evening ruling 2. The exit-reason merger was considered and rejected by evening ruling 4. Market normalization, primary Formality reading and dropout/censoring treatment remain separate estimation choices; this draft selects none of them.
+
+## Regression anchors and intentional reversals
+
+Clause-level coverage, to be checked against the filing evidence in ROUND_MAP and WORKBOOK_CHECK:
+
+- Mac-Gray's 16 unnamed financial signers retain the E3/E14 residual-closure route by July 23. October liability revisions remain blank-price Bid rows under E10. Party A's September 18 bid can remain Formal and H1 Heavy; no condition rule downgrades Formality.
+- Providence's 16 non-submitters remain reconcilable as Party A plus 15, not an extra seventeenth. G&W's August 12 specific regulatory concern remains Concern. Party C's reported NDA prevents Not begun. F3 intentionally makes retained-markup revisions Formal.
+- sTec Company H remains Dropped by target by May 16, with Would not improve earlier offer from the later report. The June 20 standstill statement remains one H3 Bid with no copied price under reconciliation 10.
+- Intended retest reversals: sTec has two processes and three rounds in process 2; Providence Party E is H2; Datalink round 1 moves from January 28 to June 1. Synacor's October 27 reopening is preserved by the evening correction, not a retest reversal.
+
+## Items for Austin
+
+1. **Part C reread test candidate:** L37 retains the required paragraph-by-paragraph reread. Test its cost and incremental source-completeness benefit in a separately authorized extraction comparison; this build does not run one.
+2. **P5 Note destination:** approve the destination-only interpretation I1 above. No new column is added. The definition's behavior where a process never reaches round 1 remains the existing “precedes round 1” wording; the draft does not invent a new initiation category or temporal rule.
+3. **Synacor January 2021 stage:** E6 retains “with no final round yet.” Following the October reopening, a later definitive-selection decision may appear to satisfy the admission-stage sentence while the earlier inferred-final stage blocks trigger (c). ROUND_MAP flags the January 6/7 alternative. The draft adds no finality-reset convention; Austin must resolve it if the existing restrictions cannot give a unique map.
+4. **Stage-questions deadline statement:** the quoted ruling can read more broadly than its fixed Datalink non-invitation outcome. A universal “no bid by due date means dropped” would conflict with the expressly retained D10 no-exit rule and E9's accepted-late-response category. The draft preserves those rules and makes non-invitation decisive. Austin should confirm whether a merely still-considering bidder, with neither new-stage exclusion nor an accepted late response, must exit at the deadline; no new rule decides that additional case here.
+5. **Extraction variance:** admission decisions, the first document-confirmation row and uncapped Review items introduce judgments that the 26 September trial did not test under these rules. Mechanical checks and a hand-applied map are not evidence of new-model extraction reliability. Re-extraction and comparison still require Austin's command.
+6. **Route 2 timing, reconciliation 18:** approve the explicit at-communication reading. The later final letter changes the stage's finality but does not retrospectively make a prior bid Formal. Authority: CI p.9's “after that date,” DRAFTING_SPEC §4.8, and Part B's communication-time standard.
+7. **F2 copied-price ancestry, reconciliation 19:** approve using the latest price-stating offer as the Same-as reference when a blank-price commitment revision intervenes. Authority: Decision F2's adopted decision-table wording “copies the latest price” (DECISIONS.md L43) and the preserved standing-price ruling. This changes no condition carry-forward rule.
+8. **Penford intermediate participation:** the source check applies E14 literally to Party A's October 3 non-invitation, then records re-entry for its target-considered October 4 bid, before the fixed October 14 signing exit. ROUND_MAP flags whether that intermediate drop/re-entry is intended. The draft does not add a deal-specific exception.
+9. Review the flagged outcomes in ROUND_MAP and the disagreements in WORKBOOK_CHECK. Neither report authorizes changing this instruction or Alex's workbook.
+
+## Draft checks completed
+
+- Every one of the 41 R/F/P/O themes has its own decision-to-clause row, including all four deferrals. The named stage/Q8/evening records and writing-standard edits are mapped separately.
+- The reverse table covers all substantive added/replaced draft lines; the comparison is against the unchanged root instruction. All D1–D5, E1–E14 and H1–H3 references resolve. The 29 D1 columns and four-sheet contract are unchanged.
+- No deal names, named acquirers from the nine filings, Austin/Alex names, version-history wording or emphasis capitals were introduced. The retained “for now” in Withdrew describes a quoted withdrawal, not rule history. Event labels containing “changed,” accepted acronyms and variable placeholders retain their schema meaning. Existing synthetic Party A–G examples remain synthetic, as the drafting spec requests.
+- Seven balanced example blocks: the original five, with the required H2 correction and the route-3 premise repair, plus the two permitted new examples. No instruction requests reasoning in the output; “No reasoning or justification” and “state the coding, not the reasoning” remain.
+- The quantitative/tool tests, complete nine-filing round application, workbook comparison and app adapters are integrated by their owners. Their results belong in CHECK_REPORT and BUILD_REPORT; this document does not claim a passing full build before those checks run.
+
+## Cockpit adapters and state transition
+
+These changes implement BUILD_SPEC B1–B5 against the archived VM app. They do not publish the draft or change a live service.
+
+| Area and files | Adapter and reason |
+|---|---|
+| `cockpit/data.py`, `workspace.py` | Call `LeanChecker(workbook, filing)` without rules; use the current format identifier and `choice_lists()` without a schema argument. Remove instruction-hash rules selection and legacy ledger-schema detection. Stock % edits use the current checker patterns. |
+| `cockpit/worker.py` | The post-run checker command has no `--rules`. It records the Version 1 checker's result alongside the preserved run receipt. Only synthetic stub runners were exercised. |
+| `check_lean.py`, frontend `choices.js` | Export current editor choices, including `mixed`; no old-format fallback. |
+| `workspace.py`, frontend `Records.jsx` and `main.jsx` | Q/R IDs share validation, links, save, rename and deletion behavior. Renames update references; deleting referenced IDs requires repairing their links. Source-event-only R items are allowed. |
+| `fetch_filing.py` | Restore `index_link(submission_url)` for Add Deal and provenance downloads. It returns the SEC filing-index URL; it does not fetch or infer ledger content. |
+| frontend `Review.jsx`, `runs.js`, `instructions.js` | Show Version 1 checker labels and current-format comparison wording; remove legacy version fallback labels. Count help describes the new blank-count cases. |
+| `catalog.json`, `data.py`, `workspace.py`, `runs.py` | The nine catalog deals have filings but no starting workbooks or old findings. Catalog and app-added deals share pending behavior. The first successful imported run becomes the base and ends pending status. Its ID is persisted in `deal_bases` in the import transaction, so an earlier-started run that finishes later cannot silently replace it. |
+| frontend `Overview.jsx`, `main.jsx` | Show pending catalog deals and their repository filing provenance. App-added deals retain their actual actor/source labels. |
+| `cockpit/instructions.py` | Recognize Version 0 and Version 1 title syntax when seeding the root instruction. An empty store imports the protected root Version 0 during this build; an approved deployment imports its approved Version 1 root file. This is title parsing, not a checker rules selector. |
+| `cockpit/import_results.py`, `verify_catalog.py` | Build and verify a pending catalog from the current filing manifest; remove dependencies on deleted historical workbooks and review packets. Catalog creation refuses to replace an existing catalog. |
+| `cockpit/fresh_state.py` | Read the source database through SQLite's online backup API with `mode=ro`; retain account records, added deals and hash-verified filings only. Publish into an absent destination atomically. Omit old instructions, settings, jobs, activity, comments, runs, working copies and revisions. External provider credentials remain at their existing path. |
+| `workspace.py` workbook rendering | Enable text wrapping when an edit fills a previously blank prescribed cell, so saving does not introduce a presentation error. |
+| Python, HTTP, vitest and browser tests | Replace obsolete format expectations with current synthetic ledgers. Exercise pending catalog deals, first stub-run import, R save/rename/delete, choices, provenance, compare/rebase, instruction pages, and rendering. No historical ledger format is retained as a supported runtime path. |
+| `SWITCHOVER.md`, deployment reference copies | Preserve the archived unit copies and write the later switch-over procedure for an approved detached deployment worktree, drained jobs/runners, fresh state, TMPDIR, backup and rollback. No installed unit or timer was edited. |
+
+Tool-only changes are also part of the draft: `review_list.py` supplies eleven independently switchable review categories; `derive_analysis.py` handles signing scope, opening participation after boundary exits, mixed/activist initiation and document-confirmation restatements. The mechanical report records their checks and the independent review corrections.

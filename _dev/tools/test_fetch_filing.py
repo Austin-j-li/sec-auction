@@ -165,6 +165,14 @@ class SubmissionTests(unittest.TestCase):
             with self.subTest(url=url), self.assertRaises(fetch_filing.FetchError):
                 fetch_filing.submission_link(url)
 
+    def test_index_link_is_derived_from_complete_submission_only(self):
+        text_url = "https://www.sec.gov/Archives/edgar/data/1635581/0001193125-18-110072.txt"
+        expected = "https://www.sec.gov/Archives/edgar/data/1635581/0001193125-18-110072-index.htm"
+        self.assertEqual(fetch_filing.index_link(text_url), expected)
+        self.assertEqual(fetch_filing.index_link(text_url + "?output=1#top"), expected)
+        with self.assertRaises(fetch_filing.FetchError):
+            fetch_filing.index_link(expected)
+
     def test_parse_submission_lists_documents_and_finds_the_background(self):
         cover = document_block("SC TO-T", "cover.htm", b"Cover form")
         offer = document_block("EX-99.(A)(1)(A)", "offer.htm", b"<p>BACKGROUND OF</p><p>THE&nbsp;OFFER</p>")

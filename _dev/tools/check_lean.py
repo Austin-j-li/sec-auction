@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Mechanical validator for the lean deal-ledger workbook (instruction Version 0).
+"""Mechanical validator for the Version 1 deal-ledger workbook.
 
 This checker intentionally does not decide whether events, bidders, rounds, or
 classifications are substantively correct. In particular, it does not sum
@@ -7,7 +7,7 @@ classifications are substantively correct. In particular, it does not sum
 consistency, then tests each quoted passage as one contiguous normalized
 substring of the full filing parsed by BeautifulSoup.
 
-The checker knows one ledger, the v0 29-column Deal ledger. A workbook whose ledger
+The checker knows one 29-column Deal ledger. A workbook whose ledger
 header differs fails with a schema.columns error.
 
 Mechanical readings of rules the instruction states in words:
@@ -50,9 +50,9 @@ from bs4 import BeautifulSoup
 from openpyxl.utils.cell import coordinate_to_tuple, range_boundaries
 
 
-CHECKER_VERSION = "v0"
-CHECKER_REVISION = "Checks the ledger rules of instruction Version 0 (27 September 2026)."
-LEDGER_SCHEMA = "v0"
+CHECKER_VERSION = "Version 1"
+CHECKER_REVISION = "Checks the Version 1 ledger rules."
+LEDGER_SCHEMA = "Version 1"
 
 SHEETS = ["Deal ledger", "Rounds", "Questions", "Deal facts"]
 
@@ -190,6 +190,8 @@ EXIT_EVENTS = {
     "Not selected at signing",
 }
 NO_BIDDER_COUNT_EVENTS = {
+    "Target sale decision",
+    "Activist",
     "Adviser",
     "Adviser ended",
     "Round opened",
@@ -199,6 +201,7 @@ NO_BIDDER_COUNT_EVENTS = {
     "Sale process announced",
     "Bid announced",
     "Merger announced",
+    "Go-shop changed",
 }
 FORMALITY = {"Formal", "Informal", "Unclear"}
 CONDITIONS = {"None", "Light", "Heavy", "Unclear"}
@@ -237,7 +240,7 @@ EXIT_REASONS = {
     "Not stated",
 }
 FINALITY = {"Announced as final", "Inferred final", "Not final"}
-INITIATION = {"target-led", "bidder-led", "activist-influenced"}
+INITIATION = {"target-led", "bidder-led", "activist-influenced", "mixed"}
 # E9: an overdue required response the target still considered is an extension.
 DEADLINE_OUTCOMES = {
     "Enforced",
@@ -272,7 +275,20 @@ PAGE_REF_RE = re.compile(
     r"(?:\(\s*pp?\.\s*(?P<paren>[^()]+?)\s*\)|pp?\.\s*(?P<bare>[A-Za-z0-9]+(?:\s*[-\u2013,]\s*[A-Za-z0-9]+)*))\s*$",
     re.IGNORECASE,
 )
-QID_RE = re.compile(r"Q[1-9]\d*")
+REVIEW_ID_RE = re.compile(r"[QR][1-9]\d*")
+
+
+def choice_lists() -> dict[str, list[str]]:
+    """The editor's controlled values for the current ledger format."""
+    return {
+        "Type": sorted(TYPES), "Event": sorted(EVENTS), "Formality": sorted(FORMALITY),
+        "Conditions": sorted(CONDITIONS), "Exit reason": sorted(EXIT_REASONS),
+        "Finality": sorted(FINALITY),
+        "Deadline outcome": sorted(DEADLINE_OUTCOMES | {NO_DEADLINE}),
+        "Initiation": sorted(INITIATION),
+        "CVR/earnout": sorted(MARKER), "Antitrust": sorted(MARKER),
+        **{field: sorted(values) for field, values in CONDITION_COLUMNS.items()},
+    }
 
 
 def normalize_contiguous(value: Any) -> str:
@@ -352,13 +368,13 @@ def starts_with_canonical(value: Any, allowed: set[str]) -> bool:
 
 
 def parse_flag_ids(value: Any) -> set[str] | None:
-    """Parse one or more Q ids; return None if any other content is present."""
+    """Parse one or more Q or R ids; return None if other content is present."""
 
     if is_blank(value):
         return set()
     text = normalize_contiguous(value)
-    ids = QID_RE.findall(text)
-    remainder = QID_RE.sub("", text)
+    ids = REVIEW_ID_RE.findall(text)
+    remainder = REVIEW_ID_RE.sub("", text)
     remainder = re.sub(r"\band\b", "", remainder, flags=re.IGNORECASE)
     if not ids or re.fullmatch(r"[\s,;/&]*", remainder) is None:
         return None
@@ -514,7 +530,7 @@ class LeanChecker:
                 "error",
                 "schema.columns",
                 f"Expected columns {expected!r}; found {actual!r}."
-                + (" The checker reads only the v0 ledger." if ws.title == "Deal ledger" else ""),
+                + (" The checker reads only the current ledger." if ws.title == "Deal ledger" else ""),
                 sheet=ws.title,
                 row=1,
             )
@@ -668,17 +684,31 @@ class LeanChecker:
 
         level = record["Conditions"]
         diligence, financing, regulatory = record["Due diligence"], record["Financing"], record["Regulatory"]
+        note = normalize_contiguous(record["Note"]) if not is_blank(record["Note"]) else ""
+        after_same = SAME_AS_RE.sub("", note, count=1)
+        stated_heavy_trigger = bool(HEAVY_TRIGGER_RE.match(after_same))
         if financing == "Contingent" and level in CONDITIONS and level != "Heavy":
             issue("error", "conditions.financing_heavy", f"Financing is Contingent, so Conditions must be Heavy (E12, H1); found {level!r}.", "Conditions")
-        if level == "None" and (diligence != "Complete" or financing not in {"Committed", "Not needed"} or regulatory == "Concern"):
+        if (stated_heavy_trigger and level in CONDITIONS and level != "Heavy"
+                and not (level == "Unclear" and is_cohort(record))):
+            issue("error", "conditions.heavy_trigger_level",
+                  "The Note states an H1, H2 or H3 trigger, so Conditions must be Heavy (E12).", "Conditions")
+        fully_supported = (diligence == "Complete" and financing in {"Committed", "Not needed"}
+                           and regulatory in {"No concern", "Not stated"})
+        silent_formal = (record["Formality"] == "Formal"
+                         and diligence in {"Complete", "Not stated"}
+                         and financing in {"Committed", "Not needed", "Not stated"}
+                         and regulatory in {"No concern", "Not stated"})
+        if level == "None" and (not (fully_supported or silent_formal) or record["Exclusivity"] == "Required"):
             issue(
                 "error",
                 "conditions.none_support",
-                "Conditions None needs Due diligence Complete, Financing Committed or Not needed, and no "
-                f"regulatory Concern (E12); found {diligence!r}, {financing!r}, {regulatory!r}.",
+                "Conditions None needs supported absence of remaining conditions (a Formal bid may be silent), "
+                "and Exclusivity must not be Required (E12); found "
+                f"{diligence!r}, {financing!r}, {regulatory!r}, {record['Exclusivity']!r}.",
                 "Conditions",
             )
-        if level == "Light" and diligence not in {"Complete", "Incomplete"}:
+        if level == "Light" and diligence not in {"Complete", "Incomplete"} and record["Exclusivity"] != "Required":
             # A warning: E12's "only documentation remains" route can be read with diligence Not stated.
             issue(
                 "warning",
@@ -686,6 +716,9 @@ class LeanChecker:
                 f"Conditions Light needs Due diligence Complete or Incomplete (E12); found {diligence!r}.",
                 "Conditions",
             )
+        if record["Exclusivity"] == "Required" and level == "Unclear" and not is_cohort(record):
+            issue("error", "conditions.exclusivity_level",
+                  "Required exclusivity makes Conditions at least Light for a single bidder (E12).", "Conditions")
         if record["Formality"] == "Unclear" and not is_cohort(record):
             issue(
                 "error",
@@ -693,8 +726,6 @@ class LeanChecker:
                 "Formality Unclear is only for a cohort row whose members differ (D1); code Formal or Informal (E11).",
                 "Formality",
             )
-        note = normalize_contiguous(record["Note"]) if not is_blank(record["Note"]) else ""
-        after_same = SAME_AS_RE.sub("", note, count=1)
         if level == "Heavy" and not HEAVY_TRIGGER_RE.match(after_same):
             issue(
                 "warning",
@@ -819,6 +850,42 @@ class LeanChecker:
         processes: set[int] = set()
         previous_sort: tuple[dt.date, int] | None = None
 
+        # D1/E3: admission to a whole-company stage also makes a bidder live, even if it never has
+        # its own NDA or Bid row. The Rounds summary names admitted units at the opening.
+        admissions: dict[tuple[int, int], str] = {}
+        if "Rounds" in self.wb:
+            summary = self.wb["Rounds"]
+            for summary_row in nonempty_rows(summary, len(ROUND_COLUMNS)):
+                key = (as_integer(summary.cell(summary_row, 1).value),
+                       as_integer(summary.cell(summary_row, 2).value))
+                if None not in key:
+                    admissions[key] = normalize_contiguous(summary.cell(summary_row, 5).value).casefold()
+
+        def signer_is_live(signer: dict[str, Any]) -> bool:
+            who = normalize_contiguous(signer["Who"]).casefold()
+            process = as_integer(signer["Process"])
+            if not who or process is None:
+                return False
+            name_pattern = re.compile(r"(?<!\w)" + re.escape(who) + r"(?!\w)")
+            live = False
+            for prior in records[:-1]:
+                if as_integer(prior["Process"]) != process:
+                    continue
+                event = prior["Event"]
+                if event == "Process terminated":
+                    live = False
+                if event == "Round opened":
+                    included = admissions.get((process, as_integer(prior["Round"])), "")
+                    if name_pattern.search(included):
+                        live = True
+                if normalize_contiguous(prior["Who"]).casefold() != who:
+                    continue
+                if event in {"NDA signed", "Bid", "Bid reaffirmed", "Re-entered"}:
+                    live = True
+                elif event in EXIT_EVENTS | {"Bidding group changed", "Other-scope bid"}:
+                    live = False
+            return live
+
         def value(row: int, column: str) -> Any:
             return ws.cell(row, columns[column]).value
 
@@ -878,6 +945,10 @@ class LeanChecker:
                     row=excel_row,
                     column="Event",
                 )
+            if event == "Activist" and not str(record["Note"] or "").startswith(("Demands sale", "Sale one option")):
+                self.add("warning", "activist.note_prefix",
+                         "An Activist Note begins 'Demands sale' or 'Sale one option' (D2).",
+                         sheet=ws.title, row=excel_row, column="Note")
 
             process = as_integer(record["Process"])
             if process is None or process < 1:
@@ -944,6 +1015,15 @@ class LeanChecker:
                     row=excel_row,
                     column="Count",
                 )
+            if event == "Merger agreement signed":
+                # D1: Count follows the signer's current whole-company participation, not its bid history.
+                current_bidder = signer_is_live(record)
+                if current_bidder and as_integer(count) != 1:
+                    self.add("error", "ledger.count_signing", "A whole-company signing bidder has Count 1 (D1).",
+                             sheet=ws.title, row=excel_row, column="Count")
+                elif not current_bidder and not is_blank(count):
+                    self.add("error", "ledger.count_signing", "A signer outside the whole-company contest has blank Count (D1).",
+                             sheet=ws.title, row=excel_row, column="Count")
             if event in PROCESS_MARKERS and is_blank(count):
                 self.add(
                     "warning",
@@ -1155,7 +1235,7 @@ class LeanChecker:
                     self.add(
                         "error",
                         "controlled.flag",
-                        f"Flag must contain only question ids such as Q1 or Q1, Q2; found {flag!r}.",
+                        f"Flag must contain only Question or Review ids such as Q1, R1; found {flag!r}.",
                         sheet=ws.title,
                         row=excel_row,
                         column="Flag",
@@ -1545,17 +1625,23 @@ class LeanChecker:
             return
 
         rows = nonempty_rows(ws, len(QUESTION_COLUMNS))
-        q_rows: dict[str, int] = {}
-        affected_by_q: dict[str, tuple[set[int], bool]] = {}
+        review_rows: dict[str, int] = {}
+        affected_by_id: dict[str, tuple[set[int], bool]] = {}
         marker_rows = {
             as_integer(record["#"]) for record in ledger.get("records", [])
             if record.get("Event") in PROCESS_MARKERS and as_integer(record.get("#")) is not None
         }
         process_question: int | None = None
-        for ordinal, excel_row in enumerate(rows, start=1):
+        q_count = r_count = 0
+        for excel_row in rows:
             values = {name: ws.cell(excel_row, col + 1).value for col, name in enumerate(QUESTION_COLUMNS)}
             qid = str(values["Q"]).strip() if not is_blank(values["Q"]) else ""
-            expected = f"Q{ordinal}"
+            is_review = qid.startswith("R")
+            if is_review:
+                r_count += 1
+            else:
+                q_count += 1
+            expected = f"R{r_count}" if is_review else f"Q{q_count}"
             if qid != expected:
                 self.add(
                     "error",
@@ -1565,7 +1651,7 @@ class LeanChecker:
                     row=excel_row,
                     column="Q",
                 )
-            if qid in q_rows:
+            if qid in review_rows:
                 self.add(
                     "error",
                     "questions.duplicate",
@@ -1574,10 +1660,11 @@ class LeanChecker:
                     row=excel_row,
                     column="Q",
                 )
-            elif QID_RE.fullmatch(qid):
-                q_rows[qid] = excel_row
+            elif REVIEW_ID_RE.fullmatch(qid):
+                review_rows[qid] = excel_row
 
-            for field in QUESTION_COLUMNS[1:-1]:
+            required_fields = QUESTION_COLUMNS[1:-1] if not is_review else QUESTION_COLUMNS[1:-2]
+            for field in required_fields:
                 if is_blank(values[field]):
                     self.add(
                         "error",
@@ -1599,8 +1686,8 @@ class LeanChecker:
 
             refs, parseable = parse_affected_rows(values["Rows affected"])
             if qid:
-                affected_by_q[qid] = (refs, parseable)
-            if not is_blank(values["Rows affected"]) and not parseable:
+                affected_by_id[qid] = (refs, parseable)
+            if not is_review and not is_blank(values["Rows affected"]) and not parseable:
                 self.add(
                     "warning",
                     "questions.rows_unparsed",
@@ -1630,7 +1717,7 @@ class LeanChecker:
                     )
 
             total_words = sum(word_count(values[field]) for field in QUESTION_COLUMNS[1:-1])
-            if process_question is None and is_process_question(values["Question"], values["Rows affected"], marker_rows):
+            if not is_review and process_question is None and is_process_question(values["Question"], values["Rows affected"], marker_rows):
                 process_question = excel_row
             if total_words > QUESTION_WORDS:
                 self.add(
@@ -1644,7 +1731,7 @@ class LeanChecker:
         for row_number, qids in ledger["flags"].items():
             excel_row = ledger["by_number"].get(row_number)
             for qid in sorted(qids):
-                if qid not in q_rows:
+                if qid not in review_rows:
                     self.add(
                         "error",
                         "questions.unknown_flag",
@@ -1654,7 +1741,7 @@ class LeanChecker:
                         column="Flag",
                     )
                     continue
-                refs, parseable = affected_by_q.get(qid, (set(), False))
+                refs, parseable = affected_by_id.get(qid, (set(), False))
                 if parseable and row_number not in refs:
                     self.add(
                         "warning",
@@ -1665,7 +1752,7 @@ class LeanChecker:
                         column="Flag",
                     )
 
-        counted = len(rows) - (process_question is not None)
+        counted = q_count - (process_question is not None)
         if counted > QUESTION_CAP:
             self.add(
                 "warning",
@@ -1740,6 +1827,20 @@ class LeanChecker:
                 row=self._fact_row(rows, ws, "Initiation"),
                 column="Value",
             )
+        elif starts_with_canonical(initiation, {"activist-influenced"}):
+            ledger_rows = [record for record in ledger.get("records", []) if as_integer(record.get("Process")) == 1]
+            target_names = {"target", normalize_contiguous(values.get("Target")).casefold()}
+            first_target = next((i for i, record in enumerate(ledger_rows)
+                                 if record.get("Event") in {"Target interest", "Target sale decision"}
+                                 or (record.get("Event") == "Round opened" and
+                                     normalize_contiguous(record.get("Who")).casefold() in target_names)),
+                                len(ledger_rows))
+            if not any(i < first_target and record.get("Event") == "Activist"
+                       and str(record.get("Note") or "").startswith("Demands sale")
+                       for i, record in enumerate(ledger_rows)):
+                self.add("error", "initiation.activist_support",
+                         "Activist-influenced needs a 'Demands sale' Activist row before the target's first sale step (D5).",
+                         sheet=ws.title, row=self._fact_row(rows, ws, "Initiation"), column="Value")
         process_count = values.get("Number of processes")
         expected_process_count = len(ledger["processes"])
         parsed_process_count = as_integer_or_text(process_count)

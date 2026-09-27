@@ -188,19 +188,19 @@ class RunnerTests(unittest.TestCase):
             metadata = json.loads((astra / "metadata.json").read_text())
             self.assertEqual((metadata["model"], metadata["effort"]), ("gpt-6-astra", "high"))
 
-    def test_revision_workbook_must_have_the_v0_ledger_header(self):
+    def test_revision_workbook_must_have_the_current_ledger_header(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             findings = root / "findings.md"
             findings.write_text("Synthetic findings")
             old = root / "old.xlsx"
             self.write_workbook(old, "All cash")
-            with self.assertRaisesRegex(SystemExit, "not the v0 ledger"):
+            with self.assertRaisesRegex(SystemExit, "not the Version 1 ledger"):
                 self.prepare_fixture(root / "old", extra=("--revise-from", str(old), "--report", str(findings)))
             self.assertFalse((root / "old" / "runs").exists())
-            run = self.prepare_fixture(root / "v0", revise=True)
+            run = self.prepare_fixture(root / "current", revise=True)
             metadata = json.loads((run / "metadata.json").read_text())
-            self.assertEqual(metadata["revised_from_ledger_schema"], "v0")
+            self.assertEqual(metadata["revised_from_ledger_schema"], "Version 1")
 
     def test_disallowed_model_effort_or_timeout_fails_before_creating_run(self):
         for extra, message in [(("--effort", "extreme"), "runs one of"), (("--model", "claude-sonnet-5"), "runs one of"),

@@ -8,7 +8,7 @@ of Alex's labelled bids (bid_type Formal or Informal) is aligned to one whole-co
 reaffirmed row by bidder, price (upfront, or upfront + CVR/earnout value) and nearest date. For
 aligned bids the output reports agreement of bid_type with each Formality reading of
 derive_analysis.py (T0, T1, T1u, T2, T3), of all_cash and of the per-share value. The ledger must be
-a v0 workbook. Every other coded row
+a Version 1 workbook. Every other coded row
 (bid_note) is checked against the ledger's Event and Exit reason through audit D §3.3's code map.
 Each Alex row is marked as carrying his red-font correction or the earlier Chicago coding; only
 nine deals carry corrections.
