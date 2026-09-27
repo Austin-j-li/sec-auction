@@ -33,15 +33,15 @@ Where Alex has spoken, adopt his view. Where he is silent, use the simplest word
 | R1 | Request to some but not all eligible parties opens a round | Adopt | **Adopt** | 2026-09-27 | As drafted |
 | R2 | Round opens at the decision on who advances | Adopt | **Adopt** | 2026-09-27 | As drafted; Datalink awaited parties to Alex (Q2) |
 | R3 | Trigger (d): pause or lapsed exclusivity | Adopt guard; rest to Alex | **Adopt guard; exclusivity restart to Alex** | 2026-09-27 | 30-day and exclusivity triggers kept until Alex answers (Q2) |
-| R4 | Finality: label or substance; informal final round | Ask Alex | open | | |
+| R4 | Finality: label or substance; informal final round | Ask Alex | **Adopt (Austin for Alex): substance over label; bids in negotiation Formal** | 2026-09-27 | Off the Alex list |
 | R5 | When round 1 starts | Adopt, confirm with Alex | **Adopt (Alex V¶71, V¶173); PetSmart Oct 3 anchor to Q8** | 2026-09-27 | Decision 1 batch |
 | R6 | Rounds only for the whole company | Adopt | **Adopt** | 2026-09-27 | Applies the settled partial rule (E1) to round rules; not a reopening |
 | R7 | Round dating and ordering details | Adopt | **Adopt (Alex's view)** | 2026-09-27 | (a) V¶25, (c) CI p.8; (b) Alex silent, simplest option; round-1 dating moved to R5 |
 | R8 | Process gap measurement | Ask Alex | open | | |
 | R9 | "Enforced" means decisive action | Adopt | **Adopt** | 2026-09-27 | Decision 1 batch |
-| F1 | When documents make a bid Formal | Ask Alex | open | | |
-| F2 | Late markup without a price | Ask Alex | open | | |
-| F3 | Price-only revision after a Formal bid | Ask Alex | open | | |
+| F1 | When documents make a bid Formal | Ask Alex | **Adopt (Austin for Alex): markup must come with the bid** | 2026-09-27 | Reproduces V¶74 |
+| F2 | Late markup without a price | Ask Alex | **Adopt (Austin for Alex): confirmation by documents copies the latest price** | 2026-09-27 | Amends the settled same-offer rule; accepts Penford Oct 8 |
+| F3 | Price-only revision after a Formal bid | Ask Alex | **Adopt (Austin for Alex): Formality persists while markup on table** | 2026-09-27 | |
 | F4 | Diligence bundled with exclusivity is Heavy | Adopt | **Adopt** | 2026-09-27 | Decision 1 batch |
 | F5 | "None stated" against Unclear | Ask Alex | open | | |
 | F6 | "No firm commitment" means Contingent | Adopt | **Adopt** | 2026-09-27 | Decision 1 batch |
@@ -155,3 +155,38 @@ Adopted as one batch under the working rule. Wording to carry into the amendment
 - **O8** (V¶113). E6 adds: "A go-shop is a period after signing in which the merger agreement lets the target solicit competing proposals. Open a round only where the filing reports solicitation under that clause; a clause with no reported solicitation goes in the Note of Merger agreement signed."
 - **O9** (V¶13). D3: "Who was in reconciles to admissions to that stage; Bids received to distinct whole-company bidder units in it. Where the ledger and these columns differ, correct whichever misstates the filing, or explain a supported difference in How it ended."
 - **Deferred:** O5 (price normalization inputs, market prices at estimation; never join on Sort date), O7 (filing link written by the runner), F8 (regulatory risk and Heavy).
+
+### R4 finality (adopted 2026-09-27, Austin judging for Alex)
+
+Austin: "in the negotiation both parties will spam the word final to make they sound hard to get." Off the Alex questionnaire.
+
+E6 l.195 Finality, and the same test in E6 (b) and E11 route 2:
+
+> **Announced as final**: the target told bidders this was the final, binding or best-and-final stage, or that the next step is signing or exclusive negotiation with one of them. A request the filing describes as for non-binding proposals is not final, whatever it is called; the Note records the label.
+
+Effects: sTec May 16 opens round 2 (Not final), May 29 "best and final" opens round 3 (final): 3 rounds (was 2), matching V¶124–125; WDC May 28 stays Formal by its markup (V¶125). Mac-Gray Sep 11 "final indications" with exclusivity next is final (V¶48). Kraton, Datalink, PetSmart final letters unchanged.
+
+### R4 negotiation-stage formality (adopted 2026-09-27, Austin judging for Alex)
+
+E11 route 3 becomes:
+
+> (3) it is made after the target has begun definitive negotiation with that bidder, including a Bid reaffirmed (E10). A bidder that withdrew and returns starts again: its first bid after re-entry is Formal only by another route.
+
+Source: V¶27 ("only formal bids … are allowed or seriously considered by the target at this stage"). Extends v0's route 3 from reaffirmations to revisions. Almost no change in the nine deals (Providence Aug 12 G&W $25 and Penford Oct 14 Ingredion were already Formal; Penford Party A Oct 14 and sTec WDC Jun 10 stay Informal); matters for phoned-in final price bumps in new deals.
+
+### F1 and F3 (adopted 2026-09-27, Austin judging for Alex)
+
+- **F1.** E11 route 1: "(1) the bid comes with a markup or the bidder's own draft of the merger agreement or a voting agreement: submitted in the same communication as the priced proposal, or in the bidder's response to a target request for both price and documents. Documents exchanged at another time do not make an earlier or later bid Formal." Part B adds: "Formality is judged at the bid's communication; the window applies to the condition columns." Effect: Penford Ingredion's Aug 10, Sep 17 and Oct 2 bids stay Informal despite the Sep 6 buyer draft (V¶71, V¶74).
+- **F3.** E11 adds: "A revision that changes only price, consideration or conditions keeps route 1 while the bidder's markup or draft is still on the table (the filing reports no withdrawal or replacement of it)." Replaces "A later revision, including one that changes only the price, is Formal only if it meets a route itself." Effect: Providence G&W Jul 26 $22.15 stays Formal.
+
+### F2 (adopted 2026-09-27, Austin judging for Alex)
+
+Austin chose Alex's reading (V¶30) knowing that it amends the settled same-offer rule ("copy an offer only when the bidder says it stands") and adds Penford Oct 8, against V¶74. **STATUS.md's settled ruling must be updated when the amendment is approved.**
+
+E10 adds, after Same offer:
+
+> **Confirmation by documents.** After the target has begun definitive negotiation with a bidder, a revised markup or draft of the merger agreement that the bidder itself submits, with no new price, is a Bid reaffirmed row for that bidder's latest offer ("Same as #n"), copying its price. Code the condition columns from what the filing reports at that time. Record one such row per bidder at its first such submission, and another only if the filing reports a changed term with a later one. Drafts sent by the target never earn a row.
+
+E10 Same offer begins "When a bidder says its earlier offer stands (…), or confirms it by documents (below), copy that bid row …". E2 "successive drafts" becomes "successive drafts, except a bidder's confirmation by documents (E10)".
+
+Effects: Providence Aug 4 Party B, Bid reaffirmed at $24, Formal, conditions as the filing shows (on-site diligence to Aug 11, so not None). Penford Oct 8 Ingredion, Bid reaffirmed at $19, Formal (Alex dates Ingredion's formal offer Oct 14, V¶74); the Oct 14 phone confirmation is a second reaffirmation. Expect most deals' eventual winners to gain one such row at their first revised draft after negotiation began.
