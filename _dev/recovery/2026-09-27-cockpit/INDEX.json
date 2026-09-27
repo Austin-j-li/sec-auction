@@ -1,0 +1,1141 @@
+{
+ "fetched_at": "2026-09-27T10:55:33.952Z",
+ "source": "https://lines.dealextract.org (Cloudflare Access session junyu.li.24@ucl.ac.uk), GET only",
+ "items": [
+  {
+   "path": "/api/account",
+   "status": 200,
+   "file": "raw/account.json",
+   "bytes": 1418,
+   "sha256": "d8756f83bb9fb6e642dd654dcd928e409fcfae048da4e45c3d0254fa87f9ec8c"
+  },
+  {
+   "path": "/api/seed?q=",
+   "status": 200,
+   "file": "raw/seed_q_.json",
+   "bytes": 11,
+   "sha256": "1633902c6cbba5e7770dbed172df754a25078bb76efe1f23474edc87f1a47655"
+  },
+  {
+   "path": "/api/instructions",
+   "status": 200,
+   "file": "raw/instructions.json",
+   "bytes": 2013,
+   "sha256": "410eb5ccecda39b29c51a50a20108bfe7167ae0173ca352a21618e58b426b4a4"
+  },
+  {
+   "path": "/api/instructions/08caed447f7d",
+   "status": 200,
+   "file": "raw/instructions__08caed447f7d.json",
+   "bytes": 74793,
+   "sha256": "9f7277cd577880f501d645477528d43043a6b222e8544852ee417a78bc02e770"
+  },
+  {
+   "path": "/api/instructions/08caed447f7d?seq=1",
+   "status": 200,
+   "file": "raw/instructions__08caed447f7d_seq_1.json",
+   "bytes": 68754,
+   "sha256": "8d27e0bb02d85f35f28843a9e8cac6f1ce2876a2173ffdc4b403789f62eb79de"
+  },
+  {
+   "path": "/api/instructions/08caed447f7d?seq=2",
+   "status": 200,
+   "file": "raw/instructions__08caed447f7d_seq_2.json",
+   "bytes": 74790,
+   "sha256": "874c9a902e4504b2443b98037f0c30f458f9ecfe149247f75e9feeaa873977a5"
+  },
+  {
+   "path": "/api/instructions/513c8e3e8159",
+   "status": 200,
+   "file": "raw/instructions__513c8e3e8159.json",
+   "bytes": 34587,
+   "sha256": "e146b450390fd50e110ff5c4ef6a19b04b2235b2ce5f15ef817d84181ff9f9e7"
+  },
+  {
+   "path": "/api/instructions/513c8e3e8159?seq=1",
+   "status": 200,
+   "file": "raw/instructions__513c8e3e8159_seq_1.json",
+   "bytes": 34584,
+   "sha256": "eaf8a07afa80af08252e4d6899785de33114e4c43381436a634840abfddbf088"
+  },
+  {
+   "path": "/api/instructions/a4ca26ecfa92",
+   "status": 200,
+   "file": "raw/instructions__a4ca26ecfa92.json",
+   "bytes": 74989,
+   "sha256": "3860c34bb84c7fb1a06a1461b6f5810a73bc5f446bf7b72352c30483abe8daab"
+  },
+  {
+   "path": "/api/instructions/a4ca26ecfa92?seq=1",
+   "status": 200,
+   "file": "raw/instructions__a4ca26ecfa92_seq_1.json",
+   "bytes": 68534,
+   "sha256": "33e712047594a98478203a2d3443e17979fd1d28975218998aca009a48e861df"
+  },
+  {
+   "path": "/api/instructions/a4ca26ecfa92?seq=2",
+   "status": 200,
+   "file": "raw/instructions__a4ca26ecfa92_seq_2.json",
+   "bytes": 74986,
+   "sha256": "60c443a3fd017e7dedeadbcbebb556b1b3cf0e07d49bcd85417d9d28e60e452f"
+  },
+  {
+   "path": "/api/instructions/73f21eb8c09a",
+   "status": 200,
+   "file": "raw/instructions__73f21eb8c09a.json",
+   "bytes": 68400,
+   "sha256": "d9c92d2df9e61d7697108b1ed047ad4cc821907349f5c68beca4ee01747050b6"
+  },
+  {
+   "path": "/api/instructions/73f21eb8c09a?seq=1",
+   "status": 200,
+   "file": "raw/instructions__73f21eb8c09a_seq_1.json",
+   "bytes": 68397,
+   "sha256": "e0fe657f0c774a35ffe3650708378b24e528db73e70b3f4e56fbfc9d177b68df"
+  },
+  {
+   "path": "/api/activity?limit=500",
+   "status": 200,
+   "file": "raw/activity_limit_500.json",
+   "bytes": 20910,
+   "sha256": "7df27d9d32a84a38952bf5ba74d248363bc44547ee863b8111d648d5a56058b2"
+  },
+  {
+   "path": "/api/deals",
+   "status": 200,
+   "file": "raw/deals.json",
+   "bytes": 10586,
+   "sha256": "c945f16d74fc13920569e9c273fe105ec5c176d7746a9a7a6b6fd1fa396e4af8"
+  },
+  {
+   "path": "/api/deal/datalink",
+   "status": 200,
+   "file": "raw/deal__datalink.json",
+   "bytes": 105292,
+   "sha256": "16e36920b0dd97639c8200c43103e832585c739706b9b36e652d104212509d1b"
+  },
+  {
+   "path": "/api/filing/datalink",
+   "status": 200,
+   "file": "raw/filing__datalink.json",
+   "bytes": 762479,
+   "sha256": "6212d3524892bcd8bcfa9d1dfd08fc4b24ea3a7ad341a316b47c4695afa6f4f0"
+  },
+  {
+   "path": "/api/deal/datalink/history",
+   "status": 200,
+   "file": "raw/deal__datalink__history.json",
+   "bytes": 123,
+   "sha256": "d7c1071c819140426c5f47c6ebbeff9d5e42218003e399d503b808702d031260"
+  },
+  {
+   "path": "/api/deal/datalink/changes",
+   "status": 200,
+   "file": "raw/deal__datalink__changes.json",
+   "bytes": 56,
+   "sha256": "39ce01b1c836d90bbea8f7920ae9c315129aa724242bd033d9d1e8e14b700880"
+  },
+  {
+   "path": "/api/deal/datalink/comments",
+   "status": 200,
+   "file": "raw/deal__datalink__comments.json",
+   "bytes": 14,
+   "sha256": "fb07c9eca1ff0193819d488f8afca383cf21538be80c39f28276d3f387c0d81b"
+  },
+  {
+   "path": "/api/deal/datalink/jobs",
+   "status": 200,
+   "file": "raw/deal__datalink__jobs.json",
+   "bytes": 1309,
+   "sha256": "298f489cbc1d23201ad88f5d844e430fed766be7daf5e87b9ffe42d8ef907242"
+  },
+  {
+   "path": "/api/deal/datalink/activity?limit=100000",
+   "status": 200,
+   "file": "raw/deal__datalink__activity_limit_100000.json",
+   "bytes": 303,
+   "sha256": "de6f77241fd77c8a29e9e45c81f7ae47e81387c1819df27ca141fe668d683ce3"
+  },
+  {
+   "path": "/api/deal/datalink/export?version=working",
+   "status": 200,
+   "file": "raw/deal__datalink__export_version_working.xlsx",
+   "bytes": 29666,
+   "sha256": "6e7b99fc4d204e1ce8e6ce7a7170ad21244497822fa2d5edace0f27fc30f78ca"
+  },
+  {
+   "path": "/api/deal/datalink?version=opus55-medium",
+   "status": 200,
+   "file": "raw/deal__datalink_version_opus55-medium.json",
+   "bytes": 105299,
+   "sha256": "1b8c6551f2146a08a3786613794146fdbc738b3f55c61f26d4d7bfe2078046a9"
+  },
+  {
+   "path": "/api/deal/datalink/export?version=opus55-medium",
+   "status": 200,
+   "file": "raw/deal__datalink__export_version_opus55-medium.xlsx",
+   "bytes": 28135,
+   "sha256": "f28c711cf1ffdcc4b7f35ffd160719ed712c1dc022a89ed3ab878e557ea8217b"
+  },
+  {
+   "path": "/api/deal/datalink?version=opus55-medium-20260926-2032-350a91",
+   "status": 200,
+   "file": "raw/deal__datalink_version_opus55-medium-20260926-2032-350a91.json",
+   "bytes": 101608,
+   "sha256": "2577d7000587eebc55d39415dcd4dd910d9f9855f64eb3de2c7b87566f1c7a56"
+  },
+  {
+   "path": "/api/deal/datalink/export?version=opus55-medium-20260926-2032-350a91",
+   "status": 200,
+   "file": "raw/deal__datalink__export_version_opus55-medium-20260926-2032-350a91.xlsx",
+   "bytes": 25276,
+   "sha256": "350a91892a7b51c862fba005a0b4f51750542951bcaaf35105d09ca81861c00d"
+  },
+  {
+   "path": "/api/deal/kraton",
+   "status": 200,
+   "file": "raw/deal__kraton.json",
+   "bytes": 132084,
+   "sha256": "b443a33f6dace908e5fa537bab6532e403c3e36c2bf866edd9ca2091d3957145"
+  },
+  {
+   "path": "/api/filing/kraton",
+   "status": 200,
+   "file": "raw/filing__kraton.json",
+   "bytes": 880147,
+   "sha256": "491a52bd6932b93827d8ca02b900559a73cabe4d8aac351ebe4e5e8aa4e1c6ee"
+  },
+  {
+   "path": "/api/deal/kraton/history",
+   "status": 200,
+   "file": "raw/deal__kraton__history.json",
+   "bytes": 88461,
+   "sha256": "15d7e7f000371d6ae7434c22f399ddf3980163bf804e434fc826941e359b19ea"
+  },
+  {
+   "path": "/api/deal/kraton/changes",
+   "status": 200,
+   "file": "raw/deal__kraton__changes.json",
+   "bytes": 78719,
+   "sha256": "3db4f7e3edc54a18b53d0e75b3e77f791adf36ebe4b489e542bb9007212e8a73"
+  },
+  {
+   "path": "/api/deal/kraton/comments",
+   "status": 200,
+   "file": "raw/deal__kraton__comments.json",
+   "bytes": 14,
+   "sha256": "fb07c9eca1ff0193819d488f8afca383cf21538be80c39f28276d3f387c0d81b"
+  },
+  {
+   "path": "/api/deal/kraton/jobs",
+   "status": 200,
+   "file": "raw/deal__kraton__jobs.json",
+   "bytes": 11,
+   "sha256": "0a5796e93f9b57ddf7c45f860485cbb7353fc0eda3dca753a444d0fd2a1573fe"
+  },
+  {
+   "path": "/api/deal/kraton/activity?limit=100000",
+   "status": 200,
+   "file": "raw/deal__kraton__activity_limit_100000.json",
+   "bytes": 1270,
+   "sha256": "f0e48d5f2dce26a44241e4cf825c96b10043ae1f2748f7ef0d30f801cf74108d"
+  },
+  {
+   "path": "/api/deal/kraton/export?version=working",
+   "status": 200,
+   "file": "raw/deal__kraton__export_version_working.xlsx",
+   "bytes": 30761,
+   "sha256": "2644b538d7ecc658cbc17ac65f41b9a0cdaf884899f263e5a9e3b5d3ee2d69bb"
+  },
+  {
+   "path": "/api/deal/kraton?version=opus55-medium",
+   "status": 200,
+   "file": "raw/deal__kraton_version_opus55-medium.json",
+   "bytes": 104670,
+   "sha256": "cb9b70240f222d00d88b0e1da639c5c8370049154cefb4f9f2001f938f13dbbc"
+  },
+  {
+   "path": "/api/deal/kraton/export?version=opus55-medium",
+   "status": 200,
+   "file": "raw/deal__kraton__export_version_opus55-medium.xlsx",
+   "bytes": 28387,
+   "sha256": "20cc6986afb8b301e2a38a8d06e2c191c0cf7d3621d7dcf84121d9265b3d780c"
+  },
+  {
+   "path": "/api/deal/mac-gray",
+   "status": 200,
+   "file": "raw/deal__mac-gray.json",
+   "bytes": 114036,
+   "sha256": "a38f2d6932b3b539b76d9852982028bbf4b19b6dde41925fdcde1e806ad5f777"
+  },
+  {
+   "path": "/api/filing/mac-gray",
+   "status": 200,
+   "file": "raw/filing__mac-gray.json",
+   "bytes": 745812,
+   "sha256": "9026baf202e9601a2f76aa476fd1d36ead6f89724a37dd5f6116d7e3bb76d16d"
+  },
+  {
+   "path": "/api/deal/mac-gray/history",
+   "status": 200,
+   "file": "raw/deal__mac-gray__history.json",
+   "bytes": 57277,
+   "sha256": "c42b1965f8c448b952a26c87f9ae62e35527a7d1b65bc2c1f9047b592fa10e11"
+  },
+  {
+   "path": "/api/deal/mac-gray/changes",
+   "status": 200,
+   "file": "raw/deal__mac-gray__changes.json",
+   "bytes": 36099,
+   "sha256": "7d8acbadb7f5af486ad380c1564b753f7c5dead4e7858c6e6ea9f1ff69d43a3a"
+  },
+  {
+   "path": "/api/deal/mac-gray/comments",
+   "status": 200,
+   "file": "raw/deal__mac-gray__comments.json",
+   "bytes": 1031,
+   "sha256": "dfbfcd42e49d51a8fa520d384e3f0a563b7b782b689e2a193a0aa36607157dc0"
+  },
+  {
+   "path": "/api/deal/mac-gray/jobs",
+   "status": 200,
+   "file": "raw/deal__mac-gray__jobs.json",
+   "bytes": 2606,
+   "sha256": "080fb5d5641ffec364ba2d9d6674b12d0377f836dfe4d2280dfdbf529f72e5fa"
+  },
+  {
+   "path": "/api/deal/mac-gray/activity?limit=100000",
+   "status": 200,
+   "file": "raw/deal__mac-gray__activity_limit_100000.json",
+   "bytes": 3535,
+   "sha256": "8d4c47de5c5f613d7b99b3464ede06e46554909deb05c52684e8af48152c5a60"
+  },
+  {
+   "path": "/api/deal/mac-gray/export?version=working",
+   "status": 200,
+   "file": "raw/deal__mac-gray__export_version_working.xlsx",
+   "bytes": 28038,
+   "sha256": "7833dba1f2794fba5eb701257d9867fc124aa03ac3be42b82bdf20134683d4e5"
+  },
+  {
+   "path": "/api/deal/mac-gray?version=opus55-medium",
+   "status": 200,
+   "file": "raw/deal__mac-gray_version_opus55-medium.json",
+   "bytes": 88609,
+   "sha256": "8bae778dfb02a4c4f494324f3eefde3582a770640f7f08dca5dbb0d1b0476a19"
+  },
+  {
+   "path": "/api/deal/mac-gray/export?version=opus55-medium",
+   "status": 200,
+   "file": "raw/deal__mac-gray__export_version_opus55-medium.xlsx",
+   "bytes": 25076,
+   "sha256": "407615092e6dc33be22a8f80ab41d365083de0813f93b48897cbd7605a68ec0e"
+  },
+  {
+   "path": "/api/deal/mac-gray?version=opus55-medium-20260924-2241-d7d267",
+   "status": 200,
+   "file": "raw/deal__mac-gray_version_opus55-medium-20260924-2241-d7d267.json",
+   "bytes": 95706,
+   "sha256": "cc368e58ea7ba715e919cdbe4a25b7ab1e0109cfd7fde05f771a49ba4ca68950"
+  },
+  {
+   "path": "/api/deal/mac-gray/export?version=opus55-medium-20260924-2241-d7d267",
+   "status": 200,
+   "file": "raw/deal__mac-gray__export_version_opus55-medium-20260924-2241-d7d267.xlsx",
+   "bytes": 26769,
+   "sha256": "d7d26784ec3ba8f4d5d156e59ec633a77017c2729876cc185268767a6f97fd3c"
+  },
+  {
+   "path": "/api/deal/mac-gray?version=opus55-medium-20260926-2019-1d1d60",
+   "status": 200,
+   "file": "raw/deal__mac-gray_version_opus55-medium-20260926-2019-1d1d60.json",
+   "bytes": 77959,
+   "sha256": "3151efea5a461b832114b4413f9aa36b21fe7c85c04dd78f65eba7ed03b7eb92"
+  },
+  {
+   "path": "/api/deal/mac-gray/export?version=opus55-medium-20260926-2019-1d1d60",
+   "status": 200,
+   "file": "raw/deal__mac-gray__export_version_opus55-medium-20260926-2019-1d1d60.xlsx",
+   "bytes": 20779,
+   "sha256": "1d1d60efb3e8e748b86f3c071767708a57f359aa605ab106d61fc0bdcd1c1cb0"
+  },
+  {
+   "path": "/api/document/mac-gray/mac-gray-r01",
+   "status": 200,
+   "file": "raw/document__mac-gray__mac-gray-r01.json",
+   "bytes": 3639,
+   "sha256": "b49ae2c66d1ef6f00bafd7dd55a6a61cd50f3a0ad01e7c9e3831f6c599c3233b"
+  },
+  {
+   "path": "/api/deal/meredith",
+   "status": 200,
+   "file": "raw/deal__meredith.json",
+   "bytes": 156807,
+   "sha256": "6f1bb3c79c4d3a67fe3d7e75ba61b66336adb6c9ae2ad787745f252e02eab866"
+  },
+  {
+   "path": "/api/filing/meredith",
+   "status": 200,
+   "file": "raw/filing__meredith.json",
+   "bytes": 1555000,
+   "sha256": "64a881c90d08bbc289f4da2a39e6e7f775dc696160e938eb50b7fe5f5b53646a"
+  },
+  {
+   "path": "/api/deal/meredith/history",
+   "status": 200,
+   "file": "raw/deal__meredith__history.json",
+   "bytes": 105163,
+   "sha256": "d9da38996b7d07f54e1643a6922ea5f2c9080fc5185b0dc298855aa3f8f7d7b9"
+  },
+  {
+   "path": "/api/deal/meredith/changes",
+   "status": 200,
+   "file": "raw/deal__meredith__changes.json",
+   "bytes": 95555,
+   "sha256": "1e81cc65b897661339c29bb429da9f359f1857606c3fb2a6cba89047fe04500e"
+  },
+  {
+   "path": "/api/deal/meredith/comments",
+   "status": 200,
+   "file": "raw/deal__meredith__comments.json",
+   "bytes": 14,
+   "sha256": "fb07c9eca1ff0193819d488f8afca383cf21538be80c39f28276d3f387c0d81b"
+  },
+  {
+   "path": "/api/deal/meredith/jobs",
+   "status": 200,
+   "file": "raw/deal__meredith__jobs.json",
+   "bytes": 11,
+   "sha256": "0a5796e93f9b57ddf7c45f860485cbb7353fc0eda3dca753a444d0fd2a1573fe"
+  },
+  {
+   "path": "/api/deal/meredith/activity?limit=100000",
+   "status": 200,
+   "file": "raw/deal__meredith__activity_limit_100000.json",
+   "bytes": 1283,
+   "sha256": "acae98aa281f71915716ac9bcc911b1ca7670cbbd49e59dfe678a642b828cbbb"
+  },
+  {
+   "path": "/api/deal/meredith/export?version=working",
+   "status": 200,
+   "file": "raw/deal__meredith__export_version_working.xlsx",
+   "bytes": 34436,
+   "sha256": "2783667442a71d438c65063d71451a7453f458a5ee11f83f239330e0a5cba81f"
+  },
+  {
+   "path": "/api/deal/meredith?version=opus55-medium",
+   "status": 200,
+   "file": "raw/deal__meredith_version_opus55-medium.json",
+   "bytes": 122556,
+   "sha256": "fb049e74f462bd1d42244fe330898f4bb69c74eccf4887f072ea433a9859e289"
+  },
+  {
+   "path": "/api/deal/meredith/export?version=opus55-medium",
+   "status": 200,
+   "file": "raw/deal__meredith__export_version_opus55-medium.xlsx",
+   "bytes": 32242,
+   "sha256": "fae16e4a2ba8b6c6a233b9d029f94dacbfaacdabd4771b6b62fffdbaf4609c9e"
+  },
+  {
+   "path": "/api/deal/penford",
+   "status": 200,
+   "file": "raw/deal__penford.json",
+   "bytes": 87432,
+   "sha256": "8f1287a439dfebe5b3231feea2adb784d479d5357aefb1aeacddf169a3e94801"
+  },
+  {
+   "path": "/api/filing/penford",
+   "status": 200,
+   "file": "raw/filing__penford.json",
+   "bytes": 778607,
+   "sha256": "23c1576f00ccd86f09bcc74743ffcc54a1a24ebedb80c328184887ecc5a13614"
+  },
+  {
+   "path": "/api/deal/penford/history",
+   "status": 200,
+   "file": "raw/deal__penford__history.json",
+   "bytes": 25647,
+   "sha256": "fe2b4d9874a74667027fe1d2e8ad7f5f91baaddd0c6f3d042a0eab360d559e10"
+  },
+  {
+   "path": "/api/deal/penford/changes",
+   "status": 200,
+   "file": "raw/deal__penford__changes.json",
+   "bytes": 24663,
+   "sha256": "5d16dd605c5ea6ad874063ea385cfbc4757d7e8cb9bf408124f26479484b1f35"
+  },
+  {
+   "path": "/api/deal/penford/comments",
+   "status": 200,
+   "file": "raw/deal__penford__comments.json",
+   "bytes": 14,
+   "sha256": "fb07c9eca1ff0193819d488f8afca383cf21538be80c39f28276d3f387c0d81b"
+  },
+  {
+   "path": "/api/deal/penford/jobs",
+   "status": 200,
+   "file": "raw/deal__penford__jobs.json",
+   "bytes": 11,
+   "sha256": "0a5796e93f9b57ddf7c45f860485cbb7353fc0eda3dca753a444d0fd2a1573fe"
+  },
+  {
+   "path": "/api/deal/penford/activity?limit=100000",
+   "status": 200,
+   "file": "raw/deal__penford__activity_limit_100000.json",
+   "bytes": 651,
+   "sha256": "1e88d798e7535d1e614eaede3715a134dfbdcd065d26e67ba7d9ccc506ff5718"
+  },
+  {
+   "path": "/api/deal/penford/export?version=working",
+   "status": 200,
+   "file": "raw/deal__penford__export_version_working.xlsx",
+   "bytes": 25271,
+   "sha256": "b6497173ed296cbd9224b4b0ebf6bc811359952d6406030733527a2fecfe36ad"
+  },
+  {
+   "path": "/api/deal/penford?version=opus55-medium",
+   "status": 200,
+   "file": "raw/deal__penford_version_opus55-medium.json",
+   "bytes": 75708,
+   "sha256": "4d02c9bebb7526a2f907407b2f89654be78878033214bd71fa3a467cf8a1981b"
+  },
+  {
+   "path": "/api/deal/penford/export?version=opus55-medium",
+   "status": 200,
+   "file": "raw/deal__penford__export_version_opus55-medium.xlsx",
+   "bytes": 23472,
+   "sha256": "14f6c9c8e7c697b477e98f8f163c9180a236d1210e226cc0fdaeac98d50380d5"
+  },
+  {
+   "path": "/api/deal/petsmart",
+   "status": 200,
+   "file": "raw/deal__petsmart.json",
+   "bytes": 85186,
+   "sha256": "429d9309da9be539e9ee86218221fa112425ae282cdb414e66132825719c6b69"
+  },
+  {
+   "path": "/api/filing/petsmart",
+   "status": 200,
+   "file": "raw/filing__petsmart.json",
+   "bytes": 781251,
+   "sha256": "f72e348e0e9ea253fb122665938be8036624a1782b686c8b9c7b80537c68b9fb"
+  },
+  {
+   "path": "/api/deal/petsmart/history",
+   "status": 200,
+   "file": "raw/deal__petsmart__history.json",
+   "bytes": 33427,
+   "sha256": "552b1e09b27968853d0fad1c40249041f3ec9af76a3bc98994745e190ad51b57"
+  },
+  {
+   "path": "/api/deal/petsmart/changes",
+   "status": 200,
+   "file": "raw/deal__petsmart__changes.json",
+   "bytes": 32183,
+   "sha256": "22273ec447f5bb5f14cb5c9da313f6f29e4d01a4127ad6d5ff06398638b2190d"
+  },
+  {
+   "path": "/api/deal/petsmart/comments",
+   "status": 200,
+   "file": "raw/deal__petsmart__comments.json",
+   "bytes": 14,
+   "sha256": "fb07c9eca1ff0193819d488f8afca383cf21538be80c39f28276d3f387c0d81b"
+  },
+  {
+   "path": "/api/deal/petsmart/jobs",
+   "status": 200,
+   "file": "raw/deal__petsmart__jobs.json",
+   "bytes": 1076,
+   "sha256": "bf558d439ba859b759ae91563213ae180eda337ab4b80651886b35d077a9d26c"
+  },
+  {
+   "path": "/api/deal/petsmart/activity?limit=100000",
+   "status": 200,
+   "file": "raw/deal__petsmart__activity_limit_100000.json",
+   "bytes": 930,
+   "sha256": "c878708e4ccfd45366d36cb69cbdb29753483adedab0af0c176b39d7b6b98de2"
+  },
+  {
+   "path": "/api/deal/petsmart/export?version=working",
+   "status": 200,
+   "file": "raw/deal__petsmart__export_version_working.xlsx",
+   "bytes": 26420,
+   "sha256": "d0d76f2d1a6b05d95d9653547e1e64ba783f292e1202d249a60e0dfe74c1bb6d"
+  },
+  {
+   "path": "/api/deal/petsmart?version=opus55-medium",
+   "status": 200,
+   "file": "raw/deal__petsmart_version_opus55-medium.json",
+   "bytes": 78501,
+   "sha256": "2151ec3c615d732a0b7f8fea445a48d5dd31dc45eca9051f8a6f28c0c703489f"
+  },
+  {
+   "path": "/api/deal/petsmart/export?version=opus55-medium",
+   "status": 200,
+   "file": "raw/deal__petsmart__export_version_opus55-medium.xlsx",
+   "bytes": 24755,
+   "sha256": "04c7d952864f1a122bb72bf489712cc0434465cc1b3957d8a686f15e174ec20c"
+  },
+  {
+   "path": "/api/deal/petsmart?version=opus55-medium-20260923-1528-4d8363",
+   "status": 200,
+   "file": "raw/deal__petsmart_version_opus55-medium-20260923-1528-4d8363.json",
+   "bytes": 68845,
+   "sha256": "ff2781a3a3fefbefd7a5443617afdbb1d830a3471dc8ca4e601d4bbeb9ee027c"
+  },
+  {
+   "path": "/api/deal/petsmart/export?version=opus55-medium-20260923-1528-4d8363",
+   "status": 200,
+   "file": "raw/deal__petsmart__export_version_opus55-medium-20260923-1528-4d8363.xlsx",
+   "bytes": 22474,
+   "sha256": "4d8363aee97deeffaa8b2f4ff89961330ad0b3f1e47d7d8fd020149cab8e6c4f"
+  },
+  {
+   "path": "/api/deal/providence-worcester",
+   "status": 200,
+   "file": "raw/deal__providence-worcester.json",
+   "bytes": 102014,
+   "sha256": "f4bdbbcc46026b42810e23d7d2a41edb1ffe158b0f6193e558f3bcf2b9226940"
+  },
+  {
+   "path": "/api/filing/providence-worcester",
+   "status": 200,
+   "file": "raw/filing__providence-worcester.json",
+   "bytes": 708409,
+   "sha256": "93765415615e3f28e7d10ecac92c543f1827a344b37fb5f8d36a2724386b5382"
+  },
+  {
+   "path": "/api/deal/providence-worcester/history",
+   "status": 200,
+   "file": "raw/deal__providence-worcester__history.json",
+   "bytes": 31201,
+   "sha256": "420600efc071f2fe9d7d13e480f5eb077d521106f877fe1ccabcdd3d18d788ed"
+  },
+  {
+   "path": "/api/deal/providence-worcester/changes",
+   "status": 200,
+   "file": "raw/deal__providence-worcester__changes.json",
+   "bytes": 24262,
+   "sha256": "28b148ce7f1a60afddf20eb73f031798eb9b91a0eeb7ff8bee39eaf7faed7fa0"
+  },
+  {
+   "path": "/api/deal/providence-worcester/comments",
+   "status": 200,
+   "file": "raw/deal__providence-worcester__comments.json",
+   "bytes": 1703,
+   "sha256": "662ad4a5f8ccab3e8989ba357d23688277c59eaebb1b0b90293b068372001eef"
+  },
+  {
+   "path": "/api/deal/providence-worcester/jobs",
+   "status": 200,
+   "file": "raw/deal__providence-worcester__jobs.json",
+   "bytes": 3441,
+   "sha256": "b3eaa0cc6fe285eb361f587988de1780b35469a304ebf3027efa3e0a63ade17c"
+  },
+  {
+   "path": "/api/deal/providence-worcester/activity?limit=100000",
+   "status": 200,
+   "file": "raw/deal__providence-worcester__activity_limit_100000.json",
+   "bytes": 5715,
+   "sha256": "3eb1c729ecbd33e0e304444e05cc21742097bd47c638a337bf8ae2232a3b2f7c"
+  },
+  {
+   "path": "/api/deal/providence-worcester/export?version=working",
+   "status": 200,
+   "file": "raw/deal__providence-worcester__export_version_working.xlsx",
+   "bytes": 27928,
+   "sha256": "98b5c15424c1118bbc3d1d2b736bff234da0942fbde0eece4e455d09f92c312d"
+  },
+  {
+   "path": "/api/deal/providence-worcester?version=opus55-medium",
+   "status": 200,
+   "file": "raw/deal__providence-worcester_version_opus55-medium.json",
+   "bytes": 91694,
+   "sha256": "04492fffb888b67412e8331efbdef32eaef7e7071a58a72ac03b7d30ecd35ec8"
+  },
+  {
+   "path": "/api/deal/providence-worcester/export?version=opus55-medium",
+   "status": 200,
+   "file": "raw/deal__providence-worcester__export_version_opus55-medium.xlsx",
+   "bytes": 25945,
+   "sha256": "394a8cea099340df499697247c68430fef2010177ce91aae3930608d95cc3d00"
+  },
+  {
+   "path": "/api/deal/providence-worcester?version=opus55-medium-20260924-2241-38bc24",
+   "status": 200,
+   "file": "raw/deal__providence-worcester_version_opus55-medium-20260924-2241-38bc24.json",
+   "bytes": 99430,
+   "sha256": "766b6cb89ce43da9691c27852c2bad2976b7b8eeb7a657d049689bec81802b96"
+  },
+  {
+   "path": "/api/deal/providence-worcester/export?version=opus55-medium-20260924-2241-38bc24",
+   "status": 200,
+   "file": "raw/deal__providence-worcester__export_version_opus55-medium-20260924-2241-38bc24.xlsx",
+   "bytes": 28085,
+   "sha256": "38bc2463c706dad7a6ed20ce2a306e50ffddec4c330d86e6aec172cf1509c310"
+  },
+  {
+   "path": "/api/deal/providence-worcester?version=opus55-medium-20260926-2019-366a73",
+   "status": 200,
+   "file": "raw/deal__providence-worcester_version_opus55-medium-20260926-2019-366a73.json",
+   "bytes": 81840,
+   "sha256": "7409b177b941b656e9e570fa1dc6ff31defbe5d1d50b0e92cf5680a5a0785944"
+  },
+  {
+   "path": "/api/deal/providence-worcester/export?version=opus55-medium-20260926-2019-366a73",
+   "status": 200,
+   "file": "raw/deal__providence-worcester__export_version_opus55-medium-20260926-2019-366a73.xlsx",
+   "bytes": 22204,
+   "sha256": "366a738f38ff1e90142f7cc042e0a8221577f838210e5f37954936d875cb3fb3"
+  },
+  {
+   "path": "/api/deal/stec",
+   "status": 200,
+   "file": "raw/deal__stec.json",
+   "bytes": 99623,
+   "sha256": "244b797c00731ab4f9ef973ddad27bbbe09acb6b7a049af745b63b3b0882b418"
+  },
+  {
+   "path": "/api/filing/stec",
+   "status": 200,
+   "file": "raw/filing__stec.json",
+   "bytes": 668506,
+   "sha256": "46646690aeca89c154c02863d786b021cb8e04c43721ba143bda1474289a88a3"
+  },
+  {
+   "path": "/api/deal/stec/history",
+   "status": 200,
+   "file": "raw/deal__stec__history.json",
+   "bytes": 22546,
+   "sha256": "d9150d55c30a2a4d51ba3f62c567918b4ee50dc5860a2d0c4e2986dfdaba2e1b"
+  },
+  {
+   "path": "/api/deal/stec/changes",
+   "status": 200,
+   "file": "raw/deal__stec__changes.json",
+   "bytes": 22002,
+   "sha256": "e18f0c08664c379afcdf0cc036f8c5a05068645db7c2baa509d208f733a02326"
+  },
+  {
+   "path": "/api/deal/stec/comments",
+   "status": 200,
+   "file": "raw/deal__stec__comments.json",
+   "bytes": 14,
+   "sha256": "fb07c9eca1ff0193819d488f8afca383cf21538be80c39f28276d3f387c0d81b"
+  },
+  {
+   "path": "/api/deal/stec/jobs",
+   "status": 200,
+   "file": "raw/deal__stec__jobs.json",
+   "bytes": 1304,
+   "sha256": "b94155db4d5d50f73ef7cc8986306fd3797fdfca15dfd6b3832c4388b8e5c84c"
+  },
+  {
+   "path": "/api/deal/stec/activity?limit=100000",
+   "status": 200,
+   "file": "raw/deal__stec__activity_limit_100000.json",
+   "bytes": 617,
+   "sha256": "93d6101ed7f8e0b52861874aac2d5ef8d765f617e809797c1c97d31fe751ad7a"
+  },
+  {
+   "path": "/api/deal/stec/export?version=working",
+   "status": 200,
+   "file": "raw/deal__stec__export_version_working.xlsx",
+   "bytes": 28318,
+   "sha256": "3fb12d983146eca4de3ee8f2645ea3beca9ff59fc44bea37c42f5d081a61cb17"
+  },
+  {
+   "path": "/api/deal/stec?version=opus55-medium",
+   "status": 200,
+   "file": "raw/deal__stec_version_opus55-medium.json",
+   "bytes": 91998,
+   "sha256": "ed0fbb518554d3339ec71d14d278ae378972735b9078c01ed6b7d4eb56cad43f"
+  },
+  {
+   "path": "/api/deal/stec/export?version=opus55-medium",
+   "status": 200,
+   "file": "raw/deal__stec__export_version_opus55-medium.xlsx",
+   "bytes": 26772,
+   "sha256": "467f739dea7b540eec2d3fb664ec1a4bb6479394820fc66b750e6ec3821fbc1d"
+  },
+  {
+   "path": "/api/deal/stec?version=opus55-medium-20260926-2027-0643aa",
+   "status": 200,
+   "file": "raw/deal__stec_version_opus55-medium-20260926-2027-0643aa.json",
+   "bytes": 76430,
+   "sha256": "418882aeef5537903c0b3f026f04816b83c4a793c5afc43ff353812ae088c6e1"
+  },
+  {
+   "path": "/api/deal/stec/export?version=opus55-medium-20260926-2027-0643aa",
+   "status": 200,
+   "file": "raw/deal__stec__export_version_opus55-medium-20260926-2027-0643aa.xlsx",
+   "bytes": 20775,
+   "sha256": "0643aa20add7833f705a5df1f7f8d31f1535cd212b8ae6c6512ac9a032ba36cb"
+  },
+  {
+   "path": "/api/deal/synacor",
+   "status": 200,
+   "file": "raw/deal__synacor.json",
+   "bytes": 122311,
+   "sha256": "295cbcd03355cab036a67629f2e40935ee091fcce039151223556a989496582f"
+  },
+  {
+   "path": "/api/filing/synacor",
+   "status": 200,
+   "file": "raw/filing__synacor.json",
+   "bytes": 327917,
+   "sha256": "c5f97654a4be59f4fe3e6295e42733754128d4a92360cf56610bdb3bac60b30a"
+  },
+  {
+   "path": "/api/deal/synacor/history",
+   "status": 200,
+   "file": "raw/deal__synacor__history.json",
+   "bytes": 25520,
+   "sha256": "d4b290dd7b37fc055197ce0b894e0448c77f65bdf460af8a4ba2c92e1cb607ff"
+  },
+  {
+   "path": "/api/deal/synacor/changes",
+   "status": 200,
+   "file": "raw/deal__synacor__changes.json",
+   "bytes": 24971,
+   "sha256": "3bc19c26f2abe31c5d78555209a9e143d6f149e92134020a49f91a9a05dd2cc9"
+  },
+  {
+   "path": "/api/deal/synacor/comments",
+   "status": 200,
+   "file": "raw/deal__synacor__comments.json",
+   "bytes": 14,
+   "sha256": "fb07c9eca1ff0193819d488f8afca383cf21538be80c39f28276d3f387c0d81b"
+  },
+  {
+   "path": "/api/deal/synacor/jobs",
+   "status": 200,
+   "file": "raw/deal__synacor__jobs.json",
+   "bytes": 1310,
+   "sha256": "1dbce8a1efd17ad5a660e72ebc4ca0490094f46bb2825501d99961ef462c0b55"
+  },
+  {
+   "path": "/api/deal/synacor/activity?limit=100000",
+   "status": 200,
+   "file": "raw/deal__synacor__activity_limit_100000.json",
+   "bytes": 617,
+   "sha256": "5d73bc1d61eb66bb90d0e59c344b8c39e486217818267809307de5c9695e2f82"
+  },
+  {
+   "path": "/api/deal/synacor/export?version=working",
+   "status": 200,
+   "file": "raw/deal__synacor__export_version_working.xlsx",
+   "bytes": 32271,
+   "sha256": "c56e9d68a1f7f4837574a462a9c8eb7c88e8404e6b89dafc0515415a6db23e4e"
+  },
+  {
+   "path": "/api/deal/synacor?version=opus55-medium",
+   "status": 200,
+   "file": "raw/deal__synacor_version_opus55-medium.json",
+   "bytes": 111433,
+   "sha256": "4afeb358c573efb643602360937d19fbbecbaa94c7ec1fa1d3b10660ad83bf4f"
+  },
+  {
+   "path": "/api/deal/synacor/export?version=opus55-medium",
+   "status": 200,
+   "file": "raw/deal__synacor__export_version_opus55-medium.xlsx",
+   "bytes": 30230,
+   "sha256": "4d2610753b2b6a06d6a4a4408306cc094999ddb8be1c5904e5f9eab3b2e025af"
+  },
+  {
+   "path": "/api/deal/synacor?version=opus55-medium-20260926-2028-342883",
+   "status": 200,
+   "file": "raw/deal__synacor_version_opus55-medium-20260926-2028-342883.json",
+   "bytes": 91387,
+   "sha256": "d7c6f280d078f3c1c727830c2fb86603ecf7179b87aa68e0a9abeec5ecb580be"
+  },
+  {
+   "path": "/api/deal/synacor/export?version=opus55-medium-20260926-2028-342883",
+   "status": 200,
+   "file": "raw/deal__synacor__export_version_opus55-medium-20260926-2028-342883.xlsx",
+   "bytes": 24318,
+   "sha256": "342883bc8569ccbb25d1b480b5fcb8039aee900c7d5680a80f8470b32dec834c"
+  },
+  {
+   "path": "/api/deal/medivation",
+   "status": 200,
+   "file": "raw/deal__medivation.json",
+   "bytes": 49538,
+   "sha256": "97139a277175e9b257d5bccf108fc230cd1fd9ae2ebd321464823a9b782bd83b"
+  },
+  {
+   "path": "/api/filing/medivation",
+   "status": 200,
+   "file": "raw/filing__medivation.json",
+   "bytes": 258451,
+   "sha256": "830da8addbcf45083656288a06bd74b1a51995b2471fd5d81198e590779d8f43"
+  },
+  {
+   "path": "/api/deal/medivation/history",
+   "status": 200,
+   "file": "raw/deal__medivation__history.json",
+   "bytes": 123,
+   "sha256": "d7c1071c819140426c5f47c6ebbeff9d5e42218003e399d503b808702d031260"
+  },
+  {
+   "path": "/api/deal/medivation/changes",
+   "status": 200,
+   "file": "raw/deal__medivation__changes.json",
+   "bytes": 84,
+   "sha256": "b3bbf1e2a07b8459ee89f5131271be2078950bd5bde9bdebbc9316e8c171ea2b"
+  },
+  {
+   "path": "/api/deal/medivation/comments",
+   "status": 200,
+   "file": "raw/deal__medivation__comments.json",
+   "bytes": 14,
+   "sha256": "fb07c9eca1ff0193819d488f8afca383cf21538be80c39f28276d3f387c0d81b"
+  },
+  {
+   "path": "/api/deal/medivation/jobs",
+   "status": 200,
+   "file": "raw/deal__medivation__jobs.json",
+   "bytes": 1068,
+   "sha256": "d151706f2c07b2bed6fd236bb98baecbc08e1a576c4e66920674fb2394e97c9e"
+  },
+  {
+   "path": "/api/deal/medivation/activity?limit=100000",
+   "status": 200,
+   "file": "raw/deal__medivation__activity_limit_100000.json",
+   "bytes": 549,
+   "sha256": "f21b92dc04e67a43296190c16da62fec17e393591ee2b68fa565cc971eb1ce7c"
+  },
+  {
+   "path": "/api/deal/medivation/export?version=working",
+   "status": 200,
+   "file": "raw/deal__medivation__export_version_working.xlsx",
+   "bytes": 19987,
+   "sha256": "3788a111053e99f9140704c1b93cdb650960dc246eaa7efce0c28df84a887a0c"
+  },
+  {
+   "path": "/api/deal/medivation?version=opus55-medium-20260923-1631-9dd02c",
+   "status": 200,
+   "file": "raw/deal__medivation_version_opus55-medium-20260923-1631-9dd02c.json",
+   "bytes": 49566,
+   "sha256": "2f91acdb3f7b627f8f79452d457a9264fd598de757e357338658b819e2ccda2c"
+  },
+  {
+   "path": "/api/deal/medivation/export?version=opus55-medium-20260923-1631-9dd02c",
+   "status": 200,
+   "file": "raw/deal__medivation__export_version_opus55-medium-20260923-1631-9dd02c.xlsx",
+   "bytes": 18366,
+   "sha256": "9dd02c14b7a402af9d5465b49b2aa9ec865b11ab690b1981639c1001d76096ab"
+  },
+  {
+   "path": "/api/deal/zep",
+   "status": 200,
+   "file": "raw/deal__zep.json",
+   "bytes": 84446,
+   "sha256": "fb762acfcfd670c279bdaf8999c46a36f4ab9377b5253e21505f84e53b8bd472"
+  },
+  {
+   "path": "/api/filing/zep",
+   "status": 200,
+   "file": "raw/filing__zep.json",
+   "bytes": 736968,
+   "sha256": "a091fc56f4a95290095bef3d48f5a4f399b9aaf8f9a90b9a163ab4177ed7d4b7"
+  },
+  {
+   "path": "/api/deal/zep/history",
+   "status": 200,
+   "file": "raw/deal__zep__history.json",
+   "bytes": 123,
+   "sha256": "d7c1071c819140426c5f47c6ebbeff9d5e42218003e399d503b808702d031260"
+  },
+  {
+   "path": "/api/deal/zep/changes",
+   "status": 200,
+   "file": "raw/deal__zep__changes.json",
+   "bytes": 83,
+   "sha256": "34a2c97ffe09f9ad43a77afdf6d1141fd120576860dd194e8a34cf6be7357c69"
+  },
+  {
+   "path": "/api/deal/zep/comments",
+   "status": 200,
+   "file": "raw/deal__zep__comments.json",
+   "bytes": 14,
+   "sha256": "fb07c9eca1ff0193819d488f8afca383cf21538be80c39f28276d3f387c0d81b"
+  },
+  {
+   "path": "/api/deal/zep/jobs",
+   "status": 200,
+   "file": "raw/deal__zep__jobs.json",
+   "bytes": 1302,
+   "sha256": "870d62d8274b2002a65489aa0d9a174cee5ae197e579bba6cbf91bae673e2535"
+  },
+  {
+   "path": "/api/deal/zep/activity?limit=100000",
+   "status": 200,
+   "file": "raw/deal__zep__activity_limit_100000.json",
+   "bytes": 536,
+   "sha256": "17d75ab74fdc655e49c0b5f94c3d046e1ffc388ab67b64164f1c18b040d0be64"
+  },
+  {
+   "path": "/api/deal/zep/export?version=working",
+   "status": 200,
+   "file": "raw/deal__zep__export_version_working.xlsx",
+   "bytes": 26889,
+   "sha256": "122053517713d1217e99c53edeee3542741d2fa7b854b6c4889853bd6a846f74"
+  },
+  {
+   "path": "/api/deal/zep?version=opus55-xhigh-20260924-0926-ee06ac",
+   "status": 200,
+   "file": "raw/deal__zep_version_opus55-xhigh-20260924-0926-ee06ac.json",
+   "bytes": 84473,
+   "sha256": "4ae2fad2da9c9fb99c43ecc739a19d7379d7c6e90702adb67480310532030063"
+  },
+  {
+   "path": "/api/deal/zep/export?version=opus55-xhigh-20260924-0926-ee06ac",
+   "status": 200,
+   "file": "raw/deal__zep__export_version_opus55-xhigh-20260924-0926-ee06ac.xlsx",
+   "bytes": 25326,
+   "sha256": "ee06acc054d20528f5af55317b4236be7188aadab86e312c1a977b01dcfc2599"
+  },
+  {
+   "path": "/api/deal/pepco-holdings",
+   "status": 200,
+   "file": "raw/deal__pepco-holdings.json",
+   "bytes": 76701,
+   "sha256": "0c0ce5de07cf83b5526c52f0c0ab6098e4c275b0419a1c60f3e8f726f6e0b807"
+  },
+  {
+   "path": "/api/filing/pepco-holdings",
+   "status": 200,
+   "file": "raw/filing__pepco-holdings.json",
+   "bytes": 830238,
+   "sha256": "deda9659f1402040764a92f74ba58aafb96898cedf8c5e61ef3abb4820076e84"
+  },
+  {
+   "path": "/api/deal/pepco-holdings/history",
+   "status": 200,
+   "file": "raw/deal__pepco-holdings__history.json",
+   "bytes": 123,
+   "sha256": "d7c1071c819140426c5f47c6ebbeff9d5e42218003e399d503b808702d031260"
+  },
+  {
+   "path": "/api/deal/pepco-holdings/changes",
+   "status": 200,
+   "file": "raw/deal__pepco-holdings__changes.json",
+   "bytes": 84,
+   "sha256": "9f5a5a8b6f1fc486f71b5f5d6ab2c7aa3694821c914e2240d2b8d9c8d8dbe169"
+  },
+  {
+   "path": "/api/deal/pepco-holdings/comments",
+   "status": 200,
+   "file": "raw/deal__pepco-holdings__comments.json",
+   "bytes": 14,
+   "sha256": "fb07c9eca1ff0193819d488f8afca383cf21538be80c39f28276d3f387c0d81b"
+  },
+  {
+   "path": "/api/deal/pepco-holdings/jobs",
+   "status": 200,
+   "file": "raw/deal__pepco-holdings__jobs.json",
+   "bytes": 1313,
+   "sha256": "c99febfc9b1848198a2c5bc82519084e8e20d478f4f2e3ee64843bb426f0ab51"
+  },
+  {
+   "path": "/api/deal/pepco-holdings/activity?limit=100000",
+   "status": 200,
+   "file": "raw/deal__pepco-holdings__activity_limit_100000.json",
+   "bytes": 560,
+   "sha256": "ff4eb5a5962adff79135d1cd41db49040c0b0dc77f10900c4958929ca9230030"
+  },
+  {
+   "path": "/api/deal/pepco-holdings/export?version=working",
+   "status": 200,
+   "file": "raw/deal__pepco-holdings__export_version_working.xlsx",
+   "bytes": 24114,
+   "sha256": "14f61406a635c3305c9d9983a88ffd12926d1d460c42c19d9692c982b6be565d"
+  },
+  {
+   "path": "/api/deal/pepco-holdings?version=opus55-medium-20260924-0943-b762af",
+   "status": 200,
+   "file": "raw/deal__pepco-holdings_version_opus55-medium-20260924-0943-b762af.json",
+   "bytes": 76729,
+   "sha256": "7559efc6295d63efe5a7bc0c4687744ff5f87a847da631682d9e131253a79934"
+  },
+  {
+   "path": "/api/deal/pepco-holdings/export?version=opus55-medium-20260924-0943-b762af",
+   "status": 200,
+   "file": "raw/deal__pepco-holdings__export_version_opus55-medium-20260924-0943-b762af.xlsx",
+   "bytes": 22552,
+   "sha256": "b762af22961eaf2986225c7c8da52360102855261ebc03b6b37e286578c74754"
+  },
+  {
+   "path": "/api/deal/imprivata",
+   "status": 200,
+   "file": "raw/deal__imprivata.json",
+   "bytes": 74476,
+   "sha256": "8412a83a625e76218d582ac3ce2a952e42c7816f2c53e5727506012882d039b2"
+  },
+  {
+   "path": "/api/filing/imprivata",
+   "status": 200,
+   "file": "raw/filing__imprivata.json",
+   "bytes": 751625,
+   "sha256": "a6e0f780e120fde52ef34d324f5c90ec67fe1821876853564dc7050d91e32980"
+  },
+  {
+   "path": "/api/deal/imprivata/history",
+   "status": 200,
+   "file": "raw/deal__imprivata__history.json",
+   "bytes": 123,
+   "sha256": "d7c1071c819140426c5f47c6ebbeff9d5e42218003e399d503b808702d031260"
+  },
+  {
+   "path": "/api/deal/imprivata/changes",
+   "status": 200,
+   "file": "raw/deal__imprivata__changes.json",
+   "bytes": 83,
+   "sha256": "9b05b6a6306b59d666c315d460cacba4b9e199dfca23ee885578bcaf3a6014e6"
+  },
+  {
+   "path": "/api/deal/imprivata/comments",
+   "status": 200,
+   "file": "raw/deal__imprivata__comments.json",
+   "bytes": 14,
+   "sha256": "fb07c9eca1ff0193819d488f8afca383cf21538be80c39f28276d3f387c0d81b"
+  },
+  {
+   "path": "/api/deal/imprivata/jobs",
+   "status": 200,
+   "file": "raw/deal__imprivata__jobs.json",
+   "bytes": 1306,
+   "sha256": "7e14fae90c11506df9a4da5c8ac6cbab7443f62acbc72017ac6467ab41aabbba"
+  },
+  {
+   "path": "/api/deal/imprivata/activity?limit=100000",
+   "status": 200,
+   "file": "raw/deal__imprivata__activity_limit_100000.json",
+   "bytes": 548,
+   "sha256": "d316b42a455511ea20db808246b9f7b16bc77c5ba59396bc4b043615a5dcf97b"
+  },
+  {
+   "path": "/api/deal/imprivata/export?version=working",
+   "status": 200,
+   "file": "raw/deal__imprivata__export_version_working.xlsx",
+   "bytes": 24234,
+   "sha256": "2ba2cc138a67b07deca24dd1d9c571fd39c877c0869b6982023f5071ac6914a8"
+  },
+  {
+   "path": "/api/deal/imprivata?version=opus55-xhigh-20260924-1651-fe7897",
+   "status": 200,
+   "file": "raw/deal__imprivata_version_opus55-xhigh-20260924-1651-fe7897.json",
+   "bytes": 74503,
+   "sha256": "b035e513a2544fe8d204cca43fed997b4e91530225a58722cc404b953d503a6f"
+  },
+  {
+   "path": "/api/deal/imprivata/export?version=opus55-xhigh-20260924-1651-fe7897",
+   "status": 200,
+   "file": "raw/deal__imprivata__export_version_opus55-xhigh-20260924-1651-fe7897.xlsx",
+   "bytes": 22670,
+   "sha256": "fe7897c7fae4a0e4f04a2ecceed40cd8a551b6185a79742fa05cda8d93cade1c"
+  }
+ ],
+ "note": "GET-only snapshot. /api/session dropped (holds a CSRF token). Instruction ?seq probes past the last edit returned 404 and are omitted."
+}

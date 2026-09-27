@@ -16,7 +16,9 @@ Opus runs authenticate with a long-lived subscription token. Create it once with
 python3 _dev/tools/check_lean.py --workbook extraction/<deal>.xlsx --filing raw_filing/<filing>.htm --output _dev/runs/<deal>/check.json
 ```
 
-The checker is offline. It validates workbook structure, dates, labels, links, quotation occurrence and agreement between columns of the same row (an exact-day When against its three date cells; an inferred exit's reason). It does not establish the truth of classifications or live-bidder arithmetic. Required long Notes and documented uncertain Counts are review warnings.
+The checker is offline. Version **1.8** was deployed on the VM on 26 September 2026. It validates workbook structure, dates, labels, links, quotation occurrence and agreement between columns of the same row; it does not establish the truth of classifications or live-bidder arithmetic. The report's `ledger_schema` names the rules used. A non-29-column workbook uses v1.13.2 rules. A 29-column workbook uses v1.14.1 by default or v1.14 with `--rules v1.14`; the cockpit selects by instruction SHA-256: published `8a93df3c…66c98` and reviewed `8bdb7c20…8a79` map to v1.14.1, trial `c2d47a47…8ab27` and pilot draft `f9595d74…aea97` to v1.14. Unknown 29-column instructions default to v1.14.1.
+
+Under v1.14.1, a Note over 40 words, Round 0 after round 1 has opened, invalid `Same as #n` reference, or missing Count on `Bidding group changed` is an error. `Same as #n` must cite an earlier Bid of the same bidder; `Bid reaffirmed` is Formal with that reference. Blank Count on other process markers is a warning. Warnings also cover Heavy rows without an H1/H2/H3 Note marker, Light rows without Complete or Incomplete diligence, Questions over 60 words, and more than five Questions excluding the process Question. `Inferred = Y` is restricted to exit, `Round opened` and `Process restarted` rows; `Formality Unclear` to cohort rows; `Antitrust Y` requires `Regulatory Concern`; `Stock %` must be 0–100, `Part stock`, `Not stated` or `Varies`. These are mechanical checks, not research acceptance.
 
 ## Isolated runs
 
@@ -26,7 +28,7 @@ python3 _dev/tools/sandbox/run_model.py launch --provider opus --run-dir _dev/ru
 python3 _dev/tools/sandbox/run_model.py status --runs-dir _dev/runs
 ```
 
-The extraction engine is **Claude Opus 5.5** (`claude-opus-5-5`). Its effort level is chosen at prepare (`low`, `medium`, `high`, `xhigh` or `max`) and recorded in `metadata.json` with the model and the wall-clock limit (default 90 minutes; `--timeout-minutes` takes 10–360). The provider command is built from those recorded values, and launch refuses metadata whose model or effort is not allowed. Without `--effort` the runner uses `DEFAULT_EFFORT` in `run_model.py`: `medium`. The [22 September effort sweep](../reviews/2026-09-22-opus55-sol6-sweep/REPORT.md) found no reliable gain from high over medium, on three deals with one run each. Opus 5.5's own API default is `medium`, and its levels do not match Opus 5's, so always record the level used. `sol` remains an implemented transport, not an approved default; an alternative-model run requires Austin's explicit command. `sol` runs GPT-6-Sol (`gpt-6-sol`, or `gpt-5.6-sol`) through Codex at effort `low` to `max`. The `ultra` level is not offered, because it delegates to subagents automatically. By default `codex exec` offers the account's ChatGPT app connectors (mail, GitLab, site deploys, a remote shell), web browsing, image generation and subagents. Every Sol run switches those off (`CODEX_DISABLED_FEATURES`, plus `web_search="disabled"`), leaving shell commands and file patches. Code mode stays on because GPT-6-Sol calls every tool through it. Codex's login is bound read-only, and a sandboxed refresh would rotate its refresh token and log the host out, so preflight refuses a Sol run when the host Codex access token has less than seven hours left. `prepare --instruction <path>` supplies a candidate instruction in place of the working one. The runner rejects a provider that differs from its prepared metadata. Prepare does not call a model; launch does. Only one instruction and filing enter a blind extraction.
+The extraction engine is **Claude Opus 5.5** (`claude-opus-5-5`), medium by default. Austin restored that default on 26 September evening, reversing the morning's GPT-6-Astra-high choice; it was live on the VM from the 19:41 deploy. Astra remains selectable with high as its own default. The effort level is recorded in `metadata.json` with the model and wall-clock limit (default 90 minutes; `--timeout-minutes` takes 10–360). The provider command is built from those recorded values, and launch refuses metadata whose model or effort is not allowed. The [22 September effort sweep](../reviews/2026-09-22-opus55-sol6-sweep/REPORT.md) found no reliable gain from Opus high over medium on three deals with one run each. `--provider sol` runs GPT-6-Sol or GPT-6-Astra through Codex at allowed efforts; an alternative-model run outside the app requires Austin's explicit command. `ultra` is not offered because it delegates to subagents automatically. Sol runs disable connectors, web, image generation and subagents. Codex's login is bound read-only, so preflight refuses a run when its access token has less than seven hours left. `prepare --instruction <path>` supplies a candidate instruction in place of the root one. Prepare does not call a model; launch does. Only one instruction and filing enter a blind extraction.
 
 Launch and worker startup verify the prepared instruction, filing and prompt against their recorded SHA-256 hashes before starting a provider. A revision also verifies its starting workbook and findings report. Changed or missing inputs require a newly prepared run directory. Older extraction metadata with the required hashes remains usable; older revision metadata without a findings-report hash must be prepared again. Status inspection does not recheck the starting workbook, since a revision legitimately changes it.
 
@@ -108,8 +110,8 @@ busctl --user call org.freedesktop.systemd1 /org/freedesktop/systemd1 org.freede
 `cockpit/export_repo.py` copies a cockpit version into the repository for a commit Austin requests. It is an admin script, not a button. It never commits, and it never calls a model or the network.
 
 ```bash
-python3 _dev/tools/cockpit/export_repo.py instruction v1.14                     # dry run: target, current hash -> new hash
-python3 _dev/tools/cockpit/export_repo.py instruction v1.14 --write             # writes SEC_Deal_Ledger_Extraction_Instruction.md
+python3 _dev/tools/cockpit/export_repo.py instruction v1.14.1                     # dry run: target, current hash -> new hash
+python3 _dev/tools/cockpit/export_repo.py instruction v1.14.1 --write             # writes SEC_Deal_Ledger_Extraction_Instruction.md
 python3 _dev/tools/cockpit/export_repo.py deal <slug> --version <id>|working [--write]
 ```
 
@@ -120,6 +122,8 @@ python3 _dev/tools/cockpit/export_repo.py deal <slug> --version <id>|working [--
   - It refuses any path that `catalog.json` names as an immutable original, so in practice only added deals can be exported. Changing the catalog is a separate, requested edit.
   - Once an exported added deal is committed, the cockpit reads its filing from `raw_filing/` like the original nine.
 - **Without `--write`** it is a dry run that writes nothing.
+
+The VM export was still a gate at ~21:00 on 26 September: its repository file remained v1.13.2. On 27 September Austin authorized copying the published v1.14.1 snapshot text to this laptop recovery branch's root file. That copy is not evidence that `export_repo.py --write` ran on the VM.
 
 ## Effort sweeps
 
@@ -152,10 +156,16 @@ A run that does not match its planned cell or the pin is listed but never averag
 ```bash
 python3 _dev/tools/findings_text.py <check.json> <findings.md>
 python3 _dev/tools/diff_workbooks.py <before.xlsx> <after.xlsx>
+python3 _dev/tools/derive_analysis.py <ledger.xlsx> --deal <deal> --rules v1.14.1 --out <dir>
+python3 _dev/tools/migrate_review.py triage <deal> <run-workbook.xlsx> --run-id <version-id> [--rules v1.14]
 python3 _dev/tools/fetch_filing.py --list <name>
 ```
 
 Findings distinguish mechanical errors from review warnings and optional model judgments. Workbook diffs preserve cell types, so a number changed into text is visible, and detect added trailing columns.
+
+`derive_analysis.py` 0.3 follows analysis contract 0.2 and produces T0–T3 formality readings. A 29-column ledger uses v1.14.1 unless `--rules v1.14` identifies the older trial instruction. `migrate_review.py` moves reviewed v1.13.2 work onto a deal's reviewed v1.14.1 run, tagging facts that v1.14.1 R1–R6/D1–D6 or v1.14 D1–D27 require judging again; it also accepts `--rules v1.14` for a trial run. `compare_alex.py` provides the side-by-side with Alex's coding. Its laptop source was rebuilt from partial traces, so reconcile it with the VM before treating per-row output as equivalent.
+
+The migration-register step on the VM named `lesson/` as an independent audit input. Austin dropped that stale directory for this recovery. The register gate remains open until a replacement input is decided; do not recreate `lesson/` to satisfy the tool's historical help text.
 
 `fetch_filing.py <deal>` fetches a filing from EDGAR. An existing filing must match its recorded local size/hash; `--verify` contacts EDGAR, while `--force` explicitly replaces a file. Fetch and verification select the same document type: for SC TO-T, the offer-to-purchase exhibit `EX-99.(A)(1)(A)`, rather than the cover form. Verification also requires the manifest's recorded document filename when present; legacy rows without one require an unambiguous match by type. Writes are atomic per file. Set `SEC_USER_AGENT` for another operator; the default identifies Austin. Seed rows marked for review remain unsupported. The cockpit's Add deal uses the same module (`submission_link`, `parse_submission`, `default_document`, `document_bytes`) and so saves identical bytes.
 
@@ -170,6 +180,8 @@ PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s _dev/tools -p 'test_*.
 The tests use synthetic fixtures. Runner tests construct commands and mock execution; they never launch an extractor.
 
 ## Review cockpit
+
+The commands below apply to the VM deployment when SSH returns. The 24–26 September cockpit app source remains only on the VM; this laptop recovery branch has the 23 September app code. The live cockpit and 27 September snapshot remain the deal-data and instruction-version system of record.
 
 ```bash
 python3 _dev/tools/cockpit/server.py            # http://127.0.0.1:8778 (or $COCKPIT_PORT)

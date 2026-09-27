@@ -1,0 +1,13 @@
+1. **Major — `--by-quote` replaces primary-key matching.** [diff_workbooks.py:91](/Users/austinli/Projects/sec-auction/_dev/tools/diff_workbooks.py:91) switches every ledger row to an exact quote key. A quote correction on an otherwise matching event becomes a removal/addition; repeated quotes can pair unrelated events. VM evidence specifies primary-key matching first, then unique quote matching for leftovers (`all_calls_since_0924.jsonl:1110,1129`). **Fix:** restore that two-stage matching, including the evidenced unique passage-containment fallback, and test corrected and repeated quotes.
+
+2. **Major — crosswalk hides equal prices whose economic basis changed.** [diff_workbooks.py:125](/Users/austinli/Projects/sec-auction/_dev/tools/diff_workbooks.py:125) skips equal cells before applying crosswalk rules. I reproduced equal old/new prices with a new CVR marker: neither price receives the required basis warning. VM evidence explicitly says prices carrying CVR/earnout must be shown rather than equated (`all_calls_since_0924.jsonl:1110`). **Fix:** evaluate crosswalk rules before ordinary equality suppression; test equal numeric prices with contingent consideration.
+
+3. **Major — reverse-direction crosswalk is missing.** [diff_workbooks.py:108](/Users/austinli/Projects/sec-auction/_dev/tools/diff_workbooks.py:108) recognizes only old-to-new column order. Reversing the inputs reports equivalent `Stock %=0` and `All cash=Yes` as two cell changes. The captured VM implementation explicitly selected the v1.13.2 side regardless of input order (`all_calls_since_0924.jsonl:543`). **Fix:** select crosswalk roles by schema while preserving before/after display direction; test both orders.
+
+4. **Minor — findings omit checker-version provenance.** [findings_text.py:19](/Users/austinli/Projects/sec-auction/_dev/tools/findings_text.py:19) prints ledger rules but discards `checker_version`. The reproduced Mac-Gray output therefore omits checker `1.8`, despite its presence in the input. VM documentation requires both identifiers (`all_calls_since_0924.jsonl:1110`). **Fix:** include checker version alongside ledger rules, with an explicit fallback for older reports.
+
+Verification: both recorded Mac-Gray comparisons reproduced exactly; v1.14.1 self-comparison returned zero changes. Findings reproduced in memory and matched the snapshot’s two warnings. Runner help confirms Opus 5.5 medium; `git diff --check` exited 0.
+
+The full test result could not be independently confirmed: with filesystem capture disabled, **3 tests and 8 subtests passed; 63 tests failed creating temporary fixtures because the sandbox is read-only**. No smoke files were rewritten.
+
+**ACCEPT-WITH-FIXES**

@@ -32,6 +32,27 @@ def make_cell(deal="kraton", effort="low", replicate=1, timeout=90, provider="op
 
 
 class EffortSweepTests(unittest.TestCase):
+    def test_stats_separate_other_scope_bids_and_process_question(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "ledger.xlsx"
+            book = run_model._openpyxl.Workbook()
+            book.active.title = "Deal ledger"
+            book.active.append(["#", "Event", "Price low", "Price high", "Date from", "Note"])
+            book.active.append([1, "Bid", 10, 10, "d1", "two words"])
+            book.active.append([2, "Other-scope bid", None, None, "d2", " ".join(["word"] * 45)])
+            book.active.append([3, "Process restarted", None, None, None, None])
+            book.create_sheet("Rounds").append(["header"])
+            questions = book.create_sheet("Questions")
+            questions.append(["Q", "Question", "Rows affected"])
+            questions.append(["Q1", "Is the break a new process?", "#3"])
+            questions.append(["Q2", "Another issue", "#1"])
+            book.create_sheet("Deal facts").append(["header"])
+            book.save(path)
+            stats = effort_sweep.ledger_stats(path)
+        self.assertEqual((stats["bids"], stats["other_scope_bids"]), (1, 1))
+        self.assertEqual((stats["note_words_max"], stats["notes_over_40"]), (45, 1))
+        self.assertEqual((stats["questions"], stats["questions_counted"], stats["process_question"]), (2, 1, True))
+
     def make_plan(self, packet, **overrides):
         with contextlib.redirect_stdout(io.StringIO()):
             effort_sweep.plan(plan_args(packet, **overrides))
@@ -53,10 +74,26 @@ class EffortSweepTests(unittest.TestCase):
         self.assertNotEqual(blocks[0], blocks[1])
         self.assertFalse(all(block == unshuffled for block in blocks))
         self.assertEqual({c["timeout_minutes"] for c in cells}, {120})
-        self.assertEqual(cells[0]["filing"], effort_sweep.filings()[cells[0]["deal"]])
+        self.assertEqual(cells[0]["filing"], effort_sweep.filings()[cells[0]["deal"]]["filing"])
         sol = [c for c in cells if c["provider"] == "sol"]
         self.assertEqual({(c["model"], c["effort"], c["arm"]) for c in sol}, {("gpt-6-sol", "high", "gpt-6-sol-high")})
         self.assertTrue(all(c["id"] == f"{c['deal']}-{c['arm']}-r{c['replicate']}" for c in cells))
+
+    def test_plan_pins_candidate_instruction_and_added_filing(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            candidate = root / "candidate.md"
+            candidate.write_text("candidate instruction")
+            added = root / "zep"
+            added.mkdir()
+            (added / "filing.htm").write_text("synthetic filing")
+            with contextlib.redirect_stdout(io.StringIO()):
+                effort_sweep.plan(plan_args(root / "packet", deals="zep", arms=["opus:claude-opus-5-5:medium"],
+                                            replicates=1, filing_dir=[str(added)], instruction=str(candidate)))
+            sweep = json.loads((root / "packet/plan.json").read_text())
+            self.assertEqual(sweep["instruction"], {"path": str(candidate.resolve()), "sha256": run_model.sha256(candidate)})
+            self.assertEqual((sweep["cells"][0]["filing"], sweep["cells"][0]["filing_dir"]),
+                             ("filing.htm", str(added.resolve())))
 
     def test_plan_rejects_unknown_values_and_never_overwrites(self):
         with tempfile.TemporaryDirectory() as tmp:

@@ -1,0 +1,167 @@
+{
+  "mac-gray/A": {
+    "arm": "gpt-6-astra-high",
+    "deal": "mac-gray",
+    "effort": "high",
+    "filing": "mac-gray_2013-12-04_DEFM14A.htm",
+    "id": "mac-gray-gpt-6-astra-high-r1",
+    "model": "gpt-6-astra",
+    "provider": "sol",
+    "replicate": 1,
+    "timeout_minutes": 120
+  },
+  "mac-gray/B": {
+    "arm": "opus-5-5-medium",
+    "deal": "mac-gray",
+    "effort": "medium",
+    "filing": "mac-gray_2013-12-04_DEFM14A.htm",
+    "id": "mac-gray-opus-5-5-medium-r1",
+    "model": "claude-opus-5-5",
+    "provider": "opus",
+    "replicate": 1,
+    "timeout_minutes": 120
+  },
+  "mac-gray/C": {
+    "arm": "gpt-6-sol-xhigh",
+    "deal": "mac-gray",
+    "effort": "xhigh",
+    "filing": "mac-gray_2013-12-04_DEFM14A.htm",
+    "id": "mac-gray-gpt-6-sol-xhigh-r1",
+    "model": "gpt-6-sol",
+    "provider": "sol",
+    "replicate": 1,
+    "timeout_minutes": 120
+  },
+  "mac-gray/D": {
+    "arm": "gpt-6-astra-xhigh",
+    "deal": "mac-gray",
+    "effort": "xhigh",
+    "filing": "mac-gray_2013-12-04_DEFM14A.htm",
+    "id": "mac-gray-gpt-6-astra-xhigh-r1",
+    "model": "gpt-6-astra",
+    "provider": "sol",
+    "replicate": 1,
+    "timeout_minutes": 120
+  },
+  "mac-gray/E": {
+    "arm": "opus-5-5-xhigh",
+    "deal": "mac-gray",
+    "effort": "xhigh",
+    "filing": "mac-gray_2013-12-04_DEFM14A.htm",
+    "id": "mac-gray-opus-5-5-xhigh-r1",
+    "model": "claude-opus-5-5",
+    "provider": "opus",
+    "replicate": 1,
+    "timeout_minutes": 120
+  },
+  "providence-worcester/A": {
+    "arm": "gpt-6-sol-xhigh",
+    "deal": "providence-worcester",
+    "effort": "xhigh",
+    "filing": "providence-worcester_2016-09-20_DEFM14A.htm",
+    "id": "providence-worcester-gpt-6-sol-xhigh-r1",
+    "model": "gpt-6-sol",
+    "provider": "sol",
+    "replicate": 1,
+    "timeout_minutes": 120
+  },
+  "providence-worcester/B": {
+    "arm": "gpt-6-astra-high",
+    "deal": "providence-worcester",
+    "effort": "high",
+    "filing": "providence-worcester_2016-09-20_DEFM14A.htm",
+    "id": "providence-worcester-gpt-6-astra-high-r1",
+    "model": "gpt-6-astra",
+    "provider": "sol",
+    "replicate": 1,
+    "timeout_minutes": 120
+  },
+  "providence-worcester/C": {
+    "arm": "gpt-6-astra-xhigh",
+    "deal": "providence-worcester",
+    "effort": "xhigh",
+    "filing": "providence-worcester_2016-09-20_DEFM14A.htm",
+    "id": "providence-worcester-gpt-6-astra-xhigh-r1",
+    "model": "gpt-6-astra",
+    "provider": "sol",
+    "replicate": 1,
+    "timeout_minutes": 120
+  },
+  "providence-worcester/D": {
+    "arm": "opus-5-5-xhigh",
+    "deal": "providence-worcester",
+    "effort": "xhigh",
+    "filing": "providence-worcester_2016-09-20_DEFM14A.htm",
+    "id": "providence-worcester-opus-5-5-xhigh-r1",
+    "model": "claude-opus-5-5",
+    "provider": "opus",
+    "replicate": 1,
+    "timeout_minutes": 120
+  },
+  "providence-worcester/E": {
+    "arm": "opus-5-5-medium",
+    "deal": "providence-worcester",
+    "effort": "medium",
+    "filing": "providence-worcester_2016-09-20_DEFM14A.htm",
+    "id": "providence-worcester-opus-5-5-medium-r1",
+    "model": "claude-opus-5-5",
+    "provider": "opus",
+    "replicate": 1,
+    "timeout_minutes": 120
+  },
+  "stec/A": {
+    "arm": "opus-5-5-medium",
+    "deal": "stec",
+    "effort": "medium",
+    "filing": "stec_2013-08-08_DEFM14A.htm",
+    "id": "stec-opus-5-5-medium-r1",
+    "model": "claude-opus-5-5",
+    "provider": "opus",
+    "replicate": 1,
+    "timeout_minutes": 120
+  },
+  "stec/B": {
+    "arm": "gpt-6-astra-xhigh",
+    "deal": "stec",
+    "effort": "xhigh",
+    "filing": "stec_2013-08-08_DEFM14A.htm",
+    "id": "stec-gpt-6-astra-xhigh-r1",
+    "model": "gpt-6-astra",
+    "provider": "sol",
+    "replicate": 1,
+    "timeout_minutes": 120
+  },
+  "stec/C": {
+    "arm": "gpt-6-astra-high",
+    "deal": "stec",
+    "effort": "high",
+    "filing": "stec_2013-08-08_DEFM14A.htm",
+    "id": "stec-gpt-6-astra-high-r1",
+    "model": "gpt-6-astra",
+    "provider": "sol",
+    "replicate": 1,
+    "timeout_minutes": 120
+  },
+  "stec/D": {
+    "arm": "opus-5-5-xhigh",
+    "deal": "stec",
+    "effort": "xhigh",
+    "filing": "stec_2013-08-08_DEFM14A.htm",
+    "id": "stec-opus-5-5-xhigh-r1",
+    "model": "claude-opus-5-5",
+    "provider": "opus",
+    "replicate": 1,
+    "timeout_minutes": 120
+  },
+  "stec/E": {
+    "arm": "gpt-6-sol-xhigh",
+    "deal": "stec",
+    "effort": "xhigh",
+    "filing": "stec_2013-08-08_DEFM14A.htm",
+    "id": "stec-gpt-6-sol-xhigh-r1",
+    "model": "gpt-6-sol",
+    "provider": "sol",
+    "replicate": 1,
+    "timeout_minutes": 120
+  }
+}

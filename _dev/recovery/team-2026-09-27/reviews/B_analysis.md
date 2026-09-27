@@ -1,0 +1,11 @@
+1. **Major — invented finality rule changes comparison results.** [_dev/tools/compare_alex.py:267](/Users/austinli/Projects/sec-auction/_dev/tools/compare_alex.py:267) requires `Announced as final` for codes ending in `Ann`. The recorded contract says `Ann` selects announcement **events**; finality remains final versus non-final. Evidence: `/tmp/recov/all_calls_since_0924.jsonl:740`, contract §11, original line 192.
+
+   This incorrectly flags P&W’s Alex row 6045 against an `Inferred final` round. Conversely, `Final Round Inf Ann` incorrectly agrees with that finality. The reconstructed test at `test_compare_alex.py:129` enforces the error.
+
+   **Fix:** use `recorded_finality in derive.FINAL` for all final-round codes, retain the event distinctions, and correct both test cases. An in-memory correction restores the pilot’s **27 agreeing events**, matching the historical VM record at JSONL line 1130; current code gives 26. Update the report’s finality claim and its statement that no historical event-status reference exists.
+
+Verification: independently replayed the snapshots and subsequent edits. Both production tools and migration tests match exactly; analysis tests have only a Mac path-resolution adjustment and trailing-blank-line difference. All five analysis totals match the VM record, regenerated tables match the executor’s saved CSVs, and migration register/triage counts reproduce.
+
+The pytest rerun was **blocked by sandbox permissions**: all 55 tests fail during temporary-directory setup. File-writing CLI smokes were likewise unavailable; their computation paths were exercised read-only in memory.
+
+**Verdict: ACCEPT-WITH-FIXES**
