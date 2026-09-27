@@ -1,0 +1,62 @@
+#,uid,When,Who,Event,mark,mark_note,mark_actor,mark_at,threads
+1,11b18092b491f919973740fc,October 2012,"Gibson, Dunn & Crutcher LLP",Adviser,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+2,82a47d0fece9120a3e032532,11/14/2012,Company A,Bidder interest,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+3,9d8f8b33b637639c394089b5,after 11/14/2012,sTec,Other material event,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+4,c9187989b33a3d72e21d16c6,mid-November 2012,sTec,Target sale decision,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+5,5e73e1c111d2e81ce345a74f,11/16/2012,"Balch Hill Partners, L.P.",Activist,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+6,0c75908d1d5314eb62742e90,12/06/2012,"Balch Hill Partners, L.P.",Activist,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+7,00a327462413563d53bb8a4b,02/13/2013,sTec,Target sale decision,needs_decision,,austin,2026-09-23T21:46:20+00:00,0
+8,2377c82dc784152e4cfe54b4,02/13/2013,Company B,Bidder interest,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+9,7f10317dee96881e9c430093,03/13/2013,Company C,Bidder interest,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+10,3e23d04371696cfb8d3b0529,mid-March 2013,Company D,Bidder interest,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+11,9b198c1a08187c065196a751,03/26/2013,BofA Merrill Lynch,Adviser,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+12,d70d08347a40ad8b4e94a55f,03/26/2013,sTec,Target sale decision,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+13,a31c8608a1679e590a63a9f8,04/01/2013,sTec,Round opened,needs_decision,,austin,2026-09-23T21:46:20+00:00,0
+14,56de4e2739917c3d44b552b7,from 04/01/2013,"Technology companies contacted in BofA outreach (residual, incl. WDC)",Contact,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+15,67664c25837ad0c6fc000e9a,from 04/01/2013,Unnamed financial sponsor,Contact,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+16,42b0846daa88e947d3400486,04/04/2013,Company E,NDA signed,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+17,9c7ad0fae9dc75ef954d5763,04/10/2013,Company D,NDA signed,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+18,c7db290eac6f3016592b8efb,04/11/2013,Company F,NDA signed,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+19,02f10fa7016396ebb26cdb75,04/15/2013,Company C,Other material event,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+20,e0db1de01e3cd9ad3ff4b8a1,04/17/2013,Company G,NDA signed,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+21,f760833c28611fa6e501debe,04/17/2013,WDC,NDA signed,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+22,e4a66b112edcc603a0919596,04/23/2013,sTec,Deadline set,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+23,daa349b93528124b72c5077f,04/23/2013,Company D,Bid,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+24,bdfa07715f88f7cdfd12d98f,04/24/2013,Company F,Withdrew,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+25,f4b99b9499256c95fa9047d1,shortly after 04/24/2013,Company E,Dropped by target,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+26,db115e46b0c27e78900649ca,04/26/2013,sTec,Deadline set,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+27,28a64e836f77383a33e41cf1,05/01/2013,Company H,Bidder interest,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+28,b16f197835d54ab1d279c8c7,05/03/2013,WDC,Bid,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+29,a0cdbc579895afee275da55e,05/03/2013,Company G,Withdrew,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+30,38290d0da28eb887d1bb907b,05/03/2013,sTec,Deadline,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+31,2737738ad041c579316fd4de,05/08/2013,Company H,NDA signed,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+32,4426ef9375edb616745f8404,05/10/2013,Company H,Other material event,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+33,7dda881b628a6a2d4c74c10b,05/10/2013,WDC,Other material event,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+34,999cb9367c3f408116413e42,05/10/2013,Company D,Bid,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+35,a8ddeedb322ec5717291556d,05/10/2013,Company D,Exclusivity changed,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+36,014b564f999c1bd67656cd29,05/14/2013,Company D,Other material event,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+37,a78e9614503a39ddf851c02c,05/15/2013,Company H,Bid,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+38,3c6c1c0e0c8c20d3093e23b4,05/15/2013,Company D,Other material event,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+39,626f0be9d9489110fbd68ca6,after 05/16/2013,sTec,Round opened,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+40,56e96d423b60b4b87853f3e7,weeks of 05/13 and 05/20/2013,Latham & Watkins LLP,Adviser,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+41,c21bdeef33a5834f2255ecd0,"weeks of 05/13 and 05/20/2013, after 05/15",Company H,Other material event,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+42,da96cd3287d04f036b8f7a72,05/23/2013,Company H,Dropped by target,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+43,4866e3796711aca1c7e4ed08,05/28/2013,Shearman & Sterling LLP,Adviser,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+44,0e44959b47f4bcf77be273b6,05/28/2013,WDC,Bid,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+45,8eaf7f9684764bba4b9c3e3f,05/28/2013,sTec,Deadline,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+46,eb52ccb9bb3d728b428fa658,05/29/2013,sTec,Deadline revised,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+47,d06bc6075866fe815ceb9539,05/30/2013,sTec,Deadline,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+48,908f9ba6a840b37cde0832b6,05/30/2013,sTec,Other material event,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+49,3c0c5f02ca0ca3344145842b,05/31/2013,WDC,Withdrew,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+50,7b32ff08c6ce0184a486c4d3,05/31/2013,sTec,Round opened,needs_decision,,austin,2026-09-23T21:46:20+00:00,0
+51,11cc2f7891f00defc70cb263,06/05/2013,Company D,Withdrew,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+52,ae075fd73adb0a6556eb3ac1,06/10/2013,WDC,Re-entered,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+53,f2bccb14094b87de10736a29,06/10/2013,WDC,Bid,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+54,4be70415fdbc43ca90c166ec,06/11/2013,sTec,Other material event,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+55,1914c22f7434ec4225f35b82,06/14/2013,WDC,Bid,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+56,0204d11cb7a286eb5e8715f3,06/15/2013,sTec,Other material event,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+57,855cfae254dfc89c49928473,06/17/2013,Paul Hastings LLP,Adviser,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+58,fcaee76e6de6583046c676b7,06/18/2013,WDC,Other material event,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+59,8da24e383f9d202b01313e91,06/20/2013–06/23/2013,sTec,Other material event,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+60,222e47c2bee14a7cd7268e34,06/23/2013,WDC,Merger agreement signed,reviewed,,austin,2026-09-23T21:46:20+00:00,0
+61,b3a422a6184bd49f30289d61,06/24/2013,sTec and WDC,Merger announced,reviewed,,austin,2026-09-23T21:46:20+00:00,0

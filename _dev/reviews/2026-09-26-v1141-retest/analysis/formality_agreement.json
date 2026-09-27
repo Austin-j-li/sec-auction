@@ -1,0 +1,63 @@
+{
+ "note": "Review aid only (V114_SPEC \u00a79.5): never a target for the instruction, never shown to an extraction run.",
+ "derive_analysis": "0.3",
+ "contract": "0.2",
+ "deals": {
+  "mac-gray": {
+   "workbook": "_dev/cockpit/state/versions/mac-gray/opus55-medium-20260926-2019-1d1d60/mac-gray.xlsx",
+   "workbook_sha256": "1d1d60efb3e8e748b86f3c071767708a57f359aa605ab106d61fc0bdcd1c1cb0",
+   "alex_labelled_bids": 13,
+   "aligned": 13,
+   "readings": {
+    "T0": {
+     "agree": 13,
+     "compared": 13
+    },
+    "T1": {
+     "agree": 11,
+     "compared": 13
+    },
+    "T1u": {
+     "agree": 9,
+     "compared": 13
+    },
+    "T2": {
+     "agree": 12,
+     "compared": 13
+    },
+    "T3": {
+     "agree": 13,
+     "compared": 13
+    }
+   }
+  },
+  "providence-worcester": {
+   "workbook": "_dev/cockpit/state/versions/providence-worcester/opus55-medium-20260926-2019-366a73/providence-worcester.xlsx",
+   "workbook_sha256": "366a738f38ff1e90142f7cc042e0a8221577f838210e5f37954936d875cb3fb3",
+   "alex_labelled_bids": 14,
+   "aligned": 14,
+   "readings": {
+    "T0": {
+     "agree": 11,
+     "compared": 14
+    },
+    "T1": {
+     "agree": 12,
+     "compared": 14
+    },
+    "T1u": {
+     "agree": 12,
+     "compared": 14
+    },
+    "T2": {
+     "agree": 11,
+     "compared": 14
+    },
+    "T3": {
+     "agree": 12,
+     "compared": 14
+    }
+   }
+  }
+ }
+}

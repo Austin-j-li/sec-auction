@@ -1,5 +1,7 @@
 # Mac-Gray acceptance review — 22 September 2026
 
+> **Status, 26 September 2026:** R01 has since been decided by Austin (22 September); see [RESEARCH_DECISION.md](RESEARCH_DECISION.md) and the [packet entry point](../README.md). The candidate below does not apply it.
+
 **Source review and supported corrections are complete. Final research acceptance is pending one consequential convention decision, R01.** The candidate is not frozen or labelled research-ready. The user was asked whether material fee/guarantee changes should become separate same-price bids or remain dated terms in existing Notes; no answer has yet arrived.
 
 Current candidate: [extraction/mac-gray.xlsx](extraction/mac-gray.xlsx), SHA-256 `db85a39b00bb98702e73ad3e891cb4ab50202f2e032fcb3278ef0e6e45f351e1`.

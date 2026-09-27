@@ -7,7 +7,7 @@ Approved by Austin on 23 September 2026, including the §13 defaults. It builds 
 Austin and Alex each log in with their own identity and, without a terminal or an agent conversation, can:
 
 1. add a deal by searching the seed list or pasting an EDGAR link;
-2. start an extraction on their own Claude or ChatGPT subscription, choosing the engine, effort and instruction version (default: Claude Opus 5.5, medium, current default instruction);
+2. start an extraction on their own Claude or ChatGPT subscription, choosing the engine, effort and instruction version (default: Claude Opus 5.5, medium, current default instruction; Austin's 26 September evening decision, reversing that morning's GPT-6-Astra-high default);
 3. edit instructions as new versions, never altering a frozen one;
 4. review and edit the shared working copy, and see what the other person changed or said, without being flooded.
 
@@ -20,7 +20,7 @@ The research guarantees stay as they are: blind, isolated extraction; immutable 
 | Who may extract | Austin and Alex, each on their own initiative. |
 | Deal sources | Search `ref/seed.csv` by name, or paste any EDGAR filing or index link. |
 | Re-extraction of an edited deal | Adds a new read-only version. The working copy keeps its edits and base; changing its base is a separate, deliberate action. |
-| Engines | Claude Opus 5.5 (default, medium), Claude Fable 5.1, GPT-6-Sol and GPT-6-Astra, at every effort the runner allows. Claude engines use the starting user's Claude plan; GPT engines use the starting user's ChatGPT plan. |
+| Engines | Claude Opus 5.5 (default, medium; restored 26 September evening), Claude Fable 5.1, GPT-6-Sol and GPT-6-Astra (high by default when chosen), at every effort the runner allows. Claude engines use the starting user's Claude plan; GPT engines use the starting user's ChatGPT plan. |
 | Instructions | Editable in the app as new versions. Either user may publish a version and make it the default. Drafts may be run: the exact text is frozen under its hash and the version is labelled "draft instruction". |
 | Version labels | Every extraction version states its engine, effort, instruction, who ran it and when (§6.3). |
 | Trace | Recommended design in §8: threaded comments, a per-deal "since your last visit" digest, and last-changed-by on hover. No email, no live notifications. |
@@ -86,10 +86,10 @@ A **Settings → Accounts** page lists, per user: Claude (not connected / connec
 Opened from a deal's toolbar (**Extract**) or right after adding a deal.
 
 - **Engine**: Claude Opus 5.5 (default), Claude Fable 5.1 (marked *experimental*), GPT-6-Sol, GPT-6-Astra. Selecting Fable shows: "Fable's safety filter often blocks runs partway (6 of 11 test prompts); a blocked run fails and must be restarted."
-- **Effort**: `low`, `medium`, `high`, `xhigh`, `max`, restricted to what the engine supports; default `medium`. `ultra` is not offered because it delegates to subagents, which breaks isolation.
+- **Effort**: `low`, `medium`, `high`, `xhigh`, `max`, restricted to what the engine supports; default `high` for Astra and `medium` for other cockpit engines. `ultra` is not offered because it delegates to subagents, which breaks isolation.
 - **Instruction**: the default published version, preselected. The list shows published versions, then drafts, each marked.
 - **Time limit**: default 90 minutes (runner range 10–360).
-- A one-line summary before the button, for example: "Opus 5.5 · medium · v1.13.2 · on Alex's Claude plan · about 10–15 minutes."
+- A one-line summary before the button, for example: "Opus 5.5 · medium · v1.14.1 · on Alex's Claude plan · usually 10–15 minutes."
 
 ### 6.2 Job lifecycle
 

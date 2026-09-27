@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Mechanical validator for the lean deal-ledger workbook (instruction v1.13.2).
+"""Mechanical validator for the lean deal-ledger workbook (instruction v1.13.2, v1.14 or v1.14.1).
 
 This checker intentionally does not decide whether events, bidders, rounds, or
 classifications are substantively correct. In particular, it does not sum
@@ -7,9 +7,28 @@ classifications are substantively correct. In particular, it does not sum
 consistency, then tests each quoted passage as one contiguous normalized
 substring of the full filing parsed by BeautifulSoup.
 
+Rules. A ledger without a "Stock %" column is checked as v1.13.2. v1.14 and v1.14.1
+share the 29-column header, so the header alone cannot tell them apart: ``--rules``
+(or ``LeanChecker(rules=...)``) selects v1.14 or v1.14.1 for such a workbook, and
+without a selection it is checked as v1.14.1. Callers that know the instruction a
+workbook was made under map its SHA-256 through ``rules_for_instruction``.
+
+Mechanical readings used by the v1.14.1 rules, which the instruction states in words:
+
+- A cohort row is a row whose Count is above 1, or whose Who names a group (it starts
+  with a number, or names parties, bidders, signers and the like in the plural).
+- The process Question (Part F) is the first Question whose Question text begins
+  "Process:" or whose Rows affected cites a Process terminated or Process restarted row
+  by #. It does not count toward the five-Question cap; one is expected when the ledger
+  has more than one process. Rounds opened by trigger (d) or by inference also call for
+  it, but they cannot be recognised mechanically, so they are not checked.
+- Count is required on Process terminated, Process restarted and Bidding group changed
+  rows. A process marker that closes no open participation leaves Count blank, so a
+  blank Count on a process marker is a warning, not an error.
+
 Usage:
     python3 check_lean.py --workbook candidate.xlsx --filing filing.htm \
-        --output mechanical_report.json
+        --output mechanical_report.json [--rules v1.14|v1.14.1]
 
 Exit status is 0 when there are no errors, 1 when validation errors are found,
 and 2 when an input cannot be opened or the JSON report cannot be written.
@@ -34,12 +53,29 @@ from bs4 import BeautifulSoup
 from openpyxl.utils.cell import coordinate_to_tuple, range_boundaries
 
 
-CHECKER_VERSION = "1.5"
+CHECKER_VERSION = "1.8"
 CHECKER_REVISION = (
-    "Adds two cross-column checks: an exact-day When must equal Date from, Date to and "
-    "Sort date (E8), and an inferred exit carries Exit reason 'Not stated' (E14). "
-    "Deal facts must list all 17 v1.13.2 D5 fields in order, including Earlier approaches. "
-    "Checks instruction v1.13.2."
+    "Adds the v1.14.1 rules, selected by --rules or by the instruction's SHA-256 and the default "
+    "for a 29-column ledger: a Note over 40 words is an error; Inferred only on exit, Round opened "
+    "and Process restarted rows; Formality Unclear only on cohort rows; Antitrust Y needs Regulatory "
+    "Concern; Stock % takes no range (a stated range is Part stock); CVR/earnout and Antitrust are Y "
+    "or blank; Initiation is target-led, bidder-led or activist-influenced; the auction screen starts "
+    "Met or Not met with a number; Count is required on process markers and Bidding group changed; "
+    "no Round 0 row after round 1 opens; 'Same as #n' points to an earlier bid row of the same "
+    "bidder; Bid reaffirmed is Formal and a Same-offer row; a Heavy Note begins with its trigger; "
+    "Light needs Due diligence Complete or Incomplete; each Question is at most 60 words, and more "
+    "than five Questions besides the process Question is a warning; the mandatory map and "
+    "deadline-outcome Questions are gone. The v1.14 rules (checker 1.7) stay available with "
+    "--rules v1.14, unchanged. "
+    "Checker 1.7: "
+    "Applies the v1.14 ledger rules to a workbook whose ledger has a 'Stock %' header: Deadline "
+    "outcome takes the v1.14 values, and the replaced 'Late bids accepted' is a warning (E9); "
+    "Antitrust with an incompatible Regulatory value is an error; Other-scope bid rows leave "
+    "Price low, Price high and CVR/earnout value blank; the inferred-exit reason check no longer "
+    "applies; and four review warnings are added (an Exclusivity changed row repeating a same-day "
+    "bid's request, an Extended outcome with no new due date, an exit followed by activity with "
+    "no Re-entered, an Other-scope bid with no Note). Workbooks without that header are checked "
+    "as v1.13.2, unchanged."
 )
 
 SHEETS = ["Deal ledger", "Rounds", "Questions", "Deal facts"]
@@ -57,6 +93,39 @@ LEDGER_COLUMNS = [
     "All cash",
     "Formality",
     "Conditions",
+    "Count",
+    "Exit reason",
+    "Inferred",
+    "Note",
+    "Quote and page",
+    "Flag",
+    "Reviewer note",
+    "Sort date",
+    "Date from",
+    "Date to",
+]
+
+# v1.14: bid terms and conditions in their own columns (E12, E13).
+LEDGER_COLUMNS_V114 = [
+    "#",
+    "When",
+    "Who",
+    "Type",
+    "Event",
+    "Process",
+    "Round",
+    "Price low",
+    "Price high",
+    "Stock %",
+    "CVR/earnout",
+    "CVR/earnout value",
+    "Formality",
+    "Conditions",
+    "Due diligence",
+    "Financing",
+    "Regulatory",
+    "Antitrust",
+    "Exclusivity",
     "Count",
     "Exit reason",
     "Inferred",
@@ -189,6 +258,30 @@ NO_BIDDER_COUNT_EVENTS = {
 ALL_CASH = {"Yes", "No", "Not stated"}
 FORMALITY = {"Formal", "Informal", "Unclear"}
 CONDITIONS = {"None", "Light", "Heavy", "Unclear"}
+STOCK_CODES = {"Part stock", "Not stated", "Varies"}
+STOCK_RANGE_RE = re.compile(r"(\d+(?:\.\d+)?)\s*[-\u2013]\s*(\d+(?:\.\d+)?)")
+MARKER = {"Y", "Varies"}
+MARKER_V1141 = {"Y"}  # v1.14.1 D1 cols 11 and 18: Y or blank; a cohort split goes in the Note.
+DUE_DILIGENCE = {"Complete", "Incomplete", "Not begun", "Not stated", "Varies"}
+FINANCING = {"Not needed", "Committed", "Contingent", "Not stated", "Varies"}
+REGULATORY = {"No concern", "Concern", "Not stated", "Varies"}
+EXCLUSIVITY = {"Required", "Requested", "Not stated", "Varies"}
+CONDITION_COLUMNS = {
+    "Due diligence": DUE_DILIGENCE,
+    "Financing": FINANCING,
+    "Regulatory": REGULATORY,
+    "Exclusivity": EXCLUSIVITY,
+}
+TERM_COLUMNS_V114 = (
+    "Stock %",
+    "CVR/earnout",
+    "CVR/earnout value",
+    "Due diligence",
+    "Financing",
+    "Regulatory",
+    "Antitrust",
+    "Exclusivity",
+)
 EXIT_REASONS = {
     "Value below market price",
     "Value at or below market price",
@@ -201,6 +294,7 @@ EXIT_REASONS = {
     "Not stated",
 }
 FINALITY = {"Announced as final", "Inferred final", "Not final"}
+# v1.13.2; cockpit/workspace.py imports this name.
 DEADLINE_OUTCOMES = {
     "Enforced",
     "Extended",
@@ -215,6 +309,49 @@ INITIATION = {
     "mixed",
     "unclear",
 }
+INITIATION_V1141 = {"target-led", "bidder-led", "activist-influenced"}
+# v1.14 (E9): an overdue required response the target still considered is an extension.
+DEADLINE_OUTCOMES_V114 = {
+    "Enforced",
+    "Extended",
+    "Extended (late bid accepted)",
+    "Passed without action",
+    "Unclear",
+}
+NO_DEADLINE = "No deadline stated"
+LEGACY_DEADLINE_OUTCOME = "Late bids accepted"
+SCHEMA_V1132 = "v1.13.2"
+SCHEMA_V114 = "v1.14"
+SCHEMA_V1141 = "v1.14.1"
+# The rules a 29-column ("Stock %") ledger can be checked under; the first is the default.
+RULES_29_COLUMN = (SCHEMA_V1141, SCHEMA_V114)
+# Instruction SHA-256 -> rules, for callers that know which instruction made a workbook.
+# The 24 September v1.14 draft (the Mac-Gray and P&W pilots) keeps the v1.14 rules it was run under.
+RULES_BY_INSTRUCTION = {
+    "8a93df3cc6d989386958e9cb2d74ab34ebc0f07d281e8cc398605a388e066c98": SCHEMA_V1141,  # v1.14.1 as published
+    "8bdb7c205512c9bcf55ffa7623fba0a8bb4aabaed23c99845fa88b4a80cc8a79": SCHEMA_V1141,  # v1.14.1 candidate before the 26 Sep wording edits
+    "c2d47a479d09eb46d0ab9fbf887568fcf13e972e2e11acbf08d5cdfab468ab27": SCHEMA_V114,   # v1.14 candidate
+    "f9595d7413149f86c074f1d4b9ef96a5a24b3d8dd9b6c11061b0bd6e889aea97": SCHEMA_V114,   # 24 Sep v1.14 draft
+}
+# v1.14.1: Inferred = Y marks only these row events (Part B, D1 col 22).
+INFERRED_EVENTS_V1141 = EXIT_EVENTS | {"Round opened", "Process restarted"}
+PROCESS_MARKERS = {"Process terminated", "Process restarted"}
+COHORT_WHO_RE = re.compile(
+    r"^\s*\d+\b|\b(?:parties|bidders|signers|others|participants|buyers|sponsors|firms|companies|"
+    r"acquirers|investors|recipients|members|cohort|group)\b",
+    re.IGNORECASE,
+)
+SAME_AS_RE = re.compile(r"^\s*Same as #\s*(\d+)\b\.?\s*", re.IGNORECASE)
+HEAVY_TRIGGER_RE = re.compile(r"^H[123]:")
+COUNT_QUALIFIER_RE = re.compile(
+    r"\bCount:\s*(?:at least|more than|over|at most|up to|fewer than|less than|approximately|about|"
+    r"around|nearly|some|several)\b",
+    re.IGNORECASE,
+)
+COUNT_UNKNOWN_RE = re.compile(r"\bCount:\s*(?:unknown|not stated)\b", re.IGNORECASE)
+COUNT_RANGE_RE = re.compile(r"\bCount:\s*\d+\s*(?:[-\u2013\u2014]|to)\s*\d+", re.IGNORECASE)
+QUESTION_CAP = 5
+QUESTION_WORDS = 60
 
 DATE_COLUMNS = ("Sort date", "Date from", "Date to")
 PAGE_REF_RE = re.compile(
@@ -370,14 +507,101 @@ def parse_affected_rows(value: Any) -> tuple[set[int], bool]:
     return refs, True
 
 
+
+def is_process_question(question: Any, rows_affected: Any, marker_rows: set[int]) -> bool:
+    """Part F's process Question: its Question begins "Process:" or its Rows affected cites, by #, a
+    Process terminated or Process restarted row (marker_rows holds those rows' numbers)."""
+    text = normalize_contiguous(question).lower() if not is_blank(question) else ""
+    refs, _ = parse_affected_rows(rows_affected)
+    return text.startswith("process:") or bool(refs & marker_rows)
+
+
+def rules_for_instruction(sha256: str | None) -> str | None:
+    """The rules for a workbook made under the instruction with this SHA-256; None if unknown."""
+    return RULES_BY_INSTRUCTION.get((sha256 or "").strip().lower())
+
+
+def schema_for_header(header: Any, rules: str | None = None) -> str:
+    """The one schema detector. A ledger without 'Stock %' is v1.13.2. A 29-column ledger is
+    checked under the requested rules (v1.14 or v1.14.1), or v1.14.1 when none is requested."""
+    if "Stock %" not in list(header):
+        return SCHEMA_V1132
+    return rules if rules in RULES_29_COLUMN else RULES_29_COLUMN[0]
+
+
+def is_29_column(schema: str | None) -> bool:
+    return schema in RULES_29_COLUMN
+
+
+def ledger_schema(path: Path | str, rules: str | None = None) -> str | None:
+    """The workbook's schema from its Deal ledger header and the requested rules; None if it cannot be read."""
+    try:
+        wb = openpyxl.load_workbook(path, read_only=True)
+    except Exception:
+        return None
+    try:
+        if "Deal ledger" not in wb.sheetnames:
+            return None
+        header = next(wb["Deal ledger"].iter_rows(min_row=1, max_row=1, values_only=True), ())
+        return schema_for_header(header, rules)
+    finally:
+        wb.close()
+
+
+def deadline_outcomes(schema: str) -> set[str]:
+    return DEADLINE_OUTCOMES_V114 if is_29_column(schema) else DEADLINE_OUTCOMES
+
+
+def initiation_values(schema: str) -> set[str]:
+    return INITIATION_V1141 if schema == SCHEMA_V1141 else INITIATION
+
+
+def markers(schema: str) -> set[str]:
+    return MARKER_V1141 if schema == SCHEMA_V1141 else MARKER
+
+
+def fact_field_options(schema: str) -> list[set[str]]:
+    """Accepted spellings of each Deal facts field, in order. v1.14.1 prints Initiation bare."""
+    options = list(FACT_FIELD_OPTIONS)
+    if schema == SCHEMA_V1141:
+        options[8] = {"Initiation"}
+    return options
+
+
+def is_cohort(record: dict[str, Any]) -> bool:
+    """A row standing for several bidders: Count above 1, or a Who naming a group."""
+    count = as_integer(record.get("Count"))
+    who = normalize_contiguous(record.get("Who")) if not is_blank(record.get("Who")) else ""
+    return (count is not None and count > 1) or bool(COHORT_WHO_RE.search(who))
+
+
+def choice_lists(schema: str) -> dict[str, list[str]]:
+    """The editor's value lists for one ledger schema."""
+    lists = {
+        "Type": sorted(TYPES), "Event": sorted(EVENTS), "Formality": sorted(FORMALITY),
+        "Conditions": sorted(CONDITIONS), "Exit reason": sorted(EXIT_REASONS), "Finality": sorted(FINALITY),
+        "Deadline outcome": sorted(deadline_outcomes(schema) | {NO_DEADLINE}), "Initiation": sorted(initiation_values(schema)),
+    }
+    if is_29_column(schema):
+        lists.update({"CVR/earnout": sorted(markers(schema)), "Antitrust": sorted(markers(schema)),
+                      **{field: sorted(allowed) for field, allowed in CONDITION_COLUMNS.items()}})
+    else:
+        lists["All cash"] = sorted(ALL_CASH)
+    return lists
+
+
 class LeanChecker:
-    def __init__(self, workbook_path: Path, filing_path: Path) -> None:
+    def __init__(self, workbook_path: Path, filing_path: Path, rules: str | None = None) -> None:
+        if rules is not None and rules not in RULES_29_COLUMN:
+            raise ValueError(f"rules must be one of {', '.join(RULES_29_COLUMN)}; found {rules!r}")
         self.workbook_path = workbook_path
         self.filing_path = filing_path
+        self.rules = rules
         self.issues: list[dict[str, Any]] = []
         self.fatal = False
         self.wb: Any = None
         self.filing_texts: tuple[str, ...] = ()
+        self.ledger_schema = "v1.13.2"
 
     def add(
         self,
@@ -522,10 +746,241 @@ class LeanChecker:
                 row=ws[unwrapped[0]].row,
             )
 
+    def check_bid_terms(self, ws: Any, excel_row: int, record: dict[str, Any]) -> None:
+        """v1.14 and v1.14.1 consideration and condition columns on one bid row (E12, E13)."""
+
+        v1141 = self.ledger_schema == SCHEMA_V1141
+
+        def issue(severity: str, code: str, message: str, column: str) -> None:
+            self.add(severity, code, message, sheet=ws.title, row=excel_row, column=column)
+
+        stock = record["Stock %"]
+        stock_ok = False
+        reported = False
+        if isinstance(stock, bool) or is_blank(stock):
+            pass
+        elif isinstance(stock, (int, float)):
+            stock_ok = math.isfinite(float(stock)) and 0 <= float(stock) <= 100
+        elif isinstance(stock, str):
+            text = stock.strip()
+            match = STOCK_RANGE_RE.fullmatch(text)
+            if text in STOCK_CODES:
+                stock_ok = True
+            elif match and v1141:
+                issue("error", "controlled.stock_pct", f"Stock % {stock!r} is a range; a stated range is Part stock, "
+                      "with the range in the Note (E13).", "Stock %")
+                reported = True
+            elif match:
+                low, high = float(match.group(1)), float(match.group(2))
+                stock_ok = 0 <= low < high <= 100
+            else:
+                try:
+                    float(text)
+                except ValueError:
+                    pass
+                else:
+                    issue("error", "controlled.stock_pct", f"Stock % {stock!r} is text; store a single figure as a number.", "Stock %")
+                    reported = True
+        if not stock_ok and not reported:
+            issue(
+                "error",
+                "controlled.stock_pct",
+                ("Stock % must be a number from 0 to 100, or Part stock, Not stated or Varies (E13); "
+                 if v1141 else
+                 "Stock % must be a number from 0 to 100, a stated range such as '40-60', "
+                 "or Part stock, Not stated or Varies; ") + f"found {stock!r}.",
+                "Stock %",
+            )
+
+        allowed_markers = markers(self.ledger_schema)
+        for marker in ("CVR/earnout", "Antitrust"):
+            if not is_blank(record[marker]) and record[marker] not in allowed_markers:
+                code = "controlled." + marker.lower().replace("/", "_")
+                shown = "Y or blank; a cohort's split goes in the Note (D1)" if v1141 else "Y, Varies or blank"
+                issue("error", code, f"{marker} must be {shown}; found {record[marker]!r}.", marker)
+
+        cvr_value = record["CVR/earnout value"]
+        if not is_blank(cvr_value):
+            if isinstance(cvr_value, bool) or not isinstance(cvr_value, (int, float)) or not math.isfinite(float(cvr_value)) or float(cvr_value) <= 0:
+                issue("error", "bid.cvr_value_type", f"CVR/earnout value must be a positive number or blank; found {cvr_value!r}.", "CVR/earnout value")
+            if record["CVR/earnout"] != "Y":
+                issue("error", "bid.cvr_value_marker", "CVR/earnout value is filled, so CVR/earnout must be Y.", "CVR/earnout value")
+
+        if record["Event"] == "Other-scope bid":
+            for column in ("Price low", "Price high", "CVR/earnout value"):
+                if not is_blank(record[column]):
+                    issue(
+                        "error",
+                        "bid.other_scope_per_share",
+                        f"{column} must be blank on Other-scope bid rows; give the amount, units and scope in the Note (D2).",
+                        column,
+                    )
+            if is_blank(record["Note"]):
+                issue("warning", "bid.other_scope_note", "Other-scope bid row has no Note; give the amount, units and scope there (D1).", "Note")
+
+        if v1141 and record["Antitrust"] == "Y" and record["Regulatory"] != "Concern":
+            issue(
+                "error",
+                "conditions.antitrust_regulatory",
+                f"Antitrust is Y but Regulatory is {record['Regulatory']!r}; Antitrust Y needs Regulatory Concern (E12).",
+                "Antitrust",
+            )
+        elif not v1141 and record["Antitrust"] in MARKER and record["Regulatory"] not in {"No concern", "Concern", "Varies"}:
+            issue(
+                "error",
+                "conditions.antitrust_regulatory",
+                f"Antitrust is {record['Antitrust']!r} but Regulatory is {record['Regulatory']!r}; "
+                "Antitrust qualifies a Regulatory value of No concern, Concern or Varies (E12).",
+                "Antitrust",
+            )
+
+        if as_integer(record["Count"]) == 1:
+            for column in TERM_COLUMNS_V114:
+                if record[column] == "Varies":
+                    issue("error", "bid.varies_single", f"{column} is Varies on a row for one bidder; Varies is for cohort rows whose members differ or for which the filing reports the term for only some members (E12).", column)
+
+        level = record["Conditions"]
+        diligence, financing, regulatory = record["Due diligence"], record["Financing"], record["Regulatory"]
+        if financing == "Contingent" and level in CONDITIONS and level != "Heavy":
+            issue("error", "conditions.financing_heavy", f"Financing is Contingent, so Conditions must be Heavy (E12, H1); found {level!r}.", "Conditions")
+        if level == "None" and (diligence != "Complete" or financing not in {"Committed", "Not needed"} or regulatory == "Concern"):
+            issue(
+                "error",
+                "conditions.none_support",
+                "Conditions None needs Due diligence Complete, Financing Committed or Not needed, and no "
+                f"regulatory Concern (E12); found {diligence!r}, {financing!r}, {regulatory!r}.",
+                "Conditions",
+            )
+        if v1141:
+            if level == "Light" and diligence not in {"Complete", "Incomplete"}:
+                # A warning: E12's "only documentation remains" route can be read with diligence Not stated.
+                issue(
+                    "warning",
+                    "conditions.light_support",
+                    f"Conditions Light needs Due diligence Complete or Incomplete (E12); found {diligence!r}.",
+                    "Conditions",
+                )
+            if record["Formality"] == "Unclear" and not is_cohort(record):
+                issue(
+                    "error",
+                    "bid.formality_unclear",
+                    "Formality Unclear is only for a cohort row whose members differ (D1); code Formal or Informal (E11).",
+                    "Formality",
+                )
+            note = normalize_contiguous(record["Note"]) if not is_blank(record["Note"]) else ""
+            after_same = SAME_AS_RE.sub("", note, count=1)
+            if level == "Heavy" and not HEAVY_TRIGGER_RE.match(after_same):
+                issue(
+                    "warning",
+                    "conditions.heavy_trigger",
+                    "A Heavy row's Note begins with its trigger, 'H1:', 'H2:' or 'H3:', after any 'Same as #n. ' (E12, D1).",
+                    "Note",
+                )
+            if record["Event"] == "Bid reaffirmed":
+                if record["Formality"] != "Formal":
+                    issue("error", "bid.reaffirmed_formal", f"Bid reaffirmed is Formal (E11 route 3); found {record['Formality']!r}.", "Formality")
+                if not SAME_AS_RE.match(note):
+                    issue("error", "bid.reaffirmed_same_as", "Bid reaffirmed is a Same-offer row; its Note begins 'Same as #n' (E10).", "Note")
+        elif level in {"None", "Light", "Heavy"} and diligence == financing == regulatory == "Not stated":
+            issue(
+                "warning",
+                "conditions.level_unsupported",
+                f"Due diligence, Financing and Regulatory are all Not stated, but Conditions is {level!r}; "
+                "the Note must name the condition that supports the level (E12).",
+                "Conditions",
+            )
+
+    def check_v114_sequences(self, ws: Any, rows: list[tuple[int, dict[str, Any]]]) -> None:
+        """v1.14 review warnings that compare ledger rows (E10, E14)."""
+
+        def who(record: dict[str, Any]) -> str:
+            return normalize_contiguous(record["Who"]) if not is_blank(record["Who"]) else ""
+
+        requests: dict[tuple[str, dt.date], Any] = {}
+        for _, record in rows:
+            sort_date = as_date(record["Sort date"])
+            if record["Event"] in BID_EVENTS and record["Exclusivity"] in {"Requested", "Required"} and sort_date and who(record):
+                requests.setdefault((who(record), sort_date), record["#"])
+        for excel_row, record in rows:
+            if record["Event"] != "Exclusivity changed":
+                continue
+            bid_number = requests.get((who(record), as_date(record["Sort date"])))
+            if bid_number is not None:
+                self.add(
+                    "warning",
+                    "ledger.exclusivity_duplicate",
+                    f"Exclusivity changed has the same Who and Sort date as bid row #{bid_number}, which codes an "
+                    "exclusivity request; if this row repeats the bid's own request, remove it (E10); a grant, "
+                    "execution or extension is its own event.",
+                    sheet=ws.title,
+                    row=excel_row,
+                    column="Event",
+                )
+
+        exited: dict[tuple[Any, str], Any] = {}
+        for excel_row, record in rows:
+            key = (as_integer(record["Process"]), who(record))
+            event = record["Event"]
+            if not key[1]:
+                continue
+            if event in EXIT_EVENTS:
+                exited[key] = record["#"]
+            elif event == "Re-entered":
+                exited.pop(key, None)
+            elif event in {"Bid", "Bid reaffirmed", "NDA signed", "Bidding group changed"} and key in exited:
+                self.add(
+                    "warning",
+                    "exit.activity_without_reentry",
+                    f"{record['Who']} left at #{exited.pop(key)}, and this {event} row follows in the same process "
+                    "with no Re-entered between them; add Re-entered if the bidder came back, or review the exit (E14).",
+                    sheet=ws.title,
+                    row=excel_row,
+                    column="Event",
+                )
+
+    def check_v1141_sequences(self, ws: Any, rows: list[tuple[int, dict[str, Any]]]) -> None:
+        """v1.14.1 checks that compare ledger rows: 'Same as #n' (E10) and Round 0 (E6)."""
+
+        def who(record: dict[str, Any]) -> str:
+            return normalize_contiguous(record["Who"]).casefold() if not is_blank(record["Who"]) else ""
+
+        by_number = {as_integer(record["#"]): record for _, record in rows if as_integer(record["#"]) is not None}
+        for excel_row, record in rows:
+            match = SAME_AS_RE.match(normalize_contiguous(record["Note"])) if not is_blank(record["Note"]) else None
+            if not match:
+                continue
+            target, number = by_number.get(int(match.group(1))), as_integer(record["#"])
+            problem = None
+            if record["Event"] not in BID_EVENTS:
+                problem = "only a bid row is a Same-offer row"
+            elif target is None or number is None or int(match.group(1)) >= number:
+                problem = f"#{match.group(1)} is not an earlier row"
+            elif target["Event"] not in BID_EVENTS:
+                problem = f"#{match.group(1)} is a {target['Event']!r} row, not a bid row"
+            elif who(target) != who(record):
+                problem = f"#{match.group(1)} is {target['Who']!r}'s row, not this bidder's"
+            if problem:
+                self.add("error", "ledger.same_as", f"'Same as #{match.group(1)}' must point to an earlier bid row with the "
+                         f"same Who (E10); {problem}.", sheet=ws.title, row=excel_row, column="Note")
+
+        opened: set[int] = set()
+        for excel_row, record in rows:
+            process = as_integer(record["Process"])
+            if record["Event"] == "Round opened" and as_integer(record["Round"]) == 1 and record["Round"] != "post":
+                opened.add(process)
+            elif process in opened and as_integer(record["Round"]) == 0 and record["Round"] != "post":
+                self.add("error", "round.zero_after_opening", f"Round 0 is only for rows before round 1 of Process {process} "
+                         "opens (D1, E6); this row follows its Round opened row.", sheet=ws.title, row=excel_row, column="Round")
+
     def check_ledger(self) -> dict[str, Any]:
         ws = self.wb["Deal ledger"]
-        schema_ok = self.check_schema(ws, LEDGER_COLUMNS)
-        self.check_presentation(ws, len(LEDGER_COLUMNS))
+        header = [ws.cell(1, col).value for col in range(1, ws.max_column + 1)]
+        self.ledger_schema = schema_for_header(header, self.rules)
+        v114 = is_29_column(self.ledger_schema)
+        v1141 = self.ledger_schema == SCHEMA_V1141
+        ledger_columns = LEDGER_COLUMNS_V114 if v114 else LEDGER_COLUMNS
+        schema_ok = self.check_schema(ws, ledger_columns)
+        self.check_presentation(ws, len(ledger_columns))
         if not schema_ok:
             return {
                 "rows": [],
@@ -533,17 +988,19 @@ class LeanChecker:
                 "rounds": defaultdict(list),
                 "round_openings": defaultdict(list),
                 "deadlines": Counter(),
+                "deadline_rows": defaultdict(list),
                 "flags": {},
                 "processes": set(),
             }
 
-        columns = {name: index + 1 for index, name in enumerate(LEDGER_COLUMNS)}
-        rows = nonempty_rows(ws, len(LEDGER_COLUMNS))
+        columns = {name: index + 1 for index, name in enumerate(ledger_columns)}
+        rows = nonempty_rows(ws, len(ledger_columns))
         records: list[dict[str, Any]] = []
         by_number: dict[int, int] = {}
         round_rows: dict[tuple[int, int], list[int]] = defaultdict(list)
         round_openings: dict[tuple[int, int], list[tuple[int, dt.date | None]]] = defaultdict(list)
         deadline_counts: Counter[tuple[int, int]] = Counter()
+        deadline_rows: dict[tuple[int, int], list[tuple[str, dt.date | None]]] = defaultdict(list)
         flags: dict[int, set[str]] = {}
         processes: set[int] = set()
         previous_sort: tuple[dt.date, int] | None = None
@@ -552,7 +1009,7 @@ class LeanChecker:
             return ws.cell(row, columns[column]).value
 
         for ordinal, excel_row in enumerate(rows, start=1):
-            record = {name: value(excel_row, name) for name in LEDGER_COLUMNS}
+            record = {name: value(excel_row, name) for name in ledger_columns}
             records.append(record)
             row_number = as_integer(record["#"])
             if row_number != ordinal:
@@ -642,6 +1099,8 @@ class LeanChecker:
                     round_openings[key].append((excel_row, as_date(record["Sort date"])))
                 if event == "Deadline":
                     deadline_counts[key] += 1
+                if event in {"Deadline", "Deadline set", "Deadline revised"}:
+                    deadline_rows[key].append((event, as_date(record["Sort date"])))
             elif event == "Round opened":
                 self.add(
                     "error",
@@ -671,7 +1130,41 @@ class LeanChecker:
                     row=excel_row,
                     column="Count",
                 )
-            if event in BID_EVENTS | {"Re-entered"} and is_blank(count):
+            if v1141 and event in PROCESS_MARKERS and is_blank(count):
+                self.add(
+                    "warning",
+                    "ledger.count_marker",
+                    f"Count is blank on a {event} row; it holds the number of open participations the marker "
+                    "closes, and stays blank only when it closes none (E5).",
+                    sheet=ws.title,
+                    row=excel_row,
+                    column="Count",
+                )
+            if v1141 and event in BID_EVENTS | {"Re-entered", "Bidding group changed"} and is_blank(count):
+                count_note = normalize_contiguous(record["Note"])
+                if COUNT_QUALIFIER_RE.search(count_note):
+                    pass  # a qualified figure keeps its qualifier, with Count blank (E3)
+                elif COUNT_RANGE_RE.search(count_note) or COUNT_UNKNOWN_RE.search(count_note):
+                    self.add(
+                        "warning",
+                        "ledger.count_range",
+                        "Count is blank and the Note gives a range or an unknown population; keep the filing's own "
+                        "figure or qualifier ('Count: more than ten') and create no range (B, E3).",
+                        sheet=ws.title,
+                        row=excel_row,
+                        column="Count",
+                    )
+                else:
+                    self.add(
+                        "error",
+                        "ledger.count_bidder",
+                        f"Count is required on {event} rows unless the filing's figure is qualified, with the Note "
+                        "beginning 'Count: more than ten' (E3, E4).",
+                        sheet=ws.title,
+                        row=excel_row,
+                        column="Count",
+                    )
+            elif event in BID_EVENTS | {"Re-entered"} and is_blank(count):
                 count_note = normalize_contiguous(record["Note"])
                 documented_count = re.search(
                     r"\bCount:\s*(?:at least\b|more than\b|at most\b|fewer than\b|"
@@ -722,11 +1215,9 @@ class LeanChecker:
                     column="Price low",
                 )
             if event in BID_EVENTS:
-                for field, allowed in (
-                    ("All cash", ALL_CASH),
-                    ("Formality", FORMALITY),
-                    ("Conditions", CONDITIONS),
-                ):
+                controlled = [("Formality", FORMALITY), ("Conditions", CONDITIONS)]
+                controlled = [*controlled, *CONDITION_COLUMNS.items()] if v114 else [("All cash", ALL_CASH), *controlled]
+                for field, allowed in controlled:
                     field_value = record[field]
                     if field_value not in allowed:
                         self.add(
@@ -737,6 +1228,8 @@ class LeanChecker:
                             row=excel_row,
                             column=field,
                         )
+                if v114:
+                    self.check_bid_terms(ws, excel_row, record)
                 if is_blank(low) != is_blank(high):
                     note = normalize_contiguous(record["Note"]).lower()
                     markers = ("at least", "no more than", "floor", "ceiling", "\u2265", "\u2264")
@@ -750,7 +1243,9 @@ class LeanChecker:
                             column="Note",
                         )
             else:
-                for field in ("Price low", "Price high", "All cash", "Formality", "Conditions"):
+                bid_fields = ("Price low", "Price high", "Formality", "Conditions")
+                bid_fields += TERM_COLUMNS_V114 if v114 else ("All cash",)
+                for field in bid_fields:
                     if not is_blank(record[field]):
                         self.add(
                             "error",
@@ -772,7 +1267,9 @@ class LeanChecker:
                         row=excel_row,
                         column="Exit reason",
                     )
-                elif record["Inferred"] == "Y" and exit_reason != "Not stated":
+                elif not v114 and record["Inferred"] == "Y" and exit_reason != "Not stated":
+                    # From v1.14 an inferred exit carries the reason the filing later reports
+                    # for that bidder (v1.14.1 E14), so the check applies to v1.13.2 only.
                     self.add(
                         "warning",
                         "exit.inferred_reason",
@@ -801,11 +1298,34 @@ class LeanChecker:
                     row=excel_row,
                     column="Inferred",
                 )
-            if inferred == "Y" and is_blank(record["Note"]):
+            if v1141:
+                if inferred == "Y" and event not in INFERRED_EVENTS_V1141:
+                    self.add(
+                        "error",
+                        "ledger.inferred_event",
+                        f"Inferred = Y marks only an inferred exit, Round opened or Process restarted row (B); "
+                        f"this is a {event!r} row. Coding a column is never an inference.",
+                        sheet=ws.title,
+                        row=excel_row,
+                        column="Inferred",
+                    )
+                needs_note = event == "Process restarted" or (event == "Did not submit" and is_cohort(record))
+                if inferred == "Y" and needs_note and is_blank(record["Note"]):
+                    self.add(
+                        "warning",
+                        "ledger.inference_note",
+                        "An inferred Process restarted row gives the last reported acquirer contact in its Note (E5), and "
+                        "an inferred cohort Did not submit row gives its Count arithmetic (E3).",
+                        sheet=ws.title,
+                        row=excel_row,
+                        column="Note",
+                    )
+            elif inferred == "Y" and is_blank(record["Note"]):
                 self.add(
                     "error",
                     "ledger.inference_note",
-                    "An inferred row needs a Note explaining how the inference is known.",
+                    "An inferred row needs a Note explaining how the inference is known"
+                    + (", or naming the inferred field." if v114 else "."),
                     sheet=ws.title,
                     row=excel_row,
                     column="Note",
@@ -813,8 +1333,10 @@ class LeanChecker:
 
             if word_count(record["Note"]) > 40:
                 self.add(
-                    "warning",
+                    "error" if v1141 else "warning",
                     "ledger.note_length",
+                    f"Note has {word_count(record['Note'])} words; the limit is 40 (D1)."
+                    if v1141 else
                     f"Note has {word_count(record['Note'])} words; aim for 40. "
                     "Retain the excess only for required facts that cannot be shortened.",
                     sheet=ws.title,
@@ -991,6 +1513,11 @@ class LeanChecker:
             if sort_date:
                 previous_sort = (sort_date, excel_row)
 
+        if v114:
+            self.check_v114_sequences(ws, list(zip(rows, records)))
+        if v1141:
+            self.check_v1141_sequences(ws, list(zip(rows, records)))
+
         expected_processes = list(range(1, max(processes) + 1)) if processes else []
         if sorted(processes) != expected_processes:
             self.add(
@@ -1031,10 +1558,12 @@ class LeanChecker:
 
         return {
             "rows": rows,
+            "records": records,
             "by_number": by_number,
             "rounds": round_rows,
             "round_openings": round_openings,
             "deadlines": deadline_counts,
+            "deadline_rows": deadline_rows,
             "flags": flags,
             "processes": processes,
         }
@@ -1049,6 +1578,12 @@ class LeanChecker:
         rows = nonempty_rows(ws, len(ROUND_COLUMNS))
         keys: list[tuple[int, int]] = []
         opened: dict[tuple[int, int], tuple[int, dt.date | None]] = {}
+        v1141 = self.ledger_schema == SCHEMA_V1141
+
+        def none_stated(text: str) -> bool:
+            # v1.14.1 compares by prefix, so "none stated (…)" still reads as no due date.
+            return text.lower().startswith("none stated") if v1141 else text.lower() == "none stated"
+
         for excel_row in rows:
             values = {name: ws.cell(excel_row, col + 1).value for col, name in enumerate(ROUND_COLUMNS)}
             process, round_number = as_integer(values["Process"]), as_integer(values["Round"])
@@ -1126,7 +1661,7 @@ class LeanChecker:
             )
             deadline_count = ledger["deadlines"].get(key, 0)
             if outcome == "No deadline stated":
-                if due_dates.lower() != "none stated":
+                if not none_stated(due_dates):
                     self.add(
                         "error",
                         "rounds.no_deadline_pair",
@@ -1146,7 +1681,19 @@ class LeanChecker:
                     )
             elif outcome:
                 outcomes = [part.strip() for part in outcome.split(";")]
-                bad = [part for part in outcomes if part not in DEADLINE_OUTCOMES]
+                v114 = is_29_column(self.ledger_schema)
+                # A v1.14 workbook may still carry the replaced value; it counts as an outcome.
+                allowed = deadline_outcomes(self.ledger_schema) | ({LEGACY_DEADLINE_OUTCOME} if self.ledger_schema == SCHEMA_V114 else set())
+                bad = [part for part in outcomes if part not in allowed]
+                if self.ledger_schema == SCHEMA_V114 and LEGACY_DEADLINE_OUTCOME in outcomes:
+                    self.add(
+                        "warning",
+                        "rounds.deadline_outcome_legacy",
+                        f"'{LEGACY_DEADLINE_OUTCOME}' is replaced in v1.14 by the wider 'Extended (late bid accepted)' (E9).",
+                        sheet=ws.title,
+                        row=excel_row,
+                        column="Deadline outcome",
+                    )
                 if bad:
                     self.add(
                         "error",
@@ -1165,6 +1712,23 @@ class LeanChecker:
                         row=excel_row,
                         column="Deadline outcome",
                     )
+                elif v114:
+                    # Outcomes follow the round's Deadline rows in ledger order.
+                    round_rows = ledger["deadline_rows"].get(key, [])
+                    reached = [day for event, day in round_rows if event == "Deadline"]
+                    new_dates = [day for event, day in round_rows if event != "Deadline" and day]
+                    for position, (part, day) in enumerate(zip(outcomes, reached, strict=True), start=1):
+                        if part == "Extended" and day and not any(new_day >= day for new_day in new_dates):
+                            self.add(
+                                "warning",
+                                "rounds.extended_without_new_date",
+                                f"Outcome {position} is Extended, but the ledger has no Deadline set or Deadline revised "
+                                f"row in this round on or after that deadline ({day:%m/%d/%Y}); record the new due date "
+                                "or review the outcome (E9).",
+                                sheet=ws.title,
+                                row=excel_row,
+                                column="Deadline outcome",
+                            )
             elif deadline_count:
                 self.add(
                     "error",
@@ -1174,7 +1738,7 @@ class LeanChecker:
                     row=excel_row,
                     column="Deadline outcome",
                 )
-            elif due_dates.lower() == "none stated":
+            elif none_stated(due_dates):
                 self.add(
                     "error",
                     "rounds.no_deadline_pair",
@@ -1236,6 +1800,12 @@ class LeanChecker:
         q_rows: dict[str, int] = {}
         affected_by_q: dict[str, tuple[set[int], bool]] = {}
         question_texts: list[str] = []
+        v1141 = self.ledger_schema == SCHEMA_V1141
+        marker_rows = {
+            as_integer(record["#"]) for record in ledger.get("records", [])
+            if record.get("Event") in PROCESS_MARKERS and as_integer(record.get("#")) is not None
+        }
+        process_question: int | None = None
         for ordinal, excel_row in enumerate(rows, start=1):
             values = {name: ws.cell(excel_row, col + 1).value for col, name in enumerate(QUESTION_COLUMNS)}
             qid = str(values["Q"]).strip() if not is_blank(values["Q"]) else ""
@@ -1316,7 +1886,18 @@ class LeanChecker:
             text = normalize_contiguous(values["Question"]).lower()
             question_texts.append(text)
             total_words = sum(word_count(values[field]) for field in QUESTION_COLUMNS[1:-1])
-            if total_words > 90:
+            if v1141:
+                if process_question is None and is_process_question(values["Question"], values["Rows affected"], marker_rows):
+                    process_question = excel_row
+                if total_words > QUESTION_WORDS:
+                    self.add(
+                        "warning",
+                        "questions.length",
+                        f"Question entry has {total_words} words across its fields; the limit is {QUESTION_WORDS} (D4).",
+                        sheet=ws.title,
+                        row=excel_row,
+                    )
+            elif total_words > 90:
                 self.add(
                     "warning",
                     "questions.length",
@@ -1349,6 +1930,24 @@ class LeanChecker:
                         column="Flag",
                     )
 
+        if v1141:
+            counted = len(rows) - (process_question is not None)
+            if counted > QUESTION_CAP:
+                self.add(
+                    "warning",
+                    "questions.count",
+                    f"{counted} Questions besides the process Question; raise at most {QUESTION_CAP} (F).",
+                    sheet=ws.title,
+                )
+            if len(ledger["processes"]) > 1 and process_question is None:
+                self.add(
+                    "warning",
+                    "questions.process_missing",
+                    "The ledger has more than one process, but no Question is recognisably the process Question "
+                    "(its Question begins 'Process:' or its Rows affected cites a Process terminated or restarted row) (F).",
+                    sheet=ws.title,
+                )
+            return
         if not any("process" in text and "round" in text for text in question_texts):
             self.add(
                 "warning",
@@ -1374,9 +1973,11 @@ class LeanChecker:
             return
 
         rows = nonempty_rows(ws, len(FACT_COLUMNS))
+        v1141 = self.ledger_schema == SCHEMA_V1141
+        field_options = fact_field_options(self.ledger_schema)
         actual_fields = [ws.cell(row, 1).value for row in rows]
-        fields_match = len(actual_fields) == len(FACT_FIELD_OPTIONS) and all(
-            actual in allowed for actual, allowed in zip(actual_fields, FACT_FIELD_OPTIONS, strict=True)
+        fields_match = len(actual_fields) == len(field_options) and all(
+            actual in allowed for actual, allowed in zip(actual_fields, field_options, strict=True)
         )
         if not fields_match:
             self.add(
@@ -1415,7 +2016,7 @@ class LeanChecker:
             )
         initiation_field = next((field for field in INITIATION_FIELDS if field in values), None)
         initiation = values.get(initiation_field) if initiation_field else None
-        if not is_blank(initiation) and not starts_with_canonical(initiation, INITIATION):
+        if not is_blank(initiation) and not starts_with_canonical(initiation, initiation_values(self.ledger_schema)):
             self.add(
                 "error",
                 "controlled.initiation",
@@ -1438,7 +2039,18 @@ class LeanChecker:
             )
         auction_field = next((field for field in AUCTION_SCREEN_FIELDS if field in values), None)
         auction = normalize_contiguous(values.get(auction_field)) if auction_field else ""
-        if auction and (
+        if v1141 and auction and (re.match(r"^(Met|Not met)(?:\b|:)", auction) is None or re.search(r"\b\d+\b", auction) is None
+                                  or re.search(r"\b(?:Uncertain|count unknown)\b", auction, re.IGNORECASE)):
+            self.add(
+                "error",
+                "facts.auction_screen",
+                "Auction screen entries start with Met or Not met and give the number of parties (E1), "
+                "for example 'Met (process 1): 3 parties'.",
+                sheet=ws.title,
+                row=self._fact_row(rows, ws, auction_field),
+                column="Value",
+            )
+        elif not v1141 and auction and (
             re.match(r"^(Met|Not met|Uncertain)(?:\b|:)", auction) is None
             or (
                 re.search(r"\b\d+\b", auction) is None
@@ -1499,6 +2111,7 @@ class LeanChecker:
                 "rounds": defaultdict(list),
                 "round_openings": defaultdict(list),
                 "deadlines": Counter(),
+                "deadline_rows": defaultdict(list),
                 "flags": {},
                 "processes": set(),
             }
@@ -1524,6 +2137,7 @@ class LeanChecker:
             "checker": "lean-mechanical",
             "checker_version": CHECKER_VERSION,
             "checker_revision": CHECKER_REVISION,
+            "ledger_schema": self.ledger_schema,
             "workbook": str(self.workbook_path),
             "filing": str(self.filing_path),
             "status": status,
@@ -1546,12 +2160,14 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--workbook", required=True, type=Path, help="Workbook to check")
     parser.add_argument("--filing", required=True, type=Path, help="Full SEC filing in HTML")
     parser.add_argument("--output", required=True, type=Path, help="JSON report path")
+    parser.add_argument("--rules", choices=RULES_29_COLUMN,
+                        help="rules for a 29-column ledger (default: v1.14.1); a ledger without 'Stock %%' is always v1.13.2")
     return parser.parse_args(argv)
 
 
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
-    checker = LeanChecker(args.workbook, args.filing)
+    checker = LeanChecker(args.workbook, args.filing, rules=args.rules)
     report = checker.run()
     try:
         args.output.parent.mkdir(parents=True, exist_ok=True)

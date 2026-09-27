@@ -1,0 +1,13 @@
+{
+  "bytes": 31882,
+  "exists": true,
+  "path": "/home/uctpiaj/work/Projects/sec-extraction-v114-trial-20260926/_dev/runs/2026-09-26-v114-15-run-trial/mac-gray-gpt-6-astra-xhigh-r1/extraction/mac-gray.xlsx",
+  "sha256": "5acf4f0a1baae8e88d81795e44aede8f3f9aab11f6b31443edd7d06a38247d23",
+  "sheet_names": [
+    "Deal ledger",
+    "Rounds",
+    "Questions",
+    "Deal facts"
+  ],
+  "valid_xlsx": true
+}

@@ -1,0 +1,89 @@
+#,uid,When,Who,Event,mark,mark_note,mark_actor,mark_at,threads
+1,8a8d3e817b82903406e9edde,May 2020,Moelis & Company LLC,Adviser,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+2,9c2e89678f676e3cb0c2d519,after the May 2020 board meeting; by July 2020,Meredith (target),Target sale decision,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+3,1635aea9cb561f1a68f09a55,after the May 2020 board meeting; by July 2020,Cooley LLP,Adviser,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+4,197f0657a573ee34d6a6b98a,08/24/2020,Meredith (target),Other material event,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+5,7279b6517843b1d024d661dc,after the 11/10/2020 board meeting,Meredith (target),Target sale decision,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+6,0fe7f2f2e8e65d4c8632263e,commencing 11/16/2020,Meredith (target),Round opened,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+7,2dc1b65bbeed7c7777ecfe1f,"commencing 11/16/2020, over the next several weeks",20 parties contacted by Moelis (including Gray),Contact,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+8,a5dadbd934a1061ca0870b21,between 11/16/2020 and 12/21/2020,"Gray Television, Inc.",NDA signed,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+9,92c3cba6b17dec6658ec74a1,between 11/16/2020 and 12/21/2020,Party A,NDA signed,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+10,279111adf850c13db44c8dca,between 11/16/2020 and 12/21/2020,Party B,NDA signed,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+11,4e162d8dd63364abf9904a40,between 11/16/2020 and 12/21/2020,Party C,NDA signed,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+12,0fc0ce1685aeed6c07a77a93,between 11/16/2020 and 12/21/2020,Party D,NDA signed,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+13,4b57becbae2422389da9cb68,between 11/16/2020 and 12/21/2020,12 other NDA signers (unnamed),NDA signed,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+14,473736bac10999daf0b7cb2f,12/17/2020,Meredith (target),Deadline,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+15,5a21996419ffa6afe5d25a13,by 12/21/2020,"Gray Television, Inc.",Bid,needs_decision,,austin,2026-09-23T22:05:38+00:00,0
+16,b2e0e47f9330fc4be7a078d6,by 12/21/2020,Party A,Other-scope bid,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+17,6c6d6a471821c34fe45f03e1,by 12/21/2020,Party A,Bid,needs_decision,,austin,2026-09-23T22:05:38+00:00,0
+18,80664efbb718924e7f873528,by 12/21/2020,Party B,Other-scope bid,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+19,50eabafe340f92627b2fa037,by 12/21/2020,Party B,Bid,needs_decision,,austin,2026-09-23T22:05:38+00:00,0
+20,edd1e14dac5790a736b7a6ff,by 12/21/2020,Party C,Other-scope bid,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+21,d4c357d41d3d6cc71b12f62d,by 12/21/2020,Party D,Other-scope bid,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+22,b8c67ef963bb7e8b60e6d0df,by 12/17/2020,12 other NDA signers (unnamed),Did not submit,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+23,f561b972ec29ce68773fb061,after the 12/21/2020 board meeting,Meredith (target),Round opened,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+24,6eb60d844de25e9ddcd6dcad,after the 12/21/2020 board meeting,Meredith (target),Other material event,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+25,08fe04de4e375a6f4cea16b4,01/12/2021,Meredith (target),Round opened,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+26,fc7ccbb37ceca013bc3f865a,01/23/2021,Meredith (target),Other material event,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+27,8ed585bc1f058fcde28ef631,01/25/2021,Meredith (target),Deadline,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+28,09f6f1cf66f1963392619b8a,01/25/2021 or 01/26/2021,"Gray Television, Inc.",Other-scope bid,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+29,61d90d36ceff56ed747759b0,01/25/2021 or 01/26/2021,"Gray Television, Inc.",Bid,needs_decision,,austin,2026-09-23T22:05:38+00:00,0
+30,ac7d3c2b443a5238ec000a5a,01/25/2021 or 01/26/2021,Party A,Other-scope bid,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+31,4bacb195691084252b55c1ea,01/25/2021 or 01/26/2021,Party B,Other-scope bid,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+32,1145f92778d14d07ebe3eb38,01/25/2021 or 01/26/2021,Party B,Bid,needs_decision,,austin,2026-09-23T22:05:38+00:00,0
+33,44de2b8f3a47935cb13c9015,01/25/2021 or 01/26/2021,Party C,Other-scope bid,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+34,94623974561c190348b25e7e,01/25/2021 or 01/26/2021,Party D,Other-scope bid,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+35,888ceebd9c5083c40d8007e0,01/25/2021 or 01/26/2021,Party D,Other-scope bid,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+36,5a32a5cde4b0833cca4f4fae,01/28/2021,Meredith (target),Target sale decision,needs_decision,,austin,2026-09-23T22:05:38+00:00,0
+37,f02c0a65302700fd1ff19ece,by 01/28/2021,Party A,Dropped by target,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+38,aeccd8601bd7b600b4b8e084,by 01/28/2021,Party C,Dropped by target,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+39,6c6ed93d2fc8fe9654a515ef,by 01/28/2021,Party D,Dropped by target,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+40,ac02d56166d89f81638f46d1,03/05/2021,Deloitte Tax LLP,Adviser,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+41,15d54ca5ba84a97e8e090376,03/11/2021,Party D,Re-entered,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+42,d749745c27cc05b4513d171f,03/11/2021,Party D,Bid,needs_decision,,austin,2026-09-23T22:05:38+00:00,0
+43,b038baa47bc4944fe1b7a1b5,03/16/2021,Party D,Other material event,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+44,747dcad19eb6233c3e2745ba,03/17/2021,Meredith (target),Round opened,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+45,57bd4a727d7fd4eca3a9cd76,03/30/2021,Party D,Other material event,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+46,9b4111fcb9c8aec34b876537,04/02/2021,Eversheds Sutherland (US) LLP,Adviser,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+47,f2934f3cb8aad575cdec46ae,04/11/2021,Wells Fargo Securities LLC,Adviser,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+48,ba192517663146d08c35a823fb858303,04/13/2021,Party D,Bid,needs_decision,,austin,2026-09-23T22:05:38+00:00,0
+49,f06e216a783e97e385becbe7,04/14/2021,Meredith (target),Deadline,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+50,28b56522ebea49721cd0cd03,04/14/2021,"Gray Television, Inc.",Bid,needs_decision,,austin,2026-09-23T22:05:38+00:00,0
+51,64b805bcc0f5ffdc65285a72,04/14/2021,Party B,Bid,needs_decision,,austin,2026-09-23T22:05:38+00:00,0
+52,e0ef4e7c7d7c337b21ba473d,04/15/2021,Party D,Bid,needs_decision,,austin,2026-09-23T22:05:38+00:00,0
+53,7ef5fedbb83c7e9ce18871f6,04/16/2021,Meredith (target),Deadline revised,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+54,b4d296a1777936a57a72a011,04/16/2021,Party D,Other material event,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+55,3060c2d21826444d8d4463d2,04/18/2021,Meredith (target),Other material event,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+56,63722fe7b847f7d60e157458,04/19/2021,"Gray Television, Inc.",Bid,needs_decision,,austin,2026-09-23T22:05:38+00:00,0
+57,68a9348a49d50fba2b3a4b8c,04/20/2021,Party B,Bid,needs_decision,,austin,2026-09-23T22:05:38+00:00,0
+58,de1a4777d2d3a7ad69b7dd9f,04/20/2021,Meredith (target),Deadline,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+59,0b752e11bfac68ddce27c26a,04/23/2021,Party D,Bid,needs_decision,,austin,2026-09-23T22:05:38+00:00,0
+60,3ed95b717b1ff80a546125de,04/23/2021,Meredith (target),Other material event,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+61,11b3f5884ac38e3b23615fdc,by 04/23/2021,Party B,Dropped by target,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+62,797d79493cd762ef90b10225,after the 04/23/2021 board meeting,"Gray Television, Inc.",Bid,needs_decision,,austin,2026-09-23T22:05:38+00:00,0
+63,b585dc62c05c7e1f5cf0cd17,04/26/2021,Party D,Bid,needs_decision,,austin,2026-09-23T22:05:38+00:00,0
+64,f3d684328fdd4f50a65bce4796eb303f,04/27/2021,Party D,Bid,needs_decision,,austin,2026-09-23T22:05:38+00:00,0
+65,08a896719a6da87b4d6a6b0c,04/27/2021,Party D,Other material event,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+66,c3cd013a320cc51f001e1db3,04/29/2021,Party D,Bid,needs_decision,,austin,2026-09-23T22:05:38+00:00,0
+67,f0d0a09e6f1d4986aeb498c097b1c713,05/01/2021–05/02/2021,"Gray Television, Inc.",Bid,needs_decision,,austin,2026-09-23T22:05:38+00:00,0
+68,f465ae1e59db102de6a58ff2,undated; before 05/03/2021,Meredith (target),Other material event,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+69,7cd64df56095210e54dc954a,05/03/2021,"Gray Television, Inc.",Merger agreement signed,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+70,d6990a079c863317dbc78898,05/03/2021,Party D,Not selected at signing,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+71,97d02f4dcf228bdedeb6bfb0,05/03/2021,Meredith (target),Merger announced,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+72,4a47272f2007c9e1f36b008a,05/13/2021,Party D,Re-entered,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+73,3ca39102d20968802a4d0a2a,05/13/2021,Party D,Bid,needs_decision,,austin,2026-09-23T22:05:38+00:00,0
+74,87d1f73d8224efd164d98b7a,05/17/2021,Jones Day,Adviser,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+75,1faca8d95647b507a4289217,05/17/2021,"Gray Television, Inc.",Other material event,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+76,1e54a8889224671dd3d18d6f,05/25/2021,"Gray Television, Inc.",Bid,needs_decision,,austin,2026-09-23T22:05:38+00:00,0
+77,0f62e7e7691b3c5f4f9027bd,05/26/2021,Party D,Bid,needs_decision,,austin,2026-09-23T22:05:38+00:00,0
+78,9cb6dfeb86b11c880a868dfe,05/27/2021,"Gray Television, Inc.",Other material event,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+79,13c8d69f44b2dba7079f9f7d,05/28/2021,Meredith (target),Other material event,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+80,7a15804888ab24e52f145e1d,05/28/2021,"Gray Television, Inc.",Bid,needs_decision,,austin,2026-09-23T22:05:38+00:00,0
+81,c8e3ad533e27302b9531cbd3,05/29/2021,Meredith (target),Other material event,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+82,e7cb8bf82999ed23d3c7dc42,05/31/2021,"Gray Television, Inc.",Bid,needs_decision,,austin,2026-09-23T22:05:38+00:00,0
+83,66c5d1ca0e4e26b46c92b24b,05/31/2021,"Gray Television, Inc.",Bid,needs_decision,,austin,2026-09-23T22:05:38+00:00,0
+84,0d4fb110e88082fc95f470a9,05/31/2021,"Gray Television, Inc.",Bid,needs_decision,,austin,2026-09-23T22:05:38+00:00,0
+85,9af556b251cf4e257fbc5397,evening of 05/31/2021,"Gray Television, Inc.",Bid,needs_decision,,austin,2026-09-23T22:05:38+00:00,0
+86,1ff65146af1ba07da758f4bb,06/02/2021,"Gray Television, Inc.",Other material event,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+87,5a0390fc7d41dd75dce979ae,06/02/2021,Party D,Not selected at signing,reviewed,,austin,2026-09-23T22:05:38+00:00,0
+88,e6856342400f4afc04050252,06/03/2021,Meredith (target),Other material event,reviewed,,austin,2026-09-23T22:05:38+00:00,0

@@ -1,0 +1,13 @@
+{
+  "bytes": 29144,
+  "exists": true,
+  "path": "/home/uctpiaj/work/Projects/sec-extraction-v114-trial-20260926/_dev/runs/2026-09-26-v114-15-run-trial/providence-worcester-opus-5-5-medium-r1/extraction/providence-worcester.xlsx",
+  "sha256": "fb66f658f1c1b59234ea85faabb3fc707285e79871595f475c88f2dec0abfb47",
+  "sheet_names": [
+    "Deal ledger",
+    "Rounds",
+    "Questions",
+    "Deal facts"
+  ],
+  "valid_xlsx": true
+}

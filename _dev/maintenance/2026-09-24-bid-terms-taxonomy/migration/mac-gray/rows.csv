@@ -1,0 +1,59 @@
+#,uid,When,Who,Event,mark,mark_note,mark_actor,mark_at,threads
+1,ec87a69857467012965e2c0a,10/23/2012,BofA Merrill Lynch,Adviser,reviewed,,austin,2026-09-23T19:31:32+00:00,0
+2,9b6395b7e6cc5ef8e8a58d61,04/08/2013,Party A,Target interest,reviewed,,austin,2026-09-23T19:31:32+00:00,0
+3,3cb5ddf8da35bd017fcb156c,05/09/2013,Goodwin Procter LLP,Adviser,reviewed,,austin,2026-09-23T19:31:32+00:00,0
+4,dd7bf81b79c350e53a8b7536,05/15/2013,BofA Merrill Lynch,Adviser ended,reviewed,,austin,2026-09-23T19:31:32+00:00,0
+5,40e4e37bbeaaa41361622fef,05/30/2013,BofA Merrill Lynch,Adviser,reviewed,,austin,2026-09-23T19:31:32+00:00,0
+6,c212d8a76ec06431395fedbf,05/30/2013,"Moab Partners, L.P. (Moab)",Activist,reviewed,,austin,2026-09-23T19:31:32+00:00,0
+7,196c4984bed516f6c929a914,06/21/2013,Party A,Bid,reviewed,,austin,2026-09-23T19:31:32+00:00,0
+8,b0352967230b3a5c05c78ce2,06/24/2013,Mac-Gray,Target sale decision,reviewed,,austin,2026-09-23T19:31:32+00:00,0
+9,883928297ffa7c797d92ed34,06/24/2013,Mac-Gray,Round opened,reviewed,,austin,2026-09-23T19:31:32+00:00,0
+10,0f21d452c2e4325e0106d74d,during the several weeks after 06/24/2013,13 other potential strategic buyers,Contact,reviewed,,austin,2026-09-23T19:31:32+00:00,0
+11,7369034cd3ba1e3a1ece79bd,during the several weeks after 06/24/2013,35 potential financial buyers (including Party B and Party C),Contact,reviewed,,austin,2026-09-23T19:31:32+00:00,0
+12,820a0ffa6a9c0e090aef44cf,06/24/2013-06/28/2013,CSC/Pamplona,Contact,reviewed,,austin,2026-09-23T19:31:32+00:00,0
+13,c1625b7eae7c9adf3f746d3a,06/28/2013,Party B,NDA signed,reviewed,,austin,2026-09-23T19:31:32+00:00,0
+14,3992f1085b33bd71af532c5f,06/30/2013,Party C,NDA signed,reviewed,,austin,2026-09-23T19:31:32+00:00,0
+15,e9301630d7ff91dec8e225d3,07/03/2013,Moab / CSC/Pamplona,Other material event,reviewed,,austin,2026-09-23T19:31:32+00:00,0
+16,3c9b2183c3b9a17121ecf0ab,07/06/2013,Mac-Gray,Other material event,reviewed,,austin,2026-09-23T19:31:32+00:00,0
+17,614bf02e9ab6b539f7f091a4,07/11/2013,CSC/Pamplona,NDA signed,reviewed,,austin,2026-09-23T19:31:32+00:00,0
+18,ffbc242e09b7348116e448c7,over the two months after 06/24/2013,16 other financial NDA signers (unnamed),NDA signed,needs_decision,,austin,2026-09-23T21:41:08+00:00,0
+19,a17966b36df60b3094e88c4e,07/23/2013,Mac-Gray,Deadline,reviewed,,austin,2026-09-23T19:33:06+00:00,0
+20,abff80031911a5d4393a0b44,07/23/2013,CSC/Pamplona,Bid,reviewed,,austin,2026-09-23T19:33:06+00:00,0
+21,ea62dc1e56182a066071b572,by 07/23/2013,16 other financial NDA signers (unnamed),Did not submit,needs_decision,,austin,2026-09-23T21:41:08+00:00,0
+22,a30cc943589fcf0a856a04b0,07/24/2013,Party B,Bid,reviewed,,austin,2026-09-23T19:33:06+00:00,0
+23,94c7acf51aec5ef7388a3b30,07/24/2013,Party C,Bid,reviewed,,austin,2026-09-23T19:33:06+00:00,0
+24,8e7f375c423c68d411843361,07/25/2013,Mac-Gray,Round opened,reviewed,,austin,2026-09-23T19:33:06+00:00,0
+25,fb40768f64d8e342c424caf2,07/25/2013,Party C,Bid,reviewed,,austin,2026-09-23T19:33:06+00:00,0
+26,8f05a3415ef726118d867e39,08/05/2013,Party A,NDA signed,reviewed,,austin,2026-09-23T19:33:06+00:00,0
+27,0e82cb659fd4e31f96e0210a,08/06/2013-08/27/2013,"Party B, Party C",Other material event,reviewed,,austin,2026-09-23T19:33:06+00:00,0
+28,cb924c61ad5bf0a06cb0983d,08/06/2013-08/27/2013,"Party A, CSC/Pamplona",Other material event,reviewed,,austin,2026-09-23T19:33:06+00:00,0
+29,82f908f47ecdb9a3326b93b9,08/27/2013,Mac-Gray,Deadline set,reviewed,,austin,2026-09-23T19:33:06+00:00,0
+30,0e1045fae5f65c9a821cfabe,09/09/2013,Mac-Gray,Deadline,reviewed,,austin,2026-09-23T19:33:06+00:00,0
+31,b7425f3bb162d389c7aae714,09/09/2013,CSC/Pamplona,Bid,reviewed,,austin,2026-09-23T20:00:49+00:00,0
+32,00e22c93708bc87a43bf825c,09/09/2013,Party B,Bid,reviewed,,austin,2026-09-23T19:33:06+00:00,0
+33,ab468ec12616e29e1208ea66,09/10/2013,Party A,Bid,reviewed,,austin,2026-09-23T19:33:06+00:00,0
+34,91734089c68ecf2859d21001,09/10/2013,Party C,Bid,reviewed,,austin,2026-09-23T19:33:06+00:00,0
+35,83a19f33e5d8d613766c1f91,09/11/2013,"Stewart G. MacDonald, Jr. (CEO, major holder)",Other material event,reviewed,,austin,2026-09-23T19:33:06+00:00,0
+36,e0e6b0289e98b624d63e2700,09/11/2013,Mac-Gray,Round opened,reviewed,,austin,2026-09-23T19:33:06+00:00,0
+37,3c0fc9d066151721336b4169,09/18/2013,Mac-Gray,Deadline,reviewed,,austin,2026-09-23T19:33:06+00:00,0
+38,390fd177a0cdf19b52acf176,09/18/2013,CSC/Pamplona,Bid,reviewed,,austin,2026-09-23T20:00:49+00:00,0
+39,3f08e6ef44543e7ba96f60fa,09/18/2013,Party A,Bid,reviewed,,austin,2026-09-23T19:33:06+00:00,0
+40,73e6b90119c32650e90ef895,09/18/2013,Party B,Bid,reviewed,,austin,2026-09-23T19:33:06+00:00,0
+41,8fd7eb0e98bba0b0c95a48f1,09/18/2013,Party C,Did not submit,reviewed,,austin,2026-09-23T19:33:06+00:00,0
+42,e9a20a284c9e60d5c686659a,09/21/2013,Mac-Gray,Other material event,reviewed,,austin,2026-09-23T19:33:06+00:00,0
+43,e16cbd8e4228876f110da19d,09/21/2013,CSC/Pamplona,Bid,reviewed,,austin,2026-09-23T20:00:49+00:00,0
+44,9846e8c749b5490fbaf95df45bd4cd02,09/21/2013-09/23/2013,CSC/Pamplona,Bid,reviewed,,austin,2026-09-23T21:20:44+00:00,0
+45,425a8eabe873852583092d56,09/23/2013,Moab,Other material event,reviewed,,austin,2026-09-23T19:33:06+00:00,0
+46,c89d74caec549eae5d8ac660,09/24/2013,CSC/Pamplona,Exclusivity changed,reviewed,,austin,2026-09-23T19:33:06+00:00,0
+47,1a2be84b3ac1eeaea940c3d8,by 09/24/2013,Party A,Dropped by target,reviewed,,austin,2026-09-23T19:33:06+00:00,0
+48,45b930dfc0364a90fea01bd4,by 09/24/2013,Party B,Dropped by target,reviewed,,austin,2026-09-23T19:33:06+00:00,0
+49,401eb854b02be38a7ad5541f,09/25/2013,Kirkland & Ellis LLP,Adviser,reviewed,,austin,2026-09-23T19:33:06+00:00,0
+50,3b39d92e94184dfabc1a126e6081a5ec,09/27/2013,"Stewart G. MacDonald, Jr., his wife and one of his trusts",Other material event,reviewed,,austin,2026-09-23T21:20:44+00:00,0
+51,a16f56e4df45435b809245741aa0888b,09/25/2013-10/07/2013,Mac-Gray,Other material event,reviewed,,austin,2026-09-23T21:20:44+00:00,0
+52,75790bb839423c0408411bd8,09/25/2013-10/07/2013,Moab,Other material event,reviewed,,austin,2026-09-23T19:33:06+00:00,0
+53,51084f681a5d41c9a8eb38535f45d90e,10/05/2013,CSC/Pamplona,Bid,reviewed,,austin,2026-09-23T21:20:44+00:00,0
+54,a8e0bf475ea3483995e374121f5de104,10/08/2013,CSC/Pamplona,Bid,reviewed,,austin,2026-09-23T21:20:44+00:00,0
+55,28e3b4de85c2a909adbf3cb2,by 10/09/2013,CSC/Pamplona,Exclusivity changed,reviewed,,austin,2026-09-23T19:33:06+00:00,0
+56,fafd0e23b6b67cc77981f2fe,10/12/2013,CSC/Pamplona,Exclusivity changed,reviewed,,austin,2026-09-23T19:33:06+00:00,0
+57,27dc4ae85d1bd4ed2a4c90f8,10/14/2013,"CSC/Pamplona (CSC ServiceWorks, Inc. via Spin Holdco Inc.)",Merger agreement signed,reviewed,,austin,2026-09-23T19:33:06+00:00,0
+58,1168990fc8d3c8082548b531,10/15/2013,Mac-Gray and CSC,Merger announced,reviewed,,austin,2026-09-23T19:33:06+00:00,0

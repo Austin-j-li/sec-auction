@@ -32,5 +32,7 @@ See the session's run: Python (`test_cockpit_phase4.py`, 11 new; runner tests fo
 
 ## Not yet done
 
+> **Status, 26 September 2026:** v1.14.1 is now published and the cockpit default (v1.13.2 stays published). Its five retest runs (Opus 5.5 medium, `../../reviews/2026-09-26-v1141-retest/README.md`) include published runs on Mac-Gray and Providence & Worcester, the two filings with draft-run pilots. Runs on the other engines were not part of that retest. The [development handoff](../../HANDOFF.md) tracks which acceptance items remain.
+
 - **Acceptance (spec §12):** a draft run and a published run on the same filing with different instruction hashes, and one isolated run per engine (Fable 5.1, GPT-6-Sol, GPT-6-Astra). These are real model runs and need Austin's go-ahead; GPT runs also need a connected ChatGPT account.
 - Confirm on 24 September that the refresh renews a per-user Codex login.

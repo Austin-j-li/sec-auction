@@ -1,0 +1,19 @@
+{
+  "files": {
+    "command.json": "102864bf4f6a3260143009305e5573f850fb3e2ee26166b669151b1970355e1a",
+    "events.jsonl": "4afc652988fc623f81cfa61f9b26c6a8b1d5ca97a58bad6f51180a88776875c9",
+    "extraction/mac-gray.xlsx": "2cfcd74326f16499265d2577fc60807180645468b7a5279b71bce98a69b4d713",
+    "input/SEC_Deal_Ledger_Extraction_Instruction.md": "c2d47a479d09eb46d0ab9fbf887568fcf13e972e2e11acbf08d5cdfab468ab27",
+    "input/raw_filing/mac-gray_2013-12-04_DEFM14A.htm": "e6ea7bd00cfc389c28e5139a3d23aafcc684f7b65ff54d699f3c5be11bbc4301",
+    "launch.json": "da7c648117a11c35dacb2781f03c5a92cfb1f4e9229de6c322dd74900f30a243",
+    "launcher.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "metadata.json": "f8907eda781888967420ce5620d16e007309a8afa236fc2524fae617fbecd30a",
+    "prompt.txt": "500f54a95b46052b2707f6ff97f4597f7e6f825b5f40e5023f3b4b085182d9d2",
+    "provider-results.json": "7ecc43ff6e09d20acde7bbb7d220bb44961475fcef2920927100dce6ed18d8a0",
+    "status.json": "e3d3d92fb91a749dfce1f0b30ed2d01f8199370eed011fb0638a99314a9fb6ec",
+    "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validation.json": "b267170ab2187a3a3bbd30056071ea749de4bbcd527ca76a171ca0bf95c4acb4"
+  },
+  "archive_sha256": "f8b828fb284d762c229003a16c9c648eb6f31195c401aeda7dd21a9e5d7e59e5",
+  "verified": true
+}

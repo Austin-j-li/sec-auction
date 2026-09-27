@@ -1,0 +1,11 @@
+# Final test run 2026-09-25T23:16:37Z in /home/uctpiaj/work/Projects/sec-extraction-v114
+$ PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s _dev/tools -p "test_*.py"
+Ran 292 tests in 77.833s
+
+FAILED (failures=1)
+$ PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider _dev/tools/cockpit/acceptance/test_http.py
+20 passed in 21.12s
+$ (cd _dev/tools/cockpit/frontend && npx vitest run)
+ Test Files  8 passed (8)
+      Tests  77 passed (77)
+Browser suites (run 25 Sep ~22:45 UTC against the worktree dist, unchanged since): browser 60 checks, deals 25/25, instructions 24/24, runs 12/12, trace 14/14, resize pass, responsive pass; evidence in /home/uctpiaj/work/tmp/v114-scratch/browser-evidence

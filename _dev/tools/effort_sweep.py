@@ -4,9 +4,11 @@
 An arm is a provider, model and effort level (opus:claude-opus-5-5:medium, sol:gpt-6-sol:high).
 Every cell is an ordinary isolated run, prepared and launched through sandbox/run_model.py with
 one instruction and one filing. The provider binaries, the instruction and the runner are pinned
-for the whole sweep. The checker runs afterwards, outside the sandbox. Each finished run's
-receipts, workbook, checker report and compressed event log are copied into the sweep's review
-packet, after which its run folder can be deleted.
+for the whole sweep. The instruction is the working one unless `plan --instruction` names another;
+deals come from raw_filing/MANIFEST.csv, or from their `--filing-dir` in the cockpit's filings.
+The checker runs afterwards, outside the sandbox. Each finished run's receipts (with the checker
+version and ledger schema), workbook, checker report and compressed event log are copied into the
+sweep's review packet, after which its run folder can be deleted.
 """
 
 from __future__ import annotations
@@ -66,13 +68,36 @@ def filings() -> dict[str, str]:
         return {row["deal"]: row["file"] for row in csv.DictReader(stream)}
 
 
+def added_filings(folders) -> dict[str, Path]:
+    """Filings of deals added in the cockpit: each folder is _dev/cockpit/state/filings/<deal>/ with one filing."""
+    root = (PROJECT / "_dev/cockpit/state/filings").resolve()
+    found = {}
+    for name in folders or ():
+        folder = Path(name).resolve()
+        files = sorted(path for path in folder.glob("*") if path.is_file()) if folder.is_dir() else []
+        if folder.parent != root or len(files) != 1:
+            raise SystemExit(f"--filing-dir must be a deal folder in {root} holding one filing: {folder}")
+        found[folder.name] = files[0]
+    return found
+
+
+def instruction_path(sweep: dict) -> Path:
+    """The sweep's instruction: the file `plan --instruction` recorded, else the working instruction."""
+    return Path(sweep["instruction"]["path"]) if sweep.get("instruction") else INSTRUCTION
+
+
+def filing_path(cell: dict) -> Path:
+    return Path(cell["filing_dir"]) / cell["filing"] if cell.get("filing_dir") else PROJECT / "raw_filing" / cell["filing"]
+
+
 def plan(args: argparse.Namespace) -> None:
     packet = Path(args.packet)
     if (packet / "plan.json").exists():
         raise SystemExit(f"refusing to overwrite {packet / 'plan.json'}")
     manifest = filings()
+    added = added_filings(args.filing_dir)
     deals = args.deals.split(",")
-    unknown = [deal for deal in deals if deal not in manifest]
+    unknown = [deal for deal in deals if deal not in manifest and deal not in added]
     arms = []
     for spec in args.arms:
         provider, _, rest = spec.partition(":")
@@ -86,6 +111,12 @@ def plan(args: argparse.Namespace) -> None:
         raise SystemExit(f"not an available deal or arm (provider:model:effort): {', '.join(unknown) or 'no arms'}")
     if not 10 <= args.timeout_minutes <= 360:
         raise SystemExit("--timeout-minutes must be between 10 and 360")
+    instruction = None
+    if args.instruction:
+        path = Path(args.instruction).resolve()
+        if not path.is_file():
+            raise SystemExit(f"instruction not found: {path}")
+        instruction = {"path": str(path), "sha256": run_model.sha256(path)}
     cells = []
     for replicate in range(1, args.replicates + 1):
         # Every replicate block covers all deal-arm pairs in its own seeded random order, so the
@@ -93,17 +124,19 @@ def plan(args: argparse.Namespace) -> None:
         block = [(deal, arm) for deal in deals for arm in arms]
         random.Random(f"{args.seed}-{replicate}").shuffle(block)
         for deal, arm in block:
-            cells.append({"id": f"{deal}-{arm['arm']}-r{replicate}", "deal": deal, "filing": manifest[deal],
+            where = {"filing": manifest[deal]} if deal in manifest else {
+                "filing": added[deal].name, "filing_dir": str(added[deal].parent)}
+            cells.append({"id": f"{deal}-{arm['arm']}-r{replicate}", "deal": deal, **where,
                           **arm, "replicate": replicate, "timeout_minutes": args.timeout_minutes})
     packet.mkdir(parents=True, exist_ok=True)
     run_model.write_json(packet / "plan.json", {
         "created_at": now_iso(), "deals": deals, "arms": arms, "replicates": args.replicates,
-        "seed": args.seed, "cells": cells,
+        "seed": args.seed, "instruction": instruction, "cells": cells,
     })
     print(f"{len(cells)} cells planned in {packet / 'plan.json'}")
 
 
-def current_pin(providers) -> dict:
+def current_pin(providers, instruction: Path = INSTRUCTION) -> dict:
     """Each provider's binary, the instruction and the runner, as they are now."""
     binaries = {}
     for provider in sorted(providers):
@@ -111,7 +144,7 @@ def current_pin(providers) -> dict:
             raise SystemExit(f"set {BINARY_ENV[provider]} to a pinned binary for the whole sweep")
         binary = Path(os.environ[BINARY_ENV[provider]]).resolve()
         binaries[provider] = {"path": str(binary), "sha256": run_model.sha256(binary)}
-    return {"binaries": binaries, "instruction_sha256": run_model.sha256(INSTRUCTION),
+    return {"binaries": binaries, "instruction_sha256": run_model.sha256(instruction),
             "runner_sha256": run_model.sha256(RUNNER)}
 
 
@@ -125,9 +158,9 @@ def pin_drift(pin: dict, now: dict) -> list[str]:
     return changed
 
 
-def pin_sweep(packet: Path, providers) -> dict:
+def pin_sweep(packet: Path, providers, instruction: Path = INSTRUCTION) -> dict:
     """Record the pin at the first run; afterwards refuse anything that differs from it."""
-    now, recorded = current_pin(providers), packet / "pin.json"
+    now, recorded = current_pin(providers, instruction), packet / "pin.json"
     if recorded.exists():
         changed = pin_drift(read_json(recorded), now)
         if changed:
@@ -203,14 +236,18 @@ def record(cell: dict, run_dir: Path, packet: Path, pin: dict) -> dict:
         "cell": cell, "state": status.get("state"), "failure_reason": status.get("failure_reason"),
         "mismatches": cell_mismatches(cell, run_dir, pin),
         **(audit_events(events) if events.is_file() else {"network_commands": [], "web_or_delegation": []}),
-        "workbook_sha256": None, "check_summary": None, "recorded_at": now_iso(),
+        "workbook_sha256": None, "check_summary": None, "checker_version": None, "ledger_schema": None,
+        "recorded_at": now_iso(),
     }
     if status.get("workbook_valid_xlsx"):
         shutil.copy2(workbook, dest / workbook.name)
         receipt["workbook_sha256"] = run_model.sha256(workbook)
-        report = check_lean.LeanChecker(workbook, PROJECT / "raw_filing" / cell["filing"]).run()
+        # The pinned instruction picks v1.14 or v1.14.1 rules for a 29-column ledger (unknown: v1.14.1).
+        report = check_lean.LeanChecker(workbook, filing_path(cell), rules=check_lean.rules_for_instruction(pin.get("instruction_sha256"))).run()
         run_model.write_json(dest / "check.json", report)
         receipt["check_summary"] = report["summary"]
+        receipt["checker_version"] = report.get("checker_version")
+        receipt["ledger_schema"] = report.get("ledger_schema")
     run_model.write_json(dest / "receipt.json", receipt)
     return receipt
 
@@ -249,7 +286,10 @@ def run(args: argparse.Namespace) -> None:
     packet = Path(args.packet).resolve()
     sweep = read_json(packet / "plan.json")
     providers = {cell["provider"] for cell in sweep["cells"]}
-    pin = pin_sweep(packet, providers)
+    instruction = instruction_path(sweep)
+    pin = pin_sweep(packet, providers, instruction)
+    if sweep.get("instruction") and pin["instruction_sha256"] != sweep["instruction"]["sha256"]:
+        raise SystemExit(f"{instruction} differs from the instruction planned in {packet / 'plan.json'}")
     runs_dir = Path(args.runs_dir or run_model.RUNS / packet.name).resolve()
     if args.retry_failed:
         retry_failed(packet, runs_dir)
@@ -268,13 +308,15 @@ def run(args: argparse.Namespace) -> None:
             cell = pending.pop(0)
             run_dir = runs_dir / cell["id"]
             if not (run_dir / "status.json").exists():
-                changed = pin_drift(pin, current_pin(providers))
+                changed = pin_drift(pin, current_pin(providers, instruction))
                 if changed:
                     raise SystemExit(f"{', '.join(changed)} changed during the sweep; stopping before {cell['id']}")
                 if not (run_dir / "metadata.json").exists():
+                    chosen = [*(("--instruction", str(instruction)) if sweep.get("instruction") else ()),
+                              *(("--filing-dir", cell["filing_dir"]) if cell.get("filing_dir") else ())]
                     run_command(pin, "prepare", "--provider", cell["provider"], "--run-dir", str(run_dir),
                                 "--deal", cell["deal"], "--filing", cell["filing"], "--model", cell["model"],
-                                "--effort", cell["effort"], "--timeout-minutes", str(cell["timeout_minutes"]))
+                                "--effort", cell["effort"], "--timeout-minutes", str(cell["timeout_minutes"]), *chosen)
                 problems = cell_mismatches(cell, run_dir, pin)
                 if problems:
                     raise SystemExit(f"{run_dir} does not match its planned cell ({', '.join(problems)}); "
@@ -309,7 +351,11 @@ def words(value) -> int:
 
 
 def ledger_stats(path: Path) -> dict:
-    """Size and bid keys of a workbook with the four required sheets; empty if it lacks them."""
+    """Size and bid keys of a workbook with the four required sheets; empty if it lacks them.
+
+    Whole-company bids (Bid, Bid reaffirmed) and Other-scope bids are counted and keyed separately:
+    v1.14 leaves an Other-scope row's prices blank (D18), so one key set would mix the two.
+    """
     book = load_workbook(path, read_only=True, data_only=True)
     try:
         if book.sheetnames != run_model.SHEETS:
@@ -323,13 +369,25 @@ def ledger_stats(path: Path) -> dict:
 
     header = rows["Deal ledger"][0] if rows["Deal ledger"] else ()
     ledger = [dict(zip(header, row)) for row in filled("Deal ledger")]
-    bids = [row for row in ledger if row.get("Event") in check_lean.BID_EVENTS]
+    bids = [row for row in ledger if row.get("Event") in check_lean.BID_EVENTS - {"Other-scope bid"}]
+    other_scope = [row for row in ledger if row.get("Event") == "Other-scope bid"]
     notes = [words(row.get("Note")) for row in ledger]
+    markers = {row.get("#") for row in ledger if row.get("Event") in check_lean.PROCESS_MARKERS and isinstance(row.get("#"), int)}
+    question_header = rows["Questions"][0] if rows["Questions"] else ()
+    questions = [dict(zip(question_header, row)) for row in filled("Questions")]
+    # Part F: the process Question does not count toward the five-Question cap (v1.14.1).
+    process = next((i for i, q in enumerate(questions) if check_lean.is_process_question(q.get("Question"), q.get("Rows affected"), markers)), None)
+
+    def keys(rows):
+        return sorted(f"{row.get('Event')}|{row.get('Price low')}|{row.get('Price high')}|{row.get('Date from')}" for row in rows)
+
     return {
-        "events": len(ledger), "bids": len(bids), "rounds": len(filled("Rounds")),
-        "questions": len(filled("Questions")),
-        "note_words_mean": round(statistics.mean(notes), 1) if notes else 0,
-        "bid_keys": sorted(f"{row.get('Price low')}|{row.get('Price high')}|{row.get('Date from')}" for row in bids),
+        "events": len(ledger), "bids": len(bids), "other_scope_bids": len(other_scope), "rounds": len(filled("Rounds")),
+        "questions": len(questions), "process_question": process is not None,
+        "questions_counted": len(questions) - (process is not None),
+        "note_words_mean": round(statistics.mean(notes), 1) if notes else 0, "note_words_max": max(notes, default=0),
+        "notes_over_40": sum(count > 40 for count in notes),
+        "bid_keys": keys(bids), "other_scope_keys": keys(other_scope),
     }
 
 
@@ -397,6 +455,7 @@ def summarize(args: argparse.Namespace) -> None:
             "thinking_tokens": provider.get("thinking_tokens", tokens.get("reasoning_output_tokens")),
             "turns": provider.get("num_turns"), "api_seconds": round((provider.get("duration_api_ms") or 0) / 1000, 1) or None,
             "elapsed_seconds": status.get("elapsed_seconds"),
+            "checker_version": receipt.get("checker_version"), "ledger_schema": receipt.get("ledger_schema"),
             "checker_errors": (receipt["check_summary"] or {}).get("errors"),
             "checker_warnings": (receipt["check_summary"] or {}).get("warnings"),
             "score": (grades.get(cell["id"]) or {}).get("score"),
@@ -423,6 +482,9 @@ def summarize(args: argparse.Namespace) -> None:
 
         pairs = [(first, second) for deal_rows in per_deal.values()
                  for i, first in enumerate(deal_rows) for second in deal_rows[i + 1:]]
+        # Only pairs with an Other-scope row on either side: two empty lists would read as perfect agreement.
+        scoped = [(a.get("other_scope_keys"), b.get("other_scope_keys")) for a, b in pairs
+                  if a.get("other_scope_keys") or b.get("other_scope_keys")]
         priced = [row["cost_repriced"] for row in cells if row["cost_repriced"] is not None]
         by_arm[arm] = {
             "cells": len(cells), "completed": len(done), "retried_attempts": retried.get(arm, 0),
@@ -433,12 +495,17 @@ def summarize(args: argparse.Namespace) -> None:
             "spend_per_completed": round(sum(priced) / len(done), 3) if priced and done else None,
             **{f"mean_{key}": mean(key) for key in ("score", "cost_repriced", "cost_reported", "output_tokens",
                                                    "thinking_tokens", "turns", "api_seconds", "elapsed_seconds",
-                                                   "checker_errors", "checker_warnings", "events", "note_words_mean")},
+                                                   "checker_errors", "checker_warnings", "events", "note_words_mean",
+                                                   "note_words_max", "questions_counted")},
+            "max_note_words": max((row.get("note_words_max") or 0 for row in done), default=None) if done else None,
             "replicate_pairs": len(pairs),
             "mean_bid_jaccard": round(statistics.mean(multiset_jaccard(a.get("bid_keys", []), b.get("bid_keys", []))
                                                       for a, b in pairs), 3) if pairs else None,
             "mean_bid_count_gap": round(statistics.mean(abs((a.get("bids") or 0) - (b.get("bids") or 0))
                                                         for a, b in pairs), 2) if pairs else None,
+            "other_scope_pairs": len(scoped),
+            "mean_other_scope_jaccard": round(statistics.mean(
+                multiset_jaccard(a or [], b or []) for a, b in scoped), 3) if scoped else None,
             "same_round_count_share": round(sum(a.get("rounds") == b.get("rounds") for a, b in pairs) / len(pairs), 3) if pairs else None,
             "mean_event_gap": round(statistics.mean(abs((a.get("events") or 0) - (b.get("events") or 0))
                                                     for a, b in pairs), 2) if pairs else None,
@@ -447,6 +514,7 @@ def summarize(args: argparse.Namespace) -> None:
     run_model.write_json(packet / "summary.json", summary)
     columns = ["completed", "mean_score", "spend_per_completed", "mean_output_tokens", "mean_thinking_tokens",
                "mean_elapsed_seconds", "mean_checker_errors", "mean_checker_warnings", "mean_events",
+               "mean_note_words_mean", "max_note_words", "mean_questions_counted",
                "mean_bid_jaccard", "same_round_count_share", "continuations"]
     lines = ["| arm | " + " | ".join(columns) + " |", "|---" * (len(columns) + 1) + "|"]
     for arm, values in by_arm.items():
@@ -459,7 +527,9 @@ def parser() -> argparse.ArgumentParser:
     sub = root.add_subparsers(dest="command", required=True)
     p = sub.add_parser("plan", help="write a seeded, interleaved run order")
     p.add_argument("--packet", required=True, help="review packet directory for the sweep")
-    p.add_argument("--deals", required=True, help="comma-separated deals from raw_filing/MANIFEST.csv")
+    p.add_argument("--deals", required=True, help="comma-separated deals from raw_filing/MANIFEST.csv or a --filing-dir")
+    p.add_argument("--filing-dir", action="append", help="an added deal's folder in _dev/cockpit/state/filings/ (repeatable)")
+    p.add_argument("--instruction", help="instruction file to run (default: the working instruction); pinned by hash")
     p.add_argument("--arms", nargs="+", required=True, help="provider:model:effort, e.g. opus:claude-opus-5-5:medium")
     p.add_argument("--replicates", type=int, default=2)
     p.add_argument("--seed", type=int, required=True)

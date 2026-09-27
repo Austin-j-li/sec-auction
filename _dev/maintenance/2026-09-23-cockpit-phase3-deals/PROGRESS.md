@@ -27,4 +27,6 @@ Contract: [CONTRACT.md](CONTRACT.md). Built by Opus 5.5 on 23 September 2026 (Au
 
 ## Not yet done
 
+> **Status, 26 September 2026:** this list is as of 23 September. The [development handoff](../../HANDOFF.md) tracks which acceptance items remain.
+
 - **Acceptance (spec §12):** one seed deal and one pasted-link deal added and extracted end to end. Adding fetches from EDGAR; each extraction is a real Opus 5.5 run and needs Austin's go-ahead.

@@ -20,7 +20,8 @@ ARMS = ["opus:claude-opus-5-5:medium", "opus:claude-opus-5-5:high", "sol:gpt-6-s
 
 
 def plan_args(packet, **overrides):
-    values = dict(packet=str(packet), deals="kraton,penford", arms=ARMS, replicates=2, seed=7, timeout_minutes=120)
+    values = dict(packet=str(packet), deals="kraton,penford", arms=ARMS, replicates=2, seed=7, timeout_minutes=120,
+                  filing_dir=None, instruction=None)
     values.update(overrides)
     return argparse.Namespace(**values)
 
@@ -72,6 +73,73 @@ class EffortSweepTests(unittest.TestCase):
             with self.assertRaisesRegex(SystemExit, "refusing to overwrite"):
                 effort_sweep.plan(plan_args(Path(tmp) / "once"))
 
+    def test_plan_records_a_named_instruction_and_added_deal_folders(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            project = Path(tmp) / "project"
+            (project / "raw_filing").mkdir(parents=True)
+            (project / "raw_filing/MANIFEST.csv").write_text("file,deal\nkraton.htm,kraton\n")
+            added = project / "_dev/cockpit/state/filings"
+            (added / "zep").mkdir(parents=True)
+            (added / "zep/zep_2015-03-04_DEFM14A.htm").write_text("filing")
+            (added / "empty").mkdir()
+            candidate = Path(tmp) / "candidate.md"
+            candidate.write_text("candidate instruction")
+            with mock.patch.object(effort_sweep, "PROJECT", project):
+                sweep = self.make_plan(Path(tmp) / "a", deals="kraton,zep", arms=ARMS[:1], replicates=1,
+                                       filing_dir=[str(added / "zep")], instruction=str(candidate))
+                for bad in ([str(added / "empty")], [str(Path(tmp))]):
+                    with self.subTest(bad=bad), self.assertRaisesRegex(SystemExit, "--filing-dir must be"):
+                        effort_sweep.plan(plan_args(Path(tmp) / "bad", deals="zep", filing_dir=bad))
+                with self.assertRaisesRegex(SystemExit, "not an available deal"):
+                    effort_sweep.plan(plan_args(Path(tmp) / "bad", deals="zep"))
+                with self.assertRaisesRegex(SystemExit, "instruction not found"):
+                    effort_sweep.plan(plan_args(Path(tmp) / "bad", deals="kraton", instruction=str(Path(tmp) / "missing.md")))
+                cells = {cell["deal"]: cell for cell in sweep["cells"]}
+                self.assertEqual(sweep["instruction"], {"path": str(candidate.resolve()), "sha256": run_model.sha256(candidate)})
+                self.assertEqual(cells["zep"]["filing_dir"], str((added / "zep").resolve()))
+                self.assertNotIn("filing_dir", cells["kraton"])
+                self.assertEqual(effort_sweep.filing_path(cells["zep"]), (added / "zep/zep_2015-03-04_DEFM14A.htm").resolve())
+                self.assertEqual(effort_sweep.filing_path(cells["kraton"]), project / "raw_filing/kraton.htm")
+                self.assertEqual(effort_sweep.instruction_path(sweep), candidate.resolve())
+            self.assertEqual(effort_sweep.instruction_path({"instruction": None}), effort_sweep.INSTRUCTION)
+
+    def test_run_passes_the_planned_instruction_and_filing_folder_to_prepare(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            packet, runs = root / "packet", root / "runs"
+            cell = {**make_cell(deal="zep"), "filing_dir": str(root / "filings/zep")}
+            packet.mkdir()
+            argvs = []
+
+            def fake_runner(pin, *argv):
+                argvs.append(argv)
+                run_dir = Path(argv[argv.index("--run-dir") + 1])
+                if argv[0] == "prepare":
+                    self.write_run(run_dir, cell, state="running")
+                    (run_dir / "status.json").unlink()
+                else:
+                    run_model.write_json(run_dir / "status.json", {"state": "failed", "failure_reason": "provider_exit"})
+
+            args = argparse.Namespace(packet=str(packet), runs_dir=str(runs), only=None, concurrency=1, poll=0,
+                                      retry_failed=False)
+            for planned, expected in (("instruction", None), ("edited", "differs from the instruction planned")):
+                run_model.write_json(packet / "plan.json", {"cells": [cell], "instruction": {
+                    "path": str(root / "candidate.md"), "sha256": planned}})
+                with self.subTest(planned=planned), \
+                        mock.patch.object(effort_sweep, "pin_sweep", return_value=PIN) as pin_sweep, \
+                        mock.patch.object(effort_sweep, "current_pin", return_value={**PIN, "binaries": {"opus": {"path": "/pinned/claude", "sha256": "claude-binary"}}}), \
+                        mock.patch.object(effort_sweep, "run_command", side_effect=fake_runner), \
+                        contextlib.redirect_stdout(io.StringIO()):
+                    if expected:
+                        with self.assertRaisesRegex(SystemExit, expected):
+                            effort_sweep.run(args)
+                        continue
+                    effort_sweep.run(args)
+                    self.assertEqual(pin_sweep.call_args.args[2], root / "candidate.md")
+            prepare = next(argv for argv in argvs if argv[0] == "prepare")
+            self.assertEqual(prepare[prepare.index("--instruction") + 1], str(root / "candidate.md"))
+            self.assertEqual(prepare[prepare.index("--filing-dir") + 1], str(root / "filings/zep"))
+
     def test_the_pin_is_recorded_once_and_drift_is_refused(self):
         with tempfile.TemporaryDirectory() as tmp:
             packet = Path(tmp)
@@ -113,7 +181,7 @@ class EffortSweepTests(unittest.TestCase):
         self.assertEqual(found["web_or_delegation"], ["Agent", "web_search"])
 
     def write_run(self, run_dir, cell, bids=(), rounds=2, state="completed", failure=None, sheets=None,
-                  usage=True, events=None, **metadata_overrides):
+                  usage=True, events=None, other_scope=(), **metadata_overrides):
         (run_dir / "extraction").mkdir(parents=True)
         book = run_model._openpyxl.Workbook()
         ledger = book.active
@@ -121,6 +189,8 @@ class EffortSweepTests(unittest.TestCase):
         ledger.append(["#", "Event", "Price low", "Price high", "Date from", "Note"])
         for number, (low, high, day) in enumerate(bids, 1):
             ledger.append([number, "Bid", low, high, day, "three word note"])
+        for day in other_scope:
+            ledger.append([None, "Other-scope bid", None, None, day, "note"])
         ledger.append([len(bids) + 1, "NDA signed", None, None, None, "one"])
         for name, count in (("Rounds", rounds), ("Questions", 1), ("Deal facts", 1)):
             if sheets is None or name in sheets:
@@ -162,11 +232,56 @@ class EffortSweepTests(unittest.TestCase):
                 receipt = effort_sweep.record(cell, root / "run", root / "packet", PIN)
             dest = root / "packet/runs" / cell["id"]
             self.assertEqual(checker.call_args.args[1], effort_sweep.PROJECT / "raw_filing" / "kraton.htm")
+            self.assertEqual((receipt["checker_version"], receipt["ledger_schema"]), (None, None))
+            report.update(checker_version="1.7", ledger_schema="v1.14")
+            with mock.patch.object(effort_sweep.check_lean, "LeanChecker") as checker:
+                checker.return_value.run.return_value = report
+                receipt = effort_sweep.record(cell, root / "run", root / "packet", PIN)
+            self.assertEqual((receipt["checker_version"], receipt["ledger_schema"]), ("1.7", "v1.14"))
+            self.assertEqual(json.loads((dest / "receipt.json").read_text())["checker_version"], "1.7")
             self.assertEqual((receipt["state"], receipt["check_summary"], receipt["mismatches"]), ("completed", report["summary"], []))
             self.assertTrue((dest / "kraton.xlsx").is_file())
             self.assertEqual(json.loads((dest / "check.json").read_text()), report)
             with gzip.open(dest / "events.jsonl.gz", "rt") as events:
                 self.assertIn('"result"', events.read())
+
+    def test_bid_keys_carry_the_event_and_other_scope_rows_are_kept_apart(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "ledger.xlsx"
+            book = run_model._openpyxl.Workbook()
+            book.active.title = "Deal ledger"
+            book.active.append(["#", "Event", "Price low", "Price high", "Date from", "Note"])
+            for row in ((1, "Bid", 10, 10, "d1"), (2, "Bid reaffirmed", 10, 10, "d2"), (3, "Other-scope bid", None, None, "d2"),
+                        (4, "Other-scope bid", None, None, "d3")):
+                book.active.append([*row, "note"])
+            for name in run_model.SHEETS[1:]:
+                book.create_sheet(name).append(["header"])
+            book.save(path)
+            stats = effort_sweep.ledger_stats(path)
+        self.assertEqual((stats["bids"], stats["other_scope_bids"]), (2, 2))
+        self.assertEqual(stats["bid_keys"], ["Bid reaffirmed|10|10|d2", "Bid|10|10|d1"])
+        self.assertEqual(stats["other_scope_keys"], ["Other-scope bid|None|None|d2", "Other-scope bid|None|None|d3"])
+
+    def test_ledger_stats_report_the_longest_note_and_questions_without_the_process_question(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "ledger.xlsx"
+            book = run_model._openpyxl.Workbook()
+            book.active.title = "Deal ledger"
+            book.active.append(["#", "Event", "Note"])
+            for row in ((1, "Bid", "short note"), (2, "Process restarted", " ".join(["word"] * 45)), (3, "Bid", None)):
+                book.active.append(list(row))
+            book.create_sheet("Rounds").append(["header"])
+            questions = book.create_sheet("Questions")
+            questions.append(["Q", "Question", "Rows affected"])
+            questions.append(["Q1", "Is Alpha Strategic?", "#1"])
+            questions.append(["Q2", "Is the break a new process?", "#2"])
+            questions.append(["Q3", "Process: one or two processes?", "#1"])
+            book.create_sheet("Deal facts").append(["header"])
+            book.save(path)
+            stats = effort_sweep.ledger_stats(path)
+        self.assertEqual((stats["note_words_max"], stats["notes_over_40"], stats["note_words_mean"]), (45, 1, 15.7))
+        # Q2 cites the Process restarted row, so it is the process Question; Q3 then counts.
+        self.assertEqual((stats["questions"], stats["questions_counted"], stats["process_question"]), (3, 2, True))
 
     def test_mismatched_runs_are_flagged_and_never_averaged(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -212,6 +327,22 @@ class EffortSweepTests(unittest.TestCase):
         self.assertAlmostEqual(high["spend_per_completed"], (28.2 * 3 + 10.0) / 2, places=2)
         self.assertEqual(high["mean_thinking_tokens"], 600_000)
         self.assertIn("| opus-5-5-high |", table.getvalue())
+
+    def test_other_scope_agreement_counts_only_pairs_with_other_scope_rows(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            for effort, replicate, other_scope in (("low", 1, ["d1"]), ("low", 2, []), ("low", 3, ["d1"]),
+                                                    ("high", 1, []), ("high", 2, [])):
+                self.record(root, make_cell(effort=effort, replicate=replicate), bids=[(10, 10, "d1")],
+                            other_scope=other_scope)
+            with contextlib.redirect_stdout(io.StringIO()):
+                effort_sweep.summarize(argparse.Namespace(packet=str(root / "packet")))
+            summary = json.loads((root / "packet/summary.json").read_text())
+        low, high = summary["by_arm"]["opus-5-5-low"], summary["by_arm"]["opus-5-5-high"]
+        # Low: r1-r2 and r2-r3 disagree (0.0), r1-r3 agree (1.0); the bids alone agree everywhere.
+        self.assertEqual((low["other_scope_pairs"], low["mean_other_scope_jaccard"], low["mean_bid_jaccard"]), (3, 0.333, 1.0))
+        # Neither high replicate has an Other-scope row: no agreement to report, not perfect agreement.
+        self.assertEqual((high["other_scope_pairs"], high["mean_other_scope_jaccard"]), (0, None))
 
     def test_repeated_provider_failures_stop_new_cells_and_can_be_retried(self):
         with tempfile.TemporaryDirectory() as tmp:

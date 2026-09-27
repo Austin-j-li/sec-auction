@@ -1,0 +1,690 @@
+diff -ruN --exclude node_modules --exclude __pycache__ --exclude dist wave2-base/_dev/tools/cockpit/acceptance/test_browser.mjs pkg/w2s4/_dev/tools/cockpit/acceptance/test_browser.mjs
+--- wave2-base/_dev/tools/cockpit/acceptance/test_browser.mjs	2026-09-25 20:48:59.989830169 +0000
++++ pkg/w2s4/_dev/tools/cockpit/acceptance/test_browser.mjs	2026-09-25 21:44:23.236264687 +0000
+@@ -265,6 +265,40 @@
+   const reloadedNote = await noteField.inputValue();
+   record('explicit conflict reload', reloadedNote === 'Other editor value', `note=${JSON.stringify(reloadedNote)}`);
+ 
++  // Bulk Process/Round: pick events in select mode (click, then shift-click a range), confirm, stage, save once.
++  await chooseTab(page, 'Ledger');
++  await page.locator('.event-item').filter({ hasText: 'Offer' }).click();
++  await page.getByRole('button', { name: 'Select', exact: true }).click();
++  record('select mode hides Add', await page.locator('.record-list').getByRole('button', { name: 'Add', exact: true }).count() === 0);
++  await page.locator('.event-item').filter({ hasText: 'Offer' }).click();
++  await page.locator('.event-item').filter({ hasText: 'Signing' }).click({ modifiers: ['Shift'] });
++  record('shift-click picks a range', (await page.locator('.pick-count').innerText()) === '2 selected' && await page.locator('.event-item[aria-pressed="true"]').count() === 2);
++  await page.getByRole('button', { name: 'Set Process/Round…' }).click();
++  const bulkDialog = page.getByRole('dialog', { name: 'Set Process and Round' });
++  await bulkDialog.waitFor();
++  record('bulk dialog receives focus', await page.evaluate(() => document.activeElement?.closest('[role="dialog"]') != null));
++  await bulkDialog.getByRole('textbox', { name: 'Round' }).fill('1');
++  record('bulk dialog says when nothing changes', (await bulkDialog.locator('.bulk-summary').innerText()).startsWith('No selected event changes'));
++  await bulkDialog.getByRole('textbox', { name: 'Round' }).fill('2');
++  const summary = await bulkDialog.locator('.bulk-summary').innerText();
++  record('bulk dialog confirms the rows that change', summary.includes('This changes 2 events') && summary.includes('#2–#3'), summary);
++  await screenshot(page, 'desktop-bulk-dialog.png');
++  await bulkDialog.getByRole('button', { name: 'Stage for 2 events' }).click();
++  await bulkDialog.waitFor({ state: 'hidden' });
++  record('bulk edit staged as two changes', (await page.locator('.work-state').innerText()).includes('2 unsaved changes'));
++  record('bulk edit default reason', await page.getByRole('textbox', { name: 'Reason for this revision' }).inputValue() === 'Set Round 2 on 2 events');
++  // A later edit of one picked event's Round, in the open editor, is saved after the bulk value.
++  await page.locator('.record-editor').getByRole('textbox', { name: /^Round/ }).fill('3');
++  await page.getByRole('button', { name: 'Save changes' }).click();
++  await page.getByText('Revision saved', { exact: true }).waitFor();
++  current = await api(page, '/api/deal/synthetic');
++  const bulkHistory = await api(page, '/api/deal/synthetic/history');
++  record('bulk edit saved as one revision', current.body.workspace.revision === 9 && current.body.ledger.rows.map(r => r.cells.Round).join() === '1,3,2'
++    && bulkHistory.body.history[0].reason === 'Set Round 2 on 2 events' && bulkHistory.body.history[0].summary === '2 changes');
++  await screenshot(page, 'desktop-bulk-saved.png');
++  await page.getByRole('button', { name: 'Done', exact: true }).click();
++  record('select mode ends', await page.locator('.pick-bar').count() === 0 && await page.locator('.record-list').getByRole('button', { name: 'Add', exact: true }).count() === 1);
++
+   for (const viewport of [{ width: 1024, height: 768, label: 'laptop' }, { width: 390, height: 844, label: 'narrow' }]) {
+     const narrow = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height }, reducedMotion: 'reduce' });
+     await useStagedAssets(narrow);
+@@ -278,6 +312,12 @@
+       await assertControlWithin(view, view.locator('.record-editor').getByRole('textbox', { name: 'When', exact: true }), view.locator('.record-editor'), `${viewport.label} When editor contained`);
+     }
+     await screenshot(view, `${viewport.label}-ledger.png`);
++    await view.getByRole('button', { name: 'Select', exact: true }).click();
++    await view.locator('.event-item').first().click();
++    await assertNoOverflow(view, `${viewport.label} select mode`);
++    await assertControlWithin(view, view.getByRole('button', { name: 'Set Process/Round…' }), view.locator('.record-list'), `${viewport.label} Set Process/Round contained`);
++    await screenshot(view, `${viewport.label}-select-mode.png`);
++    await view.getByRole('button', { name: 'Done', exact: true }).click();
+     if (viewport.label === 'narrow') {
+       await view.getByRole('group', { name: 'Visible pane' }).getByRole('button', { name: 'Filing' }).click();
+       record('narrow filing pane', await view.getByRole('region', { name: 'SEC filing' }).isVisible());
+diff -ruN --exclude node_modules --exclude __pycache__ --exclude dist wave2-base/_dev/tools/cockpit/acceptance/test_http.py pkg/w2s4/_dev/tools/cockpit/acceptance/test_http.py
+--- wave2-base/_dev/tools/cockpit/acceptance/test_http.py	2026-09-25 21:26:28.666800036 +0000
++++ pkg/w2s4/_dev/tools/cockpit/acceptance/test_http.py	2026-09-25 21:39:08.614527788 +0000
+@@ -590,6 +590,35 @@
+     assert [(i["kind"], i["summary"]) for i in items[:2]] == [("deal_review", "Marked reviewed at revision 2"), ("revision", "Synthetic acceptance change")]
+ 
+ 
++def test_bulk_process_round_edit_is_one_attributed_revision(env):
++    http, workbook, original_hash = env
++    snapshot = deal(http)
++    marked = save(http, snapshot, [{"type": "review", "uid": row(snapshot, "Deal ledger", 1)["uid"], "status": "needs_decision"}])
++    assert marked.status_code == 200, marked.text
++    snapshot = marked.json()
++    uids = [row(snapshot, "Deal ledger", index)["uid"] for index in (1, 2)]
++    for values in ({"Note": "x"}, {"Process": 0}, {"Round": ""}):
++        rejected = save(http, snapshot, [{"type": "bulk_update", "sheet": "Deal ledger", "uids": uids, "values": values}])
++        assert rejected.status_code == 400, rejected.text
++    assert deal(http)["workspace"]["revision"] == 1
++    saved = save(http, snapshot, [{"type": "bulk_update", "sheet": "Deal ledger", "uids": uids, "values": {"Process": 1, "Round": "2"}}], "Second round starts at #2")
++    assert saved.status_code == 200, saved.text
++    payload = saved.json()
++    assert payload["workspace"]["revision"] == 2
++    assert [r["cells"]["Round"] for r in payload["ledger"]["rows"]] == ["1", "2", "2"]
++    assert payload["row_review"][uids[0]]["status"] == "needs_decision"
++    user = http.session()["user"]
++    assert {payload["field_authors"][uid]["Round"]["actor"] for uid in uids} == {user}
++    assert "Process" not in payload["field_authors"][uids[0]]  # unchanged values are not recorded
++    history = http.get("/api/deal/synthetic/history").json()["history"][0]
++    assert (history["actor"], history["reason"], history["summary"]) == (user, "Second round starts at #2", "2 changes")
++    assert sorted((c["uid"], c["field"], c["before"], c["after"], c["type"]) for c in history["changes"]) == sorted((uid, "Round", "1", "2", "update") for uid in uids)
++    exported = xlsx(http.get("/api/deal/synthetic/export?version=working&source=0"))
++    column = check_lean.LEDGER_COLUMNS.index("Round") + 1
++    assert [(exported["Deal ledger"].cell(r, column).value, exported["Deal ledger"].cell(r, column).data_type) for r in (2, 3, 4)] == [(1, "n"), (2, "n"), (2, "n")]
++    exported.close()
++    assert hashlib.sha256(workbook.read_bytes()).hexdigest() == original_hash
++
+ def source_values(workbook):
+     return {field: value for field, value in workbook["Source"].iter_rows(min_row=2, values_only=True)}
+ 
+diff -ruN --exclude node_modules --exclude __pycache__ --exclude dist wave2-base/_dev/tools/cockpit/frontend/src/bulk.js pkg/w2s4/_dev/tools/cockpit/frontend/src/bulk.js
+--- wave2-base/_dev/tools/cockpit/frontend/src/bulk.js	1970-01-01 00:00:00.000000000 +0000
++++ pkg/w2s4/_dev/tools/cockpit/frontend/src/bulk.js	2026-09-25 21:44:08.208156397 +0000
+@@ -0,0 +1,83 @@
++import { rowId, text } from './api';
++
++// Process and Round set on many ledger events at once, as when a deal's rounds are renumbered. The selected events
++// become one staged `bulk_update` operation (one of the server's 100 a save, however many rows), saved with the
++// other staged edits as one revision. The server takes only these two columns, with the values the checker accepts:
++// a Process of 1 or more, and a Round of 0 or more or `post`.
++
++// The values to set from the dialog's two boxes; a blank box leaves that column as it is on each event.
++export function bulkValues(process, round) {
++  const values = {}, p = text(process).trim(), r = text(round).trim().toLowerCase();
++  if (p) {
++    if (!/^\d{1,9}$/.test(p) || Number(p) < 1) return { values: {}, error: 'Process must be a whole number of 1 or more.' };
++    values.Process = String(Number(p));
++  }
++  if (r) {
++    if (r !== 'post' && !/^\d{1,9}$/.test(r)) return { values: {}, error: 'Round must be a whole number of 0 or more, or post.' };
++    values.Round = r === 'post' ? r : String(Number(r));
++  }
++  return { values, error: Object.keys(values).length ? '' : 'Enter a Process, a Round, or both.' };
++}
++
++// The selected events, in ledger order, that the values would change.
++export function bulkChanges(rows, picked, values) {
++  return rows.filter(row => picked.has(row.uid) && Object.entries(values).some(([field, value]) => text(row.cells?.[field]) !== value));
++}
++
++// "#2–#4, #7, 1 new event": the events named in the confirmation.
++export function eventList(rows) {
++  const numbers = rows.filter(row => !row.uid.startsWith('new-')).map(row => Number(rowId(row))).filter(Number.isInteger).sort((a, b) => a - b);
++  const parts = [];
++  for (const n of numbers) {
++    const last = parts.at(-1);
++    if (last && n === last[1] + 1) last[1] = n; else parts.push([n, n]);
++  }
++  const fresh = rows.length - numbers.length;
++  return [...parts.map(([a, b]) => a === b ? `#${a}` : `#${a}–#${b}`), fresh && `${fresh} new event${fresh === 1 ? '' : 's'}`].filter(Boolean).join(', ');
++}
++
++// A click on an event in select mode toggles it; a shift-click adds every event from the last one clicked.
++export function pickRows(order, picked, anchor, uid, extend = false) {
++  const next = new Set(picked), from = order.indexOf(anchor), to = order.indexOf(uid);
++  if (extend && from >= 0 && to >= 0) order.slice(Math.min(from, to), Math.max(from, to) + 1).forEach(item => next.add(item));
++  else if (next.has(uid)) next.delete(uid);
++  else next.add(uid);
++  return next;
++}
++
++// Stage the values on the given events: an unsaved new event takes them in its insert, the rest in one bulk_update.
++export function stageBulk(ops, uids, values) {
++  const next = structuredClone(ops), stable = [];
++  for (const uid of uids) {
++    const insert = next.find(op => op.type === 'insert' && op.client_uid === uid);
++    if (insert) Object.assign(insert.values, values); else stable.push(uid);
++  }
++  if (stable.length) next.push({ type: 'bulk_update', sheet: 'Deal ledger', uids: stable, values: { ...values } });
++  return next;
++}
++
++// The staged update that a field edit extends: the record's last update, unless a bulk_update staged after it covers
++// the record. The server applies operations in order, so the edit must then follow the bulk one as a new update.
++export function updateToExtend(ops, sheet, uid) {
++  for (let i = ops.length - 1; i >= 0; i--) {
++    const op = ops[i];
++    if (op.type === 'bulk_update' && op.sheet === sheet && op.uids.includes(uid)) return null;
++    if (op.type === 'update' && op.sheet === sheet && op.uid === uid) return op;
++  }
++  return null;
++}
++
++// A staged deletion takes its event out of any staged bulk_update, dropping one left with no events.
++export function withoutBulkRow(ops, uid) {
++  return ops.map(op => op.type === 'bulk_update' ? { ...op, uids: op.uids.filter(item => item !== uid) } : op)
++    .filter(op => op.type !== 'bulk_update' || op.uids.length);
++}
++
++// Staged edits as the reader counts them: a bulk_update counts once per event it changes.
++export const stagedCount = ops => ops.reduce((sum, op) => sum + (op.type === 'bulk_update' ? op.uids.length : 1), 0);
++
++// The default save reason for a bulk edit: "Set Process 2 and Round 1 on 12 events".
++export function bulkReason(values, events) {
++  const parts = Object.entries(values).map(([field, value]) => `${field} ${value}`).join(' and ');
++  return `Set ${parts} on ${events} event${events === 1 ? '' : 's'}`;
++}
+diff -ruN --exclude node_modules --exclude __pycache__ --exclude dist wave2-base/_dev/tools/cockpit/frontend/src/bulk.test.js pkg/w2s4/_dev/tools/cockpit/frontend/src/bulk.test.js
+--- wave2-base/_dev/tools/cockpit/frontend/src/bulk.test.js	1970-01-01 00:00:00.000000000 +0000
++++ pkg/w2s4/_dev/tools/cockpit/frontend/src/bulk.test.js	2026-09-25 21:44:08.208883930 +0000
+@@ -0,0 +1,73 @@
++import { describe, expect, it } from 'vitest';
++import { bulkChanges, bulkReason, bulkValues, eventList, pickRows, stageBulk, stagedCount, updateToExtend, withoutBulkRow } from './bulk';
++
++const event = (uid, n, process = '1', round = '1') => ({ uid, id: n ? String(n) : '', cells: { '#': n ? String(n) : '', Process: process, Round: round } });
++const ROWS = [event('a', 1), event('b', 2, '1', '2'), event('c', 3), event('d', 4, '2', 'post'), event('new-x', null)];
++
++describe('bulk Process and Round edits', () => {
++  it('takes a Process of 1 or more and a Round of 0 or more or post; a blank box leaves the column alone', () => {
++    expect(bulkValues('2', '')).toEqual({ values: { Process: '2' }, error: '' });
++    expect(bulkValues(' 02 ', '0')).toEqual({ values: { Process: '2', Round: '0' }, error: '' });
++    expect(bulkValues('', 'Post')).toEqual({ values: { Round: 'post' }, error: '' });
++    expect(bulkValues('', '').error).toBe('Enter a Process, a Round, or both.');
++    expect(bulkValues('0', '1').error).toMatch(/^Process/);
++    expect(bulkValues('1.5', '').error).toMatch(/^Process/);
++    expect(bulkValues('', '-1').error).toMatch(/^Round/);
++    expect(bulkValues('', 'later').error).toMatch(/^Round/);
++    expect(bulkValues('1234567890', '').error).toMatch(/^Process/);
++  });
++
++  it('counts only the selected events the values change, in ledger order', () => {
++    const picked = new Set(['d', 'a', 'b', 'new-x']);
++    expect(bulkChanges(ROWS, picked, { Round: '2' }).map(row => row.uid)).toEqual(['a', 'd', 'new-x']);
++    expect(bulkChanges(ROWS, picked, { Process: '1' }).map(row => row.uid)).toEqual(['d']);
++    expect(bulkChanges(ROWS, new Set(['b']), { Process: '1', Round: '2' })).toEqual([]);
++  });
++
++  it('names the events as ranges, with unsaved events counted', () => {
++    expect(eventList([ROWS[0], ROWS[1], ROWS[2], ROWS[4]])).toBe('#1–#3, 1 new event');
++    expect(eventList([ROWS[3], ROWS[0]])).toBe('#1, #4');
++    expect(eventList([])).toBe('');
++  });
++
++  it('toggles on a click and adds a range on a shift-click from the last event clicked', () => {
++    const order = ROWS.map(row => row.uid);
++    const one = pickRows(order, new Set(), null, 'b');
++    expect([...one]).toEqual(['b']);
++    expect([...pickRows(order, one, 'b', 'b')]).toEqual([]);
++    expect([...pickRows(order, one, 'b', 'd', true)].sort()).toEqual(['b', 'c', 'd']);
++    expect([...pickRows(order, one, 'd', 'a', true)].sort()).toEqual(['a', 'b', 'c', 'd']);
++    expect([...pickRows(order, one, null, 'c', true)].sort()).toEqual(['b', 'c']);
++  });
++
++  it('stages one bulk_update for saved events and folds the values into an unsaved insert', () => {
++    const insert = { type: 'insert', sheet: 'Deal ledger', client_uid: 'new-x', after_uid: 'a', values: { Who: 'New', Round: '1' } };
++    const ops = stageBulk([insert], ['a', 'new-x', 'c'], { Round: '2' });
++    expect(ops).toEqual([{ ...insert, values: { Who: 'New', Round: '2' } }, { type: 'bulk_update', sheet: 'Deal ledger', uids: ['a', 'c'], values: { Round: '2' } }]);
++    expect(insert.values.Round).toBe('1');  // the staged list is not changed in place
++    expect(stageBulk([insert], ['new-x'], { Round: '2' })).toHaveLength(1);
++    expect(stagedCount(ops)).toBe(3);
++  });
++
++  it('drops a deleted event from a staged bulk_update, and the operation once empty', () => {
++    const ops = [{ type: 'bulk_update', sheet: 'Deal ledger', uids: ['a', 'c'], values: { Round: '2' } }, { type: 'update', sheet: 'Deal ledger', uid: 'a', values: { Note: 'x' } }];
++    expect(withoutBulkRow(ops, 'a')[0].uids).toEqual(['c']);
++    expect(withoutBulkRow(withoutBulkRow(ops, 'a'), 'c')).toEqual([ops[1]]);
++  });
++
++  it('puts a field edit after a staged bulk_update that covers the event', () => {
++    const before = { type: 'update', sheet: 'Deal ledger', uid: 'a', values: { Round: '3' } };
++    const bulk = { type: 'bulk_update', sheet: 'Deal ledger', uids: ['a', 'c'], values: { Round: '2' } };
++    expect(updateToExtend([before], 'Deal ledger', 'a')).toBe(before);
++    expect(updateToExtend([before, bulk], 'Deal ledger', 'a')).toBeNull();
++    expect(updateToExtend([before, bulk], 'Deal ledger', 'b')).toBeNull();
++    const after = { type: 'update', sheet: 'Deal ledger', uid: 'a', values: { Round: '4' } };
++    expect(updateToExtend([before, bulk, after], 'Deal ledger', 'a')).toBe(after);
++    expect(updateToExtend([bulk], 'Rounds', 'a')).toBeNull();
++  });
++
++  it('writes a default save reason', () => {
++    expect(bulkReason({ Process: '2', Round: '1' }, 12)).toBe('Set Process 2 and Round 1 on 12 events');
++    expect(bulkReason({ Round: 'post' }, 1)).toBe('Set Round post on 1 event');
++  });
++});
+diff -ruN --exclude node_modules --exclude __pycache__ --exclude dist wave2-base/_dev/tools/cockpit/frontend/src/main.jsx pkg/w2s4/_dev/tools/cockpit/frontend/src/main.jsx
+--- wave2-base/_dev/tools/cockpit/frontend/src/main.jsx	2026-09-25 21:26:14.434924934 +0000
++++ pkg/w2s4/_dev/tools/cockpit/frontend/src/main.jsx	2026-09-25 21:49:25.690147159 +0000
+@@ -22,6 +22,7 @@
+ import { isActive, isImported, orderVersions, rebaseLines, versionOptionLabel } from './runs';
+ import { hiddenLine, REVIEW_STATUSES, reviewByline } from './deals';
+ import { exportLinks } from './downloads';
++import { bulkChanges, bulkReason, bulkValues, eventList, stageBulk, stagedCount, updateToExtend, withoutBulkRow } from './bulk';
+ import './style.css';
+ 
+ const SHEETS = { ledger: 'Deal ledger', rounds: 'Rounds', questions: 'Questions', facts: 'Deal facts' };
+@@ -70,6 +71,7 @@
+   const [auxLoading, setAuxLoading] = useState(false);
+   const [conflict, setConflict] = useState(false);
+   const [deletePrompt, setDeletePrompt] = useState(null);
++  const [bulkPrompt, setBulkPrompt] = useState(null);
+   const [findingOpen, setFindingOpen] = useState(null);
+   const [documentOpen, setDocumentOpen] = useState(null);
+   const [documentData, setDocumentData] = useState(null);
+@@ -113,7 +115,7 @@
+   const unsaved = dirty || pageDirty;
+   const editable = Boolean(session.can_edit && deal?.workspace?.editable && saveState !== 'saving' && !versionLoading);
+   const slug = route.slug;
+-  const modalOpen = Boolean(deletePrompt || documentOpen || rebasePrompt || extract || addDeal || hidePrompt);
++  const modalOpen = Boolean(deletePrompt || bulkPrompt || documentOpen || rebasePrompt || extract || addDeal || hidePrompt);
+   pendingRef.current = Boolean(deal?.pending);
+   sessionRef.current = session;
+   slugRef.current = slug;
+@@ -152,7 +154,7 @@
+     modalReturnFocus.current = document.activeElement;
+     (modalRef.current?.querySelector('[data-autofocus]') || modalRef.current?.querySelector('button'))?.focus();
+     const onKeyDown = event => {
+-      if (event.key === 'Escape') { event.preventDefault(); setDeletePrompt(null); setDocumentOpen(null); setRebasePrompt(current => current?.busy ? current : null); setExtract(current => current?.busy ? current : null); setAddDeal(false); setHidePrompt(current => current?.busy ? current : null); return; }
++      if (event.key === 'Escape') { event.preventDefault(); setDeletePrompt(null); setBulkPrompt(null); setDocumentOpen(null); setRebasePrompt(current => current?.busy ? current : null); setExtract(current => current?.busy ? current : null); setAddDeal(false); setHidePrompt(current => current?.busy ? current : null); return; }
+       if (event.key !== 'Tab' || !modalRef.current) return;
+       const focusables = [...modalRef.current.querySelectorAll('button:not(:disabled), input:not(:disabled), select:not(:disabled), textarea:not(:disabled), a[href]')];
+       if (!focusables.length) return;
+@@ -170,6 +172,7 @@
+     const add = (key, fields) => { if (!map.has(key)) map.set(key, new Set()); fields.forEach(field => map.get(key).add(field)); };
+     for (const op of ops) {
+       if (op.type === 'update') add(`${op.sheet}|${op.uid}`, Object.keys(op.values || {}));
++      if (op.type === 'bulk_update') op.uids.forEach(uid => add(`${op.sheet}|${uid}`, Object.keys(op.values || {})));
+       if (op.type === 'insert') add(`${op.sheet}|${op.client_uid}`, Object.entries(op.values || {}).filter(([, value]) => text(value) !== '').map(([field]) => field));
+     }
+     return map;
+@@ -192,7 +195,7 @@
+     const token = ++routeSerial.current;
+     // A version switch keeps the current deal (and the filing pane) mounted; only the workspace waits.
+     const sameDeal = Boolean(currentSlug) && loadedSlug.current === currentSlug;
+-    setError(null); setConflict(false); setOps([]); setSaveState(''); setHistoryData(null); setChangesData(null); setFindingOpen(null); setDocumentOpen(null); setCompare(null); setRebasePrompt(null); setHidePrompt(null);
++    setError(null); setConflict(false); setOps([]); setSaveState(''); setHistoryData(null); setChangesData(null); setFindingOpen(null); setDocumentOpen(null); setCompare(null); setRebasePrompt(null); setHidePrompt(null); setBulkPrompt(null);
+     if (sameDeal) setVersionLoading(true);
+     else { setLoading(true); setDeal(null); loadedSlug.current = null; }
+     try {
+@@ -504,7 +507,7 @@
+       const next = clone(previous);
+       const insert = next.find(op => op.type === 'insert' && op.client_uid === uid);
+       if (insert) { insert.values[field] = value; return next; }
+-      const update = next.find(op => op.type === 'update' && op.sheet === sheet && op.uid === uid);
++      const update = updateToExtend(next, sheet, uid);
+       if (update) update.values[field] = value;
+       else next.push({ type: 'update', sheet, uid, values: { [field]: value } });
+       return next;
+@@ -558,7 +561,7 @@
+     setDeal(current => { const next = clone(current), rows = sheetRows(next, sheet), index = rows.findIndex(row => row.uid === uid); rows.splice(index, 1); return next; });
+     setOps(previous => {
+       const predecessor = previous.find(op => op.type === 'insert' && op.client_uid === uid)?.after_uid || null;
+-      const next = previous.filter(op => !(op.uid === uid && ['update', 'move', 'review'].includes(op.type)));
++      const next = withoutBulkRow(previous, uid).filter(op => !(op.uid === uid && ['update', 'move', 'review'].includes(op.type)));
+       if (uid.startsWith('new-')) return next.filter(op => !(op.type === 'insert' && op.client_uid === uid)).map(op => op.after_uid === uid ? { ...op, after_uid: predecessor } : op);
+       const op = { type: 'delete', sheet, uid };
+       if (sheet === 'Deal ledger' && replacement) op.replacement_uid = replacement;
+@@ -569,6 +572,20 @@
+     if (sheet === 'Deal ledger') setSelectedUid(left[0]?.uid || null);
+     setDeletePrompt(null); setSaveState('');
+   }
++  // Bulk Process/Round: the dialog's values go on the selected events that they change, as one staged operation.
++  function applyBulk() {
++    const { values, error } = bulkValues(bulkPrompt.process, bulkPrompt.round);
++    const uids = error ? [] : bulkChanges(deal.ledger?.rows || [], new Set(bulkPrompt.uids), values).map(row => row.uid);
++    if (!editable || !uids.length) return;
++    setDeal(current => {
++      const next = clone(current);
++      for (const record of next.ledger.rows) if (uids.includes(record.uid)) Object.assign(record.cells, values);
++      return next;
++    });
++    setOps(previous => stageBulk(previous, uids, values));
++    if (!reason.trim()) setReason(bulkReason(values, uids.length));
++    setBulkPrompt(null); setSaveState('');
++  }
+   // Review notes became comments (phase 1): the review operation carries only the status and an empty note.
+   function setReview(uid, status) {
+     const previous = deal.row_review?.[uid] || { status: 'unreviewed' };
+@@ -717,9 +734,13 @@
+     ? ['Original extraction, read only']
+     : [`Working copy from ${baseLabel}`, `Revision ${deal.workspace?.revision}`])] : [];
+   const showDock = dirty && session.can_edit && deal?.workspace?.editable;
++  const staged = stagedCount(ops);
++  const bulkCheck = bulkPrompt && bulkValues(bulkPrompt.process, bulkPrompt.round);
++  const bulkBlank = bulkPrompt && !text(bulkPrompt.process).trim() && !text(bulkPrompt.round).trim();
++  const bulkRows = bulkCheck && !bulkCheck.error ? bulkChanges(ledgerRows, new Set(bulkPrompt.uids), bulkCheck.values) : [];
+   const workState = versionLoading ? { tone: 'muted', label: 'Loading version' }
+     : dirty
+-    ? { tone: 'warning', label: `${ops.length} unsaved ${count(ops.length, 'change').split(' ').slice(1).join(' ')}` }
++    ? { tone: 'warning', label: `${staged} unsaved ${count(staged, 'change').split(' ').slice(1).join(' ')}` }
+     : saveState === 'saved' ? { tone: 'success', label: 'Saved' }
+     : editable ? { tone: 'muted', label: 'No unsaved edits' }
+     : { tone: 'muted', label: 'Read only version' };
+@@ -833,7 +854,7 @@
+             <div id="workspace-panel" className={`workspace-scroll ${['ledger', 'rounds', 'questions', 'facts'].includes(tab) ? 'editor-scroll' : ''}`} role="tabpanel" aria-labelledby={`tab-${tab}`}>
+               {versionLoading && <Loading label="Loading version"/>}
+               {!versionLoading && <>
+-                {tab === 'ledger' && <LedgerTab deal={deal} selectedUid={selectedUid} onSelect={selectRow} onShowFiling={showRowEvidence} onOpenQuestion={openQuestion} onStep={stepRow} onAdd={addRow} onMove={moveRow} onDelete={requestDelete} onEdit={editValue} onReview={setReview} editable={editable} selection={selected} dirtyFor={dirtyFor} reviewDirty={reviewDirty} trace={trace}/>}
++                {tab === 'ledger' && <LedgerTab deal={deal} selectedUid={selectedUid} onSelect={selectRow} onShowFiling={showRowEvidence} onOpenQuestion={openQuestion} onStep={stepRow} onAdd={addRow} onMove={moveRow} onDelete={requestDelete} onEdit={editValue} onReview={setReview} onBulk={uids => setBulkPrompt({ uids, process: '', round: '' })} editable={editable} selection={selected} dirtyFor={dirtyFor} reviewDirty={reviewDirty} trace={trace}/>}
+                 {['rounds', 'questions', 'facts'].includes(tab) && <SheetTab deal={deal} sheet={SHEETS[tab]} selectedUid={selectedBySheet[SHEETS[tab]]} onSelect={selectOther} onAdd={addRow} onMove={moveRow} onDelete={requestDelete} onEdit={editValue} editable={editable} onJumpRow={selectRow} dirtyFor={dirtyFor} trace={trace}/>}
+                 {tab === 'review' && <ReviewTab deal={deal} editable={editable} open={findingOpen} onToggle={setFindingOpen} onEdit={setFinding} dirtyFor={findingDirty} onFindEvidence={findEvidence} onOpenDocument={openDocument} trace={trace}/>}
+                 {tab === 'changes' && <ChangesTab data={changesData} loading={auxLoading} compare={compareState} onCompare={setCompare}/>}
+@@ -847,7 +868,7 @@
+               <Field label="Reason for this revision" hint="Appears in history" orientation="horizontal">
+                 <Input value={reason} title="Appears in history" disabled={saveState === 'saving'} onChange={(_, data) => setReason(data.value)} placeholder="Describe the edit"/>
+               </Field>
+-              <Button appearance="primary" className="save-button" icon={<FloppyDiskIcon size={16}/>} disabled={saveState === 'saving' || conflict} onClick={save}>Save {count(ops.length, 'change')}</Button>
++              <Button appearance="primary" className="save-button" icon={<FloppyDiskIcon size={16}/>} disabled={saveState === 'saving' || conflict} onClick={save}>Save {count(staged, 'change')}</Button>
+             </div>}
+           </section>}
+         </SplitPane>
+@@ -872,6 +893,34 @@
+         </div>
+       </div>
+     </div>}
++    {bulkPrompt && <div className="modal-backdrop" role="presentation">
++      <div className="modal" ref={modalRef} role="dialog" aria-modal="true" aria-label="Set Process and Round">
++        <div className="modal-head">
++          <h2>Set Process and Round on {count(bulkPrompt.uids.length, 'selected event')}</h2>
++          <Button appearance="subtle" className="icon-button" onClick={() => setBulkPrompt(null)} aria-label="Close" icon={<XIcon size={16}/>}/>
++        </div>
++        <p>Leave a box blank to keep each event’s own value. The change is staged until you save, and then saved with your other edits as one revision.</p>
++        <div className="bulk-fields">
++          <Field label="Process" hint="1 or more">
++            <Input data-autofocus value={bulkPrompt.process} inputMode="numeric" input={{ className: 'mono' }} onChange={(_, data) => setBulkPrompt(current => ({ ...current, process: data.value }))}/>
++          </Field>
++          <Field label="Round" hint="0 or more, or post">
++            <Input value={bulkPrompt.round} input={{ className: 'mono' }} onChange={(_, data) => setBulkPrompt(current => ({ ...current, round: data.value }))}/>
++          </Field>
++        </div>
++        <p className="bulk-summary" role="status">
++          {bulkBlank ? 'Enter a Process, a Round, or both.'
++            : bulkCheck.error ? <span className="tone-error">{bulkCheck.error}</span>
++            : bulkRows.length ? <>This changes <strong>{count(bulkRows.length, 'event')}</strong>: <span className="mono">{eventList(bulkRows)}</span>.
++                {bulkRows.length < bulkPrompt.uids.length && ` ${count(bulkPrompt.uids.length - bulkRows.length, 'other selected event')} already ${bulkPrompt.uids.length - bulkRows.length === 1 ? 'has' : 'have'} these values.`}</>
++            : 'No selected event changes: all already have these values.'}
++        </p>
++        <div className="modal-actions">
++          <Button appearance="secondary" onClick={() => setBulkPrompt(null)}>Cancel</Button>
++          <Button appearance="primary" disabled={!editable || !bulkRows.length} onClick={applyBulk}>{bulkRows.length ? `Stage for ${count(bulkRows.length, 'event')}` : 'Stage'}</Button>
++        </div>
++      </div>
++    </div>}
+     {rebasePrompt && <div className="modal-backdrop" role="presentation">
+       <div className="modal" ref={modalRef} role="dialog" aria-modal="true" aria-label="Use as working-copy base">
+         <div className="modal-head">
+diff -ruN --exclude node_modules --exclude __pycache__ --exclude dist wave2-base/_dev/tools/cockpit/frontend/src/Records.jsx pkg/w2s4/_dev/tools/cockpit/frontend/src/Records.jsx
+--- wave2-base/_dev/tools/cockpit/frontend/src/Records.jsx	2026-09-25 21:04:10.215434005 +0000
++++ pkg/w2s4/_dev/tools/cockpit/frontend/src/Records.jsx	2026-09-25 21:41:31.356202046 +0000
+@@ -1,10 +1,11 @@
+ import React, { useEffect, useRef, useState } from 'react';
+ import { Button, Field, Input, Select, Textarea } from '@fluentui/react-components';
+-import { ArrowDownIcon, ArrowsSplitIcon, ArrowUpIcon, ChatCircleIcon, InfoIcon, PlusIcon, QuotesIcon, TrashIcon, WarningIcon } from '@phosphor-icons/react';
++import { ArrowDownIcon, ArrowsSplitIcon, ArrowUpIcon, ChatCircleIcon, CheckSquareIcon, InfoIcon, ListChecksIcon, PlusIcon, QuotesIcon, SquareIcon, TrashIcon, WarningIcon } from '@phosphor-icons/react';
+ import SplitPane from './SplitPane';
+ import Comments from './Comments';
+ import { count, recordValues, rowId, sheetColumns, sheetRows, text } from './api';
+ import { addPart, listControl, OTHER } from './choices';
++import { pickRows } from './bulk';
+ import { changedByOther, displayName, initials, shortTime } from './trace';
+ import { Dot, Empty, SeverityGlyph } from './ui';
+ 
+@@ -177,14 +178,18 @@
+   </div>;
+ }
+ 
+-function EventSummary({ row, selected, onClick, review, trace }) {
++// In select mode (picked is true or false) a click picks the event for a bulk edit instead of opening it.
++function EventSummary({ row, selected, onClick, review, trace, picked = null }) {
+   const c = row.cells || {};
+   const isNew = row.uid.startsWith('new-');
+   const date = c.When || 'Date unstated';
+   const detail = [c.Who, c.Process && `Process ${c.Process}`, c.Round !== '' && c.Round != null && `Round ${c.Round}`].filter(Boolean).join(' · ');
+   const reviewLabel = review?.status === 'reviewed' ? 'Reviewed' : review?.status === 'needs_decision' ? 'Needs decision' : '';
+-  return <button id={`row-${rowId(row)}`} className={`event-item ${selected ? 'selected' : ''}`} onClick={onClick}>
++  const picking = picked !== null;
++  return <button id={`row-${rowId(row)}`} className={`event-item ${selected ? 'selected' : ''} ${picked ? 'picked' : ''}`} onClick={onClick}
++    aria-pressed={picking ? picked : undefined} onMouseDown={picking ? event => { if (event.shiftKey) event.preventDefault(); } : undefined}>
+     <span className="event-line">
++      {picking && <span className="pick-mark" aria-hidden="true">{picked ? <CheckSquareIcon size={14} weight="fill"/> : <SquareIcon size={14}/>}</span>}
+       {isNew
+         ? <span className="event-number mono tone-warning"><Dot tone="warning"/> New</span>
+         : <span className="event-number mono">#{rowId(row)}</span>}
+@@ -258,7 +263,7 @@
+   </div>;
+ }
+ 
+-export function LedgerTab({ deal, selectedUid, onSelect, onShowFiling, onOpenQuestion, onStep, onAdd, onMove, onDelete, onEdit, onReview, editable, selection, dirtyFor, reviewDirty, trace }) {
++export function LedgerTab({ deal, selectedUid, onSelect, onShowFiling, onOpenQuestion, onStep, onAdd, onMove, onDelete, onEdit, onReview, onBulk, editable, selection, dirtyFor, reviewDirty, trace }) {
+   const rows = deal.ledger?.rows || [];
+   const index = rows.findIndex(row => row.uid === selectedUid);
+   const row = selection || rows[0];
+@@ -268,17 +273,36 @@
+   const listRef = useRef(null);
+   useEffect(() => { if (editorRef.current) editorRef.current.scrollTop = 0; }, [row?.uid]);
+   useRevealSelected(listRef, '.event-item.selected', '.event-list', row?.uid);
++  // Select mode picks events for a bulk Process/Round edit; null outside it. Picks of rows since removed are ignored.
++  const [picked, setPicked] = useState(null);
++  const anchor = useRef(null);
++  const picking = Boolean(editable && onBulk && picked);
++  const pickedRows = picking ? rows.filter(item => picked.has(item.uid)) : [];
++  const togglePicking = () => { setPicked(picking ? null : new Set()); anchor.current = null; };
++  function pick(uid, extend) {
++    setPicked(current => pickRows(rows.map(item => item.uid), current, anchor.current, uid, extend));
++    anchor.current = uid;
++  }
+ 
+   return <SplitPane className="ledger-layout" name="Event list and editor" storageKey="ledger" mobileStack mobileDefaultSize={128} defaultSize={250} minStart={140} minEnd={360}>
+     <div className="record-list" ref={listRef}>
+-      <div className="section-head">
++      <div className={`section-head ${picking ? 'picking' : ''}`}>
+         <h2>Events</h2>
+         <span className="head-count mono">{count(rows.length, 'event')}</span>
+-        {editable && <Button appearance="secondary" icon={<PlusIcon size={16}/>} onClick={() => onAdd('Deal ledger')}>Add</Button>}
++        {editable && onBulk && rows.length > 0 && <Button appearance="subtle" className="pick-toggle" icon={<ListChecksIcon size={16}/>} aria-pressed={picking} title={picking ? 'Leave select mode' : 'Select events to set Process or Round on several at once'} onClick={togglePicking}>{picking ? 'Done' : 'Select'}</Button>}
++        {editable && !picking && <Button appearance="secondary" icon={<PlusIcon size={16}/>} onClick={() => onAdd('Deal ledger')}>Add</Button>}
++        {picking && <div className="pick-bar" role="toolbar" aria-label="Selected events">
++          <span className="pick-count mono" aria-live="polite">{pickedRows.length} selected</span>
++          <Button appearance="subtle" className="link-button" onClick={() => setPicked(new Set(rows.map(item => item.uid)))}>All</Button>
++          <Button appearance="subtle" className="link-button" disabled={!pickedRows.length} onClick={() => setPicked(new Set())}>None</Button>
++          <Button appearance="secondary" disabled={!pickedRows.length} onClick={() => onBulk(pickedRows.map(item => item.uid))}>Set Process/Round…</Button>
++          <span className="pick-hint">Shift-click selects a range</span>
++        </div>}
+       </div>
+       <div className="event-list">
+         {rows.length
+-          ? rows.map(item => <EventSummary key={item.uid} row={item} selected={item.uid === row?.uid} onClick={() => onSelect(item.uid)} review={deal.row_review?.[item.uid]} trace={trace}/>)
++          ? rows.map(item => <EventSummary key={item.uid} row={item} selected={item.uid === row?.uid} review={deal.row_review?.[item.uid]} trace={trace}
++              picked={picking ? picked.has(item.uid) : null} onClick={event => picking ? pick(item.uid, event.shiftKey) : onSelect(item.uid)}/>)
+           : <Empty>No events in this ledger. Add the first event to begin.</Empty>}
+       </div>
+     </div>
+diff -ruN --exclude node_modules --exclude __pycache__ --exclude dist wave2-base/_dev/tools/cockpit/frontend/src/style.css pkg/w2s4/_dev/tools/cockpit/frontend/src/style.css
+--- wave2-base/_dev/tools/cockpit/frontend/src/style.css	2026-09-25 21:04:10.216247693 +0000
++++ pkg/w2s4/_dev/tools/cockpit/frontend/src/style.css	2026-09-25 21:43:35.846253581 +0000
+@@ -693,6 +693,18 @@
+ .event-review { display: inline-flex; flex: none; align-self: center; margin-left: auto; }
+ .quote-location + .event-review { margin-left: 0; }
+ .event-review .dot { margin-right: 0; }
++/* Select mode: events picked for a bulk Process/Round edit carry a filled check; the open event keeps its rule. */
++.record-list .section-head .fui-Button + .fui-Button { margin-left: 0; }
++.pick-bar { display: flex; flex: 1 0 100%; flex-wrap: wrap; align-items: center; gap: var(--sp-1) var(--sp-2); font-size: var(--fs-12); line-height: var(--lh-12); }
++.cockpit .section-head .pick-bar .fui-Button { margin-left: 0; }
++.pick-count { color: var(--ink); font-weight: var(--fw-medium); }
++.cockpit .pick-bar .fui-Button.link-button { min-height: 0; padding: 2px 4px; font-size: var(--fs-12); line-height: var(--lh-12); }
++.pick-hint { flex-basis: 100%; color: var(--ink-3); }
++.pick-mark { display: inline-flex; flex: none; align-self: center; color: var(--ink-3); }
++.event-item.picked .pick-mark { color: var(--accent); }
++.event-item.picked:not(.selected) { background: var(--tint); }
++.modal .bulk-fields { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-3); }
++.modal .bulk-summary { margin-top: var(--sp-4); }
+ /* Row marks: the other person's initials (changed since your last visit) and the open-thread count. Text only. */
+ .row-marks { display: inline-flex; flex: none; align-items: baseline; gap: 6px; color: var(--ink-2); font-size: var(--fs-12); }
+ .initials-mark { font-weight: var(--fw-medium); letter-spacing: 0.02em; }
+@@ -1152,6 +1164,8 @@
+ .split-horizontal .record-list { display: flex; flex-direction: column; overflow: hidden; }
+ .split-horizontal .record-list .section-head { position: static; flex: none; flex-wrap: nowrap; padding: 6px var(--sp-4); }
+ .split-horizontal .record-list .section-head h2 { font-size: var(--fs-13); line-height: var(--lh-13); }
++.split-horizontal .record-list .section-head.picking { flex-wrap: wrap; }
++.split-horizontal .pick-hint { flex-basis: auto; }
+ .split-horizontal .record-list .event-list,
+ .split-horizontal .sheet-list { display: flex; overflow-x: auto; overflow-y: hidden; }
+ .split-horizontal .record-list .event-list { flex: 1; min-height: 0; }
+@@ -1341,6 +1355,7 @@
+   .save-dock { flex-wrap: wrap; }
+   .cockpit .save-dock .fui-Field { flex-basis: 100%; }
+   .save-dock > .fui-Button { flex: 1; }
++  .pick-hint { display: none; }
+ }
+ @media (max-height: 680px) {
+   .deal-toolbar { min-height: 48px; padding-top: var(--sp-2); padding-bottom: var(--sp-2); }
+diff -ruN --exclude node_modules --exclude __pycache__ --exclude dist wave2-base/_dev/tools/cockpit/workspace.py pkg/w2s4/_dev/tools/cockpit/workspace.py
+--- wave2-base/_dev/tools/cockpit/workspace.py	2026-09-25 21:26:28.667204472 +0000
++++ pkg/w2s4/_dev/tools/cockpit/workspace.py	2026-09-25 21:38:18.334449812 +0000
+@@ -22,6 +22,8 @@
+ SHEETS = (data.LEDGER_SHEET, data.ROUNDS_SHEET, data.QUESTIONS_SHEET, data.FACTS_SHEET)
+ DATE_FIELDS = {"Sort date", "Date from", "Date to", "Opened"}
+ NUMBER_FIELDS = {"#", "Process", "Round", "Price low", "Price high", "Count", "CVR/earnout value"}
++# The only ledger columns one bulk_update sets across many rows, as when a deal's rounds are renumbered.
++BULK_FIELDS = ("Process", "Round")
+ QID = re.compile(r"Q[1-9][0-9]*\Z")
+ REF_EXPR = re.compile(r"(?<![\w])#\s*(\d+)(?:\s*[-–—]\s*#?\s*(\d+))?\b")
+ QREF = re.compile(r"(?<![\w])Q[1-9][0-9]*\b")
+@@ -827,6 +829,20 @@
+             if not isinstance(note, str) or len(note) > 100000: raise WorkspaceError("invalid note")
+             state["row_review"][uid] = {"status": op["status"], "note": note, "actor": actor, "at": _now()}
+             return
++        if typ == "bulk_update":
++            # One operation, however many rows: each row changes as under its own update, so the diff, history,
++            # attribution and row marks are those of ordinary updates. Values must be ones the checker accepts.
++            uids, values = op.get("uids"), op.get("values")
++            if op.get("sheet") != data.LEDGER_SHEET: raise WorkspaceError("a bulk update applies to the Deal ledger only")
++            if not isinstance(values, dict) or not values or any(k not in BULK_FIELDS or k not in state["sheets"][data.LEDGER_SHEET]["columns"] for k in values): raise WorkspaceError("a bulk update sets only Process and Round")
++            if not isinstance(uids, list) or not uids or any(not isinstance(uid, str) for uid in uids) or len(set(uids)) != len(uids): raise WorkspaceError("a bulk update needs distinct row uids")
++            coerced = {k: self._coerce(data.LEDGER_SHEET, k, v) for k, v in values.items()}
++            if "Process" in coerced and (not isinstance(coerced["Process"], int) or coerced["Process"] < 1): raise WorkspaceError("Process must be a positive whole number")
++            if "Round" in coerced and coerced["Round"] is None: raise WorkspaceError("Round must be a whole number or post")
++            rows = {r["uid"]: r for r in state["sheets"][data.LEDGER_SHEET]["rows"]}
++            if any(uid not in rows for uid in uids): self._missing_row()
++            for uid in uids: rows[uid]["values"].update(coerced)
++            return
+         raise WorkspaceError("unknown operation")
+ 
+     def _references(self, state: dict[str, Any], number: Any, uid: str) -> bool:
+@@ -888,6 +904,7 @@
+         if not isinstance(request, dict) or type(request.get("revision")) is not int or not isinstance(request.get("base_sha256"), str): raise WorkspaceError("revision and base_sha256 required")
+         ops = request.get("operations")
+         reason = request.get("reason")
++        # At most 100 operations a save; one bulk_update covers any number of ledger rows.
+         if not isinstance(ops, list) or not ops or len(ops) > 100 or any(not isinstance(op, dict) for op in ops): raise WorkspaceError("operations required")
+         if not isinstance(reason, str) or not reason.strip() or len(reason) > 1000: raise WorkspaceError("save reason required")
+         conn = self._connect(write=True)
+@@ -935,6 +952,7 @@
+                     op = dict(source_op)
+                     for field in ("uid", "after_uid", "replacement_uid"):
+                         if isinstance(op.get(field), str) and op[field] in client_uids: op[field] = client_uids[op[field]]
++                    if isinstance(op.get("uids"), list): op["uids"] = [client_uids.get(uid, uid) if isinstance(uid, str) else uid for uid in op["uids"]]
+                     if op.get("type") == "insert" and "client_uid" in op:
+                         client_uid = op["client_uid"]
+                         if not isinstance(client_uid, str) or not re.fullmatch(r"new-[a-zA-Z0-9-]{1,80}", client_uid) or client_uid in client_uids:
+diff -ruN --exclude node_modules --exclude __pycache__ --exclude dist wave2-base/_dev/tools/test_cockpit_workspace.py pkg/w2s4/_dev/tools/test_cockpit_workspace.py
+--- wave2-base/_dev/tools/test_cockpit_workspace.py	2026-09-25 21:26:14.450517675 +0000
++++ pkg/w2s4/_dev/tools/test_cockpit_workspace.py	2026-09-25 21:38:51.386494325 +0000
+@@ -262,6 +262,91 @@
+         self.assertEqual([row["cells"]["Who"] for row in rows[:3]], ["Alpha", "Second new", "First new"])
+         self.assertEqual(saved["row_review"][rows[2]["uid"]]["status"], "reviewed")
+ 
++    def test_bulk_update_is_recorded_as_the_same_updates_one_row_at_a_time(self):
++        rows = self.cockpit.deal("alpha-deal")["ledger"]["rows"]
++        uids = [row["uid"] for row in rows[:3]]
++        self.save([{"type": "review", "uid": uids[0], "status": "reviewed", "note": ""}], actor="alex")
++        result = self.save([{"type": "bulk_update", "sheet": "Deal ledger", "uids": uids, "values": {"Process": "2", "Round": 3}}], revision=1, reason="Renumber rounds")
++        self.assertEqual([(r["cells"]["Process"], r["cells"]["Round"]) for r in result["ledger"]["rows"]], [("2", "3")] * 3 + [("1", "1")] * (len(rows) - 3))
++        self.assertEqual(result["row_review"][uids[0]]["actor"], "alex")  # row marks stay, as under an update
++        self.assertEqual(result["ledger"]["columns"], self.cockpit.deal("alpha-deal", "v1132-raw")["ledger"]["columns"])
++        bulk = self.ws.history("alpha-deal")["history"][0]
++        self.assertEqual((bulk["revision"], bulk["actor"], bulk["reason"], bulk["summary"]), (2, "austin", "Renumber rounds", "6 changes"))
++        wb = load_workbook(io.BytesIO(self.ws.export("alpha-deal")))
++        columns = [cell.value for cell in wb["Deal ledger"][1]]
++        process, round_ = (wb["Deal ledger"].cell(2, columns.index(field) + 1) for field in ("Process", "Round"))
++        self.assertEqual((process.value, process.data_type, round_.value), (2, "n", 3))
++        # The same edit as three ordinary updates, from the same starting point, records the same changes.
++        self.save([{"type": "restore", "target_revision": 1}], revision=2)
++        self.save([{"type": "update", "sheet": "Deal ledger", "uid": uid, "values": {"Process": "2", "Round": 3}} for uid in uids], revision=3)
++        single = self.ws.history("alpha-deal")["history"][0]
++        key = lambda change: (change["uid"], change["field"])
++        self.assertEqual(sorted(single["changes"], key=key), sorted(bulk["changes"], key=key))
++        self.assertEqual(single["summary"], bulk["summary"])
++        authors = self.cockpit.trace.deal_extras("alpha-deal", "austin")["field_authors"]
++        self.assertEqual({authors[uid]["Round"]["revision"] for uid in uids}, {4})
++
++    def test_bulk_update_covers_more_rows_than_the_operation_cap(self):
++        path = self.root / "extraction/alpha-deal.xlsx"
++        wb = load_workbook(path)
++        ledger = wb["Deal ledger"]
++        template = [cell.value for cell in ledger[2]]
++        for number in range(8, 158):
++            ledger.append([number if column == 0 else value for column, value in enumerate(template)])
++        wb.save(path)
++        catalog_path = self.root / "_dev/cockpit/catalog.json"
++        catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
++        self.base = catalog["deals"]["alpha-deal"]["versions"][0]["sha256"] = hashlib.sha256(path.read_bytes()).hexdigest()
++        catalog_path.write_text(json.dumps(catalog), encoding="utf-8")
++        self.cockpit = data.Cockpit(self.root)
++        self.ws = self.cockpit.workspace
++        uids = [row["uid"] for row in self.cockpit.deal("alpha-deal")["ledger"]["rows"]]
++        self.assertEqual(len(uids), 156)
++        with self.assertRaisesRegex(WorkspaceError, "operations required"):
++            self.save([{"type": "update", "sheet": "Deal ledger", "uid": uid, "values": {"Round": 2}} for uid in uids[:101]])
++        result = self.save([{"type": "bulk_update", "sheet": "Deal ledger", "uids": uids, "values": {"Round": "2"}}])
++        self.assertEqual({row["cells"]["Round"] for row in result["ledger"]["rows"]}, {"2"})
++        self.assertEqual(self.ws.history("alpha-deal")["history"][0]["summary"], "156 changes")
++
++    def test_bulk_update_accepts_only_process_and_round_and_is_atomic(self):
++        rows = self.cockpit.deal("alpha-deal")["ledger"]["rows"]
++        uids = [row["uid"] for row in rows[:2]]
++        note = {"type": "update", "sheet": "Deal ledger", "uid": uids[0], "values": {"Note": "Would change"}}
++        bad = [
++            {"sheet": "Deal ledger", "uids": uids, "values": {"Note": "x"}},
++            {"sheet": "Deal ledger", "uids": uids, "values": {"Round": 2, "Price low": 3}},
++            {"sheet": "Deal ledger", "uids": uids, "values": {"#": 9}},
++            {"sheet": "Deal ledger", "uids": uids, "values": {}},
++            {"sheet": "Rounds", "uids": [self.cockpit.deal("alpha-deal")["rounds"]["rows"][0]["uid"]], "values": {"Round": 2}},
++            {"sheet": "Deal ledger", "uids": [], "values": {"Round": 2}},
++            {"sheet": "Deal ledger", "uids": uids[0], "values": {"Round": 2}},
++            {"sheet": "Deal ledger", "uids": [uids[0], uids[0]], "values": {"Round": 2}},
++            {"sheet": "Deal ledger", "uids": [uids[0], "missing"], "values": {"Round": 2}},
++            {"sheet": "Deal ledger", "uids": [uids[0], 7], "values": {"Round": 2}},
++            {"sheet": "Deal ledger", "uids": uids, "values": {"Process": "0"}},
++            {"sheet": "Deal ledger", "uids": uids, "values": {"Process": ""}},
++            {"sheet": "Deal ledger", "uids": uids, "values": {"Round": ""}},
++            {"sheet": "Deal ledger", "uids": uids, "values": {"Round": "-1"}},
++            {"sheet": "Deal ledger", "uids": uids, "values": {"Round": "1.5"}},
++            {"sheet": "Deal ledger", "uids": uids, "values": {"Round": "later"}},
++        ]
++        for op in bad:
++            with self.subTest(op=op), self.assertRaises(WorkspaceError):
++                self.save([note, {"type": "bulk_update", **op}])
++        self.assertFalse(self.ws.history("alpha-deal")["history"][:-1])
++        self.assertEqual(self.cockpit.deal("alpha-deal")["ledger"]["rows"][0]["cells"]["Note"], rows[0]["cells"]["Note"])
++        post = self.save([{"type": "bulk_update", "sheet": "Deal ledger", "uids": uids, "values": {"Round": "post"}}])
++        self.assertEqual([row["cells"]["Round"] for row in post["ledger"]["rows"][:2]], ["post", "post"])
++
++    def test_bulk_update_reaches_rows_inserted_in_the_same_batch(self):
++        first = self.cockpit.deal("alpha-deal")["ledger"]["rows"][0]["uid"]
++        saved = self.save([
++            {"type": "insert", "sheet": "Deal ledger", "client_uid": "new-one", "after_uid": first, "values": {"Who": "First new", "Round": 1}},
++            {"type": "bulk_update", "sheet": "Deal ledger", "uids": [first, "new-one"], "values": {"Process": 2, "Round": 0}},
++        ])
++        self.assertEqual([(row["cells"]["Who"], row["cells"]["Process"], row["cells"]["Round"]) for row in saved["ledger"]["rows"][:3]],
++                         [("Alpha", "2", "0"), ("First new", "2", "0"), ("Alpha", "1", "1")])
++
+     def test_interior_narrative_range_blocks_dangling_delete(self):
+         rows = self.cockpit.deal("alpha-deal")["ledger"]["rows"]
+         first, middle, last = rows[0]["uid"], rows[1]["uid"], rows[2]["uid"]

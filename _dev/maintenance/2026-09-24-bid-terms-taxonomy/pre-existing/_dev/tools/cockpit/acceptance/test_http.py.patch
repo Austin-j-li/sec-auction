@@ -1,0 +1,44 @@
+diff --git a/_dev/tools/cockpit/acceptance/test_http.py b/_dev/tools/cockpit/acceptance/test_http.py
+index d876f1e..bb64d92 100644
+--- a/_dev/tools/cockpit/acceptance/test_http.py
++++ b/_dev/tools/cockpit/acceptance/test_http.py
+@@ -552,3 +552,39 @@ def test_hide_and_unhide_a_deal_over_http(env, monkeypatch):
+     assert http.post(route, {"action": "unhide"}).status_code == 409
+     kinds = [item["kind"] for item in http.get("/api/activity?slug=synthetic").json()["items"]]
+     assert kinds[:2] == ["unhide_deal", "hide_deal"]
++
++
++def test_deal_review_status_is_recorded_at_a_revision(env):
++    http, _, _ = env
++    route = "/api/deal/synthetic/review"
++    listed = lambda: next(d for d in http.get("/api/deals").json() if d["slug"] == "synthetic")["deal_review"]
++    initial = deal(http)["deal_review"]
++    assert (initial["status"], initial["actor"], initial["edited_since"]) == ("unreviewed", None, False)
++    assert http.post(route, {"status": "reviewed", "revision": 0}, csrf="wrong").status_code == 403
++    assert http.post(route, {"status": "done", "revision": 0}).status_code == 400
++    assert http.post(route, {"status": "reviewed"}).status_code == 400
++    assert http.post(route, {"status": "reviewed", "revision": 1}).status_code == 409
++
++    snapshot = deal(http)
++    saved = save(http, snapshot, [{"type": "review", "uid": row(snapshot, "Deal ledger")["uid"], "status": "reviewed"}])
++    assert saved.status_code == 200, saved.text
++    assert saved.json()["deal_review"]["status"] == "in_review"  # edited, nothing recorded yet
++    assert http.post(route, {"status": "reviewed", "revision": 0}).status_code == 409  # stale view
++
++    marked = http.post(route, {"status": "reviewed", "revision": 1})
++    assert marked.status_code == 200, marked.text
++    review = marked.json()["deal_review"]
++    assert (review["status"], review["revision"], review["actor"], review["edited_since"]) == ("reviewed", 1, "local", False)
++    assert http.post(route, {"status": "reviewed", "revision": 1}).status_code == 400  # no change
++    assert listed()["status"] == "reviewed"
++
++    snapshot = deal(http)
++    later = save(http, snapshot, [{"type": "review", "uid": row(snapshot, "Deal ledger")["uid"], "status": "needs_decision"}])
++    assert later.status_code == 200, later.text
++    stale = later.json()["deal_review"]
++    assert (stale["status"], stale["revision"], stale["current_revision"], stale["edited_since"]) == ("reviewed", 1, 2, True)
++    assert listed()["edited_since"] is True
++    again = http.post(route, {"status": "reviewed", "revision": 2}).json()["deal_review"]
++    assert (again["revision"], again["edited_since"]) == (2, False)
++    items = http.get("/api/activity?slug=synthetic").json()["items"]
++    assert [(i["kind"], i["summary"]) for i in items[:2]] == [("deal_review", "Marked reviewed at revision 2"), ("revision", "Synthetic acceptance change")]

@@ -1,0 +1,13 @@
+{
+  "bytes": 29242,
+  "exists": true,
+  "path": "/home/uctpiaj/work/Projects/sec-extraction-v114-trial-20260926/_dev/runs/2026-09-26-v114-15-run-trial/stec-opus-5-5-medium-r1/extraction/stec.xlsx",
+  "sha256": "f162061de59ced9d7a5131e16ffa63b686699b5666e1e98b03813e4e663d1132",
+  "sheet_names": [
+    "Deal ledger",
+    "Rounds",
+    "Questions",
+    "Deal facts"
+  ],
+  "valid_xlsx": true
+}

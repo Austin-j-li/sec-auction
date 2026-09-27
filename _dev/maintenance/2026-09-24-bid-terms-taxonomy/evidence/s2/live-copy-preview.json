@@ -1,0 +1,360 @@
+{
+  "run_at": "2026-09-25T21:13:11+00:00",
+  "deals": {
+    "datalink": {
+      "ledger_schema": "v1.13.2",
+      "revision": 0,
+      "live_check": "1.6",
+      "versions": {
+        "opus55-medium": {
+          "checker_version": "1.5",
+          "ledger_schema": null,
+          "errors": 0,
+          "warnings": 21
+        }
+      },
+      "row_marks": 0,
+      "threads": []
+    },
+    "kraton": {
+      "ledger_schema": "v1.13.2",
+      "revision": 4,
+      "live_check": "1.6",
+      "versions": {
+        "opus55-medium": {
+          "checker_version": "1.5",
+          "ledger_schema": null,
+          "errors": 0,
+          "warnings": 20
+        }
+      },
+      "row_marks": 75,
+      "threads": []
+    },
+    "mac-gray": {
+      "ledger_schema": "v1.13.2",
+      "revision": 8,
+      "live_check": "1.6",
+      "versions": {
+        "opus55-medium": {
+          "checker_version": "1.5",
+          "ledger_schema": null,
+          "errors": 1,
+          "warnings": 26
+        },
+        "opus55-medium-20260924-2241-d7d267": {
+          "checker_version": "1.6",
+          "ledger_schema": "v1.14",
+          "errors": 1,
+          "warnings": 16
+        }
+      },
+      "row_marks": 58,
+      "threads": [
+        [
+          "deal",
+          false,
+          null
+        ]
+      ],
+      "rebase_preview": {
+        "opus55-medium-20260924-2241-d7d267": {
+          "current": {
+            "id": "opus55-medium",
+            "label": "Opus 5.5 medium extraction",
+            "instruction_version": "v1.13.2",
+            "ledger_schema": "v1.13.2",
+            "revision": 8
+          },
+          "target": {
+            "id": "opus55-medium-20260924-2241-d7d267",
+            "label": "Opus 5.5 · medium · draft f9595d7 (Austin) — Austin, 24 Sep 22:41",
+            "instruction_version": null,
+            "ledger_schema": "v1.14"
+          },
+          "deal_review": {
+            "status": "in_review",
+            "revision": null,
+            "actor": null,
+            "at": null,
+            "current_revision": 8,
+            "edited_since": false
+          },
+          "stops_applying": {
+            "revisions": 8,
+            "edits": 42,
+            "row_marks": {
+              "total": 58,
+              "reviewed": 56,
+              "needs_decision": 2,
+              "unreviewed": 0
+            },
+            "row_threads": {
+              "total": 0,
+              "open": 0,
+              "resolved": 0
+            },
+            "finding_decisions": {
+              "total": 1,
+              "judgments_kept": 1,
+              "reset": 1
+            }
+          }
+        }
+      }
+    },
+    "meredith": {
+      "ledger_schema": "v1.13.2",
+      "revision": 4,
+      "live_check": "1.6",
+      "versions": {
+        "opus55-medium": {
+          "checker_version": "1.5",
+          "ledger_schema": null,
+          "errors": 0,
+          "warnings": 16
+        }
+      },
+      "row_marks": 88,
+      "threads": []
+    },
+    "penford": {
+      "ledger_schema": "v1.13.2",
+      "revision": 2,
+      "live_check": "1.6",
+      "versions": {
+        "opus55-medium": {
+          "checker_version": "1.5",
+          "ledger_schema": null,
+          "errors": 0,
+          "warnings": 15
+        }
+      },
+      "row_marks": 51,
+      "threads": []
+    },
+    "petsmart": {
+      "ledger_schema": "v1.13.2",
+      "revision": 2,
+      "live_check": "1.6",
+      "versions": {
+        "opus55-medium": {
+          "checker_version": "1.5",
+          "ledger_schema": null,
+          "errors": 1,
+          "warnings": 22
+        },
+        "opus55-medium-20260923-1528-4d8363": {
+          "checker_version": "1.5",
+          "ledger_schema": null,
+          "errors": 1,
+          "warnings": 6
+        }
+      },
+      "row_marks": 47,
+      "threads": [],
+      "rebase_preview": {
+        "opus55-medium-20260923-1528-4d8363": {
+          "current": {
+            "id": "opus55-medium",
+            "label": "Opus 5.5 medium extraction",
+            "instruction_version": "v1.13.2",
+            "ledger_schema": "v1.13.2",
+            "revision": 2
+          },
+          "target": {
+            "id": "opus55-medium-20260923-1528-4d8363",
+            "label": "Opus 5.5 · medium · v1.13.2 — Austin, 23 Sep 15:28",
+            "instruction_version": "v1.13.2",
+            "ledger_schema": "v1.13.2"
+          },
+          "deal_review": {
+            "status": "in_review",
+            "revision": null,
+            "actor": null,
+            "at": null,
+            "current_revision": 2,
+            "edited_since": false
+          },
+          "stops_applying": {
+            "revisions": 2,
+            "edits": 20,
+            "row_marks": {
+              "total": 47,
+              "reviewed": 42,
+              "needs_decision": 5,
+              "unreviewed": 0
+            },
+            "row_threads": {
+              "total": 0,
+              "open": 0,
+              "resolved": 0
+            },
+            "finding_decisions": {
+              "total": 0,
+              "judgments_kept": 0,
+              "reset": 0
+            }
+          }
+        }
+      }
+    },
+    "providence-worcester": {
+      "ledger_schema": "v1.13.2",
+      "revision": 16,
+      "live_check": "1.6",
+      "versions": {
+        "opus55-medium": {
+          "checker_version": "1.5",
+          "ledger_schema": null,
+          "errors": 0,
+          "warnings": 12
+        },
+        "opus55-medium-20260924-2241-38bc24": {
+          "checker_version": "1.6",
+          "ledger_schema": "v1.14",
+          "errors": 0,
+          "warnings": 14
+        }
+      },
+      "row_marks": 63,
+      "threads": [
+        [
+          "row",
+          false,
+          null
+        ],
+        [
+          "deal",
+          false,
+          null
+        ]
+      ],
+      "rebase_preview": {
+        "opus55-medium-20260924-2241-38bc24": {
+          "current": {
+            "id": "opus55-medium",
+            "label": "Opus 5.5 medium extraction",
+            "instruction_version": "v1.13.2",
+            "ledger_schema": "v1.13.2",
+            "revision": 16
+          },
+          "target": {
+            "id": "opus55-medium-20260924-2241-38bc24",
+            "label": "Opus 5.5 · medium · draft f9595d7 (Austin) — Austin, 24 Sep 22:41",
+            "instruction_version": null,
+            "ledger_schema": "v1.14"
+          },
+          "deal_review": {
+            "status": "in_review",
+            "revision": null,
+            "actor": null,
+            "at": null,
+            "current_revision": 16,
+            "edited_since": false
+          },
+          "stops_applying": {
+            "revisions": 16,
+            "edits": 16,
+            "row_marks": {
+              "total": 63,
+              "reviewed": 60,
+              "needs_decision": 3,
+              "unreviewed": 0
+            },
+            "row_threads": {
+              "total": 1,
+              "open": 1,
+              "resolved": 0
+            },
+            "finding_decisions": {
+              "total": 0,
+              "judgments_kept": 0,
+              "reset": 0
+            }
+          }
+        }
+      }
+    },
+    "stec": {
+      "ledger_schema": "v1.13.2",
+      "revision": 1,
+      "live_check": "1.6",
+      "versions": {
+        "opus55-medium": {
+          "checker_version": "1.5",
+          "ledger_schema": null,
+          "errors": 0,
+          "warnings": 21
+        }
+      },
+      "row_marks": 61,
+      "threads": []
+    },
+    "synacor": {
+      "ledger_schema": "v1.13.2",
+      "revision": 1,
+      "live_check": "1.6",
+      "versions": {
+        "opus55-medium": {
+          "checker_version": "1.5",
+          "ledger_schema": null,
+          "errors": 1,
+          "warnings": 8
+        }
+      },
+      "row_marks": 77,
+      "threads": []
+    }
+  },
+  "jobs": {
+    "mac-gray": [
+      [
+        {
+          "errors": 1,
+          "warnings": 16,
+          "checker_version": "1.6",
+          "ledger_schema": "v1.14"
+        },
+        "opus55-medium-20260924-2241-d7d267"
+      ]
+    ],
+    "providence-worcester": [
+      [
+        {
+          "errors": 0,
+          "warnings": 14,
+          "checker_version": "1.6",
+          "ledger_schema": "v1.14"
+        },
+        "opus55-medium-20260924-2241-38bc24"
+      ],
+      [
+        null,
+        null
+      ]
+    ],
+    "petsmart": [
+      [
+        {
+          "errors": 1,
+          "warnings": 6,
+          "checker_version": "1.5",
+          "ledger_schema": null
+        },
+        "opus55-medium-20260923-1528-4d8363"
+      ]
+    ],
+    "medivation": [
+      [
+        {
+          "errors": 0,
+          "warnings": 3,
+          "checker_version": "1.5",
+          "ledger_schema": null
+        },
+        "opus55-medium-20260923-1631-9dd02c"
+      ]
+    ]
+  }
+}

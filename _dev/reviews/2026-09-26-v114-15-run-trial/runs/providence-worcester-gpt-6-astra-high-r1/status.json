@@ -1,0 +1,25 @@
+{
+  "client_pid": 404016,
+  "continuations": 0,
+  "elapsed_seconds": 798.765,
+  "ended_at": "2026-09-26T09:57:11.259050+00:00",
+  "exit_code": 0,
+  "failure_reason": null,
+  "plan_usage": null,
+  "started_at": "2026-09-26T09:43:52.496019+00:00",
+  "state": "completed",
+  "timed_out": false,
+  "usage": {
+    "cost_usd": null,
+    "tokens": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 882560,
+      "input_tokens": 995295,
+      "output_tokens": 23331,
+      "reasoning_output_tokens": 7082
+    }
+  },
+  "workbook_exists": true,
+  "workbook_valid_xlsx": true,
+  "worker_pid": 403947
+}

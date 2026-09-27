@@ -1,0 +1,20 @@
+--- a/_dev/tools/README.md
++++ b/_dev/tools/README.md
+@@ -46,7 +46,7 @@
+ 
+ Otherwise the run is `failed`, with one of these `failure_reason`s: `provider_refusal`, `provider_exit`, `provider_error`, `model_mismatch`, `workbook_missing`, `workbook_unreadable`, `workbook_incomplete` or `revision_notes_missing`. A timeout yields `timed_out`. Worker startup errors also leave a failed status. The worker exits nonzero on failure, while `launch` only reports successful dispatch: inspect `status` for the outcome. Older saved statuses keep their original meaning. Workbook readability is not a mechanical-checker pass or substantive acceptance; both remain separate steps.
+ 
+-The cockpit importer (`cockpit/import_results.py`) builds the catalog with one version per deal: the Opus 5.5 medium extraction in `extraction/<deal>.xlsx`, confirmed from the receipts in `_dev/reviews/2026-09-22-opus55-reextraction/`, plus the Datalink F9 and Mac-Gray R01 case-level decisions. `cockpit/verify_catalog.py` is the read-only live check of that catalog and its working copies. It writes nothing to the database: its own query opens it through a `mode=ro` URI, and the cockpit code it renders the deals with only reads. Each run writes a new file in the same packet, `catalog-verification-<UTC timestamp>.json` (or the new file `--output` names), and refuses to overwrite an existing result; it exits 1 with "Verification failed: …" when a check fails.
++The cockpit importer (`cockpit/import_results.py`) builds the catalog with one version per deal: the Opus 5.5 medium v1.13.2 extraction of 22 September, confirmed from the receipts in `_dev/reviews/2026-09-22-opus55-reextraction/`, plus the Datalink F9 and Mac-Gray R01 case-level decisions. At the v1.14.1 release the nine workbooks moved, bytes unchanged, from `extraction/` to `_dev/reviews/2026-09-22-opus55-reextraction/workbooks/<deal>.xlsx`, and the catalog paths now name them there (same id `opus55-medium`, hash and instruction version), so the working copies based on them still resolve; the v1.14.1 workbooks in `extraction/` do not change the catalog the importer builds. `cockpit/verify_catalog.py` is the read-only live check of that catalog and its working copies. It writes nothing to the database: its own query opens it through a `mode=ro` URI, and the cockpit code it renders the deals with only reads. It requires each catalog version's path to be in that `workbooks/` folder. Each run writes a new file in the same packet, `catalog-verification-<UTC timestamp>.json` (or the new file `--output` names), and refuses to overwrite an existing result; it exits 1 with "Verification failed: …" when a check fails.
+ 
+ ## Cockpit worker
+ 
+@@ -117,7 +117,7 @@
+ - **Deals:**
+   - A deal export writes `extraction/<slug>.xlsx` as the four-sheet workbook (`Workspace.export`): a version's stored bytes, or the working copy rendered as in the cockpit's four-sheet working-copy download (`?source=0`). It never carries the Source sheet that the default working-copy download adds and that the checker rejects by design.
+   - For a deal added in the cockpit, it also writes the filing to `raw_filing/` and adds or updates its `MANIFEST.csv` row.
+-  - It refuses any path that `catalog.json` names as an immutable original, so in practice only added deals can be exported. Changing the catalog is a separate, requested edit.
++  - It refuses any path that `catalog.json` names as an immutable original. Since the v1.14.1 release the catalog names the relocated v1.13.2 workbooks, not `extraction/<slug>.xlsx`, so catalog deals and added deals can both be exported there. Changing the catalog is a separate, requested edit; a path it names later becomes immutable too.
+   - Once an exported added deal is committed, the cockpit reads its filing from `raw_filing/` like the original nine.
+ - **Without `--write`** it is a dry run that writes nothing.
+ 

@@ -1,0 +1,111 @@
+{
+  "at": "2026-09-26T09:44:59.343463+00:00",
+  "rows": [
+    {
+      "id": "providence-worcester-gpt-6-sol-xhigh-r1",
+      "state": "running",
+      "started": "2026-09-26T09:43:51.774460+00:00",
+      "event_bytes": 111880,
+      "stderr_bytes": 39
+    },
+    {
+      "id": "providence-worcester-gpt-6-astra-high-r1",
+      "state": "running",
+      "started": "2026-09-26T09:43:52.496019+00:00",
+      "event_bytes": 135418,
+      "stderr_bytes": 39
+    },
+    {
+      "id": "stec-opus-5-5-medium-r1",
+      "state": "running",
+      "started": "2026-09-26T09:43:53.261234+00:00",
+      "event_bytes": 544317,
+      "stderr_bytes": 0
+    },
+    {
+      "id": "stec-opus-5-5-xhigh-r1",
+      "state": "running",
+      "started": "2026-09-26T09:43:54.004796+00:00",
+      "event_bytes": 677333,
+      "stderr_bytes": 0
+    },
+    {
+      "id": "mac-gray-gpt-6-astra-high-r1",
+      "state": "running",
+      "started": "2026-09-26T09:43:54.801332+00:00",
+      "event_bytes": 193205,
+      "stderr_bytes": 39
+    },
+    {
+      "id": "stec-gpt-6-astra-xhigh-r1",
+      "state": "running",
+      "started": "2026-09-26T09:43:55.577043+00:00",
+      "event_bytes": 144064,
+      "stderr_bytes": 39
+    },
+    {
+      "id": "mac-gray-opus-5-5-xhigh-r1",
+      "state": "running",
+      "started": "2026-09-26T09:43:56.316691+00:00",
+      "event_bytes": 612410,
+      "stderr_bytes": 0
+    },
+    {
+      "id": "providence-worcester-opus-5-5-medium-r1",
+      "state": "running",
+      "started": "2026-09-26T09:43:57.120513+00:00",
+      "event_bytes": 452761,
+      "stderr_bytes": 0
+    },
+    {
+      "id": "mac-gray-opus-5-5-medium-r1",
+      "state": "running",
+      "started": "2026-09-26T09:43:57.874505+00:00",
+      "event_bytes": 421015,
+      "stderr_bytes": 0
+    },
+    {
+      "id": "mac-gray-gpt-6-astra-xhigh-r1",
+      "state": "running",
+      "started": "2026-09-26T09:43:58.607260+00:00",
+      "event_bytes": 178999,
+      "stderr_bytes": 39
+    },
+    {
+      "id": "providence-worcester-gpt-6-astra-xhigh-r1",
+      "state": "running",
+      "started": "2026-09-26T09:43:59.301719+00:00",
+      "event_bytes": 168893,
+      "stderr_bytes": 39
+    },
+    {
+      "id": "mac-gray-gpt-6-sol-xhigh-r1",
+      "state": "running",
+      "started": "2026-09-26T09:44:00.093459+00:00",
+      "event_bytes": 167747,
+      "stderr_bytes": 39
+    },
+    {
+      "id": "providence-worcester-opus-5-5-xhigh-r1",
+      "state": "running",
+      "started": "2026-09-26T09:44:00.891440+00:00",
+      "event_bytes": 505768,
+      "stderr_bytes": 0
+    },
+    {
+      "id": "stec-gpt-6-astra-high-r1",
+      "state": "running",
+      "started": "2026-09-26T09:44:01.678620+00:00",
+      "event_bytes": 199327,
+      "stderr_bytes": 39
+    },
+    {
+      "id": "stec-gpt-6-sol-xhigh-r1",
+      "state": "running",
+      "started": "2026-09-26T09:44:02.447214+00:00",
+      "event_bytes": 123007,
+      "stderr_bytes": 39
+    }
+  ],
+  "running": 15
+}

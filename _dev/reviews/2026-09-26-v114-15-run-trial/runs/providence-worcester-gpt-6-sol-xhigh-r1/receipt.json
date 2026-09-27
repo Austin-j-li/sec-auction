@@ -1,0 +1,28 @@
+{
+  "cell": {
+    "arm": "gpt-6-sol-xhigh",
+    "deal": "providence-worcester",
+    "effort": "xhigh",
+    "filing": "providence-worcester_2016-09-20_DEFM14A.htm",
+    "id": "providence-worcester-gpt-6-sol-xhigh-r1",
+    "model": "gpt-6-sol",
+    "provider": "sol",
+    "replicate": 1,
+    "timeout_minutes": 120
+  },
+  "check_summary": {
+    "errors": 0,
+    "information": 0,
+    "total_issues": 6,
+    "warnings": 6
+  },
+  "checker_version": "1.7",
+  "failure_reason": null,
+  "ledger_schema": "v1.14",
+  "mismatches": [],
+  "network_commands": [],
+  "recorded_at": "2026-09-26T09:56:12.953752+00:00",
+  "state": "completed",
+  "web_or_delegation": [],
+  "workbook_sha256": "f6d6d9fc8920d3ea618d6dc43bb2c7260a9f1994f24fed485411c09956b703e1"
+}

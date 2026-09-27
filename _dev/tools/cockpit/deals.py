@@ -237,7 +237,7 @@ class Deals:
             warnings.append(f"The linked document {hinted} is not an HTML document of this filing.")
             hinted = None
         preselected = hinted or (fetch_filing.default_document(documents, form) if not seed or seed["status"] == "ok" else None)
-        index = params["submission_url"][:-len(".txt")] + "-index.htm"
+        index = fetch_filing.index_link(params["submission_url"])
         return {"form_type": form, "date_filed": date, "header": {key: parsed[key] for key in ("form_type", "date_filed", "subject_company", "filer")},
                 "documents": documents, "preselected": preselected, "suggested": {"slug": slug, "name": name},
                 "source_url": params["submission_url"], "index_url": index, "seed": seed, "warnings": warnings,

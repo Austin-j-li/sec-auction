@@ -1,0 +1,8 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "### Result\n{\n  \"url\": \"https://lines.dealextract.org/deal/mac-gray\",\n  \"dialog\": \"Start an extraction\\nEngine\\nOpus 5.5\\nFable 5.1 (experimental)\\nGPT-6-Sol\\nGPT-6-Astra\\nEffort\\nlow\\nmedium\\nhigh\\nxhigh\\nmax\\nInstruction\\nv1.13.2 · default\\ndraft f9595d7 (Austin)\\ndraft 513c8e3 (Austin)\\nTime limit (minutes)\\n\\nGPT-6-Astra · high · v1.13.2 · on Austin’s ChatGPT plan\\n\\nCancel\\nStart extraction\",\n  \"selects\": [\n    {\n      \"value\": \"astra6\",\n      \"text\": \"GPT-6-Astra\",\n      \"label\": null\n    },\n    {\n      \"value\": \"high\",\n      \"text\": \"high\",\n      \"label\": null\n    },\n    {\n      \"value\": \"513c8e3e8159\",\n      \"text\": \"v1.13.2 · default\",\n      \"label\": null\n    }\n  ],\n  \"startButtons\": [\n    \"\",\n    \"Cancel\",\n    \"Start extraction\"\n  ]\n}\n### Ran Playwright code\n```js\nawait page.evaluate('() => { const d=document.querySelector(\\'[role=\"dialog\"]\\'); return {url:location.href,dialog:d?.innerText,selects:[...(d?.querySelectorAll(\\'select\\')||[])].map(e=>({value:e.value,text:e.options[e.selectedIndex]?.text,label:e.getAttribute(\\'aria-label\\')})),startButtons:[...(d?.querySelectorAll(\\'button\\')||[])].map(b=>b.innerText)}; }');\n```"
+    }
+  ]
+}

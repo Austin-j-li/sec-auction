@@ -1,0 +1,13 @@
+{
+  "bytes": 35573,
+  "exists": true,
+  "path": "/home/uctpiaj/work/Projects/sec-extraction-v114-trial-20260926/_dev/runs/2026-09-26-v114-15-run-trial/stec-gpt-6-astra-xhigh-r1/extraction/stec.xlsx",
+  "sha256": "f9833f42dd7e53955b0aa3360b3782b1743da4f24e7d230fc165107d6a225996",
+  "sheet_names": [
+    "Deal ledger",
+    "Rounds",
+    "Questions",
+    "Deal facts"
+  ],
+  "valid_xlsx": true
+}

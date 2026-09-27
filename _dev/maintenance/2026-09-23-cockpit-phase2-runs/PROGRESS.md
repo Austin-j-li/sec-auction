@@ -97,5 +97,7 @@ Austin reopened PetSmart during the first real run and could not see it: a deal 
 
 ## Not yet done
 
+> **Status, 26 September 2026:** Austin has since made real runs on his own plan (the latest, the five v1.14.1 retest runs, `../../reviews/2026-09-26-v1141-retest/README.md`). Alex's own run was still outstanding when last recorded; the [development handoff](../../HANDOFF.md) tracks what remains.
+
 - **One real run by each user on their own plan** (spec acceptance). Each user connects in Settings, then extracts one deal at Opus 5.5 medium. It needs Austin's go-ahead: building the app does not authorise a real model run.
 - **Is the long-lived token refreshable or revocable?** Claude reports the token as valid for one year. The app shows the expiry date, and Reconnect replaces the token.

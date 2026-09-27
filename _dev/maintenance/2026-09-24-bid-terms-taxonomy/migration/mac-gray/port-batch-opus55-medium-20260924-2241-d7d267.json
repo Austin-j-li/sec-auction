@@ -1,0 +1,288 @@
+{
+ "deal": "mac-gray",
+ "target_version": "opus55-medium-20260924-2241-d7d267",
+ "base_sha256": "d7d26784ec3ba8f4d5d156e59ec633a77017c2729876cc185268767a6f97fd3c",
+ "applied": false,
+ "note": "Prepared, never applied. After the deal is rebased onto target_version, set each request's revision to the working copy's revision and POST it to /api/deal/<deal>/edit, as Austin or at his command (V114_SPEC §13, gate 11). More than one request means more than 100 operations: one save takes at most 100.",
+ "accepted_facts": [],
+ "skipped": [],
+ "requests": [
+  {
+   "revision": null,
+   "base_sha256": "d7d26784ec3ba8f4d5d156e59ec633a77017c2729876cc185268767a6f97fd3c",
+   "reason": "Port reviewed work from the v1.13.2 working copy (revision 8) onto opus55-medium-20260924-2241-d7d267; prepared by migrate_review.py from the triage (seed 1)",
+   "operations": [
+    {
+     "type": "review",
+     "uid": "f876f65db37a71c99eb2cdbc",
+     "status": "reviewed",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #2 (9b6395b7)."
+    },
+    {
+     "type": "review",
+     "uid": "d4215e1883301263daa5e3d7",
+     "status": "reviewed",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #3 (3cb5ddf8)."
+    },
+    {
+     "type": "review",
+     "uid": "c416b2195f1e17999c175e8f",
+     "status": "reviewed",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #4 (dd7bf81b)."
+    },
+    {
+     "type": "review",
+     "uid": "31dd0ff79457dd847f0d319c",
+     "status": "reviewed",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #5 (40e4e37b)."
+    },
+    {
+     "type": "review",
+     "uid": "2ff7265c2fd34c85eb4dd870",
+     "status": "reviewed",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #6 (c212d8a7)."
+    },
+    {
+     "type": "review",
+     "uid": "5370231f131a60c60fccca67",
+     "status": "needs_decision",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #7 (196c4984)."
+    },
+    {
+     "type": "review",
+     "uid": "4f333e645f475c7f5dd9796f",
+     "status": "reviewed",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #8 (b0352967)."
+    },
+    {
+     "type": "review",
+     "uid": "81c371788632a7cd2b146d0d",
+     "status": "needs_decision",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #9 (88392829)."
+    },
+    {
+     "type": "review",
+     "uid": "591b974c58a10ee6b298e741",
+     "status": "reviewed",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #10 (0f21d452)."
+    },
+    {
+     "type": "review",
+     "uid": "7af7c465bdf1836b92da1c2f",
+     "status": "reviewed",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #11 (7369034c)."
+    },
+    {
+     "type": "review",
+     "uid": "d41ed0db8f8e6e5529054a70",
+     "status": "reviewed",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #12 (820a0ffa)."
+    },
+    {
+     "type": "review",
+     "uid": "da7d3910d8134041ddf7b8a0",
+     "status": "reviewed",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #13 (c1625b7e)."
+    },
+    {
+     "type": "review",
+     "uid": "bcae895aebc01daf35c4eaa2",
+     "status": "reviewed",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #14 (3992f108)."
+    },
+    {
+     "type": "review",
+     "uid": "886c6041a0e0b0b320e30df4",
+     "status": "reviewed",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #15 (e9301630)."
+    },
+    {
+     "type": "review",
+     "uid": "a7a8215cd9cf5e1d411e64cc",
+     "status": "reviewed",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #16 (3c9b2183)."
+    },
+    {
+     "type": "review",
+     "uid": "d1cec524be246589c36fde23",
+     "status": "reviewed",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #17 (614bf02e)."
+    },
+    {
+     "type": "review",
+     "uid": "4cfba2d61824328787ebc834",
+     "status": "needs_decision",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #18 (ffbc242e)."
+    },
+    {
+     "type": "review",
+     "uid": "de613bbd6365643f9efe2d43",
+     "status": "needs_decision",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #19 (a17966b3)."
+    },
+    {
+     "type": "review",
+     "uid": "5b977a806d0d65208ea7c57c",
+     "status": "needs_decision",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #20 (abff8003)."
+    },
+    {
+     "type": "review",
+     "uid": "34d760ae098e4f676c91065e",
+     "status": "needs_decision",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #21 (ea62dc1e)."
+    },
+    {
+     "type": "review",
+     "uid": "abf4228233bac561f96dc5ec",
+     "status": "needs_decision",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #22 (a30cc943)."
+    },
+    {
+     "type": "review",
+     "uid": "9641776888a249aa68251be0",
+     "status": "needs_decision",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #23 (94c7acf5)."
+    },
+    {
+     "type": "review",
+     "uid": "b5b20a0a68e8204838e86d48",
+     "status": "needs_decision",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #24 (8e7f375c)."
+    },
+    {
+     "type": "review",
+     "uid": "cf5472e7ab351a757f5242ff",
+     "status": "needs_decision",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #25 (fb40768f)."
+    },
+    {
+     "type": "review",
+     "uid": "7946efce80d152f09ce4c254",
+     "status": "reviewed",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #26 (8f05a341)."
+    },
+    {
+     "type": "review",
+     "uid": "d42c08494048fa9d408442cc",
+     "status": "needs_decision",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #29 (82f908f4)."
+    },
+    {
+     "type": "review",
+     "uid": "03cbd8269da223d061753f4a",
+     "status": "needs_decision",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #30 (0e1045fa)."
+    },
+    {
+     "type": "review",
+     "uid": "1bf630578ad74d9de4eb4bb7",
+     "status": "needs_decision",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #32 (00e22c93)."
+    },
+    {
+     "type": "review",
+     "uid": "c9a1f03402c66aca88c88904",
+     "status": "needs_decision",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #33 (ab468ec1)."
+    },
+    {
+     "type": "review",
+     "uid": "88774bef63fa2e4218dcae70",
+     "status": "needs_decision",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #34 (91734089)."
+    },
+    {
+     "type": "review",
+     "uid": "585706773264860b127947d6",
+     "status": "reviewed",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #35 (83a19f33)."
+    },
+    {
+     "type": "review",
+     "uid": "8931c4c172f9a9154e36d345",
+     "status": "needs_decision",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #36 (e0e6b028)."
+    },
+    {
+     "type": "review",
+     "uid": "232c8610e247aea541633618",
+     "status": "needs_decision",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #37 (3c0fc9d0)."
+    },
+    {
+     "type": "review",
+     "uid": "4252a2650c6969be136cac60",
+     "status": "needs_decision",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #38 (390fd177)."
+    },
+    {
+     "type": "review",
+     "uid": "19894a5396b7b93ca8041773",
+     "status": "needs_decision",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #39 (3f08e6ef)."
+    },
+    {
+     "type": "review",
+     "uid": "7a69378ded90669db4a13228",
+     "status": "needs_decision",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #41 (8fd7eb0e)."
+    },
+    {
+     "type": "review",
+     "uid": "c5238d79b0aa237b97782e8f",
+     "status": "reviewed",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #42 (e9a20a28)."
+    },
+    {
+     "type": "review",
+     "uid": "9a89ed52dd5ee79c01a8075b",
+     "status": "reviewed",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #45 (425a8eab)."
+    },
+    {
+     "type": "review",
+     "uid": "af194df67def5caaf99949a5",
+     "status": "needs_decision",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #46 (c89d74ca)."
+    },
+    {
+     "type": "review",
+     "uid": "38f5baa4da3cb57ca4576266",
+     "status": "reviewed",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #49 (401eb854)."
+    },
+    {
+     "type": "review",
+     "uid": "c24868eacddcfb20dc3ef3ff",
+     "status": "reviewed",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #52 (75790bb8)."
+    },
+    {
+     "type": "review",
+     "uid": "4f3167ef826f8d43b28088cc",
+     "status": "needs_decision",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #55 (28e3b4de)."
+    },
+    {
+     "type": "review",
+     "uid": "18bc308ae5b1c8fea6c3ce47",
+     "status": "needs_decision",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #56 (fafd0e23)."
+    },
+    {
+     "type": "review",
+     "uid": "7f50e178fb704443228816d9",
+     "status": "reviewed",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #57 (27dc4ae8)."
+    },
+    {
+     "type": "review",
+     "uid": "9c208737e34c52eb23804cdc",
+     "status": "reviewed",
+     "note": "Ported from the v1.13.2 working copy, revision 8, row #58 (1168990f)."
+    }
+   ]
+  }
+ ]
+}

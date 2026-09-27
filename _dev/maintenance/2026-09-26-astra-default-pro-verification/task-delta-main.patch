@@ -1,0 +1,496 @@
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -17,7 +17,7 @@
+ 
+ ## If you are asked to work on the pipeline itself
+ - Read `_dev/HANDOFF.md` first.
+-- For engineering, pick models by task: Astra for hard design and review (strong but expensive, sometimes erratic), Sol for well-specified implementation, Opus 5.5 or Fable 5.1 for design, implementation and integration. Claude Opus 5.5 at medium effort is the default extraction model (22 September effort sweep, `_dev/reviews/2026-09-22-opus55-sol6-sweep/`).
++- For engineering, pick models by task: Astra for hard design and review (strong but expensive, sometimes erratic), Sol for well-specified implementation, Opus 5.5 or Fable 5.1 for design, implementation and integration. GPT-6-Astra at high effort is the default extraction model (Austin approved the switch on 26 September after the blinded 15-run v1.14 trial; `_dev/maintenance/2026-09-26-astra-default-pro-verification/`).
+ - The cockpit is the shared extraction app (spec `_dev/COCKPIT_APP_SPEC.md`, approved 23 September; built in five phases). In it, Austin and Alex may each add deals and start extractions on their own subscription, choosing Opus 5.5, Fable 5.1, GPT-6-Sol or GPT-6-Astra at any allowed effort, and may create, run and publish instruction versions and change the default (frozen versions never change). Each app action is attributed to the person who takes it. The rule that instruction changes should be general (below) stays as guidance for their versions. An app version (instruction or deal) reaches the repository only through `_dev/tools/cockpit/export_repo.py`, run for a commit Austin requests.
+ - Outside the app, an agent changes the instruction only with Austin's approval and runs extractions only on his command. Building or testing the app does not authorize a real model run. Change it only where the change is general (objective, work process, honesty about uncertainty, a repaired contradiction, a deletion); never add a rule justified by one reviewed deal.
+ - Comparison runs must be isolated: one instruction and one filing per sandboxed session (`_dev/tools/sandbox/run_model.py`; usage in `_dev/tools/README.md`). Run the checker after the run, never where the extracting agent can see it. Revision mode is a separate, explicitly requested pass that may see the selected workbook and findings.
+--- a/_dev/COCKPIT_APP_SPEC.md
++++ b/_dev/COCKPIT_APP_SPEC.md
+@@ -7,7 +7,7 @@
+ Austin and Alex each log in with their own identity and, without a terminal or an agent conversation, can:
+ 
+ 1. add a deal by searching the seed list or pasting an EDGAR link;
+-2. start an extraction on their own Claude or ChatGPT subscription, choosing the engine, effort and instruction version (default: Claude Opus 5.5, medium, current default instruction);
++2. start an extraction on their own Claude or ChatGPT subscription, choosing the engine, effort and instruction version (default: GPT-6-Astra, high, current default instruction; Austin's 26 September update);
+ 3. edit instructions as new versions, never altering a frozen one;
+ 4. review and edit the shared working copy, and see what the other person changed or said, without being flooded.
+ 
+@@ -20,7 +20,7 @@
+ | Who may extract | Austin and Alex, each on their own initiative. |
+ | Deal sources | Search `ref/seed.csv` by name, or paste any EDGAR filing or index link. |
+ | Re-extraction of an edited deal | Adds a new read-only version. The working copy keeps its edits and base; changing its base is a separate, deliberate action. |
+-| Engines | Claude Opus 5.5 (default, medium), Claude Fable 5.1, GPT-6-Sol and GPT-6-Astra, at every effort the runner allows. Claude engines use the starting user's Claude plan; GPT engines use the starting user's ChatGPT plan. |
++| Engines | GPT-6-Astra (default, high; Austin’s 26 September update), Claude Opus 5.5, Claude Fable 5.1 and GPT-6-Sol, at every effort the runner allows. Claude engines use the starting user's Claude plan; GPT engines use the starting user's ChatGPT plan. |
+ | Instructions | Editable in the app as new versions. Either user may publish a version and make it the default. Drafts may be run: the exact text is frozen under its hash and the version is labelled "draft instruction". |
+ | Version labels | Every extraction version states its engine, effort, instruction, who ran it and when (§6.3). |
+ | Trace | Recommended design in §8: threaded comments, a per-deal "since your last visit" digest, and last-changed-by on hover. No email, no live notifications. |
+@@ -85,11 +85,11 @@
+ 
+ Opened from a deal's toolbar (**Extract**) or right after adding a deal.
+ 
+-- **Engine**: Claude Opus 5.5 (default), Claude Fable 5.1 (marked *experimental*), GPT-6-Sol, GPT-6-Astra. Selecting Fable shows: "Fable's safety filter often blocks runs partway (6 of 11 test prompts); a blocked run fails and must be restarted."
+-- **Effort**: `low`, `medium`, `high`, `xhigh`, `max`, restricted to what the engine supports; default `medium`. `ultra` is not offered because it delegates to subagents, which breaks isolation.
++- **Engine**: GPT-6-Astra (default, high), Claude Opus 5.5, Claude Fable 5.1 (marked *experimental*), GPT-6-Sol. Selecting Fable shows: "Fable's safety filter often blocks runs partway (6 of 11 test prompts); a blocked run fails and must be restarted."
++- **Effort**: `low`, `medium`, `high`, `xhigh`, `max`, restricted to what the engine supports; default `high` for Astra and `medium` for other cockpit engines. `ultra` is not offered because it delegates to subagents, which breaks isolation.
+ - **Instruction**: the default published version, preselected. The list shows published versions, then drafts, each marked.
+ - **Time limit**: default 90 minutes (runner range 10–360).
+-- A one-line summary before the button, for example: "Opus 5.5 · medium · v1.13.2 · on Alex's Claude plan · about 10–15 minutes."
++- A one-line summary before the button, for example: "GPT-6-Astra · high · v1.13.2 · on Alex's ChatGPT plan."
+ 
+ ### 6.2 Job lifecycle
+ 
+--- a/_dev/HANDOFF.md
++++ b/_dev/HANDOFF.md
+@@ -1,21 +1,21 @@
+-# Development handoff — 25 September 2026
++# Development handoff — updated 26 September 2026
+ 
+ ## Current direction
+ 
+-**Use the main `extraction-v2` checkout and the editable [Ledger cockpit](https://lines.dealextract.org). Claude Opus 5.5 at medium effort is the extraction model.** The [22 September effort sweep](reviews/2026-09-22-opus55-sol6-sweep/REPORT.md) found no reliable gain from high effort. GPT-6-Sol at xhigh was not distinguishable from it on quality; Austin chose Opus for now (22 September). The current workbooks in `extraction/` are Opus 5.5 medium extractions of all nine deals ([re-extraction packet](reviews/2026-09-22-opus55-reextraction/README.md)); the replaced Opus 5 high originals are archived outside the checkout and recoverable from Git at `03d59b1`. The working instruction is **v1.13.2, frozen**. A v1.14 upgrade is being prepared under [V114_SPEC.md](maintenance/2026-09-24-bid-terms-taxonomy/V114_SPEC.md) (Austin's decisions D1–D27, 25 September); its instruction candidate is not published, not the cockpit default and not deployed, and none of its code is deployed. Austin authorized consolidation, deletion of the retired Grok/Sol extraction results, and a local commit on 22 September. This maintenance does not authorize another model run or a research-convention change.
++**Use the main `extraction-v2` checkout and the editable [Ledger cockpit](https://lines.dealextract.org). GPT-6-Astra at high effort is the extraction default, approved by Austin on 26 September.** The blinded 15-run v1.14 trial is complete in the isolated `sec-extraction-v114-trial-20260926` worktree; Pro has graded it, and source verification and an amendment proposal are recorded in [the 26 September packet](maintenance/2026-09-26-astra-default-pro-verification/README.md). This default change does not publish v1.14 or authorize another extraction. Opus 5.5 medium remains selectable and is the provenance of the existing raw workbooks. The 25 September build and release status below predates this trial and needs its gates reconciled before deployment. The current workbooks in `extraction/` are Opus 5.5 medium extractions of all nine deals ([re-extraction packet](reviews/2026-09-22-opus55-reextraction/README.md)); the replaced Opus 5 high originals are archived outside the checkout and recoverable from Git at `03d59b1`. The working instruction is **v1.13.2, frozen**. A v1.14 upgrade is being prepared under [V114_SPEC.md](maintenance/2026-09-24-bid-terms-taxonomy/V114_SPEC.md) (Austin's decisions D1–D27, 25 September); its instruction candidate is not published, not the cockpit default and not deployed, and none of its code is deployed. Austin authorized consolidation, deletion of the retired Grok/Sol extraction results, and a local commit on 22 September. This maintenance does not authorize another model run or a research-convention change.
+ 
+-**Approved next build (23 September):** Austin approved the [shared extraction app spec](COCKPIT_APP_SPEC.md), including its §13 defaults. Austin and Alex will each connect their own Claude and ChatGPT subscriptions, add deals from `ref/seed.csv` or an EDGAR link, start isolated extractions (Opus 5.5 medium by default; Fable 5.1, GPT-6-Sol and GPT-6-Astra selectable at any allowed effort), version instructions in the app with either able to change the default, and see each other's edits and comments through threads and a since-last-visit digest. Spikes S1–S4 are done, and all five build phases are deployed (see Current state below). In the app, Austin or Alex may start extractions and version instructions, and either may change the default; the rule that instruction changes should be general stays as guidance, and app versions reach the repository only through `_dev/tools/cockpit/export_repo.py` on Austin's request. Fable 5.1 stays an experimental engine. Real model runs during the build still need Austin's go-ahead.
++**Approved next build (23 September):** Austin approved the [shared extraction app spec](COCKPIT_APP_SPEC.md), including its §13 defaults. Austin and Alex will each connect their own Claude and ChatGPT subscriptions, add deals from `ref/seed.csv` or an EDGAR link, start isolated extractions (now GPT-6-Astra high by default; Opus 5.5, Fable 5.1 and GPT-6-Sol remain selectable at any allowed effort), version instructions in the app with either able to change the default, and see each other's edits and comments through threads and a since-last-visit digest. Spikes S1–S4 are done, and all five build phases are deployed (see Current state below). In the app, Austin or Alex may start extractions and version instructions, and either may change the default; the rule that instruction changes should be general stays as guidance, and app versions reach the repository only through `_dev/tools/cockpit/export_repo.py` on Austin's request. Fable 5.1 stays an experimental engine. Real model runs during the build still need Austin's go-ahead.
+ 
+ For engineering, choose models by task rather than by a fixed split. Astra (GPT-6-Astra) is the strongest reasoner but expensive and sometimes erratic, so check its output; it suits hard design and review. Sol (GPT-6-Sol) is a capable, literal implementer for well-specified code. Opus 5.5 and Fable 5.1 (Fable's safeguards sometimes block requests) can design, implement and integrate too, and a session with clean context may lead the work itself (Austin, 23 September).
+ 
+-## Current state (25 September)
++## Build snapshot (25 September; 26 September default update above takes precedence)
+ 
+ - **The shared extraction app is built and deployed** (phases 1–5, 23 September; commits `e4b06db`–`679d4fc`). Build records, each with its contract in the same folder: [phase 1](maintenance/2026-09-23-cockpit-phase1-trace/PROGRESS.md), [2](maintenance/2026-09-23-cockpit-phase2-runs/PROGRESS.md), [3](maintenance/2026-09-23-cockpit-phase3-deals/PROGRESS.md), [4](maintenance/2026-09-23-cockpit-phase4-instructions-engines/PROGRESS.md), [5](maintenance/2026-09-23-cockpit-phase5-hardening/PROGRESS.md). Phase 5 added nightly backups (`ledger-backup.timer`, 03:30 UTC, `~/backups/ledger-cockpit/`, 14 days; `_dev/tools/cockpit/backup.py create|restore|rehearse`), hiding deals and the admin export script `export_repo.py`. Each PROGRESS lists the acceptance items that need real runs; outstanding among them are Alex's run on his own plan (phase 2) and, for phase 4, a run on each new engine (every run version so far is Opus 5.5) and a draft run and a published run on the same filing, with different instruction hashes (no filing has both yet: the draft runs are the Mac-Gray and Providence & Worcester pilots, the published runs PetSmart, Medivation, Zep, Pepco Holdings and Imprivata).
+ - **Uncommitted work is live.** Since 24 September, 22:02 UTC, both services have run this checkout's uncommitted tree (`git status`): checker 1.6, which applies the 24 September draft's rules to ledgers with a `Stock %` column and checks every other workbook as v1.13.2; the editor's new value lists; and the deal-level Review status ([taxonomy record](maintenance/2026-09-24-bid-terms-taxonomy/README.md), [cockpit guide](cockpit/README.md)). V114_SPEC §13 gate 0 commits it on its own, before any v1.14 change; the earlier changes to files the v1.14 work edits are saved as patches in that folder's `pre-existing/`. Do not edit code under `_dev/tools/` in this checkout: the services run it (V114_SPEC §0).
+ - **Accounts and runs.** Austin connected his Claude account on 23 September (15:26 UTC); Alex connected his on 24 September (09:19 UTC) and has made no run. Every extraction job so far was started by Austin.
+ - **Instructions in the cockpit.** v1.13.2, published and the default; draft `a4ca26ecfa92`, the 24 September v1.14 draft, unpublished; draft `73f21eb8c09a`, text identical to v1.13.2, unused.
+ - **v1.14.** The agent team has finished the three waves of work in [V114_SPEC.md](maintenance/2026-09-24-bid-terms-taxonomy/V114_SPEC.md) (§7.13; status at about 23:30 UTC, 25 September, with the tests, in that folder's [README](maintenance/2026-09-24-bid-terms-taxonomy/README.md)). The instruction candidate there is frozen after its independent review (R), SHA-256 `c2d47a47…ab27`; checker 1.7 and the cockpit, tool, migration and analysis code are built and tested in a separate worktree (`~/work/Projects/sec-extraction-v114`); the deploy and release patches are prepared in the folder's `release/`. The candidate is not published and not the cockpit default, and none of it is deployed. Austin takes the gates in §13; the deploy (§12) comes before any v1.14 run.
+-- **Services:** `ledger-cockpit.service` and `ledger-worker.service` (enabled, `~/.config/systemd/user/`) run from this checkout; both were last restarted on 24 September at 22:02 UTC. `ledger-backup.timer` runs the nightly backup (units in `_dev/tools/cockpit/deploy/`). Worker logs: `journalctl _SYSTEMD_USER_UNIT=ledger-worker.service`. A restart is a deploy step, on Austin's order; after changing worker, runs, deals or server code, restart both: `systemctl --user restart ledger-cockpit ledger-worker`.
++- **Services:** `ledger-cockpit.service` and `ledger-worker.service` (enabled, `~/.config/systemd/user/`) run from this checkout; both were restarted on 26 September at 12:02:33 UTC for the approved Astra-high default change only ([receipt](maintenance/2026-09-26-astra-default-pro-verification/deployment.json)). `ledger-backup.timer` runs the nightly backup (units in `_dev/tools/cockpit/deploy/`). Worker logs: `journalctl _SYSTEMD_USER_UNIT=ledger-worker.service`. A restart is a deploy step, on Austin's order; after changing worker, runs, deals or server code, restart both: `systemctl --user restart ledger-cockpit ledger-worker`.
+ - **Tests** (25 September, on the current uncommitted tree, run in the separate worktree): `python3 -m unittest discover -s _dev/tools -p 'test_*.py'` 199 pass; `python3 -m pytest -q -p no:cacheprovider _dev/tools/cockpit/acceptance/test_http.py` 14 pass; `npx vitest run` in `_dev/tools/cockpit/frontend` 53 pass (5 files). The browser suites were not rerun. The earlier 207 Python, 13 HTTP and 52 vitest tests are phase 5's staged build (23 September, before the 24 September changes): 207 is `pytest _dev/tools`, which also collects the HTTP tests (on the current tree it collects 213, that is 199 + 14), and all seven browser suites passed then ([phase 5 PROGRESS](maintenance/2026-09-23-cockpit-phase5-hardening/PROGRESS.md)).
+ - **Waiting on Austin:** after the lead's report on the v1.14 work (V114_SPEC §7.14), the gates (§13), starting with gate 0 (commit the live uncommitted work on its own, using the `pre-existing/` patches) and gate 1 (accept the candidate, `MAP_RECHECK.md` and the report); Alex's own run on his plan (phase 2 acceptance); the go-ahead for phase 4's acceptance runs (one on each new engine, and a draft run and a published run on the same filing).
+ - **Not confirmed since 23 September:** that a ChatGPT login refresh renews a login. The nightly backup is confirmed: the 24 and 25 September runs (03:30 UTC) completed, and `~/backups/ledger-cockpit/` holds five backups (the other three from 23 September).
+@@ -72,7 +72,7 @@
+ 
+ The Grok and Sol comparison worktrees, their local branches, their raw results, the derived three-model packet and the superseded pre-build pipeline proposal are retired. Their contents are hard-deleted, not archived as a competing development tree. Deletion records contain paths and hashes rather than workbook cells or report copies. The former detached `7877` checkout is unregistered and retains only a relocation note: live tool processes still use its directory, so its directory inode is retained without stale project files. The main checkout is the sole development worktree; the v1.14 code is built in a separate worktree (see Current state) and reaches this checkout only at a deploy Austin orders.
+ 
+-**Historical side note only:** the [Astra/Mac-Gray experiment](side-notes/2026-09-21-astra-mac-gray/README.md) and its evidence are retained separately. Austin rejected Astra as the normal extraction model because of cost. Its experiment is excluded from the cockpit; the old report's suggested follow-up experiment is not an active task. Under the approved app spec, GPT-6-Astra becomes a selectable engine on a user's own ChatGPT plan; Opus 5.5 medium stays the default.
++**Historical side note only:** the [Astra/Mac-Gray experiment](side-notes/2026-09-21-astra-mac-gray/README.md) and its evidence are retained separately. Austin rejected Astra as the normal extraction model because of cost. Its experiment is excluded from the cockpit; the old report's suggested follow-up experiment is not an active task. Under the approved app spec, GPT-6-Astra becomes a selectable engine on a user's own ChatGPT plan; That earlier model-default decision was superseded by Austin’s 26 September choice of GPT-6-Astra high.
+ 
+ ## Engineering status and operation
+ 
+--- a/_dev/cockpit/README.md
++++ b/_dev/cockpit/README.md
+@@ -31,7 +31,7 @@
+ 
+ GPT engines run on your ChatGPT plan. In **Settings**, **Connect ChatGPT account** shows a link and a one-time code: open the link, sign in to ChatGPT and enter the code; the page notices the approval by itself. The ChatGPT login lasts about ten days and the cockpit renews it in the background (a one-word GPT-6-Sol call on your plan) when it has less than a day left; a run that would start within seven hours of expiry waits for that renewal, and fails as "login expired" if it cannot be renewed, in which case connect again. **Disconnect** deletes the stored login; revoke it at chatgpt.com → Settings → Security.
+ 
+-In a deal, **Extract** starts an isolated run. Choose the engine (Claude Opus 5.5 by default; Claude Fable 5.1, marked experimental because its safety filter often blocks a run partway; GPT-6-Sol; GPT-6-Astra), the effort (default medium) and the instruction (the default published version, or any other version or draft). An engine whose account you have not connected is greyed out. The run sees only the instruction and the filing, exactly as in the command-line runner, and the instruction text is frozen when you press Start: editing a draft later does not change a run already requested. The **Runs** tab shows queued, running and finished runs, who started them, time, cost at list price and checker counts; **Cancel** stops a run. At most four runs go at once, two per person; others wait in the queue. A run that hits your plan's usage limit says so and when the limit resets.
++In a deal, **Extract** starts an isolated run. Choose the engine (GPT-6-Astra by default; Claude Opus 5.5; Claude Fable 5.1, marked experimental because its safety filter often blocks a run partway; GPT-6-Sol), the effort (Astra defaults to high; the other cockpit engines retain medium) and the instruction (the default published version, or any other version or draft). An engine whose account you have not connected is greyed out. The run sees only the instruction and the filing, exactly as in the command-line runner, and the instruction text is frozen when you press Start: editing a draft later does not change a run already requested. The **Runs** tab shows queued, running and finished runs, who started them, time, cost at list price and checker counts; **Cancel** stops a run. At most four runs go at once, two per person; others wait in the queue. A run that hits your plan's usage limit says so and when the limit resets.
+ 
+ A finished run becomes a new read-only version, labelled with engine, effort, instruction, who ran it and when. It never changes the working copy. To work from it, open that version and choose **Use as working-copy base…** with a reason; the previous working state stays in History and can be restored. The Changes tab compares any two versions, or a version and the working copy, matching events by number. **Hide** removes a version you no longer need from the list (it is never deleted; "Show hidden versions" brings it back).
+ 
+--- a/_dev/maintenance/2026-09-24-bid-terms-taxonomy/release/README.md
++++ b/_dev/maintenance/2026-09-24-bid-terms-taxonomy/release/README.md
+@@ -1,4 +1,6 @@
+ # D25 release patch (package S5)
++
++**26 September integration update:** Austin approved GPT-6-Astra high as the extraction default after the 15-run trial. That narrow change is live and has been merged into the upgrade code. These 25 September deploy/release patches predate it: reconcile and regenerate affected patches against the new baseline before use; preserve explicit engine choices and legacy Opus job provenance. The trial is complete; its findings and the proposed, unapproved instruction amendment are in [the current packet](../../2026-09-26-astra-default-pro-verification/README.md). The instruction candidate remains unpublished.
+ 
+ `d25-tools.patch` carries the `_dev/tools/` code for D25: moving the nine v1.13.2 workbooks out of `extraction/` at gate 12 (spec §7.7, §13 gate 12). It is applied at gate 12 only, never at the deploy.
+ 
+--- a/_dev/tools/README.md
++++ b/_dev/tools/README.md
+@@ -26,7 +26,7 @@
+ python3 _dev/tools/sandbox/run_model.py status --runs-dir _dev/runs
+ ```
+ 
+-The extraction engine is **Claude Opus 5.5** (`claude-opus-5-5`). Its effort level is chosen at prepare (`low`, `medium`, `high`, `xhigh` or `max`) and recorded in `metadata.json` with the model and the wall-clock limit (default 90 minutes; `--timeout-minutes` takes 10–360). The provider command is built from those recorded values, and launch refuses metadata whose model or effort is not allowed. Without `--effort` the runner uses `DEFAULT_EFFORT` in `run_model.py`: `medium`. The [22 September effort sweep](../reviews/2026-09-22-opus55-sol6-sweep/REPORT.md) found no reliable gain from high over medium, on three deals with one run each. Opus 5.5's own API default is `medium`, and its levels do not match Opus 5's, so always record the level used. `sol` remains an implemented transport, not an approved default; an alternative-model run requires Austin's explicit command. `sol` runs GPT-6-Sol (`gpt-6-sol`, or `gpt-5.6-sol`) through Codex at effort `low` to `max`. The `ultra` level is not offered, because it delegates to subagents automatically. By default `codex exec` offers the account's ChatGPT app connectors (mail, GitLab, site deploys, a remote shell), web browsing, image generation and subagents. Every Sol run switches those off (`CODEX_DISABLED_FEATURES`, plus `web_search="disabled"`), leaving shell commands and file patches. Code mode stays on because GPT-6-Sol calls every tool through it. Codex's login is bound read-only, and a sandboxed refresh would rotate its refresh token and log the host out, so preflight refuses a Sol run when the host Codex access token has less than seven hours left. `prepare --instruction <path>` supplies a candidate instruction in place of the working one. The runner rejects a provider that differs from its prepared metadata. Prepare does not call a model; launch does. Only one instruction and filing enter a blind extraction.
++The default extraction engine is **GPT-6-Astra at high effort** (`gpt-6-astra`, Codex transport `sol`), approved by Austin on 26 September. `prepare` defaults to that transport/model/effort when omitted. Explicit Claude selection remains available. Its effort level is chosen at prepare (`low`, `medium`, `high`, `xhigh` or `max`) and recorded in `metadata.json` with the model and the wall-clock limit (default 90 minutes; `--timeout-minutes` takes 10–360). The provider command is built from those recorded values, and launch refuses metadata whose model or effort is not allowed. Without `--effort`, Astra uses `high`; explicitly selected other Codex models retain `xhigh`, and Claude models retain `medium`. The [22 September effort sweep](../reviews/2026-09-22-opus55-sol6-sweep/REPORT.md) found no reliable gain from high over medium, on three deals with one run each. Opus 5.5's own API default is `medium`, and its levels do not match Opus 5's, so always record the level used. `sol` runs GPT-6-Astra (default) or an explicitly selected GPT-6-Sol (`gpt-6-sol`, or `gpt-5.6-sol`) through Codex at effort `low` to `max`. Every real extraction still requires authorization. The `ultra` level is not offered, because it delegates to subagents automatically. By default `codex exec` offers the account's ChatGPT app connectors (mail, GitLab, site deploys, a remote shell), web browsing, image generation and subagents. Every Sol run switches those off (`CODEX_DISABLED_FEATURES`, plus `web_search="disabled"`), leaving shell commands and file patches. Code mode stays on because GPT-6-Sol calls every tool through it. Codex's login is bound read-only, and a sandboxed refresh would rotate its refresh token and log the host out, so preflight refuses a Sol run when the host Codex access token has less than seven hours left. `prepare --instruction <path>` supplies a candidate instruction in place of the working one. The runner rejects a provider that differs from its prepared metadata. Prepare does not call a model; launch does. Only one instruction and filing enter a blind extraction.
+ 
+ Launch and worker startup verify the prepared instruction, filing and prompt against their recorded SHA-256 hashes before starting a provider. A revision also verifies its starting workbook and findings report. Changed or missing inputs require a newly prepared run directory. Older extraction metadata with the required hashes remains usable; older revision metadata without a findings-report hash must be prepared again. Status inspection does not recheck the starting workbook, since a revision legitimately changes it.
+ 
+@@ -42,7 +42,7 @@
+ - the expected workbook can be read, including its worksheets, and has exactly the four sheets the instruction requires, in order;
+ - for a revision, `revision_notes.md` was written.
+ 
+-`--provider opus` is the Claude Code transport (models `claude-opus-5-5`, the default, and `claude-fable-5-1`); `--provider sol` is the Codex transport (`gpt-6-sol`, the default, and `gpt-6-astra`). Efforts are `low` to `max` for both. Fable 5.1's safeguard block ("…safeguards flagged this message…") counts as `provider_refusal`. A Codex run that stops with "You've hit your usage limit" is `usage_limit`, with the provider's sentence in `usage_limit_message`.
++`--provider opus` is the Claude Code transport (models `claude-opus-5-5`, the default, and `claude-fable-5-1`); `--provider sol` is the Codex transport (`gpt-6-astra`, the default at high effort, and `gpt-6-sol`). Efforts are `low` to `max` for both. Fable 5.1's safeguard block ("…safeguards flagged this message…") counts as `provider_refusal`. A Codex run that stops with "You've hit your usage limit" is `usage_limit`, with the provider's sentence in `usage_limit_message`.
+ 
+ Otherwise the run is `failed`, with one of these `failure_reason`s: `provider_refusal`, `provider_exit`, `provider_error`, `model_mismatch`, `workbook_missing`, `workbook_unreadable`, `workbook_incomplete` or `revision_notes_missing`. A timeout yields `timed_out`. Worker startup errors also leave a failed status. The worker exits nonzero on failure, while `launch` only reports successful dispatch: inspect `status` for the outcome. Older saved statuses keep their original meaning. Workbook readability is not a mechanical-checker pass or substantive acceptance; both remain separate steps.
+ 
+--- a/_dev/tools/cockpit/frontend/src/runs.js
++++ b/_dev/tools/cockpit/frontend/src/runs.js
+@@ -5,10 +5,11 @@
+ 
+ export const INSTRUCTION_VERSION = 'v1.13.2';
+ export const EFFORTS = ['low', 'medium', 'high', 'xhigh', 'max'];
+-export const DEFAULT_EFFORT = 'medium';
++export const DEFAULT_EFFORT = 'high';
+ export const FABLE_WARNING = 'Fable’s safety filter often blocks runs partway (6 of 11 test prompts); a blocked run fails and must be restarted.';
+ const ACCOUNT_NAMES = { claude: 'Claude', chatgpt: 'ChatGPT' };
+-export const DEFAULT_ENGINE = { id: 'opus55', label: 'Opus 5.5', account: 'claude', efforts: EFFORTS, default_effort: DEFAULT_EFFORT };
++export const DEFAULT_ENGINE = { id: 'astra6', label: 'GPT-6-Astra', account: 'chatgpt', efforts: EFFORTS, default_effort: DEFAULT_EFFORT };
++const LEGACY_ENGINE = { id: 'opus55', label: 'Opus 5.5', account: 'claude', efforts: EFFORTS, default_effort: 'medium' };
+ export const DEFAULT_TIMEOUT = 90;
+ export const TIMEOUT_RANGE = [10, 360];
+ export const ACTIVE_STATES = new Set(['queued', 'preparing', 'running', 'checking', 'importing']);
+@@ -25,14 +26,15 @@
+ // then Opus 5.5 alone, available when the Claude account is connected. "ultra" is never offered.
+ export function accountEngines(account) {
+   const list = Array.isArray(account?.engines) && account.engines.length ? account.engines
+-    : [{ ...DEFAULT_ENGINE, connected: Boolean(account?.claude?.connected) }];
++    : [{ ...LEGACY_ENGINE, connected: Boolean(account?.claude?.connected) }];
+   return list.map(engine => {
+     const efforts = (engine.efforts?.length ? engine.efforts : EFFORTS).filter(effort => effort !== 'ultra');
+-    const fallback = efforts.includes(DEFAULT_EFFORT) ? DEFAULT_EFFORT : efforts[0];
++    const preferred = engine.id === DEFAULT_ENGINE.id ? DEFAULT_EFFORT : 'medium';
++    const fallback = efforts.includes(preferred) ? preferred : efforts[0];
+     return { ...engine, label: engine.label || engine.id, efforts, default_effort: efforts.includes(engine.default_effort) ? engine.default_effort : fallback, connected: Boolean(engine.connected) };
+   });
+ }
+-// The engine to preselect: Opus 5.5 when usable, else the first connected engine, else null.
++// Preselect Astra when usable, else the first connected engine; preserve an explicit selection.
+ export function pickEngine(engines, current = null) {
+   const usable = (engines || []).filter(engine => engine.connected);
+   return usable.find(engine => engine.id === current) || usable.find(engine => engine.id === DEFAULT_ENGINE.id) || usable[0] || null;
+--- a/_dev/tools/cockpit/frontend/src/runs.test.js
++++ b/_dev/tools/cockpit/frontend/src/runs.test.js
+@@ -75,8 +75,8 @@
+     expect(dateWithYear('2027-09-23T12:00:00Z')).toMatch(/^2[34] Sep 2027$/);
+   });
+   it('summarises a run and validates the time limit', () => {
+-    expect(runSummary('medium', 'austin')).toBe('Opus 5.5 · medium · v1.13.2 · on Austin’s Claude plan · usually 10–15 minutes');
+-    expect(runSummary('high', 'austin')).toBe('Opus 5.5 · high · v1.13.2 · on Austin’s Claude plan');
++    expect(runSummary('medium', 'austin', { id: 'opus55', label: 'Opus 5.5', account: 'claude' })).toBe('Opus 5.5 · medium · v1.13.2 · on Austin’s Claude plan · usually 10–15 minutes');
++    expect(runSummary('high', 'austin')).toBe('GPT-6-Astra · high · v1.13.2 · on Austin’s ChatGPT plan');
+     expect(runSummary('high', 'austin', { id: 'fable51', label: 'Fable 5.1', account: 'claude' }, 'draft 3f2a9c1 (Alex)')).toBe('Fable 5.1 · high · draft 3f2a9c1 (Alex) · on Austin’s Claude plan');
+     expect(runSummary('medium', 'alex', { id: 'sol6', label: 'GPT-6-Sol', account: 'chatgpt' }, 'v1.14')).toBe('GPT-6-Sol · medium · v1.14 · on Alex’s ChatGPT plan');
+     expect([validTimeout('90'), validTimeout('9'), validTimeout('361'), validTimeout('12.5'), validTimeout('')]).toEqual([true, false, false, false, false]);
+@@ -144,27 +144,29 @@
+     { id: 'opus55', label: 'Opus 5.5', account: 'claude', efforts: ['low', 'medium', 'high', 'xhigh', 'max', 'ultra'], default_effort: 'medium', connected: false },
+     { id: 'fable51', label: 'Fable 5.1', account: 'claude', efforts: ['low', 'medium', 'high'], default_effort: 'medium', connected: false, experimental: true },
+     { id: 'sol6', label: 'GPT-6-Sol', account: 'chatgpt', efforts: ['low', 'medium', 'high'], default_effort: 'high', connected: true },
+-    { id: 'astra6', label: 'GPT-6-Astra', account: 'chatgpt', efforts: ['low', 'medium'], connected: true },
++    { id: 'astra6', label: 'GPT-6-Astra', account: 'chatgpt', efforts: ['low', 'medium', 'high'], connected: true },
+   ];
+   it('reads the account’s engines without ultra, and falls back to Opus 5.5 before phase 4', () => {
+     const list = accountEngines({ engines });
+     expect(list[0].efforts).toEqual(['low', 'medium', 'high', 'xhigh', 'max']);
+-    expect(list[3].default_effort).toBe('medium');
++    expect(list[3].default_effort).toBe('high');
+     expect(accountEngines({ claude: { connected: true } })).toMatchObject([{ id: 'opus55', label: 'Opus 5.5', account: 'claude', connected: true, default_effort: 'medium' }]);
+     expect(accountEngines(null)[0].connected).toBe(false);
+   });
+-  it('preselects Opus 5.5 when usable, else the first connected engine', () => {
++  it('preselects Astra when usable, preserves explicit choices and falls back to connected engines', () => {
+     const list = accountEngines({ engines });
+-    expect(pickEngine(list).id).toBe('sol6');
++    expect(pickEngine(list).id).toBe('astra6');
+     expect(pickEngine(list, 'astra6').id).toBe('astra6');
+-    expect(pickEngine(list, 'fable51').id).toBe('sol6');
+-    expect(pickEngine(accountEngines({ engines: engines.map(e => ({ ...e, connected: true })) })).id).toBe('opus55');
++    expect(pickEngine(list, 'fable51').id).toBe('astra6');
++    expect(pickEngine(list, 'sol6').id).toBe('sol6');
++    expect(pickEngine(list.filter(e => e.id !== 'astra6')).id).toBe('sol6');
++    expect(pickEngine(accountEngines({ engines: engines.map(e => ({ ...e, connected: true })) })).id).toBe('astra6');
+     expect(pickEngine(list.map(e => ({ ...e, connected: false })))).toBe(null);
+   });
+   it('keeps an effort the new engine offers, else its default', () => {
+     const [, , sol, astra] = accountEngines({ engines });
+     expect(effortFor(sol, 'low')).toBe('low');
+-    expect(effortFor(astra, 'high')).toBe('medium');
++    expect(effortFor(astra, 'max')).toBe('high');
+     expect(effortFor(sol, 'max')).toBe('high');
+   });
+   it('labels a run’s engine and instruction, with the phase 2 defaults', () => {
+--- a/_dev/tools/cockpit/runs.py
++++ b/_dev/tools/cockpit/runs.py
+@@ -29,8 +29,8 @@
+ USERS = ("austin", "alex", "local")
+ NAMES = {"austin": "Austin", "alex": "Alex", "local": "Local"}
+ EFFORTS = ("low", "medium", "high", "xhigh", "max")
+-MODEL = "claude-opus-5-5"
+-ENGINE = "Opus 5.5"
++MODEL = "gpt-6-astra"
++ENGINE = "GPT-6-Astra"
+ # Extraction engines. "provider" is the runner's transport: "opus" drives Claude Code, "sol" Codex.
+ # "account" is whose plan pays: the starting user's Claude or ChatGPT subscription.
+ FABLE_NOTE = "Fable's safety filter often blocks runs partway (6 of 11 test prompts); a blocked run fails and must be restarted."
+@@ -40,7 +40,9 @@
+     "sol6": {"label": "GPT-6-Sol", "name": "GPT-6-Sol", "provider": "sol", "model": "gpt-6-sol", "account": "chatgpt", "experimental": False, "note": None},
+     "astra6": {"label": "GPT-6-Astra", "name": "GPT-6-Astra", "provider": "sol", "model": "gpt-6-astra", "account": "chatgpt", "experimental": False, "note": None},
+ }
+-DEFAULT_ENGINE = "opus55"
++DEFAULT_ENGINE = "astra6"
++LEGACY_ENGINE = "opus55"  # Jobs recorded before engine selection existed remain Claude jobs.
++DEFAULT_EFFORT = {ident: "high" if ident == "astra6" else "medium" for ident in ENGINES}
+ ACTIVE = ("queued", "preparing", "running", "checking", "importing")
+ CONNECT_ACTIVE = ("queued", "waiting_for_code", "completing")
+ CHATGPT_CONNECT_ACTIVE = ("queued", "waiting_for_approval")
+@@ -99,7 +101,7 @@
+ 
+ def job_account(params: dict[str, Any] | None) -> str:
+     """Whose plan a job uses; jobs from before phase 4 are Opus 5.5 on Claude."""
+-    return ENGINES.get((params or {}).get("engine"), ENGINES[DEFAULT_ENGINE])["account"]
++    return ENGINES.get((params or {}).get("engine"), ENGINES[LEGACY_ENGINE])["account"]
+ 
+ 
+ def active_jobs_on(conn: sqlite3.Connection, user: str, account: str) -> bool:
+@@ -194,7 +196,7 @@
+                 gpt_connect = {"job_id": job[0]["id"], "state": job[0]["state"], "link": shown.get("link"), "code": shown.get("code"), "error": job[0]["error"]}
+             accounts = {"claude": connected, "chatgpt": gpt["connected"]}
+             engines = [{"id": ident, "label": engine["label"], "name": engine["name"], "account": engine["account"], "efforts": list(EFFORTS),
+-                        "default_effort": "medium", "experimental": engine["experimental"], "note": engine["note"], "connected": accounts[engine["account"]]}
++                        "default_effort": DEFAULT_EFFORT[ident], "experimental": engine["experimental"], "note": engine["note"], "connected": accounts[engine["account"]]}
+                        for ident, engine in ENGINES.items()]
+             return {"user": user, "claude": {"connected": connected, "connected_at": found[0]["connected_at"] if connected else None,
+                                               "expires_at": found[0]["expires_at"] if connected else None, "plan_usage": plan}, "connect": connect,
+@@ -294,10 +296,10 @@
+         def run(conn: sqlite3.Connection) -> None:
+             if action == "extract":
+                 if conn.execute("SELECT 1 FROM hidden_deals WHERE slug=?", (slug,)).fetchone(): raise Conflict("unhide the deal first")
+-                effort, minutes = request.get("effort", "medium"), request.get("timeout_minutes", 90)
+                 engine_id = request.get("engine", DEFAULT_ENGINE)
+                 if engine_id not in ENGINES: raise WorkspaceError("unknown engine")
+                 engine = ENGINES[engine_id]
++                effort, minutes = request.get("effort", DEFAULT_EFFORT[engine_id]), request.get("timeout_minutes", 90)
+                 if effort not in EFFORTS: raise WorkspaceError("invalid effort")
+                 if type(minutes) is not int or not 10 <= minutes <= 360: raise WorkspaceError("time limit must be 10 to 360 minutes")
+                 if engine["account"] == "claude" and (not conn.execute("SELECT 1 FROM accounts WHERE user=? AND provider='claude'", (user,)).fetchone() or not token_path(user).is_file()):
+--- a/_dev/tools/cockpit/worker.py
++++ b/_dev/tools/cockpit/worker.py
+@@ -79,7 +79,7 @@
+ 
+ def engine_of(params: dict[str, Any]) -> tuple[str, dict[str, Any]]:
+     """The job's engine; jobs queued before phase 4 are Opus 5.5."""
+-    ident = params.get("engine") if params.get("engine") in runs.ENGINES else runs.DEFAULT_ENGINE
++    ident = params.get("engine") if params.get("engine") in runs.ENGINES else runs.LEGACY_ENGINE
+     return ident, runs.ENGINES[ident]
+ 
+ 
+--- a/_dev/tools/sandbox/run_model.py
++++ b/_dev/tools/sandbox/run_model.py
+@@ -41,10 +41,11 @@
+ CODEX_AUTH_FILE = Path(os.environ["SEC_CODEX_AUTH_FILE"]) if os.environ.get("SEC_CODEX_AUTH_FILE") else None
+ # Models and effort levels each provider may be prepared with. The first model is the default.
+ # "opus" is the Claude transport (Opus and Fable); "sol" is the Codex transport (Sol and Astra).
+-MODELS = {"sol": ("gpt-6-sol", "gpt-6-astra", "gpt-5.6-sol"), "opus": ("claude-opus-5-5", "claude-fable-5-1", "claude-opus-5")}
++MODELS = {"sol": ("gpt-6-astra", "gpt-6-sol", "gpt-5.6-sol"), "opus": ("claude-opus-5-5", "claude-fable-5-1", "claude-opus-5")}
+ # Codex's "ultra" level delegates to subagents automatically, so it is not offered.
+ EFFORTS = {"sol": ("low", "medium", "high", "xhigh", "max"), "opus": ("low", "medium", "high", "xhigh", "max")}
+ DEFAULT_EFFORT = {"sol": "xhigh", "opus": "medium"}  # Opus: 22 Sep 2026 effort sweep
++MODEL_DEFAULT_EFFORT = {"gpt-6-astra": "high"}  # Austin's 26 Sep 2026 default decision.
+ # Claude Code settings for every Opus run. A classifier refusal fails the run instead of switching
+ # models; the prompt-cache lifetime stays the subscription default; and the "user hasn't heard
+ # from you" reminder never fires, since no one reads a sandboxed run while it works.
+@@ -251,7 +252,7 @@
+     if args.revise_from and (not Path(args.revise_from).is_file() or not Path(args.report).is_file()):
+         raise SystemExit("revision workbook or findings report is missing")
+     model = args.model or MODELS[args.provider][0]
+-    effort = args.effort or DEFAULT_EFFORT[args.provider]
++    effort = args.effort or MODEL_DEFAULT_EFFORT.get(model, DEFAULT_EFFORT[args.provider])
+     if model not in MODELS[args.provider] or effort not in EFFORTS[args.provider]:
+         raise SystemExit(f"{args.provider} runs one of {', '.join(MODELS[args.provider])} "
+                          f"at effort {', '.join(EFFORTS[args.provider])}")
+@@ -828,14 +829,14 @@
+     root = argparse.ArgumentParser()
+     sub = root.add_subparsers(dest="command", required=True)
+     p = sub.add_parser("prepare")
+-    p.add_argument("--provider", choices=["sol", "opus"], required=True)
++    p.add_argument("--provider", choices=["sol", "opus"], default="sol", help="transport (default: sol, for Astra)")
+     p.add_argument("--run-dir", required=True)
+     p.add_argument("--deal", required=True)
+     p.add_argument("--filing", required=True)
+     p.add_argument("--filing-dir", help="folder holding the filing: raw_filing/ (default) or a cockpit deal folder in _dev/cockpit/state/filings/")
+     p.add_argument("--instruction", help="candidate instruction file to test (default: the working instruction)")
+-    p.add_argument("--model", help="model to run (default: the provider's first allowed model, e.g. claude-opus-5-5)")
+-    p.add_argument("--effort", help="effort level (Opus: low, medium, high, xhigh or max; default: DEFAULT_EFFORT)")
++    p.add_argument("--model", help="model to run (default: gpt-6-astra for sol, claude-opus-5-5 for opus)")
++    p.add_argument("--effort", help="effort: low, medium, high, xhigh or max (default: Astra high, other Codex models xhigh, Claude medium)")
+     p.add_argument("--timeout-minutes", type=int, help="wall-clock limit for the run, 10-360 (default: 90)")
+     p.add_argument("--revise-from", help="finished workbook to revise (revision pass)")
+     p.add_argument("--report", help="checker findings in plain text, required with --revise-from")
+--- a/_dev/tools/test_cockpit_deals.py
++++ b/_dev/tools/test_cockpit_deals.py
+@@ -171,7 +171,7 @@
+         self.add(self.looked_up(seed="beta-holdings"))
+         self.runs.account_action("austin", {"action": "token", "token": TOKEN})
+         for _ in range(2):
+-            self.runs.job_action("beta-holdings", "austin", {"action": "extract"})
++            self.runs.job_action("beta-holdings", "austin", {"action": "extract", "engine": "opus55"})
+             self.settle(lambda: all(job["state"] in worker.TERMINAL for job in self.runs.jobs("beta-holdings")["jobs"]))
+         jobs = self.runs.jobs("beta-holdings")["jobs"]
+         self.assertEqual([job["state"] for job in jobs], ["completed", "completed"], jobs)
+@@ -197,7 +197,7 @@
+         with self.assertRaises(Conflict): self.deals.visibility("alpha-deal", "austin", {"action": "unhide"})
+         # A queued or running job on the deal blocks hiding.
+         self.runs.account_action("austin", {"action": "token", "token": TOKEN})
+-        job = self.runs.job_action("alpha-deal", "austin", {"action": "extract"})["jobs"][0]
++        job = self.runs.job_action("alpha-deal", "austin", {"action": "extract", "engine": "opus55"})["jobs"][0]
+         with self.assertRaises(Conflict) as caught: self.deals.visibility("alpha-deal", "alex", {"action": "hide"})
+         self.assertIn("still going", str(caught.exception))
+         conn = sqlite3.connect(self.ws.db_path)
+@@ -207,7 +207,7 @@
+         self.assertEqual((result["hidden"], result["hidden_by"]), (True, "alex"))
+         self.deals.visibility(added, "austin", {"action": "hide"})
+         with self.assertRaises(Conflict): self.deals.visibility("alpha-deal", "austin", {"action": "hide"})
+-        with self.assertRaises(Conflict) as caught: self.runs.job_action("alpha-deal", "austin", {"action": "extract"})
++        with self.assertRaises(Conflict) as caught: self.runs.job_action("alpha-deal", "austin", {"action": "extract", "engine": "opus55"})
+         self.assertIn("unhide the deal first", str(caught.exception))
+         # Nothing else changes, the flag survives a new process, and the deal still opens.
+         fresh = data.Cockpit(self.root)
+@@ -222,7 +222,7 @@
+         self.assertEqual((result["hidden"], result["hidden_by"], result["hidden_at"]), (False, None, None))
+         self.assertEqual(self.cockpit.trace.activity("alex", "alpha-deal")["items"][0]["summary"], "Unhid the deal")
+         self.assertEqual({slug: d["hidden"] for slug, d in listed().items()}, {"alpha-deal": False, added: True})
+-        self.assertEqual(self.runs.job_action("alpha-deal", "austin", {"action": "extract"})["jobs"][0]["state"], "queued")
++        self.assertEqual(self.runs.job_action("alpha-deal", "austin", {"action": "extract", "engine": "opus55"})["jobs"][0]["state"], "queued")
+ 
+     # ---- HTTP ------------------------------------------------------------------------------
+ 
+--- a/_dev/tools/test_cockpit_phase4.py
++++ b/_dev/tools/test_cockpit_phase4.py
+@@ -158,6 +158,21 @@
+ 
+     # ---- engines and runs -----------------------------------------------------------------
+ 
++    def test_new_default_uses_astra_high_without_relabelling_legacy_jobs(self):
++        self.gpt_login()
++        self.runs.job_action(SLUG, "austin", {"action": "extract"})
++        self.settle(lambda: self.jobs()[0]["state"] == "completed")
++        job = self.jobs()[0]
++        self.assertEqual((job["params"]["engine"], job["params"]["model"], job["params"]["effort"], job["params"]["account"]),
++                         ("astra6", "gpt-6-astra", "high", "chatgpt"))
++        version = next(v for v in self.ws.item(SLUG)["versions"] if v["id"] == job["version_id"])
++        self.assertEqual((version["model"], version["effort"]), ("gpt-6-astra", "high"))
++        self.assertEqual(worker.engine_of({})[0], "opus55")
++        self.assertEqual(runs.job_account({}), "claude")
++        self.assertEqual(worker.engine_of({"engine": "sol6"})[0], "sol6")
++        defaults = {e["id"]: e["default_effort"] for e in self.runs.account("austin")["engines"]}
++        self.assertEqual(defaults, {"astra6": "high", "opus55": "medium", "fable51": "medium", "sol6": "medium"})
++
+     def test_extract_checks_the_engines_account_and_freezes_the_instruction(self):
+         with self.assertRaisesRegex(Conflict, "ChatGPT"):
+             self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "astra6"})
+@@ -206,7 +221,7 @@
+ 
+     def test_an_altered_stored_instruction_fails_the_run(self):
+         self.runs.account_action("austin", {"action": "token", "token": TOKEN})
+-        self.runs.job_action(SLUG, "austin", {"action": "extract"})
++        self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "opus55"})
+         sha = self.jobs()[0]["params"]["instruction"]["sha256"]
+         self.instructions.path(sha).write_text("tampered")
+         self.settle(lambda: self.jobs()[0]["state"] == "failed")
+--- a/_dev/tools/test_cockpit_runs.py
++++ b/_dev/tools/test_cockpit_runs.py
+@@ -166,11 +166,11 @@
+     # ---- jobs and worker -------------------------------------------------------------
+ 
+     def test_extract_requires_an_account_and_valid_settings(self):
+-        with self.assertRaises(Conflict): self.runs.job_action(SLUG, "austin", {"action": "extract"})
++        with self.assertRaises(Conflict): self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "opus55"})
+         self.connect()
+         for bad in ({"effort": "ultra"}, {"timeout_minutes": 5}, {"timeout_minutes": "90"}):
+-            with self.assertRaises(WorkspaceError): self.runs.job_action(SLUG, "austin", {"action": "extract", **bad})
+-        job = self.runs.job_action(SLUG, "austin", {"action": "extract", "effort": "high"})["jobs"][0]
++            with self.assertRaises(WorkspaceError): self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "opus55", **bad})
++        job = self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "opus55", "effort": "high"})["jobs"][0]
+         self.assertEqual((job["state"], job["params"]["effort"], job["params"]["model"]), ("queued", "high", "claude-opus-5-5"))
+         self.runs.job_action(SLUG, "alex", {"action": "cancel", "job_id": job["id"]})
+         self.worker.tick()
+@@ -178,7 +178,7 @@
+ 
+     def test_completed_run_is_checked_and_imported(self):
+         self.connect()
+-        self.runs.job_action(SLUG, "austin", {"action": "extract"})
++        self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "opus55"})
+         self.settle(lambda: self.jobs()[0]["state"] in worker.TERMINAL)
+         job = self.jobs()[0]
+         self.assertEqual(job["state"], "completed", job)
+@@ -198,7 +198,7 @@
+     def test_usage_limit_failure_keeps_receipts(self):
+         self.connect()
+         with patch.dict(os.environ, {"FAKE_OUTCOME": "usage_limit"}):
+-            self.runs.job_action(SLUG, "austin", {"action": "extract"})
++            self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "opus55"})
+             self.settle(lambda: self.jobs()[0]["state"] in worker.TERMINAL)
+         job = self.jobs()[0]
+         self.assertEqual((job["state"], job["failure_reason"], job["result"]["usage_limit_resets_at"]), ("failed", "usage_limit", "2026-09-23T15:00:00+00:00"))
+@@ -208,7 +208,7 @@
+     def test_running_job_can_be_cancelled(self):
+         self.connect()
+         with patch.dict(os.environ, {"FAKE_OUTCOME": "wait"}):
+-            self.runs.job_action(SLUG, "austin", {"action": "extract"})
++            self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "opus55"})
+             self.settle(lambda: self.jobs()[0]["state"] == "running" and (Path(self.worker.job(self.jobs()[0]["id"])["run_dir"]) / "status.json").is_file())
+             time.sleep(0.3)
+             self.runs.job_action(SLUG, "alex", {"action": "cancel", "job_id": self.jobs()[0]["id"]})
+@@ -218,14 +218,14 @@
+     def test_caps_limit_concurrent_runs_per_user(self):
+         self.connect()
+         with patch.dict(os.environ, {"FAKE_OUTCOME": "wait"}):
+-            for _ in range(3): self.runs.job_action(SLUG, "austin", {"action": "extract"})
++            for _ in range(3): self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "opus55"})
+             self.worker.tick()
+         states = sorted(job["state"] for job in self.jobs())
+         self.assertEqual(states, ["queued", "running", "running"])
+ 
+     def test_restarted_worker_finishes_orphaned_runs(self):
+         self.connect()
+-        self.runs.job_action(SLUG, "austin", {"action": "extract"})
++        self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "opus55"})
+         self.worker.tick()
+         job = self.jobs()[0]
+         self.worker.children[job["id"]].wait(timeout=20)
+@@ -239,7 +239,7 @@
+ 
+     def test_import_crash_is_retried_once_and_a_broken_job_does_not_block_others(self):
+         self.connect()
+-        self.runs.job_action(SLUG, "austin", {"action": "extract"})
++        self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "opus55"})
+         self.worker.tick()
+         job = self.jobs()[0]
+         self.worker.children[job["id"]].wait(timeout=20)
+@@ -257,8 +257,8 @@
+         self.assertEqual(done["state"], "completed")
+         self.assertEqual(sum(v["id"] == done["version_id"] for v in self.cockpit.deal(SLUG)["versions"]), 1)
+ 
+-        self.runs.job_action(SLUG, "austin", {"action": "extract"})
+-        self.runs.job_action(SLUG, "austin", {"action": "extract"})
++        self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "opus55"})
++        self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "opus55"})
+         with patch.object(worker.Worker, "start", side_effect=[RuntimeError("disk full"), True], autospec=True):
+             self.worker.tick()
+         states = sorted((j["state"], j["failure_reason"]) for j in self.jobs() if j["id"] != done["id"])
+@@ -267,7 +267,7 @@
+     def test_a_job_is_started_once_and_a_foreign_pid_is_not_the_runner(self):
+         self.connect()
+         with patch.dict(os.environ, {"FAKE_OUTCOME": "wait"}):
+-            self.runs.job_action(SLUG, "austin", {"action": "extract"})
++            self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "opus55"})
+             job = self.jobs()[0]
+             row = self.worker.job(job["id"])
+             self.assertTrue(self.worker.start(row))
+--- a/_dev/tools/test_run_model.py
++++ b/_dev/tools/test_run_model.py
+@@ -176,6 +176,16 @@
+             metadata = json.loads((self.prepare_fixture(Path(tmp)) / "metadata.json").read_text())
+         self.assertEqual((metadata["model"], metadata["effort"], metadata["timeout_seconds"]),
+                          ("claude-opus-5-5", run_model.DEFAULT_EFFORT["opus"], run_model.TIMEOUT_SECONDS))
++
++    def test_default_prepare_selects_astra_high_and_preserves_explicit_sol_effort(self):
++        args = run_model.parser().parse_args(["prepare", "--run-dir", "/tmp/unused", "--deal", "sample", "--filing", "sample.htm"])
++        self.assertEqual(args.provider, "sol")
++        for extra, expected in [(("--provider", "sol"), ("gpt-6-astra", "high")),
++                                (("--provider", "sol", "--model", "gpt-6-sol"), ("gpt-6-sol", "xhigh")),
++                                (("--provider", "sol", "--effort", "xhigh"), ("gpt-6-astra", "xhigh"))]:
++            with self.subTest(extra=extra), tempfile.TemporaryDirectory() as tmp:
++                metadata = json.loads((self.prepare_fixture(Path(tmp), extra=extra) / "metadata.json").read_text())
++                self.assertEqual((metadata["model"], metadata["effort"]), expected)
+ 
+     def test_disallowed_model_effort_or_timeout_fails_before_creating_run(self):
+         for extra, message in [(("--effort", "extreme"), "runs one of"), (("--model", "claude-sonnet-5"), "runs one of"),

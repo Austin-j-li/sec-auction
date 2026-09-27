@@ -1,0 +1,14 @@
+
+> sec-ledger-cockpit@1.0.0 test
+> vitest run src/runs.test.js
+
+
+ RUN  v3.2.4 /home/uctpiaj/work/Projects/sec-extraction-v114/_dev/tools/cockpit/frontend
+
+ ✓ src/runs.test.js (27 tests) 15ms
+
+ Test Files  1 passed (1)
+      Tests  27 passed (27)
+   Start at  12:02:32
+   Duration  552ms (transform 97ms, setup 0ms, collect 76ms, tests 15ms, environment 0ms, prepare 115ms)
+

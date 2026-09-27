@@ -1,0 +1,28 @@
+{
+  "cell": {
+    "arm": "opus-5-5-xhigh",
+    "deal": "mac-gray",
+    "effort": "xhigh",
+    "filing": "mac-gray_2013-12-04_DEFM14A.htm",
+    "id": "mac-gray-opus-5-5-xhigh-r1",
+    "model": "claude-opus-5-5",
+    "provider": "opus",
+    "replicate": 1,
+    "timeout_minutes": 120
+  },
+  "check_summary": {
+    "errors": 0,
+    "information": 0,
+    "total_issues": 34,
+    "warnings": 34
+  },
+  "checker_version": "1.7",
+  "failure_reason": null,
+  "ledger_schema": "v1.14",
+  "mismatches": [],
+  "network_commands": [],
+  "recorded_at": "2026-09-26T10:07:58.832122+00:00",
+  "state": "completed",
+  "web_or_delegation": [],
+  "workbook_sha256": "2cfcd74326f16499265d2577fc60807180645468b7a5279b71bce98a69b4d713"
+}

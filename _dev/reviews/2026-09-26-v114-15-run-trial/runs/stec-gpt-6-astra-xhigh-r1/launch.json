@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "/usr/bin/python3",
+    "/home/uctpiaj/work/Projects/sec-extraction-v114-trial-20260926/_dev/tools/sandbox/run_model.py",
+    "worker",
+    "--provider",
+    "sol",
+    "--run-dir",
+    "/home/uctpiaj/work/Projects/sec-extraction-v114-trial-20260926/_dev/runs/2026-09-26-v114-15-run-trial/stec-gpt-6-astra-xhigh-r1"
+  ],
+  "launched_at": "2026-09-26T09:43:55.346641+00:00",
+  "launcher_pid": 404789
+}

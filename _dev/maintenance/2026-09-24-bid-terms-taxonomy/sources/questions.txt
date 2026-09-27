@@ -1,0 +1,341 @@
+P1: Open questions on coding conventions
+
+P2: For Alex Gorbenko · 24 September 2026
+
+P3: Part 1 has seven questions: circle an option for each question or part, or write your own answer. Part 2 lists three readings to confirm with a yes or no. Section references (Part B, E1–E14) are to the extraction instruction; page numbers are the filings’ printed pages.
+
+TABLE 1
+
+# | Topic | In brief
+
+1 | Live-bidder counts given as ranges | Can estimation use a range? If not, which point?
+
+2 | Bidders for part of the company | Do division-only bidders, or a bidder that switches to a partial offer, count as competitors?
+
+3 | Renewed outreach during talks with a preferred bidder | Does renewed outreach open a new round?
+
+4 | Merger-of-equals talks | Are they a sale attempt?
+
+5 | Revised prices with unstated terms | Does a price-only revision inherit earlier formality and conditions?
+
+6 | Conditions | Multi-week exclusivity; financing arranged but not yet committed.
+
+7 | Deadlines and invited improvements | Enforced, or late bids accepted?
+
+Part 2 | Three readings to confirm | Yes or no.
+
+P6: Part 1 · Questions
+
+P7: QUESTION 1 OF 7
+
+P8: Live-bidder counts given as ranges
+
+P9: QUESTION
+
+P10: When a filing gives a group total but does not say whether unnamed bidders belong to it, the ledger records the counts as ranges. Can estimation use a live-bidder count given as a range? If it needs one number, which: the lower bound, the upper bound, or the count that presumes the ordinary sequence of a sale (sign, receive information, then bid)?
+
+P11: WHERE IT ARISES
+
+P12: Datalink, pp. 28–29. The filing never says the unnamed first-round bidders were among the confidentiality signers, so 13–16 signers did not bid; exactly 13 if every bidder signed.
+
+P13: Mac-Gray, pp. 32 and 34. Twenty parties signed “over the next two months” after 24 June 2013, and signers were to bid by 23 July. The 16 unnamed financial signers’ dates are unknown, so 0–16 of them missed 23 July; all 16 if all signed in time.
+
+P14: Also Providence and Worcester (p. 28); Synacor (pp. 32–34, including whether Company H was one of the 14 signers, as your coding assumes); PetSmart (p. 23: the winning group included several signers, so the ledger says “at most 9” signers never bid, where your count was 9).
+
+P15: NOW
+
+P16: The ledger always keeps the range and its reasoning (Part B). This question is only about the number analysis uses.
+
+P17: OPTIONS
+
+P18: A.	Estimation uses the range directly, for example as bounds on the rivals a bidder faced.
+
+P19: In the ledger: ranges used as recorded.
+
+P20: B.	Use the count that presumes the ordinary sequence (bidders were signers; signers were eligible for the first deadline), with the bounds for robustness checks.
+
+P21: In the ledger: Datalink 13 (13–16); Mac-Gray 16 by 23 July (0–16).
+
+P22: C.	Use one of the bounds (please say which).
+
+P23: In the ledger: Datalink 13 or 16.
+
+P24: Recommended: B. A confidentiality agreement is the gate to the data room and to bid letters, so the presumption is nearly always right; the bounds remain for robustness checks.
+
+TABLE 2
+
+Your answer (circle one):   A      B      C      Other Comments:
+
+P26: QUESTION 2 OF 7
+
+P27: Bidders for part of the company
+
+P28: QUESTION
+
+P29: Some parties bid only for a division or selected assets while the target sells the whole company, and some bidders switch to a partial offer. Do they count in whole-company live counts and the auction screen?
+
+P30: WHERE IT ARISES
+
+P31: Kraton, pp. 33–35. The board said it would review proposals for the CST business “in connection with” whole-company proposals, and on 6 July 2021 kept Party K’s chemical-segment proposal alongside the whole-company bids.
+
+P32: Synacor, pp. 32–36. Company G offered for the software business alone, and the committee weighed it against a whole-company sale. On 14 December 2020 Company E switched from a $2.00 whole-company offer to a tender offer for 35% of the shares, which the committee kept weighing until 4 January 2021.
+
+P33: sTec, p. 28. Companies E and F signed confidentiality agreements, then said they wanted only “limited, select assets”.
+
+P34: NOW
+
+P35: E1 records a segment offer as an “Other-scope bid” with no whole-company price, but does not say whether such bidders count. The ledgers count Kraton’s segment bidders and keep Synacor’s Company E live as a whole-company bidder until 4 January. Your notes say the research concerns acquisitions of entire companies.
+
+P36: OPTIONS
+
+P37: A.	Count them like any other participant.
+
+P38: In the ledger: Kraton’s segment bidders count; Synacor’s E counts until 4 January.
+
+P39: B.	Record their offers but keep them out of whole-company counts and the auction screen; a bidder that switches to a partial offer leaves at the switch.
+
+P40: In the ledger: Kraton’s first-round count falls by five (C, D, E, G, K); Synacor’s E leaves on 14 December.
+
+P41: C.	Count them, flagged, only when the target treats partial offers as an alternative to a whole-company sale (invites them alongside whole-company bids, or weighs a break-up against those bids).
+
+P42: In the ledger: Kraton: all count. Synacor: G from September 2020, and E (flagged) until 4 January; the separate 2019 portal-only outreach does not count.
+
+P43: Recommended: C. A division bidder competes with whole-company bidders only when the target is willing to sell in pieces; then leaving it out would understate competition. The flag keeps both counts recoverable.
+
+TABLE 3
+
+Your answer (circle one):   A      B      C      Other Comments:
+
+P45: QUESTION 3 OF 7
+
+P46: Renewed outreach during talks with a preferred bidder
+
+P47: E6: a new round begins when the target changes the stage or the set of bidders, and asking the round’s bidders to improve continues the round.
+
+P48: QUESTION
+
+P49: When a target renews outreach to other bidders while still negotiating with a preferred bidder, does a new round begin?
+
+P50: WHERE IT ARISES
+
+P51: Synacor, pp. 34–36. After Company E’s exclusivity expired, the committee re-opened outreach on 27 October 2020 while talks with E continued, and sought letters of intent on 30 December.
+
+P52: Datalink, p. 32. On 29 September 2016 the board let Insight’s exclusivity expire and approached Parties B and C while still talking to Insight.
+
+P53: NOW
+
+P54: The ledgers open the new round at the renewed outreach. You read Synacor’s renewed outreach as part of the same process; this asks whether it opens a new round within it.
+
+P55: OPTIONS
+
+P56: A.	At the renewed outreach.
+
+P57: In the ledger: Synacor 27 October 2020; Datalink 1 October 2016 (current).
+
+P58: B.	Only at a request for offers to a defined set.
+
+P59: In the ledger: Synacor 30 December; Datalink no new round.
+
+P60: C.	Two rounds: the outreach, then the request.
+
+P61: In the ledger: Synacor gains a round.
+
+P62: Recommended: A. That is when rivals return to compete with the preferred bidder; the later request continues the round.
+
+TABLE 4
+
+Your answer (circle one):   A      B      C      Other Comments:
+
+P64: QUESTION 4 OF 7
+
+P65: Merger-of-equals talks
+
+P66: QUESTION
+
+P67: When the target proposes a merger of equals and neither side is clearly the buyer, are the talks a sale attempt?
+
+P68: WHERE IT ARISES
+
+P69: Synacor, p. 30. Synacor proposed a “merger of equals” to Company B in 2018 under a confidentiality agreement; the talks ended in March 2019. Counted as sale contacts, they fill most of the gap between the first two processes.
+
+P70: NOW
+
+P71: The instruction is silent where neither side is clearly the buyer. The ledger lists the talks under earlier approaches; your coding records Company B’s agreement and exit.
+
+P72: OPTIONS
+
+P73: A.	Exclude: earlier approaches only, no ledger rows.
+
+P74: In the ledger: Synacor keeps three processes (current).
+
+P75: B.	Include as a sale attempt, with Company B as a bidder.
+
+P76: In the ledger: the first two processes may merge.
+
+P77: C.	Include only when the filing shows the target’s holders would give up control or receive a premium; otherwise as A.
+
+P78: In the ledger: Synacor as A.
+
+P79: Recommended: C. A true merger of equals is not a sale, though the label sometimes covers what is in effect a takeover.
+
+TABLE 5
+
+Your answer (circle one):   A      B      C      Other Comments:
+
+P81: QUESTION 5 OF 7
+
+P82: Revised prices with unstated terms
+
+P83: QUESTION
+
+P84: When a bidder revises only its price and the filing is silent on its other terms, does the revision inherit the earlier formality and conditions?
+
+P85: WHERE IT ARISES
+
+P86: Providence and Worcester, pp. 29–30. G&W raised its offer from $21.15 to $22.15 on 26 July 2016 after a letter with markups; the target later negotiated from those markups. Party D, re-engaged after being dropped, sent $24.00 on 1 August with a 30-day diligence period and no mention of a markup.
+
+P87: sTec, pp. 30–32. WDC’s 10 June 2013 range said it was “otherwise prepared to move forward on the transaction terms previously proposed on May 28”, when it had sent a markup. Your coding has 10 June as informal.
+
+P88: Mac-Gray, pp. 35–36. Party B’s 9 September 2013 bid “did not include a firm financing commitment”; its 18 September revision is silent on financing, yet the ledger codes it Heavy by carrying that fact forward.
+
+P89: NOW
+
+P90: E11 needs a markup “with a priced proposal or expressly in support of one”; E12 says silence about financing establishes nothing. Neither settles what a silent revision inherits, and the ledgers are inconsistent.
+
+P91: OPTIONS
+
+P92: A.	Carry both forward, marked as inferred, unless the filing reports a change.
+
+P93: In the ledger: G&W Formal, Heavy; Party D Formal; WDC Formal; Mac-Gray’s Party B Heavy.
+
+P94: B.	Carry formality only when the bidder refers back to its earlier terms or the target is reported negotiating from its markup; code conditions only from what is reported about the revision, otherwise Unclear.
+
+P95: In the ledger: G&W Formal, Unclear; Party D Informal, Heavy (its diligence period is reported); WDC Formal, Unclear; Party B Unclear.
+
+P96: C.	Code each revision only from what is reported about it.
+
+P97: In the ledger: G&W, Party D and WDC Informal; conditions as in B.
+
+P98: Recommended: B. The bid stays formal where the filing ties the new price to the markup, and no bidder looks more or less committed than the filing shows.
+
+TABLE 6
+
+Your answer (circle one):   A      B      C      Other Comments:
+
+P100: QUESTION 6 OF 7
+
+P101: Conditions
+
+P102: (a) Multi-week exclusive diligence
+
+P103: WHERE IT ARISES
+
+P104: Synacor, pp. 33–34. Company E asked for about five weeks of exclusivity; its diligence began only after its letter of intent was signed.
+
+P105: Contrast: Mac-Gray, pp. 35–37. CSC/Pamplona’s funding was committed, and its two weeks of exclusivity were to finalize the agreement.
+
+P106: NOW
+
+P107: You noted that exclusivity should be recorded as a condition but should not by itself make a formal bid informal. E12 counts “a further substantive diligence period” (“a stated multi-week or exclusive period counts”). Is a multi-week exclusive period requested before diligence has begun such a period?
+
+P108: OPTIONS
+
+P109: A.	Yes: it counts as substantial remaining diligence.
+
+P110: In the ledger: Company E Heavy; CSC/Pamplona not Heavy on this ground.
+
+P111: B.	No: Heavy only if the filing separately reports substantial diligence still to do.
+
+P112: In the ledger: Company E Unclear.
+
+P113: Recommended: A for Company E, whose five weeks were the time its diligence needed; not for CSC/Pamplona.
+
+TABLE 7
+
+Your answer (circle one):   A      B      Other Comments:
+
+P115: (b) Financing arranged but not yet committed
+
+P116: WHERE IT ARISES
+
+P117: Kraton, pp. 7 and 38–42. Parent agreed that financing would not be a condition, though it “required debt financing to consummate the merger”; on 15 September 2021 it had completed substantially all diligence. Its debt commitment letter was a draft until signing on 27 September, and a $63 million reverse fee covers a financing failure.
+
+P118: NOW
+
+P119: E12 makes a bid Heavy on financing only if the filing reports financing as uncommitted or as a condition. The ledger rates Parent’s four final-stage rows Unclear, Light, Light and Unclear.
+
+P120: OPTIONS
+
+P121: A.	Heavy: financing required and not yet committed.
+
+P122: In the ledger: all four Heavy.
+
+P123: B.	Light once substantive diligence is complete and the offer carries no financing condition, even while the commitment letter is being finalized.
+
+P124: In the ledger: the 15 and 20 September bids and the reverse-fee package Light; 8 September Unclear.
+
+P125: C.	Unclear.
+
+P126: In the ledger: all four Unclear.
+
+P127: Recommended: B, with one rule for all four rows. Parent bound itself to close without a financing condition, and a letter being finalized is not a reported absence of commitment.
+
+TABLE 8
+
+Your answer (circle one):   A      B      C      Other Comments:
+
+P129: QUESTION 7 OF 7
+
+P130: Deadlines and invited improvements
+
+P131: QUESTION
+
+P132: After a bid due date, the target or its banker goes back to bidders and they raise their offers days later. Was that deadline enforced, or were late bids accepted?
+
+P133: WHERE IT ARISES
+
+P134: Mac-Gray, pp. 36–37. Bids were due on 18 September 2013; on 21 September the committee offered CSC/Pamplona exclusivity at $21.25, and CSC/Pamplona made that its “last and best” offer.
+
+P135: PetSmart, p. 24. Indications were due on 30 October 2014. In calls from 30 October to 2 November the banker discussed prices with all bidders, and Bidder 2 raised $78.00 to $81.00–$84.00; the board admitted it on 3 November.
+
+P136: NOW
+
+P137: E9: Enforced if the target acted on the bids in hand; Late bids accepted if it considered a bid that arrived after its due date. Mac-Gray is coded Enforced; PetSmart is coded Unclear, because the day of Bidder 2’s revision is not reported.
+
+P138: OPTIONS
+
+P139: A.	Late bids accepted only when a bidder missed the due date and its first response was still considered; improvements the target invites afterwards are bargaining within the round, recorded as their own rows.
+
+P140: In the ledger: both Enforced; PetSmart no longer depends on the unreported day.
+
+P141: B.	Late bids accepted whenever the target considers any bid made after the due date.
+
+P142: In the ledger: both Late bids accepted; deadlines look soft far more often.
+
+P143: C.	Invited improvements after the target has acted on the bids in hand are negotiation; before it acts, they are late bids.
+
+P144: In the ledger: Mac-Gray Enforced; PetSmart depends on the unreported day.
+
+P145: Recommended: A. “Late bids accepted” should mark a deadline that a bidder could ignore, the evidence on soft deadlines you asked for; bargaining the target reopens is already its own event.
+
+TABLE 9
+
+Your answer (circle one):   A      B      C      Other Comments:
+
+P148: Part 2 · Readings to confirm
+
+P149: Readings we propose to adopt. They follow the instruction; where your earlier coding differs, we would like a yes first. Circle Yes or No.
+
+TABLE 10
+
+# | Topic | Proposed reading | Agree?
+
+1 | sTec, Company H | Told its range was too low and invited to revise, H said on 23 May it could not raise it: dropped by the target, reason “would not improve earlier offer” (your coding: its own drop). | Yes      No
+
+2 | sTec, Company D | D missed the 28 and 30 May due dates but kept asking for time and was invited to continue: live throughout until it withdrew on 5 June. | Yes      No
+
+3 | Penford, Party A | A’s comments of 4 and 13 October 2014 (any offer “below $17.50–$18.00”; a $16.00–$18.00 range) are valuation statements, not bids; its 14 October letter at $16.00 is its bid. | Yes      No
+
+TABLE 11
+
+Anything else, or a reading above you disagree with Comments:

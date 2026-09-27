@@ -1,0 +1,242 @@
+{
+  "generated_at": "2026-09-26T20:42:12+00:00",
+  "results": [
+    {
+      "deal": "mac-gray",
+      "item": "checker",
+      "status": "PASS",
+      "text": "checker 1.8 (v1.14.1): 0 errors, 2 warnings",
+      "rows": []
+    },
+    {
+      "deal": "mac-gray",
+      "item": "note_length",
+      "status": "PASS",
+      "text": "0 Notes over 40 words",
+      "rows": []
+    },
+    {
+      "deal": "mac-gray",
+      "item": "questions",
+      "status": "PASS",
+      "text": "2 Questions besides the process Question (none)",
+      "rows": []
+    },
+    {
+      "deal": "mac-gray",
+      "item": "rows",
+      "status": "PASS",
+      "text": "53 ledger rows; the trial's Opus 5.5 medium workbook had 64",
+      "rows": []
+    },
+    {
+      "deal": "mac-gray",
+      "item": "16 by 23 July",
+      "status": "PASS",
+      "text": "16 unnamed signers Did not submit, dated 23 July, Count 16",
+      "rows": [
+        17
+      ]
+    },
+    {
+      "deal": "mac-gray",
+      "item": "October liability rows",
+      "status": "PASS",
+      "text": "October liability revisions are Bid rows with blank prices (H4); confirm the rows listed are those revisions",
+      "rows": [
+        47,
+        48
+      ]
+    },
+    {
+      "deal": "mac-gray",
+      "item": "Party A 18 September",
+      "status": "PASS",
+      "text": "Party A's 18 September bid is Heavy (H1) and Formal",
+      "rows": [
+        37
+      ]
+    },
+    {
+      "deal": "providence-worcester",
+      "item": "checker",
+      "status": "PASS",
+      "text": "checker 1.8 (v1.14.1): 0 errors, 2 warnings",
+      "rows": []
+    },
+    {
+      "deal": "providence-worcester",
+      "item": "note_length",
+      "status": "PASS",
+      "text": "0 Notes over 40 words",
+      "rows": []
+    },
+    {
+      "deal": "providence-worcester",
+      "item": "questions",
+      "status": "PASS",
+      "text": "3 Questions besides the process Question (none)",
+      "rows": []
+    },
+    {
+      "deal": "providence-worcester",
+      "item": "rows",
+      "status": "PASS",
+      "text": "58 ledger rows; the trial's Opus 5.5 medium workbook had 63",
+      "rows": []
+    },
+    {
+      "deal": "providence-worcester",
+      "item": "16 non-submitters",
+      "status": "FAIL",
+      "text": "16 non-submitters, Count 16",
+      "rows": []
+    },
+    {
+      "deal": "providence-worcester",
+      "item": "no extra entrant",
+      "status": "REVIEW",
+      "text": "No named party is entered beside the 25 signers; check the NDA signed rows",
+      "rows": [
+        8,
+        9,
+        10,
+        22
+      ]
+    },
+    {
+      "deal": "providence-worcester",
+      "item": "Party E not H2",
+      "status": "PASS",
+      "text": "No Party E bid is coded H2",
+      "rows": []
+    },
+    {
+      "deal": "providence-worcester",
+      "item": "G&W 12 August",
+      "status": "PASS",
+      "text": "G&W's 12 August bid has Regulatory Concern",
+      "rows": [
+        51
+      ]
+    },
+    {
+      "deal": "providence-worcester",
+      "item": "Party C 12 July",
+      "status": "PASS",
+      "text": "Party C's 12 July diligence is not Not begun",
+      "rows": [
+        23
+      ]
+    },
+    {
+      "deal": "stec",
+      "item": "checker",
+      "status": "REVIEW",
+      "text": "checker 1.8 (v1.14.1): 1 errors, 3 warnings",
+      "rows": []
+    },
+    {
+      "deal": "stec",
+      "item": "note_length",
+      "status": "PASS",
+      "text": "0 Notes over 40 words",
+      "rows": []
+    },
+    {
+      "deal": "stec",
+      "item": "questions",
+      "status": "PASS",
+      "text": "2 Questions besides the process Question (none)",
+      "rows": []
+    },
+    {
+      "deal": "stec",
+      "item": "rows",
+      "status": "PASS",
+      "text": "56 ledger rows; the trial's Opus 5.5 medium workbook had 66",
+      "rows": []
+    },
+    {
+      "deal": "stec",
+      "item": "Company H",
+      "status": "PASS",
+      "text": "Company H Dropped by target by 16 May, Would not improve earlier offer",
+      "rows": [
+        37
+      ]
+    },
+    {
+      "deal": "stec",
+      "item": "standstill warning",
+      "status": "PASS",
+      "text": "WDC's June standstill warning is a Bid with H3 and no price",
+      "rows": [
+        54
+      ]
+    },
+    {
+      "deal": "stec",
+      "item": "two rounds",
+      "status": "PASS",
+      "text": "2 rounds (expected 2)",
+      "rows": []
+    },
+    {
+      "deal": "synacor",
+      "item": "checker",
+      "status": "PASS",
+      "text": "checker 1.8 (v1.14.1): 0 errors, 6 warnings",
+      "rows": []
+    },
+    {
+      "deal": "synacor",
+      "item": "note_length",
+      "status": "PASS",
+      "text": "0 Notes over 40 words",
+      "rows": []
+    },
+    {
+      "deal": "synacor",
+      "item": "questions",
+      "status": "PASS",
+      "text": "4 Questions besides the process Question (present)",
+      "rows": []
+    },
+    {
+      "deal": "synacor",
+      "item": "round map",
+      "status": "PASS",
+      "text": "3 processes, 6 rounds; recorded 3 and 6. A change must be explained by trigger (d) and shown to Austin: [[1, 1, \"2018-01-10\", \"NDA with Company A after its approach\", \"Not final\"], [2, 1, \"2019-03-01\", \"NDA with Company C\", \"Not final\"], [3, 1, \"2020-07-13\", \"Amended NDA with Company E after its approach; Canaccord outreach to 37 parties\", \"Not final\"], [3, 2, \"2020-09-23\", \"Exclusive LOI with Company E and definitive negotiation (trigger c)\", \"Inferred final\"], [3, 3, \"2020-12-30\", \"Special Committee sought non-binding LOIs after Company E exclusivity ended (trigger d)\", \"Not final\"], [3, 4, \"2021-01-07\", \"LOI with CLP executed; diligence and definitive negotiation (trigger c)\", \"Inferred final\"]]",
+      "rows": []
+    },
+    {
+      "deal": "datalink",
+      "item": "checker",
+      "status": "REVIEW",
+      "text": "checker 1.8 (v1.14.1): 1 errors, 4 warnings",
+      "rows": []
+    },
+    {
+      "deal": "datalink",
+      "item": "note_length",
+      "status": "PASS",
+      "text": "0 Notes over 40 words",
+      "rows": []
+    },
+    {
+      "deal": "datalink",
+      "item": "questions",
+      "status": "PASS",
+      "text": "4 Questions besides the process Question (present)",
+      "rows": []
+    },
+    {
+      "deal": "datalink",
+      "item": "round map",
+      "status": "REVIEW",
+      "text": "1 processes, 4 rounds; recorded 1 and 5. A change must be explained by trigger (d) and shown to Austin: [[1, 1, \"2016-01-28\", \"First price negotiation with Party A after its unsolicited $10.00 proposal (bidder-initiated)\", \"Not final\"], [1, 2, \"2016-06-06\", \"Raymond James outreach to 13 strategic and 14 financial parties after a pause since 04/20/2016 (trigger d)\", \"Not final\"], [1, 3, \"2016-08-16\", \"Final-proposal instruction letters with merger agreement mark-up required (trigger b)\", \"Announced as final\"], [1, 4, \"2016-10-01\", \"Re-approach of Party B and Party C after Insight exclusivity ended (trigger d)\", \"Not final\"]]",
+      "rows": []
+    }
+  ]
+}

@@ -1,0 +1,390 @@
+diff --git a/_dev/tools/cockpit/frontend/src/runs.js b/_dev/tools/cockpit/frontend/src/runs.js
+index d280e9d..ce5bfc7 100644
+--- a/_dev/tools/cockpit/frontend/src/runs.js
++++ b/_dev/tools/cockpit/frontend/src/runs.js
+@@ -5,10 +5,11 @@ import { displayName, shortTime } from './trace';
+ 
+ export const INSTRUCTION_VERSION = 'v1.13.2';
+ export const EFFORTS = ['low', 'medium', 'high', 'xhigh', 'max'];
+-export const DEFAULT_EFFORT = 'medium';
++export const DEFAULT_EFFORT = 'high';
+ export const FABLE_WARNING = 'Fable’s safety filter often blocks runs partway (6 of 11 test prompts); a blocked run fails and must be restarted.';
+ const ACCOUNT_NAMES = { claude: 'Claude', chatgpt: 'ChatGPT' };
+-export const DEFAULT_ENGINE = { id: 'opus55', label: 'Opus 5.5', account: 'claude', efforts: EFFORTS, default_effort: DEFAULT_EFFORT };
++export const DEFAULT_ENGINE = { id: 'astra6', label: 'GPT-6-Astra', account: 'chatgpt', efforts: EFFORTS, default_effort: DEFAULT_EFFORT };
++const LEGACY_ENGINE = { id: 'opus55', label: 'Opus 5.5', account: 'claude', efforts: EFFORTS, default_effort: 'medium' };
+ export const DEFAULT_TIMEOUT = 90;
+ export const TIMEOUT_RANGE = [10, 360];
+ export const ACTIVE_STATES = new Set(['queued', 'preparing', 'running', 'checking', 'importing']);
+@@ -25,14 +26,15 @@ export const STATE_TONES = { completed: 'success', failed: 'error', timed_out: '
+ // then Opus 5.5 alone, available when the Claude account is connected. "ultra" is never offered.
+ export function accountEngines(account) {
+   const list = Array.isArray(account?.engines) && account.engines.length ? account.engines
+-    : [{ ...DEFAULT_ENGINE, connected: Boolean(account?.claude?.connected) }];
++    : [{ ...LEGACY_ENGINE, connected: Boolean(account?.claude?.connected) }];
+   return list.map(engine => {
+     const efforts = (engine.efforts?.length ? engine.efforts : EFFORTS).filter(effort => effort !== 'ultra');
+-    const fallback = efforts.includes(DEFAULT_EFFORT) ? DEFAULT_EFFORT : efforts[0];
++    const preferred = engine.id === DEFAULT_ENGINE.id ? DEFAULT_EFFORT : 'medium';
++    const fallback = efforts.includes(preferred) ? preferred : efforts[0];
+     return { ...engine, label: engine.label || engine.id, efforts, default_effort: efforts.includes(engine.default_effort) ? engine.default_effort : fallback, connected: Boolean(engine.connected) };
+   });
+ }
+-// The engine to preselect: Opus 5.5 when usable, else the first connected engine, else null.
++// Preselect Astra when usable, else the first connected engine; preserve an explicit selection.
+ export function pickEngine(engines, current = null) {
+   const usable = (engines || []).filter(engine => engine.connected);
+   return usable.find(engine => engine.id === current) || usable.find(engine => engine.id === DEFAULT_ENGINE.id) || usable[0] || null;
+diff --git a/_dev/tools/cockpit/frontend/src/runs.test.js b/_dev/tools/cockpit/frontend/src/runs.test.js
+index 60b86a3..025218f 100644
+--- a/_dev/tools/cockpit/frontend/src/runs.test.js
++++ b/_dev/tools/cockpit/frontend/src/runs.test.js
+@@ -75,8 +75,8 @@ describe('plan usage and cost', () => {
+     expect(dateWithYear('2027-09-23T12:00:00Z')).toMatch(/^2[34] Sep 2027$/);
+   });
+   it('summarises a run and validates the time limit', () => {
+-    expect(runSummary('medium', 'austin')).toBe('Opus 5.5 · medium · v1.13.2 · on Austin’s Claude plan · usually 10–15 minutes');
+-    expect(runSummary('high', 'austin')).toBe('Opus 5.5 · high · v1.13.2 · on Austin’s Claude plan');
++    expect(runSummary('medium', 'austin', { id: 'opus55', label: 'Opus 5.5', account: 'claude' })).toBe('Opus 5.5 · medium · v1.13.2 · on Austin’s Claude plan · usually 10–15 minutes');
++    expect(runSummary('high', 'austin')).toBe('GPT-6-Astra · high · v1.13.2 · on Austin’s ChatGPT plan');
+     expect(runSummary('high', 'austin', { id: 'fable51', label: 'Fable 5.1', account: 'claude' }, 'draft 3f2a9c1 (Alex)')).toBe('Fable 5.1 · high · draft 3f2a9c1 (Alex) · on Austin’s Claude plan');
+     expect(runSummary('medium', 'alex', { id: 'sol6', label: 'GPT-6-Sol', account: 'chatgpt' }, 'v1.14')).toBe('GPT-6-Sol · medium · v1.14 · on Alex’s ChatGPT plan');
+     expect([validTimeout('90'), validTimeout('9'), validTimeout('361'), validTimeout('12.5'), validTimeout('')]).toEqual([true, false, false, false, false]);
+@@ -144,27 +144,29 @@ describe('engines', () => {
+     { id: 'opus55', label: 'Opus 5.5', account: 'claude', efforts: ['low', 'medium', 'high', 'xhigh', 'max', 'ultra'], default_effort: 'medium', connected: false },
+     { id: 'fable51', label: 'Fable 5.1', account: 'claude', efforts: ['low', 'medium', 'high'], default_effort: 'medium', connected: false, experimental: true },
+     { id: 'sol6', label: 'GPT-6-Sol', account: 'chatgpt', efforts: ['low', 'medium', 'high'], default_effort: 'high', connected: true },
+-    { id: 'astra6', label: 'GPT-6-Astra', account: 'chatgpt', efforts: ['low', 'medium'], connected: true },
++    { id: 'astra6', label: 'GPT-6-Astra', account: 'chatgpt', efforts: ['low', 'medium', 'high'], connected: true },
+   ];
+   it('reads the account’s engines without ultra, and falls back to Opus 5.5 before phase 4', () => {
+     const list = accountEngines({ engines });
+     expect(list[0].efforts).toEqual(['low', 'medium', 'high', 'xhigh', 'max']);
+-    expect(list[3].default_effort).toBe('medium');
++    expect(list[3].default_effort).toBe('high');
+     expect(accountEngines({ claude: { connected: true } })).toMatchObject([{ id: 'opus55', label: 'Opus 5.5', account: 'claude', connected: true, default_effort: 'medium' }]);
+     expect(accountEngines(null)[0].connected).toBe(false);
+   });
+-  it('preselects Opus 5.5 when usable, else the first connected engine', () => {
++  it('preselects Astra when usable, preserves explicit choices and falls back to connected engines', () => {
+     const list = accountEngines({ engines });
+-    expect(pickEngine(list).id).toBe('sol6');
++    expect(pickEngine(list).id).toBe('astra6');
+     expect(pickEngine(list, 'astra6').id).toBe('astra6');
+-    expect(pickEngine(list, 'fable51').id).toBe('sol6');
+-    expect(pickEngine(accountEngines({ engines: engines.map(e => ({ ...e, connected: true })) })).id).toBe('opus55');
++    expect(pickEngine(list, 'fable51').id).toBe('astra6');
++    expect(pickEngine(list, 'sol6').id).toBe('sol6');
++    expect(pickEngine(list.filter(e => e.id !== 'astra6')).id).toBe('sol6');
++    expect(pickEngine(accountEngines({ engines: engines.map(e => ({ ...e, connected: true })) })).id).toBe('astra6');
+     expect(pickEngine(list.map(e => ({ ...e, connected: false })))).toBe(null);
+   });
+   it('keeps an effort the new engine offers, else its default', () => {
+     const [, , sol, astra] = accountEngines({ engines });
+     expect(effortFor(sol, 'low')).toBe('low');
+-    expect(effortFor(astra, 'high')).toBe('medium');
++    expect(effortFor(astra, 'max')).toBe('high');
+     expect(effortFor(sol, 'max')).toBe('high');
+   });
+   it('labels a run’s engine and instruction, with the phase 2 defaults', () => {
+diff --git a/_dev/tools/cockpit/runs.py b/_dev/tools/cockpit/runs.py
+index e845119..cd12367 100644
+--- a/_dev/tools/cockpit/runs.py
++++ b/_dev/tools/cockpit/runs.py
+@@ -29,8 +29,8 @@ SCHEMA = (
+ USERS = ("austin", "alex", "local")
+ NAMES = {"austin": "Austin", "alex": "Alex", "local": "Local"}
+ EFFORTS = ("low", "medium", "high", "xhigh", "max")
+-MODEL = "claude-opus-5-5"
+-ENGINE = "Opus 5.5"
++MODEL = "gpt-6-astra"
++ENGINE = "GPT-6-Astra"
+ # Extraction engines. "provider" is the runner's transport: "opus" drives Claude Code, "sol" Codex.
+ # "account" is whose plan pays: the starting user's Claude or ChatGPT subscription.
+ FABLE_NOTE = "Fable's safety filter often blocks runs partway (6 of 11 test prompts); a blocked run fails and must be restarted."
+@@ -40,7 +40,9 @@ ENGINES = {
+     "sol6": {"label": "GPT-6-Sol", "name": "GPT-6-Sol", "provider": "sol", "model": "gpt-6-sol", "account": "chatgpt", "experimental": False, "note": None},
+     "astra6": {"label": "GPT-6-Astra", "name": "GPT-6-Astra", "provider": "sol", "model": "gpt-6-astra", "account": "chatgpt", "experimental": False, "note": None},
+ }
+-DEFAULT_ENGINE = "opus55"
++DEFAULT_ENGINE = "astra6"
++LEGACY_ENGINE = "opus55"  # Jobs recorded before engine selection existed remain Claude jobs.
++DEFAULT_EFFORT = {ident: "high" if ident == "astra6" else "medium" for ident in ENGINES}
+ ACTIVE = ("queued", "preparing", "running", "checking", "importing")
+ CONNECT_ACTIVE = ("queued", "waiting_for_code", "completing")
+ CHATGPT_CONNECT_ACTIVE = ("queued", "waiting_for_approval")
+@@ -99,7 +101,7 @@ def codex_login(auth: Path) -> dict[str, Any] | None:
+ 
+ def job_account(params: dict[str, Any] | None) -> str:
+     """Whose plan a job uses; jobs from before phase 4 are Opus 5.5 on Claude."""
+-    return ENGINES.get((params or {}).get("engine"), ENGINES[DEFAULT_ENGINE])["account"]
++    return ENGINES.get((params or {}).get("engine"), ENGINES[LEGACY_ENGINE])["account"]
+ 
+ 
+ def active_jobs_on(conn: sqlite3.Connection, user: str, account: str) -> bool:
+@@ -194,7 +196,7 @@ class Runs:
+                 gpt_connect = {"job_id": job[0]["id"], "state": job[0]["state"], "link": shown.get("link"), "code": shown.get("code"), "error": job[0]["error"]}
+             accounts = {"claude": connected, "chatgpt": gpt["connected"]}
+             engines = [{"id": ident, "label": engine["label"], "name": engine["name"], "account": engine["account"], "efforts": list(EFFORTS),
+-                        "default_effort": "medium", "experimental": engine["experimental"], "note": engine["note"], "connected": accounts[engine["account"]]}
++                        "default_effort": DEFAULT_EFFORT[ident], "experimental": engine["experimental"], "note": engine["note"], "connected": accounts[engine["account"]]}
+                        for ident, engine in ENGINES.items()]
+             return {"user": user, "claude": {"connected": connected, "connected_at": found[0]["connected_at"] if connected else None,
+                                               "expires_at": found[0]["expires_at"] if connected else None, "plan_usage": plan}, "connect": connect,
+@@ -294,10 +296,10 @@ class Runs:
+         def run(conn: sqlite3.Connection) -> None:
+             if action == "extract":
+                 if conn.execute("SELECT 1 FROM hidden_deals WHERE slug=?", (slug,)).fetchone(): raise Conflict("unhide the deal first")
+-                effort, minutes = request.get("effort", "medium"), request.get("timeout_minutes", 90)
+                 engine_id = request.get("engine", DEFAULT_ENGINE)
+                 if engine_id not in ENGINES: raise WorkspaceError("unknown engine")
+                 engine = ENGINES[engine_id]
++                effort, minutes = request.get("effort", DEFAULT_EFFORT[engine_id]), request.get("timeout_minutes", 90)
+                 if effort not in EFFORTS: raise WorkspaceError("invalid effort")
+                 if type(minutes) is not int or not 10 <= minutes <= 360: raise WorkspaceError("time limit must be 10 to 360 minutes")
+                 if engine["account"] == "claude" and (not conn.execute("SELECT 1 FROM accounts WHERE user=? AND provider='claude'", (user,)).fetchone() or not token_path(user).is_file()):
+diff --git a/_dev/tools/cockpit/worker.py b/_dev/tools/cockpit/worker.py
+index c28fc40..ee2bc05 100644
+--- a/_dev/tools/cockpit/worker.py
++++ b/_dev/tools/cockpit/worker.py
+@@ -79,7 +79,7 @@ def instruction_version(path: Path = INSTRUCTION) -> str | None:
+ 
+ def engine_of(params: dict[str, Any]) -> tuple[str, dict[str, Any]]:
+     """The job's engine; jobs queued before phase 4 are Opus 5.5."""
+-    ident = params.get("engine") if params.get("engine") in runs.ENGINES else runs.DEFAULT_ENGINE
++    ident = params.get("engine") if params.get("engine") in runs.ENGINES else runs.LEGACY_ENGINE
+     return ident, runs.ENGINES[ident]
+ 
+ 
+diff --git a/_dev/tools/sandbox/run_model.py b/_dev/tools/sandbox/run_model.py
+index c8c5124..6de075f 100644
+--- a/_dev/tools/sandbox/run_model.py
++++ b/_dev/tools/sandbox/run_model.py
+@@ -41,10 +41,11 @@ CLAUDE_TOKEN_FILE = Path(os.environ.get("SEC_CLAUDE_OAUTH_TOKEN_FILE")
+ CODEX_AUTH_FILE = Path(os.environ["SEC_CODEX_AUTH_FILE"]) if os.environ.get("SEC_CODEX_AUTH_FILE") else None
+ # Models and effort levels each provider may be prepared with. The first model is the default.
+ # "opus" is the Claude transport (Opus and Fable); "sol" is the Codex transport (Sol and Astra).
+-MODELS = {"sol": ("gpt-6-sol", "gpt-6-astra", "gpt-5.6-sol"), "opus": ("claude-opus-5-5", "claude-fable-5-1", "claude-opus-5")}
++MODELS = {"sol": ("gpt-6-astra", "gpt-6-sol", "gpt-5.6-sol"), "opus": ("claude-opus-5-5", "claude-fable-5-1", "claude-opus-5")}
+ # Codex's "ultra" level delegates to subagents automatically, so it is not offered.
+ EFFORTS = {"sol": ("low", "medium", "high", "xhigh", "max"), "opus": ("low", "medium", "high", "xhigh", "max")}
+ DEFAULT_EFFORT = {"sol": "xhigh", "opus": "medium"}  # Opus: 22 Sep 2026 effort sweep
++MODEL_DEFAULT_EFFORT = {"gpt-6-astra": "high"}  # Austin's 26 Sep 2026 default decision.
+ # Claude Code settings for every Opus run. A classifier refusal fails the run instead of switching
+ # models; the prompt-cache lifetime stays the subscription default; and the "user hasn't heard
+ # from you" reminder never fires, since no one reads a sandboxed run while it works.
+@@ -251,7 +252,7 @@ def prepare(args: argparse.Namespace) -> None:
+     if args.revise_from and (not Path(args.revise_from).is_file() or not Path(args.report).is_file()):
+         raise SystemExit("revision workbook or findings report is missing")
+     model = args.model or MODELS[args.provider][0]
+-    effort = args.effort or DEFAULT_EFFORT[args.provider]
++    effort = args.effort or MODEL_DEFAULT_EFFORT.get(model, DEFAULT_EFFORT[args.provider])
+     if model not in MODELS[args.provider] or effort not in EFFORTS[args.provider]:
+         raise SystemExit(f"{args.provider} runs one of {', '.join(MODELS[args.provider])} "
+                          f"at effort {', '.join(EFFORTS[args.provider])}")
+@@ -828,14 +829,14 @@ def parser() -> argparse.ArgumentParser:
+     root = argparse.ArgumentParser()
+     sub = root.add_subparsers(dest="command", required=True)
+     p = sub.add_parser("prepare")
+-    p.add_argument("--provider", choices=["sol", "opus"], required=True)
++    p.add_argument("--provider", choices=["sol", "opus"], default="sol", help="transport (default: sol, for Astra)")
+     p.add_argument("--run-dir", required=True)
+     p.add_argument("--deal", required=True)
+     p.add_argument("--filing", required=True)
+     p.add_argument("--filing-dir", help="folder holding the filing: raw_filing/ (default) or a cockpit deal folder in _dev/cockpit/state/filings/")
+     p.add_argument("--instruction", help="candidate instruction file to test (default: the working instruction)")
+-    p.add_argument("--model", help="model to run (default: the provider's first allowed model, e.g. claude-opus-5-5)")
+-    p.add_argument("--effort", help="effort level (Opus: low, medium, high, xhigh or max; default: DEFAULT_EFFORT)")
++    p.add_argument("--model", help="model to run (default: gpt-6-astra for sol, claude-opus-5-5 for opus)")
++    p.add_argument("--effort", help="effort: low, medium, high, xhigh or max (default: Astra high, other Codex models xhigh, Claude medium)")
+     p.add_argument("--timeout-minutes", type=int, help="wall-clock limit for the run, 10-360 (default: 90)")
+     p.add_argument("--revise-from", help="finished workbook to revise (revision pass)")
+     p.add_argument("--report", help="checker findings in plain text, required with --revise-from")
+diff --git a/_dev/tools/test_cockpit_deals.py b/_dev/tools/test_cockpit_deals.py
+index 05f5559..8a1a911 100644
+--- a/_dev/tools/test_cockpit_deals.py
++++ b/_dev/tools/test_cockpit_deals.py
+@@ -171,7 +171,7 @@ class DealsTests(unittest.TestCase):
+         self.add(self.looked_up(seed="beta-holdings"))
+         self.runs.account_action("austin", {"action": "token", "token": TOKEN})
+         for _ in range(2):
+-            self.runs.job_action("beta-holdings", "austin", {"action": "extract"})
++            self.runs.job_action("beta-holdings", "austin", {"action": "extract", "engine": "opus55"})
+             self.settle(lambda: all(job["state"] in worker.TERMINAL for job in self.runs.jobs("beta-holdings")["jobs"]))
+         jobs = self.runs.jobs("beta-holdings")["jobs"]
+         self.assertEqual([job["state"] for job in jobs], ["completed", "completed"], jobs)
+@@ -197,7 +197,7 @@ class DealsTests(unittest.TestCase):
+         with self.assertRaises(Conflict): self.deals.visibility("alpha-deal", "austin", {"action": "unhide"})
+         # A queued or running job on the deal blocks hiding.
+         self.runs.account_action("austin", {"action": "token", "token": TOKEN})
+-        job = self.runs.job_action("alpha-deal", "austin", {"action": "extract"})["jobs"][0]
++        job = self.runs.job_action("alpha-deal", "austin", {"action": "extract", "engine": "opus55"})["jobs"][0]
+         with self.assertRaises(Conflict) as caught: self.deals.visibility("alpha-deal", "alex", {"action": "hide"})
+         self.assertIn("still going", str(caught.exception))
+         conn = sqlite3.connect(self.ws.db_path)
+@@ -207,7 +207,7 @@ class DealsTests(unittest.TestCase):
+         self.assertEqual((result["hidden"], result["hidden_by"]), (True, "alex"))
+         self.deals.visibility(added, "austin", {"action": "hide"})
+         with self.assertRaises(Conflict): self.deals.visibility("alpha-deal", "austin", {"action": "hide"})
+-        with self.assertRaises(Conflict) as caught: self.runs.job_action("alpha-deal", "austin", {"action": "extract"})
++        with self.assertRaises(Conflict) as caught: self.runs.job_action("alpha-deal", "austin", {"action": "extract", "engine": "opus55"})
+         self.assertIn("unhide the deal first", str(caught.exception))
+         # Nothing else changes, the flag survives a new process, and the deal still opens.
+         fresh = data.Cockpit(self.root)
+@@ -222,7 +222,7 @@ class DealsTests(unittest.TestCase):
+         self.assertEqual((result["hidden"], result["hidden_by"], result["hidden_at"]), (False, None, None))
+         self.assertEqual(self.cockpit.trace.activity("alex", "alpha-deal")["items"][0]["summary"], "Unhid the deal")
+         self.assertEqual({slug: d["hidden"] for slug, d in listed().items()}, {"alpha-deal": False, added: True})
+-        self.assertEqual(self.runs.job_action("alpha-deal", "austin", {"action": "extract"})["jobs"][0]["state"], "queued")
++        self.assertEqual(self.runs.job_action("alpha-deal", "austin", {"action": "extract", "engine": "opus55"})["jobs"][0]["state"], "queued")
+ 
+     # ---- HTTP ------------------------------------------------------------------------------
+ 
+diff --git a/_dev/tools/test_cockpit_phase4.py b/_dev/tools/test_cockpit_phase4.py
+index d542e7e..d2dccb6 100644
+--- a/_dev/tools/test_cockpit_phase4.py
++++ b/_dev/tools/test_cockpit_phase4.py
+@@ -158,6 +158,21 @@ class Phase4Tests(unittest.TestCase):
+ 
+     # ---- engines and runs -----------------------------------------------------------------
+ 
++    def test_new_default_uses_astra_high_without_relabelling_legacy_jobs(self):
++        self.gpt_login()
++        self.runs.job_action(SLUG, "austin", {"action": "extract"})
++        self.settle(lambda: self.jobs()[0]["state"] == "completed")
++        job = self.jobs()[0]
++        self.assertEqual((job["params"]["engine"], job["params"]["model"], job["params"]["effort"], job["params"]["account"]),
++                         ("astra6", "gpt-6-astra", "high", "chatgpt"))
++        version = next(v for v in self.ws.item(SLUG)["versions"] if v["id"] == job["version_id"])
++        self.assertEqual((version["model"], version["effort"]), ("gpt-6-astra", "high"))
++        self.assertEqual(worker.engine_of({})[0], "opus55")
++        self.assertEqual(runs.job_account({}), "claude")
++        self.assertEqual(worker.engine_of({"engine": "sol6"})[0], "sol6")
++        defaults = {e["id"]: e["default_effort"] for e in self.runs.account("austin")["engines"]}
++        self.assertEqual(defaults, {"astra6": "high", "opus55": "medium", "fable51": "medium", "sol6": "medium"})
++
+     def test_extract_checks_the_engines_account_and_freezes_the_instruction(self):
+         with self.assertRaisesRegex(Conflict, "ChatGPT"):
+             self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "astra6"})
+@@ -206,7 +221,7 @@ class Phase4Tests(unittest.TestCase):
+ 
+     def test_an_altered_stored_instruction_fails_the_run(self):
+         self.runs.account_action("austin", {"action": "token", "token": TOKEN})
+-        self.runs.job_action(SLUG, "austin", {"action": "extract"})
++        self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "opus55"})
+         sha = self.jobs()[0]["params"]["instruction"]["sha256"]
+         self.instructions.path(sha).write_text("tampered")
+         self.settle(lambda: self.jobs()[0]["state"] == "failed")
+diff --git a/_dev/tools/test_cockpit_runs.py b/_dev/tools/test_cockpit_runs.py
+index 3c13007..91f1abd 100644
+--- a/_dev/tools/test_cockpit_runs.py
++++ b/_dev/tools/test_cockpit_runs.py
+@@ -166,11 +166,11 @@ class RunsTests(unittest.TestCase):
+     # ---- jobs and worker -------------------------------------------------------------
+ 
+     def test_extract_requires_an_account_and_valid_settings(self):
+-        with self.assertRaises(Conflict): self.runs.job_action(SLUG, "austin", {"action": "extract"})
++        with self.assertRaises(Conflict): self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "opus55"})
+         self.connect()
+         for bad in ({"effort": "ultra"}, {"timeout_minutes": 5}, {"timeout_minutes": "90"}):
+-            with self.assertRaises(WorkspaceError): self.runs.job_action(SLUG, "austin", {"action": "extract", **bad})
+-        job = self.runs.job_action(SLUG, "austin", {"action": "extract", "effort": "high"})["jobs"][0]
++            with self.assertRaises(WorkspaceError): self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "opus55", **bad})
++        job = self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "opus55", "effort": "high"})["jobs"][0]
+         self.assertEqual((job["state"], job["params"]["effort"], job["params"]["model"]), ("queued", "high", "claude-opus-5-5"))
+         self.runs.job_action(SLUG, "alex", {"action": "cancel", "job_id": job["id"]})
+         self.worker.tick()
+@@ -178,7 +178,7 @@ class RunsTests(unittest.TestCase):
+ 
+     def test_completed_run_is_checked_and_imported(self):
+         self.connect()
+-        self.runs.job_action(SLUG, "austin", {"action": "extract"})
++        self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "opus55"})
+         self.settle(lambda: self.jobs()[0]["state"] in worker.TERMINAL)
+         job = self.jobs()[0]
+         self.assertEqual(job["state"], "completed", job)
+@@ -198,7 +198,7 @@ class RunsTests(unittest.TestCase):
+     def test_usage_limit_failure_keeps_receipts(self):
+         self.connect()
+         with patch.dict(os.environ, {"FAKE_OUTCOME": "usage_limit"}):
+-            self.runs.job_action(SLUG, "austin", {"action": "extract"})
++            self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "opus55"})
+             self.settle(lambda: self.jobs()[0]["state"] in worker.TERMINAL)
+         job = self.jobs()[0]
+         self.assertEqual((job["state"], job["failure_reason"], job["result"]["usage_limit_resets_at"]), ("failed", "usage_limit", "2026-09-23T15:00:00+00:00"))
+@@ -208,7 +208,7 @@ class RunsTests(unittest.TestCase):
+     def test_running_job_can_be_cancelled(self):
+         self.connect()
+         with patch.dict(os.environ, {"FAKE_OUTCOME": "wait"}):
+-            self.runs.job_action(SLUG, "austin", {"action": "extract"})
++            self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "opus55"})
+             self.settle(lambda: self.jobs()[0]["state"] == "running" and (Path(self.worker.job(self.jobs()[0]["id"])["run_dir"]) / "status.json").is_file())
+             time.sleep(0.3)
+             self.runs.job_action(SLUG, "alex", {"action": "cancel", "job_id": self.jobs()[0]["id"]})
+@@ -218,14 +218,14 @@ class RunsTests(unittest.TestCase):
+     def test_caps_limit_concurrent_runs_per_user(self):
+         self.connect()
+         with patch.dict(os.environ, {"FAKE_OUTCOME": "wait"}):
+-            for _ in range(3): self.runs.job_action(SLUG, "austin", {"action": "extract"})
++            for _ in range(3): self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "opus55"})
+             self.worker.tick()
+         states = sorted(job["state"] for job in self.jobs())
+         self.assertEqual(states, ["queued", "running", "running"])
+ 
+     def test_restarted_worker_finishes_orphaned_runs(self):
+         self.connect()
+-        self.runs.job_action(SLUG, "austin", {"action": "extract"})
++        self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "opus55"})
+         self.worker.tick()
+         job = self.jobs()[0]
+         self.worker.children[job["id"]].wait(timeout=20)
+@@ -239,7 +239,7 @@ class RunsTests(unittest.TestCase):
+ 
+     def test_import_crash_is_retried_once_and_a_broken_job_does_not_block_others(self):
+         self.connect()
+-        self.runs.job_action(SLUG, "austin", {"action": "extract"})
++        self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "opus55"})
+         self.worker.tick()
+         job = self.jobs()[0]
+         self.worker.children[job["id"]].wait(timeout=20)
+@@ -257,8 +257,8 @@ class RunsTests(unittest.TestCase):
+         self.assertEqual(done["state"], "completed")
+         self.assertEqual(sum(v["id"] == done["version_id"] for v in self.cockpit.deal(SLUG)["versions"]), 1)
+ 
+-        self.runs.job_action(SLUG, "austin", {"action": "extract"})
+-        self.runs.job_action(SLUG, "austin", {"action": "extract"})
++        self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "opus55"})
++        self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "opus55"})
+         with patch.object(worker.Worker, "start", side_effect=[RuntimeError("disk full"), True], autospec=True):
+             self.worker.tick()
+         states = sorted((j["state"], j["failure_reason"]) for j in self.jobs() if j["id"] != done["id"])
+@@ -267,7 +267,7 @@ class RunsTests(unittest.TestCase):
+     def test_a_job_is_started_once_and_a_foreign_pid_is_not_the_runner(self):
+         self.connect()
+         with patch.dict(os.environ, {"FAKE_OUTCOME": "wait"}):
+-            self.runs.job_action(SLUG, "austin", {"action": "extract"})
++            self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "opus55"})
+             job = self.jobs()[0]
+             row = self.worker.job(job["id"])
+             self.assertTrue(self.worker.start(row))
+diff --git a/_dev/tools/test_run_model.py b/_dev/tools/test_run_model.py
+index 07d9af4..2ee1474 100644
+--- a/_dev/tools/test_run_model.py
++++ b/_dev/tools/test_run_model.py
+@@ -177,6 +177,16 @@ class RunnerTests(unittest.TestCase):
+         self.assertEqual((metadata["model"], metadata["effort"], metadata["timeout_seconds"]),
+                          ("claude-opus-5-5", run_model.DEFAULT_EFFORT["opus"], run_model.TIMEOUT_SECONDS))
+ 
++    def test_default_prepare_selects_astra_high_and_preserves_explicit_sol_effort(self):
++        args = run_model.parser().parse_args(["prepare", "--run-dir", "/tmp/unused", "--deal", "sample", "--filing", "sample.htm"])
++        self.assertEqual(args.provider, "sol")
++        for extra, expected in [(("--provider", "sol"), ("gpt-6-astra", "high")),
++                                (("--provider", "sol", "--model", "gpt-6-sol"), ("gpt-6-sol", "xhigh")),
++                                (("--provider", "sol", "--effort", "xhigh"), ("gpt-6-astra", "xhigh"))]:
++            with self.subTest(extra=extra), tempfile.TemporaryDirectory() as tmp:
++                metadata = json.loads((self.prepare_fixture(Path(tmp), extra=extra) / "metadata.json").read_text())
++                self.assertEqual((metadata["model"], metadata["effort"]), expected)
++
+     def test_disallowed_model_effort_or_timeout_fails_before_creating_run(self):
+         for extra, message in [(("--effort", "extreme"), "runs one of"), (("--model", "claude-sonnet-5"), "runs one of"),
+                                (("--timeout-minutes", "5"), "between 10 and 360")]:

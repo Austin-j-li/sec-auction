@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "/usr/bin/python3",
+    "/home/uctpiaj/work/Projects/sec-extraction-v114-trial-20260926/_dev/tools/sandbox/run_model.py",
+    "worker",
+    "--provider",
+    "opus",
+    "--run-dir",
+    "/home/uctpiaj/work/Projects/sec-extraction-v114-trial-20260926/_dev/runs/2026-09-26-v114-15-run-trial/mac-gray-opus-5-5-medium-r1"
+  ],
+  "launched_at": "2026-09-26T09:43:57.616900+00:00",
+  "launcher_pid": 405409
+}

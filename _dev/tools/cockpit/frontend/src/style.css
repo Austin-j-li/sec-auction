@@ -368,7 +368,10 @@ svg.tone-success, svg.tone-warning, svg.tone-error, svg.tone-muted, svg.tone-quo
 .toolbar-actions { display: flex; flex: 0 1 auto; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: var(--sp-2) var(--sp-4); }
 .version-control { display: flex; align-items: center; gap: 6px; font-size: var(--fs-12); color: var(--ink-3); }
 .version-control .fui-Select { width: 240px; }
+.version-control.review-control .fui-Select { width: 130px; }
 .save-line { display: flex; align-items: center; gap: var(--sp-3); font-size: var(--fs-12); white-space: nowrap; }
+/* Export Excel and its options caret wrap as one, so the caret never lands beside Save changes. */
+.export-group { display: flex; flex: none; align-items: center; gap: var(--sp-2); }
 .work-state { display: inline-flex; align-items: center; color: var(--ink-2); }
 .save-feedback { color: var(--success); }
 .save-feedback:empty { display: none; }
@@ -692,6 +695,18 @@ mark.search-mark.current { outline: 2px solid var(--accent); outline-offset: 1px
 .event-review { display: inline-flex; flex: none; align-self: center; margin-left: auto; }
 .quote-location + .event-review { margin-left: 0; }
 .event-review .dot { margin-right: 0; }
+/* Select mode: events picked for a bulk Process/Round edit carry a filled check; the open event keeps its rule. */
+.record-list .section-head .fui-Button + .fui-Button { margin-left: 0; }
+.pick-bar { display: flex; flex: 1 0 100%; flex-wrap: wrap; align-items: center; gap: var(--sp-1) var(--sp-2); font-size: var(--fs-12); line-height: var(--lh-12); }
+.cockpit .section-head .pick-bar .fui-Button { margin-left: 0; }
+.pick-count { color: var(--ink); font-weight: var(--fw-medium); }
+.cockpit .pick-bar .fui-Button.link-button { min-height: 0; padding: 2px 4px; font-size: var(--fs-12); line-height: var(--lh-12); }
+.pick-hint { flex-basis: 100%; color: var(--ink-3); }
+.pick-mark { display: inline-flex; flex: none; align-self: center; color: var(--ink-3); }
+.event-item.picked .pick-mark { color: var(--accent); }
+.event-item.picked:not(.selected) { background: var(--tint); }
+.modal .bulk-fields { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-3); }
+.modal .bulk-summary { margin-top: var(--sp-4); }
 /* Row marks: the other person's initials (changed since your last visit) and the open-thread count. Text only. */
 .row-marks { display: inline-flex; flex: none; align-items: baseline; gap: 6px; color: var(--ink-2); font-size: var(--fs-12); }
 .initials-mark { font-weight: var(--fw-medium); letter-spacing: 0.02em; }
@@ -837,6 +852,8 @@ mark.search-mark.current { outline: 2px solid var(--accent); outline-offset: 1px
 .field-cell:hover .field-author,
 .field-cell:focus-within .field-author { visibility: visible; }
 .cockpit .field-author .fui-Button.link-button { min-height: 0; padding: 3px 0 3px 6px; font-family: var(--font-mono); font-size: var(--fs-12); line-height: var(--lh-12); }
+/* A multi-part value ("Extended; Enforced"): free text, and a picker below it that adds a listed part. */
+.field-cell .add-part { margin-top: var(--sp-1); max-width: min(100%, 320px); }
 
 /* ── Comments: threads on a row, a finding or the deal ─────────────── */
 .comments { margin-top: var(--sp-6); padding-top: var(--sp-5); border-top: var(--divider); }
@@ -919,6 +936,7 @@ details[open] > summary .caret,
 .mechanical-content { padding: var(--sp-3) 0 var(--sp-4); font-size: var(--fs-12); line-height: var(--lh-12); }
 .mechanical-content > p { margin-bottom: var(--sp-3); }
 .fine-print { color: var(--ink-3); }
+.mechanical-content > p.checker-lines { color: var(--ink-2); }
 .block-label { margin-bottom: var(--sp-1); font-size: var(--fs-12); line-height: var(--lh-12); font-weight: var(--fw-medium); color: var(--ink-3); }
 .mechanical-content .block-label { margin-top: var(--sp-3); }
 .documents { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-1) var(--sp-3); margin-bottom: var(--sp-5); }
@@ -989,6 +1007,7 @@ details[open] > summary .caret,
 .history-head strong { display: block; font-size: var(--fs-14); line-height: var(--lh-14); font-weight: var(--fw-medium); }
 .history-head span { display: block; font-size: var(--fs-12); line-height: var(--lh-12); color: var(--ink-3); }
 .history-head strong .mono { display: inline; font-size: var(--fs-13); color: inherit; }
+.history-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: var(--sp-2); }
 .history-item > p { margin: 6px 0 var(--sp-2); font-size: var(--fs-13); color: var(--ink); }
 .history-summary { font-size: var(--fs-12); line-height: var(--lh-12); color: var(--ink-2); overflow-wrap: anywhere; }
 .history-item details { margin-top: var(--sp-3); color: var(--ink); }
@@ -1096,6 +1115,8 @@ details[open] > summary .caret,
 .modal .fui-Field { margin-top: var(--sp-4); }
 .modal .fui-Select { width: 100%; }
 .modal-actions { display: flex; justify-content: flex-end; gap: var(--sp-3); margin-top: 20px; }
+.modal .rebase-list { margin: var(--sp-3) 0 0; padding-left: var(--sp-5); font-size: var(--fs-13); line-height: var(--lh-13); color: var(--ink-2); }
+.modal .rebase-list li + li { margin-top: var(--sp-1); }
 .document-modal { display: flex; flex-direction: column; width: min(850px, 100%); max-height: 90dvh; }
 .document-text {
   margin: var(--sp-3) 0 0;
@@ -1145,6 +1166,8 @@ details[open] > summary .caret,
 .split-horizontal .record-list { display: flex; flex-direction: column; overflow: hidden; }
 .split-horizontal .record-list .section-head { position: static; flex: none; flex-wrap: nowrap; padding: 6px var(--sp-4); }
 .split-horizontal .record-list .section-head h2 { font-size: var(--fs-13); line-height: var(--lh-13); }
+.split-horizontal .record-list .section-head.picking { flex-wrap: wrap; }
+.split-horizontal .pick-hint { flex-basis: auto; }
 .split-horizontal .record-list .event-list,
 .split-horizontal .sheet-list { display: flex; overflow-x: auto; overflow-y: hidden; }
 .split-horizontal .record-list .event-list { flex: 1; min-height: 0; }
@@ -1295,7 +1318,8 @@ details[open] > summary .caret,
   .version-control { flex: 1 1 200px; min-width: 0; }
   .version-control .fui-Select { flex: 1; width: auto; min-width: 0; }
   .save-line { order: 1; }
-  .toolbar-actions > .fui-Button { flex: 1 1 calc(50% - var(--sp-3)); order: 2; }
+  .toolbar-actions > .fui-Button, .toolbar-actions > .export-group { flex: 1 1 calc(50% - var(--sp-3)); order: 2; }
+  .export-group > .export-button { flex: 1; }
   .mobile-switch {
     display: flex;
     flex: none;
@@ -1334,6 +1358,7 @@ details[open] > summary .caret,
   .save-dock { flex-wrap: wrap; }
   .cockpit .save-dock .fui-Field { flex-basis: 100%; }
   .save-dock > .fui-Button { flex: 1; }
+  .pick-hint { display: none; }
 }
 @media (max-height: 680px) {
   .deal-toolbar { min-height: 48px; padding-top: var(--sp-2); padding-bottom: var(--sp-2); }

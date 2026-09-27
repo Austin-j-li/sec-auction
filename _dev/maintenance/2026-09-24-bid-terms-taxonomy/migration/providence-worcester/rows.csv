@@ -1,0 +1,64 @@
+#,uid,When,Who,Event,mark,mark_note,mark_actor,mark_at,threads
+1,c184bbff1e0c6c3b1b16ae8c,Q4 2015,Party A,Bidder interest,reviewed,,austin,2026-09-23T18:39:53+00:00,0
+2,dd7ded3c38dd1cf3dc2e0539,01/27/2016,Greene Holcomb & Fisher LLC (GHF; from 08/01/2016 BMO Capital Markets Corp.),Adviser,reviewed,,austin,2026-09-23T18:39:58+00:00,0
+3,43b4f7c4602057a97d9ad97c,03/14/2016,PWRR (target),Target sale decision,reviewed,,austin,2026-09-23T18:53:19+00:00,0
+4,4346553210c400b691aae9c6,03/24/2016,"Hinckley, Allen & Snyder LLP (Hinckley Allen)",Adviser,reviewed,,austin,2026-09-23T18:53:19+00:00,0
+5,a484b4a6be1f5d8756b50606,week of 03/28/2016,PWRR (target),Round opened,reviewed,,austin,2026-09-23T18:53:19+00:00,0
+6,09f1ea8560362d4086b3d393,week of 03/28/2016,10 potential strategic buyers (other than Party A),Contact,reviewed,,austin,2026-09-23T18:53:19+00:00,0
+7,35bd9a9d5dda44f42ea8fcb4,week of 03/28/2016,18 potential financial buyers,Contact,reviewed,,austin,2026-09-23T18:53:19+00:00,0
+8,dd4de0429a2ced7c5647b454,after week of 03/28/2016 (undated),Strategic NDA signers from the March outreach (incl. Party A),NDA signed,reviewed,,austin,2026-09-23T18:53:19+00:00,0
+9,1f7d03903955afa5ee3634db,after week of 03/28/2016 (undated),14 financial NDA signers,NDA signed,reviewed,,austin,2026-09-23T18:53:19+00:00,0
+10,229e7ea058970340b57ba905,04/03/2016,Genesee & Wyoming Inc. (G&W),NDA signed,reviewed,,austin,2026-09-23T18:53:19+00:00,0
+11,2eaa453485d9136e5edca172,by 04/07/2016,2 additional Class I railroads (unnamed),Contact,reviewed,,austin,2026-09-23T18:53:19+00:00,0
+12,b30acd94ae1d395e1fc09e1b,04/21/2016,Party B,Contact,reviewed,,austin,2026-09-23T18:53:19+00:00,0
+13,98083e1bd9d0810242dfa729,undated (reported after 04/21/2016),Party B,NDA signed,reviewed,,austin,2026-09-23T18:53:19+00:00,0
+14,e236e5a810e0f5148e31a779,by 04/27/2016,PWRR (target),Deadline set,reviewed,,austin,2026-09-23T18:53:19+00:00,0
+15,2fea3f8e396fb294b5bbe7d4,after 04/27/2016 (undated),PWRR (target),Deadline revised,reviewed,,austin,2026-09-23T18:53:19+00:00,0
+16,4ee8c907550d54cff1cd37ee,05/19/2016,PWRR (target),Deadline,reviewed,,austin,2026-09-23T18:53:19+00:00,0
+17,2ffc0bdfab3de17b5a79766f,05/19/2016-06/01/2016,9 IOI bidders (unnamed),Bid,reviewed,,austin,2026-09-23T19:07:34+00:00,1
+18,bbdc10543017f0a591e4876a,by 06/01/2016 (IOIs due 05/19/2016),NDA signers submitting no IOI (unnamed),Did not submit,needs_decision,,austin,2026-09-23T21:43:56+00:00,0
+19,03b4e46fdc8a826566847a02,05/23/2016-06/01/2016,2 lowest IOI bidders (unnamed),Dropped by target,needs_decision,,austin,2026-09-23T21:43:56+00:00,0
+20,877d042f6721c6e825a36ae4,05/23/2016-06/01/2016,PWRR (target),Round opened,reviewed,,austin,2026-09-23T19:07:34+00:00,0
+21,9eececb28d94162c3ec27aa4,mid-June 2016,PWRR (target),Deadline set,reviewed,,austin,2026-09-23T19:07:34+00:00,0
+22,6946ec209e529b34e58aed34,early July 2016,Party C,Bidder interest,reviewed,,austin,2026-09-23T19:07:34+00:00,0
+23,14981fb921b6d57d8a9baa90,early July 2016 (before 07/12/2016),Party C,NDA signed,reviewed,,austin,2026-09-23T19:07:34+00:00,0
+24,d987530cb463eaf4bd31abc7,07/12/2016,Party C,Bid,reviewed,,austin,2026-09-23T19:07:34+00:00,0
+25,cbe36ef87a9feb5e000264d8,07/12/2016-07/14/2016,Party C,Other material event,reviewed,,austin,2026-09-23T19:07:34+00:00,0
+26,c8ec0f7d8f2d4a5e688750d6,07/20/2016,PWRR (target),Deadline,reviewed,,austin,2026-09-23T19:07:34+00:00,0
+27,d42637959ba0873e1cce720f,late July 2016,Party B,Bid,reviewed,,austin,2026-09-23T19:07:34+00:00,0
+28,b42fbe355bb7947ac23e31f9,late July 2016,Party E,Bid,reviewed,,austin,2026-09-23T19:07:34+00:00,0
+29,b4945af5a10c03591e84cada,late July 2016,Party D,Bid,reviewed,,austin,2026-09-23T19:07:34+00:00,0
+30,81bc4b8371bdc2f632fcc347,late July 2016,Party C,Bid,reviewed,,austin,2026-09-23T19:07:34+00:00,0
+31,3195f6995fb7920ef4643106,late July 2016,Party F,Bid,reviewed,,austin,2026-09-23T19:07:34+00:00,0
+32,ba6cc1343cd6f0a9d6e6d217,late July 2016 (LOIs due 07/20/2016),Unnamed strategic round-2 bidder,Did not submit,needs_decision,,austin,2026-09-23T21:43:56+00:00,0
+33,5d2d021c6b0a28035773c382,late July 2016 (LOIs due 07/20/2016),Unnamed financial round-2 bidder,Did not submit,reviewed,,austin,2026-09-23T19:07:34+00:00,0
+34,6ad325e9bae0f1062544ac39,07/21/2016,G&W,Bid,reviewed,,austin,2026-09-23T19:07:34+00:00,0
+35,f3415853d3a5a6af44d10eff,07/21/2016-07/26/2016,G&W,Other material event,reviewed,,austin,2026-09-23T19:07:34+00:00,0
+36,3d4201da075e6fdd0ae3e97f,07/26/2016,G&W,Bid,reviewed,,austin,2026-09-23T19:07:34+00:00,0
+37,d90d7a667cf8cc5ae994cb3c,07/27/2016 (committee meetings 07/22 and 07/27),PWRR (target),Round opened,reviewed,,austin,2026-09-23T19:07:34+00:00,0
+38,0dcd8892517183cbad2ed50c,07/27/2016-07/29/2016 (following selection; individual notification date unstated),Party C,Dropped by target,reviewed,,austin,2026-09-23T19:07:34+00:00,0
+39,912015e9fc3925918c416034,07/27/2016-07/29/2016 (following selection; individual notification date unstated),Party D,Dropped by target,reviewed,,austin,2026-09-23T19:07:34+00:00,0
+40,c60de7a6ca37c5779ff2f60c,07/27/2016-07/29/2016 (following selection; individual notification date unstated),Party E,Dropped by target,reviewed,,austin,2026-09-23T19:07:34+00:00,0
+41,b2ba0db4eb464886839c0d47,07/27/2016-07/29/2016 (following selection; individual notification date unstated),Party F,Dropped by target,reviewed,,austin,2026-09-23T19:07:34+00:00,0
+42,1a26069281556f084b18deed,07/29/2016,Party D,Re-entered,reviewed,,austin,2026-09-23T19:09:51+00:00,0
+43,ae704b77dfd7d4872bdc4091,07/29/2016,Party E,Re-entered,reviewed,,austin,2026-09-23T19:09:51+00:00,0
+44,68c3f4ed16a99a4a9a0f7bd1,08/01/2016,Party D,Bid,reviewed,,austin,2026-09-23T19:09:51+00:00,0
+45,7ffb5860b680ae610b7466ce,08/01/2016,Party E,Bid,reviewed,,austin,2026-09-23T19:09:51+00:00,0
+46,9dfc628439745a06a390a474,08/01/2016,Party F,Other material event,reviewed,,austin,2026-09-23T19:09:51+00:00,0
+47,381673925f02e6c7cba08982,08/01/2016,PWRR (target),Other material event,reviewed,,austin,2026-09-23T19:09:51+00:00,0
+48,238ad0ac53c572c3bdfcb65b,08/02/2016,Party E,Bid,reviewed,,austin,2026-09-23T19:09:51+00:00,0
+49,15bb5eecb35608454fdbcc77,"early August 2016 (after 08/01, by 08/04/2016)",Party D,Exclusivity changed,reviewed,,austin,2026-09-23T19:09:51+00:00,0
+50,d9377b315ce6161b5fb1dbd9,"early August 2016 (after 08/01, by 08/04/2016)",Party D,Withdrew,reviewed,,austin,2026-09-23T19:09:51+00:00,0
+51,9fa4fc2260a303aceb8a40d6,08/04/2016,PWRR (target),Other material event,reviewed,,austin,2026-09-23T19:09:51+00:00,0
+52,0d536417716f66632d9d9927,by 08/04/2016,Party E,Dropped by target,reviewed,,austin,2026-09-23T19:09:51+00:00,0
+53,d71b46752baedf302dece2ac,08/04/2016,Party B,Bid reaffirmed,reviewed,,austin,2026-09-23T19:09:51+00:00,0
+54,3ea3c83ffebad7f439b375c2,08/09/2016,G&W,Other material event,reviewed,,austin,2026-09-23T19:09:51+00:00,0
+55,a0dcece8083e17d525dc87d3,08/09/2016-08/10/2016,G&W,Other material event,reviewed,,austin,2026-09-23T19:09:51+00:00,0
+56,812467cf75d42d92edb5cd2a,08/10/2016,Simpson Thacher & Bartlett LLP,Adviser,reviewed,,austin,2026-09-23T19:09:51+00:00,0
+57,4420df65c403904b33f2d5e0,08/12/2016 (morning),G&W,Bid,reviewed,,austin,2026-09-23T19:09:51+00:00,0
+58,e9ffed3df811ca5e90f0cc51,08/12/2016 (10:30 a.m. meeting),Party B,Other material event,reviewed,,austin,2026-09-23T19:09:51+00:00,0
+59,8eb65813e416bbd72b2f68fa,08/12/2016,Company's STB counsel (unnamed),Adviser,reviewed,,austin,2026-09-23T19:09:51+00:00,0
+60,f9eecd47a639ee4e4e0564ae,08/12/2016 (afternoon),Party B,Other material event,reviewed,,austin,2026-09-23T19:09:51+00:00,0
+61,8cd2c851fee86a0fdae4cf87,08/12/2016,G&W,Merger agreement signed,reviewed,,austin,2026-09-23T19:09:51+00:00,0
+62,76d862bcf093a113bf156d32,08/12/2016,Party B,Not selected at signing,reviewed,,austin,2026-09-23T19:09:51+00:00,0
+63,68699cc8539a8775f872d199,08/15/2016,PWRR (target),Merger announced,reviewed,,austin,2026-09-23T19:09:51+00:00,0

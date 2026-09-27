@@ -178,7 +178,12 @@ async function run() {
   const downloadPromise = page.waitForEvent('download');
   await page.getByRole('link', { name: 'Export Excel' }).click();
   const download = await downloadPromise;
-  record('Excel download', download.suggestedFilename().endsWith('.xlsx'));
+  record('Excel download', download.suggestedFilename() === 'synthetic-working-r1.xlsx');
+  const fourSheetPromise = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'Excel download options' }).click();
+  await page.getByRole('menuitem', { name: 'Four sheets only (checker format)' }).click();
+  const fourSheet = await fourSheetPromise;
+  record('four-sheet Excel download', fourSheet.url().endsWith('source=0') && fourSheet.suggestedFilename() === 'synthetic-working-r1.xlsx');
 
   await chooseTab(page, 'Ledger');
   await page.getByRole('button', { name: 'Clone to split' }).click();
@@ -260,6 +265,40 @@ async function run() {
   const reloadedNote = await noteField.inputValue();
   record('explicit conflict reload', reloadedNote === 'Other editor value', `note=${JSON.stringify(reloadedNote)}`);
 
+  // Bulk Process/Round: pick events in select mode (click, then shift-click a range), confirm, stage, save once.
+  await chooseTab(page, 'Ledger');
+  await page.locator('.event-item').filter({ hasText: 'Offer' }).click();
+  await page.getByRole('button', { name: 'Select', exact: true }).click();
+  record('select mode hides Add', await page.locator('.record-list').getByRole('button', { name: 'Add', exact: true }).count() === 0);
+  await page.locator('.event-item').filter({ hasText: 'Offer' }).click();
+  await page.locator('.event-item').filter({ hasText: 'Signing' }).click({ modifiers: ['Shift'] });
+  record('shift-click picks a range', (await page.locator('.pick-count').innerText()) === '2 selected' && await page.locator('.event-item[aria-pressed="true"]').count() === 2);
+  await page.getByRole('button', { name: 'Set Process/Round…' }).click();
+  const bulkDialog = page.getByRole('dialog', { name: 'Set Process and Round' });
+  await bulkDialog.waitFor();
+  record('bulk dialog receives focus', await page.evaluate(() => document.activeElement?.closest('[role="dialog"]') != null));
+  await bulkDialog.getByRole('textbox', { name: 'Round' }).fill('1');
+  record('bulk dialog says when nothing changes', (await bulkDialog.locator('.bulk-summary').innerText()).startsWith('No selected event changes'));
+  await bulkDialog.getByRole('textbox', { name: 'Round' }).fill('2');
+  const summary = await bulkDialog.locator('.bulk-summary').innerText();
+  record('bulk dialog confirms the rows that change', summary.includes('This changes 2 events') && summary.includes('#2–#3'), summary);
+  await screenshot(page, 'desktop-bulk-dialog.png');
+  await bulkDialog.getByRole('button', { name: 'Stage for 2 events' }).click();
+  await bulkDialog.waitFor({ state: 'hidden' });
+  record('bulk edit staged as two changes', (await page.locator('.work-state').innerText()).includes('2 unsaved changes'));
+  record('bulk edit default reason', await page.getByRole('textbox', { name: 'Reason for this revision' }).inputValue() === 'Set Round 2 on 2 events');
+  // A later edit of one picked event's Round, in the open editor, is saved after the bulk value.
+  await page.locator('.record-editor').getByRole('textbox', { name: /^Round/ }).fill('3');
+  await page.getByRole('button', { name: 'Save changes' }).click();
+  await page.getByText('Revision saved', { exact: true }).waitFor();
+  current = await api(page, '/api/deal/synthetic');
+  const bulkHistory = await api(page, '/api/deal/synthetic/history');
+  record('bulk edit saved as one revision', current.body.workspace.revision === 9 && current.body.ledger.rows.map(r => r.cells.Round).join() === '1,3,2'
+    && bulkHistory.body.history[0].reason === 'Set Round 2 on 2 events' && bulkHistory.body.history[0].summary === '2 changes');
+  await screenshot(page, 'desktop-bulk-saved.png');
+  await page.getByRole('button', { name: 'Done', exact: true }).click();
+  record('select mode ends', await page.locator('.pick-bar').count() === 0 && await page.locator('.record-list').getByRole('button', { name: 'Add', exact: true }).count() === 1);
+
   for (const viewport of [{ width: 1024, height: 768, label: 'laptop' }, { width: 390, height: 844, label: 'narrow' }]) {
     const narrow = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height }, reducedMotion: 'reduce' });
     await useStagedAssets(narrow);
@@ -273,6 +312,12 @@ async function run() {
       await assertControlWithin(view, view.locator('.record-editor').getByRole('textbox', { name: 'When', exact: true }), view.locator('.record-editor'), `${viewport.label} When editor contained`);
     }
     await screenshot(view, `${viewport.label}-ledger.png`);
+    await view.getByRole('button', { name: 'Select', exact: true }).click();
+    await view.locator('.event-item').first().click();
+    await assertNoOverflow(view, `${viewport.label} select mode`);
+    await assertControlWithin(view, view.getByRole('button', { name: 'Set Process/Round…' }), view.locator('.record-list'), `${viewport.label} Set Process/Round contained`);
+    await screenshot(view, `${viewport.label}-select-mode.png`);
+    await view.getByRole('button', { name: 'Done', exact: true }).click();
     if (viewport.label === 'narrow') {
       await view.getByRole('group', { name: 'Visible pane' }).getByRole('button', { name: 'Filing' }).click();
       record('narrow filing pane', await view.getByRole('region', { name: 'SEC filing' }).isVisible());

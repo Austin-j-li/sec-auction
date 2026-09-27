@@ -1,0 +1,43 @@
+diff --git a/_dev/tools/cockpit/workspace.py b/_dev/tools/cockpit/workspace.py
+index d77a243..f2e1ca0 100644
+--- a/_dev/tools/cockpit/workspace.py
++++ b/_dev/tools/cockpit/workspace.py
+@@ -6,6 +6,7 @@ import datetime as dt
+ import hashlib
+ import io
+ import json
++import math
+ import re
+ import sqlite3
+ import tempfile
+@@ -20,7 +21,7 @@ import check_lean
+ 
+ SHEETS = (data.LEDGER_SHEET, data.ROUNDS_SHEET, data.QUESTIONS_SHEET, data.FACTS_SHEET)
+ DATE_FIELDS = {"Sort date", "Date from", "Date to", "Opened"}
+-NUMBER_FIELDS = {"#", "Process", "Round", "Price low", "Price high", "Count"}
++NUMBER_FIELDS = {"#", "Process", "Round", "Price low", "Price high", "Count", "CVR/earnout value"}
+ QID = re.compile(r"Q[1-9][0-9]*\Z")
+ REF_EXPR = re.compile(r"(?<![\w])#\s*(\d+)(?:\s*[-–—]\s*#?\s*(\d+))?\b")
+ QREF = re.compile(r"(?<![\w])Q[1-9][0-9]*\b")
+@@ -351,6 +352,8 @@ class Workspace:
+             "Conditions": sorted(check_lean.CONDITIONS), "Exit reason": sorted(check_lean.EXIT_REASONS),
+             "Finality": sorted(check_lean.FINALITY), "Deadline outcome": sorted(check_lean.DEADLINE_OUTCOMES),
+             "Initiation": sorted(check_lean.INITIATION),
++            "CVR/earnout": sorted(check_lean.MARKER), "Antitrust": sorted(check_lean.MARKER),
++            **{field: sorted(allowed) for field, allowed in check_lean.CONDITION_COLUMNS.items()},
+         }
+         return payload
+ 
+@@ -526,6 +529,12 @@ class Workspace:
+             return _encode(parsed)
+         if field == "Round" and sheet == data.LEDGER_SHEET and value == "post":
+             return "post"
++        if field == "Stock %" and isinstance(value, str):
++            # A figure is stored as a number; a range or a code stays text (v1.14 E13).
++            try: number = float(value)
++            except ValueError: return value.strip()
++            if not math.isfinite(number): raise WorkspaceError("invalid number")
++            return int(number) if number.is_integer() else number
+         if field in NUMBER_FIELDS:
+             try:
+                 number = float(value)

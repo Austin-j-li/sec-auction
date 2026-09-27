@@ -1,5 +1,7 @@
 # Datalink pilot: proposed corrections before revision
 
+> **Status, 26 September 2026 (20:45 UTC):** F9 is superseded for Datalink. Austin decided on 26 September that Datalink follows the v1.14.1 text: four rounds, not the five-round map retained below ([retest](../2026-09-26-v1141-retest/README.md)). The adjudication is kept as the record of the 21 September ruling.
+
 **The fresh review found useful errors, including an exact NDA date missed in the annex. It also proposed changes that the evidence does not support.** My assessment of its 11 findings is: **7 supported for correction, 1 useful clarification with its proposed extra event rejected, 1 round-boundary decision now resolved by Austin, and 2 unsupported as correction requirements.** Apart from Austin's F9 ruling below, these are lead assessments against the source, not human-adjudicated benchmark labels.
 
 The raw workbook, the 67-event raw draft (SHA-256 `499d2f2259f10bcb3895a08538bcbf4f686c55a4d568c0a6ded9096ee9449358`, archived; git `03d59b1:extraction/datalink.xlsx`), has **67 events, 5 rounds and 10 Questions**. Since 22 September the current `extraction/datalink.xlsx` is a different, newer Opus 5.5 medium draft. It has not been revised. Its SHA-256 is `499d2f2259f10bcb3895a08538bcbf4f686c55a4d568c0a6ded9096ee9449358`. The [filing](../../../raw_filing/datalink_2016-11-29_DEFM14A.htm) is the November 29, 2016 DEFM14A. Page references below are its printed pages. Event #n is Excel row n+1 in the raw Deal ledger.

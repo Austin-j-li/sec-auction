@@ -1,0 +1,185 @@
+{
+  "tool": "derive_analysis.py",
+  "tool_version": "0.2",
+  "contract": "_dev/maintenance/2026-09-24-bid-terms-taxonomy/ANALYSIS_CONTRACT.md",
+  "contract_version": "0.1",
+  "generated_at": "2026-09-25T22:01:12+00:00",
+  "deal": "mac-gray",
+  "input": {
+    "path": "/home/uctpiaj/work/tmp/v114-scratch/tmp/w2pm-fix/derive-export-4w59pb98/mac-gray-working-r8.xlsx",
+    "sha256": "de1f3f14315d1f9d87255f8e01095360f3b8cf8bff34a838a897152f55621941",
+    "kind": "cockpit working-copy export",
+    "sheets": [
+      "Deal ledger",
+      "Rounds",
+      "Questions",
+      "Deal facts"
+    ],
+    "source_sheet": null,
+    "working_copy": {
+      "slug": "mac-gray",
+      "revision": 8,
+      "copied_at": "2026-09-25T22:01:12+00:00",
+      "base_id": "opus55-medium",
+      "base_path": "extraction/mac-gray.xlsx",
+      "base_sha256": "407615092e6dc33be22a8f80ab41d365083de0813f93b48897cbd7605a68ec0e",
+      "database": "copied with the SQLite backup API from a mode=ro connection",
+      "rendered_by": "cockpit Workspace.export in a temporary root",
+      "export_kept": false
+    }
+  },
+  "ledger_schema": "v1.13.2",
+  "checker_version": "1.7",
+  "columns_missing": [
+    "Stock %",
+    "CVR/earnout",
+    "CVR/earnout value",
+    "Due diligence",
+    "Financing",
+    "Regulatory",
+    "Antitrust",
+    "Exclusivity"
+  ],
+  "columns_unexpected": [],
+  "readings": {
+    "computed": [
+      "T0",
+      "T2",
+      "T3"
+    ],
+    "missing": {
+      "T1": "v1.13.2 ledger: condition-based readings are missing",
+      "T1u": "v1.13.2 ledger: condition-based readings are missing"
+    },
+    "all_cash_from": "All cash",
+    "package": "not derivable: no CVR/earnout columns (v1.13.2 prices may include contingent value; see the Note)",
+    "default": null
+  },
+  "switches": [
+    {
+      "id": "count_ranges",
+      "source": "D22; Alex Q1 / Decision 3",
+      "question": "How estimation uses counts that are ranges or bounds.",
+      "variants": {
+        "bounds": "live_lo, live_hi (and count_lo, count_hi)",
+        "presumed ordinary sequence": "live_point (a named party first seen bidding after cohort entries is presumed a member; approximately N is N)",
+        "one bound": "live_lo or live_hi alone"
+      }
+    },
+    {
+      "id": "unclear",
+      "source": "D22",
+      "question": "How Unclear and Not stated values are treated.",
+      "variants": {
+        "missing": "Formality Unclear is missing under every reading; deadline Unclear has class missing",
+        "Conditions Unclear as not Heavy": "T1",
+        "Conditions Unclear as Heavy": "T1u"
+      }
+    },
+    {
+      "id": "formality_reading",
+      "source": "D22; Alex Decision 3b",
+      "question": "Which Formality reading is primary.",
+      "variants": {
+        "T0": "T0",
+        "T1": "T1",
+        "T1u": "T1u",
+        "T2": "T2",
+        "T3": "T3"
+      }
+    },
+    {
+      "id": "same_price_revisions",
+      "source": "D22; D13; Alex Decision 3b",
+      "question": "Whether a same-price revision of terms is a new price observation.",
+      "variants": {
+        "new observation": "price_obs__same_price_as_new",
+        "change of terms only": "price_obs__same_price_as_terms"
+      }
+    },
+    {
+      "id": "inferred_exits",
+      "source": "D22; Alex Decision 3b",
+      "question": "Whether inferred exits enter as dropouts or as censoring.",
+      "variants": {
+        "dropout": "exit__inferred_as_dropout",
+        "censoring": "exit__inferred_as_censoring (\"unresolved\" where the Note does not show whether the exit or a field is inferred)"
+      }
+    },
+    {
+      "id": "eligible_unadmitted",
+      "source": "audit D §4; spec §7.10",
+      "question": "Whether eligible but unadmitted bidders count as live.",
+      "variants": {
+        "admitted only": "rounds.csv who_was_in_count",
+        "all live units": "rounds.csv live_open_* and live_max_hi"
+      }
+    },
+    {
+      "id": "estimation_price",
+      "source": "audit D §4; spec §7.10",
+      "question": "Upfront or package (upfront + CVR/earnout value) as the estimation price.",
+      "variants": {
+        "upfront": "price_low, price_high",
+        "package": "package_low, package_high, compared only within one package_basis"
+      }
+    },
+    {
+      "id": "process_initiator",
+      "source": "audit D §4; spec §7.10; Alex Q&A P96",
+      "question": "Which process initiator estimation uses.",
+      "variants": {
+        "as recorded": "deal.csv initiation_recorded",
+        "first initiating row": "deal.csv initiation_first_event"
+      }
+    },
+    {
+      "id": "merger_of_equals",
+      "source": "D17; audit D §4; spec §7.10",
+      "question": "Whether merger-of-equals talks count as a sale attempt with the counterparty as a bidder.",
+      "variants": {
+        "not counted": "the ledger as recorded (every output)",
+        "counted": "not derivable: the alternative map is in the Question's text; deal.csv merger_of_equals_rows lists the rows to rebuild it from"
+      }
+    }
+  ],
+  "deadline_outcomes": [
+    {
+      "process": 1,
+      "round": 1,
+      "position": 1,
+      "value": "Late bids accepted",
+      "class": "extended",
+      "legacy": true
+    },
+    {
+      "process": 1,
+      "round": 2,
+      "position": 1,
+      "value": "Late bids accepted",
+      "class": "extended",
+      "legacy": true
+    },
+    {
+      "process": 1,
+      "round": 3,
+      "position": 1,
+      "value": "Enforced",
+      "class": "hard",
+      "legacy": false
+    }
+  ],
+  "outputs": {
+    "bids.csv": 16,
+    "other_scope.csv": 0,
+    "rounds.csv": 3,
+    "participation.csv": 13,
+    "deal.csv": 1
+  },
+  "review": [],
+  "warnings": [
+    "process 1 round 1: legacy Deadline outcome 'Late bids accepted' classed extended and flagged legacy",
+    "process 1 round 2: legacy Deadline outcome 'Late bids accepted' classed extended and flagged legacy"
+  ],
+  "incomplete": []
+}

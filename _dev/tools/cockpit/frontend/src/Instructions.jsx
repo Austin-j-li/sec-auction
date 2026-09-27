@@ -309,7 +309,7 @@ function PublishDialog({ item, items, busy, error, onPublish, onClose }) {
       <p>Publishing freezes this text under a name. It can then be chosen for runs or made the default; it can never be edited again. The draft’s current text has SHA-256 <span className="mono">{sha7(item.sha256)}</span>.</p>
       <form onSubmit={submit}>
         <Field label="Name" hint="Letters, digits, “.”, “-”, “_” and spaces; at most 40 characters. Names are never reused." validationState={tried && nameError ? 'error' : 'none'} validationMessage={tried && nameError ? nameError : undefined}>
-          <Input className="mono" value={name} onChange={(_, data) => setName(data.value)} placeholder="v1.14"/>
+          <Input className="mono" value={name} onChange={(_, data) => setName(data.value)} placeholder="e.g. v2.0 draft"/>
         </Field>
         <Field label="Change note" hint={`What changed and why. ${note.length}/${NOTE_MAX}`} validationState={tried && noteError ? 'error' : 'none'} validationMessage={tried && noteError ? noteError : undefined}>
           <Textarea value={note} resize="vertical" rows={4} onChange={(_, data) => setNote(data.value)}/>

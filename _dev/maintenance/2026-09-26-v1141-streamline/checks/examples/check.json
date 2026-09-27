@@ -1,0 +1,17 @@
+{
+  "checker": "lean-mechanical",
+  "checker_version": "1.8",
+  "checker_revision": "Adds the v1.14.1 rules, selected by --rules or by the instruction's SHA-256 and the default for a 29-column ledger: a Note over 40 words is an error; Inferred only on exit, Round opened and Process restarted rows; Formality Unclear only on cohort rows; Antitrust Y needs Regulatory Concern; Stock % takes no range (a stated range is Part stock); CVR/earnout and Antitrust are Y or blank; Initiation is target-led, bidder-led or activist-influenced; the auction screen starts Met or Not met with a number; Count is required on process markers and Bidding group changed; no Round 0 row after round 1 opens; 'Same as #n' points to an earlier bid row of the same bidder; Bid reaffirmed is Formal and a Same-offer row; a Heavy Note begins with its trigger; Light needs Due diligence Complete or Incomplete; each Question is at most 60 words, and more than five Questions besides the process Question is a warning; the mandatory map and deadline-outcome Questions are gone. The v1.14 rules (checker 1.7) stay available with --rules v1.14, unchanged. Checker 1.7: Applies the v1.14 ledger rules to a workbook whose ledger has a 'Stock %' header: Deadline outcome takes the v1.14 values, and the replaced 'Late bids accepted' is a warning (E9); Antitrust with an incompatible Regulatory value is an error; Other-scope bid rows leave Price low, Price high and CVR/earnout value blank; the inferred-exit reason check no longer applies; and four review warnings are added (an Exclusivity changed row repeating a same-day bid's request, an Extended outcome with no new due date, an exit followed by activity with no Re-entered, an Other-scope bid with no Note). Workbooks without that header are checked as v1.13.2, unchanged.",
+  "ledger_schema": "v1.14.1",
+  "workbook": "/home/uctpiaj/work/Projects/sec-extraction/_dev/maintenance/2026-09-26-v1141-streamline/checks/examples/examples.xlsx",
+  "filing": "/home/uctpiaj/work/Projects/sec-extraction/_dev/maintenance/2026-09-26-v1141-streamline/checks/examples/examples.htm",
+  "status": "pass",
+  "scope_note": "Mechanical checks only. Quote occurrence proves source occurrence, not semantic support. No bidder-population arithmetic or substantive extraction grading is performed.",
+  "summary": {
+    "errors": 0,
+    "warnings": 0,
+    "information": 0,
+    "total_issues": 0
+  },
+  "issues": []
+}

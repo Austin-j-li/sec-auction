@@ -1,0 +1,116 @@
+{
+  "browser": {
+    "passed": 46,
+    "results": null,
+    "browserErrors": null
+  },
+  "runs": {
+    "passed": 12,
+    "results": [
+      "sign-in link shown",
+      "account connected, token not returned",
+      "alex is not connected by austin",
+      "unconnected user is sent to settings",
+      "run completed and imported",
+      "open version switches the dropdown",
+      "hide recorded",
+      "working copy rebased",
+      "compare shows the renamed bidder",
+      "alex sees the extraction with its version",
+      "rebase activity carries its revision",
+      "no browser errors"
+    ],
+    "browserErrors": null
+  },
+  "instructions": {
+    "passed": 24,
+    "results": [
+      "ChatGPT sign-in shows link and code",
+      "both of Austin\u2019s accounts connected",
+      "Austin\u2019s engines all usable",
+      "Sol and Astra disabled without ChatGPT",
+      "no Start button without an account",
+      "Fable shows its warning",
+      "Austin\u2019s engines are enabled",
+      "v1.13.2 imported as the default",
+      "draft created from v1.13.2",
+      "diff shows the added line",
+      "stale save refused with a message",
+      "reload shows Alex\u2019s saved text",
+      "published as v1.14 with its note and made default",
+      "extract summaries name engine, instruction and plan",
+      "both runs completed",
+      "runs froze their instructions",
+      "Runs tab names engine and instruction",
+      "version labels name engine and instruction",
+      "both versions in the dropdown",
+      "Compare reports different instructions",
+      "Activity shows the instruction items",
+      "instruction kinds in the feed",
+      "instruction item opens the Instructions page",
+      "no browser errors"
+    ],
+    "browserErrors": null
+  },
+  "deals": {
+    "passed": 25,
+    "results": [
+      "seed lookup preselects the proxy",
+      "suggested name and short name",
+      "added deal opens as pending",
+      "pending deal shows its filing",
+      "overview lists the pending deal",
+      "review row without a link asks for one",
+      "non-EDGAR link refused",
+      "tender offer exhibit preselected",
+      "background warning on the cover form",
+      "warning clears on the offer",
+      "names come from the subject company",
+      "first run becomes the working-copy base",
+      "the page reloads into the workspace",
+      "alex sees both additions by austin",
+      "hide asks first",
+      "hidden deal shows the banner and no Extract",
+      "extract on a hidden deal is refused",
+      "hidden deal leaves alex's list",
+      "show hidden lists it dimmed and marked",
+      "hidden deal opens by URL for alex",
+      "unhide from the banner",
+      "pending deal hides",
+      "unhide from the list",
+      "hiding is in the activity feed",
+      "no browser errors"
+    ],
+    "browserErrors": null
+  },
+  "trace": {
+    "passed": 14,
+    "results": [
+      "alex identity",
+      "alex saves an edit",
+      "alex comments through the UI",
+      "overview digest",
+      "what's new shown",
+      "row mark for Alex",
+      "austin sees alex comment",
+      "austin replies",
+      "mark as read clears",
+      "mark unread restores",
+      "alex sees austin reply in digest",
+      "activity page lists the reply",
+      "unknown reader: read-only comments, no what's new",
+      "no browser errors"
+    ],
+    "browserErrors": null
+  },
+  "resize": {
+    "passed": true,
+    "results": null,
+    "browserErrors": []
+  },
+  "responsive": {
+    "passed": true,
+    "results": null,
+    "browserErrors": []
+  }
+}

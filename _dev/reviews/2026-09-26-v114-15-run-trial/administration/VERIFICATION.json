@@ -1,0 +1,20 @@
+{
+  "verified_at": "2026-09-26T10:10:51.324857+00:00",
+  "requested_matrix_exact": true,
+  "completed_runs": 15,
+  "original_and_blinded_workbook_hash_pairs_verified": 15,
+  "archived_raw_workspaces": 15,
+  "isolation_preflights_passed": 15,
+  "observed_simultaneously_running": 15,
+  "input_or_config_mismatches": 0,
+  "possible_shell_network_flags": 0,
+  "web_or_delegation_tool_calls": 0,
+  "input_and_binary_pins_reverified_by_finalizer": true,
+  "protected_live_files_unchanged": true,
+  "raw_run_directories_remaining": 0,
+  "runtime_temporary_entries_remaining": 0,
+  "graded": false,
+  "workbooks_corrected": false,
+  "services_restarted": false,
+  "commit_or_push": false
+}

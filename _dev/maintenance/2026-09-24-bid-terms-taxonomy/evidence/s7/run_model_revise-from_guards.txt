@@ -1,0 +1,9 @@
+$ python3 _dev/tools/sandbox/run_model.py prepare --provider opus --run-dir $TMPDIR/runs/mg --deal mac-gray --filing mac-gray_2013-12-04_DEFM14A.htm --revise-from <pilot with a Source sheet> --report findings.md
+the revision workbook must have exactly the sheets Deal ledger, Rounds, Questions, Deal facts; it has Deal ledger, Rounds, Questions, Deal facts, Source
+exit status: 1
+ls: cannot access '/home/uctpiaj/work/tmp/v114-scratch/tmp/s7/runs': No such file or directory
+
+$ ... --revise-from <four-sheet v1.14 pilot> (no --instruction)
+--revise-from is a v1.14 workbook: pass --instruction with the instruction it follows (the default is the working instruction, which may be older)
+exit status: 1
+ls: cannot access '/home/uctpiaj/work/tmp/v114-scratch/tmp/s7/runs': No such file or directory

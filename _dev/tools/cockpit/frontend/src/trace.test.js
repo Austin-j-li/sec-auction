@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { changedByOther, countThreads, displayName, groupSessions, initials, tally, tallyText, threadsFor } from './trace';
+import { changedByOther, countThreads, displayName, groupSessions, initials, tally, tallyText, threadContext, threadsFor } from './trace';
 import { activityQuery } from './api';
 
 const at = minutes => new Date(Date.UTC(2026, 8, 23, 14, 0) + minutes * 60000).toISOString();
@@ -72,5 +72,14 @@ describe('threads', () => {
   });
   it('builds the account-wide feed query without empty filters', () => {
     expect(activityQuery({ actor: 'alex', before: 57 })).toBe('/api/activity?actor=alex&before=57&limit=100');
+  });
+});
+
+describe('a thread whose row is gone', () => {
+  it('says where the row went', () => {
+    expect(threadContext({ target_missing: true, target_context: 'on an earlier base (revision 8)' })).toBe('On an earlier base (revision 8)');
+    expect(threadContext({ target_missing: true, target_context: 'record removed' })).toBe('Record removed');
+    expect(threadContext({ target_missing: true })).toBe('Record removed');
+    expect(threadContext({ target_missing: false, target_context: null })).toBe('');
   });
 });

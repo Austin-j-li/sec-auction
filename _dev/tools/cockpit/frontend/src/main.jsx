@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { Button, Field, FluentProvider, Input, Menu, MenuItem, MenuList, MenuPopover, MenuTrigger, Select, Textarea } from '@fluentui/react-components';
-import { ArrowLeftIcon, ArrowsClockwiseIcon, DotsThreeIcon, DownloadSimpleIcon, EyeIcon, EyeSlashIcon, FloppyDiskIcon, LockSimpleIcon, PlayIcon, XIcon } from '@phosphor-icons/react';
+import { Button, Field, FluentProvider, Input, Menu, MenuItem, MenuItemLink, MenuList, MenuPopover, MenuTrigger, Select, Textarea } from '@fluentui/react-components';
+import { ArrowLeftIcon, ArrowsClockwiseIcon, CaretDownIcon, DotsThreeIcon, DownloadSimpleIcon, EyeIcon, EyeSlashIcon, FloppyDiskIcon, LockSimpleIcon, PlayIcon, XIcon } from '@phosphor-icons/react';
 import gsap from 'gsap';
 import Filing from './Filing';
 import SplitPane from './SplitPane';
@@ -17,10 +17,12 @@ import { compact, LedgerTab, SheetTab } from './Records';
 import { ChangesTab, DocumentText, friendlyDate, HistoryTab, ReviewTab } from './Review';
 import { Dot, Loading, Message } from './ui';
 import { cockpitTheme } from './theme';
-import { commentAction, compareQuery, count, dealVisibility, jobAction, json, markSeen, markSeenOnLeave, recordValues, rowId, saveDeal, sheetColumns, sheetRows, text, versionAction } from './api';
+import { commentAction, compareQuery, count, dealVisibility, jobAction, json, markSeen, markSeenOnLeave, recordValues, rowId, saveDeal, setDealReview, sheetColumns, sheetRows, text, versionAction } from './api';
 import { countThreads, DEAL_KINDS, displayName, EDIT_KINDS, INSTRUCTION_KINDS, knownUser, RUN_KINDS, VERSION_KINDS } from './trace';
-import { isActive, isImported, orderVersions, versionOptionLabel } from './runs';
-import { hiddenLine } from './deals';
+import { isActive, isImported, orderVersions, rebaseLines, versionOptionLabel } from './runs';
+import { hiddenLine, REVIEW_STATUSES, reviewByline } from './deals';
+import { exportLinks } from './downloads';
+import { bulkChanges, bulkReason, bulkValues, eventList, stageBulk, stagedCount, updateToExtend, withoutBulkRow } from './bulk';
 import './style.css';
 
 const SHEETS = { ledger: 'Deal ledger', rounds: 'Rounds', questions: 'Questions', facts: 'Deal facts' };
@@ -69,6 +71,7 @@ function App() {
   const [auxLoading, setAuxLoading] = useState(false);
   const [conflict, setConflict] = useState(false);
   const [deletePrompt, setDeletePrompt] = useState(null);
+  const [bulkPrompt, setBulkPrompt] = useState(null);
   const [findingOpen, setFindingOpen] = useState(null);
   const [documentOpen, setDocumentOpen] = useState(null);
   const [documentData, setDocumentData] = useState(null);
@@ -89,6 +92,7 @@ function App() {
   const [versionBusy, setVersionBusy] = useState(false);
   const [hidePrompt, setHidePrompt] = useState(null);
   const [dealBusy, setDealBusy] = useState(false);
+  const [reviewBusy, setReviewBusy] = useState(false);
   // Unsaved text on a page outside the deal workspace (an instruction draft) guards navigation like unsaved edits.
   const [pageDirty, setPageDirty] = useState(false);
   const slugRef = useRef(null);
@@ -111,7 +115,7 @@ function App() {
   const unsaved = dirty || pageDirty;
   const editable = Boolean(session.can_edit && deal?.workspace?.editable && saveState !== 'saving' && !versionLoading);
   const slug = route.slug;
-  const modalOpen = Boolean(deletePrompt || documentOpen || rebasePrompt || extract || addDeal || hidePrompt);
+  const modalOpen = Boolean(deletePrompt || bulkPrompt || documentOpen || rebasePrompt || extract || addDeal || hidePrompt);
   pendingRef.current = Boolean(deal?.pending);
   sessionRef.current = session;
   slugRef.current = slug;
@@ -150,7 +154,7 @@ function App() {
     modalReturnFocus.current = document.activeElement;
     (modalRef.current?.querySelector('[data-autofocus]') || modalRef.current?.querySelector('button'))?.focus();
     const onKeyDown = event => {
-      if (event.key === 'Escape') { event.preventDefault(); setDeletePrompt(null); setDocumentOpen(null); setRebasePrompt(current => current?.busy ? current : null); setExtract(current => current?.busy ? current : null); setAddDeal(false); setHidePrompt(current => current?.busy ? current : null); return; }
+      if (event.key === 'Escape') { event.preventDefault(); setDeletePrompt(null); setBulkPrompt(null); setDocumentOpen(null); setRebasePrompt(current => current?.busy ? current : null); setExtract(current => current?.busy ? current : null); setAddDeal(false); setHidePrompt(current => current?.busy ? current : null); return; }
       if (event.key !== 'Tab' || !modalRef.current) return;
       const focusables = [...modalRef.current.querySelectorAll('button:not(:disabled), input:not(:disabled), select:not(:disabled), textarea:not(:disabled), a[href]')];
       if (!focusables.length) return;
@@ -168,6 +172,7 @@ function App() {
     const add = (key, fields) => { if (!map.has(key)) map.set(key, new Set()); fields.forEach(field => map.get(key).add(field)); };
     for (const op of ops) {
       if (op.type === 'update') add(`${op.sheet}|${op.uid}`, Object.keys(op.values || {}));
+      if (op.type === 'bulk_update') op.uids.forEach(uid => add(`${op.sheet}|${uid}`, Object.keys(op.values || {})));
       if (op.type === 'insert') add(`${op.sheet}|${op.client_uid}`, Object.entries(op.values || {}).filter(([, value]) => text(value) !== '').map(([field]) => field));
     }
     return map;
@@ -190,7 +195,7 @@ function App() {
     const token = ++routeSerial.current;
     // A version switch keeps the current deal (and the filing pane) mounted; only the workspace waits.
     const sameDeal = Boolean(currentSlug) && loadedSlug.current === currentSlug;
-    setError(null); setConflict(false); setOps([]); setSaveState(''); setHistoryData(null); setChangesData(null); setFindingOpen(null); setDocumentOpen(null); setCompare(null); setRebasePrompt(null); setHidePrompt(null);
+    setError(null); setConflict(false); setOps([]); setSaveState(''); setHistoryData(null); setChangesData(null); setFindingOpen(null); setDocumentOpen(null); setCompare(null); setRebasePrompt(null); setHidePrompt(null); setBulkPrompt(null);
     if (sameDeal) setVersionLoading(true);
     else { setLoading(true); setDeal(null); loadedSlug.current = null; }
     try {
@@ -371,6 +376,10 @@ function App() {
     }
     else openThread(item.target, item.thread_id);
   }
+  // A rebase or restore replaces rows, so the threads on them must be re-read to show where their rows went.
+  function refreshThreads() {
+    json(`/api/deal/${slug}/comments`).then(data => { if (slugRef.current === slug) setThreads(data?.threads || []); }).catch(() => {});
+  }
   async function postComment(action) {
     const data = await commentAction(slug, session, action);
     setThreads(data?.threads || []);
@@ -441,6 +450,18 @@ function App() {
       setDealBusy(false);
     }
   }
+  // The working copy's review status is recorded at the saved revision on screen, so unsaved edits must be saved first.
+  async function changeReview(status) {
+    setReviewBusy(true); setError(null);
+    try {
+      const result = await setDealReview(slug, session, status, deal.workspace?.revision ?? 0);
+      setDeal(current => current && { ...current, deal_review: result.deal_review });
+    } catch (err) {
+      setError(failure('The review status could not be saved.', err));
+    } finally {
+      setReviewBusy(false);
+    }
+  }
   async function unhideListed(listedSlug) {
     setError(null);
     try {
@@ -449,6 +470,13 @@ function App() {
     } catch (err) {
       setError(failure('The deal could not be unhidden.', err));
     }
+  }
+  // The rebase dialog first lists what stops applying (row marks, finding decisions, threads), read from the server.
+  function openRebase(item) {
+    setRebasePrompt({ version: item, reason: '', busy: false, error: '', preview: null, previewError: '' });
+    json(`/api/deal/${encodeURIComponent(slug)}/rebase?to=${encodeURIComponent(item.id)}`)
+      .then(preview => setRebasePrompt(current => current?.version.id === item.id ? { ...current, preview } : current))
+      .catch(err => setRebasePrompt(current => current?.version.id === item.id ? { ...current, previewError: err.message } : current));
   }
   // Rebase: the working copy takes the selected original as its new base, in one new revision.
   async function rebase() {
@@ -459,6 +487,7 @@ function App() {
       await saveDeal(slug, session, { revision: deal.workspace.revision, base_sha256: deal.workspace.base_sha256, reason: reasonText, operations: [{ type: 'rebase', target_version: rebasePrompt.version.id }] });
       setRebasePrompt(null);
       await load(slug, 'working');
+      refreshThreads();
     } catch (err) {
       const detail = err.status === 409 ? `Another editor saved a newer revision, or this version cannot be the base (${err.message}).` : err.message;
       setRebasePrompt(current => current && { ...current, busy: false, error: detail });
@@ -478,7 +507,7 @@ function App() {
       const next = clone(previous);
       const insert = next.find(op => op.type === 'insert' && op.client_uid === uid);
       if (insert) { insert.values[field] = value; return next; }
-      const update = next.find(op => op.type === 'update' && op.sheet === sheet && op.uid === uid);
+      const update = updateToExtend(next, sheet, uid);
       if (update) update.values[field] = value;
       else next.push({ type: 'update', sheet, uid, values: { [field]: value } });
       return next;
@@ -532,7 +561,7 @@ function App() {
     setDeal(current => { const next = clone(current), rows = sheetRows(next, sheet), index = rows.findIndex(row => row.uid === uid); rows.splice(index, 1); return next; });
     setOps(previous => {
       const predecessor = previous.find(op => op.type === 'insert' && op.client_uid === uid)?.after_uid || null;
-      const next = previous.filter(op => !(op.uid === uid && ['update', 'move', 'review'].includes(op.type)));
+      const next = withoutBulkRow(previous, uid).filter(op => !(op.uid === uid && ['update', 'move', 'review'].includes(op.type)));
       if (uid.startsWith('new-')) return next.filter(op => !(op.type === 'insert' && op.client_uid === uid)).map(op => op.after_uid === uid ? { ...op, after_uid: predecessor } : op);
       const op = { type: 'delete', sheet, uid };
       if (sheet === 'Deal ledger' && replacement) op.replacement_uid = replacement;
@@ -542,6 +571,20 @@ function App() {
     selectOther(sheet, left[0]?.uid || null);
     if (sheet === 'Deal ledger') setSelectedUid(left[0]?.uid || null);
     setDeletePrompt(null); setSaveState('');
+  }
+  // Bulk Process/Round: the dialog's values go on the selected events that they change, as one staged operation.
+  function applyBulk() {
+    const { values, error } = bulkValues(bulkPrompt.process, bulkPrompt.round);
+    const uids = error ? [] : bulkChanges(deal.ledger?.rows || [], new Set(bulkPrompt.uids), values).map(row => row.uid);
+    if (!editable || !uids.length) return;
+    setDeal(current => {
+      const next = clone(current);
+      for (const record of next.ledger.rows) if (uids.includes(record.uid)) Object.assign(record.cells, values);
+      return next;
+    });
+    setOps(previous => stageBulk(previous, uids, values));
+    if (!reason.trim()) setReason(bulkReason(values, uids.length));
+    setBulkPrompt(null); setSaveState('');
   }
   // Review notes became comments (phase 1): the review operation carries only the status and an empty note.
   function setReview(uid, status) {
@@ -609,7 +652,7 @@ function App() {
     setError(null); setSaveState('saving');
     try {
       const result = await saveDeal(slug, session, { revision: deal.workspace.revision, base_sha256: deal.workspace.base_sha256, reason: `Restore revision ${revision}`, operations: [{ type: 'restore', target_revision: revision }] });
-      setDeal(result); setOps([]); setHistoryData(null); setChangesData(null); setSaveState('saved');
+      setDeal(result); setOps([]); setHistoryData(null); setChangesData(null); setSaveState('saved'); refreshThreads();
       setSelectedUid(result.ledger?.rows?.some(row => row.uid === selectedUid) ? selectedUid : result.ledger?.rows?.[0]?.uid || null);
       setSelectedBySheet({});
     } catch (err) {
@@ -666,10 +709,13 @@ function App() {
   const allVersions = orderVersions(deal?.versions, { baseId, showHidden: true });
   const compareState = deal && {
     from: compareFrom, to: compareTo, isDefault: compareDefault,
-    options: [...allVersions.working, ...allVersions.originals].map(item => ({ id: item.id, label: item.id === 'working' ? 'Working copy' : versionOptionLabel(item) })),
+    options: [...allVersions.working, ...allVersions.originals].map(item => ({ id: item.id, label: item.id === 'working' ? 'Working copy' : versionOptionLabel(item) }))
+      // Past revisions of the working copy, newest first, read only (the latest is the working copy itself).
+      .concat(Array.from({ length: deal.workspace?.revision || 0 }, (_, i) => deal.workspace.revision - 1 - i).map(n => ({ id: `rev:${n}`, label: `Revision ${n} · read only` }))),
   };
   const shownVersion = orderedVersions.originals.find(item => item.id === version);
   const canRun = Boolean(session.can_edit && knownUser(session.user));
+  const exportLink = exportLinks(slug, version);
   const dealMenu = canRun && !deal?.hidden && <Menu positioning="below-end">
     <MenuTrigger disableButtonEnhancement>
       <Button appearance="subtle" className="icon-button deal-menu" aria-label="More deal actions" title="More deal actions" icon={<DotsThreeIcon size={16} weight="bold"/>}/>
@@ -688,9 +734,13 @@ function App() {
     ? ['Original extraction, read only']
     : [`Working copy from ${baseLabel}`, `Revision ${deal.workspace?.revision}`])] : [];
   const showDock = dirty && session.can_edit && deal?.workspace?.editable;
+  const staged = stagedCount(ops);
+  const bulkCheck = bulkPrompt && bulkValues(bulkPrompt.process, bulkPrompt.round);
+  const bulkBlank = bulkPrompt && !text(bulkPrompt.process).trim() && !text(bulkPrompt.round).trim();
+  const bulkRows = bulkCheck && !bulkCheck.error ? bulkChanges(ledgerRows, new Set(bulkPrompt.uids), bulkCheck.values) : [];
   const workState = versionLoading ? { tone: 'muted', label: 'Loading version' }
     : dirty
-    ? { tone: 'warning', label: `${ops.length} unsaved ${count(ops.length, 'change').split(' ').slice(1).join(' ')}` }
+    ? { tone: 'warning', label: `${staged} unsaved ${count(staged, 'change').split(' ').slice(1).join(' ')}` }
     : saveState === 'saved' ? { tone: 'success', label: 'Saved' }
     : editable ? { tone: 'muted', label: 'No unsaved edits' }
     : { tone: 'muted', label: 'Read only version' };
@@ -739,11 +789,31 @@ function App() {
                 </optgroup>}
               </Select>
             </label>
-            {versionActions && !shownVersion.hidden && <Button appearance="secondary" icon={<ArrowsClockwiseIcon size={16}/>} disabled={versionBusy} onClick={() => setRebasePrompt({ version: shownVersion, reason: '', busy: false, error: '' })}>Use as working-copy base…</Button>}
+            {!immutable && deal.deal_review && <label className="version-control review-control" title={dirty ? 'Save or discard your edits before changing the review status' : reviewByline(deal.deal_review) || undefined}>
+              <span>Review</span>
+              <Select aria-label="Review status" value={deal.deal_review.status} onChange={(_, data) => changeReview(data.value)}
+                disabled={!canRun || dirty || reviewBusy || versionLoading || saveState === 'saving'}>
+                {REVIEW_STATUSES.map(([value, label]) => <option value={value} key={value}>{label}</option>)}
+              </Select>
+              {deal.deal_review.status === 'reviewed' && deal.deal_review.edited_since && <span className="tone-warning">at revision {deal.deal_review.revision}; edited since</span>}
+            </label>}
+            {versionActions && !shownVersion.hidden && <Button appearance="secondary" icon={<ArrowsClockwiseIcon size={16}/>} disabled={versionBusy} onClick={() => openRebase(shownVersion)}>Use as working-copy base…</Button>}
             {versionActions && isImported(shownVersion) && <Button appearance="secondary" icon={shownVersion.hidden ? <EyeIcon size={16}/> : <EyeSlashIcon size={16}/>} disabled={versionBusy} onClick={() => setVersionHidden(shownVersion, !shownVersion.hidden)}>{shownVersion.hidden ? 'Unhide' : 'Hide'}</Button>}
             <RunBadge jobs={jobs} onOpen={openRuns}/>
             {canRun && !deal.hidden && <Button appearance="secondary" className="extract-button" icon={<PlayIcon size={16}/>} onClick={openExtract}>Extract</Button>}
-            <Button as="a" appearance="secondary" className="export-button" href={`/api/deal/${slug}/export?version=${encodeURIComponent(version)}`} download icon={<DownloadSimpleIcon size={16}/>}>Export Excel</Button>
+            <span className="export-group">
+              <Button as="a" appearance="secondary" className="export-button" href={exportLink.href} title={exportLink.title} download icon={<DownloadSimpleIcon size={16}/>}>Export Excel</Button>
+              <Menu positioning="below-end">
+                <MenuTrigger disableButtonEnhancement>
+                  <Button appearance="secondary" className="icon-button export-options" aria-label="Excel download options" title="Excel download options" icon={<CaretDownIcon size={14}/>}/>
+                </MenuTrigger>
+                <MenuPopover>
+                  <MenuList>
+                    <MenuItemLink href={exportLink.other.href} download icon={<DownloadSimpleIcon size={16}/>}>{exportLink.other.label}</MenuItemLink>
+                  </MenuList>
+                </MenuPopover>
+              </Menu>
+            </span>
             <div className="save-line">
               <span className={`work-state ${dirty ? 'unsaved' : ''}`} aria-live="polite" title={lastSaved || undefined}><Dot tone={workState.tone}/>{workState.label}</span>
               <span ref={saveFlash} className="save-feedback">{saveState === 'saved' ? 'Revision saved' : ''}</span>
@@ -786,11 +856,12 @@ function App() {
             <div id="workspace-panel" className={`workspace-scroll ${['ledger', 'rounds', 'questions', 'facts'].includes(tab) ? 'editor-scroll' : ''}`} role="tabpanel" aria-labelledby={`tab-${tab}`}>
               {versionLoading && <Loading label="Loading version"/>}
               {!versionLoading && <>
-                {tab === 'ledger' && <LedgerTab deal={deal} selectedUid={selectedUid} onSelect={selectRow} onShowFiling={showRowEvidence} onOpenQuestion={openQuestion} onStep={stepRow} onAdd={addRow} onMove={moveRow} onDelete={requestDelete} onEdit={editValue} onReview={setReview} editable={editable} selection={selected} dirtyFor={dirtyFor} reviewDirty={reviewDirty} trace={trace}/>}
+                {tab === 'ledger' && <LedgerTab deal={deal} selectedUid={selectedUid} onSelect={selectRow} onShowFiling={showRowEvidence} onOpenQuestion={openQuestion} onStep={stepRow} onAdd={addRow} onMove={moveRow} onDelete={requestDelete} onEdit={editValue} onReview={setReview} onBulk={uids => setBulkPrompt({ uids, process: '', round: '' })} editable={editable} selection={selected} dirtyFor={dirtyFor} reviewDirty={reviewDirty} trace={trace}/>}
                 {['rounds', 'questions', 'facts'].includes(tab) && <SheetTab deal={deal} sheet={SHEETS[tab]} selectedUid={selectedBySheet[SHEETS[tab]]} onSelect={selectOther} onAdd={addRow} onMove={moveRow} onDelete={requestDelete} onEdit={editValue} editable={editable} onJumpRow={selectRow} dirtyFor={dirtyFor} trace={trace}/>}
                 {tab === 'review' && <ReviewTab deal={deal} editable={editable} open={findingOpen} onToggle={setFindingOpen} onEdit={setFinding} dirtyFor={findingDirty} onFindEvidence={findEvidence} onOpenDocument={openDocument} trace={trace}/>}
                 {tab === 'changes' && <ChangesTab data={changesData} loading={auxLoading} compare={compareState} onCompare={setCompare}/>}
-                {tab === 'history' && <HistoryTab data={historyData} loading={auxLoading} editable={editable} onRestore={restore} lastSaved={lastSaved} focus={focusRevision}/>}
+                {tab === 'history' && <HistoryTab data={historyData} loading={auxLoading} editable={editable} onRestore={restore} lastSaved={lastSaved} focus={focusRevision}
+                  slug={slug} onCompareRevision={revision => { setCompare({ from: `rev:${revision}`, to: 'working' }); setTab('changes'); }}/>}
                 {tab === 'runs' && <RunsTab jobs={jobs} error={jobsError} loading={!jobs && !jobsError} canCancel={canRun} onCancel={cancelJob} onOpenVersion={switchVersion} versions={deal.versions}
                   hiddenCount={orderedVersions.hiddenCount} showHidden={showHidden} onShowHidden={setShowHidden}/>}
               </>}
@@ -799,7 +870,7 @@ function App() {
               <Field label="Reason for this revision" hint="Appears in history" orientation="horizontal">
                 <Input value={reason} title="Appears in history" disabled={saveState === 'saving'} onChange={(_, data) => setReason(data.value)} placeholder="Describe the edit"/>
               </Field>
-              <Button appearance="primary" className="save-button" icon={<FloppyDiskIcon size={16}/>} disabled={saveState === 'saving' || conflict} onClick={save}>Save {count(ops.length, 'change')}</Button>
+              <Button appearance="primary" className="save-button" icon={<FloppyDiskIcon size={16}/>} disabled={saveState === 'saving' || conflict} onClick={save}>Save {count(staged, 'change')}</Button>
             </div>}
           </section>}
         </SplitPane>
@@ -824,6 +895,34 @@ function App() {
         </div>
       </div>
     </div>}
+    {bulkPrompt && <div className="modal-backdrop" role="presentation">
+      <div className="modal" ref={modalRef} role="dialog" aria-modal="true" aria-label="Set Process and Round">
+        <div className="modal-head">
+          <h2>Set Process and Round on {count(bulkPrompt.uids.length, 'selected event')}</h2>
+          <Button appearance="subtle" className="icon-button" onClick={() => setBulkPrompt(null)} aria-label="Close" icon={<XIcon size={16}/>}/>
+        </div>
+        <p>Leave a box blank to keep each event’s own value. The change is staged until you save, and then saved with your other edits as one revision.</p>
+        <div className="bulk-fields">
+          <Field label="Process" hint="1 or more">
+            <Input data-autofocus value={bulkPrompt.process} inputMode="numeric" input={{ className: 'mono' }} onChange={(_, data) => setBulkPrompt(current => ({ ...current, process: data.value }))}/>
+          </Field>
+          <Field label="Round" hint="0 or more, or post">
+            <Input value={bulkPrompt.round} input={{ className: 'mono' }} onChange={(_, data) => setBulkPrompt(current => ({ ...current, round: data.value }))}/>
+          </Field>
+        </div>
+        <p className="bulk-summary" role="status">
+          {bulkBlank ? 'Enter a Process, a Round, or both.'
+            : bulkCheck.error ? <span className="tone-error">{bulkCheck.error}</span>
+            : bulkRows.length ? <>This changes <strong>{count(bulkRows.length, 'event')}</strong>: <span className="mono">{eventList(bulkRows)}</span>.
+                {bulkRows.length < bulkPrompt.uids.length && ` ${count(bulkPrompt.uids.length - bulkRows.length, 'other selected event')} already ${bulkPrompt.uids.length - bulkRows.length === 1 ? 'has' : 'have'} these values.`}</>
+            : 'No selected event changes: all already have these values.'}
+        </p>
+        <div className="modal-actions">
+          <Button appearance="secondary" onClick={() => setBulkPrompt(null)}>Cancel</Button>
+          <Button appearance="primary" disabled={!editable || !bulkRows.length} onClick={applyBulk}>{bulkRows.length ? `Stage for ${count(bulkRows.length, 'event')}` : 'Stage'}</Button>
+        </div>
+      </div>
+    </div>}
     {rebasePrompt && <div className="modal-backdrop" role="presentation">
       <div className="modal" ref={modalRef} role="dialog" aria-modal="true" aria-label="Use as working-copy base">
         <div className="modal-head">
@@ -831,13 +930,16 @@ function App() {
           <Button appearance="subtle" className="icon-button" disabled={rebasePrompt.busy} onClick={() => setRebasePrompt(null)} aria-label="Close" icon={<XIcon size={16}/>}/>
         </div>
         <p>The working copy is replaced by this version in one new revision. Earlier revisions stay in history and can be restored.</p>
+        {rebasePrompt.preview ? <ul className="rebase-list">{rebaseLines(rebasePrompt.preview).map((line, i) => <li key={i}>{line}</li>)}</ul>
+          : rebasePrompt.previewError ? <p className="run-failure tone-error">What stops applying could not be listed: {rebasePrompt.previewError}</p>
+          : <Loading label="Listing what stops applying"/>}
         <Field label="Reason" required hint="Appears in history">
           <Textarea value={rebasePrompt.reason} disabled={rebasePrompt.busy} onChange={(_, data) => setRebasePrompt(current => ({ ...current, reason: data.value }))}/>
         </Field>
         {rebasePrompt.error && <p className="run-failure tone-error" role="alert">{rebasePrompt.error}</p>}
         <div className="modal-actions">
           <Button appearance="secondary" disabled={rebasePrompt.busy} onClick={() => setRebasePrompt(null)}>Cancel</Button>
-          <Button appearance="primary" disabled={rebasePrompt.busy || !rebasePrompt.reason.trim()} onClick={rebase}>{rebasePrompt.busy ? 'Rebasing…' : 'Use as base'}</Button>
+          <Button appearance="primary" disabled={rebasePrompt.busy || !rebasePrompt.reason.trim() || !(rebasePrompt.preview || rebasePrompt.previewError)} onClick={rebase}>{rebasePrompt.busy ? 'Rebasing…' : 'Use as base'}</Button>
         </div>
       </div>
     </div>}
@@ -856,6 +958,7 @@ function App() {
       </div>
     </div>}
     {extract && <ExtractDialog user={session.user} account={extract.account} accountError={extract.accountError} instructions={extract.instructions} instructionsError={extract.instructionsError} busy={extract.busy} error={extract.error} dialogRef={modalRef}
+      working={deal && !deal.pending ? deal.workspace : null}
       onStart={startExtract} onClose={() => setExtract(null)} onSettings={() => { setExtract(null); navigate('/settings'); }}/>}
     {documentOpen && <div className="modal-backdrop" role="presentation">
       <div className="modal document-modal" ref={modalRef} role="dialog" aria-modal="true" aria-label="Recorded document">

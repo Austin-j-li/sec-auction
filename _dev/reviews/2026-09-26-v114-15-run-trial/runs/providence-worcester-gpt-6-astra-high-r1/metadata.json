@@ -1,0 +1,27 @@
+{
+  "deal": "providence-worcester",
+  "effort": "high",
+  "expected_output": "providence-worcester.xlsx",
+  "filing_name": "providence-worcester_2016-09-20_DEFM14A.htm",
+  "filing_sha256": "32d7a2738c95c29fa98fccc6a874a5e2acbfd0b7fc87a1f3e9145c60f627378a",
+  "instruction_name": "SEC_Deal_Ledger_Extraction_Instruction.md",
+  "instruction_sha256": "c2d47a479d09eb46d0ab9fbf887568fcf13e972e2e11acbf08d5cdfab468ab27",
+  "instruction_source": "/home/uctpiaj/work/Projects/sec-extraction-v114-trial-20260926/_dev/reviews/2026-09-26-v114-15-run-trial/inputs/SEC_Deal_Ledger_Extraction_Instruction.md",
+  "library_versions": {
+    "beautifulsoup4": "4.15.0",
+    "lxml": "5.2.1",
+    "openpyxl": "3.1.5"
+  },
+  "mode": "extract",
+  "model": "gpt-6-astra",
+  "prepared_at": "2026-09-26T09:43:06.387412+00:00",
+  "prompt_sha256": "c4859c2794750ab014a8c9409a5e54b20a5ee9d5ce27436c393d09d38866fca3",
+  "provider": "sol",
+  "python_version": "3.12.13 (main, Apr 16 2026, 00:00:00) [GCC 14.3.1 20251022 (Red Hat 14.3.1-4)]",
+  "report_sha256": null,
+  "revised_from_ledger_schema": null,
+  "revised_from_sha256": null,
+  "runner_sha256": "f1cd69adc3ec84a685ec5e8fe943166c8f732492c5f55a5e808cbe29b61a9e09",
+  "sandbox": "bubblewrap fresh home/state/tmp; one instruction; one filing; one output directory",
+  "timeout_seconds": 7200
+}

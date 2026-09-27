@@ -1,0 +1,74 @@
+.......................................2026-09-26T11:55:40+00:00 started extraction e314904b980f43e08141e2ce444a5477 for alpha-deal by austin (pid 466765)
+./usr/lib64/python3.12/subprocess.py:1127: ResourceWarning: subprocess 466765 is still running
+  _warn("subprocess %s is still running" % self.pid,
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+2026-09-26T11:55:41+00:00 started extraction 353be7796c94451d8197ed7a8a32c3d6 for alpha-deal by austin (pid 467425)
+2026-09-26T11:55:41+00:00 started extraction 98b56b7d12ca4f9db7fd27a77f1c6078 for alpha-deal by austin (pid 467825)
+./usr/lib64/python3.12/subprocess.py:1127: ResourceWarning: subprocess 467425 is still running
+  _warn("subprocess %s is still running" % self.pid,
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib64/python3.12/subprocess.py:1127: ResourceWarning: subprocess 467825 is still running
+  _warn("subprocess %s is still running" % self.pid,
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.2026-09-26T11:55:42+00:00 started extraction 42060a61d2e74689978d4f30adffd66c for alpha-deal by austin (pid 468026)
+2026-09-26T11:55:43+00:00 extraction 42060a61d2e74689978d4f30adffd66c imported as opus55-medium-20260923-1000-60c73b
+..2026-09-26T11:55:44+00:00 started extraction e6f58218b1284d35bf4c60f7f29f0ed3 for alpha-deal by austin (pid 468092)
+2026-09-26T11:55:44+00:00 extraction e6f58218b1284d35bf4c60f7f29f0ed3 imported as opus55-medium-20260923-1000-8233d8
+2026-09-26T11:55:45+00:00 extraction aa74643fd7ce4f17b175bc984e336144: start failed: RuntimeError: disk full
+2026-09-26T11:55:45+00:00 extraction aa74643fd7ce4f17b175bc984e336144 failed: worker_error
+..2026-09-26T11:55:46+00:00 started extraction b8e124c20df1436ba98020094f768f4f for alpha-deal by austin (pid 468232)
+2026-09-26T11:55:47+00:00 extraction b8e124c20df1436ba98020094f768f4f imported as opus55-medium-20260923-1000-ead23f
+2026-09-26T11:55:47+00:00 extraction b8e124c20df1436ba98020094f768f4f failed: worker_restart
+.2026-09-26T11:55:47+00:00 started extraction 8c6514bae43b483a880cbc748f123da0 for alpha-deal by austin (pid 468298)
+2026-09-26T11:55:48+00:00 extraction 8c6514bae43b483a880cbc748f123da0 ended: cancelled / cancelled
+.2026-09-26T11:55:50+00:00 Claude account connected for alex
+2026-09-26T11:55:51+00:00 sign-in d4ccc75866e14ef4800dcee514ed33e7 for austin: no token; Claude printed: 'OAuth error: Request failed with status code 400 Press Enter to retry.'
+/usr/lib64/python3.12/subprocess.py:1127: ResourceWarning: subprocess 468302 is still running
+  _warn("subprocess %s is still running" % self.pid,
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+..2026-09-26T11:55:52+00:00 started extraction c3bfb07c1b4d480296a82e8513ef465a for alpha-deal by austin (pid 468304)
+2026-09-26T11:55:53+00:00 extraction c3bfb07c1b4d480296a82e8513ef465a ended: failed / usage_limit
+.2026-09-26T11:55:53+00:00 started extraction 1ffc424c12a240b1aa183e6c519ae6c5 for alpha-deal by austin (pid 468306)
+2026-09-26T11:55:53+00:00 started extraction 6e21716b39914df6b67e34764ab9b950 for alpha-deal by austin (pid 468308)
+2026-09-26T11:55:54+00:00 extraction 1ffc424c12a240b1aa183e6c519ae6c5 imported as fable51-low-20260923-1000-dfc6d9
+2026-09-26T11:55:54+00:00 extraction 6e21716b39914df6b67e34764ab9b950 imported as sol6-xhigh-20260923-1000-dfc6d9
+.2026-09-26T11:55:55+00:00 ChatGPT login refresh for austin: exit 0, renewed until 2026-10-06T11:55:55+00:00
+2026-09-26T11:55:55+00:00 started extraction cc2adf1835bd4694884395154bf1ac98 for alpha-deal by austin (pid 468445)
+2026-09-26T11:55:55+00:00 extraction cc2adf1835bd4694884395154bf1ac98 imported as sol6-medium-20260923-1000-b45635
+.2026-09-26T11:55:56+00:00 ChatGPT login refresh for austin: exit 0, not renewed
+2026-09-26T11:55:56+00:00 extraction 32d68dbb337d49eaad8a813452f4557a failed: login_expired
+.2026-09-26T11:55:56+00:00 extraction 9305a2f953524566af5e32626f7b0896 failed: instruction_missing
+./usr/lib64/python3.12/threading.py:1012: ResourceWarning: unclosed file <_io.BufferedReader name=7>
+  self._target(*self._args, **self._kwargs)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib64/python3.12/subprocess.py:1127: ResourceWarning: subprocess 468516 is still running
+  _warn("subprocess %s is still running" % self.pid,
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./usr/lib64/python3.12/subprocess.py:822: ResourceWarning: unclosed file <_io.BufferedReader name=7>
+  _cleanup()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+2026-09-26T11:55:58+00:00 ChatGPT account connected for alex
+...2026-09-26T11:55:59+00:00 ChatGPT login refresh for alex: exit 0, not renewed
+.2026-09-26T11:55:59+00:00 started extraction 9f723ba401704d87bf0332b243f68d5c for alpha-deal by austin (pid 468525)
+2026-09-26T11:56:00+00:00 extraction 9f723ba401704d87bf0332b243f68d5c imported as astra6-high-20260923-1000-62cb3f
+...2026-09-26T11:56:01+00:00 lookup c072d321ebb24d0eb2977acd1117399c by austin: 3 documents from https://www.sec.gov/Archives/edgar/data/42/0000000042-21-000007.txt
+2026-09-26T11:56:01+00:00 lookup 87795b7f071f4744ad0f235bb5d40811 by austin: 3 documents from https://www.sec.gov/Archives/edgar/data/42/0000000042-21-000007.txt
+2026-09-26T11:56:01+00:00 lookup a160b107bf9842e79ae95c4fd5825469 by austin: 3 documents from https://www.sec.gov/Archives/edgar/data/42/0000000042-21-000007.txt
+.2026-09-26T11:56:02+00:00 lookup 1fa750fcbec343e98c77e2ec4a99c8a7 by austin: 3 documents from https://www.sec.gov/Archives/edgar/data/42/0000000042-21-000007.txt
+.2026-09-26T11:56:02+00:00 lookup 4a4f5ec00706481bae04bdbd6965ae62 by austin: 3 documents from https://www.sec.gov/Archives/edgar/data/42/0000000042-21-000007.txt
+.2026-09-26T11:56:02+00:00 lookup 0485963d336a43098b9f7029b0af4828 failed: 404 Not Found
+.2026-09-26T11:56:03+00:00 lookup 91b4fcc2f5f4425e9930297f73001a37 by austin: 3 documents from https://www.sec.gov/Archives/edgar/data/42/0000000042-21-000007.txt
+2026-09-26T11:56:03+00:00 started extraction b3ca5e351a054231a380b70e5d2f9b44 for beta-holdings by austin (pid 468779)
+2026-09-26T11:56:03+00:00 extraction b3ca5e351a054231a380b70e5d2f9b44 imported as opus55-medium-20260923-1000-300be6
+2026-09-26T11:56:03+00:00 started extraction 8f19b92a02c1458695362b91edad4a42 for beta-holdings by austin (pid 468845)
+2026-09-26T11:56:04+00:00 extraction 8f19b92a02c1458695362b91edad4a42 imported as opus55-medium-20260923-1000-300be6
+.2026-09-26T11:56:04+00:00 lookup ca46c886cea7471c90e33fd317b8c9b9 by austin: 3 documents from https://www.sec.gov/Archives/edgar/data/42/0000000042-21-000007.txt
+.2026-09-26T11:56:05+00:00 lookup 5de23648bf7d4d39a4b20bf0e1b9c1e7 by austin: 3 documents from https://www.sec.gov/Archives/edgar/data/42/0000000042-21-000007.txt
+2026-09-26T11:56:05+00:00 lookup fcd8b67756904e3baf0a9bc1ca66af84 by austin: 3 documents from https://www.sec.gov/Archives/edgar/data/42/0000000042-21-000007.txt
+.2026-09-26T11:56:06+00:00 lookup 423e33830a514ae980ba0a6d3e9dabe7 by local: 3 documents from https://www.sec.gov/Archives/edgar/data/42/0000000042-21-000007.txt
+.2026-09-26T11:56:07+00:00 lookup f8649d02f16243a18ae0802f50cb6c71 by austin: 3 documents from https://www.sec.gov/Archives/edgar/data/42/0000000042-21-000007.txt
+..
+----------------------------------------------------------------------
+Ran 73 tests in 27.817s
+
+OK

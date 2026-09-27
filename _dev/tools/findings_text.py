@@ -3,8 +3,9 @@
 
     python3 _dev/tools/findings_text.py report.json findings.md
 
-Every finding is listed, errors first. Warnings remain review leads, not
-certain errors. Nothing is added from grading notes or other sources.
+The first line names the checker version and the ledger rules it applied. Every
+finding is listed, errors first. Warnings remain review leads, not certain errors.
+Nothing is added from grading notes or other sources.
 """
 import json
 import sys
@@ -16,7 +17,9 @@ def main(report_path, out_path):
     with open(report_path, encoding="utf-8") as handle:
         report = json.load(handle)
     issues = sorted(report["issues"], key=lambda i: ORDER.get(i.get("severity"), 9))
-    lines = ["# Checker findings", "", "%d finding(s). Numbered for reference in revision_notes.md." % len(issues), ""]
+    version = report.get("checker_version") or "version not recorded"
+    rules = "%s ledger rules" % report["ledger_schema"] if report.get("ledger_schema") else "ledger rules not recorded"
+    lines = ["# Checker findings (checker %s; %s)" % (version, rules), "", "%d finding(s). Numbered for reference in revision_notes.md." % len(issues), ""]
     for n, i in enumerate(issues, 1):
         where = i.get("sheet") or ""
         if i.get("row"):

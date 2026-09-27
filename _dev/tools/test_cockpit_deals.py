@@ -171,7 +171,7 @@ class DealsTests(unittest.TestCase):
         self.add(self.looked_up(seed="beta-holdings"))
         self.runs.account_action("austin", {"action": "token", "token": TOKEN})
         for _ in range(2):
-            self.runs.job_action("beta-holdings", "austin", {"action": "extract"})
+            self.runs.job_action("beta-holdings", "austin", {"action": "extract", "engine": "opus55"})
             self.settle(lambda: all(job["state"] in worker.TERMINAL for job in self.runs.jobs("beta-holdings")["jobs"]))
         jobs = self.runs.jobs("beta-holdings")["jobs"]
         self.assertEqual([job["state"] for job in jobs], ["completed", "completed"], jobs)
@@ -197,7 +197,7 @@ class DealsTests(unittest.TestCase):
         with self.assertRaises(Conflict): self.deals.visibility("alpha-deal", "austin", {"action": "unhide"})
         # A queued or running job on the deal blocks hiding.
         self.runs.account_action("austin", {"action": "token", "token": TOKEN})
-        job = self.runs.job_action("alpha-deal", "austin", {"action": "extract"})["jobs"][0]
+        job = self.runs.job_action("alpha-deal", "austin", {"action": "extract", "engine": "opus55"})["jobs"][0]
         with self.assertRaises(Conflict) as caught: self.deals.visibility("alpha-deal", "alex", {"action": "hide"})
         self.assertIn("still going", str(caught.exception))
         conn = sqlite3.connect(self.ws.db_path)
@@ -207,7 +207,7 @@ class DealsTests(unittest.TestCase):
         self.assertEqual((result["hidden"], result["hidden_by"]), (True, "alex"))
         self.deals.visibility(added, "austin", {"action": "hide"})
         with self.assertRaises(Conflict): self.deals.visibility("alpha-deal", "austin", {"action": "hide"})
-        with self.assertRaises(Conflict) as caught: self.runs.job_action("alpha-deal", "austin", {"action": "extract"})
+        with self.assertRaises(Conflict) as caught: self.runs.job_action("alpha-deal", "austin", {"action": "extract", "engine": "opus55"})
         self.assertIn("unhide the deal first", str(caught.exception))
         # Nothing else changes, the flag survives a new process, and the deal still opens.
         fresh = data.Cockpit(self.root)
@@ -222,7 +222,7 @@ class DealsTests(unittest.TestCase):
         self.assertEqual((result["hidden"], result["hidden_by"], result["hidden_at"]), (False, None, None))
         self.assertEqual(self.cockpit.trace.activity("alex", "alpha-deal")["items"][0]["summary"], "Unhid the deal")
         self.assertEqual({slug: d["hidden"] for slug, d in listed().items()}, {"alpha-deal": False, added: True})
-        self.assertEqual(self.runs.job_action("alpha-deal", "austin", {"action": "extract"})["jobs"][0]["state"], "queued")
+        self.assertEqual(self.runs.job_action("alpha-deal", "austin", {"action": "extract", "engine": "opus55"})["jobs"][0]["state"], "queued")
 
     # ---- HTTP ------------------------------------------------------------------------------
 

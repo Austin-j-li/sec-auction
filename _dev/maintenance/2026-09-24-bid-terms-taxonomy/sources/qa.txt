@@ -1,0 +1,773 @@
+P1: Questions & Answers — M&A Bidding Extraction (living document)
+
+P2: One conversation in one place. Blue text is Austin, red text is Alex, and black text is Alex's original question. Each question has its own heading, with every reply underneath it in date order and labelled with who wrote it and when. To reply, just type under the question in your own colour; the whole file is ordinary editable Word text, so nothing needs to be unlocked first. When a new round of answers arrives it gets its own dated heading under the question it answers.
+
+P3: M&A Bidding Extraction Pipeline
+
+P4: Q1 — Same output across runs
+
+P5: Step 2. Does LLM always produce the exact same output or is there variation across runs? I think this is answered in Determinism and reproducibility.
+
+P6: Austin — 2 Aug 2026
+
+P7: No. The LLM does not produce exactly the same output on every run. The extraction request sets no temperature, and the providers use models that can vary their answers. A new run may therefore change the wording, the quote selected, or the number of claims. The comparison program in pipeline/stability.py measures this variation across saved runs. The current release report, quality_reports/stability/target-release-proof.json, classifies the reference set as STABLE_FOR_REFERENCE_REVIEW. That classification allows the content to vary but does not allow the required output structure to change. After extraction, the remaining steps are fixed computer instructions. If we create the CSV again from unchanged snapshots, the resulting file is identical word for word.
+
+P8: Austin — 7 Aug 2026
+
+P9: The same accepted records reproduce the same ledger. A fresh language-model reading can differ in wording or in which facts it selects, so this delivery rests on the preserved reviewed records and their filing quotations rather than on a new reading.
+
+P10: Q2 — Paragraphs split across pages
+
+P11: Step 2. Does LLM understand page numbers which can “break” the paragraph? What if, e.g., a part of info about a bid is on page 35 and a part – on page 36, and it is the same paragraph in the background? Would LLM recognize this as a single paragraph and glue together ‘claim’ information?
+
+P12: Austin — 2 Aug 2026
+
+P13: The model receives paragraphs one page at a time, so one evidence quote cannot cross a page boundary. If it tries to join text from two page units into one quote, the computer rejects the quote and instructs the model to provide a separate evidence reference for each unit. A single claim can still cite several pieces of evidence. Each piece must quote its own page exactly. That is how the system captures a fact that continues onto another page. In the CSV, the pages and quotes are separated by vertical bars. One Providence & Worcester bid row, for example, has evidence_page 36 | 36 | 37. The system does not combine the page fragments into a new paragraph that was not present in the filing.
+
+P14: Alex — follow-up, Aug 2026
+
+P15: Isn’t this a problem? Say, page 36 has a fact date and page 37 has the fact (e.g., a bid). Would this not then lead to a recorded fact without a date? Or, page 36 has a bid and page 37 has contingencies, making it informal? Would this bid instead be recorded as a formal bid?
+
+P16: Austin — 7 Aug 2026
+
+P17: The 2 August answer misstated this point. The full Background section is read together, so a sentence continued on the next page remains available during the same reading.
+
+P18: Across the 44 deals, the Background section runs from 3 to 35 pages, with a median of 9. A single quotation must still appear word for word on the page it cites, but one row may use several quotations from different pages. Quotations drawn from more than one page occur on 118 of the 2,067 rows, or 5.7 percent.
+
+P19: A manual check of 40 undated bid and process rows found no missed date caused by a page break. The same check confirmed that bid_characterization does not determine formality. It records non_binding on 123 rows and is blank on the other 390 bid rows.
+
+P20: The remaining limitation is narrower. A condition not captured with the bid cannot support a later classification. What does this sentence mean? Because the 40-row check found no page-break loss, no change to the extraction method was needed. The same check can be repeated on a future ledger if the records change.
+
+P21: Q3 — Rows dropped by evidence.py
+
+P22: Step 3. How many rows (per deal) are tossed by evidence.py? These do not make it to the CSV, right? – ok, picture for Step 3 is clear.
+
+P23: Austin — 2 Aug 2026
+
+P24: The 44 current extraction snapshots contain 3,309 claim decisions: 3,308 claims have supporting evidence and 1 was rejected. The rejection is in sanderson-farms-inc and carries the reason code evidence_ref_binding_failed. A rejected claim never enters the CSV. Every row must have a quote that the computer can find word for word in the filing, and the spreadsheet includes only claims whose current decision permits publication. A failed evidence check therefore produces no row, rather than a row with weaker evidence.
+
+P25: Austin — 7 Aug 2026
+
+P26: A proposed fact does not enter the ledger unless its supporting words can be found in the cited filing passage.
+
+P27: Q4 — Mixed strategic and financial groups
+
+P28: Step 4. Should a group with strategic and financial stay “mixed”? On one hand, the PE buyer is likely leading the deal, levering the target up; on the other hand, synergies will be extracted by having a strategic co-investor. 
+
+P29: Austin — 2 Aug 2026
+
+P30: The allowed values in the classification column bidder_class are financial, strategic, mixed, unknown, and not_applicable. Mixed is kept as its own category, and 68 rows use it. The bidder rulebook, rules/bidders.md, treats a consortium as one bidding unit. We mark it mixed only when the filing supports a combination such as a private-equity sponsor bidding with a corporate operator. Consortium members receive separate rows only if the filing describes separate bidding conduct by those members. Otherwise, the group remains mixed in the data.
+
+P31: Austin — 7 Aug 2026
+
+P32: The ledger keeps mixed as a separate bidder class. It appears on 73 rows. A consortium is marked mixed when the filing supports both a financial sponsor and a strategic participant in the same bidding group.
+
+P33: This preserves the factual composition of the group. The estimation can later treat mixed groups separately, combine them with financial bidders, or test both choices. The ledger does not decide whether leverage or operating synergies dominate.
+
+P34: Q5 — Where bid values are stored
+
+P35: Step 6. canonical_graph_node.json: where is the bid value stored? Or range of bids, when informal? Or info on formal/informal? Became clear later.
+
+P36: Austin — 2 Aug 2026
+
+P37: The column bid_value holds a single bid amount. The columns bid_value_lower and bid_value_upper hold the lower and upper ends of a range, and bid_value_unit tells the reader how to interpret the amount. Of 488 bid rows, 336 contain a value or range: 262 contain a single value and 74 contain a range. The units are per_share (299), enterprise_value (14), and unspecified (25).
+
+P38: The column formality records whether the bid is formal or informal, while formality_basis explains how that label was assigned. Among the bid rows, 460 are informal and 28 are formal. The filing itself supports 149 labels through stated_characterization or stated_round_kind. The others are clearly marked project rules: assumed_default_informal 285, assumed_range_rule 32, and assumed_markup_rule 22.
+
+P39: Alex — follow-up, Aug 2026
+
+P40: What kind of information do bid rows without a value or range contain?
+
+P41: There are currently 44 “extraction snapshots” (i.e., deals) and only 28 formal bids? That does not make sense, the number of formal bids should be greater than or equal to 44. My understanding is there are, in expectation, 1.3-1.4 formal bids per auction, so it is not unreasonable to expect about 60 formal offers. Suggest that my data collection is checked directly against the AI data collection for 9 original deals to understand where the AI is misled. One guess: in auctions with one round (that starts with informal bids then smoothly moves to formal bids without rounds or deadlines) too many bids are classified as informal by the AI.
+
+P42: Austin — 7 Aug 2026
+
+P43: Of the 513 bid rows, 317 contain a value or range. There are 238 single-value rows and 79 range rows. The other 196 rows still contain bidding events, dates, parties, stages, scope, solicitation, consideration, and filing evidence even though the filing does not provide a usable amount.
+
+P44: The current formality counts are 98 formal, 383 informal, and 32 not_stated. The formal rows consist of 89 formal bid_submitted rows and 9 formal IOI rows.
+
+P45: The basis is assigned through this plain-language ladder:
+
+P46: On 128 rows, the filing itself characterizes the bid.
+
+P47: On 5 rows, the filing states the kind of round.
+
+P48: On 265 rows, two independent readers agree after examining the quoted filing passage. The ledger marks these dual_read_agreement.
+
+P49: On 45 rows, the marked range rule applies.
+
+P50: On 23 rows, a bid dated on or after an announced final-round deadline or announcement, with no process restart between, defaults to formal. The basis is assumed_final_round_window_rule. A filing statement or a dual-read agreement still outranks this rule.
+
+P51: If on or after a deadline, a bid is submitted with conditions (e.g., additional due diligence), how is it recorded? One reading: this is an informal bid. Another reading: this is a formal bid (since it is final, has a mark-up, etc.) but we also record that it is conditional. I think the second reading gives us more flexibility to later interpret conditional formal bids as formal or informal.
+
+P52: On 37 rows, another marked assumption rule applies: 20 markup-rule rows and 17 winner-rule rows.
+
+P53: On 10 rows, nothing in the filing supports another label, so the row stays at the marked informal default.
+
+P54: Thirteen formality values were corrected in the August audit, each from a specific filing passage recorded in the delivered correction log (corrections_log_2026-08-07.csv). In the ledger those rows carry the ordinary basis that now applies, such as stated_characterization; the visible audit_stamp_2026_08 marking appears on corrected round and payment-form values, not on formality.
+
+P55: The 32 not_stated rows record that the filing evidence does not establish formal or informal. If the study requires a strictly binary field, those rows need an explicit research convention or human decision.
+
+P56: The benchmark you suggested was about 1.3 to 1.4 formal bids per auction. The ledger has 89 formal bid_submitted rows over 44 deals, or about 2.0 per auction. The other 9 formal rows are IOIs.
+
+P57: I do not understand how IOIs can be formal.
+
+P58: 28 formal bids before was a very small number; 89 (+9 IOI) formal bids now seems very large. I guess the right question to ask is, what is the number of unique bidders, across 44 deals, that have submitted formal bids. It is possible that a single bidder submits a sequence of formal bids with small adjustments at the end of the auction process (final negotiations), and this blows up the number of formal bids.
+
+P59: Your eight workbook deals: formal-bid reconciliation
+
+P60: The comparison uses formal rows across the bid family, including both bid_submitted and ioi_submitted rows.
+
+TABLE 1
+
+Deal | Shipped | Refreshed | Workbook reconciliation
+
+Providence and Worcester | 4 | 1 | Classification difference: revised LOI in a non-binding round
+
+Medivation | 2 | 2 | No documented residual
+
+Imprivata | 1 | 2 | No documented residual
+
+Zep | 1 | 1 | No documented residual
+
+PetSmart | 4 | 4 | No documented residual
+
+Penford | 0 | 2 | Classification difference: revised indication of interest
+
+Mac- Gray | 1 | 6 | No documented residual
+
+Saks | 2 | 2 | No documented residual
+
+Eight-deal total | 15 | 20 | 21 formal entries
+
+P62: Your workbook contains 21 formal entries for these eight deals. After reconciling row grain and the underlying filing evidence, the two residual differences are classification differences under this ledger’s rule that the filing’s own words control: the workbook counts the Penford Ingredion letter as formal where the filing describes a revised indication of interest confirmed orally, and counts a Providence and Worcester revised LOI as formal although it was submitted in a round the filing describes as expressly non-binding. The underlying passages are quoted in the ledger rows for those deals, so both readings can be compared directly. STEC is absent from the workbook, so the nine-deal check is an eight-deal check.
+
+P63: What is LOI? Letter of interest? Or a mistype of IOI?
+
+P64: STEC is in the workbook.
+
+P65: Q6 — Who counts as the actor
+
+P66: actor_claims: if the target initiates the sale process, is it not the “actor”? If not, who is the actor in this case? Who is the “actor” when the target hires an investment bank or legal advisor?
+
+P67: Austin — 2 Aug 2026
+
+P68: The party acting in a row appears in party_name, and row_unit says whether that party is a bidder, a cohort, or the deal itself. If the target starts the process, the initiation row has initiation_mode=target_board_decision. There are 57 such rows, with the board or company named as the party.
+
+P69: When the target hires an investment bank or legal adviser, the event is recorded as advisor_retained, and the adviser is the party on that row. The column review_label shows the direction of the engagement, for example, “Advisor Retained: GHF / the Company.” The column advisor_role identifies the adviser as financial or legal.
+
+P70: Austin — 7 Aug 2026
+
+P71: The actor is the party performing the event on that row. If the target begins the sale process, the target company or its board is the actor on the initiation row.
+
+P72: If the target hires an investment bank or legal adviser, the adviser is the named party on an advisor_retained row. The new retaining_side column states which side retained that adviser, as target, bidder, other, or unclear, and advisor_role states whether the adviser is financial, legal, or other.
+
+P73: Q7 — event_claims and event_subtype (subparts a–j below)
+
+P74: event_claims, event_subtype:
+
+P75: Q7a — Where advisers are recorded
+
+P76: Where do we collect info about financial and legal advisors? (Necessary Steps 1. in CollectionInstructions_Alex_2026) and press releases? (Necessary Steps 3. in CollectionInstructions_Alex_2026).
+
+P77: Austin — 2 Aug 2026
+
+P78: Advisers appear on rows devoted to adviser events. There are 282 advisor_retained rows and 3 advisor_terminated rows. The advisor_role column divides them into financial (89), legal (116), other (7), and untyped (73).
+
+P79: Facts from press releases appear as sale_process_publicly_announced events, of which there are 12. The rulebook uses that event for public disclosure that a company is for sale, whether through a press release or another public announcement. Press commentary after signing is outside the project’s scope.
+
+P80: Alex — follow-up, Aug 2026
+
+P81: That’s a lot of advisors. My understanding is that in the average deal, there is one legal and one financial advisor.
+
+P82: Austin — 7 Aug 2026
+
+P83: The ledger has 285 adviser-event rows: 282 advisor_retained and 3 advisor_terminated. Their roles are financial on 140 rows, legal on 138, and other on 7. Rows that previously lacked a role were typed where a sibling row named the same adviser and role in the same deal. No untyped adviser rows remain.
+
+P84: These are not 285 different advisers to the target. They cover advisers to targets, boards, buyers, and other bidders. The retaining sides are target on 148 rows, unclear on 75, bidder on 55, and other on 7. The rows also include repeated references to the same relationship. The 285 rows represent 178 distinct deal-and-adviser-name pairs, and the 107 rows beyond a pair’s first mention carry advisor_repeat_mention.
+
+P85: The new target_core_advisor column is true on 145 rows. It identifies the advisers the target retained for the deal at hand, rather than advisers mentioned only in a historical or bidder-side capacity.
+
+P86: This does not make sense. To be updated after manual reading.
+
+P87: Public disclosure that a company is for sale appears as sale_process_publicly_announced. There are 35 such rows. Later press commentary that does not describe a sale-process event is outside this ledger.
+
+P88: This number has increased from 12 to 35, why?
+
+P89: Q7b — Where initiation events are recorded
+
+P90: Where are initiation events recorded? (Bidding Data Collection Instructions 2. in CollectionInstructions_Alex_2026). I can see ‘initiated_by’ in How to review at the end of the document, but it is not mentioned anywhere else.
+
+P91: Austin — 2 Aug 2026
+
+P92: The event code sale_process_initiated marks the beginning of a sale process. There are 155 such rows, and each of the 44 deals has at least one. Each row also carries an initiation_mode, which describes how the process began: bidder_interest_only (74), target_board_decision (57), bidder_approach (19), or activist_pressure (5).
+
+P93: The current spreadsheet has no initiated_by column. Instead, process_initiator gives one deal-level answer copied from the earliest initiation event. It identifies the initiator as bidder for 26 deals, target for 16, and activist_shareholder for 2.
+
+P94: Alex — follow-up, Aug 2026
+
+P95: We have to be careful about “bidder_interest_only.” Sometimes, a bidder’s CEO simply has a talk with the target’s CEO and they discuss interest in cooperation, not in a merger. Sometimes, a bidder expresses interest in a target’s division or asset. These are not indicative of a merger. Similarly, “bidder_approach” (which I assume is an unsolicited bid?) can be for a division of asset of a target.
+
+P96: “process_initiator” is a judgement variable, where we use some judgement to decide who initiated the process. One way to construct it is to take the earliest initiation event. Another way is to ignore “bidder_interest_only” as too weak of an initiation move. This variable is important, but it is not a “fact”; I am wondering if it is better to re-generate it in the estimation code depending on the robustness check that we will run.
+
+P97: Austin — 7 Aug 2026
+
+P98: The event sale_process_initiated appears on 128 rows across 43 deals. The initiation modes are target_board_decision on 61 rows, bidder_interest_only on 39, bidder_approach on 24, and activist_pressure on 4.
+
+P99: This comment is not just for these data but overall for the change in various numbers from Aug 2 to Aug 7. It seems that data collection went through some dramatic changes in these five days, and the AI appears to interpret the data very differently, producing very different numbers. This was true for # of formal bids and now for the split of sale_process_initiated among modes. This makes the job of a human checking the quality of data collection difficult (and such a check is necessary given how unstable the numbers are), as essentially a full re-read of deal backgrounds is required.
+
+P100: At the deal level, process_initiator is bidder for 22 deals, target for 20, activist_shareholder for 1, and unknown for 1.
+
+P101: This is partly a research-design choice. A bidder_interest_only event can be too weak to count as the start of a sale process, and an approach can concern only an asset or division. initiation_mode preserves what the filing describes without deciding that a whole-company auction began.
+
+P102: initiation_mode does not seem to include info on what was mentioned earlier, “Sometimes, a bidder’s CEO simply has a talk with the target’s CEO and they discuss interest in cooperation, not in a merger. Sometimes, a bidder expresses interest in a target’s division or asset. These are not indicative of a merger. Similarly, “bidder_approach” (which I assume is an unsolicited bid?) can be for a division of asset of a target.” Where is this information stored?
+
+P103: The present process_initiator measure uses the earliest initiation event. A stricter version can exclude bidder_interest_only and require a stronger step. The ledger preserves the underlying events so either definition can be used in the empirical work.
+
+P104: Q7c — The target's investment bank
+
+P105: Where do we collect info about the investment bank hired by the target? (Bidding Data Collection Instructions 3. in CollectionInstructions_Alex_2026)
+
+P106: Austin — 2 Aug 2026
+
+P107: At the event level, the target’s investment bank appears on an advisor_retained row with advisor_role=financial. There are 89 such rows. At the deal level, the separate adviser spreadsheet, output/review_csv/advisor_panel_all44.csv, gives one line per deal. Its columns has_financial_advisor, financial_advisor_names, retained_by, ib_retained_date, and days_from_process_start let a reader find the target’s bank without searching through the event rows.
+
+P108: Austin — 7 Aug 2026
+
+P109: Filter to event_code=advisor_retained and advisor_role=financial, then read retaining_side to identify the retaining party; the label text no longer has to be parsed by hand. There are 137 such rows: 73 retained by the target, 50 where the filing does not make the side clear, 13 by a bidder, and 1 by another party. The total should not be read as 137 banks hired by targets.
+
+P110: Then how should the total be read? The number does not make sense.
+
+P111: Q7d — Filtering out partial-company bids
+
+P112: What is the filter that allows to filter out bids for less than the entire company? (These do not compete against bids to sell the entire company).
+
+P113: Austin — 2 Aug 2026
+
+P114: No filter deletes these bids. The system records their scope in a column so the reader can choose which rows to include. The column bid_scope uses the values whole_company, partial, and not_stated. Two independent models judge the bid from the quote on that row. A recorded value therefore has bid_scope_basis=dual_read_agreement, meaning that both models agreed. This assessment currently covers 100 bid rows in four deals. Bids in the other 40 deals remain blank until they are assessed. An analysis can exclude partial bids by filtering on bid_scope.
+
+TABLE 2
+
+Deal | whole_company | partial | not_stated
+
+meredith-corp | 0 | 31 | 10
+
+bowl- america - inc | 14 | 7 | 6
+
+kraton-corp | 21 | 6 | 0
+
+kindred-biosciences- inc | 3 | 2 | 0
+
+Total | 38 | 46 | 16
+
+P116: Alex — follow-up, Aug 2026
+
+P117: Meredith has no bids for the whole company? I will check this manually.
+
+P118: Austin — 7 Aug 2026
+
+P119: No filter deletes these bids. The bid_scope column lets the reader exclude partial rows. Of the 513 bid rows, 510 have a scope judgment: 460 whole_company and 50 partial. The remaining 3 are blank.
+
+P120: All 30 scoped Meredith bid rows remain partial under the current definition. The offers covered the whole National Media Group sale perimeter, but not the whole listed parent, which also held a broadcast segment being separated.
+
+P121: For this delivery, a bid is whole_company only if it covers the whole pre-transaction company. A bid for the entire divested perimeter therefore remains partial. This is a disclosed research convention and can be changed for a study that defines the relevant company as the sale perimeter.
+
+P122: What is a sale perimeter? In any case, to be checked manually.
+
+P123: Q7e — One or several formal rounds
+
+P124: How can we see if a process only has one round of formal bidding or multiple rounds of formal bidding? And relatedly:
+
+P125: Austin — 2 Aug 2026
+
+P126: For bid rows, round_index gives the round number, round_label gives its label, round_basis explains how the round was identified, and round_start_date and round_end_date give its dates. When the filing names the round, that label controls. This occurs on 53 bid rows. When the filing does not name it, the sequence of events supplies the number, which occurs on 83 bid rows.
+
+P127: Seventeen deals have bids assigned to rounds: 4 deals have one round, 6 have two, 5 have three, and 2 have four. Events that mark round boundaries support this structure: first_round_deadline_set 25, final_round_announced 26, final_round_deadline_set 17, and final_round_extended 2. The checking script scripts/check_round_order.py confirms three rules for each deal. Round numbers cannot fall as dates move forward, rounds on the same date cannot appear in the wrong sequence, and a bid cannot occur before its own round. The current ledger passes this check across 44 deals with zero flagged rows.
+
+P128: Alex — follow-up, Aug 2026
+
+P129: [Alex] To be checked manually, this is critical
+
+P130: Austin — 7 Aug 2026
+
+P131: The direct check is to filter formality=formal, then count distinct round_index values within each deal. A round label does not itself make a bid formal.
+
+P132: The ledger assigns a round index to 173 bid rows across 26 deals. The round_basis values are stated on 63 rows, inferred on 97, and audit_stamp_2026_08 on 13. The August audit assigned rounds that the filing supports but the extraction missed.
+
+P133: Among formal bids, 56 rows across 23 deals have a round index. In 19 deals, those formal bids appear in one indexed round. In 4 deals, they appear in 2 indexed rounds. The other 42 formal bid rows have no round index, so the ledger alone does not classify every auction as having one or several formal rounds.
+
+P134: This is therefore a field for careful manual review when the number of formal rounds is central to the analysis.
+
+P135: Q7f — First round, final round, formality
+
+P136: What is ‘first_round_bid’ and ‘final_round_bid’? Is this ‘informal’ and ‘formal’? Or is ‘ioi_submitted’ = ‘informal’ and ‘first_round_bid’ and ‘final_round_bid’ refer to formal offers only? (as we have seen in some deal backgrounds, there can be several rounds of formal bidding if the process is extended by the target). It is important to clear out this terminology, because much of the project is about figuring out whether the ‘informal bid’ stage is value-creating or whether the target should straight away move to the ‘formal bid’ stage or the sequence of such stages.
+
+P137: Okay, partially resolved. In the CSV manual, “The IOI is treated as a first-round-bid event; first-round bids are informal by convention in the projection map.” This still leaves a question of whether formal bidding has multiple rounds.
+
+P138: Austin — 2 Aug 2026
+
+P139: The current spreadsheet has no first_round_bid or final_round_bid columns. The round_index column records which round a bid belongs to. The separate columns formality and formality_basis record whether the bid is formal or informal and why. A round or stage label therefore does not determine formality.
+
+P140: The column bid_stage repeats the filing’s own description of a bid as initial (44), revised (136), or final (49). It is blank on 259 bid rows because those filings do not characterize the bid. An indication of interest is recorded as a separate event code, ioi_submitted (88 rows), rather than as a stage. All 88 are currently informal. Each carries the marked basis assumed_default_informal, so the reader can see that this is a project rule rather than a statement in the filing.
+
+P141: Alex — follow-up, Aug 2026
+
+P142: It should be possible to classify all bids into formal and informal. Is the AI capable of achieving this, i.e., is formality always “formal” or “informal”? If not, perhaps some fine tuning is required. The lack of classification should return the row to the human for a review. – I think this is addressed in Event Ledger CSV.5.
+
+P143: Austin — 7 Aug 2026
+
+P144: These are separate concepts:
+
+P145: round_index says where a bid sits in the auction sequence.
+
+P146: bid_stage repeats the filing’s description of a bid as initial, revised, or final.
+
+P147: event_code=ioi_submitted identifies an indication of interest.
+
+P148: formality says formal, informal, or not_stated.
+
+P149: An initial bid is not automatically informal. A final bid is not automatically formal. A bid in the first round can be formal, and a later bid can remain informal if the filing does not support formality.
+
+P150: The ledger has 145 IOI rows. Of these, 135 are informal, 9 are formal, and 1 is not_stated. The formal IOIs are final-round indications, mostly in Mac-Gray, under the final-round-window rule and August audit corrections. Across all 513 bid rows, the formality field is never blank, but 32 rows remain not_stated rather than being forced into a binary label.
+
+P151: I will need to check Mac-Gray manually.
+
+P152: Q7g — Withdrawal, exclusion, and rounds
+
+P153: Do we know after which round a bidder withdraws or the target removes it? How? advancement_admitted and advancement_declined? How do these tie to round number? And how is advancement_declined different from excluded_by_target?
+
+P154: Austin — 2 Aug 2026
+
+P155: Rows about bidder exits and advancement use round_context to place the event within the deal’s round structure. The system does this only when the filing supplies round boundaries. The companion column round_context_basis explains the placement. The value stated_window appears on 31 rows whose date falls inside a stated round window. The value derived_from_deadlines appears on 46 rows placed between stated deadline events.
+
+P156: There are 325 exit and advancement rows. The system places 77 of them: 28 in the final round, 18 in the first round, 16 in round 2, 8 in round 3, and 7 in round 1. The other 248 stay blank because no stated boundary places them. The event not_advanced, used on 33 rows, records a decision at a round boundary and covers both a bidder that was not invited and a bidder that declined to advance. The event target_excluded, used on 26 rows, records removal by the target. Those rows have dropout_side=target, and the removal can occur outside a round decision.
+
+P157: Alex — follow-up, Aug 2026
+
+P158: What if a bid does not have a date but chronologically (from the deal background) can only belong to round N? Does the last sentence of the above paragraph address this?
+
+P159: Does this mean that out of 325 exit and advancement rows, there are only 33 exit rows? It does not seem so given the answer to 7h., so what is “not_advanced”?
+
+P160: Austin — 7 Aug 2026
+
+P161: There are 235 exit and advancement rows: 173 dropout rows and 62 advancement rows. A round context is assigned on 80 of them. The placements are first on 33 rows, round 1 on 24, round 2 on 11, final on 11, and round 3 on 1. The other 155 remain blank.
+
+P162: How is first different from round 1?
+
+P163: An exact event date is not always required. When the filing’s chronology places an undated event within a round, round_context_basis=narrative_placement records that basis. It appears on 20 rows. The system leaves the field blank when neither a date boundary nor the narrative supports a placement.
+
+P164: not_advanced is not the count of all exits. It appears on 29 of the 62 advancement rows and records that a bidder did not proceed at a round boundary. target_excluded appears on 18 dropout rows and records an affirmative removal by the target. Other dropout rows cover bidder withdrawal, no response, and cohort attrition.
+
+P165: This is confusing. Let me try to unpack this with my understanding.
+
+P166: In 29 of 62 cases, the bidder is invited to proceed but does not. Supposedly there is some evidence, i.e., dropout_reason applies to these cases similarly to how it applies to dropout rows?
+
+P167: In the remaining 33 of 62 cases, the bidder is invited to proceed and does proceed. Should not this number be at least 44, since this is the number of deals currently collected?
+
+P168: Q7h — Reasons for bidder withdrawal
+
+P169: How are reasons for bidder withdrawal recorded? E.g., in Bidding Data Collection Instructions 6. in CollectionInstructions_Alex_2026, there are fields ‘Drop’, ‘DropBelowM’, ‘DropAtInf’, ‘DropBelowInf’. In principle, a target can, in some cases, also provide reasons. I can see ‘dropout_reason’ of ‘valuation’ in How to review at the end of the document, but it is not mentioned anywhere else.
+
+P170: Okay, the CSV manual addresses this. 
+
+P171: Austin — 2 Aug 2026
+
+P172: The column dropout_reason records the reason stated in the filing. The spreadsheet carries the filing’s own description into a defined category and does not guess from keywords. Across 225 dropout rows, the counts are unknown 148 (the filing gave no reason), other_stated 26, strategic_fit 22, price_insufficient 18, at_prior_indication 4, below_prior_indication 3, below_market 2, terms_disagreement 1, and financing_unavailable 1. A separate column, dropout_side, records who caused the exit: bidder 126, target 26, no_response 24, and mixed_or_unknown 49.
+
+P173: Austin — 7 Aug 2026
+
+P174: The earlier answer stands: dropout_reason records the filing’s stated reason, dropout_side records who caused the exit, and unknown is used when the filing is silent.
+
+P175: Q7i — How the final round ended
+
+P176: How do we know if the final round ended with a deadline or continued until only one bidder remained? (Bidding Data Collection Instructions 7. in CollectionInstructions_Alex_2026). This is kind of the difference between FPA and English auction. This seems useful to record because we are interested in which sale format works better.
+
+P177: Austin — 2 Aug 2026
+
+P178: The deal-level column final_round_end_condition records ended_at_deadline when the final round ended at a deadline and ended_by_attrition when it continued until bidders dropped out. It records not_stated when the closing account does not establish either result or when the two readers disagree. The chosen value is repeated on every row of an assessed deal.
+
+P179: Sixteen deals have been assessed. All have final_round_end_basis=dual_read_agreement, which means the two models agreed. The value ended_at_deadline appears in medivation, petsmart-inc, corepoint-lodging-inc, raven-industries-inc, and c-a-i-international-inc. The value ended_by_attrition appears in imprivata, stec, mcafee-corp, sanderson-farms-inc, and qad-inc. The value not_stated appears in m-g-c-diagnostics-corp, kraton-corp, bowl-america-inc, ferro-corp, meredith-corp, and talend-sa. The remaining 28 deals are blank until they are assessed. The record file state/enrichments/final_round_end.jsonl stores the filing quote behind each judgment.
+
+P180: Alex — follow-up, Aug 2026
+
+P181: I suspect that “not_stated” is probably without a deadline, but will read deal backgrounds to know better. Anyhow, how to classify “not_stated” is a judgement, and we are collecting facts for now.
+
+P182: Austin — 7 Aug 2026
+
+P183: Two separate fields answer two separate questions.
+
+P184: final_round_end_condition records how the round ended. It is currently populated for 16 deals: 5 ended_at_deadline, 5 ended_by_attrition, and 6 not_stated. Not_stated is not treated as ended_by_attrition. It means the filing does not establish either mechanism.
+
+P185: The final-round-end date review covers all 44 deals. In 37 deals, both readers agreed on an end date and a verbatim filing quote. In 7 deals, the readers disputed the endpoint. These are all small date gaps in the process chronology: 6 disagreements are 1 to 5 days apart, and in 1 case one reader abstained. The 7 cases sit in the dispute queue.
+
+P186: An agreed date does not by itself establish whether the process ended at a deadline or by attrition. That is why the date and condition remain separate.
+
+P187: Q7j — Multiple sale processes per target
+
+P188: Do we collect information about multiple sale processes for the same target, as outlined in Bidding Data Collection Instructions 9. in CollectionInstructions_Alex_2026?
+
+P189: Austin — 2 Aug 2026
+
+P190: The counting column process_cycle begins at 1. It increases only when a process_restarted event shows that the sale process as a whole began again and both independent readers agree with that classification. A pause and return involving only one bidder does not increase the count. Every row carries its cycle number, so a reader can separate the processes for one target by filtering on process_cycle. Seven deals have more than one cycle in the current ledger:
+
+TABLE 3
+
+Deal | Target | Cycles
+
+bowl- america - inc | BOWL AMERICA INC | 2
+
+c-a- i -international- inc | C A I INTERNATIONAL INC | 2
+
+lecroy-corp | LECROY CORP | 2
+
+mcafee-corp | MCAFEE CORP | 2
+
+synacor-inc | SYNACOR INC | 2
+
+talend-sa | TALEND SA | 2
+
+zep | ZEP INC | 3
+
+P192: A judgment call for you: the current rule takes a conservative view of one pattern, and three deals sit at the boundary. In each deal, the sale process stopped for everyone. Later, one bidder returned, and that bidder’s new approach led to the signed deal. The rule keeps these deals at cycle 1 because only a single bidder came back. For Art Technology Group, buyer Company H returned in October 2010, roughly two years after the board ended the exploration in 2008. For Thomas & Betts, ABB renewed discussions in January 2012 after the process had stopped. For Cloudera, senior management paused ongoing discussions with several parties, and discussions began again in February 2021. Which of these, if any, would you count as a second sale process? We can flip the classification and regenerate the spreadsheet quickly, the same day, without redoing any extraction.
+
+P193: Alex — follow-up, Aug 2026
+
+P194: [Alex] To be returned to Austin’s answer, I have not thought about it yet
+
+P195: Austin — 7 Aug 2026
+
+P196: The process_cycle column increases only when the sale process as a whole restarts. The current ledger has 6 deals with more than one cycle: Bowl America, C.A.I. International, Sanderson Farms, Synacor, Talend, and Zep.
+
+P197: You also asked how to treat a bidder that returns after the process stops. In these cases, the bidder’s renewed approach leads to the signed transaction. The current rule keeps the following deals in one cycle:
+
+P198: Art Technology Group, where Company H returned after the board ended its exploration.
+
+P199: Thomas & Betts, where ABB renewed discussions after the process had stopped.
+
+P200: Cloudera, where management paused discussions with several parties and discussions later began again.
+
+P201: For this delivery, a returning bidder alone does not create a second process cycle. A second cycle requires a restart of the sale process as a whole. This is a disclosed research convention.
+
+P202: To be manually checked.
+
+P203: Q8 — What bid_stage means
+
+P204: bid_claims, bid_stage: how does this map into ‘first_round_bid’ and ‘final_round_bid’? Does ‘initial’ mean ‘informal’ or ‘ioi’ or ‘formal first round’? Again, it is important to clear out this terminology.
+
+P205: Austin — 2 Aug 2026
+
+P206: The column bid_stage gives the filing’s own description of a particular bid: initial, revised, or final. It stays blank if the filing gives no description. It does not identify the bidding round. The column round_index serves that purpose, so a bid called “final” in the filing can still fall in round 1.
+
+P207: The value initial does not mean informal, and it does not mean an indication of interest. An indication of interest has its own event code, ioi_submitted. Formality appears in a separate column and has its own basis. On bid rows, the stage column follows the same pattern: initial 44, revised 136, final 49, and unknown 171 for bids whose stage is not stated. IOI rows carry stage=initial. The values first_round and final_round appear on participation-count rows, not on bid rows.
+
+P208: Austin — 7 Aug 2026
+
+P209: The bid_stage column repeats the filing’s own description of a bid. Among the 513 bid rows, it is initial on 55, revised on 129, final on 41, and blank on 288.
+
+P210: It does not identify the round or formality. Those are recorded separately in round_index and formality. IOI is also separate: the 145 ioi_submitted rows use stage=initial, but their bid_stage is blank.
+
+P211: Event Ledger CSV
+
+P212: CSV Q1 — Participation counts and timing
+
+P213: What one row represents, ‘participation counts come last’: would this mess with the timing of events since advancements/dropouts happen before on the same event_date?
+
+P214: Austin — 2 Aug 2026
+
+P215: The ordering does not change the timing. The columns event_date and assigned_date hold dates, while event_order controls only the order in which rows are displayed. Within a single date, the events appear first in the sequence described by the filing. The head counts then appear at the bottom in funnel order: contacted, NDA signed, IOI, first round, final round. Advancement and dropout events on the same date keep their own dates and their place in the account.
+
+P216: All 194 participation-count rows are undated counts of unnamed parties and have order_basis=narrative, meaning that the filing’s narrative supplies their display position. Placing those counts among events involving named parties would suggest that they happened at the same moment, which the filing does not say. That is why they appear last.
+
+P217: Alex — follow-up, Aug 2026
+
+P218: Okay, event_order without a date should use order_basis=narrative and be placed between events with dates. This is sensible; a cursory look at the new database appears to suggest that events are now properly ordered. Still to be carefully checked manually, of course.
+
+P219: Austin — 7 Aug 2026
+
+P220: event_date and assigned_date hold timing. event_order controls display order only. Events on the same date follow the filing’s sequence, while participation counts appear in funnel order.
+
+P221: All 193 participation-count rows are undated narrative counts and carry order_basis=narrative. Their position should not be read as a precise time within the day.
+
+P222: CSV Q2 — Party C's NDA out of order
+
+P223: Looking at providence-worcester, I note that nda_signed does not have a precise date and hence Party C’s NDA receives event_order = 160, while Party C’s bids receive event_order = 30 and 40. This cannot be right since NDAs should precede formal bids. This probably has to do with the fact that fields without a date are sorted to the bottom of the event chain. Can ‘citation_unit’ order be instead used to recover the order of events without dates? In practice, some of these dates (or at least a range for dates) can be inferred contextually, but it appears that the AI has difficulties with it. Overall, there are 43% of empty date fields in the CSV, a lot of this can be inferred contextually.
+
+P224: Austin — 2 Aug 2026
+
+P225: The filing gives no date for Party C’s NDA. Its quote is: “After executing a confidentiality agreement, Party C was provided the memorandum concerning the Company provided to the other potential buyers.” Under the rule for stated dates, the row receives the placement date ~2016-08-12, limited by the applicable date boundary, and order_basis=narrative. It therefore sorts where the filing mentions it, after Party C’s dated July bids.
+
+P226: The system already used citation order to place the row. Citation order cannot establish an earlier sequence because the filing never states when Party C signed. The leading ~ tells the reader that the date helps order the rows and is not itself a fact from the filing.
+
+P227: Alex — follow-up, Aug 2026
+
+P228: Okay re: Austin’s response, I will still need to check the deal manually against the hand collected dataset.
+
+P229: Austin — 7 Aug 2026
+
+P230: The current ledger places Party C’s NDA immediately before its dated IOI and matching bid. It also contains a separate month-only bid described in the quote as occurring in late July. Because that row carries only a month, its assigned date sorts at the start of July and can appear before the NDA.
+
+P231: That month-only placement is approximate, not a factual claim that the bid preceded the NDA. The quote and date precision should control a manual check of this sequence.
+
+P232: NDAs signed after a first bid
+
+P233: There are 96 NDA-after-first-bid rows. They are mostly genuine later-wave and go-shop signings; only about a fifth are undated-sort artifacts. This generalizes the Party C ordering question answered in CSV section 2.
+
+P234: On the wider point about empty date fields, see “Undated events and date bounds” under Additional notes — 7 Aug 2026.
+
+P235: CSV Q3 — Adviser shown as initiator
+
+P236: In the same deal, it is unclear why event_order = 140 received ‘advisor’ in ‘initiated_by’. This has ‘high’ confidence.
+
+P237: Austin — 2 Aug 2026
+
+P238: The current spreadsheet cannot produce that value. The deal-level column process_initiator allows only bidder, target, activist_shareholder, or unknown. The event-level column initiation_mode allows only the four modes described above. Adviser is not an available value in either place. A check of the data also finds that none of the 155 initiation rows names an adviser as its party. Advisers appear only on adviser-event rows, where advisor_role identifies their role.
+
+P239: Alex — follow-up, Aug 2026
+
+P240: Okay re: Austin’s response.
+
+P241: Austin — 7 Aug 2026
+
+P242: Adviser is not an allowed value in the deal-level process_initiator field. Adviser activity belongs on adviser-event rows, not as the initiator of the sale process.
+
+P243: CSV Q4 — Splitting the adviser roles
+
+P244: ‘advisor’ would be good to split into ‘ib_advisor’ and ‘legal_advisor’.
+
+P245: Austin — 2 Aug 2026
+
+P246: The column advisor_role separates adviser types on adviser-event rows. Across the 285 such rows, it records financial 89, legal 116, other 7, and untyped 73. The system uses the filing’s own description of the adviser and never infers the role. The 73 blanks therefore concern filings that name an adviser without saying what type of adviser it is.
+
+P247: Alex — follow-up, Aug 2026
+
+P248: Okay re: Austin’s response. As in the earlier comment, would like to know why there are so many (285) advisor rows. What facts about advisors do we collect that are not retention (for an average deal, there should be 1 IB and 1 legal advisor)?
+
+P249: Austin — 7 Aug 2026
+
+P250: advisor_role separates financial and legal advisers. The current 285 adviser rows consist of 140 financial, 138 legal, and 7 other rows; no untyped rows remain. retaining_side gives the side that retained the adviser: 148 target, 75 unclear, 55 bidder, and 7 other. advisor_repeat_mention marks the 107 rows that refer again to a relationship already recorded. target_core_advisor is true on 145 rows for advisers the target retained for the deal at hand. The high row count reflects target-side and bidder-side relationships, plus repeated filing references, rather than one bank and one law firm per deal.
+
+P251: CSV Q5 — Formality marked not_applicable
+
+P252: ‘formality’: there are 71% not_applicable fields. Is it because most of the information in the database is not about bids?
+
+P253: Austin — 2 Aug 2026
+
+P254: Yes. Of the 2,189 rows, 1,701 (77.7 percent) are not bids, so their formality is not_applicable by definition. Every one of the 488 bid rows has a formality value: 460 informal and 28 formal. The explanatory column formality_basis shows that 149 labels come from filing statements and 339 come from stated project assumptions. The large informal share therefore reflects mostly a clearly labeled project rule, not a claim that the filing called each bid informal.
+
+P255: Alex — follow-up, Aug 2026
+
+P256: Good to know that every one of the 488 bid rows is either informal or formal. As stated in M&A Bidding Extraction Pipeline.5, though, the number of formal bids is impossibly low. A bidder cannot win an auction with an informal offer.
+
+P257: Austin — 7 Aug 2026
+
+P258: Yes. Of the 2,067 rows, 1,554, or 75.2 percent, are not bid rows, so formality is not_applicable on those rows.
+
+P259: The 513 bid rows are 383 informal, 98 formal, and 32 not_stated. None has formality marked not_applicable or left blank.
+
+P260: The eight-deal check against your hand-collected workbook is set out under Pipeline Q5.
+
+P261: CSV Q6 — Consideration type unspecified
+
+P262: ‘consideration_type’: I am surprised that are are so many ‘unspecified’ and so few ‘stock’ offers. In my experience, there is more precision about this in deal backgrounds, especially in recent years. Perhaps some fine-tuning is required.
+
+P263: Austin — 2 Aug 2026
+
+P264: The column consideration_type is used only on bid rows. Unspecified appears on 171 of 488 rows (35.0 percent) because the filing gives a price but not the form of payment. Fixed computer rules fill the column only from an allowed source: the bid itself states the form on 256 rows, an earlier bid from the same bidder supplies it on 41, the merger outcome supplies it for the winner on 11, and a solicitation or process letter supplies it on 9.
+
+P265: Stock appears on only 6 rows (1.2 percent) because the 44 deals are mainly cash transactions. Cash appears on 268 rows (54.9 percent), and mixed consideration appears on 43.
+
+P266: Alex — follow-up, Aug 2026
+
+P267: Let me take a look, there should be a way to figure out all “unspecified” for formal bids at least. For informal bids, there’s often no way to know – but if our model of bidding requires informal bids to be the bidders’ best estimate of their valuation (including bias from lying), it should not matter whether it’s cash or stock later on, in formal rounds – and hence the knowledge of method of payment for informal bids is irrelevant. If there are many “unspecified” for formal bids then I suspect that either our computer rules are incomplete or it should be clear from context how the offer looks like.
+
+P268: Okay, 6 rows from 488 is fine since most bids are informal, and the method of payment is too early to discuss. 6 rows out of 28 formal offers is more reasonable (of course, there should be more than 28 formal offers, but I have already pointed to this earlier).
+
+P269: Austin — 7 Aug 2026
+
+P270: Across the 513 bid rows, payment form is cash on 336, mixed on 45, stock on 8, and unspecified on 124.
+
+P271: The 8 stock-consideration rows consist of 5 informal rows, 2 formal rows, and 1 not_stated row.
+
+P272: Among the 98 formal bid rows, payment form is cash on 79, mixed on 12, stock on 2, and unspecified on 5.
+
+P273: The 5 unspecified formal rows remain unspecified because their filing evidence does not support a payment form.
+
+P274: A one-fact reading of the opening pages covered all 44 deals and supplied payment form for 29 winning-bid rows. Each row is marked consideration_basis=front_matter_inherited.
+
+P275: Eight exact-row corrections carry consideration_basis=audit_stamp_2026_08. Seven rows represent five offers with contingent payments: two Kraton rows, four Multimedia Games rows representing two offers, and one CorePoint row. The eighth records Soliton’s cash consideration. Each correction is supported by the filing quotation shown on the row.
+
+P276: Together, the opening-page inheritance and exact-row corrections account for 37 rows.
+
+P277: The complete consideration_basis counts are stated on 290 rows, unspecified on 124, front_matter_inherited on 29, inherited_solicitation on 24, inherited_chain on 24, inherited_outcome on 14, and audit_stamp_2026_08 on 8.
+
+P278: Sometimes, this information for the winning bid and winning bid only can be in the ‘Reasons for the Merger’ section of the SEC filing. This section directly follows ‘Deal Background’.
+
+P279: CSV Q7 — initiated_by needs deal-by-deal review
+
+P280: ‘initiated_by’: I will probably need to go deal-by-deal re: this, as there was much more nuance in the 9 deals that I hand-collected than this CSV suggests. As discussed before, this seems like one of the hardest things for the AI to figure out.
+
+P281: Austin — 2 Aug 2026
+
+P282: The current event-level field is initiation_mode, and the deal-level field is process_initiator. The four allowed initiation modes cover all 44 deals: bidder_interest_only (74 events), target_board_decision (57), bidder_approach (19), and activist_pressure (5).
+
+P283: For each bid, bid_solicitation_origin adds a second way to describe how the process began by stating whether the bid was invited. It records solicited 82, unsolicited 53, and unknown 353. The sources are direct filing statements for 56 rows, the rule based on a prior approach for 17, and agreement between two models reading the quote for 62 fills across 8 deals. Details beyond these categories, such as the exact nature of an approach, remain in the evidence quote rather than in a separate coded field.
+
+P284: Alex — follow-up, Aug 2026
+
+P285: Okay re: Austin’s response. See M&A Bidding Extraction Pipeline.7b for relevant questions. I will need to think about bid_solicitation_origin. It may be useful to have.
+
+P286: Austin — 7 Aug 2026
+
+P287: Solicitation origin
+
+P288: The 513 bid rows are 324 solicited, 124 unsolicited, and 65 unknown.
+
+P289: The known labels rest on filing statements, agreement between two independent readers, or the rule for a dated earlier approach by the same bidder. Unknown means that the filing does not establish whether the bid was invited.
+
+P290: This field is separate from process_initiator. A bidder can initiate contact and later submit a solicited bid, or enter a target-run process without having initiated it.
+
+P291: CSV Q8 — Go-shop bidders
+
+P292: Go-shops: we can collect these since we are using the AI anyway. But normally go-shop bidders are quite uninformed, so they are not really comparable to private stage bidders; they also very rarely win over the original winner. 
+
+P293: Austin — 2 Aug 2026
+
+P294: The column in_go_shop_window marks whether a row with its own stated date falls between known go-shop start and end dates. The event go_shop_started supplies the opening date, and go_shop_ended supplies the closing date. The two-model reading recovered two missing endpoints: the start date for saks and the end date for orbcomm.
+
+P295: Nine deals contain go-shop boundary events. The column marks 41 rows across 8 deals as inside a window and 195 rows as “no.” Other rows are blank because the deal has no recorded window or the row has no stated date. Zero of the 488 bid rows fall inside a go-shop window. Among those bid rows, 58 are marked “no” and 430 are blank. The current data therefore do not mix go-shop-period activity with private-stage bids, and the zero was checked directly in the CSV.
+
+P296: Alex — follow-up, Aug 2026
+
+P297: Okay re: Austin’s response (even though it seems AI generated 😊). The point of my original question was that go-shops in practice do not impact strategies of the private bidding process, because they very rarely alter outcomes.
+
+P298: Austin — 7 Aug 2026
+
+P299: Go-shop activity remains separate from the private bidding process through in_go_shop_window. No bid row is marked inside a go-shop window. Of the 513 bid rows, 59 are marked no and 454 are blank because no applicable dated window places them.
+
+P300: This lets the analysis exclude go-shop activity without treating it as comparable to private-stage bidding.
+
+P301: CSV Q9 — Pointing Claude Code at the repo
+
+P302: Option 2: Claude Code on the repository, ‘If you can spare 5 minutes for setup, point Claude Code (the CLI equivalent) at the repo root.’ I will need to have this deciphered further for me in simple terms. 😊 Does this mean that I just point Claude Code at a folder in which all this info sits? Where does it sit these days, on Dropbox?
+
+P303: Austin — 2 Aug 2026
+
+P304: Yes. Pointing Claude Code at the repository means giving it the repository’s main folder. Everything it needs is inside that one folder: pipeline, rules, prompts, state, output, quality_reports, and tests. On this computer, the folder is /Users/austinli/Projects/bids_try. It is an ordinary local folder, not a Dropbox folder, and this machine has no Dropbox folder.
+
+P305: Alex — follow-up, Aug 2026
+
+P306: Okay. 😊
+
+P307: July 2026 Progress Report Comments
+
+P308: Rules for ambiguous language
+
+P309: Alex's comments on Austin's July 2026 progress report. The blue text is quoted from the report itself; the red text beside it is Alex's comment.
+
+P310: PR 1 — Borrowed dates
+
+P311: Borrowed dates. “On October 11, the executive emailed that he had received a call from an advisor” – probably okay to record “Oct 11”, or “<= Oct 11” or “~ Oct 11” (whichever way of recording is consistent with the current data collection).
+
+P312: PR 2 — Counts as floors
+
+P313: Counts as floors. When a filing says “contacted a number of parties, including five strategic buyers”, the count is recorded as at least five, never as exactly five. Makes sense.
+
+P314: PR 3 — Drop-outs by arithmetic
+
+P315: Drop-outs by arithmetic. Filings rarely announce departures; they say 16 parties were contacted and 5 signed confidentiality agreements. The attrition between stages is computed by simple arithmetic from the stated – fine with me, it may be useful that we record # of parties who were contacted but not NDAd, although we will likely not use it in this project.
+
+P316: PR 4 — Genuine ambiguity goes to a human
+
+P317: Genuine ambiguity goes to a human. When wording truly cannot be resolved (was the adviser retained, or merely authorised to be retained?), the fact is recorded and flagged for review instead of being resolved by guesswork. Sounds good
+
+P318: PR 5 — The shrinking human workload
+
+P319: …
+
+P320: And the human workload is shrinking… the share of facts referred for a human look has fallen to about 7% in the latest batch. I suspect this will increase once we start looking for fact dates in earlier paragraphs, as discussed on the call. And once the AI attempts to figure out start and end dates of various rounds of the sale process. I do not mind this, these are important to get right.
+
+P322: Alex’s Aug 12 comments:
+
+P323: Like in the original workbook by Alex, the new spreadsheet should have a field that directly refers to the SEC webpage with the deal background (apologies if it is already there, I have not seen it). Without the link, manual checks are complicated, as the user has to search for the background manually.
+
+P324: Additional notes — 2 Aug 2026
+
+P325: These parts of Austin's 2 August answers do not answer any one numbered question.
+
+P326: Note — Opening statement
+
+P327: Austin — 2 Aug 2026 — opening statement
+
+P328: Snapshot: The current spreadsheet, output/review_csv/alex_event_ledger_all44.csv, covers 44 deals in 2,189 rows and 55 columns. Nine columns contain judgments or values calculated from other entries: initiation_mode, process_cycle, in_go_shop_window, round_context, round_context_basis, bid_scope, bid_scope_basis, final_round_end_condition, and final_round_end_basis. For these judgments, two independent models read the captured quote. The system records a value only when both models agree. When they disagree, it leaves the value blank. When the models agree, the neighbouring basis column records dual_read_agreement or dual_read_quote, and the quote they relied on is kept in the record files under state/enrichments/. All nine reference deals have verified stamps in the tracking file, state/progress.json. The existing project checks report 1,069 passed and 17 skipped. A separate check of bidding-round order covers all 44 deals and reports zero flagged rows.
+
+P329: Note — Where things stand
+
+P330: Austin — 2 Aug 2026
+
+P331: The current ledger is stable, and every row can be traced to a quote copied word for word from a filing. Confidence is high on 2,026 rows, medium on 138, and low on 25. Another 30 rows have needs_human_attention=1, which marks them for review. Twenty-two rows have operator_disputed=true under 24 standing dispute records. Those rows remain as extracted and carry the annotation. They are never changed without a record.
+
+P332: The two-model judgments are not yet applied to every deal. Bid scope has been judged in 4 of 44 deals, final-round end conditions in 16, and the two-model solicitation findings cover 8. These unknown values reflect silence in the filing, not a failure of the pipeline. Solicitation origin is unknown on 353 of 488 bid rows, 148 of 225 dropout rows have no stated reason, and 73 of 285 adviser rows have no stated type. The round_context column is blank on 248 of 325 exit and advancement rows because no round boundary stated in the filing places them. Adding coverage in these areas requires new agreed judgments in the judgment-record folder, state/enrichments/. The spreadsheet can then be regenerated the same day without repeating extraction.
+
+P333: Additional notes — 7 Aug 2026
+
+P334: These parts of Austin's 7 August answers do not answer any one numbered question, so they are gathered here.
+
+P335: Note — Opening statement
+
+P336: Austin — 7 Aug 2026 — opening statement
+
+P337: Snapshot: 7 August 2026
+
+P338: The ledger covers 44 deals, 2,067 rows, 61 columns, and 513 bid rows. When a field requires interpretation, two independent readers examine the quoted filing evidence. Agreement is recorded. A difference is decided by a person and identified as such.
+
+P339: Six columns are new since the earlier snapshot. event_date_lower, event_date_upper, and event_date_bounds_basis give inclusive date bounds for rows whose own filing passage states no date. retaining_side identifies which side retained an adviser, advisor_repeat_mention marks a later reference to an adviser relationship already recorded, and target_core_advisor marks advisers the target retained for the deal at hand rather than historical or bidder-side mentions.
+
+P340: The remaining review list contains 121 earlier questions. The August date review — which concerns event-date bounds; the final-round end dates discussed in section 7i keep their own dispute queue — is complete: all 158 disagreements were decided, and those decisions now fill 158 ledger rows under event_date_bounds_basis=operator_ruled_2026_08; one related row was dropped as a duplicate in the audit. Disagreements on other judgment fields, such as formality or solicitation, are a separate matter: they stay open by design and are listed in the review-questions file described in section 10. The remaining questions are disclosed and do not prevent use of the delivered data.
+
+P341: The ledger was regenerated after a filing-grounded audit using 59 human-verified correction records and one new formality rule, and numbers throughout this document reflect the refreshed data. The full correction log is included in this package as corrections_log_2026-08-07.csv: each entry names the row, the change made, and the filing sentence that supports it.
+
+P342: Note — Row grain: proposals booked as two rows
+
+P343: Austin — 7 Aug 2026
+
+P344: One proposal often produces an ioi_submitted classification row and a bid_submitted economics row. The 513 bid rows therefore describe 340 distinct deal-party-date bidding episodes. This is the row-grain convention, not double counting. Per-episode analysis should group by deal, party, and date.
+
+P345: I am not sure what this means.
+
+P346: Note — Undated events and date bounds
+
+P347: Austin — 7 Aug 2026
+
+P348: The filing states no date on 604 of the 2,067 rows, or 29.2 percent. Two independent readers examined each undated row and the surrounding filing passages. Each reader had to identify a date or interval and the filing language that supported it. Neither saw the other’s answer.
+
+P349: Only identical answers are entered without human choice. The readers must agree on the earliest date, latest date, precision, and qualifier. That standard supports 262 rows, which carry event_date_bounds_basis=dual_read_exact.
+
+P350: These rows can have both bounds or only an upper bound. No lower bound is invented from narrative order.
+
+P351: The readers differed, or only one found support, on 158 rows. All 158 were decided by a person after reading the filing, and the decisions fill 158 rows. These rows carry event_date_bounds_basis=operator_ruled_2026_08.
+
+P352: Depending on the filing evidence, a human-ruled row can have both bounds, only an upper bound, or only a lower bound.
+
+P353: The two labels distinguish agreement from judgment. dual_read_exact means the two readers returned the same answer and no person chose the date. operator_ruled_2026_08 means a person decided after the readers differed. stated means the bounds follow from the row’s own stated event_date.
+
+P354: Where the readers found no supported date, or a proposed answer did not pass the quotation check, the bounds remain blank and eligible for further review.
+
+P355: The current basis counts across the 604 undated rows are 262 dual_read_exact, 158 operator_ruled_2026_08, 2 stated, and 182 blank. In total, 422 of the 604 undated rows now have bounds and 182 remain blank. Of the 422 bounded rows, 230 have both an earliest and latest date, 177 have only a latest date, and 15 have only an earliest date. Participation counts account for 131 of the bounded rows.
+
+P356: The stated dates were not changed. event_date, date_precision, and date_qualifier still contain only what the row’s own filing passage states. Unsupported proposed bounds remain blank.
+
+P357: Note — Large price walk-downs are real economics
+
+P358: Austin — 7 Aug 2026
+
+P359: In STEC, WDC moved from $9.15 to $6.85, and the filing explains the rejected approach. In G-P Strategies, LTG moved from $19.00 to $13.75 after a COVID withdrawal and later to $20.85. In QAD, Thoma Bravo moved from $90 to $85 after diligence.
+
+P360: Note — Remaining review questions
+
+P361: Austin — 7 Aug 2026
+
+P362: The remaining review list contains 121 earlier questions. None is a deferred date ruling from the August date review. The list covers other narrow cases in which the filing evidence permits more than one defensible interpretation or further verification would be useful.
+
+P363: The full list is included in this package as remaining_review_questions_2026-08-07.csv. Of the 121 entries, 105 are cases where the two independent readers reached different answers, so the ledger records no value rather than a guess; 13 are earlier quality-gate flags that were reviewed and waived by the operator; and 3 record places where both readers preferred a different answer than the rule the ledger follows, kept visible by design. Entries carry each reader’s answer and any filing quotation that reader cited; the 13 waived quality-gate entries carry the ruling note instead, and a reader who abstained without citing a passage leaves that cell blank.
+
+P364: The package is ready for substantive review and use. Filing-supported values remain in the ledger, human decisions are labeled, and unresolved questions remain disclosed rather than being filled by guesswork.

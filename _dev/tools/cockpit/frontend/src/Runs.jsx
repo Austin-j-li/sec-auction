@@ -3,7 +3,7 @@ import { Button, Checkbox, Field, Input, Select } from '@fluentui/react-componen
 import { StopIcon, WarningIcon, XIcon } from '@phosphor-icons/react';
 import { count } from './api';
 import { defaultInstructionId, instructionOptionLabel, orderInstructions } from './instructions';
-import { accountEngines, accountLabel, activeRunLabel, CANCELLABLE_STATES, connectHint, DEFAULT_EFFORT, DEFAULT_TIMEOUT, effortFor, FABLE_WARNING, failureText, formatElapsed, isActive, jobElapsed, jobEngineLabel, jobInstructionLabel, pickEngine, planUsageText, runSummary, STATE_LABELS, stateTone, TIMEOUT_RANGE, usageText, validTimeout } from './runs';
+import { accountEngines, accountLabel, activeRunLabel, CANCELLABLE_STATES, checkerLabel, connectHint, DEFAULT_EFFORT, DEFAULT_TIMEOUT, effortFor, extractNotice, FABLE_WARNING, failureText, formatElapsed, isActive, jobElapsed, jobEngineLabel, jobInstructionLabel, pickEngine, planUsageText, runSummary, STATE_LABELS, stateTone, TIMEOUT_RANGE, usageText, validTimeout } from './runs';
 import { displayName, shortTime } from './trace';
 import { Dot, Empty, Loading, Message } from './ui';
 
@@ -47,7 +47,7 @@ export function RunsTab({ jobs, error, loading, canCancel, onCancel, onOpenVersi
       const meta = [
         elapsed && (isActive(job) ? `${elapsed} so far` : elapsed),
         usageText(result.usage),
-        checker && `${count(checker.errors ?? 0, 'error')} · ${count(checker.warnings ?? 0, 'warning')}`,
+        checker && [checkerLabel(checker), count(checker.errors ?? 0, 'error'), count(checker.warnings ?? 0, 'warning')].filter(Boolean).join(' · '),
       ].filter(Boolean);
       return <article className="run-item" key={job.id} data-state={job.state}>
         <div className="run-head">
@@ -70,7 +70,8 @@ export function RunsTab({ jobs, error, loading, canCancel, onCancel, onOpenVersi
 
 // Start an extraction: engine, effort, instruction and time limit. An engine whose account (Claude or ChatGPT) is not
 // connected is listed but disabled; with no usable engine at all the dialog explains and links to Settings.
-export function ExtractDialog({ user, account, accountError, instructions, instructionsError, busy, error, onStart, onClose, onSettings, dialogRef }) {
+// working: the deal's workspace summary (its base's instruction and schema), for the line about the working copy.
+export function ExtractDialog({ user, account, accountError, instructions, instructionsError, busy, error, onStart, onClose, onSettings, dialogRef, working = null }) {
   const engines = accountEngines(account);
   const [engineId, setEngineId] = useState(null);
   const [effort, setEffort] = useState(DEFAULT_EFFORT);
@@ -88,6 +89,7 @@ export function ExtractDialog({ user, account, accountError, instructions, instr
   const missing = [...new Set(unavailable.map(item => item.account))]
     .map(name => `${unavailable.filter(item => item.account === name).map(item => item.label).join(' and ')}: ${connectHint({ account: name })}.`).join(' ');
   const warning = engine?.id === 'fable51' ? FABLE_WARNING : engine?.experimental ? engine.note : '';
+  const notice = extractNotice(working, instruction);
   function chooseEngine(id) {
     const next = engines.find(item => item.id === id);
     if (!next?.connected) return;
@@ -140,6 +142,7 @@ export function ExtractDialog({ user, account, accountError, instructions, instr
             {items.map(item => <option key={item.id} value={item.id}>{instructionOptionLabel(item)}</option>)}
           </Select> : !instructionsError && <Loading label="Loading instructions"/>}
         </Field>
+        {notice && <p className="extract-warning tone-warning"><WarningIcon size={16} aria-hidden="true"/><span>{notice}</span></p>}
         <Field label="Time limit (minutes)" validationState={timeoutOk ? 'none' : 'error'} validationMessage={timeoutOk ? undefined : `A whole number from ${TIMEOUT_RANGE[0]} to ${TIMEOUT_RANGE[1]}`}>
           <Input className="mono" type="number" min={TIMEOUT_RANGE[0]} max={TIMEOUT_RANGE[1]} step={1} value={timeout} onChange={(_, data) => setTimeoutMinutes(data.value)}/>
         </Field>

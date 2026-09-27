@@ -1,0 +1,28 @@
+{
+  "cell": {
+    "arm": "gpt-6-astra-xhigh",
+    "deal": "stec",
+    "effort": "xhigh",
+    "filing": "stec_2013-08-08_DEFM14A.htm",
+    "id": "stec-gpt-6-astra-xhigh-r1",
+    "model": "gpt-6-astra",
+    "provider": "sol",
+    "replicate": 1,
+    "timeout_minutes": 120
+  },
+  "check_summary": {
+    "errors": 0,
+    "information": 0,
+    "total_issues": 3,
+    "warnings": 3
+  },
+  "checker_version": "1.7",
+  "failure_reason": null,
+  "ledger_schema": "v1.14",
+  "mismatches": [],
+  "network_commands": [],
+  "recorded_at": "2026-09-26T10:08:19.381496+00:00",
+  "state": "completed",
+  "web_or_delegation": [],
+  "workbook_sha256": "f9833f42dd7e53955b0aa3360b3782b1743da4f24e7d230fc165107d6a225996"
+}

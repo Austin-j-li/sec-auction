@@ -1,0 +1,32 @@
+{
+  "at": "2026-09-26T11:54:06.468184+00:00",
+  "protected": {
+    "SEC_Deal_Ledger_Extraction_Instruction.md": "513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304",
+    "_dev/cockpit/catalog.json": "c48c979f9f4ff59b8452dc37735bb1a181e43ce4b60820b889bcf011b06bd193",
+    "extraction/datalink.xlsx": "f28c711cf1ffdcc4b7f35ffd160719ed712c1dc022a89ed3ab878e557ea8217b",
+    "extraction/kraton.xlsx": "20cc6986afb8b301e2a38a8d06e2c191c0cf7d3621d7dcf84121d9265b3d780c",
+    "extraction/mac-gray.xlsx": "407615092e6dc33be22a8f80ab41d365083de0813f93b48897cbd7605a68ec0e",
+    "extraction/meredith.xlsx": "fae16e4a2ba8b6c6a233b9d029f94dacbfaacdabd4771b6b62fffdbaf4609c9e",
+    "extraction/penford.xlsx": "14f6c9c8e7c697b477e98f8f163c9180a236d1210e226cc0fdaeac98d50380d5",
+    "extraction/petsmart.xlsx": "04c7d952864f1a122bb72bf489712cc0434465cc1b3957d8a686f15e174ec20c",
+    "extraction/providence-worcester.xlsx": "394a8cea099340df499697247c68430fef2010177ce91aae3930608d95cc3d00",
+    "extraction/stec.xlsx": "467f739dea7b540eec2d3fb664ec1a4bb6479394820fc66b750e6ec3821fbc1d",
+    "extraction/synacor.xlsx": "4d2610753b2b6a06d6a4a4408306cc094999ddb8be1c5904e5f9eab3b2e025af"
+  },
+  "changed_files_before": {
+    "_dev/tools/cockpit/runs.py": "97130cbf3488ee7729fb9569dbc1cf86433e4178fcb62d0daed3c2fa5f35d1c6",
+    "_dev/tools/cockpit/worker.py": "8160648e6102aa075aaa057e505bb80f1cc609e89aaef2b1c67311567409c601",
+    "_dev/tools/cockpit/frontend/src/runs.js": "e898ab77487d580742f750e4299ad5ff6e25f5540f4048d117e563eb2bd31321",
+    "_dev/tools/sandbox/run_model.py": "b260eb65e1e6e3b7dac84fc7f4f3b4a312de926555f4ecc96633a8e98b824ab5",
+    "_dev/tools/test_cockpit_runs.py": "3e9c023a246c49ea6689817f596e1cbe7a7b67589e56b309808d7b3850be6e16",
+    "_dev/tools/test_cockpit_deals.py": "ed4cab4c4bca6531586f3dc29c28d3048ed86e8629039ba2d103e64c8ced3d10",
+    "_dev/tools/test_cockpit_phase4.py": "da678139edbd28ea9dec975a633d091d97564614738eca51d221c065f04b0d91",
+    "_dev/tools/test_run_model.py": "7943cea2e239075ece324a3a7404c461325cbbe8313e6c75b6c7ec1a1ccda1f7",
+    "_dev/tools/cockpit/frontend/src/runs.test.js": "152271f3a9cb1f865a5e5fa5b0c42ee37add8dd7b0c2da50b0b9830585b51a3b",
+    "AGENTS.md": "a82c0145ecaed70ebff8c3eceb638efaf57cff90b1900bad31dc427b6e53158d",
+    "_dev/HANDOFF.md": "ac00a17017fbef5e971f5b90b72488d285102c035c8dfdb2d5531eb491f4afdb",
+    "_dev/tools/README.md": "eb6cbdc9d7add0f70707e1e8b771fa192617f9fc8ec958c1b9bbf0be6a69b459",
+    "_dev/cockpit/README.md": "9d54b775690ec8955b0d80b394327b45dc551439fa8ceaf92a80975c7447c4c6",
+    "_dev/COCKPIT_APP_SPEC.md": "494d070364078517818e6dff7930daed97944b5201894ce3ddcaf040828c8f9a"
+  }
+}

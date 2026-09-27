@@ -1,0 +1,186 @@
+{
+  "checked_at_utc": "2026-09-25T20:50:17.776271+00:00",
+  "scope": "bounded documentation and source-location check; concurrent Opus S6 edits were not modified by this pass",
+  "documents_scanned_after": 23,
+  "broken_markdown_occurrences_before": 5,
+  "broken_markdown_occurrences_after": 3,
+  "remaining_broken_links": [
+    {
+      "file": "_dev/maintenance/2026-09-24-bid-terms-taxonomy/ASTRA_APPROVAL_SPEC.md",
+      "line": 447,
+      "target": "/home/uctpiaj/work/tmp/sec-v114-alex-integration-2026-09-25.md"
+    },
+    {
+      "file": "_dev/maintenance/2026-09-24-bid-terms-taxonomy/INSTRUCTION_CHANGE_PLAN.md",
+      "line": 31,
+      "target": "/home/uctpiaj/work/tmp/sec-v114-alex-integration-2026-09-25.md:106"
+    },
+    {
+      "file": "_dev/CHRONOLOGY.md",
+      "line": 39,
+      "target": "maintenance/2026-09-22-doc-refresh/README.md"
+    }
+  ],
+  "protected_files": [
+    {
+      "path": "_dev/maintenance/2026-09-24-bid-terms-taxonomy/ASTRA_APPROVAL_SPEC.md",
+      "expected": "32dfe7deb51909781bc5077e08cc115dc0e524c5cdab18e0a40f87d2d5fc58be",
+      "actual": "32dfe7deb51909781bc5077e08cc115dc0e524c5cdab18e0a40f87d2d5fc58be",
+      "matches": true
+    },
+    {
+      "path": "_dev/maintenance/2026-09-24-bid-terms-taxonomy/V114_SPEC.md",
+      "expected": "9ba2283084b7be28da0ff86a67a58fd8afca862a7985015087dab2c1aa89412c",
+      "actual": "9ba2283084b7be28da0ff86a67a58fd8afca862a7985015087dab2c1aa89412c",
+      "matches": true
+    },
+    {
+      "path": "_dev/maintenance/2026-09-24-bid-terms-taxonomy/SEC_Deal_Ledger_Extraction_Instruction_v1.14_draft.md",
+      "expected": "f9595d7413149f86c074f1d4b9ef96a5a24b3d8dd9b6c11061b0bd6e889aea97",
+      "actual": "f9595d7413149f86c074f1d4b9ef96a5a24b3d8dd9b6c11061b0bd6e889aea97",
+      "matches": true
+    }
+  ],
+  "source_location_checks": [
+    {
+      "name": "questions",
+      "capture_path": "/home/uctpiaj/work/Projects/sec-extraction/lesson/independent-audit-2026-09-23/questions-for-alex/Open_Questions_for_Alex_2026-09-24.docx",
+      "current_path": "lesson/independent-audit-2026-09-23/questions-for-alex/Open_Questions_for_Alex_2026-09-24.docx",
+      "expected": "faab1d66d13a1053c2816a8aaed371c3caf49b6733a9005a4e0e949e12ed5220",
+      "actual": "faab1d66d13a1053c2816a8aaed371c3caf49b6733a9005a4e0e949e12ed5220",
+      "matches": true
+    },
+    {
+      "name": "voice",
+      "capture_path": "/home/uctpiaj/work/Projects/sec-extraction/ref/alex_voice_notes_2026-08.docx",
+      "current_path": "ref/alex_voice_notes_2026-08.docx",
+      "expected": "9ddb0a38f3ffcabdbf7693ced379df3aa8b53a1c4d065990d09d57978af220fb",
+      "actual": "9ddb0a38f3ffcabdbf7693ced379df3aa8b53a1c4d065990d09d57978af220fb",
+      "matches": true
+    },
+    {
+      "name": "qa",
+      "capture_path": "/home/uctpiaj/work/tmp/sec-v114-recommendation-review-2026-09-25/sources/2026-08-10_QA-dialogue-consolidated_v2.docx",
+      "current_path": "_dev/maintenance/2026-09-24-bid-terms-taxonomy/sources/2026-08-10_QA-dialogue-consolidated_v2.docx",
+      "expected": "1bfd1a34b3d844e123cbb4a048b7e681d4f71c08db43c208b35cd6757c9bb0aa",
+      "actual": "1bfd1a34b3d844e123cbb4a048b7e681d4f71c08db43c208b35cd6757c9bb0aa",
+      "matches": true
+    },
+    {
+      "name": "frozen",
+      "capture_path": "/home/uctpiaj/work/Projects/sec-extraction/SEC_Deal_Ledger_Extraction_Instruction.md",
+      "current_path": "SEC_Deal_Ledger_Extraction_Instruction.md",
+      "expected": "513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304",
+      "actual": "513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304",
+      "matches": true
+    },
+    {
+      "name": "draft",
+      "capture_path": "/home/uctpiaj/work/Projects/sec-extraction/_dev/maintenance/2026-09-24-bid-terms-taxonomy/SEC_Deal_Ledger_Extraction_Instruction_v1.14_draft.md",
+      "current_path": "_dev/maintenance/2026-09-24-bid-terms-taxonomy/SEC_Deal_Ledger_Extraction_Instruction_v1.14_draft.md",
+      "expected": "f9595d7413149f86c074f1d4b9ef96a5a24b3d8dd9b6c11061b0bd6e889aea97",
+      "actual": "f9595d7413149f86c074f1d4b9ef96a5a24b3d8dd9b6c11061b0bd6e889aea97",
+      "matches": true
+    }
+  ],
+  "new_files_by_this_pass": [
+    "_dev/maintenance/2026-09-24-bid-terms-taxonomy/RECOMMENDATION_REVIEW.md",
+    "_dev/maintenance/2026-09-24-bid-terms-taxonomy/sources/README.md",
+    "_dev/maintenance/2026-09-25-staleness-cleanse/REVIEW.md",
+    "_dev/maintenance/2026-09-25-staleness-cleanse/verification.json"
+  ],
+  "document_snapshots": [
+    {
+      "path": "_dev/maintenance/2026-09-24-bid-terms-taxonomy/TAXONOMY_DRAFT2.md",
+      "sha256": "273db25a6b9fb8e26eec51b12ec25c6216ad2fb0c4852dbf296c15ae4633b281"
+    },
+    {
+      "path": "_dev/maintenance/2026-09-24-bid-terms-taxonomy/TAXONOMY_DRAFT5.md",
+      "sha256": "28c77bb076ae599685f40c47380d5ae110610428bf4413f83a9634caf1d00df5"
+    },
+    {
+      "path": "_dev/maintenance/2026-09-24-bid-terms-taxonomy/TAXONOMY_DRAFT3.md",
+      "sha256": "02d47847ca287903d518fb7d5b636c4feb90ebbc9c76ae9a0f21aaa43f7e5ac9"
+    },
+    {
+      "path": "_dev/maintenance/2026-09-24-bid-terms-taxonomy/ASTRA_APPROVAL_SPEC.md",
+      "sha256": "32dfe7deb51909781bc5077e08cc115dc0e524c5cdab18e0a40f87d2d5fc58be"
+    },
+    {
+      "path": "_dev/maintenance/2026-09-24-bid-terms-taxonomy/V114_SPEC.md",
+      "sha256": "9ba2283084b7be28da0ff86a67a58fd8afca862a7985015087dab2c1aa89412c"
+    },
+    {
+      "path": "_dev/maintenance/2026-09-24-bid-terms-taxonomy/INSTRUCTION_CHANGE_PLAN.md",
+      "sha256": "e64c47e6461f180ada88be6fb4f79772dfb81911109e5750e3f10731f2494f1b"
+    },
+    {
+      "path": "_dev/maintenance/2026-09-24-bid-terms-taxonomy/REVIEW_PROMPT.md",
+      "sha256": "116c35dfd4f6c11c07692ac9aac3f21fda5b7cb9a3038f9d5152b99f85347120"
+    },
+    {
+      "path": "_dev/maintenance/2026-09-24-bid-terms-taxonomy/RECOMMENDATION_REVIEW.md",
+      "sha256": "1be1092c94248c96a78f40924720defa8c78d7484da430872843b6361336c5a6"
+    },
+    {
+      "path": "_dev/maintenance/2026-09-24-bid-terms-taxonomy/TAXONOMY_DRAFT4.md",
+      "sha256": "f278009bf2a448edb156b5843c01e7c78e20f401016a8f34d66210ad167f42e4"
+    },
+    {
+      "path": "_dev/maintenance/2026-09-24-bid-terms-taxonomy/REVIEW_FABLE.md",
+      "sha256": "6c18d65c800a7fcf4778a517d5b5aec157cf6e3196071a68611e7aaad8c8377e"
+    },
+    {
+      "path": "_dev/maintenance/2026-09-24-bid-terms-taxonomy/README.md",
+      "sha256": "7484318d5801c0275ab8278b98a1eaaf0549a13f35f5d66762ee3b37bf211105"
+    },
+    {
+      "path": "_dev/maintenance/2026-09-24-bid-terms-taxonomy/ASTRA_RECOMMENDATION_REVIEW.md",
+      "sha256": "e39189ae89ac272e3195d28d28472acd5454b18a58103b7d5ec232df757a7d77"
+    },
+    {
+      "path": "_dev/maintenance/2026-09-24-bid-terms-taxonomy/SEC_Deal_Ledger_Extraction_Instruction_v1.14_draft.md",
+      "sha256": "f9595d7413149f86c074f1d4b9ef96a5a24b3d8dd9b6c11061b0bd6e889aea97"
+    },
+    {
+      "path": "README.md",
+      "sha256": "6d49a19c89f404d30a9a31ffcbd4c2dfbf9b8909d6fd0466ed7522d130ba60c2"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "a82c0145ecaed70ebff8c3eceb638efaf57cff90b1900bad31dc427b6e53158d"
+    },
+    {
+      "path": "_dev/HANDOFF.md",
+      "sha256": "945507ea0afe2b4f1a313e7b41b31917f75c836d91f933dd83a8b4dd2f4e5e13"
+    },
+    {
+      "path": "_dev/RESEARCH_QUESTIONS.md",
+      "sha256": "312b8aa2e737ad9087db21ac4e921df3d43907fad5d91a71655c2e751c489087"
+    },
+    {
+      "path": "_dev/CHRONOLOGY.md",
+      "sha256": "98a6649d7a097c14ff0d551a174f6df84074a1de342948a7df8099ace7a308be"
+    },
+    {
+      "path": "_dev/cockpit/README.md",
+      "sha256": "90220a348d8eef2e15817cdc974200b5471e68cf978c31036c039b03bf0424b3"
+    },
+    {
+      "path": "lesson/README.md",
+      "sha256": "8bf31198697ff5d89154d412acd552761cb36400e11880f6886ad967c86f7cb7"
+    },
+    {
+      "path": "lesson/independent-audit-2026-09-23/questions-for-alex/README.md",
+      "sha256": "ed2694537307b55ca5c44e7e682da04851f289676743f64f327a9582eb43dfb0"
+    },
+    {
+      "path": "_dev/maintenance/2026-09-24-bid-terms-taxonomy/sources/README.md",
+      "sha256": "b60bb3ee46cce35f68654bb7c44c6c6ceba5f4d4f4d75f5801c9f2a4ce894582"
+    },
+    {
+      "path": "_dev/maintenance/2026-09-25-staleness-cleanse/REVIEW.md",
+      "sha256": "854340dabe6c4259b3c594e82d7b5307d20e5c330591713060ddad00220366d9"
+    }
+  ]
+}

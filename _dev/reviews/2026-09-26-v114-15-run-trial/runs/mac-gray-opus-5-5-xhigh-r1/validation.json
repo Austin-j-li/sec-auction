@@ -1,0 +1,13 @@
+{
+  "bytes": 30687,
+  "exists": true,
+  "path": "/home/uctpiaj/work/Projects/sec-extraction-v114-trial-20260926/_dev/runs/2026-09-26-v114-15-run-trial/mac-gray-opus-5-5-xhigh-r1/extraction/mac-gray.xlsx",
+  "sha256": "2cfcd74326f16499265d2577fc60807180645468b7a5279b71bce98a69b4d713",
+  "sheet_names": [
+    "Deal ledger",
+    "Rounds",
+    "Questions",
+    "Deal facts"
+  ],
+  "valid_xlsx": true
+}

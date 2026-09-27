@@ -1,0 +1,280 @@
+diff --git a/_dev/tools/check_lean.py b/_dev/tools/check_lean.py
+index 54cbe2a..70072fb 100755
+--- a/_dev/tools/check_lean.py
++++ b/_dev/tools/check_lean.py
+@@ -1,11 +1,12 @@
+ #!/usr/bin/env python3
+-"""Mechanical validator for the lean deal-ledger workbook (instruction v1.13.2).
++"""Mechanical validator for the lean deal-ledger workbook (instruction v1.13.2 or v1.14).
+ 
+ This checker intentionally does not decide whether events, bidders, rounds, or
+ classifications are substantively correct. In particular, it does not sum
+ ``Count`` into a bidder population. It checks workbook structure and internal
+ consistency, then tests each quoted passage as one contiguous normalized
+-substring of the full filing parsed by BeautifulSoup.
++substring of the full filing parsed by BeautifulSoup. The ledger header selects the
++schema: a "Stock %" column marks a v1.14 workbook; anything else is checked as v1.13.2.
+ 
+ Usage:
+     python3 check_lean.py --workbook candidate.xlsx --filing filing.htm \
+@@ -34,12 +35,12 @@ from bs4 import BeautifulSoup
+ from openpyxl.utils.cell import coordinate_to_tuple, range_boundaries
+ 
+ 
+-CHECKER_VERSION = "1.5"
++CHECKER_VERSION = "1.6"
+ CHECKER_REVISION = (
+-    "Adds two cross-column checks: an exact-day When must equal Date from, Date to and "
+-    "Sort date (E8), and an inferred exit carries Exit reason 'Not stated' (E14). "
+-    "Deal facts must list all 17 v1.13.2 D5 fields in order, including Earlier approaches. "
+-    "Checks instruction v1.13.2."
++    "Adds the v1.14 (draft) ledger, selected by a 'Stock %' header: Stock %, CVR/earnout and "
++    "CVR/earnout value replace All cash (E13), and Due diligence, Financing, Regulatory, "
++    "Antitrust and Exclusivity follow Conditions (E12), with their value lists and the E12 "
++    "consistency rules. Workbooks without that header are checked as v1.13.2, unchanged."
+ )
+ 
+ SHEETS = ["Deal ledger", "Rounds", "Questions", "Deal facts"]
+@@ -69,6 +70,39 @@ LEDGER_COLUMNS = [
+     "Date to",
+ ]
+ 
++# v1.14 (draft): bid terms and conditions in their own columns (E12, E13).
++LEDGER_COLUMNS_V114 = [
++    "#",
++    "When",
++    "Who",
++    "Type",
++    "Event",
++    "Process",
++    "Round",
++    "Price low",
++    "Price high",
++    "Stock %",
++    "CVR/earnout",
++    "CVR/earnout value",
++    "Formality",
++    "Conditions",
++    "Due diligence",
++    "Financing",
++    "Regulatory",
++    "Antitrust",
++    "Exclusivity",
++    "Count",
++    "Exit reason",
++    "Inferred",
++    "Note",
++    "Quote and page",
++    "Flag",
++    "Reviewer note",
++    "Sort date",
++    "Date from",
++    "Date to",
++]
++
+ ROUND_COLUMNS = [
+     "Process",
+     "Round",
+@@ -189,6 +223,29 @@ NO_BIDDER_COUNT_EVENTS = {
+ ALL_CASH = {"Yes", "No", "Not stated"}
+ FORMALITY = {"Formal", "Informal", "Unclear"}
+ CONDITIONS = {"None", "Light", "Heavy", "Unclear"}
++STOCK_CODES = {"Part stock", "Not stated", "Varies"}
++STOCK_RANGE_RE = re.compile(r"(\d+(?:\.\d+)?)\s*[-\u2013]\s*(\d+(?:\.\d+)?)")
++MARKER = {"Y", "Varies"}
++DUE_DILIGENCE = {"Complete", "Incomplete", "Not begun", "Not stated", "Varies"}
++FINANCING = {"Not needed", "Committed", "Contingent", "Not stated", "Varies"}
++REGULATORY = {"No concern", "Concern", "Not stated", "Varies"}
++EXCLUSIVITY = {"Required", "Requested", "Not stated", "Varies"}
++CONDITION_COLUMNS = {
++    "Due diligence": DUE_DILIGENCE,
++    "Financing": FINANCING,
++    "Regulatory": REGULATORY,
++    "Exclusivity": EXCLUSIVITY,
++}
++TERM_COLUMNS_V114 = (
++    "Stock %",
++    "CVR/earnout",
++    "CVR/earnout value",
++    "Due diligence",
++    "Financing",
++    "Regulatory",
++    "Antitrust",
++    "Exclusivity",
++)
+ EXIT_REASONS = {
+     "Value below market price",
+     "Value at or below market price",
+@@ -378,6 +435,7 @@ class LeanChecker:
+         self.fatal = False
+         self.wb: Any = None
+         self.filing_texts: tuple[str, ...] = ()
++        self.ledger_schema = "v1.13.2"
+ 
+     def add(
+         self,
+@@ -522,10 +580,99 @@ class LeanChecker:
+                 row=ws[unwrapped[0]].row,
+             )
+ 
++    def check_bid_terms(self, ws: Any, excel_row: int, record: dict[str, Any]) -> None:
++        """v1.14 consideration and condition columns on one bid row (E12, E13)."""
++
++        def issue(severity: str, code: str, message: str, column: str) -> None:
++            self.add(severity, code, message, sheet=ws.title, row=excel_row, column=column)
++
++        stock = record["Stock %"]
++        stock_ok = False
++        reported = False
++        if isinstance(stock, bool) or is_blank(stock):
++            pass
++        elif isinstance(stock, (int, float)):
++            stock_ok = math.isfinite(float(stock)) and 0 <= float(stock) <= 100
++        elif isinstance(stock, str):
++            text = stock.strip()
++            match = STOCK_RANGE_RE.fullmatch(text)
++            if text in STOCK_CODES:
++                stock_ok = True
++            elif match:
++                low, high = float(match.group(1)), float(match.group(2))
++                stock_ok = 0 <= low < high <= 100
++            else:
++                try:
++                    float(text)
++                except ValueError:
++                    pass
++                else:
++                    issue("error", "controlled.stock_pct", f"Stock % {stock!r} is text; store a single figure as a number.", "Stock %")
++                    reported = True
++        if not stock_ok and not reported:
++            issue(
++                "error",
++                "controlled.stock_pct",
++                "Stock % must be a number from 0 to 100, a stated range such as '50-75', "
++                f"or Part stock, Not stated or Varies; found {stock!r}.",
++                "Stock %",
++            )
++
++        for marker in ("CVR/earnout", "Antitrust"):
++            if not is_blank(record[marker]) and record[marker] not in MARKER:
++                code = "controlled." + marker.lower().replace("/", "_")
++                issue("error", code, f"{marker} must be Y, Varies or blank; found {record[marker]!r}.", marker)
++
++        cvr_value = record["CVR/earnout value"]
++        if not is_blank(cvr_value):
++            if isinstance(cvr_value, bool) or not isinstance(cvr_value, (int, float)) or not math.isfinite(float(cvr_value)) or float(cvr_value) <= 0:
++                issue("error", "bid.cvr_value_type", f"CVR/earnout value must be a positive number or blank; found {cvr_value!r}.", "CVR/earnout value")
++            if record["CVR/earnout"] != "Y":
++                issue("error", "bid.cvr_value_marker", "CVR/earnout value is filled, so CVR/earnout must be Y.", "CVR/earnout value")
++
++        if record["Antitrust"] in MARKER and record["Regulatory"] not in {"No concern", "Concern", "Varies"}:
++            issue(
++                "warning",
++                "conditions.antitrust_regulatory",
++                f"Antitrust is {record['Antitrust']!r} but Regulatory is {record['Regulatory']!r}; "
++                "Antitrust qualifies a Regulatory value of No concern, Concern or Varies (E12).",
++                "Antitrust",
++            )
++
++        if as_integer(record["Count"]) == 1:
++            for column in TERM_COLUMNS_V114:
++                if record[column] == "Varies":
++                    issue("error", "bid.varies_single", f"{column} is Varies on a row for one bidder; Varies is for cohorts whose members differ (E12).", column)
++
++        level = record["Conditions"]
++        diligence, financing, regulatory = record["Due diligence"], record["Financing"], record["Regulatory"]
++        if financing == "Contingent" and level in CONDITIONS and level != "Heavy":
++            issue("error", "conditions.financing_heavy", f"Financing is Contingent, so Conditions must be Heavy (E12); found {level!r}.", "Conditions")
++        if level == "None" and (diligence != "Complete" or financing not in {"Committed", "Not needed"} or regulatory == "Concern"):
++            issue(
++                "error",
++                "conditions.none_support",
++                "Conditions None needs Due diligence Complete, Financing Committed or Not needed, and no "
++                f"regulatory Concern (E12); found {diligence!r}, {financing!r}, {regulatory!r}.",
++                "Conditions",
++            )
++        if level in {"None", "Light", "Heavy"} and diligence == financing == regulatory == "Not stated":
++            issue(
++                "warning",
++                "conditions.level_unsupported",
++                f"Due diligence, Financing and Regulatory are all Not stated, but Conditions is {level!r}; "
++                "the Note must name the condition that supports the level (E12).",
++                "Conditions",
++            )
++
+     def check_ledger(self) -> dict[str, Any]:
+         ws = self.wb["Deal ledger"]
+-        schema_ok = self.check_schema(ws, LEDGER_COLUMNS)
+-        self.check_presentation(ws, len(LEDGER_COLUMNS))
++        header = [ws.cell(1, col).value for col in range(1, ws.max_column + 1)]
++        v114 = "Stock %" in header
++        self.ledger_schema = "v1.14" if v114 else "v1.13.2"
++        ledger_columns = LEDGER_COLUMNS_V114 if v114 else LEDGER_COLUMNS
++        schema_ok = self.check_schema(ws, ledger_columns)
++        self.check_presentation(ws, len(ledger_columns))
+         if not schema_ok:
+             return {
+                 "rows": [],
+@@ -537,8 +684,8 @@ class LeanChecker:
+                 "processes": set(),
+             }
+ 
+-        columns = {name: index + 1 for index, name in enumerate(LEDGER_COLUMNS)}
+-        rows = nonempty_rows(ws, len(LEDGER_COLUMNS))
++        columns = {name: index + 1 for index, name in enumerate(ledger_columns)}
++        rows = nonempty_rows(ws, len(ledger_columns))
+         records: list[dict[str, Any]] = []
+         by_number: dict[int, int] = {}
+         round_rows: dict[tuple[int, int], list[int]] = defaultdict(list)
+@@ -552,7 +699,7 @@ class LeanChecker:
+             return ws.cell(row, columns[column]).value
+ 
+         for ordinal, excel_row in enumerate(rows, start=1):
+-            record = {name: value(excel_row, name) for name in LEDGER_COLUMNS}
++            record = {name: value(excel_row, name) for name in ledger_columns}
+             records.append(record)
+             row_number = as_integer(record["#"])
+             if row_number != ordinal:
+@@ -722,11 +869,9 @@ class LeanChecker:
+                     column="Price low",
+                 )
+             if event in BID_EVENTS:
+-                for field, allowed in (
+-                    ("All cash", ALL_CASH),
+-                    ("Formality", FORMALITY),
+-                    ("Conditions", CONDITIONS),
+-                ):
++                controlled = [("Formality", FORMALITY), ("Conditions", CONDITIONS)]
++                controlled = [*controlled, *CONDITION_COLUMNS.items()] if v114 else [("All cash", ALL_CASH), *controlled]
++                for field, allowed in controlled:
+                     field_value = record[field]
+                     if field_value not in allowed:
+                         self.add(
+@@ -737,6 +882,8 @@ class LeanChecker:
+                             row=excel_row,
+                             column=field,
+                         )
++                if v114:
++                    self.check_bid_terms(ws, excel_row, record)
+                 if is_blank(low) != is_blank(high):
+                     note = normalize_contiguous(record["Note"]).lower()
+                     markers = ("at least", "no more than", "floor", "ceiling", "\u2265", "\u2264")
+@@ -750,7 +897,9 @@ class LeanChecker:
+                             column="Note",
+                         )
+             else:
+-                for field in ("Price low", "Price high", "All cash", "Formality", "Conditions"):
++                bid_fields = ("Price low", "Price high", "Formality", "Conditions")
++                bid_fields += TERM_COLUMNS_V114 if v114 else ("All cash",)
++                for field in bid_fields:
+                     if not is_blank(record[field]):
+                         self.add(
+                             "error",
+@@ -1524,6 +1673,7 @@ class LeanChecker:
+             "checker": "lean-mechanical",
+             "checker_version": CHECKER_VERSION,
+             "checker_revision": CHECKER_REVISION,
++            "ledger_schema": self.ledger_schema,
+             "workbook": str(self.workbook_path),
+             "filing": str(self.filing_path),
+             "status": status,

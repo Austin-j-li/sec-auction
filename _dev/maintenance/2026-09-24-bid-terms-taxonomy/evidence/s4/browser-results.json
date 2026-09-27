@@ -1,0 +1,326 @@
+{
+  "run_at": "2026-09-25T21:50:01.581Z",
+  "results": [
+    {
+      "name": "overview synthetic deal",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "desktop 1440 horizontal fit",
+      "passed": true,
+      "detail": "{\"width\":1440,\"scrollWidth\":1440}"
+    },
+    {
+      "name": "source search highlight",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "source page jump",
+      "passed": true,
+      "detail": "scrollTop=105"
+    },
+    {
+      "name": "source quote to ledger navigation",
+      "passed": true,
+      "detail": "http://127.0.0.1:41931/deal/synthetic#row-1"
+    },
+    {
+      "name": "ledger row to source quote",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ledger flag opens question",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "question returns to referenced event",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Rounds tab renders",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Questions tab renders",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Deal facts tab renders",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Review tab renders",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Changes tab renders",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "History tab renders",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "unsaved navigation prompt retained deal",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "mechanical global report visible",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "finding to source search",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "browser save revision",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "browser four sheets persisted",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "browser decision attribution",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "changes tab full value",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "history attribution",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "raw version read only",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Excel download",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "four-sheet Excel download",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "browser insert",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "browser move",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "delete dialog receives focus",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "delete dialog Escape returns focus",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "browser delete",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "browser restore appends history",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "base revision restore control",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "browser undo first save",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "save pending blocks editor",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "save pending blocks version change",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "delayed save keeps edit",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "simulated concurrent save",
+      "passed": true,
+      "detail": "status=200"
+    },
+    {
+      "name": "conflict keeps browser draft",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "conflict draft export includes edit",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "explicit conflict reload",
+      "passed": true,
+      "detail": "note=\"Other editor value\""
+    },
+    {
+      "name": "select mode hides Add",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "shift-click picks a range",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bulk dialog receives focus",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bulk dialog says when nothing changes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bulk dialog confirms the rows that change",
+      "passed": true,
+      "detail": "This changes 2 events: #2–#3."
+    },
+    {
+      "name": "bulk edit staged as two changes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bulk edit default reason",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bulk edit saved as one revision",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "select mode ends",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "laptop 1024 horizontal fit",
+      "passed": true,
+      "detail": "{\"width\":1024,\"scrollWidth\":1024}"
+    },
+    {
+      "name": "laptop Page Go contained",
+      "passed": true,
+      "detail": "{\"item\":{\"x\":427,\"y\":204,\"width\":38.265625,\"height\":28},\"owner\":{\"x\":0,\"y\":133,\"width\":481.265625,\"height\":635}}"
+    },
+    {
+      "name": "laptop When editor contained",
+      "passed": true,
+      "detail": "{\"item\":{\"x\":765.625,\"y\":778,\"width\":241.375,\"height\":26},\"owner\":{\"x\":489.265625,\"y\":304,\"width\":534.734375,\"height\":464}}"
+    },
+    {
+      "name": "laptop select mode horizontal fit",
+      "passed": true,
+      "detail": "{\"width\":1024,\"scrollWidth\":1024}"
+    },
+    {
+      "name": "laptop Set Process/Round contained",
+      "passed": true,
+      "detail": "{\"item\":{\"x\":644.609375,\"y\":206,\"width\":138.625,\"height\":28},\"owner\":{\"x\":489.265625,\"y\":168,\"width\":534.734375,\"height\":128}}"
+    },
+    {
+      "name": "narrow 390 horizontal fit",
+      "passed": true,
+      "detail": "{\"width\":390,\"scrollWidth\":390}"
+    },
+    {
+      "name": "narrow select mode horizontal fit",
+      "passed": true,
+      "detail": "{\"width\":390,\"scrollWidth\":390}"
+    },
+    {
+      "name": "narrow Set Process/Round contained",
+      "passed": true,
+      "detail": "{\"item\":{\"x\":155.34375,\"y\":357,\"width\":138.625,\"height\":28},\"owner\":{\"x\":0,\"y\":319,\"width\":390,\"height\":128}}"
+    },
+    {
+      "name": "narrow filing pane",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "narrow Page Go contained",
+      "passed": true,
+      "detail": "{\"item\":{\"x\":339.734375,\"y\":355,\"width\":38.265625,\"height\":28},\"owner\":{\"x\":0,\"y\":284,\"width\":390,\"height\":560}}"
+    },
+    {
+      "name": "no browser exceptions",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "screenshots": [
+    "desktop-overview.png",
+    "desktop-ledger.png",
+    "desktop-source-search.png",
+    "desktop-history-empty.png",
+    "desktop-review-edit.png",
+    "desktop-saved.png",
+    "desktop-history.png",
+    "desktop-restored.png",
+    "desktop-conflict.png",
+    "desktop-bulk-dialog.png",
+    "desktop-bulk-saved.png",
+    "laptop-ledger.png",
+    "laptop-select-mode.png",
+    "narrow-ledger.png",
+    "narrow-select-mode.png",
+    "narrow-filing.png",
+    "narrow-review.png"
+  ],
+  "chrome": "/opt/google/chrome/chrome",
+  "mode": "isolated headless synthetic fixture"
+}

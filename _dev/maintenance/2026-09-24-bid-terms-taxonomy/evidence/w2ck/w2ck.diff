@@ -1,0 +1,587 @@
+diff -ruN --exclude node_modules --exclude __pycache__ --exclude dist /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/cockpit/acceptance/test_http.py /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/cockpit/acceptance/test_http.py
+--- /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/cockpit/acceptance/test_http.py	2026-09-25 21:26:28.666800036 +0000
++++ /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/cockpit/acceptance/test_http.py	2026-09-25 22:05:58.115107081 +0000
+@@ -594,6 +594,11 @@
+     return {field: value for field, value in workbook["Source"].iter_rows(min_row=2, values_only=True)}
+ 
+ 
++def sheet_values(workbook):
++    """Every sheet's cell values; a rendered workbook's bytes also carry the time it was saved."""
++    return {ws.title: list(ws.iter_rows(values_only=True)) for ws in workbook.worksheets}
++
++
+ def _saved(root, content):
+     path = root / "download-check.xlsx"
+     path.write_bytes(content)
+@@ -671,6 +676,56 @@
+     assert hashlib.sha256(workbook.read_bytes()).hexdigest() == original_hash
+ 
+ 
++def test_past_revision_downloads_like_the_working_copy(env):
++    http, workbook, original_hash = env
++    route = "/api/deal/synthetic/export"
++    initial = deal(http)
++    pages = {"type": "insert", "sheet": "Deal facts", "after_uid": row(initial, "Deal facts", 1)["uid"], "values": {"Field": "Background pages", "Value": "pp. 1-2"}}
++    assert save(http, initial, [pages], "Record background pages").status_code == 200
++    # Revision 1 is marked Reviewed, then In review; only the latest marking is kept once revision 2 is marked.
++    for status in ("reviewed", "in_review"):
++        assert http.post("/api/deal/synthetic/review", {"status": status, "revision": 1}).status_code == 200
++    current = deal(http)
++    facts_uid = row(current, "Deal facts", 0)["uid"]
++    assert save(http, current, [{"type": "update", "sheet": "Deal facts", "uid": facts_uid, "values": {"Value": "Synthetic Acme Two"}}], "Second edit").status_code == 200
++    assert http.post("/api/deal/synthetic/review", {"status": "reviewed", "revision": 2}).status_code == 200
++    current = deal(http)
++    assert save(http, current, [{"type": "update", "sheet": "Deal facts", "uid": facts_uid, "values": {"Value": "Synthetic Acme Three"}}], "Edit after review").status_code == 200
++
++    # Each past revision: its own name, a Source sheet by default, and the review status related to it.
++    expected = {
++        0: ("0 (a past revision; the working copy is at revision 3)", "Reviewed at revision 2 (set after this revision; the status at revision 0 is not recorded here)", "Synthetic Acme"),
++        1: ("1 (a past revision; the working copy is at revision 3)", "Reviewed at revision 2 (set after this revision; the status at revision 1 is not recorded here)", "Synthetic Acme"),
++        2: ("2 (a past revision; the working copy is at revision 3)", "Reviewed at revision 2", "Synthetic Acme Two"),
++        3: ("3", "Reviewed at revision 2; edited since (this file is revision 3)", "Synthetic Acme Three"),
++    }
++    for number, (revision_text, status, name) in expected.items():
++        response = http.get(f"{route}?version=rev:{number}")
++        assert response.headers["Content-Disposition"] == f'attachment; filename="synthetic-working-r{number}.xlsx"'
++        exported = xlsx(response)
++        assert exported.sheetnames == ["Deal ledger", "Rounds", "Questions", "Deal facts", "Source"]
++        assert exported["Deal facts"]["B2"].value == name
++        values = source_values(exported)
++        assert (values["Working revision"], values["Review status"]) == (revision_text, status)
++        assert (values[f"Version ID (base of revision {number})"], values["Raw workbook SHA-256"]) == ("v1132-raw", original_hash)
++        assert values["Background pages"] == ("not recorded" if number == 0 else "pp. 1-2")
++        exported.close()
++        four = http.get(f"{route}?version=rev:{number}&source=0")
++        assert four.headers["Content-Disposition"] == f'attachment; filename="synthetic-working-r{number}.xlsx"'
++        assert sheet_values(xlsx(four)) == sheet_values(openpyxl.load_workbook(io.BytesIO(http.cockpit.workspace.export("synthetic", f"rev:{number}"))))
++        assert xlsx(four).sheetnames == ["Deal ledger", "Rounds", "Questions", "Deal facts"]  # four sheets, no Source
++    assert http.get(f"{route}?version=rev:0&source=0").content == workbook.read_bytes()
++    # The latest revision's file is the working copy's, apart from how the Source sheet describes it.
++    working = source_values(xlsx(http.get(route)))
++    assert (working["Working revision"], working["Review status"]) == ("3", "Reviewed at revision 2; edited since (working revision 3)")
++    assert sheet_values(xlsx(http.get(f"{route}?version=rev:3&source=0"))) == sheet_values(xlsx(http.get(route + "?source=0")))
++    assert http.get(f"{route}?version=rev:4").status_code == 404
++    assert [item["revision"] for item in http.get("/api/deal/synthetic/history").json()["history"]] == [3, 2, 1, 0]  # nothing saved
++    # The earlier markings of revision 1 remain in the deal's activity, which the Source sheet points to.
++    marks = [i["summary"] for i in http.get("/api/activity?slug=synthetic").json()["items"] if i["kind"] == "deal_review"]
++    assert marks == ["Marked reviewed at revision 2", "Marked in review at revision 1", "Marked reviewed at revision 1"]
++
++
+ def test_download_never_shows_an_unrecorded_or_disagreeing_link(env):
+     http, _, _ = env
+     values = source_values(xlsx(http.get("/api/deal/synthetic/export")))  # the fixture's source is not an EDGAR link
+@@ -760,7 +815,7 @@
+     past = xlsx(http.get("/api/deal/synthetic/export?version=rev:1"))
+     assert past["Deal ledger"].cell(2, check_lean.LEDGER_COLUMNS.index("Note") + 1).value == "Reviewed wording"
+     past.close()
+-    assert hashlib.sha256(http.get("/api/deal/synthetic/export?version=rev:0").content).hexdigest() == original_hash
++    assert hashlib.sha256(http.get("/api/deal/synthetic/export?version=rev:0&source=0").content).hexdigest() == original_hash
+     assert http.get("/api/deal/synthetic/export?version=rev:7").status_code == 404
+     assert deal(http)["workspace"]["revision"] == 1
+     assert [item["revision"] for item in http.get("/api/deal/synthetic/history").json()["history"]] == [1, 0]
+diff -ruN --exclude node_modules --exclude __pycache__ --exclude dist /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/cockpit/acceptance/test_responsive.mjs /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/cockpit/acceptance/test_responsive.mjs
+--- /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/cockpit/acceptance/test_responsive.mjs	2026-09-25 20:28:11.588532794 +0000
++++ /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/cockpit/acceptance/test_responsive.mjs	2026-09-25 21:52:42.406238119 +0000
+@@ -47,6 +47,7 @@
+       tabClient: tab?.clientWidth, tabScroll: tab?.scrollWidth,
+       editorClient: editor?.clientWidth, editorScroll: editor?.scrollWidth, editorLeft: editor?.scrollLeft,
+       dock: box('.save-dock'), selected: box('.event-item.selected'), location: box('.event-item.selected .quote-location'),
++      exportButton: box('.export-button'), exportOptions: box('.export-options'),
+       listScroll: document.querySelector('.event-list')?.getBoundingClientRect().toJSON()
+     };
+   });
+@@ -91,6 +92,9 @@
+     assert.ok(value.documentWidth <= width + 2, `${width}px document fits: ${JSON.stringify(value)}`);
+     assert.ok(value.editor.width >= 350, `${width}px editor remains readable: ${value.editor.width}`);
+     assert.equal(value.layout, [1440, 768].includes(width) ? 'columns' : 'compact', `${width}px inner orientation`);
++    const caretGap = value.exportOptions.left - value.exportButton.right;
++    assert.ok(Math.abs(value.exportOptions.top - value.exportButton.top) < 2 && caretGap >= 0 && caretGap <= 16,
++      `${width}px Excel options caret stays beside Export Excel: ${JSON.stringify({ button: value.exportButton, caret: value.exportOptions })}`);
+     if (value.layout === 'compact' && value.location) {
+       assert.ok(value.location.bottom <= value.listScroll.bottom - 8, `${width}px source badge clears list scrollbar: ${JSON.stringify({ location: value.location, listScroll: value.listScroll })}`);
+     }
+diff -ruN --exclude node_modules --exclude __pycache__ --exclude dist /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/cockpit/frontend/src/api.js /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/cockpit/frontend/src/api.js
+--- /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/cockpit/frontend/src/api.js	2026-09-25 20:44:56.184234844 +0000
++++ /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/cockpit/frontend/src/api.js	2026-09-25 21:34:58.645804814 +0000
+@@ -14,12 +14,15 @@
+ const send = (path, session, payload) => json(path, { method: 'POST', headers: writeHeaders(session), body: JSON.stringify(payload) });
+ // A server restart issues a new write token, so an open tab's first write is refused. The refused request changed
+ // nothing: fetch the session once more and, for the same user, retry once with the new token (kept on the shared session).
++// The fresh token is compared with the one this request sent, not the session's current one, so every write refused
++// with the old token is retried, also when another write refused at the same time has already updated the session.
+ async function post(path, session, payload) {
++  const sent = session.csrf_token;
+   try { return await send(path, session, payload); }
+   catch (error) {
+     if (error.status !== 403 || error.message !== 'write authorization failed') throw error;
+     const fresh = await json('/api/session').catch(() => null);
+-    if (!fresh?.csrf_token || fresh.user !== session.user || fresh.csrf_token === session.csrf_token) throw error;
++    if (!fresh?.csrf_token || fresh.user !== session.user || fresh.csrf_token === sent) throw error;
+     session.csrf_token = fresh.csrf_token;
+     return send(path, session, payload);
+   }
+diff -ruN --exclude node_modules --exclude __pycache__ --exclude dist /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/cockpit/frontend/src/api.test.js /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/cockpit/frontend/src/api.test.js
+--- /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/cockpit/frontend/src/api.test.js	2026-09-25 20:45:07.573965006 +0000
++++ /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/cockpit/frontend/src/api.test.js	2026-09-25 21:34:50.162042860 +0000
+@@ -1,5 +1,5 @@
+ import { afterEach, describe, expect, it, vi } from 'vitest';
+-import { filingRanges, saveDeal, segments } from './api';
++import { commentAction, filingRanges, saveDeal, segments } from './api';
+ 
+ describe('source text highlighting', () => {
+   it('preserves the full source text through overlapping quote and search marks', () => {
+@@ -41,6 +41,18 @@
+     expect(session.csrf_token).toBe('new');
+   });
+ 
++  it('retries every write refused with the old token when two are refused at the same time', async () => {
++    const fetch = vi.fn((path, options) => path === '/api/session' ? reply(200, { user: 'alex', can_edit: true, csrf_token: 'new' })
++      : options.headers['X-Cockpit-CSRF'] === 'new' ? reply(200, { saved: path }) : refused());
++    vi.stubGlobal('fetch', fetch);
++    const session = { user: 'alex', can_edit: true, csrf_token: 'old' };
++    expect(await Promise.all([saveDeal('alpha', session, {}), commentAction('alpha', session, {})]))
++      .toEqual([{ saved: '/api/deal/alpha/edit' }, { saved: '/api/deal/alpha/comments' }]);
++    const writes = fetch.mock.calls.filter(([path]) => path !== '/api/session').map(([path, options]) => [path, options.headers['X-Cockpit-CSRF']]);
++    expect(writes).toEqual([['/api/deal/alpha/edit', 'old'], ['/api/deal/alpha/comments', 'old'], ['/api/deal/alpha/edit', 'new'], ['/api/deal/alpha/comments', 'new']]);
++    expect(session.csrf_token).toBe('new');
++  });
++
+   it('does not retry other refusals, another user, an unchanged token or a second refusal', async () => {
+     const cases = [
+       [reply(403, { error: 'only the author may change a comment' })],
+diff -ruN --exclude node_modules --exclude __pycache__ --exclude dist /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/cockpit/frontend/src/choices.js /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/cockpit/frontend/src/choices.js
+--- /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/cockpit/frontend/src/choices.js	2026-09-25 21:04:17.719185620 +0000
++++ /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/cockpit/frontend/src/choices.js	2026-09-25 21:34:24.102912700 +0000
+@@ -14,9 +14,16 @@
+ 
+ // The control for a field: null without a list; 'multi' for a multi-part field (free text and a picker that adds a
+ // part); 'select' for a blank or listed value (the list, Blank and Other…); 'text' for a value off the list, such as
+-// a v1.13.2 value shown under v1.14 lists, or once the reader chose Other….
+-export function listControl(field, value, options, other = false) {
++// a v1.13.2 value shown under v1.14 lists. The reader's choice for the field overrides that: 'other' (they chose
++// Other…) gives free text, 'list' (they chose "Choose from the list") gives the drop-down whatever the value.
++export function listControl(field, value, options, mode) {
+   if (!Array.isArray(options) || !options.length) return null;
+   if (MULTI_FIELDS.has(field)) return 'multi';
+-  return !other && (!text(value) || options.includes(text(value))) ? 'select' : 'text';
++  if (mode === 'other') return 'text';
++  if (mode === 'list') return 'select';
++  return !text(value) || options.includes(text(value)) ? 'select' : 'text';
+ }
++
++// The value a drop-down shows that is not on its list (typed after Other…, or stored off the list), or null. The
++// drop-down keeps it as its own entry until the reader picks another, so it is never cleared unseen.
++export const offListValue = (value, options) => text(value) && !options.includes(text(value)) ? text(value) : null;
+diff -ruN --exclude node_modules --exclude __pycache__ --exclude dist /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/cockpit/frontend/src/choices.test.js /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/cockpit/frontend/src/choices.test.js
+--- /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/cockpit/frontend/src/choices.test.js	2026-09-25 20:55:14.266749480 +0000
++++ /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/cockpit/frontend/src/choices.test.js	2026-09-25 21:34:32.539395205 +0000
+@@ -1,5 +1,5 @@
+ import { describe, expect, it } from 'vitest';
+-import { addPart, listControl, valueParts } from './choices';
++import { addPart, listControl, offListValue, valueParts } from './choices';
+ 
+ const OUTCOMES = ['Enforced', 'Extended', 'Extended (late bid accepted)', 'No deadline stated', 'Passed without action', 'Unclear'];
+ const FORMALITY = ['Formal', 'Informal', 'Unclear'];
+@@ -18,9 +18,21 @@
+   it('keeps the drop-down for blank and listed values, and free text for others or after Other…', () => {
+     expect(listControl('Formality', '', FORMALITY)).toBe('select');
+     expect(listControl('Formality', 'Formal', FORMALITY)).toBe('select');
+-    expect(listControl('Formality', 'Formal', FORMALITY, true)).toBe('text');
++    expect(listControl('Formality', 'Formal', FORMALITY, 'other')).toBe('text');
+     expect(listControl('All cash', 'Yes', ['Varies', 'Y'])).toBe('text');
+     expect(listControl('Note', 'x', undefined)).toBeNull();
+     expect(listControl('Formality', '', [])).toBeNull();
+   });
++  it('brings the drop-down back with "Choose from the list", keeping a typed off-list value visible', () => {
++    // Other…, then a value typed off the list: free text.
++    expect(listControl('Formality', 'Formal-ish', FORMALITY, 'other')).toBe('text');
++    // "Choose from the list": the drop-down again, with the typed value as its own entry until another is picked.
++    expect(listControl('Formality', 'Formal-ish', FORMALITY, 'list')).toBe('select');
++    expect(offListValue('Formal-ish', FORMALITY)).toBe('Formal-ish');
++    // A stored off-list value can be brought to the list the same way.
++    expect(listControl('Deadline outcome', 'Late bids accepted', OUTCOMES, 'list')).toBe('multi');
++    expect(listControl('All cash', 'Yes', ['Varies', 'Y'], 'list')).toBe('select');
++    expect(offListValue('Formal', FORMALITY)).toBeNull();
++    expect(offListValue('', FORMALITY)).toBeNull();
++  });
+ });
+diff -ruN --exclude node_modules --exclude __pycache__ --exclude dist /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/cockpit/frontend/src/downloads.js /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/cockpit/frontend/src/downloads.js
+--- /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/cockpit/frontend/src/downloads.js	2026-09-25 20:48:21.162103317 +0000
++++ /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/cockpit/frontend/src/downloads.js	2026-09-25 21:37:05.894514811 +0000
+@@ -1,11 +1,13 @@
+ // Excel download links: pure functions shared by the deal page and its tests.
+-// The working copy downloads with a Source sheet (EDGAR links and provenance) unless asked for its four
+-// sheets; a version downloads as its stored bytes unless asked for the Source sheet.
++// The working copy and a past revision ("rev:N", from History) download with a Source sheet (EDGAR links and
++// provenance) unless asked for their four sheets; the server names them {slug}-working-r{N}.xlsx. A version
++// downloads as its stored bytes unless asked for the Source sheet.
+ 
+ export function exportLinks(slug, version) {
+   const href = `/api/deal/${slug}/export?version=${encodeURIComponent(version)}`;
+-  return version === 'working'
+-    ? { href, title: 'The working copy’s four sheets and a Source sheet with the EDGAR link and provenance',
++  const past = /^rev:\d+$/.test(version);
++  return version === 'working' || past
++    ? { href, title: `${past ? `Revision ${version.slice(4)}’s` : 'The working copy’s'} four sheets and a Source sheet with the EDGAR link and provenance`,
+       other: { href: `${href}&source=0`, label: 'Four sheets only (checker format)' } }
+     : { href, title: 'The stored workbook, unchanged',
+       other: { href: `${href}&source=1`, label: 'With Source sheet' } };
+diff -ruN --exclude node_modules --exclude __pycache__ --exclude dist /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/cockpit/frontend/src/downloads.test.js /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/cockpit/frontend/src/downloads.test.js
+--- /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/cockpit/frontend/src/downloads.test.js	2026-09-25 20:48:21.164103310 +0000
++++ /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/cockpit/frontend/src/downloads.test.js	2026-09-25 21:37:05.894636657 +0000
+@@ -15,6 +15,13 @@
+     expect(links.other).toEqual({ href: '/api/deal/mac-gray/export?version=opus55-medium&source=1', label: 'With Source sheet' });
+   });
+ 
++  it('downloads a past revision like the working copy', () => {
++    const links = exportLinks('mac-gray', 'rev:3');
++    expect(links.href).toBe('/api/deal/mac-gray/export?version=rev%3A3');
++    expect(links.title).toBe('Revision 3’s four sheets and a Source sheet with the EDGAR link and provenance');
++    expect(links.other).toEqual({ href: '/api/deal/mac-gray/export?version=rev%3A3&source=0', label: 'Four sheets only (checker format)' });
++  });
++
+   it('encodes the version id', () => {
+     expect(exportLinks('d', 'a b').other.href).toBe('/api/deal/d/export?version=a%20b&source=1');
+   });
+diff -ruN --exclude node_modules --exclude __pycache__ --exclude dist /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/cockpit/frontend/src/main.jsx /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/cockpit/frontend/src/main.jsx
+--- /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/cockpit/frontend/src/main.jsx	2026-09-25 21:26:14.434924934 +0000
++++ /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/cockpit/frontend/src/main.jsx	2026-09-25 21:38:26.594558515 +0000
+@@ -780,17 +780,19 @@
+             {versionActions && isImported(shownVersion) && <Button appearance="secondary" icon={shownVersion.hidden ? <EyeIcon size={16}/> : <EyeSlashIcon size={16}/>} disabled={versionBusy} onClick={() => setVersionHidden(shownVersion, !shownVersion.hidden)}>{shownVersion.hidden ? 'Unhide' : 'Hide'}</Button>}
+             <RunBadge jobs={jobs} onOpen={openRuns}/>
+             {canRun && !deal.hidden && <Button appearance="secondary" className="extract-button" icon={<PlayIcon size={16}/>} onClick={openExtract}>Extract</Button>}
+-            <Button as="a" appearance="secondary" className="export-button" href={exportLink.href} title={exportLink.title} download icon={<DownloadSimpleIcon size={16}/>}>Export Excel</Button>
+-            <Menu positioning="below-end">
+-              <MenuTrigger disableButtonEnhancement>
+-                <Button appearance="secondary" className="icon-button export-options" aria-label="Excel download options" title="Excel download options" icon={<CaretDownIcon size={14}/>}/>
+-              </MenuTrigger>
+-              <MenuPopover>
+-                <MenuList>
+-                  <MenuItemLink href={exportLink.other.href} download icon={<DownloadSimpleIcon size={16}/>}>{exportLink.other.label}</MenuItemLink>
+-                </MenuList>
+-              </MenuPopover>
+-            </Menu>
++            <span className="export-group">
++              <Button as="a" appearance="secondary" className="export-button" href={exportLink.href} title={exportLink.title} download icon={<DownloadSimpleIcon size={16}/>}>Export Excel</Button>
++              <Menu positioning="below-end">
++                <MenuTrigger disableButtonEnhancement>
++                  <Button appearance="secondary" className="icon-button export-options" aria-label="Excel download options" title="Excel download options" icon={<CaretDownIcon size={14}/>}/>
++                </MenuTrigger>
++                <MenuPopover>
++                  <MenuList>
++                    <MenuItemLink href={exportLink.other.href} download icon={<DownloadSimpleIcon size={16}/>}>{exportLink.other.label}</MenuItemLink>
++                  </MenuList>
++                </MenuPopover>
++              </Menu>
++            </span>
+             <div className="save-line">
+               <span className={`work-state ${dirty ? 'unsaved' : ''}`} aria-live="polite" title={lastSaved || undefined}><Dot tone={workState.tone}/>{workState.label}</span>
+               <span ref={saveFlash} className="save-feedback">{saveState === 'saved' ? 'Revision saved' : ''}</span>
+diff -ruN --exclude node_modules --exclude __pycache__ --exclude dist /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/cockpit/frontend/src/Records.jsx /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/cockpit/frontend/src/Records.jsx
+--- /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/cockpit/frontend/src/Records.jsx	2026-09-25 21:04:10.215434005 +0000
++++ /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/cockpit/frontend/src/Records.jsx	2026-09-25 21:55:26.099069679 +0000
+@@ -4,7 +4,7 @@
+ import SplitPane from './SplitPane';
+ import Comments from './Comments';
+ import { count, recordValues, rowId, sheetColumns, sheetRows, text } from './api';
+-import { addPart, listControl, OTHER } from './choices';
++import { addPart, listControl, offListValue, OTHER } from './choices';
+ import { changedByOther, displayName, initials, shortTime } from './trace';
+ import { Dot, Empty, SeverityGlyph } from './ui';
+ 
+@@ -117,9 +117,11 @@
+ 
+ function RecordForm({ sheet, columns, row, choices, editable, onEdit, dirtyFields, authors, onOpenRevision }) {
+   const values = recordValues(row, sheet);
+-  // Listed fields the reader switched to free text with Other…, for this record only.
+-  const [other, setOther] = useState(() => new Set());
+-  useEffect(() => setOther(new Set()), [row.uid]);
++  // Listed fields the reader switched to free text with Other… ('other') or back with "Choose from the list"
++  // ('list'), for this record only.
++  const [modes, setModes] = useState(() => new Map());
++  useEffect(() => setModes(new Map()), [row.uid]);
++  const setMode = (field, mode) => setModes(current => new Map(current).set(field, mode));
+   const severities = worstSeverityByField(row.issues);
+   const ordered = columns.includes(EVIDENCE_FIELD) ? [EVIDENCE_FIELD, ...columns.filter(field => field !== EVIDENCE_FIELD)] : columns;
+   return <div className="field-grid">
+@@ -137,10 +139,12 @@
+         : isEvidence ? 'Exact source wording and printed page; select filing text to fill.'
+         : undefined;
+       const change = (_, data) => onEdit(sheet, row.uid, field, data.value);
+-      const control = listControl(field, value, options, other.has(field));
++      const control = listControl(field, value, options, modes.get(field));
++      const offList = control === 'select' ? offListValue(value, options) : null;
+       let input, picker = null;
+       if (control === 'select') {
+-        input = <Select value={value} disabled={!editable} onChange={(event, data) => data.value === OTHER ? setOther(current => new Set(current).add(field)) : change(event, data)}>
++        input = <Select value={value} disabled={!editable} onChange={(event, data) => data.value === OTHER ? setMode(field, 'other') : change(event, data)}>
++          {offList && <option value={offList}>{offList} (not on the list)</option>}
+           <option value="">Blank</option>
+           {options.map(option => <option key={option} value={option}>{option}</option>)}
+           <option value={OTHER}>Other…</option>
+@@ -165,9 +169,9 @@
+           onChange={change}/>;
+       }
+       const classes = ['field-cell', isLong && 'span-all', isEvidence && 'evidence-field', dirty && 'is-dirty'].filter(Boolean).join(' ');
+-      const listHint = control === 'text' && (other.has(field)
+-        ? <Button appearance="subtle" className="link-button" disabled={!editable} onClick={() => setOther(current => { const next = new Set(current); next.delete(field); return next; })}>Choose from the list</Button>
+-        : 'Not on this version’s list');
++      const chooseFromList = <Button appearance="subtle" className="link-button" disabled={!editable} onClick={() => setMode(field, 'list')}>Choose from the list</Button>;
++      const listHint = offList ? 'Not on this version’s list; pick a listed value to replace it'
++        : control === 'text' && (modes.get(field) === 'other' ? chooseFromList : <>Not on this version’s list. {chooseFromList}</>);
+       return <div key={field} className={classes}>
+         <Field label={fieldLabel(field, severities.get(field), dirty)} hint={hint || listHint || undefined}>{input}</Field>
+         {picker}
+diff -ruN --exclude node_modules --exclude __pycache__ --exclude dist /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/cockpit/frontend/src/Review.jsx /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/cockpit/frontend/src/Review.jsx
+--- /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/cockpit/frontend/src/Review.jsx	2026-09-25 20:56:13.638884826 +0000
++++ /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/cockpit/frontend/src/Review.jsx	2026-09-25 21:37:14.448488005 +0000
+@@ -3,6 +3,7 @@
+ import { ArrowClockwiseIcon, CaretRightIcon, ChatCircleIcon, DownloadSimpleIcon, FileTextIcon, MinusIcon, PlusIcon } from '@phosphor-icons/react';
+ import Comments from './Comments';
+ import { count, rowId, text } from './api';
++import { exportLinks } from './downloads';
+ import { Dot, Empty, Loading, Message, SeverityGlyph } from './ui';
+ import { fieldLabel } from './Records';
+ import { importCheckText, liveCheckText } from './runs';
+@@ -231,6 +232,16 @@
+   </div>;
+ }
+ 
++// A past revision downloads like the working copy: with the Source sheet, or its four sheets. The server names
++// the file {slug}-working-r{N}.xlsx.
++function RevisionDownloads({ slug, revision }) {
++  const links = exportLinks(slug, `rev:${revision}`);
++  return <>
++    <Button as="a" appearance="subtle" className="link-button" icon={<DownloadSimpleIcon size={16}/>} href={links.href} title={links.title} download>Download</Button>
++    <Button as="a" appearance="subtle" className="link-button" href={links.other.href} title={links.other.label} download>Four sheets</Button>
++  </>;
++}
++
+ // A past revision can be downloaded or compared with the working copy without restoring it (read only).
+ export function HistoryTab({ data, loading, editable, onRestore, lastSaved, focus, slug, onCompareRevision }) {
+   useEffect(() => {
+@@ -253,7 +264,7 @@
+           {(item.at || item.actor) && <span className="mono">{[friendlyDate(item.at), item.actor].filter(Boolean).join(' · ')}</span>}
+         </div>
+         <div className="history-actions">
+-          {slug && <Button as="a" appearance="subtle" className="link-button" icon={<DownloadSimpleIcon size={16}/>} href={`/api/deal/${slug}/export?version=rev:${item.revision}`} download={`${slug}-revision-${item.revision}.xlsx`}>Download</Button>}
++          {slug && <RevisionDownloads slug={slug} revision={item.revision}/>}
+           {onCompareRevision && item.revision !== data.history[0]?.revision && <Button appearance="subtle" className="link-button" onClick={() => onCompareRevision(item.revision)}>Compare with working copy</Button>}
+           {editable && <Button appearance="secondary" icon={<ArrowClockwiseIcon size={16}/>} onClick={() => onRestore(item.revision)}>Restore</Button>}
+         </div>
+diff -ruN --exclude node_modules --exclude __pycache__ --exclude dist /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/cockpit/frontend/src/style.css /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/cockpit/frontend/src/style.css
+--- /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/cockpit/frontend/src/style.css	2026-09-25 21:04:10.216247693 +0000
++++ /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/cockpit/frontend/src/style.css	2026-09-25 21:38:26.594998936 +0000
+@@ -370,6 +370,8 @@
+ .version-control .fui-Select { width: 240px; }
+ .version-control.review-control .fui-Select { width: 130px; }
+ .save-line { display: flex; align-items: center; gap: var(--sp-3); font-size: var(--fs-12); white-space: nowrap; }
++/* Export Excel and its options caret wrap as one, so the caret never lands beside Save changes. */
++.export-group { display: flex; flex: none; align-items: center; gap: var(--sp-2); }
+ .work-state { display: inline-flex; align-items: center; color: var(--ink-2); }
+ .save-feedback { color: var(--success); }
+ .save-feedback:empty { display: none; }
+@@ -1302,7 +1304,8 @@
+   .version-control { flex: 1 1 200px; min-width: 0; }
+   .version-control .fui-Select { flex: 1; width: auto; min-width: 0; }
+   .save-line { order: 1; }
+-  .toolbar-actions > .fui-Button { flex: 1 1 calc(50% - var(--sp-3)); order: 2; }
++  .toolbar-actions > .fui-Button, .toolbar-actions > .export-group { flex: 1 1 calc(50% - var(--sp-3)); order: 2; }
++  .export-group > .export-button { flex: 1; }
+   .mobile-switch {
+     display: flex;
+     flex: none;
+diff -ruN --exclude node_modules --exclude __pycache__ --exclude dist /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/cockpit/provenance.py /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/cockpit/provenance.py
+--- /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/cockpit/provenance.py	2026-09-25 20:45:41.928266691 +0000
++++ /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/cockpit/provenance.py	2026-09-25 22:05:45.550550087 +0000
+@@ -17,7 +17,7 @@
+ import fetch_filing
+ from cockpit import data
+ from cockpit.trace import DEAL_STATUSES, _deal_review
+-from cockpit.workspace import Conflict, _decode, _now
++from cockpit.workspace import REV_ID, Conflict, _decode, _now
+ 
+ SHEET = "Source"
+ NOT_RECORDED = "not recorded"
+@@ -27,13 +27,14 @@
+ def download(cockpit: data.Cockpit, slug: str, version: str = "working", source: bool | None = None) -> tuple[bytes, str]:
+     """(workbook bytes, file name) for GET /api/deal/<slug>/export.
+ 
+-    The working copy gets the Source sheet unless `source` is False; a version is its raw bytes,
+-    unchanged, unless `source` is True.
++    The working copy and a past revision ("rev:N") get the Source sheet unless `source` is False,
++    and are named by their revision; a version is its raw bytes, unchanged, unless `source` is True.
+     """
+     workspace = cockpit.workspace
++    past = REV_ID.fullmatch(version or "")
+     if source is None:
+-        source = version == "working"
+-    if version != "working":
++        source = version == "working" or bool(past)
++    if version != "working" and not past:
+         content = workspace.export(slug, version)
+         if not source:
+             return content, f"{slug}-{version}.xlsx"
+@@ -45,16 +46,22 @@
+     conn = workspace._connect()
+     try:
+         if conn: conn.execute("BEGIN")  # one read snapshot, so the bytes, the revision and the review status agree
+-        state, row, base = workspace._state(slug, item, conn)
+-        content = workspace._render_xlsx(base, state) if row else workspace._path(base["path"]).read_bytes()
++        if past:
++            # As Workspace.export: revision 0 is the starting base's raw bytes, revision N its snapshot on its own base.
++            revision = int(past.group(1))
++            state, base, _ = workspace._past(slug, item, conn, version)
++            content = workspace._path(base["path"]).read_bytes() if revision == 0 else workspace._render_xlsx(base, state)
++        else:
++            state, row, base = workspace._state(slug, item, conn)
++            content = workspace._render_xlsx(base, state) if row else workspace._path(base["path"]).read_bytes()
++            revision = row["revision"] if row else 0
+         review = _deal_review(conn, slug)
+     finally:
+         if conn: conn.close()
+-    revision = row["revision"] if row else 0
+     name = f"{slug}-working-r{revision}.xlsx"
+     if not source:
+         return content, name
+-    return add_sheet(content, rows(cockpit, slug, item, base, state, revision, review)), name
++    return add_sheet(content, rows(cockpit, slug, item, base, state, revision, review, past=bool(past))), name
+ 
+ 
+ def links(cockpit: data.Cockpit, slug: str, item: dict[str, Any], entry: dict[str, str]) -> tuple[str | None, str | None]:
+@@ -76,9 +83,29 @@
+     return (stated if stated == derived else None), submission
+ 
+ 
++def review_text(review: dict[str, Any] | None, revision: int, past: bool = False) -> str:
++    """The deal's review status as it relates to the working revision shown.
++
++    Only the deal's latest status is kept, with the revision it was set at (always the working copy's
++    revision then, so later markings never carry an earlier revision). A revision at or after that one
++    therefore had this status, "edited since" where it is later. For a past revision older than the
++    status, the status it had then is not kept here (the deal's activity lists each marking), so none is claimed.
++    """
++    if review is None or review.get("revision") is None:
++        return "not set"
++    label = DEAL_STATUSES.get(review["status"], review["status"])
++    if revision < review["revision"]:
++        return f"{label} at revision {review['revision']} (set after this revision; the status at revision {revision} is not recorded here)"
++    status = f"{label} at revision {review['revision']}"
++    if revision > review["revision"]:
++        status += f"; edited since ({'this file is revision' if past else 'working revision'} {revision})"
++    return status
++
++
+ def rows(cockpit: data.Cockpit, slug: str, item: dict[str, Any], base: dict[str, Any], state: dict[str, Any],
+-         revision: int | None, review: dict[str, Any] | None) -> list[tuple[str, str, bool]]:
+-    """(field, value, is a link) for the Source sheet; revision and review are None for a raw version."""
++         revision: int | None, review: dict[str, Any] | None, past: bool = False) -> list[tuple[str, str, bool]]:
++    """(field, value, is a link) for the Source sheet; revision and review are None for a raw version, and
++    `past` marks a past revision ("rev:N") rather than the working copy's latest."""
+     _, _, entry = cockpit.resolve(slug)
+     index, submission = links(cockpit, slug, item, entry)
+     facts = [record["values"] for record in state["sheets"][data.FACTS_SHEET]["rows"]]
+@@ -90,12 +117,10 @@
+         revision_text = status = RAW_ONLY
+     else:
+         revision_text = str(revision)
+-        if review is None or review.get("revision") is None:
+-            status = "not set"
+-        else:
+-            status = f"{DEAL_STATUSES.get(review['status'], review['status'])} at revision {review['revision']}"
+-            if revision > review["revision"]:
+-                status += f"; edited since (working revision {revision})"
++        current = (review or {}).get("current_revision")
++        if past and current is not None and revision < current:
++            revision_text += f" (a past revision; the working copy is at revision {current})"
++        status = review_text(review, revision, past)
+     return [
+         ("EDGAR filing index", index or NOT_RECORDED, bool(index)),
+         ("Complete submission (.txt)", submission or NOT_RECORDED, bool(submission)),
+@@ -103,7 +128,7 @@
+         ("Filing SHA-256", entry.get("sha256") or NOT_RECORDED, False),
+         ("Instruction", instruction or NOT_RECORDED, False),
+         ("Instruction SHA-256", cockpit.workspace._instruction_hash(base) or NOT_RECORDED, False),
+-        ("Version ID" if revision is None else "Version ID (working-copy base)", base.get("id") or NOT_RECORDED, False),
++        ("Version ID" if revision is None else f"Version ID (base of revision {revision})" if past else "Version ID (working-copy base)", base.get("id") or NOT_RECORDED, False),
+         ("Raw workbook SHA-256", base.get("sha256") or NOT_RECORDED, False),
+         ("Working revision", revision_text, False),
+         ("Review status", status, False),
+diff -ruN --exclude node_modules --exclude __pycache__ --exclude dist /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/cockpit/server.py /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/cockpit/server.py
+--- /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/cockpit/server.py	2026-09-25 21:26:14.439525605 +0000
++++ /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/cockpit/server.py	2026-09-25 21:36:04.912439779 +0000
+@@ -176,7 +176,7 @@
+                     except ValueError: return self._json({"error": "invalid limit"}, 400)
+                     return self._json(self.cockpit.trace.activity(actor, slug, limit=limit))
+                 version = query.get("version", ["working"])[0]
+-                source = (query.get("source") or [""])[0]  # "0": the working copy's four sheets; "1": a version with the Source sheet
++                source = (query.get("source") or [""])[0]  # "0": the working copy's (or a past revision's) four sheets; "1": a version with the Source sheet
+                 if source not in ("", "0", "1"): return self._json({"error": "invalid source"}, 400)
+                 content, name = provenance.download(self.cockpit, slug, version, source == "1" if source else None)
+                 return self._send(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", Content_Disposition=f'attachment; filename="{name}"')
+diff -ruN --exclude node_modules --exclude __pycache__ --exclude dist /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/README.md /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/README.md
+--- /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/README.md	2026-09-25 21:26:28.666307762 +0000
++++ /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/README.md	2026-09-25 21:56:31.310576866 +0000
+@@ -190,7 +190,7 @@
+ 
+ The second command changes only the port: it reads the same catalog and working-state database from this checkout. Use a synthetic fixture or a separate checkout for disposable edit tests.
+ 
+-The editable cockpit uses the allowlisted version catalog at `_dev/cockpit/catalog.json`, displaying each workbook beside its filing (`raw_filing/`, matched through `MANIFEST.csv`). The built React interface supports Ledger, Rounds, Questions and Deal facts editing, event insertion/deletion/movement, source navigation, findings, changes, history/restore and Excel export. A working-copy download is named `<slug>-working-r<N>.xlsx` and adds a fifth sheet, Source, written by the cockpit and never by the model: the EDGAR filing index and complete-submission links, the Background pages, the filing, instruction and raw-workbook hashes, the base version, the revision, the deal's review status and the export time, with "not recorded" for any value not on record. A four-sheet option (`?source=0`) leaves it out; a version download is the stored bytes unless the Source sheet is asked for (`?source=1`). A file with the Source sheet fails the checker's four-sheet rule by design. Preserved source versions are immutable; saved working revisions live in the ignored `_dev/cockpit/state/workspace.sqlite3`. Preserve that database across deployments. Deals added in the app (phase 3) are rows in its `added_deals` table with their filings in `_dev/cockpit/state/filings/<slug>/`; the worker fetches them from EDGAR as `lookup` jobs (cached 24 hours in `state/lookups/`), and passes the folder to `run_model.py prepare --filing-dir`, which accepts only `raw_filing/` or such a folder. The server reads only the seed's identifying columns. Viewing a deal does not create a revision. The server binds 127.0.0.1, makes no network or model calls, runs the mechanical checker in-process (a working copy's check is kept per deal until its revision, base, filing or the loaded checker version changes) and never reads `ref/`. If `dist/index.html` is missing, page routes return HTTP 503 naming the missing build; there is no fallback interface. See the [review guide](../cockpit/README.md) and [build contract](../COCKPIT_BUILD.md).
++The editable cockpit uses the allowlisted version catalog at `_dev/cockpit/catalog.json`, displaying each workbook beside its filing (`raw_filing/`, matched through `MANIFEST.csv`). The built React interface supports Ledger, Rounds, Questions and Deal facts editing, event insertion/deletion/movement, source navigation, findings, changes, history/restore and Excel export. A working-copy download is named `<slug>-working-r<N>.xlsx`, as is a past revision's download from History (`?version=rev:N`), and adds a fifth sheet, Source, written by the cockpit and never by the model: the EDGAR filing index and complete-submission links, the Background pages, the filing, instruction and raw-workbook hashes, the base version, the revision, the deal's review status (related to that revision) and the export time, with "not recorded" for any value not on record. A four-sheet option (`?source=0`) leaves it out; a version download is the stored bytes unless the Source sheet is asked for (`?source=1`). A file with the Source sheet fails the checker's four-sheet rule by design. Preserved source versions are immutable; saved working revisions live in the ignored `_dev/cockpit/state/workspace.sqlite3`. Preserve that database across deployments. Deals added in the app (phase 3) are rows in its `added_deals` table with their filings in `_dev/cockpit/state/filings/<slug>/`; the worker fetches them from EDGAR as `lookup` jobs (cached 24 hours in `state/lookups/`), and passes the folder to `run_model.py prepare --filing-dir`, which accepts only `raw_filing/` or such a folder. Of `ref/`, the server reads only `ref/seed.csv`, and of it only the identifying columns and `index_url` (for adding a seed deal and for the Source sheet's filing index link). Viewing a deal does not create a revision. The server binds 127.0.0.1, makes no network or model calls and runs the mechanical checker in-process (a working copy's check is kept per deal until its revision, base, filing or the loaded checker version changes). If `dist/index.html` is missing, page routes return HTTP 503 naming the missing build; there is no fallback interface. See the [review guide](../cockpit/README.md) and [build contract](../COCKPIT_BUILD.md).
+ 
+ Quotes are located with the checker's own parsing and both of its filing renderings, so every quote the checker accepts is highlighted. A "page hint" (a quote found on a different printed page from the one cited) is a cockpit hint, not a checker finding, and is shown only when a filing's page numbers were detected reliably. A workbook or filing that cannot be read is listed as unreadable (HTTP 409 for that deal) without hiding the other deals.
+ 
+diff -ruN --exclude node_modules --exclude __pycache__ --exclude dist /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/test_cockpit_catalog.py /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/test_cockpit_catalog.py
+--- /home/uctpiaj/work/tmp/v114-scratch/wave2-base/_dev/tools/test_cockpit_catalog.py	2026-09-25 20:50:27.717650302 +0000
++++ /home/uctpiaj/work/tmp/v114-scratch/pkg/w2ck/_dev/tools/test_cockpit_catalog.py	2026-09-25 21:37:45.937629743 +0000
+@@ -16,7 +16,8 @@
+ 
+ from openpyxl import load_workbook
+ 
+-from cockpit import data, verify_catalog
++import fetch_filing
++from cockpit import data, provenance, verify_catalog
+ from cockpit import import_results as imp
+ from test_cockpit import build_filing, build_workbook, tree_digest
+ 
+@@ -146,6 +147,40 @@
+         self.assertEqual((outcome["deals"]["kraton"]["edited"], outcome["deals"]["kraton"]["path"]),
+                          (True, f"{RELOCATED}/kraton.xlsx"))
+ 
++    def test_relocated_deal_downloads_with_its_source_sheet(self):
++        """S3 with S5: the download's Source sheet takes the manifest row through the catalog-based resolve."""
++        submission = "https://www.sec.gov/Archives/edgar/data/77/0000000077-20-000001.txt"
++        index = fetch_filing.index_link(submission)
++        filing_hash = sha((self.root / "raw_filing/kraton_2020-04-01_DEFM14A.htm").read_bytes())
++        manifest = self.root / "raw_filing/MANIFEST.csv"
++        manifest.write_text(manifest.read_text(encoding="utf-8").replace(
++            "https://example.invalid/kraton.txt,kraton.htm,,,", f"{submission},kraton.htm,,,{filing_hash}"), encoding="utf-8")
++        (self.root / "ref").mkdir()
++        (self.root / "ref/seed.csv").write_text(f"deal,target_name,form_type,date_filed,index_url,status\nkraton,KRATON,DEFM14A,2020-04-01,{index},ok\n", encoding="utf-8")
++        edit(self.cockpit, "kraton")
++        base_hash = self.cockpit.workspace.item("kraton")["versions"][0]["sha256"]
++        relocate(self.root)
++        shutil.rmtree(self.root / "extraction")
++        cockpit = data.Cockpit(self.root)
++
++        content, name = provenance.download(cockpit, "kraton")
++        self.assertEqual(name, "kraton-working-r1.xlsx")
++        book = load_workbook(io.BytesIO(content))
++        self.assertEqual(book.sheetnames, ["Deal ledger", "Rounds", "Questions", "Deal facts", "Source"])
++        values = {field: value for field, value in book["Source"].iter_rows(min_row=2, values_only=True)}
++        book.close()
++        self.assertEqual((values["EDGAR filing index"], values["Complete submission (.txt)"], values["Filing SHA-256"]), (index, submission, filing_hash))
++        self.assertEqual((values["Version ID (working-copy base)"], values["Raw workbook SHA-256"], values["Instruction"]), (imp.VERSION_ID, base_hash, "v1.13.2"))
++        self.assertEqual((values["Working revision"], values["Review status"]), ("1", "not set"))
++
++        four, four_name = provenance.download(cockpit, "kraton", source=False)
++        self.assertEqual(four_name, "kraton-working-r1.xlsx")
++        path = self.root / "_download-four.xlsx"
++        path.write_bytes(four)
++        self.assertEqual(load_workbook(path).sheetnames, ["Deal ledger", "Rounds", "Questions", "Deal facts"])
++        self.assertEqual(data.read_workbook(path), data.read_workbook(self._export_file("kraton", cockpit)))
++        self.assertEqual(sha(provenance.download(cockpit, "kraton", "rev:0", source=False)[0]), base_hash)  # the relocated bytes
++
+     def test_verify_passes_in_place(self):
+         outcome = verify_catalog.verify(self.root)
+         self.assertEqual({deal["path"] for deal in outcome["deals"].values()},

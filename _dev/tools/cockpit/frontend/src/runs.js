@@ -1,14 +1,16 @@
-import { text } from './api';
+import { count, text } from './api';
 import { displayName, shortTime } from './trace';
 
 // Pure helpers for accounts, extraction runs and versions (phase 2).
 
-export const INSTRUCTION_VERSION = 'v1.13.2';
+// The three extractions queued before phase 4 recorded no instruction; they ran the repository's v1.13.2.
+export const LEGACY_INSTRUCTION_LABEL = 'v1.13.2';
 export const EFFORTS = ['low', 'medium', 'high', 'xhigh', 'max'];
 export const DEFAULT_EFFORT = 'medium';
 export const FABLE_WARNING = 'Fable’s safety filter often blocks runs partway (6 of 11 test prompts); a blocked run fails and must be restarted.';
 const ACCOUNT_NAMES = { claude: 'Claude', chatgpt: 'ChatGPT' };
 export const DEFAULT_ENGINE = { id: 'opus55', label: 'Opus 5.5', account: 'claude', efforts: EFFORTS, default_effort: DEFAULT_EFFORT };
+const ENGINE_EFFORT = { astra6: 'high' };  // Astra's own default when chosen explicitly.
 export const DEFAULT_TIMEOUT = 90;
 export const TIMEOUT_RANGE = [10, 360];
 export const ACTIVE_STATES = new Set(['queued', 'preparing', 'running', 'checking', 'importing']);
@@ -28,11 +30,12 @@ export function accountEngines(account) {
     : [{ ...DEFAULT_ENGINE, connected: Boolean(account?.claude?.connected) }];
   return list.map(engine => {
     const efforts = (engine.efforts?.length ? engine.efforts : EFFORTS).filter(effort => effort !== 'ultra');
-    const fallback = efforts.includes(DEFAULT_EFFORT) ? DEFAULT_EFFORT : efforts[0];
+    const preferred = ENGINE_EFFORT[engine.id] || DEFAULT_EFFORT;
+    const fallback = efforts.includes(preferred) ? preferred : efforts[0];
     return { ...engine, label: engine.label || engine.id, efforts, default_effort: efforts.includes(engine.default_effort) ? engine.default_effort : fallback, connected: Boolean(engine.connected) };
   });
 }
-// The engine to preselect: Opus 5.5 when usable, else the first connected engine, else null.
+// Preselect Opus 5.5 when usable, else the first connected engine; preserve an explicit selection.
 export function pickEngine(engines, current = null) {
   const usable = (engines || []).filter(engine => engine.connected);
   return usable.find(engine => engine.id === current) || usable.find(engine => engine.id === DEFAULT_ENGINE.id) || usable[0] || null;
@@ -48,7 +51,7 @@ export const stateTone = state => ACTIVE_STATES.has(state) ? 'warning' : STATE_T
 // Which plan a run used: "Claude plan" or "ChatGPT plan", from the job's recorded account (Claude before phase 4).
 export const planName = account => account === 'chatgpt' ? 'ChatGPT plan' : 'Claude plan';
 export const jobEngineLabel = job => text(job?.params?.engine_label) || 'Opus 5.5';
-export const jobInstructionLabel = job => text(job?.params?.instruction?.label) || INSTRUCTION_VERSION;
+export const jobInstructionLabel = job => text(job?.params?.instruction?.label) || LEGACY_INSTRUCTION_LABEL;
 
 // The failed or cancelled outcome of a run, in words. Null for a run that has not failed.
 export function failureText(job) {
@@ -138,8 +141,9 @@ export function dateWithYear(value) {
 }
 
 // "Fable 5.1 · high · draft 3f2a9c1 (Alex) · on Austin’s Claude plan"; Opus 5.5 at medium adds "· usually 10–15 minutes".
-export function runSummary(effort, user, engine = DEFAULT_ENGINE, instructionLabel = INSTRUCTION_VERSION) {
-  const parts = [engine.label, effort, instructionLabel || INSTRUCTION_VERSION, `on ${displayName(user)}’s ${planName(engine.account)}`];
+// The Extract dialog passes the chosen instruction, which starts as the default one.
+export function runSummary(effort, user, engine = DEFAULT_ENGINE, instructionLabel = '') {
+  const parts = [engine.label, effort, instructionLabel || 'default instruction', `on ${displayName(user)}’s ${planName(engine.account)}`];
   if (engine.id === 'opus55' && effort === 'medium') parts.push('usually 10–15 minutes');
   return parts.join(' · ');
 }
@@ -175,5 +179,48 @@ export function versionOptionLabel(version) {
   if (version.kind === 'working' || version.id === 'working') return 'Working copy · editable';
   const label = text(version.label || version.id);
   const instruction = version.instruction_version && !label.includes(version.instruction_version) ? ` · ${version.instruction_version}` : '';
-  return `${label}${instruction}${version.hidden ? ' · hidden' : ''}${version.is_base ? ' · base' : ''}`;
+  const checker = checkerLabel(version.checker);
+  return `${label}${instruction}${checker ? ` · ${checker}` : ''}${version.hidden ? ' · hidden' : ''}${version.is_base ? ' · base' : ''}`;
+}
+
+// Which checker produced a result. A version's or run's import check ({checker_version, ledger_schema, errors,
+// warnings}) is fixed when it is imported; the live check is rerun by the server's current checker.
+export const checkerLabel = checker => checker?.checker_version ? `checker ${checker.checker_version}` : '';
+// "Live check: checker 1.8, v1.14.1 rules"; the server names the rules its check applied.
+export function liveCheckText(check, schema) {
+  return `Live check: ${[checkerLabel(check) || 'checker version unknown', schema && `${schema} rules`].filter(Boolean).join(', ')}`;
+}
+// "At import: checker 1.6, 1 error, 16 warnings", or "At import: not recorded".
+export function importCheckText(checker) {
+  if (!checker) return 'At import: not recorded';
+  return `At import: ${[checkerLabel(checker) || 'checker version not recorded', count(checker.errors ?? 0, 'error'), count(checker.warnings ?? 0, 'warning')].join(', ')}`;
+}
+
+// The Extract dialog's one line when the run's instruction is not the working copy's (the working copy's columns
+// are its base's, so a run under another instruction or schema is never merged into it). '' when they match.
+export function extractNotice(workspace, instruction) {
+  if (!workspace || !instruction) return '';
+  const known = workspace.base_instruction_sha256 && instruction.sha256;
+  if (known ? workspace.base_instruction_sha256 === instruction.sha256 : text(workspace.base_instruction_version) === text(instruction.name)) return '';
+  const under = [workspace.base_instruction_version || 'another instruction', workspace.base_ledger_schema && `${workspace.base_ledger_schema} columns`].filter(Boolean).join(' with ');
+  const revision = workspace.revision ? ` (revision ${workspace.revision})` : '';
+  return `The working copy${revision} is under ${under}. This run becomes a separate version and is not merged into it; using it as the base replaces the working copy.`;
+}
+
+// The rebase dialog's list of what stops applying, from GET /api/deal/<slug>/rebase?to=<id>.
+export function rebaseLines(preview) {
+  if (!preview?.stops_applying) return [];
+  const { revisions, edits, row_marks: marks, finding_decisions: findings, row_threads: threads } = preview.stops_applying;
+  const current = preview.current || {}, target = preview.target || {};
+  const revision = current.revision ?? 0;
+  const agree = (n, one, many) => n === 1 ? one : many;
+  const lines = [];
+  if (current.ledger_schema && target.ledger_schema && current.ledger_schema !== target.ledger_schema) lines.push(`The columns change from ${current.ledger_schema} to ${target.ledger_schema}.`);
+  lines.push(revisions ? `${count(revisions, 'revision')} saved on the current base (${count(edits || 0, 'edit')} to its rows) ${agree(revisions, 'stops', 'stop')} applying. ${agree(revisions, 'It stays', 'They stay')} in History; restoring revision ${revision}, not revision 0, brings ${agree(revisions, 'it', 'them')} back.`
+    : 'No revisions have been saved on the current base.');
+  if (marks?.total) lines.push(`${count(marks.total, 'row mark')} ${agree(marks.total, 'stops', 'stop')} applying (${[marks.reviewed && `${marks.reviewed} reviewed`, marks.needs_decision && `${marks.needs_decision} needs decision`, marks.unreviewed && `${marks.unreviewed} unreviewed`].filter(Boolean).join(', ')}).`);
+  if (findings?.total) lines.push(`${count(findings.judgments_kept, 'finding judgment')} ${agree(findings.judgments_kept, 'carries', 'carry')} over${findings.reset ? `; the implementation and verification of ${findings.reset} reset` : ''}${findings.total > findings.judgments_kept ? `; ${findings.total - findings.judgments_kept} unjudged decision${findings.total - findings.judgments_kept === 1 ? '' : 's'} stop applying` : ''}.`);
+  if (threads?.total) lines.push(`${count(threads.total, 'row thread')} (${threads.open} open) ${agree(threads.total, 'stays', 'stay')} with the old rows and ${agree(threads.total, 'reads', 'read')} “on an earlier base (revision ${revision})”.`);
+  if (preview.deal_review?.actor && preview.deal_review.status !== 'unreviewed') lines.push(`The deal’s review status stays, marked as edited since revision ${preview.deal_review.revision}.`);
+  return lines;
 }

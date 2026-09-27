@@ -1,0 +1,90 @@
+{
+  "checker": "lean-mechanical",
+  "checker_revision": "Applies the v1.14 ledger rules to a workbook whose ledger has a 'Stock %' header: Deadline outcome takes the v1.14 values, and the replaced 'Late bids accepted' is a warning (E9); Antitrust with an incompatible Regulatory value is an error; Other-scope bid rows leave Price low, Price high and CVR/earnout value blank; the inferred-exit reason check no longer applies; and four review warnings are added (an Exclusivity changed row repeating a same-day bid's request, an Extended outcome with no new due date, an exit followed by activity with no Re-entered, an Other-scope bid with no Note). Workbooks without that header are checked as v1.13.2, unchanged.",
+  "checker_version": "1.7",
+  "filing": "/home/uctpiaj/work/Projects/sec-extraction-v114-trial-20260926/raw_filing/mac-gray_2013-12-04_DEFM14A.htm",
+  "issues": [
+    {
+      "basis": "mechanical",
+      "code": "conditions.level_unsupported",
+      "column": "Conditions",
+      "message": "Due diligence, Financing and Regulatory are all Not stated, but Conditions is 'Light'; the Note must name the condition that supports the level (E12).",
+      "row": 65,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "ledger.note_length",
+      "column": "Note",
+      "message": "Note has 47 words; aim for 40. Retain the excess only for required facts that cannot be shortened.",
+      "row": 74,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.length",
+      "column": null,
+      "message": "Question entry has about 123 words across its review fields; the instruction asks for about 60.",
+      "row": 2,
+      "severity": "warning",
+      "sheet": "Questions"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.length",
+      "column": null,
+      "message": "Question entry has about 110 words across its review fields; the instruction asks for about 60.",
+      "row": 3,
+      "severity": "warning",
+      "sheet": "Questions"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.length",
+      "column": null,
+      "message": "Question entry has about 92 words across its review fields; the instruction asks for about 60.",
+      "row": 5,
+      "severity": "warning",
+      "sheet": "Questions"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.length",
+      "column": null,
+      "message": "Question entry has about 125 words across its review fields; the instruction asks for about 60.",
+      "row": 6,
+      "severity": "warning",
+      "sheet": "Questions"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.length",
+      "column": null,
+      "message": "Question entry has about 114 words across its review fields; the instruction asks for about 60.",
+      "row": 8,
+      "severity": "warning",
+      "sheet": "Questions"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.length",
+      "column": null,
+      "message": "Question entry has about 118 words across its review fields; the instruction asks for about 60.",
+      "row": 9,
+      "severity": "warning",
+      "sheet": "Questions"
+    }
+  ],
+  "ledger_schema": "v1.14",
+  "scope_note": "Mechanical checks only. Quote occurrence proves source occurrence, not semantic support. No bidder-population arithmetic or substantive extraction grading is performed.",
+  "status": "pass_with_warnings",
+  "summary": {
+    "errors": 0,
+    "information": 0,
+    "total_issues": 8,
+    "warnings": 8
+  },
+  "workbook": "/home/uctpiaj/work/Projects/sec-extraction-v114-trial-20260926/_dev/runs/2026-09-26-v114-15-run-trial/mac-gray-gpt-6-astra-xhigh-r1/extraction/mac-gray.xlsx"
+}

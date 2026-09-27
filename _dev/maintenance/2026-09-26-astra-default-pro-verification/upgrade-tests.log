@@ -1,0 +1,44 @@
+..........................................2026-09-26T12:00:04+00:00 started extraction e8b1d5f41091477eac4cb2d021a696d4 for alpha-deal by austin (pid 474252)
+2026-09-26T12:00:04+00:00 started extraction 6fe3265211114de6b94fe3f6ebf614ad for alpha-deal by austin (pid 474278)
+2026-09-26T12:00:05+00:00 extraction e8b1d5f41091477eac4cb2d021a696d4 imported as fable51-low-20260923-1000-7c975c
+2026-09-26T12:00:05+00:00 extraction 6fe3265211114de6b94fe3f6ebf614ad imported as sol6-xhigh-20260923-1000-7c975c
+.E2026-09-26T12:00:06+00:00 ChatGPT login refresh for austin: exit 0, renewed until 2026-10-06T12:00:06+00:00
+2026-09-26T12:00:06+00:00 started extraction 83695a4bcb45406ca3144ad26953051b for alpha-deal by austin (pid 474411)
+2026-09-26T12:00:07+00:00 extraction 83695a4bcb45406ca3144ad26953051b imported as sol6-medium-20260923-1000-3ccdf6
+.2026-09-26T12:00:07+00:00 ChatGPT login refresh for austin: exit 0, not renewed
+2026-09-26T12:00:07+00:00 extraction 4c48a9a916f74f58ad797e136032c77a failed: login_expired
+.2026-09-26T12:00:08+00:00 extraction 722c7c32fd014a55a1172bec8e3337ae failed: instruction_missing
+./usr/lib64/python3.12/threading.py:1012: ResourceWarning: unclosed file <_io.BufferedReader name=7>
+  self._target(*self._args, **self._kwargs)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib64/python3.12/subprocess.py:1127: ResourceWarning: subprocess 474517 is still running
+  _warn("subprocess %s is still running" % self.pid,
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./usr/lib64/python3.12/subprocess.py:822: ResourceWarning: unclosed file <_io.BufferedReader name=7>
+  _cleanup()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+2026-09-26T12:00:09+00:00 ChatGPT account connected for alex
+...2026-09-26T12:00:10+00:00 ChatGPT login refresh for alex: exit 0, not renewed
+.2026-09-26T12:00:10+00:00 started extraction 3e0c6b6205274dd786bb1f316cfeda87 for alpha-deal by austin (pid 474571)
+2026-09-26T12:00:11+00:00 extraction 3e0c6b6205274dd786bb1f316cfeda87 imported as astra6-high-20260923-1000-976cc4
+...
+======================================================================
+ERROR: test_a_job_without_an_instruction_fails_instead_of_using_the_repository_text (test_cockpit_phase4.Phase4Tests.test_a_job_without_an_instruction_fails_instead_of_using_the_repository_text)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/uctpiaj/work/Projects/sec-extraction-v114/_dev/tools/test_cockpit_phase4.py", line 232, in test_a_job_without_an_instruction_fails_instead_of_using_the_repository_text
+    job = self.runs.job_action(SLUG, "austin", {"action": "extract"})["jobs"][0]
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/uctpiaj/work/Projects/sec-extraction-v114/_dev/tools/cockpit/runs.py", line 330, in job_action
+    self._transaction(run)
+  File "/home/uctpiaj/work/Projects/sec-extraction-v114/_dev/tools/cockpit/runs.py", line 163, in _transaction
+    value = action(conn)
+            ^^^^^^^^^^^^
+  File "/home/uctpiaj/work/Projects/sec-extraction-v114/_dev/tools/cockpit/runs.py", line 319, in run
+    raise Conflict("connect your ChatGPT account in Settings first")
+cockpit.workspace.Conflict: connect your ChatGPT account in Settings first
+
+----------------------------------------------------------------------
+Ran 55 tests in 9.157s
+
+FAILED (errors=1)

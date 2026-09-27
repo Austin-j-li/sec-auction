@@ -1,0 +1,76 @@
+#,uid,When,Who,Event,mark,mark_note,mark_actor,mark_at,threads
+1,ae47987371c550fb0e323b44,September 2020,J.P. Morgan,Adviser,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+2,b260c89d779cf6e73c8a112b,12/14/2020,Kraton,Other material event,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+3,603480393741e22a671ac741,late 2020 and early 2021,"Parties C, D, E and G",Contact,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+4,6f76defe75b286db138ffd13,late 2020 and early 2021,Party F,Contact,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+5,665cac9fe0fd801203a0ddd8,05/20/2021,King & Spalding LLP,Adviser,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+6,1003f5b524aa90f335b31002,05/20/2021,Kraton,Target sale decision,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+7,bbb8525b90cfb88e8db66994,05/20/2021,"Parties C, D, E and G",Other material event,needs_decision,,austin,2026-09-23T21:57:11+00:00,0
+8,fd123f6bd0121ff0c02a26e8,05/24/2021,Kraton,Round opened,needs_decision,,austin,2026-09-23T21:57:11+00:00,0
+9,91db4e9df6fa632e29964e46,end of May-06/03/2021,"Parent (DL Chemical Co., Ltd.)",Contact,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+10,703415aa28824964b9edec195a53d586,06/03/2021,"Parent (DL Chemical Co., Ltd.)",NDA signed,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+11,079afd459fc12a847274a469,by 07/02/2021,Party C,Other-scope bid,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+12,577cd837ac0a38405932c83b,by 07/02/2021,Party G,Other-scope bid,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+13,01a2e567364c4dac6cc3afe2,end of May and June 2021,Party A,Contact,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+14,2f71b0abd69024ca1b144478,end of May and June 2021,Party B's parent company,Contact,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+15,1a89b453de044a41b5684b5b,end of May and June 2021,11 other listed parties,Contact,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+16,d3bdf9f285c89550faa2d0e4,end of May and June 2021,Unnamed inbound strategic party,Bidder interest,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+17,c006ab7e80499472ae217530,by late June 2021,5 other strategic confidentiality signers,NDA signed,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+18,eed4fd0f0fb11cad7bfe488f,by late June 2021,4 financial confidentiality signers,NDA signed,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+19,e3b626cfe5d7861245486cfb,June 2021,Kraton,Deadline set,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+20,4bcb20dded1dc1e56c396797,June 2021,Unnamed strategic signer (declined meeting),Withdrew,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+21,6a15bcc48561fbdd371c69c0,06/18/2021,Party E,Withdrew,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+22,e2b577aaeaaf9153c05d998a,06/23/2021,Party D,Withdrew,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+23,d5098e9c1cb3d1739d2f7c1b,06/29/2021,Kraton,Deadline,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+24,8baf632fe40b0d29de97d534,by 07/02/2021,Party A,Bid,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+25,5ca8a1cc8e8224c6eefe31ac,by 07/02/2021,Party H,Bid,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+26,28bdc0cbdcd80ac60ee75039,by 07/02/2021,"Parent (DL Chemical Co., Ltd.)",Bid,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+27,14a0352e1a7ca4db07194f09,by 07/02/2021,Party I,Bid,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+28,9b70e0013cba344c8b988890,by 07/02/2021,Party K,Other-scope bid,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+29,0184cbe896835cd69fac399f,by 06/29/2021,1 unnamed strategic signer,Did not submit,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+30,a57785ad5414b53661ae2d60,by 06/29/2021,2 unnamed financial signers,Did not submit,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+31,7ba6223fdc4d318a9e5c64d3,by 07/02/2021,Party J,Other material event,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+32,8a6ec012719f56467d8791a4,07/06/2021,Kraton,Deadline revised,needs_decision,,austin,2026-09-23T21:57:11+00:00,0
+33,cdaa99a6496cf2805f0f6b51,07/06/2021,"Parties C, G and K",Other material event,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+34,cd224b192706b86786418ec7,07/06/2021,Reuters (media),Other material event,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+35,468b70b9bc574ac9f1aceab3,after 07/06/2021,5 strategic post-Reuters inquirers,Bidder interest,needs_decision,,austin,2026-09-23T21:57:11+00:00,0
+36,65515f5f422f9836524b1745,after 07/06/2021,Unnamed financial party (post-Reuters),Bidder interest,needs_decision,,austin,2026-09-23T21:57:11+00:00,0
+37,546c9a7c69bc2e3953b21ade,after 07/06/2021,Unnamed financial party (post-Reuters),NDA signed,needs_decision,,austin,2026-09-23T21:57:11+00:00,0
+38,8148fdf5811fe006cfa881ed,by 07/19/2021,Party J,Bid,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+39,77e894e67677b5dd1bc14a3f,by 07/19/2021,Party A,Bid,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+40,fe1a0458d817aaaf6e6cbfd5,by 07/19/2021,Party H,Bid,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+41,45136f3b6dcdde80b8aab8dd,by 07/19/2021,"Parent (DL Chemical Co., Ltd.)",Bid,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+42,ac6f8c49b410328642d5698b,by 07/19/2021,Party I,Other material event,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+43,59ed6549b6b9968d31843d16,07/19/2021,Kraton,Deadline,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+44,b0a3cc9d8869ca1aeb6db76c,07/20/2021,Party I,Dropped by target,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+45,b1809363767b576b9a24b594,07/20/2021,Party J,Dropped by target,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+46,ef709acee7e42a496c42d33c,after 07/06/2021; by 09/27/2021,Unnamed financial party (post-Reuters),Did not submit,needs_decision,,austin,2026-09-23T21:57:11+00:00,0
+47,af472b5b82785ec932aa774a,07/20/2021,Kraton,Round opened,needs_decision,,austin,2026-09-23T21:57:11+00:00,0
+48,16da51591d5ea5b99ec3e0d6,08/04/2021,Party G,Withdrew,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+49,bd4025d58cb956e5907feffa,after 08/11/2021,Kraton,Round opened,needs_decision,,austin,2026-09-23T21:57:11+00:00,0
+50,7d0db0045cc1d554e39dc72b,08/13/2021,Media outlet,Other material event,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+51,401ce3321ba5b49d6ffb9613,08/16/2021,Media outlet,Other material event,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+52,a5cbf09d652c78a8d4a65c40,08/20/2021,Party H,Withdrew,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+53,7aaa3e9619b05e2d14c73713,08/30/2021,Party K,Other material event,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+54,c80b00edbdc71de5efb77714,09/08/2021,"Parent (DL Chemical Co., Ltd.)",Bid,needs_decision,,austin,2026-09-23T21:57:11+00:00,0
+55,e384cb5977eba8396b3fc26d,09/08/2021,Party A,Other material event,needs_decision,,austin,2026-09-23T21:57:11+00:00,0
+56,fc3b2cb2cd9c1f6dfa0edb29,09/09/2021,Party K,Other-scope bid,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+57,7a6fef64ca18763457a2cb69,09/15/2021,"Parent (DL Chemical Co., Ltd.)",Bid,needs_decision,,austin,2026-09-23T21:57:11+00:00,0
+58,66d02ad219cb8ffacdc01289,09/15/2021,Kraton,Deadline,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+59,6ae6dc165a9bde5fac8ffe1c,09/17/2021,Party A,Bid,needs_decision,,austin,2026-09-23T21:57:11+00:00,0
+60,0299583ae0160d5a1bc1a0a6,09/17/2021,Party A,Other-scope bid,needs_decision,,austin,2026-09-23T21:57:11+00:00,0
+61,de985f107a8c0795b2e7b42a,09/18/2021,"Parent (DL Chemical Co., Ltd.)",Other material event,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+62,14417983c22f1138ecdfc8f3,09/18/2021,Party A,Other material event,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+63,5597a7e77a9b4e414bd192ba,09/20/2021,"Parent (DL Chemical Co., Ltd.)",Bid,needs_decision,,austin,2026-09-23T21:57:11+00:00,0
+64,08d8d292fd766bf018fb39c7,09/20/2021,O’Melveny & Myers LLP,Adviser,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+65,f4edd8ede0d847e3b0c1121e8ccb07db,09/20/2021,Kraton,Other material event,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+66,741d1257b002cf8f59ac2d6d,09/21/2021,Party A,Bid,needs_decision,,austin,2026-09-23T21:57:11+00:00,0
+67,f26718f97037c608bb29f139,09/23/2021,Party A,Other material event,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+68,b0ead20a8b1440cc8d965a1e80fa9542,09/20/2021-09/26/2021,"Parent (DL Chemical Co., Ltd.)",Bid,needs_decision,,austin,2026-09-23T21:57:11+00:00,0
+69,89fcf761fc443b8462c14366,09/24/2021,Party A,Bid,needs_decision,,austin,2026-09-23T21:57:11+00:00,0
+70,42da3cb7d02ecbcb7bf99beb,09/27/2021,"Parent (DL Chemical Co., Ltd.)",Other material event,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+71,9a622d15027f1f19f2319fc8,09/27/2021,"Parent (DL Chemical Co., Ltd.)",Merger agreement signed,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+72,f3b14eb33a1fd2bebcbd0729,09/27/2021,Party A,Not selected at signing,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+73,92ec226ca4a8340b2a8fad58,by 09/27/2021,Party K,Not selected at signing,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+74,c079f341dd591d23e4c0f0d0,by 09/27/2021,Party C,Not selected at signing,reviewed,,austin,2026-09-23T21:57:11+00:00,0
+75,2f58b22228cfc2e039998c5e,09/27/2021,Kraton and Parent,Merger announced,reviewed,,austin,2026-09-23T21:57:11+00:00,0

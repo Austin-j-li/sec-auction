@@ -1,0 +1,236 @@
+diff --git a/_dev/tools/cockpit/import_results.py b/_dev/tools/cockpit/import_results.py
+index 5527749..f6f54cb 100644
+--- a/_dev/tools/cockpit/import_results.py
++++ b/_dev/tools/cockpit/import_results.py
+@@ -1,8 +1,10 @@
+ """Import the current extractions and deal-level review records into the cockpit.
+ 
+ The catalog holds one version per deal: the Claude Opus 5.5 medium extraction in
+-extraction/<deal>.xlsx, confirmed from its preserved run receipts. Earlier
+-workbooks and their row-keyed findings stay in their _dev/reviews/ packets.
++_dev/reviews/2026-09-22-opus55-reextraction/workbooks/<deal>.xlsx (moved there,
++bytes unchanged, from extraction/ at the v1.14 release), confirmed from its
++preserved run receipts. Earlier workbooks and their row-keyed findings stay in their
++_dev/reviews/ packets.
+ This tool reads evidence only, refuses an incomplete or inconsistent nine-deal
+ set, and writes the catalog atomically. It never changes source workbooks.
+ """
+@@ -29,6 +31,7 @@ NAMES = {"mac-gray": "Mac-Gray", "petsmart": "PetSmart", "stec": "sTec",
+ DATA = "_dev/reviews/2026-09-21-datalink-pilot"
+ MAC_ACCEPTANCE = "_dev/reviews/2026-09-21-mac-gray-pilot/acceptance"
+ REEXTRACT = "_dev/reviews/2026-09-22-opus55-reextraction"
++WORKBOOKS = f"{REEXTRACT}/workbooks"  # the nine v1.13.2 workbooks, moved from extraction/ at the v1.14 release
+ INSTRUCTION_HASH = "513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304"
+ SHEETS = ["Deal ledger", "Rounds", "Questions", "Deal facts"]
+ OPUS55_MODEL = "claude-opus-5-5"
+@@ -171,7 +174,7 @@ def read_manifest(root: Path) -> dict:
+ 
+ 
+ def verify_reextraction(root: Path, manifest: dict) -> dict:
+-    """Confirm the nine Opus 5.5 medium re-extractions now in extraction/ from their receipts."""
++    """Confirm the nine Opus 5.5 medium re-extractions in WORKBOOKS from their receipts."""
+     summary = read_json(root, f"{REEXTRACT}/reextraction.json")
+     if (summary.get("model") != OPUS55_MODEL or summary.get("effort") != OPUS55_EFFORT
+             or summary.get("instruction_sha256") != INSTRUCTION_HASH
+@@ -200,7 +203,7 @@ def verify_reextraction(root: Path, manifest: dict) -> dict:
+             raise ImportErrorEvidence(f"Re-extraction success/model evidence missing: {deal}")
+         if not isinstance(check.get("summary"), dict) or check["summary"] != entry.get("check_summary"):
+             raise ImportErrorEvidence(f"Re-extraction checker receipt differs: {deal}")
+-        digest = workbook(root, f"extraction/{deal}.xlsx", entry.get("new_sha256"))
++        digest = workbook(root, f"{WORKBOOKS}/{deal}.xlsx", entry.get("new_sha256"))
+         result[deal] = dict(workbook_sha256=digest, previous_sha256=entry.get("old_sha256"),
+                             checker_summary=check["summary"],
+                             reported_cost_usd=status.get("usage", {}).get("cost_usd"),
+@@ -213,7 +216,7 @@ def build_catalog(root: Path) -> tuple[dict, dict]:
+     catalog = {"schema_version": 1, "deals": {}}
+     for deal in DEALS:
+         current = dict(id=VERSION_ID, label="Opus 5.5 medium extraction",
+-                       path=f"extraction/{deal}.xlsx", sha256=opus55[deal]["workbook_sha256"],
++                       path=f"{WORKBOOKS}/{deal}.xlsx", sha256=opus55[deal]["workbook_sha256"],
+                        instruction_version="v1.13.2", kind="raw",
+                        review_status="unreviewed; Austin review pending")
+         findings, documents = deal_records(root, deal)
+diff --git a/_dev/tools/cockpit/test_import_results.py b/_dev/tools/cockpit/test_import_results.py
+index 72da4a1..e09dfa6 100644
+--- a/_dev/tools/cockpit/test_import_results.py
++++ b/_dev/tools/cockpit/test_import_results.py
+@@ -70,7 +70,7 @@ class ImportTests(unittest.TestCase):
+             manifest[deal] = {"file": filing.name, "sha256": imp.sha256(filing)}
+             rows.append(f"{filing.name},{deal},{manifest[deal]['sha256']}")
+             folder = root / imp.REEXTRACT / "receipts" / deal
+-            digest = make_book(root / "extraction" / f"{deal}.xlsx")
++            digest = make_book(root / imp.WORKBOOKS / f"{deal}.xlsx")
+             summary = {"errors": 0, "warnings": 2}
+             deals[deal] = {"new_sha256": digest, "old_sha256": "0" * 64, "check_summary": summary}
+             write_json(folder / "metadata.json", dict(mode="extract", provider="opus",
+@@ -99,8 +99,8 @@ class ImportTests(unittest.TestCase):
+             self.assertEqual(len(item["versions"]), 1)
+             only = item["versions"][0]
+             self.assertEqual((only["id"], only["path"], only["sha256"]),
+-                             ("opus55-medium", f"extraction/{deal}.xlsx",
+-                              imp.sha256(self.root / "extraction" / f"{deal}.xlsx")))
++                             ("opus55-medium", f"{imp.WORKBOOKS}/{deal}.xlsx",
++                              imp.sha256(self.root / imp.WORKBOOKS / f"{deal}.xlsx")))
+             # Only case-level decisions survive, and none is tied to a removed version.
+             for record in item["findings"] + item["documents"]:
+                 self.assertIsNone(record["source_version"])
+@@ -130,6 +130,20 @@ class ImportTests(unittest.TestCase):
+         self.assertEqual(written, {"_dev/cockpit/catalog.json",
+                                    f"{imp.REEXTRACT}/import-verification.json"})
+ 
++    def test_later_workbooks_in_extraction_are_ignored(self) -> None:
++        """After the v1.14 release extraction/ holds the v1.14 exports; the catalog keeps the relocated originals."""
++        self.synthetic_repo()
++        expected, _ = imp.build_catalog(self.root)
++        for deal in imp.DEALS:
++            later = self.root / "extraction" / f"{deal}.xlsx"
++            later.parent.mkdir(parents=True, exist_ok=True)
++            book = openpyxl.Workbook()
++            book.active.title = "v1.14 export"
++            book.save(later)
++        catalog, _ = imp.build_catalog(self.root)
++        self.assertEqual(catalog, expected)
++        self.assertNotIn('"extraction/', json.dumps(catalog))
++
+     def test_filing_must_match_manifest(self) -> None:
+         self.synthetic_repo()
+         (self.root / "raw_filing/stec.htm").write_text("altered filing")
+@@ -140,7 +154,7 @@ class ImportTests(unittest.TestCase):
+         manifest = self.synthetic_repo()
+         result = imp.verify_reextraction(self.root, manifest)
+         self.assertEqual(result["kraton"]["workbook_sha256"],
+-                         imp.sha256(self.root / "extraction/kraton.xlsx"))
++                         imp.sha256(self.root / imp.WORKBOOKS / "kraton.xlsx"))
+         self.assertEqual(result["kraton"]["reported_cost_usd"], 1.5)
+         meta = self.root / imp.REEXTRACT / "receipts/stec/metadata.json"
+         good = json.loads(meta.read_text())
+@@ -148,9 +162,9 @@ class ImportTests(unittest.TestCase):
+         with self.assertRaisesRegex(imp.ImportErrorEvidence, "prepared inputs differ: stec"):
+             imp.verify_reextraction(self.root, manifest)
+         write_json(meta, good)
+-        other = openpyxl.load_workbook(self.root / "extraction/penford.xlsx")
++        other = openpyxl.load_workbook(self.root / imp.WORKBOOKS / "penford.xlsx")
+         other[imp.SHEETS[0]]["A1"] = "not the run's output"
+-        other.save(self.root / "extraction/penford.xlsx")
++        other.save(self.root / imp.WORKBOOKS / "penford.xlsx")
+         with self.assertRaisesRegex(imp.ImportErrorEvidence, "Hash mismatch"):
+             imp.verify_reextraction(self.root, manifest)
+ 
+diff --git a/_dev/tools/cockpit/verify_catalog.py b/_dev/tools/cockpit/verify_catalog.py
+index add05da..761b1f0 100644
+--- a/_dev/tools/cockpit/verify_catalog.py
++++ b/_dev/tools/cockpit/verify_catalog.py
+@@ -101,6 +101,8 @@ def verify(root: Path) -> dict:
+         versions = {v["id"]: v for v in item["versions"]}
+         if list(versions) != [imp.VERSION_ID] or item["default_base"] != imp.VERSION_ID:
+             raise RuntimeError(f"Catalog is not the single current version: {slug}")
++        if versions[imp.VERSION_ID]["path"] != f"{imp.WORKBOOKS}/{slug}.xlsx":
++            raise RuntimeError(f"Current version path differs: {slug}")
+         if any(record.get("source_version") is not None
+                for record in item["findings"] + item["documents"]):
+             raise RuntimeError(f"Review record is tied to a removed version: {slug}")
+diff --git a/_dev/tools/test_cockpit_catalog.py b/_dev/tools/test_cockpit_catalog.py
+index 2a737cb..c402967 100644
+--- a/_dev/tools/test_cockpit_catalog.py
++++ b/_dev/tools/test_cockpit_catalog.py
+@@ -17,11 +17,11 @@ from pathlib import Path
+ from openpyxl import load_workbook
+ 
+ import fetch_filing
+-from cockpit import data, provenance, verify_catalog
++from cockpit import data, export_repo, provenance, verify_catalog
+ from cockpit import import_results as imp
+ from test_cockpit import build_filing, build_workbook, tree_digest
+ 
+-RELOCATED = f"{imp.REEXTRACT}/workbooks"
++RELOCATED = imp.WORKBOOKS
+ 
+ 
+ def sha(content: bytes) -> str:
+@@ -181,10 +181,13 @@ class CatalogLookupTests(unittest.TestCase):
+         self.assertEqual(data.read_workbook(path), data.read_workbook(self._export_file("kraton", cockpit)))
+         self.assertEqual(sha(provenance.download(cockpit, "kraton", "rev:0", source=False)[0]), base_hash)  # the relocated bytes
+ 
+-    def test_verify_passes_in_place(self):
++    def test_verify_requires_the_relocated_paths(self):
++        with self.assertRaisesRegex(RuntimeError, "Current version path differs"):
++            verify_catalog.verify(self.root)
++        relocate(self.root)
+         outcome = verify_catalog.verify(self.root)
+         self.assertEqual({deal["path"] for deal in outcome["deals"].values()},
+-                         {f"extraction/{slug}.xlsx" for slug in imp.DEALS})
++                         {f"{imp.WORKBOOKS}/{slug}.xlsx" for slug in imp.DEALS})
+ 
+     def test_a_missing_catalog_workbook_is_reported_not_hidden(self):
+         (self.root / "extraction/penford.xlsx").unlink()
+@@ -261,5 +264,50 @@ class VerifyCatalogTests(unittest.TestCase):
+         self.assertEqual(tree_digest(self.root), before)
+ 
+ 
++class ReleaseTests(unittest.TestCase):
++    """Gate 12 (D25): move the nine workbooks, repoint the catalog, then export the v1.14 runs to extraction/."""
++
++    def setUp(self):
++        self.temp = tempfile.TemporaryDirectory()
++        self.root = Path(self.temp.name)
++        self.cockpit = nine_deal_repo(self.root)  # as before the release
++
++    def tearDown(self): self.temp.cleanup()
++
++    def export(self, *args: str) -> tuple[int, str]:
++        err = io.StringIO()
++        with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(err):
++            code = export_repo.main(["--repo-root", str(self.root), *args])
++        return code, err.getvalue()
++
++    def test_working_copies_survive_relocation_and_the_export(self):
++        for slug in ("kraton", "mac-gray"):
++            edit(self.cockpit, slug)
++        runs = {slug: import_version(self.cockpit, slug) for slug in imp.DEALS}
++        before = {slug: shown(self.cockpit.deal(slug)) for slug in imp.DEALS}
++        code, err = self.export("deal", "kraton", "--version", "run1")
++        self.assertEqual(code, 1)
++        self.assertIn("immutable original", err)
++        relocate(self.root)
++        catalog = json.loads((self.root / "_dev/cockpit/catalog.json").read_text(encoding="utf-8"))
++        cockpit = data.Cockpit(self.root)
++        for slug in imp.DEALS:
++            version = catalog["deals"][slug]["versions"][0]
++            self.assertEqual((version["id"], version["sha256"], version["instruction_version"], version["path"]),
++                             (imp.VERSION_ID, before[slug][2], "v1.13.2", f"{imp.WORKBOOKS}/{slug}.xlsx"))
++            self.assertEqual(shown(cockpit.deal(slug)), before[slug])
++        self.assertEqual([before[slug][0] for slug in ("kraton", "mac-gray", "stec")], [1, 1, 0])
++        verify_catalog.verify(self.root)
++        for slug in imp.DEALS:
++            self.assertEqual(self.export("deal", slug, "--version", "run1", "--write"), (0, ""))
++            self.assertEqual((self.root / "extraction" / f"{slug}.xlsx").read_bytes(), runs[slug])
++        cockpit = data.Cockpit(self.root)
++        self.assertEqual(cockpit.slugs(), sorted(imp.DEALS))
++        for slug in imp.DEALS:
++            self.assertEqual(shown(cockpit.deal(slug)), before[slug])
++        outcome = verify_catalog.verify(self.root)
++        self.assertEqual(outcome["deals"]["kraton"]["versions"], ["working", imp.VERSION_ID, "run1"])
++
++
+ if __name__ == "__main__":
+     unittest.main()
+--- a/_dev/tools/README.md
++++ b/_dev/tools/README.md
+@@ -46,7 +46,7 @@
+ 
+ Otherwise the run is `failed`, with one of these `failure_reason`s: `provider_refusal`, `provider_exit`, `provider_error`, `model_mismatch`, `workbook_missing`, `workbook_unreadable`, `workbook_incomplete` or `revision_notes_missing`. A timeout yields `timed_out`. Worker startup errors also leave a failed status. The worker exits nonzero on failure, while `launch` only reports successful dispatch: inspect `status` for the outcome. Older saved statuses keep their original meaning. Workbook readability is not a mechanical-checker pass or substantive acceptance; both remain separate steps.
+ 
+-The cockpit importer (`cockpit/import_results.py`) builds the catalog with one version per deal: the Opus 5.5 medium extraction in `extraction/<deal>.xlsx`, confirmed from the receipts in `_dev/reviews/2026-09-22-opus55-reextraction/`, plus the Datalink F9 and Mac-Gray R01 case-level decisions. `cockpit/verify_catalog.py` is the read-only live check of that catalog and its working copies. It writes nothing to the database: its own query opens it through a `mode=ro` URI, and the cockpit code it renders the deals with only reads. Each run writes a new file in the same packet, `catalog-verification-<UTC timestamp>.json` (or the new file `--output` names), and refuses to overwrite an existing result; it exits 1 with "Verification failed: …" when a check fails.
++The cockpit importer (`cockpit/import_results.py`) builds the catalog with one version per deal: the Opus 5.5 medium v1.13.2 extraction of 22 September, confirmed from the receipts in `_dev/reviews/2026-09-22-opus55-reextraction/`, plus the Datalink F9 and Mac-Gray R01 case-level decisions. At the v1.14 release the nine workbooks moved, bytes unchanged, from `extraction/` to `_dev/reviews/2026-09-22-opus55-reextraction/workbooks/<deal>.xlsx`, and the catalog paths now name them there (same id `opus55-medium`, hash and instruction version), so the working copies based on them still resolve; the v1.14 workbooks in `extraction/` do not change the catalog the importer builds. `cockpit/verify_catalog.py` is the read-only live check of that catalog and its working copies. It writes nothing to the database: its own query opens it through a `mode=ro` URI, and the cockpit code it renders the deals with only reads. It requires each catalog version's path to be in that `workbooks/` folder. Each run writes a new file in the same packet, `catalog-verification-<UTC timestamp>.json` (or the new file `--output` names), and refuses to overwrite an existing result; it exits 1 with "Verification failed: …" when a check fails.
+ 
+ ## Cockpit worker
+ 
+@@ -117,7 +117,7 @@
+ - **Deals:**
+   - A deal export writes `extraction/<slug>.xlsx` as the four-sheet workbook (`Workspace.export`): a version's stored bytes, or the working copy rendered as in the cockpit's four-sheet working-copy download (`?source=0`). It never carries the Source sheet that the default working-copy download adds and that the checker rejects by design.
+   - For a deal added in the cockpit, it also writes the filing to `raw_filing/` and adds or updates its `MANIFEST.csv` row.
+-  - It refuses any path that `catalog.json` names as an immutable original, so in practice only added deals can be exported. Changing the catalog is a separate, requested edit.
++  - It refuses any path that `catalog.json` names as an immutable original. Since the v1.14 release the catalog names the relocated v1.13.2 workbooks, not `extraction/<slug>.xlsx`, so catalog deals and added deals can both be exported there. Changing the catalog is a separate, requested edit; a path it names later becomes immutable too.
+   - Once an exported added deal is committed, the cockpit reads its filing from `raw_filing/` like the original nine.
+ - **Without `--write`** it is a dry run that writes nothing.
+ 

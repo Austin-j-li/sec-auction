@@ -1,0 +1,24 @@
+diff --git a/_dev/tools/test_cockpit_workspace.py b/_dev/tools/test_cockpit_workspace.py
+index f97d193..c8e7491 100644
+--- a/_dev/tools/test_cockpit_workspace.py
++++ b/_dev/tools/test_cockpit_workspace.py
+@@ -115,6 +115,19 @@ class WorkspaceTests(unittest.TestCase):
+         self.assertEqual(wb["Rounds"].cell(2, 2).data_type, "n")
+         wb.close()
+ 
++    def test_v114_bid_term_cells_are_typed_and_offered_as_choices(self):
++        coerce = lambda field, value: self.ws._coerce(data.LEDGER_SHEET, field, value)
++        self.assertEqual(coerce("Stock %", "40"), 40)
++        self.assertEqual(coerce("Stock %", "33.3"), 33.3)
++        self.assertEqual(coerce("Stock %", " 50\u201375 "), "50\u201375")
++        self.assertEqual(coerce("Stock %", "Part stock"), "Part stock")
++        self.assertEqual(coerce("CVR/earnout value", "1.13"), 1.13)
++        with self.assertRaises(WorkspaceError): coerce("CVR/earnout value", "up to $2")
++        choices = self.cockpit.deal("alpha-deal")["choices"]
++        self.assertEqual(choices["Financing"], ["Committed", "Contingent", "Not needed", "Not stated", "Varies"])
++        self.assertEqual(choices["Antitrust"], ["Varies", "Y"])
++        self.assertIn("All cash", choices)
++
+     def test_atomic_stale_and_deleted_references(self):
+         rows = self.cockpit.deal("alpha-deal")["ledger"]["rows"]
+         first, second = rows[0]["uid"], rows[1]["uid"]

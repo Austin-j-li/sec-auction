@@ -1,0 +1,12 @@
+diff --git a/_dev/tools/cockpit/frontend/src/style.css b/_dev/tools/cockpit/frontend/src/style.css
+index 1999148..cad399b 100644
+--- a/_dev/tools/cockpit/frontend/src/style.css
++++ b/_dev/tools/cockpit/frontend/src/style.css
+@@ -368,6 +368,7 @@ svg.tone-success, svg.tone-warning, svg.tone-error, svg.tone-muted, svg.tone-quo
+ .toolbar-actions { display: flex; flex: 0 1 auto; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: var(--sp-2) var(--sp-4); }
+ .version-control { display: flex; align-items: center; gap: 6px; font-size: var(--fs-12); color: var(--ink-3); }
+ .version-control .fui-Select { width: 240px; }
++.version-control.review-control .fui-Select { width: 130px; }
+ .save-line { display: flex; align-items: center; gap: var(--sp-3); font-size: var(--fs-12); white-space: nowrap; }
+ .work-state { display: inline-flex; align-items: center; color: var(--ink-2); }
+ .save-feedback { color: var(--success); }

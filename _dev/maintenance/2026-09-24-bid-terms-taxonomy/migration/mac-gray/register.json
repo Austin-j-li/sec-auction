@@ -1,0 +1,6531 @@
+{
+ "deal": "mac-gray",
+ "tool": "migrate_review.py",
+ "source": {
+  "revision": 8,
+  "base_id": "opus55-medium",
+  "base_sha256": "407615092e6dc33be22a8f80ab41d365083de0813f93b48897cbd7605a68ec0e",
+  "at": "2026-09-23T21:41:08+00:00",
+  "actor": "austin",
+  "reason": "Codex Astra review requested by Austin, eight-deal pass: distinguish adopting the Q3 timing assumption from confirming unavailable historical signing dates. Keep the 16-person total and provisional exit coding; mark #18/#21 Needs decision for Alex on round-1 eligibility. Other reviewed corrections unchanged.",
+  "summary": "6 changes",
+  "filing_located": true
+ },
+ "marks": {
+  "reviewed": 56,
+  "needs_decision": 2,
+  "unreviewed": 0
+ },
+ "findings": {
+  "mac-gray-r01": {
+   "judgment": "supported",
+   "implementation": "applied",
+   "verification": "verified",
+   "note": "",
+   "actor": "austin",
+   "at": "2026-09-23T21:21:57+00:00"
+  }
+ },
+ "threads": [
+  {
+   "id": "682f1b3fcc674aa7ada9227bc4866704",
+   "target_kind": "deal",
+   "target_sheet": null,
+   "target_uid": null,
+   "target_label": "Whole deal",
+   "resolved_at": null,
+   "resolved": false
+  }
+ ],
+ "rows": [
+  {
+   "#": 1,
+   "uid": "ec87a69857467012965e2c0a",
+   "When": "10/23/2012",
+   "Who": "BofA Merrill Lynch",
+   "Event": "Adviser",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:31:32+00:00",
+   "threads": 0
+  },
+  {
+   "#": 2,
+   "uid": "9b6395b7e6cc5ef8e8a58d61",
+   "When": "04/08/2013",
+   "Who": "Party A",
+   "Event": "Target interest",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:31:32+00:00",
+   "threads": 0
+  },
+  {
+   "#": 3,
+   "uid": "3cb5ddf8da35bd017fcb156c",
+   "When": "05/09/2013",
+   "Who": "Goodwin Procter LLP",
+   "Event": "Adviser",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:31:32+00:00",
+   "threads": 0
+  },
+  {
+   "#": 4,
+   "uid": "dd7bf81b79c350e53a8b7536",
+   "When": "05/15/2013",
+   "Who": "BofA Merrill Lynch",
+   "Event": "Adviser ended",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:31:32+00:00",
+   "threads": 0
+  },
+  {
+   "#": 5,
+   "uid": "40e4e37bbeaaa41361622fef",
+   "When": "05/30/2013",
+   "Who": "BofA Merrill Lynch",
+   "Event": "Adviser",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:31:32+00:00",
+   "threads": 0
+  },
+  {
+   "#": 6,
+   "uid": "c212d8a76ec06431395fedbf",
+   "When": "05/30/2013",
+   "Who": "Moab Partners, L.P. (Moab)",
+   "Event": "Activist",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:31:32+00:00",
+   "threads": 0
+  },
+  {
+   "#": 7,
+   "uid": "196c4984bed516f6c929a914",
+   "When": "06/21/2013",
+   "Who": "Party A",
+   "Event": "Bid",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:31:32+00:00",
+   "threads": 0
+  },
+  {
+   "#": 8,
+   "uid": "b0352967230b3a5c05c78ce2",
+   "When": "06/24/2013",
+   "Who": "Mac-Gray",
+   "Event": "Target sale decision",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:31:32+00:00",
+   "threads": 0
+  },
+  {
+   "#": 9,
+   "uid": "883928297ffa7c797d92ed34",
+   "When": "06/24/2013",
+   "Who": "Mac-Gray",
+   "Event": "Round opened",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:31:32+00:00",
+   "threads": 0
+  },
+  {
+   "#": 10,
+   "uid": "0f21d452c2e4325e0106d74d",
+   "When": "during the several weeks after 06/24/2013",
+   "Who": "13 other potential strategic buyers",
+   "Event": "Contact",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:31:32+00:00",
+   "threads": 0
+  },
+  {
+   "#": 11,
+   "uid": "7369034cd3ba1e3a1ece79bd",
+   "When": "during the several weeks after 06/24/2013",
+   "Who": "35 potential financial buyers (including Party B and Party C)",
+   "Event": "Contact",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:31:32+00:00",
+   "threads": 0
+  },
+  {
+   "#": 12,
+   "uid": "820a0ffa6a9c0e090aef44cf",
+   "When": "06/24/2013-06/28/2013",
+   "Who": "CSC/Pamplona",
+   "Event": "Contact",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:31:32+00:00",
+   "threads": 0
+  },
+  {
+   "#": 13,
+   "uid": "c1625b7eae7c9adf3f746d3a",
+   "When": "06/28/2013",
+   "Who": "Party B",
+   "Event": "NDA signed",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:31:32+00:00",
+   "threads": 0
+  },
+  {
+   "#": 14,
+   "uid": "3992f1085b33bd71af532c5f",
+   "When": "06/30/2013",
+   "Who": "Party C",
+   "Event": "NDA signed",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:31:32+00:00",
+   "threads": 0
+  },
+  {
+   "#": 15,
+   "uid": "e9301630d7ff91dec8e225d3",
+   "When": "07/03/2013",
+   "Who": "Moab / CSC/Pamplona",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:31:32+00:00",
+   "threads": 0
+  },
+  {
+   "#": 16,
+   "uid": "3c9b2183c3b9a17121ecf0ab",
+   "When": "07/06/2013",
+   "Who": "Mac-Gray",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:31:32+00:00",
+   "threads": 0
+  },
+  {
+   "#": 17,
+   "uid": "614bf02e9ab6b539f7f091a4",
+   "When": "07/11/2013",
+   "Who": "CSC/Pamplona",
+   "Event": "NDA signed",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:31:32+00:00",
+   "threads": 0
+  },
+  {
+   "#": 18,
+   "uid": "ffbc242e09b7348116e448c7",
+   "When": "over the two months after 06/24/2013",
+   "Who": "16 other financial NDA signers (unnamed)",
+   "Event": "NDA signed",
+   "mark": "needs_decision",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:41:08+00:00",
+   "threads": 0
+  },
+  {
+   "#": 19,
+   "uid": "a17966b36df60b3094e88c4e",
+   "When": "07/23/2013",
+   "Who": "Mac-Gray",
+   "Event": "Deadline",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:33:06+00:00",
+   "threads": 0
+  },
+  {
+   "#": 20,
+   "uid": "abff80031911a5d4393a0b44",
+   "When": "07/23/2013",
+   "Who": "CSC/Pamplona",
+   "Event": "Bid",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:33:06+00:00",
+   "threads": 0
+  },
+  {
+   "#": 21,
+   "uid": "ea62dc1e56182a066071b572",
+   "When": "by 07/23/2013",
+   "Who": "16 other financial NDA signers (unnamed)",
+   "Event": "Did not submit",
+   "mark": "needs_decision",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:41:08+00:00",
+   "threads": 0
+  },
+  {
+   "#": 22,
+   "uid": "a30cc943589fcf0a856a04b0",
+   "When": "07/24/2013",
+   "Who": "Party B",
+   "Event": "Bid",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:33:06+00:00",
+   "threads": 0
+  },
+  {
+   "#": 23,
+   "uid": "94c7acf51aec5ef7388a3b30",
+   "When": "07/24/2013",
+   "Who": "Party C",
+   "Event": "Bid",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:33:06+00:00",
+   "threads": 0
+  },
+  {
+   "#": 24,
+   "uid": "8e7f375c423c68d411843361",
+   "When": "07/25/2013",
+   "Who": "Mac-Gray",
+   "Event": "Round opened",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:33:06+00:00",
+   "threads": 0
+  },
+  {
+   "#": 25,
+   "uid": "fb40768f64d8e342c424caf2",
+   "When": "07/25/2013",
+   "Who": "Party C",
+   "Event": "Bid",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:33:06+00:00",
+   "threads": 0
+  },
+  {
+   "#": 26,
+   "uid": "8f05a3415ef726118d867e39",
+   "When": "08/05/2013",
+   "Who": "Party A",
+   "Event": "NDA signed",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:33:06+00:00",
+   "threads": 0
+  },
+  {
+   "#": 27,
+   "uid": "0e82cb659fd4e31f96e0210a",
+   "When": "08/06/2013-08/27/2013",
+   "Who": "Party B, Party C",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:33:06+00:00",
+   "threads": 0
+  },
+  {
+   "#": 28,
+   "uid": "cb924c61ad5bf0a06cb0983d",
+   "When": "08/06/2013-08/27/2013",
+   "Who": "Party A, CSC/Pamplona",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:33:06+00:00",
+   "threads": 0
+  },
+  {
+   "#": 29,
+   "uid": "82f908f47ecdb9a3326b93b9",
+   "When": "08/27/2013",
+   "Who": "Mac-Gray",
+   "Event": "Deadline set",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:33:06+00:00",
+   "threads": 0
+  },
+  {
+   "#": 30,
+   "uid": "0e1045fae5f65c9a821cfabe",
+   "When": "09/09/2013",
+   "Who": "Mac-Gray",
+   "Event": "Deadline",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:33:06+00:00",
+   "threads": 0
+  },
+  {
+   "#": 31,
+   "uid": "b7425f3bb162d389c7aae714",
+   "When": "09/09/2013",
+   "Who": "CSC/Pamplona",
+   "Event": "Bid",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T20:00:49+00:00",
+   "threads": 0
+  },
+  {
+   "#": 32,
+   "uid": "00e22c93708bc87a43bf825c",
+   "When": "09/09/2013",
+   "Who": "Party B",
+   "Event": "Bid",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:33:06+00:00",
+   "threads": 0
+  },
+  {
+   "#": 33,
+   "uid": "ab468ec12616e29e1208ea66",
+   "When": "09/10/2013",
+   "Who": "Party A",
+   "Event": "Bid",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:33:06+00:00",
+   "threads": 0
+  },
+  {
+   "#": 34,
+   "uid": "91734089c68ecf2859d21001",
+   "When": "09/10/2013",
+   "Who": "Party C",
+   "Event": "Bid",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:33:06+00:00",
+   "threads": 0
+  },
+  {
+   "#": 35,
+   "uid": "83a19f33e5d8d613766c1f91",
+   "When": "09/11/2013",
+   "Who": "Stewart G. MacDonald, Jr. (CEO, major holder)",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:33:06+00:00",
+   "threads": 0
+  },
+  {
+   "#": 36,
+   "uid": "e0e6b0289e98b624d63e2700",
+   "When": "09/11/2013",
+   "Who": "Mac-Gray",
+   "Event": "Round opened",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:33:06+00:00",
+   "threads": 0
+  },
+  {
+   "#": 37,
+   "uid": "3c0fc9d066151721336b4169",
+   "When": "09/18/2013",
+   "Who": "Mac-Gray",
+   "Event": "Deadline",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:33:06+00:00",
+   "threads": 0
+  },
+  {
+   "#": 38,
+   "uid": "390fd177a0cdf19b52acf176",
+   "When": "09/18/2013",
+   "Who": "CSC/Pamplona",
+   "Event": "Bid",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T20:00:49+00:00",
+   "threads": 0
+  },
+  {
+   "#": 39,
+   "uid": "3f08e6ef44543e7ba96f60fa",
+   "When": "09/18/2013",
+   "Who": "Party A",
+   "Event": "Bid",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:33:06+00:00",
+   "threads": 0
+  },
+  {
+   "#": 40,
+   "uid": "73e6b90119c32650e90ef895",
+   "When": "09/18/2013",
+   "Who": "Party B",
+   "Event": "Bid",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:33:06+00:00",
+   "threads": 0
+  },
+  {
+   "#": 41,
+   "uid": "8fd7eb0e98bba0b0c95a48f1",
+   "When": "09/18/2013",
+   "Who": "Party C",
+   "Event": "Did not submit",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:33:06+00:00",
+   "threads": 0
+  },
+  {
+   "#": 42,
+   "uid": "e9a20a284c9e60d5c686659a",
+   "When": "09/21/2013",
+   "Who": "Mac-Gray",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:33:06+00:00",
+   "threads": 0
+  },
+  {
+   "#": 43,
+   "uid": "e16cbd8e4228876f110da19d",
+   "When": "09/21/2013",
+   "Who": "CSC/Pamplona",
+   "Event": "Bid",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T20:00:49+00:00",
+   "threads": 0
+  },
+  {
+   "#": 44,
+   "uid": "9846e8c749b5490fbaf95df45bd4cd02",
+   "When": "09/21/2013-09/23/2013",
+   "Who": "CSC/Pamplona",
+   "Event": "Bid",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:20:44+00:00",
+   "threads": 0
+  },
+  {
+   "#": 45,
+   "uid": "425a8eabe873852583092d56",
+   "When": "09/23/2013",
+   "Who": "Moab",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:33:06+00:00",
+   "threads": 0
+  },
+  {
+   "#": 46,
+   "uid": "c89d74caec549eae5d8ac660",
+   "When": "09/24/2013",
+   "Who": "CSC/Pamplona",
+   "Event": "Exclusivity changed",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:33:06+00:00",
+   "threads": 0
+  },
+  {
+   "#": 47,
+   "uid": "1a2be84b3ac1eeaea940c3d8",
+   "When": "by 09/24/2013",
+   "Who": "Party A",
+   "Event": "Dropped by target",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:33:06+00:00",
+   "threads": 0
+  },
+  {
+   "#": 48,
+   "uid": "45b930dfc0364a90fea01bd4",
+   "When": "by 09/24/2013",
+   "Who": "Party B",
+   "Event": "Dropped by target",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:33:06+00:00",
+   "threads": 0
+  },
+  {
+   "#": 49,
+   "uid": "401eb854b02be38a7ad5541f",
+   "When": "09/25/2013",
+   "Who": "Kirkland & Ellis LLP",
+   "Event": "Adviser",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:33:06+00:00",
+   "threads": 0
+  },
+  {
+   "#": 50,
+   "uid": "3b39d92e94184dfabc1a126e6081a5ec",
+   "When": "09/27/2013",
+   "Who": "Stewart G. MacDonald, Jr., his wife and one of his trusts",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:20:44+00:00",
+   "threads": 0
+  },
+  {
+   "#": 51,
+   "uid": "a16f56e4df45435b809245741aa0888b",
+   "When": "09/25/2013-10/07/2013",
+   "Who": "Mac-Gray",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:20:44+00:00",
+   "threads": 0
+  },
+  {
+   "#": 52,
+   "uid": "75790bb839423c0408411bd8",
+   "When": "09/25/2013-10/07/2013",
+   "Who": "Moab",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:33:06+00:00",
+   "threads": 0
+  },
+  {
+   "#": 53,
+   "uid": "51084f681a5d41c9a8eb38535f45d90e",
+   "When": "10/05/2013",
+   "Who": "CSC/Pamplona",
+   "Event": "Bid",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:20:44+00:00",
+   "threads": 0
+  },
+  {
+   "#": 54,
+   "uid": "a8e0bf475ea3483995e374121f5de104",
+   "When": "10/08/2013",
+   "Who": "CSC/Pamplona",
+   "Event": "Bid",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:20:44+00:00",
+   "threads": 0
+  },
+  {
+   "#": 55,
+   "uid": "28e3b4de85c2a909adbf3cb2",
+   "When": "by 10/09/2013",
+   "Who": "CSC/Pamplona",
+   "Event": "Exclusivity changed",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:33:06+00:00",
+   "threads": 0
+  },
+  {
+   "#": 56,
+   "uid": "fafd0e23b6b67cc77981f2fe",
+   "When": "10/12/2013",
+   "Who": "CSC/Pamplona",
+   "Event": "Exclusivity changed",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:33:06+00:00",
+   "threads": 0
+  },
+  {
+   "#": 57,
+   "uid": "27dc4ae85d1bd4ed2a4c90f8",
+   "When": "10/14/2013",
+   "Who": "CSC/Pamplona (CSC ServiceWorks, Inc. via Spin Holdco Inc.)",
+   "Event": "Merger agreement signed",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:33:06+00:00",
+   "threads": 0
+  },
+  {
+   "#": 58,
+   "uid": "1168990fc8d3c8082548b531",
+   "When": "10/15/2013",
+   "Who": "Mac-Gray and CSC",
+   "Event": "Merger announced",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T19:33:06+00:00",
+   "threads": 0
+  }
+ ],
+ "facts": [
+  {
+   "id": "deal-fact:58b9fa2248bf3467b8f494fc",
+   "section": "participation and exits",
+   "kind": "deal fact",
+   "sheet": "Deal facts",
+   "uid": "58b9fa2248bf3467b8f494fc",
+   "row": null,
+   "label": "Auction screen",
+   "filing_key": {
+    "page": null,
+    "block": null,
+    "quote": null
+   },
+   "value": {
+    "Value": "Met (process 1): 20 parties"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D7"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "deal-fact:4c0f7c7f618d674e8a2477ee",
+   "section": "participation and exits",
+   "kind": "deal fact",
+   "sheet": "Deal facts",
+   "uid": "4c0f7c7f618d674e8a2477ee",
+   "row": null,
+   "label": "Whole-company bids",
+   "filing_key": {
+    "page": null,
+    "block": null,
+    "quote": null
+   },
+   "value": {
+    "Value": "Yes"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D7"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:9b6395b7e6cc5ef8e8a58d61",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "9b6395b7e6cc5ef8e8a58d61",
+   "row": 2,
+   "label": "#2 Target interest · Party A",
+   "filing_key": {
+    "page": "27",
+    "block": "b478",
+    "quote": "representatives of BofA Merrill Lynch, as instructed by the Board, telephoned a representative of Party A to discuss generally a possible business combination between Party A and Mac-Gray."
+   },
+   "value": {
+    "Event": "Target interest",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:0f21d452c2e4325e0106d74d",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "0f21d452c2e4325e0106d74d",
+   "row": 10,
+   "label": "#10 Contact · 13 other potential strategic buyers",
+   "filing_key": {
+    "page": "32",
+    "block": "b509",
+    "quote": "in accordance with the directives of the Special Committee, BofA Merrill Lynch contacted the strategic and financial parties identified at the June 24th Special Committee meeting."
+   },
+   "value": {
+    "Event": "Contact",
+    "Type": "Strategic",
+    "Count": "13",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:7369034cd3ba1e3a1ece79bd",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "7369034cd3ba1e3a1ece79bd",
+   "row": 11,
+   "label": "#11 Contact · 35 potential financial buyers (including Party B and Party C)",
+   "filing_key": {
+    "page": "32",
+    "block": "b508",
+    "quote": "15 of which were potential strategic buyers and 35 of which were potential financial buyers, including private equity firms."
+   },
+   "value": {
+    "Event": "Contact",
+    "Type": "Financial",
+    "Count": "35",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:820a0ffa6a9c0e090aef44cf",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "820a0ffa6a9c0e090aef44cf",
+   "row": 12,
+   "label": "#12 Contact · CSC/Pamplona",
+   "filing_key": {
+    "page": "32",
+    "block": "b510",
+    "quote": "BofA Merrill Lynch also reported that they had spoken with representatives of Pamplona, as instructed by the Special Committee, who expressed interest in a transaction"
+   },
+   "value": {
+    "Event": "Contact",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:c1625b7eae7c9adf3f746d3a",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "c1625b7eae7c9adf3f746d3a",
+   "row": 13,
+   "label": "#13 NDA signed · Party B",
+   "filing_key": {
+    "page": "32",
+    "block": "b511",
+    "quote": "Later on June 28, 2013, Party B, entered into a confidentiality and standstill agreement with Mac-Gray"
+   },
+   "value": {
+    "Event": "NDA signed",
+    "Type": "Financial",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:3992f1085b33bd71af532c5f",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "3992f1085b33bd71af532c5f",
+   "row": 14,
+   "label": "#14 NDA signed · Party C",
+   "filing_key": {
+    "page": "32",
+    "block": "b512",
+    "quote": "June 30, 2013, Party C entered into a confidentiality and standstill agreement with Mac-Gray"
+   },
+   "value": {
+    "Event": "NDA signed",
+    "Type": "Financial",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:614bf02e9ab6b539f7f091a4",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "614bf02e9ab6b539f7f091a4",
+   "row": 17,
+   "label": "#17 NDA signed · CSC/Pamplona",
+   "filing_key": {
+    "page": "33",
+    "block": "b518",
+    "quote": "July 11, 2013, CSC/Pamplona entered into a confidentiality and standstill agreement with Mac-Gray"
+   },
+   "value": {
+    "Event": "NDA signed",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:ffbc242e09b7348116e448c7",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "ffbc242e09b7348116e448c7",
+   "row": 18,
+   "label": "#18 NDA signed · 16 other financial NDA signers (unnamed)",
+   "filing_key": {
+    "page": "32",
+    "block": "b509",
+    "quote": "Over the next two months a total of 20 potential bidders, including two strategic bidders (Party A and CSC/Pamplona) and 18 financial bidders (including Party B and Party C)"
+   },
+   "value": {
+    "Event": "NDA signed",
+    "Type": "Financial",
+    "Count": "16",
+    "Exit reason": ""
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A10"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A10 (audit README §2)",
+    "row marked needs decision"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:ea62dc1e56182a066071b572",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "ea62dc1e56182a066071b572",
+   "row": 21,
+   "label": "#21 Did not submit · 16 other financial NDA signers (unnamed)",
+   "filing_key": {
+    "page": "33",
+    "block": "b522",
+    "quote": "representatives of BofA Merrill Lynch reviewed the preliminary indications of interest received from Party B, Party C and CSC/Pamplona as well as the Party A June 21 proposal"
+   },
+   "value": {
+    "Event": "Did not submit",
+    "Type": "Financial",
+    "Count": "16",
+    "Exit reason": "Not stated"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A10"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A10 (audit README §2)",
+    "row marked needs decision"
+   ],
+   "audit": [
+    "mac-gray:3"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D10"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:8f05a3415ef726118d867e39",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "8f05a3415ef726118d867e39",
+   "row": 26,
+   "label": "#26 NDA signed · Party A",
+   "filing_key": {
+    "page": "34",
+    "block": "b528",
+    "quote": "August 5, 2013, Party A entered into a confidentiality and standstill agreement with Mac-Gray and was provided with an informational package"
+   },
+   "value": {
+    "Event": "NDA signed",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:8fd7eb0e98bba0b0c95a48f1",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "8fd7eb0e98bba0b0c95a48f1",
+   "row": 41,
+   "label": "#41 Did not submit · Party C",
+   "filing_key": {
+    "page": "36",
+    "block": "b550",
+    "quote": "Party C did not submit a revised indication of interest or reiterate its prior indication of interest of an all-cash purchase price of $16.00 to $17.00 per share"
+   },
+   "value": {
+    "Event": "Did not submit",
+    "Type": "Financial",
+    "Count": "1",
+    "Exit reason": "Not stated"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D10"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:1a2be84b3ac1eeaea940c3d8",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "1a2be84b3ac1eeaea940c3d8",
+   "row": 47,
+   "label": "#47 Dropped by target · Party A",
+   "filing_key": {
+    "page": "38",
+    "block": "b563",
+    "quote": "CSC, Pamplona and Mac-Gray executed the exclusivity agreement providing for exclusive negotiations until 5 p.m. ET on October 12, 2013"
+   },
+   "value": {
+    "Event": "Dropped by target",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": "Not stated"
+   },
+   "basis": "inference",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:45b930dfc0364a90fea01bd4",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "45b930dfc0364a90fea01bd4",
+   "row": 48,
+   "label": "#48 Dropped by target · Party B",
+   "filing_key": {
+    "page": "38",
+    "block": "b563",
+    "quote": "CSC, Pamplona and Mac-Gray executed the exclusivity agreement providing for exclusive negotiations until 5 p.m. ET on October 12, 2013"
+   },
+   "value": {
+    "Event": "Dropped by target",
+    "Type": "Financial",
+    "Count": "1",
+    "Exit reason": "Not stated"
+   },
+   "basis": "inference",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "deal-fact:86d29d7b848c0cd46c76d92b",
+   "section": "round map and deadline outcomes",
+   "kind": "deal fact",
+   "sheet": "Deal facts",
+   "uid": "86d29d7b848c0cd46c76d92b",
+   "row": null,
+   "label": "Number of processes",
+   "filing_key": {
+    "page": null,
+    "block": null,
+    "quote": null
+   },
+   "value": {
+    "Value": "1"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "round:caa6823fe9feaa52e633d7ad",
+   "section": "round map and deadline outcomes",
+   "kind": "round",
+   "sheet": "Rounds",
+   "uid": "caa6823fe9feaa52e633d7ad",
+   "row": null,
+   "label": "Process 1 / Round 1",
+   "filing_key": {
+    "page": "32",
+    "block": "b508",
+    "quote": "50 parties, including CSC and Pamplona, who together we refer to as CSC/Pamplona, and Party A, to solicit potential interest in a transaction with Mac-Gray"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "1",
+    "Opened": "2013-06-24",
+    "Who was in": "Assuming Q3: 19 NDA-admitted bidders by July 23 (CSC/Pamplona; Party B, Party C and 16 unnamed financials). The total signers are reported, but all 16 unnamed signers' eligibility by July 23 is assumed. Party A's round-0 proposal remained under consideration; its NDA followed August 5.",
+    "Finality": "Not final"
+   },
+   "basis": "inference",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:20",
+    "mac-gray:21"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "deadline:caa6823fe9feaa52e633d7ad",
+   "section": "round map and deadline outcomes",
+   "kind": "deadline",
+   "sheet": "Rounds",
+   "uid": "caa6823fe9feaa52e633d7ad",
+   "row": null,
+   "label": "Process 1 / Round 1",
+   "filing_key": {
+    "page": "32",
+    "block": "b509",
+    "quote": "an informational package for the purpose of providing potential bidders with data to formulate a preliminary indication of interest, which they were instructed to submit by July 23, 2013."
+   },
+   "value": {
+    "Due dates": "07/23/2013",
+    "Deadline outcome": "Late bids accepted"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D11"
+    ],
+    "note": "v1.14 records an accepted late bid as Extended (late bid accepted): shown, not equated"
+   }
+  },
+  {
+   "id": "round:4a49b41d06d6e5366908a7c9",
+   "section": "round map and deadline outcomes",
+   "kind": "round",
+   "sheet": "Rounds",
+   "uid": "4a49b41d06d6e5366908a7c9",
+   "row": null,
+   "label": "Process 1 / Round 2",
+   "filing_key": {
+    "page": "34",
+    "block": "b526",
+    "quote": "authorized and instructed BofA Merrill Lynch to proceed with the staged disclosure as discussed at this meeting and to reach out to each of the four interested bidders"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "2",
+    "Opened": "2013-07-25",
+    "Who was in": "4: 2 strategic (Party A from its 08/05 NDA, CSC/Pamplona); 2 financial (Party B, Party C)",
+    "Finality": "Not final"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "deadline:4a49b41d06d6e5366908a7c9",
+   "section": "round map and deadline outcomes",
+   "kind": "deadline",
+   "sheet": "Rounds",
+   "uid": "4a49b41d06d6e5366908a7c9",
+   "row": null,
+   "label": "Process 1 / Round 2",
+   "filing_key": {
+    "page": "35",
+    "block": "b537",
+    "quote": "submit revised written proposals no later than September 9, 2013"
+   },
+   "value": {
+    "Due dates": "09/09/2013",
+    "Deadline outcome": "Late bids accepted"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D11"
+    ],
+    "note": "v1.14 records an accepted late bid as Extended (late bid accepted): shown, not equated"
+   }
+  },
+  {
+   "id": "round:4f1c893167b1c49e2099ac18",
+   "section": "round map and deadline outcomes",
+   "kind": "round",
+   "sheet": "Rounds",
+   "uid": "4f1c893167b1c49e2099ac18",
+   "row": null,
+   "label": "Process 1 / Round 3",
+   "filing_key": {
+    "page": "36",
+    "block": "b547",
+    "quote": "request final indications of interest by September 18, 2013 and to indicate that Mac-Gray would consider engaging in a short period of exclusive negotiations with one of the bidders"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "3",
+    "Opened": "2013-09-11",
+    "Who was in": "4: 2 strategic (Party A, CSC/Pamplona); 2 financial (Party B, Party C)",
+    "Finality": "Announced as final"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:22"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:22"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "deadline:4f1c893167b1c49e2099ac18",
+   "section": "round map and deadline outcomes",
+   "kind": "deadline",
+   "sheet": "Rounds",
+   "uid": "4f1c893167b1c49e2099ac18",
+   "row": null,
+   "label": "Process 1 / Round 3",
+   "filing_key": {
+    "page": "36",
+    "block": "b547",
+    "quote": "request final indications of interest by September 18, 2013"
+   },
+   "value": {
+    "Due dates": "09/18/2013",
+    "Deadline outcome": "Enforced"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D11"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:196c4984bed516f6c929a914",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "196c4984bed516f6c929a914",
+   "row": 7,
+   "label": "#7 Bid · Party A",
+   "filing_key": {
+    "page": "30",
+    "block": "b499",
+    "quote": "Party A submitted an unsolicited proposal to the Mac-Gray Board of Directors offering to purchase Mac-Gray for an all-cash purchase price of $17.00 to $19.00 per share"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "0"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:abff80031911a5d4393a0b44",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "abff80031911a5d4393a0b44",
+   "row": 20,
+   "label": "#20 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "33",
+    "block": "b520",
+    "quote": "CSC/Pamplona submitted a preliminary indication of interest at an all-cash purchase price of $18.50 per share."
+   },
+   "value": {
+    "Process": "1",
+    "Round": "1"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:ea62dc1e56182a066071b572",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "ea62dc1e56182a066071b572",
+   "row": 21,
+   "label": "#21 Did not submit · 16 other financial NDA signers (unnamed)",
+   "filing_key": {
+    "page": "33",
+    "block": "b522",
+    "quote": "representatives of BofA Merrill Lynch reviewed the preliminary indications of interest received from Party B, Party C and CSC/Pamplona as well as the Party A June 21 proposal"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "1"
+   },
+   "basis": "inference",
+   "basis_refs": [],
+   "status": "unresolved",
+   "status_reasons": [
+    "row marked needs decision"
+   ],
+   "audit": [
+    "mac-gray:3"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:a30cc943589fcf0a856a04b0",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "a30cc943589fcf0a856a04b0",
+   "row": 22,
+   "label": "#22 Bid · Party B",
+   "filing_key": {
+    "page": "33",
+    "block": "b521",
+    "quote": "July 24, 2013, Party B submitted a preliminary indication of interest at an all-cash purchase price of $17.00 to $18.00 per share."
+   },
+   "value": {
+    "Process": "1",
+    "Round": "1"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:94c7acf51aec5ef7388a3b30",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "94c7acf51aec5ef7388a3b30",
+   "row": 23,
+   "label": "#23 Bid · Party C",
+   "filing_key": {
+    "page": "33",
+    "block": "b521",
+    "quote": "representatives from Party C called BofA Merrill Lynch and presented an oral preliminary indication of interest at an all-cash purchase price of $15.00 to $17.00 per share."
+   },
+   "value": {
+    "Process": "1",
+    "Round": "1"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:fb40768f64d8e342c424caf2",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "fb40768f64d8e342c424caf2",
+   "row": 25,
+   "label": "#25 Bid · Party C",
+   "filing_key": {
+    "page": "34",
+    "block": "b527",
+    "quote": "Later on July 25, 2013, Party C submitted a written indication of interest at an all-cash purchase price of $16.00 to $16.50 per share."
+   },
+   "value": {
+    "Process": "1",
+    "Round": "1"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:b7425f3bb162d389c7aae714",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "b7425f3bb162d389c7aae714",
+   "row": 31,
+   "label": "#31 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "35",
+    "block": "b541",
+    "quote": "CSC/Pamplona submitted a revised indication of interest with an all-cash purchase price of $19.50 per share, indicating that Pamplona was committed to provide 100% of the capital required"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "2"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "unresolved",
+   "status_reasons": [
+    "mac-gray:5 judged overstated"
+   ],
+   "audit": [
+    "mac-gray:5"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:00e22c93708bc87a43bf825c",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "00e22c93708bc87a43bf825c",
+   "row": 32,
+   "label": "#32 Bid · Party B",
+   "filing_key": {
+    "page": "35",
+    "block": "b541",
+    "quote": "Party B also submitted a revised indication of interest with an all-cash purchase price of $18.50 per share"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "2"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:ab468ec12616e29e1208ea66",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "ab468ec12616e29e1208ea66",
+   "row": 33,
+   "label": "#33 Bid · Party A",
+   "filing_key": {
+    "page": "35",
+    "block": "b542",
+    "quote": "Party A submitted a revised indication of interest with an all-cash purchase price of $18.00 to $19.00 per share"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "2"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:91734089c68ecf2859d21001",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "91734089c68ecf2859d21001",
+   "row": 34,
+   "label": "#34 Bid · Party C",
+   "filing_key": {
+    "page": "35",
+    "block": "b542",
+    "quote": "a representative of Party C indicated that it was submitting a revised oral indication of interest with an all-cash purchase price of $16.00 to $17.00 per share."
+   },
+   "value": {
+    "Process": "1",
+    "Round": "2"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:390fd177a0cdf19b52acf176",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "390fd177a0cdf19b52acf176",
+   "row": 38,
+   "label": "#38 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "36",
+    "block": "b550",
+    "quote": "CSC/Pamplona submitted a proposal for an all-cash purchase price of $20.75 per share, reiterating that Pamplona was committed to provide 100% of the capital required"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "3"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:7"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:7"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:3f08e6ef44543e7ba96f60fa",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "3f08e6ef44543e7ba96f60fa",
+   "row": 39,
+   "label": "#39 Bid · Party A",
+   "filing_key": {
+    "page": "36",
+    "block": "b550",
+    "quote": "its previous indication of interest with an all-cash purchase price of $18.00 to $19.00 per share was its best and final offer"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "3"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:73e6b90119c32650e90ef895",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "73e6b90119c32650e90ef895",
+   "row": 40,
+   "label": "#40 Bid · Party B",
+   "filing_key": {
+    "page": "36",
+    "block": "b550",
+    "quote": "Party B also submitted a revised indication of interest with a purchase price that Party B valued at $21.50 per share, including $19.00 of cash to be paid at closing"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "3"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "unresolved",
+   "status_reasons": [
+    "mac-gray:9 judged unresolved"
+   ],
+   "audit": [
+    "mac-gray:9",
+    "mac-gray:10"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:8fd7eb0e98bba0b0c95a48f1",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "8fd7eb0e98bba0b0c95a48f1",
+   "row": 41,
+   "label": "#41 Did not submit · Party C",
+   "filing_key": {
+    "page": "36",
+    "block": "b550",
+    "quote": "Party C did not submit a revised indication of interest or reiterate its prior indication of interest of an all-cash purchase price of $16.00 to $17.00 per share"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "3"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:e16cbd8e4228876f110da19d",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "e16cbd8e4228876f110da19d",
+   "row": 43,
+   "label": "#43 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "37",
+    "block": "b556",
+    "quote": "confirm that CSC/Pamplona were willing to increase their all-cash purchase price to $21.25 per share as a last and best offer, provided that Mac-Gray agree to a two week period"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "3"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:12"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:12"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:9846e8c749b5490fbaf95df45bd4cd02",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "9846e8c749b5490fbaf95df45bd4cd02",
+   "row": 44,
+   "label": "#44 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "37",
+    "block": "b557",
+    "quote": "the inclusion of a $15 million \"reverse\" termination fee payable by CSC/Pamplona to Mac-Gray in the event regulatory clearance is not obtained"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "3"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:15"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:15"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:1a2be84b3ac1eeaea940c3d8",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "1a2be84b3ac1eeaea940c3d8",
+   "row": 47,
+   "label": "#47 Dropped by target · Party A",
+   "filing_key": {
+    "page": "38",
+    "block": "b563",
+    "quote": "CSC, Pamplona and Mac-Gray executed the exclusivity agreement providing for exclusive negotiations until 5 p.m. ET on October 12, 2013"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "3"
+   },
+   "basis": "inference",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:45b930dfc0364a90fea01bd4",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "45b930dfc0364a90fea01bd4",
+   "row": 48,
+   "label": "#48 Dropped by target · Party B",
+   "filing_key": {
+    "page": "38",
+    "block": "b563",
+    "quote": "CSC, Pamplona and Mac-Gray executed the exclusivity agreement providing for exclusive negotiations until 5 p.m. ET on October 12, 2013"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "3"
+   },
+   "basis": "inference",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:51084f681a5d41c9a8eb38535f45d90e",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "51084f681a5d41c9a8eb38535f45d90e",
+   "row": 53,
+   "label": "#53 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "39",
+    "block": "b569",
+    "quote": "Pamplona's liability for damages resulting from a breach of the merger agreement would be limited to an unspecified dollar amount."
+   },
+   "value": {
+    "Process": "1",
+    "Round": "3"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:18"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:18"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:a8e0bf475ea3483995e374121f5de104",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "a8e0bf475ea3483995e374121f5de104",
+   "row": 54,
+   "label": "#54 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "39",
+    "block": "b572",
+    "quote": "which Kirkland proposed, at the direction of CSC/Pamplona, be capped at $50 million."
+   },
+   "value": {
+    "Process": "1",
+    "Round": "3"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:19"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:19"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "price:196c4984bed516f6c929a914",
+   "section": "bids",
+   "kind": "price",
+   "sheet": "Deal ledger",
+   "uid": "196c4984bed516f6c929a914",
+   "row": 7,
+   "label": "#7 Bid · Party A",
+   "filing_key": {
+    "page": "30",
+    "block": "b499",
+    "quote": "Party A submitted an unsolicited proposal to the Mac-Gray Board of Directors offering to purchase Mac-Gray for an all-cash purchase price of $17.00 to $19.00 per share"
+   },
+   "value": {
+    "Price low": "17",
+    "Price high": "19"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "stock:196c4984bed516f6c929a914",
+   "section": "bids",
+   "kind": "stock",
+   "sheet": "Deal ledger",
+   "uid": "196c4984bed516f6c929a914",
+   "row": 7,
+   "label": "#7 Bid · Party A",
+   "filing_key": {
+    "page": "30",
+    "block": "b499",
+    "quote": "Party A submitted an unsolicited proposal to the Mac-Gray Board of Directors offering to purchase Mac-Gray for an all-cash purchase price of $17.00 to $19.00 per share"
+   },
+   "value": {
+    "All cash": "Yes"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "note": "All cash Yes crosswalks to Stock % 0"
+   },
+   "crosswalk": {
+    "All cash": "Yes",
+    "Stock %": 0
+   }
+  },
+  {
+   "id": "formality:196c4984bed516f6c929a914",
+   "section": "bids",
+   "kind": "formality",
+   "sheet": "Deal ledger",
+   "uid": "196c4984bed516f6c929a914",
+   "row": 7,
+   "label": "#7 Bid · Party A",
+   "filing_key": {
+    "page": "30",
+    "block": "b499",
+    "quote": "Party A submitted an unsolicited proposal to the Mac-Gray Board of Directors offering to purchase Mac-Gray for an all-cash purchase price of $17.00 to $19.00 per share"
+   },
+   "value": {
+    "Formality": "Informal"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "conditions:196c4984bed516f6c929a914",
+   "section": "bids",
+   "kind": "conditions",
+   "sheet": "Deal ledger",
+   "uid": "196c4984bed516f6c929a914",
+   "row": 7,
+   "label": "#7 Bid · Party A",
+   "filing_key": {
+    "page": "30",
+    "block": "b499",
+    "quote": "Party A submitted an unsolicited proposal to the Mac-Gray Board of Directors offering to purchase Mac-Gray for an all-cash purchase price of $17.00 to $19.00 per share"
+   },
+   "value": {
+    "Conditions": "Unclear"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "H1–H3"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "terms:196c4984bed516f6c929a914",
+   "section": "bids",
+   "kind": "terms",
+   "sheet": "Deal ledger",
+   "uid": "196c4984bed516f6c929a914",
+   "row": 7,
+   "label": "#7 Bid · Party A",
+   "filing_key": {
+    "page": "30",
+    "block": "b499",
+    "quote": "Party A submitted an unsolicited proposal to the Mac-Gray Board of Directors offering to purchase Mac-Gray for an all-cash purchase price of $17.00 to $19.00 per share"
+   },
+   "value": {},
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: CVR/earnout",
+     "new column: CVR/earnout value",
+     "new column: Due diligence",
+     "new column: Financing",
+     "new column: Regulatory",
+     "new column: Antitrust",
+     "new column: Exclusivity"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "price:abff80031911a5d4393a0b44",
+   "section": "bids",
+   "kind": "price",
+   "sheet": "Deal ledger",
+   "uid": "abff80031911a5d4393a0b44",
+   "row": 20,
+   "label": "#20 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "33",
+    "block": "b520",
+    "quote": "CSC/Pamplona submitted a preliminary indication of interest at an all-cash purchase price of $18.50 per share."
+   },
+   "value": {
+    "Price low": "18.5",
+    "Price high": "18.5"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "stock:abff80031911a5d4393a0b44",
+   "section": "bids",
+   "kind": "stock",
+   "sheet": "Deal ledger",
+   "uid": "abff80031911a5d4393a0b44",
+   "row": 20,
+   "label": "#20 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "33",
+    "block": "b520",
+    "quote": "CSC/Pamplona submitted a preliminary indication of interest at an all-cash purchase price of $18.50 per share."
+   },
+   "value": {
+    "All cash": "Yes"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "note": "All cash Yes crosswalks to Stock % 0"
+   },
+   "crosswalk": {
+    "All cash": "Yes",
+    "Stock %": 0
+   }
+  },
+  {
+   "id": "formality:abff80031911a5d4393a0b44",
+   "section": "bids",
+   "kind": "formality",
+   "sheet": "Deal ledger",
+   "uid": "abff80031911a5d4393a0b44",
+   "row": 20,
+   "label": "#20 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "33",
+    "block": "b520",
+    "quote": "CSC/Pamplona submitted a preliminary indication of interest at an all-cash purchase price of $18.50 per share."
+   },
+   "value": {
+    "Formality": "Informal"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "conditions:abff80031911a5d4393a0b44",
+   "section": "bids",
+   "kind": "conditions",
+   "sheet": "Deal ledger",
+   "uid": "abff80031911a5d4393a0b44",
+   "row": 20,
+   "label": "#20 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "33",
+    "block": "b520",
+    "quote": "CSC/Pamplona submitted a preliminary indication of interest at an all-cash purchase price of $18.50 per share."
+   },
+   "value": {
+    "Conditions": "Unclear"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "D5"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "terms:abff80031911a5d4393a0b44",
+   "section": "bids",
+   "kind": "terms",
+   "sheet": "Deal ledger",
+   "uid": "abff80031911a5d4393a0b44",
+   "row": 20,
+   "label": "#20 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "33",
+    "block": "b520",
+    "quote": "CSC/Pamplona submitted a preliminary indication of interest at an all-cash purchase price of $18.50 per share."
+   },
+   "value": {},
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: CVR/earnout",
+     "new column: CVR/earnout value",
+     "new column: Due diligence",
+     "new column: Financing",
+     "new column: Regulatory",
+     "new column: Antitrust",
+     "new column: Exclusivity"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "price:a30cc943589fcf0a856a04b0",
+   "section": "bids",
+   "kind": "price",
+   "sheet": "Deal ledger",
+   "uid": "a30cc943589fcf0a856a04b0",
+   "row": 22,
+   "label": "#22 Bid · Party B",
+   "filing_key": {
+    "page": "33",
+    "block": "b521",
+    "quote": "July 24, 2013, Party B submitted a preliminary indication of interest at an all-cash purchase price of $17.00 to $18.00 per share."
+   },
+   "value": {
+    "Price low": "17",
+    "Price high": "18"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "stock:a30cc943589fcf0a856a04b0",
+   "section": "bids",
+   "kind": "stock",
+   "sheet": "Deal ledger",
+   "uid": "a30cc943589fcf0a856a04b0",
+   "row": 22,
+   "label": "#22 Bid · Party B",
+   "filing_key": {
+    "page": "33",
+    "block": "b521",
+    "quote": "July 24, 2013, Party B submitted a preliminary indication of interest at an all-cash purchase price of $17.00 to $18.00 per share."
+   },
+   "value": {
+    "All cash": "Yes"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "note": "All cash Yes crosswalks to Stock % 0"
+   },
+   "crosswalk": {
+    "All cash": "Yes",
+    "Stock %": 0
+   }
+  },
+  {
+   "id": "formality:a30cc943589fcf0a856a04b0",
+   "section": "bids",
+   "kind": "formality",
+   "sheet": "Deal ledger",
+   "uid": "a30cc943589fcf0a856a04b0",
+   "row": 22,
+   "label": "#22 Bid · Party B",
+   "filing_key": {
+    "page": "33",
+    "block": "b521",
+    "quote": "July 24, 2013, Party B submitted a preliminary indication of interest at an all-cash purchase price of $17.00 to $18.00 per share."
+   },
+   "value": {
+    "Formality": "Informal"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "conditions:a30cc943589fcf0a856a04b0",
+   "section": "bids",
+   "kind": "conditions",
+   "sheet": "Deal ledger",
+   "uid": "a30cc943589fcf0a856a04b0",
+   "row": 22,
+   "label": "#22 Bid · Party B",
+   "filing_key": {
+    "page": "33",
+    "block": "b521",
+    "quote": "July 24, 2013, Party B submitted a preliminary indication of interest at an all-cash purchase price of $17.00 to $18.00 per share."
+   },
+   "value": {
+    "Conditions": "Unclear"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "D5"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "terms:a30cc943589fcf0a856a04b0",
+   "section": "bids",
+   "kind": "terms",
+   "sheet": "Deal ledger",
+   "uid": "a30cc943589fcf0a856a04b0",
+   "row": 22,
+   "label": "#22 Bid · Party B",
+   "filing_key": {
+    "page": "33",
+    "block": "b521",
+    "quote": "July 24, 2013, Party B submitted a preliminary indication of interest at an all-cash purchase price of $17.00 to $18.00 per share."
+   },
+   "value": {},
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: CVR/earnout",
+     "new column: CVR/earnout value",
+     "new column: Due diligence",
+     "new column: Financing",
+     "new column: Regulatory",
+     "new column: Antitrust",
+     "new column: Exclusivity"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "price:94c7acf51aec5ef7388a3b30",
+   "section": "bids",
+   "kind": "price",
+   "sheet": "Deal ledger",
+   "uid": "94c7acf51aec5ef7388a3b30",
+   "row": 23,
+   "label": "#23 Bid · Party C",
+   "filing_key": {
+    "page": "33",
+    "block": "b521",
+    "quote": "representatives from Party C called BofA Merrill Lynch and presented an oral preliminary indication of interest at an all-cash purchase price of $15.00 to $17.00 per share."
+   },
+   "value": {
+    "Price low": "15",
+    "Price high": "17"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "stock:94c7acf51aec5ef7388a3b30",
+   "section": "bids",
+   "kind": "stock",
+   "sheet": "Deal ledger",
+   "uid": "94c7acf51aec5ef7388a3b30",
+   "row": 23,
+   "label": "#23 Bid · Party C",
+   "filing_key": {
+    "page": "33",
+    "block": "b521",
+    "quote": "representatives from Party C called BofA Merrill Lynch and presented an oral preliminary indication of interest at an all-cash purchase price of $15.00 to $17.00 per share."
+   },
+   "value": {
+    "All cash": "Yes"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "note": "All cash Yes crosswalks to Stock % 0"
+   },
+   "crosswalk": {
+    "All cash": "Yes",
+    "Stock %": 0
+   }
+  },
+  {
+   "id": "formality:94c7acf51aec5ef7388a3b30",
+   "section": "bids",
+   "kind": "formality",
+   "sheet": "Deal ledger",
+   "uid": "94c7acf51aec5ef7388a3b30",
+   "row": 23,
+   "label": "#23 Bid · Party C",
+   "filing_key": {
+    "page": "33",
+    "block": "b521",
+    "quote": "representatives from Party C called BofA Merrill Lynch and presented an oral preliminary indication of interest at an all-cash purchase price of $15.00 to $17.00 per share."
+   },
+   "value": {
+    "Formality": "Informal"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "conditions:94c7acf51aec5ef7388a3b30",
+   "section": "bids",
+   "kind": "conditions",
+   "sheet": "Deal ledger",
+   "uid": "94c7acf51aec5ef7388a3b30",
+   "row": 23,
+   "label": "#23 Bid · Party C",
+   "filing_key": {
+    "page": "33",
+    "block": "b521",
+    "quote": "representatives from Party C called BofA Merrill Lynch and presented an oral preliminary indication of interest at an all-cash purchase price of $15.00 to $17.00 per share."
+   },
+   "value": {
+    "Conditions": "Unclear"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "D5"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "terms:94c7acf51aec5ef7388a3b30",
+   "section": "bids",
+   "kind": "terms",
+   "sheet": "Deal ledger",
+   "uid": "94c7acf51aec5ef7388a3b30",
+   "row": 23,
+   "label": "#23 Bid · Party C",
+   "filing_key": {
+    "page": "33",
+    "block": "b521",
+    "quote": "representatives from Party C called BofA Merrill Lynch and presented an oral preliminary indication of interest at an all-cash purchase price of $15.00 to $17.00 per share."
+   },
+   "value": {},
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: CVR/earnout",
+     "new column: CVR/earnout value",
+     "new column: Due diligence",
+     "new column: Financing",
+     "new column: Regulatory",
+     "new column: Antitrust",
+     "new column: Exclusivity"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "price:fb40768f64d8e342c424caf2",
+   "section": "bids",
+   "kind": "price",
+   "sheet": "Deal ledger",
+   "uid": "fb40768f64d8e342c424caf2",
+   "row": 25,
+   "label": "#25 Bid · Party C",
+   "filing_key": {
+    "page": "34",
+    "block": "b527",
+    "quote": "Later on July 25, 2013, Party C submitted a written indication of interest at an all-cash purchase price of $16.00 to $16.50 per share."
+   },
+   "value": {
+    "Price low": "16",
+    "Price high": "16.5"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "stock:fb40768f64d8e342c424caf2",
+   "section": "bids",
+   "kind": "stock",
+   "sheet": "Deal ledger",
+   "uid": "fb40768f64d8e342c424caf2",
+   "row": 25,
+   "label": "#25 Bid · Party C",
+   "filing_key": {
+    "page": "34",
+    "block": "b527",
+    "quote": "Later on July 25, 2013, Party C submitted a written indication of interest at an all-cash purchase price of $16.00 to $16.50 per share."
+   },
+   "value": {
+    "All cash": "Yes"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "note": "All cash Yes crosswalks to Stock % 0"
+   },
+   "crosswalk": {
+    "All cash": "Yes",
+    "Stock %": 0
+   }
+  },
+  {
+   "id": "formality:fb40768f64d8e342c424caf2",
+   "section": "bids",
+   "kind": "formality",
+   "sheet": "Deal ledger",
+   "uid": "fb40768f64d8e342c424caf2",
+   "row": 25,
+   "label": "#25 Bid · Party C",
+   "filing_key": {
+    "page": "34",
+    "block": "b527",
+    "quote": "Later on July 25, 2013, Party C submitted a written indication of interest at an all-cash purchase price of $16.00 to $16.50 per share."
+   },
+   "value": {
+    "Formality": "Informal"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D9",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "conditions:fb40768f64d8e342c424caf2",
+   "section": "bids",
+   "kind": "conditions",
+   "sheet": "Deal ledger",
+   "uid": "fb40768f64d8e342c424caf2",
+   "row": 25,
+   "label": "#25 Bid · Party C",
+   "filing_key": {
+    "page": "34",
+    "block": "b527",
+    "quote": "Later on July 25, 2013, Party C submitted a written indication of interest at an all-cash purchase price of $16.00 to $16.50 per share."
+   },
+   "value": {
+    "Conditions": "Unclear"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "D5",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "terms:fb40768f64d8e342c424caf2",
+   "section": "bids",
+   "kind": "terms",
+   "sheet": "Deal ledger",
+   "uid": "fb40768f64d8e342c424caf2",
+   "row": 25,
+   "label": "#25 Bid · Party C",
+   "filing_key": {
+    "page": "34",
+    "block": "b527",
+    "quote": "Later on July 25, 2013, Party C submitted a written indication of interest at an all-cash purchase price of $16.00 to $16.50 per share."
+   },
+   "value": {},
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: CVR/earnout",
+     "new column: CVR/earnout value",
+     "new column: Due diligence",
+     "new column: Financing",
+     "new column: Regulatory",
+     "new column: Antitrust",
+     "new column: Exclusivity"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "price:b7425f3bb162d389c7aae714",
+   "section": "bids",
+   "kind": "price",
+   "sheet": "Deal ledger",
+   "uid": "b7425f3bb162d389c7aae714",
+   "row": 31,
+   "label": "#31 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "35",
+    "block": "b541",
+    "quote": "CSC/Pamplona submitted a revised indication of interest with an all-cash purchase price of $19.50 per share, indicating that Pamplona was committed to provide 100% of the capital required"
+   },
+   "value": {
+    "Price low": "19.5",
+    "Price high": "19.5"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "unresolved",
+   "status_reasons": [
+    "mac-gray:5 judged overstated"
+   ],
+   "audit": [
+    "mac-gray:5"
+   ],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "stock:b7425f3bb162d389c7aae714",
+   "section": "bids",
+   "kind": "stock",
+   "sheet": "Deal ledger",
+   "uid": "b7425f3bb162d389c7aae714",
+   "row": 31,
+   "label": "#31 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "35",
+    "block": "b541",
+    "quote": "CSC/Pamplona submitted a revised indication of interest with an all-cash purchase price of $19.50 per share, indicating that Pamplona was committed to provide 100% of the capital required"
+   },
+   "value": {
+    "All cash": "Yes"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "unresolved",
+   "status_reasons": [
+    "mac-gray:5 judged overstated"
+   ],
+   "audit": [
+    "mac-gray:5"
+   ],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "note": "All cash Yes crosswalks to Stock % 0"
+   },
+   "crosswalk": {
+    "All cash": "Yes",
+    "Stock %": 0
+   }
+  },
+  {
+   "id": "formality:b7425f3bb162d389c7aae714",
+   "section": "bids",
+   "kind": "formality",
+   "sheet": "Deal ledger",
+   "uid": "b7425f3bb162d389c7aae714",
+   "row": 31,
+   "label": "#31 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "35",
+    "block": "b541",
+    "quote": "CSC/Pamplona submitted a revised indication of interest with an all-cash purchase price of $19.50 per share, indicating that Pamplona was committed to provide 100% of the capital required"
+   },
+   "value": {
+    "Formality": "Informal"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "unresolved",
+   "status_reasons": [
+    "mac-gray:5 judged overstated"
+   ],
+   "audit": [
+    "mac-gray:5"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D9",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "conditions:b7425f3bb162d389c7aae714",
+   "section": "bids",
+   "kind": "conditions",
+   "sheet": "Deal ledger",
+   "uid": "b7425f3bb162d389c7aae714",
+   "row": 31,
+   "label": "#31 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "35",
+    "block": "b541",
+    "quote": "CSC/Pamplona submitted a revised indication of interest with an all-cash purchase price of $19.50 per share, indicating that Pamplona was committed to provide 100% of the capital required"
+   },
+   "value": {
+    "Conditions": "Light"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A7"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A7 (audit README §2)",
+    "mac-gray:4 judged overstated",
+    "mac-gray:5 judged overstated"
+   ],
+   "audit": [
+    "mac-gray:4",
+    "mac-gray:5"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "D15",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "terms:b7425f3bb162d389c7aae714",
+   "section": "bids",
+   "kind": "terms",
+   "sheet": "Deal ledger",
+   "uid": "b7425f3bb162d389c7aae714",
+   "row": 31,
+   "label": "#31 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "35",
+    "block": "b541",
+    "quote": "CSC/Pamplona submitted a revised indication of interest with an all-cash purchase price of $19.50 per share, indicating that Pamplona was committed to provide 100% of the capital required"
+   },
+   "value": {},
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "unresolved",
+   "status_reasons": [
+    "mac-gray:5 judged overstated"
+   ],
+   "audit": [
+    "mac-gray:5"
+   ],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: CVR/earnout",
+     "new column: CVR/earnout value",
+     "new column: Due diligence",
+     "new column: Financing",
+     "new column: Regulatory",
+     "new column: Antitrust",
+     "new column: Exclusivity"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "price:00e22c93708bc87a43bf825c",
+   "section": "bids",
+   "kind": "price",
+   "sheet": "Deal ledger",
+   "uid": "00e22c93708bc87a43bf825c",
+   "row": 32,
+   "label": "#32 Bid · Party B",
+   "filing_key": {
+    "page": "35",
+    "block": "b541",
+    "quote": "Party B also submitted a revised indication of interest with an all-cash purchase price of $18.50 per share"
+   },
+   "value": {
+    "Price low": "18.5",
+    "Price high": "18.5"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "stock:00e22c93708bc87a43bf825c",
+   "section": "bids",
+   "kind": "stock",
+   "sheet": "Deal ledger",
+   "uid": "00e22c93708bc87a43bf825c",
+   "row": 32,
+   "label": "#32 Bid · Party B",
+   "filing_key": {
+    "page": "35",
+    "block": "b541",
+    "quote": "Party B also submitted a revised indication of interest with an all-cash purchase price of $18.50 per share"
+   },
+   "value": {
+    "All cash": "Yes"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "note": "All cash Yes crosswalks to Stock % 0"
+   },
+   "crosswalk": {
+    "All cash": "Yes",
+    "Stock %": 0
+   }
+  },
+  {
+   "id": "formality:00e22c93708bc87a43bf825c",
+   "section": "bids",
+   "kind": "formality",
+   "sheet": "Deal ledger",
+   "uid": "00e22c93708bc87a43bf825c",
+   "row": 32,
+   "label": "#32 Bid · Party B",
+   "filing_key": {
+    "page": "35",
+    "block": "b541",
+    "quote": "Party B also submitted a revised indication of interest with an all-cash purchase price of $18.50 per share"
+   },
+   "value": {
+    "Formality": "Informal"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D9",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "conditions:00e22c93708bc87a43bf825c",
+   "section": "bids",
+   "kind": "conditions",
+   "sheet": "Deal ledger",
+   "uid": "00e22c93708bc87a43bf825c",
+   "row": 32,
+   "label": "#32 Bid · Party B",
+   "filing_key": {
+    "page": "35",
+    "block": "b541",
+    "quote": "Party B also submitted a revised indication of interest with an all-cash purchase price of $18.50 per share"
+   },
+   "value": {
+    "Conditions": "Heavy"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "D5",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "terms:00e22c93708bc87a43bf825c",
+   "section": "bids",
+   "kind": "terms",
+   "sheet": "Deal ledger",
+   "uid": "00e22c93708bc87a43bf825c",
+   "row": 32,
+   "label": "#32 Bid · Party B",
+   "filing_key": {
+    "page": "35",
+    "block": "b541",
+    "quote": "Party B also submitted a revised indication of interest with an all-cash purchase price of $18.50 per share"
+   },
+   "value": {},
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: CVR/earnout",
+     "new column: CVR/earnout value",
+     "new column: Due diligence",
+     "new column: Financing",
+     "new column: Regulatory",
+     "new column: Antitrust",
+     "new column: Exclusivity"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "price:ab468ec12616e29e1208ea66",
+   "section": "bids",
+   "kind": "price",
+   "sheet": "Deal ledger",
+   "uid": "ab468ec12616e29e1208ea66",
+   "row": 33,
+   "label": "#33 Bid · Party A",
+   "filing_key": {
+    "page": "35",
+    "block": "b542",
+    "quote": "Party A submitted a revised indication of interest with an all-cash purchase price of $18.00 to $19.00 per share"
+   },
+   "value": {
+    "Price low": "18",
+    "Price high": "19"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "stock:ab468ec12616e29e1208ea66",
+   "section": "bids",
+   "kind": "stock",
+   "sheet": "Deal ledger",
+   "uid": "ab468ec12616e29e1208ea66",
+   "row": 33,
+   "label": "#33 Bid · Party A",
+   "filing_key": {
+    "page": "35",
+    "block": "b542",
+    "quote": "Party A submitted a revised indication of interest with an all-cash purchase price of $18.00 to $19.00 per share"
+   },
+   "value": {
+    "All cash": "Yes"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "note": "All cash Yes crosswalks to Stock % 0"
+   },
+   "crosswalk": {
+    "All cash": "Yes",
+    "Stock %": 0
+   }
+  },
+  {
+   "id": "formality:ab468ec12616e29e1208ea66",
+   "section": "bids",
+   "kind": "formality",
+   "sheet": "Deal ledger",
+   "uid": "ab468ec12616e29e1208ea66",
+   "row": 33,
+   "label": "#33 Bid · Party A",
+   "filing_key": {
+    "page": "35",
+    "block": "b542",
+    "quote": "Party A submitted a revised indication of interest with an all-cash purchase price of $18.00 to $19.00 per share"
+   },
+   "value": {
+    "Formality": "Informal"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D9",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "conditions:ab468ec12616e29e1208ea66",
+   "section": "bids",
+   "kind": "conditions",
+   "sheet": "Deal ledger",
+   "uid": "ab468ec12616e29e1208ea66",
+   "row": 33,
+   "label": "#33 Bid · Party A",
+   "filing_key": {
+    "page": "35",
+    "block": "b542",
+    "quote": "Party A submitted a revised indication of interest with an all-cash purchase price of $18.00 to $19.00 per share"
+   },
+   "value": {
+    "Conditions": "Heavy"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "D5",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "terms:ab468ec12616e29e1208ea66",
+   "section": "bids",
+   "kind": "terms",
+   "sheet": "Deal ledger",
+   "uid": "ab468ec12616e29e1208ea66",
+   "row": 33,
+   "label": "#33 Bid · Party A",
+   "filing_key": {
+    "page": "35",
+    "block": "b542",
+    "quote": "Party A submitted a revised indication of interest with an all-cash purchase price of $18.00 to $19.00 per share"
+   },
+   "value": {},
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: CVR/earnout",
+     "new column: CVR/earnout value",
+     "new column: Due diligence",
+     "new column: Financing",
+     "new column: Regulatory",
+     "new column: Antitrust",
+     "new column: Exclusivity"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "price:91734089c68ecf2859d21001",
+   "section": "bids",
+   "kind": "price",
+   "sheet": "Deal ledger",
+   "uid": "91734089c68ecf2859d21001",
+   "row": 34,
+   "label": "#34 Bid · Party C",
+   "filing_key": {
+    "page": "35",
+    "block": "b542",
+    "quote": "a representative of Party C indicated that it was submitting a revised oral indication of interest with an all-cash purchase price of $16.00 to $17.00 per share."
+   },
+   "value": {
+    "Price low": "16",
+    "Price high": "17"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "stock:91734089c68ecf2859d21001",
+   "section": "bids",
+   "kind": "stock",
+   "sheet": "Deal ledger",
+   "uid": "91734089c68ecf2859d21001",
+   "row": 34,
+   "label": "#34 Bid · Party C",
+   "filing_key": {
+    "page": "35",
+    "block": "b542",
+    "quote": "a representative of Party C indicated that it was submitting a revised oral indication of interest with an all-cash purchase price of $16.00 to $17.00 per share."
+   },
+   "value": {
+    "All cash": "Yes"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "note": "All cash Yes crosswalks to Stock % 0"
+   },
+   "crosswalk": {
+    "All cash": "Yes",
+    "Stock %": 0
+   }
+  },
+  {
+   "id": "formality:91734089c68ecf2859d21001",
+   "section": "bids",
+   "kind": "formality",
+   "sheet": "Deal ledger",
+   "uid": "91734089c68ecf2859d21001",
+   "row": 34,
+   "label": "#34 Bid · Party C",
+   "filing_key": {
+    "page": "35",
+    "block": "b542",
+    "quote": "a representative of Party C indicated that it was submitting a revised oral indication of interest with an all-cash purchase price of $16.00 to $17.00 per share."
+   },
+   "value": {
+    "Formality": "Informal"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D9",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "conditions:91734089c68ecf2859d21001",
+   "section": "bids",
+   "kind": "conditions",
+   "sheet": "Deal ledger",
+   "uid": "91734089c68ecf2859d21001",
+   "row": 34,
+   "label": "#34 Bid · Party C",
+   "filing_key": {
+    "page": "35",
+    "block": "b542",
+    "quote": "a representative of Party C indicated that it was submitting a revised oral indication of interest with an all-cash purchase price of $16.00 to $17.00 per share."
+   },
+   "value": {
+    "Conditions": "Heavy"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "D5",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "terms:91734089c68ecf2859d21001",
+   "section": "bids",
+   "kind": "terms",
+   "sheet": "Deal ledger",
+   "uid": "91734089c68ecf2859d21001",
+   "row": 34,
+   "label": "#34 Bid · Party C",
+   "filing_key": {
+    "page": "35",
+    "block": "b542",
+    "quote": "a representative of Party C indicated that it was submitting a revised oral indication of interest with an all-cash purchase price of $16.00 to $17.00 per share."
+   },
+   "value": {},
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: CVR/earnout",
+     "new column: CVR/earnout value",
+     "new column: Due diligence",
+     "new column: Financing",
+     "new column: Regulatory",
+     "new column: Antitrust",
+     "new column: Exclusivity"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "price:390fd177a0cdf19b52acf176",
+   "section": "bids",
+   "kind": "price",
+   "sheet": "Deal ledger",
+   "uid": "390fd177a0cdf19b52acf176",
+   "row": 38,
+   "label": "#38 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "36",
+    "block": "b550",
+    "quote": "CSC/Pamplona submitted a proposal for an all-cash purchase price of $20.75 per share, reiterating that Pamplona was committed to provide 100% of the capital required"
+   },
+   "value": {
+    "Price low": "20.75",
+    "Price high": "20.75"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:7"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:7"
+   ],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "stock:390fd177a0cdf19b52acf176",
+   "section": "bids",
+   "kind": "stock",
+   "sheet": "Deal ledger",
+   "uid": "390fd177a0cdf19b52acf176",
+   "row": 38,
+   "label": "#38 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "36",
+    "block": "b550",
+    "quote": "CSC/Pamplona submitted a proposal for an all-cash purchase price of $20.75 per share, reiterating that Pamplona was committed to provide 100% of the capital required"
+   },
+   "value": {
+    "All cash": "Yes"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:7"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:7"
+   ],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "note": "All cash Yes crosswalks to Stock % 0"
+   },
+   "crosswalk": {
+    "All cash": "Yes",
+    "Stock %": 0
+   }
+  },
+  {
+   "id": "formality:390fd177a0cdf19b52acf176",
+   "section": "bids",
+   "kind": "formality",
+   "sheet": "Deal ledger",
+   "uid": "390fd177a0cdf19b52acf176",
+   "row": 38,
+   "label": "#38 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "36",
+    "block": "b550",
+    "quote": "CSC/Pamplona submitted a proposal for an all-cash purchase price of $20.75 per share, reiterating that Pamplona was committed to provide 100% of the capital required"
+   },
+   "value": {
+    "Formality": "Formal"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:7"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:7"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D9",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "conditions:390fd177a0cdf19b52acf176",
+   "section": "bids",
+   "kind": "conditions",
+   "sheet": "Deal ledger",
+   "uid": "390fd177a0cdf19b52acf176",
+   "row": 38,
+   "label": "#38 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "36",
+    "block": "b550",
+    "quote": "CSC/Pamplona submitted a proposal for an all-cash purchase price of $20.75 per share, reiterating that Pamplona was committed to provide 100% of the capital required"
+   },
+   "value": {
+    "Conditions": "Light"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A7",
+    "mac-gray:6",
+    "mac-gray:7"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A7 (audit README §2)"
+   ],
+   "audit": [
+    "mac-gray:6",
+    "mac-gray:7"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "D15",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "terms:390fd177a0cdf19b52acf176",
+   "section": "bids",
+   "kind": "terms",
+   "sheet": "Deal ledger",
+   "uid": "390fd177a0cdf19b52acf176",
+   "row": 38,
+   "label": "#38 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "36",
+    "block": "b550",
+    "quote": "CSC/Pamplona submitted a proposal for an all-cash purchase price of $20.75 per share, reiterating that Pamplona was committed to provide 100% of the capital required"
+   },
+   "value": {},
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:7"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:7"
+   ],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: CVR/earnout",
+     "new column: CVR/earnout value",
+     "new column: Due diligence",
+     "new column: Financing",
+     "new column: Regulatory",
+     "new column: Antitrust",
+     "new column: Exclusivity"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "price:3f08e6ef44543e7ba96f60fa",
+   "section": "bids",
+   "kind": "price",
+   "sheet": "Deal ledger",
+   "uid": "3f08e6ef44543e7ba96f60fa",
+   "row": 39,
+   "label": "#39 Bid · Party A",
+   "filing_key": {
+    "page": "36",
+    "block": "b550",
+    "quote": "its previous indication of interest with an all-cash purchase price of $18.00 to $19.00 per share was its best and final offer"
+   },
+   "value": {
+    "Price low": "18",
+    "Price high": "19"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D13"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "stock:3f08e6ef44543e7ba96f60fa",
+   "section": "bids",
+   "kind": "stock",
+   "sheet": "Deal ledger",
+   "uid": "3f08e6ef44543e7ba96f60fa",
+   "row": 39,
+   "label": "#39 Bid · Party A",
+   "filing_key": {
+    "page": "36",
+    "block": "b550",
+    "quote": "its previous indication of interest with an all-cash purchase price of $18.00 to $19.00 per share was its best and final offer"
+   },
+   "value": {
+    "All cash": "Yes"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "note": "All cash Yes crosswalks to Stock % 0"
+   },
+   "crosswalk": {
+    "All cash": "Yes",
+    "Stock %": 0
+   }
+  },
+  {
+   "id": "formality:3f08e6ef44543e7ba96f60fa",
+   "section": "bids",
+   "kind": "formality",
+   "sheet": "Deal ledger",
+   "uid": "3f08e6ef44543e7ba96f60fa",
+   "row": 39,
+   "label": "#39 Bid · Party A",
+   "filing_key": {
+    "page": "36",
+    "block": "b550",
+    "quote": "its previous indication of interest with an all-cash purchase price of $18.00 to $19.00 per share was its best and final offer"
+   },
+   "value": {
+    "Formality": "Formal"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D9",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "conditions:3f08e6ef44543e7ba96f60fa",
+   "section": "bids",
+   "kind": "conditions",
+   "sheet": "Deal ledger",
+   "uid": "3f08e6ef44543e7ba96f60fa",
+   "row": 39,
+   "label": "#39 Bid · Party A",
+   "filing_key": {
+    "page": "36",
+    "block": "b550",
+    "quote": "its previous indication of interest with an all-cash purchase price of $18.00 to $19.00 per share was its best and final offer"
+   },
+   "value": {
+    "Conditions": "Heavy"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A8"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A8 (audit README §2)"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "D5",
+     "express incorporation",
+     "D13"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "terms:3f08e6ef44543e7ba96f60fa",
+   "section": "bids",
+   "kind": "terms",
+   "sheet": "Deal ledger",
+   "uid": "3f08e6ef44543e7ba96f60fa",
+   "row": 39,
+   "label": "#39 Bid · Party A",
+   "filing_key": {
+    "page": "36",
+    "block": "b550",
+    "quote": "its previous indication of interest with an all-cash purchase price of $18.00 to $19.00 per share was its best and final offer"
+   },
+   "value": {},
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: CVR/earnout",
+     "new column: CVR/earnout value",
+     "new column: Due diligence",
+     "new column: Financing",
+     "new column: Regulatory",
+     "new column: Antitrust",
+     "new column: Exclusivity"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "price:73e6b90119c32650e90ef895",
+   "section": "bids",
+   "kind": "price",
+   "sheet": "Deal ledger",
+   "uid": "73e6b90119c32650e90ef895",
+   "row": 40,
+   "label": "#40 Bid · Party B",
+   "filing_key": {
+    "page": "36",
+    "block": "b550",
+    "quote": "Party B also submitted a revised indication of interest with a purchase price that Party B valued at $21.50 per share, including $19.00 of cash to be paid at closing"
+   },
+   "value": {
+    "Price low": "21.5",
+    "Price high": "21.5"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "unresolved",
+   "status_reasons": [
+    "mac-gray:9 judged unresolved"
+   ],
+   "audit": [
+    "mac-gray:9",
+    "mac-gray:10"
+   ],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "stock:73e6b90119c32650e90ef895",
+   "section": "bids",
+   "kind": "stock",
+   "sheet": "Deal ledger",
+   "uid": "73e6b90119c32650e90ef895",
+   "row": 40,
+   "label": "#40 Bid · Party B",
+   "filing_key": {
+    "page": "36",
+    "block": "b550",
+    "quote": "Party B also submitted a revised indication of interest with a purchase price that Party B valued at $21.50 per share, including $19.00 of cash to be paid at closing"
+   },
+   "value": {
+    "All cash": "No"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "unresolved",
+   "status_reasons": [
+    "mac-gray:9 judged unresolved"
+   ],
+   "audit": [
+    "mac-gray:9",
+    "mac-gray:10"
+   ],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "note": "All cash No crosswalks to Stock % above 0, a range or Part stock"
+   },
+   "crosswalk": {
+    "All cash": "No",
+    "Stock %": null
+   }
+  },
+  {
+   "id": "formality:73e6b90119c32650e90ef895",
+   "section": "bids",
+   "kind": "formality",
+   "sheet": "Deal ledger",
+   "uid": "73e6b90119c32650e90ef895",
+   "row": 40,
+   "label": "#40 Bid · Party B",
+   "filing_key": {
+    "page": "36",
+    "block": "b550",
+    "quote": "Party B also submitted a revised indication of interest with a purchase price that Party B valued at $21.50 per share, including $19.00 of cash to be paid at closing"
+   },
+   "value": {
+    "Formality": "Formal"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "unresolved",
+   "status_reasons": [
+    "mac-gray:9 judged unresolved"
+   ],
+   "audit": [
+    "mac-gray:9",
+    "mac-gray:10"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D9",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "conditions:73e6b90119c32650e90ef895",
+   "section": "bids",
+   "kind": "conditions",
+   "sheet": "Deal ledger",
+   "uid": "73e6b90119c32650e90ef895",
+   "row": 40,
+   "label": "#40 Bid · Party B",
+   "filing_key": {
+    "page": "36",
+    "block": "b550",
+    "quote": "Party B also submitted a revised indication of interest with a purchase price that Party B valued at $21.50 per share, including $19.00 of cash to be paid at closing"
+   },
+   "value": {
+    "Conditions": "Heavy"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A8",
+    "mac-gray:8"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A8 (audit README §2)",
+    "mac-gray:8 judged unresolved",
+    "mac-gray:9 judged unresolved"
+   ],
+   "audit": [
+    "mac-gray:8",
+    "mac-gray:9",
+    "mac-gray:10"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "D5",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "terms:73e6b90119c32650e90ef895",
+   "section": "bids",
+   "kind": "terms",
+   "sheet": "Deal ledger",
+   "uid": "73e6b90119c32650e90ef895",
+   "row": 40,
+   "label": "#40 Bid · Party B",
+   "filing_key": {
+    "page": "36",
+    "block": "b550",
+    "quote": "Party B also submitted a revised indication of interest with a purchase price that Party B valued at $21.50 per share, including $19.00 of cash to be paid at closing"
+   },
+   "value": {},
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "unresolved",
+   "status_reasons": [
+    "mac-gray:9 judged unresolved"
+   ],
+   "audit": [
+    "mac-gray:9",
+    "mac-gray:10"
+   ],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: CVR/earnout",
+     "new column: CVR/earnout value",
+     "new column: Due diligence",
+     "new column: Financing",
+     "new column: Regulatory",
+     "new column: Antitrust",
+     "new column: Exclusivity"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "price:e16cbd8e4228876f110da19d",
+   "section": "bids",
+   "kind": "price",
+   "sheet": "Deal ledger",
+   "uid": "e16cbd8e4228876f110da19d",
+   "row": 43,
+   "label": "#43 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "37",
+    "block": "b556",
+    "quote": "confirm that CSC/Pamplona were willing to increase their all-cash purchase price to $21.25 per share as a last and best offer, provided that Mac-Gray agree to a two week period"
+   },
+   "value": {
+    "Price low": "21.25",
+    "Price high": "21.25"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:12"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:12"
+   ],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "stock:e16cbd8e4228876f110da19d",
+   "section": "bids",
+   "kind": "stock",
+   "sheet": "Deal ledger",
+   "uid": "e16cbd8e4228876f110da19d",
+   "row": 43,
+   "label": "#43 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "37",
+    "block": "b556",
+    "quote": "confirm that CSC/Pamplona were willing to increase their all-cash purchase price to $21.25 per share as a last and best offer, provided that Mac-Gray agree to a two week period"
+   },
+   "value": {
+    "All cash": "Yes"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:12"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:12"
+   ],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "note": "All cash Yes crosswalks to Stock % 0"
+   },
+   "crosswalk": {
+    "All cash": "Yes",
+    "Stock %": 0
+   }
+  },
+  {
+   "id": "formality:e16cbd8e4228876f110da19d",
+   "section": "bids",
+   "kind": "formality",
+   "sheet": "Deal ledger",
+   "uid": "e16cbd8e4228876f110da19d",
+   "row": 43,
+   "label": "#43 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "37",
+    "block": "b556",
+    "quote": "confirm that CSC/Pamplona were willing to increase their all-cash purchase price to $21.25 per share as a last and best offer, provided that Mac-Gray agree to a two week period"
+   },
+   "value": {
+    "Formality": "Formal"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:12"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:12"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D9",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "conditions:e16cbd8e4228876f110da19d",
+   "section": "bids",
+   "kind": "conditions",
+   "sheet": "Deal ledger",
+   "uid": "e16cbd8e4228876f110da19d",
+   "row": 43,
+   "label": "#43 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "37",
+    "block": "b556",
+    "quote": "confirm that CSC/Pamplona were willing to increase their all-cash purchase price to $21.25 per share as a last and best offer, provided that Mac-Gray agree to a two week period"
+   },
+   "value": {
+    "Conditions": "Light"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A7",
+    "mac-gray:11",
+    "mac-gray:12"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A7 (audit README §2)"
+   ],
+   "audit": [
+    "mac-gray:11",
+    "mac-gray:12"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "D15",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "terms:e16cbd8e4228876f110da19d",
+   "section": "bids",
+   "kind": "terms",
+   "sheet": "Deal ledger",
+   "uid": "e16cbd8e4228876f110da19d",
+   "row": 43,
+   "label": "#43 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "37",
+    "block": "b556",
+    "quote": "confirm that CSC/Pamplona were willing to increase their all-cash purchase price to $21.25 per share as a last and best offer, provided that Mac-Gray agree to a two week period"
+   },
+   "value": {},
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:12"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:12"
+   ],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: CVR/earnout",
+     "new column: CVR/earnout value",
+     "new column: Due diligence",
+     "new column: Financing",
+     "new column: Regulatory",
+     "new column: Antitrust",
+     "new column: Exclusivity"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "price:9846e8c749b5490fbaf95df45bd4cd02",
+   "section": "bids",
+   "kind": "price",
+   "sheet": "Deal ledger",
+   "uid": "9846e8c749b5490fbaf95df45bd4cd02",
+   "row": 44,
+   "label": "#44 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "37",
+    "block": "b557",
+    "quote": "the inclusion of a $15 million \"reverse\" termination fee payable by CSC/Pamplona to Mac-Gray in the event regulatory clearance is not obtained"
+   },
+   "value": {
+    "Price low": "21.25",
+    "Price high": "21.25"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:15"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:15"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D13"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "stock:9846e8c749b5490fbaf95df45bd4cd02",
+   "section": "bids",
+   "kind": "stock",
+   "sheet": "Deal ledger",
+   "uid": "9846e8c749b5490fbaf95df45bd4cd02",
+   "row": 44,
+   "label": "#44 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "37",
+    "block": "b557",
+    "quote": "the inclusion of a $15 million \"reverse\" termination fee payable by CSC/Pamplona to Mac-Gray in the event regulatory clearance is not obtained"
+   },
+   "value": {
+    "All cash": "Yes"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:15"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:15"
+   ],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "note": "All cash Yes crosswalks to Stock % 0"
+   },
+   "crosswalk": {
+    "All cash": "Yes",
+    "Stock %": 0
+   }
+  },
+  {
+   "id": "formality:9846e8c749b5490fbaf95df45bd4cd02",
+   "section": "bids",
+   "kind": "formality",
+   "sheet": "Deal ledger",
+   "uid": "9846e8c749b5490fbaf95df45bd4cd02",
+   "row": 44,
+   "label": "#44 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "37",
+    "block": "b557",
+    "quote": "the inclusion of a $15 million \"reverse\" termination fee payable by CSC/Pamplona to Mac-Gray in the event regulatory clearance is not obtained"
+   },
+   "value": {
+    "Formality": "Formal"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:15"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:15"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D9",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "conditions:9846e8c749b5490fbaf95df45bd4cd02",
+   "section": "bids",
+   "kind": "conditions",
+   "sheet": "Deal ledger",
+   "uid": "9846e8c749b5490fbaf95df45bd4cd02",
+   "row": 44,
+   "label": "#44 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "37",
+    "block": "b557",
+    "quote": "the inclusion of a $15 million \"reverse\" termination fee payable by CSC/Pamplona to Mac-Gray in the event regulatory clearance is not obtained"
+   },
+   "value": {
+    "Conditions": "Light"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A7",
+    "mac-gray:15"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A7 (audit README §2)"
+   ],
+   "audit": [
+    "mac-gray:15"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "D5",
+     "D15",
+     "express incorporation",
+     "D13"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "terms:9846e8c749b5490fbaf95df45bd4cd02",
+   "section": "bids",
+   "kind": "terms",
+   "sheet": "Deal ledger",
+   "uid": "9846e8c749b5490fbaf95df45bd4cd02",
+   "row": 44,
+   "label": "#44 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "37",
+    "block": "b557",
+    "quote": "the inclusion of a $15 million \"reverse\" termination fee payable by CSC/Pamplona to Mac-Gray in the event regulatory clearance is not obtained"
+   },
+   "value": {},
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:15"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:15"
+   ],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: CVR/earnout",
+     "new column: CVR/earnout value",
+     "new column: Due diligence",
+     "new column: Financing",
+     "new column: Regulatory",
+     "new column: Antitrust",
+     "new column: Exclusivity"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "price:51084f681a5d41c9a8eb38535f45d90e",
+   "section": "bids",
+   "kind": "price",
+   "sheet": "Deal ledger",
+   "uid": "51084f681a5d41c9a8eb38535f45d90e",
+   "row": 53,
+   "label": "#53 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "39",
+    "block": "b569",
+    "quote": "Pamplona's liability for damages resulting from a breach of the merger agreement would be limited to an unspecified dollar amount."
+   },
+   "value": {
+    "Price low": "21.25",
+    "Price high": "21.25"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:18"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:18"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D13"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "stock:51084f681a5d41c9a8eb38535f45d90e",
+   "section": "bids",
+   "kind": "stock",
+   "sheet": "Deal ledger",
+   "uid": "51084f681a5d41c9a8eb38535f45d90e",
+   "row": 53,
+   "label": "#53 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "39",
+    "block": "b569",
+    "quote": "Pamplona's liability for damages resulting from a breach of the merger agreement would be limited to an unspecified dollar amount."
+   },
+   "value": {
+    "All cash": "Yes"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:18"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:18"
+   ],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "note": "All cash Yes crosswalks to Stock % 0"
+   },
+   "crosswalk": {
+    "All cash": "Yes",
+    "Stock %": 0
+   }
+  },
+  {
+   "id": "formality:51084f681a5d41c9a8eb38535f45d90e",
+   "section": "bids",
+   "kind": "formality",
+   "sheet": "Deal ledger",
+   "uid": "51084f681a5d41c9a8eb38535f45d90e",
+   "row": 53,
+   "label": "#53 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "39",
+    "block": "b569",
+    "quote": "Pamplona's liability for damages resulting from a breach of the merger agreement would be limited to an unspecified dollar amount."
+   },
+   "value": {
+    "Formality": "Formal"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:18"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:18"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D9",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "conditions:51084f681a5d41c9a8eb38535f45d90e",
+   "section": "bids",
+   "kind": "conditions",
+   "sheet": "Deal ledger",
+   "uid": "51084f681a5d41c9a8eb38535f45d90e",
+   "row": 53,
+   "label": "#53 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "39",
+    "block": "b569",
+    "quote": "Pamplona's liability for damages resulting from a breach of the merger agreement would be limited to an unspecified dollar amount."
+   },
+   "value": {
+    "Conditions": "Light"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A7",
+    "mac-gray:18"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A7 (audit README §2)"
+   ],
+   "audit": [
+    "mac-gray:18"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "D5",
+     "express incorporation",
+     "D13"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "terms:51084f681a5d41c9a8eb38535f45d90e",
+   "section": "bids",
+   "kind": "terms",
+   "sheet": "Deal ledger",
+   "uid": "51084f681a5d41c9a8eb38535f45d90e",
+   "row": 53,
+   "label": "#53 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "39",
+    "block": "b569",
+    "quote": "Pamplona's liability for damages resulting from a breach of the merger agreement would be limited to an unspecified dollar amount."
+   },
+   "value": {},
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:18"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:18"
+   ],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: CVR/earnout",
+     "new column: CVR/earnout value",
+     "new column: Due diligence",
+     "new column: Financing",
+     "new column: Regulatory",
+     "new column: Antitrust",
+     "new column: Exclusivity"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "price:a8e0bf475ea3483995e374121f5de104",
+   "section": "bids",
+   "kind": "price",
+   "sheet": "Deal ledger",
+   "uid": "a8e0bf475ea3483995e374121f5de104",
+   "row": 54,
+   "label": "#54 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "39",
+    "block": "b572",
+    "quote": "which Kirkland proposed, at the direction of CSC/Pamplona, be capped at $50 million."
+   },
+   "value": {
+    "Price low": "21.25",
+    "Price high": "21.25"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:19"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:19"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D13"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "stock:a8e0bf475ea3483995e374121f5de104",
+   "section": "bids",
+   "kind": "stock",
+   "sheet": "Deal ledger",
+   "uid": "a8e0bf475ea3483995e374121f5de104",
+   "row": 54,
+   "label": "#54 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "39",
+    "block": "b572",
+    "quote": "which Kirkland proposed, at the direction of CSC/Pamplona, be capped at $50 million."
+   },
+   "value": {
+    "All cash": "Yes"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:19"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:19"
+   ],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "note": "All cash Yes crosswalks to Stock % 0"
+   },
+   "crosswalk": {
+    "All cash": "Yes",
+    "Stock %": 0
+   }
+  },
+  {
+   "id": "formality:a8e0bf475ea3483995e374121f5de104",
+   "section": "bids",
+   "kind": "formality",
+   "sheet": "Deal ledger",
+   "uid": "a8e0bf475ea3483995e374121f5de104",
+   "row": 54,
+   "label": "#54 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "39",
+    "block": "b572",
+    "quote": "which Kirkland proposed, at the direction of CSC/Pamplona, be capped at $50 million."
+   },
+   "value": {
+    "Formality": "Formal"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:19"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:19"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D9",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "conditions:a8e0bf475ea3483995e374121f5de104",
+   "section": "bids",
+   "kind": "conditions",
+   "sheet": "Deal ledger",
+   "uid": "a8e0bf475ea3483995e374121f5de104",
+   "row": 54,
+   "label": "#54 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "39",
+    "block": "b572",
+    "quote": "which Kirkland proposed, at the direction of CSC/Pamplona, be capped at $50 million."
+   },
+   "value": {
+    "Conditions": "Light"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A7",
+    "mac-gray:19"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A7 (audit README §2)"
+   ],
+   "audit": [
+    "mac-gray:19"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "express incorporation",
+     "D13"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "terms:a8e0bf475ea3483995e374121f5de104",
+   "section": "bids",
+   "kind": "terms",
+   "sheet": "Deal ledger",
+   "uid": "a8e0bf475ea3483995e374121f5de104",
+   "row": 54,
+   "label": "#54 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "39",
+    "block": "b572",
+    "quote": "which Kirkland proposed, at the direction of CSC/Pamplona, be capped at $50 million."
+   },
+   "value": {},
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:19"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:19"
+   ],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: CVR/earnout",
+     "new column: CVR/earnout value",
+     "new column: Due diligence",
+     "new column: Financing",
+     "new column: Regulatory",
+     "new column: Antitrust",
+     "new column: Exclusivity"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:ec87a69857467012965e2c0a",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "ec87a69857467012965e2c0a",
+   "row": 1,
+   "label": "#1 Adviser · BofA Merrill Lynch",
+   "filing_key": {
+    "page": "27",
+    "block": "b476",
+    "quote": "In connection with Mac-Gray's consideration of a possible acquisition of CSC, which we refer to as the 2011-2012 Discussions, Mac-Gray engaged BofA Merrill Lynch on October 23, 2012."
+   },
+   "value": {
+    "When": "10/23/2012",
+    "Sort date": "2012-10-23",
+    "Date from": "2012-10-23",
+    "Date to": "2012-10-23"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:9b6395b7e6cc5ef8e8a58d61",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "9b6395b7e6cc5ef8e8a58d61",
+   "row": 2,
+   "label": "#2 Target interest · Party A",
+   "filing_key": {
+    "page": "27",
+    "block": "b478",
+    "quote": "representatives of BofA Merrill Lynch, as instructed by the Board, telephoned a representative of Party A to discuss generally a possible business combination between Party A and Mac-Gray."
+   },
+   "value": {
+    "When": "04/08/2013",
+    "Sort date": "2013-04-08",
+    "Date from": "2013-04-08",
+    "Date to": "2013-04-08"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:3cb5ddf8da35bd017fcb156c",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "3cb5ddf8da35bd017fcb156c",
+   "row": 3,
+   "label": "#3 Adviser · Goodwin Procter LLP",
+   "filing_key": {
+    "page": "27",
+    "block": "b479",
+    "quote": "representatives from BofA Merrill Lynch and Goodwin Procter LLP, outside legal counsel to Mac-Gray, were also in attendance for all or portions of the meeting."
+   },
+   "value": {
+    "When": "05/09/2013",
+    "Sort date": "2013-05-09",
+    "Date from": "2013-05-09",
+    "Date to": "2013-05-09"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:dd7bf81b79c350e53a8b7536",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "dd7bf81b79c350e53a8b7536",
+   "row": 4,
+   "label": "#4 Adviser ended · BofA Merrill Lynch",
+   "filing_key": {
+    "page": "29",
+    "block": "b489",
+    "quote": "Mac-Gray sent a letter to BofA Merrill Lynch terminating their engagement in connection with the 2011-2012 Discussions."
+   },
+   "value": {
+    "When": "05/15/2013",
+    "Sort date": "2013-05-15",
+    "Date from": "2013-05-15",
+    "Date to": "2013-05-15"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:40e4e37bbeaaa41361622fef",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "40e4e37bbeaaa41361622fef",
+   "row": 5,
+   "label": "#5 Adviser · BofA Merrill Lynch",
+   "filing_key": {
+    "page": "29",
+    "block": "b493",
+    "quote": "Based on the recommendation of the Transaction Committee, the Board unanimously approved the engagement of BofA Merrill Lynch on the terms discussed at this meeting."
+   },
+   "value": {
+    "When": "05/30/2013",
+    "Sort date": "2013-05-30",
+    "Date from": "2013-05-30",
+    "Date to": "2013-05-30"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:c212d8a76ec06431395fedbf",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "c212d8a76ec06431395fedbf",
+   "row": 6,
+   "label": "#6 Activist · Moab Partners, L.P. (Moab)",
+   "filing_key": {
+    "page": "29",
+    "block": "b494",
+    "quote": "Mac-Gray and Moab engaged in a proxy contest leading up to the annual meeting and Mr. Rothenberg and Mr. Hyman were elected in place of Mac-Gray's incumbent nominees"
+   },
+   "value": {
+    "When": "05/30/2013",
+    "Sort date": "2013-05-30",
+    "Date from": "2013-05-30",
+    "Date to": "2013-05-30"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:1"
+   ],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:196c4984bed516f6c929a914",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "196c4984bed516f6c929a914",
+   "row": 7,
+   "label": "#7 Bid · Party A",
+   "filing_key": {
+    "page": "30",
+    "block": "b499",
+    "quote": "Party A submitted an unsolicited proposal to the Mac-Gray Board of Directors offering to purchase Mac-Gray for an all-cash purchase price of $17.00 to $19.00 per share"
+   },
+   "value": {
+    "When": "06/21/2013",
+    "Sort date": "2013-06-21",
+    "Date from": "2013-06-21",
+    "Date to": "2013-06-21"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:b0352967230b3a5c05c78ce2",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "b0352967230b3a5c05c78ce2",
+   "row": 8,
+   "label": "#8 Target sale decision · Mac-Gray",
+   "filing_key": {
+    "page": "31",
+    "block": "b504",
+    "quote": "the Special Committee concluded that it would be in the best interests of stockholders to consider a potential sale of Mac-Gray"
+   },
+   "value": {
+    "When": "06/24/2013",
+    "Sort date": "2013-06-24",
+    "Date from": "2013-06-24",
+    "Date to": "2013-06-24"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:883928297ffa7c797d92ed34",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "883928297ffa7c797d92ed34",
+   "row": 9,
+   "label": "#9 Round opened · Mac-Gray",
+   "filing_key": {
+    "page": "32",
+    "block": "b508",
+    "quote": "50 parties, including CSC and Pamplona, who together we refer to as CSC/Pamplona, and Party A, to solicit potential interest in a transaction with Mac-Gray"
+   },
+   "value": {
+    "When": "06/24/2013",
+    "Sort date": "2013-06-24",
+    "Date from": "2013-06-24",
+    "Date to": "2013-06-24"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:0f21d452c2e4325e0106d74d",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "0f21d452c2e4325e0106d74d",
+   "row": 10,
+   "label": "#10 Contact · 13 other potential strategic buyers",
+   "filing_key": {
+    "page": "32",
+    "block": "b509",
+    "quote": "in accordance with the directives of the Special Committee, BofA Merrill Lynch contacted the strategic and financial parties identified at the June 24th Special Committee meeting."
+   },
+   "value": {
+    "When": "during the several weeks after 06/24/2013",
+    "Sort date": "2013-06-24",
+    "Date from": "2013-06-24",
+    "Date to": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:7369034cd3ba1e3a1ece79bd",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "7369034cd3ba1e3a1ece79bd",
+   "row": 11,
+   "label": "#11 Contact · 35 potential financial buyers (including Party B and Party C)",
+   "filing_key": {
+    "page": "32",
+    "block": "b508",
+    "quote": "15 of which were potential strategic buyers and 35 of which were potential financial buyers, including private equity firms."
+   },
+   "value": {
+    "When": "during the several weeks after 06/24/2013",
+    "Sort date": "2013-06-24",
+    "Date from": "2013-06-24",
+    "Date to": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:820a0ffa6a9c0e090aef44cf",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "820a0ffa6a9c0e090aef44cf",
+   "row": 12,
+   "label": "#12 Contact · CSC/Pamplona",
+   "filing_key": {
+    "page": "32",
+    "block": "b510",
+    "quote": "BofA Merrill Lynch also reported that they had spoken with representatives of Pamplona, as instructed by the Special Committee, who expressed interest in a transaction"
+   },
+   "value": {
+    "When": "06/24/2013-06/28/2013",
+    "Sort date": "2013-06-26",
+    "Date from": "2013-06-24",
+    "Date to": "2013-06-28"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:c1625b7eae7c9adf3f746d3a",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "c1625b7eae7c9adf3f746d3a",
+   "row": 13,
+   "label": "#13 NDA signed · Party B",
+   "filing_key": {
+    "page": "32",
+    "block": "b511",
+    "quote": "Later on June 28, 2013, Party B, entered into a confidentiality and standstill agreement with Mac-Gray"
+   },
+   "value": {
+    "When": "06/28/2013",
+    "Sort date": "2013-06-28",
+    "Date from": "2013-06-28",
+    "Date to": "2013-06-28"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:3992f1085b33bd71af532c5f",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "3992f1085b33bd71af532c5f",
+   "row": 14,
+   "label": "#14 NDA signed · Party C",
+   "filing_key": {
+    "page": "32",
+    "block": "b512",
+    "quote": "June 30, 2013, Party C entered into a confidentiality and standstill agreement with Mac-Gray"
+   },
+   "value": {
+    "When": "06/30/2013",
+    "Sort date": "2013-06-30",
+    "Date from": "2013-06-30",
+    "Date to": "2013-06-30"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:e9301630d7ff91dec8e225d3",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "e9301630d7ff91dec8e225d3",
+   "row": 15,
+   "label": "#15 Other material event · Moab / CSC/Pamplona",
+   "filing_key": {
+    "page": "32",
+    "block": "b513",
+    "quote": "Pamplona would be requesting that any confidentiality agreement CSC/Pamplona execute with Mac-Gray permit CSC and Pamplona to discuss their bid and evaluation material with Moab"
+   },
+   "value": {
+    "When": "07/03/2013",
+    "Sort date": "2013-07-03",
+    "Date from": "2013-07-03",
+    "Date to": "2013-07-03"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:3c9b2183c3b9a17121ecf0ab",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "3c9b2183c3b9a17121ecf0ab",
+   "row": 16,
+   "label": "#16 Other material event · Mac-Gray",
+   "filing_key": {
+    "page": "33",
+    "block": "b517",
+    "quote": "the Special Committee decided to deny the exclusivity request at this stage of the process so that the potential equity rollover of Moab's shares could be available"
+   },
+   "value": {
+    "When": "07/06/2013",
+    "Sort date": "2013-07-06",
+    "Date from": "2013-07-06",
+    "Date to": "2013-07-06"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:614bf02e9ab6b539f7f091a4",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "614bf02e9ab6b539f7f091a4",
+   "row": 17,
+   "label": "#17 NDA signed · CSC/Pamplona",
+   "filing_key": {
+    "page": "33",
+    "block": "b518",
+    "quote": "July 11, 2013, CSC/Pamplona entered into a confidentiality and standstill agreement with Mac-Gray"
+   },
+   "value": {
+    "When": "07/11/2013",
+    "Sort date": "2013-07-11",
+    "Date from": "2013-07-11",
+    "Date to": "2013-07-11"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:ffbc242e09b7348116e448c7",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "ffbc242e09b7348116e448c7",
+   "row": 18,
+   "label": "#18 NDA signed · 16 other financial NDA signers (unnamed)",
+   "filing_key": {
+    "page": "32",
+    "block": "b509",
+    "quote": "Over the next two months a total of 20 potential bidders, including two strategic bidders (Party A and CSC/Pamplona) and 18 financial bidders (including Party B and Party C)"
+   },
+   "value": {
+    "When": "over the two months after 06/24/2013",
+    "Sort date": "2013-07-23",
+    "Date from": "2013-06-24",
+    "Date to": "2013-08-24"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "unresolved",
+   "status_reasons": [
+    "row marked needs decision"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:a17966b36df60b3094e88c4e",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "a17966b36df60b3094e88c4e",
+   "row": 19,
+   "label": "#19 Deadline · Mac-Gray",
+   "filing_key": {
+    "page": "32",
+    "block": "b509",
+    "quote": "an informational package for the purpose of providing potential bidders with data to formulate a preliminary indication of interest, which they were instructed to submit by July 23, 2013."
+   },
+   "value": {
+    "When": "07/23/2013",
+    "Sort date": "2013-07-23",
+    "Date from": "2013-07-23",
+    "Date to": "2013-07-23"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D11"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:abff80031911a5d4393a0b44",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "abff80031911a5d4393a0b44",
+   "row": 20,
+   "label": "#20 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "33",
+    "block": "b520",
+    "quote": "CSC/Pamplona submitted a preliminary indication of interest at an all-cash purchase price of $18.50 per share."
+   },
+   "value": {
+    "When": "07/23/2013",
+    "Sort date": "2013-07-23",
+    "Date from": "2013-07-23",
+    "Date to": "2013-07-23"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:ea62dc1e56182a066071b572",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "ea62dc1e56182a066071b572",
+   "row": 21,
+   "label": "#21 Did not submit · 16 other financial NDA signers (unnamed)",
+   "filing_key": {
+    "page": "33",
+    "block": "b522",
+    "quote": "representatives of BofA Merrill Lynch reviewed the preliminary indications of interest received from Party B, Party C and CSC/Pamplona as well as the Party A June 21 proposal"
+   },
+   "value": {
+    "When": "by 07/23/2013",
+    "Sort date": "2013-07-23",
+    "Date from": "",
+    "Date to": "2013-07-23"
+   },
+   "basis": "inference",
+   "basis_refs": [],
+   "status": "unresolved",
+   "status_reasons": [
+    "row marked needs decision"
+   ],
+   "audit": [
+    "mac-gray:3"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D10"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:a30cc943589fcf0a856a04b0",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "a30cc943589fcf0a856a04b0",
+   "row": 22,
+   "label": "#22 Bid · Party B",
+   "filing_key": {
+    "page": "33",
+    "block": "b521",
+    "quote": "July 24, 2013, Party B submitted a preliminary indication of interest at an all-cash purchase price of $17.00 to $18.00 per share."
+   },
+   "value": {
+    "When": "07/24/2013",
+    "Sort date": "2013-07-24",
+    "Date from": "2013-07-24",
+    "Date to": "2013-07-24"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:94c7acf51aec5ef7388a3b30",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "94c7acf51aec5ef7388a3b30",
+   "row": 23,
+   "label": "#23 Bid · Party C",
+   "filing_key": {
+    "page": "33",
+    "block": "b521",
+    "quote": "representatives from Party C called BofA Merrill Lynch and presented an oral preliminary indication of interest at an all-cash purchase price of $15.00 to $17.00 per share."
+   },
+   "value": {
+    "When": "07/24/2013",
+    "Sort date": "2013-07-24",
+    "Date from": "2013-07-24",
+    "Date to": "2013-07-24"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:8e7f375c423c68d411843361",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "8e7f375c423c68d411843361",
+   "row": 24,
+   "label": "#24 Round opened · Mac-Gray",
+   "filing_key": {
+    "page": "34",
+    "block": "b526",
+    "quote": "authorized and instructed BofA Merrill Lynch to proceed with the staged disclosure as discussed at this meeting and to reach out to each of the four interested bidders"
+   },
+   "value": {
+    "When": "07/25/2013",
+    "Sort date": "2013-07-25",
+    "Date from": "2013-07-25",
+    "Date to": "2013-07-25"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:fb40768f64d8e342c424caf2",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "fb40768f64d8e342c424caf2",
+   "row": 25,
+   "label": "#25 Bid · Party C",
+   "filing_key": {
+    "page": "34",
+    "block": "b527",
+    "quote": "Later on July 25, 2013, Party C submitted a written indication of interest at an all-cash purchase price of $16.00 to $16.50 per share."
+   },
+   "value": {
+    "When": "07/25/2013",
+    "Sort date": "2013-07-25",
+    "Date from": "2013-07-25",
+    "Date to": "2013-07-25"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:8f05a3415ef726118d867e39",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "8f05a3415ef726118d867e39",
+   "row": 26,
+   "label": "#26 NDA signed · Party A",
+   "filing_key": {
+    "page": "34",
+    "block": "b528",
+    "quote": "August 5, 2013, Party A entered into a confidentiality and standstill agreement with Mac-Gray and was provided with an informational package"
+   },
+   "value": {
+    "When": "08/05/2013",
+    "Sort date": "2013-08-05",
+    "Date from": "2013-08-05",
+    "Date to": "2013-08-05"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:0e82cb659fd4e31f96e0210a",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "0e82cb659fd4e31f96e0210a",
+   "row": 27,
+   "label": "#27 Other material event · Party B, Party C",
+   "filing_key": {
+    "page": "34",
+    "block": "b534",
+    "quote": "Party B and Party C, in light of the fact that they were financial bidders, were given broad access to an electronic data site"
+   },
+   "value": {
+    "When": "08/06/2013-08/27/2013",
+    "Sort date": "2013-08-16",
+    "Date from": "2013-08-06",
+    "Date to": "2013-08-27"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:cb924c61ad5bf0a06cb0983d",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "cb924c61ad5bf0a06cb0983d",
+   "row": 28,
+   "label": "#28 Other material event · Party A, CSC/Pamplona",
+   "filing_key": {
+    "page": "34",
+    "block": "b534",
+    "quote": "Party A and CSC/Pamplona, in light of the fact that they were strategic bidders, were given somewhat limited access to this electronic data site"
+   },
+   "value": {
+    "When": "08/06/2013-08/27/2013",
+    "Sort date": "2013-08-16",
+    "Date from": "2013-08-06",
+    "Date to": "2013-08-27"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:82f908f47ecdb9a3326b93b9",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "82f908f47ecdb9a3326b93b9",
+   "row": 29,
+   "label": "#29 Deadline set · Mac-Gray",
+   "filing_key": {
+    "page": "35",
+    "block": "b537",
+    "quote": "instructing such bidders to submit revised written proposals no later than September 9, 2013 if such bidders wished to proceed further in the process"
+   },
+   "value": {
+    "When": "08/27/2013",
+    "Sort date": "2013-08-27",
+    "Date from": "2013-08-27",
+    "Date to": "2013-08-27"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D11"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:0e1045fae5f65c9a821cfabe",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "0e1045fae5f65c9a821cfabe",
+   "row": 30,
+   "label": "#30 Deadline · Mac-Gray",
+   "filing_key": {
+    "page": "35",
+    "block": "b537",
+    "quote": "submit revised written proposals no later than September 9, 2013"
+   },
+   "value": {
+    "When": "09/09/2013",
+    "Sort date": "2013-09-09",
+    "Date from": "2013-09-09",
+    "Date to": "2013-09-09"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D11"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:b7425f3bb162d389c7aae714",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "b7425f3bb162d389c7aae714",
+   "row": 31,
+   "label": "#31 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "35",
+    "block": "b541",
+    "quote": "CSC/Pamplona submitted a revised indication of interest with an all-cash purchase price of $19.50 per share, indicating that Pamplona was committed to provide 100% of the capital required"
+   },
+   "value": {
+    "When": "09/09/2013",
+    "Sort date": "2013-09-09",
+    "Date from": "2013-09-09",
+    "Date to": "2013-09-09"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "unresolved",
+   "status_reasons": [
+    "mac-gray:5 judged overstated"
+   ],
+   "audit": [
+    "mac-gray:5"
+   ],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:00e22c93708bc87a43bf825c",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "00e22c93708bc87a43bf825c",
+   "row": 32,
+   "label": "#32 Bid · Party B",
+   "filing_key": {
+    "page": "35",
+    "block": "b541",
+    "quote": "Party B also submitted a revised indication of interest with an all-cash purchase price of $18.50 per share"
+   },
+   "value": {
+    "When": "09/09/2013",
+    "Sort date": "2013-09-09",
+    "Date from": "2013-09-09",
+    "Date to": "2013-09-09"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:ab468ec12616e29e1208ea66",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "ab468ec12616e29e1208ea66",
+   "row": 33,
+   "label": "#33 Bid · Party A",
+   "filing_key": {
+    "page": "35",
+    "block": "b542",
+    "quote": "Party A submitted a revised indication of interest with an all-cash purchase price of $18.00 to $19.00 per share"
+   },
+   "value": {
+    "When": "09/10/2013",
+    "Sort date": "2013-09-10",
+    "Date from": "2013-09-10",
+    "Date to": "2013-09-10"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:91734089c68ecf2859d21001",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "91734089c68ecf2859d21001",
+   "row": 34,
+   "label": "#34 Bid · Party C",
+   "filing_key": {
+    "page": "35",
+    "block": "b542",
+    "quote": "a representative of Party C indicated that it was submitting a revised oral indication of interest with an all-cash purchase price of $16.00 to $17.00 per share."
+   },
+   "value": {
+    "When": "09/10/2013",
+    "Sort date": "2013-09-10",
+    "Date from": "2013-09-10",
+    "Date to": "2013-09-10"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:83a19f33e5d8d613766c1f91",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "83a19f33e5d8d613766c1f91",
+   "row": 35,
+   "label": "#35 Other material event · Stewart G. MacDonald, Jr. (CEO, major holder)",
+   "filing_key": {
+    "page": "35",
+    "block": "b543",
+    "quote": "During this call, Mr. MacDonald indicated that he had decided that he was not interested in rolling over any of his shares in any transaction."
+   },
+   "value": {
+    "When": "09/11/2013",
+    "Sort date": "2013-09-11",
+    "Date from": "2013-09-11",
+    "Date to": "2013-09-11"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:e0e6b0289e98b624d63e2700",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "e0e6b0289e98b624d63e2700",
+   "row": 36,
+   "label": "#36 Round opened · Mac-Gray",
+   "filing_key": {
+    "page": "36",
+    "block": "b547",
+    "quote": "request final indications of interest by September 18, 2013 and to indicate that Mac-Gray would consider engaging in a short period of exclusive negotiations with one of the bidders"
+   },
+   "value": {
+    "When": "09/11/2013",
+    "Sort date": "2013-09-11",
+    "Date from": "2013-09-11",
+    "Date to": "2013-09-11"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:3c0fc9d066151721336b4169",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "3c0fc9d066151721336b4169",
+   "row": 37,
+   "label": "#37 Deadline · Mac-Gray",
+   "filing_key": {
+    "page": "36",
+    "block": "b547",
+    "quote": "request final indications of interest by September 18, 2013"
+   },
+   "value": {
+    "When": "09/18/2013",
+    "Sort date": "2013-09-18",
+    "Date from": "2013-09-18",
+    "Date to": "2013-09-18"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D11"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:390fd177a0cdf19b52acf176",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "390fd177a0cdf19b52acf176",
+   "row": 38,
+   "label": "#38 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "36",
+    "block": "b550",
+    "quote": "CSC/Pamplona submitted a proposal for an all-cash purchase price of $20.75 per share, reiterating that Pamplona was committed to provide 100% of the capital required"
+   },
+   "value": {
+    "When": "09/18/2013",
+    "Sort date": "2013-09-18",
+    "Date from": "2013-09-18",
+    "Date to": "2013-09-18"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:7"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:7"
+   ],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:3f08e6ef44543e7ba96f60fa",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "3f08e6ef44543e7ba96f60fa",
+   "row": 39,
+   "label": "#39 Bid · Party A",
+   "filing_key": {
+    "page": "36",
+    "block": "b550",
+    "quote": "its previous indication of interest with an all-cash purchase price of $18.00 to $19.00 per share was its best and final offer"
+   },
+   "value": {
+    "When": "09/18/2013",
+    "Sort date": "2013-09-18",
+    "Date from": "2013-09-18",
+    "Date to": "2013-09-18"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:73e6b90119c32650e90ef895",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "73e6b90119c32650e90ef895",
+   "row": 40,
+   "label": "#40 Bid · Party B",
+   "filing_key": {
+    "page": "36",
+    "block": "b550",
+    "quote": "Party B also submitted a revised indication of interest with a purchase price that Party B valued at $21.50 per share, including $19.00 of cash to be paid at closing"
+   },
+   "value": {
+    "When": "09/18/2013",
+    "Sort date": "2013-09-18",
+    "Date from": "2013-09-18",
+    "Date to": "2013-09-18"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "unresolved",
+   "status_reasons": [
+    "mac-gray:9 judged unresolved"
+   ],
+   "audit": [
+    "mac-gray:9",
+    "mac-gray:10"
+   ],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:8fd7eb0e98bba0b0c95a48f1",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "8fd7eb0e98bba0b0c95a48f1",
+   "row": 41,
+   "label": "#41 Did not submit · Party C",
+   "filing_key": {
+    "page": "36",
+    "block": "b550",
+    "quote": "Party C did not submit a revised indication of interest or reiterate its prior indication of interest of an all-cash purchase price of $16.00 to $17.00 per share"
+   },
+   "value": {
+    "When": "09/18/2013",
+    "Sort date": "2013-09-18",
+    "Date from": "2013-09-18",
+    "Date to": "2013-09-18"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D10"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:e9a20a284c9e60d5c686659a",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "e9a20a284c9e60d5c686659a",
+   "row": 42,
+   "label": "#42 Other material event · Mac-Gray",
+   "filing_key": {
+    "page": "37",
+    "block": "b556",
+    "quote": "propose that Mac-Gray was prepared to move forward with CSC/Pamplona on an exclusive basis for two weeks subject to CSC/Pamplona increasing their all-cash purchase price to $21.25 per share."
+   },
+   "value": {
+    "When": "09/21/2013",
+    "Sort date": "2013-09-21",
+    "Date from": "2013-09-21",
+    "Date to": "2013-09-21"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:e16cbd8e4228876f110da19d",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "e16cbd8e4228876f110da19d",
+   "row": 43,
+   "label": "#43 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "37",
+    "block": "b556",
+    "quote": "confirm that CSC/Pamplona were willing to increase their all-cash purchase price to $21.25 per share as a last and best offer, provided that Mac-Gray agree to a two week period"
+   },
+   "value": {
+    "When": "09/21/2013",
+    "Sort date": "2013-09-21",
+    "Date from": "2013-09-21",
+    "Date to": "2013-09-21"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:12"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:12"
+   ],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:9846e8c749b5490fbaf95df45bd4cd02",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "9846e8c749b5490fbaf95df45bd4cd02",
+   "row": 44,
+   "label": "#44 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "37",
+    "block": "b557",
+    "quote": "the inclusion of a $15 million \"reverse\" termination fee payable by CSC/Pamplona to Mac-Gray in the event regulatory clearance is not obtained"
+   },
+   "value": {
+    "When": "09/21/2013-09/23/2013",
+    "Sort date": "2013-09-22",
+    "Date from": "2013-09-21",
+    "Date to": "2013-09-23"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:15"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:15"
+   ],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:425a8eabe873852583092d56",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "425a8eabe873852583092d56",
+   "row": 45,
+   "label": "#45 Other material event · Moab",
+   "filing_key": {
+    "page": "38",
+    "block": "b561",
+    "quote": "to provide Moab with the opportunity to resume discussions with CSC/Pamplona regarding a possible equity rollover of Moab's shares in the transaction"
+   },
+   "value": {
+    "When": "09/23/2013",
+    "Sort date": "2013-09-23",
+    "Date from": "2013-09-23",
+    "Date to": "2013-09-23"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:c89d74caec549eae5d8ac660",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "c89d74caec549eae5d8ac660",
+   "row": 46,
+   "label": "#46 Exclusivity changed · CSC/Pamplona",
+   "filing_key": {
+    "page": "38",
+    "block": "b563",
+    "quote": "CSC, Pamplona and Mac-Gray executed the exclusivity agreement providing for exclusive negotiations until 5 p.m. ET on October 12, 2013"
+   },
+   "value": {
+    "When": "09/24/2013",
+    "Sort date": "2013-09-24",
+    "Date from": "2013-09-24",
+    "Date to": "2013-09-24"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D15"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:1a2be84b3ac1eeaea940c3d8",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "1a2be84b3ac1eeaea940c3d8",
+   "row": 47,
+   "label": "#47 Dropped by target · Party A",
+   "filing_key": {
+    "page": "38",
+    "block": "b563",
+    "quote": "CSC, Pamplona and Mac-Gray executed the exclusivity agreement providing for exclusive negotiations until 5 p.m. ET on October 12, 2013"
+   },
+   "value": {
+    "When": "by 09/24/2013",
+    "Sort date": "2013-09-24",
+    "Date from": "",
+    "Date to": "2013-09-24"
+   },
+   "basis": "inference",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:45b930dfc0364a90fea01bd4",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "45b930dfc0364a90fea01bd4",
+   "row": 48,
+   "label": "#48 Dropped by target · Party B",
+   "filing_key": {
+    "page": "38",
+    "block": "b563",
+    "quote": "CSC, Pamplona and Mac-Gray executed the exclusivity agreement providing for exclusive negotiations until 5 p.m. ET on October 12, 2013"
+   },
+   "value": {
+    "When": "by 09/24/2013",
+    "Sort date": "2013-09-24",
+    "Date from": "",
+    "Date to": "2013-09-24"
+   },
+   "basis": "inference",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:401eb854b02be38a7ad5541f",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "401eb854b02be38a7ad5541f",
+   "row": 49,
+   "label": "#49 Adviser · Kirkland & Ellis LLP",
+   "filing_key": {
+    "page": "38",
+    "block": "b564",
+    "quote": "Goodwin Procter delivered to Kirkland & Ellis LLP, outside legal counsel to CSC/Pamplona, whom we refer to as Kirkland, the initial draft of the merger agreement."
+   },
+   "value": {
+    "When": "09/25/2013",
+    "Sort date": "2013-09-25",
+    "Date from": "2013-09-25",
+    "Date to": "2013-09-25"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:3b39d92e94184dfabc1a126e6081a5ec",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "3b39d92e94184dfabc1a126e6081a5ec",
+   "row": 50,
+   "label": "#50 Other material event · Stewart G. MacDonald, Jr., his wife and one of his trusts",
+   "filing_key": {
+    "page": "39",
+    "block": "b567",
+    "quote": "which were entered into by Mr. MacDonald, his wife and one of his trusts on September 27, 2013"
+   },
+   "value": {
+    "When": "09/27/2013",
+    "Sort date": "2013-09-27",
+    "Date from": "2013-09-27",
+    "Date to": "2013-09-27"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:16"
+   ],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:a16f56e4df45435b809245741aa0888b",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "a16f56e4df45435b809245741aa0888b",
+   "row": 51,
+   "label": "#51 Other material event · Mac-Gray",
+   "filing_key": {
+    "page": "38",
+    "block": "b564",
+    "quote": "including the proposal by Mac-Gray that both Pamplona and CSC be responsible in the event CSC failed to consummate the merger"
+   },
+   "value": {
+    "When": "09/25/2013-10/07/2013",
+    "Sort date": "2013-10-01",
+    "Date from": "2013-09-25",
+    "Date to": "2013-10-07"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:17"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:17"
+   ],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:75790bb839423c0408411bd8",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "75790bb839423c0408411bd8",
+   "row": 52,
+   "label": "#52 Other material event · Moab",
+   "filing_key": {
+    "page": "38",
+    "block": "b564",
+    "quote": "As a result of such discussions, it was determined that Moab would not rollover any Moab shares in the transaction."
+   },
+   "value": {
+    "When": "09/25/2013-10/07/2013",
+    "Sort date": "2013-10-01",
+    "Date from": "2013-09-25",
+    "Date to": "2013-10-07"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:13"
+   ],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:51084f681a5d41c9a8eb38535f45d90e",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "51084f681a5d41c9a8eb38535f45d90e",
+   "row": 53,
+   "label": "#53 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "39",
+    "block": "b569",
+    "quote": "Pamplona's liability for damages resulting from a breach of the merger agreement would be limited to an unspecified dollar amount."
+   },
+   "value": {
+    "When": "10/05/2013",
+    "Sort date": "2013-10-05",
+    "Date from": "2013-10-05",
+    "Date to": "2013-10-05"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:18"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:18"
+   ],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:a8e0bf475ea3483995e374121f5de104",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "a8e0bf475ea3483995e374121f5de104",
+   "row": 54,
+   "label": "#54 Bid · CSC/Pamplona",
+   "filing_key": {
+    "page": "39",
+    "block": "b572",
+    "quote": "which Kirkland proposed, at the direction of CSC/Pamplona, be capped at $50 million."
+   },
+   "value": {
+    "When": "10/08/2013",
+    "Sort date": "2013-10-08",
+    "Date from": "2013-10-08",
+    "Date to": "2013-10-08"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "mac-gray:19"
+   ],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:19"
+   ],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:28e3b4de85c2a909adbf3cb2",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "28e3b4de85c2a909adbf3cb2",
+   "row": 55,
+   "label": "#55 Exclusivity changed · CSC/Pamplona",
+   "filing_key": {
+    "page": "40",
+    "block": "b577",
+    "quote": "Goodwin Procter then reported that Kirkland had requested on behalf of CSC/Pamplona that the exclusivity agreement, due to expire at 5 p.m. ET on October 12, 2013, be extended"
+   },
+   "value": {
+    "When": "by 10/09/2013",
+    "Sort date": "2013-10-09",
+    "Date from": "",
+    "Date to": "2013-10-09"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D15"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:fafd0e23b6b67cc77981f2fe",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "fafd0e23b6b67cc77981f2fe",
+   "row": 56,
+   "label": "#56 Exclusivity changed · CSC/Pamplona",
+   "filing_key": {
+    "page": "41",
+    "block": "b583",
+    "quote": "CSC, Pamplona and Mac-Gray executed a letter agreement extending exclusivity until 11:59 p.m. ET on October 15, 2013."
+   },
+   "value": {
+    "When": "10/12/2013",
+    "Sort date": "2013-10-12",
+    "Date from": "2013-10-12",
+    "Date to": "2013-10-12"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "mac-gray:14"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D15"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:27dc4ae85d1bd4ed2a4c90f8",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "27dc4ae85d1bd4ed2a4c90f8",
+   "row": 57,
+   "label": "#57 Merger agreement signed · CSC/Pamplona (CSC ServiceWorks, Inc. via Spin Holdco Inc.)",
+   "filing_key": {
+    "page": "41",
+    "block": "b588",
+    "quote": "Later in the day, on October 14, 2013, the merger agreement was executed, the Pamplona commitment letter was delivered, Moab and Parent executed the Moab voting agreement"
+   },
+   "value": {
+    "When": "10/14/2013",
+    "Sort date": "2013-10-14",
+    "Date from": "2013-10-14",
+    "Date to": "2013-10-14"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:1168990fc8d3c8082548b531",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "1168990fc8d3c8082548b531",
+   "row": 58,
+   "label": "#58 Merger announced · Mac-Gray and CSC",
+   "filing_key": {
+    "page": "41",
+    "block": "b589",
+    "quote": "On October 15, 2013, before the U.S. stock markets opened, Mac-Gray and CSC jointly announced the execution of the merger agreement."
+   },
+   "value": {
+    "When": "10/15/2013",
+    "Sort date": "2013-10-15",
+    "Date from": "2013-10-15",
+    "Date to": "2013-10-15"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  }
+ ],
+ "audit_checks": {
+  "inventory_changes": 32,
+  "changes_on_current_rows": 23,
+  "final_ref_differs_from_current_number": [],
+  "convention_refs_not_resolved": []
+ }
+}

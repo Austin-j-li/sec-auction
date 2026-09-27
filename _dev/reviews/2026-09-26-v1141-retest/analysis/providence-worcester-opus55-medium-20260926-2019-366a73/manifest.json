@@ -1,0 +1,175 @@
+{
+  "tool": "derive_analysis.py",
+  "tool_version": "0.3",
+  "contract": "_dev/maintenance/2026-09-24-bid-terms-taxonomy/ANALYSIS_CONTRACT.md",
+  "contract_version": "0.2",
+  "generated_at": "2026-09-26T20:46:02+00:00",
+  "deal": "providence-worcester",
+  "input": {
+    "path": "/home/uctpiaj/work/Projects/sec-extraction/_dev/cockpit/state/versions/providence-worcester/opus55-medium-20260926-2019-366a73/providence-worcester.xlsx",
+    "sha256": "366a738f38ff1e90142f7cc042e0a8221577f838210e5f37954936d875cb3fb3",
+    "kind": "four-sheet workbook",
+    "sheets": [
+      "Deal ledger",
+      "Rounds",
+      "Questions",
+      "Deal facts"
+    ],
+    "source_sheet": null,
+    "working_copy": null
+  },
+  "ledger_schema": "v1.14.1",
+  "rules_requested": "v1.14.1",
+  "checker_version": "1.8",
+  "columns_missing": [],
+  "columns_unexpected": [],
+  "readings": {
+    "computed": [
+      "T0",
+      "T1",
+      "T1u",
+      "T2",
+      "T3"
+    ],
+    "missing": {},
+    "all_cash_from": "Stock %",
+    "package": "Price + CVR/earnout value; package_basis says what each sum is (E13)",
+    "default": null
+  },
+  "switches": [
+    {
+      "id": "count_ranges",
+      "source": "D22; Alex Q1 / Decision 3",
+      "question": "How estimation uses counts that are ranges or bounds.",
+      "variants": {
+        "bounds": "live_lo, live_hi (and count_lo, count_hi)",
+        "presumed ordinary sequence": "live_point (a named party first seen bidding after cohort entries is presumed a member; approximately N is N)",
+        "one bound": "live_lo or live_hi alone"
+      }
+    },
+    {
+      "id": "unclear",
+      "source": "D22",
+      "question": "How Unclear and Not stated values are treated.",
+      "variants": {
+        "missing": "Formality Unclear is missing under every reading; deadline Unclear has class missing",
+        "Conditions Unclear as not Heavy": "T1",
+        "Conditions Unclear as Heavy": "T1u"
+      }
+    },
+    {
+      "id": "formality_reading",
+      "source": "D22; Alex Decision 3b",
+      "question": "Which Formality reading is primary.",
+      "variants": {
+        "T0": "T0",
+        "T1": "T1",
+        "T1u": "T1u",
+        "T2": "T2",
+        "T3": "T3"
+      }
+    },
+    {
+      "id": "same_price_revisions",
+      "source": "D22; D13; Alex Decision 3b; P1",
+      "question": "Whether a same-price revision of terms is a new price observation.",
+      "variants": {
+        "new observation": "price_obs__same_price_as_new",
+        "change of terms only": "price_obs__same_price_as_terms"
+      }
+    },
+    {
+      "id": "same_offer_restatements",
+      "source": "v1.14.1 E10 (R1); questionnaire 3.3(b)",
+      "question": "Whether a Same-offer row (the bidder says its earlier offer stands) is kept as a bid observation.",
+      "variants": {
+        "kept": "every bids.csv row",
+        "dropped": "bids.csv rows with same_offer_of blank"
+      }
+    },
+    {
+      "id": "inferred_exits",
+      "source": "D22; Alex Decision 3b",
+      "question": "Whether inferred exits enter as dropouts or as censoring.",
+      "variants": {
+        "dropout": "exit__inferred_as_dropout",
+        "censoring": "exit__inferred_as_censoring (v1.14 only: \"unresolved\" where the Note does not show whether the exit or a field is inferred)"
+      }
+    },
+    {
+      "id": "estimation_price",
+      "source": "audit D §4; spec §7.10",
+      "question": "Upfront or package (upfront + CVR/earnout value) as the estimation price.",
+      "variants": {
+        "upfront": "price_low, price_high",
+        "package": "package_low, package_high, compared only within one package_basis"
+      }
+    }
+  ],
+  "switches_retired": {
+    "eligible_unadmitted": "v1.14.1 deleted the Rounds 'Who was in' lists of eligible but unadmitted bidders; a bidder not invited into a stage gets a Dropped by target exit (E14, R5), so the live counts already exclude it",
+    "process_initiator": "v1.14.1 D5 derives Initiation mechanically from process 1's rows; deal.csv initiation_check compares the recorded value with initiation_first_event",
+    "merger_of_equals": "v1.14.1 deleted the alternative-map Question; the counterparty stays outside the whole-company contest (E1) and the talks are Other material event rows"
+  },
+  "deadline_outcomes": [
+    {
+      "process": 1,
+      "round": 1,
+      "position": 1,
+      "value": "Extended (late bid accepted)",
+      "class": "extended",
+      "legacy": false
+    },
+    {
+      "process": 1,
+      "round": 2,
+      "position": 1,
+      "value": "Extended (late bid accepted)",
+      "class": "extended",
+      "legacy": false
+    },
+    {
+      "process": 1,
+      "round": 3,
+      "position": 1,
+      "value": "No deadline stated",
+      "class": "no deadline",
+      "legacy": false
+    }
+  ],
+  "outputs": {
+    "bids.csv": 14,
+    "other_scope.csv": 0,
+    "rounds.csv": 3,
+    "participation.csv": 28,
+    "deal.csv": 1
+  },
+  "review": [
+    {
+      "sheet": "Deal ledger",
+      "row": 17,
+      "who": "15 other NDA signers",
+      "issue": "exit of a Who with no recorded entry (a residual or members of an earlier cohort); subtracted"
+    },
+    {
+      "sheet": "Deal ledger",
+      "row": 18,
+      "who": "2 low IOI bidders",
+      "issue": "exit of a Who with no recorded entry (a residual or members of an earlier cohort); subtracted"
+    },
+    {
+      "sheet": "Deal ledger",
+      "row": 31,
+      "who": "Non-submitting strategic buyer",
+      "issue": "exit of a Who with no recorded entry (a residual or members of an earlier cohort); subtracted"
+    },
+    {
+      "sheet": "Deal ledger",
+      "row": 32,
+      "who": "Non-submitting financial buyer",
+      "issue": "exit of a Who with no recorded entry (a residual or members of an earlier cohort); subtracted"
+    }
+  ],
+  "warnings": [],
+  "incomplete": []
+}

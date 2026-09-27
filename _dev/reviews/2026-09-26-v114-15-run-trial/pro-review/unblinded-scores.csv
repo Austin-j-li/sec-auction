@@ -1,0 +1,16 @@
+deal,anonymous_letter,model,effort,arm,participants_35,process_25,economics_information_30,auditability_10,total_100,run_id
+mac-gray,A,gpt-6-astra,high,gpt-6-astra-high,34,24,27,9,94,mac-gray-gpt-6-astra-high-r1
+mac-gray,B,claude-opus-5-5,medium,opus-5-5-medium,26,23,24,9,82,mac-gray-opus-5-5-medium-r1
+mac-gray,C,gpt-6-sol,xhigh,gpt-6-sol-xhigh,33,22,23,9,87,mac-gray-gpt-6-sol-xhigh-r1
+mac-gray,D,gpt-6-astra,xhigh,gpt-6-astra-xhigh,31,24,26,9,90,mac-gray-gpt-6-astra-xhigh-r1
+mac-gray,E,claude-opus-5-5,xhigh,opus-5-5-xhigh,25,23,24,8,80,mac-gray-opus-5-5-xhigh-r1
+providence-worcester,A,gpt-6-sol,xhigh,gpt-6-sol-xhigh,28,23,27,8,86,providence-worcester-gpt-6-sol-xhigh-r1
+providence-worcester,B,gpt-6-astra,high,gpt-6-astra-high,32,24,29,9,94,providence-worcester-gpt-6-astra-high-r1
+providence-worcester,C,gpt-6-astra,xhigh,gpt-6-astra-xhigh,30,23,28,9,90,providence-worcester-gpt-6-astra-xhigh-r1
+providence-worcester,D,claude-opus-5-5,xhigh,opus-5-5-xhigh,23,22,25,8,78,providence-worcester-opus-5-5-xhigh-r1
+providence-worcester,E,claude-opus-5-5,medium,opus-5-5-medium,27,23,26,8,84,providence-worcester-opus-5-5-medium-r1
+stec,A,claude-opus-5-5,medium,opus-5-5-medium,34,24,22,9,89,stec-opus-5-5-medium-r1
+stec,B,gpt-6-astra,xhigh,gpt-6-astra-xhigh,34,24,27,9,94,stec-gpt-6-astra-xhigh-r1
+stec,C,gpt-6-astra,high,gpt-6-astra-high,33,24,26,9,92,stec-gpt-6-astra-high-r1
+stec,D,claude-opus-5-5,xhigh,opus-5-5-xhigh,33,18,24,9,84,stec-opus-5-5-xhigh-r1
+stec,E,gpt-6-sol,xhigh,gpt-6-sol-xhigh,27,24,23,8,82,stec-gpt-6-sol-xhigh-r1

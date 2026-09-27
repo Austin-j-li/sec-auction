@@ -1,0 +1,105 @@
+[
+ [
+  "typed off-list value in free text",
+  "Formal-ish"
+ ],
+ [
+  "stored off-list values offering Choose from the list",
+  [
+   "Type",
+   "Event",
+   "Formality · edited"
+  ]
+ ],
+ [
+  "after Choose from the list",
+  {
+   "value": "Formal-ish",
+   "label": "Formal-ish (not on the list)"
+  }
+ ],
+ [
+  "picked Formal; off-list entry gone",
+  true
+ ],
+ [
+  "history links",
+  [
+   [
+    "Download",
+    "/api/deal/synthetic/export?version=rev%3A1",
+    ""
+   ],
+   [
+    "Four sheets",
+    "/api/deal/synthetic/export?version=rev%3A1&source=0",
+    ""
+   ],
+   [
+    "Download",
+    "/api/deal/synthetic/export?version=rev%3A0",
+    ""
+   ],
+   [
+    "Four sheets",
+    "/api/deal/synthetic/export?version=rev%3A0&source=0",
+    ""
+   ]
+  ]
+ ]
+]
+[
+ [
+  "typed off-list value in free text",
+  "Formal-ish"
+ ],
+ [
+  "stored off-list values offering Choose from the list",
+  [
+   "Type",
+   "Event",
+   "Formality · edited"
+  ]
+ ],
+ [
+  "after Choose from the list",
+  {
+   "value": "Formal-ish",
+   "label": "Formal-ish (not on the list)"
+  }
+ ],
+ [
+  "picked Formal; off-list entry gone",
+  true
+ ],
+ [
+  "history links",
+  [
+   [
+    "Download",
+    "/api/deal/synthetic/export?version=rev%3A1",
+    ""
+   ],
+   [
+    "Four sheets",
+    "/api/deal/synthetic/export?version=rev%3A1&source=0",
+    ""
+   ],
+   [
+    "Download",
+    "/api/deal/synthetic/export?version=rev%3A0",
+    ""
+   ],
+   [
+    "Four sheets",
+    "/api/deal/synthetic/export?version=rev%3A0&source=0",
+    ""
+   ]
+  ]
+ ],
+ [
+  "revision 0 download name",
+  "synthetic-working-r0.xlsx"
+ ]
+]
+OK

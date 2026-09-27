@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { formatBytes, hiddenLine, listedDeals, seedAction, seedReview, validName, validSlug } from './deals';
+import { formatBytes, hiddenLine, listedDeals, reviewByline, reviewText, seedAction, seedReview, validName, validSlug } from './deals';
 
 describe('add deal helpers', () => {
   it('validates short names and deal names', () => {
@@ -30,5 +30,14 @@ describe('add deal helpers', () => {
     expect(hiddenLine({ hidden: true, hidden_by: 'alex', hidden_at: '2026-09-23T12:00:00+00:00' })).toBe('Hidden by Alex on 23 Sep');
     expect(hiddenLine({ hidden: true, hidden_by: 'austin', hidden_at: null })).toBe('Hidden by Austin');
     expect(hiddenLine({ hidden: false, hidden_by: null })).toBe('');
+  });
+  it('describes a working copy review status and flags edits since', () => {
+    expect(reviewText({ status: 'in_review', revision: null, edited_since: false })).toBe('In review');
+    expect(reviewText({ status: 'reviewed', revision: 5, edited_since: false })).toBe('Reviewed');
+    expect(reviewText({ status: 'reviewed', revision: 5, edited_since: true })).toBe('Reviewed at revision 5; edited since');
+    expect(reviewText({ status: 'unreviewed', revision: 2, edited_since: true })).toBe('Unreviewed');
+    expect(reviewText(null)).toBe('');
+    expect(reviewByline({ status: 'reviewed', actor: 'austin', at: '2026-09-23T20:30:00+00:00' })).toBe('Set by Austin on 23 Sep');
+    expect(reviewByline({ status: 'in_review', actor: null })).toBe('');
   });
 });

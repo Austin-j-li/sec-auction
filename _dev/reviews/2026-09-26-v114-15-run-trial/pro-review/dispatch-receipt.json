@@ -1,0 +1,23 @@
+{
+  "prepared_at": "2026-09-26T10:23:21.262686+00:00",
+  "upload_archive": "/home/uctpiaj/work/Projects/sec-extraction-v114-trial-20260926/_dev/reviews/2026-09-26-v114-15-run-trial/pro-review/anonymous_sec_extraction_review.zip",
+  "sha256": "d13697640fc6868713f747eb1fd5ddabb78f25566397f14febd3aee7215ba23b",
+  "bytes": 2023142,
+  "files": 23,
+  "workbooks": 15,
+  "filings": 3,
+  "prompt_path": "/home/uctpiaj/work/Projects/sec-extraction-v114-trial-20260926/_dev/reviews/2026-09-26-v114-15-run-trial/pro-review/REQUEST.md",
+  "prompt_sha256": "042a260d21c582940d8cfca6c0ad587738520637e5b74f6ee7645b3a09720078",
+  "identity_key_uploaded": false,
+  "run_logs_uploaded": false,
+  "prior_rubric_uploaded": false,
+  "original_run_workbooks_unchanged": true,
+  "workbook_changes": "Document properties and archive metadata only; every other package part verified byte-identical.",
+  "dispatched_at": "2026-09-26T10:24:20Z",
+  "conversation_url": "https://chatgpt.com/c/6ab79d4e-9fb0-83eb-a6b5-b048591aaed6",
+  "conversation_title": "Score Merger Extractions Report",
+  "model_selection": "ChatGPT Latest, Pro (5 of 5), verified in model picker and composer before Send",
+  "delivery": "Direct attachment in authenticated ChatGPT browser; no GitLab publication or repository access",
+  "submitted_prompt_sha256": "6853a747441cc311058db8c347619a61c6ccbf35adabc6610a2fe2bb91269050",
+  "browser_upload_staging_path": "/home/uctpiaj/work/vm-browser/evidence/mcp/sec-extraction-pro-20260926/anonymous_sec_extraction_review.zip"
+}

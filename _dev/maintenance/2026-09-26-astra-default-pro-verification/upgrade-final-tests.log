@@ -1,0 +1,59 @@
+..........................................2026-09-26T12:19:09+00:00 started extraction 50a3b2feedba4db599d0f7fbaf0bd4c7 for alpha-deal by austin (pid 485706)
+./usr/lib64/python3.12/subprocess.py:1127: ResourceWarning: subprocess 485706 is still running
+  _warn("subprocess %s is still running" % self.pid,
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.2026-09-26T12:19:10+00:00 started extraction 9801601d9f6248689fa9e38450dee96e for alpha-deal by austin (pid 485722)
+2026-09-26T12:19:10+00:00 started extraction 699de5655fb54145858b3f495ec0b5b8 for alpha-deal by austin (pid 485731)
+./usr/lib64/python3.12/subprocess.py:1127: ResourceWarning: subprocess 485722 is still running
+  _warn("subprocess %s is still running" % self.pid,
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib64/python3.12/subprocess.py:1127: ResourceWarning: subprocess 485731 is still running
+  _warn("subprocess %s is still running" % self.pid,
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.2026-09-26T12:19:11+00:00 started extraction 5e10d25417c441df816f03d8621b3fd4 for alpha-deal by austin (pid 485763)
+2026-09-26T12:19:12+00:00 extraction 5e10d25417c441df816f03d8621b3fd4 imported as opus55-medium-20260923-1000-9e56eb
+..2026-09-26T12:19:13+00:00 started extraction b521300798a649458707fbedde086437 for alpha-deal by austin (pid 485838)
+2026-09-26T12:19:14+00:00 extraction b521300798a649458707fbedde086437 imported as opus55-medium-20260923-1000-ce4a72
+2026-09-26T12:19:14+00:00 extraction 5541adc882c34af3a529cff167f8f9a9: start failed: RuntimeError: disk full
+2026-09-26T12:19:14+00:00 extraction 5541adc882c34af3a529cff167f8f9a9 failed: worker_error
+..2026-09-26T12:19:15+00:00 started extraction a047944fb04146ebbd01ac33b9eda476 for alpha-deal by austin (pid 485972)
+2026-09-26T12:19:15+00:00 extraction a047944fb04146ebbd01ac33b9eda476 imported as opus55-medium-20260923-1000-89a44d
+2026-09-26T12:19:15+00:00 extraction a047944fb04146ebbd01ac33b9eda476 failed: worker_restart
+.2026-09-26T12:19:16+00:00 started extraction f7878ddc95e747049fefea84a6c2905d for alpha-deal by austin (pid 486038)
+2026-09-26T12:19:16+00:00 extraction f7878ddc95e747049fefea84a6c2905d ended: cancelled / cancelled
+.2026-09-26T12:19:18+00:00 Claude account connected for alex
+2026-09-26T12:19:20+00:00 sign-in d8c40669e4824871aff0bbc7132fddce for austin: no token; Claude printed: 'OAuth error: Request failed with status code 400 Press Enter to retry.'
+/usr/lib64/python3.12/subprocess.py:1127: ResourceWarning: subprocess 486049 is still running
+  _warn("subprocess %s is still running" % self.pid,
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+..2026-09-26T12:19:21+00:00 started extraction f1c86d60907d43558c907f6b613fae00 for alpha-deal by austin (pid 486096)
+2026-09-26T12:19:21+00:00 extraction f1c86d60907d43558c907f6b613fae00 ended: failed / usage_limit
+.2026-09-26T12:19:22+00:00 started extraction 1783992a3e0242aeb1e4cc72c61bb31c for alpha-deal by austin (pid 486098)
+2026-09-26T12:19:22+00:00 started extraction 8e0df283805e4d3f8cafe932b0b0a86e for alpha-deal by austin (pid 486100)
+2026-09-26T12:19:22+00:00 extraction 1783992a3e0242aeb1e4cc72c61bb31c imported as fable51-low-20260923-1000-0e6b95
+2026-09-26T12:19:23+00:00 extraction 8e0df283805e4d3f8cafe932b0b0a86e imported as sol6-xhigh-20260923-1000-0e6b95
+.2026-09-26T12:19:23+00:00 extraction 5de6a939202d49bbb9baba34a390a34e failed: instruction_missing
+.2026-09-26T12:19:23+00:00 ChatGPT login refresh for austin: exit 0, renewed until 2026-10-06T12:19:23+00:00
+2026-09-26T12:19:24+00:00 started extraction c099831ad3054ef7937f7ba22e527ed8 for alpha-deal by austin (pid 486232)
+2026-09-26T12:19:24+00:00 extraction c099831ad3054ef7937f7ba22e527ed8 imported as sol6-medium-20260923-1000-158089
+.2026-09-26T12:19:24+00:00 ChatGPT login refresh for austin: exit 0, not renewed
+2026-09-26T12:19:25+00:00 extraction f742e8b8a19f435cab76dfa577933b8b failed: login_expired
+.2026-09-26T12:19:25+00:00 extraction e8a30ceadfd748faa04f7d6d4bb0ba59 failed: instruction_missing
+./usr/lib64/python3.12/threading.py:1012: ResourceWarning: unclosed file <_io.BufferedReader name=7>
+  self._target(*self._args, **self._kwargs)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib64/python3.12/subprocess.py:1127: ResourceWarning: subprocess 486303 is still running
+  _warn("subprocess %s is still running" % self.pid,
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./usr/lib64/python3.12/subprocess.py:822: ResourceWarning: unclosed file <_io.BufferedReader name=7>
+  _cleanup()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+2026-09-26T12:19:27+00:00 ChatGPT account connected for alex
+...2026-09-26T12:19:28+00:00 ChatGPT login refresh for alex: exit 0, not renewed
+.2026-09-26T12:19:28+00:00 started extraction 390a4750c290485e80d5283f95a1287e for alpha-deal by austin (pid 486310)
+2026-09-26T12:19:29+00:00 extraction 390a4750c290485e80d5283f95a1287e imported as astra6-high-20260923-1000-a52fde
+...
+----------------------------------------------------------------------
+Ran 68 tests in 21.113s
+
+OK

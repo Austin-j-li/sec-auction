@@ -7,6 +7,8 @@ import io
 import json
 import os
 from pathlib import Path
+import subprocess
+import sys
 import tempfile
 import time
 import unittest
@@ -177,6 +179,17 @@ class RunnerTests(unittest.TestCase):
         self.assertEqual((metadata["model"], metadata["effort"], metadata["timeout_seconds"]),
                          ("claude-opus-5-5", run_model.DEFAULT_EFFORT["opus"], run_model.TIMEOUT_SECONDS))
 
+    def test_default_prepare_selects_opus_medium_and_astra_keeps_high_when_chosen(self):
+        args = run_model.parser().parse_args(["prepare", "--run-dir", "/tmp/unused", "--deal", "sample", "--filing", "sample.htm"])
+        self.assertEqual(args.provider, "opus")
+        for extra, expected in [((), ("claude-opus-5-5", "medium")),
+                                (("--provider", "sol"), ("gpt-6-astra", "high")),
+                                (("--provider", "sol", "--model", "gpt-6-sol"), ("gpt-6-sol", "xhigh")),
+                                (("--provider", "sol", "--effort", "xhigh"), ("gpt-6-astra", "xhigh"))]:
+            with self.subTest(extra=extra), tempfile.TemporaryDirectory() as tmp:
+                metadata = json.loads((self.prepare_fixture(Path(tmp), extra=extra) / "metadata.json").read_text())
+                self.assertEqual((metadata["model"], metadata["effort"]), expected)
+
     def test_disallowed_model_effort_or_timeout_fails_before_creating_run(self):
         for extra, message in [(("--effort", "extreme"), "runs one of"), (("--model", "claude-sonnet-5"), "runs one of"),
                                (("--timeout-minutes", "5"), "between 10 and 360")]:
@@ -237,6 +250,71 @@ class RunnerTests(unittest.TestCase):
                 with self.assertRaisesRegex(SystemExit, "supplied together"):
                     run_model.prepare(args)
                 self.assertFalse(run.exists())
+
+    def revision_argv(self, root, workbook, *extra):
+        (root / "findings.md").write_text("Synthetic findings")
+        return ["prepare", "--provider", "opus", "--run-dir", str(root / "runs" / "sample"), "--deal", "sample",
+                "--filing", "sample.htm", "--revise-from", str(workbook), "--report", str(root / "findings.md"), *extra]
+
+    def revision_args(self, root, workbook, *extra):
+        return run_model.parser().parse_args(self.revision_argv(root, workbook, *extra))
+
+    def test_revision_refuses_a_workbook_without_exactly_the_four_sheets(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            for name, sheets in (("download", (*run_model.SHEETS, "Source")), ("short", tuple(run_model.SHEETS[:3]))):
+                workbook = root / f"{name}.xlsx"
+                self.write_workbook(workbook, sheets=sheets)
+                with self.subTest(sheets=sheets), mock.patch.object(run_model.subprocess, "Popen") as popen:
+                    with self.assertRaisesRegex(SystemExit, "exactly the sheets"):
+                        run_model.prepare(self.revision_args(root, workbook))
+                    popen.assert_not_called()
+                    self.assertFalse((root / "runs").exists())
+            (root / "broken.xlsx").write_text("not a workbook")
+            with self.assertRaisesRegex(SystemExit, "cannot read the revision workbook"):
+                run_model.prepare(self.revision_args(root, root / "broken.xlsx"))
+            # From the command line: a non-zero exit before any run folder or model call.
+            result = subprocess.run([sys.executable, run_model.__file__, *self.revision_argv(root, root / "download.xlsx")],
+                                    capture_output=True, text=True, env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"})
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("exactly the sheets", result.stderr)
+            self.assertFalse((root / "runs").exists())
+
+    def test_revising_a_v114_workbook_needs_an_instruction_and_records_its_schema(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            workbook = root / "v114.xlsx"
+            self.write_workbook(workbook, value="Stock %")
+            with self.assertRaisesRegex(SystemExit, "v1.14 or v1.14.1 workbook: pass --instruction"):
+                run_model.prepare(self.revision_args(root, workbook))
+            self.assertFalse((root / "runs").exists())
+            candidate = root / "candidate.md"
+            candidate.write_text("Synthetic candidate")
+            run = self.prepare_fixture(root / "a", revise=True, extra=("--instruction", str(candidate)))
+            metadata = json.loads((run / "metadata.json").read_text())
+            self.assertEqual((metadata["revised_from_ledger_schema"], metadata["instruction_source"]),
+                             ("v1.13.2", str(candidate.resolve())))
+            project = root / "b" / "project"
+            (project / "raw_filing").mkdir(parents=True)
+            (project / run_model.INSTRUCTION_NAME).write_text("Synthetic instruction")
+            (project / "raw_filing" / "sample.htm").write_text("Synthetic filing")
+            with mock.patch.object(run_model, "PROJECT", project), contextlib.redirect_stdout(io.StringIO()):
+                run_model.prepare(self.revision_args(root / "b", workbook, "--instruction", str(candidate)))
+            metadata = json.loads((root / "b/runs/sample/metadata.json").read_text())
+            self.assertEqual(metadata["revised_from_ledger_schema"], "v1.14.1")
+            self.assertEqual(metadata["instruction_sha256"], run_model.sha256(candidate))
+            # A known v1.14 instruction revises under the v1.14 rules.
+            with mock.patch.dict(run_model.checker().RULES_BY_INSTRUCTION, {run_model.sha256(candidate): "v1.14"}), \
+                    mock.patch.object(run_model, "PROJECT", project), contextlib.redirect_stdout(io.StringIO()):
+                (root / "c").mkdir()
+                run_model.prepare(self.revision_args(root / "c", workbook, "--instruction", str(candidate)))
+            self.assertEqual(json.loads((root / "c/runs/sample/metadata.json").read_text())["revised_from_ledger_schema"], "v1.14")
+            run_model.prepared_metadata(root / "b/runs/sample", "opus")  # the new fields pass launch's check
+
+    def test_extraction_records_the_working_instruction_as_its_source(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            metadata = json.loads((self.prepare_fixture(Path(tmp)) / "metadata.json").read_text())
+        self.assertEqual((metadata["instruction_source"], metadata["revised_from_ledger_schema"]), ("working instruction", None))
 
     def test_provider_mismatch_fails_before_launch_side_effects(self):
         with tempfile.TemporaryDirectory() as tmp:

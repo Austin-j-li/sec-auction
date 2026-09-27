@@ -1,0 +1,28 @@
+deal,alex_row,bidder_name,alex_date,bid_type,alignment,ledger_row,ledger_who,ledger_event,price_basis,date_gap_days,formality,conditions,T0,T1,T1u,T2,T3
+mac-gray,6932,Party A,2013-06-21,Informal,"bidder, price, date",4,Party A,Bid,upfront,0,Informal,Heavy,Informal,Informal,Informal,Informal,Informal
+mac-gray,6938,CSC/Pamplona,2013-07-23,Informal,"bidder, price, date",16,CSC/Pamplona,Bid,upfront,0,Informal,Unclear,Informal,Informal,Informal,Informal,Informal
+mac-gray,6940,Party B,2013-07-24,Informal,"bidder, price, date",19,Party B,Bid,upfront,0,Informal,Unclear,Informal,Informal,Informal,Informal,Informal
+mac-gray,6941,Party C,2013-07-24,Informal,"bidder, price, date",21,Party C,Bid,upfront,0,Informal,Unclear,Informal,Informal,Informal,Informal,Informal
+mac-gray,6944,Party C,2013-07-25,Informal,"bidder, price, date",23,Party C,Bid,upfront,0,Informal,Unclear,Informal,Informal,Informal,Informal,Informal
+mac-gray,6946,CSC/Pamplona,2013-09-09,Informal,"bidder, price, date",28,CSC/Pamplona,Bid,upfront,0,Informal,Unclear,Informal,Informal,Informal,Informal,Informal
+mac-gray,6947,Party B,2013-09-09,Informal,"bidder, price, date",29,Party B,Bid,upfront,0,Informal,Heavy,Informal,Informal,Informal,Informal,Informal
+mac-gray,6949,Party A,2013-09-10,Informal,"bidder, price, date",31,Party A,Bid,upfront,0,Informal,Heavy,Informal,Informal,Informal,Informal,Informal
+mac-gray,6950,Party C,2013-09-10,Informal,"bidder, price, date",33,Party C,Bid,upfront,0,Informal,Heavy,Informal,Informal,Informal,Informal,Informal
+mac-gray,6952,CSC/Pamplona,2013-09-18,Formal,"bidder, price, date",36,CSC/Pamplona,Bid,upfront,0,Formal,Unclear,Formal,Formal,Informal,Formal,Formal
+mac-gray,6953,Party A,2013-09-18,Formal,"bidder, price, date",37,Party A,Bid,upfront,0,Formal,Heavy,Formal,Informal,Informal,Informal,Formal
+mac-gray,6954,Party B,2013-09-18,Formal,"bidder, price, date",38,Party B,Bid,package,0,Formal,Heavy,Formal,Informal,Informal,Formal,Formal
+mac-gray,6957,CSC/Pamplona,2013-09-21,Formal,"bidder, price, date",42,CSC/Pamplona,Bid,upfront,0,Formal,Unclear,Formal,Formal,Informal,Formal,Formal
+providence-worcester,6029,9 parties,2016-05-19,Informal,"cohort size, price, date",15,9 IOI bidders,Bid,upfront,0,Informal,Unclear,Informal,Informal,Informal,Informal,Informal
+providence-worcester,6034,Party C,2016-07-12,Informal,"bidder, price, date",23,Party C,Bid,upfront,0,Informal,Unclear,Informal,Informal,Informal,Informal,Informal
+providence-worcester,6035,Party B,2016-07-20,Formal,"bidder, price, date",26,Party B,Bid,upfront,0,Formal,Light,Formal,Formal,Formal,Formal,Informal
+providence-worcester,6036,Party E,2016-07-20,Informal,"bidder, price, date",27,Party E,Bid,upfront,0,Informal,Unclear,Informal,Informal,Informal,Informal,Informal
+providence-worcester,6037,Party D,2016-07-20,Informal,"bidder, price, date",28,Party D,Bid,upfront,0,Formal,Heavy,Formal,Informal,Informal,Formal,Informal
+providence-worcester,6038,Party C,2016-07-20,Informal,"bidder, price, date",29,Party C,Bid,upfront,0,Informal,Heavy,Informal,Informal,Informal,Informal,Informal
+providence-worcester,6039,Party F,2016-07-20,Informal,"bidder, price, date",30,Party F,Bid,upfront,0,Informal,Heavy,Informal,Informal,Informal,Informal,Informal
+providence-worcester,6041,G&W,2016-07-21,Informal,price and date only,34,Genesee & Wyoming Inc. (G&W),Bid,package,0,Formal,Unclear,Formal,Formal,Informal,Formal,Informal
+providence-worcester,6044,G&W,2016-07-26,Formal,price and date only,36,Genesee & Wyoming Inc. (G&W),Bid,package,0,Informal,Unclear,Informal,Informal,Informal,Informal,Informal
+providence-worcester,6050,Party D,2016-08-01,Informal,"bidder, price, date",44,Party D,Bid,upfront,0,Informal,Heavy,Informal,Informal,Informal,Informal,Informal
+providence-worcester,6051,Party E/F,2016-08-01,Informal,"bidder (part of name), price, date",45,Party E,Bid,upfront,0,Informal,Heavy,Informal,Informal,Informal,Informal,Informal
+providence-worcester,6052,Party E/F,2016-08-02,Informal,"bidder (part of name), price, date",46,Party E,Bid,upfront,0,Informal,Unclear,Informal,Informal,Informal,Informal,Informal
+providence-worcester,6054,Party B,2016-07-20,Formal,"bidder, price, date",54,Party B,Bid reaffirmed,upfront,23,Formal,Light,Formal,Formal,Formal,Formal,Formal
+providence-worcester,6055,G&W,2016-08-12,Formal,price and date only,51,Genesee & Wyoming Inc. (G&W),Bid,upfront,0,Formal,Unclear,Formal,Formal,Informal,Formal,Formal

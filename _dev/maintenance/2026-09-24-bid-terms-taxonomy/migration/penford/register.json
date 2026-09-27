@@ -1,0 +1,4318 @@
+{
+ "deal": "penford",
+ "tool": "migrate_review.py",
+ "source": {
+  "revision": 2,
+  "base_id": "opus55-medium",
+  "base_sha256": "14f6c9c8e7c697b477e98f8f163c9180a236d1210e226cc0fdaeac98d50380d5",
+  "at": "2026-09-23T21:48:09+00:00",
+  "actor": "austin",
+  "reason": "Codex Astra verification: reconcile Q6 to the saved October 8 insertion (#42) and October 14 confirmation (#46) after automatic ledger renumbering.",
+  "summary": "1 change",
+  "filing_located": true
+ },
+ "marks": {
+  "reviewed": 47,
+  "needs_decision": 4,
+  "unreviewed": 0
+ },
+ "findings": {},
+ "threads": [],
+ "rows": [
+  {
+   "#": 1,
+   "uid": "a872f0ee44b60b1d34de617d",
+   "When": "07/11/2014",
+   "Who": "SEACOR Holdings Inc.",
+   "Event": "Activist",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 2,
+   "uid": "3ae7e83c3c8172cf2cad3608",
+   "When": "07/17/2014",
+   "Who": "Ingredion",
+   "Event": "Bidder interest",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 3,
+   "uid": "36be3f44e12699024238f3c2",
+   "When": "07/19/2014",
+   "Who": "Ingredion",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 4,
+   "uid": "b2d0b70efbada6c307c575b1",
+   "When": "effective 07/20/2014 (executed after the 07/19/2014 meeting)",
+   "Who": "Ingredion",
+   "Event": "NDA signed",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 5,
+   "uid": "9d202b29245c622bcac0a4ff",
+   "When": "07/24/2014",
+   "Who": "Perkins Coie LLP",
+   "Event": "Adviser",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 6,
+   "uid": "5fb02281ecffae2118089755",
+   "When": "07/24/2014",
+   "Who": "Deutsche Bank Securities Inc.",
+   "Event": "Adviser",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 7,
+   "uid": "4b3cf5f2e2379b94950900fd",
+   "When": "08/06/2014",
+   "Who": "Ingredion",
+   "Event": "Bid",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 8,
+   "uid": "6cb0994a9d88492fb97de577",
+   "When": "08/10/2014",
+   "Who": "Ingredion",
+   "Event": "Bid",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 9,
+   "uid": "87e74ac27eb568f06ab29cf3",
+   "When": "08/11/2014",
+   "Who": "Party A",
+   "Event": "Bidder interest",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 10,
+   "uid": "3857e1013deb032f828d4465",
+   "When": "08/12/2014",
+   "Who": "SEACOR Holdings Inc.",
+   "Event": "Target interest",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 11,
+   "uid": "d2869c75958bda3bba42aeef",
+   "When": "08/13/2014",
+   "Who": "Penford",
+   "Event": "Target sale decision",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 12,
+   "uid": "3a8f49349ff1b01317b7536d",
+   "When": "08/14/2014",
+   "Who": "Penford",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 13,
+   "uid": "a5cc1c571f7b145547c28fbe",
+   "When": "08/14/2014",
+   "Who": "Ingredion",
+   "Event": "Exclusivity changed",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 14,
+   "uid": "e75cec6f183eda737573b489",
+   "When": "08/21/2014",
+   "Who": "Ingredion",
+   "Event": "NDA signed",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 15,
+   "uid": "79b9aa49e437f02851f00f9e",
+   "When": "08/21/2014",
+   "Who": "J.P. Morgan Securities",
+   "Event": "Adviser",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 16,
+   "uid": "45a44c3a231b8cc32dc6009c",
+   "When": "08/21/2014",
+   "Who": "Ingredion",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 17,
+   "uid": "1c8ebb499a9237048a077f46",
+   "When": "08/28/2014",
+   "Who": "Penford",
+   "Event": "Target sale decision",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 18,
+   "uid": "6ec5d32a5eb9ff0bdef9c55d",
+   "When": "early September 2014 (outreach “early- to mid-September”)",
+   "Who": "Penford",
+   "Event": "Round opened",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 19,
+   "uid": "ae5defb9d2a67d5422c1bd6e",
+   "When": "early September 2014",
+   "Who": "Ingredion",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 20,
+   "uid": "80d4555f9f74157e1db431bc",
+   "When": "early–mid September 2014; interest expressed 09/09/2014",
+   "Who": "Party A",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 21,
+   "uid": "abeab4cb5237f42c4d88dc09",
+   "When": "early–mid September 2014; interest expressed 09/09/2014",
+   "Who": "Party B",
+   "Event": "Contact",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 22,
+   "uid": "0b8f7b7d748cc0401e040b26",
+   "When": "early–mid September 2014; interest expressed 09/10/2014",
+   "Who": "Party C",
+   "Event": "Contact",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 23,
+   "uid": "a7f81dbd882a82a4b86f9224",
+   "When": "early–mid September 2014; interest expressed 09/11/2014",
+   "Who": "Party D",
+   "Event": "Contact",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 24,
+   "uid": "eb779ff7b28d2273bfda0d89",
+   "When": "09/12/2014",
+   "Who": "Party B",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 25,
+   "uid": "c59ea60f2e8cdbc3d2b66dbf",
+   "When": "09/12/2014",
+   "Who": "Party E",
+   "Event": "Contact",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 26,
+   "uid": "18b499e2e0ebc414fdbaba66",
+   "When": "09/15/2014",
+   "Who": "Party C",
+   "Event": "NDA signed",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 27,
+   "uid": "23b41b54c6945d13018d7e1e",
+   "When": "09/17/2014",
+   "Who": "Ingredion",
+   "Event": "Bid",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 28,
+   "uid": "f962c804536a4dacd8ecd3e9",
+   "When": "09/23/2014",
+   "Who": "Party D",
+   "Event": "NDA signed",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 29,
+   "uid": "2a4a849d57fcb021c8a7c031",
+   "When": "09/24/2014",
+   "Who": "Penford",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 30,
+   "uid": "fc71fbfe92e46074f3196bf0",
+   "When": "09/24/2014",
+   "Who": "Party F",
+   "Event": "Contact",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 31,
+   "uid": "914ec87c6da169c84af4a9a5",
+   "When": "09/25/2014",
+   "Who": "Party C",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 32,
+   "uid": "eb01e90e0282d74041972dd8",
+   "When": "09/29/2014",
+   "Who": "Party F",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 33,
+   "uid": "3af769123d79ddc4dab85581",
+   "When": "09/30/2014",
+   "Who": "Party A",
+   "Event": "NDA signed",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 34,
+   "uid": "13eff0aadd5ba427fa518fe4",
+   "When": "09/30/2014",
+   "Who": "Party A",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 35,
+   "uid": "fddc9b890a47decc6d9d63fb",
+   "When": "10/01/2014",
+   "Who": "Penford",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 36,
+   "uid": "866de0bf48b4ed3163d25208",
+   "When": "10/02/2014",
+   "Who": "Ingredion",
+   "Event": "Bid",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 37,
+   "uid": "ee3d437e517777101d0f959b",
+   "When": "10/02/2014",
+   "Who": "Ingredion",
+   "Event": "Bid",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 38,
+   "uid": "1f76a7f2b97048c3310e15bf",
+   "When": "10/03/2014",
+   "Who": "Penford",
+   "Event": "Round opened",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 39,
+   "uid": "4e1ae451a1f90ed24cb59375",
+   "When": "10/03/2014",
+   "Who": "Sidley Austin LLP",
+   "Event": "Adviser",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 40,
+   "uid": "66e832b6b25e66c9b21be2f7",
+   "When": "10/04/2014",
+   "Who": "Party A",
+   "Event": "Other material event",
+   "mark": "needs_decision",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 41,
+   "uid": "26cbcf0b394d2f7c0fdff557",
+   "When": "10/07/2014",
+   "Who": "Milbank, Tweed, Hadley & McCloy LLP",
+   "Event": "Adviser",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 42,
+   "uid": "efadfac09c0746de83cf51eec7993a6d",
+   "When": "10/08/2014",
+   "Who": "Ingredion",
+   "Event": "Bid reaffirmed",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 43,
+   "uid": "21541f3ad3647b0622a9c236",
+   "When": "10/08/2014",
+   "Who": "Party D",
+   "Event": "Withdrew",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 44,
+   "uid": "372908d3fe10109e9218bfef",
+   "When": "10/11/2014",
+   "Who": "Ingredion",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 45,
+   "uid": "09a7b6c4485216f7efcac65f",
+   "When": "10/13/2014",
+   "Who": "Party A",
+   "Event": "Other material event",
+   "mark": "needs_decision",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 46,
+   "uid": "227550c619b6c7142613b32f",
+   "When": "10/14/2014",
+   "Who": "Ingredion",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 47,
+   "uid": "5c893d3f93d4bd8a798b452c",
+   "When": "10/14/2014",
+   "Who": "Party A",
+   "Event": "Bid",
+   "mark": "needs_decision",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 48,
+   "uid": "2ea4b7651ba8f91b04a1c445",
+   "When": "10/14/2014 (evening)",
+   "Who": "Ingredion",
+   "Event": "Merger agreement signed",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 49,
+   "uid": "d95afd24221b8c4b3f3721a7",
+   "When": "by 10/14/2014",
+   "Who": "Party A",
+   "Event": "Not selected at signing",
+   "mark": "needs_decision",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 50,
+   "uid": "b8a684bfc0089fdfeb0266bc",
+   "When": "by 10/14/2014",
+   "Who": "Party C",
+   "Event": "Not selected at signing",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  },
+  {
+   "#": 51,
+   "uid": "742ad233f5f43c733ef25449",
+   "When": "10/15/2014",
+   "Who": "Penford",
+   "Event": "Merger announced",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:47:48+00:00",
+   "threads": 0
+  }
+ ],
+ "facts": [
+  {
+   "id": "deal-fact:3dda172db384ef012869f2d2",
+   "section": "participation and exits",
+   "kind": "deal fact",
+   "sheet": "Deal facts",
+   "uid": "3dda172db384ef012869f2d2",
+   "row": null,
+   "label": "Auction screen",
+   "filing_key": {
+    "page": null,
+    "block": null,
+    "quote": null
+   },
+   "value": {
+    "Value": "Met (process 1): 4 parties (Ingredion, Party C, Party D, Party A)"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D7"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "deal-fact:aa940ee7d38b23c3ff24f367",
+   "section": "participation and exits",
+   "kind": "deal fact",
+   "sheet": "Deal facts",
+   "uid": "aa940ee7d38b23c3ff24f367",
+   "row": null,
+   "label": "Whole-company bids",
+   "filing_key": {
+    "page": null,
+    "block": null,
+    "quote": null
+   },
+   "value": {
+    "Value": "Yes"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D7"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:3ae7e83c3c8172cf2cad3608",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "3ae7e83c3c8172cf2cad3608",
+   "row": 2,
+   "label": "#2 Bidder interest · Ingredion",
+   "filing_key": {
+    "page": "24",
+    "block": "b532",
+    "quote": "Ms. Gordon advised Mr. Malkoski of Ingredion’s interest in acquiring Penford"
+   },
+   "value": {
+    "Event": "Bidder interest",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:b2d0b70efbada6c307c575b1",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "b2d0b70efbada6c307c575b1",
+   "row": 4,
+   "label": "#4 NDA signed · Ingredion",
+   "filing_key": {
+    "page": "24",
+    "block": "b536",
+    "quote": "Subsequently, Penford and Ingredion executed a Secrecy Agreement, effective as of July 20, 2014, providing for limited exchange of confidential information"
+   },
+   "value": {
+    "Event": "NDA signed",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:87e74ac27eb568f06ab29cf3",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "87e74ac27eb568f06ab29cf3",
+   "row": 9,
+   "label": "#9 Bidder interest · Party A",
+   "filing_key": {
+    "page": "26",
+    "block": "b552",
+    "quote": "Party A’s Chief Executive Officer also informally discussed Party A’s potential interest in acquiring or combining with Penford"
+   },
+   "value": {
+    "Event": "Bidder interest",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:3857e1013deb032f828d4465",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "3857e1013deb032f828d4465",
+   "row": 10,
+   "label": "#10 Target interest · SEACOR Holdings Inc.",
+   "filing_key": {
+    "page": "26",
+    "block": "b552",
+    "quote": "Mr. Behrens stated that SEACOR was not interested in participating in any potential sale process at that time"
+   },
+   "value": {
+    "Event": "Target interest",
+    "Type": "Unknown",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:e75cec6f183eda737573b489",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "e75cec6f183eda737573b489",
+   "row": 14,
+   "label": "#14 NDA signed · Ingredion",
+   "filing_key": {
+    "page": "27",
+    "block": "b560",
+    "quote": "On August 21, 2014, Ingredion and Penford executed a nondisclosure and standstill agreement that superseded the prior Secrecy Agreement."
+   },
+   "value": {
+    "Event": "NDA signed",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:abeab4cb5237f42c4d88dc09",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "abeab4cb5237f42c4d88dc09",
+   "row": 21,
+   "label": "#21 Contact · Party B",
+   "filing_key": {
+    "page": "28",
+    "block": "b571",
+    "quote": "another strategic counterparty contacted by Deutsche Bank (referred to as Party B) expressed interest in further discussions"
+   },
+   "value": {
+    "Event": "Contact",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:0b8f7b7d748cc0401e040b26",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "0b8f7b7d748cc0401e040b26",
+   "row": 22,
+   "label": "#22 Contact · Party C",
+   "filing_key": {
+    "page": "28",
+    "block": "b572",
+    "quote": "a third potential strategic counterparty contacted by Deutsche Bank (referred to as Party C) expressed interest in pursuing a transaction"
+   },
+   "value": {
+    "Event": "Contact",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:a7f81dbd882a82a4b86f9224",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "a7f81dbd882a82a4b86f9224",
+   "row": 23,
+   "label": "#23 Contact · Party D",
+   "filing_key": {
+    "page": "28",
+    "block": "b573",
+    "quote": "a fourth potential strategic counterparty contacted by Deutsche Bank (referred to as Party D) expressed interest"
+   },
+   "value": {
+    "Event": "Contact",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:c59ea60f2e8cdbc3d2b66dbf",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "c59ea60f2e8cdbc3d2b66dbf",
+   "row": 25,
+   "label": "#25 Contact · Party E",
+   "filing_key": {
+    "page": "28",
+    "block": "b575",
+    "quote": "Deutsche Bank left a voicemail for another strategic counterparty (referred to as Party E) regarding a potential transaction"
+   },
+   "value": {
+    "Event": "Contact",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:18b499e2e0ebc414fdbaba66",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "18b499e2e0ebc414fdbaba66",
+   "row": 26,
+   "label": "#26 NDA signed · Party C",
+   "filing_key": {
+    "page": "28",
+    "block": "b576",
+    "quote": "On September 15, 2014, Penford and Party C executed a nondisclosure and standstill agreement"
+   },
+   "value": {
+    "Event": "NDA signed",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D7"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:f962c804536a4dacd8ecd3e9",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "f962c804536a4dacd8ecd3e9",
+   "row": 28,
+   "label": "#28 NDA signed · Party D",
+   "filing_key": {
+    "page": "29",
+    "block": "b581",
+    "quote": "On September 23, 2014, Penford and Party D executed a nondisclosure and standstill agreement"
+   },
+   "value": {
+    "Event": "NDA signed",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:fc71fbfe92e46074f3196bf0",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "fc71fbfe92e46074f3196bf0",
+   "row": 30,
+   "label": "#30 Contact · Party F",
+   "filing_key": {
+    "page": "29",
+    "block": "b584",
+    "quote": "Deutsche Bank contacted Party F regarding a potential transaction with Penford."
+   },
+   "value": {
+    "Event": "Contact",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:3af769123d79ddc4dab85581",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "3af769123d79ddc4dab85581",
+   "row": 33,
+   "label": "#33 NDA signed · Party A",
+   "filing_key": {
+    "page": "30",
+    "block": "b590",
+    "quote": "On September 30, 2014, Penford and Party A executed a nondisclosure and standstill agreement"
+   },
+   "value": {
+    "Event": "NDA signed",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:21541f3ad3647b0622a9c236",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "21541f3ad3647b0622a9c236",
+   "row": 43,
+   "label": "#43 Withdrew · Party D",
+   "filing_key": {
+    "page": "31",
+    "block": "b603",
+    "quote": "Party D, who indicated that it did not intend to move forward with discussions regarding a potential transaction involving the Company"
+   },
+   "value": {
+    "Event": "Withdrew",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": "Not stated"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:d95afd24221b8c4b3f3721a7",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "d95afd24221b8c4b3f3721a7",
+   "row": 49,
+   "label": "#49 Not selected at signing · Party A",
+   "filing_key": {
+    "page": "33",
+    "block": "b629",
+    "quote": "which did not include any non-binding indications of interest of equal to or more than the $19.00 per share agreed upon with Ingredion"
+   },
+   "value": {
+    "Event": "Not selected at signing",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": "Not stated"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A12"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A12 (audit README §2)",
+    "penford:11 judged unresolved",
+    "row marked needs decision"
+   ],
+   "audit": [
+    "penford:11"
+   ],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:b8a684bfc0089fdfeb0266bc",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "b8a684bfc0089fdfeb0266bc",
+   "row": 50,
+   "label": "#50 Not selected at signing · Party C",
+   "filing_key": {
+    "page": "32",
+    "block": "b617",
+    "quote": "the remaining three of which either did not move forward in a timely manner or made a lower indication of value"
+   },
+   "value": {
+    "Event": "Not selected at signing",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": "Not stated"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A12"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A12 (audit README §2)"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "deal-fact:aea07a77791363d15455fd22",
+   "section": "round map and deadline outcomes",
+   "kind": "deal fact",
+   "sheet": "Deal facts",
+   "uid": "aea07a77791363d15455fd22",
+   "row": null,
+   "label": "Number of processes",
+   "filing_key": {
+    "page": null,
+    "block": null,
+    "quote": null
+   },
+   "value": {
+    "Value": "1"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "round:12e31471ac101106fca180dd",
+   "section": "round map and deadline outcomes",
+   "kind": "round",
+   "sheet": "Rounds",
+   "uid": "12e31471ac101106fca180dd",
+   "row": null,
+   "label": "Process 1 / Round 1",
+   "filing_key": {
+    "page": "28",
+    "block": "b571",
+    "quote": "Deutsche Bank contacted six potential strategic counterparties in the same or similar industries to gauge initial interest regarding a potential transaction with Penford"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "1",
+    "Opened": "2014-09-05",
+    "Who was in": "4 Strategic: Ingredion (carried from round 0), Party C (NDA 09/15), Party D (NDA 09/23), Party A (NDA 09/30). Contacted but never entered: Parties B, E, F.",
+    "Finality": "Not final"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "deadline:12e31471ac101106fca180dd",
+   "section": "round map and deadline outcomes",
+   "kind": "deadline",
+   "sheet": "Rounds",
+   "uid": "12e31471ac101106fca180dd",
+   "row": null,
+   "label": "Process 1 / Round 1",
+   "filing_key": {
+    "page": null,
+    "block": null,
+    "quote": null
+   },
+   "value": {
+    "Due dates": "none stated",
+    "Deadline outcome": "No deadline stated"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D11"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "round:486c3dafa3b067bb506bb565",
+   "section": "round map and deadline outcomes",
+   "kind": "round",
+   "sheet": "Rounds",
+   "uid": "486c3dafa3b067bb506bb565",
+   "row": null,
+   "label": "Process 1 / Round 2",
+   "filing_key": {
+    "page": "31",
+    "block": "b597",
+    "quote": "the directors present at the board meeting unanimously directed management to proceed to negotiate and finalize a definitive agreement with Ingredion."
+   },
+   "value": {
+    "Process": "1",
+    "Round": "2",
+    "Opened": "2014-10-03",
+    "Who was in": "1 Strategic: Ingredion. Still being received, not admitted: Party A (Strategic).",
+    "Finality": "Inferred final"
+   },
+   "basis": "inference",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "penford:13",
+    "penford:14"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "deadline:486c3dafa3b067bb506bb565",
+   "section": "round map and deadline outcomes",
+   "kind": "deadline",
+   "sheet": "Rounds",
+   "uid": "486c3dafa3b067bb506bb565",
+   "row": null,
+   "label": "Process 1 / Round 2",
+   "filing_key": {
+    "page": null,
+    "block": null,
+    "quote": null
+   },
+   "value": {
+    "Due dates": "none stated",
+    "Deadline outcome": "No deadline stated"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D11"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:4b3cf5f2e2379b94950900fd",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "4b3cf5f2e2379b94950900fd",
+   "row": 7,
+   "label": "#7 Bid · Ingredion",
+   "filing_key": {
+    "page": "25",
+    "block": "b546",
+    "quote": "Mr. Fortnum suggested that a price of $17.00 per share on a fully diluted basis could likely get support from Ingredion’s board"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "0"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:6cb0994a9d88492fb97de577",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "6cb0994a9d88492fb97de577",
+   "row": 8,
+   "label": "#8 Bid · Ingredion",
+   "filing_key": {
+    "page": "25",
+    "block": "b547",
+    "quote": "providing an indicative valuation of $18.00 per share in cash for all of the outstanding capital stock of Penford on a fully diluted basis"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "0"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:23b41b54c6945d13018d7e1e",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "23b41b54c6945d13018d7e1e",
+   "row": 27,
+   "label": "#27 Bid · Ingredion",
+   "filing_key": {
+    "page": "29",
+    "block": "b579",
+    "quote": "Mr. Fortnum indicated during the conversation that Ingredion could potentially increase its proposal from $18.00 to $18.25 or $18.50 per share on a fully diluted basis"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "1"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:866de0bf48b4ed3163d25208",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "866de0bf48b4ed3163d25208",
+   "row": 36,
+   "label": "#36 Bid · Ingredion",
+   "filing_key": {
+    "page": "30",
+    "block": "b592",
+    "quote": "Mr. Fortnum then stated that Ingredion was prepared to move forward based on a proposed price of $18.50 per share on a fully diluted basis."
+   },
+   "value": {
+    "Process": "1",
+    "Round": "1"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:ee3d437e517777101d0f959b",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "ee3d437e517777101d0f959b",
+   "row": 37,
+   "label": "#37 Bid · Ingredion",
+   "filing_key": {
+    "page": "30",
+    "block": "b593",
+    "quote": "Penford received a letter from Ingredion regarding its indication of interest and increasing the proposed price to $19.00 per share of outstanding Penford capital stock on a fully diluted basis"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "1"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:efadfac09c0746de83cf51eec7993a6d",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "efadfac09c0746de83cf51eec7993a6d",
+   "row": 42,
+   "label": "#42 Bid reaffirmed · Ingredion",
+   "filing_key": {
+    "page": "31",
+    "block": "b602",
+    "quote": "On October 8, 2014, Sidley Austin circulated a revised draft of the merger agreement to Perkins Coie."
+   },
+   "value": {
+    "Process": "1",
+    "Round": "2"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "penford:12"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:21541f3ad3647b0622a9c236",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "21541f3ad3647b0622a9c236",
+   "row": 43,
+   "label": "#43 Withdrew · Party D",
+   "filing_key": {
+    "page": "31",
+    "block": "b603",
+    "quote": "Party D, who indicated that it did not intend to move forward with discussions regarding a potential transaction involving the Company"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "1"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:5c893d3f93d4bd8a798b452c",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "5c893d3f93d4bd8a798b452c",
+   "row": 47,
+   "label": "#47 Bid · Party A",
+   "filing_key": {
+    "page": "32",
+    "block": "b616",
+    "quote": "Party A provided a formal letter with its indication of interest with respect to an acquisition of the Company at a price of $16.00 per share"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "2"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "unresolved",
+   "status_reasons": [
+    "row marked needs decision"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:d95afd24221b8c4b3f3721a7",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "d95afd24221b8c4b3f3721a7",
+   "row": 49,
+   "label": "#49 Not selected at signing · Party A",
+   "filing_key": {
+    "page": "33",
+    "block": "b629",
+    "quote": "which did not include any non-binding indications of interest of equal to or more than the $19.00 per share agreed upon with Ingredion"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "2"
+   },
+   "basis": "inference",
+   "basis_refs": [],
+   "status": "unresolved",
+   "status_reasons": [
+    "row marked needs decision"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:b8a684bfc0089fdfeb0266bc",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "b8a684bfc0089fdfeb0266bc",
+   "row": 50,
+   "label": "#50 Not selected at signing · Party C",
+   "filing_key": {
+    "page": "32",
+    "block": "b617",
+    "quote": "the remaining three of which either did not move forward in a timely manner or made a lower indication of value"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "1"
+   },
+   "basis": "inference",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "price:4b3cf5f2e2379b94950900fd",
+   "section": "bids",
+   "kind": "price",
+   "sheet": "Deal ledger",
+   "uid": "4b3cf5f2e2379b94950900fd",
+   "row": 7,
+   "label": "#7 Bid · Ingredion",
+   "filing_key": {
+    "page": "25",
+    "block": "b546",
+    "quote": "Mr. Fortnum suggested that a price of $17.00 per share on a fully diluted basis could likely get support from Ingredion’s board"
+   },
+   "value": {
+    "Price low": "17",
+    "Price high": "17"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "stock:4b3cf5f2e2379b94950900fd",
+   "section": "bids",
+   "kind": "stock",
+   "sheet": "Deal ledger",
+   "uid": "4b3cf5f2e2379b94950900fd",
+   "row": 7,
+   "label": "#7 Bid · Ingredion",
+   "filing_key": {
+    "page": "25",
+    "block": "b546",
+    "quote": "Mr. Fortnum suggested that a price of $17.00 per share on a fully diluted basis could likely get support from Ingredion’s board"
+   },
+   "value": {
+    "All cash": "Not stated"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "note": "All cash Not stated crosswalks to Stock % Not stated"
+   },
+   "crosswalk": {
+    "All cash": "Not stated",
+    "Stock %": "Not stated"
+   }
+  },
+  {
+   "id": "formality:4b3cf5f2e2379b94950900fd",
+   "section": "bids",
+   "kind": "formality",
+   "sheet": "Deal ledger",
+   "uid": "4b3cf5f2e2379b94950900fd",
+   "row": 7,
+   "label": "#7 Bid · Ingredion",
+   "filing_key": {
+    "page": "25",
+    "block": "b546",
+    "quote": "Mr. Fortnum suggested that a price of $17.00 per share on a fully diluted basis could likely get support from Ingredion’s board"
+   },
+   "value": {
+    "Formality": "Informal"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "conditions:4b3cf5f2e2379b94950900fd",
+   "section": "bids",
+   "kind": "conditions",
+   "sheet": "Deal ledger",
+   "uid": "4b3cf5f2e2379b94950900fd",
+   "row": 7,
+   "label": "#7 Bid · Ingredion",
+   "filing_key": {
+    "page": "25",
+    "block": "b546",
+    "quote": "Mr. Fortnum suggested that a price of $17.00 per share on a fully diluted basis could likely get support from Ingredion’s board"
+   },
+   "value": {
+    "Conditions": "Unclear"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "H1–H3"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "terms:4b3cf5f2e2379b94950900fd",
+   "section": "bids",
+   "kind": "terms",
+   "sheet": "Deal ledger",
+   "uid": "4b3cf5f2e2379b94950900fd",
+   "row": 7,
+   "label": "#7 Bid · Ingredion",
+   "filing_key": {
+    "page": "25",
+    "block": "b546",
+    "quote": "Mr. Fortnum suggested that a price of $17.00 per share on a fully diluted basis could likely get support from Ingredion’s board"
+   },
+   "value": {},
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: CVR/earnout",
+     "new column: CVR/earnout value",
+     "new column: Due diligence",
+     "new column: Financing",
+     "new column: Regulatory",
+     "new column: Antitrust",
+     "new column: Exclusivity"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "price:6cb0994a9d88492fb97de577",
+   "section": "bids",
+   "kind": "price",
+   "sheet": "Deal ledger",
+   "uid": "6cb0994a9d88492fb97de577",
+   "row": 8,
+   "label": "#8 Bid · Ingredion",
+   "filing_key": {
+    "page": "25",
+    "block": "b547",
+    "quote": "providing an indicative valuation of $18.00 per share in cash for all of the outstanding capital stock of Penford on a fully diluted basis"
+   },
+   "value": {
+    "Price low": "18",
+    "Price high": "18"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "stock:6cb0994a9d88492fb97de577",
+   "section": "bids",
+   "kind": "stock",
+   "sheet": "Deal ledger",
+   "uid": "6cb0994a9d88492fb97de577",
+   "row": 8,
+   "label": "#8 Bid · Ingredion",
+   "filing_key": {
+    "page": "25",
+    "block": "b547",
+    "quote": "providing an indicative valuation of $18.00 per share in cash for all of the outstanding capital stock of Penford on a fully diluted basis"
+   },
+   "value": {
+    "All cash": "Yes"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "note": "All cash Yes crosswalks to Stock % 0"
+   },
+   "crosswalk": {
+    "All cash": "Yes",
+    "Stock %": 0
+   }
+  },
+  {
+   "id": "formality:6cb0994a9d88492fb97de577",
+   "section": "bids",
+   "kind": "formality",
+   "sheet": "Deal ledger",
+   "uid": "6cb0994a9d88492fb97de577",
+   "row": 8,
+   "label": "#8 Bid · Ingredion",
+   "filing_key": {
+    "page": "25",
+    "block": "b547",
+    "quote": "providing an indicative valuation of $18.00 per share in cash for all of the outstanding capital stock of Penford on a fully diluted basis"
+   },
+   "value": {
+    "Formality": "Informal"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D9",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "conditions:6cb0994a9d88492fb97de577",
+   "section": "bids",
+   "kind": "conditions",
+   "sheet": "Deal ledger",
+   "uid": "6cb0994a9d88492fb97de577",
+   "row": 8,
+   "label": "#8 Bid · Ingredion",
+   "filing_key": {
+    "page": "25",
+    "block": "b547",
+    "quote": "providing an indicative valuation of $18.00 per share in cash for all of the outstanding capital stock of Penford on a fully diluted basis"
+   },
+   "value": {
+    "Conditions": "Unclear"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "D5",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "terms:6cb0994a9d88492fb97de577",
+   "section": "bids",
+   "kind": "terms",
+   "sheet": "Deal ledger",
+   "uid": "6cb0994a9d88492fb97de577",
+   "row": 8,
+   "label": "#8 Bid · Ingredion",
+   "filing_key": {
+    "page": "25",
+    "block": "b547",
+    "quote": "providing an indicative valuation of $18.00 per share in cash for all of the outstanding capital stock of Penford on a fully diluted basis"
+   },
+   "value": {},
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: CVR/earnout",
+     "new column: CVR/earnout value",
+     "new column: Due diligence",
+     "new column: Financing",
+     "new column: Regulatory",
+     "new column: Antitrust",
+     "new column: Exclusivity"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "price:23b41b54c6945d13018d7e1e",
+   "section": "bids",
+   "kind": "price",
+   "sheet": "Deal ledger",
+   "uid": "23b41b54c6945d13018d7e1e",
+   "row": 27,
+   "label": "#27 Bid · Ingredion",
+   "filing_key": {
+    "page": "29",
+    "block": "b579",
+    "quote": "Mr. Fortnum indicated during the conversation that Ingredion could potentially increase its proposal from $18.00 to $18.25 or $18.50 per share on a fully diluted basis"
+   },
+   "value": {
+    "Price low": "18.25",
+    "Price high": "18.5"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "stock:23b41b54c6945d13018d7e1e",
+   "section": "bids",
+   "kind": "stock",
+   "sheet": "Deal ledger",
+   "uid": "23b41b54c6945d13018d7e1e",
+   "row": 27,
+   "label": "#27 Bid · Ingredion",
+   "filing_key": {
+    "page": "29",
+    "block": "b579",
+    "quote": "Mr. Fortnum indicated during the conversation that Ingredion could potentially increase its proposal from $18.00 to $18.25 or $18.50 per share on a fully diluted basis"
+   },
+   "value": {
+    "All cash": "Not stated"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "note": "All cash Not stated crosswalks to Stock % Not stated"
+   },
+   "crosswalk": {
+    "All cash": "Not stated",
+    "Stock %": "Not stated"
+   }
+  },
+  {
+   "id": "formality:23b41b54c6945d13018d7e1e",
+   "section": "bids",
+   "kind": "formality",
+   "sheet": "Deal ledger",
+   "uid": "23b41b54c6945d13018d7e1e",
+   "row": 27,
+   "label": "#27 Bid · Ingredion",
+   "filing_key": {
+    "page": "29",
+    "block": "b579",
+    "quote": "Mr. Fortnum indicated during the conversation that Ingredion could potentially increase its proposal from $18.00 to $18.25 or $18.50 per share on a fully diluted basis"
+   },
+   "value": {
+    "Formality": "Informal"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D9",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "conditions:23b41b54c6945d13018d7e1e",
+   "section": "bids",
+   "kind": "conditions",
+   "sheet": "Deal ledger",
+   "uid": "23b41b54c6945d13018d7e1e",
+   "row": 27,
+   "label": "#27 Bid · Ingredion",
+   "filing_key": {
+    "page": "29",
+    "block": "b579",
+    "quote": "Mr. Fortnum indicated during the conversation that Ingredion could potentially increase its proposal from $18.00 to $18.25 or $18.50 per share on a fully diluted basis"
+   },
+   "value": {
+    "Conditions": "Unclear"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "terms:23b41b54c6945d13018d7e1e",
+   "section": "bids",
+   "kind": "terms",
+   "sheet": "Deal ledger",
+   "uid": "23b41b54c6945d13018d7e1e",
+   "row": 27,
+   "label": "#27 Bid · Ingredion",
+   "filing_key": {
+    "page": "29",
+    "block": "b579",
+    "quote": "Mr. Fortnum indicated during the conversation that Ingredion could potentially increase its proposal from $18.00 to $18.25 or $18.50 per share on a fully diluted basis"
+   },
+   "value": {},
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: CVR/earnout",
+     "new column: CVR/earnout value",
+     "new column: Due diligence",
+     "new column: Financing",
+     "new column: Regulatory",
+     "new column: Antitrust",
+     "new column: Exclusivity"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "price:866de0bf48b4ed3163d25208",
+   "section": "bids",
+   "kind": "price",
+   "sheet": "Deal ledger",
+   "uid": "866de0bf48b4ed3163d25208",
+   "row": 36,
+   "label": "#36 Bid · Ingredion",
+   "filing_key": {
+    "page": "30",
+    "block": "b592",
+    "quote": "Mr. Fortnum then stated that Ingredion was prepared to move forward based on a proposed price of $18.50 per share on a fully diluted basis."
+   },
+   "value": {
+    "Price low": "18.5",
+    "Price high": "18.5"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "stock:866de0bf48b4ed3163d25208",
+   "section": "bids",
+   "kind": "stock",
+   "sheet": "Deal ledger",
+   "uid": "866de0bf48b4ed3163d25208",
+   "row": 36,
+   "label": "#36 Bid · Ingredion",
+   "filing_key": {
+    "page": "30",
+    "block": "b592",
+    "quote": "Mr. Fortnum then stated that Ingredion was prepared to move forward based on a proposed price of $18.50 per share on a fully diluted basis."
+   },
+   "value": {
+    "All cash": "Not stated"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "note": "All cash Not stated crosswalks to Stock % Not stated"
+   },
+   "crosswalk": {
+    "All cash": "Not stated",
+    "Stock %": "Not stated"
+   }
+  },
+  {
+   "id": "formality:866de0bf48b4ed3163d25208",
+   "section": "bids",
+   "kind": "formality",
+   "sheet": "Deal ledger",
+   "uid": "866de0bf48b4ed3163d25208",
+   "row": 36,
+   "label": "#36 Bid · Ingredion",
+   "filing_key": {
+    "page": "30",
+    "block": "b592",
+    "quote": "Mr. Fortnum then stated that Ingredion was prepared to move forward based on a proposed price of $18.50 per share on a fully diluted basis."
+   },
+   "value": {
+    "Formality": "Informal"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D9",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "conditions:866de0bf48b4ed3163d25208",
+   "section": "bids",
+   "kind": "conditions",
+   "sheet": "Deal ledger",
+   "uid": "866de0bf48b4ed3163d25208",
+   "row": 36,
+   "label": "#36 Bid · Ingredion",
+   "filing_key": {
+    "page": "30",
+    "block": "b592",
+    "quote": "Mr. Fortnum then stated that Ingredion was prepared to move forward based on a proposed price of $18.50 per share on a fully diluted basis."
+   },
+   "value": {
+    "Conditions": "Unclear"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "terms:866de0bf48b4ed3163d25208",
+   "section": "bids",
+   "kind": "terms",
+   "sheet": "Deal ledger",
+   "uid": "866de0bf48b4ed3163d25208",
+   "row": 36,
+   "label": "#36 Bid · Ingredion",
+   "filing_key": {
+    "page": "30",
+    "block": "b592",
+    "quote": "Mr. Fortnum then stated that Ingredion was prepared to move forward based on a proposed price of $18.50 per share on a fully diluted basis."
+   },
+   "value": {},
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: CVR/earnout",
+     "new column: CVR/earnout value",
+     "new column: Due diligence",
+     "new column: Financing",
+     "new column: Regulatory",
+     "new column: Antitrust",
+     "new column: Exclusivity"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "price:ee3d437e517777101d0f959b",
+   "section": "bids",
+   "kind": "price",
+   "sheet": "Deal ledger",
+   "uid": "ee3d437e517777101d0f959b",
+   "row": 37,
+   "label": "#37 Bid · Ingredion",
+   "filing_key": {
+    "page": "30",
+    "block": "b593",
+    "quote": "Penford received a letter from Ingredion regarding its indication of interest and increasing the proposed price to $19.00 per share of outstanding Penford capital stock on a fully diluted basis"
+   },
+   "value": {
+    "Price low": "19",
+    "Price high": "19"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "stock:ee3d437e517777101d0f959b",
+   "section": "bids",
+   "kind": "stock",
+   "sheet": "Deal ledger",
+   "uid": "ee3d437e517777101d0f959b",
+   "row": 37,
+   "label": "#37 Bid · Ingredion",
+   "filing_key": {
+    "page": "30",
+    "block": "b593",
+    "quote": "Penford received a letter from Ingredion regarding its indication of interest and increasing the proposed price to $19.00 per share of outstanding Penford capital stock on a fully diluted basis"
+   },
+   "value": {
+    "All cash": "Not stated"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "note": "All cash Not stated crosswalks to Stock % Not stated"
+   },
+   "crosswalk": {
+    "All cash": "Not stated",
+    "Stock %": "Not stated"
+   }
+  },
+  {
+   "id": "formality:ee3d437e517777101d0f959b",
+   "section": "bids",
+   "kind": "formality",
+   "sheet": "Deal ledger",
+   "uid": "ee3d437e517777101d0f959b",
+   "row": 37,
+   "label": "#37 Bid · Ingredion",
+   "filing_key": {
+    "page": "30",
+    "block": "b593",
+    "quote": "Penford received a letter from Ingredion regarding its indication of interest and increasing the proposed price to $19.00 per share of outstanding Penford capital stock on a fully diluted basis"
+   },
+   "value": {
+    "Formality": "Informal"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D9",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "conditions:ee3d437e517777101d0f959b",
+   "section": "bids",
+   "kind": "conditions",
+   "sheet": "Deal ledger",
+   "uid": "ee3d437e517777101d0f959b",
+   "row": 37,
+   "label": "#37 Bid · Ingredion",
+   "filing_key": {
+    "page": "30",
+    "block": "b593",
+    "quote": "Penford received a letter from Ingredion regarding its indication of interest and increasing the proposed price to $19.00 per share of outstanding Penford capital stock on a fully diluted basis"
+   },
+   "value": {
+    "Conditions": "Unclear"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "terms:ee3d437e517777101d0f959b",
+   "section": "bids",
+   "kind": "terms",
+   "sheet": "Deal ledger",
+   "uid": "ee3d437e517777101d0f959b",
+   "row": 37,
+   "label": "#37 Bid · Ingredion",
+   "filing_key": {
+    "page": "30",
+    "block": "b593",
+    "quote": "Penford received a letter from Ingredion regarding its indication of interest and increasing the proposed price to $19.00 per share of outstanding Penford capital stock on a fully diluted basis"
+   },
+   "value": {},
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: CVR/earnout",
+     "new column: CVR/earnout value",
+     "new column: Due diligence",
+     "new column: Financing",
+     "new column: Regulatory",
+     "new column: Antitrust",
+     "new column: Exclusivity"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "price:efadfac09c0746de83cf51eec7993a6d",
+   "section": "bids",
+   "kind": "price",
+   "sheet": "Deal ledger",
+   "uid": "efadfac09c0746de83cf51eec7993a6d",
+   "row": 42,
+   "label": "#42 Bid reaffirmed · Ingredion",
+   "filing_key": {
+    "page": "31",
+    "block": "b602",
+    "quote": "On October 8, 2014, Sidley Austin circulated a revised draft of the merger agreement to Perkins Coie."
+   },
+   "value": {
+    "Price low": "19",
+    "Price high": "19"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "penford:12"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D13"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "stock:efadfac09c0746de83cf51eec7993a6d",
+   "section": "bids",
+   "kind": "stock",
+   "sheet": "Deal ledger",
+   "uid": "efadfac09c0746de83cf51eec7993a6d",
+   "row": 42,
+   "label": "#42 Bid reaffirmed · Ingredion",
+   "filing_key": {
+    "page": "31",
+    "block": "b602",
+    "quote": "On October 8, 2014, Sidley Austin circulated a revised draft of the merger agreement to Perkins Coie."
+   },
+   "value": {
+    "All cash": "Not stated"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "penford:12"
+   ],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "note": "All cash Not stated crosswalks to Stock % Not stated"
+   },
+   "crosswalk": {
+    "All cash": "Not stated",
+    "Stock %": "Not stated"
+   }
+  },
+  {
+   "id": "formality:efadfac09c0746de83cf51eec7993a6d",
+   "section": "bids",
+   "kind": "formality",
+   "sheet": "Deal ledger",
+   "uid": "efadfac09c0746de83cf51eec7993a6d",
+   "row": 42,
+   "label": "#42 Bid reaffirmed · Ingredion",
+   "filing_key": {
+    "page": "31",
+    "block": "b602",
+    "quote": "On October 8, 2014, Sidley Austin circulated a revised draft of the merger agreement to Perkins Coie."
+   },
+   "value": {
+    "Formality": "Formal"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A6"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A6 (audit README §2)"
+   ],
+   "audit": [
+    "penford:12"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D9",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "conditions:efadfac09c0746de83cf51eec7993a6d",
+   "section": "bids",
+   "kind": "conditions",
+   "sheet": "Deal ledger",
+   "uid": "efadfac09c0746de83cf51eec7993a6d",
+   "row": 42,
+   "label": "#42 Bid reaffirmed · Ingredion",
+   "filing_key": {
+    "page": "31",
+    "block": "b602",
+    "quote": "On October 8, 2014, Sidley Austin circulated a revised draft of the merger agreement to Perkins Coie."
+   },
+   "value": {
+    "Conditions": "Unclear"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A6"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A6 (audit README §2)"
+   ],
+   "audit": [
+    "penford:12"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "terms:efadfac09c0746de83cf51eec7993a6d",
+   "section": "bids",
+   "kind": "terms",
+   "sheet": "Deal ledger",
+   "uid": "efadfac09c0746de83cf51eec7993a6d",
+   "row": 42,
+   "label": "#42 Bid reaffirmed · Ingredion",
+   "filing_key": {
+    "page": "31",
+    "block": "b602",
+    "quote": "On October 8, 2014, Sidley Austin circulated a revised draft of the merger agreement to Perkins Coie."
+   },
+   "value": {},
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "penford:12"
+   ],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: CVR/earnout",
+     "new column: CVR/earnout value",
+     "new column: Due diligence",
+     "new column: Financing",
+     "new column: Regulatory",
+     "new column: Antitrust",
+     "new column: Exclusivity"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "price:5c893d3f93d4bd8a798b452c",
+   "section": "bids",
+   "kind": "price",
+   "sheet": "Deal ledger",
+   "uid": "5c893d3f93d4bd8a798b452c",
+   "row": 47,
+   "label": "#47 Bid · Party A",
+   "filing_key": {
+    "page": "32",
+    "block": "b616",
+    "quote": "Party A provided a formal letter with its indication of interest with respect to an acquisition of the Company at a price of $16.00 per share"
+   },
+   "value": {
+    "Price low": "16",
+    "Price high": "16"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "unresolved",
+   "status_reasons": [
+    "row marked needs decision"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "stock:5c893d3f93d4bd8a798b452c",
+   "section": "bids",
+   "kind": "stock",
+   "sheet": "Deal ledger",
+   "uid": "5c893d3f93d4bd8a798b452c",
+   "row": 47,
+   "label": "#47 Bid · Party A",
+   "filing_key": {
+    "page": "32",
+    "block": "b616",
+    "quote": "Party A provided a formal letter with its indication of interest with respect to an acquisition of the Company at a price of $16.00 per share"
+   },
+   "value": {
+    "All cash": "Not stated"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "unresolved",
+   "status_reasons": [
+    "row marked needs decision"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "note": "All cash Not stated crosswalks to Stock % Not stated"
+   },
+   "crosswalk": {
+    "All cash": "Not stated",
+    "Stock %": "Not stated"
+   }
+  },
+  {
+   "id": "formality:5c893d3f93d4bd8a798b452c",
+   "section": "bids",
+   "kind": "formality",
+   "sheet": "Deal ledger",
+   "uid": "5c893d3f93d4bd8a798b452c",
+   "row": 47,
+   "label": "#47 Bid · Party A",
+   "filing_key": {
+    "page": "32",
+    "block": "b616",
+    "quote": "Party A provided a formal letter with its indication of interest with respect to an acquisition of the Company at a price of $16.00 per share"
+   },
+   "value": {
+    "Formality": "Informal"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "unresolved",
+   "status_reasons": [
+    "row marked needs decision"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "conditions:5c893d3f93d4bd8a798b452c",
+   "section": "bids",
+   "kind": "conditions",
+   "sheet": "Deal ledger",
+   "uid": "5c893d3f93d4bd8a798b452c",
+   "row": 47,
+   "label": "#47 Bid · Party A",
+   "filing_key": {
+    "page": "32",
+    "block": "b616",
+    "quote": "Party A provided a formal letter with its indication of interest with respect to an acquisition of the Company at a price of $16.00 per share"
+   },
+   "value": {
+    "Conditions": "Unclear"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "unresolved",
+   "status_reasons": [
+    "row marked needs decision"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "H1–H3"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "terms:5c893d3f93d4bd8a798b452c",
+   "section": "bids",
+   "kind": "terms",
+   "sheet": "Deal ledger",
+   "uid": "5c893d3f93d4bd8a798b452c",
+   "row": 47,
+   "label": "#47 Bid · Party A",
+   "filing_key": {
+    "page": "32",
+    "block": "b616",
+    "quote": "Party A provided a formal letter with its indication of interest with respect to an acquisition of the Company at a price of $16.00 per share"
+   },
+   "value": {},
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "unresolved",
+   "status_reasons": [
+    "row marked needs decision"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: CVR/earnout",
+     "new column: CVR/earnout value",
+     "new column: Due diligence",
+     "new column: Financing",
+     "new column: Regulatory",
+     "new column: Antitrust",
+     "new column: Exclusivity"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:a872f0ee44b60b1d34de617d",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "a872f0ee44b60b1d34de617d",
+   "row": 1,
+   "label": "#1 Activist · SEACOR Holdings Inc.",
+   "filing_key": {
+    "page": "24",
+    "block": "b531",
+    "quote": "SEACOR stated its intent to nominate four candidates for election as directors of our board at Penford’s next annual meeting of shareholders"
+   },
+   "value": {
+    "When": "07/11/2014",
+    "Sort date": "2014-07-11",
+    "Date from": "2014-07-11",
+    "Date to": "2014-07-11"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:3ae7e83c3c8172cf2cad3608",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "3ae7e83c3c8172cf2cad3608",
+   "row": 2,
+   "label": "#2 Bidder interest · Ingredion",
+   "filing_key": {
+    "page": "24",
+    "block": "b532",
+    "quote": "Ms. Gordon advised Mr. Malkoski of Ingredion’s interest in acquiring Penford"
+   },
+   "value": {
+    "When": "07/17/2014",
+    "Sort date": "2014-07-17",
+    "Date from": "2014-07-17",
+    "Date to": "2014-07-17"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:36be3f44e12699024238f3c2",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "36be3f44e12699024238f3c2",
+   "row": 3,
+   "label": "#3 Other material event · Ingredion",
+   "filing_key": {
+    "page": "24",
+    "block": "b535",
+    "quote": "stating that it could be a challenge for Ingredion to reach this value given the implied enterprise value and EBITDA multiple at that price"
+   },
+   "value": {
+    "When": "07/19/2014",
+    "Sort date": "2014-07-19",
+    "Date from": "2014-07-19",
+    "Date to": "2014-07-19"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:b2d0b70efbada6c307c575b1",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "b2d0b70efbada6c307c575b1",
+   "row": 4,
+   "label": "#4 NDA signed · Ingredion",
+   "filing_key": {
+    "page": "24",
+    "block": "b536",
+    "quote": "Subsequently, Penford and Ingredion executed a Secrecy Agreement, effective as of July 20, 2014, providing for limited exchange of confidential information"
+   },
+   "value": {
+    "When": "effective 07/20/2014 (executed after the 07/19/2014 meeting)",
+    "Sort date": "2014-07-20",
+    "Date from": "2014-07-19",
+    "Date to": "2014-08-21"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:9d202b29245c622bcac0a4ff",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "9d202b29245c622bcac0a4ff",
+   "row": 5,
+   "label": "#5 Adviser · Perkins Coie LLP",
+   "filing_key": {
+    "page": "25",
+    "block": "b541",
+    "quote": "representatives of Perkins Coie LLP (referred to as Perkins Coie), Penford’s legal counsel, were present"
+   },
+   "value": {
+    "When": "07/24/2014",
+    "Sort date": "2014-07-24",
+    "Date from": "2014-07-24",
+    "Date to": "2014-07-24"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:5fb02281ecffae2118089755",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "5fb02281ecffae2118089755",
+   "row": 6,
+   "label": "#6 Adviser · Deutsche Bank Securities Inc.",
+   "filing_key": {
+    "page": "25",
+    "block": "b541",
+    "quote": "the Executive Committee directed management to proceed to retain Deutsche Bank as the Company’s financial advisor"
+   },
+   "value": {
+    "When": "07/24/2014",
+    "Sort date": "2014-07-24",
+    "Date from": "2014-07-24",
+    "Date to": "2014-07-24"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:4b3cf5f2e2379b94950900fd",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "4b3cf5f2e2379b94950900fd",
+   "row": 7,
+   "label": "#7 Bid · Ingredion",
+   "filing_key": {
+    "page": "25",
+    "block": "b546",
+    "quote": "Mr. Fortnum suggested that a price of $17.00 per share on a fully diluted basis could likely get support from Ingredion’s board"
+   },
+   "value": {
+    "When": "08/06/2014",
+    "Sort date": "2014-08-06",
+    "Date from": "2014-08-06",
+    "Date to": "2014-08-06"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:6cb0994a9d88492fb97de577",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "6cb0994a9d88492fb97de577",
+   "row": 8,
+   "label": "#8 Bid · Ingredion",
+   "filing_key": {
+    "page": "25",
+    "block": "b547",
+    "quote": "providing an indicative valuation of $18.00 per share in cash for all of the outstanding capital stock of Penford on a fully diluted basis"
+   },
+   "value": {
+    "When": "08/10/2014",
+    "Sort date": "2014-08-10",
+    "Date from": "2014-08-10",
+    "Date to": "2014-08-10"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:87e74ac27eb568f06ab29cf3",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "87e74ac27eb568f06ab29cf3",
+   "row": 9,
+   "label": "#9 Bidder interest · Party A",
+   "filing_key": {
+    "page": "26",
+    "block": "b552",
+    "quote": "Party A’s Chief Executive Officer also informally discussed Party A’s potential interest in acquiring or combining with Penford"
+   },
+   "value": {
+    "When": "08/11/2014",
+    "Sort date": "2014-08-11",
+    "Date from": "2014-08-11",
+    "Date to": "2014-08-11"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:3857e1013deb032f828d4465",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "3857e1013deb032f828d4465",
+   "row": 10,
+   "label": "#10 Target interest · SEACOR Holdings Inc.",
+   "filing_key": {
+    "page": "26",
+    "block": "b552",
+    "quote": "Mr. Behrens stated that SEACOR was not interested in participating in any potential sale process at that time"
+   },
+   "value": {
+    "When": "08/12/2014",
+    "Sort date": "2014-08-12",
+    "Date from": "2014-08-12",
+    "Date to": "2014-08-12"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:d2869c75958bda3bba42aeef",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "d2869c75958bda3bba42aeef",
+   "row": 11,
+   "label": "#11 Target sale decision · Penford",
+   "filing_key": {
+    "page": "26",
+    "block": "b553",
+    "quote": "the board members present at the meeting unanimously directed management to proceed with further investigation and development of the proposal from Ingredion"
+   },
+   "value": {
+    "When": "08/13/2014",
+    "Sort date": "2014-08-13",
+    "Date from": "2014-08-13",
+    "Date to": "2014-08-13"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:3a8f49349ff1b01317b7536d",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "3a8f49349ff1b01317b7536d",
+   "row": 12,
+   "label": "#12 Other material event · Penford",
+   "filing_key": {
+    "page": "27",
+    "block": "b557",
+    "quote": "the board authorized management to engage with Ingredion and provide additional information regarding the Company, which the board believed would assist Ingredion in recognizing Penford’s additional value"
+   },
+   "value": {
+    "When": "08/14/2014",
+    "Sort date": "2014-08-14",
+    "Date from": "2014-08-14",
+    "Date to": "2014-08-14"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:a5cc1c571f7b145547c28fbe",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "a5cc1c571f7b145547c28fbe",
+   "row": 13,
+   "label": "#13 Exclusivity changed · Ingredion",
+   "filing_key": {
+    "page": "27",
+    "block": "b557",
+    "quote": "Mr. Malkoski indicated that the current status of negotiations and the proposed price did not justify providing exclusivity."
+   },
+   "value": {
+    "When": "08/14/2014",
+    "Sort date": "2014-08-14",
+    "Date from": "2014-08-14",
+    "Date to": "2014-08-14"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D15"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:e75cec6f183eda737573b489",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "e75cec6f183eda737573b489",
+   "row": 14,
+   "label": "#14 NDA signed · Ingredion",
+   "filing_key": {
+    "page": "27",
+    "block": "b560",
+    "quote": "On August 21, 2014, Ingredion and Penford executed a nondisclosure and standstill agreement that superseded the prior Secrecy Agreement."
+   },
+   "value": {
+    "When": "08/21/2014",
+    "Sort date": "2014-08-21",
+    "Date from": "2014-08-21",
+    "Date to": "2014-08-21"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:79b9aa49e437f02851f00f9e",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "79b9aa49e437f02851f00f9e",
+   "row": 15,
+   "label": "#15 Adviser · J.P. Morgan Securities",
+   "filing_key": {
+    "page": "27",
+    "block": "b561",
+    "quote": "representatives of J.P. Morgan Securities, Ingredion’s financial advisor"
+   },
+   "value": {
+    "When": "08/21/2014",
+    "Sort date": "2014-08-21",
+    "Date from": "2014-08-21",
+    "Date to": "2014-08-21"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:45a44c3a231b8cc32dc6009c",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "45a44c3a231b8cc32dc6009c",
+   "row": 16,
+   "label": "#16 Other material event · Ingredion",
+   "filing_key": {
+    "page": "27",
+    "block": "b561",
+    "quote": "members of Penford’s management team provided a presentation to Ms. Gordon, Mr. Fortnum, and certain other members of Ingredion’s senior management"
+   },
+   "value": {
+    "When": "08/21/2014",
+    "Sort date": "2014-08-21",
+    "Date from": "2014-08-21",
+    "Date to": "2014-08-21"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:1c8ebb499a9237048a077f46",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "1c8ebb499a9237048a077f46",
+   "row": 17,
+   "label": "#17 Target sale decision · Penford",
+   "filing_key": {
+    "page": "27",
+    "block": "b563",
+    "quote": "The board also authorized management and Deutsche Bank to proceed with the market check process as described at the meeting."
+   },
+   "value": {
+    "When": "08/28/2014",
+    "Sort date": "2014-08-28",
+    "Date from": "2014-08-28",
+    "Date to": "2014-08-28"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:6ec5d32a5eb9ff0bdef9c55d",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "6ec5d32a5eb9ff0bdef9c55d",
+   "row": 18,
+   "label": "#18 Round opened · Penford",
+   "filing_key": {
+    "page": "28",
+    "block": "b571",
+    "quote": "Deutsche Bank contacted six potential strategic counterparties in the same or similar industries to gauge initial interest regarding a potential transaction with Penford"
+   },
+   "value": {
+    "When": "early September 2014 (outreach “early- to mid-September”)",
+    "Sort date": "2014-09-05",
+    "Date from": "2014-09-01",
+    "Date to": "2014-09-09"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:ae5defb9d2a67d5422c1bd6e",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "ae5defb9d2a67d5422c1bd6e",
+   "row": 19,
+   "label": "#19 Other material event · Ingredion",
+   "filing_key": {
+    "page": "28",
+    "block": "b568",
+    "quote": "Starting in early September, Penford provided Ingredion access to an online dataroom to review due diligence materials"
+   },
+   "value": {
+    "When": "early September 2014",
+    "Sort date": "2014-09-05",
+    "Date from": "2014-09-01",
+    "Date to": "2014-09-10"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:80d4555f9f74157e1db431bc",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "80d4555f9f74157e1db431bc",
+   "row": 20,
+   "label": "#20 Other material event · Party A",
+   "filing_key": {
+    "page": "28",
+    "block": "b571",
+    "quote": "On September 9, 2014, Party A expressed interest in having further discussions regarding a transaction and Deutsche Bank forwarded Party A a nondisclosure and standstill agreement."
+   },
+   "value": {
+    "When": "early–mid September 2014; interest expressed 09/09/2014",
+    "Sort date": "2014-09-09",
+    "Date from": "2014-09-01",
+    "Date to": "2014-09-09"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "penford:1",
+    "penford:2"
+   ],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:abeab4cb5237f42c4d88dc09",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "abeab4cb5237f42c4d88dc09",
+   "row": 21,
+   "label": "#21 Contact · Party B",
+   "filing_key": {
+    "page": "28",
+    "block": "b571",
+    "quote": "another strategic counterparty contacted by Deutsche Bank (referred to as Party B) expressed interest in further discussions"
+   },
+   "value": {
+    "When": "early–mid September 2014; interest expressed 09/09/2014",
+    "Sort date": "2014-09-09",
+    "Date from": "2014-09-01",
+    "Date to": "2014-09-09"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:0b8f7b7d748cc0401e040b26",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "0b8f7b7d748cc0401e040b26",
+   "row": 22,
+   "label": "#22 Contact · Party C",
+   "filing_key": {
+    "page": "28",
+    "block": "b572",
+    "quote": "a third potential strategic counterparty contacted by Deutsche Bank (referred to as Party C) expressed interest in pursuing a transaction"
+   },
+   "value": {
+    "When": "early–mid September 2014; interest expressed 09/10/2014",
+    "Sort date": "2014-09-10",
+    "Date from": "2014-09-01",
+    "Date to": "2014-09-10"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:a7f81dbd882a82a4b86f9224",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "a7f81dbd882a82a4b86f9224",
+   "row": 23,
+   "label": "#23 Contact · Party D",
+   "filing_key": {
+    "page": "28",
+    "block": "b573",
+    "quote": "a fourth potential strategic counterparty contacted by Deutsche Bank (referred to as Party D) expressed interest"
+   },
+   "value": {
+    "When": "early–mid September 2014; interest expressed 09/11/2014",
+    "Sort date": "2014-09-11",
+    "Date from": "2014-09-01",
+    "Date to": "2014-09-11"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:eb779ff7b28d2273bfda0d89",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "eb779ff7b28d2273bfda0d89",
+   "row": 24,
+   "label": "#24 Other material event · Party B",
+   "filing_key": {
+    "page": "28",
+    "block": "b574",
+    "quote": "Party B informed Deutsche Bank that it had decided not to move forward with discussions or sign a nondisclosure agreement"
+   },
+   "value": {
+    "When": "09/12/2014",
+    "Sort date": "2014-09-12",
+    "Date from": "2014-09-12",
+    "Date to": "2014-09-12"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:c59ea60f2e8cdbc3d2b66dbf",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "c59ea60f2e8cdbc3d2b66dbf",
+   "row": 25,
+   "label": "#25 Contact · Party E",
+   "filing_key": {
+    "page": "28",
+    "block": "b575",
+    "quote": "Deutsche Bank left a voicemail for another strategic counterparty (referred to as Party E) regarding a potential transaction"
+   },
+   "value": {
+    "When": "09/12/2014",
+    "Sort date": "2014-09-12",
+    "Date from": "2014-09-12",
+    "Date to": "2014-09-12"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:18b499e2e0ebc414fdbaba66",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "18b499e2e0ebc414fdbaba66",
+   "row": 26,
+   "label": "#26 NDA signed · Party C",
+   "filing_key": {
+    "page": "28",
+    "block": "b576",
+    "quote": "On September 15, 2014, Penford and Party C executed a nondisclosure and standstill agreement"
+   },
+   "value": {
+    "When": "09/15/2014",
+    "Sort date": "2014-09-15",
+    "Date from": "2014-09-15",
+    "Date to": "2014-09-15"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:23b41b54c6945d13018d7e1e",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "23b41b54c6945d13018d7e1e",
+   "row": 27,
+   "label": "#27 Bid · Ingredion",
+   "filing_key": {
+    "page": "29",
+    "block": "b579",
+    "quote": "Mr. Fortnum indicated during the conversation that Ingredion could potentially increase its proposal from $18.00 to $18.25 or $18.50 per share on a fully diluted basis"
+   },
+   "value": {
+    "When": "09/17/2014",
+    "Sort date": "2014-09-17",
+    "Date from": "2014-09-17",
+    "Date to": "2014-09-17"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:f962c804536a4dacd8ecd3e9",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "f962c804536a4dacd8ecd3e9",
+   "row": 28,
+   "label": "#28 NDA signed · Party D",
+   "filing_key": {
+    "page": "29",
+    "block": "b581",
+    "quote": "On September 23, 2014, Penford and Party D executed a nondisclosure and standstill agreement"
+   },
+   "value": {
+    "When": "09/23/2014",
+    "Sort date": "2014-09-23",
+    "Date from": "2014-09-23",
+    "Date to": "2014-09-23"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:2a4a849d57fcb021c8a7c031",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "2a4a849d57fcb021c8a7c031",
+   "row": 29,
+   "label": "#29 Other material event · Penford",
+   "filing_key": {
+    "page": "29",
+    "block": "b583",
+    "quote": "The board determined that Party F should be approached regarding a potential transaction with Penford, but due to the factors noted above, Party G should not be contacted."
+   },
+   "value": {
+    "When": "09/24/2014",
+    "Sort date": "2014-09-24",
+    "Date from": "2014-09-24",
+    "Date to": "2014-09-24"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:fc71fbfe92e46074f3196bf0",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "fc71fbfe92e46074f3196bf0",
+   "row": 30,
+   "label": "#30 Contact · Party F",
+   "filing_key": {
+    "page": "29",
+    "block": "b584",
+    "quote": "Deutsche Bank contacted Party F regarding a potential transaction with Penford."
+   },
+   "value": {
+    "When": "09/24/2014",
+    "Sort date": "2014-09-24",
+    "Date from": "2014-09-24",
+    "Date to": "2014-09-24"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:914ec87c6da169c84af4a9a5",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "914ec87c6da169c84af4a9a5",
+   "row": 31,
+   "label": "#31 Other material event · Party C",
+   "filing_key": {
+    "page": "29",
+    "block": "b585",
+    "quote": "members of Penford’s management team provided a presentation to Party C regarding Penford’s operations"
+   },
+   "value": {
+    "When": "09/25/2014",
+    "Sort date": "2014-09-25",
+    "Date from": "2014-09-25",
+    "Date to": "2014-09-25"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:eb01e90e0282d74041972dd8",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "eb01e90e0282d74041972dd8",
+   "row": 32,
+   "label": "#32 Other material event · Party F",
+   "filing_key": {
+    "page": "30",
+    "block": "b588",
+    "quote": "Party F communicated to Deutsche Bank that a combination with Penford was not a suitable strategic fit and declined to pursue further discussions regarding a transaction"
+   },
+   "value": {
+    "When": "09/29/2014",
+    "Sort date": "2014-09-29",
+    "Date from": "2014-09-29",
+    "Date to": "2014-09-29"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:3af769123d79ddc4dab85581",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "3af769123d79ddc4dab85581",
+   "row": 33,
+   "label": "#33 NDA signed · Party A",
+   "filing_key": {
+    "page": "30",
+    "block": "b590",
+    "quote": "On September 30, 2014, Penford and Party A executed a nondisclosure and standstill agreement"
+   },
+   "value": {
+    "When": "09/30/2014",
+    "Sort date": "2014-09-30",
+    "Date from": "2014-09-30",
+    "Date to": "2014-09-30"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:13eff0aadd5ba427fa518fe4",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "13eff0aadd5ba427fa518fe4",
+   "row": 34,
+   "label": "#34 Other material event · Party A",
+   "filing_key": {
+    "page": "30",
+    "block": "b590",
+    "quote": "Penford would not provide in-person management presentations unless there was an indication that Party A’s proposed offer price would be competitive"
+   },
+   "value": {
+    "When": "09/30/2014",
+    "Sort date": "2014-09-30",
+    "Date from": "2014-09-30",
+    "Date to": "2014-09-30"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:fddc9b890a47decc6d9d63fb",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "fddc9b890a47decc6d9d63fb",
+   "row": 35,
+   "label": "#35 Other material event · Penford",
+   "filing_key": {
+    "page": "30",
+    "block": "b591",
+    "quote": "Deutsche Bank further explained that Penford’s board of directors had wanted a purchase price of at least $20.00 per share."
+   },
+   "value": {
+    "When": "10/01/2014",
+    "Sort date": "2014-10-01",
+    "Date from": "2014-10-01",
+    "Date to": "2014-10-01"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:866de0bf48b4ed3163d25208",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "866de0bf48b4ed3163d25208",
+   "row": 36,
+   "label": "#36 Bid · Ingredion",
+   "filing_key": {
+    "page": "30",
+    "block": "b592",
+    "quote": "Mr. Fortnum then stated that Ingredion was prepared to move forward based on a proposed price of $18.50 per share on a fully diluted basis."
+   },
+   "value": {
+    "When": "10/02/2014",
+    "Sort date": "2014-10-02",
+    "Date from": "2014-10-02",
+    "Date to": "2014-10-02"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:ee3d437e517777101d0f959b",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "ee3d437e517777101d0f959b",
+   "row": 37,
+   "label": "#37 Bid · Ingredion",
+   "filing_key": {
+    "page": "30",
+    "block": "b593",
+    "quote": "Penford received a letter from Ingredion regarding its indication of interest and increasing the proposed price to $19.00 per share of outstanding Penford capital stock on a fully diluted basis"
+   },
+   "value": {
+    "When": "10/02/2014",
+    "Sort date": "2014-10-02",
+    "Date from": "2014-10-02",
+    "Date to": "2014-10-02"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:1f76a7f2b97048c3310e15bf",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "1f76a7f2b97048c3310e15bf",
+   "row": 38,
+   "label": "#38 Round opened · Penford",
+   "filing_key": {
+    "page": "31",
+    "block": "b597",
+    "quote": "the directors present at the board meeting unanimously directed management to proceed to negotiate and finalize a definitive agreement with Ingredion."
+   },
+   "value": {
+    "When": "10/03/2014",
+    "Sort date": "2014-10-03",
+    "Date from": "2014-10-03",
+    "Date to": "2014-10-03"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:4e1ae451a1f90ed24cb59375",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "4e1ae451a1f90ed24cb59375",
+   "row": 39,
+   "label": "#39 Adviser · Sidley Austin LLP",
+   "filing_key": {
+    "page": "31",
+    "block": "b599",
+    "quote": "Sidley Austin LLP (referred to as Sidley Austin), Ingredion’s legal counsel"
+   },
+   "value": {
+    "When": "10/03/2014",
+    "Sort date": "2014-10-03",
+    "Date from": "2014-10-03",
+    "Date to": "2014-10-03"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:66e832b6b25e66c9b21be2f7",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "66e832b6b25e66c9b21be2f7",
+   "row": 40,
+   "label": "#40 Other material event · Party A",
+   "filing_key": {
+    "page": "31",
+    "block": "b599",
+    "quote": "Party A indicated any offer would be below $17.50 - $18.00 per share in cash"
+   },
+   "value": {
+    "When": "10/04/2014",
+    "Sort date": "2014-10-04",
+    "Date from": "2014-10-04",
+    "Date to": "2014-10-04"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A15"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A15 (audit README §2)",
+    "row marked needs decision"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:26cbcf0b394d2f7c0fdff557",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "26cbcf0b394d2f7c0fdff557",
+   "row": 41,
+   "label": "#41 Adviser · Milbank, Tweed, Hadley & McCloy LLP",
+   "filing_key": {
+    "page": "31",
+    "block": "b601",
+    "quote": "Milbank, Tweed, Hadley & McCloy, LLP (referred to as Milbank), legal counsel to SEACOR"
+   },
+   "value": {
+    "When": "10/07/2014",
+    "Sort date": "2014-10-07",
+    "Date from": "2014-10-07",
+    "Date to": "2014-10-07"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:efadfac09c0746de83cf51eec7993a6d",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "efadfac09c0746de83cf51eec7993a6d",
+   "row": 42,
+   "label": "#42 Bid reaffirmed · Ingredion",
+   "filing_key": {
+    "page": "31",
+    "block": "b602",
+    "quote": "On October 8, 2014, Sidley Austin circulated a revised draft of the merger agreement to Perkins Coie."
+   },
+   "value": {
+    "When": "10/08/2014",
+    "Sort date": "2014-10-08",
+    "Date from": "2014-10-08",
+    "Date to": "2014-10-08"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "penford:12"
+   ],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:21541f3ad3647b0622a9c236",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "21541f3ad3647b0622a9c236",
+   "row": 43,
+   "label": "#43 Withdrew · Party D",
+   "filing_key": {
+    "page": "31",
+    "block": "b603",
+    "quote": "Party D, who indicated that it did not intend to move forward with discussions regarding a potential transaction involving the Company"
+   },
+   "value": {
+    "When": "10/08/2014",
+    "Sort date": "2014-10-08",
+    "Date from": "2014-10-08",
+    "Date to": "2014-10-08"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:372908d3fe10109e9218bfef",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "372908d3fe10109e9218bfef",
+   "row": 44,
+   "label": "#44 Other material event · Ingredion",
+   "filing_key": {
+    "page": "31",
+    "block": "b606",
+    "quote": "Penford provided Ingredion with draft financial statements for the fiscal year ended August 31, 2014 (referred to as the 2014 draft financial statements), which reflected lower volume, lower revenue"
+   },
+   "value": {
+    "When": "10/11/2014",
+    "Sort date": "2014-10-11",
+    "Date from": "2014-10-11",
+    "Date to": "2014-10-11"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:09a7b6c4485216f7efcac65f",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "09a7b6c4485216f7efcac65f",
+   "row": 45,
+   "label": "#45 Other material event · Party A",
+   "filing_key": {
+    "page": "32",
+    "block": "b612",
+    "quote": "its value range for a potential transaction had been reduced from $17.50 - $18.00 per share to $16.00 - $18.00 per share, due to increased volatility in the markets"
+   },
+   "value": {
+    "When": "10/13/2014",
+    "Sort date": "2014-10-13",
+    "Date from": "2014-10-13",
+    "Date to": "2014-10-13"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A15"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A15 (audit README §2)",
+    "row marked needs decision"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:227550c619b6c7142613b32f",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "227550c619b6c7142613b32f",
+   "row": 46,
+   "label": "#46 Other material event · Ingredion",
+   "filing_key": {
+    "page": "32",
+    "block": "b614",
+    "quote": "Mr. Fortnum called Mr. Malkoski to confirm the proposed price of $19.00 and discuss finalizing the draft merger agreement and proceeding with the transaction as previously planned."
+   },
+   "value": {
+    "When": "10/14/2014",
+    "Sort date": "2014-10-14",
+    "Date from": "2014-10-14",
+    "Date to": "2014-10-14"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "penford:3",
+    "penford:9"
+   ],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:5c893d3f93d4bd8a798b452c",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "5c893d3f93d4bd8a798b452c",
+   "row": 47,
+   "label": "#47 Bid · Party A",
+   "filing_key": {
+    "page": "32",
+    "block": "b616",
+    "quote": "Party A provided a formal letter with its indication of interest with respect to an acquisition of the Company at a price of $16.00 per share"
+   },
+   "value": {
+    "When": "10/14/2014",
+    "Sort date": "2014-10-14",
+    "Date from": "2014-10-14",
+    "Date to": "2014-10-14"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "unresolved",
+   "status_reasons": [
+    "row marked needs decision"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:2ea4b7651ba8f91b04a1c445",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "2ea4b7651ba8f91b04a1c445",
+   "row": 48,
+   "label": "#48 Merger agreement signed · Ingredion",
+   "filing_key": {
+    "page": "33",
+    "block": "b622",
+    "quote": "During the evening on October 14, 2014, Penford and Ingredion finalized and executed the merger agreement"
+   },
+   "value": {
+    "When": "10/14/2014 (evening)",
+    "Sort date": "2014-10-14",
+    "Date from": "2014-10-14",
+    "Date to": "2014-10-14"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:d95afd24221b8c4b3f3721a7",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "d95afd24221b8c4b3f3721a7",
+   "row": 49,
+   "label": "#49 Not selected at signing · Party A",
+   "filing_key": {
+    "page": "33",
+    "block": "b629",
+    "quote": "which did not include any non-binding indications of interest of equal to or more than the $19.00 per share agreed upon with Ingredion"
+   },
+   "value": {
+    "When": "by 10/14/2014",
+    "Sort date": "2014-10-14",
+    "Date from": "2014-10-14",
+    "Date to": "2014-10-14"
+   },
+   "basis": "inference",
+   "basis_refs": [],
+   "status": "unresolved",
+   "status_reasons": [
+    "row marked needs decision"
+   ],
+   "audit": [
+    "penford:10"
+   ],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:b8a684bfc0089fdfeb0266bc",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "b8a684bfc0089fdfeb0266bc",
+   "row": 50,
+   "label": "#50 Not selected at signing · Party C",
+   "filing_key": {
+    "page": "32",
+    "block": "b617",
+    "quote": "the remaining three of which either did not move forward in a timely manner or made a lower indication of value"
+   },
+   "value": {
+    "When": "by 10/14/2014",
+    "Sort date": "2014-10-14",
+    "Date from": "2014-09-25",
+    "Date to": "2014-10-14"
+   },
+   "basis": "inference",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:742ad233f5f43c733ef25449",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "742ad233f5f43c733ef25449",
+   "row": 51,
+   "label": "#51 Merger announced · Penford",
+   "filing_key": {
+    "page": "33",
+    "block": "b622",
+    "quote": "Penford and Ingredion issued press releases announcing the transaction on October 15, 2014 prior to the opening of trading."
+   },
+   "value": {
+    "When": "10/15/2014",
+    "Sort date": "2014-10-15",
+    "Date from": "2014-10-15",
+    "Date to": "2014-10-15"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  }
+ ],
+ "audit_checks": {
+  "inventory_changes": 24,
+  "changes_on_current_rows": 14,
+  "final_ref_differs_from_current_number": [],
+  "convention_refs_not_resolved": []
+ }
+}

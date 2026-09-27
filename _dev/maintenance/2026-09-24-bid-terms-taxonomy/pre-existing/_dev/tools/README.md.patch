@@ -1,0 +1,13 @@
+diff --git a/_dev/tools/README.md b/_dev/tools/README.md
+index 6166b0e..786acdd 100644
+--- a/_dev/tools/README.md
++++ b/_dev/tools/README.md
+@@ -16,7 +16,7 @@ Opus runs authenticate with a long-lived subscription token. Create it once with
+ python3 _dev/tools/check_lean.py --workbook extraction/<deal>.xlsx --filing raw_filing/<filing>.htm --output _dev/runs/<deal>/check.json
+ ```
+ 
+-The checker is offline. It validates workbook structure, dates, labels, links, quotation occurrence and agreement between columns of the same row (an exact-day When against its three date cells; an inferred exit's reason). It does not establish the truth of classifications or live-bidder arithmetic. Required long Notes and documented uncertain Counts are review warnings.
++The checker is offline. It validates workbook structure, dates, labels, links, quotation occurrence and agreement between columns of the same row (an exact-day When against its three date cells; an inferred exit's reason). It does not establish the truth of classifications or live-bidder arithmetic. Required long Notes and documented uncertain Counts are review warnings. The ledger header selects the rules: a `Stock %` column marks a v1.14 (draft) workbook, whose bid-term columns get their value lists and the E12 consistency rules (Financing Contingent requires Heavy; None requires Complete diligence and committed or unneeded financing); any other header is checked as v1.13.2, unchanged. The report's `ledger_schema` says which applied.
+ 
+ ## Isolated runs
+ 

@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import { Button, Field, Select } from '@fluentui/react-components';
-import { ArrowClockwiseIcon, CaretRightIcon, ChatCircleIcon, FileTextIcon, MinusIcon, PlusIcon } from '@phosphor-icons/react';
+import { ArrowClockwiseIcon, CaretRightIcon, ChatCircleIcon, DownloadSimpleIcon, FileTextIcon, MinusIcon, PlusIcon } from '@phosphor-icons/react';
 import Comments from './Comments';
 import { count, rowId, text } from './api';
+import { exportLinks } from './downloads';
 import { Dot, Empty, Loading, Message, SeverityGlyph } from './ui';
 import { fieldLabel } from './Records';
+import { importCheckText, liveCheckText } from './runs';
 
 function labelStatus(value) { return text(value).replaceAll('_', ' '); }
 export function friendlyDate(value) {
@@ -29,6 +31,9 @@ function MechanicalPanel({ deal }) {
   const check = deal.check || {}, summary = check.summary || {}, warnings = deal.workspace?.reference_warnings || [];
   const errors = summary.errors ?? check.errors ?? 0, warningCount = summary.warnings ?? check.warnings ?? 0;
   const status = check.status || 'not checked';
+  // Which checker made the result on screen, and for an original what the checker found when it was imported.
+  const selected = deal.workspace?.selected_version;
+  const original = selected && selected !== 'working' ? deal.versions?.find(version => version.id === selected) : null;
   const allIssues = [
     ...(deal.ledger?.rows || []).flatMap(row => (row.issues || []).map(issue => ({ ...issue, sheet: 'Deal ledger', row: rowId(row) }))),
     ...(deal.rounds?.rows || []).flatMap(row => (row.issues || []).map(issue => ({ ...issue, sheet: 'Rounds', row: row.excel_row }))),
@@ -36,7 +41,7 @@ function MechanicalPanel({ deal }) {
     ...(check.other_issues || []),
   ];
   return <details className="mechanical-panel">
-    <summary>
+    <summary title={liveCheckText(check, deal.ledger_schema)}>
       <CaretRightIcon size={16} className="caret" aria-hidden="true"/>
       <span className="summary-title">Mechanical check</span>
       <span className="summary-meta mono">
@@ -46,6 +51,7 @@ function MechanicalPanel({ deal }) {
       </span>
     </summary>
     <div className="mechanical-content">
+      <p className="checker-lines mono">{liveCheckText(check, deal.ledger_schema)}{original && <><br/>{importCheckText(original.checker)}</>}</p>
       <p className="fine-print">Automated checks cover workbook structure and selected consistency rules. They do not establish source completeness or human review.{check.scope_note ? ` ${check.scope_note}` : ''}</p>
       {warnings.length > 0 && <>
         <h4 className="block-label">Reference warnings</h4>
@@ -131,6 +137,7 @@ function Finding({ finding, open, editable, dirty, onToggle, onEdit, onFindEvide
         </Field>
       </div>
       {finding.actor && <p className="audit-line mono">Last decision by {finding.actor}{finding.at ? ` · ${friendlyDate(finding.at)}` : ''}</p>}
+      {finding.carried_over && <p className="audit-line mono">Judgment carried over from {finding.carried_over.from_base} at revision {finding.carried_over.revision}; implementation and verification reset</p>}
       {trace && <Comments trace={trace} target={{ kind: 'finding', uid: finding.id }}/>}
     </div>}
   </article>;
@@ -225,7 +232,18 @@ export function ChangesTab({ data, loading, compare, onCompare }) {
   </div>;
 }
 
-export function HistoryTab({ data, loading, editable, onRestore, lastSaved, focus }) {
+// A past revision downloads like the working copy: with the Source sheet, or its four sheets. The server names
+// the file {slug}-working-r{N}.xlsx.
+function RevisionDownloads({ slug, revision }) {
+  const links = exportLinks(slug, `rev:${revision}`);
+  return <>
+    <Button as="a" appearance="subtle" className="link-button" icon={<DownloadSimpleIcon size={16}/>} href={links.href} title={links.title} download>Download</Button>
+    <Button as="a" appearance="subtle" className="link-button" href={links.other.href} title={links.other.label} download>Four sheets</Button>
+  </>;
+}
+
+// A past revision can be downloaded or compared with the working copy without restoring it (read only).
+export function HistoryTab({ data, loading, editable, onRestore, lastSaved, focus, slug, onCompareRevision }) {
   useEffect(() => {
     if (!focus || !data) return;
     const frame = requestAnimationFrame(() => document.getElementById(`revision-${focus.revision}`)?.scrollIntoView({ block: 'start' }));
@@ -245,7 +263,11 @@ export function HistoryTab({ data, loading, editable, onRestore, lastSaved, focu
           <strong>Revision <span className="mono">{item.revision}</span></strong>
           {(item.at || item.actor) && <span className="mono">{[friendlyDate(item.at), item.actor].filter(Boolean).join(' · ')}</span>}
         </div>
-        {editable && <Button appearance="secondary" icon={<ArrowClockwiseIcon size={16}/>} onClick={() => onRestore(item.revision)}>Restore</Button>}
+        <div className="history-actions">
+          {slug && <RevisionDownloads slug={slug} revision={item.revision}/>}
+          {onCompareRevision && item.revision !== data.history[0]?.revision && <Button appearance="subtle" className="link-button" onClick={() => onCompareRevision(item.revision)}>Compare with working copy</Button>}
+          {editable && <Button appearance="secondary" icon={<ArrowClockwiseIcon size={16}/>} onClick={() => onRestore(item.revision)}>Restore</Button>}
+        </div>
       </div>
       <p>{item.reason || 'Saved edit'}</p>
       {item.summary && item.summary !== count(item.changes?.length || 0, 'change') && <div className="history-summary mono">{typeof item.summary === 'string' ? item.summary : JSON.stringify(item.summary)}</div>}

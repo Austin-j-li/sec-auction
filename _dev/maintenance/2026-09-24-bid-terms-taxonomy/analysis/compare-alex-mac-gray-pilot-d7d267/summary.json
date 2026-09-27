@@ -1,0 +1,65 @@
+{
+  "note": "Review aid only (V114_SPEC §9.5): never a target for the instruction, and never shown to an extraction run.",
+  "deal": "mac-gray",
+  "deal_number": "2575867020",
+  "workbook": "/home/uctpiaj/work/tmp/v114-scratch/tmp/w2pm-fix/inputs/mac-gray-opus55-medium-20260924-2241-d7d267.xlsx",
+  "workbook_sha256": "d7d26784ec3ba8f4d5d156e59ec633a77017c2729876cc185268767a6f97fd3c",
+  "ledger_schema": "v1.14",
+  "alex_file": "/home/uctpiaj/work/tmp/v114-scratch/tmp/w2pm-fix/inputs/deal_details_Alex_2026.xlsx",
+  "alex_sha256": "b0bd73ddc016028974fcddb18b164d370efd7b776734b814a99d96d7f923b00a",
+  "deal_has_alex_corrections": true,
+  "alex_rows": 34,
+  "alex_labelled_bids": 13,
+  "aligned": 13,
+  "alignment": {
+    "bidder, price, date": 13
+  },
+  "readings": {
+    "T0": {
+      "agree": 13,
+      "compared": 13,
+      "missing": 0
+    },
+    "T1": {
+      "agree": 11,
+      "compared": 13,
+      "missing": 0
+    },
+    "T1u": {
+      "agree": 11,
+      "compared": 13,
+      "missing": 0
+    },
+    "T2": {
+      "agree": 12,
+      "compared": 13,
+      "missing": 0
+    },
+    "T3": {
+      "agree": 13,
+      "compared": 13,
+      "missing": 0
+    }
+  },
+  "all_cash": {
+    "agree": 12,
+    "compared": 13,
+    "missing": 0
+  },
+  "per_share": {
+    "upfront": 12,
+    "package": 1,
+    "differs": 0
+  },
+  "bid_note_codes": {
+    "agree": 32,
+    "exit, other label or reason": 2
+  },
+  "provenance": {
+    "Alex: red comments only (coding as Chicago)": 8,
+    "Alex: red-font correction": 4,
+    "Alex: whole row in red (added or rewritten)": 11,
+    "Chicago coding": 11
+  },
+  "labelled_bids_with_red_bid_type": 0
+}

@@ -20,6 +20,7 @@ SCHEMA = (
     "CREATE TABLE IF NOT EXISTS activity (id INTEGER PRIMARY KEY AUTOINCREMENT, slug TEXT NOT NULL, at TEXT NOT NULL, actor TEXT NOT NULL, kind TEXT NOT NULL, revision INTEGER, thread_id TEXT, comment_id TEXT, summary TEXT NOT NULL, version_id TEXT)",
     "CREATE TABLE IF NOT EXISTS seen (user TEXT NOT NULL, slug TEXT NOT NULL, activity_id INTEGER NOT NULL, at TEXT NOT NULL, PRIMARY KEY (user, slug))",
     "CREATE TABLE IF NOT EXISTS migrations (key TEXT PRIMARY KEY)",
+    "CREATE TABLE IF NOT EXISTS deal_review (slug TEXT PRIMARY KEY, status TEXT NOT NULL, revision INTEGER NOT NULL, actor TEXT NOT NULL, at TEXT NOT NULL)",
     "CREATE INDEX IF NOT EXISTS activity_slug ON activity (slug, id)",
     "CREATE INDEX IF NOT EXISTS threads_slug ON threads (slug)",
     "CREATE INDEX IF NOT EXISTS comments_thread ON comments (thread_id)",
@@ -27,8 +28,11 @@ SCHEMA = (
 EDIT_KINDS = ("revision", "restore", "rebase")
 RUN_KINDS = ("extraction", "extraction_failed")
 COMMENT_KINDS = ("comment", "reply")
-KINDS = EDIT_KINDS + COMMENT_KINDS + RUN_KINDS + ("resolve", "reopen", "comment_edit", "comment_delete", "hide", "unhide", "deal_added", "hide_deal", "unhide_deal")
+KINDS = EDIT_KINDS + COMMENT_KINDS + RUN_KINDS + ("resolve", "reopen", "comment_edit", "comment_delete", "hide", "unhide", "deal_added", "hide_deal", "unhide_deal", "deal_review")
 MAX_BODY = 20000
+# A deal's review status belongs to its working copy and records the revision it was set at,
+# so a later save shows that the working copy has changed since.
+DEAL_STATUSES = {"unreviewed": "Unreviewed", "in_review": "In review", "reviewed": "Reviewed"}
 
 
 def ensure_schema(conn: sqlite3.Connection) -> None:
@@ -119,6 +123,17 @@ def _rows(conn: sqlite3.Connection | None, query: str, params: tuple = ()) -> li
         return []
 
 
+def _deal_review(conn: sqlite3.Connection | None, slug: str) -> dict[str, Any]:
+    """The working copy's review status. Without a recorded status: in review once edited, else unreviewed."""
+    latest = _rows(conn, "SELECT MAX(revision) AS r FROM revisions WHERE slug=?", (slug,))
+    current = (latest[0]["r"] if latest else None) or 0
+    found = _rows(conn, "SELECT * FROM deal_review WHERE slug=?", (slug,))
+    if not found:
+        return {"status": "in_review" if current else "unreviewed", "revision": None, "actor": None, "at": None, "current_revision": current, "edited_since": False}
+    row = found[0]
+    return {"status": row["status"], "revision": row["revision"], "actor": row["actor"], "at": row["at"], "current_revision": current, "edited_since": current != row["revision"]}
+
+
 class Trace:
     def __init__(self, workspace: Workspace):
         self.workspace = workspace
@@ -156,7 +171,7 @@ class Trace:
                 key = row["target_uid"] if row["target_kind"] != "deal" else "deal"
                 entry = counts.setdefault(key, {"open": 0, "resolved": 0})
                 entry["resolved" if row["resolved_at"] else "open"] += 1
-            return {"field_authors": authors, "thread_counts": counts, "seen": self._seen(conn, user, slug)}
+            return {"field_authors": authors, "thread_counts": counts, "seen": self._seen(conn, user, slug), "deal_review": _deal_review(conn, slug)}
         finally:
             if conn: conn.close()
 
@@ -180,6 +195,13 @@ class Trace:
         finally:
             if conn: conn.close()
 
+    def deal_review(self, slug: str) -> dict[str, Any]:
+        conn = self.workspace._connect()
+        try:
+            return _deal_review(conn, slug)
+        finally:
+            if conn: conn.close()
+
     def comments(self, slug: str) -> dict[str, Any]:
         item = self.workspace.item(slug)
         conn = self.workspace._connect()
@@ -194,12 +216,14 @@ class Trace:
             return {"threads": []}
         state, _, _ = self.workspace._state(slug, item, conn)
         live = {r["uid"] for sheet in SHEETS for r in state["sheets"][sheet]["rows"]}
+        gone = {t["target_uid"] for t in threads if t["target_kind"] == "row" and t["target_uid"] not in live}
+        earlier = self.workspace.earlier_bases(slug, item, conn, gone) if gone else {}
         edits = {row["comment_id"]: row["n"] for row in _rows(conn, "SELECT comment_id, COUNT(*) AS n FROM comment_edits GROUP BY comment_id")}
         comments: dict[str, list[dict[str, Any]]] = {}
         for c in _rows(conn, "SELECT c.* FROM comments c JOIN threads t ON c.thread_id=t.id WHERE t.slug=? ORDER BY c.at, c.rowid", (slug,)):
             deleted = {"by": c["deleted_by"], "at": c["deleted_at"]} if c["deleted_at"] else None
             comments.setdefault(c["thread_id"], []).append({"id": c["id"], "parent_id": c["parent_id"], "actor": c["actor"], "at": c["at"], "body": "" if deleted else c["body"], "edited_at": c["edited_at"], "deleted": deleted, "edit_count": edits.get(c["id"], 0)})
-        return {"threads": [self._thread_json(t, comments.get(t["id"], []), live) for t in threads]}
+        return {"threads": [self._thread_json(t, comments.get(t["id"], []), live, earlier) for t in threads]}
 
     @staticmethod
     def _target(t: sqlite3.Row) -> dict[str, Any]:
@@ -208,8 +232,11 @@ class Trace:
         if t["target_kind"] != "deal": target["uid"] = t["target_uid"]
         return target
 
-    def _thread_json(self, t: sqlite3.Row, comments: list[dict[str, Any]], live: set[str]) -> dict[str, Any]:
-        return {"id": t["id"], "target": self._target(t), "target_missing": t["target_kind"] == "row" and t["target_uid"] not in live,
+    def _thread_json(self, t: sqlite3.Row, comments: list[dict[str, Any]], live: set[str], earlier: dict[str, int] | None = None) -> dict[str, Any]:
+        missing = t["target_kind"] == "row" and t["target_uid"] not in live
+        # A row replaced by a rebase or restore lives on in that earlier revision; a row deleted by an edit is gone.
+        context = (f"on an earlier base (revision {earlier[t['target_uid']]})" if t["target_uid"] in (earlier or {}) else "record removed") if missing else None
+        return {"id": t["id"], "target": self._target(t), "target_missing": missing, "target_context": context,
                 "created_by": t["created_by"], "created_at": t["created_at"],
                 "resolved": {"by": t["resolved_by"], "at": t["resolved_at"]} if t["resolved_at"] else None,
                 "comments": comments}
@@ -330,6 +357,32 @@ class Trace:
             payload = self._threads(conn, slug, item)
             conn.commit()
             return payload
+        except Exception:
+            conn.rollback()
+            raise
+        finally:
+            conn.close()
+
+    def set_deal_review(self, slug: str, request: dict[str, Any], actor: str) -> dict[str, Any]:
+        """Set the working copy's review status at the revision the person was looking at."""
+        item = self.workspace.item(slug)
+        if item.get("pending"):
+            raise Conflict("this deal has no extraction yet")
+        status = request.get("status") if isinstance(request, dict) else None
+        revision = request.get("revision") if isinstance(request, dict) else None
+        if status not in DEAL_STATUSES: raise WorkspaceError("invalid review status")
+        if type(revision) is not int or revision < 0: raise WorkspaceError("revision required")
+        conn = self._write()
+        try:
+            before = _deal_review(conn, slug)
+            if revision != before["current_revision"]: raise Conflict("the working copy has changed; reload before setting its review status")
+            if before["actor"] and before["status"] == status and before["revision"] == revision: raise WorkspaceError("no change to save")
+            now = _now()
+            conn.execute("INSERT INTO deal_review VALUES (?,?,?,?,?) ON CONFLICT(slug) DO UPDATE SET status=excluded.status, revision=excluded.revision, actor=excluded.actor, at=excluded.at", (slug, status, revision, actor, now))
+            _activity(conn, slug, actor, "deal_review", summary=f"Marked {DEAL_STATUSES[status].lower()} at revision {revision}", at=now)
+            result = _deal_review(conn, slug)
+            conn.commit()
+            return {"deal_review": result}
         except Exception:
             conn.rollback()
             raise

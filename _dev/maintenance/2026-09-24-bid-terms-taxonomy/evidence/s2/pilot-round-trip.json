@@ -1,0 +1,245 @@
+{
+  "run_at": "2026-09-25T21:13:11+00:00",
+  "checker_version": "1.6",
+  "note": "Copies of the two v1.14 pilot workbooks, receipts and filings in a temporary workspace; the live state was only read (copied).",
+  "results": [
+    {
+      "deal": "mac-gray",
+      "pilot_version": "opus55-medium-20260924-2241-d7d267",
+      "working_copy_schema": "v1.13.2",
+      "pilot_schema": "v1.14",
+      "pilot_deadline_choices": [
+        "Enforced",
+        "Extended",
+        "Extended (late bid accepted)",
+        "No deadline stated",
+        "Passed without action",
+        "Unclear"
+      ],
+      "working_has_all_cash_choice": true,
+      "pilot_at_import": {
+        "checker_version": "1.6",
+        "ledger_schema": "v1.14",
+        "errors": 1,
+        "warnings": 16
+      },
+      "live_check": {
+        "checker_version": "1.6",
+        "summary": {
+          "errors": 1,
+          "warnings": 16,
+          "information": 0,
+          "total_issues": 17
+        }
+      },
+      "compare_working_to_pilot_fields": [
+        "All cash",
+        "Bids received",
+        "CVR/earnout",
+        "CVR/earnout value",
+        "Conditions",
+        "Count",
+        "Date from",
+        "Date to",
+        "Due dates",
+        "Due diligence",
+        "Event",
+        "Exclusivity",
+        "Exit reason",
+        "Financing",
+        "Flag",
+        "Formality",
+        "How it ended",
+        "How opened",
+        "Inferred",
+        "Note",
+        "Price high",
+        "Price low",
+        "Question",
+        "Quote and page",
+        "Recommended answer",
+        "Regulatory",
+        "Round",
+        "Rows affected",
+        "Sort date",
+        "Stock %",
+        "Type",
+        "Value",
+        "What changes if answered differently",
+        "When",
+        "Who",
+        "Who was in",
+        "Why, with page"
+      ],
+      "rebase_preview": {
+        "revisions": 0,
+        "edits": 0,
+        "row_marks": {
+          "total": 0,
+          "reviewed": 0,
+          "needs_decision": 0,
+          "unreviewed": 0
+        },
+        "row_threads": {
+          "total": 0,
+          "open": 0,
+          "resolved": 0
+        },
+        "finding_decisions": {
+          "total": 0,
+          "judgments_kept": 0,
+          "reset": 0
+        }
+      },
+      "export_differences": [],
+      "ledger_value_types": {
+        "int": 230,
+        "str": 432,
+        "NoneType": 814,
+        "datetime": 165,
+        "float": 12
+      },
+      "raw_check_summary": {
+        "errors": 1,
+        "warnings": 16,
+        "information": 0,
+        "total_issues": 17
+      },
+      "exported_check_summary": {
+        "errors": 1,
+        "warnings": 16,
+        "information": 0,
+        "total_issues": 17
+      },
+      "exported_schema": "v1.14",
+      "pilot_bytes_unchanged": true,
+      "version_download_hash_equals": true,
+      "receipt_unchanged": true,
+      "revisions": [
+        2,
+        1,
+        0
+      ]
+    },
+    {
+      "deal": "providence-worcester",
+      "pilot_version": "opus55-medium-20260924-2241-38bc24",
+      "working_copy_schema": "v1.13.2",
+      "pilot_schema": "v1.14",
+      "pilot_deadline_choices": [
+        "Enforced",
+        "Extended",
+        "Extended (late bid accepted)",
+        "No deadline stated",
+        "Passed without action",
+        "Unclear"
+      ],
+      "working_has_all_cash_choice": true,
+      "pilot_at_import": {
+        "checker_version": "1.6",
+        "ledger_schema": "v1.14",
+        "errors": 0,
+        "warnings": 14
+      },
+      "live_check": {
+        "checker_version": "1.6",
+        "summary": {
+          "errors": 0,
+          "warnings": 14,
+          "information": 0,
+          "total_issues": 14
+        }
+      },
+      "compare_working_to_pilot_fields": [
+        "All cash",
+        "Bids received",
+        "CVR/earnout",
+        "CVR/earnout value",
+        "Conditions",
+        "Count",
+        "Date from",
+        "Date to",
+        "Deadline outcome",
+        "Due dates",
+        "Due diligence",
+        "Event",
+        "Exclusivity",
+        "Exit reason",
+        "Financing",
+        "Flag",
+        "Formality",
+        "How it ended",
+        "How opened",
+        "Inferred",
+        "Note",
+        "Opened",
+        "Price high",
+        "Price low",
+        "Question",
+        "Quote and page",
+        "Recommended answer",
+        "Regulatory",
+        "Round",
+        "Rows affected",
+        "Sort date",
+        "Stock %",
+        "Type",
+        "Value",
+        "What changes if answered differently",
+        "When",
+        "Who",
+        "Who was in",
+        "Why, with page"
+      ],
+      "rebase_preview": {
+        "revisions": 0,
+        "edits": 0,
+        "row_marks": {
+          "total": 0,
+          "reviewed": 0,
+          "needs_decision": 0,
+          "unreviewed": 0
+        },
+        "row_threads": {
+          "total": 0,
+          "open": 0,
+          "resolved": 0
+        },
+        "finding_decisions": {
+          "total": 0,
+          "judgments_kept": 0,
+          "reset": 0
+        }
+      },
+      "export_differences": [],
+      "ledger_value_types": {
+        "int": 228,
+        "str": 478,
+        "NoneType": 793,
+        "datetime": 165,
+        "float": 18
+      },
+      "raw_check_summary": {
+        "errors": 0,
+        "warnings": 14,
+        "information": 0,
+        "total_issues": 14
+      },
+      "exported_check_summary": {
+        "errors": 0,
+        "warnings": 14,
+        "information": 0,
+        "total_issues": 14
+      },
+      "exported_schema": "v1.14",
+      "pilot_bytes_unchanged": true,
+      "version_download_hash_equals": true,
+      "receipt_unchanged": true,
+      "revisions": [
+        2,
+        1,
+        0
+      ]
+    }
+  ]
+}

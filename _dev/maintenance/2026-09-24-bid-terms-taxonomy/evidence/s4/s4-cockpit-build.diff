@@ -1,0 +1,10 @@
+--- wave2-base/_dev/COCKPIT_BUILD.md	2026-09-25 20:28:11.653070720 +0000
++++ pkg/w2s4/_dev/COCKPIT_BUILD.md	2026-09-25 21:46:31.302665209 +0000
+@@ -56,6 +56,7 @@
+ - `{type:'move',sheet,uid,after_uid}` reorders a row without changing identity.
+ - `{type:'finding',id,judgment,implementation,verification,note}` records a user decision. Judgment: unreviewed/supported/rejected/deferred; implementation: unassessed/not_applied/applied; verification: unchecked/verified. Imported candidates start unassessed. Explicit earlier rulings and verified corrections are separately attributed in `recorded_decision` and `recorded_correction`; they do not become automatic human acceptance of the displayed version. Decision alone does not change workbook data or automatically mark a correction verified.
+ - `{type:'review',uid,status,note}` records review status.
++- `{type:'bulk_update',sheet:'Deal ledger',uids,values}` sets Process and/or Round (no other column) on many ledger rows, such as a deal's renumbered rounds. It counts as one of a save's 100 operations however many rows it names; `uids` must be distinct live rows (or `new-*` client UIDs from the same save), Process a whole number of 1 or more, Round a whole number of 0 or more or `post`. Each row is recorded, diffed and attributed as under its own update, and row review marks are kept. The ledger editor's **Select** mode stages one after a confirmation naming the events that change.
+ 
+ A working copy's deal-level review status is separate from its revisions: `POST /api/deal/<slug>/review` with `{status: unreviewed|in_review|reviewed, revision}` records it at the current revision (409 if stale), logs a `deal_review` activity item, and returns `{deal_review}`. `GET /api/deals` and the deal payload include `deal_review: {status, revision, actor, at, current_revision, edited_since}`; without a recorded status it reads `in_review` once the working copy has been edited, else `unreviewed`.
+ - `{type:'restore',target_revision}` restores a saved snapshot as a new revision with visible history. Do not erase historical changes.

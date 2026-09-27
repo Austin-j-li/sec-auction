@@ -41,6 +41,7 @@ from typing import Any
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
 
+import check_lean  # noqa: E402
 import fetch_filing  # noqa: E402
 from cockpit import data, runs, trace  # noqa: E402
 from cockpit.workspace import _now  # noqa: E402
@@ -79,7 +80,7 @@ def instruction_version(path: Path = INSTRUCTION) -> str | None:
 
 def engine_of(params: dict[str, Any]) -> tuple[str, dict[str, Any]]:
     """The job's engine; jobs queued before phase 4 are Opus 5.5."""
-    ident = params.get("engine") if params.get("engine") in runs.ENGINES else runs.DEFAULT_ENGINE
+    ident = params.get("engine") if params.get("engine") in runs.ENGINES else runs.LEGACY_ENGINE
     return ident, runs.ENGINES[ident]
 
 
@@ -256,8 +257,9 @@ class Worker:
             if not instruction.is_file() or hashlib.sha256(instruction.read_bytes()).hexdigest() != frozen["sha256"]:
                 self.fail(job, "instruction_missing", f"The stored instruction {frozen['sha256'][:7]} is missing or altered.")
                 return False
-        else:
-            instruction = self.repo / INSTRUCTION.name
+        else:  # every job since phase 4 freezes its instruction; never fall back to the repository's text
+            self.fail(job, "instruction_missing", "The job names no instruction version.")
+            return False
         run_dir = self.repo / "_dev/runs" / f"cockpit-{job['id']}"
         conn = self.connect()
         try:  # claim the job, so a second worker cannot start it too
@@ -308,15 +310,22 @@ class Worker:
         workbook = run_dir / "extraction" / f"{job['slug']}.xlsx"
         _, filing, _ = self.cockpit.resolve(job["slug"])
         check_path = run_dir / "check.json"
-        check = subprocess.run([sys.executable, str(CHECKER), "--workbook", str(workbook), "--filing", str(filing), "--output", str(check_path)],
-                               cwd=self.repo, capture_output=True, text=True)
+        # The run's instruction picks the rules for a 29-column ledger (v1.14 or v1.14.1; unknown means v1.14.1).
+        frozen = json.loads(job["params"]).get("instruction") or {}
+        meta_path = run_dir / "metadata.json"
+        rules = check_lean.rules_for_instruction(frozen.get("sha256") or (json.loads(meta_path.read_text()).get("instruction_sha256") if meta_path.is_file() else None))
+        check = subprocess.run([sys.executable, str(CHECKER), "--workbook", str(workbook), "--filing", str(filing), "--output", str(check_path)]
+                               + (["--rules", rules] if rules else []), cwd=self.repo, capture_output=True, text=True)
         if check.returncode not in (0, 1) or not check_path.is_file():
             self.keep_receipts(job, run_dir)
             self.update(job["id"], state="failed", failure_reason="checker_error", error=(check.stderr or check.stdout).strip()[-500:], result=json.dumps(result), ended_at=_now())
             self.activity(job, "extraction_failed", self.describe(job, "extraction could not be checked"))
             return
-        summary = json.loads(check_path.read_text()).get("summary") or {}
-        checker = {"errors": summary.get("errors", 0), "warnings": summary.get("warnings", 0)}
+        report = json.loads(check_path.read_text())
+        summary = report.get("summary") or {}
+        # Which checker, under which schema's rules, made these counts: shown beside them (the receipt keeps the rest).
+        checker = {"errors": summary.get("errors", 0), "warnings": summary.get("warnings", 0),
+                   "checker_version": report.get("checker_version"), "ledger_schema": report.get("ledger_schema")}
         result["checker"] = checker
         self.update(job["id"], state="importing", result=json.dumps(result))
         version_id = self.import_version(job, run_dir, workbook, status, checker)
@@ -329,7 +338,7 @@ class Worker:
         instruction = (params.get("instruction") or {}).get("label") or instruction_version() or "instruction"
         return f"{engine_of(params)[1]['label']} · {params.get('effort')} · {instruction} {what}"
 
-    def import_version(self, job: sqlite3.Row, run_dir: Path, workbook: Path, status: dict[str, Any], checker: dict[str, int]) -> str:
+    def import_version(self, job: sqlite3.Row, run_dir: Path, workbook: Path, status: dict[str, Any], checker: dict[str, Any]) -> str:
         metadata = json.loads((run_dir / "metadata.json").read_text())
         digest = hashlib.sha256(workbook.read_bytes()).hexdigest()
         started = dt.datetime.fromisoformat(status.get("started_at") or job["started_at"])

@@ -1,0 +1,18 @@
+{
+  "started_at": "2026-09-26T09:43:50.037234+00:00",
+  "pid": 403606,
+  "argv": [
+    "/usr/bin/python3",
+    "/home/uctpiaj/work/Projects/sec-extraction-v114-trial-20260926/_dev/tools/effort_sweep.py",
+    "run",
+    "--packet",
+    "/home/uctpiaj/work/Projects/sec-extraction-v114-trial-20260926/_dev/reviews/2026-09-26-v114-15-run-trial",
+    "--concurrency",
+    "15",
+    "--poll",
+    "10"
+  ],
+  "concurrency": 15,
+  "automatic_retry": false,
+  "grading": false
+}

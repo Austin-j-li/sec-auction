@@ -69,5 +69,7 @@ Contract: [CONTRACT.md](CONTRACT.md). Built on 23 September 2026 (Austin: "build
 
 ## Not yet done
 
+> **Status, 26 September 2026:** the nightly backup has run each night (03:30 UTC backups for 24, 25 and 26 September in `~/backups/ledger-cockpit/`). For the remaining acceptance runs, see the [development handoff](../../HANDOFF.md).
+
 - Acceptance runs from earlier phases (real model runs needing Austin's go-ahead): Alex's first run (phase 2), a seed deal and a pasted-link deal extracted end to end (phase 3), and the draft/published and per-engine runs (phase 4).
 - Confirm on 24 September that the nightly backup ran (03:30 UTC) and that the ChatGPT login refresh renewed a login.

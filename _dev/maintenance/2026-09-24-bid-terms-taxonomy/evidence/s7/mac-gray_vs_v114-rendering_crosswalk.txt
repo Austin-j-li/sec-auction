@@ -1,0 +1,46 @@
+Before: /home/uctpiaj/work/tmp/v114-scratch/tmp/s7/wb/mac-gray.xlsx (v1.13.2)
+After: /home/uctpiaj/work/tmp/v114-scratch/tmp/s7/wb/mac-gray-v114-rendered.xlsx (v1.14)
+Crosswalk: v1.13.2 -> v1.14 differences are labelled
+
+## Event counts (before -> after)
+  Bid: 13 -> 13
+  Bid reaffirmed: 0 -> 0
+  Other-scope bid: 0 -> 0
+  Exclusivity changed: 3 -> 3
+  Did not submit: 2 -> 2
+  Re-entered: 0 -> 0
+  Round opened: 3 -> 3
+  Activist: 1 -> 1
+  Adviser: 4 -> 4
+  Adviser ended: 1 -> 1
+  Contact: 3 -> 3
+  Deadline: 3 -> 3
+  Deadline set: 1 -> 1
+  Dropped by target: 2 -> 2
+  Merger agreement signed: 1 -> 1
+  Merger announced: 1 -> 1
+  NDA signed: 5 -> 5
+  Other material event: 8 -> 8
+  Target interest: 1 -> 1
+  Target sale decision: 1 -> 1
+  All rows: 53 -> 53
+
+## Deal ledger: no change; rows by Event, Who, Sort date: 53 matched, 0 removed, 0 added
+  column only in before: All cash [crosswalk: compared with Stock %]
+  column only in after: Stock % [crosswalk: replaces All cash]
+  column only in after: CVR/earnout [added in v1.14]
+  column only in after: CVR/earnout value [added in v1.14]
+  column only in after: Due diligence [added in v1.14]
+  column only in after: Financing [added in v1.14]
+  column only in after: Regulatory [added in v1.14]
+  column only in after: Antitrust [added in v1.14]
+  column only in after: Exclusivity [added in v1.14]
+  Conditions: compared [crosswalk: E12 rules changed]
+
+## Rounds: no change; rows by Process, Round: 3 matched, 0 removed, 0 added
+
+## Questions: no change; rows by Q: 9 matched, 0 removed, 0 added
+
+## Deal facts: no change; rows by Field: 17 matched, 0 removed, 0 added
+
+Total: 0 change(s) in rows; 9 column(s) in one workbook only

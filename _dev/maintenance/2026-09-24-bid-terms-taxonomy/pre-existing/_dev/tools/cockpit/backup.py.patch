@@ -1,0 +1,12 @@
+diff --git a/_dev/tools/cockpit/backup.py b/_dev/tools/cockpit/backup.py
+index c79c2f9..bfa043c 100644
+--- a/_dev/tools/cockpit/backup.py
++++ b/_dev/tools/cockpit/backup.py
+@@ -156,6 +156,7 @@ def snapshot(cockpit: data.Cockpit) -> dict[str, Any]:
+         instructions["texts"] = texts
+         return {"deals": deals, "added deals": _part(cockpit.deals.added),
+                 "hidden deals": _rows(conn, "SELECT * FROM hidden_deals ORDER BY slug"),
++                "deal review": _rows(conn, "SELECT * FROM deal_review ORDER BY slug"),
+                 "instructions": instructions, "summary": summarize(cockpit)}
+     finally:
+         if conn: conn.close()

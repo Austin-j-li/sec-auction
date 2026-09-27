@@ -1,0 +1,324 @@
+{
+  "checker": "lean-mechanical",
+  "checker_revision": "Applies the v1.14 ledger rules to a workbook whose ledger has a 'Stock %' header: Deadline outcome takes the v1.14 values, and the replaced 'Late bids accepted' is a warning (E9); Antitrust with an incompatible Regulatory value is an error; Other-scope bid rows leave Price low, Price high and CVR/earnout value blank; the inferred-exit reason check no longer applies; and four review warnings are added (an Exclusivity changed row repeating a same-day bid's request, an Extended outcome with no new due date, an exit followed by activity with no Re-entered, an Other-scope bid with no Note). Workbooks without that header are checked as v1.13.2, unchanged.",
+  "checker_version": "1.7",
+  "filing": "/home/uctpiaj/work/Projects/sec-extraction-v114-trial-20260926/raw_filing/mac-gray_2013-12-04_DEFM14A.htm",
+  "issues": [
+    {
+      "basis": "mechanical",
+      "code": "ledger.note_length",
+      "column": "Note",
+      "message": "Note has 42 words; aim for 40. Retain the excess only for required facts that cannot be shortened.",
+      "row": 3,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "ledger.note_length",
+      "column": "Note",
+      "message": "Note has 42 words; aim for 40. Retain the excess only for required facts that cannot be shortened.",
+      "row": 5,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "ledger.note_length",
+      "column": "Note",
+      "message": "Note has 42 words; aim for 40. Retain the excess only for required facts that cannot be shortened.",
+      "row": 7,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "ledger.note_length",
+      "column": "Note",
+      "message": "Note has 41 words; aim for 40. Retain the excess only for required facts that cannot be shortened.",
+      "row": 8,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "ledger.note_length",
+      "column": "Note",
+      "message": "Note has 42 words; aim for 40. Retain the excess only for required facts that cannot be shortened.",
+      "row": 9,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "ledger.note_length",
+      "column": "Note",
+      "message": "Note has 44 words; aim for 40. Retain the excess only for required facts that cannot be shortened.",
+      "row": 10,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "ledger.note_length",
+      "column": "Note",
+      "message": "Note has 44 words; aim for 40. Retain the excess only for required facts that cannot be shortened.",
+      "row": 13,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "ledger.note_length",
+      "column": "Note",
+      "message": "Note has 49 words; aim for 40. Retain the excess only for required facts that cannot be shortened.",
+      "row": 15,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "ledger.note_length",
+      "column": "Note",
+      "message": "Note has 42 words; aim for 40. Retain the excess only for required facts that cannot be shortened.",
+      "row": 19,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "ledger.note_length",
+      "column": "Note",
+      "message": "Note has 41 words; aim for 40. Retain the excess only for required facts that cannot be shortened.",
+      "row": 20,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "ledger.note_length",
+      "column": "Note",
+      "message": "Note has 48 words; aim for 40. Retain the excess only for required facts that cannot be shortened.",
+      "row": 24,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "ledger.note_length",
+      "column": "Note",
+      "message": "Note has 43 words; aim for 40. Retain the excess only for required facts that cannot be shortened.",
+      "row": 27,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "ledger.note_length",
+      "column": "Note",
+      "message": "Note has 41 words; aim for 40. Retain the excess only for required facts that cannot be shortened.",
+      "row": 29,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "ledger.note_length",
+      "column": "Note",
+      "message": "Note has 42 words; aim for 40. Retain the excess only for required facts that cannot be shortened.",
+      "row": 31,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "ledger.note_length",
+      "column": "Note",
+      "message": "Note has 49 words; aim for 40. Retain the excess only for required facts that cannot be shortened.",
+      "row": 37,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "ledger.note_length",
+      "column": "Note",
+      "message": "Note has 46 words; aim for 40. Retain the excess only for required facts that cannot be shortened.",
+      "row": 39,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "ledger.note_length",
+      "column": "Note",
+      "message": "Note has 55 words; aim for 40. Retain the excess only for required facts that cannot be shortened.",
+      "row": 40,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "ledger.note_length",
+      "column": "Note",
+      "message": "Note has 43 words; aim for 40. Retain the excess only for required facts that cannot be shortened.",
+      "row": 45,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "ledger.note_length",
+      "column": "Note",
+      "message": "Note has 43 words; aim for 40. Retain the excess only for required facts that cannot be shortened.",
+      "row": 46,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "ledger.note_length",
+      "column": "Note",
+      "message": "Note has 42 words; aim for 40. Retain the excess only for required facts that cannot be shortened.",
+      "row": 49,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "ledger.note_length",
+      "column": "Note",
+      "message": "Note has 42 words; aim for 40. Retain the excess only for required facts that cannot be shortened.",
+      "row": 50,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "ledger.note_length",
+      "column": "Note",
+      "message": "Note has 54 words; aim for 40. Retain the excess only for required facts that cannot be shortened.",
+      "row": 54,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "ledger.note_length",
+      "column": "Note",
+      "message": "Note has 42 words; aim for 40. Retain the excess only for required facts that cannot be shortened.",
+      "row": 55,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "ledger.note_length",
+      "column": "Note",
+      "message": "Note has 41 words; aim for 40. Retain the excess only for required facts that cannot be shortened.",
+      "row": 64,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.length",
+      "column": null,
+      "message": "Question entry has about 244 words across its review fields; the instruction asks for about 60.",
+      "row": 2,
+      "severity": "warning",
+      "sheet": "Questions"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.length",
+      "column": null,
+      "message": "Question entry has about 187 words across its review fields; the instruction asks for about 60.",
+      "row": 3,
+      "severity": "warning",
+      "sheet": "Questions"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.length",
+      "column": null,
+      "message": "Question entry has about 95 words across its review fields; the instruction asks for about 60.",
+      "row": 4,
+      "severity": "warning",
+      "sheet": "Questions"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.length",
+      "column": null,
+      "message": "Question entry has about 108 words across its review fields; the instruction asks for about 60.",
+      "row": 5,
+      "severity": "warning",
+      "sheet": "Questions"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.length",
+      "column": null,
+      "message": "Question entry has about 176 words across its review fields; the instruction asks for about 60.",
+      "row": 6,
+      "severity": "warning",
+      "sheet": "Questions"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.length",
+      "column": null,
+      "message": "Question entry has about 168 words across its review fields; the instruction asks for about 60.",
+      "row": 7,
+      "severity": "warning",
+      "sheet": "Questions"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.length",
+      "column": null,
+      "message": "Question entry has about 122 words across its review fields; the instruction asks for about 60.",
+      "row": 8,
+      "severity": "warning",
+      "sheet": "Questions"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.length",
+      "column": null,
+      "message": "Question entry has about 102 words across its review fields; the instruction asks for about 60.",
+      "row": 9,
+      "severity": "warning",
+      "sheet": "Questions"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.length",
+      "column": null,
+      "message": "Question entry has about 128 words across its review fields; the instruction asks for about 60.",
+      "row": 10,
+      "severity": "warning",
+      "sheet": "Questions"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.length",
+      "column": null,
+      "message": "Question entry has about 117 words across its review fields; the instruction asks for about 60.",
+      "row": 11,
+      "severity": "warning",
+      "sheet": "Questions"
+    }
+  ],
+  "ledger_schema": "v1.14",
+  "scope_note": "Mechanical checks only. Quote occurrence proves source occurrence, not semantic support. No bidder-population arithmetic or substantive extraction grading is performed.",
+  "status": "pass_with_warnings",
+  "summary": {
+    "errors": 0,
+    "information": 0,
+    "total_issues": 34,
+    "warnings": 34
+  },
+  "workbook": "/home/uctpiaj/work/Projects/sec-extraction-v114-trial-20260926/_dev/runs/2026-09-26-v114-15-run-trial/mac-gray-opus-5-5-xhigh-r1/extraction/mac-gray.xlsx"
+}

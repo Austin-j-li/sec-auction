@@ -1,0 +1,78 @@
+#,uid,When,Who,Event,mark,mark_note,mark_actor,mark_at,threads
+1,221ea2a5d61202d855edc75e,by 01/10/2018,Company A,Bidder interest,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+2,28ae6a11d3485d49e232bf01,01/10/2018,Company A,NDA signed,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+3,fb5a0935e173a6d424419f78,02/06/2018,Company A,Bid,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+4,e956bb0ed00bb70bcf3b184a,04/25/2018,Company A,Bid,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+5,6995b316ce970a07cbe85963,05/08/2018,Liontree Advisors LLC,Adviser,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+6,11cfff666bd8553d812e1e96,after 05/08/2018 (undated),Synacor,Round opened,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+7,110bf408cfbebfb026550e92,after 05/08/2018 (undated),Approx. 12 strategic and financial parties (Liontree outreach),Contact,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+8,74368a756c425ec2b61a4cd2,06/20/2018,Company A,Withdrew,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+9,9d8696aaa90325bbbc3e01c4,March 2019,Synacor,Process restarted,needs_decision,,austin,2026-09-23T21:49:34+00:00,0
+10,eb63b70cf74798330cfb4e48,March 2019,Company C,NDA signed,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+11,f8717817d4698488f8095206,07/30/2019,Company E,NDA signed,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+12,78c2703124ae515a37f94b57,08/13/2019,Company C,Bid,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+13,4c85dffc666aedf678c293ae,Q3 2019,Approx. 5 companies (portal and advertising outreach),Contact,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+14,2b37500148e46122905da94c,08/25/2019,Canaccord Genuity LLC,Adviser,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+15,1bf35a34bf39c210e70025e8,after 08/25/2019 (undated),Synacor,Round opened,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+16,397ba1db10748d86e9fbd1ee,after 08/25/2019 (undated),18 additional parties (Canaccord outreach),Contact,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+17,c1b4c9f44a57f686327f40e9,09/15/2019,Company F,Other-scope bid,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+18,60cb655edbd030c273770584,October 2019,Company C,Withdrew,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+19,de5abe4a5b61474f42b8e27c,07/13/2020,Synacor,Process restarted,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+20,8b9cdd92eddd41e28f12bd59,07/13/2020,Company E,Bidder interest,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+21,1f65a581b87aafc84a85473a,07/13/2020,Company E,NDA signed,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+22,7e6fb1f165b01593d77bbd3b,mid-July 2020,Synacor,Round opened,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+23,176c6edff4d9a4dae2264bc3,mid-July to mid-September 2020,37 parties (Canaccord outreach; other than Companies A–D),Contact,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+24,6e4ca637ffbe39ad09442318,mid-July to mid-September 2020 (undated),NDA signers from Canaccord outreach (remainder of 14),NDA signed,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+25,3dd1d536adb2043e82b265f8,mid-July to mid-September 2020,8 parties (management portal and advertising outreach),Contact,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+26,44fb61455e1b02c520bd0866,"undated, by 09/17/2020",Synacor,Deadline set,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+27,4ed72f091177fd0ed368fc7a,09/08/2020,"CLP (Centre Lane Partners, LLC)",NDA signed,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+28,1af16823a5832542a0bf25b3,09/10/2020,Company E,Bid,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+29,91967d2eae83caeb95725a90,09/13/2020,Gunderson Dettmer,Adviser,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+30,e25d508cbd37e2328f2a772b,09/14/2020,Company G,Other-scope bid,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+31,b2cf85cb2518d964b7aa8fdf,09/14/2020,180 Degree Capital Corp. (shareholder; Rendino affiliate),Other material event,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+32,5d6bb54c88b52f1451d2ab56,by 09/16/2020,Company H,Other material event,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+33,345da6c40da64470681e2100,09/17/2020,Synacor,Other material event,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+34,6f12d52c12ab2b46fb93488b,09/17/2020,"CLP (Centre Lane Partners, LLC)",Bid,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+35,91fb7621e0f171583ca82d74,09/17/2020,Synacor,Deadline,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+36,6c2248a4ffc5939d425ff9e9,by 09/17/2020,NDA signers that did not submit IOIs,Did not submit,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+37,89905e11e5d4e957555bb923,09/18/2020,Company E,Bid,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+38,143cc2b393c5bb250477a6ab,09/18/2020,Company E,Exclusivity changed,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+39,f959d95a5d7e965f9ef7ad4e,09/21/2020,Synacor,Other material event,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+40,813b9129e657b4a6c3892b58,09/22/2020,"CLP (Centre Lane Partners, LLC)",Other material event,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+41,a6548251c527331c9945ea36,09/22/2020,Company H,Other material event,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+42,e015b7b2e8dd7fb8d6a0706d,09/22/2020,Other portal and advertising prospects (Bhise outreach),Contact,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+43,67cd1c938b717a60cf634749,09/23/2020,Synacor,Round opened,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+44,ce7daeaff2f98608b517039a,09/23/2020,Company E,Exclusivity changed,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+45,334c9247f86a76f5464b42e2,09/23/2020,"CLP (Centre Lane Partners, LLC)",Dropped by target,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+46,c44a0ea7266ac3009799e3fc,09/23/2020,Company G,Dropped by target,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+47,1e6fb0d98de074a5cf627285,10/23/2020,Company E,Exclusivity changed,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+48,836f36b2c82e74b5ae9ac1dd,10/27/2020,Synacor,Round opened,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+49,141bb813c0b4b84182d7170a,10/27/2020,Company H,Other material event,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+50,085a0dab416127a6f7ec2573,11/02/2020,Company H,Other material event,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+51,e6ad8220d0c98e09aecd7198,11/19/2020,Company I,NDA signed,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+52,bfcdf38633c0d434e7fd2446,12/08/2020,Company I,Other-scope bid,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+53,900361bb8e130e562f02ec07,after 12/08/2020,Portal and advertising prospects (Bhise outreach),Contact,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+54,85007d7ff4522ff08ad82a8e,12/14/2020,Company E,Other-scope bid,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+55,4e27b588c20cf1bc30d86e58,12/18/2020–12/21/2020,"CLP (Centre Lane Partners, LLC)",Re-entered,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+56,a6fc38482ea51aff242a7707,12/18/2020–12/21/2020,Company H,Other material event,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+57,27cd14b6af4438f26c3b12df,12/18/2020–12/21/2020,Company G,Other material event,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+58,06a71be4151ffd92b635fe98,12/29/2020,Company I,Other-scope bid,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+59,676587faaf4c1cf11d4d33f0,12/29/2020,Company E,Other-scope bid,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+60,fff6199bf72cd0552dad5ae7,12/30/2020,Synacor,Other material event,needs_decision,,austin,2026-09-23T21:49:34+00:00,0
+61,6e9b62d0139c8987f33eba95,01/04/2021,"CLP (Centre Lane Partners, LLC)",Bid,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+62,c557960e982d47c1cf6822bc,by 01/04/2021,Company I,Did not submit,needs_decision,,austin,2026-09-23T21:49:34+00:00,0
+63,63c82d5db1eaea9f144b28d1,01/04/2021,Synacor,Other material event,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+64,37753d045a35a6e246fb87ee,01/04/2021,Company E,Withdrew,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+65,00ce06a070d0a71103e0c270,01/05/2021,Synacor,Other material event,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+66,226dfce479fd9d9fbb9ca5b7,by 01/06/2021,"CLP (Centre Lane Partners, LLC)",Bid,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+67,5be8aa82853c9e1c776e8319,by 01/06/2021,"CLP (Centre Lane Partners, LLC)",Exclusivity changed,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+68,f431e3cf5ef67f78ab094381,01/06/2021,Company H,Other material event,needs_decision,,austin,2026-09-23T21:49:34+00:00,0
+69,03691e24f61e68535bf2cc8a,01/06/2021,Synacor,Round opened,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+70,59d650401188a7ea53b8916b,01/07/2021,"CLP (Centre Lane Partners, LLC)",Other material event,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+71,3997b089e57f4e4112695ee0,01/21/2021,Thompson Hine LLP,Adviser,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+72,215a88ab772dbb5517ddaa62,01/21/2021,"CLP (Centre Lane Partners, LLC)",Bid reaffirmed,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+73,726629e8cb15ffd21db52931,02/08/2021,Synacor,Other material event,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+74,bcce006b54f301594bdcd32f,02/09/2021–02/10/2021,"CLP (Centre Lane Partners, LLC)",Other material event,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+75,62b6e0c1480f298b62f13c2e,02/10/2021,"CLP (Centre Lane Partners, LLC)",Bid,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+76,efb013b512ec8bee68b79ece,02/10/2021,"CLP (Centre Lane Partners, LLC)",Merger agreement signed,reviewed,,austin,2026-09-23T21:49:34+00:00,0
+77,d50d0b1a043b980841672579,02/11/2021,Synacor,Merger announced,reviewed,,austin,2026-09-23T21:49:34+00:00,0

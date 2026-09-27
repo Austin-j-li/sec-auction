@@ -1,0 +1,13 @@
+{
+  "bytes": 31976,
+  "exists": true,
+  "path": "/home/uctpiaj/work/Projects/sec-extraction-v114-trial-20260926/_dev/runs/2026-09-26-v114-15-run-trial/providence-worcester-gpt-6-astra-xhigh-r1/extraction/providence-worcester.xlsx",
+  "sha256": "2502678e8fac3c8677805ff18eb33268ef76a0dca90872ad52d8565ba6ed1da7",
+  "sheet_names": [
+    "Deal ledger",
+    "Rounds",
+    "Questions",
+    "Deal facts"
+  ],
+  "valid_xlsx": true
+}

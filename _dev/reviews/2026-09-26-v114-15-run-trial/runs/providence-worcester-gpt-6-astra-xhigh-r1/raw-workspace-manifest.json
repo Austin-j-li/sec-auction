@@ -1,0 +1,18 @@
+{
+  "files": {
+    "command.json": "7dc678ecc2914e7834cb479dcd8a99af45b48f95a20bb5d797bc6e9951b3df1b",
+    "events.jsonl": "49f6fbabbbb4004b63619f5246a3672a42ad95dfff46f5ee7dcc17e2510722a0",
+    "extraction/providence-worcester.xlsx": "2502678e8fac3c8677805ff18eb33268ef76a0dca90872ad52d8565ba6ed1da7",
+    "input/SEC_Deal_Ledger_Extraction_Instruction.md": "c2d47a479d09eb46d0ab9fbf887568fcf13e972e2e11acbf08d5cdfab468ab27",
+    "input/raw_filing/providence-worcester_2016-09-20_DEFM14A.htm": "32d7a2738c95c29fa98fccc6a874a5e2acbfd0b7fc87a1f3e9145c60f627378a",
+    "launch.json": "36045b0a5836f2ffc7fa369a82afc7a4a5dbcab3036b6aef7a8797e93e0ead1a",
+    "launcher.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "metadata.json": "2039c9f8ba5af8631921d904f757c0699b91aba83fc39e7bea675b9a1b1d46c2",
+    "prompt.txt": "c4859c2794750ab014a8c9409a5e54b20a5ee9d5ce27436c393d09d38866fca3",
+    "status.json": "301852b0a9e5cedb7f074edb8b9ae7353fd85833fe6c962b287c965bbb7e26b4",
+    "stderr.log": "1aa26269eb1cc57f86b235a03cda53c004edb5b1e9fc99d4da4f00843293d721",
+    "validation.json": "5acde61686570e9766770044723c4f7f4eca4fd3f4b97ac7448d56d5ad37eb28"
+  },
+  "archive_sha256": "f1003ccde7e96a3c49e3a43c347c6bdc20090a009fab034f0cb44951fd2f773d",
+  "verified": true
+}

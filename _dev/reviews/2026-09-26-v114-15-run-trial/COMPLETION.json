@@ -1,0 +1,11 @@
+{
+  "finished_at": "2026-09-26T10:09:55.008107+00:00",
+  "planned": 15,
+  "finished": 15,
+  "completed": 15,
+  "workbooks_present": 15,
+  "grading_performed": false,
+  "corrections_performed": false,
+  "live_files_changed": [],
+  "worktree_retirement": "/home/uctpiaj/work/archive/sec-extraction-worktrees/2026-09-26/sec-extraction-astra-audit.manifest.json"
+}

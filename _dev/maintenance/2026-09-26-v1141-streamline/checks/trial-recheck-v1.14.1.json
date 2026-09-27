@@ -1,0 +1,4480 @@
+{
+  "rules": "v1.14.1",
+  "identical": 0,
+  "runs": 15,
+  "results": [
+    {
+      "run": "mac-gray-gpt-6-astra-high-r1",
+      "stored": {
+        "errors": 0,
+        "information": 0,
+        "total_issues": 8,
+        "warnings": 8
+      },
+      "stored_schema": "v1.14",
+      "now": {
+        "errors": 1,
+        "warnings": 8,
+        "information": 0,
+        "total_issues": 9
+      },
+      "now_schema": "v1.14.1",
+      "checker_version": "1.8",
+      "identical_issues": false,
+      "only_stored": [
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          72,
+          "Note",
+          "Note has 46 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "questions.deadline_outcomes",
+          "Questions",
+          null,
+          null,
+          "The ledger has a reached Deadline, but no Question visibly mentions deadline outcomes."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          2,
+          null,
+          "Question entry has about 146 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          3,
+          null,
+          "Question entry has about 99 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          5,
+          null,
+          "Question entry has about 106 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          6,
+          null,
+          "Question entry has about 148 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          7,
+          null,
+          "Question entry has about 99 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          8,
+          null,
+          "Question entry has about 126 words across its review fields; the instruction asks for about 60."
+        ]
+      ],
+      "only_now": [
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          72,
+          "Note",
+          "Note has 46 words; the limit is 40 (D1)."
+        ],
+        [
+          "warning",
+          "questions.count",
+          "Questions",
+          null,
+          null,
+          "7 Questions besides the process Question; raise at most 5 (F)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          2,
+          null,
+          "Question entry has 146 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          3,
+          null,
+          "Question entry has 99 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          4,
+          null,
+          "Question entry has 83 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          5,
+          null,
+          "Question entry has 106 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          6,
+          null,
+          "Question entry has 148 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          7,
+          null,
+          "Question entry has 99 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          8,
+          null,
+          "Question entry has 126 words across its fields; the limit is 60 (D4)."
+        ]
+      ]
+    },
+    {
+      "run": "mac-gray-gpt-6-astra-xhigh-r1",
+      "stored": {
+        "errors": 0,
+        "information": 0,
+        "total_issues": 8,
+        "warnings": 8
+      },
+      "stored_schema": "v1.14",
+      "now": {
+        "errors": 3,
+        "warnings": 11,
+        "information": 0,
+        "total_issues": 14
+      },
+      "now_schema": "v1.14.1",
+      "checker_version": "1.8",
+      "identical_issues": false,
+      "only_stored": [
+        [
+          "warning",
+          "conditions.level_unsupported",
+          "Deal ledger",
+          65,
+          "Conditions",
+          "Due diligence, Financing and Regulatory are all Not stated, but Conditions is 'Light'; the Note must name the condition that supports the level (E12)."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          74,
+          "Note",
+          "Note has 47 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          2,
+          null,
+          "Question entry has about 123 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          3,
+          null,
+          "Question entry has about 110 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          5,
+          null,
+          "Question entry has about 92 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          6,
+          null,
+          "Question entry has about 125 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          8,
+          null,
+          "Question entry has about 114 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          9,
+          null,
+          "Question entry has about 118 words across its review fields; the instruction asks for about 60."
+        ]
+      ],
+      "only_now": [
+        [
+          "error",
+          "ledger.inferred_event",
+          "Deal ledger",
+          14,
+          "Inferred",
+          "Inferred = Y marks only an inferred exit, Round opened or Process restarted row (B); this is a 'Contact' row. Coding a column is never an inference."
+        ],
+        [
+          "error",
+          "ledger.inferred_event",
+          "Deal ledger",
+          15,
+          "Inferred",
+          "Inferred = Y marks only an inferred exit, Round opened or Process restarted row (B); this is a 'Contact' row. Coding a column is never an inference."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          74,
+          "Note",
+          "Note has 47 words; the limit is 40 (D1)."
+        ],
+        [
+          "warning",
+          "conditions.light_support",
+          "Deal ledger",
+          54,
+          "Conditions",
+          "Conditions Light needs Due diligence Complete or Incomplete (E12); found 'Not stated'."
+        ],
+        [
+          "warning",
+          "conditions.light_support",
+          "Deal ledger",
+          65,
+          "Conditions",
+          "Conditions Light needs Due diligence Complete or Incomplete (E12); found 'Not stated'."
+        ],
+        [
+          "warning",
+          "questions.count",
+          "Questions",
+          null,
+          null,
+          "8 Questions besides the process Question; raise at most 5 (F)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          2,
+          null,
+          "Question entry has 123 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          3,
+          null,
+          "Question entry has 110 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          4,
+          null,
+          "Question entry has 72 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          5,
+          null,
+          "Question entry has 92 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          6,
+          null,
+          "Question entry has 125 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          7,
+          null,
+          "Question entry has 87 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          8,
+          null,
+          "Question entry has 114 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          9,
+          null,
+          "Question entry has 118 words across its fields; the limit is 60 (D4)."
+        ]
+      ]
+    },
+    {
+      "run": "mac-gray-gpt-6-sol-xhigh-r1",
+      "stored": {
+        "errors": 0,
+        "information": 0,
+        "total_issues": 5,
+        "warnings": 5
+      },
+      "stored_schema": "v1.14",
+      "now": {
+        "errors": 4,
+        "warnings": 9,
+        "information": 0,
+        "total_issues": 13
+      },
+      "now_schema": "v1.14.1",
+      "checker_version": "1.8",
+      "identical_issues": false,
+      "only_stored": [
+        [
+          "warning",
+          "questions.deadline_outcomes",
+          "Questions",
+          null,
+          null,
+          "The ledger has a reached Deadline, but no Question visibly mentions deadline outcomes."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          2,
+          null,
+          "Question entry has about 110 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          4,
+          null,
+          "Question entry has about 111 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          7,
+          null,
+          "Question entry has about 123 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          8,
+          null,
+          "Question entry has about 111 words across its review fields; the instruction asks for about 60."
+        ]
+      ],
+      "only_now": [
+        [
+          "error",
+          "bid.reaffirmed_same_as",
+          "Deal ledger",
+          60,
+          "Note",
+          "Bid reaffirmed is a Same-offer row; its Note begins 'Same as #n' (E10)."
+        ],
+        [
+          "error",
+          "ledger.inferred_event",
+          "Deal ledger",
+          15,
+          "Inferred",
+          "Inferred = Y marks only an inferred exit, Round opened or Process restarted row (B); this is a 'Contact' row. Coding a column is never an inference."
+        ],
+        [
+          "error",
+          "ledger.inferred_event",
+          "Deal ledger",
+          18,
+          "Inferred",
+          "Inferred = Y marks only an inferred exit, Round opened or Process restarted row (B); this is a 'Contact' row. Coding a column is never an inference."
+        ],
+        [
+          "error",
+          "ledger.inferred_event",
+          "Deal ledger",
+          24,
+          "Inferred",
+          "Inferred = Y marks only an inferred exit, Round opened or Process restarted row (B); this is a 'Deadline set' row. Coding a column is never an inference."
+        ],
+        [
+          "warning",
+          "questions.count",
+          "Questions",
+          null,
+          null,
+          "8 Questions besides the process Question; raise at most 5 (F)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          2,
+          null,
+          "Question entry has 110 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          3,
+          null,
+          "Question entry has 73 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          4,
+          null,
+          "Question entry has 111 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          5,
+          null,
+          "Question entry has 76 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          6,
+          null,
+          "Question entry has 85 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          7,
+          null,
+          "Question entry has 123 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          8,
+          null,
+          "Question entry has 111 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          9,
+          null,
+          "Question entry has 79 words across its fields; the limit is 60 (D4)."
+        ]
+      ]
+    },
+    {
+      "run": "mac-gray-opus-5-5-medium-r1",
+      "stored": {
+        "errors": 0,
+        "information": 0,
+        "total_issues": 30,
+        "warnings": 30
+      },
+      "stored_schema": "v1.14",
+      "now": {
+        "errors": 21,
+        "warnings": 18,
+        "information": 0,
+        "total_issues": 39
+      },
+      "now_schema": "v1.14.1",
+      "checker_version": "1.8",
+      "identical_issues": false,
+      "only_stored": [
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          4,
+          "Note",
+          "Note has 46 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          9,
+          "Note",
+          "Note has 48 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          10,
+          "Note",
+          "Note has 41 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          11,
+          "Note",
+          "Note has 41 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          12,
+          "Note",
+          "Note has 45 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          22,
+          "Note",
+          "Note has 43 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          24,
+          "Note",
+          "Note has 45 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          25,
+          "Note",
+          "Note has 45 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          28,
+          "Note",
+          "Note has 43 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          31,
+          "Note",
+          "Note has 48 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          38,
+          "Note",
+          "Note has 44 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          39,
+          "Note",
+          "Note has 41 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          41,
+          "Note",
+          "Note has 42 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          42,
+          "Note",
+          "Note has 53 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          48,
+          "Note",
+          "Note has 45 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          51,
+          "Note",
+          "Note has 42 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          52,
+          "Note",
+          "Note has 43 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          54,
+          "Note",
+          "Note has 46 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          56,
+          "Note",
+          "Note has 46 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          64,
+          "Note",
+          "Note has 41 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          2,
+          null,
+          "Question entry has about 181 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          3,
+          null,
+          "Question entry has about 167 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          4,
+          null,
+          "Question entry has about 113 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          5,
+          null,
+          "Question entry has about 97 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          6,
+          null,
+          "Question entry has about 132 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          7,
+          null,
+          "Question entry has about 104 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          8,
+          null,
+          "Question entry has about 146 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          11,
+          null,
+          "Question entry has about 106 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          12,
+          null,
+          "Question entry has about 121 words across its review fields; the instruction asks for about 60."
+        ]
+      ],
+      "only_now": [
+        [
+          "error",
+          "ledger.inferred_event",
+          "Deal ledger",
+          42,
+          "Inferred",
+          "Inferred = Y marks only an inferred exit, Round opened or Process restarted row (B); this is a 'Bid' row. Coding a column is never an inference."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          4,
+          "Note",
+          "Note has 46 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          9,
+          "Note",
+          "Note has 48 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          10,
+          "Note",
+          "Note has 41 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          11,
+          "Note",
+          "Note has 41 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          12,
+          "Note",
+          "Note has 45 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          22,
+          "Note",
+          "Note has 43 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          24,
+          "Note",
+          "Note has 45 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          25,
+          "Note",
+          "Note has 45 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          28,
+          "Note",
+          "Note has 43 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          31,
+          "Note",
+          "Note has 48 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          38,
+          "Note",
+          "Note has 44 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          39,
+          "Note",
+          "Note has 41 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          41,
+          "Note",
+          "Note has 42 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          42,
+          "Note",
+          "Note has 53 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          48,
+          "Note",
+          "Note has 45 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          51,
+          "Note",
+          "Note has 42 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          52,
+          "Note",
+          "Note has 43 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          54,
+          "Note",
+          "Note has 46 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          56,
+          "Note",
+          "Note has 46 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          64,
+          "Note",
+          "Note has 41 words; the limit is 40 (D1)."
+        ],
+        [
+          "warning",
+          "conditions.heavy_trigger",
+          "Deal ledger",
+          34,
+          "Note",
+          "A Heavy row's Note begins with its trigger, 'H1:', 'H2:' or 'H3:', after any 'Same as #n. ' (E12, D1)."
+        ],
+        [
+          "warning",
+          "conditions.heavy_trigger",
+          "Deal ledger",
+          36,
+          "Note",
+          "A Heavy row's Note begins with its trigger, 'H1:', 'H2:' or 'H3:', after any 'Same as #n. ' (E12, D1)."
+        ],
+        [
+          "warning",
+          "conditions.heavy_trigger",
+          "Deal ledger",
+          37,
+          "Note",
+          "A Heavy row's Note begins with its trigger, 'H1:', 'H2:' or 'H3:', after any 'Same as #n. ' (E12, D1)."
+        ],
+        [
+          "warning",
+          "conditions.heavy_trigger",
+          "Deal ledger",
+          41,
+          "Note",
+          "A Heavy row's Note begins with its trigger, 'H1:', 'H2:' or 'H3:', after any 'Same as #n. ' (E12, D1)."
+        ],
+        [
+          "warning",
+          "conditions.heavy_trigger",
+          "Deal ledger",
+          42,
+          "Note",
+          "A Heavy row's Note begins with its trigger, 'H1:', 'H2:' or 'H3:', after any 'Same as #n. ' (E12, D1)."
+        ],
+        [
+          "warning",
+          "questions.count",
+          "Questions",
+          null,
+          null,
+          "11 Questions besides the process Question; raise at most 5 (F)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          2,
+          null,
+          "Question entry has 181 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          3,
+          null,
+          "Question entry has 167 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          4,
+          null,
+          "Question entry has 113 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          5,
+          null,
+          "Question entry has 97 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          6,
+          null,
+          "Question entry has 132 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          7,
+          null,
+          "Question entry has 104 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          8,
+          null,
+          "Question entry has 146 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          9,
+          null,
+          "Question entry has 89 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          10,
+          null,
+          "Question entry has 90 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          11,
+          null,
+          "Question entry has 106 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          12,
+          null,
+          "Question entry has 121 words across its fields; the limit is 60 (D4)."
+        ]
+      ]
+    },
+    {
+      "run": "mac-gray-opus-5-5-xhigh-r1",
+      "stored": {
+        "errors": 0,
+        "information": 0,
+        "total_issues": 34,
+        "warnings": 34
+      },
+      "stored_schema": "v1.14",
+      "now": {
+        "errors": 26,
+        "warnings": 17,
+        "information": 0,
+        "total_issues": 43
+      },
+      "now_schema": "v1.14.1",
+      "checker_version": "1.8",
+      "identical_issues": false,
+      "only_stored": [
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          3,
+          "Note",
+          "Note has 42 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          5,
+          "Note",
+          "Note has 42 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          7,
+          "Note",
+          "Note has 42 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          8,
+          "Note",
+          "Note has 41 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          9,
+          "Note",
+          "Note has 42 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          10,
+          "Note",
+          "Note has 44 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          13,
+          "Note",
+          "Note has 44 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          15,
+          "Note",
+          "Note has 49 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          19,
+          "Note",
+          "Note has 42 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          20,
+          "Note",
+          "Note has 41 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          24,
+          "Note",
+          "Note has 48 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          27,
+          "Note",
+          "Note has 43 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          29,
+          "Note",
+          "Note has 41 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          31,
+          "Note",
+          "Note has 42 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          37,
+          "Note",
+          "Note has 49 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          39,
+          "Note",
+          "Note has 46 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          40,
+          "Note",
+          "Note has 55 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          45,
+          "Note",
+          "Note has 43 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          46,
+          "Note",
+          "Note has 43 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          49,
+          "Note",
+          "Note has 42 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          50,
+          "Note",
+          "Note has 42 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          54,
+          "Note",
+          "Note has 54 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          55,
+          "Note",
+          "Note has 42 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          64,
+          "Note",
+          "Note has 41 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          2,
+          null,
+          "Question entry has about 244 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          3,
+          null,
+          "Question entry has about 187 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          4,
+          null,
+          "Question entry has about 95 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          5,
+          null,
+          "Question entry has about 108 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          6,
+          null,
+          "Question entry has about 176 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          7,
+          null,
+          "Question entry has about 168 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          8,
+          null,
+          "Question entry has about 122 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          9,
+          null,
+          "Question entry has about 102 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          10,
+          null,
+          "Question entry has about 128 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          11,
+          null,
+          "Question entry has about 117 words across its review fields; the instruction asks for about 60."
+        ]
+      ],
+      "only_now": [
+        [
+          "error",
+          "ledger.inferred_event",
+          "Deal ledger",
+          54,
+          "Inferred",
+          "Inferred = Y marks only an inferred exit, Round opened or Process restarted row (B); this is a 'Bid' row. Coding a column is never an inference."
+        ],
+        [
+          "error",
+          "ledger.inferred_event",
+          "Deal ledger",
+          55,
+          "Inferred",
+          "Inferred = Y marks only an inferred exit, Round opened or Process restarted row (B); this is a 'Bid' row. Coding a column is never an inference."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          3,
+          "Note",
+          "Note has 42 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          5,
+          "Note",
+          "Note has 42 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          7,
+          "Note",
+          "Note has 42 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          8,
+          "Note",
+          "Note has 41 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          9,
+          "Note",
+          "Note has 42 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          10,
+          "Note",
+          "Note has 44 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          13,
+          "Note",
+          "Note has 44 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          15,
+          "Note",
+          "Note has 49 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          19,
+          "Note",
+          "Note has 42 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          20,
+          "Note",
+          "Note has 41 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          24,
+          "Note",
+          "Note has 48 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          27,
+          "Note",
+          "Note has 43 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          29,
+          "Note",
+          "Note has 41 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          31,
+          "Note",
+          "Note has 42 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          37,
+          "Note",
+          "Note has 49 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          39,
+          "Note",
+          "Note has 46 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          40,
+          "Note",
+          "Note has 55 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          45,
+          "Note",
+          "Note has 43 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          46,
+          "Note",
+          "Note has 43 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          49,
+          "Note",
+          "Note has 42 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          50,
+          "Note",
+          "Note has 42 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          54,
+          "Note",
+          "Note has 54 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          55,
+          "Note",
+          "Note has 42 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          64,
+          "Note",
+          "Note has 41 words; the limit is 40 (D1)."
+        ],
+        [
+          "warning",
+          "conditions.heavy_trigger",
+          "Deal ledger",
+          32,
+          "Note",
+          "A Heavy row's Note begins with its trigger, 'H1:', 'H2:' or 'H3:', after any 'Same as #n. ' (E12, D1)."
+        ],
+        [
+          "warning",
+          "conditions.heavy_trigger",
+          "Deal ledger",
+          33,
+          "Note",
+          "A Heavy row's Note begins with its trigger, 'H1:', 'H2:' or 'H3:', after any 'Same as #n. ' (E12, D1)."
+        ],
+        [
+          "warning",
+          "conditions.heavy_trigger",
+          "Deal ledger",
+          35,
+          "Note",
+          "A Heavy row's Note begins with its trigger, 'H1:', 'H2:' or 'H3:', after any 'Same as #n. ' (E12, D1)."
+        ],
+        [
+          "warning",
+          "conditions.heavy_trigger",
+          "Deal ledger",
+          36,
+          "Note",
+          "A Heavy row's Note begins with its trigger, 'H1:', 'H2:' or 'H3:', after any 'Same as #n. ' (E12, D1)."
+        ],
+        [
+          "warning",
+          "conditions.heavy_trigger",
+          "Deal ledger",
+          39,
+          "Note",
+          "A Heavy row's Note begins with its trigger, 'H1:', 'H2:' or 'H3:', after any 'Same as #n. ' (E12, D1)."
+        ],
+        [
+          "warning",
+          "conditions.heavy_trigger",
+          "Deal ledger",
+          40,
+          "Note",
+          "A Heavy row's Note begins with its trigger, 'H1:', 'H2:' or 'H3:', after any 'Same as #n. ' (E12, D1)."
+        ],
+        [
+          "warning",
+          "questions.count",
+          "Questions",
+          null,
+          null,
+          "10 Questions besides the process Question; raise at most 5 (F)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          2,
+          null,
+          "Question entry has 244 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          3,
+          null,
+          "Question entry has 187 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          4,
+          null,
+          "Question entry has 95 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          5,
+          null,
+          "Question entry has 108 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          6,
+          null,
+          "Question entry has 176 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          7,
+          null,
+          "Question entry has 168 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          8,
+          null,
+          "Question entry has 122 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          9,
+          null,
+          "Question entry has 102 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          10,
+          null,
+          "Question entry has 128 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          11,
+          null,
+          "Question entry has 117 words across its fields; the limit is 60 (D4)."
+        ]
+      ]
+    },
+    {
+      "run": "providence-worcester-gpt-6-astra-high-r1",
+      "stored": {
+        "errors": 0,
+        "information": 0,
+        "total_issues": 9,
+        "warnings": 9
+      },
+      "stored_schema": "v1.14",
+      "now": {
+        "errors": 7,
+        "warnings": 9,
+        "information": 0,
+        "total_issues": 16
+      },
+      "now_schema": "v1.14.1",
+      "checker_version": "1.8",
+      "identical_issues": false,
+      "only_stored": [
+        [
+          "warning",
+          "questions.deadline_outcomes",
+          "Questions",
+          null,
+          null,
+          "The ledger has a reached Deadline, but no Question visibly mentions deadline outcomes."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          2,
+          null,
+          "Question entry has about 165 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          3,
+          null,
+          "Question entry has about 101 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          4,
+          null,
+          "Question entry has about 109 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          5,
+          null,
+          "Question entry has about 141 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          6,
+          null,
+          "Question entry has about 123 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          7,
+          null,
+          "Question entry has about 130 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          8,
+          null,
+          "Question entry has about 101 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          9,
+          null,
+          "Question entry has about 126 words across its review fields; the instruction asks for about 60."
+        ]
+      ],
+      "only_now": [
+        [
+          "error",
+          "bid.reaffirmed_same_as",
+          "Deal ledger",
+          53,
+          "Note",
+          "Bid reaffirmed is a Same-offer row; its Note begins 'Same as #n' (E10)."
+        ],
+        [
+          "error",
+          "controlled.initiation",
+          "Deal facts",
+          10,
+          "Value",
+          "Initiation 'mixed \u2014 Party A preliminary equity/JV interest prompted review; target initiated broader whole-company outreach.' is not allowed."
+        ],
+        [
+          "error",
+          "facts.fields",
+          "Deal facts",
+          2,
+          "Field",
+          "Deal facts fields must appear exactly in the prescribed order; found ['Target', 'Acquirer', 'Acquirer type', 'Agreed price and consideration', 'Merger agreement signed', 'Merger announced', 'Filing type and date', 'Background pages', 'Initiation (target-led, bidder-led, activist-influenced, mixed or unclear)', 'Number of processes', 'Earlier approaches', 'Auction screen', 'Whole-company bids', 'Currency and units of bid prices', 'Target financial advisers', 'Target legal advisers', 'Account']."
+        ],
+        [
+          "error",
+          "ledger.inferred_event",
+          "Deal ledger",
+          12,
+          "Inferred",
+          "Inferred = Y marks only an inferred exit, Round opened or Process restarted row (B); this is a 'NDA signed' row. Coding a column is never an inference."
+        ],
+        [
+          "error",
+          "ledger.inferred_event",
+          "Deal ledger",
+          13,
+          "Inferred",
+          "Inferred = Y marks only an inferred exit, Round opened or Process restarted row (B); this is a 'NDA signed' row. Coding a column is never an inference."
+        ],
+        [
+          "error",
+          "ledger.inferred_event",
+          "Deal ledger",
+          14,
+          "Inferred",
+          "Inferred = Y marks only an inferred exit, Round opened or Process restarted row (B); this is a 'Contact' row. Coding a column is never an inference."
+        ],
+        [
+          "error",
+          "ledger.inferred_event",
+          "Deal ledger",
+          16,
+          "Inferred",
+          "Inferred = Y marks only an inferred exit, Round opened or Process restarted row (B); this is a 'Deadline revised' row. Coding a column is never an inference."
+        ],
+        [
+          "warning",
+          "questions.count",
+          "Questions",
+          null,
+          null,
+          "8 Questions besides the process Question; raise at most 5 (F)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          2,
+          null,
+          "Question entry has 165 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          3,
+          null,
+          "Question entry has 101 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          4,
+          null,
+          "Question entry has 109 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          5,
+          null,
+          "Question entry has 141 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          6,
+          null,
+          "Question entry has 123 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          7,
+          null,
+          "Question entry has 130 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          8,
+          null,
+          "Question entry has 101 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          9,
+          null,
+          "Question entry has 126 words across its fields; the limit is 60 (D4)."
+        ]
+      ]
+    },
+    {
+      "run": "providence-worcester-gpt-6-astra-xhigh-r1",
+      "stored": {
+        "errors": 0,
+        "information": 0,
+        "total_issues": 10,
+        "warnings": 10
+      },
+      "stored_schema": "v1.14",
+      "now": {
+        "errors": 5,
+        "warnings": 9,
+        "information": 0,
+        "total_issues": 14
+      },
+      "now_schema": "v1.14.1",
+      "checker_version": "1.8",
+      "identical_issues": false,
+      "only_stored": [
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          68,
+          "Note",
+          "Note has 45 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "questions.deadline_outcomes",
+          "Questions",
+          null,
+          null,
+          "The ledger has a reached Deadline, but no Question visibly mentions deadline outcomes."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          2,
+          null,
+          "Question entry has about 142 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          3,
+          null,
+          "Question entry has about 98 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          4,
+          null,
+          "Question entry has about 100 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          5,
+          null,
+          "Question entry has about 185 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          6,
+          null,
+          "Question entry has about 127 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          7,
+          null,
+          "Question entry has about 116 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          8,
+          null,
+          "Question entry has about 123 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          9,
+          null,
+          "Question entry has about 131 words across its review fields; the instruction asks for about 60."
+        ]
+      ],
+      "only_now": [
+        [
+          "error",
+          "bid.reaffirmed_same_as",
+          "Deal ledger",
+          55,
+          "Note",
+          "Bid reaffirmed is a Same-offer row; its Note begins 'Same as #n' (E10)."
+        ],
+        [
+          "error",
+          "controlled.initiation",
+          "Deal facts",
+          10,
+          "Value",
+          "Initiation 'mixed \u2014 Party A\u2019s preliminary JV/equity interest prompted review; Board/GHF then organized broad whole-company outreach (pp. 27\u201328).' is not allowed."
+        ],
+        [
+          "error",
+          "ledger.inferred_event",
+          "Deal ledger",
+          15,
+          "Inferred",
+          "Inferred = Y marks only an inferred exit, Round opened or Process restarted row (B); this is a 'Deadline revised' row. Coding a column is never an inference."
+        ],
+        [
+          "error",
+          "ledger.inferred_event",
+          "Deal ledger",
+          48,
+          "Inferred",
+          "Inferred = Y marks only an inferred exit, Round opened or Process restarted row (B); this is a 'Other material event' row. Coding a column is never an inference."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          68,
+          "Note",
+          "Note has 45 words; the limit is 40 (D1)."
+        ],
+        [
+          "warning",
+          "questions.count",
+          "Questions",
+          null,
+          null,
+          "8 Questions besides the process Question; raise at most 5 (F)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          2,
+          null,
+          "Question entry has 142 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          3,
+          null,
+          "Question entry has 98 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          4,
+          null,
+          "Question entry has 100 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          5,
+          null,
+          "Question entry has 185 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          6,
+          null,
+          "Question entry has 127 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          7,
+          null,
+          "Question entry has 116 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          8,
+          null,
+          "Question entry has 123 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          9,
+          null,
+          "Question entry has 131 words across its fields; the limit is 60 (D4)."
+        ]
+      ]
+    },
+    {
+      "run": "providence-worcester-gpt-6-sol-xhigh-r1",
+      "stored": {
+        "errors": 0,
+        "information": 0,
+        "total_issues": 6,
+        "warnings": 6
+      },
+      "stored_schema": "v1.14",
+      "now": {
+        "errors": 3,
+        "warnings": 7,
+        "information": 0,
+        "total_issues": 10
+      },
+      "now_schema": "v1.14.1",
+      "checker_version": "1.8",
+      "identical_issues": false,
+      "only_stored": [
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          18,
+          "Note",
+          "Note has 41 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "questions.deadline_outcomes",
+          "Questions",
+          null,
+          null,
+          "The ledger has a reached Deadline, but no Question visibly mentions deadline outcomes."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          2,
+          null,
+          "Question entry has about 121 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          3,
+          null,
+          "Question entry has about 99 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          5,
+          null,
+          "Question entry has about 120 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          6,
+          null,
+          "Question entry has about 94 words across its review fields; the instruction asks for about 60."
+        ]
+      ],
+      "only_now": [
+        [
+          "error",
+          "bid.reaffirmed_same_as",
+          "Deal ledger",
+          51,
+          "Note",
+          "Bid reaffirmed is a Same-offer row; its Note begins 'Same as #n' (E10)."
+        ],
+        [
+          "error",
+          "controlled.initiation",
+          "Deal facts",
+          10,
+          "Value",
+          "Initiation 'mixed' is not allowed."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          18,
+          "Note",
+          "Note has 41 words; the limit is 40 (D1)."
+        ],
+        [
+          "warning",
+          "questions.count",
+          "Questions",
+          null,
+          null,
+          "6 Questions besides the process Question; raise at most 5 (F)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          2,
+          null,
+          "Question entry has 121 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          3,
+          null,
+          "Question entry has 99 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          4,
+          null,
+          "Question entry has 70 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          5,
+          null,
+          "Question entry has 120 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          6,
+          null,
+          "Question entry has 94 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          7,
+          null,
+          "Question entry has 79 words across its fields; the limit is 60 (D4)."
+        ]
+      ]
+    },
+    {
+      "run": "providence-worcester-opus-5-5-medium-r1",
+      "stored": {
+        "errors": 1,
+        "information": 0,
+        "total_issues": 14,
+        "warnings": 13
+      },
+      "stored_schema": "v1.14",
+      "now": {
+        "errors": 5,
+        "warnings": 17,
+        "information": 0,
+        "total_issues": 22
+      },
+      "now_schema": "v1.14.1",
+      "checker_version": "1.8",
+      "identical_issues": false,
+      "only_stored": [
+        [
+          "error",
+          "rounds.no_deadline_pair",
+          "Rounds",
+          4,
+          "Due dates",
+          "Deadline outcome is 'No deadline stated' but Due dates is not 'none stated'."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          31,
+          "Note",
+          "Note has 43 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          35,
+          "Note",
+          "Note has 42 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          38,
+          "Note",
+          "Note has 41 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          2,
+          null,
+          "Question entry has about 179 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          3,
+          null,
+          "Question entry has about 209 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          4,
+          null,
+          "Question entry has about 121 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          5,
+          null,
+          "Question entry has about 135 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          6,
+          null,
+          "Question entry has about 136 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          7,
+          null,
+          "Question entry has about 93 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          8,
+          null,
+          "Question entry has about 100 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          9,
+          null,
+          "Question entry has about 152 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          10,
+          null,
+          "Question entry has about 101 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          11,
+          null,
+          "Question entry has about 98 words across its review fields; the instruction asks for about 60."
+        ]
+      ],
+      "only_now": [
+        [
+          "error",
+          "bid.reaffirmed_same_as",
+          "Deal ledger",
+          53,
+          "Note",
+          "Bid reaffirmed is a Same-offer row; its Note begins 'Same as #n' (E10)."
+        ],
+        [
+          "error",
+          "controlled.initiation",
+          "Deal facts",
+          10,
+          "Value",
+          "Initiation \"Mixed: Party A's unsolicited Q4 2015 interest in joint ventures and an equity stake led the Board to hire a banker; the sale process itself was target-led.\" is not allowed."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          31,
+          "Note",
+          "Note has 43 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          35,
+          "Note",
+          "Note has 42 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          38,
+          "Note",
+          "Note has 41 words; the limit is 40 (D1)."
+        ],
+        [
+          "warning",
+          "conditions.heavy_trigger",
+          "Deal ledger",
+          32,
+          "Note",
+          "A Heavy row's Note begins with its trigger, 'H1:', 'H2:' or 'H3:', after any 'Same as #n. ' (E12, D1)."
+        ],
+        [
+          "warning",
+          "conditions.heavy_trigger",
+          "Deal ledger",
+          33,
+          "Note",
+          "A Heavy row's Note begins with its trigger, 'H1:', 'H2:' or 'H3:', after any 'Same as #n. ' (E12, D1)."
+        ],
+        [
+          "warning",
+          "conditions.heavy_trigger",
+          "Deal ledger",
+          34,
+          "Note",
+          "A Heavy row's Note begins with its trigger, 'H1:', 'H2:' or 'H3:', after any 'Same as #n. ' (E12, D1)."
+        ],
+        [
+          "warning",
+          "conditions.heavy_trigger",
+          "Deal ledger",
+          35,
+          "Note",
+          "A Heavy row's Note begins with its trigger, 'H1:', 'H2:' or 'H3:', after any 'Same as #n. ' (E12, D1)."
+        ],
+        [
+          "warning",
+          "conditions.heavy_trigger",
+          "Deal ledger",
+          45,
+          "Note",
+          "A Heavy row's Note begins with its trigger, 'H1:', 'H2:' or 'H3:', after any 'Same as #n. ' (E12, D1)."
+        ],
+        [
+          "warning",
+          "conditions.heavy_trigger",
+          "Deal ledger",
+          46,
+          "Note",
+          "A Heavy row's Note begins with its trigger, 'H1:', 'H2:' or 'H3:', after any 'Same as #n. ' (E12, D1)."
+        ],
+        [
+          "warning",
+          "questions.count",
+          "Questions",
+          null,
+          null,
+          "10 Questions besides the process Question; raise at most 5 (F)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          2,
+          null,
+          "Question entry has 179 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          3,
+          null,
+          "Question entry has 209 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          4,
+          null,
+          "Question entry has 121 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          5,
+          null,
+          "Question entry has 135 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          6,
+          null,
+          "Question entry has 136 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          7,
+          null,
+          "Question entry has 93 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          8,
+          null,
+          "Question entry has 100 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          9,
+          null,
+          "Question entry has 152 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          10,
+          null,
+          "Question entry has 101 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          11,
+          null,
+          "Question entry has 98 words across its fields; the limit is 60 (D4)."
+        ]
+      ]
+    },
+    {
+      "run": "providence-worcester-opus-5-5-xhigh-r1",
+      "stored": {
+        "errors": 0,
+        "information": 0,
+        "total_issues": 23,
+        "warnings": 23
+      },
+      "stored_schema": "v1.14",
+      "now": {
+        "errors": 15,
+        "warnings": 21,
+        "information": 0,
+        "total_issues": 36
+      },
+      "now_schema": "v1.14.1",
+      "checker_version": "1.8",
+      "identical_issues": false,
+      "only_stored": [
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          2,
+          "Note",
+          "Note has 43 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          3,
+          "Note",
+          "Note has 41 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          10,
+          "Note",
+          "Note has 43 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          13,
+          "Note",
+          "Note has 41 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          21,
+          "Note",
+          "Note has 41 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          22,
+          "Note",
+          "Note has 43 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          37,
+          "Note",
+          "Note has 43 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          40,
+          "Note",
+          "Note has 41 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          53,
+          "Note",
+          "Note has 43 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          55,
+          "Note",
+          "Note has 44 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          59,
+          "Note",
+          "Note has 42 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          64,
+          "Note",
+          "Note has 44 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          2,
+          null,
+          "Question entry has about 129 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          3,
+          null,
+          "Question entry has about 256 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          4,
+          null,
+          "Question entry has about 191 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          5,
+          null,
+          "Question entry has about 117 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          6,
+          null,
+          "Question entry has about 137 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          8,
+          null,
+          "Question entry has about 97 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          9,
+          null,
+          "Question entry has about 101 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          10,
+          null,
+          "Question entry has about 106 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          11,
+          null,
+          "Question entry has about 102 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          12,
+          null,
+          "Question entry has about 112 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          13,
+          null,
+          "Question entry has about 128 words across its review fields; the instruction asks for about 60."
+        ]
+      ],
+      "only_now": [
+        [
+          "error",
+          "bid.reaffirmed_same_as",
+          "Deal ledger",
+          54,
+          "Note",
+          "Bid reaffirmed is a Same-offer row; its Note begins 'Same as #n' (E10)."
+        ],
+        [
+          "error",
+          "controlled.initiation",
+          "Deal facts",
+          10,
+          "Value",
+          "Initiation \"Mixed: Party A's Q4 2015 approach (joint ventures and an equity interest) led the Board to hire a banker; the Board then chose a target-led auction on 03/14/2016\" is not allowed."
+        ],
+        [
+          "error",
+          "ledger.inferred_event",
+          "Deal ledger",
+          18,
+          "Inferred",
+          "Inferred = Y marks only an inferred exit, Round opened or Process restarted row (B); this is a 'Deadline revised' row. Coding a column is never an inference."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          2,
+          "Note",
+          "Note has 43 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          3,
+          "Note",
+          "Note has 41 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          10,
+          "Note",
+          "Note has 43 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          13,
+          "Note",
+          "Note has 41 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          21,
+          "Note",
+          "Note has 41 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          22,
+          "Note",
+          "Note has 43 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          37,
+          "Note",
+          "Note has 43 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          40,
+          "Note",
+          "Note has 41 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          53,
+          "Note",
+          "Note has 43 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          55,
+          "Note",
+          "Note has 44 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          59,
+          "Note",
+          "Note has 42 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          64,
+          "Note",
+          "Note has 44 words; the limit is 40 (D1)."
+        ],
+        [
+          "warning",
+          "conditions.heavy_trigger",
+          "Deal ledger",
+          31,
+          "Note",
+          "A Heavy row's Note begins with its trigger, 'H1:', 'H2:' or 'H3:', after any 'Same as #n. ' (E12, D1)."
+        ],
+        [
+          "warning",
+          "conditions.heavy_trigger",
+          "Deal ledger",
+          32,
+          "Note",
+          "A Heavy row's Note begins with its trigger, 'H1:', 'H2:' or 'H3:', after any 'Same as #n. ' (E12, D1)."
+        ],
+        [
+          "warning",
+          "conditions.heavy_trigger",
+          "Deal ledger",
+          33,
+          "Note",
+          "A Heavy row's Note begins with its trigger, 'H1:', 'H2:' or 'H3:', after any 'Same as #n. ' (E12, D1)."
+        ],
+        [
+          "warning",
+          "conditions.heavy_trigger",
+          "Deal ledger",
+          34,
+          "Note",
+          "A Heavy row's Note begins with its trigger, 'H1:', 'H2:' or 'H3:', after any 'Same as #n. ' (E12, D1)."
+        ],
+        [
+          "warning",
+          "conditions.heavy_trigger",
+          "Deal ledger",
+          37,
+          "Note",
+          "A Heavy row's Note begins with its trigger, 'H1:', 'H2:' or 'H3:', after any 'Same as #n. ' (E12, D1)."
+        ],
+        [
+          "warning",
+          "conditions.heavy_trigger",
+          "Deal ledger",
+          47,
+          "Note",
+          "A Heavy row's Note begins with its trigger, 'H1:', 'H2:' or 'H3:', after any 'Same as #n. ' (E12, D1)."
+        ],
+        [
+          "warning",
+          "conditions.heavy_trigger",
+          "Deal ledger",
+          48,
+          "Note",
+          "A Heavy row's Note begins with its trigger, 'H1:', 'H2:' or 'H3:', after any 'Same as #n. ' (E12, D1)."
+        ],
+        [
+          "warning",
+          "conditions.heavy_trigger",
+          "Deal ledger",
+          50,
+          "Note",
+          "A Heavy row's Note begins with its trigger, 'H1:', 'H2:' or 'H3:', after any 'Same as #n. ' (E12, D1)."
+        ],
+        [
+          "warning",
+          "questions.count",
+          "Questions",
+          null,
+          null,
+          "12 Questions besides the process Question; raise at most 5 (F)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          2,
+          null,
+          "Question entry has 129 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          3,
+          null,
+          "Question entry has 256 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          4,
+          null,
+          "Question entry has 191 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          5,
+          null,
+          "Question entry has 117 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          6,
+          null,
+          "Question entry has 137 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          7,
+          null,
+          "Question entry has 90 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          8,
+          null,
+          "Question entry has 97 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          9,
+          null,
+          "Question entry has 101 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          10,
+          null,
+          "Question entry has 106 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          11,
+          null,
+          "Question entry has 102 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          12,
+          null,
+          "Question entry has 112 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          13,
+          null,
+          "Question entry has 128 words across its fields; the limit is 60 (D4)."
+        ]
+      ]
+    },
+    {
+      "run": "stec-gpt-6-astra-high-r1",
+      "stored": {
+        "errors": 0,
+        "information": 0,
+        "total_issues": 12,
+        "warnings": 12
+      },
+      "stored_schema": "v1.14",
+      "now": {
+        "errors": 3,
+        "warnings": 11,
+        "information": 0,
+        "total_issues": 14
+      },
+      "now_schema": "v1.14.1",
+      "checker_version": "1.8",
+      "identical_issues": false,
+      "only_stored": [
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          17,
+          "Note",
+          "Note has 57 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          45,
+          "Note",
+          "Note has 43 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "questions.deadline_outcomes",
+          "Questions",
+          null,
+          null,
+          "The ledger has a reached Deadline, but no Question visibly mentions deadline outcomes."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          2,
+          null,
+          "Question entry has about 138 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          3,
+          null,
+          "Question entry has about 122 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          4,
+          null,
+          "Question entry has about 109 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          5,
+          null,
+          "Question entry has about 126 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          6,
+          null,
+          "Question entry has about 130 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          7,
+          null,
+          "Question entry has about 126 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          9,
+          null,
+          "Question entry has about 99 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          10,
+          null,
+          "Question entry has about 101 words across its review fields; the instruction asks for about 60."
+        ]
+      ],
+      "only_now": [
+        [
+          "error",
+          "controlled.initiation",
+          "Deal facts",
+          10,
+          "Value",
+          "Initiation 'mixed \u2014 board-led strategic review, unsolicited approaches and activist pressure (pp. 24\u201327).' is not allowed."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          17,
+          "Note",
+          "Note has 57 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          45,
+          "Note",
+          "Note has 43 words; the limit is 40 (D1)."
+        ],
+        [
+          "warning",
+          "questions.count",
+          "Questions",
+          null,
+          null,
+          "9 Questions besides the process Question; raise at most 5 (F)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          2,
+          null,
+          "Question entry has 138 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          3,
+          null,
+          "Question entry has 122 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          4,
+          null,
+          "Question entry has 109 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          5,
+          null,
+          "Question entry has 126 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          6,
+          null,
+          "Question entry has 130 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          7,
+          null,
+          "Question entry has 126 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          8,
+          null,
+          "Question entry has 88 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          9,
+          null,
+          "Question entry has 99 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          10,
+          null,
+          "Question entry has 101 words across its fields; the limit is 60 (D4)."
+        ]
+      ]
+    },
+    {
+      "run": "stec-gpt-6-astra-xhigh-r1",
+      "stored": {
+        "errors": 0,
+        "information": 0,
+        "total_issues": 3,
+        "warnings": 3
+      },
+      "stored_schema": "v1.14",
+      "now": {
+        "errors": 9,
+        "warnings": 7,
+        "information": 0,
+        "total_issues": 16
+      },
+      "now_schema": "v1.14.1",
+      "checker_version": "1.8",
+      "identical_issues": false,
+      "only_stored": [
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          86,
+          "Note",
+          "Note has 48 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          2,
+          null,
+          "Question entry has about 214 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          5,
+          null,
+          "Question entry has about 223 words across its review fields; the instruction asks for about 60."
+        ]
+      ],
+      "only_now": [
+        [
+          "error",
+          "controlled.initiation",
+          "Deal facts",
+          10,
+          "Value",
+          "Initiation 'mixed \u2014 target-led strategic review, early bidder approaches, and activist influence from Balch Hill/Potomac (pp. 24\u201327).' is not allowed."
+        ],
+        [
+          "error",
+          "ledger.inferred_event",
+          "Deal ledger",
+          18,
+          "Inferred",
+          "Inferred = Y marks only an inferred exit, Round opened or Process restarted row (B); this is a 'Contact' row. Coding a column is never an inference."
+        ],
+        [
+          "error",
+          "ledger.inferred_event",
+          "Deal ledger",
+          20,
+          "Inferred",
+          "Inferred = Y marks only an inferred exit, Round opened or Process restarted row (B); this is a 'Contact' row. Coding a column is never an inference."
+        ],
+        [
+          "error",
+          "ledger.inferred_event",
+          "Deal ledger",
+          21,
+          "Inferred",
+          "Inferred = Y marks only an inferred exit, Round opened or Process restarted row (B); this is a 'Contact' row. Coding a column is never an inference."
+        ],
+        [
+          "error",
+          "ledger.inferred_event",
+          "Deal ledger",
+          22,
+          "Inferred",
+          "Inferred = Y marks only an inferred exit, Round opened or Process restarted row (B); this is a 'Contact' row. Coding a column is never an inference."
+        ],
+        [
+          "error",
+          "ledger.inferred_event",
+          "Deal ledger",
+          45,
+          "Inferred",
+          "Inferred = Y marks only an inferred exit, Round opened or Process restarted row (B); this is a 'Contact' row. Coding a column is never an inference."
+        ],
+        [
+          "error",
+          "ledger.inferred_event",
+          "Deal ledger",
+          46,
+          "Inferred",
+          "Inferred = Y marks only an inferred exit, Round opened or Process restarted row (B); this is a 'Contact' row. Coding a column is never an inference."
+        ],
+        [
+          "error",
+          "ledger.inferred_event",
+          "Deal ledger",
+          47,
+          "Inferred",
+          "Inferred = Y marks only an inferred exit, Round opened or Process restarted row (B); this is a 'Other material event' row. Coding a column is never an inference."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          86,
+          "Note",
+          "Note has 48 words; the limit is 40 (D1)."
+        ],
+        [
+          "warning",
+          "questions.count",
+          "Questions",
+          null,
+          null,
+          "6 Questions besides the process Question; raise at most 5 (F)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          2,
+          null,
+          "Question entry has 214 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          3,
+          null,
+          "Question entry has 78 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          4,
+          null,
+          "Question entry has 79 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          5,
+          null,
+          "Question entry has 223 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          6,
+          null,
+          "Question entry has 78 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          7,
+          null,
+          "Question entry has 68 words across its fields; the limit is 60 (D4)."
+        ]
+      ]
+    },
+    {
+      "run": "stec-gpt-6-sol-xhigh-r1",
+      "stored": {
+        "errors": 0,
+        "information": 0,
+        "total_issues": 8,
+        "warnings": 8
+      },
+      "stored_schema": "v1.14",
+      "now": {
+        "errors": 1,
+        "warnings": 8,
+        "information": 0,
+        "total_issues": 9
+      },
+      "now_schema": "v1.14.1",
+      "checker_version": "1.8",
+      "identical_issues": false,
+      "only_stored": [
+        [
+          "warning",
+          "questions.deadline_outcomes",
+          "Questions",
+          null,
+          null,
+          "The ledger has a reached Deadline, but no Question visibly mentions deadline outcomes."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          2,
+          null,
+          "Question entry has about 219 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          3,
+          null,
+          "Question entry has about 132 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          4,
+          null,
+          "Question entry has about 141 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          5,
+          null,
+          "Question entry has about 177 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          6,
+          null,
+          "Question entry has about 150 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          7,
+          null,
+          "Question entry has about 137 words across its review fields; the instruction asks for about 60."
+        ]
+      ],
+      "only_now": [
+        [
+          "error",
+          "controlled.initiation",
+          "Deal facts",
+          10,
+          "Value",
+          "Initiation 'mixed \u2014 target strategic review began mid-November 2012 amid inbound approaches; Balch Hill urged alternatives December 6.' is not allowed."
+        ],
+        [
+          "warning",
+          "questions.count",
+          "Questions",
+          null,
+          null,
+          "6 Questions besides the process Question; raise at most 5 (F)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          2,
+          null,
+          "Question entry has 219 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          3,
+          null,
+          "Question entry has 132 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          4,
+          null,
+          "Question entry has 141 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          5,
+          null,
+          "Question entry has 177 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          6,
+          null,
+          "Question entry has 150 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          7,
+          null,
+          "Question entry has 137 words across its fields; the limit is 60 (D4)."
+        ]
+      ]
+    },
+    {
+      "run": "stec-opus-5-5-medium-r1",
+      "stored": {
+        "errors": 0,
+        "information": 0,
+        "total_issues": 18,
+        "warnings": 18
+      },
+      "stored_schema": "v1.14",
+      "now": {
+        "errors": 10,
+        "warnings": 9,
+        "information": 0,
+        "total_issues": 19
+      },
+      "now_schema": "v1.14.1",
+      "checker_version": "1.8",
+      "identical_issues": false,
+      "only_stored": [
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          3,
+          "Note",
+          "Note has 49 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          8,
+          "Note",
+          "Note has 53 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          9,
+          "Note",
+          "Note has 41 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          10,
+          "Note",
+          "Note has 48 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          13,
+          "Note",
+          "Note has 45 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          14,
+          "Note",
+          "Note has 47 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          52,
+          "Note",
+          "Note has 42 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          56,
+          "Note",
+          "Note has 41 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          58,
+          "Note",
+          "Note has 41 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          65,
+          "Note",
+          "Note has 44 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          2,
+          null,
+          "Question entry has about 242 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          3,
+          null,
+          "Question entry has about 205 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          4,
+          null,
+          "Question entry has about 104 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          5,
+          null,
+          "Question entry has about 126 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          6,
+          null,
+          "Question entry has about 158 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          7,
+          null,
+          "Question entry has about 156 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          8,
+          null,
+          "Question entry has about 106 words across its review fields; the instruction asks for about 60."
+        ]
+      ],
+      "only_now": [
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          3,
+          "Note",
+          "Note has 49 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          8,
+          "Note",
+          "Note has 53 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          9,
+          "Note",
+          "Note has 41 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          10,
+          "Note",
+          "Note has 48 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          13,
+          "Note",
+          "Note has 45 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          14,
+          "Note",
+          "Note has 47 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          52,
+          "Note",
+          "Note has 42 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          56,
+          "Note",
+          "Note has 41 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          58,
+          "Note",
+          "Note has 41 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          65,
+          "Note",
+          "Note has 44 words; the limit is 40 (D1)."
+        ],
+        [
+          "warning",
+          "questions.count",
+          "Questions",
+          null,
+          null,
+          "7 Questions besides the process Question; raise at most 5 (F)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          2,
+          null,
+          "Question entry has 242 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          3,
+          null,
+          "Question entry has 205 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          4,
+          null,
+          "Question entry has 104 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          5,
+          null,
+          "Question entry has 126 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          6,
+          null,
+          "Question entry has 158 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          7,
+          null,
+          "Question entry has 156 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          8,
+          null,
+          "Question entry has 106 words across its fields; the limit is 60 (D4)."
+        ]
+      ]
+    },
+    {
+      "run": "stec-opus-5-5-xhigh-r1",
+      "stored": {
+        "errors": 0,
+        "information": 0,
+        "total_issues": 29,
+        "warnings": 29
+      },
+      "stored_schema": "v1.14",
+      "now": {
+        "errors": 24,
+        "warnings": 9,
+        "information": 0,
+        "total_issues": 33
+      },
+      "now_schema": "v1.14.1",
+      "checker_version": "1.8",
+      "identical_issues": false,
+      "only_stored": [
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          3,
+          "Note",
+          "Note has 52 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          4,
+          "Note",
+          "Note has 45 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          6,
+          "Note",
+          "Note has 47 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          7,
+          "Note",
+          "Note has 42 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          8,
+          "Note",
+          "Note has 49 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          9,
+          "Note",
+          "Note has 43 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          15,
+          "Note",
+          "Note has 54 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          21,
+          "Note",
+          "Note has 42 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          23,
+          "Note",
+          "Note has 51 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          25,
+          "Note",
+          "Note has 41 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          28,
+          "Note",
+          "Note has 41 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          31,
+          "Note",
+          "Note has 53 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          34,
+          "Note",
+          "Note has 42 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          36,
+          "Note",
+          "Note has 41 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          38,
+          "Note",
+          "Note has 46 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          40,
+          "Note",
+          "Note has 44 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          42,
+          "Note",
+          "Note has 61 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          46,
+          "Note",
+          "Note has 60 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          51,
+          "Note",
+          "Note has 41 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          57,
+          "Note",
+          "Note has 55 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          59,
+          "Note",
+          "Note has 42 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          60,
+          "Note",
+          "Note has 46 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          65,
+          "Note",
+          "Note has 41 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "ledger.note_length",
+          "Deal ledger",
+          66,
+          "Note",
+          "Note has 56 words; aim for 40. Retain the excess only for required facts that cannot be shortened."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          2,
+          null,
+          "Question entry has about 96 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          3,
+          null,
+          "Question entry has about 114 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          4,
+          null,
+          "Question entry has about 135 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          7,
+          null,
+          "Question entry has about 99 words across its review fields; the instruction asks for about 60."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          8,
+          null,
+          "Question entry has about 95 words across its review fields; the instruction asks for about 60."
+        ]
+      ],
+      "only_now": [
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          3,
+          "Note",
+          "Note has 52 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          4,
+          "Note",
+          "Note has 45 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          6,
+          "Note",
+          "Note has 47 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          7,
+          "Note",
+          "Note has 42 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          8,
+          "Note",
+          "Note has 49 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          9,
+          "Note",
+          "Note has 43 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          15,
+          "Note",
+          "Note has 54 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          21,
+          "Note",
+          "Note has 42 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          23,
+          "Note",
+          "Note has 51 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          25,
+          "Note",
+          "Note has 41 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          28,
+          "Note",
+          "Note has 41 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          31,
+          "Note",
+          "Note has 53 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          34,
+          "Note",
+          "Note has 42 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          36,
+          "Note",
+          "Note has 41 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          38,
+          "Note",
+          "Note has 46 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          40,
+          "Note",
+          "Note has 44 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          42,
+          "Note",
+          "Note has 61 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          46,
+          "Note",
+          "Note has 60 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          51,
+          "Note",
+          "Note has 41 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          57,
+          "Note",
+          "Note has 55 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          59,
+          "Note",
+          "Note has 42 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          60,
+          "Note",
+          "Note has 46 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          65,
+          "Note",
+          "Note has 41 words; the limit is 40 (D1)."
+        ],
+        [
+          "error",
+          "ledger.note_length",
+          "Deal ledger",
+          66,
+          "Note",
+          "Note has 56 words; the limit is 40 (D1)."
+        ],
+        [
+          "warning",
+          "questions.count",
+          "Questions",
+          null,
+          null,
+          "8 Questions besides the process Question; raise at most 5 (F)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          2,
+          null,
+          "Question entry has 96 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          3,
+          null,
+          "Question entry has 114 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          4,
+          null,
+          "Question entry has 135 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          5,
+          null,
+          "Question entry has 65 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          6,
+          null,
+          "Question entry has 87 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          7,
+          null,
+          "Question entry has 99 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          8,
+          null,
+          "Question entry has 95 words across its fields; the limit is 60 (D4)."
+        ],
+        [
+          "warning",
+          "questions.length",
+          "Questions",
+          9,
+          null,
+          "Question entry has 77 words across its fields; the limit is 60 (D4)."
+        ]
+      ]
+    }
+  ]
+}

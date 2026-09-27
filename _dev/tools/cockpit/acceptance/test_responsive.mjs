@@ -47,6 +47,7 @@ async function geometry(page) {
       tabClient: tab?.clientWidth, tabScroll: tab?.scrollWidth,
       editorClient: editor?.clientWidth, editorScroll: editor?.scrollWidth, editorLeft: editor?.scrollLeft,
       dock: box('.save-dock'), selected: box('.event-item.selected'), location: box('.event-item.selected .quote-location'),
+      exportButton: box('.export-button'), exportOptions: box('.export-options'),
       listScroll: document.querySelector('.event-list')?.getBoundingClientRect().toJSON()
     };
   });
@@ -91,6 +92,9 @@ async function run() {
     assert.ok(value.documentWidth <= width + 2, `${width}px document fits: ${JSON.stringify(value)}`);
     assert.ok(value.editor.width >= 350, `${width}px editor remains readable: ${value.editor.width}`);
     assert.equal(value.layout, [1440, 768].includes(width) ? 'columns' : 'compact', `${width}px inner orientation`);
+    const caretGap = value.exportOptions.left - value.exportButton.right;
+    assert.ok(Math.abs(value.exportOptions.top - value.exportButton.top) < 2 && caretGap >= 0 && caretGap <= 16,
+      `${width}px Excel options caret stays beside Export Excel: ${JSON.stringify({ button: value.exportButton, caret: value.exportOptions })}`);
     if (value.layout === 'compact' && value.location) {
       assert.ok(value.location.bottom <= value.listScroll.bottom - 8, `${width}px source badge clears list scrollbar: ${JSON.stringify({ location: value.location, listScroll: value.listScroll })}`);
     }

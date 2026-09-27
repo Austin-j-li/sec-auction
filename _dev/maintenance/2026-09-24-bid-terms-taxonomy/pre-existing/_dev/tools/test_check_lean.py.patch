@@ -1,0 +1,122 @@
+diff --git a/_dev/tools/test_check_lean.py b/_dev/tools/test_check_lean.py
+index 8c90b36..72699f6 100644
+--- a/_dev/tools/test_check_lean.py
++++ b/_dev/tools/test_check_lean.py
+@@ -191,6 +191,49 @@ def build_valid_fixture(directory: Path) -> tuple[Path, Path]:
+     return workbook, filing
+ 
+ 
++V114_BID_TERMS = {
++    "Stock %": 0,
++    "Due diligence": "Not begun",
++    "Financing": "Not stated",
++    "Regulatory": "Not stated",
++    "Exclusivity": "Not stated",
++}
++
++
++def build_v114_fixture(directory: Path) -> tuple[Path, Path]:
++    """The valid fixture with its ledger rewritten in the v1.14 column order."""
++    workbook, filing = build_valid_fixture(directory)
++    wb = check_lean.openpyxl.load_workbook(workbook)
++    old = wb["Deal ledger"]
++    records = [dict(zip(check_lean.LEDGER_COLUMNS, row)) for row in old.iter_rows(min_row=2, values_only=True)]
++    index = wb.sheetnames.index("Deal ledger")
++    wb.remove(old)
++    ledger = wb.create_sheet("Deal ledger", index)
++    ledger.append(check_lean.LEDGER_COLUMNS_V114)
++    for record in records:
++        if record["Event"] in check_lean.BID_EVENTS:
++            record.update(V114_BID_TERMS)
++        ledger.append([record.get(column) for column in check_lean.LEDGER_COLUMNS_V114])
++    dates = [check_lean.LEDGER_COLUMNS_V114.index(name) + 1 for name in check_lean.DATE_COLUMNS]
++    for row in range(2, ledger.max_row + 1):
++        for column in dates:
++            ledger.cell(row, column).number_format = "MM/DD/YYYY"
++    finish_sheet(ledger, len(check_lean.LEDGER_COLUMNS_V114))
++    wb.save(workbook)
++    return workbook, filing
++
++
++def set_ledger(workbook: Path, row: int, values: dict) -> None:
++    wb = check_lean.openpyxl.load_workbook(workbook)
++    ws = wb["Deal ledger"]
++    header = [cell.value for cell in ws[1]]
++    for column, value in values.items():
++        cell = ws.cell(row, header.index(column) + 1)
++        cell.value = value
++        cell.alignment = Alignment(wrap_text=True)
++    wb.save(workbook)
++
++
+ class LeanCheckerTests(unittest.TestCase):
+     def test_valid_minimal_fixture_passes(self) -> None:
+         with tempfile.TemporaryDirectory() as tmp:
+@@ -441,6 +484,67 @@ class LeanCheckerTests(unittest.TestCase):
+             self.assertEqual(report["status"], "fail")
+             self.assertEqual(report["issues"][0]["code"], "schema.sheets")
+ 
++    def test_v114_fixture_passes_and_reports_its_schema(self) -> None:
++        with tempfile.TemporaryDirectory() as tmp:
++            workbook, filing = build_v114_fixture(Path(tmp))
++            report = check_lean.LeanChecker(workbook, filing).run()
++            self.assertEqual(report["status"], "pass", report["issues"])
++            self.assertEqual(report["ledger_schema"], "v1.14")
++            workbook, filing = build_valid_fixture(Path(tmp))
++            self.assertEqual(check_lean.LeanChecker(workbook, filing).run()["ledger_schema"], "v1.13.2")
++
++    def test_v114_value_lists_and_consistency_rules(self) -> None:
++        cases = [
++            ({"Stock %": "abc"}, "controlled.stock_pct", "error"),
++            ({"Stock %": "40"}, "controlled.stock_pct", "error"),
++            ({"Stock %": 120}, "controlled.stock_pct", "error"),
++            ({"Stock %": "75-50"}, "controlled.stock_pct", "error"),
++            ({"Stock %": None}, "controlled.stock_pct", "error"),
++            ({"Due diligence": None}, "controlled.due_diligence", "error"),
++            ({"Financing": "Highly confident"}, "controlled.financing", "error"),
++            ({"CVR/earnout": "Yes"}, "controlled.cvr_earnout", "error"),
++            ({"CVR/earnout value": 1.13}, "bid.cvr_value_marker", "error"),
++            ({"Financing": "Contingent", "Conditions": "Light"}, "conditions.financing_heavy", "error"),
++            ({"Conditions": "None", "Due diligence": "Incomplete", "Financing": "Committed"}, "conditions.none_support", "error"),
++            ({"Exclusivity": "Varies"}, "bid.varies_single", "error"),
++            ({"Antitrust": "Y"}, "conditions.antitrust_regulatory", "warning"),
++            ({"Due diligence": "Not stated"}, "conditions.level_unsupported", "warning"),
++        ]
++        for values, code, severity in cases:
++            with self.subTest(values=values):
++                with tempfile.TemporaryDirectory() as tmp:
++                    workbook, filing = build_v114_fixture(Path(tmp))
++                    set_ledger(workbook, 3, values)
++                    report = check_lean.LeanChecker(workbook, filing).run()
++                    found = {(issue["code"], issue["severity"]) for issue in report["issues"]}
++                    self.assertIn((code, severity), found, report["issues"])
++
++    def test_v114_accepts_ranges_codes_and_contingent_payments(self) -> None:
++        accepted = [
++            {"Stock %": "50\u201375"},
++            {"Stock %": 33.3},
++            {"Stock %": "Part stock"},
++            {"CVR/earnout": "Y", "CVR/earnout value": 1.13},
++            {"Regulatory": "Concern", "Antitrust": "Y"},
++            {"Financing": "Contingent", "Conditions": "Heavy"},
++            {"Conditions": "None", "Due diligence": "Complete", "Financing": "Not needed", "Regulatory": "No concern"},
++        ]
++        for values in accepted:
++            with self.subTest(values=values):
++                with tempfile.TemporaryDirectory() as tmp:
++                    workbook, filing = build_v114_fixture(Path(tmp))
++                    set_ledger(workbook, 3, values)
++                    report = check_lean.LeanChecker(workbook, filing).run()
++                    self.assertEqual(report["status"], "pass", report["issues"])
++
++    def test_v114_terms_must_be_blank_on_other_rows(self) -> None:
++        with tempfile.TemporaryDirectory() as tmp:
++            workbook, filing = build_v114_fixture(Path(tmp))
++            set_ledger(workbook, 4, {"Financing": "Committed"})
++            report = check_lean.LeanChecker(workbook, filing).run()
++            codes = {(issue["code"], issue["column"]) for issue in report["issues"]}
++            self.assertIn(("bid.fields_on_nonbid", "Financing"), codes, report["issues"])
++
+     def test_cli_writes_json_for_unreadable_workbook(self) -> None:
+         with tempfile.TemporaryDirectory() as tmp:
+             directory = Path(tmp)

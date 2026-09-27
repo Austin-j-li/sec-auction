@@ -1,0 +1,11 @@
+# Deploy state: the S5 sandbox /home/uctpiaj/work/tmp/v114-scratch/pkg/s5
+# TMPDIR=/home/uctpiaj/work/tmp/v114-scratch/tmp/s5 PYTHONDONTWRITEBYTECODE=1
+# 1. python3 -m unittest discover -s _dev/tools -p 'test_*.py'
+# 2. python3 -m pytest -q -p no:cacheprovider _dev/tools/cockpit/acceptance/test_http.py
+# 3. npx vitest run  (in a temp copy of the frontend with node_modules copied from the checkout)
+Ran 206 tests in 84.547s
+
+OK
+14 passed in 16.84s
+ Test Files  5 passed (5)
+      Tests  53 passed (53)

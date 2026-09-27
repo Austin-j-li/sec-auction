@@ -1,0 +1,59 @@
+diff --git a/_dev/tools/cockpit/frontend/src/main.jsx b/_dev/tools/cockpit/frontend/src/main.jsx
+index 3de7bd6..037a0f3 100644
+--- a/_dev/tools/cockpit/frontend/src/main.jsx
++++ b/_dev/tools/cockpit/frontend/src/main.jsx
+@@ -17,10 +17,10 @@ import { compact, LedgerTab, SheetTab } from './Records';
+ import { ChangesTab, DocumentText, friendlyDate, HistoryTab, ReviewTab } from './Review';
+ import { Dot, Loading, Message } from './ui';
+ import { cockpitTheme } from './theme';
+-import { commentAction, compareQuery, count, dealVisibility, jobAction, json, markSeen, markSeenOnLeave, recordValues, rowId, saveDeal, sheetColumns, sheetRows, text, versionAction } from './api';
++import { commentAction, compareQuery, count, dealVisibility, jobAction, json, markSeen, markSeenOnLeave, recordValues, rowId, saveDeal, setDealReview, sheetColumns, sheetRows, text, versionAction } from './api';
+ import { countThreads, DEAL_KINDS, displayName, EDIT_KINDS, INSTRUCTION_KINDS, knownUser, RUN_KINDS, VERSION_KINDS } from './trace';
+ import { isActive, isImported, orderVersions, versionOptionLabel } from './runs';
+-import { hiddenLine } from './deals';
++import { hiddenLine, REVIEW_STATUSES, reviewByline } from './deals';
+ import './style.css';
+ 
+ const SHEETS = { ledger: 'Deal ledger', rounds: 'Rounds', questions: 'Questions', facts: 'Deal facts' };
+@@ -89,6 +89,7 @@ function App() {
+   const [versionBusy, setVersionBusy] = useState(false);
+   const [hidePrompt, setHidePrompt] = useState(null);
+   const [dealBusy, setDealBusy] = useState(false);
++  const [reviewBusy, setReviewBusy] = useState(false);
+   // Unsaved text on a page outside the deal workspace (an instruction draft) guards navigation like unsaved edits.
+   const [pageDirty, setPageDirty] = useState(false);
+   const slugRef = useRef(null);
+@@ -441,6 +442,18 @@ function App() {
+       setDealBusy(false);
+     }
+   }
++  // The working copy's review status is recorded at the saved revision on screen, so unsaved edits must be saved first.
++  async function changeReview(status) {
++    setReviewBusy(true); setError(null);
++    try {
++      const result = await setDealReview(slug, session, status, deal.workspace?.revision ?? 0);
++      setDeal(current => current && { ...current, deal_review: result.deal_review });
++    } catch (err) {
++      setError(failure('The review status could not be saved.', err));
++    } finally {
++      setReviewBusy(false);
++    }
++  }
+   async function unhideListed(listedSlug) {
+     setError(null);
+     try {
+@@ -739,6 +752,14 @@ function App() {
+                 </optgroup>}
+               </Select>
+             </label>
++            {!immutable && deal.deal_review && <label className="version-control review-control" title={dirty ? 'Save or discard your edits before changing the review status' : reviewByline(deal.deal_review) || undefined}>
++              <span>Review</span>
++              <Select aria-label="Review status" value={deal.deal_review.status} onChange={(_, data) => changeReview(data.value)}
++                disabled={!canRun || dirty || reviewBusy || versionLoading || saveState === 'saving'}>
++                {REVIEW_STATUSES.map(([value, label]) => <option value={value} key={value}>{label}</option>)}
++              </Select>
++              {deal.deal_review.status === 'reviewed' && deal.deal_review.edited_since && <span className="tone-warning">at revision {deal.deal_review.revision}; edited since</span>}
++            </label>}
+             {versionActions && !shownVersion.hidden && <Button appearance="secondary" icon={<ArrowsClockwiseIcon size={16}/>} disabled={versionBusy} onClick={() => setRebasePrompt({ version: shownVersion, reason: '', busy: false, error: '' })}>Use as working-copy base…</Button>}
+             {versionActions && isImported(shownVersion) && <Button appearance="secondary" icon={shownVersion.hidden ? <EyeIcon size={16}/> : <EyeSlashIcon size={16}/>} disabled={versionBusy} onClick={() => setVersionHidden(shownVersion, !shownVersion.hidden)}>{shownVersion.hidden ? 'Unhide' : 'Hide'}</Button>}
+             <RunBadge jobs={jobs} onOpen={openRuns}/>

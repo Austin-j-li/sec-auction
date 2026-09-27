@@ -1,0 +1,322 @@
+{
+  "rules": "v1.14",
+  "identical": 15,
+  "runs": 15,
+  "results": [
+    {
+      "run": "mac-gray-gpt-6-astra-high-r1",
+      "stored": {
+        "errors": 0,
+        "information": 0,
+        "total_issues": 8,
+        "warnings": 8
+      },
+      "stored_schema": "v1.14",
+      "now": {
+        "errors": 0,
+        "warnings": 8,
+        "information": 0,
+        "total_issues": 8
+      },
+      "now_schema": "v1.14",
+      "checker_version": "1.8",
+      "identical_issues": true,
+      "only_stored": [],
+      "only_now": []
+    },
+    {
+      "run": "mac-gray-gpt-6-astra-xhigh-r1",
+      "stored": {
+        "errors": 0,
+        "information": 0,
+        "total_issues": 8,
+        "warnings": 8
+      },
+      "stored_schema": "v1.14",
+      "now": {
+        "errors": 0,
+        "warnings": 8,
+        "information": 0,
+        "total_issues": 8
+      },
+      "now_schema": "v1.14",
+      "checker_version": "1.8",
+      "identical_issues": true,
+      "only_stored": [],
+      "only_now": []
+    },
+    {
+      "run": "mac-gray-gpt-6-sol-xhigh-r1",
+      "stored": {
+        "errors": 0,
+        "information": 0,
+        "total_issues": 5,
+        "warnings": 5
+      },
+      "stored_schema": "v1.14",
+      "now": {
+        "errors": 0,
+        "warnings": 5,
+        "information": 0,
+        "total_issues": 5
+      },
+      "now_schema": "v1.14",
+      "checker_version": "1.8",
+      "identical_issues": true,
+      "only_stored": [],
+      "only_now": []
+    },
+    {
+      "run": "mac-gray-opus-5-5-medium-r1",
+      "stored": {
+        "errors": 0,
+        "information": 0,
+        "total_issues": 30,
+        "warnings": 30
+      },
+      "stored_schema": "v1.14",
+      "now": {
+        "errors": 0,
+        "warnings": 30,
+        "information": 0,
+        "total_issues": 30
+      },
+      "now_schema": "v1.14",
+      "checker_version": "1.8",
+      "identical_issues": true,
+      "only_stored": [],
+      "only_now": []
+    },
+    {
+      "run": "mac-gray-opus-5-5-xhigh-r1",
+      "stored": {
+        "errors": 0,
+        "information": 0,
+        "total_issues": 34,
+        "warnings": 34
+      },
+      "stored_schema": "v1.14",
+      "now": {
+        "errors": 0,
+        "warnings": 34,
+        "information": 0,
+        "total_issues": 34
+      },
+      "now_schema": "v1.14",
+      "checker_version": "1.8",
+      "identical_issues": true,
+      "only_stored": [],
+      "only_now": []
+    },
+    {
+      "run": "providence-worcester-gpt-6-astra-high-r1",
+      "stored": {
+        "errors": 0,
+        "information": 0,
+        "total_issues": 9,
+        "warnings": 9
+      },
+      "stored_schema": "v1.14",
+      "now": {
+        "errors": 0,
+        "warnings": 9,
+        "information": 0,
+        "total_issues": 9
+      },
+      "now_schema": "v1.14",
+      "checker_version": "1.8",
+      "identical_issues": true,
+      "only_stored": [],
+      "only_now": []
+    },
+    {
+      "run": "providence-worcester-gpt-6-astra-xhigh-r1",
+      "stored": {
+        "errors": 0,
+        "information": 0,
+        "total_issues": 10,
+        "warnings": 10
+      },
+      "stored_schema": "v1.14",
+      "now": {
+        "errors": 0,
+        "warnings": 10,
+        "information": 0,
+        "total_issues": 10
+      },
+      "now_schema": "v1.14",
+      "checker_version": "1.8",
+      "identical_issues": true,
+      "only_stored": [],
+      "only_now": []
+    },
+    {
+      "run": "providence-worcester-gpt-6-sol-xhigh-r1",
+      "stored": {
+        "errors": 0,
+        "information": 0,
+        "total_issues": 6,
+        "warnings": 6
+      },
+      "stored_schema": "v1.14",
+      "now": {
+        "errors": 0,
+        "warnings": 6,
+        "information": 0,
+        "total_issues": 6
+      },
+      "now_schema": "v1.14",
+      "checker_version": "1.8",
+      "identical_issues": true,
+      "only_stored": [],
+      "only_now": []
+    },
+    {
+      "run": "providence-worcester-opus-5-5-medium-r1",
+      "stored": {
+        "errors": 1,
+        "information": 0,
+        "total_issues": 14,
+        "warnings": 13
+      },
+      "stored_schema": "v1.14",
+      "now": {
+        "errors": 1,
+        "warnings": 13,
+        "information": 0,
+        "total_issues": 14
+      },
+      "now_schema": "v1.14",
+      "checker_version": "1.8",
+      "identical_issues": true,
+      "only_stored": [],
+      "only_now": []
+    },
+    {
+      "run": "providence-worcester-opus-5-5-xhigh-r1",
+      "stored": {
+        "errors": 0,
+        "information": 0,
+        "total_issues": 23,
+        "warnings": 23
+      },
+      "stored_schema": "v1.14",
+      "now": {
+        "errors": 0,
+        "warnings": 23,
+        "information": 0,
+        "total_issues": 23
+      },
+      "now_schema": "v1.14",
+      "checker_version": "1.8",
+      "identical_issues": true,
+      "only_stored": [],
+      "only_now": []
+    },
+    {
+      "run": "stec-gpt-6-astra-high-r1",
+      "stored": {
+        "errors": 0,
+        "information": 0,
+        "total_issues": 12,
+        "warnings": 12
+      },
+      "stored_schema": "v1.14",
+      "now": {
+        "errors": 0,
+        "warnings": 12,
+        "information": 0,
+        "total_issues": 12
+      },
+      "now_schema": "v1.14",
+      "checker_version": "1.8",
+      "identical_issues": true,
+      "only_stored": [],
+      "only_now": []
+    },
+    {
+      "run": "stec-gpt-6-astra-xhigh-r1",
+      "stored": {
+        "errors": 0,
+        "information": 0,
+        "total_issues": 3,
+        "warnings": 3
+      },
+      "stored_schema": "v1.14",
+      "now": {
+        "errors": 0,
+        "warnings": 3,
+        "information": 0,
+        "total_issues": 3
+      },
+      "now_schema": "v1.14",
+      "checker_version": "1.8",
+      "identical_issues": true,
+      "only_stored": [],
+      "only_now": []
+    },
+    {
+      "run": "stec-gpt-6-sol-xhigh-r1",
+      "stored": {
+        "errors": 0,
+        "information": 0,
+        "total_issues": 8,
+        "warnings": 8
+      },
+      "stored_schema": "v1.14",
+      "now": {
+        "errors": 0,
+        "warnings": 8,
+        "information": 0,
+        "total_issues": 8
+      },
+      "now_schema": "v1.14",
+      "checker_version": "1.8",
+      "identical_issues": true,
+      "only_stored": [],
+      "only_now": []
+    },
+    {
+      "run": "stec-opus-5-5-medium-r1",
+      "stored": {
+        "errors": 0,
+        "information": 0,
+        "total_issues": 18,
+        "warnings": 18
+      },
+      "stored_schema": "v1.14",
+      "now": {
+        "errors": 0,
+        "warnings": 18,
+        "information": 0,
+        "total_issues": 18
+      },
+      "now_schema": "v1.14",
+      "checker_version": "1.8",
+      "identical_issues": true,
+      "only_stored": [],
+      "only_now": []
+    },
+    {
+      "run": "stec-opus-5-5-xhigh-r1",
+      "stored": {
+        "errors": 0,
+        "information": 0,
+        "total_issues": 29,
+        "warnings": 29
+      },
+      "stored_schema": "v1.14",
+      "now": {
+        "errors": 0,
+        "warnings": 29,
+        "information": 0,
+        "total_issues": 29
+      },
+      "now_schema": "v1.14",
+      "checker_version": "1.8",
+      "identical_issues": true,
+      "only_stored": [],
+      "only_now": []
+    }
+  ]
+}

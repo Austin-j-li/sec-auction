@@ -1,0 +1,13 @@
+diff --git a/_dev/tools/cockpit/frontend/src/api.js b/_dev/tools/cockpit/frontend/src/api.js
+index 16bd779..56d1aeb 100644
+--- a/_dev/tools/cockpit/frontend/src/api.js
++++ b/_dev/tools/cockpit/frontend/src/api.js
+@@ -17,6 +17,8 @@ const dealPath = (slug, rest) => `/api/deal/${encodeURIComponent(slug)}/${rest}`
+ export function saveDeal(slug, session, payload) { return post(dealPath(slug, 'edit'), session, payload); }
+ // One comment action (create, reply, edit, delete, resolve, reopen); the response is the deal's full thread list.
+ export function commentAction(slug, session, action) { return post(dealPath(slug, 'comments'), session, action); }
++// The working copy's review status, set at the revision being viewed: {status, revision} -> {deal_review}.
++export function setDealReview(slug, session, status, revision) { return post(dealPath(slug, 'review'), session, { status, revision }); }
+ export function markSeen(slug, session, activityId) { return post(dealPath(slug, 'seen'), session, { activity_id: activityId }); }
+ // Leaving a deal: the request must survive navigation and page unload. Resolves (never rejects) when it lands.
+ export function markSeenOnLeave(slug, session, activityId) {

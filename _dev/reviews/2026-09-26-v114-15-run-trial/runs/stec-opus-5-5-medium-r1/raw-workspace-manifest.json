@@ -1,0 +1,19 @@
+{
+  "files": {
+    "command.json": "70a6528df23aaceb52ec0d2992baf1b3c1cd80243fccb7fdf639926a6fa3dee8",
+    "events.jsonl": "47e148806600d034873e6d4448dbb4cb63e441a064770a68bbbf5af885630649",
+    "extraction/stec.xlsx": "f162061de59ced9d7a5131e16ffa63b686699b5666e1e98b03813e4e663d1132",
+    "input/SEC_Deal_Ledger_Extraction_Instruction.md": "c2d47a479d09eb46d0ab9fbf887568fcf13e972e2e11acbf08d5cdfab468ab27",
+    "input/raw_filing/stec_2013-08-08_DEFM14A.htm": "b29adcd8c221c55b48593b339bbe768552a21e1fa8836e2f355d6ffe9b86f36b",
+    "launch.json": "035a8f46193efafb81e298f00ddb8ef059e4bf5b4a61d47a1ce937fa0f59a122",
+    "launcher.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "metadata.json": "d9c4ec5c88eead9c2ee33c3430cab20175088511b242ce32a6d3f124553293ee",
+    "prompt.txt": "55fb335a717acef763194fd65b627e652c87aff3e41674a11ba7dffa127d7871",
+    "provider-results.json": "e9d5e1f7649fd32486a3f6b905d675974c44b48b5d536f61e32318e65aac1be6",
+    "status.json": "57f61e344a24d918d67896de698d9282b56e7ca761fcd6724dff3f3bdd289691",
+    "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validation.json": "a716df9c38b629a26a892e115c2337e6296be07e999b6deb97f24e3994bae1f2"
+  },
+  "archive_sha256": "c6cf977c26dcafb38ca56a564e092bf72db4ac5f0be0a640c74b4660ee98b32e",
+  "verified": true
+}

@@ -1,0 +1,68 @@
+{
+  "client_pid": 404299,
+  "continuations": 0,
+  "elapsed_seconds": 790.82,
+  "ended_at": "2026-09-26T09:57:04.078288+00:00",
+  "exit_code": 0,
+  "failure_reason": null,
+  "plan_usage": {
+    "isUsingOverage": false,
+    "overageDisabledReason": "org_level_disabled",
+    "overageStatus": "rejected",
+    "rateLimitType": "five_hour",
+    "resetsAt": 1790431800,
+    "status": "allowed",
+    "unifiedWindows": {
+      "five_hour": {
+        "resetsAt": 1790431800,
+        "utilization": 0.05
+      },
+      "seven_day": {
+        "resetsAt": 1790593200,
+        "utilization": 0.65
+      }
+    }
+  },
+  "provider": {
+    "api_error_status": null,
+    "cache_write_1h_tokens": 164677,
+    "cache_write_5m_tokens": 0,
+    "claude_code_version": "2.1.281",
+    "duration_api_ms": 782244,
+    "invocations": 1,
+    "is_error": false,
+    "num_turns": 39,
+    "permission_denials": 0,
+    "refusal": false,
+    "served_models": [
+      "claude-opus-5-5"
+    ],
+    "session_model": "claude-opus-5-5",
+    "stop_details": null,
+    "stop_reason": "end_turn",
+    "subagents_spawned": 0,
+    "subtype": "success",
+    "terminal_reason": "completed",
+    "thinking_tokens": 56265,
+    "tools": [
+      "Bash",
+      "Read",
+      "Write"
+    ]
+  },
+  "started_at": "2026-09-26T09:43:53.261234+00:00",
+  "state": "completed",
+  "timed_out": false,
+  "usage": {
+    "cost_usd": 3.7286404000000006,
+    "tokens": {
+      "cache_creation_input_tokens": 164677,
+      "cache_read_input_tokens": 3567862,
+      "input_tokens": 78,
+      "output_tokens": 84867
+    }
+  },
+  "workbook_exists": true,
+  "workbook_valid_xlsx": true,
+  "worker_pid": 404195
+}

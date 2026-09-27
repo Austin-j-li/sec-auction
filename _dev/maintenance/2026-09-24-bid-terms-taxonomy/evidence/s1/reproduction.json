@@ -1,0 +1,916 @@
+{
+  "checker_before": {
+    "version": "1.6",
+    "path": "/home/uctpiaj/work/tmp/v114-scratch/wave1-base/_dev/tools/check_lean.py",
+    "sha256": "f5e2e4cf549283ab92ef1fab32e57bae5a85a321507cfaa4f37d34d656067443"
+  },
+  "checker_after": {
+    "version": "1.7",
+    "path": "/home/uctpiaj/work/tmp/v114-scratch/pkg/s1/_dev/tools/check_lean.py",
+    "sha256": "41ea880f504d96d0e9936bb8db0fef5391c4e5ab4d09f1f069ef691c3127c49c"
+  },
+  "compared_fields": [
+    "severity",
+    "code",
+    "sheet",
+    "row",
+    "column",
+    "message"
+  ],
+  "ignored_fields": [
+    "checker_version",
+    "checker_revision",
+    "ledger_schema",
+    "workbook",
+    "filing",
+    "basis"
+  ],
+  "results": [
+    {
+      "group": "extraction",
+      "id": "datalink",
+      "workbook_sha256": "f28c711cf1ffdcc4b7f35ffd160719ed712c1dc022a89ed3ab878e557ea8217b",
+      "filing": "datalink_2016-11-29_DEFM14A.htm",
+      "instruction_sha256": "513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304",
+      "ledger_schema": "v1.13.2",
+      "ledger_schema_helper": "v1.13.2",
+      "stored": {
+        "checker_version": "1.5",
+        "status": "pass_with_warnings",
+        "summary": {
+          "errors": 0,
+          "warnings": 21,
+          "information": 0,
+          "total_issues": 21
+        }
+      },
+      "checker_1_6": {
+        "status": "pass_with_warnings",
+        "summary": {
+          "errors": 0,
+          "warnings": 21,
+          "information": 0,
+          "total_issues": 21
+        },
+        "identical_to_stored": true
+      },
+      "checker_1_7": {
+        "status": "pass_with_warnings",
+        "summary": {
+          "errors": 0,
+          "warnings": 21,
+          "information": 0,
+          "total_issues": 21
+        },
+        "identical_to_stored": true
+      },
+      "delta_1_7_vs_stored": {
+        "added": [],
+        "removed": []
+      },
+      "delta_1_7_vs_1_6": {
+        "added": [],
+        "removed": []
+      }
+    },
+    {
+      "group": "extraction",
+      "id": "kraton",
+      "workbook_sha256": "20cc6986afb8b301e2a38a8d06e2c191c0cf7d3621d7dcf84121d9265b3d780c",
+      "filing": "kraton_2021-11-04_DEFM14A.htm",
+      "instruction_sha256": "513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304",
+      "ledger_schema": "v1.13.2",
+      "ledger_schema_helper": "v1.13.2",
+      "stored": {
+        "checker_version": "1.5",
+        "status": "pass_with_warnings",
+        "summary": {
+          "errors": 0,
+          "warnings": 20,
+          "information": 0,
+          "total_issues": 20
+        }
+      },
+      "checker_1_6": {
+        "status": "pass_with_warnings",
+        "summary": {
+          "errors": 0,
+          "warnings": 20,
+          "information": 0,
+          "total_issues": 20
+        },
+        "identical_to_stored": true
+      },
+      "checker_1_7": {
+        "status": "pass_with_warnings",
+        "summary": {
+          "errors": 0,
+          "warnings": 20,
+          "information": 0,
+          "total_issues": 20
+        },
+        "identical_to_stored": true
+      },
+      "delta_1_7_vs_stored": {
+        "added": [],
+        "removed": []
+      },
+      "delta_1_7_vs_1_6": {
+        "added": [],
+        "removed": []
+      }
+    },
+    {
+      "group": "extraction",
+      "id": "mac-gray",
+      "workbook_sha256": "407615092e6dc33be22a8f80ab41d365083de0813f93b48897cbd7605a68ec0e",
+      "filing": "mac-gray_2013-12-04_DEFM14A.htm",
+      "instruction_sha256": "513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304",
+      "ledger_schema": "v1.13.2",
+      "ledger_schema_helper": "v1.13.2",
+      "stored": {
+        "checker_version": "1.5",
+        "status": "fail",
+        "summary": {
+          "errors": 1,
+          "warnings": 26,
+          "information": 0,
+          "total_issues": 27
+        }
+      },
+      "checker_1_6": {
+        "status": "fail",
+        "summary": {
+          "errors": 1,
+          "warnings": 26,
+          "information": 0,
+          "total_issues": 27
+        },
+        "identical_to_stored": true
+      },
+      "checker_1_7": {
+        "status": "fail",
+        "summary": {
+          "errors": 1,
+          "warnings": 26,
+          "information": 0,
+          "total_issues": 27
+        },
+        "identical_to_stored": true
+      },
+      "delta_1_7_vs_stored": {
+        "added": [],
+        "removed": []
+      },
+      "delta_1_7_vs_1_6": {
+        "added": [],
+        "removed": []
+      }
+    },
+    {
+      "group": "extraction",
+      "id": "meredith",
+      "workbook_sha256": "fae16e4a2ba8b6c6a233b9d029f94dacbfaacdabd4771b6b62fffdbaf4609c9e",
+      "filing": "meredith_2021-11-08_DEFM14A.htm",
+      "instruction_sha256": "513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304",
+      "ledger_schema": "v1.13.2",
+      "ledger_schema_helper": "v1.13.2",
+      "stored": {
+        "checker_version": "1.5",
+        "status": "pass_with_warnings",
+        "summary": {
+          "errors": 0,
+          "warnings": 16,
+          "information": 0,
+          "total_issues": 16
+        }
+      },
+      "checker_1_6": {
+        "status": "pass_with_warnings",
+        "summary": {
+          "errors": 0,
+          "warnings": 16,
+          "information": 0,
+          "total_issues": 16
+        },
+        "identical_to_stored": true
+      },
+      "checker_1_7": {
+        "status": "pass_with_warnings",
+        "summary": {
+          "errors": 0,
+          "warnings": 16,
+          "information": 0,
+          "total_issues": 16
+        },
+        "identical_to_stored": true
+      },
+      "delta_1_7_vs_stored": {
+        "added": [],
+        "removed": []
+      },
+      "delta_1_7_vs_1_6": {
+        "added": [],
+        "removed": []
+      }
+    },
+    {
+      "group": "extraction",
+      "id": "penford",
+      "workbook_sha256": "14f6c9c8e7c697b477e98f8f163c9180a236d1210e226cc0fdaeac98d50380d5",
+      "filing": "penford_2014-12-29_DEFM14A.htm",
+      "instruction_sha256": "513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304",
+      "ledger_schema": "v1.13.2",
+      "ledger_schema_helper": "v1.13.2",
+      "stored": {
+        "checker_version": "1.5",
+        "status": "pass_with_warnings",
+        "summary": {
+          "errors": 0,
+          "warnings": 15,
+          "information": 0,
+          "total_issues": 15
+        }
+      },
+      "checker_1_6": {
+        "status": "pass_with_warnings",
+        "summary": {
+          "errors": 0,
+          "warnings": 15,
+          "information": 0,
+          "total_issues": 15
+        },
+        "identical_to_stored": true
+      },
+      "checker_1_7": {
+        "status": "pass_with_warnings",
+        "summary": {
+          "errors": 0,
+          "warnings": 15,
+          "information": 0,
+          "total_issues": 15
+        },
+        "identical_to_stored": true
+      },
+      "delta_1_7_vs_stored": {
+        "added": [],
+        "removed": []
+      },
+      "delta_1_7_vs_1_6": {
+        "added": [],
+        "removed": []
+      }
+    },
+    {
+      "group": "extraction",
+      "id": "petsmart",
+      "workbook_sha256": "04c7d952864f1a122bb72bf489712cc0434465cc1b3957d8a686f15e174ec20c",
+      "filing": "petsmart_2015-02-02_DEFM14A.htm",
+      "instruction_sha256": "513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304",
+      "ledger_schema": "v1.13.2",
+      "ledger_schema_helper": "v1.13.2",
+      "stored": {
+        "checker_version": "1.5",
+        "status": "fail",
+        "summary": {
+          "errors": 1,
+          "warnings": 22,
+          "information": 0,
+          "total_issues": 23
+        }
+      },
+      "checker_1_6": {
+        "status": "fail",
+        "summary": {
+          "errors": 1,
+          "warnings": 22,
+          "information": 0,
+          "total_issues": 23
+        },
+        "identical_to_stored": true
+      },
+      "checker_1_7": {
+        "status": "fail",
+        "summary": {
+          "errors": 1,
+          "warnings": 22,
+          "information": 0,
+          "total_issues": 23
+        },
+        "identical_to_stored": true
+      },
+      "delta_1_7_vs_stored": {
+        "added": [],
+        "removed": []
+      },
+      "delta_1_7_vs_1_6": {
+        "added": [],
+        "removed": []
+      }
+    },
+    {
+      "group": "extraction",
+      "id": "providence-worcester",
+      "workbook_sha256": "394a8cea099340df499697247c68430fef2010177ce91aae3930608d95cc3d00",
+      "filing": "providence-worcester_2016-09-20_DEFM14A.htm",
+      "instruction_sha256": "513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304",
+      "ledger_schema": "v1.13.2",
+      "ledger_schema_helper": "v1.13.2",
+      "stored": {
+        "checker_version": "1.5",
+        "status": "pass_with_warnings",
+        "summary": {
+          "errors": 0,
+          "warnings": 12,
+          "information": 0,
+          "total_issues": 12
+        }
+      },
+      "checker_1_6": {
+        "status": "pass_with_warnings",
+        "summary": {
+          "errors": 0,
+          "warnings": 12,
+          "information": 0,
+          "total_issues": 12
+        },
+        "identical_to_stored": true
+      },
+      "checker_1_7": {
+        "status": "pass_with_warnings",
+        "summary": {
+          "errors": 0,
+          "warnings": 12,
+          "information": 0,
+          "total_issues": 12
+        },
+        "identical_to_stored": true
+      },
+      "delta_1_7_vs_stored": {
+        "added": [],
+        "removed": []
+      },
+      "delta_1_7_vs_1_6": {
+        "added": [],
+        "removed": []
+      }
+    },
+    {
+      "group": "extraction",
+      "id": "stec",
+      "workbook_sha256": "467f739dea7b540eec2d3fb664ec1a4bb6479394820fc66b750e6ec3821fbc1d",
+      "filing": "stec_2013-08-08_DEFM14A.htm",
+      "instruction_sha256": "513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304",
+      "ledger_schema": "v1.13.2",
+      "ledger_schema_helper": "v1.13.2",
+      "stored": {
+        "checker_version": "1.5",
+        "status": "pass_with_warnings",
+        "summary": {
+          "errors": 0,
+          "warnings": 21,
+          "information": 0,
+          "total_issues": 21
+        }
+      },
+      "checker_1_6": {
+        "status": "pass_with_warnings",
+        "summary": {
+          "errors": 0,
+          "warnings": 21,
+          "information": 0,
+          "total_issues": 21
+        },
+        "identical_to_stored": true
+      },
+      "checker_1_7": {
+        "status": "pass_with_warnings",
+        "summary": {
+          "errors": 0,
+          "warnings": 21,
+          "information": 0,
+          "total_issues": 21
+        },
+        "identical_to_stored": true
+      },
+      "delta_1_7_vs_stored": {
+        "added": [],
+        "removed": []
+      },
+      "delta_1_7_vs_1_6": {
+        "added": [],
+        "removed": []
+      }
+    },
+    {
+      "group": "extraction",
+      "id": "synacor",
+      "workbook_sha256": "4d2610753b2b6a06d6a4a4408306cc094999ddb8be1c5904e5f9eab3b2e025af",
+      "filing": "synacor_2021-03-03_SCTO-T.htm",
+      "instruction_sha256": "513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304",
+      "ledger_schema": "v1.13.2",
+      "ledger_schema_helper": "v1.13.2",
+      "stored": {
+        "checker_version": "1.5",
+        "status": "fail",
+        "summary": {
+          "errors": 1,
+          "warnings": 8,
+          "information": 0,
+          "total_issues": 9
+        }
+      },
+      "checker_1_6": {
+        "status": "fail",
+        "summary": {
+          "errors": 1,
+          "warnings": 8,
+          "information": 0,
+          "total_issues": 9
+        },
+        "identical_to_stored": true
+      },
+      "checker_1_7": {
+        "status": "fail",
+        "summary": {
+          "errors": 1,
+          "warnings": 8,
+          "information": 0,
+          "total_issues": 9
+        },
+        "identical_to_stored": true
+      },
+      "delta_1_7_vs_stored": {
+        "added": [],
+        "removed": []
+      },
+      "delta_1_7_vs_1_6": {
+        "added": [],
+        "removed": []
+      }
+    },
+    {
+      "group": "version",
+      "id": "imprivata/opus55-xhigh-20260924-1651-fe7897",
+      "workbook_sha256": "fe7897c7fae4a0e4f04a2ecceed40cd8a551b6185a79742fa05cda8d93cade1c",
+      "filing": "imprivata_2016-08-10_DEFM14A.htm",
+      "instruction_sha256": "513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304",
+      "ledger_schema": "v1.13.2",
+      "ledger_schema_helper": "v1.13.2",
+      "stored": {
+        "checker_version": "1.5",
+        "status": "pass_with_warnings",
+        "summary": {
+          "errors": 0,
+          "warnings": 22,
+          "information": 0,
+          "total_issues": 22
+        }
+      },
+      "checker_1_6": {
+        "status": "pass_with_warnings",
+        "summary": {
+          "errors": 0,
+          "warnings": 22,
+          "information": 0,
+          "total_issues": 22
+        },
+        "identical_to_stored": true
+      },
+      "checker_1_7": {
+        "status": "pass_with_warnings",
+        "summary": {
+          "errors": 0,
+          "warnings": 22,
+          "information": 0,
+          "total_issues": 22
+        },
+        "identical_to_stored": true
+      },
+      "delta_1_7_vs_stored": {
+        "added": [],
+        "removed": []
+      },
+      "delta_1_7_vs_1_6": {
+        "added": [],
+        "removed": []
+      }
+    },
+    {
+      "group": "version",
+      "id": "mac-gray/opus55-medium-20260924-2241-d7d267",
+      "workbook_sha256": "d7d26784ec3ba8f4d5d156e59ec633a77017c2729876cc185268767a6f97fd3c",
+      "filing": "mac-gray_2013-12-04_DEFM14A.htm",
+      "instruction_sha256": "f9595d7413149f86c074f1d4b9ef96a5a24b3d8dd9b6c11061b0bd6e889aea97",
+      "ledger_schema": "v1.14",
+      "ledger_schema_helper": "v1.14",
+      "stored": {
+        "checker_version": "1.6",
+        "status": "fail",
+        "summary": {
+          "errors": 1,
+          "warnings": 16,
+          "information": 0,
+          "total_issues": 17
+        }
+      },
+      "checker_1_6": {
+        "status": "fail",
+        "summary": {
+          "errors": 1,
+          "warnings": 16,
+          "information": 0,
+          "total_issues": 17
+        },
+        "identical_to_stored": true
+      },
+      "checker_1_7": {
+        "status": "fail",
+        "summary": {
+          "errors": 1,
+          "warnings": 18,
+          "information": 0,
+          "total_issues": 19
+        },
+        "identical_to_stored": false
+      },
+      "delta_1_7_vs_stored": {
+        "added": [
+          {
+            "severity": "warning",
+            "code": "ledger.exclusivity_duplicate",
+            "sheet": "Deal ledger",
+            "row": 33,
+            "column": "Event",
+            "message": "Exclusivity changed has the same Who and Sort date as bid row #31, which codes an exclusivity request; if this row repeats the bid's own request, remove it (E10); a grant, execution or extension is its own event."
+          },
+          {
+            "severity": "warning",
+            "code": "ledger.exclusivity_duplicate",
+            "sheet": "Deal ledger",
+            "row": 41,
+            "column": "Event",
+            "message": "Exclusivity changed has the same Who and Sort date as bid row #39, which codes an exclusivity request; if this row repeats the bid's own request, remove it (E10); a grant, execution or extension is its own event."
+          },
+          {
+            "severity": "warning",
+            "code": "rounds.deadline_outcome_legacy",
+            "sheet": "Rounds",
+            "row": 2,
+            "column": "Deadline outcome",
+            "message": "'Late bids accepted' is replaced in v1.14 by the wider 'Extended (late bid accepted)' (E9)."
+          },
+          {
+            "severity": "warning",
+            "code": "rounds.deadline_outcome_legacy",
+            "sheet": "Rounds",
+            "row": 3,
+            "column": "Deadline outcome",
+            "message": "'Late bids accepted' is replaced in v1.14 by the wider 'Extended (late bid accepted)' (E9)."
+          }
+        ],
+        "removed": [
+          {
+            "severity": "warning",
+            "code": "exit.inferred_reason",
+            "sheet": "Deal ledger",
+            "row": 51,
+            "column": "Exit reason",
+            "message": "An inferred exit carries Exit reason 'Not stated' (E14); found 'Lower offer than rivals'."
+          },
+          {
+            "severity": "warning",
+            "code": "exit.inferred_reason",
+            "sheet": "Deal ledger",
+            "row": 52,
+            "column": "Exit reason",
+            "message": "An inferred exit carries Exit reason 'Not stated' (E14); found 'Terms or process'."
+          }
+        ]
+      },
+      "delta_1_7_vs_1_6": {
+        "added": [
+          {
+            "severity": "warning",
+            "code": "ledger.exclusivity_duplicate",
+            "sheet": "Deal ledger",
+            "row": 33,
+            "column": "Event",
+            "message": "Exclusivity changed has the same Who and Sort date as bid row #31, which codes an exclusivity request; if this row repeats the bid's own request, remove it (E10); a grant, execution or extension is its own event."
+          },
+          {
+            "severity": "warning",
+            "code": "ledger.exclusivity_duplicate",
+            "sheet": "Deal ledger",
+            "row": 41,
+            "column": "Event",
+            "message": "Exclusivity changed has the same Who and Sort date as bid row #39, which codes an exclusivity request; if this row repeats the bid's own request, remove it (E10); a grant, execution or extension is its own event."
+          },
+          {
+            "severity": "warning",
+            "code": "rounds.deadline_outcome_legacy",
+            "sheet": "Rounds",
+            "row": 2,
+            "column": "Deadline outcome",
+            "message": "'Late bids accepted' is replaced in v1.14 by the wider 'Extended (late bid accepted)' (E9)."
+          },
+          {
+            "severity": "warning",
+            "code": "rounds.deadline_outcome_legacy",
+            "sheet": "Rounds",
+            "row": 3,
+            "column": "Deadline outcome",
+            "message": "'Late bids accepted' is replaced in v1.14 by the wider 'Extended (late bid accepted)' (E9)."
+          }
+        ],
+        "removed": [
+          {
+            "severity": "warning",
+            "code": "exit.inferred_reason",
+            "sheet": "Deal ledger",
+            "row": 51,
+            "column": "Exit reason",
+            "message": "An inferred exit carries Exit reason 'Not stated' (E14); found 'Lower offer than rivals'."
+          },
+          {
+            "severity": "warning",
+            "code": "exit.inferred_reason",
+            "sheet": "Deal ledger",
+            "row": 52,
+            "column": "Exit reason",
+            "message": "An inferred exit carries Exit reason 'Not stated' (E14); found 'Terms or process'."
+          }
+        ]
+      }
+    },
+    {
+      "group": "version",
+      "id": "medivation/opus55-medium-20260923-1631-9dd02c",
+      "workbook_sha256": "9dd02c14b7a402af9d5465b49b2aa9ec865b11ab690b1981639c1001d76096ab",
+      "filing": "medivation_2016-08-30_SCTO-T.htm",
+      "instruction_sha256": "513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304",
+      "ledger_schema": "v1.13.2",
+      "ledger_schema_helper": "v1.13.2",
+      "stored": {
+        "checker_version": "1.5",
+        "status": "pass_with_warnings",
+        "summary": {
+          "errors": 0,
+          "warnings": 3,
+          "information": 0,
+          "total_issues": 3
+        }
+      },
+      "checker_1_6": {
+        "status": "pass_with_warnings",
+        "summary": {
+          "errors": 0,
+          "warnings": 3,
+          "information": 0,
+          "total_issues": 3
+        },
+        "identical_to_stored": true
+      },
+      "checker_1_7": {
+        "status": "pass_with_warnings",
+        "summary": {
+          "errors": 0,
+          "warnings": 3,
+          "information": 0,
+          "total_issues": 3
+        },
+        "identical_to_stored": true
+      },
+      "delta_1_7_vs_stored": {
+        "added": [],
+        "removed": []
+      },
+      "delta_1_7_vs_1_6": {
+        "added": [],
+        "removed": []
+      }
+    },
+    {
+      "group": "version",
+      "id": "pepco-holdings/opus55-medium-20260924-0943-b762af",
+      "workbook_sha256": "b762af22961eaf2986225c7c8da52360102855261ebc03b6b37e286578c74754",
+      "filing": "pepco-holdings_2014-08-12_DEFM14A.htm",
+      "instruction_sha256": "513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304",
+      "ledger_schema": "v1.13.2",
+      "ledger_schema_helper": "v1.13.2",
+      "stored": {
+        "checker_version": "1.5",
+        "status": "fail",
+        "summary": {
+          "errors": 2,
+          "warnings": 27,
+          "information": 0,
+          "total_issues": 29
+        }
+      },
+      "checker_1_6": {
+        "status": "fail",
+        "summary": {
+          "errors": 2,
+          "warnings": 27,
+          "information": 0,
+          "total_issues": 29
+        },
+        "identical_to_stored": true
+      },
+      "checker_1_7": {
+        "status": "fail",
+        "summary": {
+          "errors": 2,
+          "warnings": 27,
+          "information": 0,
+          "total_issues": 29
+        },
+        "identical_to_stored": true
+      },
+      "delta_1_7_vs_stored": {
+        "added": [],
+        "removed": []
+      },
+      "delta_1_7_vs_1_6": {
+        "added": [],
+        "removed": []
+      }
+    },
+    {
+      "group": "version",
+      "id": "petsmart/opus55-medium-20260923-1528-4d8363",
+      "workbook_sha256": "4d8363aee97deeffaa8b2f4ff89961330ad0b3f1e47d7d8fd020149cab8e6c4f",
+      "filing": "petsmart_2015-02-02_DEFM14A.htm",
+      "instruction_sha256": "513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304",
+      "ledger_schema": "v1.13.2",
+      "ledger_schema_helper": "v1.13.2",
+      "stored": {
+        "checker_version": "1.5",
+        "status": "fail",
+        "summary": {
+          "errors": 1,
+          "warnings": 6,
+          "information": 0,
+          "total_issues": 7
+        }
+      },
+      "checker_1_6": {
+        "status": "fail",
+        "summary": {
+          "errors": 1,
+          "warnings": 6,
+          "information": 0,
+          "total_issues": 7
+        },
+        "identical_to_stored": true
+      },
+      "checker_1_7": {
+        "status": "fail",
+        "summary": {
+          "errors": 1,
+          "warnings": 6,
+          "information": 0,
+          "total_issues": 7
+        },
+        "identical_to_stored": true
+      },
+      "delta_1_7_vs_stored": {
+        "added": [],
+        "removed": []
+      },
+      "delta_1_7_vs_1_6": {
+        "added": [],
+        "removed": []
+      }
+    },
+    {
+      "group": "version",
+      "id": "providence-worcester/opus55-medium-20260924-2241-38bc24",
+      "workbook_sha256": "38bc2463c706dad7a6ed20ce2a306e50ffddec4c330d86e6aec172cf1509c310",
+      "filing": "providence-worcester_2016-09-20_DEFM14A.htm",
+      "instruction_sha256": "f9595d7413149f86c074f1d4b9ef96a5a24b3d8dd9b6c11061b0bd6e889aea97",
+      "ledger_schema": "v1.14",
+      "ledger_schema_helper": "v1.14",
+      "stored": {
+        "checker_version": "1.6",
+        "status": "pass_with_warnings",
+        "summary": {
+          "errors": 0,
+          "warnings": 14,
+          "information": 0,
+          "total_issues": 14
+        }
+      },
+      "checker_1_6": {
+        "status": "pass_with_warnings",
+        "summary": {
+          "errors": 0,
+          "warnings": 14,
+          "information": 0,
+          "total_issues": 14
+        },
+        "identical_to_stored": true
+      },
+      "checker_1_7": {
+        "status": "pass_with_warnings",
+        "summary": {
+          "errors": 0,
+          "warnings": 16,
+          "information": 0,
+          "total_issues": 16
+        },
+        "identical_to_stored": false
+      },
+      "delta_1_7_vs_stored": {
+        "added": [
+          {
+            "severity": "warning",
+            "code": "rounds.deadline_outcome_legacy",
+            "sheet": "Rounds",
+            "row": 2,
+            "column": "Deadline outcome",
+            "message": "'Late bids accepted' is replaced in v1.14 by the wider 'Extended (late bid accepted)' (E9)."
+          },
+          {
+            "severity": "warning",
+            "code": "rounds.deadline_outcome_legacy",
+            "sheet": "Rounds",
+            "row": 3,
+            "column": "Deadline outcome",
+            "message": "'Late bids accepted' is replaced in v1.14 by the wider 'Extended (late bid accepted)' (E9)."
+          }
+        ],
+        "removed": []
+      },
+      "delta_1_7_vs_1_6": {
+        "added": [
+          {
+            "severity": "warning",
+            "code": "rounds.deadline_outcome_legacy",
+            "sheet": "Rounds",
+            "row": 2,
+            "column": "Deadline outcome",
+            "message": "'Late bids accepted' is replaced in v1.14 by the wider 'Extended (late bid accepted)' (E9)."
+          },
+          {
+            "severity": "warning",
+            "code": "rounds.deadline_outcome_legacy",
+            "sheet": "Rounds",
+            "row": 3,
+            "column": "Deadline outcome",
+            "message": "'Late bids accepted' is replaced in v1.14 by the wider 'Extended (late bid accepted)' (E9)."
+          }
+        ],
+        "removed": []
+      }
+    },
+    {
+      "group": "version",
+      "id": "zep/opus55-xhigh-20260924-0926-ee06ac",
+      "workbook_sha256": "ee06acc054d20528f5af55317b4236be7188aadab86e312c1a977b01dcfc2599",
+      "filing": "zep_2015-05-26_DEFM14A.htm",
+      "instruction_sha256": "513c8e3e8159e4a6bceccd6ffca32a246302736329a0c7137b64dd3b7ffcd304",
+      "ledger_schema": "v1.13.2",
+      "ledger_schema_helper": "v1.13.2",
+      "stored": {
+        "checker_version": "1.5",
+        "status": "pass_with_warnings",
+        "summary": {
+          "errors": 0,
+          "warnings": 21,
+          "information": 0,
+          "total_issues": 21
+        }
+      },
+      "checker_1_6": {
+        "status": "pass_with_warnings",
+        "summary": {
+          "errors": 0,
+          "warnings": 21,
+          "information": 0,
+          "total_issues": 21
+        },
+        "identical_to_stored": true
+      },
+      "checker_1_7": {
+        "status": "pass_with_warnings",
+        "summary": {
+          "errors": 0,
+          "warnings": 21,
+          "information": 0,
+          "total_issues": 21
+        },
+        "identical_to_stored": true
+      },
+      "delta_1_7_vs_stored": {
+        "added": [],
+        "removed": []
+      },
+      "delta_1_7_vs_1_6": {
+        "added": [],
+        "removed": []
+      }
+    }
+  ]
+}

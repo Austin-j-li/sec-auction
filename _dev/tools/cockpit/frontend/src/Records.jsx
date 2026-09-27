@@ -1,16 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Button, Field, Input, Select, Textarea } from '@fluentui/react-components';
-import { ArrowDownIcon, ArrowsSplitIcon, ArrowUpIcon, ChatCircleIcon, InfoIcon, PlusIcon, QuotesIcon, TrashIcon, WarningIcon } from '@phosphor-icons/react';
+import { ArrowDownIcon, ArrowsSplitIcon, ArrowUpIcon, ChatCircleIcon, CheckSquareIcon, InfoIcon, ListChecksIcon, PlusIcon, QuotesIcon, SquareIcon, TrashIcon, WarningIcon } from '@phosphor-icons/react';
 import SplitPane from './SplitPane';
 import Comments from './Comments';
 import { count, recordValues, rowId, sheetColumns, sheetRows, text } from './api';
+import { addPart, listControl, offListValue, OTHER } from './choices';
+import { pickRows } from './bulk';
 import { changedByOther, displayName, initials, shortTime } from './trace';
 import { Dot, Empty, SeverityGlyph } from './ui';
 
 const LONG_FIELDS = new Set(['Note', 'Quote and page', 'Reviewer note', 'Question', 'Recommended answer', 'Why, with page', 'Rows affected', 'What changes if answered differently', 'How opened', 'Who was in', 'Due dates', 'Deadline outcome', 'Bids received', 'How it ended', 'Value']);
 const DATE_FIELDS = new Set(['Sort date', 'Date from', 'Date to', 'Opened']);
-const NUMERIC_FIELDS = new Set(['#', 'Process', 'Count', 'Price low', 'Price high']);
-const MONO_FIELDS = new Set(['#', 'When', 'Sort date', 'Date from', 'Date to', 'Opened', 'Process', 'Round', 'Price low', 'Price high', 'Count', 'Page', 'Q']);
+const NUMERIC_FIELDS = new Set(['#', 'Process', 'Count', 'Price low', 'Price high', 'CVR/earnout value']);
+const MONO_FIELDS = new Set(['#', 'When', 'Sort date', 'Date from', 'Date to', 'Opened', 'Process', 'Round', 'Price low', 'Price high', 'CVR/earnout value', 'Count', 'Page', 'Q']);
 const EVIDENCE_FIELD = 'Quote and page';
 const SEVERITY_RANK = { error: 0, warning: 1, info: 2 };
 const ISSUE_CAP = 5;
@@ -116,6 +118,11 @@ function RowMarks({ trace, uid }) {
 
 function RecordForm({ sheet, columns, row, choices, editable, onEdit, dirtyFields, authors, onOpenRevision }) {
   const values = recordValues(row, sheet);
+  // Listed fields the reader switched to free text with Other… ('other') or back with "Choose from the list"
+  // ('list'), for this record only.
+  const [modes, setModes] = useState(() => new Map());
+  useEffect(() => setModes(new Map()), [row.uid]);
+  const setMode = (field, mode) => setModes(current => new Map(current).set(field, mode));
   const severities = worstSeverityByField(row.issues);
   const ordered = columns.includes(EVIDENCE_FIELD) ? [EVIDENCE_FIELD, ...columns.filter(field => field !== EVIDENCE_FIELD)] : columns;
   return <div className="field-grid">
@@ -128,15 +135,27 @@ function RecordForm({ sheet, columns, row, choices, editable, onEdit, dirtyField
       const isEvidence = field === EVIDENCE_FIELD;
       const isLong = LONG_FIELDS.has(field) || value.length > 140;
       const dirty = Boolean(dirtyFields?.has(field));
-      const hint = field === 'Count' ? 'Leave blank when the cohort size is uncertain.'
+      const hint = field === 'Count' ? 'Blank only for a qualified figure (‘more than ten’); a cohort’s Count is the filing’s total minus the members recorded by name.'
         : field === 'Sort date' ? 'Excel date used to order events.'
         : isEvidence ? 'Exact source wording and printed page; select filing text to fill.'
         : undefined;
       const change = (_, data) => onEdit(sheet, row.uid, field, data.value);
-      let input;
-      if (options && (!value || options.includes(value))) {
-        input = <Select value={value} disabled={!editable} onChange={change}>
+      const control = listControl(field, value, options, modes.get(field));
+      const offList = control === 'select' ? offListValue(value, options) : null;
+      let input, picker = null;
+      if (control === 'select') {
+        input = <Select value={value} disabled={!editable} onChange={(event, data) => data.value === OTHER ? setMode(field, 'other') : change(event, data)}>
+          {offList && <option value={offList}>{offList} (not on the list)</option>}
           <option value="">Blank</option>
+          {options.map(option => <option key={option} value={option}>{option}</option>)}
+          <option value={OTHER}>Other…</option>
+        </Select>;
+      } else if (control === 'multi') {
+        // One outcome per deadline, "A; B": typed freely, or built by adding listed values (the picker sits
+        // outside the Field, so the text box alone carries the field's label).
+        input = <Input value={value} disabled={!editable} onChange={change}/>;
+        picker = <Select className="add-part" aria-label={`Add a ${field} value`} value="" disabled={!editable} onChange={(_, data) => { if (data.value) onEdit(sheet, row.uid, field, addPart(value, data.value)); }}>
+          <option value="">Add an outcome…</option>
           {options.map(option => <option key={option} value={option}>{option}</option>)}
         </Select>;
       } else if (isLong) {
@@ -151,22 +170,30 @@ function RecordForm({ sheet, columns, row, choices, editable, onEdit, dirtyField
           onChange={change}/>;
       }
       const classes = ['field-cell', isLong && 'span-all', isEvidence && 'evidence-field', dirty && 'is-dirty'].filter(Boolean).join(' ');
+      const chooseFromList = <Button appearance="subtle" className="link-button" disabled={!editable} onClick={() => setMode(field, 'list')}>Choose from the list</Button>;
+      const listHint = offList ? 'Not on this version’s list; pick a listed value to replace it'
+        : control === 'text' && (modes.get(field) === 'other' ? chooseFromList : <>Not on this version’s list. {chooseFromList}</>);
       return <div key={field} className={classes}>
-        <Field label={fieldLabel(field, severities.get(field), dirty)} hint={hint}>{input}</Field>
+        <Field label={fieldLabel(field, severities.get(field), dirty)} hint={hint || listHint || undefined}>{input}</Field>
+        {picker}
         <FieldAuthor author={authors?.[field]} field={field} onOpenRevision={onOpenRevision}/>
       </div>;
     })}
   </div>;
 }
 
-function EventSummary({ row, selected, onClick, review, trace }) {
+// In select mode (picked is true or false) a click picks the event for a bulk edit instead of opening it.
+function EventSummary({ row, selected, onClick, review, trace, picked = null }) {
   const c = row.cells || {};
   const isNew = row.uid.startsWith('new-');
   const date = c.When || 'Date unstated';
   const detail = [c.Who, c.Process && `Process ${c.Process}`, c.Round !== '' && c.Round != null && `Round ${c.Round}`].filter(Boolean).join(' · ');
   const reviewLabel = review?.status === 'reviewed' ? 'Reviewed' : review?.status === 'needs_decision' ? 'Needs decision' : '';
-  return <button id={`row-${rowId(row)}`} className={`event-item ${selected ? 'selected' : ''}`} onClick={onClick}>
+  const picking = picked !== null;
+  return <button id={`row-${rowId(row)}`} className={`event-item ${selected ? 'selected' : ''} ${picked ? 'picked' : ''}`} onClick={onClick}
+    aria-pressed={picking ? picked : undefined} onMouseDown={picking ? event => { if (event.shiftKey) event.preventDefault(); } : undefined}>
     <span className="event-line">
+      {picking && <span className="pick-mark" aria-hidden="true">{picked ? <CheckSquareIcon size={14} weight="fill"/> : <SquareIcon size={14}/>}</span>}
       {isNew
         ? <span className="event-number mono tone-warning"><Dot tone="warning"/> New</span>
         : <span className="event-number mono">#{rowId(row)}</span>}
@@ -240,7 +267,7 @@ function SourceSummary({ row, onShowFiling }) {
   </div>;
 }
 
-export function LedgerTab({ deal, selectedUid, onSelect, onShowFiling, onOpenQuestion, onStep, onAdd, onMove, onDelete, onEdit, onReview, editable, selection, dirtyFor, reviewDirty, trace }) {
+export function LedgerTab({ deal, selectedUid, onSelect, onShowFiling, onOpenQuestion, onStep, onAdd, onMove, onDelete, onEdit, onReview, onBulk, editable, selection, dirtyFor, reviewDirty, trace }) {
   const rows = deal.ledger?.rows || [];
   const index = rows.findIndex(row => row.uid === selectedUid);
   const row = selection || rows[0];
@@ -250,17 +277,36 @@ export function LedgerTab({ deal, selectedUid, onSelect, onShowFiling, onOpenQue
   const listRef = useRef(null);
   useEffect(() => { if (editorRef.current) editorRef.current.scrollTop = 0; }, [row?.uid]);
   useRevealSelected(listRef, '.event-item.selected', '.event-list', row?.uid);
+  // Select mode picks events for a bulk Process/Round edit; null outside it. Picks of rows since removed are ignored.
+  const [picked, setPicked] = useState(null);
+  const anchor = useRef(null);
+  const picking = Boolean(editable && onBulk && picked);
+  const pickedRows = picking ? rows.filter(item => picked.has(item.uid)) : [];
+  const togglePicking = () => { setPicked(picking ? null : new Set()); anchor.current = null; };
+  function pick(uid, extend) {
+    setPicked(current => pickRows(rows.map(item => item.uid), current, anchor.current, uid, extend));
+    anchor.current = uid;
+  }
 
   return <SplitPane className="ledger-layout" name="Event list and editor" storageKey="ledger" mobileStack mobileDefaultSize={128} defaultSize={250} minStart={140} minEnd={360}>
     <div className="record-list" ref={listRef}>
-      <div className="section-head">
+      <div className={`section-head ${picking ? 'picking' : ''}`}>
         <h2>Events</h2>
         <span className="head-count mono">{count(rows.length, 'event')}</span>
-        {editable && <Button appearance="secondary" icon={<PlusIcon size={16}/>} onClick={() => onAdd('Deal ledger')}>Add</Button>}
+        {editable && onBulk && rows.length > 0 && <Button appearance="subtle" className="pick-toggle" icon={<ListChecksIcon size={16}/>} aria-pressed={picking} title={picking ? 'Leave select mode' : 'Select events to set Process or Round on several at once'} onClick={togglePicking}>{picking ? 'Done' : 'Select'}</Button>}
+        {editable && !picking && <Button appearance="secondary" icon={<PlusIcon size={16}/>} onClick={() => onAdd('Deal ledger')}>Add</Button>}
+        {picking && <div className="pick-bar" role="toolbar" aria-label="Selected events">
+          <span className="pick-count mono" aria-live="polite">{pickedRows.length} selected</span>
+          <Button appearance="subtle" className="link-button" onClick={() => setPicked(new Set(rows.map(item => item.uid)))}>All</Button>
+          <Button appearance="subtle" className="link-button" disabled={!pickedRows.length} onClick={() => setPicked(new Set())}>None</Button>
+          <Button appearance="secondary" disabled={!pickedRows.length} onClick={() => onBulk(pickedRows.map(item => item.uid))}>Set Process/Round…</Button>
+          <span className="pick-hint">Shift-click selects a range</span>
+        </div>}
       </div>
       <div className="event-list">
         {rows.length
-          ? rows.map(item => <EventSummary key={item.uid} row={item} selected={item.uid === row?.uid} onClick={() => onSelect(item.uid)} review={deal.row_review?.[item.uid]} trace={trace}/>)
+          ? rows.map(item => <EventSummary key={item.uid} row={item} selected={item.uid === row?.uid} review={deal.row_review?.[item.uid]} trace={trace}
+              picked={picking ? picked.has(item.uid) : null} onClick={event => picking ? pick(item.uid, event.shiftKey) : onSelect(item.uid)}/>)
           : <Empty>No events in this ledger. Add the first event to begin.</Empty>}
       </div>
     </div>

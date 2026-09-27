@@ -1,0 +1,6134 @@
+{
+ "deal": "providence-worcester",
+ "run_id": "opus55-medium-20260924-2241-38bc24",
+ "run_sha256": "38bc2463c706dad7a6ed20ce2a306e50ffddec4c330d86e6aec172cf1509c310",
+ "run_schema": "v1.14",
+ "register_revision": 16,
+ "seed": 1,
+ "summary": {
+  "agrees": {
+   "facts": 130,
+   "rows": 46,
+   "accept": {
+    "facts": 67,
+    "rows": 38
+   },
+   "review": {
+    "facts": 63,
+    "rows": 28
+   }
+  },
+  "differs, v1.14 changed the rule": {
+   "facts": 14,
+   "rows": 11
+  },
+  "differs, rule unchanged": {
+   "facts": 4,
+   "rows": 4
+  },
+  "omitted or inserted": {
+   "facts": 39,
+   "rows": 25
+  }
+ },
+ "alignment": {
+  "ledger_matched": 48,
+  "ledger_omitted": 15,
+  "ledger_inserted": 10,
+  "rounds_matched": 3,
+  "rounds_omitted": 0,
+  "rounds_inserted": 0,
+  "by_pass": {
+   "1": 48,
+   "2": 0,
+   "3": 0,
+   "4": 0
+  },
+  "pairs": [
+   {
+    "reviewed_uid": "c184bbff1e0c6c3b1b16ae8c",
+    "reviewed_row": 1,
+    "run_uid": "d4d7132d3c8c2d4cb5f30e95",
+    "run_row": 1,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "dd7ded3c38dd1cf3dc2e0539",
+    "reviewed_row": 2,
+    "run_uid": "bdae6b1e81738a75d53a6d7d",
+    "run_row": 2,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "43b4f7c4602057a97d9ad97c",
+    "reviewed_row": 3,
+    "run_uid": "50330e02d19a867b5ec2ba53",
+    "run_row": 3,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "4346553210c400b691aae9c6",
+    "reviewed_row": 4,
+    "run_uid": "ed2b77f4bf05108c704f0580",
+    "run_row": 4,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "a484b4a6be1f5d8756b50606",
+    "reviewed_row": 5,
+    "run_uid": "ff05201b8b41192d75b44986",
+    "run_row": 5,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "09f1ea8560362d4086b3d393",
+    "reviewed_row": 6,
+    "run_uid": "8f36d601fd319637096fd16f",
+    "run_row": 6,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "35bd9a9d5dda44f42ea8fcb4",
+    "reviewed_row": 7,
+    "run_uid": "1e1cdcfe8f267483cce28d76",
+    "run_row": 7,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "2eaa453485d9136e5edca172",
+    "reviewed_row": 11,
+    "run_uid": "9fdfee8b6121cfef1bd8fa71",
+    "run_row": 11,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "b30acd94ae1d395e1fc09e1b",
+    "reviewed_row": 12,
+    "run_uid": "396e927936b2c61ba37269a6",
+    "run_row": 12,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "e236e5a810e0f5148e31a779",
+    "reviewed_row": 14,
+    "run_uid": "2c460493f9c25cd164a4443f",
+    "run_row": 13,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "2fea3f8e396fb294b5bbe7d4",
+    "reviewed_row": 15,
+    "run_uid": "5410e233c78247a291410671",
+    "run_row": 14,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "4ee8c907550d54cff1cd37ee",
+    "reviewed_row": 16,
+    "run_uid": "0cd7ea064c90166cb5050b3f",
+    "run_row": 15,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "2ffc0bdfab3de17b5a79766f",
+    "reviewed_row": 17,
+    "run_uid": "28aa98cb48a1647dcf356b5d",
+    "run_row": 16,
+    "pass": 1,
+    "price": "equal",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "877d042f6721c6e825a36ae4",
+    "reviewed_row": 20,
+    "run_uid": "b4f7212dc765ecd0435ec327",
+    "run_row": 19,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "9eececb28d94162c3ec27aa4",
+    "reviewed_row": 21,
+    "run_uid": "f2b325094f1952989ac2cb45",
+    "run_row": 20,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "6946ec209e529b34e58aed34",
+    "reviewed_row": 22,
+    "run_uid": "d72f0d1d5095e1608ff5ef43",
+    "run_row": 21,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "14981fb921b6d57d8a9baa90",
+    "reviewed_row": 23,
+    "run_uid": "b0efb4a3e34f09a354950c3a",
+    "run_row": 22,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "d987530cb463eaf4bd31abc7",
+    "reviewed_row": 24,
+    "run_uid": "c900303b905007fc01cd81ce",
+    "run_row": 23,
+    "pass": 1,
+    "price": "equal",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "cbe36ef87a9feb5e000264d8",
+    "reviewed_row": 25,
+    "run_uid": "ee15ee038e586bf54fabf8c1",
+    "run_row": 24,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "c8ec0f7d8f2d4a5e688750d6",
+    "reviewed_row": 26,
+    "run_uid": "1fbfa583f4040c88f4171c0e",
+    "run_row": 25,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "d42637959ba0873e1cce720f",
+    "reviewed_row": 27,
+    "run_uid": "f99f9d84f4c65746dc4fe6fa",
+    "run_row": 26,
+    "pass": 1,
+    "price": "equal",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "b42fbe355bb7947ac23e31f9",
+    "reviewed_row": 28,
+    "run_uid": "2f4036cae3b13da543244538",
+    "run_row": 27,
+    "pass": 1,
+    "price": "equal",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "b4945af5a10c03591e84cada",
+    "reviewed_row": 29,
+    "run_uid": "84ec3cdd9fb1ecfbdd2fc8a0",
+    "run_row": 28,
+    "pass": 1,
+    "price": "equal",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "81bc4b8371bdc2f632fcc347",
+    "reviewed_row": 30,
+    "run_uid": "7e86e34cf8c0edac40c377a4",
+    "run_row": 29,
+    "pass": 1,
+    "price": "equal",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "3195f6995fb7920ef4643106",
+    "reviewed_row": 31,
+    "run_uid": "af7c188a8d55d1e0ab712265",
+    "run_row": 30,
+    "pass": 1,
+    "price": "equal",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "6ad325e9bae0f1062544ac39",
+    "reviewed_row": 34,
+    "run_uid": "aa55284fa1c377eac0efe352",
+    "run_row": 33,
+    "pass": 1,
+    "price": "with CVR",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "3d4201da075e6fdd0ae3e97f",
+    "reviewed_row": 36,
+    "run_uid": "2201137456edb7eb00138316",
+    "run_row": 34,
+    "pass": 1,
+    "price": "with CVR",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "d90d7a667cf8cc5ae994cb3c",
+    "reviewed_row": 37,
+    "run_uid": "9d2fe906e5b496d47b29d7eb",
+    "run_row": 35,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "0dcd8892517183cbad2ed50c",
+    "reviewed_row": 38,
+    "run_uid": "7e0cdff7eb759511fec4dac5",
+    "run_row": 36,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "912015e9fc3925918c416034",
+    "reviewed_row": 39,
+    "run_uid": "1f510e6892a50ccefbedb814",
+    "run_row": 37,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "c60de7a6ca37c5779ff2f60c",
+    "reviewed_row": 40,
+    "run_uid": "47b9214e10a6a743eaeaa374",
+    "run_row": 38,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "b2ba0db4eb464886839c0d47",
+    "reviewed_row": 41,
+    "run_uid": "25f5e00e7cec368d65ef8d7b",
+    "run_row": 39,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "1a26069281556f084b18deed",
+    "reviewed_row": 42,
+    "run_uid": "39a7693c308e2867a040eaca",
+    "run_row": 40,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "ae704b77dfd7d4872bdc4091",
+    "reviewed_row": 43,
+    "run_uid": "aabc9a5c68d6a385e42aae94",
+    "run_row": 41,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "68c3f4ed16a99a4a9a0f7bd1",
+    "reviewed_row": 44,
+    "run_uid": "f81c2f337f2a3c3b586f27d3",
+    "run_row": 42,
+    "pass": 1,
+    "price": "equal",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "7ffb5860b680ae610b7466ce",
+    "reviewed_row": 45,
+    "run_uid": "be8f0f152c727eed2d68bace",
+    "run_row": 44,
+    "pass": 1,
+    "price": "equal",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "9dfc628439745a06a390a474",
+    "reviewed_row": 46,
+    "run_uid": "b8d6f1e4577c70e2dee50239",
+    "run_row": 43,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "238ad0ac53c572c3bdfcb65b",
+    "reviewed_row": 48,
+    "run_uid": "7b88b32f94f31af5f526f414",
+    "run_row": 45,
+    "pass": 1,
+    "price": "equal",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "15bb5eecb35608454fdbcc77",
+    "reviewed_row": 49,
+    "run_uid": "aa2399dc82c13ad026d5a09e",
+    "run_row": 46,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "d9377b315ce6161b5fb1dbd9",
+    "reviewed_row": 50,
+    "run_uid": "53d9989008083ede244d1dbe",
+    "run_row": 47,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "9fa4fc2260a303aceb8a40d6",
+    "reviewed_row": 51,
+    "run_uid": "00ee26928f65b7c6cb218613",
+    "run_row": 48,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "d71b46752baedf302dece2ac",
+    "reviewed_row": 53,
+    "run_uid": "fd1d2a68de5cd58f61ac48fe",
+    "run_row": 49,
+    "pass": 1,
+    "price": "equal",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "812467cf75d42d92edb5cd2a",
+    "reviewed_row": 56,
+    "run_uid": "9d636ff9302fec335d58c4c5",
+    "run_row": 51,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "4420df65c403904b33f2d5e0",
+    "reviewed_row": 57,
+    "run_uid": "aca2ebd277c91fb2793ee63b",
+    "run_row": 52,
+    "pass": 1,
+    "price": "equal",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "8eb65813e416bbd72b2f68fa",
+    "reviewed_row": 59,
+    "run_uid": "c61f349b7b4fc939dcb6635d",
+    "run_row": 54,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "8cd2c851fee86a0fdae4cf87",
+    "reviewed_row": 61,
+    "run_uid": "b17321e811424194d582c881",
+    "run_row": 55,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "76d862bcf093a113bf156d32",
+    "reviewed_row": 62,
+    "run_uid": "5430ad1736fd781b1892deb7",
+    "run_row": 56,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   },
+   {
+    "reviewed_uid": "68699cc8539a8775f872d199",
+    "reviewed_row": 63,
+    "run_uid": "d44cdeeb5cfedb5278dee8bb",
+    "run_row": 58,
+    "pass": 1,
+    "price": "n/a",
+    "in_order": true
+   }
+  ]
+ },
+ "spot_check": [
+  "participation:1a26069281556f084b18deed",
+  "formality:3195f6995fb7920ef4643106",
+  "order:3195f6995fb7920ef4643106",
+  "deal-fact:580bdd6097826a1d133a5ecb",
+  "order:1a26069281556f084b18deed"
+ ],
+ "buckets": {
+  "agrees": [
+   {
+    "fact": "deal-fact:fd421e2b402f2cf26d74a4d2",
+    "kind": "deal fact",
+    "label": "Whole-company bids",
+    "reviewed": {
+     "Value": "Yes"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D7"
+    ],
+    "filing_key": {
+     "page": null,
+     "block": null,
+     "quote": null
+    },
+    "run_uid": "882faab13b31e04c7c0d94f7",
+    "run_row": null,
+    "match_pass": 1,
+    "run": {
+     "Value": "Yes"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D7)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "participation:c184bbff1e0c6c3b1b16ae8c",
+    "kind": "participation",
+    "label": "#1 Bidder interest · Party A",
+    "reviewed": {
+     "Event": "Bidder interest",
+     "Type": "Strategic",
+     "Count": "1",
+     "Exit reason": ""
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "27",
+     "block": "b521",
+     "quote": "Party A suggested possible joint venture arrangements and expressed some interest in acquiring equity in the Company to further develop strategic opportunities and enhance regional connectivity"
+    },
+    "run_uid": "d4d7132d3c8c2d4cb5f30e95",
+    "run_row": 1,
+    "match_pass": 1,
+    "run": {
+     "Event": "Bidder interest",
+     "Type": "Strategic",
+     "Count": "1",
+     "Exit reason": ""
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "participation:09f1ea8560362d4086b3d393",
+    "kind": "participation",
+    "label": "#6 Contact · 10 potential strategic buyers (other than Party A)",
+    "reviewed": {
+     "Event": "Contact",
+     "Type": "Strategic",
+     "Count": "10",
+     "Exit reason": ""
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "28",
+     "block": "b527",
+     "quote": "representatives of GHF contacted 11 potential strategic buyers (including Party A) and 18 potential financial buyers"
+    },
+    "run_uid": "8f36d601fd319637096fd16f",
+    "run_row": 6,
+    "match_pass": 1,
+    "run": {
+     "Event": "Contact",
+     "Type": "Strategic",
+     "Count": "10",
+     "Exit reason": ""
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "participation:35bd9a9d5dda44f42ea8fcb4",
+    "kind": "participation",
+    "label": "#7 Contact · 18 potential financial buyers",
+    "reviewed": {
+     "Event": "Contact",
+     "Type": "Financial",
+     "Count": "18",
+     "Exit reason": ""
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "28",
+     "block": "b527",
+     "quote": "representatives of GHF contacted 11 potential strategic buyers (including Party A) and 18 potential financial buyers"
+    },
+    "run_uid": "1e1cdcfe8f267483cce28d76",
+    "run_row": 7,
+    "match_pass": 1,
+    "run": {
+     "Event": "Contact",
+     "Type": "Financial",
+     "Count": "18",
+     "Exit reason": ""
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "participation:2eaa453485d9136e5edca172",
+    "kind": "participation",
+    "label": "#11 Contact · 2 additional Class I railroads (unnamed)",
+    "reviewed": {
+     "Event": "Contact",
+     "Type": "Strategic",
+     "Count": "2",
+     "Exit reason": ""
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "28",
+     "block": "b529",
+     "quote": "Mr. Noreck reported that the Company had also approached two additional Class I railroads to determine their interest in a possible transaction."
+    },
+    "run_uid": "9fdfee8b6121cfef1bd8fa71",
+    "run_row": 11,
+    "match_pass": 1,
+    "run": {
+     "Event": "Contact",
+     "Type": "Strategic",
+     "Count": "2",
+     "Exit reason": ""
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "participation:b30acd94ae1d395e1fc09e1b",
+    "kind": "participation",
+    "label": "#12 Contact · Party B",
+    "reviewed": {
+     "Event": "Contact",
+     "Type": "Strategic",
+     "Count": "1",
+     "Exit reason": ""
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "28",
+     "block": "b529",
+     "quote": "on April 21, 2016, the Company and representatives of GHF held an introductory meeting with another potential strategic buyer (“Party B”)."
+    },
+    "run_uid": "396e927936b2c61ba37269a6",
+    "run_row": 12,
+    "match_pass": 1,
+    "run": {
+     "Event": "Contact",
+     "Type": "Strategic",
+     "Count": "1",
+     "Exit reason": ""
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "participation:6946ec209e529b34e58aed34",
+    "kind": "participation",
+    "label": "#22 Bidder interest · Party C",
+    "reviewed": {
+     "Event": "Bidder interest",
+     "Type": "Strategic",
+     "Count": "1",
+     "Exit reason": ""
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "29",
+     "block": "b537",
+     "quote": "a potential strategic buyer that had not previously been part of the process (“Party C”) approached the Company’s management and expressed interest in acquiring the Company"
+    },
+    "run_uid": "d72f0d1d5095e1608ff5ef43",
+    "run_row": 21,
+    "match_pass": 1,
+    "run": {
+     "Event": "Bidder interest",
+     "Type": "Strategic",
+     "Count": "1",
+     "Exit reason": ""
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "participation:14981fb921b6d57d8a9baa90",
+    "kind": "participation",
+    "label": "#23 NDA signed · Party C",
+    "reviewed": {
+     "Event": "NDA signed",
+     "Type": "Strategic",
+     "Count": "1",
+     "Exit reason": ""
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "29",
+     "block": "b537",
+     "quote": "After executing a confidentiality agreement, Party C was provided the memorandum concerning the Company provided to the other potential buyers."
+    },
+    "run_uid": "b0efb4a3e34f09a354950c3a",
+    "run_row": 22,
+    "match_pass": 1,
+    "run": {
+     "Event": "NDA signed",
+     "Type": "Strategic",
+     "Count": "1",
+     "Exit reason": ""
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "participation:0dcd8892517183cbad2ed50c",
+    "kind": "participation",
+    "label": "#38 Dropped by target · Party C",
+    "reviewed": {
+     "Event": "Dropped by target",
+     "Type": "Strategic",
+     "Count": "1",
+     "Exit reason": "Lower offer than rivals"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b548",
+     "quote": "representatives of GHF subsequently contacted the remaining bidders to inform them that they were no longer involved in the process"
+    },
+    "run_uid": "7e0cdff7eb759511fec4dac5",
+    "run_row": 36,
+    "match_pass": 1,
+    "run": {
+     "Event": "Dropped by target",
+     "Type": "Strategic",
+     "Count": "1",
+     "Exit reason": "Lower offer than rivals"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "participation:912015e9fc3925918c416034",
+    "kind": "participation",
+    "label": "#39 Dropped by target · Party D",
+    "reviewed": {
+     "Event": "Dropped by target",
+     "Type": "Financial",
+     "Count": "1",
+     "Exit reason": "Lower offer than rivals"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b548",
+     "quote": "representatives of GHF subsequently contacted the remaining bidders to inform them that they were no longer involved in the process"
+    },
+    "run_uid": "1f510e6892a50ccefbedb814",
+    "run_row": 37,
+    "match_pass": 1,
+    "run": {
+     "Event": "Dropped by target",
+     "Type": "Financial",
+     "Count": "1",
+     "Exit reason": "Lower offer than rivals"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "participation:c60de7a6ca37c5779ff2f60c",
+    "kind": "participation",
+    "label": "#40 Dropped by target · Party E",
+    "reviewed": {
+     "Event": "Dropped by target",
+     "Type": "Strategic",
+     "Count": "1",
+     "Exit reason": "Lower offer than rivals"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b548",
+     "quote": "representatives of GHF subsequently contacted the remaining bidders to inform them that they were no longer involved in the process"
+    },
+    "run_uid": "47b9214e10a6a743eaeaa374",
+    "run_row": 38,
+    "match_pass": 1,
+    "run": {
+     "Event": "Dropped by target",
+     "Type": "Strategic",
+     "Count": "1",
+     "Exit reason": "Lower offer than rivals"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "participation:b2ba0db4eb464886839c0d47",
+    "kind": "participation",
+    "label": "#41 Dropped by target · Party F",
+    "reviewed": {
+     "Event": "Dropped by target",
+     "Type": "Strategic",
+     "Count": "1",
+     "Exit reason": "Lower offer than rivals"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b548",
+     "quote": "representatives of GHF subsequently contacted the remaining bidders to inform them that they were no longer involved in the process"
+    },
+    "run_uid": "25f5e00e7cec368d65ef8d7b",
+    "run_row": 39,
+    "match_pass": 1,
+    "run": {
+     "Event": "Dropped by target",
+     "Type": "Strategic",
+     "Count": "1",
+     "Exit reason": "Lower offer than rivals"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "participation:1a26069281556f084b18deed",
+    "kind": "participation",
+    "label": "#42 Re-entered · Party D",
+    "reviewed": {
+     "Event": "Re-entered",
+     "Type": "Financial",
+     "Count": "1",
+     "Exit reason": ""
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b549",
+     "quote": "During those calls, Party D and Party E both expressed interest in reengaging and enhancing their offers."
+    },
+    "run_uid": "39a7693c308e2867a040eaca",
+    "run_row": 40,
+    "match_pass": 1,
+    "run": {
+     "Event": "Re-entered",
+     "Type": "Financial",
+     "Count": "1",
+     "Exit reason": ""
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "participation:ae704b77dfd7d4872bdc4091",
+    "kind": "participation",
+    "label": "#43 Re-entered · Party E",
+    "reviewed": {
+     "Event": "Re-entered",
+     "Type": "Strategic",
+     "Count": "1",
+     "Exit reason": ""
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b549",
+     "quote": "During those calls, Party D and Party E both expressed interest in reengaging and enhancing their offers."
+    },
+    "run_uid": "aabc9a5c68d6a385e42aae94",
+    "run_row": 41,
+    "match_pass": 1,
+    "run": {
+     "Event": "Re-entered",
+     "Type": "Strategic",
+     "Count": "1",
+     "Exit reason": ""
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "participation:d9377b315ce6161b5fb1dbd9",
+    "kind": "participation",
+    "label": "#50 Withdrew · Party D",
+    "reviewed": {
+     "Event": "Withdrew",
+     "Type": "Financial",
+     "Count": "1",
+     "Exit reason": "Terms or process"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b549",
+     "quote": "the Company declined to make such a commitment, at which point Party D indicated that it would not proceed with further due diligence at that time"
+    },
+    "run_uid": "53d9989008083ede244d1dbe",
+    "run_row": 47,
+    "match_pass": 1,
+    "run": {
+     "Event": "Withdrew",
+     "Type": "Financial",
+     "Count": "1",
+     "Exit reason": "Terms or process"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "participation:76d862bcf093a113bf156d32",
+    "kind": "participation",
+    "label": "#62 Not selected at signing · Party B",
+    "reviewed": {
+     "Event": "Not selected at signing",
+     "Type": "Strategic",
+     "Count": "1",
+     "Exit reason": "Would not improve earlier offer"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "32",
+     "block": "b561",
+     "quote": "The Board determined that the G&W offer represented the superior proposal."
+    },
+    "run_uid": "5430ad1736fd781b1892deb7",
+    "run_row": 56,
+    "match_pass": 1,
+    "run": {
+     "Event": "Not selected at signing",
+     "Type": "Strategic",
+     "Count": "1",
+     "Exit reason": "Would not improve earlier offer"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "deal-fact:580bdd6097826a1d133a5ecb",
+    "kind": "deal fact",
+    "label": "Number of processes",
+    "reviewed": {
+     "Value": "1"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": null,
+     "block": null,
+     "quote": null
+    },
+    "run_uid": "5a3ac08816249c39d78d44d9",
+    "run_row": null,
+    "match_pass": 1,
+    "run": {
+     "Value": "1"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "deadline:34f82318faeb91c9b2b20fb7",
+    "kind": "deadline",
+    "label": "Process 1 / Round 2",
+    "reviewed": {
+     "Due dates": "07/20/2016",
+     "Deadline outcome": "Late bids accepted"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D11"
+    ],
+    "filing_key": {
+     "page": "29",
+     "block": "b538",
+     "quote": "In late July 2016, the Company received six LOIs with offer prices per share ranging from $19.20 to $24.00 (implying equity values of $96 million to $121 million)."
+    },
+    "run_uid": "effecfe42c41d221d3e38a47",
+    "run_row": null,
+    "match_pass": 3,
+    "run": {
+     "Due dates": "07/20/2016",
+     "Deadline outcome": "Late bids accepted"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D11)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "round:ede9d7992de0248bfcc9d58c",
+    "kind": "round",
+    "label": "Process 1 / Round 3",
+    "reviewed": {
+     "Process": "1",
+     "Round": "3",
+     "Opened": "2016-07-27",
+     "Who was in": "2 strategic: G&W, Party B. Party D (financial) and Party E (strategic) re-entered on 07/29: still being received, not admitted.",
+     "Finality": "Inferred final"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b548",
+     "quote": "the Company should proceed with confirmatory due diligence and negotiations with G&W and Party B because of the higher offers made by each of G&W and Party B"
+    },
+    "run_uid": "a0965a3b2860790e040186d3",
+    "run_row": null,
+    "match_pass": 1,
+    "run": {
+     "Process": "1",
+     "Round": "3",
+     "Opened": "2016-07-27",
+     "Who was in": "2 strategic admitted: G&W and Party B. Party D and Party E (re-entered 07/29, #40, #41): still being received, not admitted.",
+     "Finality": "Inferred final"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D8)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "deadline:ede9d7992de0248bfcc9d58c",
+    "kind": "deadline",
+    "label": "Process 1 / Round 3",
+    "reviewed": {
+     "Due dates": "none stated",
+     "Deadline outcome": "No deadline stated"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D11"
+    ],
+    "filing_key": {
+     "page": null,
+     "block": null,
+     "quote": null
+    },
+    "run_uid": "a0965a3b2860790e040186d3",
+    "run_row": null,
+    "match_pass": 1,
+    "run": {
+     "Due dates": "none stated",
+     "Deadline outcome": "No deadline stated"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D11)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "assignment:2ffc0bdfab3de17b5a79766f",
+    "kind": "assignment",
+    "label": "#17 Bid · 9 IOI bidders (unnamed)",
+    "reviewed": {
+     "Process": "1",
+     "Round": "1"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "filing_key": {
+     "page": "29",
+     "block": "b534",
+     "quote": "with offer prices per share ranging from $17.93 to $26.50 (assuming the conversion of preferred stock into common stock), implying equity values of $90 million to $134 million"
+    },
+    "run_uid": "28aa98cb48a1647dcf356b5d",
+    "run_row": 16,
+    "match_pass": 1,
+    "run": {
+     "Process": "1",
+     "Round": "1"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D8)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "assignment:d987530cb463eaf4bd31abc7",
+    "kind": "assignment",
+    "label": "#24 Bid · Party C",
+    "reviewed": {
+     "Process": "1",
+     "Round": "2"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "filing_key": {
+     "page": "29",
+     "block": "b537",
+     "quote": "On July 12, 2016, Party C submitted an IOI with an offer price per share of $21.00 (implying an equity value of $108 million)."
+    },
+    "run_uid": "c900303b905007fc01cd81ce",
+    "run_row": 23,
+    "match_pass": 1,
+    "run": {
+     "Process": "1",
+     "Round": "2"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D8)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "assignment:d42637959ba0873e1cce720f",
+    "kind": "assignment",
+    "label": "#27 Bid · Party B",
+    "reviewed": {
+     "Process": "1",
+     "Round": "2"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "filing_key": {
+     "page": "29",
+     "block": "b539",
+     "quote": "Party B submitted an LOI to acquire the Company for a price of $24.00 per share (subject to an expedited diligence review)."
+    },
+    "run_uid": "f99f9d84f4c65746dc4fe6fa",
+    "run_row": 26,
+    "match_pass": 1,
+    "run": {
+     "Process": "1",
+     "Round": "2"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D8)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "assignment:b42fbe355bb7947ac23e31f9",
+    "kind": "assignment",
+    "label": "#28 Bid · Party E",
+    "reviewed": {
+     "Process": "1",
+     "Round": "2"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b543",
+     "quote": "Party E (a strategic buyer) submitted an LOI to acquire the Company for a price of $21.26 per share (subject to a 60-day exclusivity period"
+    },
+    "run_uid": "2f4036cae3b13da543244538",
+    "run_row": 27,
+    "match_pass": 1,
+    "run": {
+     "Process": "1",
+     "Round": "2"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D8)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "assignment:b4945af5a10c03591e84cada",
+    "kind": "assignment",
+    "label": "#29 Bid · Party D",
+    "reviewed": {
+     "Process": "1",
+     "Round": "2"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b544",
+     "quote": "Party D (a financial buyer) submitted an LOI to acquire the Company for a price of $21.00 per share (subject to a four-week diligence period)."
+    },
+    "run_uid": "84ec3cdd9fb1ecfbdd2fc8a0",
+    "run_row": 28,
+    "match_pass": 1,
+    "run": {
+     "Process": "1",
+     "Round": "2"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D8)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "assignment:81bc4b8371bdc2f632fcc347",
+    "kind": "assignment",
+    "label": "#30 Bid · Party C",
+    "reviewed": {
+     "Process": "1",
+     "Round": "2"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b545",
+     "quote": "Party C submitted an LOI to acquire the Company for a price of $19.30 per share (subject to a 30-day diligence period)."
+    },
+    "run_uid": "7e86e34cf8c0edac40c377a4",
+    "run_row": 29,
+    "match_pass": 1,
+    "run": {
+     "Process": "1",
+     "Round": "2"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D8)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "assignment:3195f6995fb7920ef4643106",
+    "kind": "assignment",
+    "label": "#31 Bid · Party F",
+    "reviewed": {
+     "Process": "1",
+     "Round": "2"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b546",
+     "quote": "Party F (a strategic buyer) submitted an LOI to acquire the Company for a price of $19.20 per share (subject to a 30-day due diligence period)."
+    },
+    "run_uid": "af7c188a8d55d1e0ab712265",
+    "run_row": 30,
+    "match_pass": 1,
+    "run": {
+     "Process": "1",
+     "Round": "2"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D8)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "assignment:6ad325e9bae0f1062544ac39",
+    "kind": "assignment",
+    "label": "#34 Bid · G&W",
+    "reviewed": {
+     "Process": "1",
+     "Round": "2"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "filing_key": {
+     "page": "29",
+     "block": "b540",
+     "quote": "G&W submitted an LOI on July 21, 2016 to acquire the Company for a price of $21.15 per share (subject to a three-week exclusive diligence period)."
+    },
+    "run_uid": "aa55284fa1c377eac0efe352",
+    "run_row": 33,
+    "match_pass": 1,
+    "run": {
+     "Process": "1",
+     "Round": "2"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D8)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "assignment:3d4201da075e6fdd0ae3e97f",
+    "kind": "assignment",
+    "label": "#36 Bid · G&W",
+    "reviewed": {
+     "Process": "1",
+     "Round": "2"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "filing_key": {
+     "page": "29",
+     "block": "b540",
+     "quote": "G&W submitted a revised LOI, which increased its offer to $22.15 per share (including $21.02 in cash and $1.13 CVR)."
+    },
+    "run_uid": "2201137456edb7eb00138316",
+    "run_row": 34,
+    "match_pass": 1,
+    "run": {
+     "Process": "1",
+     "Round": "2"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D8)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "assignment:0dcd8892517183cbad2ed50c",
+    "kind": "assignment",
+    "label": "#38 Dropped by target · Party C",
+    "reviewed": {
+     "Process": "1",
+     "Round": "2"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b548",
+     "quote": "representatives of GHF subsequently contacted the remaining bidders to inform them that they were no longer involved in the process"
+    },
+    "run_uid": "7e0cdff7eb759511fec4dac5",
+    "run_row": 36,
+    "match_pass": 1,
+    "run": {
+     "Process": "1",
+     "Round": "2"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D8)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "assignment:912015e9fc3925918c416034",
+    "kind": "assignment",
+    "label": "#39 Dropped by target · Party D",
+    "reviewed": {
+     "Process": "1",
+     "Round": "2"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b548",
+     "quote": "representatives of GHF subsequently contacted the remaining bidders to inform them that they were no longer involved in the process"
+    },
+    "run_uid": "1f510e6892a50ccefbedb814",
+    "run_row": 37,
+    "match_pass": 1,
+    "run": {
+     "Process": "1",
+     "Round": "2"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D8)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "assignment:c60de7a6ca37c5779ff2f60c",
+    "kind": "assignment",
+    "label": "#40 Dropped by target · Party E",
+    "reviewed": {
+     "Process": "1",
+     "Round": "2"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b548",
+     "quote": "representatives of GHF subsequently contacted the remaining bidders to inform them that they were no longer involved in the process"
+    },
+    "run_uid": "47b9214e10a6a743eaeaa374",
+    "run_row": 38,
+    "match_pass": 1,
+    "run": {
+     "Process": "1",
+     "Round": "2"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D8)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "assignment:b2ba0db4eb464886839c0d47",
+    "kind": "assignment",
+    "label": "#41 Dropped by target · Party F",
+    "reviewed": {
+     "Process": "1",
+     "Round": "2"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b548",
+     "quote": "representatives of GHF subsequently contacted the remaining bidders to inform them that they were no longer involved in the process"
+    },
+    "run_uid": "25f5e00e7cec368d65ef8d7b",
+    "run_row": 39,
+    "match_pass": 1,
+    "run": {
+     "Process": "1",
+     "Round": "2"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D8)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "assignment:68c3f4ed16a99a4a9a0f7bd1",
+    "kind": "assignment",
+    "label": "#44 Bid · Party D",
+    "reviewed": {
+     "Process": "1",
+     "Round": "3"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b549",
+     "quote": "On August 1, 2016, Party D submitted a revised LOI at a price of $24.00 per share"
+    },
+    "run_uid": "f81c2f337f2a3c3b586f27d3",
+    "run_row": 42,
+    "match_pass": 1,
+    "run": {
+     "Process": "1",
+     "Round": "3"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D8)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "assignment:7ffb5860b680ae610b7466ce",
+    "kind": "assignment",
+    "label": "#45 Bid · Party E",
+    "reviewed": {
+     "Process": "1",
+     "Round": "3"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b549",
+     "quote": "Party E submitted a revised LOI, along with financing support, from Party F, at a price of $23.81 per share. Both revised proposals contained a 30-day due diligence period."
+    },
+    "run_uid": "be8f0f152c727eed2d68bace",
+    "run_row": 44,
+    "match_pass": 1,
+    "run": {
+     "Process": "1",
+     "Round": "3"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D8)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "assignment:238ad0ac53c572c3bdfcb65b",
+    "kind": "assignment",
+    "label": "#48 Bid · Party E",
+    "reviewed": {
+     "Process": "1",
+     "Round": "3"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b549",
+     "quote": "Party E withdrew its revised proposal on August 2, 2016 (but confirmed its original proposal of $21.26 per share)"
+    },
+    "run_uid": "7b88b32f94f31af5f526f414",
+    "run_row": 45,
+    "match_pass": 1,
+    "run": {
+     "Process": "1",
+     "Round": "3"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D8)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "assignment:d9377b315ce6161b5fb1dbd9",
+    "kind": "assignment",
+    "label": "#50 Withdrew · Party D",
+    "reviewed": {
+     "Process": "1",
+     "Round": "3"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b549",
+     "quote": "the Company declined to make such a commitment, at which point Party D indicated that it would not proceed with further due diligence at that time"
+    },
+    "run_uid": "53d9989008083ede244d1dbe",
+    "run_row": 47,
+    "match_pass": 1,
+    "run": {
+     "Process": "1",
+     "Round": "3"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D8)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "assignment:d71b46752baedf302dece2ac",
+    "kind": "assignment",
+    "label": "#53 Bid reaffirmed · Party B",
+    "reviewed": {
+     "Process": "1",
+     "Round": "3"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "filing_key": {
+     "page": "31",
+     "block": "b554",
+     "quote": "On August 4, 2016, legal counsel for Party B provided a revised draft of the merger agreement"
+    },
+    "run_uid": "fd1d2a68de5cd58f61ac48fe",
+    "run_row": 49,
+    "match_pass": 1,
+    "run": {
+     "Process": "1",
+     "Round": "3"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D8)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "assignment:4420df65c403904b33f2d5e0",
+    "kind": "assignment",
+    "label": "#57 Bid · G&W",
+    "reviewed": {
+     "Process": "1",
+     "Round": "3"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "filing_key": {
+     "page": "31",
+     "block": "b555",
+     "quote": "G&W submitted a revised LOI to acquire the Company for a price of $25.00 per share in cash, which excluded the previously proposed CVR"
+    },
+    "run_uid": "aca2ebd277c91fb2793ee63b",
+    "run_row": 52,
+    "match_pass": 1,
+    "run": {
+     "Process": "1",
+     "Round": "3"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D8)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "assignment:76d862bcf093a113bf156d32",
+    "kind": "assignment",
+    "label": "#62 Not selected at signing · Party B",
+    "reviewed": {
+     "Process": "1",
+     "Round": "3"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "filing_key": {
+     "page": "32",
+     "block": "b561",
+     "quote": "The Board determined that the G&W offer represented the superior proposal."
+    },
+    "run_uid": "5430ad1736fd781b1892deb7",
+    "run_row": 56,
+    "match_pass": 1,
+    "run": {
+     "Process": "1",
+     "Round": "3"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D8)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "price:2ffc0bdfab3de17b5a79766f",
+    "kind": "price",
+    "label": "#17 Bid · 9 IOI bidders (unnamed)",
+    "reviewed": {
+     "Price low": "17.93",
+     "Price high": "26.5"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "29",
+     "block": "b534",
+     "quote": "with offer prices per share ranging from $17.93 to $26.50 (assuming the conversion of preferred stock into common stock), implying equity values of $90 million to $134 million"
+    },
+    "run_uid": "28aa98cb48a1647dcf356b5d",
+    "run_row": 16,
+    "match_pass": 1,
+    "run": {
+     "Price low": "17.93",
+     "Price high": "26.5",
+     "CVR/earnout value": ""
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "stock:2ffc0bdfab3de17b5a79766f",
+    "kind": "stock",
+    "label": "#17 Bid · 9 IOI bidders (unnamed)",
+    "reviewed": {
+     "All cash": "Not stated"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D16",
+     "new column: Stock %"
+    ],
+    "filing_key": {
+     "page": "29",
+     "block": "b534",
+     "quote": "with offer prices per share ranging from $17.93 to $26.50 (assuming the conversion of preferred stock into common stock), implying equity values of $90 million to $134 million"
+    },
+    "run_uid": "28aa98cb48a1647dcf356b5d",
+    "run_row": 16,
+    "match_pass": 1,
+    "run": {
+     "Stock %": "Not stated"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D16, new column: Stock %)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "formality:2ffc0bdfab3de17b5a79766f",
+    "kind": "formality",
+    "label": "#17 Bid · 9 IOI bidders (unnamed)",
+    "reviewed": {
+     "Formality": "Informal"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "29",
+     "block": "b534",
+     "quote": "with offer prices per share ranging from $17.93 to $26.50 (assuming the conversion of preferred stock into common stock), implying equity values of $90 million to $134 million"
+    },
+    "run_uid": "28aa98cb48a1647dcf356b5d",
+    "run_row": 16,
+    "match_pass": 1,
+    "run": {
+     "Formality": "Informal"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "conditions:2ffc0bdfab3de17b5a79766f",
+    "kind": "conditions",
+    "label": "#17 Bid · 9 IOI bidders (unnamed)",
+    "reviewed": {
+     "Conditions": "Unclear"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "D16"
+    ],
+    "filing_key": {
+     "page": "29",
+     "block": "b534",
+     "quote": "with offer prices per share ranging from $17.93 to $26.50 (assuming the conversion of preferred stock into common stock), implying equity values of $90 million to $134 million"
+    },
+    "run_uid": "28aa98cb48a1647dcf356b5d",
+    "run_row": 16,
+    "match_pass": 1,
+    "run": {
+     "Conditions": "Unclear"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (H1–H3, D16)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "price:d987530cb463eaf4bd31abc7",
+    "kind": "price",
+    "label": "#24 Bid · Party C",
+    "reviewed": {
+     "Price low": "21",
+     "Price high": "21"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "29",
+     "block": "b537",
+     "quote": "On July 12, 2016, Party C submitted an IOI with an offer price per share of $21.00 (implying an equity value of $108 million)."
+    },
+    "run_uid": "c900303b905007fc01cd81ce",
+    "run_row": 23,
+    "match_pass": 1,
+    "run": {
+     "Price low": "21",
+     "Price high": "21",
+     "CVR/earnout value": ""
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "stock:d987530cb463eaf4bd31abc7",
+    "kind": "stock",
+    "label": "#24 Bid · Party C",
+    "reviewed": {
+     "All cash": "Not stated"
+    },
+    "status": "supported",
+    "impact": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "filing_key": {
+     "page": "29",
+     "block": "b537",
+     "quote": "On July 12, 2016, Party C submitted an IOI with an offer price per share of $21.00 (implying an equity value of $108 million)."
+    },
+    "run_uid": "c900303b905007fc01cd81ce",
+    "run_row": 23,
+    "match_pass": 1,
+    "run": {
+     "Stock %": "Not stated"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact new column (new column: Stock %)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "formality:d987530cb463eaf4bd31abc7",
+    "kind": "formality",
+    "label": "#24 Bid · Party C",
+    "reviewed": {
+     "Formality": "Informal"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "29",
+     "block": "b537",
+     "quote": "On July 12, 2016, Party C submitted an IOI with an offer price per share of $21.00 (implying an equity value of $108 million)."
+    },
+    "run_uid": "c900303b905007fc01cd81ce",
+    "run_row": 23,
+    "match_pass": 1,
+    "run": {
+     "Formality": "Informal"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "conditions:d987530cb463eaf4bd31abc7",
+    "kind": "conditions",
+    "label": "#24 Bid · Party C",
+    "reviewed": {
+     "Conditions": "Unclear"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "H1–H3"
+    ],
+    "filing_key": {
+     "page": "29",
+     "block": "b537",
+     "quote": "On July 12, 2016, Party C submitted an IOI with an offer price per share of $21.00 (implying an equity value of $108 million)."
+    },
+    "run_uid": "c900303b905007fc01cd81ce",
+    "run_row": 23,
+    "match_pass": 1,
+    "run": {
+     "Conditions": "Unclear"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (H1–H3)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "price:d42637959ba0873e1cce720f",
+    "kind": "price",
+    "label": "#27 Bid · Party B",
+    "reviewed": {
+     "Price low": "24",
+     "Price high": "24"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "29",
+     "block": "b539",
+     "quote": "Party B submitted an LOI to acquire the Company for a price of $24.00 per share (subject to an expedited diligence review)."
+    },
+    "run_uid": "f99f9d84f4c65746dc4fe6fa",
+    "run_row": 26,
+    "match_pass": 1,
+    "run": {
+     "Price low": "24",
+     "Price high": "24",
+     "CVR/earnout value": ""
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "stock:d42637959ba0873e1cce720f",
+    "kind": "stock",
+    "label": "#27 Bid · Party B",
+    "reviewed": {
+     "All cash": "Not stated"
+    },
+    "status": "supported",
+    "impact": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "filing_key": {
+     "page": "29",
+     "block": "b539",
+     "quote": "Party B submitted an LOI to acquire the Company for a price of $24.00 per share (subject to an expedited diligence review)."
+    },
+    "run_uid": "f99f9d84f4c65746dc4fe6fa",
+    "run_row": 26,
+    "match_pass": 1,
+    "run": {
+     "Stock %": "Not stated"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact new column (new column: Stock %)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "formality:d42637959ba0873e1cce720f",
+    "kind": "formality",
+    "label": "#27 Bid · Party B",
+    "reviewed": {
+     "Formality": "Formal"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "29",
+     "block": "b539",
+     "quote": "Party B submitted an LOI to acquire the Company for a price of $24.00 per share (subject to an expedited diligence review)."
+    },
+    "run_uid": "f99f9d84f4c65746dc4fe6fa",
+    "run_row": 26,
+    "match_pass": 1,
+    "run": {
+     "Formality": "Formal"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "conditions:d42637959ba0873e1cce720f",
+    "kind": "conditions",
+    "label": "#27 Bid · Party B",
+    "reviewed": {
+     "Conditions": "Light"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "H1–H3"
+    ],
+    "filing_key": {
+     "page": "29",
+     "block": "b539",
+     "quote": "Party B submitted an LOI to acquire the Company for a price of $24.00 per share (subject to an expedited diligence review)."
+    },
+    "run_uid": "f99f9d84f4c65746dc4fe6fa",
+    "run_row": 26,
+    "match_pass": 1,
+    "run": {
+     "Conditions": "Light"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (H1–H3)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "price:b42fbe355bb7947ac23e31f9",
+    "kind": "price",
+    "label": "#28 Bid · Party E",
+    "reviewed": {
+     "Price low": "21.26",
+     "Price high": "21.26"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b543",
+     "quote": "Party E (a strategic buyer) submitted an LOI to acquire the Company for a price of $21.26 per share (subject to a 60-day exclusivity period"
+    },
+    "run_uid": "2f4036cae3b13da543244538",
+    "run_row": 27,
+    "match_pass": 1,
+    "run": {
+     "Price low": "21.26",
+     "Price high": "21.26",
+     "CVR/earnout value": ""
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "stock:b42fbe355bb7947ac23e31f9",
+    "kind": "stock",
+    "label": "#28 Bid · Party E",
+    "reviewed": {
+     "All cash": "Not stated"
+    },
+    "status": "supported",
+    "impact": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b543",
+     "quote": "Party E (a strategic buyer) submitted an LOI to acquire the Company for a price of $21.26 per share (subject to a 60-day exclusivity period"
+    },
+    "run_uid": "2f4036cae3b13da543244538",
+    "run_row": 27,
+    "match_pass": 1,
+    "run": {
+     "Stock %": "Not stated"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact new column (new column: Stock %)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "formality:b42fbe355bb7947ac23e31f9",
+    "kind": "formality",
+    "label": "#28 Bid · Party E",
+    "reviewed": {
+     "Formality": "Informal"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b543",
+     "quote": "Party E (a strategic buyer) submitted an LOI to acquire the Company for a price of $21.26 per share (subject to a 60-day exclusivity period"
+    },
+    "run_uid": "2f4036cae3b13da543244538",
+    "run_row": 27,
+    "match_pass": 1,
+    "run": {
+     "Formality": "Informal"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "conditions:b42fbe355bb7947ac23e31f9",
+    "kind": "conditions",
+    "label": "#28 Bid · Party E",
+    "reviewed": {
+     "Conditions": "Heavy"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "D15"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b543",
+     "quote": "Party E (a strategic buyer) submitted an LOI to acquire the Company for a price of $21.26 per share (subject to a 60-day exclusivity period"
+    },
+    "run_uid": "2f4036cae3b13da543244538",
+    "run_row": 27,
+    "match_pass": 1,
+    "run": {
+     "Conditions": "Heavy"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (H1–H3, D15)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "price:b4945af5a10c03591e84cada",
+    "kind": "price",
+    "label": "#29 Bid · Party D",
+    "reviewed": {
+     "Price low": "21",
+     "Price high": "21"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b544",
+     "quote": "Party D (a financial buyer) submitted an LOI to acquire the Company for a price of $21.00 per share (subject to a four-week diligence period)."
+    },
+    "run_uid": "84ec3cdd9fb1ecfbdd2fc8a0",
+    "run_row": 28,
+    "match_pass": 1,
+    "run": {
+     "Price low": "21",
+     "Price high": "21",
+     "CVR/earnout value": ""
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "stock:b4945af5a10c03591e84cada",
+    "kind": "stock",
+    "label": "#29 Bid · Party D",
+    "reviewed": {
+     "All cash": "Not stated"
+    },
+    "status": "supported",
+    "impact": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b544",
+     "quote": "Party D (a financial buyer) submitted an LOI to acquire the Company for a price of $21.00 per share (subject to a four-week diligence period)."
+    },
+    "run_uid": "84ec3cdd9fb1ecfbdd2fc8a0",
+    "run_row": 28,
+    "match_pass": 1,
+    "run": {
+     "Stock %": "Not stated"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact new column (new column: Stock %)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "formality:b4945af5a10c03591e84cada",
+    "kind": "formality",
+    "label": "#29 Bid · Party D",
+    "reviewed": {
+     "Formality": "Formal"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b544",
+     "quote": "Party D (a financial buyer) submitted an LOI to acquire the Company for a price of $21.00 per share (subject to a four-week diligence period)."
+    },
+    "run_uid": "84ec3cdd9fb1ecfbdd2fc8a0",
+    "run_row": 28,
+    "match_pass": 1,
+    "run": {
+     "Formality": "Formal"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "conditions:b4945af5a10c03591e84cada",
+    "kind": "conditions",
+    "label": "#29 Bid · Party D",
+    "reviewed": {
+     "Conditions": "Heavy"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "H1–H3"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b544",
+     "quote": "Party D (a financial buyer) submitted an LOI to acquire the Company for a price of $21.00 per share (subject to a four-week diligence period)."
+    },
+    "run_uid": "84ec3cdd9fb1ecfbdd2fc8a0",
+    "run_row": 28,
+    "match_pass": 1,
+    "run": {
+     "Conditions": "Heavy"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (H1–H3)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "price:81bc4b8371bdc2f632fcc347",
+    "kind": "price",
+    "label": "#30 Bid · Party C",
+    "reviewed": {
+     "Price low": "19.3",
+     "Price high": "19.3"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b545",
+     "quote": "Party C submitted an LOI to acquire the Company for a price of $19.30 per share (subject to a 30-day diligence period)."
+    },
+    "run_uid": "7e86e34cf8c0edac40c377a4",
+    "run_row": 29,
+    "match_pass": 1,
+    "run": {
+     "Price low": "19.3",
+     "Price high": "19.3",
+     "CVR/earnout value": ""
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "stock:81bc4b8371bdc2f632fcc347",
+    "kind": "stock",
+    "label": "#30 Bid · Party C",
+    "reviewed": {
+     "All cash": "Not stated"
+    },
+    "status": "supported",
+    "impact": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b545",
+     "quote": "Party C submitted an LOI to acquire the Company for a price of $19.30 per share (subject to a 30-day diligence period)."
+    },
+    "run_uid": "7e86e34cf8c0edac40c377a4",
+    "run_row": 29,
+    "match_pass": 1,
+    "run": {
+     "Stock %": "Not stated"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact new column (new column: Stock %)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "formality:81bc4b8371bdc2f632fcc347",
+    "kind": "formality",
+    "label": "#30 Bid · Party C",
+    "reviewed": {
+     "Formality": "Informal"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D9",
+     "express incorporation"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b545",
+     "quote": "Party C submitted an LOI to acquire the Company for a price of $19.30 per share (subject to a 30-day diligence period)."
+    },
+    "run_uid": "7e86e34cf8c0edac40c377a4",
+    "run_row": 29,
+    "match_pass": 1,
+    "run": {
+     "Formality": "Informal"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D9, express incorporation)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "conditions:81bc4b8371bdc2f632fcc347",
+    "kind": "conditions",
+    "label": "#30 Bid · Party C",
+    "reviewed": {
+     "Conditions": "Heavy"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "express incorporation"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b545",
+     "quote": "Party C submitted an LOI to acquire the Company for a price of $19.30 per share (subject to a 30-day diligence period)."
+    },
+    "run_uid": "7e86e34cf8c0edac40c377a4",
+    "run_row": 29,
+    "match_pass": 1,
+    "run": {
+     "Conditions": "Heavy"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (H1–H3, express incorporation)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "price:3195f6995fb7920ef4643106",
+    "kind": "price",
+    "label": "#31 Bid · Party F",
+    "reviewed": {
+     "Price low": "19.2",
+     "Price high": "19.2"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b546",
+     "quote": "Party F (a strategic buyer) submitted an LOI to acquire the Company for a price of $19.20 per share (subject to a 30-day due diligence period)."
+    },
+    "run_uid": "af7c188a8d55d1e0ab712265",
+    "run_row": 30,
+    "match_pass": 1,
+    "run": {
+     "Price low": "19.2",
+     "Price high": "19.2",
+     "CVR/earnout value": ""
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "stock:3195f6995fb7920ef4643106",
+    "kind": "stock",
+    "label": "#31 Bid · Party F",
+    "reviewed": {
+     "All cash": "Not stated"
+    },
+    "status": "supported",
+    "impact": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b546",
+     "quote": "Party F (a strategic buyer) submitted an LOI to acquire the Company for a price of $19.20 per share (subject to a 30-day due diligence period)."
+    },
+    "run_uid": "af7c188a8d55d1e0ab712265",
+    "run_row": 30,
+    "match_pass": 1,
+    "run": {
+     "Stock %": "Not stated"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact new column (new column: Stock %)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "formality:3195f6995fb7920ef4643106",
+    "kind": "formality",
+    "label": "#31 Bid · Party F",
+    "reviewed": {
+     "Formality": "Informal"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b546",
+     "quote": "Party F (a strategic buyer) submitted an LOI to acquire the Company for a price of $19.20 per share (subject to a 30-day due diligence period)."
+    },
+    "run_uid": "af7c188a8d55d1e0ab712265",
+    "run_row": 30,
+    "match_pass": 1,
+    "run": {
+     "Formality": "Informal"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "conditions:3195f6995fb7920ef4643106",
+    "kind": "conditions",
+    "label": "#31 Bid · Party F",
+    "reviewed": {
+     "Conditions": "Heavy"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "H1–H3"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b546",
+     "quote": "Party F (a strategic buyer) submitted an LOI to acquire the Company for a price of $19.20 per share (subject to a 30-day due diligence period)."
+    },
+    "run_uid": "af7c188a8d55d1e0ab712265",
+    "run_row": 30,
+    "match_pass": 1,
+    "run": {
+     "Conditions": "Heavy"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (H1–H3)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "formality:6ad325e9bae0f1062544ac39",
+    "kind": "formality",
+    "label": "#34 Bid · G&W",
+    "reviewed": {
+     "Formality": "Formal"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "29",
+     "block": "b540",
+     "quote": "G&W submitted an LOI on July 21, 2016 to acquire the Company for a price of $21.15 per share (subject to a three-week exclusive diligence period)."
+    },
+    "run_uid": "aa55284fa1c377eac0efe352",
+    "run_row": 33,
+    "match_pass": 1,
+    "run": {
+     "Formality": "Formal"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "conditions:6ad325e9bae0f1062544ac39",
+    "kind": "conditions",
+    "label": "#34 Bid · G&W",
+    "reviewed": {
+     "Conditions": "Heavy"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "D15"
+    ],
+    "filing_key": {
+     "page": "29",
+     "block": "b540",
+     "quote": "G&W submitted an LOI on July 21, 2016 to acquire the Company for a price of $21.15 per share (subject to a three-week exclusive diligence period)."
+    },
+    "run_uid": "aa55284fa1c377eac0efe352",
+    "run_row": 33,
+    "match_pass": 1,
+    "run": {
+     "Conditions": "Heavy"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (H1–H3, D15)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "formality:3d4201da075e6fdd0ae3e97f",
+    "kind": "formality",
+    "label": "#36 Bid · G&W",
+    "reviewed": {
+     "Formality": "Formal"
+    },
+    "status": "unresolved",
+    "impact": "re-judge",
+    "decisions": [
+     "D9",
+     "express incorporation"
+    ],
+    "filing_key": {
+     "page": "29",
+     "block": "b540",
+     "quote": "G&W submitted a revised LOI, which increased its offer to $22.15 per share (including $21.02 in cash and $1.13 CVR)."
+    },
+    "run_uid": "2201137456edb7eb00138316",
+    "run_row": 34,
+    "match_pass": 1,
+    "run": {
+     "Formality": "Formal"
+    },
+    "note": "",
+    "hold": [
+     "status unresolved (rests on open convention question A5 (audit README §2))",
+     "v1.14 impact re-judge (D9, express incorporation)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "conditions:3d4201da075e6fdd0ae3e97f",
+    "kind": "conditions",
+    "label": "#36 Bid · G&W",
+    "reviewed": {
+     "Conditions": "Unclear"
+    },
+    "status": "unresolved",
+    "impact": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "express incorporation"
+    ],
+    "filing_key": {
+     "page": "29",
+     "block": "b540",
+     "quote": "G&W submitted a revised LOI, which increased its offer to $22.15 per share (including $21.02 in cash and $1.13 CVR)."
+    },
+    "run_uid": "2201137456edb7eb00138316",
+    "run_row": 34,
+    "match_pass": 1,
+    "run": {
+     "Conditions": "Unclear"
+    },
+    "note": "",
+    "hold": [
+     "status unresolved (rests on open convention question A8 (audit README §2))",
+     "v1.14 impact re-judge (H1–H3, express incorporation)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "price:68c3f4ed16a99a4a9a0f7bd1",
+    "kind": "price",
+    "label": "#44 Bid · Party D",
+    "reviewed": {
+     "Price low": "24",
+     "Price high": "24"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b549",
+     "quote": "On August 1, 2016, Party D submitted a revised LOI at a price of $24.00 per share"
+    },
+    "run_uid": "f81c2f337f2a3c3b586f27d3",
+    "run_row": 42,
+    "match_pass": 1,
+    "run": {
+     "Price low": "24",
+     "Price high": "24",
+     "CVR/earnout value": ""
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "stock:68c3f4ed16a99a4a9a0f7bd1",
+    "kind": "stock",
+    "label": "#44 Bid · Party D",
+    "reviewed": {
+     "All cash": "Not stated"
+    },
+    "status": "supported",
+    "impact": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b549",
+     "quote": "On August 1, 2016, Party D submitted a revised LOI at a price of $24.00 per share"
+    },
+    "run_uid": "f81c2f337f2a3c3b586f27d3",
+    "run_row": 42,
+    "match_pass": 1,
+    "run": {
+     "Stock %": "Not stated"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact new column (new column: Stock %)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "formality:68c3f4ed16a99a4a9a0f7bd1",
+    "kind": "formality",
+    "label": "#44 Bid · Party D",
+    "reviewed": {
+     "Formality": "Formal"
+    },
+    "status": "unresolved",
+    "impact": "re-judge",
+    "decisions": [
+     "D9",
+     "express incorporation"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b549",
+     "quote": "On August 1, 2016, Party D submitted a revised LOI at a price of $24.00 per share"
+    },
+    "run_uid": "f81c2f337f2a3c3b586f27d3",
+    "run_row": 42,
+    "match_pass": 1,
+    "run": {
+     "Formality": "Formal"
+    },
+    "note": "",
+    "hold": [
+     "status unresolved (rests on open convention question A5 (audit README §2))",
+     "v1.14 impact re-judge (D9, express incorporation)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "conditions:68c3f4ed16a99a4a9a0f7bd1",
+    "kind": "conditions",
+    "label": "#44 Bid · Party D",
+    "reviewed": {
+     "Conditions": "Heavy"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "express incorporation"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b549",
+     "quote": "On August 1, 2016, Party D submitted a revised LOI at a price of $24.00 per share"
+    },
+    "run_uid": "f81c2f337f2a3c3b586f27d3",
+    "run_row": 42,
+    "match_pass": 1,
+    "run": {
+     "Conditions": "Heavy"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (H1–H3, express incorporation)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "price:7ffb5860b680ae610b7466ce",
+    "kind": "price",
+    "label": "#45 Bid · Party E",
+    "reviewed": {
+     "Price low": "23.81",
+     "Price high": "23.81"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b549",
+     "quote": "Party E submitted a revised LOI, along with financing support, from Party F, at a price of $23.81 per share. Both revised proposals contained a 30-day due diligence period."
+    },
+    "run_uid": "be8f0f152c727eed2d68bace",
+    "run_row": 44,
+    "match_pass": 1,
+    "run": {
+     "Price low": "23.81",
+     "Price high": "23.81",
+     "CVR/earnout value": ""
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "stock:7ffb5860b680ae610b7466ce",
+    "kind": "stock",
+    "label": "#45 Bid · Party E",
+    "reviewed": {
+     "All cash": "Not stated"
+    },
+    "status": "supported",
+    "impact": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b549",
+     "quote": "Party E submitted a revised LOI, along with financing support, from Party F, at a price of $23.81 per share. Both revised proposals contained a 30-day due diligence period."
+    },
+    "run_uid": "be8f0f152c727eed2d68bace",
+    "run_row": 44,
+    "match_pass": 1,
+    "run": {
+     "Stock %": "Not stated"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact new column (new column: Stock %)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "formality:7ffb5860b680ae610b7466ce",
+    "kind": "formality",
+    "label": "#45 Bid · Party E",
+    "reviewed": {
+     "Formality": "Informal"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D9",
+     "express incorporation"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b549",
+     "quote": "Party E submitted a revised LOI, along with financing support, from Party F, at a price of $23.81 per share. Both revised proposals contained a 30-day due diligence period."
+    },
+    "run_uid": "be8f0f152c727eed2d68bace",
+    "run_row": 44,
+    "match_pass": 1,
+    "run": {
+     "Formality": "Informal"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D9, express incorporation)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "conditions:7ffb5860b680ae610b7466ce",
+    "kind": "conditions",
+    "label": "#45 Bid · Party E",
+    "reviewed": {
+     "Conditions": "Heavy"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "D5",
+     "express incorporation"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b549",
+     "quote": "Party E submitted a revised LOI, along with financing support, from Party F, at a price of $23.81 per share. Both revised proposals contained a 30-day due diligence period."
+    },
+    "run_uid": "be8f0f152c727eed2d68bace",
+    "run_row": 44,
+    "match_pass": 1,
+    "run": {
+     "Conditions": "Heavy"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (H1–H3, D5, express incorporation)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "price:238ad0ac53c572c3bdfcb65b",
+    "kind": "price",
+    "label": "#48 Bid · Party E",
+    "reviewed": {
+     "Price low": "21.26",
+     "Price high": "21.26"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b549",
+     "quote": "Party E withdrew its revised proposal on August 2, 2016 (but confirmed its original proposal of $21.26 per share)"
+    },
+    "run_uid": "7b88b32f94f31af5f526f414",
+    "run_row": 45,
+    "match_pass": 1,
+    "run": {
+     "Price low": "21.26",
+     "Price high": "21.26",
+     "CVR/earnout value": ""
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "stock:238ad0ac53c572c3bdfcb65b",
+    "kind": "stock",
+    "label": "#48 Bid · Party E",
+    "reviewed": {
+     "All cash": "Not stated"
+    },
+    "status": "supported",
+    "impact": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b549",
+     "quote": "Party E withdrew its revised proposal on August 2, 2016 (but confirmed its original proposal of $21.26 per share)"
+    },
+    "run_uid": "7b88b32f94f31af5f526f414",
+    "run_row": 45,
+    "match_pass": 1,
+    "run": {
+     "Stock %": "Not stated"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact new column (new column: Stock %)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "formality:238ad0ac53c572c3bdfcb65b",
+    "kind": "formality",
+    "label": "#48 Bid · Party E",
+    "reviewed": {
+     "Formality": "Informal"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D9",
+     "express incorporation"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b549",
+     "quote": "Party E withdrew its revised proposal on August 2, 2016 (but confirmed its original proposal of $21.26 per share)"
+    },
+    "run_uid": "7b88b32f94f31af5f526f414",
+    "run_row": 45,
+    "match_pass": 1,
+    "run": {
+     "Formality": "Informal"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D9, express incorporation)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "conditions:238ad0ac53c572c3bdfcb65b",
+    "kind": "conditions",
+    "label": "#48 Bid · Party E",
+    "reviewed": {
+     "Conditions": "Heavy"
+    },
+    "status": "unresolved",
+    "impact": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "D15",
+     "express incorporation"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b549",
+     "quote": "Party E withdrew its revised proposal on August 2, 2016 (but confirmed its original proposal of $21.26 per share)"
+    },
+    "run_uid": "7b88b32f94f31af5f526f414",
+    "run_row": 45,
+    "match_pass": 1,
+    "run": {
+     "Conditions": "Heavy"
+    },
+    "note": "",
+    "hold": [
+     "status unresolved (rests on open convention question A8 (audit README §2))",
+     "v1.14 impact re-judge (H1–H3, D15, express incorporation)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "price:d71b46752baedf302dece2ac",
+    "kind": "price",
+    "label": "#53 Bid reaffirmed · Party B",
+    "reviewed": {
+     "Price low": "24",
+     "Price high": "24"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D13"
+    ],
+    "filing_key": {
+     "page": "31",
+     "block": "b554",
+     "quote": "On August 4, 2016, legal counsel for Party B provided a revised draft of the merger agreement"
+    },
+    "run_uid": "fd1d2a68de5cd58f61ac48fe",
+    "run_row": 49,
+    "match_pass": 1,
+    "run": {
+     "Price low": "24",
+     "Price high": "24",
+     "CVR/earnout value": ""
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D13)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "stock:d71b46752baedf302dece2ac",
+    "kind": "stock",
+    "label": "#53 Bid reaffirmed · Party B",
+    "reviewed": {
+     "All cash": "Not stated"
+    },
+    "status": "supported",
+    "impact": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "filing_key": {
+     "page": "31",
+     "block": "b554",
+     "quote": "On August 4, 2016, legal counsel for Party B provided a revised draft of the merger agreement"
+    },
+    "run_uid": "fd1d2a68de5cd58f61ac48fe",
+    "run_row": 49,
+    "match_pass": 1,
+    "run": {
+     "Stock %": "Not stated"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact new column (new column: Stock %)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "formality:d71b46752baedf302dece2ac",
+    "kind": "formality",
+    "label": "#53 Bid reaffirmed · Party B",
+    "reviewed": {
+     "Formality": "Formal"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D9",
+     "express incorporation"
+    ],
+    "filing_key": {
+     "page": "31",
+     "block": "b554",
+     "quote": "On August 4, 2016, legal counsel for Party B provided a revised draft of the merger agreement"
+    },
+    "run_uid": "fd1d2a68de5cd58f61ac48fe",
+    "run_row": 49,
+    "match_pass": 1,
+    "run": {
+     "Formality": "Formal"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D9, express incorporation)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "conditions:d71b46752baedf302dece2ac",
+    "kind": "conditions",
+    "label": "#53 Bid reaffirmed · Party B",
+    "reviewed": {
+     "Conditions": "Light"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "express incorporation"
+    ],
+    "filing_key": {
+     "page": "31",
+     "block": "b554",
+     "quote": "On August 4, 2016, legal counsel for Party B provided a revised draft of the merger agreement"
+    },
+    "run_uid": "fd1d2a68de5cd58f61ac48fe",
+    "run_row": 49,
+    "match_pass": 1,
+    "run": {
+     "Conditions": "Light"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (H1–H3, express incorporation)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "price:4420df65c403904b33f2d5e0",
+    "kind": "price",
+    "label": "#57 Bid · G&W",
+    "reviewed": {
+     "Price low": "25",
+     "Price high": "25"
+    },
+    "status": "supported",
+    "impact": "new column",
+    "decisions": [
+     "new column: CVR/earnout"
+    ],
+    "filing_key": {
+     "page": "31",
+     "block": "b555",
+     "quote": "G&W submitted a revised LOI to acquire the Company for a price of $25.00 per share in cash, which excluded the previously proposed CVR"
+    },
+    "run_uid": "aca2ebd277c91fb2793ee63b",
+    "run_row": 52,
+    "match_pass": 1,
+    "run": {
+     "Price low": "25",
+     "Price high": "25",
+     "CVR/earnout value": ""
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact new column (new column: CVR/earnout)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "stock:4420df65c403904b33f2d5e0",
+    "kind": "stock",
+    "label": "#57 Bid · G&W",
+    "reviewed": {
+     "All cash": "Yes"
+    },
+    "status": "supported",
+    "impact": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "filing_key": {
+     "page": "31",
+     "block": "b555",
+     "quote": "G&W submitted a revised LOI to acquire the Company for a price of $25.00 per share in cash, which excluded the previously proposed CVR"
+    },
+    "run_uid": "aca2ebd277c91fb2793ee63b",
+    "run_row": 52,
+    "match_pass": 1,
+    "run": {
+     "Stock %": "0"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact new column (new column: Stock %)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "formality:4420df65c403904b33f2d5e0",
+    "kind": "formality",
+    "label": "#57 Bid · G&W",
+    "reviewed": {
+     "Formality": "Formal"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D9",
+     "express incorporation"
+    ],
+    "filing_key": {
+     "page": "31",
+     "block": "b555",
+     "quote": "G&W submitted a revised LOI to acquire the Company for a price of $25.00 per share in cash, which excluded the previously proposed CVR"
+    },
+    "run_uid": "aca2ebd277c91fb2793ee63b",
+    "run_row": 52,
+    "match_pass": 1,
+    "run": {
+     "Formality": "Formal"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D9, express incorporation)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "order:c184bbff1e0c6c3b1b16ae8c",
+    "kind": "order",
+    "label": "#1 Bidder interest · Party A",
+    "reviewed": {
+     "When": "Q4 2015",
+     "Sort date": "2015-11-15",
+     "Date from": "2015-10-01",
+     "Date to": "2015-12-31"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "27",
+     "block": "b521",
+     "quote": "Party A suggested possible joint venture arrangements and expressed some interest in acquiring equity in the Company to further develop strategic opportunities and enhance regional connectivity"
+    },
+    "run_uid": "d4d7132d3c8c2d4cb5f30e95",
+    "run_row": 1,
+    "match_pass": 1,
+    "run": {
+     "When": "Q4 2015",
+     "Sort date": "2015-11-15",
+     "Date from": "2015-10-01",
+     "Date to": "2015-12-31",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:dd7ded3c38dd1cf3dc2e0539",
+    "kind": "order",
+    "label": "#2 Adviser · Greene Holcomb & Fisher LLC (GHF; from 08/01/2016 BMO Capital Markets Corp.)",
+    "reviewed": {
+     "When": "01/27/2016",
+     "Sort date": "2016-01-27",
+     "Date from": "2016-01-27",
+     "Date to": "2016-01-27"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "27",
+     "block": "b521",
+     "quote": "Following this presentation, the Board approved the subcommittee’s recommendation and the Company engaged GHF."
+    },
+    "run_uid": "bdae6b1e81738a75d53a6d7d",
+    "run_row": 2,
+    "match_pass": 1,
+    "run": {
+     "When": "01/27/2016",
+     "Sort date": "2016-01-27",
+     "Date from": "2016-01-27",
+     "Date to": "2016-01-27",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:43b4f7c4602057a97d9ad97c",
+    "kind": "order",
+    "label": "#3 Target sale decision · PWRR (target)",
+    "reviewed": {
+     "When": "03/14/2016",
+     "Sort date": "2016-03-14",
+     "Date from": "2016-03-14",
+     "Date to": "2016-03-14"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "27",
+     "block": "b522",
+     "quote": "the Company would proceed with discussions with Party A and also solicit interest from other potential third parties regarding a change in control transaction"
+    },
+    "run_uid": "50330e02d19a867b5ec2ba53",
+    "run_row": 3,
+    "match_pass": 1,
+    "run": {
+     "When": "03/14/2016",
+     "Sort date": "2016-03-14",
+     "Date from": "2016-03-14",
+     "Date to": "2016-03-14",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:4346553210c400b691aae9c6",
+    "kind": "order",
+    "label": "#4 Adviser · Hinckley, Allen & Snyder LLP (Hinckley Allen)",
+    "reviewed": {
+     "When": "03/24/2016",
+     "Sort date": "2016-03-24",
+     "Date from": "2016-03-24",
+     "Date to": "2016-03-24"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "28",
+     "block": "b527",
+     "quote": "the Company’s legal counsel, Hinckley, Allen & Snyder LLP (which we refer to as “Hinckley Allen”), participated in all meetings of the Transaction Committee"
+    },
+    "run_uid": "ed2b77f4bf05108c704f0580",
+    "run_row": 4,
+    "match_pass": 1,
+    "run": {
+     "When": "03/24/2016",
+     "Sort date": "2016-03-24",
+     "Date from": "2016-03-24",
+     "Date to": "2016-03-24",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:a484b4a6be1f5d8756b50606",
+    "kind": "order",
+    "label": "#5 Round opened · PWRR (target)",
+    "reviewed": {
+     "When": "week of 03/28/2016",
+     "Sort date": "2016-03-31",
+     "Date from": "2016-03-28",
+     "Date to": "2016-04-03"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "filing_key": {
+     "page": "28",
+     "block": "b527",
+     "quote": "During the week of March 28, 2016, in accordance with the Transaction Committee’s directives, representatives of GHF contacted 11 potential strategic buyers (including Party A) and 18 potential financial buyers."
+    },
+    "run_uid": "ff05201b8b41192d75b44986",
+    "run_row": 5,
+    "match_pass": 1,
+    "run": {
+     "When": "week of 03/28/2016",
+     "Sort date": "2016-03-31",
+     "Date from": "2016-03-28",
+     "Date to": "2016-04-03",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D8)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "order:09f1ea8560362d4086b3d393",
+    "kind": "order",
+    "label": "#6 Contact · 10 potential strategic buyers (other than Party A)",
+    "reviewed": {
+     "When": "week of 03/28/2016",
+     "Sort date": "2016-03-31",
+     "Date from": "2016-03-28",
+     "Date to": "2016-04-03"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "28",
+     "block": "b527",
+     "quote": "representatives of GHF contacted 11 potential strategic buyers (including Party A) and 18 potential financial buyers"
+    },
+    "run_uid": "8f36d601fd319637096fd16f",
+    "run_row": 6,
+    "match_pass": 1,
+    "run": {
+     "When": "week of 03/28/2016",
+     "Sort date": "2016-03-31",
+     "Date from": "2016-03-28",
+     "Date to": "2016-04-03",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:35bd9a9d5dda44f42ea8fcb4",
+    "kind": "order",
+    "label": "#7 Contact · 18 potential financial buyers",
+    "reviewed": {
+     "When": "week of 03/28/2016",
+     "Sort date": "2016-03-31",
+     "Date from": "2016-03-28",
+     "Date to": "2016-04-03"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "28",
+     "block": "b527",
+     "quote": "representatives of GHF contacted 11 potential strategic buyers (including Party A) and 18 potential financial buyers"
+    },
+    "run_uid": "1e1cdcfe8f267483cce28d76",
+    "run_row": 7,
+    "match_pass": 1,
+    "run": {
+     "When": "week of 03/28/2016",
+     "Sort date": "2016-03-31",
+     "Date from": "2016-03-28",
+     "Date to": "2016-04-03",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:2eaa453485d9136e5edca172",
+    "kind": "order",
+    "label": "#11 Contact · 2 additional Class I railroads (unnamed)",
+    "reviewed": {
+     "When": "by 04/07/2016",
+     "Sort date": "2016-04-07",
+     "Date from": "",
+     "Date to": "2016-04-07"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "28",
+     "block": "b529",
+     "quote": "Mr. Noreck reported that the Company had also approached two additional Class I railroads to determine their interest in a possible transaction."
+    },
+    "run_uid": "9fdfee8b6121cfef1bd8fa71",
+    "run_row": 11,
+    "match_pass": 1,
+    "run": {
+     "When": "by 04/07/2016",
+     "Sort date": "2016-04-07",
+     "Date from": "",
+     "Date to": "2016-04-07",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:b30acd94ae1d395e1fc09e1b",
+    "kind": "order",
+    "label": "#12 Contact · Party B",
+    "reviewed": {
+     "When": "04/21/2016",
+     "Sort date": "2016-04-21",
+     "Date from": "2016-04-21",
+     "Date to": "2016-04-21"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "28",
+     "block": "b529",
+     "quote": "on April 21, 2016, the Company and representatives of GHF held an introductory meeting with another potential strategic buyer (“Party B”)."
+    },
+    "run_uid": "396e927936b2c61ba37269a6",
+    "run_row": 12,
+    "match_pass": 1,
+    "run": {
+     "When": "04/21/2016",
+     "Sort date": "2016-04-21",
+     "Date from": "2016-04-21",
+     "Date to": "2016-04-21",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:4ee8c907550d54cff1cd37ee",
+    "kind": "order",
+    "label": "#16 Deadline · PWRR (target)",
+    "reviewed": {
+     "When": "05/19/2016",
+     "Sort date": "2016-05-19",
+     "Date from": "2016-05-19",
+     "Date to": "2016-05-19"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D11"
+    ],
+    "filing_key": {
+     "page": "29",
+     "block": "b534",
+     "quote": "Between May 19, 2016 and June 1, 2016, the Company received nine written indications of interest (“IOIs”) from potential buyers"
+    },
+    "run_uid": "0cd7ea064c90166cb5050b3f",
+    "run_row": 15,
+    "match_pass": 1,
+    "run": {
+     "When": "05/19/2016",
+     "Sort date": "2016-05-19",
+     "Date from": "2016-05-19",
+     "Date to": "2016-05-19",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D11)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "order:2ffc0bdfab3de17b5a79766f",
+    "kind": "order",
+    "label": "#17 Bid · 9 IOI bidders (unnamed)",
+    "reviewed": {
+     "When": "05/19/2016-06/01/2016",
+     "Sort date": "2016-05-19",
+     "Date from": "2016-05-19",
+     "Date to": "2016-06-01"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "29",
+     "block": "b534",
+     "quote": "with offer prices per share ranging from $17.93 to $26.50 (assuming the conversion of preferred stock into common stock), implying equity values of $90 million to $134 million"
+    },
+    "run_uid": "28aa98cb48a1647dcf356b5d",
+    "run_row": 16,
+    "match_pass": 1,
+    "run": {
+     "When": "05/19/2016 - 06/01/2016",
+     "Sort date": "2016-05-19",
+     "Date from": "2016-05-19",
+     "Date to": "2016-06-01",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:9eececb28d94162c3ec27aa4",
+    "kind": "order",
+    "label": "#21 Deadline set · PWRR (target)",
+    "reviewed": {
+     "When": "mid-June 2016",
+     "Sort date": "2016-06-15",
+     "Date from": "2016-06-11",
+     "Date to": "2016-06-19"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D11"
+    ],
+    "filing_key": {
+     "page": "29",
+     "block": "b535",
+     "quote": "representatives of GHF instructed all potential buyers to submit non-binding letters of intent (“LOIs”) by July 20, 2016, together with mark-ups of the forms of merger agreement"
+    },
+    "run_uid": "f2b325094f1952989ac2cb45",
+    "run_row": 20,
+    "match_pass": 1,
+    "run": {
+     "When": "mid-June 2016",
+     "Sort date": "2016-06-15",
+     "Date from": "2016-06-11",
+     "Date to": "2016-06-19",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D11)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "order:6946ec209e529b34e58aed34",
+    "kind": "order",
+    "label": "#22 Bidder interest · Party C",
+    "reviewed": {
+     "When": "early July 2016",
+     "Sort date": "2016-07-05",
+     "Date from": "2016-07-01",
+     "Date to": "2016-07-10"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "29",
+     "block": "b537",
+     "quote": "a potential strategic buyer that had not previously been part of the process (“Party C”) approached the Company’s management and expressed interest in acquiring the Company"
+    },
+    "run_uid": "d72f0d1d5095e1608ff5ef43",
+    "run_row": 21,
+    "match_pass": 1,
+    "run": {
+     "When": "early July 2016",
+     "Sort date": "2016-07-05",
+     "Date from": "2016-07-01",
+     "Date to": "2016-07-10",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:14981fb921b6d57d8a9baa90",
+    "kind": "order",
+    "label": "#23 NDA signed · Party C",
+    "reviewed": {
+     "When": "early July 2016 (before 07/12/2016)",
+     "Sort date": "2016-07-06",
+     "Date from": "2016-07-01",
+     "Date to": "2016-07-12"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "29",
+     "block": "b537",
+     "quote": "After executing a confidentiality agreement, Party C was provided the memorandum concerning the Company provided to the other potential buyers."
+    },
+    "run_uid": "b0efb4a3e34f09a354950c3a",
+    "run_row": 22,
+    "match_pass": 1,
+    "run": {
+     "When": "early July 2016 (by 07/12/2016)",
+     "Sort date": "2016-07-06",
+     "Date from": "2016-07-01",
+     "Date to": "2016-07-12",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:d987530cb463eaf4bd31abc7",
+    "kind": "order",
+    "label": "#24 Bid · Party C",
+    "reviewed": {
+     "When": "07/12/2016",
+     "Sort date": "2016-07-12",
+     "Date from": "2016-07-12",
+     "Date to": "2016-07-12"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "29",
+     "block": "b537",
+     "quote": "On July 12, 2016, Party C submitted an IOI with an offer price per share of $21.00 (implying an equity value of $108 million)."
+    },
+    "run_uid": "c900303b905007fc01cd81ce",
+    "run_row": 23,
+    "match_pass": 1,
+    "run": {
+     "When": "07/12/2016",
+     "Sort date": "2016-07-12",
+     "Date from": "2016-07-12",
+     "Date to": "2016-07-12",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:c8ec0f7d8f2d4a5e688750d6",
+    "kind": "order",
+    "label": "#26 Deadline · PWRR (target)",
+    "reviewed": {
+     "When": "07/20/2016",
+     "Sort date": "2016-07-20",
+     "Date from": "2016-07-20",
+     "Date to": "2016-07-20"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D11"
+    ],
+    "filing_key": {
+     "page": "29",
+     "block": "b538",
+     "quote": "In late July 2016, the Company received six LOIs with offer prices per share ranging from $19.20 to $24.00 (implying equity values of $96 million to $121 million)."
+    },
+    "run_uid": "1fbfa583f4040c88f4171c0e",
+    "run_row": 25,
+    "match_pass": 1,
+    "run": {
+     "When": "07/20/2016",
+     "Sort date": "2016-07-20",
+     "Date from": "2016-07-20",
+     "Date to": "2016-07-20",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [
+     "v1.14 impact re-judge (D11)"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "order:d42637959ba0873e1cce720f",
+    "kind": "order",
+    "label": "#27 Bid · Party B",
+    "reviewed": {
+     "When": "late July 2016",
+     "Sort date": "2016-07-20",
+     "Date from": "2016-07-20",
+     "Date to": "2016-07-27"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "29",
+     "block": "b539",
+     "quote": "Party B submitted an LOI to acquire the Company for a price of $24.00 per share (subject to an expedited diligence review)."
+    },
+    "run_uid": "f99f9d84f4c65746dc4fe6fa",
+    "run_row": 26,
+    "match_pass": 1,
+    "run": {
+     "When": "late July 2016",
+     "Sort date": "2016-07-20",
+     "Date from": "2016-07-20",
+     "Date to": "2016-07-27",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:b42fbe355bb7947ac23e31f9",
+    "kind": "order",
+    "label": "#28 Bid · Party E",
+    "reviewed": {
+     "When": "late July 2016",
+     "Sort date": "2016-07-20",
+     "Date from": "2016-07-20",
+     "Date to": "2016-07-27"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b543",
+     "quote": "Party E (a strategic buyer) submitted an LOI to acquire the Company for a price of $21.26 per share (subject to a 60-day exclusivity period"
+    },
+    "run_uid": "2f4036cae3b13da543244538",
+    "run_row": 27,
+    "match_pass": 1,
+    "run": {
+     "When": "late July 2016",
+     "Sort date": "2016-07-20",
+     "Date from": "2016-07-20",
+     "Date to": "2016-07-27",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:b4945af5a10c03591e84cada",
+    "kind": "order",
+    "label": "#29 Bid · Party D",
+    "reviewed": {
+     "When": "late July 2016",
+     "Sort date": "2016-07-20",
+     "Date from": "2016-07-20",
+     "Date to": "2016-07-27"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b544",
+     "quote": "Party D (a financial buyer) submitted an LOI to acquire the Company for a price of $21.00 per share (subject to a four-week diligence period)."
+    },
+    "run_uid": "84ec3cdd9fb1ecfbdd2fc8a0",
+    "run_row": 28,
+    "match_pass": 1,
+    "run": {
+     "When": "late July 2016",
+     "Sort date": "2016-07-20",
+     "Date from": "2016-07-20",
+     "Date to": "2016-07-27",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:81bc4b8371bdc2f632fcc347",
+    "kind": "order",
+    "label": "#30 Bid · Party C",
+    "reviewed": {
+     "When": "late July 2016",
+     "Sort date": "2016-07-20",
+     "Date from": "2016-07-20",
+     "Date to": "2016-07-27"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b545",
+     "quote": "Party C submitted an LOI to acquire the Company for a price of $19.30 per share (subject to a 30-day diligence period)."
+    },
+    "run_uid": "7e86e34cf8c0edac40c377a4",
+    "run_row": 29,
+    "match_pass": 1,
+    "run": {
+     "When": "late July 2016",
+     "Sort date": "2016-07-20",
+     "Date from": "2016-07-20",
+     "Date to": "2016-07-27",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:3195f6995fb7920ef4643106",
+    "kind": "order",
+    "label": "#31 Bid · Party F",
+    "reviewed": {
+     "When": "late July 2016",
+     "Sort date": "2016-07-20",
+     "Date from": "2016-07-20",
+     "Date to": "2016-07-27"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b546",
+     "quote": "Party F (a strategic buyer) submitted an LOI to acquire the Company for a price of $19.20 per share (subject to a 30-day due diligence period)."
+    },
+    "run_uid": "af7c188a8d55d1e0ab712265",
+    "run_row": 30,
+    "match_pass": 1,
+    "run": {
+     "When": "late July 2016",
+     "Sort date": "2016-07-20",
+     "Date from": "2016-07-20",
+     "Date to": "2016-07-27",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:6ad325e9bae0f1062544ac39",
+    "kind": "order",
+    "label": "#34 Bid · G&W",
+    "reviewed": {
+     "When": "07/21/2016",
+     "Sort date": "2016-07-21",
+     "Date from": "2016-07-21",
+     "Date to": "2016-07-21"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "29",
+     "block": "b540",
+     "quote": "G&W submitted an LOI on July 21, 2016 to acquire the Company for a price of $21.15 per share (subject to a three-week exclusive diligence period)."
+    },
+    "run_uid": "aa55284fa1c377eac0efe352",
+    "run_row": 33,
+    "match_pass": 1,
+    "run": {
+     "When": "07/21/2016",
+     "Sort date": "2016-07-21",
+     "Date from": "2016-07-21",
+     "Date to": "2016-07-21",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:3d4201da075e6fdd0ae3e97f",
+    "kind": "order",
+    "label": "#36 Bid · G&W",
+    "reviewed": {
+     "When": "07/26/2016",
+     "Sort date": "2016-07-26",
+     "Date from": "2016-07-26",
+     "Date to": "2016-07-26"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "29",
+     "block": "b540",
+     "quote": "G&W submitted a revised LOI, which increased its offer to $22.15 per share (including $21.02 in cash and $1.13 CVR)."
+    },
+    "run_uid": "2201137456edb7eb00138316",
+    "run_row": 34,
+    "match_pass": 1,
+    "run": {
+     "When": "07/26/2016",
+     "Sort date": "2016-07-26",
+     "Date from": "2016-07-26",
+     "Date to": "2016-07-26",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:912015e9fc3925918c416034",
+    "kind": "order",
+    "label": "#39 Dropped by target · Party D",
+    "reviewed": {
+     "When": "07/27/2016-07/29/2016 (following selection; individual notification date unstated)",
+     "Sort date": "2016-07-27",
+     "Date from": "2016-07-27",
+     "Date to": "2016-07-29"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b548",
+     "quote": "representatives of GHF subsequently contacted the remaining bidders to inform them that they were no longer involved in the process"
+    },
+    "run_uid": "1f510e6892a50ccefbedb814",
+    "run_row": 37,
+    "match_pass": 1,
+    "run": {
+     "When": "after 07/27/2016 (by 07/29/2016)",
+     "Sort date": "2016-07-27",
+     "Date from": "2016-07-27",
+     "Date to": "2016-07-29",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:c60de7a6ca37c5779ff2f60c",
+    "kind": "order",
+    "label": "#40 Dropped by target · Party E",
+    "reviewed": {
+     "When": "07/27/2016-07/29/2016 (following selection; individual notification date unstated)",
+     "Sort date": "2016-07-27",
+     "Date from": "2016-07-27",
+     "Date to": "2016-07-29"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b548",
+     "quote": "representatives of GHF subsequently contacted the remaining bidders to inform them that they were no longer involved in the process"
+    },
+    "run_uid": "47b9214e10a6a743eaeaa374",
+    "run_row": 38,
+    "match_pass": 1,
+    "run": {
+     "When": "after 07/27/2016 (by 07/29/2016)",
+     "Sort date": "2016-07-27",
+     "Date from": "2016-07-27",
+     "Date to": "2016-07-29",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:1a26069281556f084b18deed",
+    "kind": "order",
+    "label": "#42 Re-entered · Party D",
+    "reviewed": {
+     "When": "07/29/2016",
+     "Sort date": "2016-07-29",
+     "Date from": "2016-07-29",
+     "Date to": "2016-07-29"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b549",
+     "quote": "During those calls, Party D and Party E both expressed interest in reengaging and enhancing their offers."
+    },
+    "run_uid": "39a7693c308e2867a040eaca",
+    "run_row": 40,
+    "match_pass": 1,
+    "run": {
+     "When": "07/29/2016",
+     "Sort date": "2016-07-29",
+     "Date from": "2016-07-29",
+     "Date to": "2016-07-29",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:ae704b77dfd7d4872bdc4091",
+    "kind": "order",
+    "label": "#43 Re-entered · Party E",
+    "reviewed": {
+     "When": "07/29/2016",
+     "Sort date": "2016-07-29",
+     "Date from": "2016-07-29",
+     "Date to": "2016-07-29"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b549",
+     "quote": "During those calls, Party D and Party E both expressed interest in reengaging and enhancing their offers."
+    },
+    "run_uid": "aabc9a5c68d6a385e42aae94",
+    "run_row": 41,
+    "match_pass": 1,
+    "run": {
+     "When": "07/29/2016",
+     "Sort date": "2016-07-29",
+     "Date from": "2016-07-29",
+     "Date to": "2016-07-29",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:68c3f4ed16a99a4a9a0f7bd1",
+    "kind": "order",
+    "label": "#44 Bid · Party D",
+    "reviewed": {
+     "When": "08/01/2016",
+     "Sort date": "2016-08-01",
+     "Date from": "2016-08-01",
+     "Date to": "2016-08-01"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b549",
+     "quote": "On August 1, 2016, Party D submitted a revised LOI at a price of $24.00 per share"
+    },
+    "run_uid": "f81c2f337f2a3c3b586f27d3",
+    "run_row": 42,
+    "match_pass": 1,
+    "run": {
+     "When": "08/01/2016",
+     "Sort date": "2016-08-01",
+     "Date from": "2016-08-01",
+     "Date to": "2016-08-01",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:7ffb5860b680ae610b7466ce",
+    "kind": "order",
+    "label": "#45 Bid · Party E",
+    "reviewed": {
+     "When": "08/01/2016",
+     "Sort date": "2016-08-01",
+     "Date from": "2016-08-01",
+     "Date to": "2016-08-01"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b549",
+     "quote": "Party E submitted a revised LOI, along with financing support, from Party F, at a price of $23.81 per share. Both revised proposals contained a 30-day due diligence period."
+    },
+    "run_uid": "be8f0f152c727eed2d68bace",
+    "run_row": 44,
+    "match_pass": 1,
+    "run": {
+     "When": "08/01/2016",
+     "Sort date": "2016-08-01",
+     "Date from": "2016-08-01",
+     "Date to": "2016-08-01",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:9dfc628439745a06a390a474",
+    "kind": "order",
+    "label": "#46 Other material event · Party F",
+    "reviewed": {
+     "When": "08/01/2016",
+     "Sort date": "2016-08-01",
+     "Date from": "2016-08-01",
+     "Date to": "2016-08-01"
+    },
+    "status": "unresolved",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b549",
+     "quote": "Party E submitted a revised LOI, along with financing support, from Party F"
+    },
+    "run_uid": "b8d6f1e4577c70e2dee50239",
+    "run_row": 43,
+    "match_pass": 1,
+    "run": {
+     "When": "08/01/2016",
+     "Sort date": "2016-08-01",
+     "Date from": "2016-08-01",
+     "Date to": "2016-08-01",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [
+     "status unresolved (rests on open convention question A15 (audit README §2))"
+    ],
+    "list": "review"
+   },
+   {
+    "fact": "order:238ad0ac53c572c3bdfcb65b",
+    "kind": "order",
+    "label": "#48 Bid · Party E",
+    "reviewed": {
+     "When": "08/02/2016",
+     "Sort date": "2016-08-02",
+     "Date from": "2016-08-02",
+     "Date to": "2016-08-02"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b549",
+     "quote": "Party E withdrew its revised proposal on August 2, 2016 (but confirmed its original proposal of $21.26 per share)"
+    },
+    "run_uid": "7b88b32f94f31af5f526f414",
+    "run_row": 45,
+    "match_pass": 1,
+    "run": {
+     "When": "08/02/2016",
+     "Sort date": "2016-08-02",
+     "Date from": "2016-08-02",
+     "Date to": "2016-08-02",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:9fa4fc2260a303aceb8a40d6",
+    "kind": "order",
+    "label": "#51 Other material event · PWRR (target)",
+    "reviewed": {
+     "When": "08/04/2016",
+     "Sort date": "2016-08-04",
+     "Date from": "2016-08-04",
+     "Date to": "2016-08-04"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "31",
+     "block": "b553",
+     "quote": "given the higher price offered by Party B, to prioritize Party B and proceed to complete the negotiation of the merger agreement with Party B"
+    },
+    "run_uid": "00ee26928f65b7c6cb218613",
+    "run_row": 48,
+    "match_pass": 1,
+    "run": {
+     "When": "08/04/2016",
+     "Sort date": "2016-08-04",
+     "Date from": "2016-08-04",
+     "Date to": "2016-08-04",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:d71b46752baedf302dece2ac",
+    "kind": "order",
+    "label": "#53 Bid reaffirmed · Party B",
+    "reviewed": {
+     "When": "08/04/2016",
+     "Sort date": "2016-08-04",
+     "Date from": "2016-08-04",
+     "Date to": "2016-08-04"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "31",
+     "block": "b554",
+     "quote": "On August 4, 2016, legal counsel for Party B provided a revised draft of the merger agreement"
+    },
+    "run_uid": "fd1d2a68de5cd58f61ac48fe",
+    "run_row": 49,
+    "match_pass": 1,
+    "run": {
+     "When": "08/04/2016",
+     "Sort date": "2016-08-04",
+     "Date from": "2016-08-04",
+     "Date to": "2016-08-04",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:812467cf75d42d92edb5cd2a",
+    "kind": "order",
+    "label": "#56 Adviser · Simpson Thacher & Bartlett LLP",
+    "reviewed": {
+     "When": "08/10/2016",
+     "Sort date": "2016-08-10",
+     "Date from": "2016-08-10",
+     "Date to": "2016-08-10"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "31",
+     "block": "b554",
+     "quote": "Simpson Thacher & Bartlett LLP (which we refer to as “Simpson Thacher”), G&W’s legal counsel"
+    },
+    "run_uid": "9d636ff9302fec335d58c4c5",
+    "run_row": 51,
+    "match_pass": 1,
+    "run": {
+     "When": "08/10/2016",
+     "Sort date": "2016-08-10",
+     "Date from": "2016-08-10",
+     "Date to": "2016-08-10",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:4420df65c403904b33f2d5e0",
+    "kind": "order",
+    "label": "#57 Bid · G&W",
+    "reviewed": {
+     "When": "08/12/2016 (morning)",
+     "Sort date": "2016-08-12",
+     "Date from": "2016-08-12",
+     "Date to": "2016-08-12"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "31",
+     "block": "b555",
+     "quote": "G&W submitted a revised LOI to acquire the Company for a price of $25.00 per share in cash, which excluded the previously proposed CVR"
+    },
+    "run_uid": "aca2ebd277c91fb2793ee63b",
+    "run_row": 52,
+    "match_pass": 1,
+    "run": {
+     "When": "08/12/2016 (morning)",
+     "Sort date": "2016-08-12",
+     "Date from": "2016-08-12",
+     "Date to": "2016-08-12",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:8eb65813e416bbd72b2f68fa",
+    "kind": "order",
+    "label": "#59 Adviser · Company's STB counsel (unnamed)",
+    "reviewed": {
+     "When": "08/12/2016",
+     "Sort date": "2016-08-12",
+     "Date from": "2016-08-12",
+     "Date to": "2016-08-12"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "32",
+     "block": "b560",
+     "quote": "The Board arranged a telephone call with the Company’s STB counsel to discuss the process for obtaining the required regulatory approval or exemption for the transaction"
+    },
+    "run_uid": "c61f349b7b4fc939dcb6635d",
+    "run_row": 54,
+    "match_pass": 1,
+    "run": {
+     "When": "08/12/2016",
+     "Sort date": "2016-08-12",
+     "Date from": "2016-08-12",
+     "Date to": "2016-08-12",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:8cd2c851fee86a0fdae4cf87",
+    "kind": "order",
+    "label": "#61 Merger agreement signed · G&W",
+    "reviewed": {
+     "When": "08/12/2016",
+     "Sort date": "2016-08-12",
+     "Date from": "2016-08-12",
+     "Date to": "2016-08-12"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "32",
+     "block": "b562",
+     "quote": "Shortly thereafter, Hinckley Allen and Simpson Thacher finalized the transaction documents and the Company and G&W executed the merger agreement"
+    },
+    "run_uid": "b17321e811424194d582c881",
+    "run_row": 55,
+    "match_pass": 1,
+    "run": {
+     "When": "08/12/2016",
+     "Sort date": "2016-08-12",
+     "Date from": "2016-08-12",
+     "Date to": "2016-08-12",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:76d862bcf093a113bf156d32",
+    "kind": "order",
+    "label": "#62 Not selected at signing · Party B",
+    "reviewed": {
+     "When": "08/12/2016",
+     "Sort date": "2016-08-12",
+     "Date from": "2016-08-12",
+     "Date to": "2016-08-12"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "32",
+     "block": "b561",
+     "quote": "The Board determined that the G&W offer represented the superior proposal."
+    },
+    "run_uid": "5430ad1736fd781b1892deb7",
+    "run_row": 56,
+    "match_pass": 1,
+    "run": {
+     "When": "08/12/2016",
+     "Sort date": "2016-08-12",
+     "Date from": "2016-08-12",
+     "Date to": "2016-08-12",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   },
+   {
+    "fact": "order:68699cc8539a8775f872d199",
+    "kind": "order",
+    "label": "#63 Merger announced · PWRR (target)",
+    "reviewed": {
+     "When": "08/15/2016",
+     "Sort date": "2016-08-15",
+     "Date from": "2016-08-15",
+     "Date to": "2016-08-15"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "32",
+     "block": "b562",
+     "quote": "The Company issued a press release publicly announcing the transaction on Monday, August 15, 2016 prior to the opening of trading of the Company’s common stock on the NASDAQ."
+    },
+    "run_uid": "d44cdeeb5cfedb5278dee8bb",
+    "run_row": 58,
+    "match_pass": 1,
+    "run": {
+     "When": "08/15/2016",
+     "Sort date": "2016-08-15",
+     "Date from": "2016-08-15",
+     "Date to": "2016-08-15",
+     "in order": "yes"
+    },
+    "note": "",
+    "hold": [],
+    "list": "accept"
+   }
+  ],
+  "differs, v1.14 changed the rule": [
+   {
+    "fact": "deal-fact:2efbac249db290844538772b",
+    "kind": "deal fact",
+    "label": "Auction screen",
+    "reviewed": {
+     "Value": "Met (process 1): at least 25 parties (11 strategic + 14 financial on p. 28, plus Party C on p. 29; 25 on p. 33)"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D7"
+    ],
+    "filing_key": {
+     "page": null,
+     "block": null,
+     "quote": null
+    },
+    "run_uid": "8d43dbe35e933fec79a015a4",
+    "run_row": null,
+    "match_pass": 1,
+    "run": {
+     "Value": "Met (process 1): at least 26 parties (11 strategic + 14 financial after the March 2016 outreach, plus Party C in July 2016; p. 33 states 25) (Q3)."
+    },
+    "note": ""
+   },
+   {
+    "fact": "round:8af8fdd61d0a577874bb61d8",
+    "kind": "round",
+    "label": "Process 1 / Round 1",
+    "reviewed": {
+     "Process": "1",
+     "Round": "1",
+     "Opened": "2016-03-31",
+     "Who was in": "NDA signers, at least 25: 11 strategic incl. Party A (G&W and Party B may be among them or additional) and 14 financial. Named: Party A, G&W, Party B (strategic). Party D (financial), Party E and Party F (strategic) presumably inside the cohorts. Two further Class I railroads were approached; NDA status unknown.",
+     "Finality": "Not final"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "filing_key": {
+     "page": "28",
+     "block": "b527",
+     "quote": "During the week of March 28, 2016, in accordance with the Transaction Committee’s directives, representatives of GHF contacted 11 potential strategic buyers (including Party A) and 18 potential financial buyers."
+    },
+    "run_uid": "68ddf7d66b54487e9a2292e4",
+    "run_row": null,
+    "match_pass": 1,
+    "run": {
+     "Process": "1",
+     "Round": "1",
+     "Opened": "2016-03-31",
+     "Who was in": "25 NDA signers (#8, #9): 11 strategic (incl. Party A; G&W, Party B, Party E, Party F treated as members, not established) and 14 financial (Party D treated as a member). Party B and the two additional Class I railroads (#11) may lie outside the 25 (Q3). Party C was not yet in.",
+     "Finality": "Not final"
+    },
+    "note": ""
+   },
+   {
+    "fact": "deadline:8af8fdd61d0a577874bb61d8",
+    "kind": "deadline",
+    "label": "Process 1 / Round 1",
+    "reviewed": {
+     "Due dates": "05/10/2016 (superseded before arrival) → 05/19/2016",
+     "Deadline outcome": "Unclear"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D11"
+    ],
+    "filing_key": {
+     "page": "29",
+     "block": "b534",
+     "quote": "Between May 19, 2016 and June 1, 2016, the Company received nine written indications of interest (“IOIs”) from potential buyers"
+    },
+    "run_uid": "68ddf7d66b54487e9a2292e4",
+    "run_row": null,
+    "match_pass": 1,
+    "run": {
+     "Due dates": "05/10/2016 (superseded before arrival; postponement date not stated) → 05/19/2016",
+     "Deadline outcome": "Late bids accepted"
+    },
+    "note": ""
+   },
+   {
+    "fact": "round:34f82318faeb91c9b2b20fb7",
+    "kind": "round",
+    "label": "Process 1 / Round 2",
+    "reviewed": {
+     "Process": "1",
+     "Round": "2",
+     "Opened": "2016-06-01",
+     "Who was in": "8: 6 strategic (Party B, G&W, Party E, Party F, one unnamed; Party C admitted 07/12-07/14 after its unsolicited IOI) and 2 financial (Party D, one unnamed).",
+     "Finality": "Not final"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "filing_key": {
+     "page": "29",
+     "block": "b534",
+     "quote": "The Transaction Committee authorized representatives of GHF to schedule in-person management presentations with the remaining seven potential buyers and allow these parties to conduct additional due diligence."
+    },
+    "run_uid": "effecfe42c41d221d3e38a47",
+    "run_row": null,
+    "match_pass": 3,
+    "run": {
+     "Process": "1",
+     "Round": "2",
+     "Opened": "2016-05-27",
+     "Who was in": "7 admitted: 5 strategic (Party B, G&W, Party E, Party F, one unnamed strategic) and 2 financial (Party D, one unnamed financial) (Q5). Party C (strategic) entered by NDA in early July and was admitted through catch-up access on 07/14 (#22, #24): 8 in all.",
+     "Finality": "Not final"
+    },
+    "note": ""
+   },
+   {
+    "fact": "price:6ad325e9bae0f1062544ac39",
+    "kind": "price",
+    "label": "#34 Bid · G&W",
+    "reviewed": {
+     "Price low": "21.15",
+     "Price high": "21.15"
+    },
+    "status": "supported",
+    "impact": "new column",
+    "decisions": [
+     "new column: CVR/earnout"
+    ],
+    "filing_key": {
+     "page": "29",
+     "block": "b540",
+     "quote": "G&W submitted an LOI on July 21, 2016 to acquire the Company for a price of $21.15 per share (subject to a three-week exclusive diligence period)."
+    },
+    "run_uid": "aa55284fa1c377eac0efe352",
+    "run_row": 33,
+    "match_pass": 1,
+    "run": {
+     "Price low": "20.02",
+     "Price high": "20.02",
+     "CVR/earnout value": "1.13"
+    },
+    "note": "the run's price plus its CVR/earnout value equals the reviewed price: v1.14 shows the CVR apart, not equated"
+   },
+   {
+    "fact": "stock:6ad325e9bae0f1062544ac39",
+    "kind": "stock",
+    "label": "#34 Bid · G&W",
+    "reviewed": {
+     "All cash": "Not stated"
+    },
+    "status": "supported",
+    "impact": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "filing_key": {
+     "page": "29",
+     "block": "b540",
+     "quote": "G&W submitted an LOI on July 21, 2016 to acquire the Company for a price of $21.15 per share (subject to a three-week exclusive diligence period)."
+    },
+    "run_uid": "aa55284fa1c377eac0efe352",
+    "run_row": 33,
+    "match_pass": 1,
+    "run": {
+     "Stock %": "0"
+    },
+    "note": ""
+   },
+   {
+    "fact": "price:3d4201da075e6fdd0ae3e97f",
+    "kind": "price",
+    "label": "#36 Bid · G&W",
+    "reviewed": {
+     "Price low": "22.15",
+     "Price high": "22.15"
+    },
+    "status": "supported",
+    "impact": "new column",
+    "decisions": [
+     "new column: CVR/earnout"
+    ],
+    "filing_key": {
+     "page": "29",
+     "block": "b540",
+     "quote": "G&W submitted a revised LOI, which increased its offer to $22.15 per share (including $21.02 in cash and $1.13 CVR)."
+    },
+    "run_uid": "2201137456edb7eb00138316",
+    "run_row": 34,
+    "match_pass": 1,
+    "run": {
+     "Price low": "21.02",
+     "Price high": "21.02",
+     "CVR/earnout value": "1.13"
+    },
+    "note": "the run's price plus its CVR/earnout value equals the reviewed price: v1.14 shows the CVR apart, not equated"
+   },
+   {
+    "fact": "stock:3d4201da075e6fdd0ae3e97f",
+    "kind": "stock",
+    "label": "#36 Bid · G&W",
+    "reviewed": {
+     "All cash": "Not stated"
+    },
+    "status": "supported",
+    "impact": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "filing_key": {
+     "page": "29",
+     "block": "b540",
+     "quote": "G&W submitted a revised LOI, which increased its offer to $22.15 per share (including $21.02 in cash and $1.13 CVR)."
+    },
+    "run_uid": "2201137456edb7eb00138316",
+    "run_row": 34,
+    "match_pass": 1,
+    "run": {
+     "Stock %": "0"
+    },
+    "note": ""
+   },
+   {
+    "fact": "conditions:4420df65c403904b33f2d5e0",
+    "kind": "conditions",
+    "label": "#57 Bid · G&W",
+    "reviewed": {
+     "Conditions": "None"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "D5",
+     "express incorporation"
+    ],
+    "filing_key": {
+     "page": "31",
+     "block": "b555",
+     "quote": "G&W submitted a revised LOI to acquire the Company for a price of $25.00 per share in cash, which excluded the previously proposed CVR"
+    },
+    "run_uid": "aca2ebd277c91fb2793ee63b",
+    "run_row": 52,
+    "match_pass": 1,
+    "run": {
+     "Conditions": "Light"
+    },
+    "note": ""
+   },
+   {
+    "fact": "order:e236e5a810e0f5148e31a779",
+    "kind": "order",
+    "label": "#14 Deadline set · PWRR (target)",
+    "reviewed": {
+     "When": "by 04/27/2016",
+     "Sort date": "2016-04-27",
+     "Date from": "",
+     "Date to": "2016-04-27"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D11"
+    ],
+    "filing_key": {
+     "page": "29",
+     "block": "b533",
+     "quote": "each potential buyer had been advised to submit a non-binding indication of interest by May 10, 2016"
+    },
+    "run_uid": "2c460493f9c25cd164a4443f",
+    "run_row": 13,
+    "match_pass": 1,
+    "run": {
+     "When": "by 04/27/2016",
+     "Sort date": "2016-04-24",
+     "Date from": "2016-04-21",
+     "Date to": "2016-04-27",
+     "in order": "yes"
+    },
+    "note": ""
+   },
+   {
+    "fact": "order:2fea3f8e396fb294b5bbe7d4",
+    "kind": "order",
+    "label": "#15 Deadline revised · PWRR (target)",
+    "reviewed": {
+     "When": "after 04/27/2016 (undated)",
+     "Sort date": "2016-04-27",
+     "Date from": "",
+     "Date to": "2016-05-19"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D11"
+    ],
+    "filing_key": {
+     "page": "29",
+     "block": "b533",
+     "quote": "which deadline was subsequently postponed to May 19, 2016 to ensure the potential buyers had sufficient time to formulate their most compelling offers"
+    },
+    "run_uid": "5410e233c78247a291410671",
+    "run_row": 14,
+    "match_pass": 1,
+    "run": {
+     "When": "after 04/27/2016, before 05/19/2016",
+     "Sort date": "2016-05-07",
+     "Date from": "2016-04-27",
+     "Date to": "2016-05-18",
+     "in order": "yes"
+    },
+    "note": ""
+   },
+   {
+    "fact": "order:877d042f6721c6e825a36ae4",
+    "kind": "order",
+    "label": "#20 Round opened · PWRR (target)",
+    "reviewed": {
+     "When": "05/23/2016-06/01/2016",
+     "Sort date": "2016-06-01",
+     "Date from": "2016-05-23",
+     "Date to": "2016-06-01"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "filing_key": {
+     "page": "29",
+     "block": "b534",
+     "quote": "The Transaction Committee authorized representatives of GHF to schedule in-person management presentations with the remaining seven potential buyers and allow these parties to conduct additional due diligence."
+    },
+    "run_uid": "b4f7212dc765ecd0435ec327",
+    "run_row": 19,
+    "match_pass": 1,
+    "run": {
+     "When": "05/23/2016 - 06/01/2016",
+     "Sort date": "2016-05-27",
+     "Date from": "2016-05-23",
+     "Date to": "2016-06-01",
+     "in order": "yes"
+    },
+    "note": ""
+   },
+   {
+    "fact": "order:d90d7a667cf8cc5ae994cb3c",
+    "kind": "order",
+    "label": "#37 Round opened · PWRR (target)",
+    "reviewed": {
+     "When": "07/27/2016 (committee meetings 07/22 and 07/27)",
+     "Sort date": "2016-07-27",
+     "Date from": "2016-07-27",
+     "Date to": "2016-07-27"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b548",
+     "quote": "the Company should proceed with confirmatory due diligence and negotiations with G&W and Party B because of the higher offers made by each of G&W and Party B"
+    },
+    "run_uid": "9d2fe906e5b496d47b29d7eb",
+    "run_row": 35,
+    "match_pass": 1,
+    "run": {
+     "When": "07/27/2016 (committee met 07/22 and 07/27)",
+     "Sort date": "2016-07-27",
+     "Date from": "2016-07-22",
+     "Date to": "2016-07-27",
+     "in order": "yes"
+    },
+    "note": ""
+   },
+   {
+    "fact": "order:15bb5eecb35608454fdbcc77",
+    "kind": "order",
+    "label": "#49 Exclusivity changed · Party D",
+    "reviewed": {
+     "When": "early August 2016 (after 08/01, by 08/04/2016)",
+     "Sort date": "2016-08-02",
+     "Date from": "2016-08-01",
+     "Date to": "2016-08-04"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D15"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b549",
+     "quote": "Party D declined to shorten its due diligence period and requested that the Company commit that it would not enter into an agreement with another bidder"
+    },
+    "run_uid": "aa2399dc82c13ad026d5a09e",
+    "run_row": 46,
+    "match_pass": 1,
+    "run": {
+     "When": "08/02/2016 (date read from same sentence)",
+     "Sort date": "2016-08-02",
+     "Date from": "2016-08-01",
+     "Date to": "2016-08-12",
+     "in order": "yes"
+    },
+    "note": ""
+   }
+  ],
+  "differs, rule unchanged": [
+   {
+    "fact": "order:cbe36ef87a9feb5e000264d8",
+    "kind": "order",
+    "label": "#25 Other material event · Party C",
+    "reviewed": {
+     "When": "07/12/2016-07/14/2016",
+     "Sort date": "2016-07-14",
+     "Date from": "2016-07-12",
+     "Date to": "2016-07-14"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "29",
+     "block": "b537",
+     "quote": "Subsequently, Party C was provided access to the internet data site and the Company’s management held a management presentation with Party C by telephone on July 14, 2016."
+    },
+    "run_uid": "ee15ee038e586bf54fabf8c1",
+    "run_row": 24,
+    "match_pass": 1,
+    "run": {
+     "When": "after 07/12/2016; presentation 07/14/2016",
+     "Sort date": "2016-07-14",
+     "Date from": "2016-07-12",
+     "Date to": "2016-07-20",
+     "in order": "yes"
+    },
+    "note": ""
+   },
+   {
+    "fact": "order:0dcd8892517183cbad2ed50c",
+    "kind": "order",
+    "label": "#38 Dropped by target · Party C",
+    "reviewed": {
+     "When": "07/27/2016-07/29/2016 (following selection; individual notification date unstated)",
+     "Sort date": "2016-07-27",
+     "Date from": "2016-07-27",
+     "Date to": "2016-07-29"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b548",
+     "quote": "representatives of GHF subsequently contacted the remaining bidders to inform them that they were no longer involved in the process"
+    },
+    "run_uid": "7e0cdff7eb759511fec4dac5",
+    "run_row": 36,
+    "match_pass": 1,
+    "run": {
+     "When": "after 07/27/2016",
+     "Sort date": "2016-07-27",
+     "Date from": "2016-07-27",
+     "Date to": "",
+     "in order": "yes"
+    },
+    "note": ""
+   },
+   {
+    "fact": "order:b2ba0db4eb464886839c0d47",
+    "kind": "order",
+    "label": "#41 Dropped by target · Party F",
+    "reviewed": {
+     "When": "07/27/2016-07/29/2016 (following selection; individual notification date unstated)",
+     "Sort date": "2016-07-27",
+     "Date from": "2016-07-27",
+     "Date to": "2016-07-29"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b548",
+     "quote": "representatives of GHF subsequently contacted the remaining bidders to inform them that they were no longer involved in the process"
+    },
+    "run_uid": "25f5e00e7cec368d65ef8d7b",
+    "run_row": 39,
+    "match_pass": 1,
+    "run": {
+     "When": "after 07/27/2016",
+     "Sort date": "2016-07-27",
+     "Date from": "2016-07-27",
+     "Date to": "",
+     "in order": "yes"
+    },
+    "note": ""
+   },
+   {
+    "fact": "order:d9377b315ce6161b5fb1dbd9",
+    "kind": "order",
+    "label": "#50 Withdrew · Party D",
+    "reviewed": {
+     "When": "early August 2016 (after 08/01, by 08/04/2016)",
+     "Sort date": "2016-08-02",
+     "Date from": "2016-08-01",
+     "Date to": "2016-08-04"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b549",
+     "quote": "the Company declined to make such a commitment, at which point Party D indicated that it would not proceed with further due diligence at that time"
+    },
+    "run_uid": "53d9989008083ede244d1dbe",
+    "run_row": 47,
+    "match_pass": 1,
+    "run": {
+     "When": "08/02/2016 (date read from same sentence)",
+     "Sort date": "2016-08-02",
+     "Date from": "2016-08-01",
+     "Date to": "2016-08-12",
+     "in order": "yes"
+    },
+    "note": ""
+   }
+  ],
+  "omitted or inserted": [
+   {
+    "fact": "participation:dd4de0429a2ced7c5647b454",
+    "kind": "participation",
+    "label": "#8 NDA signed · Strategic NDA signers from the March outreach (incl. Party A)",
+    "reviewed": {
+     "Event": "NDA signed",
+     "Type": "Strategic",
+     "Count": "",
+     "Exit reason": ""
+    },
+    "status": "unresolved",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "28",
+     "block": "b527",
+     "quote": "Each of the potential strategic buyers and 14 potential financial buyers subsequently executed confidentiality agreements."
+    },
+    "side": "omitted from the run"
+   },
+   {
+    "fact": "participation:1f7d03903955afa5ee3634db",
+    "kind": "participation",
+    "label": "#9 NDA signed · 14 financial NDA signers",
+    "reviewed": {
+     "Event": "NDA signed",
+     "Type": "Financial",
+     "Count": "14",
+     "Exit reason": ""
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "28",
+     "block": "b527",
+     "quote": "Each of the potential strategic buyers and 14 potential financial buyers subsequently executed confidentiality agreements."
+    },
+    "side": "omitted from the run"
+   },
+   {
+    "fact": "participation:229e7ea058970340b57ba905",
+    "kind": "participation",
+    "label": "#10 NDA signed · Genesee & Wyoming Inc. (G&W)",
+    "reviewed": {
+     "Event": "NDA signed",
+     "Type": "Strategic",
+     "Count": "1",
+     "Exit reason": ""
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "A-48",
+     "block": "b1830",
+     "quote": "the Confidentiality Agreement between the Company and Parent dated April 3, 2016"
+    },
+    "side": "omitted from the run"
+   },
+   {
+    "fact": "participation:98083e1bd9d0810242dfa729",
+    "kind": "participation",
+    "label": "#13 NDA signed · Party B",
+    "reviewed": {
+     "Event": "NDA signed",
+     "Type": "Strategic",
+     "Count": "1",
+     "Exit reason": ""
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "28",
+     "block": "b530",
+     "quote": "which was distributed to the potential buyers, including Party A, Party B and G&W, that had executed confidentiality agreements"
+    },
+    "side": "omitted from the run"
+   },
+   {
+    "fact": "participation:bbdc10543017f0a591e4876a",
+    "kind": "participation",
+    "label": "#18 Did not submit · NDA signers submitting no IOI (unnamed)",
+    "reviewed": {
+     "Event": "Did not submit",
+     "Type": "Unknown",
+     "Count": "",
+     "Exit reason": "Not stated"
+    },
+    "status": "unresolved",
+    "impact": "re-judge",
+    "decisions": [
+     "D10"
+    ],
+    "filing_key": {
+     "page": "29",
+     "block": "b534",
+     "quote": "Between May 19, 2016 and June 1, 2016, the Company received nine written indications of interest"
+    },
+    "side": "omitted from the run"
+   },
+   {
+    "fact": "participation:03b4e46fdc8a826566847a02",
+    "kind": "participation",
+    "label": "#19 Dropped by target · 2 lowest IOI bidders (unnamed)",
+    "reviewed": {
+     "Event": "Dropped by target",
+     "Type": "Unknown",
+     "Count": "2",
+     "Exit reason": "Lower offer than rivals"
+    },
+    "status": "unresolved",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "29",
+     "block": "b534",
+     "quote": "the Transaction Committee concluded that the two low bidders should be excluded from that process"
+    },
+    "side": "omitted from the run"
+   },
+   {
+    "fact": "participation:ba6cc1343cd6f0a9d6e6d217",
+    "kind": "participation",
+    "label": "#32 Did not submit · Unnamed strategic round-2 bidder",
+    "reviewed": {
+     "Event": "Did not submit",
+     "Type": "Strategic",
+     "Count": "1",
+     "Exit reason": "Not stated"
+    },
+    "status": "unresolved",
+    "impact": "re-judge",
+    "decisions": [
+     "D10"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b547",
+     "quote": "One strategic buyer and one financial buyer elected not to submit an LOI."
+    },
+    "side": "omitted from the run"
+   },
+   {
+    "fact": "participation:5d2d021c6b0a28035773c382",
+    "kind": "participation",
+    "label": "#33 Did not submit · Unnamed financial round-2 bidder",
+    "reviewed": {
+     "Event": "Did not submit",
+     "Type": "Financial",
+     "Count": "1",
+     "Exit reason": "Not stated"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D10"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b547",
+     "quote": "One strategic buyer and one financial buyer elected not to submit an LOI."
+    },
+    "side": "omitted from the run"
+   },
+   {
+    "fact": "participation:0d536417716f66632d9d9927",
+    "kind": "participation",
+    "label": "#52 Dropped by target · Party E",
+    "reviewed": {
+     "Event": "Dropped by target",
+     "Type": "Strategic",
+     "Count": "1",
+     "Exit reason": "Not stated"
+    },
+    "status": "unresolved",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "31",
+     "block": "b553",
+     "quote": "the Transaction Committee directed the management team and representatives of each of BMO and Hinckley Allen to continue diligence and negotiations with both G&W and Party B"
+    },
+    "side": "omitted from the run"
+   },
+   {
+    "fact": "assignment:bbdc10543017f0a591e4876a",
+    "kind": "assignment",
+    "label": "#18 Did not submit · NDA signers submitting no IOI (unnamed)",
+    "reviewed": {
+     "Process": "1",
+     "Round": "1"
+    },
+    "status": "unresolved",
+    "impact": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "filing_key": {
+     "page": "29",
+     "block": "b534",
+     "quote": "Between May 19, 2016 and June 1, 2016, the Company received nine written indications of interest"
+    },
+    "side": "omitted from the run"
+   },
+   {
+    "fact": "assignment:03b4e46fdc8a826566847a02",
+    "kind": "assignment",
+    "label": "#19 Dropped by target · 2 lowest IOI bidders (unnamed)",
+    "reviewed": {
+     "Process": "1",
+     "Round": "1"
+    },
+    "status": "unresolved",
+    "impact": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "filing_key": {
+     "page": "29",
+     "block": "b534",
+     "quote": "the Transaction Committee concluded that the two low bidders should be excluded from that process"
+    },
+    "side": "omitted from the run"
+   },
+   {
+    "fact": "assignment:ba6cc1343cd6f0a9d6e6d217",
+    "kind": "assignment",
+    "label": "#32 Did not submit · Unnamed strategic round-2 bidder",
+    "reviewed": {
+     "Process": "1",
+     "Round": "2"
+    },
+    "status": "unresolved",
+    "impact": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b547",
+     "quote": "One strategic buyer and one financial buyer elected not to submit an LOI."
+    },
+    "side": "omitted from the run"
+   },
+   {
+    "fact": "assignment:5d2d021c6b0a28035773c382",
+    "kind": "assignment",
+    "label": "#33 Did not submit · Unnamed financial round-2 bidder",
+    "reviewed": {
+     "Process": "1",
+     "Round": "2"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b547",
+     "quote": "One strategic buyer and one financial buyer elected not to submit an LOI."
+    },
+    "side": "omitted from the run"
+   },
+   {
+    "fact": "assignment:0d536417716f66632d9d9927",
+    "kind": "assignment",
+    "label": "#52 Dropped by target · Party E",
+    "reviewed": {
+     "Process": "1",
+     "Round": "3"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "filing_key": {
+     "page": "31",
+     "block": "b553",
+     "quote": "the Transaction Committee directed the management team and representatives of each of BMO and Hinckley Allen to continue diligence and negotiations with both G&W and Party B"
+    },
+    "side": "omitted from the run"
+   },
+   {
+    "fact": "order:dd4de0429a2ced7c5647b454",
+    "kind": "order",
+    "label": "#8 NDA signed · Strategic NDA signers from the March outreach (incl. Party A)",
+    "reviewed": {
+     "When": "after week of 03/28/2016 (undated)",
+     "Sort date": "2016-03-31",
+     "Date from": "2016-03-28",
+     "Date to": ""
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "28",
+     "block": "b527",
+     "quote": "Each of the potential strategic buyers and 14 potential financial buyers subsequently executed confidentiality agreements."
+    },
+    "side": "omitted from the run"
+   },
+   {
+    "fact": "order:1f7d03903955afa5ee3634db",
+    "kind": "order",
+    "label": "#9 NDA signed · 14 financial NDA signers",
+    "reviewed": {
+     "When": "after week of 03/28/2016 (undated)",
+     "Sort date": "2016-03-31",
+     "Date from": "2016-03-28",
+     "Date to": ""
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "28",
+     "block": "b527",
+     "quote": "Each of the potential strategic buyers and 14 potential financial buyers subsequently executed confidentiality agreements."
+    },
+    "side": "omitted from the run"
+   },
+   {
+    "fact": "order:229e7ea058970340b57ba905",
+    "kind": "order",
+    "label": "#10 NDA signed · Genesee & Wyoming Inc. (G&W)",
+    "reviewed": {
+     "When": "04/03/2016",
+     "Sort date": "2016-04-03",
+     "Date from": "2016-04-03",
+     "Date to": "2016-04-03"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "A-48",
+     "block": "b1830",
+     "quote": "the Confidentiality Agreement between the Company and Parent dated April 3, 2016"
+    },
+    "side": "omitted from the run"
+   },
+   {
+    "fact": "order:98083e1bd9d0810242dfa729",
+    "kind": "order",
+    "label": "#13 NDA signed · Party B",
+    "reviewed": {
+     "When": "undated (reported after 04/21/2016)",
+     "Sort date": "2016-04-21",
+     "Date from": "",
+     "Date to": ""
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "28",
+     "block": "b530",
+     "quote": "which was distributed to the potential buyers, including Party A, Party B and G&W, that had executed confidentiality agreements"
+    },
+    "side": "omitted from the run"
+   },
+   {
+    "fact": "order:bbdc10543017f0a591e4876a",
+    "kind": "order",
+    "label": "#18 Did not submit · NDA signers submitting no IOI (unnamed)",
+    "reviewed": {
+     "When": "by 06/01/2016 (IOIs due 05/19/2016)",
+     "Sort date": "2016-06-01",
+     "Date from": "",
+     "Date to": "2016-06-01"
+    },
+    "status": "unresolved",
+    "impact": "re-judge",
+    "decisions": [
+     "D10"
+    ],
+    "filing_key": {
+     "page": "29",
+     "block": "b534",
+     "quote": "Between May 19, 2016 and June 1, 2016, the Company received nine written indications of interest"
+    },
+    "side": "omitted from the run"
+   },
+   {
+    "fact": "order:03b4e46fdc8a826566847a02",
+    "kind": "order",
+    "label": "#19 Dropped by target · 2 lowest IOI bidders (unnamed)",
+    "reviewed": {
+     "When": "05/23/2016-06/01/2016",
+     "Sort date": "2016-06-01",
+     "Date from": "2016-05-23",
+     "Date to": "2016-06-01"
+    },
+    "status": "unresolved",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "29",
+     "block": "b534",
+     "quote": "the Transaction Committee concluded that the two low bidders should be excluded from that process"
+    },
+    "side": "omitted from the run"
+   },
+   {
+    "fact": "order:ba6cc1343cd6f0a9d6e6d217",
+    "kind": "order",
+    "label": "#32 Did not submit · Unnamed strategic round-2 bidder",
+    "reviewed": {
+     "When": "late July 2016 (LOIs due 07/20/2016)",
+     "Sort date": "2016-07-20",
+     "Date from": "2016-07-20",
+     "Date to": "2016-07-27"
+    },
+    "status": "unresolved",
+    "impact": "re-judge",
+    "decisions": [
+     "D10"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b547",
+     "quote": "One strategic buyer and one financial buyer elected not to submit an LOI."
+    },
+    "side": "omitted from the run"
+   },
+   {
+    "fact": "order:5d2d021c6b0a28035773c382",
+    "kind": "order",
+    "label": "#33 Did not submit · Unnamed financial round-2 bidder",
+    "reviewed": {
+     "When": "late July 2016 (LOIs due 07/20/2016)",
+     "Sort date": "2016-07-20",
+     "Date from": "2016-07-20",
+     "Date to": "2016-07-27"
+    },
+    "status": "supported",
+    "impact": "re-judge",
+    "decisions": [
+     "D10"
+    ],
+    "filing_key": {
+     "page": "30",
+     "block": "b547",
+     "quote": "One strategic buyer and one financial buyer elected not to submit an LOI."
+    },
+    "side": "omitted from the run"
+   },
+   {
+    "fact": "order:f3415853d3a5a6af44d10eff",
+    "kind": "order",
+    "label": "#35 Other material event · G&W",
+    "reviewed": {
+     "When": "07/21/2016-07/26/2016",
+     "Sort date": "2016-07-23",
+     "Date from": "2016-07-21",
+     "Date to": "2016-07-26"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "29",
+     "block": "b540",
+     "quote": "in response to feedback from representatives of GHF indicating its price and CVR structure were not competitive"
+    },
+    "side": "omitted from the run"
+   },
+   {
+    "fact": "order:381673925f02e6c7cba08982",
+    "kind": "order",
+    "label": "#47 Other material event · PWRR (target)",
+    "reviewed": {
+     "When": "08/01/2016",
+     "Sort date": "2016-08-01",
+     "Date from": "2016-08-01",
+     "Date to": "2016-08-01"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "30",
+     "block": "b549",
+     "quote": "subsequently directed representatives of BMO (which acquired the business of GHF on August 1, 2016) to clarify certain elements of the revised proposals and the bidders’ respective due diligence requirements"
+    },
+    "side": "omitted from the run"
+   },
+   {
+    "fact": "order:0d536417716f66632d9d9927",
+    "kind": "order",
+    "label": "#52 Dropped by target · Party E",
+    "reviewed": {
+     "When": "by 08/04/2016",
+     "Sort date": "2016-08-04",
+     "Date from": "2016-08-02",
+     "Date to": "2016-08-04"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "31",
+     "block": "b553",
+     "quote": "the Transaction Committee directed the management team and representatives of each of BMO and Hinckley Allen to continue diligence and negotiations with both G&W and Party B"
+    },
+    "side": "omitted from the run"
+   },
+   {
+    "fact": "order:3ea3c83ffebad7f439b375c2",
+    "kind": "order",
+    "label": "#54 Other material event · G&W",
+    "reviewed": {
+     "When": "08/09/2016",
+     "Sort date": "2016-08-09",
+     "Date from": "2016-08-09",
+     "Date to": "2016-08-09"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "31",
+     "block": "b554",
+     "quote": "the Transaction Committee directed representatives of BMO to inform G&W that the Company intended to enter into a merger agreement with another bidder"
+    },
+    "side": "omitted from the run"
+   },
+   {
+    "fact": "order:a0dcece8083e17d525dc87d3",
+    "kind": "order",
+    "label": "#55 Other material event · G&W",
+    "reviewed": {
+     "When": "08/09/2016-08/10/2016",
+     "Sort date": "2016-08-09",
+     "Date from": "2016-08-09",
+     "Date to": "2016-08-10"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "31",
+     "block": "b554",
+     "quote": "including physical due diligence on August 10 and August 11, 2016, to potentially facilitate an improved offer, which request was granted"
+    },
+    "side": "omitted from the run"
+   },
+   {
+    "fact": "order:e9ffed3df811ca5e90f0cc51",
+    "kind": "order",
+    "label": "#58 Other material event · Party B",
+    "reviewed": {
+     "When": "08/12/2016 (10:30 a.m. meeting)",
+     "Sort date": "2016-08-12",
+     "Date from": "2016-08-12",
+     "Date to": "2016-08-12"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "31",
+     "block": "b555",
+     "quote": "the Transaction Committee directed representatives of BMO to inform Party B that another party had submitted a revised LOI at a higher price"
+    },
+    "side": "omitted from the run"
+   },
+   {
+    "fact": "order:f9eecd47a639ee4e4e0564ae",
+    "kind": "order",
+    "label": "#60 Other material event · Party B",
+    "reviewed": {
+     "When": "08/12/2016 (afternoon)",
+     "Sort date": "2016-08-12",
+     "Date from": "2016-08-12",
+     "Date to": "2016-08-12"
+    },
+    "status": "supported",
+    "impact": "unchanged",
+    "decisions": [],
+    "filing_key": {
+     "page": "32",
+     "block": "b560",
+     "quote": "representatives of BMO then contacted Party B to determine if it would increase its offer price. Party B indicated that it would not increase its price."
+    },
+    "side": "omitted from the run"
+   },
+   {
+    "side": "inserted in the run",
+    "run_uid": "c82440fe566d0d6468a6555d",
+    "label": "#8 NDA signed · 11 potential strategic buyers (incl. Party A)",
+    "run_row": 8
+   },
+   {
+    "side": "inserted in the run",
+    "run_uid": "2c26fa380f3dd2ada381eb20",
+    "label": "#9 NDA signed · 14 potential financial buyers",
+    "run_row": 9
+   },
+   {
+    "side": "inserted in the run",
+    "run_uid": "4d749b46027505de4d26e9f5",
+    "label": "#10 Other material event · 5 potential strategic buyers (incl. G&W)",
+    "run_row": 10
+   },
+   {
+    "side": "inserted in the run",
+    "run_uid": "1bf5f97a3bcf4f66c0f1d7f7",
+    "label": "#17 Did not submit · NDA signers submitting no IOI (approx. 16)",
+    "run_row": 17
+   },
+   {
+    "side": "inserted in the run",
+    "run_uid": "01b2b3bfccc92c0880cd0007",
+    "label": "#18 Dropped by target · 2 low IOI bidders",
+    "run_row": 18
+   },
+   {
+    "side": "inserted in the run",
+    "run_uid": "3cab422b7d51b87ab5f6e1bc",
+    "label": "#31 Did not submit · Unnamed strategic non-submitter",
+    "run_row": 31
+   },
+   {
+    "side": "inserted in the run",
+    "run_uid": "7d669d552db65ad5f634fe38",
+    "label": "#32 Did not submit · Unnamed financial non-submitter",
+    "run_row": 32
+   },
+   {
+    "side": "inserted in the run",
+    "run_uid": "813c063a9ba1a5a329bd45e8",
+    "label": "#50 Other material event · Providence and Worcester (target)",
+    "run_row": 50
+   },
+   {
+    "side": "inserted in the run",
+    "run_uid": "515e74148d486653ea7f97e9",
+    "label": "#53 Other material event · Providence and Worcester (target)",
+    "run_row": 53
+   },
+   {
+    "side": "inserted in the run",
+    "run_uid": "dad41d7008e6c6eb7e27231e",
+    "label": "#57 Not selected at signing · Party E",
+    "run_row": 57
+   }
+  ]
+ },
+ "new_columns": [
+  {
+   "fact": "terms:2ffc0bdfab3de17b5a79766f",
+   "kind": "terms",
+   "label": "#17 Bid · 9 IOI bidders (unnamed)",
+   "reviewed": {},
+   "status": "supported",
+   "impact": "new column",
+   "decisions": [
+    "new column: CVR/earnout",
+    "new column: CVR/earnout value",
+    "new column: Due diligence",
+    "new column: Financing",
+    "new column: Regulatory",
+    "new column: Antitrust",
+    "new column: Exclusivity"
+   ],
+   "filing_key": {
+    "page": "29",
+    "block": "b534",
+    "quote": "with offer prices per share ranging from $17.93 to $26.50 (assuming the conversion of preferred stock into common stock), implying equity values of $90 million to $134 million"
+   },
+   "run_uid": "28aa98cb48a1647dcf356b5d",
+   "run_row": 16,
+   "match_pass": 1,
+   "run": {
+    "CVR/earnout": "",
+    "CVR/earnout value": "",
+    "Due diligence": "Not begun",
+    "Financing": "Not stated",
+    "Regulatory": "Not stated",
+    "Antitrust": "",
+    "Exclusivity": "Not stated"
+   }
+  },
+  {
+   "fact": "terms:d987530cb463eaf4bd31abc7",
+   "kind": "terms",
+   "label": "#24 Bid · Party C",
+   "reviewed": {},
+   "status": "supported",
+   "impact": "new column",
+   "decisions": [
+    "new column: CVR/earnout",
+    "new column: CVR/earnout value",
+    "new column: Due diligence",
+    "new column: Financing",
+    "new column: Regulatory",
+    "new column: Antitrust",
+    "new column: Exclusivity"
+   ],
+   "filing_key": {
+    "page": "29",
+    "block": "b537",
+    "quote": "On July 12, 2016, Party C submitted an IOI with an offer price per share of $21.00 (implying an equity value of $108 million)."
+   },
+   "run_uid": "c900303b905007fc01cd81ce",
+   "run_row": 23,
+   "match_pass": 1,
+   "run": {
+    "CVR/earnout": "",
+    "CVR/earnout value": "",
+    "Due diligence": "Not begun",
+    "Financing": "Not stated",
+    "Regulatory": "Not stated",
+    "Antitrust": "",
+    "Exclusivity": "Not stated"
+   }
+  },
+  {
+   "fact": "terms:d42637959ba0873e1cce720f",
+   "kind": "terms",
+   "label": "#27 Bid · Party B",
+   "reviewed": {},
+   "status": "supported",
+   "impact": "new column",
+   "decisions": [
+    "new column: CVR/earnout",
+    "new column: CVR/earnout value",
+    "new column: Due diligence",
+    "new column: Financing",
+    "new column: Regulatory",
+    "new column: Antitrust",
+    "new column: Exclusivity"
+   ],
+   "filing_key": {
+    "page": "29",
+    "block": "b539",
+    "quote": "Party B submitted an LOI to acquire the Company for a price of $24.00 per share (subject to an expedited diligence review)."
+   },
+   "run_uid": "f99f9d84f4c65746dc4fe6fa",
+   "run_row": 26,
+   "match_pass": 1,
+   "run": {
+    "CVR/earnout": "",
+    "CVR/earnout value": "",
+    "Due diligence": "Incomplete",
+    "Financing": "Not stated",
+    "Regulatory": "Not stated",
+    "Antitrust": "",
+    "Exclusivity": "Not stated"
+   }
+  },
+  {
+   "fact": "terms:b42fbe355bb7947ac23e31f9",
+   "kind": "terms",
+   "label": "#28 Bid · Party E",
+   "reviewed": {},
+   "status": "supported",
+   "impact": "new column",
+   "decisions": [
+    "new column: CVR/earnout",
+    "new column: CVR/earnout value",
+    "new column: Due diligence",
+    "new column: Financing",
+    "new column: Regulatory",
+    "new column: Antitrust",
+    "new column: Exclusivity"
+   ],
+   "filing_key": {
+    "page": "30",
+    "block": "b543",
+    "quote": "Party E (a strategic buyer) submitted an LOI to acquire the Company for a price of $21.26 per share (subject to a 60-day exclusivity period"
+   },
+   "run_uid": "2f4036cae3b13da543244538",
+   "run_row": 27,
+   "match_pass": 1,
+   "run": {
+    "CVR/earnout": "",
+    "CVR/earnout value": "",
+    "Due diligence": "Incomplete",
+    "Financing": "Not stated",
+    "Regulatory": "Not stated",
+    "Antitrust": "",
+    "Exclusivity": "Required"
+   }
+  },
+  {
+   "fact": "terms:b4945af5a10c03591e84cada",
+   "kind": "terms",
+   "label": "#29 Bid · Party D",
+   "reviewed": {},
+   "status": "supported",
+   "impact": "new column",
+   "decisions": [
+    "new column: CVR/earnout",
+    "new column: CVR/earnout value",
+    "new column: Due diligence",
+    "new column: Financing",
+    "new column: Regulatory",
+    "new column: Antitrust",
+    "new column: Exclusivity"
+   ],
+   "filing_key": {
+    "page": "30",
+    "block": "b544",
+    "quote": "Party D (a financial buyer) submitted an LOI to acquire the Company for a price of $21.00 per share (subject to a four-week diligence period)."
+   },
+   "run_uid": "84ec3cdd9fb1ecfbdd2fc8a0",
+   "run_row": 28,
+   "match_pass": 1,
+   "run": {
+    "CVR/earnout": "",
+    "CVR/earnout value": "",
+    "Due diligence": "Incomplete",
+    "Financing": "Not stated",
+    "Regulatory": "Not stated",
+    "Antitrust": "",
+    "Exclusivity": "Not stated"
+   }
+  },
+  {
+   "fact": "terms:81bc4b8371bdc2f632fcc347",
+   "kind": "terms",
+   "label": "#30 Bid · Party C",
+   "reviewed": {},
+   "status": "supported",
+   "impact": "new column",
+   "decisions": [
+    "new column: CVR/earnout",
+    "new column: CVR/earnout value",
+    "new column: Due diligence",
+    "new column: Financing",
+    "new column: Regulatory",
+    "new column: Antitrust",
+    "new column: Exclusivity"
+   ],
+   "filing_key": {
+    "page": "30",
+    "block": "b545",
+    "quote": "Party C submitted an LOI to acquire the Company for a price of $19.30 per share (subject to a 30-day diligence period)."
+   },
+   "run_uid": "7e86e34cf8c0edac40c377a4",
+   "run_row": 29,
+   "match_pass": 1,
+   "run": {
+    "CVR/earnout": "",
+    "CVR/earnout value": "",
+    "Due diligence": "Incomplete",
+    "Financing": "Not stated",
+    "Regulatory": "Not stated",
+    "Antitrust": "",
+    "Exclusivity": "Not stated"
+   }
+  },
+  {
+   "fact": "terms:3195f6995fb7920ef4643106",
+   "kind": "terms",
+   "label": "#31 Bid · Party F",
+   "reviewed": {},
+   "status": "supported",
+   "impact": "new column",
+   "decisions": [
+    "new column: CVR/earnout",
+    "new column: CVR/earnout value",
+    "new column: Due diligence",
+    "new column: Financing",
+    "new column: Regulatory",
+    "new column: Antitrust",
+    "new column: Exclusivity"
+   ],
+   "filing_key": {
+    "page": "30",
+    "block": "b546",
+    "quote": "Party F (a strategic buyer) submitted an LOI to acquire the Company for a price of $19.20 per share (subject to a 30-day due diligence period)."
+   },
+   "run_uid": "af7c188a8d55d1e0ab712265",
+   "run_row": 30,
+   "match_pass": 1,
+   "run": {
+    "CVR/earnout": "",
+    "CVR/earnout value": "",
+    "Due diligence": "Incomplete",
+    "Financing": "Not stated",
+    "Regulatory": "Not stated",
+    "Antitrust": "",
+    "Exclusivity": "Not stated"
+   }
+  },
+  {
+   "fact": "terms:6ad325e9bae0f1062544ac39",
+   "kind": "terms",
+   "label": "#34 Bid · G&W",
+   "reviewed": {},
+   "status": "supported",
+   "impact": "new column",
+   "decisions": [
+    "new column: CVR/earnout",
+    "new column: CVR/earnout value",
+    "new column: Due diligence",
+    "new column: Financing",
+    "new column: Regulatory",
+    "new column: Antitrust",
+    "new column: Exclusivity"
+   ],
+   "filing_key": {
+    "page": "29",
+    "block": "b540",
+    "quote": "G&W submitted an LOI on July 21, 2016 to acquire the Company for a price of $21.15 per share (subject to a three-week exclusive diligence period)."
+   },
+   "run_uid": "aa55284fa1c377eac0efe352",
+   "run_row": 33,
+   "match_pass": 1,
+   "run": {
+    "CVR/earnout": "Y",
+    "CVR/earnout value": "1.13",
+    "Due diligence": "Incomplete",
+    "Financing": "Not stated",
+    "Regulatory": "Not stated",
+    "Antitrust": "",
+    "Exclusivity": "Required"
+   }
+  },
+  {
+   "fact": "terms:3d4201da075e6fdd0ae3e97f",
+   "kind": "terms",
+   "label": "#36 Bid · G&W",
+   "reviewed": {},
+   "status": "supported",
+   "impact": "new column",
+   "decisions": [
+    "new column: CVR/earnout",
+    "new column: CVR/earnout value",
+    "new column: Due diligence",
+    "new column: Financing",
+    "new column: Regulatory",
+    "new column: Antitrust",
+    "new column: Exclusivity"
+   ],
+   "filing_key": {
+    "page": "29",
+    "block": "b540",
+    "quote": "G&W submitted a revised LOI, which increased its offer to $22.15 per share (including $21.02 in cash and $1.13 CVR)."
+   },
+   "run_uid": "2201137456edb7eb00138316",
+   "run_row": 34,
+   "match_pass": 1,
+   "run": {
+    "CVR/earnout": "Y",
+    "CVR/earnout value": "1.13",
+    "Due diligence": "Incomplete",
+    "Financing": "Not stated",
+    "Regulatory": "Not stated",
+    "Antitrust": "",
+    "Exclusivity": "Not stated"
+   }
+  },
+  {
+   "fact": "terms:68c3f4ed16a99a4a9a0f7bd1",
+   "kind": "terms",
+   "label": "#44 Bid · Party D",
+   "reviewed": {},
+   "status": "supported",
+   "impact": "new column",
+   "decisions": [
+    "new column: CVR/earnout",
+    "new column: CVR/earnout value",
+    "new column: Due diligence",
+    "new column: Financing",
+    "new column: Regulatory",
+    "new column: Antitrust",
+    "new column: Exclusivity"
+   ],
+   "filing_key": {
+    "page": "30",
+    "block": "b549",
+    "quote": "On August 1, 2016, Party D submitted a revised LOI at a price of $24.00 per share"
+   },
+   "run_uid": "f81c2f337f2a3c3b586f27d3",
+   "run_row": 42,
+   "match_pass": 1,
+   "run": {
+    "CVR/earnout": "",
+    "CVR/earnout value": "",
+    "Due diligence": "Incomplete",
+    "Financing": "Not stated",
+    "Regulatory": "Not stated",
+    "Antitrust": "",
+    "Exclusivity": "Required"
+   }
+  },
+  {
+   "fact": "terms:7ffb5860b680ae610b7466ce",
+   "kind": "terms",
+   "label": "#45 Bid · Party E",
+   "reviewed": {},
+   "status": "supported",
+   "impact": "new column",
+   "decisions": [
+    "new column: CVR/earnout",
+    "new column: CVR/earnout value",
+    "new column: Due diligence",
+    "new column: Financing",
+    "new column: Regulatory",
+    "new column: Antitrust",
+    "new column: Exclusivity"
+   ],
+   "filing_key": {
+    "page": "30",
+    "block": "b549",
+    "quote": "Party E submitted a revised LOI, along with financing support, from Party F, at a price of $23.81 per share. Both revised proposals contained a 30-day due diligence period."
+   },
+   "run_uid": "be8f0f152c727eed2d68bace",
+   "run_row": 44,
+   "match_pass": 1,
+   "run": {
+    "CVR/earnout": "",
+    "CVR/earnout value": "",
+    "Due diligence": "Incomplete",
+    "Financing": "Not stated",
+    "Regulatory": "Not stated",
+    "Antitrust": "",
+    "Exclusivity": "Not stated"
+   }
+  },
+  {
+   "fact": "terms:238ad0ac53c572c3bdfcb65b",
+   "kind": "terms",
+   "label": "#48 Bid · Party E",
+   "reviewed": {},
+   "status": "supported",
+   "impact": "new column",
+   "decisions": [
+    "new column: CVR/earnout",
+    "new column: CVR/earnout value",
+    "new column: Due diligence",
+    "new column: Financing",
+    "new column: Regulatory",
+    "new column: Antitrust",
+    "new column: Exclusivity"
+   ],
+   "filing_key": {
+    "page": "30",
+    "block": "b549",
+    "quote": "Party E withdrew its revised proposal on August 2, 2016 (but confirmed its original proposal of $21.26 per share)"
+   },
+   "run_uid": "7b88b32f94f31af5f526f414",
+   "run_row": 45,
+   "match_pass": 1,
+   "run": {
+    "CVR/earnout": "",
+    "CVR/earnout value": "",
+    "Due diligence": "Incomplete",
+    "Financing": "Not stated",
+    "Regulatory": "Not stated",
+    "Antitrust": "",
+    "Exclusivity": "Required"
+   }
+  },
+  {
+   "fact": "terms:d71b46752baedf302dece2ac",
+   "kind": "terms",
+   "label": "#53 Bid reaffirmed · Party B",
+   "reviewed": {},
+   "status": "supported",
+   "impact": "new column",
+   "decisions": [
+    "new column: CVR/earnout",
+    "new column: CVR/earnout value",
+    "new column: Due diligence",
+    "new column: Financing",
+    "new column: Regulatory",
+    "new column: Antitrust",
+    "new column: Exclusivity"
+   ],
+   "filing_key": {
+    "page": "31",
+    "block": "b554",
+    "quote": "On August 4, 2016, legal counsel for Party B provided a revised draft of the merger agreement"
+   },
+   "run_uid": "fd1d2a68de5cd58f61ac48fe",
+   "run_row": 49,
+   "match_pass": 1,
+   "run": {
+    "CVR/earnout": "",
+    "CVR/earnout value": "",
+    "Due diligence": "Incomplete",
+    "Financing": "Not stated",
+    "Regulatory": "Not stated",
+    "Antitrust": "",
+    "Exclusivity": "Not stated"
+   }
+  },
+  {
+   "fact": "terms:4420df65c403904b33f2d5e0",
+   "kind": "terms",
+   "label": "#57 Bid · G&W",
+   "reviewed": {},
+   "status": "supported",
+   "impact": "new column",
+   "decisions": [
+    "new column: CVR/earnout",
+    "new column: CVR/earnout value",
+    "new column: Due diligence",
+    "new column: Financing",
+    "new column: Regulatory",
+    "new column: Antitrust",
+    "new column: Exclusivity"
+   ],
+   "filing_key": {
+    "page": "31",
+    "block": "b555",
+    "quote": "G&W submitted a revised LOI to acquire the Company for a price of $25.00 per share in cash, which excluded the previously proposed CVR"
+   },
+   "run_uid": "aca2ebd277c91fb2793ee63b",
+   "run_row": 52,
+   "match_pass": 1,
+   "run": {
+    "CVR/earnout": "",
+    "CVR/earnout value": "",
+    "Due diligence": "Incomplete",
+    "Financing": "Committed",
+    "Regulatory": "Concern",
+    "Antitrust": "",
+    "Exclusivity": "Not stated"
+   }
+  }
+ ]
+}

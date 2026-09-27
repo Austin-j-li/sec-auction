@@ -1,0 +1,13 @@
+diff --git a/_dev/cockpit/README.md b/_dev/cockpit/README.md
+index d7c946e..fa2d283 100644
+--- a/_dev/cockpit/README.md
++++ b/_dev/cockpit/README.md
+@@ -8,6 +8,8 @@ Drag the thin divider between the filing and workspace, or between a sheet's lis
+ 
+ The nine original deals each start with one catalog version: its Claude Opus 5.5 medium extraction under instruction v1.13.2 (22 September), which is also the working base. None has been reviewed. Runs started in the cockpit add further versions (see below), and deals added in the cockpit get their first version from their first run. Earlier Opus 5 drafts, v1.13 baselines and the lead-verified Datalink and Mac-Gray correction passes are no longer selectable; their evidence remains in the review packets.
+ 
++The **Review** control beside the version picker records the working copy's own status (Unreviewed, In review, Reviewed), shown on All deals with who set it. It is set at the saved revision on screen, so save or discard edits first; if the working copy is edited afterwards, it reads "Reviewed at revision N; edited since" until someone sets it again. A catalog version's recorded status (for example "unreviewed; Austin review pending") describes that immutable extraction and never changes.
++
+ Review holds only case-level decisions that do not depend on an earlier workbook's rows. Datalink shows Austin's 21 September ruling to keep January's bilateral stage as round 1 (five rounds; January 29 inferred), to be checked against the displayed extraction. Mac-Gray shows Austin's 22 September R01 decision, with its research-decision document: bidder-commitment changes at an unchanged price are same-price Bids, and the target termination fee stays in a dated Note. The displayed extraction has not yet been revised to it. Audit findings and corrections keyed to earlier drafts' rows were removed from the cockpit. The Astra experiment is a historical side note and is not a selectable cockpit version.
+ 
+ ## A review session

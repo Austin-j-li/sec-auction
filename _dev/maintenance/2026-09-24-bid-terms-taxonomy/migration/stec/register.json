@@ -1,0 +1,5068 @@
+{
+ "deal": "stec",
+ "tool": "migrate_review.py",
+ "source": {
+  "revision": 1,
+  "base_id": "opus55-medium",
+  "base_sha256": "467f739dea7b540eec2d3fb664ec1a4bb6479394820fc66b750e6ec3821fbc1d",
+  "at": "2026-09-23T21:46:20+00:00",
+  "actor": "austin",
+  "reason": "Codex Astra source review requested by Austin: review all 61 events; recode two WDC bids Conditions Unclear because an intended signing timetable does not establish limited diligence; narrow Company H response window; preserve process/round facts while flagging Alex-only boundary conventions. All other supported rows reviewed; no missing material event verified.",
+  "summary": "73 changes",
+  "filing_located": true
+ },
+ "marks": {
+  "reviewed": 58,
+  "needs_decision": 3,
+  "unreviewed": 0
+ },
+ "findings": {},
+ "threads": [],
+ "rows": [
+  {
+   "#": 1,
+   "uid": "11b18092b491f919973740fc",
+   "When": "October 2012",
+   "Who": "Gibson, Dunn & Crutcher LLP",
+   "Event": "Adviser",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 2,
+   "uid": "82a47d0fece9120a3e032532",
+   "When": "11/14/2012",
+   "Who": "Company A",
+   "Event": "Bidder interest",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 3,
+   "uid": "9d8f8b33b637639c394089b5",
+   "When": "after 11/14/2012",
+   "Who": "sTec",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 4,
+   "uid": "c9187989b33a3d72e21d16c6",
+   "When": "mid-November 2012",
+   "Who": "sTec",
+   "Event": "Target sale decision",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 5,
+   "uid": "5e73e1c111d2e81ce345a74f",
+   "When": "11/16/2012",
+   "Who": "Balch Hill Partners, L.P.",
+   "Event": "Activist",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 6,
+   "uid": "0c75908d1d5314eb62742e90",
+   "When": "12/06/2012",
+   "Who": "Balch Hill Partners, L.P.",
+   "Event": "Activist",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 7,
+   "uid": "00a327462413563d53bb8a4b",
+   "When": "02/13/2013",
+   "Who": "sTec",
+   "Event": "Target sale decision",
+   "mark": "needs_decision",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 8,
+   "uid": "2377c82dc784152e4cfe54b4",
+   "When": "02/13/2013",
+   "Who": "Company B",
+   "Event": "Bidder interest",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 9,
+   "uid": "7f10317dee96881e9c430093",
+   "When": "03/13/2013",
+   "Who": "Company C",
+   "Event": "Bidder interest",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 10,
+   "uid": "3e23d04371696cfb8d3b0529",
+   "When": "mid-March 2013",
+   "Who": "Company D",
+   "Event": "Bidder interest",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 11,
+   "uid": "9b198c1a08187c065196a751",
+   "When": "03/26/2013",
+   "Who": "BofA Merrill Lynch",
+   "Event": "Adviser",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 12,
+   "uid": "d70d08347a40ad8b4e94a55f",
+   "When": "03/26/2013",
+   "Who": "sTec",
+   "Event": "Target sale decision",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 13,
+   "uid": "a31c8608a1679e590a63a9f8",
+   "When": "04/01/2013",
+   "Who": "sTec",
+   "Event": "Round opened",
+   "mark": "needs_decision",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 14,
+   "uid": "56de4e2739917c3d44b552b7",
+   "When": "from 04/01/2013",
+   "Who": "Technology companies contacted in BofA outreach (residual, incl. WDC)",
+   "Event": "Contact",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 15,
+   "uid": "67664c25837ad0c6fc000e9a",
+   "When": "from 04/01/2013",
+   "Who": "Unnamed financial sponsor",
+   "Event": "Contact",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 16,
+   "uid": "42b0846daa88e947d3400486",
+   "When": "04/04/2013",
+   "Who": "Company E",
+   "Event": "NDA signed",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 17,
+   "uid": "9c7ad0fae9dc75ef954d5763",
+   "When": "04/10/2013",
+   "Who": "Company D",
+   "Event": "NDA signed",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 18,
+   "uid": "c7db290eac6f3016592b8efb",
+   "When": "04/11/2013",
+   "Who": "Company F",
+   "Event": "NDA signed",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 19,
+   "uid": "02f10fa7016396ebb26cdb75",
+   "When": "04/15/2013",
+   "Who": "Company C",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 20,
+   "uid": "e0db1de01e3cd9ad3ff4b8a1",
+   "When": "04/17/2013",
+   "Who": "Company G",
+   "Event": "NDA signed",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 21,
+   "uid": "f760833c28611fa6e501debe",
+   "When": "04/17/2013",
+   "Who": "WDC",
+   "Event": "NDA signed",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 22,
+   "uid": "e4a66b112edcc603a0919596",
+   "When": "04/23/2013",
+   "Who": "sTec",
+   "Event": "Deadline set",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 23,
+   "uid": "daa349b93528124b72c5077f",
+   "When": "04/23/2013",
+   "Who": "Company D",
+   "Event": "Bid",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 24,
+   "uid": "bdfa07715f88f7cdfd12d98f",
+   "When": "04/24/2013",
+   "Who": "Company F",
+   "Event": "Withdrew",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 25,
+   "uid": "f4b99b9499256c95fa9047d1",
+   "When": "shortly after 04/24/2013",
+   "Who": "Company E",
+   "Event": "Dropped by target",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 26,
+   "uid": "db115e46b0c27e78900649ca",
+   "When": "04/26/2013",
+   "Who": "sTec",
+   "Event": "Deadline set",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 27,
+   "uid": "28a64e836f77383a33e41cf1",
+   "When": "05/01/2013",
+   "Who": "Company H",
+   "Event": "Bidder interest",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 28,
+   "uid": "b16f197835d54ab1d279c8c7",
+   "When": "05/03/2013",
+   "Who": "WDC",
+   "Event": "Bid",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 29,
+   "uid": "a0cdbc579895afee275da55e",
+   "When": "05/03/2013",
+   "Who": "Company G",
+   "Event": "Withdrew",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 30,
+   "uid": "38290d0da28eb887d1bb907b",
+   "When": "05/03/2013",
+   "Who": "sTec",
+   "Event": "Deadline",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 31,
+   "uid": "2737738ad041c579316fd4de",
+   "When": "05/08/2013",
+   "Who": "Company H",
+   "Event": "NDA signed",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 32,
+   "uid": "4426ef9375edb616745f8404",
+   "When": "05/10/2013",
+   "Who": "Company H",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 33,
+   "uid": "7dda881b628a6a2d4c74c10b",
+   "When": "05/10/2013",
+   "Who": "WDC",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 34,
+   "uid": "999cb9367c3f408116413e42",
+   "When": "05/10/2013",
+   "Who": "Company D",
+   "Event": "Bid",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 35,
+   "uid": "a8ddeedb322ec5717291556d",
+   "When": "05/10/2013",
+   "Who": "Company D",
+   "Event": "Exclusivity changed",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 36,
+   "uid": "014b564f999c1bd67656cd29",
+   "When": "05/14/2013",
+   "Who": "Company D",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 37,
+   "uid": "a78e9614503a39ddf851c02c",
+   "When": "05/15/2013",
+   "Who": "Company H",
+   "Event": "Bid",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 38,
+   "uid": "3c6c1c0e0c8c20d3093e23b4",
+   "When": "05/15/2013",
+   "Who": "Company D",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 39,
+   "uid": "626f0be9d9489110fbd68ca6",
+   "When": "after 05/16/2013",
+   "Who": "sTec",
+   "Event": "Round opened",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 40,
+   "uid": "56e96d423b60b4b87853f3e7",
+   "When": "weeks of 05/13 and 05/20/2013",
+   "Who": "Latham & Watkins LLP",
+   "Event": "Adviser",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 41,
+   "uid": "c21bdeef33a5834f2255ecd0",
+   "When": "weeks of 05/13 and 05/20/2013, after 05/15",
+   "Who": "Company H",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 42,
+   "uid": "da96cd3287d04f036b8f7a72",
+   "When": "05/23/2013",
+   "Who": "Company H",
+   "Event": "Dropped by target",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 43,
+   "uid": "4866e3796711aca1c7e4ed08",
+   "When": "05/28/2013",
+   "Who": "Shearman & Sterling LLP",
+   "Event": "Adviser",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 44,
+   "uid": "0e44959b47f4bcf77be273b6",
+   "When": "05/28/2013",
+   "Who": "WDC",
+   "Event": "Bid",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 45,
+   "uid": "8eaf7f9684764bba4b9c3e3f",
+   "When": "05/28/2013",
+   "Who": "sTec",
+   "Event": "Deadline",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 46,
+   "uid": "eb52ccb9bb3d728b428fa658",
+   "When": "05/29/2013",
+   "Who": "sTec",
+   "Event": "Deadline revised",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 47,
+   "uid": "d06bc6075866fe815ceb9539",
+   "When": "05/30/2013",
+   "Who": "sTec",
+   "Event": "Deadline",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 48,
+   "uid": "908f9ba6a840b37cde0832b6",
+   "When": "05/30/2013",
+   "Who": "sTec",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 49,
+   "uid": "3c0c5f02ca0ca3344145842b",
+   "When": "05/31/2013",
+   "Who": "WDC",
+   "Event": "Withdrew",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 50,
+   "uid": "7b32ff08c6ce0184a486c4d3",
+   "When": "05/31/2013",
+   "Who": "sTec",
+   "Event": "Round opened",
+   "mark": "needs_decision",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 51,
+   "uid": "11cc2f7891f00defc70cb263",
+   "When": "06/05/2013",
+   "Who": "Company D",
+   "Event": "Withdrew",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 52,
+   "uid": "ae075fd73adb0a6556eb3ac1",
+   "When": "06/10/2013",
+   "Who": "WDC",
+   "Event": "Re-entered",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 53,
+   "uid": "f2bccb14094b87de10736a29",
+   "When": "06/10/2013",
+   "Who": "WDC",
+   "Event": "Bid",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 54,
+   "uid": "4be70415fdbc43ca90c166ec",
+   "When": "06/11/2013",
+   "Who": "sTec",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 55,
+   "uid": "1914c22f7434ec4225f35b82",
+   "When": "06/14/2013",
+   "Who": "WDC",
+   "Event": "Bid",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 56,
+   "uid": "0204d11cb7a286eb5e8715f3",
+   "When": "06/15/2013",
+   "Who": "sTec",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 57,
+   "uid": "855cfae254dfc89c49928473",
+   "When": "06/17/2013",
+   "Who": "Paul Hastings LLP",
+   "Event": "Adviser",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 58,
+   "uid": "fcaee76e6de6583046c676b7",
+   "When": "06/18/2013",
+   "Who": "WDC",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 59,
+   "uid": "8da24e383f9d202b01313e91",
+   "When": "06/20/2013–06/23/2013",
+   "Who": "sTec",
+   "Event": "Other material event",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 60,
+   "uid": "222e47c2bee14a7cd7268e34",
+   "When": "06/23/2013",
+   "Who": "WDC",
+   "Event": "Merger agreement signed",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  },
+  {
+   "#": 61,
+   "uid": "b3a422a6184bd49f30289d61",
+   "When": "06/24/2013",
+   "Who": "sTec and WDC",
+   "Event": "Merger announced",
+   "mark": "reviewed",
+   "mark_note": "",
+   "mark_actor": "austin",
+   "mark_at": "2026-09-23T21:46:20+00:00",
+   "threads": 0
+  }
+ ],
+ "facts": [
+  {
+   "id": "deal-fact:11e6c660457ac203e99038a5",
+   "section": "participation and exits",
+   "kind": "deal fact",
+   "sheet": "Deal facts",
+   "uid": "11e6c660457ac203e99038a5",
+   "row": null,
+   "label": "Auction screen",
+   "filing_key": {
+    "page": null,
+    "block": null,
+    "quote": null
+   },
+   "value": {
+    "Value": "Met (process 1): 6 parties (Company E, Company D, Company F, Company G, Company H, and WDC through an addendum to its 01/29/2009 NDA)"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A3"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A3 (audit README §2)"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D7"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "deal-fact:ce1bfb209bbac644850d771c",
+   "section": "participation and exits",
+   "kind": "deal fact",
+   "sheet": "Deal facts",
+   "uid": "ce1bfb209bbac644850d771c",
+   "row": null,
+   "label": "Whole-company bids",
+   "filing_key": {
+    "page": null,
+    "block": null,
+    "quote": null
+   },
+   "value": {
+    "Value": "Yes (asset-only interest from Company C, Company E, Company F and six strategics overall produced no proposals)"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A3"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A3 (audit README §2)"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D7"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:82a47d0fece9120a3e032532",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "82a47d0fece9120a3e032532",
+   "row": 2,
+   "label": "#2 Bidder interest · Company A",
+   "filing_key": {
+    "page": "24",
+    "block": "b558",
+    "quote": "an investment bank representing Company A, a participant in the storage industry, contacted our management to request a preliminary meeting between sTec and Company A"
+   },
+   "value": {
+    "Event": "Bidder interest",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:2377c82dc784152e4cfe54b4",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "2377c82dc784152e4cfe54b4",
+   "row": 8,
+   "label": "#8 Bidder interest · Company B",
+   "filing_key": {
+    "page": "25",
+    "block": "b565",
+    "quote": "the President intended to present sTec as a possible acquisition target to the management of Company B"
+   },
+   "value": {
+    "Event": "Bidder interest",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:7f10317dee96881e9c430093",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "7f10317dee96881e9c430093",
+   "row": 9,
+   "label": "#9 Bidder interest · Company C",
+   "filing_key": {
+    "page": "26",
+    "block": "b575",
+    "quote": "expressed a potential interest in exploring an acquisition of particular assets of sTec’s business"
+   },
+   "value": {
+    "Event": "Bidder interest",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:3e23d04371696cfb8d3b0529",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "3e23d04371696cfb8d3b0529",
+   "row": 10,
+   "label": "#10 Bidder interest · Company D",
+   "filing_key": {
+    "page": "27",
+    "block": "b580",
+    "quote": "the head of corporate development for Company D, a participant in the storage industry, contacted our management to express the interest of Company D in exploring a potential acquisition"
+   },
+   "value": {
+    "Event": "Bidder interest",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:56de4e2739917c3d44b552b7",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "56de4e2739917c3d44b552b7",
+   "row": 14,
+   "label": "#14 Contact · Technology companies contacted in BofA outreach (residual, incl. WDC)",
+   "filing_key": {
+    "page": "27",
+    "block": "b584",
+    "quote": "In total, BofA Merrill Lynch had discussions with 18 prospective acquirers, 17 of which were technology companies and one of which was a financial sponsor."
+   },
+   "value": {
+    "Event": "Contact",
+    "Type": "Strategic",
+    "Count": "",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:67664c25837ad0c6fc000e9a",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "67664c25837ad0c6fc000e9a",
+   "row": 15,
+   "label": "#15 Contact · Unnamed financial sponsor",
+   "filing_key": {
+    "page": "27",
+    "block": "b584",
+    "quote": "nine prospective acquirers, including the financial sponsor and Company A, indicated they were not interested in a potential transaction"
+   },
+   "value": {
+    "Event": "Contact",
+    "Type": "Financial",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:42b0846daa88e947d3400486",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "42b0846daa88e947d3400486",
+   "row": 16,
+   "label": "#16 NDA signed · Company E",
+   "filing_key": {
+    "page": "27",
+    "block": "b586",
+    "quote": "On April 4, 2013, sTec entered into a non-disclosure agreement with Company E, a participant in the storage industry"
+   },
+   "value": {
+    "Event": "NDA signed",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:9c7ad0fae9dc75ef954d5763",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "9c7ad0fae9dc75ef954d5763",
+   "row": 17,
+   "label": "#17 NDA signed · Company D",
+   "filing_key": {
+    "page": "27",
+    "block": "b586",
+    "quote": "on April 10, it entered into a non-disclosure agreement with Company D"
+   },
+   "value": {
+    "Event": "NDA signed",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:c7db290eac6f3016592b8efb",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "c7db290eac6f3016592b8efb",
+   "row": 18,
+   "label": "#18 NDA signed · Company F",
+   "filing_key": {
+    "page": "27",
+    "block": "b586",
+    "quote": "on April 11, it entered into a non-disclosure agreement with Company F, another"
+   },
+   "value": {
+    "Event": "NDA signed",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:e0db1de01e3cd9ad3ff4b8a1",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "e0db1de01e3cd9ad3ff4b8a1",
+   "row": 20,
+   "label": "#20 NDA signed · Company G",
+   "filing_key": {
+    "page": "28",
+    "block": "b589",
+    "quote": "on April 17, it entered into a non-disclosure agreement with Company G, a participant in the storage industry"
+   },
+   "value": {
+    "Event": "NDA signed",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:f760833c28611fa6e501debe",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "f760833c28611fa6e501debe",
+   "row": 21,
+   "label": "#21 NDA signed · WDC",
+   "filing_key": {
+    "page": "28",
+    "block": "b589",
+    "quote": "Also on April 17, 2013, sTec entered into an addendum to its existing non-disclosure agreement with WDC."
+   },
+   "value": {
+    "Event": "NDA signed",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:bdfa07715f88f7cdfd12d98f",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "bdfa07715f88f7cdfd12d98f",
+   "row": 24,
+   "label": "#24 Withdrew · Company F",
+   "filing_key": {
+    "page": "28",
+    "block": "b590",
+    "quote": "on April 24, Company F declined the invitation to schedule a management presentation, indicating it was only interested in purchasing limited, select assets of sTec"
+   },
+   "value": {
+    "Event": "Withdrew",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": "Other stated reason"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:f4b99b9499256c95fa9047d1",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "f4b99b9499256c95fa9047d1",
+   "row": 25,
+   "label": "#25 Dropped by target · Company E",
+   "filing_key": {
+    "page": "28",
+    "block": "b590",
+    "quote": "Company E indicated it was also only interested in purchasing limited, select assets of sTec, and as a result the special committee decided not to continue discussions with Company E"
+   },
+   "value": {
+    "Event": "Dropped by target",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": "Other stated reason"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:28a64e836f77383a33e41cf1",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "28a64e836f77383a33e41cf1",
+   "row": 27,
+   "label": "#27 Bidder interest · Company H",
+   "filing_key": {
+    "page": "29",
+    "block": "b600",
+    "quote": "On May 1, 2013, Company H contacted representatives of BofA Merrill Lynch expressing an interest in a potential transaction with sTec."
+   },
+   "value": {
+    "Event": "Bidder interest",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:a0cdbc579895afee275da55e",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "a0cdbc579895afee275da55e",
+   "row": 29,
+   "label": "#29 Withdrew · Company G",
+   "filing_key": {
+    "page": "29",
+    "block": "b602",
+    "quote": "Also on May 3, 2013, Company G indicated it would not continue in the process."
+   },
+   "value": {
+    "Event": "Withdrew",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": "Not stated"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:2737738ad041c579316fd4de",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "2737738ad041c579316fd4de",
+   "row": 31,
+   "label": "#31 NDA signed · Company H",
+   "filing_key": {
+    "page": "29",
+    "block": "b606",
+    "quote": "Also on May 8, 2013, sTec entered into a non-disclosure agreement with Company H."
+   },
+   "value": {
+    "Event": "NDA signed",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:da96cd3287d04f036b8f7a72",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "da96cd3287d04f036b8f7a72",
+   "row": 42,
+   "label": "#42 Dropped by target · Company H",
+   "filing_key": {
+    "page": "30",
+    "block": "b620",
+    "quote": "Company H remained interested in a potential acquisition of the company but that Company H was not able to increase its indicated value range"
+   },
+   "value": {
+    "Event": "Dropped by target",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": "Would not improve earlier offer"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A15"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A15 (audit README §2)"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:3c0c5f02ca0ca3344145842b",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "3c0c5f02ca0ca3344145842b",
+   "row": 49,
+   "label": "#49 Withdrew · WDC",
+   "filing_key": {
+    "page": "31",
+    "block": "b631",
+    "quote": "WDC was reevaluating its interest in acquiring sTec, and that WDC was not prepared to move forward with a transaction with sTec at that time"
+   },
+   "value": {
+    "Event": "Withdrew",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": "Other stated reason"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A15"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A15 (audit README §2)"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:11cc2f7891f00defc70cb263",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "11cc2f7891f00defc70cb263",
+   "row": 51,
+   "label": "#51 Withdrew · Company D",
+   "filing_key": {
+    "page": "32",
+    "block": "b639",
+    "quote": "Company D would not be in a position to actively conduct due diligence for more than two weeks and was disengaging from the process"
+   },
+   "value": {
+    "Event": "Withdrew",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": "Other stated reason"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A15"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A15 (audit README §2)"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "participation:ae075fd73adb0a6556eb3ac1",
+   "section": "participation and exits",
+   "kind": "participation",
+   "sheet": "Deal ledger",
+   "uid": "ae075fd73adb0a6556eb3ac1",
+   "row": 52,
+   "label": "#52 Re-entered · WDC",
+   "filing_key": {
+    "page": "32",
+    "block": "b638",
+    "quote": "were reconsidering their interest in a transaction with sTec"
+   },
+   "value": {
+    "Event": "Re-entered",
+    "Type": "Strategic",
+    "Count": "1",
+    "Exit reason": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "deal-fact:9530606d080405539133fa2f",
+   "section": "round map and deadline outcomes",
+   "kind": "deal fact",
+   "sheet": "Deal facts",
+   "uid": "9530606d080405539133fa2f",
+   "row": null,
+   "label": "Number of processes",
+   "filing_key": {
+    "page": null,
+    "block": null,
+    "quote": null
+   },
+   "value": {
+    "Value": "1"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A3"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A3 (audit README §2)"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "round:d15dd7414074f04417911f97",
+   "section": "round map and deadline outcomes",
+   "kind": "round",
+   "sheet": "Rounds",
+   "uid": "d15dd7414074f04417911f97",
+   "row": null,
+   "label": "Process 1 / Round 1",
+   "filing_key": {
+    "page": "27",
+    "block": "b584",
+    "quote": "On April 1, 2013, as directed by the special committee, BofA Merrill Lynch began contacting potential acquirers of sTec."
+   },
+   "value": {
+    "Process": "1",
+    "Round": "1",
+    "Opened": "2013-04-01",
+    "Who was in": "6 strategic entrants: Company E (04/04), Company D (04/10), Company F (04/11), Company G (04/17), WDC (04/17), Company H (05/08). 0 live at opening.",
+    "Finality": "Not final"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "deadline:d15dd7414074f04417911f97",
+   "section": "round map and deadline outcomes",
+   "kind": "deadline",
+   "sheet": "Rounds",
+   "uid": "d15dd7414074f04417911f97",
+   "row": null,
+   "label": "Process 1 / Round 1",
+   "filing_key": {
+    "page": "28",
+    "block": "b593",
+    "quote": "requesting non-binding indications of interest by May 3, 2013"
+   },
+   "value": {
+    "Due dates": "05/03/2013 (letters to WDC and D 04/23, to G 04/26; none to H)",
+    "Deadline outcome": "Late bids accepted"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D11"
+    ],
+    "note": "v1.14 records an accepted late bid as Extended (late bid accepted): shown, not equated"
+   }
+  },
+  {
+   "id": "round:0dea89fed12d458e9686a610",
+   "section": "round map and deadline outcomes",
+   "kind": "round",
+   "sheet": "Rounds",
+   "uid": "0dea89fed12d458e9686a610",
+   "row": null,
+   "label": "Process 1 / Round 2",
+   "filing_key": {
+    "page": "30",
+    "block": "b619",
+    "quote": "BofA Merrill Lynch sent final round process letters and a draft merger agreement to WDC and Company D, requesting a response by May 28, 2013"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "2",
+    "Opened": "2013-05-16",
+    "Who was in": "2 strategic: WDC, Company D. Company H still live until 05/23 but not admitted; no further bid received from it.",
+    "Finality": "Announced as final"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "deadline:0dea89fed12d458e9686a610",
+   "section": "round map and deadline outcomes",
+   "kind": "deadline",
+   "sheet": "Rounds",
+   "uid": "0dea89fed12d458e9686a610",
+   "row": null,
+   "label": "Process 1 / Round 2",
+   "filing_key": {
+    "page": "30",
+    "block": "b622",
+    "quote": "Company D needed approximately two weeks of additional time to continue its ongoing due diligence review and to submit a written indication of interest and mark-up of the merger agreement"
+   },
+   "value": {
+    "Due dates": "05/28/2013 → 05/30/2013 (best and final)",
+    "Deadline outcome": "Extended; Enforced"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D11"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "round:23245cf553760f7754bda81e",
+   "section": "round map and deadline outcomes",
+   "kind": "round",
+   "sheet": "Rounds",
+   "uid": "23245cf553760f7754bda81e",
+   "row": null,
+   "label": "Process 1 / Round 3",
+   "filing_key": {
+    "page": "31",
+    "block": "b633",
+    "quote": "informed Company D’s representatives that timing for sTec’s process had been delayed, and that Company D had an opportunity to continue in the process"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "3",
+    "Opened": "2013-05-31",
+    "Who was in": "2 strategic: Company D (live at opening; withdrew 06/05); WDC (re-entered 06/10)",
+    "Finality": "Announced as final"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "deadline:23245cf553760f7754bda81e",
+   "section": "round map and deadline outcomes",
+   "kind": "deadline",
+   "sheet": "Rounds",
+   "uid": "23245cf553760f7754bda81e",
+   "row": null,
+   "label": "Process 1 / Round 3",
+   "filing_key": {
+    "page": null,
+    "block": null,
+    "quote": null
+   },
+   "value": {
+    "Due dates": "none stated",
+    "Deadline outcome": "No deadline stated"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D11"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:daa349b93528124b72c5077f",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "daa349b93528124b72c5077f",
+   "row": 23,
+   "label": "#23 Bid · Company D",
+   "filing_key": {
+    "page": "28",
+    "block": "b593",
+    "quote": "Company D provided a verbal indication of its interest to pursue a transaction at a price greater than $5.60 per share"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "1"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:bdfa07715f88f7cdfd12d98f",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "bdfa07715f88f7cdfd12d98f",
+   "row": 24,
+   "label": "#24 Withdrew · Company F",
+   "filing_key": {
+    "page": "28",
+    "block": "b590",
+    "quote": "on April 24, Company F declined the invitation to schedule a management presentation, indicating it was only interested in purchasing limited, select assets of sTec"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "1"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:f4b99b9499256c95fa9047d1",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "f4b99b9499256c95fa9047d1",
+   "row": 25,
+   "label": "#25 Dropped by target · Company E",
+   "filing_key": {
+    "page": "28",
+    "block": "b590",
+    "quote": "Company E indicated it was also only interested in purchasing limited, select assets of sTec, and as a result the special committee decided not to continue discussions with Company E"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "1"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:b16f197835d54ab1d279c8c7",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "b16f197835d54ab1d279c8c7",
+   "row": 28,
+   "label": "#28 Bid · WDC",
+   "filing_key": {
+    "page": "29",
+    "block": "b602",
+    "quote": "WDC submitted a written indication of interest to acquire the company at a purchase price in the range of $6.60 – $7.10 per share in cash"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "1"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:a0cdbc579895afee275da55e",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "a0cdbc579895afee275da55e",
+   "row": 29,
+   "label": "#29 Withdrew · Company G",
+   "filing_key": {
+    "page": "29",
+    "block": "b602",
+    "quote": "Also on May 3, 2013, Company G indicated it would not continue in the process."
+   },
+   "value": {
+    "Process": "1",
+    "Round": "1"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:999cb9367c3f408116413e42",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "999cb9367c3f408116413e42",
+   "row": 34,
+   "label": "#34 Bid · Company D",
+   "filing_key": {
+    "page": "29",
+    "block": "b610",
+    "quote": "Company D submitted a written non-binding indication of interest to acquire the company at a purchase price of $5.75 per share in cash, along with a draft exclusivity agreement"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "1"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:a78e9614503a39ddf851c02c",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "a78e9614503a39ddf851c02c",
+   "row": 37,
+   "label": "#37 Bid · Company H",
+   "filing_key": {
+    "page": "29",
+    "block": "b612",
+    "quote": "Company H submitted a written non-binding indication of interest to acquire the company at a purchase price in the range of $5.00 – $5.75 per share in cash"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "1"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:da96cd3287d04f036b8f7a72",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "da96cd3287d04f036b8f7a72",
+   "row": 42,
+   "label": "#42 Dropped by target · Company H",
+   "filing_key": {
+    "page": "30",
+    "block": "b620",
+    "quote": "Company H remained interested in a potential acquisition of the company but that Company H was not able to increase its indicated value range"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "1"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A15"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A15 (audit README §2)"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:0e44959b47f4bcf77be273b6",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "0e44959b47f4bcf77be273b6",
+   "row": 44,
+   "label": "#44 Bid · WDC",
+   "filing_key": {
+    "page": "30",
+    "block": "b621",
+    "quote": "WDC submitted a written second-round indication of interest at a price per share of $9.15 in cash, with a mark-up of the merger agreement"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "2"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "stec:4"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:3c0c5f02ca0ca3344145842b",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "3c0c5f02ca0ca3344145842b",
+   "row": 49,
+   "label": "#49 Withdrew · WDC",
+   "filing_key": {
+    "page": "31",
+    "block": "b631",
+    "quote": "WDC was reevaluating its interest in acquiring sTec, and that WDC was not prepared to move forward with a transaction with sTec at that time"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "2"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A15"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A15 (audit README §2)"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:11cc2f7891f00defc70cb263",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "11cc2f7891f00defc70cb263",
+   "row": 51,
+   "label": "#51 Withdrew · Company D",
+   "filing_key": {
+    "page": "32",
+    "block": "b639",
+    "quote": "Company D would not be in a position to actively conduct due diligence for more than two weeks and was disengaging from the process"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "3"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A1",
+    "A15"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A1 (audit README §2)",
+    "rests on open convention question A15 (audit README §2)"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:f2bccb14094b87de10736a29",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "f2bccb14094b87de10736a29",
+   "row": 53,
+   "label": "#53 Bid · WDC",
+   "filing_key": {
+    "page": "32",
+    "block": "b640",
+    "quote": "WDC submitted a revised written indication of interest to acquire the company at a price range of $6.60 to $7.10 per share in cash"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "3"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A1"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A1 (audit README §2)"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "assignment:1914c22f7434ec4225f35b82",
+   "section": "round map and deadline outcomes",
+   "kind": "assignment",
+   "sheet": "Deal ledger",
+   "uid": "1914c22f7434ec4225f35b82",
+   "row": 55,
+   "label": "#55 Bid · WDC",
+   "filing_key": {
+    "page": "32",
+    "block": "b643",
+    "quote": "WDC submitted a written indication of interest of $6.85 per share in cash and indicated it could be in a position to announce a transaction on June 24, 2013"
+   },
+   "value": {
+    "Process": "1",
+    "Round": "3"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A1"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A1 (audit README §2)"
+   ],
+   "audit": [
+    "stec:6"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "price:daa349b93528124b72c5077f",
+   "section": "bids",
+   "kind": "price",
+   "sheet": "Deal ledger",
+   "uid": "daa349b93528124b72c5077f",
+   "row": 23,
+   "label": "#23 Bid · Company D",
+   "filing_key": {
+    "page": "28",
+    "block": "b593",
+    "quote": "Company D provided a verbal indication of its interest to pursue a transaction at a price greater than $5.60 per share"
+   },
+   "value": {
+    "Price low": "5.6",
+    "Price high": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "stock:daa349b93528124b72c5077f",
+   "section": "bids",
+   "kind": "stock",
+   "sheet": "Deal ledger",
+   "uid": "daa349b93528124b72c5077f",
+   "row": 23,
+   "label": "#23 Bid · Company D",
+   "filing_key": {
+    "page": "28",
+    "block": "b593",
+    "quote": "Company D provided a verbal indication of its interest to pursue a transaction at a price greater than $5.60 per share"
+   },
+   "value": {
+    "All cash": "Not stated"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "note": "All cash Not stated crosswalks to Stock % Not stated"
+   },
+   "crosswalk": {
+    "All cash": "Not stated",
+    "Stock %": "Not stated"
+   }
+  },
+  {
+   "id": "formality:daa349b93528124b72c5077f",
+   "section": "bids",
+   "kind": "formality",
+   "sheet": "Deal ledger",
+   "uid": "daa349b93528124b72c5077f",
+   "row": 23,
+   "label": "#23 Bid · Company D",
+   "filing_key": {
+    "page": "28",
+    "block": "b593",
+    "quote": "Company D provided a verbal indication of its interest to pursue a transaction at a price greater than $5.60 per share"
+   },
+   "value": {
+    "Formality": "Informal"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "conditions:daa349b93528124b72c5077f",
+   "section": "bids",
+   "kind": "conditions",
+   "sheet": "Deal ledger",
+   "uid": "daa349b93528124b72c5077f",
+   "row": 23,
+   "label": "#23 Bid · Company D",
+   "filing_key": {
+    "page": "28",
+    "block": "b593",
+    "quote": "Company D provided a verbal indication of its interest to pursue a transaction at a price greater than $5.60 per share"
+   },
+   "value": {
+    "Conditions": "Heavy"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "H1–H3"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "terms:daa349b93528124b72c5077f",
+   "section": "bids",
+   "kind": "terms",
+   "sheet": "Deal ledger",
+   "uid": "daa349b93528124b72c5077f",
+   "row": 23,
+   "label": "#23 Bid · Company D",
+   "filing_key": {
+    "page": "28",
+    "block": "b593",
+    "quote": "Company D provided a verbal indication of its interest to pursue a transaction at a price greater than $5.60 per share"
+   },
+   "value": {},
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: CVR/earnout",
+     "new column: CVR/earnout value",
+     "new column: Due diligence",
+     "new column: Financing",
+     "new column: Regulatory",
+     "new column: Antitrust",
+     "new column: Exclusivity"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "price:b16f197835d54ab1d279c8c7",
+   "section": "bids",
+   "kind": "price",
+   "sheet": "Deal ledger",
+   "uid": "b16f197835d54ab1d279c8c7",
+   "row": 28,
+   "label": "#28 Bid · WDC",
+   "filing_key": {
+    "page": "29",
+    "block": "b602",
+    "quote": "WDC submitted a written indication of interest to acquire the company at a purchase price in the range of $6.60 – $7.10 per share in cash"
+   },
+   "value": {
+    "Price low": "6.6",
+    "Price high": "7.1"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "stock:b16f197835d54ab1d279c8c7",
+   "section": "bids",
+   "kind": "stock",
+   "sheet": "Deal ledger",
+   "uid": "b16f197835d54ab1d279c8c7",
+   "row": 28,
+   "label": "#28 Bid · WDC",
+   "filing_key": {
+    "page": "29",
+    "block": "b602",
+    "quote": "WDC submitted a written indication of interest to acquire the company at a purchase price in the range of $6.60 – $7.10 per share in cash"
+   },
+   "value": {
+    "All cash": "Yes"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "note": "All cash Yes crosswalks to Stock % 0"
+   },
+   "crosswalk": {
+    "All cash": "Yes",
+    "Stock %": 0
+   }
+  },
+  {
+   "id": "formality:b16f197835d54ab1d279c8c7",
+   "section": "bids",
+   "kind": "formality",
+   "sheet": "Deal ledger",
+   "uid": "b16f197835d54ab1d279c8c7",
+   "row": 28,
+   "label": "#28 Bid · WDC",
+   "filing_key": {
+    "page": "29",
+    "block": "b602",
+    "quote": "WDC submitted a written indication of interest to acquire the company at a purchase price in the range of $6.60 – $7.10 per share in cash"
+   },
+   "value": {
+    "Formality": "Informal"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "conditions:b16f197835d54ab1d279c8c7",
+   "section": "bids",
+   "kind": "conditions",
+   "sheet": "Deal ledger",
+   "uid": "b16f197835d54ab1d279c8c7",
+   "row": 28,
+   "label": "#28 Bid · WDC",
+   "filing_key": {
+    "page": "29",
+    "block": "b602",
+    "quote": "WDC submitted a written indication of interest to acquire the company at a purchase price in the range of $6.60 – $7.10 per share in cash"
+   },
+   "value": {
+    "Conditions": "Unclear"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "H1–H3"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "terms:b16f197835d54ab1d279c8c7",
+   "section": "bids",
+   "kind": "terms",
+   "sheet": "Deal ledger",
+   "uid": "b16f197835d54ab1d279c8c7",
+   "row": 28,
+   "label": "#28 Bid · WDC",
+   "filing_key": {
+    "page": "29",
+    "block": "b602",
+    "quote": "WDC submitted a written indication of interest to acquire the company at a purchase price in the range of $6.60 – $7.10 per share in cash"
+   },
+   "value": {},
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: CVR/earnout",
+     "new column: CVR/earnout value",
+     "new column: Due diligence",
+     "new column: Financing",
+     "new column: Regulatory",
+     "new column: Antitrust",
+     "new column: Exclusivity"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "price:999cb9367c3f408116413e42",
+   "section": "bids",
+   "kind": "price",
+   "sheet": "Deal ledger",
+   "uid": "999cb9367c3f408116413e42",
+   "row": 34,
+   "label": "#34 Bid · Company D",
+   "filing_key": {
+    "page": "29",
+    "block": "b610",
+    "quote": "Company D submitted a written non-binding indication of interest to acquire the company at a purchase price of $5.75 per share in cash, along with a draft exclusivity agreement"
+   },
+   "value": {
+    "Price low": "5.75",
+    "Price high": "5.75"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "stock:999cb9367c3f408116413e42",
+   "section": "bids",
+   "kind": "stock",
+   "sheet": "Deal ledger",
+   "uid": "999cb9367c3f408116413e42",
+   "row": 34,
+   "label": "#34 Bid · Company D",
+   "filing_key": {
+    "page": "29",
+    "block": "b610",
+    "quote": "Company D submitted a written non-binding indication of interest to acquire the company at a purchase price of $5.75 per share in cash, along with a draft exclusivity agreement"
+   },
+   "value": {
+    "All cash": "Yes"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "note": "All cash Yes crosswalks to Stock % 0"
+   },
+   "crosswalk": {
+    "All cash": "Yes",
+    "Stock %": 0
+   }
+  },
+  {
+   "id": "formality:999cb9367c3f408116413e42",
+   "section": "bids",
+   "kind": "formality",
+   "sheet": "Deal ledger",
+   "uid": "999cb9367c3f408116413e42",
+   "row": 34,
+   "label": "#34 Bid · Company D",
+   "filing_key": {
+    "page": "29",
+    "block": "b610",
+    "quote": "Company D submitted a written non-binding indication of interest to acquire the company at a purchase price of $5.75 per share in cash, along with a draft exclusivity agreement"
+   },
+   "value": {
+    "Formality": "Informal"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D9",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "conditions:999cb9367c3f408116413e42",
+   "section": "bids",
+   "kind": "conditions",
+   "sheet": "Deal ledger",
+   "uid": "999cb9367c3f408116413e42",
+   "row": 34,
+   "label": "#34 Bid · Company D",
+   "filing_key": {
+    "page": "29",
+    "block": "b610",
+    "quote": "Company D submitted a written non-binding indication of interest to acquire the company at a purchase price of $5.75 per share in cash, along with a draft exclusivity agreement"
+   },
+   "value": {
+    "Conditions": "Unclear"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "terms:999cb9367c3f408116413e42",
+   "section": "bids",
+   "kind": "terms",
+   "sheet": "Deal ledger",
+   "uid": "999cb9367c3f408116413e42",
+   "row": 34,
+   "label": "#34 Bid · Company D",
+   "filing_key": {
+    "page": "29",
+    "block": "b610",
+    "quote": "Company D submitted a written non-binding indication of interest to acquire the company at a purchase price of $5.75 per share in cash, along with a draft exclusivity agreement"
+   },
+   "value": {},
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: CVR/earnout",
+     "new column: CVR/earnout value",
+     "new column: Due diligence",
+     "new column: Financing",
+     "new column: Regulatory",
+     "new column: Antitrust",
+     "new column: Exclusivity"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "price:a78e9614503a39ddf851c02c",
+   "section": "bids",
+   "kind": "price",
+   "sheet": "Deal ledger",
+   "uid": "a78e9614503a39ddf851c02c",
+   "row": 37,
+   "label": "#37 Bid · Company H",
+   "filing_key": {
+    "page": "29",
+    "block": "b612",
+    "quote": "Company H submitted a written non-binding indication of interest to acquire the company at a purchase price in the range of $5.00 – $5.75 per share in cash"
+   },
+   "value": {
+    "Price low": "5",
+    "Price high": "5.75"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "stock:a78e9614503a39ddf851c02c",
+   "section": "bids",
+   "kind": "stock",
+   "sheet": "Deal ledger",
+   "uid": "a78e9614503a39ddf851c02c",
+   "row": 37,
+   "label": "#37 Bid · Company H",
+   "filing_key": {
+    "page": "29",
+    "block": "b612",
+    "quote": "Company H submitted a written non-binding indication of interest to acquire the company at a purchase price in the range of $5.00 – $5.75 per share in cash"
+   },
+   "value": {
+    "All cash": "Yes"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "note": "All cash Yes crosswalks to Stock % 0"
+   },
+   "crosswalk": {
+    "All cash": "Yes",
+    "Stock %": 0
+   }
+  },
+  {
+   "id": "formality:a78e9614503a39ddf851c02c",
+   "section": "bids",
+   "kind": "formality",
+   "sheet": "Deal ledger",
+   "uid": "a78e9614503a39ddf851c02c",
+   "row": 37,
+   "label": "#37 Bid · Company H",
+   "filing_key": {
+    "page": "29",
+    "block": "b612",
+    "quote": "Company H submitted a written non-binding indication of interest to acquire the company at a purchase price in the range of $5.00 – $5.75 per share in cash"
+   },
+   "value": {
+    "Formality": "Informal"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "conditions:a78e9614503a39ddf851c02c",
+   "section": "bids",
+   "kind": "conditions",
+   "sheet": "Deal ledger",
+   "uid": "a78e9614503a39ddf851c02c",
+   "row": 37,
+   "label": "#37 Bid · Company H",
+   "filing_key": {
+    "page": "29",
+    "block": "b612",
+    "quote": "Company H submitted a written non-binding indication of interest to acquire the company at a purchase price in the range of $5.00 – $5.75 per share in cash"
+   },
+   "value": {
+    "Conditions": "Unclear"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "H1–H3"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "terms:a78e9614503a39ddf851c02c",
+   "section": "bids",
+   "kind": "terms",
+   "sheet": "Deal ledger",
+   "uid": "a78e9614503a39ddf851c02c",
+   "row": 37,
+   "label": "#37 Bid · Company H",
+   "filing_key": {
+    "page": "29",
+    "block": "b612",
+    "quote": "Company H submitted a written non-binding indication of interest to acquire the company at a purchase price in the range of $5.00 – $5.75 per share in cash"
+   },
+   "value": {},
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: CVR/earnout",
+     "new column: CVR/earnout value",
+     "new column: Due diligence",
+     "new column: Financing",
+     "new column: Regulatory",
+     "new column: Antitrust",
+     "new column: Exclusivity"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "price:0e44959b47f4bcf77be273b6",
+   "section": "bids",
+   "kind": "price",
+   "sheet": "Deal ledger",
+   "uid": "0e44959b47f4bcf77be273b6",
+   "row": 44,
+   "label": "#44 Bid · WDC",
+   "filing_key": {
+    "page": "30",
+    "block": "b621",
+    "quote": "WDC submitted a written second-round indication of interest at a price per share of $9.15 in cash, with a mark-up of the merger agreement"
+   },
+   "value": {
+    "Price low": "9.15",
+    "Price high": "9.15"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "stec:4"
+   ],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "stock:0e44959b47f4bcf77be273b6",
+   "section": "bids",
+   "kind": "stock",
+   "sheet": "Deal ledger",
+   "uid": "0e44959b47f4bcf77be273b6",
+   "row": 44,
+   "label": "#44 Bid · WDC",
+   "filing_key": {
+    "page": "30",
+    "block": "b621",
+    "quote": "WDC submitted a written second-round indication of interest at a price per share of $9.15 in cash, with a mark-up of the merger agreement"
+   },
+   "value": {
+    "All cash": "Yes"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "stec:4"
+   ],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "note": "All cash Yes crosswalks to Stock % 0"
+   },
+   "crosswalk": {
+    "All cash": "Yes",
+    "Stock %": 0
+   }
+  },
+  {
+   "id": "formality:0e44959b47f4bcf77be273b6",
+   "section": "bids",
+   "kind": "formality",
+   "sheet": "Deal ledger",
+   "uid": "0e44959b47f4bcf77be273b6",
+   "row": 44,
+   "label": "#44 Bid · WDC",
+   "filing_key": {
+    "page": "30",
+    "block": "b621",
+    "quote": "WDC submitted a written second-round indication of interest at a price per share of $9.15 in cash, with a mark-up of the merger agreement"
+   },
+   "value": {
+    "Formality": "Formal"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "stec:4"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D9",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "conditions:0e44959b47f4bcf77be273b6",
+   "section": "bids",
+   "kind": "conditions",
+   "sheet": "Deal ledger",
+   "uid": "0e44959b47f4bcf77be273b6",
+   "row": 44,
+   "label": "#44 Bid · WDC",
+   "filing_key": {
+    "page": "30",
+    "block": "b621",
+    "quote": "WDC submitted a written second-round indication of interest at a price per share of $9.15 in cash, with a mark-up of the merger agreement"
+   },
+   "value": {
+    "Conditions": "Unclear"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "stec:3",
+    "stec:4"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "terms:0e44959b47f4bcf77be273b6",
+   "section": "bids",
+   "kind": "terms",
+   "sheet": "Deal ledger",
+   "uid": "0e44959b47f4bcf77be273b6",
+   "row": 44,
+   "label": "#44 Bid · WDC",
+   "filing_key": {
+    "page": "30",
+    "block": "b621",
+    "quote": "WDC submitted a written second-round indication of interest at a price per share of $9.15 in cash, with a mark-up of the merger agreement"
+   },
+   "value": {},
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "stec:4"
+   ],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: CVR/earnout",
+     "new column: CVR/earnout value",
+     "new column: Due diligence",
+     "new column: Financing",
+     "new column: Regulatory",
+     "new column: Antitrust",
+     "new column: Exclusivity"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "price:f2bccb14094b87de10736a29",
+   "section": "bids",
+   "kind": "price",
+   "sheet": "Deal ledger",
+   "uid": "f2bccb14094b87de10736a29",
+   "row": 53,
+   "label": "#53 Bid · WDC",
+   "filing_key": {
+    "page": "32",
+    "block": "b640",
+    "quote": "WDC submitted a revised written indication of interest to acquire the company at a price range of $6.60 to $7.10 per share in cash"
+   },
+   "value": {
+    "Price low": "6.6",
+    "Price high": "7.1"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "stock:f2bccb14094b87de10736a29",
+   "section": "bids",
+   "kind": "stock",
+   "sheet": "Deal ledger",
+   "uid": "f2bccb14094b87de10736a29",
+   "row": 53,
+   "label": "#53 Bid · WDC",
+   "filing_key": {
+    "page": "32",
+    "block": "b640",
+    "quote": "WDC submitted a revised written indication of interest to acquire the company at a price range of $6.60 to $7.10 per share in cash"
+   },
+   "value": {
+    "All cash": "Yes"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "note": "All cash Yes crosswalks to Stock % 0"
+   },
+   "crosswalk": {
+    "All cash": "Yes",
+    "Stock %": 0
+   }
+  },
+  {
+   "id": "formality:f2bccb14094b87de10736a29",
+   "section": "bids",
+   "kind": "formality",
+   "sheet": "Deal ledger",
+   "uid": "f2bccb14094b87de10736a29",
+   "row": 53,
+   "label": "#53 Bid · WDC",
+   "filing_key": {
+    "page": "32",
+    "block": "b640",
+    "quote": "WDC submitted a revised written indication of interest to acquire the company at a price range of $6.60 to $7.10 per share in cash"
+   },
+   "value": {
+    "Formality": "Formal"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A5"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A5 (audit README §2)"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D9",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "conditions:f2bccb14094b87de10736a29",
+   "section": "bids",
+   "kind": "conditions",
+   "sheet": "Deal ledger",
+   "uid": "f2bccb14094b87de10736a29",
+   "row": 53,
+   "label": "#53 Bid · WDC",
+   "filing_key": {
+    "page": "32",
+    "block": "b640",
+    "quote": "WDC submitted a revised written indication of interest to acquire the company at a price range of $6.60 to $7.10 per share in cash"
+   },
+   "value": {
+    "Conditions": "Unclear"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "terms:f2bccb14094b87de10736a29",
+   "section": "bids",
+   "kind": "terms",
+   "sheet": "Deal ledger",
+   "uid": "f2bccb14094b87de10736a29",
+   "row": 53,
+   "label": "#53 Bid · WDC",
+   "filing_key": {
+    "page": "32",
+    "block": "b640",
+    "quote": "WDC submitted a revised written indication of interest to acquire the company at a price range of $6.60 to $7.10 per share in cash"
+   },
+   "value": {},
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: CVR/earnout",
+     "new column: CVR/earnout value",
+     "new column: Due diligence",
+     "new column: Financing",
+     "new column: Regulatory",
+     "new column: Antitrust",
+     "new column: Exclusivity"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "price:1914c22f7434ec4225f35b82",
+   "section": "bids",
+   "kind": "price",
+   "sheet": "Deal ledger",
+   "uid": "1914c22f7434ec4225f35b82",
+   "row": 55,
+   "label": "#55 Bid · WDC",
+   "filing_key": {
+    "page": "32",
+    "block": "b643",
+    "quote": "WDC submitted a written indication of interest of $6.85 per share in cash and indicated it could be in a position to announce a transaction on June 24, 2013"
+   },
+   "value": {
+    "Price low": "6.85",
+    "Price high": "6.85"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "stec:6"
+   ],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "stock:1914c22f7434ec4225f35b82",
+   "section": "bids",
+   "kind": "stock",
+   "sheet": "Deal ledger",
+   "uid": "1914c22f7434ec4225f35b82",
+   "row": 55,
+   "label": "#55 Bid · WDC",
+   "filing_key": {
+    "page": "32",
+    "block": "b643",
+    "quote": "WDC submitted a written indication of interest of $6.85 per share in cash and indicated it could be in a position to announce a transaction on June 24, 2013"
+   },
+   "value": {
+    "All cash": "Yes"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "stec:6"
+   ],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: Stock %"
+    ],
+    "note": "All cash Yes crosswalks to Stock % 0"
+   },
+   "crosswalk": {
+    "All cash": "Yes",
+    "Stock %": 0
+   }
+  },
+  {
+   "id": "formality:1914c22f7434ec4225f35b82",
+   "section": "bids",
+   "kind": "formality",
+   "sheet": "Deal ledger",
+   "uid": "1914c22f7434ec4225f35b82",
+   "row": 55,
+   "label": "#55 Bid · WDC",
+   "filing_key": {
+    "page": "32",
+    "block": "b643",
+    "quote": "WDC submitted a written indication of interest of $6.85 per share in cash and indicated it could be in a position to announce a transaction on June 24, 2013"
+   },
+   "value": {
+    "Formality": "Formal"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "stec:6"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D9",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "conditions:1914c22f7434ec4225f35b82",
+   "section": "bids",
+   "kind": "conditions",
+   "sheet": "Deal ledger",
+   "uid": "1914c22f7434ec4225f35b82",
+   "row": 55,
+   "label": "#55 Bid · WDC",
+   "filing_key": {
+    "page": "32",
+    "block": "b643",
+    "quote": "WDC submitted a written indication of interest of $6.85 per share in cash and indicated it could be in a position to announce a transaction on June 24, 2013"
+   },
+   "value": {
+    "Conditions": "Unclear"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "stec:5",
+    "stec:6"
+   ],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "H1–H3",
+     "express incorporation"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "terms:1914c22f7434ec4225f35b82",
+   "section": "bids",
+   "kind": "terms",
+   "sheet": "Deal ledger",
+   "uid": "1914c22f7434ec4225f35b82",
+   "row": 55,
+   "label": "#55 Bid · WDC",
+   "filing_key": {
+    "page": "32",
+    "block": "b643",
+    "quote": "WDC submitted a written indication of interest of $6.85 per share in cash and indicated it could be in a position to announce a transaction on June 24, 2013"
+   },
+   "value": {},
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "stec:6"
+   ],
+   "impact": {
+    "class": "new column",
+    "decisions": [
+     "new column: CVR/earnout",
+     "new column: CVR/earnout value",
+     "new column: Due diligence",
+     "new column: Financing",
+     "new column: Regulatory",
+     "new column: Antitrust",
+     "new column: Exclusivity"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:11b18092b491f919973740fc",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "11b18092b491f919973740fc",
+   "row": 1,
+   "label": "#1 Adviser · Gibson, Dunn & Crutcher LLP",
+   "filing_key": {
+    "page": "25",
+    "block": "b561",
+    "quote": "which had been engaged in October 2012 as the company’s outside corporate counsel"
+   },
+   "value": {
+    "When": "October 2012",
+    "Sort date": "2012-10-16",
+    "Date from": "2012-10-01",
+    "Date to": "2012-10-31"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:82a47d0fece9120a3e032532",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "82a47d0fece9120a3e032532",
+   "row": 2,
+   "label": "#2 Bidder interest · Company A",
+   "filing_key": {
+    "page": "24",
+    "block": "b558",
+    "quote": "an investment bank representing Company A, a participant in the storage industry, contacted our management to request a preliminary meeting between sTec and Company A"
+   },
+   "value": {
+    "When": "11/14/2012",
+    "Sort date": "2012-11-14",
+    "Date from": "2012-11-14",
+    "Date to": "2012-11-14"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:9d8f8b33b637639c394089b5",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "9d8f8b33b637639c394089b5",
+   "row": 3,
+   "label": "#3 Other material event · sTec",
+   "filing_key": {
+    "page": "24",
+    "block": "b558",
+    "quote": "it was subsequently cancelled because of concerns expressed by non-management board members, which were communicated to Company A"
+   },
+   "value": {
+    "When": "after 11/14/2012",
+    "Sort date": "2012-11-14",
+    "Date from": "2012-11-14",
+    "Date to": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:c9187989b33a3d72e21d16c6",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "c9187989b33a3d72e21d16c6",
+   "row": 4,
+   "label": "#4 Target sale decision · sTec",
+   "filing_key": {
+    "page": "24",
+    "block": "b557",
+    "quote": "in mid-November, 2012, our board of directors authorized management to contact potential financial advisors to explore their interest in representing the company"
+   },
+   "value": {
+    "When": "mid-November 2012",
+    "Sort date": "2012-11-15",
+    "Date from": "2012-11-11",
+    "Date to": "2012-11-19"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:5e73e1c111d2e81ce345a74f",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "5e73e1c111d2e81ce345a74f",
+   "row": 5,
+   "label": "#5 Activist · Balch Hill Partners, L.P.",
+   "filing_key": {
+    "page": "25",
+    "block": "b562",
+    "quote": "Balch Hill filed its first Schedule 13D with the SEC on November 16, 2012."
+   },
+   "value": {
+    "When": "11/16/2012",
+    "Sort date": "2012-11-16",
+    "Date from": "2012-11-16",
+    "Date to": "2012-11-16"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:0c75908d1d5314eb62742e90",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "0c75908d1d5314eb62742e90",
+   "row": 6,
+   "label": "#6 Activist · Balch Hill Partners, L.P.",
+   "filing_key": {
+    "page": "25",
+    "block": "b562",
+    "quote": "concurrently issued a letter to our board of directors urging our board to reduce costs, focus on products with a SAS interface, and explore strategic alternatives"
+   },
+   "value": {
+    "When": "12/06/2012",
+    "Sort date": "2012-12-06",
+    "Date from": "2012-12-06",
+    "Date to": "2012-12-06"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:00a327462413563d53bb8a4b",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "00a327462413563d53bb8a4b",
+   "row": 7,
+   "label": "#7 Target sale decision · sTec",
+   "filing_key": {
+    "page": "25",
+    "block": "b564",
+    "quote": "The mandate of the special committee was to conduct a review of sTec’s strategic alternatives, including a possible sale of the company"
+   },
+   "value": {
+    "When": "02/13/2013",
+    "Sort date": "2013-02-13",
+    "Date from": "2013-02-13",
+    "Date to": "2013-02-13"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "unresolved",
+   "status_reasons": [
+    "row marked needs decision"
+   ],
+   "audit": [
+    "stec:1"
+   ],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:2377c82dc784152e4cfe54b4",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "2377c82dc784152e4cfe54b4",
+   "row": 8,
+   "label": "#8 Bidder interest · Company B",
+   "filing_key": {
+    "page": "25",
+    "block": "b565",
+    "quote": "the President intended to present sTec as a possible acquisition target to the management of Company B"
+   },
+   "value": {
+    "When": "02/13/2013",
+    "Sort date": "2013-02-13",
+    "Date from": "2013-02-13",
+    "Date to": "2013-02-13"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:7f10317dee96881e9c430093",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "7f10317dee96881e9c430093",
+   "row": 9,
+   "label": "#9 Bidder interest · Company C",
+   "filing_key": {
+    "page": "26",
+    "block": "b575",
+    "quote": "expressed a potential interest in exploring an acquisition of particular assets of sTec’s business"
+   },
+   "value": {
+    "When": "03/13/2013",
+    "Sort date": "2013-03-13",
+    "Date from": "2013-03-13",
+    "Date to": "2013-03-13"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:3e23d04371696cfb8d3b0529",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "3e23d04371696cfb8d3b0529",
+   "row": 10,
+   "label": "#10 Bidder interest · Company D",
+   "filing_key": {
+    "page": "27",
+    "block": "b580",
+    "quote": "the head of corporate development for Company D, a participant in the storage industry, contacted our management to express the interest of Company D in exploring a potential acquisition"
+   },
+   "value": {
+    "When": "mid-March 2013",
+    "Sort date": "2013-03-15",
+    "Date from": "2013-03-11",
+    "Date to": "2013-03-19"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:9b198c1a08187c065196a751",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "9b198c1a08187c065196a751",
+   "row": 11,
+   "label": "#11 Adviser · BofA Merrill Lynch",
+   "filing_key": {
+    "page": "27",
+    "block": "b581",
+    "quote": "the board approved retaining BofA Merrill Lynch to act as sTec’s financial advisor in connection with the company’s general review of strategic alternatives and defensive preparedness"
+   },
+   "value": {
+    "When": "03/26/2013",
+    "Sort date": "2013-03-26",
+    "Date from": "2013-03-26",
+    "Date to": "2013-03-26"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:d70d08347a40ad8b4e94a55f",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "d70d08347a40ad8b4e94a55f",
+   "row": 12,
+   "label": "#12 Target sale decision · sTec",
+   "filing_key": {
+    "page": "27",
+    "block": "b581",
+    "quote": "to confidentially approach strategic buyers that the board believed would be most likely to have interest in a potential acquisition of the company to explore their interest"
+   },
+   "value": {
+    "When": "03/26/2013",
+    "Sort date": "2013-03-26",
+    "Date from": "2013-03-26",
+    "Date to": "2013-03-26"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:a31c8608a1679e590a63a9f8",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "a31c8608a1679e590a63a9f8",
+   "row": 13,
+   "label": "#13 Round opened · sTec",
+   "filing_key": {
+    "page": "27",
+    "block": "b584",
+    "quote": "On April 1, 2013, as directed by the special committee, BofA Merrill Lynch began contacting potential acquirers of sTec."
+   },
+   "value": {
+    "When": "04/01/2013",
+    "Sort date": "2013-04-01",
+    "Date from": "2013-04-01",
+    "Date to": "2013-04-01"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "unresolved",
+   "status_reasons": [
+    "row marked needs decision"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:56de4e2739917c3d44b552b7",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "56de4e2739917c3d44b552b7",
+   "row": 14,
+   "label": "#14 Contact · Technology companies contacted in BofA outreach (residual, incl. WDC)",
+   "filing_key": {
+    "page": "27",
+    "block": "b584",
+    "quote": "In total, BofA Merrill Lynch had discussions with 18 prospective acquirers, 17 of which were technology companies and one of which was a financial sponsor."
+   },
+   "value": {
+    "When": "from 04/01/2013",
+    "Sort date": "2013-04-01",
+    "Date from": "2013-04-01",
+    "Date to": "2013-06-23"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:67664c25837ad0c6fc000e9a",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "67664c25837ad0c6fc000e9a",
+   "row": 15,
+   "label": "#15 Contact · Unnamed financial sponsor",
+   "filing_key": {
+    "page": "27",
+    "block": "b584",
+    "quote": "nine prospective acquirers, including the financial sponsor and Company A, indicated they were not interested in a potential transaction"
+   },
+   "value": {
+    "When": "from 04/01/2013",
+    "Sort date": "2013-04-01",
+    "Date from": "2013-04-01",
+    "Date to": "2013-06-23"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:42b0846daa88e947d3400486",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "42b0846daa88e947d3400486",
+   "row": 16,
+   "label": "#16 NDA signed · Company E",
+   "filing_key": {
+    "page": "27",
+    "block": "b586",
+    "quote": "On April 4, 2013, sTec entered into a non-disclosure agreement with Company E, a participant in the storage industry"
+   },
+   "value": {
+    "When": "04/04/2013",
+    "Sort date": "2013-04-04",
+    "Date from": "2013-04-04",
+    "Date to": "2013-04-04"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:9c7ad0fae9dc75ef954d5763",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "9c7ad0fae9dc75ef954d5763",
+   "row": 17,
+   "label": "#17 NDA signed · Company D",
+   "filing_key": {
+    "page": "27",
+    "block": "b586",
+    "quote": "on April 10, it entered into a non-disclosure agreement with Company D"
+   },
+   "value": {
+    "When": "04/10/2013",
+    "Sort date": "2013-04-10",
+    "Date from": "2013-04-10",
+    "Date to": "2013-04-10"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:c7db290eac6f3016592b8efb",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "c7db290eac6f3016592b8efb",
+   "row": 18,
+   "label": "#18 NDA signed · Company F",
+   "filing_key": {
+    "page": "27",
+    "block": "b586",
+    "quote": "on April 11, it entered into a non-disclosure agreement with Company F, another"
+   },
+   "value": {
+    "When": "04/11/2013",
+    "Sort date": "2013-04-11",
+    "Date from": "2013-04-11",
+    "Date to": "2013-04-11"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:02f10fa7016396ebb26cdb75",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "02f10fa7016396ebb26cdb75",
+   "row": 19,
+   "label": "#19 Other material event · Company C",
+   "filing_key": {
+    "page": "28",
+    "block": "b590",
+    "quote": "Company C indicated that it was only interested in purchasing limited, select assets of the company, and as a result, the special committee decided not to continue discussions"
+   },
+   "value": {
+    "When": "04/15/2013",
+    "Sort date": "2013-04-15",
+    "Date from": "2013-04-15",
+    "Date to": "2013-04-15"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:e0db1de01e3cd9ad3ff4b8a1",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "e0db1de01e3cd9ad3ff4b8a1",
+   "row": 20,
+   "label": "#20 NDA signed · Company G",
+   "filing_key": {
+    "page": "28",
+    "block": "b589",
+    "quote": "on April 17, it entered into a non-disclosure agreement with Company G, a participant in the storage industry"
+   },
+   "value": {
+    "When": "04/17/2013",
+    "Sort date": "2013-04-17",
+    "Date from": "2013-04-17",
+    "Date to": "2013-04-17"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:f760833c28611fa6e501debe",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "f760833c28611fa6e501debe",
+   "row": 21,
+   "label": "#21 NDA signed · WDC",
+   "filing_key": {
+    "page": "28",
+    "block": "b589",
+    "quote": "Also on April 17, 2013, sTec entered into an addendum to its existing non-disclosure agreement with WDC."
+   },
+   "value": {
+    "When": "04/17/2013",
+    "Sort date": "2013-04-17",
+    "Date from": "2013-04-17",
+    "Date to": "2013-04-17"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:e4a66b112edcc603a0919596",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "e4a66b112edcc603a0919596",
+   "row": 22,
+   "label": "#22 Deadline set · sTec",
+   "filing_key": {
+    "page": "28",
+    "block": "b593",
+    "quote": "BofA Merrill Lynch sent process letters to WDC and Company D requesting non-binding indications of interest by May 3, 2013"
+   },
+   "value": {
+    "When": "04/23/2013",
+    "Sort date": "2013-04-23",
+    "Date from": "2013-04-23",
+    "Date to": "2013-04-23"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D11"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:daa349b93528124b72c5077f",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "daa349b93528124b72c5077f",
+   "row": 23,
+   "label": "#23 Bid · Company D",
+   "filing_key": {
+    "page": "28",
+    "block": "b593",
+    "quote": "Company D provided a verbal indication of its interest to pursue a transaction at a price greater than $5.60 per share"
+   },
+   "value": {
+    "When": "04/23/2013",
+    "Sort date": "2013-04-23",
+    "Date from": "2013-04-23",
+    "Date to": "2013-04-23"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:bdfa07715f88f7cdfd12d98f",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "bdfa07715f88f7cdfd12d98f",
+   "row": 24,
+   "label": "#24 Withdrew · Company F",
+   "filing_key": {
+    "page": "28",
+    "block": "b590",
+    "quote": "on April 24, Company F declined the invitation to schedule a management presentation, indicating it was only interested in purchasing limited, select assets of sTec"
+   },
+   "value": {
+    "When": "04/24/2013",
+    "Sort date": "2013-04-24",
+    "Date from": "2013-04-24",
+    "Date to": "2013-04-24"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:f4b99b9499256c95fa9047d1",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "f4b99b9499256c95fa9047d1",
+   "row": 25,
+   "label": "#25 Dropped by target · Company E",
+   "filing_key": {
+    "page": "28",
+    "block": "b590",
+    "quote": "Company E indicated it was also only interested in purchasing limited, select assets of sTec, and as a result the special committee decided not to continue discussions with Company E"
+   },
+   "value": {
+    "When": "shortly after 04/24/2013",
+    "Sort date": "2013-04-24",
+    "Date from": "2013-04-24",
+    "Date to": ""
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:db115e46b0c27e78900649ca",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "db115e46b0c27e78900649ca",
+   "row": 26,
+   "label": "#26 Deadline set · sTec",
+   "filing_key": {
+    "page": "28",
+    "block": "b597",
+    "quote": "BofA Merrill Lynch sent a process letter to Company G requesting a non-binding indication of interest by May 3, 2013"
+   },
+   "value": {
+    "When": "04/26/2013",
+    "Sort date": "2013-04-26",
+    "Date from": "2013-04-26",
+    "Date to": "2013-04-26"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D11"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:28a64e836f77383a33e41cf1",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "28a64e836f77383a33e41cf1",
+   "row": 27,
+   "label": "#27 Bidder interest · Company H",
+   "filing_key": {
+    "page": "29",
+    "block": "b600",
+    "quote": "On May 1, 2013, Company H contacted representatives of BofA Merrill Lynch expressing an interest in a potential transaction with sTec."
+   },
+   "value": {
+    "When": "05/01/2013",
+    "Sort date": "2013-05-01",
+    "Date from": "2013-05-01",
+    "Date to": "2013-05-01"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:b16f197835d54ab1d279c8c7",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "b16f197835d54ab1d279c8c7",
+   "row": 28,
+   "label": "#28 Bid · WDC",
+   "filing_key": {
+    "page": "29",
+    "block": "b602",
+    "quote": "WDC submitted a written indication of interest to acquire the company at a purchase price in the range of $6.60 – $7.10 per share in cash"
+   },
+   "value": {
+    "When": "05/03/2013",
+    "Sort date": "2013-05-03",
+    "Date from": "2013-05-03",
+    "Date to": "2013-05-03"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:a0cdbc579895afee275da55e",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "a0cdbc579895afee275da55e",
+   "row": 29,
+   "label": "#29 Withdrew · Company G",
+   "filing_key": {
+    "page": "29",
+    "block": "b602",
+    "quote": "Also on May 3, 2013, Company G indicated it would not continue in the process."
+   },
+   "value": {
+    "When": "05/03/2013",
+    "Sort date": "2013-05-03",
+    "Date from": "2013-05-03",
+    "Date to": "2013-05-03"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:38290d0da28eb887d1bb907b",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "38290d0da28eb887d1bb907b",
+   "row": 30,
+   "label": "#30 Deadline · sTec",
+   "filing_key": {
+    "page": "28",
+    "block": "b593",
+    "quote": "requesting non-binding indications of interest by May 3, 2013"
+   },
+   "value": {
+    "When": "05/03/2013",
+    "Sort date": "2013-05-03",
+    "Date from": "2013-05-03",
+    "Date to": "2013-05-03"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D11"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:2737738ad041c579316fd4de",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "2737738ad041c579316fd4de",
+   "row": 31,
+   "label": "#31 NDA signed · Company H",
+   "filing_key": {
+    "page": "29",
+    "block": "b606",
+    "quote": "Also on May 8, 2013, sTec entered into a non-disclosure agreement with Company H."
+   },
+   "value": {
+    "When": "05/08/2013",
+    "Sort date": "2013-05-08",
+    "Date from": "2013-05-08",
+    "Date to": "2013-05-08"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:4426ef9375edb616745f8404",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "4426ef9375edb616745f8404",
+   "row": 32,
+   "label": "#32 Other material event · Company H",
+   "filing_key": {
+    "page": "29",
+    "block": "b608",
+    "quote": "On May 10, 2013, sTec held a management presentation with Company H."
+   },
+   "value": {
+    "When": "05/10/2013",
+    "Sort date": "2013-05-10",
+    "Date from": "2013-05-10",
+    "Date to": "2013-05-10"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:7dda881b628a6a2d4c74c10b",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "7dda881b628a6a2d4c74c10b",
+   "row": 33,
+   "label": "#33 Other material event · WDC",
+   "filing_key": {
+    "page": "29",
+    "block": "b609",
+    "quote": "Also on May 10, 2013, sTec granted access to WDC to the virtual data room."
+   },
+   "value": {
+    "When": "05/10/2013",
+    "Sort date": "2013-05-10",
+    "Date from": "2013-05-10",
+    "Date to": "2013-05-10"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:999cb9367c3f408116413e42",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "999cb9367c3f408116413e42",
+   "row": 34,
+   "label": "#34 Bid · Company D",
+   "filing_key": {
+    "page": "29",
+    "block": "b610",
+    "quote": "Company D submitted a written non-binding indication of interest to acquire the company at a purchase price of $5.75 per share in cash, along with a draft exclusivity agreement"
+   },
+   "value": {
+    "When": "05/10/2013",
+    "Sort date": "2013-05-10",
+    "Date from": "2013-05-10",
+    "Date to": "2013-05-10"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:a8ddeedb322ec5717291556d",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "a8ddeedb322ec5717291556d",
+   "row": 35,
+   "label": "#35 Exclusivity changed · Company D",
+   "filing_key": {
+    "page": "29",
+    "block": "b610",
+    "quote": "along with a draft exclusivity agreement"
+   },
+   "value": {
+    "When": "05/10/2013",
+    "Sort date": "2013-05-10",
+    "Date from": "2013-05-10",
+    "Date to": "2013-05-10"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D15"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:014b564f999c1bd67656cd29",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "014b564f999c1bd67656cd29",
+   "row": 36,
+   "label": "#36 Other material event · Company D",
+   "filing_key": {
+    "page": "29",
+    "block": "b611",
+    "quote": "On May 14, 2013, sTec granted access to Company D to the virtual data room."
+   },
+   "value": {
+    "When": "05/14/2013",
+    "Sort date": "2013-05-14",
+    "Date from": "2013-05-14",
+    "Date to": "2013-05-14"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:a78e9614503a39ddf851c02c",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "a78e9614503a39ddf851c02c",
+   "row": 37,
+   "label": "#37 Bid · Company H",
+   "filing_key": {
+    "page": "29",
+    "block": "b612",
+    "quote": "Company H submitted a written non-binding indication of interest to acquire the company at a purchase price in the range of $5.00 – $5.75 per share in cash"
+   },
+   "value": {
+    "When": "05/15/2013",
+    "Sort date": "2013-05-15",
+    "Date from": "2013-05-15",
+    "Date to": "2013-05-15"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:3c6c1c0e0c8c20d3093e23b4",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "3c6c1c0e0c8c20d3093e23b4",
+   "row": 38,
+   "label": "#38 Other material event · Company D",
+   "filing_key": {
+    "page": "29",
+    "block": "b613",
+    "quote": "Company D would be allowed to continue in the process with the understanding that Company D would need to meaningfully increase its proposal"
+   },
+   "value": {
+    "When": "05/15/2013",
+    "Sort date": "2013-05-15",
+    "Date from": "2013-05-15",
+    "Date to": "2013-05-15"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:626f0be9d9489110fbd68ca6",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "626f0be9d9489110fbd68ca6",
+   "row": 39,
+   "label": "#39 Round opened · sTec",
+   "filing_key": {
+    "page": "30",
+    "block": "b619",
+    "quote": "BofA Merrill Lynch sent final round process letters and a draft merger agreement to WDC and Company D, requesting a response by May 28, 2013"
+   },
+   "value": {
+    "When": "after 05/16/2013",
+    "Sort date": "2013-05-16",
+    "Date from": "2013-05-16",
+    "Date to": "2013-05-28"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A15"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A15 (audit README §2)"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:56e96d423b60b4b87853f3e7",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "56e96d423b60b4b87853f3e7",
+   "row": 40,
+   "label": "#40 Adviser · Latham & Watkins LLP",
+   "filing_key": {
+    "page": "29",
+    "block": "b614",
+    "quote": "representatives of Latham & Watkins LLP (“Latham & Watkins”), litigation counsel to sTec and Mr. Manouch Moshayedi, held due diligence calls and meetings with WDC and Company D"
+   },
+   "value": {
+    "When": "weeks of 05/13 and 05/20/2013",
+    "Sort date": "2013-05-19",
+    "Date from": "2013-05-13",
+    "Date to": "2013-05-26"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:c21bdeef33a5834f2255ecd0",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "c21bdeef33a5834f2255ecd0",
+   "row": 41,
+   "label": "#41 Other material event · Company H",
+   "filing_key": {
+    "page": "30",
+    "block": "b617",
+    "quote": "the price range Company H had submitted was not sufficient to move them forward in the process"
+   },
+   "value": {
+    "When": "weeks of 05/13 and 05/20/2013, after 05/15",
+    "Sort date": "2013-05-20",
+    "Date from": "2013-05-15",
+    "Date to": "2013-05-23"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "stec:2"
+   ],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:da96cd3287d04f036b8f7a72",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "da96cd3287d04f036b8f7a72",
+   "row": 42,
+   "label": "#42 Dropped by target · Company H",
+   "filing_key": {
+    "page": "30",
+    "block": "b620",
+    "quote": "Company H remained interested in a potential acquisition of the company but that Company H was not able to increase its indicated value range"
+   },
+   "value": {
+    "When": "05/23/2013",
+    "Sort date": "2013-05-23",
+    "Date from": "2013-05-23",
+    "Date to": "2013-05-23"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A15"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A15 (audit README §2)"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:4866e3796711aca1c7e4ed08",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "4866e3796711aca1c7e4ed08",
+   "row": 43,
+   "label": "#43 Adviser · Shearman & Sterling LLP",
+   "filing_key": {
+    "page": "33",
+    "block": "b652",
+    "quote": "proposed revisions to the merger agreement markup received from Shearman on May 28, 2013"
+   },
+   "value": {
+    "When": "05/28/2013",
+    "Sort date": "2013-05-28",
+    "Date from": "2013-05-28",
+    "Date to": "2013-05-28"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:0e44959b47f4bcf77be273b6",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "0e44959b47f4bcf77be273b6",
+   "row": 44,
+   "label": "#44 Bid · WDC",
+   "filing_key": {
+    "page": "30",
+    "block": "b621",
+    "quote": "WDC submitted a written second-round indication of interest at a price per share of $9.15 in cash, with a mark-up of the merger agreement"
+   },
+   "value": {
+    "When": "05/28/2013",
+    "Sort date": "2013-05-28",
+    "Date from": "2013-05-28",
+    "Date to": "2013-05-28"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "stec:4"
+   ],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:8eaf7f9684764bba4b9c3e3f",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "8eaf7f9684764bba4b9c3e3f",
+   "row": 45,
+   "label": "#45 Deadline · sTec",
+   "filing_key": {
+    "page": "30",
+    "block": "b622",
+    "quote": "Company D needed approximately two weeks of additional time to continue its ongoing due diligence review and to submit a written indication of interest and mark-up of the merger agreement"
+   },
+   "value": {
+    "When": "05/28/2013",
+    "Sort date": "2013-05-28",
+    "Date from": "2013-05-28",
+    "Date to": "2013-05-28"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A15"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A15 (audit README §2)"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D11"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:eb52ccb9bb3d728b428fa658",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "eb52ccb9bb3d728b428fa658",
+   "row": 46,
+   "label": "#46 Deadline revised · sTec",
+   "filing_key": {
+    "page": "30",
+    "block": "b623",
+    "quote": "directed BofA Merrill Lynch to request a “best and final” proposal from WDC and a “best and final” written proposal from Company D by May 30, 2013"
+   },
+   "value": {
+    "When": "05/29/2013",
+    "Sort date": "2013-05-29",
+    "Date from": "2013-05-29",
+    "Date to": "2013-05-29"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A15"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A15 (audit README §2)"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D11"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:d06bc6075866fe815ceb9539",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "d06bc6075866fe815ceb9539",
+   "row": 47,
+   "label": "#47 Deadline · sTec",
+   "filing_key": {
+    "page": "31",
+    "block": "b627",
+    "quote": "representatives of WDC verbally indicated that WDC’s indication of interest to acquire the company at a price of $9.15 per share was WDC’s best possible price"
+   },
+   "value": {
+    "When": "05/30/2013",
+    "Sort date": "2013-05-30",
+    "Date from": "2013-05-30",
+    "Date to": "2013-05-30"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A15"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A15 (audit README §2)"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D11"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:908f9ba6a840b37cde0832b6",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "908f9ba6a840b37cde0832b6",
+   "row": 48,
+   "label": "#48 Other material event · sTec",
+   "filing_key": {
+    "page": "31",
+    "block": "b629",
+    "quote": "Our board of directors unanimously determined to move forward with WDC on their proposed terms"
+   },
+   "value": {
+    "When": "05/30/2013",
+    "Sort date": "2013-05-30",
+    "Date from": "2013-05-30",
+    "Date to": "2013-05-30"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A15"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A15 (audit README §2)"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:3c0c5f02ca0ca3344145842b",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "3c0c5f02ca0ca3344145842b",
+   "row": 49,
+   "label": "#49 Withdrew · WDC",
+   "filing_key": {
+    "page": "31",
+    "block": "b631",
+    "quote": "WDC was reevaluating its interest in acquiring sTec, and that WDC was not prepared to move forward with a transaction with sTec at that time"
+   },
+   "value": {
+    "When": "05/31/2013",
+    "Sort date": "2013-05-31",
+    "Date from": "2013-05-31",
+    "Date to": "2013-05-31"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A15"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A15 (audit README §2)"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:7b32ff08c6ce0184a486c4d3",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "7b32ff08c6ce0184a486c4d3",
+   "row": 50,
+   "label": "#50 Round opened · sTec",
+   "filing_key": {
+    "page": "31",
+    "block": "b633",
+    "quote": "informed Company D’s representatives that timing for sTec’s process had been delayed, and that Company D had an opportunity to continue in the process"
+   },
+   "value": {
+    "When": "05/31/2013",
+    "Sort date": "2013-05-31",
+    "Date from": "2013-05-31",
+    "Date to": "2013-05-31"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A15"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A15 (audit README §2)",
+    "row marked needs decision"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "re-judge",
+    "decisions": [
+     "D8"
+    ],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:11cc2f7891f00defc70cb263",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "11cc2f7891f00defc70cb263",
+   "row": 51,
+   "label": "#51 Withdrew · Company D",
+   "filing_key": {
+    "page": "32",
+    "block": "b639",
+    "quote": "Company D would not be in a position to actively conduct due diligence for more than two weeks and was disengaging from the process"
+   },
+   "value": {
+    "When": "06/05/2013",
+    "Sort date": "2013-06-05",
+    "Date from": "2013-06-05",
+    "Date to": "2013-06-05"
+   },
+   "basis": "convention",
+   "basis_refs": [
+    "A15"
+   ],
+   "status": "unresolved",
+   "status_reasons": [
+    "rests on open convention question A15 (audit README §2)"
+   ],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:ae075fd73adb0a6556eb3ac1",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "ae075fd73adb0a6556eb3ac1",
+   "row": 52,
+   "label": "#52 Re-entered · WDC",
+   "filing_key": {
+    "page": "32",
+    "block": "b638",
+    "quote": "were reconsidering their interest in a transaction with sTec"
+   },
+   "value": {
+    "When": "06/10/2013",
+    "Sort date": "2013-06-10",
+    "Date from": "2013-06-10",
+    "Date to": "2013-06-10"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:f2bccb14094b87de10736a29",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "f2bccb14094b87de10736a29",
+   "row": 53,
+   "label": "#53 Bid · WDC",
+   "filing_key": {
+    "page": "32",
+    "block": "b640",
+    "quote": "WDC submitted a revised written indication of interest to acquire the company at a price range of $6.60 to $7.10 per share in cash"
+   },
+   "value": {
+    "When": "06/10/2013",
+    "Sort date": "2013-06-10",
+    "Date from": "2013-06-10",
+    "Date to": "2013-06-10"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:4be70415fdbc43ca90c166ec",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "4be70415fdbc43ca90c166ec",
+   "row": 54,
+   "label": "#54 Other material event · sTec",
+   "filing_key": {
+    "page": "32",
+    "block": "b642",
+    "quote": "our board of directors would not consider a proposal with a range of value and requested that WDC submit a specific proposal reflecting its best offer"
+   },
+   "value": {
+    "When": "06/11/2013",
+    "Sort date": "2013-06-11",
+    "Date from": "2013-06-11",
+    "Date to": "2013-06-11"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:1914c22f7434ec4225f35b82",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "1914c22f7434ec4225f35b82",
+   "row": 55,
+   "label": "#55 Bid · WDC",
+   "filing_key": {
+    "page": "32",
+    "block": "b643",
+    "quote": "WDC submitted a written indication of interest of $6.85 per share in cash and indicated it could be in a position to announce a transaction on June 24, 2013"
+   },
+   "value": {
+    "When": "06/14/2013",
+    "Sort date": "2013-06-14",
+    "Date from": "2013-06-14",
+    "Date to": "2013-06-14"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [
+    "stec:6"
+   ],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:0204d11cb7a286eb5e8715f3",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "0204d11cb7a286eb5e8715f3",
+   "row": 56,
+   "label": "#56 Other material event · sTec",
+   "filing_key": {
+    "page": "33",
+    "block": "b647",
+    "quote": "it was unlikely that WDC would raise its price further and there was a significant risk that WDC would withdraw the indication of interest if sTec responded with a counterproposal"
+   },
+   "value": {
+    "When": "06/15/2013",
+    "Sort date": "2013-06-15",
+    "Date from": "2013-06-15",
+    "Date to": "2013-06-15"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:855cfae254dfc89c49928473",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "855cfae254dfc89c49928473",
+   "row": 57,
+   "label": "#57 Adviser · Paul Hastings LLP",
+   "filing_key": {
+    "page": "33",
+    "block": "b651",
+    "quote": "representatives from Paul Hastings LLP (“Paul Hastings”), counsel to Messrs. Moshayedi, and Shearman & Sterling LLP (“Shearman”), counsel to WDC, commenced negotiating"
+   },
+   "value": {
+    "When": "06/17/2013",
+    "Sort date": "2013-06-17",
+    "Date from": "2013-06-17",
+    "Date to": "2013-06-17"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:fcaee76e6de6583046c676b7",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "fcaee76e6de6583046c676b7",
+   "row": 58,
+   "label": "#58 Other material event · WDC",
+   "filing_key": {
+    "page": "33",
+    "block": "b650",
+    "quote": "on June 18, 2013, sTec and WDC entered into a “clean team agreement” to allow certain representatives of WDC access to further information in the data room"
+   },
+   "value": {
+    "When": "06/18/2013",
+    "Sort date": "2013-06-18",
+    "Date from": "2013-06-18",
+    "Date to": "2013-06-18"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:8da24e383f9d202b01313e91",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "8da24e383f9d202b01313e91",
+   "row": 59,
+   "label": "#59 Other material event · sTec",
+   "filing_key": {
+    "page": "34",
+    "block": "b655",
+    "quote": "Shearman communicated that WDC would not agree to this waiver"
+   },
+   "value": {
+    "When": "06/20/2013–06/23/2013",
+    "Sort date": "2013-06-21",
+    "Date from": "2013-06-20",
+    "Date to": "2013-06-23"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:222e47c2bee14a7cd7268e34",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "222e47c2bee14a7cd7268e34",
+   "row": 60,
+   "label": "#60 Merger agreement signed · WDC",
+   "filing_key": {
+    "page": "35",
+    "block": "b661",
+    "quote": "On June 23, 2013, sTec, WDC, and Merger Sub executed the merger agreement"
+   },
+   "value": {
+    "When": "06/23/2013",
+    "Sort date": "2013-06-23",
+    "Date from": "2013-06-23",
+    "Date to": "2013-06-23"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  },
+  {
+   "id": "order:b3a422a6184bd49f30289d61",
+   "section": "order of events",
+   "kind": "order",
+   "sheet": "Deal ledger",
+   "uid": "b3a422a6184bd49f30289d61",
+   "row": 61,
+   "label": "#61 Merger announced · sTec and WDC",
+   "filing_key": {
+    "page": "35",
+    "block": "b662",
+    "quote": "WDC and sTec announced in a joint press release the execution of the merger agreement"
+   },
+   "value": {
+    "When": "06/24/2013",
+    "Sort date": "2013-06-24",
+    "Date from": "2013-06-24",
+    "Date to": "2013-06-24"
+   },
+   "basis": "reported",
+   "basis_refs": [],
+   "status": "supported",
+   "status_reasons": [],
+   "audit": [],
+   "impact": {
+    "class": "unchanged",
+    "decisions": [],
+    "note": ""
+   }
+  }
+ ],
+ "audit_checks": {
+  "inventory_changes": 12,
+  "changes_on_current_rows": 6,
+  "final_ref_differs_from_current_number": [],
+  "convention_refs_not_resolved": []
+ }
+}

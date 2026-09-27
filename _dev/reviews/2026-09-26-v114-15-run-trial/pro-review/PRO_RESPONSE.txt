@@ -1,0 +1,31 @@
+The 14-page report assesses all 15 workbooks, reconstructs each deal from the supplied filings, and supports the judgments with filing-page references and workbook event numbers. It also separates extraction errors from ambiguities in v1.14 and conflicts with the earlier research notes.
+
+Scores
+
+These are research-usefulness scores out of 100, not percentages of correct cells. The weighting is 35% participant reconstruction and exits, 25% process and chronology, 30% bid economics and information, and 10% traceability and review usability.
+
+Deal	A	B	C	D	E
+Mac-Gray	94	82	87	90	80
+Providence & Worcester	86	94	90	78	84
+sTec	89	94	92	84	82
+
+Letters are compared only within each deal. Differences of two or three points should not be treated as decisive.
+
+Recommended starting ledgers
+
+Mac-Gray A, with D as a useful cross-check. A handles the anonymous NDA cohort more safely, preserves the distinction between upfront cash and performance-contingent consideration, and records material commitment changes without automatically inventing additional observed prices.
+
+Providence & Worcester B, with C as a cross-check. B is strongest on unresolved cohort membership, bidder-specific terms, continuing versus renewed participation, and the timing of information and regulatory assessments.
+
+sTec B, with C a close alternative. Both preserve the unusual withdrawal-and-return sequence and, importantly, represent WDC’s late restriction on waiving rival standstills as a structured commitment condition—not merely narrative background.
+
+Overall judgment
+
+The best workbooks are strong human-reviewable first passes, but none should enter structural estimation unchanged. The most consequential weaknesses are generally not missing headline prices. They are unsupported participant closures, overlapping cohort counts, overly strong condition assignments, and economically important facts that appear in prose but do not reach the structured fields.
+
+A particularly important finding is that genuine quotations do not guarantee correct economic coding. All 1,024 ledger quotation anchors were source-locatable after normalization and review, yet several accompanying classifications remain unsupported or convention-dependent.
+
+All supplied files were readable. The original workbooks were preserved, and checks against the supplied manifest confirmed that all 22 listed input files remained byte-identical.
+
+SEC_Anonymous_Extraction_Review.pdf
+PDF

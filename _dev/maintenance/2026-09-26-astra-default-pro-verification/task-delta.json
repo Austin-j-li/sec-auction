@@ -1,0 +1,205 @@
+{
+  "main": [
+    {
+      "path": "AGENTS.md",
+      "before_sha256": "a82c0145ecaed70ebff8c3eceb638efaf57cff90b1900bad31dc427b6e53158d",
+      "after_sha256": "4c048eca4c9db93e4fbb1557bbb5ba13acca3422951f49a2759d01b2f025016b",
+      "changed": true
+    },
+    {
+      "path": "_dev/COCKPIT_APP_SPEC.md",
+      "before_sha256": "494d070364078517818e6dff7930daed97944b5201894ce3ddcaf040828c8f9a",
+      "after_sha256": "7001128f202162a597b35f563bb80fca8a26afbfdf7cf6bc8e2690d5038205a2",
+      "changed": true
+    },
+    {
+      "path": "_dev/HANDOFF.md",
+      "before_sha256": "ac00a17017fbef5e971f5b90b72488d285102c035c8dfdb2d5531eb491f4afdb",
+      "after_sha256": "5902c02a014186e5900465203989aef6dc5d1cac2f9c1a51c26652e1ac53e1a6",
+      "changed": true
+    },
+    {
+      "path": "_dev/cockpit/README.md",
+      "before_sha256": "9d54b775690ec8955b0d80b394327b45dc551439fa8ceaf92a80975c7447c4c6",
+      "after_sha256": "f1d7305ee74322f727e28ef522a3494aebd6a650f86bbd44b6cfb2b26d5aab53",
+      "changed": true
+    },
+    {
+      "path": "_dev/maintenance/2026-09-24-bid-terms-taxonomy/release/README.md",
+      "before_sha256": "8a0775925c300d4de395abc379f22923e59ab6070a5608b1da592481b845220d",
+      "after_sha256": "954c1829bfcff28e9a2a823488a727e46e894ecf3137562296b8a72b1bfb4d5d",
+      "changed": true
+    },
+    {
+      "path": "_dev/tools/README.md",
+      "before_sha256": "eb6cbdc9d7add0f70707e1e8b771fa192617f9fc8ec958c1b9bbf0be6a69b459",
+      "after_sha256": "c36a31bef271ec73e5d4cda3b9cfb0ca643036ff8de60fb52692949bba21c3f4",
+      "changed": true
+    },
+    {
+      "path": "_dev/tools/cockpit/frontend/src/runs.js",
+      "before_sha256": "e898ab77487d580742f750e4299ad5ff6e25f5540f4048d117e563eb2bd31321",
+      "after_sha256": "01da34a7fe797546fbfc0e3c0dee2ea727912f81dbb14aec618819a32ce813be",
+      "changed": true
+    },
+    {
+      "path": "_dev/tools/cockpit/frontend/src/runs.test.js",
+      "before_sha256": "152271f3a9cb1f865a5e5fa5b0c42ee37add8dd7b0c2da50b0b9830585b51a3b",
+      "after_sha256": "02adf99a719eb5dfa0e2366d254828bb1050bdc37515ff9e613e30574f081f0e",
+      "changed": true
+    },
+    {
+      "path": "_dev/tools/cockpit/runs.py",
+      "before_sha256": "97130cbf3488ee7729fb9569dbc1cf86433e4178fcb62d0daed3c2fa5f35d1c6",
+      "after_sha256": "77f90e9de25ffd4be1e0d98b1177b5843746f5e854a0f3b291d2604d4d259f6c",
+      "changed": true
+    },
+    {
+      "path": "_dev/tools/cockpit/worker.py",
+      "before_sha256": "8160648e6102aa075aaa057e505bb80f1cc609e89aaef2b1c67311567409c601",
+      "after_sha256": "ccebf67aeecc72a885639e3eb4b9bb10306ec9a4f2d31c0d4b894bc2b38d4528",
+      "changed": true
+    },
+    {
+      "path": "_dev/tools/sandbox/run_model.py",
+      "before_sha256": "b260eb65e1e6e3b7dac84fc7f4f3b4a312de926555f4ecc96633a8e98b824ab5",
+      "after_sha256": "09716083251243a789fdecbe62b75c8b8e63eadf784b64ebff3a14a08219aed0",
+      "changed": true
+    },
+    {
+      "path": "_dev/tools/test_cockpit_deals.py",
+      "before_sha256": "ed4cab4c4bca6531586f3dc29c28d3048ed86e8629039ba2d103e64c8ced3d10",
+      "after_sha256": "11baf68335c79fcc6e9f0935ac5b1959c80a8993e6f83eda88a89ad294040232",
+      "changed": true
+    },
+    {
+      "path": "_dev/tools/test_cockpit_phase4.py",
+      "before_sha256": "da678139edbd28ea9dec975a633d091d97564614738eca51d221c065f04b0d91",
+      "after_sha256": "d789379e8db495d530f323b1f3c11eb8afb5848a7418992af48a654ef7ce51f3",
+      "changed": true
+    },
+    {
+      "path": "_dev/tools/test_cockpit_runs.py",
+      "before_sha256": "3e9c023a246c49ea6689817f596e1cbe7a7b67589e56b309808d7b3850be6e16",
+      "after_sha256": "3a1db99c0866c074510ef77c6842d7b0be0418f59c1af03aec4edf682ac380cb",
+      "changed": true
+    },
+    {
+      "path": "_dev/tools/test_run_model.py",
+      "before_sha256": "7943cea2e239075ece324a3a7404c461325cbbe8313e6c75b6c7ec1a1ccda1f7",
+      "after_sha256": "eec40853449bcbc966b918c5aa17eef67aa53bb0fb87694309b30c6b7a022b09",
+      "changed": true
+    }
+  ],
+  "upgrade": [
+    {
+      "path": "AGENTS.md",
+      "before_sha256": "33014a66711518d66e44dd8efbfdf0b05a12269653f839b344a01ee9b9cfaf91",
+      "after_sha256": "7e132f3b123a9059adaea79d141909b7f46dc821551094105042ad96c2ca4306",
+      "changed": true
+    },
+    {
+      "path": "_dev/COCKPIT_APP_SPEC.md",
+      "before_sha256": "494d070364078517818e6dff7930daed97944b5201894ce3ddcaf040828c8f9a",
+      "after_sha256": "7001128f202162a597b35f563bb80fca8a26afbfdf7cf6bc8e2690d5038205a2",
+      "changed": true
+    },
+    {
+      "path": "_dev/HANDOFF.md",
+      "before_sha256": "54f370712612feb4a9f737ffc1995dddf4a54dbf9609e7de675db884a463054f",
+      "after_sha256": "d2aa0a12eaafc497360c4bfd26da48f93b7eb56e7cef3161ccb0821d086e8951",
+      "changed": true
+    },
+    {
+      "path": "_dev/cockpit/README.md",
+      "before_sha256": "d4572f79decf01bdc8c31e2ab6147e6d4e98d9920e0db8bd54cc94c2871679a1",
+      "after_sha256": "b7f2b312bd8531d98d70d71bcc0a5e9227ef28ba13d790b29947eba939a92ad8",
+      "changed": true
+    },
+    {
+      "path": "_dev/tools/README.md",
+      "before_sha256": "367d14d2495eae60de92470afa0e4c86269c39e64eb0cd415371810be06d48b2",
+      "after_sha256": "ead67948f3532147e87ac79ff025b3e4b1c052ea5b656018a887470ccd1a422d",
+      "changed": true
+    },
+    {
+      "path": "_dev/tools/cockpit/frontend/src/runs.js",
+      "before_sha256": "407a022630da2f8b9fd476acd66dfbb168ef9d7268b3bee2c39debc0c4a10aa5",
+      "after_sha256": "e7289ffc2e71085bbc40d6a98d6b02113687f398dc17611861c9ce718c9ce6d6",
+      "changed": true
+    },
+    {
+      "path": "_dev/tools/cockpit/frontend/src/runs.test.js",
+      "before_sha256": "ff744091ff1d5367dd74d21144276847c45e2db3442fc44e4a6b1ef501e385d8",
+      "after_sha256": "8d87c3cdc6c028371eb3177e3ab2bb1fc0aca4270d34d88706efc1ee00e40a0a",
+      "changed": true
+    },
+    {
+      "path": "_dev/tools/cockpit/runs.py",
+      "before_sha256": "593909b6bc075698139067303e3d1f5c16ca2021ac03bf33164e05a9eb8f3c3c",
+      "after_sha256": "b5da7d2b4632a905244c2881fff0681ae7fad870d04b734c306aac1d60f9666c",
+      "changed": true
+    },
+    {
+      "path": "_dev/tools/cockpit/worker.py",
+      "before_sha256": "4abd1664925057c594dd4f2f58427e78994a866c5e31bc3f16d26b8297bd39bb",
+      "after_sha256": "63d5e544053e3b39f10766d3407f0878ec0f040fa5126b564cc02a299757a2ad",
+      "changed": true
+    },
+    {
+      "path": "_dev/tools/sandbox/run_model.py",
+      "before_sha256": "f1cd69adc3ec84a685ec5e8fe943166c8f732492c5f55a5e808cbe29b61a9e09",
+      "after_sha256": "984384af7f91e7aa460d7d09f8facd845002bca0592fe7638b4c41c32ded0bbf",
+      "changed": true
+    },
+    {
+      "path": "_dev/tools/test_cockpit_deals.py",
+      "before_sha256": "ed4cab4c4bca6531586f3dc29c28d3048ed86e8629039ba2d103e64c8ced3d10",
+      "after_sha256": "11baf68335c79fcc6e9f0935ac5b1959c80a8993e6f83eda88a89ad294040232",
+      "changed": true
+    },
+    {
+      "path": "_dev/tools/test_cockpit_phase4.py",
+      "before_sha256": "74c19b9cab2df5ce4036d5204d574cb04ae13f6af69c94a8e32f2ec79180f159",
+      "after_sha256": "d7737d57885d20d5891a1fbeb0fd2065cb982aaca8bca67a111df7b6a28d46a6",
+      "changed": true
+    },
+    {
+      "path": "_dev/tools/test_cockpit_runs.py",
+      "before_sha256": "2a8875865934b87851316ac799abc3e0441275ab1e933a33c05dfae289f70a3a",
+      "after_sha256": "5192ecc457f2baae2126087e6c45a456bd5e0ff7e887232c32e2282c15829112",
+      "changed": true
+    },
+    {
+      "path": "_dev/tools/test_run_model.py",
+      "before_sha256": "2e74993ac5f2f22e6f83257b62e6f4251fc0f249d8e4865618bbf7671b690adb",
+      "after_sha256": "2bcedc64d66910402b3a135965e80400c6054a52cbbc38f98c75f9ea2a4967bb",
+      "changed": true
+    }
+  ],
+  "instruction_candidate": {
+    "path": "/home/uctpiaj/work/Projects/sec-extraction/_dev/maintenance/2026-09-24-bid-terms-taxonomy/SEC_Deal_Ledger_Extraction_Instruction_v1.14_candidate.md",
+    "sha256": "c2d47a479d09eb46d0ab9fbf887568fcf13e972e2e11acbf08d5cdfab468ab27",
+    "matches_trial_baseline": true
+  },
+  "previous_dist_files_retained": {
+    "assets/ibm-plex-mono-500-DSY6xOcd.woff2": true,
+    "assets/source-serif-4-400-DJ5YJwmz.woff2": true,
+    "assets/cabinet-700-yJmHbigL.woff2": true,
+    "assets/index-C1EP6TyA.js": true,
+    "assets/favicon-BMqo5Ngh.svg": true,
+    "assets/ibm-plex-mono-400-DMJ8VG8y.woff2": true,
+    "assets/index-Cto5Gd6e.css": true,
+    "assets/cabinet-400-CsLkCdiI.woff2": true,
+    "assets/source-serif-4-600-DouSKlru.woff2": true,
+    "assets/cabinet-500-pUr7ULKA.woff2": true,
+    "assets/source-serif-4-400i-0j97Jm6B.woff2": true
+  },
+  "broken_report_links": [],
+  "at": "2026-09-26T12:19:54.733699+00:00",
+  "frontend_index": {
+    "before_sha256": "febd5471d6e12d3269b038ee08f9df4ec5eb130ea4a1467d452c75fda67f469e",
+    "after_sha256": "f29aa4fa658367e217476cdb25c071883b40ff98ae5d252d744c01e83f09e440",
+    "deployed_build_matches": true
+  }
+}

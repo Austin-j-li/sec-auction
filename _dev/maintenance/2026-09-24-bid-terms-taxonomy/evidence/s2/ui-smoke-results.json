@@ -1,0 +1,70 @@
+{
+  "passed": 16,
+  "results": [
+    {
+      "name": "all deals tooltip names the checker",
+      "passed": true
+    },
+    {
+      "name": "review tab: live check line",
+      "passed": true
+    },
+    {
+      "name": "listed field offers Other…",
+      "passed": true
+    },
+    {
+      "name": "Other… switches to free text",
+      "passed": true
+    },
+    {
+      "name": "deadline picker builds \"A; B\"",
+      "passed": true
+    },
+    {
+      "name": "v1.13.2 deadline list includes No deadline stated",
+      "passed": true
+    },
+    {
+      "name": "version picker shows the checker version",
+      "passed": true
+    },
+    {
+      "name": "review tab: at-import line for a run version",
+      "passed": true
+    },
+    {
+      "name": "v1.14 deadline list",
+      "passed": true
+    },
+    {
+      "name": "rebase dialog lists what stops applying",
+      "passed": true
+    },
+    {
+      "name": "carried judgment is shown",
+      "passed": true
+    },
+    {
+      "name": "orphaned thread reads on an earlier base",
+      "passed": true
+    },
+    {
+      "name": "history offers a revision download",
+      "passed": true
+    },
+    {
+      "name": "revision compares with the working copy",
+      "passed": true
+    },
+    {
+      "name": "extract dialog warns when the working copy is under another instruction",
+      "passed": true
+    },
+    {
+      "name": "no browser errors",
+      "passed": true
+    }
+  ],
+  "evidence": "/home/uctpiaj/work/tmp/v114-scratch/tmp/s2/ev/s2-ui"
+}

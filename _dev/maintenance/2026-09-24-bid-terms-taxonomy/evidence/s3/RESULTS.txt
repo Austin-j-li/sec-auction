@@ -1,0 +1,24 @@
+Package S3 (Source sheet in the downloaded Excel), sandbox /home/uctpiaj/work/tmp/v114-scratch/pkg/s3, 25 September 2026.
+TMPDIR=/home/uctpiaj/work/tmp/v114-scratch/tmp/s3, PYTHONDONTWRITEBYTECODE=1, run from the sandbox root.
+
+python3 -m unittest discover -s _dev/tools -p 'test_*.py'                          -> Ran 205 tests, OK (baseline 199; +5 test_cockpit_provenance, +1 index_link)
+python3 -m pytest -q -p no:cacheprovider _dev/tools/cockpit/acceptance/test_http.py -> 16 passed (baseline 14; +2 download tests; :252 now expects five sheets)
+(cd _dev/tools/cockpit/frontend && npx vitest run)                                  -> 56 passed (baseline 53; +3 downloads.test.js)
+npx vite build --outDir <tmp>/dist-check --emptyOutDir                              -> built (sandbox dist/ untouched)
+COCKPIT_TEST_DIST=<tmp>/dist-check node _dev/tools/cockpit/acceptance/test_browser.mjs -> 47 passed (adds the four-sheet menu download)
+
+Sample Source sheet, sandbox copy of Kraton (no state database, so no revision, review status or published instruction):
+EDGAR filing index            https://www.sec.gov/Archives/edgar/data/1321646/0001193125-21-320389-index.htm
+Complete submission (.txt)    https://www.sec.gov/Archives/edgar/data/1321646/0001193125-21-320389.txt
+Background pages              31–41
+Filing SHA-256                c0d2abbd80aa02fe55c8c1cc11f9d0a0e4a92bdde3045654cce11997781ae322
+Instruction                   v1.13.2
+Instruction SHA-256           not recorded   (live: resolved through the published v1.13.2 instruction)
+Version ID (working-copy base) opus55-medium
+Raw workbook SHA-256          20cc6986afb8b301e2a38a8d06e2c191c0cf7d3621d7dcf84121d9265b3d780c
+Working revision              0
+Review status                 not set
+Exported at                   2026-09-25T20:51:19+00:00
+
+Seed cross-check: for all nine MANIFEST.csv rows, ref/seed.csv index_url equals the index link derived from source_url.
+Files: s3-tools.diff (against wave1-base), two toolbar screenshots from the browser run.

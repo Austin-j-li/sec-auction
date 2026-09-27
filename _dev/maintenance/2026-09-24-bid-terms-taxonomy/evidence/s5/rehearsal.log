@@ -1,0 +1,45 @@
+== deploy state, in place: verify, then a second run to the same output
+Verified 9 deals in 17.182s; wrote /home/uctpiaj/work/tmp/v114-scratch/tmp/s5/rh-deploy.json
+exit=0
+Refused: /home/uctpiaj/work/tmp/v114-scratch/tmp/s5/rh-deploy.json exists; a verification never overwrites an earlier result
+exit=2 (2 = refused)
+== step 2: move the nine workbooks
+== step 3: repoint the catalog paths
+<           "path": "extraction/datalink.xlsx",
+>           "path": "_dev/reviews/2026-09-22-opus55-reextraction/workbooks/datalink.xlsx",
+<           "path": "extraction/kraton.xlsx",
+>           "path": "_dev/reviews/2026-09-22-opus55-reextraction/workbooks/kraton.xlsx",
+<           "path": "extraction/mac-gray.xlsx",
+>           "path": "_dev/reviews/2026-09-22-opus55-reextraction/workbooks/mac-gray.xlsx",
+<           "path": "extraction/meredith.xlsx",
+>           "path": "_dev/reviews/2026-09-22-opus55-reextraction/workbooks/meredith.xlsx",
+<           "path": "extraction/penford.xlsx",
+>           "path": "_dev/reviews/2026-09-22-opus55-reextraction/workbooks/penford.xlsx",
+<           "path": "extraction/petsmart.xlsx",
+>           "path": "_dev/reviews/2026-09-22-opus55-reextraction/workbooks/petsmart.xlsx",
+<           "path": "extraction/providence-worcester.xlsx",
+>           "path": "_dev/reviews/2026-09-22-opus55-reextraction/workbooks/providence-worcester.xlsx",
+<           "path": "extraction/stec.xlsx",
+>           "path": "_dev/reviews/2026-09-22-opus55-reextraction/workbooks/stec.xlsx",
+<           "path": "extraction/synacor.xlsx",
+>           "path": "_dev/reviews/2026-09-22-opus55-reextraction/workbooks/synacor.xlsx",
+== deploy-state lookup with extraction/ empty
+['datalink', 'kraton', 'mac-gray', 'meredith', 'penford', 'petsmart', 'providence-worcester', 'stec', 'synacor']
+== step 4: apply the release patch
+applied
+Imported 9 deals to /home/uctpiaj/work/tmp/v114-scratch/tmp/s5/rh-import.json
+importer catalog equals repointed catalog: True
+== step 5: export dry run
+extraction/kraton.xlsx  new -> 20cc6986afb8b301e2a38a8d06e2c191c0cf7d3621d7dcf84121d9265b3d780c
+dry run: nothing written; pass --write to write
+exit=0
+== step 6: verify
+Verified 9 deals in 17.096s; wrote /home/uctpiaj/work/tmp/v114-scratch/tmp/s5/rehearse/_dev/reviews/2026-09-22-opus55-reextraction/catalog-verification-20260925T205959Z.json
+exit=0
+catalog-verification-20260925T205959Z.json
+catalog-verification.json
+import-verification.json
+README.md
+receipts
+reextraction.json
+workbooks
