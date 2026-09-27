@@ -1,6 +1,6 @@
 # Pipeline tools
 
-Run commands from the repository root. Read [AGENTS.md](../../AGENTS.md) and [the current handoff](../HANDOFF.md) first. Extractors must see only their isolated inputs; run the checker after extraction, outside that sandbox. Extractions, model experiments and workbook revisions require Austin's explicit instruction. These examples do not authorize a run.
+Run commands from the repository root. Read [AGENTS.md](../../AGENTS.md) and [current status and decisions](../RESEARCH_QUESTIONS.md) first. Extractors must see only their isolated inputs; run the checker after extraction, outside that sandbox. Extractions, model experiments and workbook revisions require Austin's explicit instruction. These examples do not authorize a run.
 
 ## Environment
 
@@ -48,7 +48,7 @@ For new runs, `state: completed` means all of the following hold:
 
 Otherwise the run is `failed`, with one of these `failure_reason`s: `provider_refusal`, `provider_exit`, `provider_error`, `model_mismatch`, `workbook_missing`, `workbook_unreadable`, `workbook_incomplete` or `revision_notes_missing`. A timeout yields `timed_out`. Worker startup errors also leave a failed status. The worker exits nonzero on failure, while `launch` only reports successful dispatch: inspect `status` for the outcome. Older saved statuses keep their original meaning. Workbook readability is not a mechanical-checker pass or substantive acceptance; both remain separate steps.
 
-The cockpit importer (`cockpit/import_results.py`) builds the catalog with one version per deal: the Opus 5.5 medium extraction in `extraction/<deal>.xlsx`, confirmed from the receipts in `_dev/reviews/2026-09-22-opus55-reextraction/`, plus the Datalink F9 and Mac-Gray R01 case-level decisions. `cockpit/verify_catalog.py` is the read-only live check of that catalog; it writes its result to the same packet.
+The cockpit importer (`cockpit/import_results.py`) builds the catalog with one version per deal: the Opus 5.5 medium extraction in `extraction/<deal>.xlsx`, confirmed from the receipts in `_dev/reviews/2026-09-22-opus55-reextraction/`, plus the historical Datalink F9 and Mac-Gray R01 case-level decision documents. Austin superseded F9 on 26 September: Datalink follows v1.14.1, four rounds; use the current decision record when interpreting the older catalog document. `cockpit/verify_catalog.py` is the read-only live check of that catalog; it writes its result to the same packet.
 
 ## Cockpit worker
 
@@ -181,7 +181,7 @@ The tests use synthetic fixtures. Runner tests construct commands and mock execu
 
 ## Review cockpit
 
-The commands below apply to the VM deployment when SSH returns. The 24–26 September cockpit app source remains only on the VM; this laptop recovery branch has the 23 September app code. The live cockpit and 27 September snapshot remain the deal-data and instruction-version system of record.
+The commands below apply to the VM deployment when SSH returns. The 24–26 September cockpit app source remains only on the VM; this laptop recovery branch has the 23 September app code. The cockpit remains the deal-data and instruction-version system of record; the local 27 September 10:55 UTC snapshot does not establish later live state.
 
 ```bash
 python3 _dev/tools/cockpit/server.py            # http://127.0.0.1:8778 (or $COCKPIT_PORT)
@@ -207,7 +207,7 @@ cd .. && mv dist dist.old && mv dist.new dist
 systemctl --user restart ledger-cockpit.service   # also needed after any Python cockpit or checker change
 ```
 
-Remove `dist.old` once the site checks out. After a restart, verify `/api/session`, `/api/deals` and `/api/deal/<deal>?version=working`, compare checker findings with a fresh run, and preserve source hashes and working state. Catalog updates are read on later requests; changing a default base must not silently replace a saved working revision. Logs: `journalctl _SYSTEMD_USER_UNIT=ledger-cockpit.service` (or `cloudflared.service`). Verification evidence is linked from [HANDOFF.md](../HANDOFF.md).
+Remove `dist.old` once the site checks out. After a restart, verify `/api/session`, `/api/deals` and `/api/deal/<deal>?version=working`, compare checker findings with a fresh run, and preserve source hashes and working state. Catalog updates are read on later requests; changing a default base must not silently replace a saved working revision. Logs: `journalctl _SYSTEMD_USER_UNIT=ledger-cockpit.service` (or `cloudflared.service`). Verification evidence and recovery limits are linked from [current status and decisions](../RESEARCH_QUESTIONS.md).
 
 Acceptance suites run against a synthetic fixture (`acceptance/serve_fixture.py`; `--two-users` makes it take identities from the Cloudflare Access email header, for `test_trace.mjs`; `--runs` adds the real worker loop driving the fake runner and fake `claude` from `test_cockpit_runs.py` and the fake `codex` from `test_cockpit_phase4.py` (its sign-in waits for `<root>/codex-flag`; the fixture prints `root`), for `test_runs.mjs` and `test_instructions.mjs`; `--deals` adds a two-row seed and a stubbed EDGAR, for `test_deals.mjs`) on a private port and a private headless Chrome; they never touch production workbooks, the catalog, working state or the live service. Run from the repository root:
 

@@ -1,43 +1,103 @@
-# Current research questions
+# Current research state and decisions
 
-The cockpit's published default is v1.14.1 (26 September 2026). On the VM the repository file was still v1.13.2; Austin authorized copying the published v1.14.1 text to the laptop recovery branch on 27 September. The nine `extraction/` workbooks and all cockpit working-copy bases remain v1.13.2. Older conventions are sections E1–E14 (C1–C16 in v1.12 and earlier). This list supersedes the old “16 questions” assessment as a navigation document; it authorizes no instruction or workbook changes.
+Updated 27 September 2026 after checking the recovered files, original reference notes and decision records. This is the current entry point; Austin requested deletion of the old `_dev/HANDOFF.md`. Historical packets describe their dated work, not additional current approval holds.
 
-**Update, 26 September 2026: v1.14.1.** Austin approved H1–H4, R1–R6 and D1–D6 as general coding treatments in the published text. H1 places Company H's target-side exit by 16 May, with reason "Would not improve earlier offer"; H2 concerns Providence & Worcester's inferred non-submitters; H3 Mac-Gray's permitted inferred closure; H4 says commitment-only revisions remain blank-price Bids, not new price observations. R1 copies an earlier bid only when the bidder says the same offer stands. R2 uses the evidence window up to that bidder's next row, forecasts included. R3 closes unnamed non-submitters at the first due date. R4 limits H2 to diligence-only periods. R5 removes the reserve/continuing-discussion exception for bidders omitted from the next stage. R6 uses the NDA test for `Not begun`. E5's 90-day process test, E9's five deadline outcomes, E13's `Part stock` Note and D6's after-suspension round trigger are now in v1.14.1. These are published instruction choices; Alex has not directly confirmed the provisional conventions or received the rebuilt questionnaire.
+## Evidence boundary and current state
 
-## Q3 and Q7: no longer withheld
+The latest saved cockpit observation is **27 September 2026, 10:55:33 UTC**. All 162 files in its [index](recovery/2026-09-27-cockpit/INDEX.json) match their recorded sizes and SHA-256 hashes. Later local decisions are included below. This is not a live VM check.
 
-**Status corrected 22 September 2026:** Austin confirmed that Q3 and Q7 are no longer withheld. Neither belongs on the list of decisions awaiting his approval. His clarification supersedes the previous status in this index.
+- **Instruction:** the root [v1.14.1 instruction](../SEC_Deal_Ledger_Extraction_Instruction.md) exactly matches the published cockpit text, SHA-256 `8a93df3cc6d989386958e9cb2d74ab34ebc0f07d281e8cc398605a388e066c98`. The saved cockpit identifies it as the default. Copying it here was Austin's approved laptop recovery action; it does not establish that the VM repository export happened.
+- **Raw workbooks:** the nine files in `extraction/` remain the 22 September Opus 5.5 medium v1.13.2 extractions. Preserve them separately from review edits.
+- **Working copies:** all 13 cockpit working copies still have v1.13.2 bases. Eight are `in_review`, five `unreviewed`; none is accepted. Eight edited original deals have 454 `reviewed` row marks and 66 `needs_decision` marks. These record earlier assisted review, not Austin's completed acceptance, and are not 66 distinct research choices.
+- **Mechanical checks:** the nine original deals' saved working copies total **0 errors / 157 warnings**. The older **3 errors / 161 warnings** describes the raw re-extraction set, not these working copies. Checks do not establish substantive accuracy.
+- **New runs:** five separate raw v1.14.1 versions exist, all Opus 5.5 medium; none has become its working copy's base. The [retest packet](reviews/2026-09-26-v1141-retest/README.md) records targeted behavioural checks, not complete source review.
 
-- **Q3, one-sided prices:** the later v1.12/v1.13 decision records already say no instruction change is needed because the existing rules cover the treatment. The old proposed PetSmart #18 edit and Penford row references describe earlier workbooks; their presence here does not establish the state of the current drafts.
-- **Q7, Company H:** Austin settled the treatment on 26 September (H1): `Dropped by target` by 16 May, when final-round letters went to WDC and Company D, reason "Would not improve earlier offer". v1.14.1 states the general exit rule.
+| New v1.14.1 run | Saved errors / warnings | Saved rounds |
+|---|---:|---:|
+| Mac-Gray | 0 / 2 | 3 |
+| Providence & Worcester | 0 / 2 | 3 |
+| sTec | 1 / 3 | 2 |
+| Synacor | 0 / 6 | 6 across 3 processes |
+| Datalink | 1 / 4 | 4 |
 
-This status correction alone did not implement a workbook edit. H1 was later published in v1.14.1, but the working copies remain based on v1.13.2.
+The two errors are Count 1 on Merger announced (sTec event 56, Datalink event 76). Their correction is decided but not present in these saved raw versions. The four other original deals, Kraton, Meredith, Penford and PetSmart, have no v1.14.1 run in the snapshot.
 
-These Q numbers refer to the 20 September recommendations, not the IDs in a deal workbook.
+## Decisions to discuss now
 
-## Current deal-level decisions
+Distinguish a filing error under an existing rule from a change to the research convention. The published instruction governs extraction until Austin authorizes a change. Alex's outstanding confirmation does not make every existing default an unresolved instruction.
 
-- **Mac-Gray R01 decided by Austin (22 September):** bidder-commitment changes (reverse fee, sponsor damages cap or guarantee, financing or closing conditions) are same-price Bids; the target termination fee stays in a dated Note. The current Opus 5.5 medium Mac-Gray draft keeps these changes in Notes and has not been revised. See the [decision record](reviews/2026-09-21-mac-gray-pilot/acceptance/RESEARCH_DECISION.md).
-- **Datalink F9 was resolved, then superseded:** the 21 September ruling retained five rounds and an inferred 29 January opening. Austin decided on 26 September that Datalink follows v1.14.1's four-round reading. Its rerun opens round 1 on 28 January. The earlier [verified revision](reviews/2026-09-21-datalink-pilot/revision/VERIFICATION.md) and the questionnaire's earlier 3.1 text predate this decision. The same reasoning was suggested for Kraton and Meredith, but Kraton's two-round treatment remains an assistant extrapolation awaiting Austin's confirmation.
-- **Kraton rounds decided by Austin (27 September):** two rounds under v1.14.1. The 6 July request to improve continues round 1; the 20 July invitation asked for no offers, so round 2 opens with the final bid procedures letter after 11 August. This departs from Alex's voice note (item 3), which starts round 2 on 6 July and counts three rounds; questionnaire §3.1 shows him both maps.
-- **Count on `Merger announced` (27 September, Austin):** the sTec (row 56) and Datalink (row 76) v1.14.1 runs wrote Count 1; fix by hand during review. Clarify the Count wording ("blank on announcement rows") in the next instruction version, together with other general fixes; no v1.14.2 now.
-- **Meredith estimation status is settled:** Alex's voice notes already exclude Meredith from structural estimation while keeping it for descriptive work ([recommendations](reviews/2026-09-22-open-research-questions/RECOMMENDATIONS.md), Meredith section).
-- **Meredith workbook coding is pending:** distinguish the economic business being acquired from the surviving legal entity before deciding whole-company coding. This does not excuse missing dated economic changes required by existing E2/E10.
+### 1. Meredith: what is the economic target?
 
-## Provisional conventions for Alex to confirm
+**Open coding choice:** classify the offers against pre-separation Meredith (NMG plus LMG), or against the residual legal entity holding LMG after NMG is spun off.
 
-The current instruction supplies working rules for these topics. The available records do not show Alex's confirmation where his hand-coding and voice notes disagree; that is separate from an unresolved approval request to Austin. Q3 and Q7 must not be reopened merely because an older question appears below.
+The [current working copy](recovery/2026-09-27-cockpit/raw/deal__meredith.json), revision 4, has 26 `Bid` rows for LMG proposals and 10 `Other-scope bid` rows for station proposals. Its Whole-company bids field explicitly calls the legal-entity treatment provisional. Its **Q7** recommends economic pre-separation scope but awaits confirmation. Q7 here is the workbook's question, not the old cross-deal Company H question.
 
-1. **Process boundaries:** does a roughly three-month gap separate attempts, and does carrying an earlier party forward prevent a split? Compare sTec with Providence. Should Penford's sparsely described 2007/2009 approaches be background only? **Adopted in v1.14.1 E5:** 90 days or more without reported sale contact (or a reported end), no offer outstanding, then a fresh target step; carrying an earlier party forward no longer blocks a split. Alex's confirmation of the convention remains outstanding.
-2. **sTec round structure:** is May 16 the final round or a second informal round? The hand-coded rows and voice commentary differ. The earlier Company H exit question belongs to Q7 above and is no longer listed as withheld.
-3. **Formal timing:** what separates Penford's October 8 returned draft from Providence's August 4 event? How should those dates interact with the separate Conditions field? **Adopted in v1.14.1 D1:** a revision is Formal only when it independently meets a Formality route; referring back to an earlier Formal bid is insufficient. Alex's confirmation of the broader convention remains outstanding.
-4. **WDC:** its June 10 same-offer reference is Informal under v1.14.1 R1, matching Alex's hand-coding. Confirm its exit/reentry chronology between May 31 and June 10 against the filing.
-5. **Penford Party A:** do its proposals received after October 3 make it a final-round participant, despite no express admission? Under v1.14.1 the 13 October statement is a valuation statement coded `Other material event`, without a workbook Question. The reconciled questionnaire asks Alex to confirm that reading; the 14 October letter remains a $16 Bid.
+The [filing](../raw_filing/meredith_2021-11-08_DEFM14A.htm), printed p. 59, describes simultaneous NMG separation and sale of LMG RemainCo, the Meredith legal entity then owning only LMG. Alex's [original voice notes](../ref/alex_voice_notes_2026-08.docx), body paragraphs 95, 97 and 184, identify the partial acquisition and lack of an observed market price for the acquired segment.
 
-Also settle the source hierarchy: which governs when spring hand-coding and later voice notes conflict? The instruction's current choices are working conventions, not Alex's confirmed answers.
+**Recommendation, not a ruling:** use economic scope immediately before the transaction-related simultaneous separation. This does not classify a business spun off much earlier as permanently partial. The LMG proposals would be Other-scope bids relative to pre-separation Meredith; purchasing every share of the residual legal entity does not purchase both original businesses. Preserve the reported prices, terms and chronology with their scope. Under v1.14.1 D2/E1, reported amounts, units and scope belong in the Note on Other-scope bids; Price low, Price high and CVR/earnout value stay blank. Do not mechanically apply the old Q7 proposal to the new schema. Review whole-company live counts, Rounds Bids received, the auction screen and exit/re-entry rows together; partial-only parties receive no exit rows. Current Q6/Q11 exit and re-entry proposals therefore also need review.
 
-## Show and confirm
+**Already settled:** exclude Meredith from structural estimation and retain it for descriptive/reduced-form work. This is explicit in Alex's notes, the current working-copy facts and `derive_analysis.py`'s `DESCRIPTIVE_ONLY`. Do not ask for that decision again. Older recommendations refer to superseded workbooks and row numbers.
 
-Show the adopted handling of superseding/reused NDAs, WDC's addendum, conditions supported by reported facts, reconciled contact cohorts, the June 19 projections and Wells Fargo, soft deadlines, and reference share prices with their own dates. These are confirmations of working conventions, not additional withheld decisions.
+### 2. sTec: when did the final round begin?
 
-Evidence and row references are preserved in the September 20 recommendations (`git show 407a6e4:_dev/OPEN_QUESTIONS_recommendations_2026-09-20.md`), especially “Send to Alex,” and the earlier assessment (`git show 407a6e4:_dev/OPEN_QUESTIONS_for_Alex.md`). Some references describe v1.8 trial rows and predate the v1.11 extractions. The [v1.13–v1.13.2 decision record](DECISIONS_v1.13.md) records the current instruction's conventions and freeze.
+**Open reconciliation with Alex:** May 16's final-round letters versus May 29's best-and-final request. The [filing](../raw_filing/stec_2013-08-08_DEFM14A.htm), printed p. 30, calls the earlier letters final round process letters and later describes the proposals as non-binding. Alex's voice note (body paragraph 125) calls the May 28 offer formal but says the round was not final.
+
+Under current E6, finality describes the announced procedure; non-binding does not itself mean Not final. The v1.14.1 run has two rounds, consistent with questionnaire map A. Alex's alternative starts the final stage later and counts three. The old working copy's extra round after WDC's May 31 withdrawal has no identified v1.14.1 trigger; it is not another equally supported current-rule option.
+
+**Recommendation, not a new ruling:** retain the published-rule reading while asking Alex whether his intended research convention differs. Discuss the general meaning of a final stage, not just how to make this deal match a label. Company H's exit is settled separately below.
+
+### 3. Conflicting reference sources
+
+**Open with Alex:** what governs when his spring hand coding and later voice notes disagree? Examples are sTec finality and Providence & Worcester Party A's departure.
+
+The questionnaire offers voice notes first, hand coding first, or a distinction between general conventions and case-specific factual readings. **Recommendation, not an approved hierarchy:** an explicitly agreed research convention governs coding; filing facts are checked against the filing; conflicting reference readings are brought to Alex rather than automatically treating either reference as ground truth. Model agreement with hand coding is not an accuracy measure where the intended convention differs.
+
+### Other confirmations under existing rules
+
+The [recovered questionnaire](maintenance/2026-09-24-bid-terms-taxonomy/Questions_for_Alex_2026-09-25.docx), sections 2b and 3.4, asks Alex to confirm working conventions on financing commitments, partial bidders, round triggers, merger-of-equals talks, price-only revisions, the condition evidence window, missed due dates and deadline outcomes. Penford Party A's October 4/13 valuation statements versus its October 14 $16 bid remain a specific confirmation. The process-boundary convention (E5's three-part test, including a reported end or 90-day silence) also awaits his confirmation in the research record.
+
+NDA reuse, WDC's addendum and exit/re-entry chronology, contact-cohort reconciliation, projections/adviser events and dated reference prices are source-review tasks under existing rules unless review exposes a genuine convention conflict. Do not automatically turn each into a new research decision.
+
+## Choices for estimation, not blockers to ledger review
+
+Alex explicitly asked to preserve procedural Formality and conditionality separately, then allow reinterpretation during estimation ([voice notes](../ref/alex_voice_notes_2026-08.docx), paragraphs 19–20, 47–49). A primary estimator mapping need not be chosen to finish extraction or review. The [analysis tool](tools/derive_analysis.py) computes variants and records `default: None`.
+
+| Choice still unselected | Available interpretations | Discussion needed |
+|---|---|---|
+| Primary Formality reading | T0: recorded Formality; T1: Formal and not Heavy; T1u: Formal with None/Light only; T2: Formal with a single price; T3: Formal in an announced/inferred final round | Which interpretation matches the economic model? Unclear conditions are not proof of either commitment or heavy conditions. Compare alternatives as robustness checks; do not choose by best fit to two hand-coded deals. |
+| Inferred exits | Treat as dropout, or retain as an uncertain/censored observation without inferring bidder value from the disappearance | A ledger convention dating an unreported departure is not evidence that a bidder chose to leave at that date. The estimator's treatment of the observation process remains to be specified. |
+| Inferred counts | Use as recorded; or use as recorded with a robustness check setting aside inferred counts; or another specified treatment | Keep reported totals, arithmetic residuals and inferred exit timing distinct. Do not reopen the settled ledger arithmetic merely to discuss estimation. |
+
+These are questionnaire §§3.2–3.3. Other code options, such as upfront versus contingent-package price and keeping same-offer rows as event observations, need an explicit analysis specification when used; their existence is not evidence of a new coding disagreement. In particular, **copied same-offer prices and blank-price commitment changes are already not new price observations under E10**. The v1.14.1 code retires the eligible-but-unadmitted, process-initiator and merger-of-equals switches; do not present them as pending choices.
+
+## Settled decisions: implement and review, do not reopen
+
+| Topic | Current ruling | Implementation boundary |
+|---|---|---|
+| Kraton rounds, 27 September | Two rounds. July 6 improvement request continues round 1; July 20 selection requests no offers; round 2 opens at the subsequent final bid letter after August 11. | Verified against Austin's explicit answer at 12:46 UTC and recorded in commit `764757f`. The saved old working copy still has three rounds (July 20 and August 11 openings); no v1.14.1 rerun exists. Alex's different three-round map opens on July 6. |
+| Datalink rounds, 26 September | Four under v1.14.1, superseding F9's five; the retest opens round 1 on January 28. | Present in the raw retest, not a completed source review or working-copy migration. |
+| Announcement Count, 27 September | Clear Count in the two announcement rows during review; clarify wording with the next general instruction revision, not a standalone v1.14.2 now. | Recorded in `764757f`; saved raw runs still contain the values. |
+| sTec Company H, H1 | Dropped by target by May 16; reason Would not improve earlier offer. | Present in the raw v1.14.1 retest; old Q7 approval hold is obsolete. |
+| Non-submitters, H2/H3 and R3 | P&W 16 inferred non-submitters; Mac-Gray 16 unnamed financial signers closed by July 23. Apply named/cohort reconciliation. | P&W retest represents 16 as Party A plus a cohort of 15; the acceptance script's demand for a single Count-16 row was too strict. Estimation interpretation remains separate. |
+| Commitment-only changes, R01/H4 | Bidder commitment changes are Bid rows; without a newly stated price, price cells stay blank and create no new price observation. Target termination fees stay in dated Notes. | Current v1.14.1 treatment supersedes older recommendations to repeat the standing price. |
+| Same offer and conditions, R1–R6 | Copy only when the bidder says its offer stands; evidence through its next bid, exclusivity, exit or signing includes forecasts; diligence-only duration for H2; omitted invitees exit when the next stage opens; Not begun uses the NDA test. | Published extraction defaults, subject to source review. Distinguish the case H1–H4 rulings from E12's H1–H3 condition triggers. |
+| Older Q3, one-sided prices | No longer withheld; existing instruction covers the treatment. | Any remaining row defect is reviewed under the supplied instruction. |
+| Meredith estimation exclusion | Descriptive/reduced-form use only. | Already in working-copy facts and analysis code; scope coding remains open above. |
+
+## Review and recovery work
+
+1. Review each new run in both directions: rows against filing support, and the filing against omitted required events. Resolve real convention conflicts with Austin. Review can proceed while estimation choices remain open.
+2. After that deal's review and authorization, rebase its working copy and port still-valid earlier review as an attributed revision. Do not inherit acceptance for facts changed by v1.14.1. Updating the nine `extraction/` files is a separate release action. New extractions require Austin's command.
+3. The questionnaire was recovered/rebuilt and has **not been sent in the available record**. Its published-rule summaries are evidence, not a replacement decision register. Confirm its dated maps and provenance before preparing a send-ready revision; sending requires explicit authorization.
+4. Review-migration registers have not been regenerated for v1.14.1. Austin dropped the stale `lesson/` input. The replacement input must preserve rulings, revision provenance and unresolved facts; do not invent a clean audit or recreate the dropped directory. The status of saved `alex_bids.csv` comparison inputs is also unresolved. See the [recovery reports](recovery/team-2026-09-27/README.md).
+5. Laptop offline tools were replayed or rebuilt. The recovery report records 313 passing tests and one macOS failure requiring Linux `/proc`; this is a past recovery check, not a test run from this documentation update. The 24–26 September cockpit app source remains unreconciled on the VM. Compare the recovery branch with the VM before claiming equivalence. Snapshot exports are not a restorable database/credential backup.
+6. VM reconciliation/export, a fresh backup, Alex's own-account run, remaining new-engine acceptance runs, the proposed `TMPDIR` unit changes and `dist.old` cleanup remain operational work, not research choices. Model runs and deployment remain separately authorized. The last verified VM backup in the recovered record is `20260926-193859Z`, before publication and the five retests.
+
+## Source map
+
+- [Snapshot index](recovery/2026-09-27-cockpit/INDEX.json) and `raw/deal__<deal>.json`: dated state, actual working-copy questions, versions and review marks.
+- [Published instruction](../SEC_Deal_Ledger_Extraction_Instruction.md): current extraction conventions; no instruction changed in this documentation update.
+- [Questionnaire builder](maintenance/2026-09-24-bid-terms-taxonomy/evidence/a2/build_docx.py): sections 2b and 3.1–3.5, supporting excerpts and analysis alternatives.
+- [Original voice notes](../ref/alex_voice_notes_2026-08.docx): Alex's own research guidance. Paragraph numbers above count direct Word body paragraphs, including empty ones.
+- [v1.14.1 retest](reviews/2026-09-26-v1141-retest/README.md), [approved specification](maintenance/2026-09-26-v1141-streamline/V1141_SPEC.md) and [recovery team record](recovery/team-2026-09-27/README.md): bounded verification and provenance. Their older status statements are historical.
+- [Chronology](CHRONOLOGY.md): dated history and older decisions. The deleted handoff remains recoverable in Git before this update; do not restore it as current guidance.

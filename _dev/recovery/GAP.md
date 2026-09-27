@@ -1,5 +1,7 @@
 # What the laptop is missing from the Condenser VM, 27 September 2026
 
+> **Status clarification, 27 September 2026:** This is the initial loss inventory, preserved as recovery evidence. Its baseline and recovery classes predate the completed laptop recovery and subsequent commits. See [current research state and decisions](../RESEARCH_QUESTIONS.md) and the [completed recovery record](team-2026-09-27/README.md) for what was recovered and what still needs VM reconciliation.
+
 **Baseline.** The laptop and GitLab are both at `679d4fc`, cockpit phase 5, 23 September. The VM's `sec-extraction` checkout is on the same commit, with **91 uncommitted entries** (its `git status`, 26 Sep 20:43 UTC). The `sec-extraction-v114` worktree adds **74 more** (26 Sep 18:46). Nothing after 23 September was committed.
 
 **Sources available on the laptop:**

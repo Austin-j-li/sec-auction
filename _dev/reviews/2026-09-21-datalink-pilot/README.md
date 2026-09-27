@@ -4,4 +4,4 @@ The latest controlled Opus [revised workbook](revision/datalink_revised.xlsx) an
 
 Read the [original adjudication](ADJUDICATION.md) and [deal context](DEAL_CONTEXT.md) as historical records of the earlier raw draft and the decision request. The later ruling and [verification](revision/VERIFICATION.md) identify which proposals were implemented; F8 and F11 were excluded and F9 was resolved. The [revision brief](revision/CORRECTION_BRIEF.md) and [diff](revision/DIFF.md) preserve the correction scope and comparison. The raw extraction and revised workbook remain separate immutable outputs. Paths inside provider prompts and responses refer to their isolated run sandbox, not a live checkout location.
 
-For current cross-deal status, use the [development handoff](../../HANDOFF.md) and [research questions](../../RESEARCH_QUESTIONS.md). This navigation page changes no extraction evidence or coding decision.
+For current cross-deal status, use [current status and decisions](../../RESEARCH_QUESTIONS.md). This navigation page changes no extraction evidence or coding decision.

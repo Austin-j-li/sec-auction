@@ -1,5 +1,7 @@
 # Cockpit snapshot, 27 September 2026
 
+> **Status clarification, 27 September 2026:** This is the collection-time inventory from 10:55 UTC, not the latest local recovery status. The root instruction and offline tools/packets were recovered afterward; the v1.13.2-to-root comparison and VM-only list below describe the earlier state. See [current research state and decisions](../../RESEARCH_QUESTIONS.md) and the [completed recovery record](../team-2026-09-27/README.md).
+
 This is a copy of the live cockpit (https://lines.dealextract.org), taken on 27 September at 10:55 UTC. SSH to the Condenser VM was unavailable that day because the weekly bastion certificate had expired, but the cockpit itself was still serving. The copy was made with GET requests only, through Austin's Cloudflare Access session. Nothing was written to the cockpit.
 
 GitLab (`origin/extraction-v2`) held nothing newer than `679d4fc`, so this snapshot is the only off-VM copy of the cockpit state after 23 September.

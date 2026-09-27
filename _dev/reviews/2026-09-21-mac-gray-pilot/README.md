@@ -4,4 +4,4 @@ The last corrected [candidate workbook](acceptance/extraction/mac-gray.xlsx) and
 
 The [original pilot report](REPORT.md) and [first adjudication](ADJUDICATION.md) describe the earlier raw draft. A [55-event controlled revision](revision/VERIFICATION.md) ended that correction stage; the later 58-event acceptance correction supersedes its candidate status. Older F03/F04 pending language is historical, while R01 is the remaining acceptance convention. Earlier findings and row numbers belong to their labeled versions; use the acceptance packet for the 58-event candidate and its [analytical-use limits](acceptance/ANALYTICAL_USE.md). Paths inside provider prompts and responses refer to their isolated run sandbox, not a live checkout location.
 
-For current cross-deal status, use the [development handoff](../../HANDOFF.md) and [research questions](../../RESEARCH_QUESTIONS.md). This navigation page changes no extraction evidence or coding decision.
+For current cross-deal status, use [current status and decisions](../../RESEARCH_QUESTIONS.md). This navigation page changes no extraction evidence or coding decision.

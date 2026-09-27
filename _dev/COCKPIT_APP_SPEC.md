@@ -1,6 +1,6 @@
 # Ledger cockpit as a shared extraction app: specification
 
-Approved by Austin on 23 September 2026, including the §13 defaults. It builds on the deployed cockpit (`https://lines.dealextract.org`, [review guide](cockpit/README.md), [build contract](COCKPIT_BUILD.md)) and the isolated runner (`tools/sandbox/run_model.py`, [tools README](tools/README.md)).
+Approved by Austin on 23 September 2026, including the §13 defaults. This is the product specification, not a current-state audit; consult [current status and decisions](RESEARCH_QUESTIONS.md) for the 27 September recovery boundary and outstanding verification. It builds on the deployed cockpit (`https://lines.dealextract.org`, [review guide](cockpit/README.md), [build contract](COCKPIT_BUILD.md)) and the isolated runner (`tools/sandbox/run_model.py`, [tools README](tools/README.md)).
 
 ## 1. Goal
 
@@ -203,7 +203,7 @@ An **Instructions** page lists every version: name (for example v1.13.2), status
 
 ## 11. Documentation changes that follow approval
 
-- **AGENTS.md** and **HANDOFF.md**: extractions may be started in the app by Austin or Alex; instructions may be versioned in the app; either may change the default. The rule that instruction changes must be general stays, as guidance.
+- **AGENTS.md** and **RESEARCH_QUESTIONS.md**: extractions may be started in the app by Austin or Alex; instructions may be versioned in the app; either may change the default. The rule that instruction changes must be general stays, as guidance.
 - **Cockpit README**: accounts, adding deals, running, versions, comments, what's new, instructions.
 - **Tools README**: per-user credentials, the new models and the worker.
 - **Export to repository** (optional, admin-only script, not a button): write a chosen instruction version or deal version into `SEC_Deal_Ledger_Extraction_Instruction.md`, `raw_filing/` and `extraction/` for a commit Austin requests.
