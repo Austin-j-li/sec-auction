@@ -15,7 +15,7 @@ Nothing here changes the instruction by itself. When the sprint ends, the adopte
 
 ## Working rule (from 2026-09-27)
 
-Where Alex has spoken, adopt his view. Where he is silent, use the simplest wording. Where he contradicts the filing or himself, Austin judges on his behalf or asks him. **Austin's earlier rulings are overturned where they contradict Alex** (Austin, 2026-09-27). Checked: only the same-offer rule contradicted Alex (V¶30), and F2 overturns it; the other settled rulings agree with Alex (V¶22, V¶41, V¶45, V¶95–97, V¶184, CI p.7) or he is silent on them. Austin's attention goes to what the research depends on: round counts, who is live at each stage, and formal versus informal bids. After the amendment, re-extract the nine deals (on Austin's command) and compare with Alex's hand coding; let disagreements show which details matter.
+Where Alex has spoken, adopt his view. His later voice notes override his earlier collection instructions and hand-coded workbook; where the voice notes are silent, the collection instructions and workbook give his view; the filing governs facts (Austin, 27 Sep evening). Where he is silent in all three, use the simplest wording. Where he contradicts the filing or himself, Austin judges on his behalf or asks him. **Austin's earlier rulings are overturned where they contradict Alex** (Austin, 2026-09-27). Checked: only the same-offer rule contradicted Alex (V¶30), and F2 overturns it; the other settled rulings agree with Alex (V¶22, V¶41, V¶45, V¶95–97, V¶184, CI p.7) or he is silent on them. That check covered STATUS's settled list only. The VM's 25–26 September rulings (V114_SPEC, V1141_SPEC, root HANDOFF, on branch `vm-live-2026-09-26`) are also overturned where these decisions differ; `vm_check/lane_C_decisions.md` lists them (C1–C18). Austin's attention goes to what the research depends on: round counts, who is live at each stage, and formal versus informal bids. After the amendment, re-extract the nine deals (on Austin's command) and compare with Alex's hand coding; let disagreements show which details matter.
 
 ## Order of work
 
@@ -197,7 +197,7 @@ Effects: Providence Aug 4 Party B, Bid reaffirmed at $24, Formal, conditions as 
 ### Stage questions (decided 2026-09-27, Austin judging for Alex)
 
 - **Parties the filing says remained in the process.** Austin: "if they didn't submit a new bid by the deadline, even if the filing said they were still considering, I will treat them as dropped. If they ever turn up later, they get a re-entry. A deadline becomes a joke if we allow them in." No exception to the settled rule (consistent with CI p.7). Datalink's two admitted parties not sent the Aug 16 final letters are Dropped by target at the Aug 16 opening; a later return would be Re-entered.
-- **Restart after exclusivity lapses.** A new round; E6 (d) stays as in v0 plus the R3 guard. Datalink: 4 rounds (Oct 1). Synacor: an added round from Dec 30, 2020.
+- **Restart after exclusivity lapses.** A new round; E6 (d) stays as in v0 plus the R3 guard. Datalink: 4 rounds (Oct 1). Synacor: the reopened round opens Oct 27, 2020, not Dec 30 (corrected in the evening rulings below).
 
 ### R8 (adopted 2026-09-27, Austin judging for Alex)
 
@@ -229,3 +229,16 @@ PetSmart: Oct 3 board meeting, NDAs in the first week of October, so round 1 ope
 ### O2 (deferred 2026-09-27)
 
 Austin: "ignore this interaction for now, we just work with the cockpit." No instruction change; human checking happens in the cockpit workflow. Revisit when the VM is back.
+
+### Evening rulings (27 September 2026, after the VM check)
+
+Austin approved these after the VM reconciliation (`VM_RECONCILIATION.md`, `vm_check/`), with Alex's sources checked for each.
+
+1. **Synacor's reopened round opens Oct 27, 2020 (E6 (d)).** Company E's exclusivity ended Oct 23; on Oct 27 the special committee asked Canaccord to re-initiate outreach and the CEO contacted Company H the same day. The Dec 30 meeting reviewed "ongoing outreach" and continues the round (R3 guard). Alex: same process, contacts renewed on the expiry of exclusivity (V¶109); his workbook marks no round there. This corrects the Stage-questions line above.
+2. **A bidder's own statement of the price it would offer is a Bid, including a ceiling or a range.** Source: Alex's workbook for Penford Party A (voice notes silent): Oct 4 ("any offer would be below $17.50–18.00") Informal 17.50–18.00; Oct 13 (value range reduced to $16–18) Informal 16–18; Oct 14 formal letter at $16, Informal (not invited to the Oct 3 final round; the letter's label doesn't decide); Party A exits Oct 14. F11 still holds for remarks without a price level of the bidder's own (a stock-price citation, V¶68).
+3. **Route 2 inside a final round is confirmed:** every bid that a bidder invited to a round announced as final makes during that round (CI p.9, V¶27). A party not invited stays outside route 2 (Penford Party A).
+4. **Kept as in v0, from Alex's sources:** Other-scope bid rows keep Formality and Conditions (his workbook labels partial bids Informal/Formal in Meredith and Synacor; V¶150); the process Question stays required for every multi-process deal and every round opened by (d) or inference (V¶110, V¶132); the nine exit reasons stay (his dropout codes fit them; no merge).
+5. **Version label:** "Version 1".
+6. **Workbook check:** the builder compares the draft's outcomes on the nine deals with Alex's workbook for every theme decided as "Alex silent" or "Austin judging for Alex", and lists disagreements for Austin. It changes nothing by itself.
+7. **Build and deployment:** development moves to the VM; the build happens in a fresh VM clone on branch `version-1`, by whichever agent team Austin chooses; the app is rebuilt from the archived VM code (`vm-live-2026-09-26`) and wired to the new tools; the app restarts on a fresh catalog (13 deals and their filings, both accounts' sign-ins kept, old instruction versions and working copies archived, their review judgments carried into the Version 1 review by hand); the switch-over is a later step on Austin's order; the old folders are deleted a week after a clean switch-over. Full plan: `BUILD_SPEC.md`.
+

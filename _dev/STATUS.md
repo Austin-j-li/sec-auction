@@ -6,7 +6,7 @@ Version 0, 27 September 2026. This is the only status record. Older records were
 
 - **Instruction:** [v0](../SEC_Deal_Ledger_Extraction_Instruction.md), SHA-256 `cbb1f35c…96ce`. It is not yet aligned with Alex (next section). Changes need Austin's approval and must be general.
 - **Extractions:** none. `extraction/` is empty. All nine deals are to be re-extracted under v0 on Austin's command, by default with Opus 5.5 at medium effort.
-- **Cockpit:** runs on the VM, which has been unreachable since the 27 September certificate expiry. This checkout has no cockpit source. It holds only the runner and the checker. The VM app still has its earlier instruction versions and working copies; they predate v0.
+- **Cockpit:** runs on the VM, reachable again since 27 September evening (see Operational below). This checkout has no cockpit source; the app code is on branch `vm-live-2026-09-26`. The app still has its earlier instruction versions and working copies; they predate v0.
 
 ## First task: align the instruction with Alex
 
@@ -65,14 +65,10 @@ Alex asked to record procedural Formality and conditionality separately and rein
 - **Inferred exits:** treat them as dropouts, or as censored observations.
 - **Inferred counts:** use them as recorded, with or without a robustness check that sets them aside.
 
-## Operational, when the VM returns
+## Operational: the VM is back (27 September, evening)
 
-- Publish v0 in the app, make it the default, and decide what happens to the app's earlier instruction versions and working copies.
-- Reconcile the VM's tools with this checkout. The v0 tools here break things the VM code may rely on:
-  - The checker rejects any non-v0 ledger, which includes the app's older working copies.
-  - `check_lean.choice_lists()` is removed.
-  - `rounds.csv` drops the `deadline_legacy` and `not_admitted` columns.
-  - The derive manifest drops `contract`, `contract_version`, `rules_requested`, `switches_retired`, `columns_missing`, `columns_unexpected`, `readings.missing` and `input.working_copy`.
-  - `--rules` is gone.
-  - `run_model --provider sol` defaults to `gpt-6-sol`.
-- Take a fresh backup, and remove the old `dist.old` build on the VM.
+- The VM was reachable again on 27 September. Nothing changed there after 26 September 20:52 UTC ([reconciliation](alignment_sprint/VM_RECONCILIATION.md)). The app still runs v1.14.1 as its default, whose text is v0's apart from the title.
+- Its uncommitted work is archived on branches `vm-live-2026-09-26` (the live checkout the services run from) and `vm-v114-2026-09-26`. Backups are in `~/backups/` on the VM. The live files were not changed.
+- Version 1 is to be built on the VM per [BUILD_SPEC.md](alignment_sprint/BUILD_SPEC.md), on branch `version-1`. The app is rebuilt from the archive and wired to the new tools, then restarts on a fresh catalog at a switch-over Austin orders. Development moves to the VM; this laptop checkout is retired after the handoff.
+- Correction to the earlier list: the v0 checker does not reject v1.14 or v1.14.1 ledgers, which have the same 29 columns. It checks them under v0 rules: correctly for v1.14.1, wrongly without warning for the 24 September v1.14 drafts. v1.13.2 ledgers get a column error and many knock-on errors. Dropping the v0 tools into the live app would break every deal page, the check step of every run, editing and Add Deal ([lane D](alignment_sprint/vm_check/lane_D_ops.md)).
+- Withdrawn VM handoff gates: `export_repo.py instruction v1.14.1 --write` (it would overwrite the instruction file), gate 12 (moving the extraction workbooks), and rebasing working copies onto v1.14.1 runs.
