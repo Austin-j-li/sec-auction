@@ -1,0 +1,1 @@
+No blockers. The existing `_seed` creates a valid published default from the approved instruction. The revised (d), with the R3 continuation guard, preserves the section 7 anchors across all nine deals.
