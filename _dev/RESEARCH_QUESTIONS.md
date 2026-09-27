@@ -24,17 +24,25 @@ The two errors are Count 1 on Merger announced (sTec event 56, Datalink event 76
 
 ## Decisions to discuss now
 
-Distinguish a filing error under an existing rule from a change to the research convention. The published instruction governs extraction until Austin authorizes a change. Alex's outstanding confirmation does not make every existing default an unresolved instruction.
+**Latest direction, surfaced from the concurrent Claude discussion:** at 13:48 UTC on 27 September, Austin answered “we should say yes” to treating Kraton's July 6 continuation/selection as a new round, adding “i thought v1.14.1 is fully respecting alex's decision” and requesting an audit of departures from Alex. This supersedes his 12:46 UTC two-round answer. The original local conversation was checked, not just Claude's summary.
 
-### 1. sTec: when did the final round begin?
+The research task is to align the instruction with Alex's stated conventions and Austin's latest rulings. Compliance with v1.14.1 does not itself establish that a coding is research-correct. The published instruction remains unchanged pending an approved general amendment; distinguish its implemented behaviour from the intended research convention.
+
+### 1. Align the round rule before deciding dependent deal maps
+
+Kraton is to follow Alex's three-round interpretation, with July 6 starting its second informal round. The current rule that repeated improvement requests continue a round, and that an offer-less selection opens none, can conflict with that interpretation. Reconcile these generally, then re-check Datalink and sTec; do not use those current clauses to overrule Alex case by case. The old Kraton working copy's three rounds use different dates and are not automatically correct just because its count is three.
+
+The supplied Claude audit also identifies the 30-day/ended-exclusivity trigger, human-review flag coverage, sTec process splitting and smaller collection differences for investigation. These are an audit queue, not a verified exhaustive list or approved amendments. Alex's original voice notes explicitly require round/process and other uncertainty flags (paragraphs 169–178), and identify two sTec processes (paragraph 118). Verify rule omissions, run errors and intentional later rulings separately. No claim that v1.14.1 fully follows Alex is established.
+
+### 2. sTec: when did the final round begin?
 
 **Open reconciliation with Alex:** May 16's final-round letters versus May 29's best-and-final request. The [filing](../raw_filing/stec_2013-08-08_DEFM14A.htm), printed p. 30, calls the earlier letters final round process letters and later describes the proposals as non-binding. Alex's voice note explicitly calls May 16 the start of “round two of informal bidding” (body paragraph 124); paragraph 125 calls the May 28 offer formal but says its round was not final. His sTec voice-note section does not state when the final round starts.
 
 Under current E6, finality describes the announced procedure; non-binding does not itself mean Not final. The v1.14.1 run has two rounds, consistent with questionnaire map A. Questionnaire map C reconstructs a May 29 final-stage opening and three rounds from that reading; this date and full map are not an explicit ruling by Alex. The old working copy's extra round after WDC's May 31 withdrawal has no identified v1.14.1 trigger; it is not another equally supported current-rule option.
 
-**Recommendation, not a new ruling:** retain the published-rule reading while asking Alex whether his intended research convention differs. Discuss the general meaning of a final stage, not just how to make this deal match a label. Company H's exit is settled separately below.
+**Prior assistant recommendation withdrawn:** May 16 should not be recommended as research-final merely because the filing calls its letters final or because v1.14.1 says so. Alex explicitly calls it a second informal round. Resolve the general round/finality convention first; the exact subsequent final-round opening remains unconfirmed by Alex. Company H's exit is settled separately below.
 
-### 2. Conflicting reference sources
+### 3. Conflicting reference sources
 
 **Open with Alex:** what governs when his spring hand coding and later voice notes disagree? Examples are sTec finality and Providence & Worcester Party A's departure.
 
@@ -62,8 +70,8 @@ These are questionnaire §§3.2–3.3. Other code options, such as upfront versu
 
 | Topic | Current ruling | Implementation boundary |
 |---|---|---|
-| Kraton rounds, 27 September | Two rounds. July 6 improvement request continues round 1; July 20 selection requests no offers; round 2 opens at the subsequent final bid letter after August 11. | Verified against Austin's explicit answer at 12:46 UTC and recorded in commit `764757f`. The saved old working copy still has three rounds (July 20 and August 11 openings); no v1.14.1 rerun exists. Alex's different three-round map opens on July 6. |
-| Datalink rounds, 26 September | Four under v1.14.1, superseding F9's five; the retest opens round 1 on January 28. | Present in the raw retest, not a completed source review or working-copy migration. |
+| Kraton rounds, latest ruling 27 September 13:48 UTC | Follow Alex: three rounds; July 6 starts the second informal round. This reverses Austin's 12:46 UTC two-round ruling recorded in `764757f`. | Original later conversation verified after Austin supplied the Claude audit. v1.14.1 still implements two; instruction amendment and dependent map review remain undone. The old working copy's three-round map has different dates and is not thereby accepted. |
+| Datalink rounds | Four was Austin's 26 September ruling under v1.14.1, superseding F9's five; the retest opens round 1 on January 28. | Must now be re-checked under the later Alex-alignment direction. Do not automatically restore five or treat four as final under a revised rule. |
 | Announcement Count, 27 September | Clear Count in the two announcement rows during review; clarify wording with the next general instruction revision, not a standalone v1.14.2 now. | Recorded in `764757f`; saved raw runs still contain the values. |
 | sTec Company H, H1 | Dropped by target by May 16; reason Would not improve earlier offer. | Present in the raw v1.14.1 retest; old Q7 approval hold is obsolete. |
 | Non-submitters, H2/H3 and R3 | P&W 16 inferred non-submitters; Mac-Gray 16 unnamed financial signers closed by July 23. Apply named/cohort reconciliation. | P&W retest represents 16 as Party A plus a cohort of 15; the acceptance script's demand for a single Count-16 row was too strict. Estimation interpretation remains separate. |
