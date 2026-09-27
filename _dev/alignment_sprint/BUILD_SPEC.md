@@ -27,7 +27,7 @@ The live app runs there and must keep running unchanged until the switch-over Au
 
 Therefore:
 
-- **In `~/work/Projects/sec-extraction`, change nothing.** No edits, no `git checkout`, `switch`, `stash`, `pull`, `merge`, `reset` or `clean`, and no writes to `_dev/cockpit/state/`. Reading is fine; open its SQLite database only read-only (`file:…?mode=ro` or `immutable=1`).
+- **In `~/work/Projects/sec-extraction`, change nothing.** No edits, no `git checkout`, `switch`, `stash`, `pull`, `merge`, `reset` or `clean`, and no writes to `_dev/cockpit/state/`. Reading is fine. Open its SQLite database only with `mode=ro` and copy it with SQLite's online backup API; the live database is in WAL mode and changing, so `immutable=1` is only for a finished offline copy.
 - **Leave the services, the unit files and the timer alone.** Don't stop, restart or edit them. Don't change `~/backups/`.
 - **Leave `~/work/Projects/sec-extraction-v114`** (archived on branch `vm-v114-2026-09-26`), other project folders, and other agent processes running on the VM alone.
 - **Watch disk space.** About 1.4 GB was free on 27 September. Keep build artifacts and test state small, and delete scratch copies when done.
@@ -38,8 +38,10 @@ The laptop checkout is retired; development continues on the VM from this build 
 
 - Clone the repository into a new folder and work on a new branch:
   - `git clone git@gitlab-sec:austin.junyu.li/sec-auctions.git ~/work/Projects/sec-auction`
-  - `git switch -c version-1 origin/local-recovery-2026-09-27`
-  - `git push -u origin version-1`
+  - `git -C ~/work/Projects/sec-auction switch -c version-1 origin/local-recovery-2026-09-27`
+  - `git -C ~/work/Projects/sec-auction push -u origin version-1`
+
+  Run every later git command inside the new clone.
 
   The `gitlab-sec` host alias and its deploy key are already set up on the VM.
 - `version-1` starts from the laptop's work: the Version 0 instruction, the Version 0 tools, the decision log, these specs and the reconciliation reports. It descends from `extraction-v2`'s last commit (`679d4fc`), so `extraction-v2` can later move forward to it without a merge.
@@ -80,7 +82,7 @@ The known call sites come from the breakage table in [`vm_check/lane_D_ops.md`](
 - **Editing:**
   - The editor's value lists come from a `choice_lists()` that `check_lean.py` exports for the current format only.
   - The Stock % field's validation uses the current checker's patterns.
-- **Review items:** the Questions view and flag links accept R ids beside Q ids (DRAFTING_SPEC section 6).
+- **Review items:** R ids work wherever Q ids do: the Questions view, flag links, and `workspace.py`'s id validation, renaming and reference checks (its `QID` and `QREF` patterns). Otherwise any save of a workbook that contains R1 fails. Test saving, renaming and deleting an R item (DRAFTING_SPEC section 6).
 - **Initiation:** lists gain `mixed`.
 - **Filing links:** Add Deal and the provenance download get their filing index link through `fetch_filing.index_link`. Either restore that function in `fetch_filing.py` or change `deals.py` and `provenance.py` to match.
 - **Labels:** version and checker labels in the interface name the Version 1 checker.
@@ -96,8 +98,7 @@ The new state keeps:
 
 - the `accounts` table, so that Austin's and Alex's sign-ins carry over without reconnecting;
 - the thirteen deals: the nine catalog deals, and the four added in the app (Medivation, Zep, Pepco Holdings, Imprivata) with their `added_deals` rows and their filings from `state/filings/`;
-- any settings the app needs to start;
-- the Version 1 instruction, imported as an unpublished draft so that Austin can publish it in one step.
+- no instruction and no `default_instruction` setting. When its instruction table is empty, the app imports the repository's instruction file as the first published version and the default (`instructions.py`, `_seed`). At the switch-over the deploy folder is at the approved commit, whose instruction file is Version 1, so Version 1 becomes the default with no extra step. In testing before approval it imports Version 0, which is fine.
 
 The new state leaves out:
 
@@ -107,14 +108,14 @@ The new state leaves out:
 
 These stay in the archived old state. The eight edited working copies hold Austin's review judgments; they are carried into the Version 1 review by hand, not by the app.
 
-The nine catalog deals have no base version until their Version 1 extraction; `extraction/` is empty on `version-1`. The app must show a deal with no versions and let a user start an extraction on it. Update `catalog.json` and the app wherever they assume a base workbook.
+The nine catalog deals have no base version until their Version 1 extraction; `extraction/` is empty on `version-1`. Give catalog deals the same no-version state that app-added deals already have before their first run (`workspace.py`, `item` and `pending_payload`, which today read the `added` row that catalog deals lack; take their filing details from the catalog). The first successful run becomes the deal's base and ends the pending state. Update `catalog.json` and the app wherever else they assume a base workbook, and test the whole path for a catalog deal with the test suites' stub runner.
 
 Tokens in the `accounts` table are secrets. The state directory is ignored by git (`_dev/**/state/`) and must stay out of every commit and report.
 
 ### B4. Test the app
 
 - Run every test suite the app has: the Python unit tests, the HTTP acceptance tests, vitest, and the browser suites where they can run headless on the VM.
-- Then run the app from the new clone on a spare localhost port (not 8778), against a fresh state built from a copy of the live state. Take the copy read-only, for example with SQLite's backup API on an `immutable=1` connection, plus the `filings/` folder.
+- Then run the app from the new clone on a spare localhost port (not 8778), against a fresh state built from a copy of the live state. Take the copy with SQLite's online backup API from a `mode=ro` connection, plus the `filings/` folder.
 - Check by hand:
   - the deal list;
   - a deal with no version;
@@ -123,7 +124,7 @@ Tokens in the `accounts` table are secrets. The state directory is ignored by gi
   - the Questions view with R ids;
   - the instruction pages;
   - the Add Deal lookup.
-- Start no extraction job. Test the run path with the test suites' stubs; where a check would need a real run, stop at the queued job and say so in the report.
+- Start no extraction job. Test the run path only with the test suites' stubs. Where a check would need a real extraction, stop before submitting the job and report it as untested. A queued job is not a safe stopping point: the worker starts queued jobs by itself within seconds. The same holds for the switch-over smoke test.
 - Stop the test server and delete the scratch state when done.
 
 ### B5. The switch-over runbook
@@ -132,8 +133,9 @@ Write `_dev/alignment_sprint/SWITCHOVER.md` for Austin. Nobody runs it before hi
 
 - **A separate deploy folder.** The services should run from a deploy worktree checked out at the approved commit, for example `~/work/Projects/ledger-live`, not from the development clone. Development then never changes the running app.
 - **Before:**
-  - stop both services and the backup timer;
-  - take a backup;
+  - stop the cockpit server so no new jobs are submitted;
+  - let queued and running extractions finish under the old worker, and confirm their runner processes have exited (runners run in their own sessions and outlive a worker stop, `KillMode=process`);
+  - then stop the worker and the backup timer, and take a backup;
   - archive the old state as a tarball in `~/backups/`;
   - build the fresh state into the deploy worktree with the B3 script;
   - build the frontend.
