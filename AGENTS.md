@@ -22,6 +22,6 @@ This project turns the "Background of the Merger" section of an SEC merger filin
 - Outside the app, an agent changes the instruction only with Austin's approval and runs extractions only on his command. Building or testing the app does not authorize a real model run. Change it only where the change is general (objective, work process, honesty about uncertainty, a repaired contradiction, a deletion); never add a rule justified by one reviewed deal.
 - Comparison runs must be isolated: one instruction and one filing per sandboxed session (`_dev/tools/sandbox/run_model.py`; usage in `_dev/tools/README.md`). Run the checker after the run, never where the extracting agent can see it. Revision mode is a separate, explicitly requested pass that may see the selected workbook and findings.
 - Checking is mechanical and offline. Delete run folders and other scaffolding once their results are recorded.
-- Commit and push only when asked.
+- Commit and push finished work to GitLab (`origin`) at the end of each work session, on the current branch, so it survives a VM outage (Austin, 27 September). Never force-push, rewrite pushed history, or commit secrets, caches or credentials.
 
 This checkout is the `local-recovery-2026-09-27` branch. SSH to the VM has been unavailable since the 27 September certificate expiry; the cockpit remained live that morning and remains the system of record. Read [the recovery handoff](_dev/HANDOFF.md) before claiming that laptop code matches the VM.
