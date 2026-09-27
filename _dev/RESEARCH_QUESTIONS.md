@@ -28,9 +28,9 @@ Distinguish a filing error under an existing rule from a change to the research 
 
 ### 1. sTec: when did the final round begin?
 
-**Open reconciliation with Alex:** May 16's final-round letters versus May 29's best-and-final request. The [filing](../raw_filing/stec_2013-08-08_DEFM14A.htm), printed p. 30, calls the earlier letters final round process letters and later describes the proposals as non-binding. Alex's voice note (body paragraph 125) calls the May 28 offer formal but says the round was not final.
+**Open reconciliation with Alex:** May 16's final-round letters versus May 29's best-and-final request. The [filing](../raw_filing/stec_2013-08-08_DEFM14A.htm), printed p. 30, calls the earlier letters final round process letters and later describes the proposals as non-binding. Alex's voice note explicitly calls May 16 the start of “round two of informal bidding” (body paragraph 124); paragraph 125 calls the May 28 offer formal but says its round was not final. His sTec voice-note section does not state when the final round starts.
 
-Under current E6, finality describes the announced procedure; non-binding does not itself mean Not final. The v1.14.1 run has two rounds, consistent with questionnaire map A. Alex's alternative starts the final stage later and counts three. The old working copy's extra round after WDC's May 31 withdrawal has no identified v1.14.1 trigger; it is not another equally supported current-rule option.
+Under current E6, finality describes the announced procedure; non-binding does not itself mean Not final. The v1.14.1 run has two rounds, consistent with questionnaire map A. Questionnaire map C reconstructs a May 29 final-stage opening and three rounds from that reading; this date and full map are not an explicit ruling by Alex. The old working copy's extra round after WDC's May 31 withdrawal has no identified v1.14.1 trigger; it is not another equally supported current-rule option.
 
 **Recommendation, not a new ruling:** retain the published-rule reading while asking Alex whether his intended research convention differs. Discuss the general meaning of a final stage, not just how to make this deal match a label. Company H's exit is settled separately below.
 
