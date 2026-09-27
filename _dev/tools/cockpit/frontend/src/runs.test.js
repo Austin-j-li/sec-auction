@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { accountEngines, activeRunLabel, dateWithYear, effortFor, failureText, jobEngineLabel, jobInstructionLabel, pickEngine, formatElapsed, jobElapsed, orderVersions, planUsageText, runSummary, usageText, validTimeout, versionOptionLabel } from './runs';
+import { accountEngines, activeRunLabel, dateWithYear, effortFor, extractNotice, failureText, importCheckText, jobEngineLabel, jobInstructionLabel, LEGACY_INSTRUCTION_LABEL, liveCheckText, pickEngine, formatElapsed, jobElapsed, orderVersions, planUsageText, rebaseLines, runSummary, usageText, validTimeout, versionOptionLabel } from './runs';
 import { shortTime, tally, tallyText } from './trace';
 import { compareQuery } from './api';
 
@@ -75,8 +75,8 @@ describe('plan usage and cost', () => {
     expect(dateWithYear('2027-09-23T12:00:00Z')).toMatch(/^2[34] Sep 2027$/);
   });
   it('summarises a run and validates the time limit', () => {
-    expect(runSummary('medium', 'austin')).toBe('Opus 5.5 · medium · v1.13.2 · on Austin’s Claude plan · usually 10–15 minutes');
-    expect(runSummary('high', 'austin')).toBe('Opus 5.5 · high · v1.13.2 · on Austin’s Claude plan');
+    expect(runSummary('medium', 'austin', { id: 'opus55', label: 'Opus 5.5', account: 'claude' }, 'v1.13.2')).toBe('Opus 5.5 · medium · v1.13.2 · on Austin’s Claude plan · usually 10–15 minutes');
+    expect(runSummary('high', 'austin')).toBe('Opus 5.5 · high · default instruction · on Austin’s Claude plan');
     expect(runSummary('high', 'austin', { id: 'fable51', label: 'Fable 5.1', account: 'claude' }, 'draft 3f2a9c1 (Alex)')).toBe('Fable 5.1 · high · draft 3f2a9c1 (Alex) · on Austin’s Claude plan');
     expect(runSummary('medium', 'alex', { id: 'sol6', label: 'GPT-6-Sol', account: 'chatgpt' }, 'v1.14')).toBe('GPT-6-Sol · medium · v1.14 · on Alex’s ChatGPT plan');
     expect([validTimeout('90'), validTimeout('9'), validTimeout('361'), validTimeout('12.5'), validTimeout('')]).toEqual([true, false, false, false, false]);
@@ -144,27 +144,30 @@ describe('engines', () => {
     { id: 'opus55', label: 'Opus 5.5', account: 'claude', efforts: ['low', 'medium', 'high', 'xhigh', 'max', 'ultra'], default_effort: 'medium', connected: false },
     { id: 'fable51', label: 'Fable 5.1', account: 'claude', efforts: ['low', 'medium', 'high'], default_effort: 'medium', connected: false, experimental: true },
     { id: 'sol6', label: 'GPT-6-Sol', account: 'chatgpt', efforts: ['low', 'medium', 'high'], default_effort: 'high', connected: true },
-    { id: 'astra6', label: 'GPT-6-Astra', account: 'chatgpt', efforts: ['low', 'medium'], connected: true },
+    { id: 'astra6', label: 'GPT-6-Astra', account: 'chatgpt', efforts: ['low', 'medium', 'high'], connected: true },
   ];
   it('reads the account’s engines without ultra, and falls back to Opus 5.5 before phase 4', () => {
     const list = accountEngines({ engines });
     expect(list[0].efforts).toEqual(['low', 'medium', 'high', 'xhigh', 'max']);
-    expect(list[3].default_effort).toBe('medium');
+    expect(list[3].default_effort).toBe('high');
     expect(accountEngines({ claude: { connected: true } })).toMatchObject([{ id: 'opus55', label: 'Opus 5.5', account: 'claude', connected: true, default_effort: 'medium' }]);
     expect(accountEngines(null)[0].connected).toBe(false);
   });
-  it('preselects Opus 5.5 when usable, else the first connected engine', () => {
+  it('preselects Opus 5.5 when usable, preserves explicit choices and falls back to connected engines', () => {
     const list = accountEngines({ engines });
     expect(pickEngine(list).id).toBe('sol6');
     expect(pickEngine(list, 'astra6').id).toBe('astra6');
     expect(pickEngine(list, 'fable51').id).toBe('sol6');
+    expect(pickEngine(list, 'sol6').id).toBe('sol6');
+    expect(pickEngine(list.filter(e => e.id !== 'astra6')).id).toBe('sol6');
     expect(pickEngine(accountEngines({ engines: engines.map(e => ({ ...e, connected: true })) })).id).toBe('opus55');
+    expect(pickEngine(accountEngines({ engines: engines.map(e => ({ ...e, connected: true })) }), 'astra6').id).toBe('astra6');
     expect(pickEngine(list.map(e => ({ ...e, connected: false })))).toBe(null);
   });
   it('keeps an effort the new engine offers, else its default', () => {
     const [, , sol, astra] = accountEngines({ engines });
     expect(effortFor(sol, 'low')).toBe('low');
-    expect(effortFor(astra, 'high')).toBe('medium');
+    expect(effortFor(astra, 'max')).toBe('high');
     expect(effortFor(sol, 'max')).toBe('high');
   });
   it('labels a run’s engine and instruction, with the phase 2 defaults', () => {
@@ -172,5 +175,58 @@ describe('engines', () => {
     expect(jobEngineLabel({ params: { effort: 'high' } })).toBe('Opus 5.5');
     expect(jobInstructionLabel({ params: { instruction: { label: 'draft 3f2a9c1 (Alex)' } } })).toBe('draft 3f2a9c1 (Alex)');
     expect(jobInstructionLabel({})).toBe('v1.13.2');
+    expect(LEGACY_INSTRUCTION_LABEL).toBe('v1.13.2');
+  });
+});
+
+describe('which checker made a result', () => {
+  it('labels the live check and the check at import', () => {
+    expect(liveCheckText({ checker_version: '1.7' }, 'v1.14')).toBe('Live check: checker 1.7, v1.14 rules');
+    expect(liveCheckText({ checker_version: '1.8' }, 'v1.14.1')).toBe('Live check: checker 1.8, v1.14.1 rules');
+    expect(liveCheckText({}, null)).toBe('Live check: checker version unknown');
+    expect(importCheckText({ checker_version: '1.6', ledger_schema: 'v1.14', errors: 1, warnings: 16 })).toBe('At import: checker 1.6, 1 error, 16 warnings');
+    expect(importCheckText({ checker_version: null, errors: 0, warnings: 2 })).toBe('At import: checker version not recorded, 0 errors, 2 warnings');
+    expect(importCheckText(null)).toBe('At import: not recorded');
+  });
+  it('adds the checker version to the version picker', () => {
+    expect(versionOptionLabel({ id: 'run', label: 'Opus 5.5 · medium · draft f9595d7 (Austin) — Austin, 24 Sep 22:41', checker: { checker_version: '1.6', errors: 1, warnings: 16 } }))
+      .toBe('Opus 5.5 · medium · draft f9595d7 (Austin) — Austin, 24 Sep 22:41 · checker 1.6');
+    expect(versionOptionLabel({ id: 'opus55-medium', label: 'Opus 5.5 medium extraction', instruction_version: 'v1.13.2', checker: { checker_version: '1.5' }, is_base: true }))
+      .toBe('Opus 5.5 medium extraction · v1.13.2 · checker 1.5 · base');
+  });
+});
+
+describe('the Extract dialog’s line about the working copy', () => {
+  const working = { revision: 8, base_instruction_version: 'v1.13.2', base_instruction_sha256: 'a'.repeat(64), base_ledger_schema: 'v1.13.2' };
+  it('appears only when the run’s instruction is not the working copy’s', () => {
+    expect(extractNotice(working, { sha256: 'a'.repeat(64), name: 'v1.13.2' })).toBe('');
+    expect(extractNotice(working, { sha256: 'b'.repeat(64), name: 'v1.14' }))
+      .toBe('The working copy (revision 8) is under v1.13.2 with v1.13.2 columns. This run becomes a separate version and is not merged into it; using it as the base replaces the working copy.');
+    expect(extractNotice({ ...working, base_instruction_sha256: null, revision: 0 }, { sha256: 'b'.repeat(64), name: 'v1.13.2' })).toBe('');
+    expect(extractNotice({ ...working, base_instruction_sha256: null, revision: 0 }, { sha256: 'b'.repeat(64), name: null }))
+      .toBe('The working copy is under v1.13.2 with v1.13.2 columns. This run becomes a separate version and is not merged into it; using it as the base replaces the working copy.');
+    expect(extractNotice(null, { sha256: 'b' })).toBe('');
+  });
+});
+
+describe('the rebase dialog', () => {
+  it('lists what stops applying, with counts', () => {
+    const preview = {
+      current: { id: 'opus55-medium', ledger_schema: 'v1.13.2', revision: 8 }, target: { id: 'run', ledger_schema: 'v1.14' },
+      deal_review: { status: 'in_review', revision: 8, actor: 'austin' },
+      stops_applying: { revisions: 8, edits: 42, row_marks: { total: 58, reviewed: 56, needs_decision: 2, unreviewed: 0 },
+        finding_decisions: { total: 1, judgments_kept: 1, reset: 1 }, row_threads: { total: 1, open: 1, resolved: 0 } },
+    };
+    expect(rebaseLines(preview)).toEqual([
+      'The columns change from v1.13.2 to v1.14.',
+      '8 revisions saved on the current base (42 edits to its rows) stop applying. They stay in History; restoring revision 8, not revision 0, brings them back.',
+      '58 row marks stop applying (56 reviewed, 2 needs decision).',
+      '1 finding judgment carries over; the implementation and verification of 1 reset.',
+      '1 row thread (1 open) stays with the old rows and reads “on an earlier base (revision 8)”.',
+      'The deal’s review status stays, marked as edited since revision 8.',
+    ]);
+    expect(rebaseLines({ current: { revision: 0 }, target: {}, stops_applying: { revisions: 0, edits: 0, row_marks: { total: 0 }, finding_decisions: { total: 0 }, row_threads: { total: 0 } } }))
+      .toEqual(['No revisions have been saved on the current base.']);
+    expect(rebaseLines(null)).toEqual([]);
   });
 });

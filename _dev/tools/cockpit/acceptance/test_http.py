@@ -249,7 +249,7 @@ def test_four_sheet_edits_typed_export_decision_and_restart(env):
     assert cell("Deal ledger", 2, "Reviewer note").value == "=1+1"
     assert cell("Deal ledger", 4, "Event").hyperlink.target == "https://example.invalid/record"
     assert cell("Deal ledger", 4, "Note").comment.text == "Preserve synthetic annotation"
-    assert list(exported.sheetnames) == ["Deal ledger", "Rounds", "Questions", "Deal facts"]
+    assert list(exported.sheetnames) == ["Deal ledger", "Rounds", "Questions", "Deal facts", "Source"]
     assert ledger.auto_filter.ref.endswith("4")
     exported.close()
     assert hashlib.sha256(workbook.read_bytes()).hexdigest() == original_hash
@@ -552,3 +552,325 @@ def test_hide_and_unhide_a_deal_over_http(env, monkeypatch):
     assert http.post(route, {"action": "unhide"}).status_code == 409
     kinds = [item["kind"] for item in http.get("/api/activity?slug=synthetic").json()["items"]]
     assert kinds[:2] == ["unhide_deal", "hide_deal"]
+
+
+def test_deal_review_status_is_recorded_at_a_revision(env):
+    http, _, _ = env
+    route = "/api/deal/synthetic/review"
+    listed = lambda: next(d for d in http.get("/api/deals").json() if d["slug"] == "synthetic")["deal_review"]
+    initial = deal(http)["deal_review"]
+    assert (initial["status"], initial["actor"], initial["edited_since"]) == ("unreviewed", None, False)
+    assert http.post(route, {"status": "reviewed", "revision": 0}, csrf="wrong").status_code == 403
+    assert http.post(route, {"status": "done", "revision": 0}).status_code == 400
+    assert http.post(route, {"status": "reviewed"}).status_code == 400
+    assert http.post(route, {"status": "reviewed", "revision": 1}).status_code == 409
+
+    snapshot = deal(http)
+    saved = save(http, snapshot, [{"type": "review", "uid": row(snapshot, "Deal ledger")["uid"], "status": "reviewed"}])
+    assert saved.status_code == 200, saved.text
+    assert saved.json()["deal_review"]["status"] == "in_review"  # edited, nothing recorded yet
+    assert http.post(route, {"status": "reviewed", "revision": 0}).status_code == 409  # stale view
+
+    marked = http.post(route, {"status": "reviewed", "revision": 1})
+    assert marked.status_code == 200, marked.text
+    review = marked.json()["deal_review"]
+    assert (review["status"], review["revision"], review["actor"], review["edited_since"]) == ("reviewed", 1, "local", False)
+    assert http.post(route, {"status": "reviewed", "revision": 1}).status_code == 400  # no change
+    assert listed()["status"] == "reviewed"
+
+    snapshot = deal(http)
+    later = save(http, snapshot, [{"type": "review", "uid": row(snapshot, "Deal ledger")["uid"], "status": "needs_decision"}])
+    assert later.status_code == 200, later.text
+    stale = later.json()["deal_review"]
+    assert (stale["status"], stale["revision"], stale["current_revision"], stale["edited_since"]) == ("reviewed", 1, 2, True)
+    assert listed()["edited_since"] is True
+    again = http.post(route, {"status": "reviewed", "revision": 2}).json()["deal_review"]
+    assert (again["revision"], again["edited_since"]) == (2, False)
+    items = http.get("/api/activity?slug=synthetic").json()["items"]
+    assert [(i["kind"], i["summary"]) for i in items[:2]] == [("deal_review", "Marked reviewed at revision 2"), ("revision", "Synthetic acceptance change")]
+
+
+def test_bulk_process_round_edit_is_one_attributed_revision(env):
+    http, workbook, original_hash = env
+    snapshot = deal(http)
+    marked = save(http, snapshot, [{"type": "review", "uid": row(snapshot, "Deal ledger", 1)["uid"], "status": "needs_decision"}])
+    assert marked.status_code == 200, marked.text
+    snapshot = marked.json()
+    uids = [row(snapshot, "Deal ledger", index)["uid"] for index in (1, 2)]
+    for values in ({"Note": "x"}, {"Process": 0}, {"Round": ""}):
+        rejected = save(http, snapshot, [{"type": "bulk_update", "sheet": "Deal ledger", "uids": uids, "values": values}])
+        assert rejected.status_code == 400, rejected.text
+    assert deal(http)["workspace"]["revision"] == 1
+    saved = save(http, snapshot, [{"type": "bulk_update", "sheet": "Deal ledger", "uids": uids, "values": {"Process": 1, "Round": "2"}}], "Second round starts at #2")
+    assert saved.status_code == 200, saved.text
+    payload = saved.json()
+    assert payload["workspace"]["revision"] == 2
+    assert [r["cells"]["Round"] for r in payload["ledger"]["rows"]] == ["1", "2", "2"]
+    assert payload["row_review"][uids[0]]["status"] == "needs_decision"
+    user = http.session()["user"]
+    assert {payload["field_authors"][uid]["Round"]["actor"] for uid in uids} == {user}
+    assert "Process" not in payload["field_authors"][uids[0]]  # unchanged values are not recorded
+    history = http.get("/api/deal/synthetic/history").json()["history"][0]
+    assert (history["actor"], history["reason"], history["summary"]) == (user, "Second round starts at #2", "2 changes")
+    assert sorted((c["uid"], c["field"], c["before"], c["after"], c["type"]) for c in history["changes"]) == sorted((uid, "Round", "1", "2", "update") for uid in uids)
+    exported = xlsx(http.get("/api/deal/synthetic/export?version=working&source=0"))
+    column = check_lean.LEDGER_COLUMNS.index("Round") + 1
+    assert [(exported["Deal ledger"].cell(r, column).value, exported["Deal ledger"].cell(r, column).data_type) for r in (2, 3, 4)] == [(1, "n"), (2, "n"), (2, "n")]
+    exported.close()
+    assert hashlib.sha256(workbook.read_bytes()).hexdigest() == original_hash
+
+def source_values(workbook):
+    return {field: value for field, value in workbook["Source"].iter_rows(min_row=2, values_only=True)}
+
+
+def sheet_values(workbook):
+    """Every sheet's cell values; a rendered workbook's bytes also carry the time it was saved."""
+    return {ws.title: list(ws.iter_rows(values_only=True)) for ws in workbook.worksheets}
+
+
+def _saved(root, content):
+    path = root / "download-check.xlsx"
+    path.write_bytes(content)
+    return path
+
+
+def test_download_adds_a_source_sheet_to_the_working_copy_only(env):
+    http, workbook, original_hash = env
+    submission = "https://www.sec.gov/Archives/edgar/data/77/0000000077-26-000001.txt"
+    index = "https://www.sec.gov/Archives/edgar/data/77/0000000077-26-000001-index.htm"
+    manifest = http.root / "raw_filing/MANIFEST.csv"
+    with manifest.open(newline="", encoding="utf-8") as handle:
+        entries = list(csv.DictReader(handle))
+    filing_hash = entries[0]["sha256"]
+    manifest.write_text(manifest.read_text(encoding="utf-8").replace("https://example.invalid/synthetic", submission), encoding="utf-8")
+    (http.root / "ref").mkdir()
+    (http.root / "ref/seed.csv").write_text(f"deal,target_name,deal_number,form_type,date_filed,index_url,status\nsynthetic,SYNTHETIC ACME,1,DEFM14A,2026-01-10,{index},ok\n", encoding="utf-8")
+    route = "/api/deal/synthetic/export"
+
+    response = http.get(route)  # an unedited working copy: revision 0, no review status
+    assert response.headers["Content-Disposition"] == 'attachment; filename="synthetic-working-r0.xlsx"'
+    exported = xlsx(response)
+    assert exported.sheetnames == ["Deal ledger", "Rounds", "Questions", "Deal facts", "Source"]
+    values = source_values(exported)
+    assert values["EDGAR filing index"] == index and exported["Source"]["B2"].hyperlink.target == index
+    assert values["Complete submission (.txt)"] == submission and exported["Source"]["B3"].hyperlink.target == submission
+    assert values["Background pages"] == "not recorded"  # the synthetic Deal facts have no such row
+    assert values["Filing SHA-256"] == filing_hash
+    assert (values["Instruction"], values["Instruction SHA-256"]) == ("v1.13.2", "not recorded")  # no published instruction in this state
+    assert (values["Version ID (working-copy base)"], values["Raw workbook SHA-256"]) == ("v1132-raw", original_hash)
+    assert (values["Working revision"], values["Review status"]) == ("0", "not set")
+    assert dt.datetime.fromisoformat(values["Exported at"]).tzinfo is not None
+    exported.close()
+
+    initial = deal(http)
+    pages = {"type": "insert", "sheet": "Deal facts", "after_uid": row(initial, "Deal facts", 1)["uid"], "values": {"Field": "Background pages", "Value": "pp. 1-2"}}
+    assert save(http, initial, [pages], "Record background pages").status_code == 200
+    assert http.post("/api/deal/synthetic/review", {"status": "reviewed", "revision": 1}).status_code == 200
+    current = deal(http)
+    assert save(http, current, [{"type": "update", "sheet": "Deal facts", "uid": row(current, "Deal facts", 0)["uid"], "values": {"Value": "Synthetic Acme Later"}}], "Edit after review").status_code == 200
+    response = http.get(route + "?version=working")
+    assert response.headers["Content-Disposition"] == 'attachment; filename="synthetic-working-r2.xlsx"'
+    exported = xlsx(response)
+    values = source_values(exported)
+    assert (values["Background pages"], values["Working revision"]) == ("pp. 1-2", "2")
+    assert values["Review status"] == "Reviewed at revision 1; edited since (working revision 2)"
+    assert exported["Deal facts"]["B2"].value == "Synthetic Acme Later"
+    exported.close()
+
+    four = http.get(route + "?source=0")
+    assert four.headers["Content-Disposition"] == 'attachment; filename="synthetic-working-r2.xlsx"'
+    assert four.content == http.cockpit.workspace.export("synthetic")  # the export_repo.py bytes: four sheets, no Source
+    exported = xlsx(four)
+    assert exported.sheetnames == ["Deal ledger", "Rounds", "Questions", "Deal facts"]
+    exported.close()
+    report = check_lean.LeanChecker(_saved(http.root, four.content), http.root / "raw_filing/synthetic.htm").run()
+    assert not any(issue["code"] == "schema.sheets" for issue in report["issues"])
+    five = check_lean.LeanChecker(_saved(http.root, response.content), http.root / "raw_filing/synthetic.htm").run()
+    assert any(issue["code"] == "schema.sheets" for issue in five["issues"])  # the Source sheet is not checker-valid, by design
+
+    raw = http.get(route + "?version=v1132-raw")
+    assert raw.headers["Content-Disposition"] == 'attachment; filename="synthetic-v1132-raw.xlsx"'
+    assert raw.content == workbook.read_bytes()
+    with_source = http.get(route + "?version=v1132-raw&source=1")
+    assert with_source.headers["Content-Disposition"] == 'attachment; filename="synthetic-v1132-raw-with-source.xlsx"'
+    exported = xlsx(with_source)
+    assert exported.sheetnames == ["Deal ledger", "Rounds", "Questions", "Deal facts", "Source"]
+    assert exported["Deal facts"]["B2"].value == "Synthetic Acme"
+    values = source_values(exported)
+    assert (values["Version ID"], values["Raw workbook SHA-256"], values["Background pages"]) == ("v1132-raw", original_hash, "not recorded")
+    assert values["Working revision"] == values["Review status"] == "not applicable: a raw version, not the working copy"
+    exported.close()
+    assert http.get(route + "?version=v1132-raw&source=0").content == workbook.read_bytes()
+    assert http.get(route + "?source=2").status_code == 400
+    assert hashlib.sha256(workbook.read_bytes()).hexdigest() == original_hash
+
+
+def test_past_revision_downloads_like_the_working_copy(env):
+    http, workbook, original_hash = env
+    route = "/api/deal/synthetic/export"
+    initial = deal(http)
+    pages = {"type": "insert", "sheet": "Deal facts", "after_uid": row(initial, "Deal facts", 1)["uid"], "values": {"Field": "Background pages", "Value": "pp. 1-2"}}
+    assert save(http, initial, [pages], "Record background pages").status_code == 200
+    # Revision 1 is marked Reviewed, then In review; only the latest marking is kept once revision 2 is marked.
+    for status in ("reviewed", "in_review"):
+        assert http.post("/api/deal/synthetic/review", {"status": status, "revision": 1}).status_code == 200
+    current = deal(http)
+    facts_uid = row(current, "Deal facts", 0)["uid"]
+    assert save(http, current, [{"type": "update", "sheet": "Deal facts", "uid": facts_uid, "values": {"Value": "Synthetic Acme Two"}}], "Second edit").status_code == 200
+    assert http.post("/api/deal/synthetic/review", {"status": "reviewed", "revision": 2}).status_code == 200
+    current = deal(http)
+    assert save(http, current, [{"type": "update", "sheet": "Deal facts", "uid": facts_uid, "values": {"Value": "Synthetic Acme Three"}}], "Edit after review").status_code == 200
+
+    # Each past revision: its own name, a Source sheet by default, and the review status related to it.
+    expected = {
+        0: ("0 (a past revision; the working copy is at revision 3)", "Reviewed at revision 2 (set after this revision; the status at revision 0 is not recorded here)", "Synthetic Acme"),
+        1: ("1 (a past revision; the working copy is at revision 3)", "Reviewed at revision 2 (set after this revision; the status at revision 1 is not recorded here)", "Synthetic Acme"),
+        2: ("2 (a past revision; the working copy is at revision 3)", "Reviewed at revision 2", "Synthetic Acme Two"),
+        3: ("3", "Reviewed at revision 2; edited since (this file is revision 3)", "Synthetic Acme Three"),
+    }
+    for number, (revision_text, status, name) in expected.items():
+        response = http.get(f"{route}?version=rev:{number}")
+        assert response.headers["Content-Disposition"] == f'attachment; filename="synthetic-working-r{number}.xlsx"'
+        exported = xlsx(response)
+        assert exported.sheetnames == ["Deal ledger", "Rounds", "Questions", "Deal facts", "Source"]
+        assert exported["Deal facts"]["B2"].value == name
+        values = source_values(exported)
+        assert (values["Working revision"], values["Review status"]) == (revision_text, status)
+        assert (values[f"Version ID (base of revision {number})"], values["Raw workbook SHA-256"]) == ("v1132-raw", original_hash)
+        assert values["Background pages"] == ("not recorded" if number == 0 else "pp. 1-2")
+        exported.close()
+        four = http.get(f"{route}?version=rev:{number}&source=0")
+        assert four.headers["Content-Disposition"] == f'attachment; filename="synthetic-working-r{number}.xlsx"'
+        assert sheet_values(xlsx(four)) == sheet_values(openpyxl.load_workbook(io.BytesIO(http.cockpit.workspace.export("synthetic", f"rev:{number}"))))
+        assert xlsx(four).sheetnames == ["Deal ledger", "Rounds", "Questions", "Deal facts"]  # four sheets, no Source
+    assert http.get(f"{route}?version=rev:0&source=0").content == workbook.read_bytes()
+    # The latest revision's file is the working copy's, apart from how the Source sheet describes it.
+    working = source_values(xlsx(http.get(route)))
+    assert (working["Working revision"], working["Review status"]) == ("3", "Reviewed at revision 2; edited since (working revision 3)")
+    assert sheet_values(xlsx(http.get(f"{route}?version=rev:3&source=0"))) == sheet_values(xlsx(http.get(route + "?source=0")))
+    assert http.get(f"{route}?version=rev:4").status_code == 404
+    assert [item["revision"] for item in http.get("/api/deal/synthetic/history").json()["history"]] == [3, 2, 1, 0]  # nothing saved
+    # The earlier markings of revision 1 remain in the deal's activity, which the Source sheet points to.
+    marks = [i["summary"] for i in http.get("/api/activity?slug=synthetic").json()["items"] if i["kind"] == "deal_review"]
+    assert marks == ["Marked reviewed at revision 2", "Marked in review at revision 1", "Marked reviewed at revision 1"]
+
+
+def test_download_never_shows_an_unrecorded_or_disagreeing_link(env):
+    http, _, _ = env
+    values = source_values(xlsx(http.get("/api/deal/synthetic/export")))  # the fixture's source is not an EDGAR link
+    assert (values["EDGAR filing index"], values["Complete submission (.txt)"]) == ("not recorded", "not recorded")
+    manifest = http.root / "raw_filing/MANIFEST.csv"
+    manifest.write_text(manifest.read_text(encoding="utf-8").replace("https://example.invalid/synthetic", "https://www.sec.gov/Archives/edgar/data/77/0000000077-26-000001.txt"), encoding="utf-8")
+    (http.root / "ref").mkdir()
+    (http.root / "ref/seed.csv").write_text("deal,target_name,deal_number,form_type,date_filed,index_url,status\nsynthetic,SYNTHETIC ACME,1,DEFM14A,2026-01-10,https://www.sec.gov/Archives/edgar/data/77/0000000077-26-000002-index.htm,ok\n", encoding="utf-8")
+    values = source_values(xlsx(http.get("/api/deal/synthetic/export")))
+    assert values["EDGAR filing index"] == "not recorded"  # the seed disagrees with the filing's own link
+    assert values["Complete submission (.txt)"] == "https://www.sec.gov/Archives/edgar/data/77/0000000077-26-000001.txt"
+
+
+def add_v114_version(http, ident="opus55-v114"):
+    """Import a v1.14 copy of the synthetic workbook as a run version, as the worker does (fixture step)."""
+    source = openpyxl.load_workbook(http.root / "extraction/synthetic.xlsx")
+    ledger = source["Deal ledger"]
+    old = [cell.value for cell in ledger[1]]
+    records = [dict(zip(old, [cell.value for cell in row])) for row in ledger.iter_rows(min_row=2, max_col=len(old))]
+    terms = {1: {"Stock %": "Not stated"}, 2: {"Stock %": "50–75", "CVR/earnout": "Y", "CVR/earnout value": 1.25, "Formality": "Informal", "Conditions": "Heavy",
+                                                "Due diligence": "Incomplete", "Financing": "Contingent", "Regulatory": "Not stated"}}
+    for column, name in enumerate(check_lean.LEDGER_COLUMNS_V114, 1):
+        ledger.cell(1, column, name)
+        for excel_row, record in enumerate(records, 2):
+            ledger.cell(excel_row, column, {**record, **terms.get(record.get("#"), {})}.get(name))
+    folder = http.root / "_dev/cockpit/state/versions/synthetic" / ident
+    folder.mkdir(parents=True)
+    path = folder / "synthetic.xlsx"
+    source.save(path)
+    report = check_lean.LeanChecker(path, http.root / "raw_filing/synthetic.htm").run()
+    (folder / "check.json").write_text(json.dumps(report), encoding="utf-8")
+    conn = http.cockpit.workspace._connect(write=True)
+    conn.execute("INSERT INTO versions (slug, id, label, path, sha256, kind, engine, model, effort, instruction_version, instruction_sha256, filing_sha256, started_by, started_at, finished_at, receipts, checker) VALUES (?,?,?,?,?,'raw','Opus 5.5','claude-opus-5-5','medium',NULL,?,'f','alex','2026-09-24T22:41:00+00:00','2026-09-24T22:52:00+00:00',?,?)",
+                 ("synthetic", ident, "Opus 5.5 · medium · draft — Alex", str(path.relative_to(http.root)), hashlib.sha256(path.read_bytes()).hexdigest(), "d" * 64,
+                  str(folder.relative_to(http.root)), json.dumps({"errors": report["summary"]["errors"], "warnings": report["summary"]["warnings"]})))
+    conn.commit(); conn.close()
+    return ident, hashlib.sha256(path.read_bytes()).hexdigest(), report
+
+
+def test_schema_choices_compare_and_the_checker_shown(env):
+    http, _, _ = env
+    ident, digest, report = add_v114_version(http)
+    working = deal(http)
+    assert (working["ledger_schema"], working["workspace"]["base_ledger_schema"], working["workspace"]["base_instruction_version"]) == ("v1.13.2", "v1.13.2", "v1.13.2")
+    assert "All cash" in working["choices"] and "Financing" not in working["choices"]
+    shown = deal(http, ident)
+    assert shown["ledger_schema"] == "v1.14.1" and "All cash" not in shown["choices"]
+    assert "Extended (late bid accepted)" in shown["choices"]["Deadline outcome"] and "Late bids accepted" not in shown["choices"]["Deadline outcome"]
+    assert "No deadline stated" in shown["choices"]["Deadline outcome"] and "No deadline stated" in working["choices"]["Deadline outcome"]
+    assert shown["check"]["checker_version"] == check_lean.CHECKER_VERSION
+    at_import = next(v for v in shown["versions"] if v["id"] == ident)["checker"]
+    assert at_import == {"checker_version": check_lean.CHECKER_VERSION, "ledger_schema": "v1.14.1", "errors": report["summary"]["errors"], "warnings": report["summary"]["warnings"]}
+    assert next(v for v in shown["versions"] if v["id"] == "v1132-raw")["checker"] is None  # no receipt: "At import: not recorded"
+    listed = next(d for d in http.get("/api/deals").json() if d["slug"] == "synthetic")["check"]
+    assert (listed["checker_version"], listed["ledger_schema"]) == (check_lean.CHECKER_VERSION, "v1.13.2")
+
+    # The server keeps not enforcing the lists: an unlisted value and a two-part deadline outcome save.
+    saved = save(http, working, [{"type": "update", "sheet": "Rounds", "uid": row(working, "Rounds")["uid"], "values": {"Deadline outcome": "Extended; Enforced", "Finality": "Something new"}},
+                                 {"type": "update", "sheet": "Deal ledger", "uid": row(working, "Deal ledger", 1)["uid"], "values": {"All cash": "Yes"}}])
+    assert saved.status_code == 200, saved.text
+    assert (row(saved.json(), "Rounds")["cells"]["Deadline outcome"], row(saved.json(), "Rounds")["cells"]["Finality"]) == ("Extended; Enforced", "Something new")
+
+    # Compare across schemas walks both column sets, in either direction.
+    for left, right in (("working", ident), (ident, "working")):
+        compared = http.get(f"/api/deal/synthetic/compare?from={left}&to={right}").json()["changes"]
+        fields = {change["field"] for change in compared if change["type"] == "update"}
+        assert {"All cash", "Stock %", "CVR/earnout value", "Financing"} <= fields, fields
+    assert hashlib.sha256(http.get(f"/api/deal/synthetic/export?version={ident}").content).hexdigest() == digest
+
+
+def test_mig_c_rebase_preview_carried_judgments_past_revisions_and_orphaned_threads(env):
+    http, workbook, original_hash = env
+    ident, _, _ = add_v114_version(http)
+    initial = deal(http)
+    first = row(initial, "Deal ledger")["uid"]
+    edited = save(http, initial, [{"type": "update", "sheet": "Deal ledger", "uid": first, "values": {"Note": "Reviewed wording"}},
+                                  {"type": "review", "uid": first, "status": "reviewed"},
+                                  {"type": "review", "uid": row(initial, "Deal ledger", 1)["uid"], "status": "needs_decision"},
+                                  {"type": "finding", "id": "F1", "judgment": "supported", "implementation": "applied", "verification": "verified", "note": ""}], "Review pass")
+    assert edited.status_code == 200, edited.text
+    assert http.post("/api/deal/synthetic/comments", {"action": "create", "target": {"kind": "row", "sheet": "Deal ledger", "uid": first}, "body": "Check the page"}).status_code == 200
+
+    # rev:N is a read-only compare source and a download; neither saves a revision.
+    compared = http.get("/api/deal/synthetic/compare?from=rev:0&to=rev:1").json()
+    assert compared["from_label"].startswith("Revision 0") and compared["to_label"] == "Revision 1"
+    assert [(c["field"], c["after"]) for c in compared["changes"]] == [("Note", "Reviewed wording")]
+    past = xlsx(http.get("/api/deal/synthetic/export?version=rev:1"))
+    assert past["Deal ledger"].cell(2, check_lean.LEDGER_COLUMNS.index("Note") + 1).value == "Reviewed wording"
+    past.close()
+    assert hashlib.sha256(http.get("/api/deal/synthetic/export?version=rev:0&source=0").content).hexdigest() == original_hash
+    assert http.get("/api/deal/synthetic/export?version=rev:7").status_code == 404
+    assert deal(http)["workspace"]["revision"] == 1
+    assert [item["revision"] for item in http.get("/api/deal/synthetic/history").json()["history"]] == [1, 0]
+
+    # The rebase dialog's payload: what stops applying, with counts. A GET saves nothing; POST is not a route.
+    preview = http.get(f"/api/deal/synthetic/rebase?to={ident}")
+    assert preview.status_code == 200, preview.text
+    stops = preview.json()["stops_applying"]
+    assert stops["revisions"] == 1
+    assert stops["row_marks"] == {"total": 2, "reviewed": 1, "needs_decision": 1, "unreviewed": 0}
+    assert stops["finding_decisions"] == {"total": 1, "judgments_kept": 1, "reset": 1}
+    assert stops["row_threads"] == {"total": 1, "open": 1, "resolved": 0}
+    assert (preview.json()["current"]["ledger_schema"], preview.json()["target"]["ledger_schema"]) == ("v1.13.2", "v1.14.1")
+    assert http.get("/api/deal/synthetic/rebase?to=v1132-raw").status_code == 400
+    assert http.get("/api/deal/synthetic/rebase?to=nosuch").status_code == 404
+    assert http.post("/api/deal/synthetic/rebase", {"to": ident}).status_code == 405
+    assert deal(http)["workspace"]["revision"] == 1
+
+    current = deal(http, ident)  # the dialog saves from the original's view, which reports the working copy's revision
+    assert (current["workspace"]["revision"], current["workspace"]["editable"]) == (1, False)
+    rebased = save(http, current, [{"type": "rebase", "target_version": ident}], "Rebase onto the v1.14 run")
+    assert rebased.status_code == 200, rebased.text
+    finding = rebased.json()["findings"][0]
+    assert (finding["judgment"], finding["implementation"], finding["verification"]) == ("supported", "unassessed", "unchecked")
+    assert finding["carried_over"]["revision"] == 2 and finding["carried_over"]["from_base"] == "v1132-raw"
+    assert rebased.json()["row_review"] == {} and rebased.json()["ledger_schema"] == "v1.14.1"
+    [thread] = http.get("/api/deal/synthetic/comments").json()["threads"]
+    assert (thread["target_missing"], thread["target_context"]) == (True, "on an earlier base (revision 1)")
+    assert hashlib.sha256(workbook.read_bytes()).hexdigest() == original_hash

@@ -40,3 +40,20 @@ export function hiddenLine(item) {
   const when = new Date(item.hidden_at || NaN);
   return `Hidden by ${displayName(item.hidden_by)}${Number.isNaN(when.getTime()) ? '' : ` on ${dayLabel(when)}`}`;
 }
+
+export const REVIEW_STATUSES = [['unreviewed', 'Unreviewed'], ['in_review', 'In review'], ['reviewed', 'Reviewed']];
+const REVIEW_LABELS = Object.fromEntries(REVIEW_STATUSES);
+
+// A working copy's review status in words: "Reviewed", or "Reviewed at revision 5; edited since".
+export function reviewText(review) {
+  if (!review) return '';
+  const label = REVIEW_LABELS[review.status] || review.status;
+  return review.edited_since && review.status !== 'unreviewed' ? `${label} at revision ${review.revision}; edited since` : label;
+}
+
+// "Set by Austin on 23 Sep"; '' when nobody has set it.
+export function reviewByline(review) {
+  if (!review?.actor) return '';
+  const when = new Date(review.at || NaN);
+  return `Set by ${displayName(review.actor)}${Number.isNaN(when.getTime()) ? '' : ` on ${dayLabel(when)}`}`;
+}

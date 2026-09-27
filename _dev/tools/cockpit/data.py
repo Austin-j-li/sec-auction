@@ -683,15 +683,40 @@ class Cockpit:
                                             "deal": row["slug"], "path": str(path)}
         return entries
 
+    def catalog_deals(self) -> dict[str, dict[str, Any]]:
+        """The deals catalog.json lists; none without a readable catalog (the workspace reports that)."""
+
+        from cockpit.workspace import WorkspaceError  # imported here: the workspace builds on this module
+        if not self.workspace.available:
+            return {}
+        try:
+            deals = self.workspace.catalog()["deals"]
+        except WorkspaceError:
+            return {}
+        return {slug: item for slug, item in deals.items() if SLUG_RE.fullmatch(slug) and isinstance(item, dict)}
+
+    def catalog_workbook(self, item: dict[str, Any]) -> Path | None:
+        """A catalog deal's workbook: the path of its starting base, wherever the catalog keeps it."""
+
+        from cockpit.workspace import WorkspaceError
+        base = next((v for v in item.get("versions") or [] if isinstance(v, dict) and v.get("id") == item.get("default_base")), None)
+        try:
+            return self.workspace._path(base.get("path")) if base else None
+        except WorkspaceError:
+            return None
+
     def slugs(self) -> list[str]:
+        """Catalog deals, found from catalog.json, and any other deal with a workbook in extraction/."""
+
         manifest = self.manifest()
-        if not self.extraction_dir.is_dir():
-            return []
-        return sorted(
-            path.stem
-            for path in self.extraction_dir.glob("*.xlsx")
-            if path.is_file() and SLUG_RE.fullmatch(path.stem) and path.stem in manifest
-        )
+        found = {slug for slug in self.catalog_deals() if slug in manifest}
+        if self.extraction_dir.is_dir():
+            found |= {
+                path.stem
+                for path in self.extraction_dir.glob("*.xlsx")
+                if path.is_file() and SLUG_RE.fullmatch(path.stem) and path.stem in manifest
+            }
+        return sorted(found)
 
     def resolve(
         self, slug: str, manifest: dict[str, dict[str, str]] | None = None
@@ -706,6 +731,11 @@ class Cockpit:
         entry = manifest.get(slug)
         if entry and entry.get("path"):  # an added deal: its workbooks are imported versions, read through the workspace
             return None, Path(entry["path"]), entry
+        item = self.catalog_deals().get(slug)
+        if entry is not None and item is not None:
+            # A catalog deal is found from the catalog, not from extraction/<slug>.xlsx; the workspace
+            # checks its workbook's hash when it reads it.
+            return self.catalog_workbook(item) or workbook, self.filing_dir / entry["file"], entry
         if entry is None or not workbook.is_file():
             raise DealNotFound(f"unknown deal {slug!r}")
         return workbook, self.filing_dir / entry["file"], entry
@@ -730,12 +760,14 @@ class Cockpit:
             self._workbooks[path] = (key, tables)
             return tables
 
-    def check(self, workbook_path: Path, filing_path: Path) -> dict[str, Any]:
+    def check(self, workbook_path: Path, filing_path: Path, rules: str | None = None) -> dict[str, Any]:
+        """The checker's report, cached per file state. `rules` picks v1.14 or v1.14.1 for a 29-column ledger
+        (check_lean.rules_for_instruction); None checks it as v1.14.1."""
         with self._path_lock("check:" + str(workbook_path)):
-            key = (str(workbook_path), _stat_key(workbook_path), str(filing_path), _stat_key(filing_path))
+            key = (str(workbook_path), _stat_key(workbook_path), str(filing_path), _stat_key(filing_path), rules)
             cached = self._checks.get(key)
             if cached is None:
-                cached = check_lean.LeanChecker(workbook_path, filing_path).run()
+                cached = check_lean.LeanChecker(workbook_path, filing_path, rules=rules).run()
                 with self._lock:
                     for old in [k for k in self._checks if k[0] == key[0]]:
                         del self._checks[old]
@@ -765,7 +797,7 @@ class Cockpit:
             cached = self._payloads.get(slug)
         if cached and cached[0] == key:
             return cached[1]
-        payload = build_deal_payload(slug, entry, tables, filing, report)
+        payload = build_deal_payload(slug, entry, tables, filing, report, workbook_path)
         with self._lock:
             self._payloads[slug] = (key, payload)
         return payload
@@ -837,6 +869,8 @@ class Cockpit:
                         "status": payload["check"]["status"],
                         "errors": summary.get("errors", 0),
                         "warnings": summary.get("warnings", 0),
+                        "checker_version": payload["check"].get("checker_version"),
+                        "ledger_schema": payload.get("ledger_schema"),
                     },
                     "quotes_located": sum(1 for quote in quotes if quote["located"]),
                     "quotes_total": len(quotes),
@@ -884,14 +918,27 @@ def page_hint(quote: dict[str, Any] | None, filing: Filing) -> str | None:
     return f"page hint: quote found on p. {quote['found_page']}, cited p. {quote['cited_page']}"
 
 
+def report_schema(report: dict[str, Any], workbook_path: Path | None, rules: str | None = None) -> str | None:
+    """The ledger schema the checker applied. A fatal check may stop before it reads the header; then check_lean's
+    one header detector decides, with the same rules, and None means the workbook cannot be read either."""
+
+    if report.get("status") != "error" and report.get("ledger_schema"):
+        return report["ledger_schema"]
+    return check_lean.ledger_schema(workbook_path, rules) if workbook_path is not None else None
+
+
 def build_deal_payload(
     slug: str,
     entry: dict[str, str],
     tables: dict[str, tuple[list[str], list[tuple[int, list[Any]]]]],
     filing: Filing,
     report: dict[str, Any],
+    workbook_path: Path | None = None,
+    rules: str | None = None,
 ) -> dict[str, Any]:
-    """Assemble the /api/deal payload and attach checker issues to their rows."""
+    """Assemble the /api/deal payload and attach checker issues to their rows.
+
+    workbook_path names the workbook whose header (with `rules`) decides the schema when the check failed fatally."""
 
     issues_by_row: dict[tuple[str, int], list[dict[str, Any]]] = {}
     for issue in report.get("issues", []):
@@ -967,6 +1014,7 @@ def build_deal_payload(
     other = [issue for issue in report.get("issues", []) if id(issue) not in attached]
     return {
         "slug": slug,
+        "ledger_schema": report_schema(report, workbook_path, rules),
         "filing": {
             "file": entry.get("file", ""),
             "form_type": entry.get("form_type", ""),

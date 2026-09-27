@@ -16,9 +16,10 @@ from unittest.mock import patch
 
 from openpyxl import load_workbook
 
+import check_lean
 from cockpit import data, server
-from cockpit.workspace import WorkspaceError, Conflict
-from test_cockpit import build_repo
+from cockpit.workspace import Missing, WorkspaceError, Conflict
+from test_cockpit import build_repo, build_workbook
 
 
 def fixture(root: Path) -> tuple[data.Cockpit, bytes]:
@@ -37,6 +38,48 @@ def fixture(root: Path) -> tuple[data.Cockpit, bytes]:
     (root / "_dev/cockpit/catalog.json").write_text(json.dumps(catalog), encoding="utf-8")
     (root / "SEC_Deal_Ledger_Extraction_Instruction.md").write_text("# Synthetic instruction\n\n**Revision of 1 January 2026, v1.13.2.**\n\nRead the filing.\n", encoding="utf-8")
     return data.Cockpit(root), original
+
+
+def build_v114_workbook(path: Path) -> Path:
+    """The fixture deal in v1.14 columns, with representative synthetic terms: figures, a range, Varies, blanks,
+    dates, flags, # references and a two-part deadline outcome."""
+    build_workbook(path)
+    wb = load_workbook(path)
+    ws = wb["Deal ledger"]
+    old = [cell.value for cell in ws[1]]
+    records = [dict(zip(old, [cell.value for cell in row])) for row in ws.iter_rows(min_row=2, max_col=len(old))]
+    for row in ws.iter_rows():
+        for cell in row: cell.value = None
+    terms = {1: {"Price low": 21.25, "Price high": 21.25, "Stock %": "50\u201375", "CVR/earnout": "Y", "CVR/earnout value": 1.25, "Formality": "Informal",
+                 "Conditions": "Heavy", "Due diligence": "Incomplete", "Financing": "Contingent", "Regulatory": "Not stated", "Note": "Revised in #2"},
+             2: {"Stock %": 0, "Count": 2, "Formality": "Formal", "Conditions": "Unclear", "Due diligence": "Varies", "Financing": "Varies",
+                 "Regulatory": "Concern", "Antitrust": "Y", "Exclusivity": "Requested", "Note": "Cohort; see #1-#3"},
+             3: {"Price low": None, "Price high": None, "Stock %": "Not stated"}}
+    for column, name in enumerate(check_lean.LEDGER_COLUMNS_V114, 1):
+        ws.cell(1, column, name)
+    for excel_row, record in enumerate(records, 2):
+        if all(value is None for value in record.values()): continue
+        record.update(terms.get(record.get("#"), {}))
+        for column, name in enumerate(check_lean.LEDGER_COLUMNS_V114, 1):
+            ws.cell(excel_row, column, record.get(name))
+    wb["Rounds"].cell(2, check_lean.ROUND_COLUMNS.index("Deadline outcome") + 1, "Extended (late bid accepted); Enforced")
+    wb.save(path)
+    return path
+
+
+def add_run_version(ws, slug: str, ident: str, workbook: Path, checker: dict | None = None, receipt: dict | None = None, instruction_sha256: str = "d" * 64) -> dict:
+    """Register a workbook as an imported run version, as the worker does, optionally with a receipt check.json."""
+    folder = ws.root / "_dev/cockpit/state/versions" / slug / ident
+    folder.mkdir(parents=True)
+    path = folder / f"{slug}.xlsx"
+    path.write_bytes(workbook.read_bytes())
+    if receipt is not None:
+        (folder / "check.json").write_text(json.dumps(receipt), encoding="utf-8")
+    conn = ws._connect(write=True)
+    conn.execute("INSERT INTO versions (slug, id, label, path, sha256, kind, engine, model, effort, instruction_version, instruction_sha256, filing_sha256, started_by, started_at, finished_at, receipts, checker) VALUES (?,?,?,?,?,'raw','Opus 5.5','claude-opus-5-5','medium',NULL,?,'f','alex','2026-09-24T22:41:00+00:00','2026-09-24T22:52:00+00:00',?,?)",
+                 (slug, ident, f"Opus 5.5 · medium · {ident} — Alex", str(path.relative_to(ws.root)), hashlib.sha256(path.read_bytes()).hexdigest(), instruction_sha256, str(folder.relative_to(ws.root)), json.dumps(checker or {})))
+    conn.commit(); conn.close()
+    return {"id": ident, "path": path, "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
 
 
 class WorkspaceTests(unittest.TestCase):
@@ -59,6 +102,23 @@ class WorkspaceTests(unittest.TestCase):
         self.assertFalse(self.ws.db_path.exists())
         self.assertEqual(self.ws.export("alpha-deal", "v1132-raw"), self.original)
         self.assertEqual(self.ws.document("alpha-deal", "report")["text"], "A report")
+
+    def test_working_copy_check_is_kept_per_revision_and_checker_version(self):
+        # The deal list rechecks every edited deal on each request; a saved revision is checked once.
+        row = self.cockpit.deal("alpha-deal")["ledger"]["rows"][0]
+        self.save([{"type": "update", "sheet": "Deal ledger", "uid": row["uid"], "values": {"Price low": "12.5"}}])
+        self.ws._checks.clear()
+        with patch.object(check_lean, "LeanChecker", side_effect=check_lean.LeanChecker) as checker:
+            first = self.ws.deal("alpha-deal")
+            self.assertEqual(self.ws.deal("alpha-deal")["check"], first["check"])
+            self.assertEqual(len(self.cockpit.list_deals()), 1)
+            self.assertEqual(checker.call_count, 1)
+            self.save([{"type": "update", "sheet": "Deal ledger", "uid": row["uid"], "values": {"Price low": "13"}}], revision=1)
+            self.assertEqual(self.ws.deal("alpha-deal")["workspace"]["revision"], 2)
+            self.assertEqual(checker.call_count, 2)
+            with patch.object(check_lean, "CHECKER_VERSION", "9.9"):
+                self.ws.deal("alpha-deal")
+            self.assertEqual(checker.call_count, 3)
 
     def test_deal_without_default_base_is_a_clear_error(self):
         catalog_path = self.root / "_dev/cockpit/catalog.json"
@@ -114,6 +174,35 @@ class WorkspaceTests(unittest.TestCase):
         self.assertIsInstance(date_cell.value, dt.datetime)
         self.assertEqual(wb["Rounds"].cell(2, 2).data_type, "n")
         wb.close()
+
+    def test_v114_bid_term_cells_are_typed_and_offered_as_choices(self):
+        coerce = lambda field, value: self.ws._coerce(data.LEDGER_SHEET, field, value)
+        self.assertEqual(coerce("Stock %", "40"), 40)
+        self.assertEqual(coerce("Stock %", "33.3"), 33.3)
+        self.assertEqual(self.ws._coerce(data.LEDGER_SHEET, "Stock %", " 50\u201375 ", "v1.14"), "50\u201375")  # a range only under v1.14
+        self.assertEqual(coerce("Stock %", "Part stock"), "Part stock")
+        self.assertEqual(coerce("CVR/earnout value", "1.13"), 1.13)
+        with self.assertRaises(WorkspaceError): coerce("CVR/earnout value", "up to $2")
+        # Choices follow the displayed version's schema: this deal's base is v1.13.2.
+        legacy = self.cockpit.deal("alpha-deal")
+        self.assertEqual(legacy["ledger_schema"], "v1.13.2")
+        self.assertIn("All cash", legacy["choices"])
+        self.assertNotIn("Financing", legacy["choices"])
+        self.assertIn("Late bids accepted", legacy["choices"]["Deadline outcome"])
+        self.assertIn("No deadline stated", legacy["choices"]["Deadline outcome"])
+        version = add_run_version(self.ws, "alpha-deal", "opus55-v114", build_v114_workbook(self.root / "v114.xlsx"))
+        shown = self.cockpit.deal("alpha-deal", version="opus55-v114")
+        self.assertEqual(shown["ledger_schema"], "v1.14.1")
+        self.assertEqual(shown["choices"]["Financing"], ["Committed", "Contingent", "Not needed", "Not stated", "Varies"])
+        self.assertEqual(shown["choices"]["Antitrust"], ["Y"])
+        self.assertNotIn("All cash", shown["choices"])
+        self.assertIn("Extended (late bid accepted)", shown["choices"]["Deadline outcome"])
+        self.assertNotIn("Late bids accepted", shown["choices"]["Deadline outcome"])
+        self.assertIn("No deadline stated", shown["choices"]["Deadline outcome"])
+        self.assertEqual(shown["workspace"]["base_ledger_schema"], "v1.13.2")  # the working copy is still on its v1.13.2 base
+        rebased = self.save([{"type": "rebase", "target_version": version["id"]}])
+        self.assertEqual((rebased["ledger_schema"], rebased["workspace"]["base_ledger_schema"]), ("v1.14.1", "v1.14.1"))
+        self.assertIn("Financing", rebased["choices"])
 
     def test_atomic_stale_and_deleted_references(self):
         rows = self.cockpit.deal("alpha-deal")["ledger"]["rows"]
@@ -172,6 +261,91 @@ class WorkspaceTests(unittest.TestCase):
         rows = saved["ledger"]["rows"]
         self.assertEqual([row["cells"]["Who"] for row in rows[:3]], ["Alpha", "Second new", "First new"])
         self.assertEqual(saved["row_review"][rows[2]["uid"]]["status"], "reviewed")
+
+    def test_bulk_update_is_recorded_as_the_same_updates_one_row_at_a_time(self):
+        rows = self.cockpit.deal("alpha-deal")["ledger"]["rows"]
+        uids = [row["uid"] for row in rows[:3]]
+        self.save([{"type": "review", "uid": uids[0], "status": "reviewed", "note": ""}], actor="alex")
+        result = self.save([{"type": "bulk_update", "sheet": "Deal ledger", "uids": uids, "values": {"Process": "2", "Round": 3}}], revision=1, reason="Renumber rounds")
+        self.assertEqual([(r["cells"]["Process"], r["cells"]["Round"]) for r in result["ledger"]["rows"]], [("2", "3")] * 3 + [("1", "1")] * (len(rows) - 3))
+        self.assertEqual(result["row_review"][uids[0]]["actor"], "alex")  # row marks stay, as under an update
+        self.assertEqual(result["ledger"]["columns"], self.cockpit.deal("alpha-deal", "v1132-raw")["ledger"]["columns"])
+        bulk = self.ws.history("alpha-deal")["history"][0]
+        self.assertEqual((bulk["revision"], bulk["actor"], bulk["reason"], bulk["summary"]), (2, "austin", "Renumber rounds", "6 changes"))
+        wb = load_workbook(io.BytesIO(self.ws.export("alpha-deal")))
+        columns = [cell.value for cell in wb["Deal ledger"][1]]
+        process, round_ = (wb["Deal ledger"].cell(2, columns.index(field) + 1) for field in ("Process", "Round"))
+        self.assertEqual((process.value, process.data_type, round_.value), (2, "n", 3))
+        # The same edit as three ordinary updates, from the same starting point, records the same changes.
+        self.save([{"type": "restore", "target_revision": 1}], revision=2)
+        self.save([{"type": "update", "sheet": "Deal ledger", "uid": uid, "values": {"Process": "2", "Round": 3}} for uid in uids], revision=3)
+        single = self.ws.history("alpha-deal")["history"][0]
+        key = lambda change: (change["uid"], change["field"])
+        self.assertEqual(sorted(single["changes"], key=key), sorted(bulk["changes"], key=key))
+        self.assertEqual(single["summary"], bulk["summary"])
+        authors = self.cockpit.trace.deal_extras("alpha-deal", "austin")["field_authors"]
+        self.assertEqual({authors[uid]["Round"]["revision"] for uid in uids}, {4})
+
+    def test_bulk_update_covers_more_rows_than_the_operation_cap(self):
+        path = self.root / "extraction/alpha-deal.xlsx"
+        wb = load_workbook(path)
+        ledger = wb["Deal ledger"]
+        template = [cell.value for cell in ledger[2]]
+        for number in range(8, 158):
+            ledger.append([number if column == 0 else value for column, value in enumerate(template)])
+        wb.save(path)
+        catalog_path = self.root / "_dev/cockpit/catalog.json"
+        catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
+        self.base = catalog["deals"]["alpha-deal"]["versions"][0]["sha256"] = hashlib.sha256(path.read_bytes()).hexdigest()
+        catalog_path.write_text(json.dumps(catalog), encoding="utf-8")
+        self.cockpit = data.Cockpit(self.root)
+        self.ws = self.cockpit.workspace
+        uids = [row["uid"] for row in self.cockpit.deal("alpha-deal")["ledger"]["rows"]]
+        self.assertEqual(len(uids), 156)
+        with self.assertRaisesRegex(WorkspaceError, "operations required"):
+            self.save([{"type": "update", "sheet": "Deal ledger", "uid": uid, "values": {"Round": 2}} for uid in uids[:101]])
+        result = self.save([{"type": "bulk_update", "sheet": "Deal ledger", "uids": uids, "values": {"Round": "2"}}])
+        self.assertEqual({row["cells"]["Round"] for row in result["ledger"]["rows"]}, {"2"})
+        self.assertEqual(self.ws.history("alpha-deal")["history"][0]["summary"], "156 changes")
+
+    def test_bulk_update_accepts_only_process_and_round_and_is_atomic(self):
+        rows = self.cockpit.deal("alpha-deal")["ledger"]["rows"]
+        uids = [row["uid"] for row in rows[:2]]
+        note = {"type": "update", "sheet": "Deal ledger", "uid": uids[0], "values": {"Note": "Would change"}}
+        bad = [
+            {"sheet": "Deal ledger", "uids": uids, "values": {"Note": "x"}},
+            {"sheet": "Deal ledger", "uids": uids, "values": {"Round": 2, "Price low": 3}},
+            {"sheet": "Deal ledger", "uids": uids, "values": {"#": 9}},
+            {"sheet": "Deal ledger", "uids": uids, "values": {}},
+            {"sheet": "Rounds", "uids": [self.cockpit.deal("alpha-deal")["rounds"]["rows"][0]["uid"]], "values": {"Round": 2}},
+            {"sheet": "Deal ledger", "uids": [], "values": {"Round": 2}},
+            {"sheet": "Deal ledger", "uids": uids[0], "values": {"Round": 2}},
+            {"sheet": "Deal ledger", "uids": [uids[0], uids[0]], "values": {"Round": 2}},
+            {"sheet": "Deal ledger", "uids": [uids[0], "missing"], "values": {"Round": 2}},
+            {"sheet": "Deal ledger", "uids": [uids[0], 7], "values": {"Round": 2}},
+            {"sheet": "Deal ledger", "uids": uids, "values": {"Process": "0"}},
+            {"sheet": "Deal ledger", "uids": uids, "values": {"Process": ""}},
+            {"sheet": "Deal ledger", "uids": uids, "values": {"Round": ""}},
+            {"sheet": "Deal ledger", "uids": uids, "values": {"Round": "-1"}},
+            {"sheet": "Deal ledger", "uids": uids, "values": {"Round": "1.5"}},
+            {"sheet": "Deal ledger", "uids": uids, "values": {"Round": "later"}},
+        ]
+        for op in bad:
+            with self.subTest(op=op), self.assertRaises(WorkspaceError):
+                self.save([note, {"type": "bulk_update", **op}])
+        self.assertFalse(self.ws.history("alpha-deal")["history"][:-1])
+        self.assertEqual(self.cockpit.deal("alpha-deal")["ledger"]["rows"][0]["cells"]["Note"], rows[0]["cells"]["Note"])
+        post = self.save([{"type": "bulk_update", "sheet": "Deal ledger", "uids": uids, "values": {"Round": "post"}}])
+        self.assertEqual([row["cells"]["Round"] for row in post["ledger"]["rows"][:2]], ["post", "post"])
+
+    def test_bulk_update_reaches_rows_inserted_in_the_same_batch(self):
+        first = self.cockpit.deal("alpha-deal")["ledger"]["rows"][0]["uid"]
+        saved = self.save([
+            {"type": "insert", "sheet": "Deal ledger", "client_uid": "new-one", "after_uid": first, "values": {"Who": "First new", "Round": 1}},
+            {"type": "bulk_update", "sheet": "Deal ledger", "uids": [first, "new-one"], "values": {"Process": 2, "Round": 0}},
+        ])
+        self.assertEqual([(row["cells"]["Who"], row["cells"]["Process"], row["cells"]["Round"]) for row in saved["ledger"]["rows"][:3]],
+                         [("Alpha", "2", "0"), ("First new", "2", "0"), ("Alpha", "1", "1")])
 
     def test_interior_narrative_range_blocks_dangling_delete(self):
         rows = self.cockpit.deal("alpha-deal")["ledger"]["rows"]
@@ -234,6 +408,207 @@ class WorkspaceTests(unittest.TestCase):
         self.assertEqual(saved["ledger"]["rows"][0]["cells"]["Flag"], "Q2")
         with self.assertRaises(WorkspaceError):
             self.save([{"type": "delete", "sheet": "Questions", "uid": question}], revision=1)
+
+
+class SchemaAndRebaseTests(unittest.TestCase):
+    """v1.14 schema awareness (payload schema, cross-schema compare, the checker shown) and safe rebasing (MIG-C)."""
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.root = Path(self.temp.name)
+        self.cockpit, self.original = fixture(self.root)
+        self.ws = self.cockpit.workspace
+        self.base = hashlib.sha256(self.original).hexdigest()
+        self.filing = next((self.root / "raw_filing").glob("alpha-deal_*.htm"))
+        self.v114 = build_v114_workbook(self.root / "v114.xlsx")
+
+    def tearDown(self): self.temp.cleanup()
+
+    def save(self, ops, reason="Review edit", actor="austin"):
+        current = self.ws.deal("alpha-deal")["workspace"]
+        return self.ws.edit("alpha-deal", {"revision": current["revision"], "base_sha256": current["base_sha256"], "reason": reason, "operations": ops}, actor)
+
+    def test_schema_falls_back_to_the_header_when_the_check_is_fatal(self):
+        self.assertEqual(data.report_schema({"status": "fail", "ledger_schema": "v1.14"}, None), "v1.14")
+        self.assertEqual(data.report_schema({"status": "error", "ledger_schema": "v1.13.2"}, self.v114), "v1.14.1")
+        self.assertIsNone(data.report_schema({"status": "error"}, self.root / "missing.xlsx"))
+        report = check_lean.LeanChecker(self.v114, self.root / "missing.htm").run()
+        self.assertEqual(report["status"], "error")
+        self.assertEqual(data.build_deal_payload("alpha-deal", {}, data.read_workbook(self.v114), self.cockpit.filing(self.filing), report, self.v114)["ledger_schema"], "v1.14.1")
+
+    def test_rules_follow_the_versions_instruction(self):
+        """A v1.14-hash run is checked and edited under the v1.14 rules, a v1.14.1-hash run under v1.14.1."""
+        v114_sha = next(sha for sha, rules in check_lean.RULES_BY_INSTRUCTION.items() if rules == "v1.14")
+        v1141_sha = next(sha for sha, rules in check_lean.RULES_BY_INSTRUCTION.items() if rules == "v1.14.1")
+        add_run_version(self.ws, "alpha-deal", "opus55-v114", self.v114, instruction_sha256=v114_sha)
+        add_run_version(self.ws, "alpha-deal", "opus55-v1141", self.v114, instruction_sha256=v1141_sha)
+        add_run_version(self.ws, "alpha-deal", "opus55-unknown", self.v114)
+        shown = {ident: self.ws.deal("alpha-deal", ident) for ident in ("opus55-v114", "opus55-v1141", "opus55-unknown")}
+        self.assertEqual({ident: payload["ledger_schema"] for ident, payload in shown.items()},
+                         {"opus55-v114": "v1.14", "opus55-v1141": "v1.14.1", "opus55-unknown": "v1.14.1"})
+        self.assertEqual(shown["opus55-v114"]["choices"]["Antitrust"], ["Varies", "Y"])
+        self.assertEqual(shown["opus55-v1141"]["choices"]["Antitrust"], ["Y"])
+        self.assertEqual(shown["opus55-v114"]["check"]["checker_version"], check_lean.CHECKER_VERSION)
+        # The Stock % range in the fixture is valid under v1.14 and an error under v1.14.1.
+        ranges = {ident: any(issue["code"] == "controlled.stock_pct" and "is a range" in issue["message"] for row in payload["ledger"]["rows"] for issue in row["issues"])
+                  for ident, payload in shown.items()}
+        self.assertEqual(ranges, {"opus55-v114": False, "opus55-v1141": True, "opus55-unknown": True})
+        # The editor stores a range as text only under the v1.14 rules.
+        self.assertEqual(self.ws._coerce(data.LEDGER_SHEET, "Stock %", "40-60", "v1.14"), "40-60")
+        for rules in ("v1.14.1", None):
+            with self.assertRaisesRegex(WorkspaceError, "Part stock"):
+                self.ws._coerce(data.LEDGER_SHEET, "Stock %", "40-60", rules)
+        self.assertEqual(self.ws._coerce(data.LEDGER_SHEET, "Stock %", "Part stock", "v1.14.1"), "Part stock")
+        self.assertEqual(self.ws._coerce(data.LEDGER_SHEET, "Stock %", "37.5", "v1.14.1"), 37.5)
+
+    def test_an_unlisted_value_saves(self):
+        payload = self.ws.deal("alpha-deal")
+        rounds, ledger = payload["rounds"]["rows"][0]["uid"], payload["ledger"]["rows"][0]["uid"]
+        saved = self.save([{"type": "update", "sheet": "Rounds", "uid": rounds, "values": {"Deadline outcome": "Extended; Enforced"}},
+                           {"type": "update", "sheet": "Deal ledger", "uid": ledger, "values": {"Formality": "Not on any list"}}])
+        self.assertEqual(saved["rounds"]["rows"][0]["cells"]["Deadline outcome"], "Extended; Enforced")
+        self.assertEqual(saved["ledger"]["rows"][0]["cells"]["Formality"], "Not on any list")
+        self.assertNotIn("Not on any list", saved["choices"]["Formality"])
+
+    def test_compare_across_schemas_shows_both_column_sets(self):
+        version = add_run_version(self.ws, "alpha-deal", "opus55-v114", self.v114)
+        forward = self.ws.compare("alpha-deal", "v1132-raw", version["id"])["changes"]
+        backward = self.ws.compare("alpha-deal", version["id"], "v1132-raw")["changes"]
+        for changes in (forward, backward):
+            fields = {change["field"] for change in changes if change["type"] == "update"}
+            self.assertTrue({"Stock %", "CVR/earnout value", "Financing"} <= fields, fields)
+        self.assertIn(("Price low", "10", "21.25"), [(c["field"], c["before"], c["after"]) for c in forward])
+        self.assertIn(("Stock %", "", "50\u201375"), [(c["field"], c["before"], c["after"]) for c in forward])
+        self.assertIn(("Stock %", "50\u201375", ""), [(c["field"], c["before"], c["after"]) for c in backward])
+
+    def test_the_checker_of_each_result_is_shown_and_receipts_are_only_read(self):
+        # The catalog version's receipt lives in the re-extraction packet (checker 1.5, no ledger_schema).
+        packet = self.root / "_dev/reviews/2026-09-22-opus55-reextraction"
+        (packet / "receipts/alpha-deal").mkdir(parents=True)
+        (packet / "reextraction.json").write_text(json.dumps({"deals": {"alpha-deal": {"new_sha256": self.base}}}), encoding="utf-8")
+        (packet / "receipts/alpha-deal/check.json").write_text(json.dumps({"checker_version": "1.5", "summary": {"errors": 1, "warnings": 26}}), encoding="utf-8")
+        receipt = check_lean.LeanChecker(self.v114, self.filing).run()
+        add_run_version(self.ws, "alpha-deal", "opus55-pilot", self.v114, checker={"errors": 9, "warnings": 9}, receipt=receipt)
+        add_run_version(self.ws, "alpha-deal", "opus55-stored", self.v114, checker={"errors": 0, "warnings": 2, "checker_version": "1.7", "ledger_schema": "v1.14"})
+        add_run_version(self.ws, "alpha-deal", "opus55-bare", self.v114)
+        before = {path: path.read_bytes() for path in self.root.rglob("check.json")}
+        payload = self.ws.deal("alpha-deal")
+        shown = {version["id"]: version.get("checker") for version in payload["versions"]}
+        self.assertEqual(shown["v1132-raw"], {"checker_version": "1.5", "ledger_schema": None, "errors": 1, "warnings": 26})
+        self.assertEqual(shown["opus55-pilot"], {"checker_version": check_lean.CHECKER_VERSION, "ledger_schema": "v1.14.1",
+                                                 "errors": receipt["summary"]["errors"], "warnings": receipt["summary"]["warnings"]})
+        self.assertEqual(shown["opus55-stored"], {"checker_version": "1.7", "ledger_schema": "v1.14", "errors": 0, "warnings": 2})
+        self.assertIsNone(shown["opus55-bare"])
+        self.assertEqual(payload["check"]["checker_version"], check_lean.CHECKER_VERSION)
+        self.assertEqual({path: path.read_bytes() for path in self.root.rglob("check.json")}, before)
+        # A catalog workbook that is not the one the packet checked gets no receipt.
+        (packet / "reextraction.json").write_text(json.dumps({"deals": {"alpha-deal": {"new_sha256": "0" * 64}}}), encoding="utf-8")
+        self.assertIsNone(next(v for v in self.ws.deal("alpha-deal")["versions"] if v["id"] == "v1132-raw")["checker"])
+
+    def test_v114_round_trip_keeps_every_value_and_the_raw_version(self):
+        version = add_run_version(self.ws, "alpha-deal", "opus55-v114", self.v114)
+        raw_before = version["path"].read_bytes()
+        rebased = self.save([{"type": "rebase", "target_version": version["id"]}], reason="Use the v1.14 run")
+        first = rebased["ledger"]["rows"][0]["uid"]
+        self.save([{"type": "update", "sheet": "Deal ledger", "uid": first, "values": {"Who": "Alpha Holdings"}}])
+        reopened = data.Cockpit(self.root)
+        self.assertEqual(reopened.deal("alpha-deal")["ledger"]["rows"][0]["cells"]["Who"], "Alpha Holdings")
+        exported = load_workbook(io.BytesIO(reopened.workspace.export("alpha-deal")))
+        source = load_workbook(self.v114)
+        for sheet in ("Deal ledger", "Rounds", "Questions", "Deal facts"):
+            got = [[cell.value for cell in row] for row in exported[sheet].iter_rows()]
+            want = [[cell.value for cell in row] for row in source[sheet].iter_rows()]
+            want = [row for row in want if any(value is not None for value in row) or row is want[0]]
+            if sheet == "Deal ledger":
+                want[1][check_lean.LEDGER_COLUMNS_V114.index("Who")] = "Alpha Holdings"
+            self.assertEqual(got, want, sheet)
+        ledger = exported["Deal ledger"]
+        header = [cell.value for cell in ledger[1]]
+        cell = lambda row, field: ledger.cell(row, header.index(field) + 1)
+        self.assertEqual((cell(2, "Price low").value, cell(2, "Price low").data_type), (21.25, "n"))
+        self.assertEqual((cell(2, "CVR/earnout value").value, cell(2, "CVR/earnout value").data_type), (1.25, "n"))
+        self.assertEqual((cell(2, "Stock %").value, cell(3, "Stock %").value, cell(3, "Financing").value), ("50\u201375", 0, "Varies"))
+        self.assertIsNone(cell(4, "Price low").value)
+        self.assertIsInstance(cell(2, "Sort date").value, dt.datetime)
+        self.assertEqual((cell(2, "Flag").value, cell(3, "Note").value), ("Q1", "Cohort; see #1-#3"))
+        self.assertEqual(exported["Questions"].cell(2, check_lean.QUESTION_COLUMNS.index("Rows affected") + 1).value, "#1, #2")
+        self.assertEqual(check_lean.ledger_schema(io.BytesIO(reopened.workspace.export("alpha-deal"))), "v1.14.1")
+        self.assertEqual(version["path"].read_bytes(), raw_before)
+        self.assertEqual(hashlib.sha256(reopened.workspace.export("alpha-deal", version["id"])).hexdigest(), version["sha256"])
+
+    def test_a_working_copy_keeps_its_base_columns(self):
+        uid = self.ws.deal("alpha-deal")["ledger"]["rows"][0]["uid"]
+        with self.assertRaisesRegex(WorkspaceError, "invalid columns"):
+            self.save([{"type": "update", "sheet": "Deal ledger", "uid": uid, "values": {"Stock %": "0"}}])
+        version = add_run_version(self.ws, "alpha-deal", "opus55-v114", self.v114)
+        rebased = self.save([{"type": "rebase", "target_version": version["id"]}])
+        self.assertEqual(rebased["ledger"]["columns"], list(check_lean.LEDGER_COLUMNS_V114))
+        with self.assertRaisesRegex(WorkspaceError, "invalid columns"):
+            self.save([{"type": "update", "sheet": "Deal ledger", "uid": rebased["ledger"]["rows"][0]["uid"], "values": {"All cash": "Yes"}}])
+
+    def test_a_past_revision_compares_and_downloads_without_a_save(self):
+        uid = self.ws.deal("alpha-deal")["ledger"]["rows"][0]["uid"]
+        self.save([{"type": "update", "sheet": "Deal ledger", "uid": uid, "values": {"Who": "First edit"}}])
+        self.save([{"type": "update", "sheet": "Deal ledger", "uid": uid, "values": {"Who": "Second edit"}}])
+        compared = self.ws.compare("alpha-deal", "rev:1", "working")
+        self.assertEqual((compared["from_label"], [(c["field"], c["before"], c["after"]) for c in compared["changes"]]), ("Revision 1", [("Who", "First edit", "Second edit")]))
+        self.assertEqual([(c["before"], c["after"]) for c in self.ws.compare("alpha-deal", "rev:0", "rev:1")["changes"]], [("Alpha", "First edit")])
+        past = load_workbook(io.BytesIO(self.ws.export("alpha-deal", "rev:1")))
+        self.assertEqual(past["Deal ledger"]["C2"].value, "First edit")
+        self.assertEqual(self.ws.export("alpha-deal", "rev:0"), self.original)
+        with self.assertRaises(Missing): self.ws.export("alpha-deal", "rev:9")
+        with self.assertRaises(Missing): self.ws.compare("alpha-deal", "rev:01", "working")
+        self.assertEqual([entry["revision"] for entry in self.ws.history("alpha-deal")["history"]], [2, 1, 0])
+
+    def test_rebase_preview_counts_and_carried_judgments(self):
+        version = add_run_version(self.ws, "alpha-deal", "opus55-v114", self.v114)
+        rows = self.ws.deal("alpha-deal")["ledger"]["rows"]
+        self.save([{"type": "update", "sheet": "Deal ledger", "uid": rows[0]["uid"], "values": {"Who": "Edited"}},
+                   {"type": "review", "uid": rows[0]["uid"], "status": "reviewed"}, {"type": "review", "uid": rows[1]["uid"], "status": "needs_decision"},
+                   {"type": "finding", "id": "F1", "judgment": "supported", "implementation": "applied", "verification": "verified", "note": ""}])
+        self.save([{"type": "delete", "sheet": "Deal ledger", "uid": rows[-1]["uid"]}])
+        trace = self.cockpit.trace
+        trace.comment("alpha-deal", {"action": "create", "target": {"kind": "row", "sheet": "Deal ledger", "uid": rows[0]["uid"]}, "body": "On the old row"}, "alex")
+        trace.comment("alpha-deal", {"action": "create", "target": {"kind": "deal"}, "body": "Deal level"}, "alex")
+        before = self.ws.history("alpha-deal")
+        preview = self.ws.rebase_preview("alpha-deal", version["id"])
+        self.assertEqual(self.ws.history("alpha-deal"), before)  # nothing saved
+        self.assertEqual((preview["current"]["ledger_schema"], preview["target"]["ledger_schema"], preview["current"]["revision"]), ("v1.13.2", "v1.14.1", 2))
+        stops = preview["stops_applying"]
+        self.assertEqual(stops["revisions"], 2)
+        self.assertEqual(stops["edits"], 2)  # one cell, one deleted row
+        self.assertEqual(stops["row_marks"], {"total": 2, "reviewed": 1, "needs_decision": 1, "unreviewed": 0})
+        self.assertEqual(stops["finding_decisions"], {"total": 1, "judgments_kept": 1, "reset": 1})
+        self.assertEqual(stops["row_threads"], {"total": 1, "open": 1, "resolved": 0})
+        with self.assertRaisesRegex(WorkspaceError, "already the base"): self.ws.rebase_preview("alpha-deal", "v1132-raw")
+        with self.assertRaises(Missing): self.ws.rebase_preview("alpha-deal", "nosuch")
+
+        shown = self.ws.deal("alpha-deal", version["id"])["workspace"]  # the rebase dialog saves from this view
+        self.assertEqual((shown["revision"], shown["updated_by"], shown["editable"]), (2, "austin", False))
+        rebased = self.save([{"type": "rebase", "target_version": version["id"]}], reason="Use the v1.14 run", actor="alex")
+        finding = rebased["findings"][0]
+        self.assertEqual((finding["judgment"], finding["implementation"], finding["verification"], finding["actor"]), ("supported", "unassessed", "unchecked", "austin"))
+        self.assertEqual(finding["carried_over"], {"revision": 3, "from_base": "v1132-raw", "actor": "alex"})
+        self.assertEqual(rebased["row_review"], {})
+        threads = trace.comments("alpha-deal")["threads"]
+        self.assertEqual([(t["target"]["kind"], t["target_missing"], t["target_context"]) for t in threads],
+                         [("row", True, "on an earlier base (revision 2)"), ("deal", False, None)])
+        restored = self.save([{"type": "restore", "target_revision": 2}], reason="Undo the rebase")
+        self.assertEqual((restored["findings"][0]["implementation"], len(restored["row_review"])), ("applied", 2))
+        self.assertEqual(trace.comments("alpha-deal")["threads"][0]["target_missing"], False)
+
+    def test_a_thread_on_a_row_deleted_by_an_edit_reads_record_removed(self):
+        rows = self.ws.deal("alpha-deal")["ledger"]["rows"]
+        trace = self.cockpit.trace
+        trace.comment("alpha-deal", {"action": "create", "target": {"kind": "row", "sheet": "Deal ledger", "uid": rows[-1]["uid"]}, "body": "Delete this?"}, "alex")
+        self.save([{"type": "delete", "sheet": "Deal ledger", "uid": rows[-1]["uid"]}])
+        [thread] = trace.comments("alpha-deal")["threads"]
+        self.assertEqual((thread["target_missing"], thread["target_context"]), (True, "record removed"))
+        version = add_run_version(self.ws, "alpha-deal", "opus55-v114", self.v114)
+        trace.comment("alpha-deal", {"action": "create", "target": {"kind": "row", "sheet": "Deal ledger", "uid": rows[0]["uid"]}, "body": "Before any save"}, "alex")
+        self.save([{"type": "rebase", "target_version": version["id"]}])
+        contexts = [thread["target_context"] for thread in trace.comments("alpha-deal")["threads"]]
+        self.assertEqual(contexts, ["record removed", "on an earlier base (revision 1)"])
 
 
 class MigrationTests(unittest.TestCase):

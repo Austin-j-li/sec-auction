@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import { Button, Checkbox } from '@fluentui/react-components';
 import { EyeIcon, PlusIcon, WarningCircleIcon } from '@phosphor-icons/react';
 import { count } from './api';
-import { hiddenLine, listedDeals } from './deals';
+import { hiddenLine, listedDeals, reviewByline, reviewText } from './deals';
 import { Empty } from './ui';
 import { displayName, tallyText } from './trace';
+import { liveCheckText } from './runs';
 
 function CheckLine({ check }) {
   if (!check) return null;
   const errors = check.errors ?? 0, warnings = check.warnings ?? 0;
-  return <small className="mono">
+  return <small className="mono" title={liveCheckText(check, check.ledger_schema)}>
     {errors > 0
       ? <span className="tone-error"><WarningCircleIcon size={12} aria-hidden="true"/> {count(errors, 'error')}</span>
       : count(errors, 'error')}
@@ -97,7 +98,8 @@ export default function Overview({ deals, onOpen, onAdd, onUnhide }) {
               <CheckLine check={item.check}/>
             </td>
             <td>
-              <span className="status-text">{item.review_status || 'unreviewed'}</span>
+              <span className={`status-text${item.deal_review?.edited_since && item.deal_review.status === 'reviewed' ? ' tone-warning' : ''}`}>{item.deal_review ? reviewText(item.deal_review) : item.review_status || 'unreviewed'}</span>
+              {reviewByline(item.deal_review) && <small>{reviewByline(item.deal_review)}</small>}
               {item.error && <small className="tone-error">{item.error}</small>}
             </td>
           </tr>)}

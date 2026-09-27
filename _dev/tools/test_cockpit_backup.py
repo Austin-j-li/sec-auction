@@ -5,6 +5,7 @@ import datetime as dt
 import hashlib
 import json
 import os
+import shutil
 import sqlite3
 import subprocess
 import sys
@@ -16,6 +17,7 @@ from unittest.mock import patch
 
 from openpyxl import load_workbook
 
+import check_lean
 from cockpit import backup, data
 from test_cockpit_workspace import fixture
 
@@ -129,6 +131,20 @@ class BackupTests(unittest.TestCase):
         self.assertEqual(restored.trace.comments(SLUG), self.trace.comments(SLUG))
         self.assertTrue(next(v for v in restored.deal(SLUG)["versions"] if v["id"] == "opus55-medium-x")["hidden"])
         self.assertEqual([i["status"] for i in restored.instructions.list()["items"]], ["published", "draft"])
+
+    def test_manifest_names_the_code_on_disk(self):
+        # The services may run uncommitted code, so git_head alone does not identify it.
+        made = backup.create(self.root, self.dest, now=NOW)
+        manifest = json.loads((made / "manifest.json").read_text())
+        self.assertEqual((manifest["checker_version"], manifest["dist_index_sha256"]), (None, None))  # the fixture has neither
+        tools = self.root / "_dev/tools"
+        (tools / "cockpit/dist").mkdir(parents=True)
+        shutil.copy2(Path(check_lean.__file__), tools / "check_lean.py")  # the real file, so its layout is what is parsed
+        index = b'<!doctype html><script src="/assets/index-abc.js"></script>'
+        (tools / "cockpit/dist/index.html").write_bytes(index)
+        manifest = json.loads((backup.create(self.root, self.dest, now=NOW + dt.timedelta(seconds=1)) / "manifest.json").read_text())
+        self.assertEqual(manifest["checker_version"], check_lean.CHECKER_VERSION)
+        self.assertEqual(manifest["dist_index_sha256"], hashlib.sha256(index).hexdigest())
 
     def test_cli_create_and_rehearse(self):
         env = {**os.environ, "PYTHONDONTWRITEBYTECODE": "1"}

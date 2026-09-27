@@ -7,11 +7,12 @@
 
 A backup is `<dest>/<YYYYMMDD-HHMMSS>Z/`: the workspace database copied with SQLite's online
 backup API (so a running server or worker is never interrupted), the file store (`filings/`,
-`instructions/`, `versions/`, `jobs/`) and `manifest.json` with every file's hash and a
-summary of the working copies and comments. EDGAR lookup caches, the worker lock and
-credentials (kept outside the state directory) are not backed up; after a restore, users
-reconnect their accounts. The rehearsal restores a fresh backup into a temporary repository
-root and compares it with the backup through the same data layer the server uses.
+`instructions/`, `versions/`, `jobs/`) and `manifest.json` with every file's hash, the code
+on disk (git HEAD, checker version, hash of the frontend's index) and a summary of the working
+copies and comments. EDGAR lookup caches, the worker lock and credentials (kept outside the
+state directory) are not backed up; after a restore, users reconnect their accounts. The
+rehearsal restores a fresh backup into a temporary repository root and compares it with the
+backup through the same data layer the server uses.
 """
 from __future__ import annotations
 
@@ -156,6 +157,7 @@ def snapshot(cockpit: data.Cockpit) -> dict[str, Any]:
         instructions["texts"] = texts
         return {"deals": deals, "added deals": _part(cockpit.deals.added),
                 "hidden deals": _rows(conn, "SELECT * FROM hidden_deals ORDER BY slug"),
+                "deal review": _rows(conn, "SELECT * FROM deal_review ORDER BY slug"),
                 "instructions": instructions, "summary": summarize(cockpit)}
     finally:
         if conn: conn.close()
@@ -261,6 +263,17 @@ def _git_head(root: Path) -> str | None:
     return found.stdout.strip() or None if found.returncode == 0 else None
 
 
+def _code_on_disk(root: Path) -> dict[str, str | None]:
+    """The code on disk beside `git_head`, which misses uncommitted changes: the checker's version
+    and the hash of the served `dist/index.html`, which names the frontend's hashed assets."""
+    checker, index = root / "_dev/tools/check_lean.py", root / "_dev/tools/cockpit/dist/index.html"
+    try:
+        found = re.search(r'^CHECKER_VERSION = "([^"]+)"', checker.read_text(encoding="utf-8"), re.M)
+    except OSError:
+        found = None
+    return {"checker_version": found.group(1) if found else None, "dist_index_sha256": _sha(index) if index.is_file() else None}
+
+
 def _copy_database(source: Path, target: Path) -> dict[str, int]:
     """Copy with the online backup API, as a rollback-journal file, and check its integrity."""
     src = sqlite3.connect(source, timeout=30)
@@ -328,7 +341,7 @@ def create(repo_root: Path = REPO, dest: Path = DEFAULT_DEST, keep_days: int | N
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(state / relative, target)
             files.append({"path": relative.as_posix(), "bytes": target.stat().st_size, "sha256": _sha(target)})
-        manifest = {"created_at": now.isoformat(timespec="seconds"), "state": str(state), "git_head": _git_head(repo_root),
+        manifest = {"created_at": now.isoformat(timespec="seconds"), "state": str(state), "git_head": _git_head(repo_root), **_code_on_disk(repo_root),
                     "database": {"path": DB, "bytes": (partial / DB).stat().st_size, "sha256": _sha(partial / DB), "tables": tables},
                     "files": files, "summary": _summary_of(repo_root, partial / DB)}
         (partial / "manifest.json").write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")

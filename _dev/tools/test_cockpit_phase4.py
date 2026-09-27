@@ -14,6 +14,7 @@ from unittest.mock import patch
 
 from cockpit import runs, worker
 from cockpit.workspace import Conflict, Missing, WorkspaceError
+import check_lean
 from test_cockpit_runs import FAKE_RUNNER, SLUG, TOKEN
 from test_cockpit_workspace import fixture
 
@@ -158,6 +159,25 @@ class Phase4Tests(unittest.TestCase):
 
     # ---- engines and runs -----------------------------------------------------------------
 
+    def test_new_default_uses_opus_medium_without_relabelling_legacy_jobs(self):
+        self.runs.account_action("austin", {"action": "token", "token": TOKEN})
+        self.runs.job_action(SLUG, "austin", {"action": "extract"})
+        self.settle(lambda: self.jobs()[0]["state"] == "completed")
+        job = self.jobs()[0]
+        self.assertEqual((job["params"]["engine"], job["params"]["model"], job["params"]["effort"], job["params"]["account"]),
+                         ("opus55", "claude-opus-5-5", "medium", "claude"))
+        version = next(v for v in self.ws.item(SLUG)["versions"] if v["id"] == job["version_id"])
+        self.assertEqual((version["model"], version["effort"]), ("claude-opus-5-5", "medium"))
+        # Astra chosen explicitly keeps its own default effort.
+        self.gpt_login()
+        astra = self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "astra6"})["jobs"][0]
+        self.assertEqual((astra["params"]["engine"], astra["params"]["effort"]), ("astra6", "high"))
+        self.assertEqual(worker.engine_of({})[0], "opus55")
+        self.assertEqual(runs.job_account({}), "claude")
+        self.assertEqual(worker.engine_of({"engine": "sol6"})[0], "sol6")
+        defaults = {e["id"]: e["default_effort"] for e in self.runs.account("austin")["engines"]}
+        self.assertEqual(defaults, {"astra6": "high", "opus55": "medium", "fable51": "medium", "sol6": "medium"})
+
     def test_extract_checks_the_engines_account_and_freezes_the_instruction(self):
         with self.assertRaisesRegex(Conflict, "ChatGPT"):
             self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "astra6"})
@@ -177,6 +197,33 @@ class Phase4Tests(unittest.TestCase):
         account = self.runs.account("austin")
         self.assertEqual({engine["id"]: engine["connected"] for engine in account["engines"]}, {"opus55": False, "fable51": False, "sol6": True, "astra6": True})
         self.assertTrue(account["chatgpt"]["connected"])
+
+    def test_the_run_is_checked_under_the_rules_of_its_instruction(self):
+        """A run under a v1.14-hash instruction is checked with the v1.14 rules, one under a v1.14.1 hash with v1.14.1."""
+        from test_cockpit_workspace import build_v114_workbook
+        self.runs.account_action("austin", {"action": "token", "token": TOKEN})
+        base = self.instructions.list()["items"][0]
+        drafts = []
+        for text in ("Rules v1.14 stand-in.\n", "Rules v1.14.1 stand-in.\n"):
+            draft = self.instructions.request("alex", {"action": "draft", "from": base["id"]})
+            drafts.append(self.instructions.request("alex", {"action": "save", "id": draft["item"]["id"], "text": text, "base_sha256": draft["item"]["sha256"]})["item"])
+        rules = {drafts[0]["sha256"]: "v1.14", drafts[1]["sha256"]: "v1.14.1"}
+        with patch.dict(check_lean.RULES_BY_INSTRUCTION, rules):
+            for number, draft in enumerate(drafts):
+                # Different bytes, so the two runs import as two versions.
+                workbook = build_v114_workbook(self.root / f"v114-run-{number}.xlsx")
+                book = check_lean.openpyxl.load_workbook(workbook)
+                book["Deal ledger"].cell(2, check_lean.LEDGER_COLUMNS_V114.index("Note") + 1).value = f"Run {number}."
+                book.save(workbook)
+                with patch.dict(os.environ, {"FAKE_WORKBOOK": str(workbook)}):
+                    self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "opus55", "instruction_id": draft["id"]})
+                    self.settle(lambda: all(job["state"] == "completed" for job in self.jobs()))
+            by_instruction = {job["params"]["instruction"]["sha256"]: job for job in self.jobs()}
+            self.assertEqual({rules[sha]: job["result"]["checker"]["ledger_schema"] for sha, job in by_instruction.items()},
+                             {"v1.14": "v1.14", "v1.14.1": "v1.14.1"})
+            shown = {rules[job["params"]["instruction"]["sha256"]]: self.ws.deal(SLUG, job["version_id"]) for job in self.jobs()}
+            self.assertEqual({key: payload["ledger_schema"] for key, payload in shown.items()}, {"v1.14": "v1.14", "v1.14.1": "v1.14.1"})
+            self.assertEqual(shown["v1.14.1"]["choices"]["CVR/earnout"], ["Y"])
 
     def test_a_draft_run_and_a_published_run_differ_in_instruction(self):
         self.runs.account_action("austin", {"action": "token", "token": TOKEN})
@@ -206,11 +253,22 @@ class Phase4Tests(unittest.TestCase):
 
     def test_an_altered_stored_instruction_fails_the_run(self):
         self.runs.account_action("austin", {"action": "token", "token": TOKEN})
-        self.runs.job_action(SLUG, "austin", {"action": "extract"})
+        self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "opus55"})
         sha = self.jobs()[0]["params"]["instruction"]["sha256"]
         self.instructions.path(sha).write_text("tampered")
         self.settle(lambda: self.jobs()[0]["state"] == "failed")
         self.assertEqual(self.jobs()[0]["failure_reason"], "instruction_missing")
+
+    def test_a_job_without_an_instruction_fails_instead_of_using_the_repository_text(self):
+        self.runs.account_action("austin", {"action": "token", "token": TOKEN})
+        job = self.runs.job_action(SLUG, "austin", {"action": "extract", "engine": "opus55"})["jobs"][0]
+        params = {key: value for key, value in job["params"].items() if key != "instruction"}
+        conn = self.ws._connect(write=True)
+        conn.execute("UPDATE jobs SET params=? WHERE id=?", (json.dumps(params), job["id"]))
+        conn.commit(); conn.close()
+        self.settle(lambda: self.jobs()[0]["state"] == "failed")
+        self.assertEqual((self.jobs()[0]["failure_reason"], self.jobs()[0]["error"]), ("instruction_missing", "The job names no instruction version."))
+        self.assertFalse((self.root / "_dev/runs" / f"cockpit-{job['id']}").exists())
 
     # ---- ChatGPT sign-in and refresh -------------------------------------------------------
 

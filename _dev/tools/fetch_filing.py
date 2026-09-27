@@ -92,6 +92,17 @@ def submission_link(url):
                      "or a document under https://www.sec.gov/Archives/edgar/data/")
 
 
+def index_link(url):
+    """Return the filing index page for a complete submission link (…/<accession>.txt -> …/<accession>-index.htm).
+
+    Anything but a complete submission link raises FetchError; the link is derived, never fetched.
+    """
+    m = SUBMISSION_LINK.match((url or "").strip())
+    if not m:
+        raise FetchError("not an EDGAR complete submission link (.txt): %s" % url)
+    return "https://www.sec.gov/Archives/edgar/data/%s/%s-index.htm" % m.groups()
+
+
 def _header_value(header, key):
     m = re.search(r"^\s*" + re.escape(key) + r":\s*(.+?)\s*$", header, re.M)
     return m.group(1) if m else ""
@@ -234,7 +245,7 @@ def verify(manifest):
     for r in manifest:
         path = RAW / r["file"]
         local = hashlib.sha256(path.read_bytes()).hexdigest() if path.exists() else None
-        index_url = r["source_url"][:-len(".txt")] + "-index.htm"
+        index_url = index_link(r["source_url"])
         remote = hashlib.sha256(main_document(index_url, r["form_type"], r.get("document"))[2]).hexdigest()
         ok = local == r["sha256"] == remote
         bad += not ok

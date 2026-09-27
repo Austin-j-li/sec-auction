@@ -40,7 +40,9 @@ ENGINES = {
     "sol6": {"label": "GPT-6-Sol", "name": "GPT-6-Sol", "provider": "sol", "model": "gpt-6-sol", "account": "chatgpt", "experimental": False, "note": None},
     "astra6": {"label": "GPT-6-Astra", "name": "GPT-6-Astra", "provider": "sol", "model": "gpt-6-astra", "account": "chatgpt", "experimental": False, "note": None},
 }
-DEFAULT_ENGINE = "opus55"
+DEFAULT_ENGINE = "opus55"  # Austin, 26 Sep 2026: Opus 5.5 medium is the main extractor again.
+LEGACY_ENGINE = "opus55"  # Jobs recorded before engine selection existed remain Claude jobs.
+DEFAULT_EFFORT = {ident: "high" if ident == "astra6" else "medium" for ident in ENGINES}
 ACTIVE = ("queued", "preparing", "running", "checking", "importing")
 CONNECT_ACTIVE = ("queued", "waiting_for_code", "completing")
 CHATGPT_CONNECT_ACTIVE = ("queued", "waiting_for_approval")
@@ -99,7 +101,7 @@ def codex_login(auth: Path) -> dict[str, Any] | None:
 
 def job_account(params: dict[str, Any] | None) -> str:
     """Whose plan a job uses; jobs from before phase 4 are Opus 5.5 on Claude."""
-    return ENGINES.get((params or {}).get("engine"), ENGINES[DEFAULT_ENGINE])["account"]
+    return ENGINES.get((params or {}).get("engine"), ENGINES[LEGACY_ENGINE])["account"]
 
 
 def active_jobs_on(conn: sqlite3.Connection, user: str, account: str) -> bool:
@@ -194,7 +196,7 @@ class Runs:
                 gpt_connect = {"job_id": job[0]["id"], "state": job[0]["state"], "link": shown.get("link"), "code": shown.get("code"), "error": job[0]["error"]}
             accounts = {"claude": connected, "chatgpt": gpt["connected"]}
             engines = [{"id": ident, "label": engine["label"], "name": engine["name"], "account": engine["account"], "efforts": list(EFFORTS),
-                        "default_effort": "medium", "experimental": engine["experimental"], "note": engine["note"], "connected": accounts[engine["account"]]}
+                        "default_effort": DEFAULT_EFFORT[ident], "experimental": engine["experimental"], "note": engine["note"], "connected": accounts[engine["account"]]}
                        for ident, engine in ENGINES.items()]
             return {"user": user, "claude": {"connected": connected, "connected_at": found[0]["connected_at"] if connected else None,
                                               "expires_at": found[0]["expires_at"] if connected else None, "plan_usage": plan}, "connect": connect,
@@ -270,9 +272,20 @@ class Runs:
         self.workspace.item(slug)
         conn = self.workspace._connect()
         try:
-            return {"jobs": [job_json(row) for row in _rows(conn, "SELECT * FROM jobs WHERE slug=? AND kind='extract' ORDER BY created_at DESC, rowid DESC LIMIT 30", (slug,))]}
+            jobs = [job_json(row) for row in _rows(conn, "SELECT * FROM jobs WHERE slug=? AND kind='extract' ORDER BY created_at DESC, rowid DESC LIMIT 30", (slug,))]
         finally:
             if conn: conn.close()
+        # Runs imported before the checker version was stored: read it from the version's receipt, never rewriting either.
+        versions = None
+        for job in jobs:
+            checker = (job["result"] or {}).get("checker")
+            if isinstance(checker, dict) and not checker.get("checker_version") and job["version_id"]:
+                if versions is None:
+                    versions = {version["id"]: version for version in imported_versions(self.workspace, slug)}
+                recorded = self.workspace.import_check(slug, versions[job["version_id"]]) if job["version_id"] in versions else None
+                if recorded:
+                    job["result"]["checker"] = {**checker, "checker_version": recorded["checker_version"], "ledger_schema": recorded["ledger_schema"]}
+        return {"jobs": jobs}
 
     def active_jobs(self, slug: str) -> int:
         conn = self.workspace._connect()
@@ -294,10 +307,10 @@ class Runs:
         def run(conn: sqlite3.Connection) -> None:
             if action == "extract":
                 if conn.execute("SELECT 1 FROM hidden_deals WHERE slug=?", (slug,)).fetchone(): raise Conflict("unhide the deal first")
-                effort, minutes = request.get("effort", "medium"), request.get("timeout_minutes", 90)
                 engine_id = request.get("engine", DEFAULT_ENGINE)
                 if engine_id not in ENGINES: raise WorkspaceError("unknown engine")
                 engine = ENGINES[engine_id]
+                effort, minutes = request.get("effort", DEFAULT_EFFORT[engine_id]), request.get("timeout_minutes", 90)
                 if effort not in EFFORTS: raise WorkspaceError("invalid effort")
                 if type(minutes) is not int or not 10 <= minutes <= 360: raise WorkspaceError("time limit must be 10 to 360 minutes")
                 if engine["account"] == "claude" and (not conn.execute("SELECT 1 FROM accounts WHERE user=? AND provider='claude'", (user,)).fetchone() or not token_path(user).is_file()):

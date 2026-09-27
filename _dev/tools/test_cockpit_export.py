@@ -127,7 +127,8 @@ class ExportTests(unittest.TestCase):
         code, out, _ = self.export("deal", SLUG, "--version", "working", "--write")
         self.assertEqual(code, 0, out)
         written = (self.root / f"extraction/{SLUG}.xlsx").read_bytes()
-        self.assertEqual(written, self.ws.export(SLUG))  # the server's download bytes
+        self.assertEqual(written, self.ws.export(SLUG))  # the four-sheet working copy; the cockpit's download adds a Source sheet unless ?source=0
+        self.assertEqual(load_workbook(io.BytesIO(written)).sheetnames, ["Deal ledger", "Rounds", "Questions", "Deal facts"])
         self.assertEqual(load_workbook(io.BytesIO(written))["Deal ledger"]["H2"].value, 99)
         self.assertEqual((self.root / "raw_filing" / FILE).read_bytes(), FILING)
         text = manifest.read_text(encoding="utf-8")

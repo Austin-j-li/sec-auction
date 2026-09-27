@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Button, Field, Textarea } from '@fluentui/react-components';
 import { CaretRightIcon } from '@phosphor-icons/react';
 import { count, text } from './api';
-import { displayName, shortTime, threadsFor } from './trace';
+import { displayName, shortTime, threadContext, threadsFor } from './trace';
 import { Message } from './ui';
 
 // Threads on one target (a row, a finding, or the whole deal). Each action posts at once; nothing goes through the unsaved-edits dock.
@@ -63,7 +63,7 @@ function Thread({ thread, trace, run, busy }) {
   }, [focused, trace.focus?.nonce]);
   const [first, ...replies] = thread.comments || [];
   const resolvedBy = resolved && `Resolved by ${displayName(resolved.by || thread.resolved_by)}`;
-  const context = thread.target_missing && <p className="thread-context">Record removed · {thread.target?.label}</p>;
+  const context = thread.target_missing && <p className="thread-context">{threadContext(thread)} · {thread.target?.label}</p>;
   if (!open) return <div className={`thread is-resolved ${focused ? 'focused' : ''}`} ref={ref}>
     <button className="thread-collapsed" aria-expanded="false" onClick={() => setOpen(true)}>
       <CaretRightIcon size={14} className="caret" aria-hidden="true"/>

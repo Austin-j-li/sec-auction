@@ -11,12 +11,29 @@ export async function json(path, options = {}) {
 }
 
 const writeHeaders = session => ({ 'Content-Type': 'application/json', 'X-Cockpit-CSRF': session.csrf_token });
-const post = (path, session, payload) => json(path, { method: 'POST', headers: writeHeaders(session), body: JSON.stringify(payload) });
+const send = (path, session, payload) => json(path, { method: 'POST', headers: writeHeaders(session), body: JSON.stringify(payload) });
+// A server restart issues a new write token, so an open tab's first write is refused. The refused request changed
+// nothing: fetch the session once more and, for the same user, retry once with the new token (kept on the shared session).
+// The fresh token is compared with the one this request sent, not the session's current one, so every write refused
+// with the old token is retried, also when another write refused at the same time has already updated the session.
+async function post(path, session, payload) {
+  const sent = session.csrf_token;
+  try { return await send(path, session, payload); }
+  catch (error) {
+    if (error.status !== 403 || error.message !== 'write authorization failed') throw error;
+    const fresh = await json('/api/session').catch(() => null);
+    if (!fresh?.csrf_token || fresh.user !== session.user || fresh.csrf_token === sent) throw error;
+    session.csrf_token = fresh.csrf_token;
+    return send(path, session, payload);
+  }
+}
 const dealPath = (slug, rest) => `/api/deal/${encodeURIComponent(slug)}/${rest}`;
 
 export function saveDeal(slug, session, payload) { return post(dealPath(slug, 'edit'), session, payload); }
 // One comment action (create, reply, edit, delete, resolve, reopen); the response is the deal's full thread list.
 export function commentAction(slug, session, action) { return post(dealPath(slug, 'comments'), session, action); }
+// The working copy's review status, set at the revision being viewed: {status, revision} -> {deal_review}.
+export function setDealReview(slug, session, status, revision) { return post(dealPath(slug, 'review'), session, { status, revision }); }
 export function markSeen(slug, session, activityId) { return post(dealPath(slug, 'seen'), session, { activity_id: activityId }); }
 // Leaving a deal: the request must survive navigation and page unload. Resolves (never rejects) when it lands.
 export function markSeenOnLeave(slug, session, activityId) {

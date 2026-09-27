@@ -1,3 +1,5 @@
+> 26 September default update: GPT-6-Astra high is now the approved extraction default; the narrow code change is included in this worktree. The older default and session-state statements below are historical. Current status and the Pro verification/amendment packet are in the main checkout at `/home/uctpiaj/work/Projects/sec-extraction/_dev/maintenance/2026-09-26-astra-default-pro-verification/README.md`. Reconcile the pre-existing release patches before deployment. This worktree remains undeployed.
+
 # Development handoff — 23 September 2026
 
 ## Current direction
