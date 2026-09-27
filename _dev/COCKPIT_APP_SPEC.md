@@ -1,13 +1,13 @@
 # Ledger cockpit as a shared extraction app: specification
 
-Approved by Austin on 23 September 2026, including the §13 defaults. This is the product specification, not a current-state audit; consult [current status and decisions](RESEARCH_QUESTIONS.md) for the 27 September recovery boundary and outstanding verification. It builds on the deployed cockpit (`https://lines.dealextract.org`, [review guide](cockpit/README.md), [build contract](COCKPIT_BUILD.md)) and the isolated runner (`tools/sandbox/run_model.py`, [tools README](tools/README.md)).
+Approved by Austin on 23 September 2026. Product specification for the shared extraction app. The app's source and state live on the VM; this checkout holds only the runner and checker it calls (`tools/sandbox/run_model.py`, `tools/check_lean.py`; see the [tools README](tools/README.md)).
 
 ## 1. Goal
 
 Austin and Alex each log in with their own identity and, without a terminal or an agent conversation, can:
 
 1. add a deal by searching the seed list or pasting an EDGAR link;
-2. start an extraction on their own Claude or ChatGPT subscription, choosing the engine, effort and instruction version (default: Claude Opus 5.5, medium, current default instruction; restored on 26 September evening after that morning's GPT-6-Astra-high default);
+2. start an extraction on their own Claude or ChatGPT subscription, choosing the engine, effort and instruction version (default: Claude Opus 5.5, medium, the default instruction);
 3. edit instructions as new versions, never altering a frozen one;
 4. review and edit the shared working copy, and see what the other person changed or said, without being flooded.
 
@@ -20,7 +20,7 @@ The research guarantees stay as they are: blind, isolated extraction; immutable 
 | Who may extract | Austin and Alex, each on their own initiative. |
 | Deal sources | Search `ref/seed.csv` by name, or paste any EDGAR filing or index link. |
 | Re-extraction of an edited deal | Adds a new read-only version. The working copy keeps its edits and base; changing its base is a separate, deliberate action. |
-| Engines | Claude Opus 5.5 (default, medium; restored 26 September evening), Claude Fable 5.1, GPT-6-Sol and GPT-6-Astra (high by default when chosen), at every effort the runner allows. Claude engines use the starting user's Claude plan; GPT engines use the starting user's ChatGPT plan. |
+| Engines | Claude Opus 5.5 (default, medium), Claude Fable 5.1, GPT-6-Sol and GPT-6-Astra (high by default when chosen), at every effort the runner allows. Claude engines use the starting user's Claude plan; GPT engines use the starting user's ChatGPT plan. |
 | Instructions | Editable in the app as new versions. Either user may publish a version and make it the default. Drafts may be run: the exact text is frozen under its hash and the version is labelled "draft instruction". |
 | Version labels | Every extraction version states its engine, effort, instruction, who ran it and when (§6.3). |
 | Trace | Recommended design in §8: threaded comments, a per-deal "since your last visit" digest, and last-changed-by on hover. No email, no live notifications. |
@@ -53,7 +53,6 @@ browser ──Cloudflare Access──▶ server.py (HTTP, SQLite, no model or ne
   - `instructions/<sha256>.md` (content-addressed);
   - `versions/<deal>/<version-id>/` with `workbook.xlsx`, `check.json` and the run receipts (`metadata.json`, `command.json`, `status.json`, `provider-results.json`);
   - `secrets/` for credentials (§5).
-  The nine existing deals keep their files in `raw_filing/` and `extraction/`, read through `catalog.json` as now.
 - **Backups**: a nightly job copies the SQLite database (online backup API) and the store to `~/backups/ledger-cockpit/`, keeping 14 days. The database is the only copy of working revisions and comments.
 - **Capacity**: the VM has 64 CPUs and 125 GB RAM. A run is mostly waiting on the model, so the cap is set by subscription limits, not the machine: at most 4 concurrent runs overall and 2 per user, with the rest queued.
 
@@ -70,7 +69,7 @@ A **Settings → Accounts** page lists, per user: Claude (not connected / connec
 ### 5.2 ChatGPT (GPT-6-Sol, GPT-6-Astra)
 
 - The worker runs `codex login --device-auth` with a per-user `CODEX_HOME`. The page shows the verification link and code; the user approves in their own ChatGPT account; the worker waits for completion.
-- Refresh tokens rotate. The runner currently mounts `~/.codex/auth.json` read-only and refuses a run with under seven hours of access-token life, because a refresh inside the sandbox cannot be written back. Per-user credentials keep that rule. The worker refreshes a user's credential outside the sandbox, under a per-user lock and never during that user's GPT run, when less than 24 hours remain. The exact refresh command is spike S2.
+- Refresh tokens rotate. The runner mounts the user's Codex login read-only and refuses a run with under seven hours of access-token life, because a refresh inside the sandbox cannot be written back. Per-user credentials keep that rule. The worker refreshes a user's credential outside the sandbox, under a per-user lock and never during that user's GPT run, when less than 24 hours remain.
 
 ### 5.3 Credential handling
 
@@ -89,7 +88,7 @@ Opened from a deal's toolbar (**Extract**) or right after adding a deal.
 - **Effort**: `low`, `medium`, `high`, `xhigh`, `max`, restricted to what the engine supports; default `medium`, except Astra defaults to `high` when selected. `ultra` is not offered because it delegates to subagents, which breaks isolation.
 - **Instruction**: the default published version, preselected. The list shows published versions, then drafts, each marked.
 - **Time limit**: default 90 minutes (runner range 10–360).
-- A one-line summary before the button, for example: "Opus 5.5 · medium · v1.14.1 · on Alex's Claude plan · usually 10–15 minutes."
+- A one-line summary before the button, for example: "Opus 5.5 · medium · v0 · on Alex's Claude plan · usually 10–15 minutes."
 
 ### 6.2 Job lifecycle
 
@@ -99,7 +98,7 @@ Opened from a deal's toolbar (**Extract**) or right after adding a deal.
 - *running*: `launch`. The runner's continuation logic (at most two resumes) is unchanged.
 - *checking*: `check_lean.py` against the workbook and filing, outside the sandbox.
 - *importing*: copy the workbook and receipts into the store, create the version and emit an activity event. A failed run creates no version, but its job record, failure reason and receipts are kept.
-- New failure reason `usage_limit`, when the provider reports a plan limit, so the page says "Alex's Claude plan hit its usage limit; try again after *time*" instead of a generic error. The provider's error wording is found in spike S4.
+- New failure reason `usage_limit`, when the provider reports a plan limit, so the page says "Alex's Claude plan hit its usage limit; try again after *time*" instead of a generic error.
 - **Cancel** stops a queued or running job, killing its process group.
 - The run folder under `_dev/runs/` is deleted after import, as the tools README already requires.
 
@@ -109,7 +108,7 @@ Each completed run adds an immutable version:
 
 ```
 id:         <engine>-<effort>-<yyyymmdd-hhmm>-<short hash>
-label:      Opus 5.5 · medium · v1.13.2 — Alex, 23 Sep 14:05
+label:      Opus 5.5 · medium · v0 — Alex, 23 Sep 14:05
 kind:       raw
 engine, model, effort, instruction {id, name or "draft", sha256},
 filing sha256, runner sha256, CLI version, account, started_by,
@@ -182,7 +181,7 @@ Email, browser notifications, live co-editing cursors and per-comment unread cou
 
 ## 9. Instructions
 
-An **Instructions** page lists every version: name (for example v1.13.2), status (published or draft), author, date, parent, a note, and which one is the default.
+An **Instructions** page lists every version: name (for example v0), status (published or draft), author, date, parent, a note, and which one is the default.
 
 - **Published versions** are frozen. Their text can never change.
 - **New draft from…** copies any version into an editor (Markdown, with a side-by-side diff against the parent). Saving a draft records the author and time; drafts keep a history of their own edits.
@@ -190,8 +189,7 @@ An **Instructions** page lists every version: name (for example v1.13.2), status
 - **Publish**: freezes the draft under a name and a required change note. Names must be unique and cannot be reused.
 - **Make default**: either user, logged in the activity feed and the Instructions page.
 - The editor shows a short reminder of AGENTS.md's rule for instruction changes: a change should be general (objective, work process, honesty about uncertainty, a repaired contradiction, a deletion), never a rule justified by one reviewed deal. It is advisory, not enforced.
-- v1.13.2 was imported as the first published version. v1.14.1 was published under Austin's account at his order on 26 September and became the default.
-- The in-app store is authoritative for runs made in the app. The VM repository file remained v1.13.2 as of 26 September; with Austin's 27 September go-ahead the laptop recovery branch copied the published v1.14.1 text into its root file. The app itself never performs a repository export (§11).
+- v0 (27 September 2026) is the base version. The in-app store is authoritative for runs made in the app; the app never writes to the repository (§11).
 
 ## 10. Research integrity (unchanged guarantees, now enforced by the app)
 
@@ -199,31 +197,13 @@ An **Instructions** page lists every version: name (for example v1.13.2), status
 - The checker runs only after the provider exits, outside the sandbox.
 - Every version records the full provenance in §6.3. Two versions are comparable only if their instruction hashes are the same, and the Compare view says when they are not.
 - Revision mode (an agent seeing a workbook and findings) is **not** offered in the app. It stays a separate, explicitly requested step.
-- The runner's model allow-list grows to Opus 5.5, Fable 5.1, GPT-6-Sol and GPT-6-Astra. Each addition gets the same checks (the served model must match the requested one; refusal fallback is disabled for Claude).
+- The runner's model allow-list is Opus 5.5, Fable 5.1, GPT-6-Sol and GPT-6-Astra. Each addition gets the same checks (the served model must match the requested one; refusal fallback is disabled for Claude).
 
-## 11. Documentation changes that follow approval
+## 11. Repository export
 
-- **AGENTS.md** and **RESEARCH_QUESTIONS.md**: extractions may be started in the app by Austin or Alex; instructions may be versioned in the app; either may change the default. The rule that instruction changes must be general stays, as guidance.
-- **Cockpit README**: accounts, adding deals, running, versions, comments, what's new, instructions.
-- **Tools README**: per-user credentials, the new models and the worker.
-- **Export to repository** (optional, admin-only script, not a button): write a chosen instruction version or deal version into `SEC_Deal_Ledger_Extraction_Instruction.md`, `raw_filing/` and `extraction/` for a commit Austin requests.
+An admin-only script, not a button, writes a chosen instruction version or deal version into `SEC_Deal_Ledger_Extraction_Instruction.md`, `raw_filing/` and `extraction/` for a commit Austin requests.
 
-## 12. Build phases
-
-Models are chosen per task (see HANDOFF). Phase 1 is Claude-only: Opus 5.5 builds it, with Fable 5.1 as an occasional second opinion.
-
-| Phase | Content | Done when |
-|---|---|---|
-| S. Spikes | S1 `setup-token` in a pseudo-terminal; S2 Codex device login and refresh with a per-user `CODEX_HOME`; S3 Fable 5.1 on a Max plan, with its efforts; S4 usage-limit error wording for both providers. | Each has a short written result. Fallbacks are chosen where a spike fails. |
-| 1. Trace | Comments, note migration, last-changed-by, What's new, activity page. No model work. | Two-user tests: Alex's edits and comments appear in Austin's digest and clear after viewing; old notes are preserved as comments. |
-| 2. Accounts + runs on existing deals | Settings → Accounts, credential store, worker, job lifecycle, versions and labels, rebase, compare. Opus 5.5 only. | Austin and Alex each complete one run on their own plan (a real run, requiring Austin's go-ahead). Receipts show the right account. Cancel, timeout, restart and usage-limit paths are tested with a fake provider. |
-| 3. Add deal | Seed search, link paste, document choice, fetch, **Add and extract**. | One seed deal and one pasted-link deal added and extracted end to end. |
-| 4. Instructions + other engines | Instruction editor, drafts, publish, default; Fable, Sol and Astra in the runner and dialog. | A draft run and a published run on the same filing show different instruction hashes. Each engine completes one isolated run (requires Austin's go-ahead). |
-| 5. Hardening | Backups, restore rehearsal, documentation (§11). | A restore from backup reproduces the working copies and comments. |
-
-Every phase keeps the existing suites green (browser, resize, responsive, HTTP, vitest and Python unit tests) and adds its own.
-
-## 13. Defaults (approved 23 September)
+## 12. Defaults (approved 23 September)
 
 1. Identities stay Cloudflare Access emails: `junyu.li.24@ucl.ac.uk` → Austin, `a.gorbenko@ucl.ac.uk` → Alex.
 2. Run caps: 4 concurrent overall, 2 per user.
@@ -231,13 +211,4 @@ Every phase keeps the existing suites green (browser, resize, responsive, HTTP, 
 4. A new deal's first completed version becomes its working-copy base automatically.
 5. Versions and deals can be hidden, never deleted.
 6. The digest's session gap is 30 minutes.
-7. Fable 5.1 is offered as *experimental* (Austin, 23 September, after spike S3). A safeguard block is recorded as `provider_refusal` and shown as "blocked by Fable's safety filter".
-
-## 14. Spike results (23 September)
-
-Run on the VM with Claude Code 2.1.280 and Codex 0.156.1, using scratch homes so the host logins were untouched. Model calls: 11 Fable 5.1, 1 Opus 5.5 and 1 GPT-6-Sol one-word prompts on Austin's plans.
-
-- **S1 Claude sign-in: works up to the code.** In a pseudo-terminal, `claude setup-token` prints an authorize link (`claude.com/cai/oauth/authorize`, scope `user:inference`, callback page on `platform.claude.com` that shows the code) and waits at "Paste code here if prompted". The PKCE verifier lives in that process, so the worker must keep the same process alive between showing the link and receiving the code (time out after 10 minutes). Give the terminal a wide size, or the link wraps at 80 columns. Capturing the token after a real approval is untested; it needs Austin or Alex to approve once.
-- **S2 ChatGPT sign-in: works up to approval; refresh unconfirmed.** `codex login --device-auth` with a per-user `CODEX_HOME` prints `https://auth.openai.com/codex/device` and a one-time code (valid 15 minutes) on plain output, so no pseudo-terminal is needed. Access tokens last 10 days (the host token: issued 14 September, expires 24 September 11:38 UTC). A call nine days in did not refresh the token, so Codex refreshes lazily, near or after expiry. Plan: when a user's token is expired or has under 7 hours left, the worker runs a one-word `codex exec` outside the sandbox with that user's writable `CODEX_HOME` and confirms `last_refresh` advanced. Confirm this when the host token expires on 24 September. Until the host login refreshes, the runner's 7-hour rule refuses host Sol runs from about 04:38 UTC on 24 September.
-- **S3 Fable 5.1: served on the Max plan, but its safeguards block unpredictably.** All five efforts (`low`–`max`) were accepted and served by `claude-fable-5-1`. Yet 6 of 11 one-word prompts failed with "Fable 5.1's safeguards flagged this message … Claude Code can't respond to this message with Fable 5.1", across efforts. With refusal fallback disabled (required for isolation), a long extraction would very likely fail as `provider_refusal`. Each one-word call cost about $0.09 at list price because of Claude Code's own prompt.
-- **S4 Usage limits.** Claude: the stream reports a `rate_limit_event` with `status` (`allowed`, `allowed_warning`, `rejected`), the limit type (`five_hour`, `seven_day`, …), `resetsAt`, and each window's utilization (at the test: 10% of five-hour, 29% of weekly). The app can therefore show each user's plan usage before a run and classify `usage_limit` failures exactly. The CLI can also "wrap up the current step" when approaching the five-hour limit, which the runner's continuation logic treats as an unfinished run. Codex: `codex exec --json` reports token counts but no plan usage; the binary's limit message is "You've hit your usage limit … Try again at …", so `usage_limit` is detected by message until a real event is captured.
+7. Fable 5.1 is offered as *experimental*. A safeguard block is recorded as `provider_refusal` and shown as "blocked by Fable's safety filter".

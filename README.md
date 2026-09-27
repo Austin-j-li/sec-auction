@@ -9,26 +9,19 @@ A ledger workbook has four sheets, defined in the instruction:
 - **Questions**: open coding questions, each with a recommended answer, the supporting page and the rows affected;
 - **Deal facts**: deal-level fields such as the parties, price, initiation, advisers and a short account of the process.
 
-A workbook downloaded from the cockpit's working copy adds a fifth sheet, Source, with the filing's EDGAR links and the download's provenance. The cockpit writes it, never the model; the four-sheet download, which the checker accepts, leaves it out.
+## Current status
 
-## Current status (27 September 2026)
-
-Start with [current status and research decisions](_dev/RESEARCH_QUESTIONS.md). It separates settled rulings, choices still needed from Austin and Alex, review work, and the VM recovery boundary. The local evidence cutoff is the **27 September, 10:55 UTC cockpit snapshot**; Condenser is temporarily unavailable and later live state is not established.
-
-- **Instruction:** the local root file is the published v1.14.1 text (`8a93df3c…66c98`), copied with Austin's approval during recovery. This does not establish that the VM repository export ran. Further instruction edits require Austin's approval.
-- **Data:** the nine `extraction/` workbooks remain the 22 September Opus 5.5 medium v1.13.2 outputs. The snapshot has thirteen working copies, all still based on v1.13.2, and five separate raw v1.14.1 reruns. No deal has completed Austin's source review; the data are not research-ready.
-- **Recovery:** checker 1.8 and analysis/migration tools were replayed or rebuilt from VM traces. The 24–26 September cockpit app source remains VM-only; reconcile recovered files against it when access returns. See the [gap inventory](_dev/recovery/GAP.md) and [recovery record](_dev/recovery/team-2026-09-27/README.md).
-- **Next:** discuss the open coding conventions and review each new run against its filing before rebasing and porting accepted prior review.
+Version 0 as of 27 September 2026: the instruction is v0, `extraction/` is empty, and every deal is to be re-extracted. See [status](_dev/STATUS.md) for open research questions and pending work.
 
 ## Repository layout
 
 | Path | Contents |
 |---|---|
-| [`SEC_Deal_Ledger_Extraction_Instruction.md`](SEC_Deal_Ledger_Extraction_Instruction.md) | v1.14.1 on this laptop recovery branch; the VM repository file was v1.13.2 on 26 September. The cockpit's default is v1.14.1. |
+| [`SEC_Deal_Ledger_Extraction_Instruction.md`](SEC_Deal_Ledger_Extraction_Instruction.md) | The extraction instruction, version 0. |
 | [`raw_filing/`](raw_filing/) | The nine filings as fetched from EDGAR; [`MANIFEST.csv`](raw_filing/MANIFEST.csv) records each source link and SHA-256 hash. |
-| `extraction/` | The current blind extractions, one `<deal>.xlsx` per deal. |
+| `extraction/` | Blind extractions under v0, one `<deal>.xlsx` per deal. |
 | `ref/` | Alex's collection instructions, voice notes and hand-coded deals. For evaluation only. |
-| [`_dev/`](_dev/) | Pipeline tools, the cockpit, review packets, research questions and development history. |
+| [`_dev/`](_dev/) | Status, the Alex-alignment audit, the cockpit app spec and the pipeline tools. |
 
 The nine deals are Datalink, Kraton, Mac-Gray, Meredith, Penford, PetSmart, Providence & Worcester, sTec and Synacor.
 
@@ -44,8 +37,7 @@ Extractions are run only on Austin's command. Each run is isolated in a sandbox 
 
 ## Where to go next
 
-- [Current status and research decisions](_dev/RESEARCH_QUESTIONS.md): the starting point for settled rulings, unresolved choices, review work and recovery limits.
-- [Cockpit guide](_dev/cockpit/README.md): how to review and edit a deal in the cockpit, from filing navigation to saving, restoring and exporting.
-- [Cockpit build contract](_dev/COCKPIT_BUILD.md): the cockpit's API and storage design, the 23 September redesign and its verification limits.
-- [Tools guide](_dev/tools/README.md): environment, mechanical checking, isolated runs, effort sweeps, review helpers, analysis tables, reviewed-work migration and offline validation.
-- [Chronology](_dev/CHRONOLOGY.md): an index of historical instruction versions and review evidence. Earlier instructions live in git history and must not be restored into the checkout.
+- [Status](_dev/STATUS.md): open research questions, settled rulings and pending work.
+- [Alex-alignment audit](_dev/ALEX_ALIGNMENT.md): where the v0 instruction departs from Alex's voice notes, with a work order.
+- [Cockpit app spec](_dev/COCKPIT_APP_SPEC.md): the shared extraction app on the VM.
+- [Tools guide](_dev/tools/README.md): environment, mechanical checking, isolated runs, review helpers and analysis tables.

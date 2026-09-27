@@ -10,6 +10,3 @@ _dev/**/state/
 _dev/**/*.xdg/
 .credentials.json
 auth.json
-_dev/tools/cockpit/frontend/node_modules/
-
-_dev/tools/.jev_cache/

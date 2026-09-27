@@ -1,22 +1,22 @@
 # Alex's voice notes versus the current research conventions
 
-27 September 2026. Detailed reconciliation, not an instruction amendment or acceptance of any workbook.
+27 September 2026. Detailed reconciliation, not an instruction amendment or acceptance of any workbook. The audit was written against the instruction text that is now labelled v0 (identical except for its version line). Its run evidence comes from runs made before the v0 reset, cited by git reference; re-check each point against the v0 re-extractions.
 
 ## Verdict and scope
 
-**v1.14.1 does not fully implement Alex's stated research intentions.** Several differences concern the economic object being recorded, rather than extraction accuracy: what constitutes a new stage, what makes a stage final, how a dormant process restarts, whether activist presence implies initiation, and when the human must review an apparently determinate coding. Matching the instruction can therefore produce a ledger that disagrees with Alex.
+**v0 does not fully implement Alex's stated research intentions.** Several differences concern the economic object being recorded, rather than extraction accuracy: what constitutes a new stage, what makes a stage final, how a dormant process restarts, whether activist presence implies initiation, and when the human must review an apparently determinate coding. Matching the instruction can therefore produce a ledger that disagrees with Alex.
 
 Much of the instruction does agree with him. Separate formality and conditionality, preservation of substantive bid revisions, cohort reconciliation, distinct contact/NDA events, cash earnout separation, and distinct signing/announcement events are substantial improvements. They still need filing review; agreement in the rulebook is not evidence of flawless execution.
 
-This audit reads all 187 direct body paragraphs of the [voice document](../ref/alex_voice_notes_2026-08.docx), the complete [v1.14.1 instruction](../SEC_Deal_Ledger_Extraction_Instruction.md), the nine-page [older collection instructions](../ref/CollectionInstructions_Alex_2026.pdf), and the [current status](STATUS.md). Three independent review lanes covered rounds/processes, bid terms/review flags, and participants/prices. Selected consequential examples were checked against the recovered filing text and saved runs. This is **not** a complete row-by-row audit of every deal, a new extraction, or a live VM check.
+This audit reads all 187 direct body paragraphs of the [voice document](../ref/alex_voice_notes_2026-08.docx), the complete [v0 instruction](../SEC_Deal_Ledger_Extraction_Instruction.md), the nine-page [older collection instructions](../ref/CollectionInstructions_Alex_2026.pdf), and the [current status](STATUS.md). Three independent review lanes covered rounds/processes, bid terms/review flags, and participants/prices. Selected consequential examples were checked against the recovered filing text and saved runs. This is **not** a complete row-by-row audit of every deal, a new extraction, or a live VM check.
 
-The saved run comparisons refer to the 27 September 10:55:33 UTC snapshot (git `9b4f178:_dev/recovery/2026-09-27-cockpit/INDEX.json`). Four original deals have no v1.14.1 run in that snapshot. Existing working-copy edits and newer raw versions must not be conflated.
+The saved run comparisons refer to the 27 September 10:55:33 UTC snapshot (git `9b4f178:_dev/recovery/2026-09-27-cockpit/INDEX.json`). Four original deals have no run under this text in that snapshot. Existing working-copy edits and newer raw versions must not be conflated.
 
 ### Attribution and priority
 
 - **V¶n** below means direct Word body paragraph n, counting empty paragraphs. Paragraphs 129–166 are labelled “Claude's reading.” Alex broadly endorses that summary at ¶168, but a model's detailed reconstruction is not independently established as an explicit case ruling by Alex. His own closing requirements are ¶169–187.
 - The voice document's colors have meaning: black is important/easier, red important/difficult, blue potentially less important/easier, magenta potentially less important/difficult. Color informs priority; it does not cancel a request. Several intricate Meredith alternatives and adviser details are lower priority than round boundaries and mandatory review.
-- **Explicit disagreement** means the sources actually give different treatments. **Added convention** means v1.14.1 makes a more specific choice than Alex's document; that alone does not make it wrong or unapproved. Some such defaults already have Austin's approval. **Implementation work** means applying an agreed principle to source evidence. **Later analysis** means the extraction can proceed without selecting an estimator interpretation.
+- **Explicit disagreement** means the sources actually give different treatments. **Added convention** means v0 makes a more specific choice than Alex's document; that alone does not make it wrong or unapproved. Some such defaults already have Austin's approval. **Implementation work** means applying an agreed principle to source evidence. **Later analysis** means the extraction can proceed without selecting an estimator interpretation.
 - Alex explicitly warns that his hand-coded dates are not perfect (V¶34). A spreadsheet cell is not an unquestionable fact. Source conflicts require separating the filing's event from the research convention used to represent it.
 
 ### Decisions already made
@@ -39,7 +39,7 @@ The saved older working copy is not an accepted substitute: it also has three ro
 
 ### Mac-Gray
 
-Alex starts the second informal round on **July 25** and distinguishes the **August 27** deadline communication (V¶44). The new v1.14.1 run starts round 2 on August 27. Filing pp.33–35 supports the July 25 authorization of a second stage involving management access followed by revised IOIs, the August 15 follow-up, and the August 27 letter. This is a concrete disagreement about when a reported stage begins, even though both maps have three rounds.
+Alex starts the second informal round on **July 25** and distinguishes the **August 27** deadline communication (V¶44). The new v0 run starts round 2 on August 27. Filing pp.33–35 supports the July 25 authorization of a second stage involving management access followed by revised IOIs, the August 15 follow-up, and the August 27 letter. This is a concrete disagreement about when a reported stage begins, even though both maps have three rounds.
 
 ### What we need to decide
 
@@ -73,7 +73,7 @@ Resolve this general definition before assigning sTec's later final opening. Als
 
 Alex's fallback is the banker's first contacts when no official opening is given. The current instruction adds a two-or-more-buyer outreach test, a seven-day backdating convention to a board launch, a first-NDA/price-negotiation rule for inbound/bilateral cases, and round 0 for earlier approaches. These are useful operational decisions but are not all directly specified by Alex.
 
-- **PetSmart:** Alex uses October 3. The saved v1.13.2 working copy uses August 19, the announcement date. Filing p.23 records inbound contacts during August–October and October's substantive NDA process. An announcement does not by itself establish that a bidding round began. There is no v1.14.1 PetSmart run in the snapshot.
+- **PetSmart:** Alex uses October 3. The saved pre-v0 working copy uses August 19, the announcement date. Filing p.23 records inbound contacts during August–October and October's substantive NDA process. An announcement does not by itself establish that a bidding round began. There is no v0 PetSmart run in the snapshot.
 - **Penford:** Alex puts the initial Ingredion proposals into round 1 once the target starts selling; a historical stock-price reference on July 17 is interest, not a bid.
 - **Datalink:** the new run starts January 28 at a price response in bilateral discussion, then opens another stage on June 6. Datalink has no section in this voice document. Neither map may be called Alex-approved on this source alone.
 
@@ -83,7 +83,7 @@ Work through how the same stage definition covers a marketed auction, an inbound
 
 **Direct sTec mismatch; exact current-rule violation not established.** Sources: V¶108–110,118,186; E5.
 
-Alex identifies two sTec processes separated by the November 2012–February 2013 gap. The v1.14.1 run records one process and no process Question. E5 requires all of: no outstanding offer/negotiation, an explicit end or at least 90 days without reported sale contact, and a fresh target step.
+Alex identifies two sTec processes separated by the November 2012–February 2013 gap. The v0 run records one process and no process Question. E5 requires all of: no outstanding offer/negotiation, an explicit end or at least 90 days without reported sale contact, and a fresh target step.
 
 November 14 to February 13 is 91 days, but the filing reports undated follow-up and cancellation after November 14. Therefore November 14 is not demonstrably the last contact. It would be too strong to say that the model clearly violated E5's exact 90-day test. It **does** disagree with Alex's case interpretation.
 
@@ -97,9 +97,9 @@ Synacor gives two useful controls. Alex wants the October 2019–July 2020 break
 
 E6(d) opens a new round when the target solicits offers after at least 30 solicitation-free days or after exclusivity ends. Alex's statement that Synacor remained in the same **process** does not decide whether it entered another **round**. No direct voice-note authority establishes either automatic trigger.
 
-Datalink's v1.14.1 map depends on this rule for June 6 after a pause and October 1 after Insight's exclusivity. It also waits until the August 16 final letter after a July 27 selection of five participants. A stage-selection amendment could move or add the latter boundary, while a change to trigger (d) could remove other boundaries.
+Datalink's v0 map depends on this rule for June 6 after a pause and October 1 after Insight's exclusivity. It also waits until the August 16 final letter after a July 27 selection of five participants. A stage-selection amendment could move or add the latter boundary, while a change to trigger (d) could remove other boundaries.
 
-Austin previously approved four rounds under v1.14.1. His later Alex-alignment direction requires rechecking the general convention and its consequences. **Neither four nor the old five follows automatically from “follow Alex.”** Confirm, modify or remove this added trigger deliberately after resolving what a stage is.
+Austin previously approved four rounds under v0. His later Alex-alignment direction requires rechecking the general convention and its consequences. **Neither four nor the old five follows automatically from “follow Alex.”** Confirm, modify or remove this added trigger deliberately after resolving what a stage is.
 
 ## 6. Deadline records versus actual enforcement
 
@@ -158,10 +158,10 @@ These are existing defaults, not proof of model error. Prioritize confirming the
 
 | Example | Alex versus checked evidence/current treatment |
 |---|---|
-| P&W Party B, August 4 | V¶30 requests an additional Formal, unconditional $24 bid. The inspected filing passage reports counsel sending a revised merger draft, without restating $24 or saying diligence is complete. The v1.14.1 run has no Party B Bid that day. E2/E10 can omit an unchanged document exchange. This requires source/convention reconciliation, not automatic insertion of Alex's expected price. |
+| P&W Party B, August 4 | V¶30 requests an additional Formal, unconditional $24 bid. The inspected filing passage reports counsel sending a revised merger draft, without restating $24 or saying diligence is complete. The v0 run has no Party B Bid that day. E2/E10 can omit an unchanged document exchange. This requires source/convention reconciliation, not automatic insertion of Alex's expected price. |
 | sTec WDC, May 28 | V¶125 calls the $9.15 offer Formal with no conditions. The markup supports Formal. The new run records Formal/Unclear with diligence and financing Not stated. It matches formality but not his conditionality assessment. |
 | Mac-Gray Party A, September 18 | V¶48 keeps the $18–19 range Formal. The new run does too, but records Heavy from contingent financing, with incomplete diligence separately recorded. Alex's range observation does not independently establish that diagnosis. |
-| Penford Ingredion, October 14 | V¶74's Formal $19 confirmation fits the filing and current Bid reaffirmed rule. No v1.14.1 Penford run exists here, so this is rule/source agreement, not a verified new-run success. |
+| Penford Ingredion, October 14 | V¶74's Formal $19 confirmation fits the filing and current Bid reaffirmed rule. No v0 Penford run exists here, so this is rule/source agreement, not a verified new-run success. |
 
 The August 4 case also raises which revised legal documents represent a new economic offer. “Document supplied” can be evidence of formality without every routine draft becoming a new Bid event.
 
@@ -217,7 +217,7 @@ Alex explicitly distinguishes value below market, value at/below an earlier offe
 
 **Explicit sTec conflict; broader issue of attributing causation.** Sources: V¶38–39,118–120; D2/D5.
 
-Alex wants sTec's activist presence recorded but explicitly does **not** think the sale was driven by activist pressure: sale was one among several suggestions. The v1.14.1 run says Activist-influenced because the December 6 event precedes round 1. D5 makes that precedence mechanically decisive, while D2 defines Activist as pressing for a sale.
+Alex wants sTec's activist presence recorded but explicitly does **not** think the sale was driven by activist pressure: sale was one among several suggestions. The v0 run says Activist-influenced because the December 6 event precedes round 1. D5 makes that precedence mechanically decisive, while D2 defines Activist as pressing for a sale.
 
 Mac-Gray has a different mixed sequence: the target initially sounds out a buyer, becomes passive, and later receives unsolicited interest. Alex says it is a bit of both and asks to keep the interactions for reinterpretation. A target-led label based on the first event is reproducible, but is not the full economic judgment he expresses.
 
@@ -341,15 +341,15 @@ Instruction section references identify the unchanged text hashed below. Word pa
 |---|---|
 | `ref/alex_voice_notes_2026-08.docx` | `9ddb0a38f3ffcabdbf7693ced379df3aa8b53a1c4d065990d09d57978af220fb` |
 | `ref/CollectionInstructions_Alex_2026.pdf` | `0dd72b0ab97801cb7cf8bb2a635965a6b4de883399f738968c9985d7f7b56e37` |
-| `SEC_Deal_Ledger_Extraction_Instruction.md` | `8a93df3cc6d989386958e9cb2d74ab34ebc0f07d281e8cc398605a388e066c98` |
+| `SEC_Deal_Ledger_Extraction_Instruction.md` | `8a93df3c…66c98` (audited text; v0 differs only in its version line) |
 
 Selected raw-run checks are reproducible in these unmodified snapshot files:
 
-- Mac-Gray v1.14.1 (git `9b4f178:_dev/recovery/2026-09-27-cockpit/raw/deal__mac-gray_version_opus55-medium-20260926-2019-1d1d60.json`): round 2 opening; events 37–38 for the range and contingent consideration.
-- P&W v1.14.1 (git `9b4f178:_dev/recovery/2026-09-27-cockpit/raw/deal__providence-worcester_version_opus55-medium-20260926-2019-366a73.json`): round 3 opening interval; no August 4 Party B Bid; event 49 is the preferred-bidder decision.
-- sTec v1.14.1 (git `9b4f178:_dev/recovery/2026-09-27-cockpit/raw/deal__stec_version_opus55-medium-20260926-2027-0643aa.json`): single process, Activist-influenced initiation, May 16 Announced as final, May 3 outcome; event 38 WDC Formal/Unclear.
-- Datalink v1.14.1 (git `9b4f178:_dev/recovery/2026-09-27-cockpit/raw/deal__datalink_version_opus55-medium-20260926-2032-350a91.json`): January 28, June 6, August 16 and October 1 round map.
-- Synacor v1.14.1 (git `9b4f178:_dev/recovery/2026-09-27-cockpit/raw/deal__synacor_version_opus55-medium-20260926-2028-342883.json`): July 2020 process boundary; no new October 27 process.
-- PetSmart older working copy (git `9b4f178:_dev/recovery/2026-09-27-cockpit/raw/deal__petsmart.json`): August 19 round 1 opening; not a v1.14.1 result.
+- Mac-Gray pre-reset run (git `9b4f178:_dev/recovery/2026-09-27-cockpit/raw/deal__mac-gray_version_opus55-medium-20260926-2019-1d1d60.json`): round 2 opening; events 37–38 for the range and contingent consideration.
+- P&W pre-reset run (git `9b4f178:_dev/recovery/2026-09-27-cockpit/raw/deal__providence-worcester_version_opus55-medium-20260926-2019-366a73.json`): round 3 opening interval; no August 4 Party B Bid; event 49 is the preferred-bidder decision.
+- sTec pre-reset run (git `9b4f178:_dev/recovery/2026-09-27-cockpit/raw/deal__stec_version_opus55-medium-20260926-2027-0643aa.json`): single process, Activist-influenced initiation, May 16 Announced as final, May 3 outcome; event 38 WDC Formal/Unclear.
+- Datalink pre-reset run (git `9b4f178:_dev/recovery/2026-09-27-cockpit/raw/deal__datalink_version_opus55-medium-20260926-2032-350a91.json`): January 28, June 6, August 16 and October 1 round map.
+- Synacor pre-reset run (git `9b4f178:_dev/recovery/2026-09-27-cockpit/raw/deal__synacor_version_opus55-medium-20260926-2028-342883.json`): July 2020 process boundary; no new October 27 process.
+- PetSmart older working copy (git `9b4f178:_dev/recovery/2026-09-27-cockpit/raw/deal__petsmart.json`): August 19 round 1 opening; not a run under this text.
 
 Filing checks use the printed filing pages: Kraton pp.35–37; Mac-Gray pp.33–36; P&W pp.30–31; sTec pp.24–25 and 29–30; Datalink pp.27–29 and 32; PetSmart p.23. The snapshot's `filing__<deal>.json` preserves paragraph blocks and page labels; original filings remain in [raw_filing](../raw_filing). Penford's October 14 confirmation was checked against its dated paragraph in the original filing. The older collection PDF's page 8 was also visually inspected to verify the “Alex's addition” attribution of the informal-final and DropTarget instructions.
