@@ -26,19 +26,7 @@ The two errors are Count 1 on Merger announced (sTec event 56, Datalink event 76
 
 Distinguish a filing error under an existing rule from a change to the research convention. The published instruction governs extraction until Austin authorizes a change. Alex's outstanding confirmation does not make every existing default an unresolved instruction.
 
-### 1. Meredith: what is the economic target?
-
-**Open coding choice:** classify the offers against pre-separation Meredith (NMG plus LMG), or against the residual legal entity holding LMG after NMG is spun off.
-
-The [current working copy](recovery/2026-09-27-cockpit/raw/deal__meredith.json), revision 4, has 26 `Bid` rows for LMG proposals and 10 `Other-scope bid` rows for station proposals. Its Whole-company bids field explicitly calls the legal-entity treatment provisional. Its **Q7** recommends economic pre-separation scope but awaits confirmation. Q7 here is the workbook's question, not the old cross-deal Company H question.
-
-The [filing](../raw_filing/meredith_2021-11-08_DEFM14A.htm), printed p. 59, describes simultaneous NMG separation and sale of LMG RemainCo, the Meredith legal entity then owning only LMG. Alex's [original voice notes](../ref/alex_voice_notes_2026-08.docx), body paragraphs 95, 97 and 184, identify the partial acquisition and lack of an observed market price for the acquired segment.
-
-**Recommendation, not a ruling:** use economic scope immediately before the transaction-related simultaneous separation. This does not classify a business spun off much earlier as permanently partial. The LMG proposals would be Other-scope bids relative to pre-separation Meredith; purchasing every share of the residual legal entity does not purchase both original businesses. Preserve the reported prices, terms and chronology with their scope. Under v1.14.1 D2/E1, reported amounts, units and scope belong in the Note on Other-scope bids; Price low, Price high and CVR/earnout value stay blank. Do not mechanically apply the old Q7 proposal to the new schema. Review whole-company live counts, Rounds Bids received, the auction screen and exit/re-entry rows together; partial-only parties receive no exit rows. Current Q6/Q11 exit and re-entry proposals therefore also need review.
-
-**Already settled:** exclude Meredith from structural estimation and retain it for descriptive/reduced-form work. This is explicit in Alex's notes, the current working-copy facts and `derive_analysis.py`'s `DESCRIPTIVE_ONLY`. Do not ask for that decision again. Older recommendations refer to superseded workbooks and row numbers.
-
-### 2. sTec: when did the final round begin?
+### 1. sTec: when did the final round begin?
 
 **Open reconciliation with Alex:** May 16's final-round letters versus May 29's best-and-final request. The [filing](../raw_filing/stec_2013-08-08_DEFM14A.htm), printed p. 30, calls the earlier letters final round process letters and later describes the proposals as non-binding. Alex's voice note (body paragraph 125) calls the May 28 offer formal but says the round was not final.
 
@@ -46,7 +34,7 @@ Under current E6, finality describes the announced procedure; non-binding does n
 
 **Recommendation, not a new ruling:** retain the published-rule reading while asking Alex whether his intended research convention differs. Discuss the general meaning of a final stage, not just how to make this deal match a label. Company H's exit is settled separately below.
 
-### 3. Conflicting reference sources
+### 2. Conflicting reference sources
 
 **Open with Alex:** what governs when his spring hand coding and later voice notes disagree? Examples are sTec finality and Providence & Worcester Party A's departure.
 
@@ -82,7 +70,19 @@ These are questionnaire §§3.2–3.3. Other code options, such as upfront versu
 | Commitment-only changes, R01/H4 | Bidder commitment changes are Bid rows; without a newly stated price, price cells stay blank and create no new price observation. Target termination fees stay in dated Notes. | Current v1.14.1 treatment supersedes older recommendations to repeat the standing price. |
 | Same offer and conditions, R1–R6 | Copy only when the bidder says its offer stands; evidence through its next bid, exclusivity, exit or signing includes forecasts; diligence-only duration for H2; omitted invitees exit when the next stage opens; Not begun uses the NDA test. | Published extraction defaults, subject to source review. Distinguish the case H1–H4 rulings from E12's H1–H3 condition triggers. |
 | Older Q3, one-sided prices | No longer withheld; existing instruction covers the treatment. | Any remaining row defect is reviewed under the supplied instruction. |
-| Meredith estimation exclusion | Descriptive/reduced-form use only. | Already in working-copy facts and analysis code; scope coding remains open above. |
+| Meredith scope and estimation | Economic scope: LMG proposals are partial relative to pre-separation Meredith. Exclude from structural estimation; retain descriptive/reduced-form use. Alex's position reaffirmed by Austin, 27 September. | Exclusion is already in working-copy facts and analysis code; scope-dependent workbook edits await source review. See implementation details below. |
+
+### Meredith scope: settled 27 September
+
+**Settled:** Alex explicitly described Meredith's bids as partial; Austin confirmed in this discussion, “yes this is settled.” Use the economic scope of pre-separation Meredith (NMG plus LMG), not the residual legal shell, for this transaction-related simultaneous separation. No further approval of that principle is pending.
+
+The [current working copy](recovery/2026-09-27-cockpit/raw/deal__meredith.json), revision 4, has 26 `Bid` rows for LMG proposals and 10 `Other-scope bid` rows for station proposals. Its Whole-company bids field explicitly calls the legal-entity treatment provisional. Its **Q7** recommends economic pre-separation scope but still carries the old request for confirmation; that request is now resolved. Q7 here is the workbook's question, not the old cross-deal Company H question.
+
+The [filing](../raw_filing/meredith_2021-11-08_DEFM14A.htm), printed p. 59, describes simultaneous NMG separation and sale of LMG RemainCo, the Meredith legal entity then owning only LMG. Alex's [original voice notes](../ref/alex_voice_notes_2026-08.docx), body paragraphs 95, 97 and 184, identify the partial acquisition and lack of an observed market price for the acquired segment.
+
+**Implementation of the settled principle:** use economic scope immediately before the transaction-related simultaneous separation. This does not classify a business spun off much earlier as permanently partial. The LMG proposals would be Other-scope bids relative to pre-separation Meredith; purchasing every share of the residual legal entity does not purchase both original businesses. Preserve the reported prices, terms and chronology with their scope. Under v1.14.1 D2/E1, reported amounts, units and scope belong in the Note on Other-scope bids; Price low, Price high and CVR/earnout value stay blank. Do not mechanically apply the old Q7 proposal to the new schema. Review whole-company live counts, Rounds Bids received, the auction screen and exit/re-entry rows together; partial-only parties receive no exit rows. Current Q6/Q11 exit and re-entry proposals therefore also need review.
+
+**Already settled:** exclude Meredith from structural estimation and retain it for descriptive/reduced-form work. This is explicit in Alex's notes, the current working-copy facts and `derive_analysis.py`'s `DESCRIPTIVE_ONLY`. Do not ask for that decision again. Older recommendations refer to superseded workbooks and row numbers.
 
 ## Review and recovery work
 
