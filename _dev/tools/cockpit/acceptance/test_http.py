@@ -839,6 +839,16 @@ def _saved(root, content):
     return path
 
 
+
+def same_xlsx(first: bytes, second: bytes) -> bool:
+    """Two XLSX renders are equal member by member, ignoring ZIP timestamps and the generated modified time."""
+    import io, re, zipfile
+    def members(raw):
+        with zipfile.ZipFile(io.BytesIO(raw)) as archive:
+            return {name: re.sub(rb"<dcterms:modified[^>]*>[^<]*</dcterms:modified>", b"", archive.read(name)) if name == "docProps/core.xml" else archive.read(name)
+                    for name in archive.namelist()}
+    return members(first) == members(second)
+
 def test_download_adds_a_source_sheet_to_the_working_copy_only(env):
     http, workbook, original_hash = env
     submission = "https://www.sec.gov/Archives/edgar/data/77/0000000077-26-000001.txt"
@@ -884,7 +894,7 @@ def test_download_adds_a_source_sheet_to_the_working_copy_only(env):
 
     four = http.get(route + "?source=0")
     assert four.headers["Content-Disposition"] == 'attachment; filename="synthetic-working-r2.xlsx"'
-    assert four.content == http.cockpit.workspace.export("synthetic")  # the export_repo.py bytes: four sheets, no Source
+    assert same_xlsx(four.content, http.cockpit.workspace.export("synthetic"))  # the export_repo.py bytes: four sheets, no Source
     exported = xlsx(four)
     assert exported.sheetnames == ["Deal ledger", "Rounds", "Questions", "Deal facts"]
     exported.close()

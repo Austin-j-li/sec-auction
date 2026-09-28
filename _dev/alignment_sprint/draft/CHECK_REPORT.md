@@ -1,8 +1,23 @@
 # Version 1 check report
 
-27 September 2026; updated 28 September 2026 after the re-review fixes. These checks concern the build and a hand-applied reading of its rules. No extraction model was run. A passing mechanical check does not establish source accuracy or research acceptance.
+27 September 2026; updated 28 September 2026 after the re-review fixes, and again the same day after ruling 9's overfitting cuts. These checks concern the build and a hand-applied reading of its rules. No extraction model was run. A passing mechanical check does not establish source accuracy or research acceptance.
 
 ## Instruction checks
+
+### After ruling 9's cuts (28 September)
+
+Re-run by script and by reading after the sixteen cuts ruling 9 approved (CHANGE_MAP, “Overfitting cuts (ruling 9)”).
+
+- **File.** 397 lines (unchanged: every cut was inside a paragraph), 53,411 bytes, 8,821 words (`wc -w`), 230 fewer than the 9,051 at `70bf602`. Draft SHA-256: `05d8668d7778eb3e985599fec0a42c62fd4e41575e542af935d2d4ff8af05de4` (at `70bf602`: `bf14a469a5f5a9a1317fdede7295cd476f2a6230d095a2e5f74863f6001e1c39`). Fifteen paragraphs changed (lines 87, 153, 179, 189, 191, 203, 237, 251, 255, 265, 267, 273, 279, 299, 311); every other line is byte-identical.
+- **Output contract and labels.** 29 ledger columns in the checker's `LEDGER_COLUMNS` order, 10 Rounds columns in `ROUND_COLUMNS` order, and 30 D2 labels, the same set as the checker's `EVENTS`. Every value in the checker's type, formality, conditions, stock, due-diligence, financing, regulatory, exclusivity, exit-reason, finality, initiation and deadline-outcome lists, and “No deadline stated”, appears in the draft.
+- **Rule references.** All 22 identifiers (D1–D5, E1–E14, H1–H3) are defined and no other is cited; Part references resolve to A–F; triggers (a)–(d) are defined and every trigger reference resolves; E14's event references name its five closing events.
+- **Names and wording.** No deal, party, acquirer, adviser, activist or researcher name outside the seven synthetic examples (the generic “Party A” and “Sponsor 2” naming examples in E3 are placeholders); no “v0”, “Version 0”, “no longer”, “instead of” or ruling history; no capitals for emphasis (no all-capital word other than acronyms and MM/DD/YYYY). Seven balanced example blocks.
+- **Cut text absent.** Searches for “opens nothing by itself”, “counts as soliciting”, “wherever it does so”, “passage that reports it”, “naming a range”, “if none states a price”, “Drafts sent by the target”, “reference back”, “commitment letter alone”, “Undated follow-ups”, “return to an earlier offer”, “retrospective label” and “immediately before the first” find nothing in the draft. The returning-bidder invitation sentence remains.
+- **Change map.** 373 linked references reach 113 distinct nonblank lines, every label matching its anchor; 43 plain-text draft references (33 distinct lines) resolve. Each entry that named cut text was rewritten.
+- **Whitespace.** No trailing spaces, tabs, carriage returns or double spaces; final newline present; `git diff --check` is clean.
+- **Codings.** No coding in the nine deals changes beyond a Note and one date bound (Providence's May 10→19 postponement: Date to May 10, Date from and Sort date April 27). Ruling 9's Datalink item adds round 5 (October 26, 2016, (c), Inferred final; Party C Dropped by target at that opening), checked against the filing (ROUND_MAP; WORKBOOK_CHECK W50). The two further applications are in ROUND_MAP: Datalink and Penford are mixed and Synacor process 1 bidder-led; Datalink A's March 29 proposal is not decided by E13 (W51). Every new ROUND_MAP and WORKBOOK_CHECK quotation was checked by script against the filing text.
+
+### After the re-review fixes (28 September)
 
 Re-run on 28 September 2026 after the re-review fixes (rulings 6 and 7 of 28 September and VERSION1_REREVIEW §1–3), by script and by reading. The Finality paragraph moved ahead of E6's triggers and E14 gained one paragraph, so the draft is two lines longer and CHANGE_MAP's line references were regenerated.
 
@@ -15,7 +30,7 @@ Re-run on 28 September 2026 after the re-review fixes (rulings 6 and 7 of 28 Sep
 - **Names and wording.** No deal, party, acquirer, adviser, activist or researcher name from the nine filings or the project (“Parent” appears only in synthetic Example 5). No “v0”, “Version 0”, “no longer” or “instead of”; “now” appears only in the quoted withdrawal “for now”, and “changed” only in event labels and descriptions of events. No capitals for emphasis (only acronyms and the date format MM/DD/YYYY), no thinking-steering lines, and no request for reasoning. The injection defense is line 1. Seven example blocks are balanced, all with synthetic names.
 - **Whitespace.** No trailing spaces, tabs, carriage returns or double spaces; final newline present; `git diff --check` is clean.
 
-ROUND_MAP gives a source-backed entry for every fixed section-7 process/round anchor, every derive cell and every retest anchor, and every deadline outcome now follows from E9 and E14's tests without a reading choice. Its remaining open questions are filing readings. Two results are listed for Austin because a ruling's effect list or Alex's workbook says otherwise: the sTec May 3 outcome (Enforced, since D bid on April 23) and Providence D and E, which ruling 7 as generalized keeps live through round 3 (WORKBOOK_CHECK W49). The quotations in ROUND_MAP and WORKBOOK_CHECK were re-checked by script against the filings' text. WORKBOOK_CHECK reports disagreements separately and changes no rule or workbook.
+ROUND_MAP gives a source-backed entry for every fixed section-7 process/round anchor, every derive cell and every retest anchor, and every deadline outcome now follows from E9 and E14's tests without a reading choice. Its remaining open questions are filing readings. Two results were listed for Austin because a ruling's effect list or Alex's workbook said otherwise: the sTec May 3 outcome (Enforced, since D bid on April 23) and Providence D and E, which ruling 8 then settled as Dropped by target and Re-entered August 1 (WORKBOOK_CHECK W49). The quotations in ROUND_MAP and WORKBOOK_CHECK were re-checked by script against the filings' text. WORKBOOK_CHECK reports disagreements separately and changes no rule or workbook.
 
 ## Hand-made workbook and independent tool review
 
@@ -26,6 +41,8 @@ Two negative mutations were checked again: signing Count 2 produced the error `l
 A fresh Astra reviewer independently reproduced and retested corrections for signing participation/scope, round-opening counts with intervening same-day entries and multiple openings, explicit H triggers, required exclusivity, and review-queue currency/type/price-basis coverage. Q/R sequences, caps, existing-row links, omitted-source-event R items and F2 restatement markers also passed the bounded review. No remaining actionable issue was found in that review; it did not substitute for the complete test suite or filing review.
 
 ## Automated suites
+
+After ruling 9's cuts (28 September), which changed no tool code: the full Python suite, `PYTHONUSERBASE=~/work/.local python3 -m pytest _dev/tools -q -p no:cacheprovider` with TMPDIR in scratch, gave **377 passed, 284 subtests passed** in 108 seconds. The first full run had one failure, `test_http.py::test_download_adds_a_source_sheet_to_the_working_copy_only`, whose byte comparison of two XLSX exports is timestamp-sensitive (the same kind of flake as the 27 September export test); it passed on three isolated reruns and on the full rerun. Frontend and browser suites were not re-run, since no frontend or tool file changed.
 
 Re-run on 28 September 2026 after the re-review fixes:
 
@@ -56,7 +73,7 @@ The private server was stopped. The scratch database, filings, hand-made workboo
 
 ## Boundaries and remaining limits
 
-In the 28 September re-review pass, `git status` shows no change to the protected files (root instruction, AGENTS, README, `_dev/STATUS.md`, DRAFTING_SPEC, BUILD_SPEC, BUILD_REVIEW, VERSION1_REREVIEW); DECISIONS.md gained only three italic supersession notes, appended to the lines they qualify so that line references elsewhere stay valid. The live app, its services, state and backups were not touched, and no extraction ran. The paragraphs below are the 27 September build's.
+In the ruling 9 pass, only the draft, CHANGE_MAP, CHECK_REPORT, ROUND_MAP, WORKBOOK_CHECK and BUILD_REPORT changed; DECISIONS.md carries Austin's uncommitted ruling 9 and was not edited; no protected file, tool, service, backup or credential was touched, nothing was committed, and no extraction or paid call ran. Alex's workbook was read from a scratch copy. In the 28 September re-review pass, `git status` shows no change to the protected files (root instruction, AGENTS, README, `_dev/STATUS.md`, DRAFTING_SPEC, BUILD_SPEC, BUILD_REVIEW, VERSION1_REREVIEW); DECISIONS.md gained only three italic supersession notes, appended to the lines they qualify so that line references elsewhere stay valid. The live app, its services, state and backups were not touched, and no extraction ran. The paragraphs below are the 27 September build's.
 
 Hashes of **125 watched live code/instruction/catalog files**, **8 installed unit/drop-in files**, and the **4 protected development files** (root instruction, AGENTS, root README, STATUS) matched the initial baseline. The development extraction directory contains no workbooks. No live service, unit, backup timer or backup directory was changed, and no extraction job was submitted.
 
