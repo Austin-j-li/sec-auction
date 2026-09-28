@@ -5,7 +5,6 @@ import contextlib
 import csv
 import hashlib
 import io
-import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -38,8 +37,15 @@ class ExportTests(unittest.TestCase):
     def export(self, *args):
         out, err = io.StringIO(), io.StringIO()
         with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
-            code = export_repo.main(["--repo-root", str(self.root), *args])
+            try:
+                code = export_repo.main(["--repo-root", str(self.root), *args])
+            except SystemExit as exc:  # an argument error
+                code = exc.code
         return code, out.getvalue(), err.getvalue()
+
+    def write(self, *args):
+        """An export with --write into the fixture checkout itself (--write requires --out-root)."""
+        return self.export("--out-root", str(self.root), *args, "--write")
 
     def published(self, text="# Synthetic instruction Version 1\n\nRead the filing twice.\n", name="Version 1"):
         draft = self.instructions.request("alex", {"action": "draft", "from": self.base["id"]})
@@ -94,7 +100,7 @@ class ExportTests(unittest.TestCase):
     def test_write_published_instruction(self):
         text = "# Synthetic instruction Version 1\n\nRead the filing twice. — “quoted”\n"
         item = self.published(text)
-        code, out, _ = self.export("instruction", item["id"], "--write")
+        code, out, _ = self.write("instruction", item["id"])
         self.assertEqual(code, 0, out)
         self.assertEqual((self.root / "SEC_Deal_Ledger_Extraction_Instruction.md").read_bytes(), text.encode("utf-8"))
         self.assertIn(f"-> {item['sha256']}", out)
@@ -105,7 +111,7 @@ class ExportTests(unittest.TestCase):
     def test_draft_is_refused(self):
         draft = self.published(name=None)
         before = tree_digest(self.root)
-        code, _, err = self.export("instruction", draft["id"], "--write")
+        code, _, err = self.write("instruction", draft["id"])
         self.assertEqual(code, 1)
         self.assertIn("draft", err)
         self.assertEqual(tree_digest(self.root), before)
@@ -114,7 +120,7 @@ class ExportTests(unittest.TestCase):
         item = self.published()
         self.instructions.path(item["sha256"]).write_text("tampered\n", encoding="utf-8")
         before = tree_digest(self.root)
-        code, _, err = self.export("instruction", "Version 1", "--write")
+        code, _, err = self.write("instruction", "Version 1")
         self.assertEqual(code, 1)
         self.assertIn("does not match its content address", err)
         self.assertEqual(tree_digest(self.root), before)
@@ -125,7 +131,7 @@ class ExportTests(unittest.TestCase):
         workbook = self.add_deal(edit=True)
         manifest = self.root / "raw_filing/MANIFEST.csv"
         before = manifest.read_text(encoding="utf-8")
-        code, out, _ = self.export("deal", SLUG, "--version", "working", "--write")
+        code, out, _ = self.write("deal", SLUG, "--version", "working")
         self.assertEqual(code, 0, out)
         written = (self.root / f"extraction/{SLUG}.xlsx").read_bytes()
         self.assertEqual(written, self.ws.export(SLUG))  # the four-sheet working copy; the cockpit's download adds a Source sheet unless ?source=0
@@ -142,7 +148,7 @@ class ExportTests(unittest.TestCase):
                                "source_url": "https://www.sec.gov/Archives/edgar/data/42/0000000042-21-000007.txt", "document": "beta-proxy.htm",
                                "fetched_utc": "2026-09-23T10:00:00Z", "bytes": str(len(FILING)), "sha256": sha(FILING)})
         # A version export replaces the workbook and updates the row in place, not a second one.
-        code, out, _ = self.export("deal", SLUG, "--version", "run1", "--write")
+        code, out, _ = self.write("deal", SLUG, "--version", "run1")
         self.assertEqual(code, 0, out)
         self.assertEqual((self.root / f"extraction/{SLUG}.xlsx").read_bytes(), workbook)
         self.assertEqual(manifest.read_text(encoding="utf-8"), text)
@@ -152,8 +158,8 @@ class ExportTests(unittest.TestCase):
     def test_catalog_referenced_target_is_refused(self):
         before = tree_digest(self.root)
         for version in ("working", "base-raw"):
-            for extra in ((), ("--write",)):
-                code, _, err = self.export("deal", "alpha-deal", "--version", version, *extra)
+            for export in (self.export, self.write):
+                code, _, err = export("deal", "alpha-deal", "--version", version)
                 self.assertEqual(code, 1)
                 self.assertIn("extraction/alpha-deal.xlsx is an immutable original referenced by _dev/cockpit/catalog.json", err)
                 self.assertIn("separate, requested edit of the catalog", err)
@@ -180,21 +186,18 @@ class ExportTests(unittest.TestCase):
             rows = list(csv.DictReader(io.StringIO((out / "raw_filing/MANIFEST.csv").read_text(encoding="utf-8"))))
             self.assertEqual([r["deal"] for r in rows], [SLUG, "zeta"])  # the output checkout's manifest, updated
 
-    def test_write_into_a_detached_checkout_is_refused(self):
+    def test_write_requires_out_root(self):
         self.add_deal()
-        with tempfile.TemporaryDirectory() as folder:
-            out = Path(folder)
-            git = lambda *args: subprocess.run(["git", "-C", str(out), "-c", "user.name=Test", "-c", "user.email=test@example.invalid", "-c", "commit.gpgsign=false", *args], check=True, capture_output=True)
-            git("init", "-q"); git("commit", "-q", "--allow-empty", "-m", "deployment"); git("checkout", "-q", "--detach")
-            code, out_text, _ = self.export("--out-root", str(out), "deal", SLUG, "--version", "run1")
+        self.published()
+        before = tree_digest(self.root)
+        for args in (("deal", SLUG, "--version", "run1"), ("instruction", "Version 1")):
+            code, out_text, _ = self.export(*args)
             self.assertEqual(code, 0)
             self.assertIn("dry run", out_text)
-            code, _, err = self.export("--out-root", str(out), "deal", SLUG, "--version", "run1", "--write")
-            self.assertEqual(code, 1)
-            self.assertIn("detached HEAD", err)
-            self.assertFalse((out / "extraction").exists())
-            git("checkout", "-q", "-b", "development")
-            self.assertEqual(self.export("--out-root", str(out), "deal", SLUG, "--version", "run1", "--write")[0], 0)
+            code, _, err = self.export(*args, "--write")
+            self.assertEqual(code, 2)
+            self.assertIn("--write requires --out-root", err)
+        self.assertEqual(tree_digest(self.root), before)
         self.assertEqual(self.export("--out-root", str(self.root / "missing"), "deal", SLUG, "--version", "run1")[0], 1)
 
     def test_unknown_deal_and_version_are_refused(self):

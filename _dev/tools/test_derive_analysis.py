@@ -6,6 +6,7 @@ import csv
 import datetime as dt
 import io
 import json
+import re
 import tempfile
 import unittest
 from pathlib import Path
@@ -167,10 +168,27 @@ class DeriveTests(unittest.TestCase):
         cases = [(3, "", (3, 3, 3, "exact")), (None, "Count: at least 11; x", (11, None, None, "at least")),
                  (None, "Count: approximately 20.", (1, None, 20, "approximately")), (None, "Count: 11–14.", (11, 14, None, "range")),
                  (None, "Count: fewer than 5", (1, 4, None, "fewer than")), (None, "Count: unknown", (1, None, None, "unknown")),
-                 (None, "no prefix", (1, None, None, "unknown (no Count: prefix)"))]
+                 (None, "no prefix", (1, None, None, "unknown (no Count: prefix)")),
+                 # The checker's qualifiers (check_lean.COUNT_QUALIFIER_RE), with figures in digits or words.
+                 (None, "Count: more than ten; 12 named.", (11, None, None, "more than")),
+                 (None, "Count: over 5", (6, None, None, "over")), (None, "Count: up to four", (1, 4, None, "up to")),
+                 (None, "Count: around twenty-five", (1, None, 25, "around")), (None, "Count: some 30", (1, None, 30, "some")),
+                 (None, "Count: nearly twenty", (1, 20, 20, "nearly")), (None, "Count: several", (2, None, None, "several")),
+                 (None, "Count: 11 to 14", (11, 14, None, "range")), (None, "Count: twelve", (1, None, 12, "figure in Note")),
+                 (None, "Count: more than a dozen", (1, None, None, "unknown (unparsed Count: prefix)")),
+                 (None, "Count: about twenty-something", (1, None, None, "unknown (unparsed Count: prefix)"))]
         for count, note, expected in cases:
             with self.subTest(note=note):
                 self.assertEqual(derive.count_bounds(count, note), expected)
+        # Every qualifier the checker accepts gets bounds, the figure bounding it where one is given.
+        qualifiers = re.search(r"\(\?:([^)]*)\)", check_lean.COUNT_QUALIFIER_RE.pattern).group(1).split("|")
+        self.assertEqual(set(qualifiers), set(derive.COUNT_QUALIFIER_BOUNDS))
+        for qualifier in qualifiers:
+            with self.subTest(qualifier=qualifier):
+                lo, hi, point, kind = derive.count_bounds(None, f"Count: {qualifier} 10 parties.")
+                self.assertEqual(kind, qualifier)
+                self.assertTrue(lo >= 1 and (hi is None or lo <= hi) and (point is None or lo <= point))
+                self.assertTrue(qualifier == "several" or {lo, hi, point} & {9, 10, 11})  # the figure, or one past it
 
     def test_participation_follows_the_live_units_formula_with_bounds(self):
         ledger = [
@@ -583,6 +601,24 @@ class DeriveTests(unittest.TestCase):
                 self.assertEqual((deal["initiation_first_event"], deal["initiation_first_row"], deal["initiation_check"]),
                                  ("target-led", "#1 Round opened", "agrees"))
 
+    def test_a_round_one_opened_after_an_approach_is_not_the_targets_step(self):
+        # D5 and E6, as check_lean.target_opened_round_one reads them: a round 1 opened after Alpha approached is the
+        # bilateral fallback, so it neither makes the process target-led nor bounds a sale demand.
+        approach, opening = row(1, "Alpha", "Bidder interest", rnd=0, Type="Strategic", Count=1), row(2, "Target", "Round opened", day=1)
+        nda = row(3, "Alpha", "NDA signed", day=1, Type="Strategic", Count=1)
+        demand = row(4, "Fund X", "Activist", day=2, Note="Demands sale: sell now.")
+        cases = [([approach, opening, nda, bid(4, "Alpha", 10, day=2)], "bidder-led", "#1 Bidder interest"),
+                 ([approach, opening, nda, demand, bid(5, "Alpha", 10, day=3)], "activist-influenced", "#4 Activist"),
+                 # Round 1 opened by outreach after the approach (no NDA with Alpha that day) is the target's step.
+                 ([approach, opening, demand, bid(5, "Alpha", 10, day=3)], "bidder-led", "#1 Bidder interest")]
+        for i, (ledger, derived, first_row) in enumerate(cases):
+            with self.subTest(derived=derived):
+                out, _ = self.derive(ledger, [rounds_line(1, "Enforced")], name=f"approach{i}.xlsx",
+                                     facts={**FACTS, "Initiation": derived})
+                deal = read(out, "deal.csv")[0]
+                self.assertEqual((deal["initiation_first_event"], deal["initiation_first_row"], deal["initiation_check"]),
+                                 (derived, first_row, "agrees"))
+
     def test_opening_live_carries_pending_exits_from_earlier_same_day_openings(self):
         ledger = [row(1, "Alpha", "NDA signed", Count=1), row(2, "Beta", "NDA signed", Count=1),
                   row(3, "Gamma", "NDA signed", Count=1),
@@ -647,10 +683,10 @@ class DeriveTests(unittest.TestCase):
         issues = {r["row"]: r["issue"] for r in manifest["review"]}
         self.assertIn("E13 records Part stock", issues[3])
         self.assertIn("numeric Count range", issues[5])
-        # The range is read as bounds; a qualifier is read as before.
+        # The range is read as bounds; a qualifier through the checker's patterns, with a figure in digits or words.
         cohort = next(r for r in read(out, "participation.csv") if r["who"] == "Others")
         self.assertEqual((cohort["count_kind"], cohort["count_lo"], cohort["count_hi"]), ("range", "11", "14"))
-        self.assertEqual(derive.count_bounds(None, "Count: more than ten; 12 named."), (1, None, None, "unknown (unparsed Count: prefix)"))
+        self.assertEqual(derive.count_bounds(None, "Count: more than ten; 12 named."), (11, None, None, "more than"))
         self.assertEqual(derive.count_bounds(None, "Count: more than 10."), (11, None, None, "more than"))
 
 

@@ -6,6 +6,23 @@ This is a runbook for Austin's later order. None of these deployment steps was r
 
 The build commit contains a draft; its root instruction remains Version 0. After Austin approves the draft, put that approved text at `SEC_Deal_Ledger_Extraction_Instruction.md`, complete the documentation updates in DRAFTING_SPEC section 10, and commit and push on `version-1`. Record the full approved commit ID here or in the deployment record. Do not deploy the earlier build commit as Version 1.
 
+The server serves the committed `_dev/tools/cockpit/dist/`; nothing is built at the switch-over. As part of approval, check once, in the development clone at the approved commit, that the committed build matches its source:
+
+```bash
+mkdir -p ~/work/tmp
+cd ~/work/Projects/sec-auction
+git rev-parse HEAD
+git status --porcelain -- _dev/tools/cockpit
+cd _dev/tools/cockpit/frontend
+npm ci
+npm run test
+npx vite build --outDir ~/work/tmp/ledger-dist-check --emptyOutDir
+diff -r ../dist ~/work/tmp/ledger-dist-check && echo "dist matches its source"
+rm -rf ~/work/tmp/ledger-dist-check
+```
+
+`git rev-parse HEAD` must print the approved commit ID and `git status` nothing. If `diff` reports a difference, do not approve that commit: rebuild and commit `dist/`, and check the new commit before it is approved. Record the result with the commit ID. `node_modules/` stays in the development clone, ignored by Git.
+
 Create a separate deployment worktree at that exact commit, from the development clone. Substitute the reviewed commit ID for the placeholder:
 
 ```bash
@@ -20,19 +37,13 @@ Check disk space on both `/` and `~/work`; use `~/work/tmp` for scratch files. C
 
 ### Check the frontend before the outage
 
-The server serves the committed `_dev/tools/cockpit/dist/`; nothing is built during the outage. While the old app is still running, check in the deployment folder that the committed build matches its source:
+The build was checked at approval. The only frontend step now is to confirm the deployment folder's committed build is untouched:
 
 ```bash
-mkdir -p ~/work/tmp
-cd ~/work/Projects/ledger-live/_dev/tools/cockpit/frontend
-npm ci
-npm run test
-npx vite build --outDir ~/work/tmp/ledger-dist-check --emptyOutDir
-diff -r ../dist ~/work/tmp/ledger-dist-check && echo "dist matches its source"
-rm -rf ~/work/tmp/ledger-dist-check
+git -C ~/work/Projects/ledger-live status --porcelain -- _dev/tools/cockpit/dist
 ```
 
-If `diff` reports a difference, stop: the approved commit's `dist/` does not match its source. `node_modules/` stays in the deployment folder, ignored by Git.
+It must print nothing; otherwise stop.
 
 ### Prepare the Cloudflare Access settings
 
@@ -162,9 +173,11 @@ The state now lives in the deployment folder, which must never receive exported 
 ```bash
 python3 -B ~/work/Projects/ledger-live/_dev/tools/cockpit/export_repo.py \
   --out-root ~/work/Projects/sec-auction deal SLUG --version VERSION_ID
+python3 -B ~/work/Projects/ledger-live/_dev/tools/cockpit/export_repo.py \
+  --out-root ~/work/Projects/sec-auction deal SLUG --version VERSION_ID --write
 ```
 
-The same applies to `instruction NAME`. The script refuses to write into a checkout with a detached HEAD, which is how the deployment folder is left. Commit in `sec-auction` only when Austin asks.
+The same applies to `instruction NAME`. The script refuses `--write` without `--out-root`; always name the development clone there, never the deployment folder. Commit in `sec-auction` only when Austin asks.
 
 ## Roll back
 

@@ -1,5 +1,7 @@
 # Version 1 build report
 
+*The 27 September body below (to “Stop point”) is superseded by the “Fix pass” and “Re-review fixes” sections at the end: its SHA-256, counts, round dates, register and open items are out of date.*
+
 27 September 2026. The Version 1 draft, tools and development cockpit are built on `version-1` in `~/work/Projects/sec-auction`. The required checks pass. This is the build handoff in BUILD_SPEC section 8; it is not publication, deployment or research acceptance. No extraction was run.
 
 ## What was built
@@ -158,7 +160,7 @@ Four independent reviews (`BUILD_REVIEW.md`) found no blocker in the draft or th
 
 - **Instruction.** The four rulings are applied. Ruling 1 (missed due date, as refined) is stated once, as E14 closing event 3; the due date's outcome lives only in E9 (left as drafted) and re-entry only in the Re-entered rule. The review fixes are also applied: S1 scope guard restored beside Part F; S2 confirmation by documents copies only price and consideration; S4 "to all the admitted parties"; M2–M5; M1 lapses. CHANGE_MAP covers the rulings, marks reconciliations 1, 16 and 17 superseded and settles every earlier flagged item. Its 241 links and 30 plain references were re-verified. Draft: 395 lines, SHA-256 `5264450c019ba4f6a55c419fd229076994bc503aa4b323afd232ac0dd5efbf3a`.
 - **Round map and workbook check.** Every fact was re-checked against the filings.
-  - Kraton J: Did not submit June 29, Re-entered July 19, dropped July 20. June 29 is Extended (late bid accepted), last July 19.
+  - Kraton J: Did not submit June 29, Re-entered by July 19, dropped July 20. June 29 is Extended (late bid accepted), last late response by July 19 (the filing dates it only “By July 19, 2021”, p.36).
   - sTec: E and F are whole-company entrants, giving 6 parties. D stays live until it Withdrew June 5.
   - Penford: round 1 August 28, 2014.
   - Synacor: round 1 May 8, 2018, August 25, 2019 and July 13, 2020; process 3 gains round 4 on January 6, 2021; CLP's January 21 draft is a confirmation by documents.
@@ -188,3 +190,53 @@ Still open for Austin:
 - Two orphaned fixture servers from 23 September, started from the live folder (PIDs 2651214, 2807890), are still running. They were left alone.
 
 A re-review of this fix pass comes before approval.
+
+## Re-review fixes (28 September 2026)
+
+A five-lane re-review (`VERSION1_REREVIEW.md`) and Austin's rulings 6 and 7 (DECISIONS.md) led to this pass. One Claude Opus 5.5 lane applied the fix list, with two helper agents for the tools and the cockpit. No extraction ran; the live app, its state, services and backups were not touched; no protected file changed.
+
+- **Instruction** (397 lines, SHA-256 `0b7b38f3162b579789df86ce67fb07b9da0f72fcd887ef8a02b9ad7b61183047`).
+  - Ruling 6: E9's Extended is a later due date for the same request, set before the target acted on the bids in hand. One verb, “considers”, is defined once.
+  - Rulings 1, 5, 6(c) and 7 are one E14 paragraph after the closing events. An exit on non-invitation (event 1) or for no bid by a due date (event 3) does not occur if, in time, the target considers a bid from the bidder, admits it, gives it more time or asks it for an offer.
+  - Finality comes before the triggers and is judged as it stood before the request tested. A selection decision opens nothing within or after a final round, except under (c).
+  - An interval-dated opening sorts at Date to. An undated postponement counts from the passage reporting it.
+  - An entrant that turns partial Withdrew at the turn. A closing condition in a markup is not H3 without the bidder's statement. A performance-contingent security is a CVR/earnout, not stock. “Or that financing is still being arranged” is Contingent.
+  - The re-review's duplicates now have one home each. CHANGE_MAP lists every edit.
+- **Records.**
+  - ROUND_MAP and WORKBOOK_CHECK were re-checked against the filings, with every quotation verified by script.
+  - Kraton J's bid is “by July 19”.
+  - Re-entry is dated at the target's invitation (Synacor CLP by December 21).
+  - Synacor H is Dropped by target at the September 23 exclusivity (ruling 6(c)).
+  - sTec D bid on April 23, so the May 3 outcome is Enforced.
+  - Penford A has one spell (ruling 7).
+  - Providence D and E never leave round 3 (ruling 7's spillover; new W49).
+  - W02 and W32 now agree on `AB119`.
+  - Datalink C is Contingent. Mac-Gray B's options are a CVR/earnout. Datalink Insight's employment condition is noted, not H3.
+  - CHANGE_MAP's references were regenerated: 337 links and 43 plain references. At `8cc64cc` it had 247 links to 101 lines, not 241.
+  - DECISIONS gained three supersession notes, appended to the lines they qualify.
+- **Checker and tools.**
+  - The signing Count check is now: an error unless Count is blank or 1, and a warning (`ledger.count_signing_scope`) for a blank beside a whole-company bid or a 1 beside only Other-scope bids. The live-status reconstruction is gone.
+  - A shared helper, `target_opened_round_one`, reads round 1 as the target's step unless it falls on the date of an NDA or bid of a party that approached earlier (E6's bilateral fallback). Checker and derive both use it.
+  - `exit.late_bid_in_round` warns only on a same-round Re-entered row, or a same-round Bid in a round with Extended (late bid accepted), and points to “(E14 closing events; E9)”.
+  - `count_bounds` parses through the checker's patterns and number words (“Count: more than ten” gives at least 11).
+  - `review_list.py` gives one deal-level currency and one price-basis item.
+- **Cockpit and runbook.**
+  - `export_repo.py`: `--write` requires `--out-root`, and the detached-HEAD probe is gone.
+  - `access.py`: jwcrypto checks iss, aud (a list is accepted), exp and nbf with 60 seconds of leeway. There is one cached key set, refetched only for an unknown key id and at most once a minute. Settings are read once. A token without nbf is now rejected; Cloudflare sends nbf.
+  - SWITCHOVER: the frontend build check runs at approval. At switch-over, `git status --porcelain -- _dev/tools/cockpit/dist` must print nothing.
+  - **C1 (drop `deal_bases`) was stopped, not applied.** `worker.py` writes versions with `INSERT OR REPLACE`. Two runs of one deal that get the same version id (engine, effort, start minute, workbook hash prefix) replace the first row with a new rowid, so “first version by rowid” could move the base. The existing test `test_first_run_of_an_added_deal_becomes_its_base` triggers exactly that. A plain `INSERT` with a duplicate-id check would make C1 safe; that fix and C1 wait for approval.
+- **Tests.** Full Python tree 377 passed, 284 subtests. vitest 79 passed. The core browser suite passed 63 checks, and the trace suite 14. `git diff --check` is clean. New tool tests fail on the code at `8cc64cc`.
+- **Skipped, as the fix list says.**
+  - The `fresh_state.py` rewrite: the re-review offered it as a simplification, not a defect; the current script passes its tests and the 27 September copied-state rehearsal.
+  - Deleting the catalog `filing` blocks and `verify_catalog.py`: marked optional by the re-review; both still pass.
+  - Changing how derive computes `opening_live`: deferred by the fix list; its tests pass unchanged.
+  - A rule for Kraton's mistyped “July 19, 2020”: a rule for one filing's typo would be a one-deal patch.
+
+For Austin:
+- Ruling 7's spillover to Providence D and E, which departs from Alex's workbook (W49).
+- The sTec May 3 outcome, which differs from ruling 1's list of effects.
+- The H3 wording: it keeps “may not proceed” so that sTec's June 20 anchor holds.
+- The mixed-initiation Note, kept on the target-side first step.
+- The Kraton K reading (partial-only).
+- The C1 finding.
+- The count bounds chosen for “several” (at least 2) and “nearly” (at most N).

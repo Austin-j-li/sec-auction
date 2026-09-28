@@ -278,7 +278,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--no-warm", action="store_true")
     args = parser.parse_args(argv)
     cockpit = data.Cockpit(args.repo_root)
-    if os.environ.get("COCKPIT_PUBLIC_ORIGIN") and not access.configured():
+    if os.environ.get("COCKPIT_PUBLIC_ORIGIN") and not Handler.access_verifier.configured:
         print(f"warning: COCKPIT_PUBLIC_ORIGIN is set but {access.TEAM_ENV} and {access.AUD_ENV} are not (or jwcrypto is missing); "
               "nobody can sign in on the public site, so it is read-only", file=sys.stderr, flush=True)
     httpd = make_server(args.port, cockpit)

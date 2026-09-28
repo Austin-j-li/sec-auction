@@ -17,6 +17,7 @@ import tempfile
 import threading
 import time
 from pathlib import Path
+from types import SimpleNamespace
 
 import openpyxl
 from openpyxl.comments import Comment
@@ -178,10 +179,13 @@ class AccessKeys:
         self.fetched.append(url)
         return json.dumps({"keys": [self.key.export_public(as_dict=True)]})
 
-    def install(self, httpd):
-        """Verify this server's public requests against these keys; return the environment that enables it."""
-        httpd.RequestHandlerClass.access_verifier = access.Verifier(fetch=self.fetch)
+    def environment(self):
+        """The settings that name this team and application."""
         return {access.TEAM_ENV: self.TEAM, access.AUD_ENV: self.AUD}
+
+    def install(self, httpd):
+        """Verify this server's public requests against these keys, under the settings now in the environment."""
+        httpd.RequestHandlerClass.access_verifier = access.Verifier(fetch=self.fetch)
 
     def token(self, email, key=None, alg="RS256", **claims):
         """A token as Access issues it; a claim given as None is left out."""
@@ -568,10 +572,11 @@ def test_public_identity_needs_a_verified_access_token(env, monkeypatch):
     reader = lambda token: (lambda s: (s["user"], s["can_edit"]))(session(**{"Cf-Access-Jwt-Assertion": token}))
     monkeypatch.setenv("COCKPIT_PUBLIC_ORIGIN", "https://lines.example.invalid")
     for name in (access.TEAM_ENV, access.AUD_ENV): monkeypatch.delenv(name, raising=False)
-    settings = keys.install(http.httpd)
+    keys.install(http.httpd)
     # Public origin set but verification not configured: nobody is signed in, whatever the request carries.
     assert reader(keys.token(AUSTIN)) == ("unknown", False)
-    for name, value in settings.items(): monkeypatch.setenv(name, value)
+    for name, value in keys.environment().items(): monkeypatch.setenv(name, value)
+    keys.install(http.httpd)  # the verifier reads the settings when it is made, as at server start
 
     forged = session(**{"Cf-Access-Authenticated-User-Email": AUSTIN})
     assert (forged["user"], forged["can_edit"], forged["csrf_token"]) == ("unknown", False, None)
@@ -583,6 +588,7 @@ def test_public_identity_needs_a_verified_access_token(env, monkeypatch):
 
     assert reader(keys.token(AUSTIN)) == ("austin", True)
     assert reader(keys.token("  A.Gorbenko@UCL.ac.uk ")) == ("alex", True)
+    assert reader(keys.token(AUSTIN, nbf=None)) == ("austin", True)  # nbf is optional
     # A forged email header beside a valid token changes nothing.
     alex = session(**{"Cf-Access-Jwt-Assertion": keys.token(ALEX), "Cf-Access-Authenticated-User-Email": AUSTIN})
     assert (alex["user"], alex["can_edit"]) == ("alex", True)
@@ -632,12 +638,36 @@ def test_access_key_set_failures_fail_closed_and_are_rate_limited(monkeypatch):
     monkeypatch.setattr(access, "RETRY_AFTER", 0)
     assert verifier.email(keys.token(AUSTIN)) == AUSTIN
     monkeypatch.setenv(access.AUD_ENV, "")
-    assert verifier.email(keys.token(AUSTIN)) is None
+    assert verifier.email(keys.token(AUSTIN)) == AUSTIN  # settings are read once, when the verifier is made
+    assert access.Verifier(fetch=keys.fetch).email(keys.token(AUSTIN)) is None
     monkeypatch.setenv(access.AUD_ENV, keys.AUD)
     monkeypatch.setenv(access.TEAM_ENV, keys.TEAM.replace("https://", "http://"))
-    assert (access.settings(), verifier.email(keys.token(AUSTIN))) == (None, None)
+    assert (access.settings(), access.Verifier(fetch=keys.fetch).email(keys.token(AUSTIN))) == (None, None)
     monkeypatch.setenv(access.TEAM_ENV, keys.TEAM.removeprefix("https://"))
     assert access.settings() == (keys.TEAM, keys.AUD)
+
+
+def test_access_key_set_is_refetched_for_an_unknown_key_id_at_most_once_a_minute(monkeypatch):
+    keys, clock = AccessKeys(), [1000.0]
+    for name, value in keys.environment().items(): monkeypatch.setenv(name, value)
+    monkeypatch.setattr(access, "time", SimpleNamespace(monotonic=lambda: clock[0]))
+    verifier = access.Verifier(fetch=keys.fetch)
+    # Cloudflare sends aud as a list; it must contain this application's tag.
+    assert verifier.email(keys.token(AUSTIN, aud=["another-audience-tag", keys.AUD])) == AUSTIN
+    assert verifier.email(keys.token(AUSTIN, aud=keys.AUD)) == AUSTIN
+    assert verifier.email(keys.token(AUSTIN, aud=["another-audience-tag"])) is None
+    assert verifier.email(keys.token(AUSTIN, key=AccessKeys().key)) is None  # a known key id, a bad signature
+    assert len(keys.fetched) == 1
+    keys.key = AccessKeys(kid="synthetic-2").key  # Cloudflare rotates its keys
+    clock[0] += 30
+    assert verifier.email(keys.token(ALEX)) is None and len(keys.fetched) == 1  # within a minute of the last fetch
+    clock[0] += 30
+    assert verifier.email(keys.token(ALEX)) == ALEX and len(keys.fetched) == 2
+    stranger = keys.token(ALEX, key=AccessKeys(kid="synthetic-3").key)
+    assert [verifier.email(stranger) for _ in range(3)] == [None] * 3 and len(keys.fetched) == 2
+    clock[0] += 60
+    assert verifier.email(stranger) is None and len(keys.fetched) == 3
+    assert verifier.email(keys.token(ALEX)) == ALEX and len(keys.fetched) == 3  # a known key id never fetches
 
 
 def test_catalog_allowlist_rejects_ref_and_symlink_escape(env):

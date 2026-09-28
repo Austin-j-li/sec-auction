@@ -23,10 +23,12 @@ Mechanical readings of rules the instruction states in words:
 - A bidder unit is followed by its Who without parentheticals, case-folded (unit_key),
   as derive_analysis.py follows it.
 - The target's first sale step (D5) is its first Target interest or Target sale decision
-  row, or the first round-1 Round opened row, whatever that row's Who.
-- A signer is outside the whole-company contest when its participation has ended, it
-  never entered, or every bid row of its unit is an Other-scope bid (E1), as
-  derive_analysis.py reads partial-only parties.
+  row, or the first round-1 Round opened row unless that row shares its Sort date with an
+  NDA signed or Bid row of a party that approached the target before it (E6's bilateral
+  fallback), whatever the opening row's Who.
+- On Merger agreement signed, Count is blank or 1. Who is live at signing is not
+  reconstructed: a blank Count beside a Bid or Bid reaffirmed row of the signer's unit,
+  or a Count of 1 where every bid row of that unit is an Other-scope bid, is a warning (D1).
 - Count is required on Process terminated, Process restarted and Bidding group changed
   rows. A process marker that closes no open participation leaves Count blank, so a
   blank Count on a process marker is a warning, not an error.
@@ -465,15 +467,37 @@ def unit_key(who: Any) -> str:
     return re.sub(r"\s+", " ", name).strip(" .,;:").casefold()
 
 
+def row_event(record: dict[str, Any]) -> str:
+    return "" if is_blank(record.get("Event")) else normalize_contiguous(record.get("Event"))
+
+
+def target_opened_round_one(records: list[dict[str, Any]]) -> int | None:
+    """Index of the first round-1 Round opened row in one process's rows when D5 reads it as the target's step
+    (a round "opened by the target's outreach"), else None.
+
+    The test: the opening is the target's step unless it falls on the Sort date of an NDA signed or Bid row of a
+    party that approached the target earlier in the process (a Bidder interest or Bid row before the opening). That
+    is E6's bilateral fallback, which opens round 1 at the first NDA or price negotiation with such a party. The
+    opening row's Who does not decide, since D1 gives the target as Who on process-wide rows."""
+    approached: set[str] = set()
+    for index, record in enumerate(records):
+        if row_event(record) == "Round opened" and as_integer_or_text(record.get("Round")) == 1:
+            day = as_date(record.get("Sort date"))
+            bilateral = day is not None and any(
+                unit_key(other.get("Who")) in approached and as_date(other.get("Sort date")) == day
+                and row_event(other) in {"NDA signed", "Bid", "Bid reaffirmed"} for other in records)
+            return None if bilateral else index
+        if row_event(record) in {"Bidder interest", "Bid"} and unit_key(record.get("Who")):
+            approached.add(unit_key(record.get("Who")))
+    return None
+
+
 def first_target_step(records: list[dict[str, Any]]) -> int:
     """Index of the target's first sale step (D5) in one process's rows, else len(records): its first Target
-    interest or Target sale decision row, or its first round-1 Round opened row, whatever that row's Who."""
-    def event(record: dict[str, Any]) -> str:
-        return "" if is_blank(record.get("Event")) else normalize_contiguous(record.get("Event"))
-
+    interest or Target sale decision row, or its round 1 if the target opened it (target_opened_round_one)."""
+    opening = target_opened_round_one(records)
     return next((index for index, record in enumerate(records)
-                 if event(record) in {"Target interest", "Target sale decision"}
-                 or (event(record) == "Round opened" and as_integer_or_text(record.get("Round")) == 1)),
+                 if row_event(record) in {"Target interest", "Target sale decision"} or index == opening),
                 len(records))
 
 
@@ -834,6 +858,18 @@ class LeanChecker:
                     column="Date to",
                 )
 
+        # Rounds whose Deadline outcome records that the target considered a late bid (E9).
+        late_bid_rounds: set[tuple[Any, Any]] = set()
+        if "Rounds" in self.wb:
+            summary = self.wb["Rounds"]
+            outcome_column = ROUND_COLUMNS.index("Deadline outcome") + 1
+            for summary_row in nonempty_rows(summary, len(ROUND_COLUMNS)):
+                outcome = summary.cell(summary_row, outcome_column).value
+                if not is_blank(outcome) and "Extended (late bid accepted)" in [
+                        part.strip() for part in normalize_contiguous(outcome).split(";")]:
+                    late_bid_rounds.add((as_integer(summary.cell(summary_row, 1).value),
+                                         as_integer(summary.cell(summary_row, 2).value)))
+
         exited: dict[tuple[Any, str], tuple[Any, Any, int | None]] = {}
         for excel_row, record in rows:
             key = (as_integer(record["Process"]), who(record))
@@ -844,20 +880,20 @@ class LeanChecker:
                 exited[key] = (record["#"], event, numbered_round(record))
             elif event in {"Re-entered", "Bid", "Bid reaffirmed", "NDA signed", "Bidding group changed"} and key in exited:
                 number, exit_event, exit_round = exited.pop(key)
-                if (event in {"Re-entered", "Bid", "Bid reaffirmed"} and exit_event == "Did not submit"
-                        and exit_round is not None and numbered_round(record) == exit_round):
+                same_round_late_bid = (event in {"Re-entered", "Bid", "Bid reaffirmed"} and exit_event == "Did not submit"
+                                       and exit_round is not None and numbered_round(record) == exit_round)
+                if same_round_late_bid and (event == "Re-entered" or (key[0], exit_round) in late_bid_rounds):
                     self.add(
                         "warning",
                         "exit.late_bid_in_round",
-                        f"{record['Who']} did not submit at #{number}, and this {event} row follows in the same round. "
-                        "A late bid the target takes before the next round opens means the bidder never left: no exit "
-                        "or Re-entered row, and the deadline outcome is Extended (late bid accepted); a late bid it "
-                        "does not take leaves the exit, with no Re-entered row (E14).",
+                        f"{record['Who']} did not submit at #{number}, and this {event} row follows in the same round"
+                        + ("" if event == "Re-entered" else ", whose Deadline outcome includes Extended (late bid accepted)")
+                        + "; review the exit against the rules for a late bid (E14 closing events; E9).",
                         sheet=ws.title,
                         row=excel_row,
                         column="Event",
                     )
-                elif event != "Re-entered":
+                elif event != "Re-entered" and not same_round_late_bid:
                     self.add(
                         "warning",
                         "exit.activity_without_reentry",
@@ -934,17 +970,6 @@ class LeanChecker:
         processes: set[int] = set()
         previous_sort: tuple[dt.date, int] | None = None
 
-        # D1/E3: admission to a whole-company stage also makes a bidder live, even if it never has
-        # its own NDA or Bid row. The Rounds summary names admitted units at the opening.
-        admissions: dict[tuple[int, int], str] = {}
-        if "Rounds" in self.wb:
-            summary = self.wb["Rounds"]
-            for summary_row in nonempty_rows(summary, len(ROUND_COLUMNS)):
-                key = (as_integer(summary.cell(summary_row, 1).value),
-                       as_integer(summary.cell(summary_row, 2).value))
-                if None not in key:
-                    admissions[key] = normalize_contiguous(summary.cell(summary_row, 5).value).casefold()
-
         # D1: On Merger agreement signed, Who is the signing acquirer, never the target.
         target_names = {"target", "the target", "company", "the company"}
         if "Deal facts" in self.wb:
@@ -952,39 +977,6 @@ class LeanChecker:
             for fact_row in nonempty_rows(facts_sheet, len(FACT_COLUMNS)):
                 if facts_sheet.cell(fact_row, 1).value == "Target" and unit_key(facts_sheet.cell(fact_row, 2).value):
                     target_names.add(unit_key(facts_sheet.cell(fact_row, 2).value))
-
-        def signer_is_live(index: int) -> bool:
-            """Whether the signer on records[index] is a live whole-company bidder (D1, E1, E14). Its rows follow
-            derive_analysis.py: an Other-scope alternative does not end participation, but a unit whose every bid
-            row is an Other-scope bid is partial-only and outside the contest."""
-            signer = records[index]
-            who = unit_key(signer["Who"])
-            process = as_integer(signer["Process"])
-            if not who or process is None:
-                return False
-            own_bids = {record["Event"] for record in records
-                        if record["Event"] in BID_EVENTS and unit_key(record["Who"]) == who}
-            if own_bids == {"Other-scope bid"}:
-                return False
-            name_pattern = re.compile(r"(?<!\w)" + re.escape(who) + r"(?!\w)")
-            live = False
-            for prior in records[:index]:
-                if as_integer(prior["Process"]) != process:
-                    continue
-                event = prior["Event"]
-                if event == "Process terminated":
-                    live = False
-                if event == "Round opened":
-                    included = admissions.get((process, as_integer(prior["Round"])), "")
-                    if name_pattern.search(included):
-                        live = True
-                if unit_key(prior["Who"]) != who:
-                    continue
-                if event in {"NDA signed", "Bid", "Bid reaffirmed", "Re-entered"}:
-                    live = True
-                elif event in EXIT_EVENTS | {"Bidding group changed"}:
-                    live = False
-            return live
 
         def value(row: int, column: str) -> Any:
             return ws.cell(row, columns[column]).value
@@ -1447,21 +1439,33 @@ class LeanChecker:
             if sort_date:
                 previous_sort = (sort_date, excel_row)
 
-        for index, (excel_row, record) in enumerate(zip(rows, records)):
+        # D1: on Merger agreement signed, Count is 1 for a whole-company signer, otherwise blank. Only the
+        # signer's bid rows are compared; who is live at signing is not reconstructed.
+        bid_events_of: dict[str, set[str]] = defaultdict(set)
+        for record in records:
+            if record["Event"] in BID_EVENTS and unit_key(record["Who"]):
+                bid_events_of[unit_key(record["Who"])].add(record["Event"])
+        for excel_row, record in zip(rows, records):
             if record["Event"] != "Merger agreement signed":
                 continue
-            if unit_key(record["Who"]) in target_names:
+            signer = unit_key(record["Who"])
+            if signer in target_names:
                 self.add("warning", "ledger.signing_who",
                          "On Merger agreement signed, Who is the signing acquirer, not the target (D1).",
                          sheet=ws.title, row=excel_row, column="Who")
-            # D1: Count follows the signer's current whole-company participation, not its bid history.
-            current_bidder = signer_is_live(index)
-            if current_bidder and as_integer(record["Count"]) != 1:
-                self.add("error", "ledger.count_signing", "A whole-company signing bidder has Count 1 (D1).",
+            count, signer_bids = record["Count"], bid_events_of.get(signer, set())
+            if not is_blank(count) and as_integer(count) != 1:
+                self.add("error", "ledger.count_signing",
+                         f"Count on Merger agreement signed is 1 or blank (D1); found {count!r}.",
                          sheet=ws.title, row=excel_row, column="Count")
-            elif not current_bidder and not is_blank(record["Count"]):
-                self.add("error", "ledger.count_signing", "A signer outside the whole-company contest has blank Count (D1).",
-                         sheet=ws.title, row=excel_row, column="Count")
+            elif is_blank(count) and signer_bids & {"Bid", "Bid reaffirmed"}:
+                self.add("warning", "ledger.count_signing_scope",
+                         "Count is blank, but the signer has a whole-company Bid row; a whole-company signer has "
+                         "Count 1 (D1).", sheet=ws.title, row=excel_row, column="Count")
+            elif as_integer(count) == 1 and signer_bids == {"Other-scope bid"}:
+                self.add("warning", "ledger.count_signing_scope",
+                         "Count is 1, but every bid row of the signer is an Other-scope bid; a signer outside the "
+                         "whole-company contest has blank Count (D1).", sheet=ws.title, row=excel_row, column="Count")
 
         self.check_review_sequences(ws, list(zip(rows, records)))
         self.check_same_as_and_round_zero(ws, list(zip(rows, records)))

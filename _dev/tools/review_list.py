@@ -52,9 +52,6 @@ def build_review_list(ledger: dict[str, Any], disabled: set[str] | None = None) 
         or all_bid_events == {"Other-scope bid"})
     round_triggers = {(check_lean.as_integer_or_text(r.get("Process")), check_lean.as_integer_or_text(r.get("Round"))):
                       derive_analysis.text(r.get("How opened")) for r in ledger["rounds"]}
-    units = derive_analysis.text(facts.get("Currency and units of bid prices"))
-    non_dollar = bool(NON_DOLLAR_RE.search(units))
-    non_per_share = bool(NON_SHARE_BASIS_RE.search(units))
     if derive_analysis.text(facts.get("Acquirer type")).startswith("Unknown"):
         add("unknown_type", "Deal facts", "Acquirer type", facts.get("Acquirer"), "Winner type is Unknown")
     if partial_only:
@@ -76,14 +73,21 @@ def build_review_list(ledger: dict[str, Any], disabled: set[str] | None = None) 
                 add("inferred_exit", "Deal ledger", number, who, "Exit is inferred")
             if r.get("Exit reason") == "Not stated":
                 add("unexplained_exit", "Deal ledger", number, who, "Exit reason is Not stated")
-        if event in bid_events:
-            if non_per_share or NON_SHARE_BASIS_RE.search(note):
-                add("non_per_share_price", "Deal ledger", number, who, "Price basis needs review")
-            if non_dollar or NON_DOLLAR_RE.search(note):
-                add("non_dollar_price", "Deal ledger", number, who, "Currency needs review")
         if event == "Round opened":
             key = (check_lean.as_integer_or_text(r.get("Process")), check_lean.as_integer_or_text(r.get("Round")))
             add("round_opened", "Deal ledger", number, who, f"Round trigger: {round_triggers.get(key, '(missing)')}")
+
+    # Currency and price basis: one deal-level item each, from Deal facts and the bid rows' Notes.
+    units = derive_analysis.text(facts.get("Currency and units of bid prices"))
+    bid_notes = [(derive_analysis.cell(r.get("#")), derive_analysis.text(r.get("Note"))) for r in rows
+                 if derive_analysis.text(r.get("Event")) in bid_events]
+    for category, pattern, label in (("non_per_share_price", NON_SHARE_BASIS_RE, "Price basis needs review"),
+                                     ("non_dollar_price", NON_DOLLAR_RE, "Currency needs review")):
+        in_notes = [f"#{number}" for number, note in bid_notes if pattern.search(note)]
+        if bid_notes and (pattern.search(units) or in_notes):
+            add(category, "Deal facts", "Currency and units of bid prices", "",
+                f"{label}: Deal facts gives {units!r}"
+                + (f"; bid Notes at {', '.join(in_notes)}" if in_notes else ""))
 
     for line in ledger["rounds"]:
         outcome = derive_analysis.text(line.get("Deadline outcome"))

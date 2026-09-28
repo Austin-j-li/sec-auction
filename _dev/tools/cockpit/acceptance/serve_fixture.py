@@ -104,7 +104,8 @@ def main() -> None:
             # Identities come from signed Cloudflare Access tokens, as on the public route. The suites send
             # started["access"][user] as Cf-Access-Jwt-Assertion; the tokens are signed by a key made here.
             keys = AccessKeys()
-            os.environ.update({"COCKPIT_REQUIRE_ACCESS": "1", "COCKPIT_PUBLIC_ORIGIN": fixture.base, **keys.install(fixture.httpd)})
+            os.environ.update({"COCKPIT_REQUIRE_ACCESS": "1", "COCKPIT_PUBLIC_ORIGIN": fixture.base, **keys.environment()})
+            keys.install(fixture.httpd)
             started["access"] = {"austin": keys.token(AUSTIN), "alex": keys.token(ALEX)}
         if "--deals" in sys.argv[1:]:
             stub_edgar(root)

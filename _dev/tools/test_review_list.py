@@ -94,6 +94,23 @@ class ReviewListTests(unittest.TestCase):
         categories = {item["category"] for item in review_list.build_review_list(ledger)}
         self.assertIn("non_per_share_price", categories)
 
+    def test_currency_and_price_basis_are_one_deal_level_item_each(self) -> None:
+        bids = [bid(1, "Alpha", 10), bid(2, "Beta", 11), bid(3, "Gamma", 12, Note="EUR 12 per share."),
+                bid(4, "Delta", None, Note="Enterprise value only.")]
+        ledger = {"ledger": bids, "rounds": [],
+                  "facts": {**FACTS, "Currency and units of bid prices": "euros per share"}}
+        items = [item for item in review_list.build_review_list(ledger)
+                 if item["category"] in {"non_dollar_price", "non_per_share_price"}]
+        self.assertEqual([(i["category"], i["sheet"], i["row"]) for i in items],
+                         [("non_per_share_price", "Deal facts", "Currency and units of bid prices"),
+                          ("non_dollar_price", "Deal facts", "Currency and units of bid prices")])
+        self.assertIn("#4", items[0]["detail"])
+        self.assertIn("euros per share", items[1]["detail"])
+        self.assertIn("#3", items[1]["detail"])
+        ledger = {"ledger": bids[:2], "rounds": [], "facts": {**FACTS, "Currency and units of bid prices": "US dollars per share"}}
+        self.assertFalse({"non_dollar_price", "non_per_share_price"}
+                         & {item["category"] for item in review_list.build_review_list(ledger)})
+
 
 if __name__ == "__main__":
     unittest.main()

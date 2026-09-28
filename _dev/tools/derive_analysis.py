@@ -70,6 +70,22 @@ INITIATION_EVENTS = {"Target interest": "target-led", "Target sale decision": "t
 USABLE_PRICE_KINDS = {"point", "range", "lower_bound", "upper_bound"}
 # E13 leaves a Stock % range to the Note ("Part stock", the range in the Note); a percentage range read there.
 NOTE_STOCK_RANGE_RE = re.compile(r"(\d+(?:\.\d+)?)\s*%?\s*(?:[-–]|to)\s*(\d+(?:\.\d+)?)\s*%")
+NUMBER_WORDS = {word: n for n, word in enumerate(
+    "zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen "
+    "seventeen eighteen nineteen twenty".split())}
+NUMBER_WORDS.update({"thirty": 30, "forty": 40, "fifty": 50, "sixty": 60, "seventy": 70, "eighty": 80, "ninety": 90})
+# (lo, hi, point) for each qualifier check_lean.COUNT_QUALIFIER_RE accepts, given the figure after it. "Approximately
+# N is N" is the presumed point; "several" needs no figure and, being plural, is at least two.
+COUNT_QUALIFIER_BOUNDS = {
+    "at least": lambda n: (n, None, None),
+    "more than": lambda n: (n + 1, None, None), "over": lambda n: (n + 1, None, None),
+    "at most": lambda n: (1, n, None), "up to": lambda n: (1, n, None),
+    "fewer than": lambda n: (1, n - 1, None), "less than": lambda n: (1, n - 1, None),
+    "approximately": lambda n: (1, None, n), "about": lambda n: (1, None, n), "around": lambda n: (1, None, n),
+    "some": lambda n: (1, None, n),
+    "nearly": lambda n: (1, n, n),
+    "several": lambda n: (2, None, None),
+}
 
 SWITCHES = [
     {"id": "count_ranges", "source": "D22; Alex Q1 / Decision 3",
@@ -187,26 +203,42 @@ def unit_key(who: Any) -> str:
     return check_lean.unit_key(who)
 
 
+def leading_figure(value: str) -> int | None:
+    """The whole number at the start of value, in digits or words ("ten", "twenty-five"); else None."""
+    m = re.match(r"\s*(?:(\d+)|([a-z]+)(?:-([a-z]+))?)\b", value.casefold())
+    if not m:
+        return None
+    if m.group(1):
+        return int(m.group(1))
+    first, second = NUMBER_WORDS.get(m.group(2)), NUMBER_WORDS.get(m.group(3) or "")
+    if m.group(3) is None:
+        return first
+    return first + second if first and first >= 20 and first % 10 == 0 and second and second < 10 else None
+
+
 def count_bounds(count: Any, note: Any) -> tuple[int | None, int | None, int | None, str]:
-    """(lo, hi, point, kind) for a row's bidder units: Count, else the Note's "Count: ..." prefix."""
+    """(lo, hi, point, kind) for a row's bidder units: Count, else the Note's "Count: ..." prefix, read with the
+    checker's patterns (a range, a qualifier in check_lean.COUNT_QUALIFIER_RE, unknown or not stated, a figure)."""
     exact = check_lean.as_integer(count)
     if exact is not None and exact > 0:
         return exact, exact, exact, "exact"
-    found = re.search(r"\bCount:\s*(.*)", text(note), re.IGNORECASE)
+    note = text(note)
+    found = re.search(r"\bCount:\s*", note, re.IGNORECASE)
     if not found:
         return 1, None, None, "unknown (no Count: prefix)"
-    body = found.group(1).casefold()
-    if (m := re.match(r"(\d+)\s*[-–—]\s*(\d+)", body)):
-        return int(m.group(1)), int(m.group(2)), None, "range"
-    if (m := re.match(r"(at least|more than|at most|fewer than|less than|approximately|about)\s+(\d+)", body)):
-        word, n = m.group(1), int(m.group(2))
-        return {"at least": (n, None, None), "more than": (n + 1, None, None), "at most": (1, n, None),
-                "fewer than": (1, n - 1, None), "less than": (1, n - 1, None),
-                "approximately": (1, None, n), "about": (1, None, n)}[word] + (word,)
-    if re.match(r"(unknown|not stated)\b", body):
+    if (m := check_lean.COUNT_RANGE_RE.search(note)):
+        lo, hi = (int(n) for n in re.findall(r"\d+", m.group(0)))
+        return lo, hi, None, "range"
+    if (m := check_lean.COUNT_QUALIFIER_RE.search(note)):
+        word = re.sub(r"(?i)^Count:\s*", "", m.group(0)).casefold()
+        n = leading_figure(note[m.end():])
+        if n is None and word != "several":
+            return 1, None, None, "unknown (unparsed Count: prefix)"
+        return COUNT_QUALIFIER_BOUNDS[word](n) + (word,)
+    if check_lean.COUNT_UNKNOWN_RE.search(note):
         return 1, None, None, "unknown"
-    if (m := re.match(r"(\d+)\b", body)):
-        return 1, None, int(m.group(1)), "figure in Note"
+    if (n := leading_figure(note[found.end():])) is not None:
+        return 1, None, n, "figure in Note"
     return 1, None, None, "unknown (unparsed Count: prefix)"
 
 
@@ -748,10 +780,11 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
         opening_index = next((i for i, r in enumerate(process_rows) if text(r.get("Event")) == "Round opened"
                               and row_round(r)[1] == 1), len(process_rows))
         # A partial-only candidate with no exit row may never have been in the whole-company contest, so its rows do
-        # not initiate it; where one would have come first, a reviewer decides. The first round-1 Round opened row
-        # is the target's step whatever its Who, as check_lean.py reads it (D5).
+        # not initiate it; where one would have come first, a reviewer decides. The round-1 Round opened row
+        # initiates only as the target's step, as check_lean.py reads it (D5; a bilateral opening is not).
+        target_opening = check_lean.target_opened_round_one(process_rows)
         initiating = [r for i, r in enumerate(process_rows)
-                      if text(r.get("Event")) in INITIATION_EVENTS or i == opening_index]
+                      if text(r.get("Event")) in INITIATION_EVENTS or i == target_opening]
         # D5: only a demand for sale before the target's first sale step makes the process activist-influenced.
         # A target-side first step and a bidder's own Bid before round 1 make it mixed.
         preopening = process_rows[:opening_index]

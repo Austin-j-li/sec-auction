@@ -4,13 +4,11 @@
     export_repo.py [--repo-root STATE_ROOT] [--out-root CHECKOUT] deal <slug> --version <id>|working [--write]
 
 --repo-root is the checkout whose _dev/cockpit/state the cockpit uses; --out-root is the
-checkout the files are written to (by default the same folder). After the Version 1
-switch-over the state lives in the deployment folder, so export into the development clone:
+checkout the files are written to. --write requires --out-root; a dry run without it
+compares against --repo-root. After the Version 1 switch-over the state lives in the
+deployment folder, so export into the development clone:
 
     export_repo.py --repo-root ~/work/Projects/ledger-live --out-root ~/work/Projects/sec-auction ...
-
---write refuses an output folder that is a Git checkout with a detached HEAD, which is how
-the switch-over leaves the running deployment folder.
 
 An instruction export writes a published version's stored text into
 SEC_Deal_Ledger_Extraction_Instruction.md, after checking the text against its hash.
@@ -31,7 +29,6 @@ import datetime as dt
 import hashlib
 import io
 import json
-import subprocess
 import sys
 from pathlib import Path
 from typing import Any
@@ -156,16 +153,6 @@ def deal_plan(cockpit: data.Cockpit, slug: str, version: str, out_root: Path | N
 # ---- output --------------------------------------------------------------------------
 
 
-def detached_checkout(root: Path) -> bool:
-    """True when root is inside a Git checkout whose HEAD is detached, as the running deployment folder is."""
-    def git(*args: str) -> int:
-        return subprocess.run(["git", "-C", str(root), *args], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=30).returncode
-    try:
-        return git("rev-parse", "--is-inside-work-tree") == 0 and git("symbolic-ref", "-q", "HEAD") != 0
-    except (OSError, subprocess.SubprocessError):
-        return False
-
-
 def check_targets(cockpit: data.Cockpit, plan: list[tuple[str, bytes]], out_root: Path | None = None) -> None:
     protected = catalog_paths(cockpit.workspace.catalog()) if cockpit.workspace.available else set()
     target_catalog = (out_root or cockpit.workspace.root) / "_dev/cockpit/catalog.json"
@@ -180,9 +167,6 @@ def check_targets(cockpit: data.Cockpit, plan: list[tuple[str, bytes]], out_root
 def run(cockpit: data.Cockpit, plan: list[tuple[str, bytes]], write: bool, out_root: Path | None = None) -> list[str]:
     check_targets(cockpit, plan, out_root)
     root = out_root or cockpit.workspace.root
-    if write and detached_checkout(root):
-        raise Refused(f"{root} is a checkout with a detached HEAD, like the running deployment folder; "
-                      "export into the development clone with --out-root")
     lines = []
     for relative, content in plan:
         target = root / relative
@@ -203,7 +187,7 @@ def run(cockpit: data.Cockpit, plan: list[tuple[str, bytes]], write: bool, out_r
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--repo-root", type=Path, default=data.REPO_ROOT, help="the checkout whose cockpit state is exported")
-    parser.add_argument("--out-root", type=Path, help="the checkout written to (default: --repo-root)")
+    parser.add_argument("--out-root", type=Path, help="the checkout written to; required with --write (a dry run defaults to --repo-root)")
     commands = parser.add_subparsers(dest="command", required=True)
     one = commands.add_parser("instruction", help="write a published instruction to " + REPOSITORY_INSTRUCTION)
     one.add_argument("name", help="published name (e.g. Version 1) or 12-character id")
@@ -213,6 +197,8 @@ def main(argv: list[str] | None = None) -> int:
     deal.add_argument("--version", required=True, help="a version id, or 'working' for the working copy")
     deal.add_argument("--write", action="store_true")
     args = parser.parse_args(argv)
+    if args.write and args.out_root is None:
+        parser.error("--write requires --out-root")
     cockpit = data.Cockpit(args.repo_root.resolve())
     out_root = args.out_root.resolve() if args.out_root else cockpit.workspace.root
     try:

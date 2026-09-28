@@ -12,9 +12,10 @@ deployment"):
     COCKPIT_ACCESS_AUD          the Access application's Application Audience (AUD) tag
 
 Without both, no public request is signed in: the site stays readable through Access, and nobody can edit.
-The key set is fetched from `<team domain>/cdn-cgi/access/certs` and kept for an hour. A token that no cached key
-verifies (as after Cloudflare rotates its keys) prompts an early fetch. Fetches, including failed ones, happen at
-most once a minute.
+Both are read once, when the verifier is made (at server start). jwcrypto checks the signature and the iss, aud,
+exp and nbf claims, with a minute of clock skew allowed. The key set is fetched from
+`<team domain>/cdn-cgi/access/certs` on first use and kept; a token whose key id the cached set lacks (as after
+Cloudflare rotates its keys) prompts a new fetch. Fetches, including failed ones, happen at most once a minute.
 """
 from __future__ import annotations
 
@@ -24,6 +25,7 @@ import sys
 import threading
 import time
 import urllib.request
+from time import time as wall_clock  # kept apart from the monotonic clock tests replace
 from typing import Any, Callable
 
 try:
@@ -33,7 +35,6 @@ except ImportError:  # the VM's python3-jwcrypto package provides it; without it
 
 TEAM_ENV = "COCKPIT_ACCESS_TEAM_DOMAIN"
 AUD_ENV = "COCKPIT_ACCESS_AUD"
-KEYS_TTL = 3600
 RETRY_AFTER = 60
 FETCH_TIMEOUT = 5
 LEEWAY = 60  # seconds of clock skew allowed on exp and nbf
@@ -49,17 +50,9 @@ def settings() -> tuple[str, str] | None:
     return team, audience
 
 
-def configured() -> bool:
-    return settings() is not None and jwt is not None
-
-
 def fetch_keys(url: str) -> str:
     with urllib.request.urlopen(url, timeout=FETCH_TIMEOUT) as response:  # noqa: S310 - https URL from configuration
         return response.read(1 << 20).decode("utf-8")
-
-
-def _number(value: Any) -> bool:
-    return isinstance(value, (int, float)) and not isinstance(value, bool)
 
 
 class Verifier:
@@ -67,55 +60,43 @@ class Verifier:
 
     def __init__(self, fetch: Callable[[str], str] = fetch_keys):
         self.fetch = fetch
+        self.settings = settings()
+        self.configured = self.settings is not None and jwt is not None
         self.lock = threading.Lock()
-        self.cache: dict[str, tuple[Any, float | None, float]] = {}  # url -> (key set or None, fetched, last attempt)
+        self.keyset: Any = None
+        self.attempted: float | None = None  # time.monotonic() of the last fetch, successful or not
 
-    def keys(self, url: str, stale: bool = False) -> Any:
-        """The key set for url. stale=True asks for a new copy, subject to the once-a-minute limit."""
+    def keys(self, kid: Any) -> Any:
+        """The cached key set, fetched again when it lacks kid (subject to the once-a-minute limit)."""
         with self.lock:
-            keyset, fetched, attempted = self.cache.get(url, (None, None, None))
             now = time.monotonic()
-            due = attempted is None or (now - attempted >= RETRY_AFTER and (keyset is None or stale or now - fetched >= KEYS_TTL))
-            if due:
+            unknown = self.keyset is None or not self.keyset.get_keys(kid)
+            if unknown and (self.attempted is None or now - self.attempted >= RETRY_AFTER):
+                self.attempted = now
+                url = self.settings[0] + "/cdn-cgi/access/certs"
                 try:
-                    keyset, fetched = jwk.JWKSet.from_json(self.fetch(url)), now
+                    self.keyset = jwk.JWKSet.from_json(self.fetch(url))
                 except Exception as exc:  # noqa: BLE001 - keep the last good set, if any
                     sys.stderr.write(f"cloudflare access: fetching the key set from {url} failed: {type(exc).__name__}: {exc}\n")
-                self.cache[url] = (keyset, fetched, now)
-            if keyset is None:
+            if self.keyset is None:
                 raise LookupError("no Cloudflare Access key set")
-            return keyset
+            return self.keyset
 
     def email(self, assertion: str | None) -> str | None:
         """The lower-case email of a verified token, or None for a missing, invalid or unverifiable one."""
-        config = settings()
-        if not assertion or config is None or jwt is None:
+        if not assertion or not self.configured:
             return None
-        issuer, audience = config
-        url = issuer + "/cdn-cgi/access/certs"
+        issuer, audience = self.settings
         try:
-            try:
-                claims = self._claims(assertion, self.keys(url))
-            except jwt.JWTMissingKey:  # no cached key verifies it: the keys may have rotated
-                claims = self._claims(assertion, self.keys(url, stale=True))
+            token = jwt.JWT(jwt=assertion, algs=["RS256"], expected_type="JWS",
+                            check_claims={"iss": issuer, "aud": audience, "exp": None})
+            token.leeway = LEEWAY
+            token.validate(self.keys(token.token.jose_header.get("kid")))  # the signature, then the claims
+            claims = json.loads(token.claims)
+            # nbf is optional; listing it in check_claims would reject tokens without it
+            if isinstance(claims.get("nbf"), (int, float)) and claims["nbf"] > wall_clock() + LEEWAY:
+                return None
+            email = claims.get("email")
         except Exception:  # noqa: BLE001 - any failure means "not signed in"
             return None
-        now = time.time()
-        audiences = claims.get("aud") if isinstance(claims.get("aud"), list) else [claims.get("aud")]
-        exp, nbf, email = claims.get("exp"), claims.get("nbf"), claims.get("email")
-        if claims.get("iss") != issuer or audience not in audiences:
-            return None
-        if not _number(exp) or exp < now - LEEWAY:
-            return None
-        if nbf is not None and (not _number(nbf) or nbf > now + LEEWAY):
-            return None
         return email.strip().lower() if isinstance(email, str) and email.strip() else None
-
-    @staticmethod
-    def _claims(assertion: str, keyset: Any) -> dict[str, Any]:
-        """The claims of a token whose RS256 signature verifies against keyset; the caller checks the claims."""
-        token = jwt.JWT(jwt=assertion, key=keyset, algs=["RS256"], expected_type="JWS", check_claims=False)
-        claims = json.loads(token.claims)
-        if not isinstance(claims, dict):
-            raise ValueError("the token's claims are not an object")
-        return claims

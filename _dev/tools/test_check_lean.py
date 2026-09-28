@@ -922,38 +922,6 @@ class LeanCheckerRuleTests(unittest.TestCase):
             set_ledger(workbook, 4, {"Who": "Outside signer", "Count": None})
             self.assertNotIn("ledger.count_signing", {c for c, _ in issue_set(workbook, filing)})
 
-    def test_signing_count_uses_current_participation(self) -> None:
-        with tempfile.TemporaryDirectory() as tmp:
-            workbook, filing = build_no_question_fixture(Path(tmp))
-            set_ledger(workbook, 3, {"Event": "NDA signed", "Price low": None, "Price high": None,
-                                     "Stock %": None, "Formality": None, "Conditions": None,
-                                     "Due diligence": None, "Financing": None, "Regulatory": None,
-                                     "Exclusivity": None})
-            set_ledger(workbook, 4, {"Who": "Alpha", "Count": 1})
-            self.assertNotIn("ledger.count_signing", {c for c, _ in issue_set(workbook, filing)})
-
-        with tempfile.TemporaryDirectory() as tmp:
-            workbook, filing = build_no_question_fixture(Path(tmp))
-            set_ledger(workbook, 3, {"Event": "Contact", "Price low": None, "Price high": None,
-                                     "Stock %": None, "Formality": None, "Conditions": None,
-                                     "Due diligence": None, "Financing": None, "Regulatory": None,
-                                     "Exclusivity": None, "Count": None})
-            set_ledger(workbook, 4, {"Who": "Alpha", "Count": 1})
-            self.assertNotIn("ledger.count_signing", {c for c, _ in issue_set(workbook, filing)})
-
-        with tempfile.TemporaryDirectory() as tmp:
-            workbook, filing = build_no_question_fixture(Path(tmp))
-            set_ledger(workbook, 4, {"Who": "Alpha", "Event": "Withdrew", "Count": 1,
-                                     "Exit reason": "Terms or process", "Note": "Continued on a partial basis."})
-            append_ledger(workbook, [
-                {"day": dt.date(2020, 1, 5), "Who": "Alpha", "Type": "Strategic", "Event": "Other-scope bid",
-                 "Count": 1, "Formality": "Informal", "Conditions": "Unclear", "Stock %": 0,
-                 "Due diligence": "Not stated", "Financing": "Not stated", "Regulatory": "Not stated",
-                 "Exclusivity": "Not stated", "Note": "Partial assets, $5 million."},
-                {"day": dt.date(2020, 1, 6), "Who": "Alpha", "Event": "Merger agreement signed", "Count": None},
-            ])
-            self.assertNotIn("ledger.count_signing", {c for c, _ in issue_set(workbook, filing)})
-
     def test_non_bidder_events_keep_count_blank(self) -> None:
         for event in ("Target sale decision", "Activist", "Go-shop changed"):
             with self.subTest(event=event), tempfile.TemporaryDirectory() as tmp:
@@ -1125,23 +1093,37 @@ class LeanCheckerRuleTests(unittest.TestCase):
             set_ledger(workbook, 5, {"Event": "Contact", "Count": None, "Exit reason": None, "Inferred": None})
             self.assertIn(("round.zero_after_opening", "error"), issue_set(workbook, filing))
 
-    def test_signing_count_with_an_other_scope_alternative_and_a_partial_only_signer(self) -> None:
+    def test_signing_count_is_one_or_blank_and_is_compared_only_with_the_signers_bid_rows(self) -> None:
+        # D1: Count is 1 for a whole-company signer, otherwise blank. The checker does not reconstruct who is live:
+        # it errs on any other Count and warns when the signer's own bid rows point the other way.
         other_scope = {"Type": "Strategic", "Event": "Other-scope bid", "Count": 1, "Formality": "Informal",
                        "Conditions": "Unclear", **BID_TERMS, "Note": "Segment only, $50 million."}
+        gamma_partial = [{"day": dt.date(2020, 1, 3), "Who": "Gamma", "Type": "Strategic", "Event": "NDA signed", "Count": 1},
+                         {"day": dt.date(2020, 1, 3), "Who": "Gamma", **other_scope}]
+        alpha_left = [{"day": dt.date(2020, 1, 3), "Who": "Alpha", "Type": "Strategic", "Event": "Withdrew", "Count": 1,
+                       "Exit reason": "Terms or process", "Note": "Continued on a partial basis."},
+                      {"day": dt.date(2020, 1, 3), "Who": "Alpha", **other_scope}]
+        error, scope = ("ledger.count_signing", "error"), ("ledger.count_signing_scope", "warning")
         cases = [
-            # An Other-scope alternative in the same communication leaves Alpha in the whole-company contest (E10, E1).
-            ([{"day": dt.date(2020, 1, 3), "Who": "Alpha", **other_scope, "Note": "Alternative to #2: segment only, $50m."}],
-             "Alpha", 1, False),
+            ([], "Alpha", 1, set()),
+            ([], "Alpha", 2, {error}),
+            ([], "Alpha", "one", {error}),
+            ([], "Alpha", None, {scope}),  # Alpha has a whole-company Bid row (#2)
             # The signer's Who may carry a parenthetical, as derive_analysis.py reads units.
-            ([], "Alpha (through Alpha Merger Sub)", 1, False),
-            ([], "Alpha", None, True),
-            # A party whose every bid is Other-scope is partial-only: blank Count.
-            ([{"day": dt.date(2020, 1, 3), "Who": "Gamma", "Type": "Strategic", "Event": "NDA signed", "Count": 1},
-              {"day": dt.date(2020, 1, 3), "Who": "Gamma", **other_scope}], "Gamma", None, False),
-            ([{"day": dt.date(2020, 1, 3), "Who": "Gamma", "Type": "Strategic", "Event": "NDA signed", "Count": 1},
-              {"day": dt.date(2020, 1, 3), "Who": "Gamma", **other_scope}], "Gamma", 1, True),
+            ([], "Alpha (through Alpha Merger Sub)", 1, set()),
+            # An Other-scope alternative beside a whole-company bid leaves Alpha a whole-company signer (E10, E1).
+            ([{"day": dt.date(2020, 1, 3), "Who": "Alpha", **other_scope, "Note": "Alternative to #2: segment only, $50m."}],
+             "Alpha", 1, set()),
+            # A signer whose every bid row is Other-scope has blank Count.
+            (gamma_partial, "Gamma", None, set()),
+            (gamma_partial, "Gamma", 1, {scope}),
+            # A signer with no bid rows is not compared.
+            ([], "Outside signer", None, set()),
+            ([], "Outside signer", 1, set()),
+            # Participation is not reconstructed: a whole-company Bid row with a blank Count stays a review lead.
+            (alpha_left, "Alpha", None, {scope}),
         ]
-        for rows, signer, count, error in cases:
+        for rows, signer, count, expected in cases:
             with self.subTest(signer=signer, count=count, rows=len(rows)), tempfile.TemporaryDirectory() as tmp:
                 workbook, filing = build_no_question_fixture(Path(tmp))
                 wb = check_lean.openpyxl.load_workbook(workbook)
@@ -1149,7 +1131,13 @@ class LeanCheckerRuleTests(unittest.TestCase):
                 wb.save(workbook)
                 append_ledger(workbook, [dict(row) for row in rows] + [
                     {"day": dt.date(2020, 1, 4), "Who": signer, "Event": "Merger agreement signed", "Count": count}])
-                self.assertEqual(("ledger.count_signing", "error") in issue_set(workbook, filing), error)
+                found = {(c, s) for c, s in issue_set(workbook, filing) if c.startswith("ledger.count_signing")}
+                self.assertEqual(found, expected)
+        with tempfile.TemporaryDirectory() as tmp:
+            workbook, filing = build_no_question_fixture(Path(tmp))
+            set_ledger(workbook, 4, {"Count": None})
+            message = next(i["message"] for i in check(workbook, filing)["issues"] if i["code"] == "ledger.count_signing_scope")
+            self.assertIn("(D1)", message)
 
     def test_signing_who_is_the_acquirer_not_the_target(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -1197,6 +1185,43 @@ class LeanCheckerRuleTests(unittest.TestCase):
                 wb.save(workbook)
                 append_ledger(workbook, [{"day": dt.date(2020, 1, n), **row} for n, row in enumerate(rows, 1)])
                 self.assertEqual(("initiation.activist_support", "error") in issue_set(workbook, filing), error)
+
+    def test_a_round_one_opened_after_an_approach_is_not_the_target_step(self) -> None:
+        # D5 and E6: a round 1 opened at the first NDA or price negotiation with a party that approached the target
+        # is not a target-opened round, so a sale demand after it can still precede the target's first sale step.
+        # A round 1 opened by outreach after an approach is still the target's step.
+        day = lambda n: dt.date(2020, 1, n)
+        approach = {"Who": "Alpha", "Type": "Strategic", "Event": "Bidder interest", "Round": 0, "Count": 1}
+        early_bid = {"Who": "Alpha", "Type": "Strategic", "Event": "Bid", "Round": 0, "Count": 1, "Price low": 9,
+                     "Price high": 9, "Formality": "Informal", "Conditions": "Unclear", **BID_TERMS}
+        decision = {"Who": "Target", "Event": "Target sale decision", "Round": 0}
+        opening = {"Who": "Target", "Event": "Round opened", "Round": 1, "day": day(2)}
+        nda = {"Who": "Alpha", "Type": "Strategic", "Event": "NDA signed", "Round": 1, "Count": 1, "day": day(2)}
+        demand = {"Who": "Fund X", "Event": "Activist", "Round": 1, "Note": "Demands sale: sell now.", "day": day(3)}
+        bid = {**early_bid, "Round": 1, "Price low": 10, "Price high": 10, "day": day(4)}
+        signing = {"Who": "Alpha", "Event": "Merger agreement signed", "Round": 1, "Count": 1, "day": day(5)}
+        cases = [([approach, opening, nda, demand, bid, signing], False),  # bilateral: opened at Alpha's NDA
+                 ([early_bid, opening, nda, demand, bid, signing], False),
+                 ([approach, opening, demand, bid, signing], True),  # outreach after an approach is the target's step
+                 ([approach, decision, opening, nda, demand, bid, signing], True),  # the decision is the first step
+                 ([opening, demand, bid, signing], True)]  # no approach: the opening is the target's step
+        for rows, error in cases:
+            with self.subTest(order=[row["Event"] for row in rows]), tempfile.TemporaryDirectory() as tmp:
+                workbook, filing = build_no_question_fixture(Path(tmp))
+                wb = check_lean.openpyxl.load_workbook(workbook)
+                wb["Deal ledger"].delete_rows(2, wb["Deal ledger"].max_row)
+                wb["Deal facts"]["B10"] = "activist-influenced"
+                wb.save(workbook)
+                append_ledger(workbook, [{"day": day(1), **row} for row in rows])
+                self.assertEqual(("initiation.activist_support", "error") in issue_set(workbook, filing), error)
+        step, opened = check_lean.first_target_step, check_lean.target_opened_round_one
+        dated = lambda row, n: {**row, "Sort date": day(n)}
+        approach1, opening2, nda2, nda3 = dated(approach, 1), dated(opening, 2), dated(nda, 2), dated(nda, 3)
+        self.assertEqual((opened([approach1, opening2, nda2]), step([approach1, opening2, nda2])), (None, 3))
+        self.assertEqual((opened([approach1, opening2, nda3]), step([approach1, opening2, nda3])), (1, 1))
+        self.assertEqual((opened([opening2, nda2, approach1]), step([opening2, nda2, approach1])), (0, 0))
+        self.assertEqual((opened([approach1, decision, opening2, nda2]), step([approach1, decision, opening2, nda2])),
+                         (None, 1))
 
     def test_process_question_expected_for_a_round_opened_by_inference(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -1250,12 +1275,22 @@ class LeanCheckerRuleTests(unittest.TestCase):
                                                           "exit.activity_without_reentry"}, expected, found)
                 self.assertTrue(all(severity == "warning" for c, severity in found if c in expected), found)
         with tempfile.TemporaryDirectory() as tmp:
-            # A bid with no Re-entered row in the same round gets the late-bid lead, not "add Re-entered".
+            # A same-round bid with no Re-entered row is a late bid the target need not have considered: no lead,
+            # and not "add Re-entered". Where the round's Deadline outcome records an accepted late bid, it is a lead.
             workbook, filing = build_no_question_fixture(Path(tmp))
             append_ledger(workbook, [row for row in rows(5, 1) if row["Event"] != "Re-entered"])
             codes = {c for c, _ in issue_set(workbook, filing)}
-            self.assertIn("exit.late_bid_in_round", codes)
-            self.assertNotIn("exit.activity_without_reentry", codes)
+            self.assertFalse(codes & {"exit.late_bid_in_round", "exit.activity_without_reentry"}, codes)
+            set_rounds(workbook, {"Deadline outcome": "Enforced; Extended (late bid accepted)"})
+            found = [i for i in check(workbook, filing)["issues"] if i["code"] == "exit.late_bid_in_round"]
+            self.assertEqual([i["severity"] for i in found], ["warning"])
+            self.assertTrue(found[0]["message"].endswith("(E14 closing events; E9)."), found[0]["message"])
+            self.assertNotIn("never left", found[0]["message"])
+        with tempfile.TemporaryDirectory() as tmp:
+            workbook, filing = build_no_question_fixture(Path(tmp))
+            append_ledger(workbook, rows(5, 1))
+            message = next(i["message"] for i in check(workbook, filing)["issues"] if i["code"] == "exit.late_bid_in_round")
+            self.assertTrue(message.endswith("(E14 closing events; E9)."), message)
 
     def test_same_as_points_to_an_earlier_bid_of_the_same_bidder(self) -> None:
         day = dt.date(2020, 1, 4)
