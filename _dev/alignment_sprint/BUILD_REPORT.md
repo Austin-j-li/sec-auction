@@ -195,7 +195,7 @@ A re-review of this fix pass comes before approval.
 
 A five-lane re-review (`VERSION1_REREVIEW.md`) and Austin's rulings 6 and 7 (DECISIONS.md) led to this pass. One Claude Opus 5.5 lane applied the fix list, with two helper agents for the tools and the cockpit. No extraction ran; the live app, its state, services and backups were not touched; no protected file changed.
 
-- **Instruction** (397 lines, SHA-256 `0b7b38f3162b579789df86ce67fb07b9da0f72fcd887ef8a02b9ad7b61183047`).
+- **Instruction** (397 lines, SHA-256 `bf14a469a5f5a9a1317fdede7295cd476f2a6230d095a2e5f74863f6001e1c39`).
   - Ruling 6: E9's Extended is a later due date for the same request, set before the target acted on the bids in hand. One verb, “considers”, is defined once.
   - Rulings 1, 5, 6(c) and 7 are one E14 paragraph after the closing events. An exit on non-invitation (event 1) or for no bid by a due date (event 3) does not occur if, in time, the target considers a bid from the bidder, admits it, gives it more time or asks it for an offer.
   - Finality comes before the triggers and is judged as it stood before the request tested. A selection decision opens nothing within or after a final round, except under (c).

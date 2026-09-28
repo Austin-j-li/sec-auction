@@ -333,7 +333,7 @@ Each continuous period of participation ends once: by a reported or inferred exi
 4. Unnamed members of a reported total with no reported offer → one **Did not submit** cohort row at the first due date after they appear, with Count and Note as in E3.
 5. Still open at signing → **Not selected at signing**.
 
-An exit under event 1 or 3 does not occur if, afterwards and by the time that stage ends (event 1) or the next round opens (event 3), the target considers a bid from the bidder, admits it to a stage, gives it more time or asks it for an offer: the bidder never left, with no exit and no Re-entered row, and a new date it is given becomes its due date. The target considers a bid when it replies to the bidder about it or its board discusses that offer; a briefing on communications is not enough. It gives more time when it asks or allows the bidder to bid after the due date.
+An exit under event 3, or under event 1 where the target did not tell the bidder it was out, does not occur if, afterwards and by the time that stage ends (event 1) or the next round opens (event 3), the target considers a bid from the bidder, admits it to a stage, gives it more time or asks it for an offer: the bidder never left, with no exit and no Re-entered row, and a new date it is given becomes its due date. The target considers a bid when it replies to the bidder about it or its board discusses that offer; a briefing on communications is not enough. It gives more time when it asks or allows the bidder to bid after the due date.
 
 A bidder with an exit that later, in the same process, makes a whole-company offer the target considers, or that the target invites into a stage, gets **Re-entered** before that row.
 
