@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { commentAction, filingRanges, saveDeal, segments } from './api';
+import { commentAction, filingRanges, nextQuestionId, saveDeal, segments } from './api';
 
 describe('source text highlighting', () => {
   it('preserves the full source text through overlapping quote and search marks', () => {
@@ -67,5 +67,19 @@ describe('write token after a server restart', () => {
       await expect(saveDeal('alpha', { user: 'alex', can_edit: true, csrf_token: 'old' }, {})).rejects.toMatchObject({ status: 403 });
       expect(fetch).toHaveBeenCalledTimes(replies.length);
     }
+  });
+});
+
+describe('new Questions rows', () => {
+  const rows = ['Q1', 'Q2', 'R1', 'R3'].map(Q => ({ cells: { Q } }));
+  it('numbers a new or copied question with the first free Q id', () => {
+    expect(nextQuestionId(rows)).toBe('Q3');
+    expect(nextQuestionId(rows, rows[0])).toBe('Q3');
+    expect(nextQuestionId([])).toBe('Q1');
+  });
+  it('keeps a copied review item an R item', () => {
+    expect(nextQuestionId(rows, rows[2])).toBe('R2');
+    expect(nextQuestionId([...rows, { cells: { Q: 'R2' } }], rows[3])).toBe('R4');
+    expect(nextQuestionId([{ cells: { Q: 'R1' } }], { cells: { Q: ' r1 ' } })).toBe('R2');
   });
 });

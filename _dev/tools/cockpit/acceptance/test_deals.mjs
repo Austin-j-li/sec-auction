@@ -5,15 +5,16 @@ import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
 import { createInterface } from 'node:readline';
 import { mkdir, readFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import playwright from '/home/uctpiaj/work/vm-browser/node_modules/playwright/index.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const REPO = resolve(HERE, '../../../..');
-const EVIDENCE = resolve(process.env.COCKPIT_DEALS_EVIDENCE || '/tmp/cockpit-deals-acceptance');
+const EVIDENCE = resolve(process.env.COCKPIT_DEALS_EVIDENCE || resolve(tmpdir(), 'cockpit-deals-acceptance'));
 const STAGED_DIST = process.env.COCKPIT_TEST_DIST ? resolve(process.env.COCKPIT_TEST_DIST) : null;
-const EMAILS = { austin: 'junyu.li.24@ucl.ac.uk', alex: 'a.gorbenko@ucl.ac.uk' };
+const ACCESS = {}; // each user's Cloudflare Access token, signed by the fixture's own key (serve_fixture.py --two-users)
 const PASTED_INDEX = 'https://www.sec.gov/Archives/edgar/data/88/0000000088-22-000002-index.htm';
 const fixture = spawn('python3', [resolve(HERE, 'serve_fixture.py'), '--two-users', '--runs', '--deals'], { cwd: REPO, stdio: ['ignore', 'pipe', 'pipe'] });
 let serverStderr = '';
@@ -28,12 +29,12 @@ function record(name, passed, detail = '') {
 }
 
 async function fixtureUrl() {
-  for await (const line of createInterface({ input: fixture.stdout })) if (line.startsWith('{')) return JSON.parse(line).url;
+  for await (const line of createInterface({ input: fixture.stdout })) if (line.startsWith('{')) { const info = JSON.parse(line); Object.assign(ACCESS, info.access); return info.url; }
   throw new Error(`fixture exited: ${serverStderr}`);
 }
 
 async function userPage(browser, base, user) {
-  const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, extraHTTPHeaders: { 'Cf-Access-Authenticated-User-Email': EMAILS[user] } });
+  const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, extraHTTPHeaders: { 'Cf-Access-Jwt-Assertion': ACCESS[user] } });
   if (STAGED_DIST) await context.route('**/*', async route => {
     const url = new URL(route.request().url());
     if (url.pathname.startsWith('/api/')) return route.continue();

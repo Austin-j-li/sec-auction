@@ -20,7 +20,7 @@ HERE = Path(__file__).resolve().parent
 TOOLS_DIR = HERE.parent
 if str(TOOLS_DIR) not in sys.path:
     sys.path.insert(0, str(TOOLS_DIR))
-from cockpit import data  # noqa: E402
+from cockpit import access, data  # noqa: E402
 from cockpit import provenance  # noqa: E402
 from cockpit.workspace import WorkspaceError  # noqa: E402
 
@@ -38,6 +38,7 @@ MAX_JSON = 1024 * 1024
 
 class Handler(BaseHTTPRequestHandler):
     cockpit: data.Cockpit = data.default()
+    access_verifier = access.Verifier()  # shared by all servers in the process; tests replace it per server
     server_version = "LedgerCockpit/2"
     quiet = False
     csrf_token = secrets.token_urlsafe(32)
@@ -71,15 +72,17 @@ class Handler(BaseHTTPRequestHandler):
         self._send(json.dumps(value, ensure_ascii=False, separators=(",", ":")).encode(), "application/json; charset=utf-8", status)
 
     def _identity(self) -> tuple[str, bool]:
+        """(reader, may edit). On the public host the reader comes only from a verified Cloudflare Access token
+        (access.py); the plain email header, which any local process can forge, is ignored."""
         host = (self.headers.get("Host") or "").lower()
         local_hosts = {f"127.0.0.1:{self.server.server_port}", f"localhost:{self.server.server_port}"}
         if host in local_hosts and self.client_address[0] in ("127.0.0.1", "::1") and os.environ.get("COCKPIT_REQUIRE_ACCESS") != "1":
-            return ("local", not bool(self.headers.get("Cf-Access-Authenticated-User-Email")))
+            proxied = self.headers.get("Cf-Access-Jwt-Assertion") or self.headers.get("Cf-Access-Authenticated-User-Email")
+            return ("local", not proxied)
         expected = os.environ.get("COCKPIT_PUBLIC_ORIGIN", "").rstrip("/").lower()
         if not expected or host != urlparse(expected).netloc.lower():
             return ("unknown", False)
-        email = (self.headers.get("Cf-Access-Authenticated-User-Email") or "").strip().lower()
-        actor = READER_EMAILS.get(email)
+        actor = READER_EMAILS.get(self.access_verifier.email(self.headers.get("Cf-Access-Jwt-Assertion")) or "")
         return (actor or "unknown", actor is not None)
 
     def _origin_ok(self) -> bool:
@@ -275,6 +278,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--no-warm", action="store_true")
     args = parser.parse_args(argv)
     cockpit = data.Cockpit(args.repo_root)
+    if os.environ.get("COCKPIT_PUBLIC_ORIGIN") and not access.configured():
+        print(f"warning: COCKPIT_PUBLIC_ORIGIN is set but {access.TEAM_ENV} and {access.AUD_ENV} are not (or jwcrypto is missing); "
+              "nobody can sign in on the public site, so it is read-only", file=sys.stderr, flush=True)
     httpd = make_server(args.port, cockpit)
     if not args.no_warm: threading.Thread(target=_warm, args=(cockpit,), daemon=True).start()
     print(f"ledger cockpit -> http://127.0.0.1:{args.port}", flush=True)

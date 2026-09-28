@@ -5,11 +5,11 @@
     python3 _dev/tools/cockpit/backup.py restore <backup-dir> --state <dir> [--replace]
     python3 _dev/tools/cockpit/backup.py rehearse [--repo-root R] [--dest D]
 
-A backup is `<dest>/<YYYYMMDD-HHMMSS>Z/`: the workspace database copied with SQLite's online
-backup API (so a running server or worker is never interrupted), the file store (`filings/`,
-`instructions/`, `versions/`, `jobs/`) and `manifest.json` with every file's hash, the code
-on disk (git HEAD, checker version, hash of the frontend's index) and a summary of the working
-copies and comments. EDGAR lookup caches, the worker lock and credentials (kept outside the
+A backup is `<dest>/<YYYYMMDD-HHMMSS>Z/`, by default under `~/backups/ledger-live/`: the
+workspace database copied with SQLite's online backup API (so a running server or worker is
+never interrupted), the file store (`filings/`, `instructions/`, `versions/`, `jobs/`) and
+`manifest.json` with every file's hash, the code on disk (git HEAD, checker version, hash of
+the frontend's index) and a summary of the working copies and comments. EDGAR lookup caches, the worker lock and credentials (kept outside the
 state directory) are not backed up; after a restore, users reconnect their accounts. The
 rehearsal restores a fresh backup into a temporary repository root and compares it with the
 backup through the same data layer the server uses.
@@ -40,7 +40,9 @@ STATE = Path("_dev/cockpit/state")
 DB = "workspace.sqlite3"
 STORE = ("filings", "instructions", "versions", "jobs")
 SERVICES = ("ledger-cockpit", "ledger-worker")
-DEFAULT_DEST = Path.home() / "backups/ledger-cockpit"
+# Not the earlier app's ~/backups/ledger-cockpit/: pruning below removes every dated backup older than
+# --keep-days in its destination, and must never reach that app's nightlies (SWITCHOVER.md).
+DEFAULT_DEST = Path.home() / "backups/ledger-live"
 STAMP_RE = re.compile(r"\d{8}-\d{6}Z\Z")
 STAMP = "%Y%m%d-%H%M%SZ"
 INPUTS = ("_dev/cockpit/catalog.json", "raw_filing", "SEC_Deal_Ledger_Extraction_Instruction.md")

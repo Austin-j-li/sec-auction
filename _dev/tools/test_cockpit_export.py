@@ -5,6 +5,7 @@ import contextlib
 import csv
 import hashlib
 import io
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -158,6 +159,43 @@ class ExportTests(unittest.TestCase):
                 self.assertIn("separate, requested edit of the catalog", err)
         self.assertEqual(tree_digest(self.root), before)
         self.assertEqual((self.root / "extraction/alpha-deal.xlsx").read_bytes(), self.original)
+
+    # ---- a separate output checkout (after the switch-over, the development clone) --------
+
+    def test_out_root_receives_the_export_and_the_state_checkout_is_untouched(self):
+        workbook = self.add_deal()
+        item = self.published()
+        with tempfile.TemporaryDirectory() as folder:
+            out = Path(folder)
+            (out / "raw_filing").mkdir()
+            (out / "raw_filing/MANIFEST.csv").write_text("file,deal,form_type,date_filed,source_url,document,fetched_utc,bytes,sha256\nzz.htm,zeta,DEFM14A,2020-01-01,u,d,t,1,x\n", encoding="utf-8")
+            before = tree_digest(self.root)
+            for args in (("deal", SLUG, "--version", "run1", "--write"), ("instruction", "Version 1", "--write")):
+                code, out_text, err = self.export("--out-root", str(out), *args)
+                self.assertEqual(code, 0, err)
+            self.assertEqual(tree_digest(self.root), before)
+            self.assertEqual((out / f"extraction/{SLUG}.xlsx").read_bytes(), workbook)
+            self.assertEqual((out / "raw_filing" / FILE).read_bytes(), FILING)
+            self.assertEqual((out / "SEC_Deal_Ledger_Extraction_Instruction.md").read_bytes(), self.instructions.path(item["sha256"]).read_bytes())
+            rows = list(csv.DictReader(io.StringIO((out / "raw_filing/MANIFEST.csv").read_text(encoding="utf-8"))))
+            self.assertEqual([r["deal"] for r in rows], [SLUG, "zeta"])  # the output checkout's manifest, updated
+
+    def test_write_into_a_detached_checkout_is_refused(self):
+        self.add_deal()
+        with tempfile.TemporaryDirectory() as folder:
+            out = Path(folder)
+            git = lambda *args: subprocess.run(["git", "-C", str(out), "-c", "user.name=Test", "-c", "user.email=test@example.invalid", "-c", "commit.gpgsign=false", *args], check=True, capture_output=True)
+            git("init", "-q"); git("commit", "-q", "--allow-empty", "-m", "deployment"); git("checkout", "-q", "--detach")
+            code, out_text, _ = self.export("--out-root", str(out), "deal", SLUG, "--version", "run1")
+            self.assertEqual(code, 0)
+            self.assertIn("dry run", out_text)
+            code, _, err = self.export("--out-root", str(out), "deal", SLUG, "--version", "run1", "--write")
+            self.assertEqual(code, 1)
+            self.assertIn("detached HEAD", err)
+            self.assertFalse((out / "extraction").exists())
+            git("checkout", "-q", "-b", "development")
+            self.assertEqual(self.export("--out-root", str(out), "deal", SLUG, "--version", "run1", "--write")[0], 0)
+        self.assertEqual(self.export("--out-root", str(self.root / "missing"), "deal", SLUG, "--version", "run1")[0], 1)
 
     def test_unknown_deal_and_version_are_refused(self):
         self.add_deal()

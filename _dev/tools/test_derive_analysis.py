@@ -563,6 +563,26 @@ class DeriveTests(unittest.TestCase):
         rounds = {r["round"]: r for r in read(out, "rounds.csv")}
         self.assertEqual(rounds["2"]["live_open_point"], "1")
 
+    def test_opening_live_of_round_one_is_after_same_day_exits_in_round_zero(self):
+        # E14 rule 1 at round 1: a round-0 bidder not invited is dropped at the opening and keeps round 0 (E6, E8).
+        ledger = [bid(1, "Alpha", 9, rnd=0), bid(2, "Beta", 8, rnd=0),
+                  row(3, "Target", "Round opened", rnd=1, day=1),
+                  row(4, "Beta", "Dropped by target", rnd=0, day=1, Count=1, Inferred="Y",
+                      **{"Exit reason": "Not stated"})]
+        out, _ = self.derive(ledger, [rounds_line(1, "No deadline stated")])
+        self.assertEqual(read(out, "rounds.csv")[0]["live_open_point"], "1")
+
+    def test_initiation_takes_the_first_round_one_opening_as_the_target_step_whatever_its_who(self):
+        facts = {**FACTS, "Target": "Acme Corp. (NASDAQ: ACME)"}
+        for who in ("Acme", "Banker Co", "Target"):
+            with self.subTest(who=who):
+                ledger = [row(1, who, "Round opened"), row(2, "Fund X", "Activist", day=1, Note="Demands sale: sell now."),
+                          bid(3, "Alpha", 10, day=2)]
+                out, manifest = self.derive(ledger, [rounds_line(1, "Enforced")], name=f"{who}.xlsx", facts=facts)
+                deal = read(out, "deal.csv")[0]
+                self.assertEqual((deal["initiation_first_event"], deal["initiation_first_row"], deal["initiation_check"]),
+                                 ("target-led", "#1 Round opened", "agrees"))
+
     def test_opening_live_carries_pending_exits_from_earlier_same_day_openings(self):
         ledger = [row(1, "Alpha", "NDA signed", Count=1), row(2, "Beta", "NDA signed", Count=1),
                   row(3, "Gamma", "NDA signed", Count=1),

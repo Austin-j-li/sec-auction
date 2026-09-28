@@ -1,14 +1,23 @@
 """Export a cockpit instruction or deal into the repository, for a commit Austin requests.
 
-    export_repo.py instruction <name-or-id> [--write]
-    export_repo.py deal <slug> --version <id>|working [--write]
+    export_repo.py [--repo-root STATE_ROOT] [--out-root CHECKOUT] instruction <name-or-id> [--write]
+    export_repo.py [--repo-root STATE_ROOT] [--out-root CHECKOUT] deal <slug> --version <id>|working [--write]
+
+--repo-root is the checkout whose _dev/cockpit/state the cockpit uses; --out-root is the
+checkout the files are written to (by default the same folder). After the Version 1
+switch-over the state lives in the deployment folder, so export into the development clone:
+
+    export_repo.py --repo-root ~/work/Projects/ledger-live --out-root ~/work/Projects/sec-auction ...
+
+--write refuses an output folder that is a Git checkout with a detached HEAD, which is how
+the switch-over leaves the running deployment folder.
 
 An instruction export writes a published version's stored text into
 SEC_Deal_Ledger_Extraction_Instruction.md, after checking the text against its hash.
 A deal export writes a version's workbook (or the working copy, rendered by the same
 code as the cockpit's download) to extraction/<slug>.xlsx; for a deal added in the
 cockpit it also writes the filing to raw_filing/ and its MANIFEST.csv row. Paths that
-catalog.json references as immutable originals are never overwritten.
+either checkout's catalog.json references as immutable originals are never overwritten.
 
 Without --write nothing is written: each target is printed with its current SHA-256
 (or "new") and the SHA-256 it would get. The script never commits, and never calls a
@@ -21,6 +30,8 @@ import csv
 import datetime as dt
 import hashlib
 import io
+import json
+import subprocess
 import sys
 from pathlib import Path
 from typing import Any
@@ -123,7 +134,7 @@ def manifest_content(root: Path, added: dict[str, Any]) -> bytes:
     return buffer.getvalue().encode("utf-8")
 
 
-def deal_plan(cockpit: data.Cockpit, slug: str, version: str) -> list[tuple[str, bytes]]:
+def deal_plan(cockpit: data.Cockpit, slug: str, version: str, out_root: Path | None = None) -> list[tuple[str, bytes]]:
     ws = cockpit.workspace
     if not data.SLUG_RE.fullmatch(slug or ""):
         raise Refused(f"invalid deal {slug!r}")
@@ -138,24 +149,40 @@ def deal_plan(cockpit: data.Cockpit, slug: str, version: str) -> list[tuple[str,
         filing = cockpit.deals.filing_path(row).read_bytes()
         if _sha(filing) != row["sha256"]:
             raise Refused(f"the saved filing of {slug} does not match its recorded SHA-256; nothing exported")
-        plan += [(f"raw_filing/{row['file']}", filing), (MANIFEST, manifest_content(ws.root, row))]
+        plan += [(f"raw_filing/{row['file']}", filing), (MANIFEST, manifest_content(out_root or ws.root, row))]
     return plan
 
 
 # ---- output --------------------------------------------------------------------------
 
 
-def check_targets(cockpit: data.Cockpit, plan: list[tuple[str, bytes]]) -> None:
+def detached_checkout(root: Path) -> bool:
+    """True when root is inside a Git checkout whose HEAD is detached, as the running deployment folder is."""
+    def git(*args: str) -> int:
+        return subprocess.run(["git", "-C", str(root), *args], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=30).returncode
+    try:
+        return git("rev-parse", "--is-inside-work-tree") == 0 and git("symbolic-ref", "-q", "HEAD") != 0
+    except (OSError, subprocess.SubprocessError):
+        return False
+
+
+def check_targets(cockpit: data.Cockpit, plan: list[tuple[str, bytes]], out_root: Path | None = None) -> None:
     protected = catalog_paths(cockpit.workspace.catalog()) if cockpit.workspace.available else set()
+    target_catalog = (out_root or cockpit.workspace.root) / "_dev/cockpit/catalog.json"
+    if target_catalog.is_file():
+        protected |= catalog_paths(json.loads(target_catalog.read_text(encoding="utf-8")))
     for relative, _ in plan:
         if relative in protected:
             raise Refused(f"{relative} is an immutable original referenced by _dev/cockpit/catalog.json; "
                           "it is not overwritten. Changing it needs a separate, requested edit of the catalog.")
 
 
-def run(cockpit: data.Cockpit, plan: list[tuple[str, bytes]], write: bool) -> list[str]:
-    check_targets(cockpit, plan)
-    root = cockpit.workspace.root
+def run(cockpit: data.Cockpit, plan: list[tuple[str, bytes]], write: bool, out_root: Path | None = None) -> list[str]:
+    check_targets(cockpit, plan, out_root)
+    root = out_root or cockpit.workspace.root
+    if write and detached_checkout(root):
+        raise Refused(f"{root} is a checkout with a detached HEAD, like the running deployment folder; "
+                      "export into the development clone with --out-root")
     lines = []
     for relative, content in plan:
         target = root / relative
@@ -175,7 +202,8 @@ def run(cockpit: data.Cockpit, plan: list[tuple[str, bytes]], write: bool) -> li
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("--repo-root", type=Path, default=data.REPO_ROOT)
+    parser.add_argument("--repo-root", type=Path, default=data.REPO_ROOT, help="the checkout whose cockpit state is exported")
+    parser.add_argument("--out-root", type=Path, help="the checkout written to (default: --repo-root)")
     commands = parser.add_subparsers(dest="command", required=True)
     one = commands.add_parser("instruction", help="write a published instruction to " + REPOSITORY_INSTRUCTION)
     one.add_argument("name", help="published name (e.g. Version 1) or 12-character id")
@@ -186,10 +214,13 @@ def main(argv: list[str] | None = None) -> int:
     deal.add_argument("--write", action="store_true")
     args = parser.parse_args(argv)
     cockpit = data.Cockpit(args.repo_root.resolve())
+    out_root = args.out_root.resolve() if args.out_root else cockpit.workspace.root
     try:
-        plan = instruction_plan(cockpit, args.name) if args.command == "instruction" else deal_plan(cockpit, args.slug, args.version)
-        lines = run(cockpit, plan, args.write)
-    except (Refused, OSError, WorkspaceError) as exc:
+        if not out_root.is_dir():
+            raise Refused(f"output folder {out_root} does not exist")
+        plan = instruction_plan(cockpit, args.name) if args.command == "instruction" else deal_plan(cockpit, args.slug, args.version, out_root)
+        lines = run(cockpit, plan, args.write, out_root)
+    except (Refused, OSError, ValueError, WorkspaceError) as exc:
         print(f"refused: {exc}", file=sys.stderr)
         return 1
     print("\n".join(lines))

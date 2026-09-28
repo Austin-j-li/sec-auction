@@ -6,13 +6,14 @@ import { spawn } from 'node:child_process';
 import { once } from 'node:events';
 import { createInterface } from 'node:readline';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import playwright from '/home/uctpiaj/work/vm-browser/node_modules/playwright/index.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const REPO = resolve(HERE, '../../../..');
-const EVIDENCE = resolve(process.env.COCKPIT_BROWSER_EVIDENCE || '/tmp/cockpit-browser-acceptance');
+const EVIDENCE = resolve(process.env.COCKPIT_BROWSER_EVIDENCE || resolve(tmpdir(), 'cockpit-browser-acceptance'));
 const STAGED_DIST = process.env.COCKPIT_TEST_DIST ? resolve(process.env.COCKPIT_TEST_DIST) : null;
 const results = [];
 const screenshots = [];

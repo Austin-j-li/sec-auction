@@ -103,6 +103,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--output", type=Path, help="JSON file; stdout when omitted")
     args = parser.parse_args(argv)
     try:
+        if args.output:
+            # As derive_analysis.py guards --out: never write into the data folders or over the input.
+            derive_analysis.check_outside_data(args.output, "--output")
+            if args.output.resolve() == args.workbook.resolve():
+                raise derive_analysis.DeriveError("--output must not be the input workbook")
         items = build_review_list(derive_analysis.load(args.workbook), set(args.disable))
         result = json.dumps({"categories": list(CATEGORIES), "disabled": args.disable, "items": items}, indent=2) + "\n"
         if args.output:

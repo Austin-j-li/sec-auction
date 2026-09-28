@@ -17,7 +17,7 @@ import { compact, LedgerTab, SheetTab } from './Records';
 import { ChangesTab, DocumentText, friendlyDate, HistoryTab, ReviewTab } from './Review';
 import { Dot, Loading, Message } from './ui';
 import { cockpitTheme } from './theme';
-import { commentAction, compareQuery, count, dealVisibility, jobAction, json, markSeen, markSeenOnLeave, recordValues, rowId, saveDeal, setDealReview, sheetColumns, sheetRows, text, versionAction } from './api';
+import { commentAction, compareQuery, count, dealVisibility, jobAction, json, markSeen, markSeenOnLeave, nextQuestionId, recordValues, rowId, saveDeal, setDealReview, sheetColumns, sheetRows, text, versionAction } from './api';
 import { countThreads, DEAL_KINDS, displayName, EDIT_KINDS, INSTRUCTION_KINDS, knownUser, RUN_KINDS, VERSION_KINDS } from './trace';
 import { isActive, isImported, orderVersions, rebaseLines, versionOptionLabel } from './runs';
 import { hiddenLine, REVIEW_STATUSES, reviewByline } from './deals';
@@ -521,11 +521,7 @@ function App() {
     const afterUid = selected?.uid || rows.at(-1)?.uid || null;
     const values = Object.fromEntries(sheetColumns(deal, sheet).map(field => [field, cloneUid ? text(recordValues(selected, sheet)[field]) : '']));
     if (sheet === 'Deal ledger') { values['#'] = ''; if (cloneUid) values.Count = ''; }
-    if (sheet === 'Questions') {
-      const used = new Set(rows.map(item => text(item.cells?.Q)));
-      let number = 1; while (used.has(`Q${number}`)) number++;
-      values.Q = `Q${number}`;
-    }
+    if (sheet === 'Questions') values.Q = nextQuestionId(rows, cloneUid ? selected : null);
     const temporary = `new-${crypto.randomUUID()}`;
     const row = sheet === 'Deal facts' ? { uid: temporary, field: values.Field, value: values.Value } : { uid: temporary, id: '', excel_row: null, cells: values, issues: [], quote: null };
     setDeal(current => {

@@ -10,7 +10,7 @@ import tempfile
 import threading
 from pathlib import Path
 
-from test_http import HttpFixture, add_pending_catalog_deal, synthetic_repo
+from test_http import ALEX, AUSTIN, AccessKeys, HttpFixture, add_pending_catalog_deal, synthetic_repo
 
 
 def start_fake_worker(root: Path) -> None:
@@ -99,16 +99,19 @@ def main() -> None:
             if "--catalog-pending" in sys.argv[1:]:
                 add_pending_catalog_deal(root)
         fixture = HttpFixture(root)
+        started = {"url": fixture.base, "root": str(root)}
         if "--two-users" in sys.argv[1:]:
-            # Identities come from the Cloudflare Access email header, as on the public route.
-            os.environ["COCKPIT_REQUIRE_ACCESS"] = "1"
-            os.environ["COCKPIT_PUBLIC_ORIGIN"] = fixture.base
+            # Identities come from signed Cloudflare Access tokens, as on the public route. The suites send
+            # started["access"][user] as Cf-Access-Jwt-Assertion; the tokens are signed by a key made here.
+            keys = AccessKeys()
+            os.environ.update({"COCKPIT_REQUIRE_ACCESS": "1", "COCKPIT_PUBLIC_ORIGIN": fixture.base, **keys.install(fixture.httpd)})
+            started["access"] = {"austin": keys.token(AUSTIN), "alex": keys.token(ALEX)}
         if "--deals" in sys.argv[1:]:
             stub_edgar(root)
         if "--runs" in sys.argv[1:]:
             start_fake_worker(root)
         signal.signal(signal.SIGTERM, lambda *_: fixture.httpd.shutdown())
-        print(json.dumps({"url": fixture.base, "root": str(root)}), flush=True)
+        print(json.dumps(started), flush=True)
         try:
             fixture.thread.join()
         finally:

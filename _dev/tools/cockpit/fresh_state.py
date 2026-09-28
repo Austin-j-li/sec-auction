@@ -3,9 +3,15 @@
 Usage: python3 _dev/tools/cockpit/fresh_state.py OLD_STATE NEW_STATE
 
 Only account metadata, added-deal rows, and their verified filing files cross the
-boundary. The source database is opened read-only and captured with SQLite's
-online backup API, which includes committed WAL transactions. NEW_STATE must not
-exist. The repository catalog and instruction are supplied by the application.
+boundary. NEW_STATE must not exist. The repository catalog and instruction are
+supplied by the application.
+
+Nothing in OLD_STATE is changed. A database that no program has open (no -wal,
+-shm or -journal file beside it, as after the old services stop) is copied byte
+for byte and then checked unchanged, because even a read-only SQLite connection
+would leave -wal and -shm files beside it. A database in use is read through a
+read-only connection with SQLite's online backup API, which includes committed
+WAL transactions; its -wal and -shm files exist already.
 """
 from __future__ import annotations
 
@@ -60,7 +66,21 @@ def _validate_paths(source: Path, destination: Path) -> tuple[Path, Path]:
     return database, new
 
 
+def _signature(path: Path) -> tuple[int, int, int, int]:
+    info = path.stat()
+    return info.st_ino, info.st_size, info.st_mtime_ns, info.st_ctime_ns
+
+
 def _snapshot(database: Path, target: Path) -> None:
+    sidecars = [database.with_name(database.name + suffix) for suffix in ("-wal", "-shm", "-journal")]
+    if not any(path.exists() or path.is_symlink() for path in sidecars):
+        before = _signature(database)
+        descriptor = os.open(database, os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0))
+        with os.fdopen(descriptor, "rb") as reader, target.open("xb") as writer:
+            shutil.copyfileobj(reader, writer, 1024 * 1024)
+        if any(path.exists() or path.is_symlink() for path in sidecars) or _signature(database) != before:
+            raise FreshStateError("source database changed during the copy")
+        return
     with closing(sqlite3.connect(f"{database.resolve().as_uri()}?mode=ro", uri=True, timeout=30)) as source:
         source.execute("PRAGMA query_only=ON")
         with closing(sqlite3.connect(target)) as copy:

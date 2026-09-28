@@ -151,3 +151,40 @@ The absent Conditions, process/round totals, signing Count and Q/R fields cannot
 ## Stop point
 
 This build is delivered on `version-1`. Publication, replacing the root instruction, updating STATUS/AGENTS/root README, moving `extraction-v2`, deployment, cleanup of retired checkouts and any extraction wait for Austin. The remaining work at this handoff is substantive approval of the flagged choices, not another build or a live change.
+
+## Fix pass (28 September 2026)
+
+Four independent reviews (`BUILD_REVIEW.md`) found no blocker in the draft or the reports and one in the checker. Four Claude Opus 5.5 lanes then applied the fix list and the 28 September rulings (DECISIONS.md, rulings 1–5), each owning separate files; the orchestrator integrated and re-ran the suites. No extraction ran; the live app, its state, services and backups were not touched.
+
+- **Instruction.** The four rulings are applied. Ruling 1 (missed due date, as refined) is stated once, as E14 closing event 3; the due date's outcome lives only in E9 (left as drafted) and re-entry only in the Re-entered rule. The review fixes are also applied: S1 scope guard restored beside Part F; S2 confirmation by documents copies only price and consideration; S4 "to all the admitted parties"; M2–M5; M1 lapses. CHANGE_MAP covers the rulings, marks reconciliations 1, 16 and 17 superseded and settles every earlier flagged item. Its 241 links and 30 plain references were re-verified. Draft: 395 lines, SHA-256 `5264450c019ba4f6a55c419fd229076994bc503aa4b323afd232ac0dd5efbf3a`.
+- **Round map and workbook check.** Every fact was re-checked against the filings.
+  - Kraton J: Did not submit June 29, Re-entered July 19, dropped July 20. June 29 is Extended (late bid accepted), last July 19.
+  - sTec: E and F are whole-company entrants, giving 6 parties. D stays live until it Withdrew June 5.
+  - Penford: round 1 August 28, 2014.
+  - Synacor: round 1 May 8, 2018, August 25, 2019 and July 13, 2020; process 3 gains round 4 on January 6, 2021; CLP's January 21 draft is a confirmation by documents.
+  - Datalink C Contingent (ruling 3). W42 fixed. The register now runs W01–W48, and the 321/123 row counts are unchanged.
+  - Remaining open items are readings of the filing, listed in ROUND_MAP.
+- **Checker and tools.**
+  - The `round.zero_after_opening` blocker is fixed.
+  - The signing Count follows derive's rule, and initiation is shared between checker and derive.
+  - New warnings: `conditions.none_expected`, `ledger.signing_who`, `exit.did_not_submit_date` and `exit.late_bid_in_round`.
+  - A process Question is now required after an inferred round, Rows affected accepts mixed row and event lists, and `review_list.py --output` is guarded.
+  - The new tests fail on the old code.
+- **Cockpit and runbook.**
+  - The server takes a reader only from a Cloudflare Access token verified with `jwcrypto` (`access.py`). It fails closed until `COCKPIT_ACCESS_TEAM_DOMAIN` and `COCKPIT_ACCESS_AUD` are filled in the deploy drop-in at switch-over.
+  - Runbook: the drain query includes `timed_out`, and exports go through `export_repo.py --out-root` (refused into a detached deploy folder).
+  - Backups now go to `~/backups/ledger-live/`.
+  - `fresh_state.py` leaves no `-wal`/`-shm` behind.
+  - SWITCHOVER now checks the frontend before the outage, creates the drop-in folders and gives a Version 0 recovery step, and it notes that hidden deals reappear.
+  - Cloning an R item keeps an R id.
+  - The 27 September `/tmp` acceptance leftovers are deleted.
+- **Tests after integration.** Full `_dev/tools` Python tree 374 passed, 246 subtests; vitest 79 passed. The app lane also ran the core browser suite (63), the trace, runs, instructions and deals suites, and the resize and responsive suites; all pass. `git diff --check` is clean.
+
+Still open for Austin:
+- Version 1's seeded attribution ("system" vs his account).
+- Whether loopback access should require Access (`COCKPIT_REQUIRE_ACCESS=1`).
+- A separate fix for the live app's header trust, which this build fixes only from the switch-over.
+- The filing-reading items in ROUND_MAP.
+- Two orphaned fixture servers from 23 September, started from the live folder (PIDs 2651214, 2807890), are still running. They were left alone.
+
+A re-review of this fix pass comes before approval.

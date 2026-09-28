@@ -642,6 +642,12 @@ class MigrationTests(unittest.TestCase):
             first.close(); second.close()
 
 
+class StubAccess:
+    """Stands in for cockpit.access.Verifier: the Cf-Access-Jwt-Assertion value is taken as the verified email."""
+    def email(self, assertion):
+        return assertion
+
+
 class HTTPTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
@@ -675,9 +681,14 @@ class HTTPTests(unittest.TestCase):
         self.assertEqual(self.request("/api/document/alpha-deal/..%2F..%2Fsecret")[0], 404)
         self.assertEqual(self.request("/assets/..%2Fserver.py")[0], 404)
 
-    def test_public_identity_requires_configured_host_and_access_email(self):
+    def test_public_identity_requires_configured_host_and_verified_access_token(self):
+        # Token verification itself is tested in cockpit/acceptance/test_http.py; here a stub verifier stands in.
+        self.httpd.RequestHandlerClass.access_verifier = StubAccess()
         with patch.dict(os.environ, {"COCKPIT_PUBLIC_ORIGIN": "https://lines.dealextract.org"}):
-            public = {"Host": "lines.dealextract.org", "Cf-Access-Authenticated-User-Email": "junyu.li.24@ucl.ac.uk"}
+            forged = {"Host": "lines.dealextract.org", "Cf-Access-Authenticated-User-Email": "junyu.li.24@ucl.ac.uk"}
+            status, session = self.request("/api/session", headers=forged)
+            self.assertEqual((status, session["user"], session["can_edit"]), (200, "unknown", False))
+            public = {"Host": "lines.dealextract.org", "Cf-Access-Jwt-Assertion": "junyu.li.24@ucl.ac.uk"}
             status, session = self.request("/api/session", headers=public)
             self.assertEqual(status, 200)
             self.assertEqual((session["user"], session["can_edit"]), ("austin", True))

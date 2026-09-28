@@ -17,8 +17,16 @@ Mechanical readings of rules the instruction states in words:
 - The process Question (Part F) is the first Question whose Question text begins
   "Process:" or whose Rows affected cites a Process terminated or Process restarted row
   by #. It does not count toward the five-Question cap; one is expected when the ledger
-  has more than one process. Rounds opened by trigger (d) or by inference also call for
-  it, but they cannot be recognised mechanically, so they are not checked.
+  has more than one process or a Round opened row with Inferred = Y. Rounds opened by
+  trigger (d) also call for it, but they cannot be recognised mechanically, so they are
+  not checked.
+- A bidder unit is followed by its Who without parentheticals, case-folded (unit_key),
+  as derive_analysis.py follows it.
+- The target's first sale step (D5) is its first Target interest or Target sale decision
+  row, or the first round-1 Round opened row, whatever that row's Who.
+- A signer is outside the whole-company contest when its participation has ended, it
+  never entered, or every bid row of its unit is an Other-scope bid (E1), as
+  derive_analysis.py reads partial-only parties.
 - Count is required on Process terminated, Process restarted and Bidding group changed
   rows. A process marker that closes no open participation leaves Count blank, so a
   blank Count on a process marker is a warning, not an error.
@@ -409,8 +417,10 @@ def nonempty_rows(ws: Any, width: int) -> list[int]:
 def parse_affected_rows(value: Any) -> tuple[set[int], bool]:
     """Return explicit ledger row references and whether the syntax was parseable.
 
-    Accepted forms include ``#2, #4-#6`` and ``Rows 2, 4-6``. Narrative/global
-    descriptions are left unparsed so the checker does not invent references.
+    Accepted forms include ``#2, #4-#6`` and ``Rows 2, 4-6``. Without ``#``, semicolons separate
+    segments, and a segment that is not a row list (a source event the ledger omits, D4) is skipped,
+    so ``Rows 4, 6; June 5 board meeting, omitted`` cites rows 4 and 6. Narrative/global
+    descriptions with no row list are left unparsed so the checker does not invent references.
     """
 
     if is_blank(value):
@@ -423,18 +433,21 @@ def parse_affected_rows(value: Any) -> tuple[set[int], bool]:
     if "#" in text:
         return hash_refs, bool(hash_refs)
 
-    stripped = re.sub(r"(?i)^\s*rows?\s*:?\s*", "", text)
-    if not re.fullmatch(r"\d+(?:\s*-\s*\d+)?(?:\s*[,;]\s*\d+(?:\s*-\s*\d+)?)*", stripped):
-        return set(), False
     refs: set[int] = set()
-    for token in re.split(r"\s*[,;]\s*", stripped):
-        if "-" in token:
-            start, end = (int(part.strip()) for part in token.split("-", 1))
-            lo, hi = sorted((start, end))
-            refs.update(range(lo, hi + 1))
-        else:
-            refs.add(int(token))
-    return refs, True
+    parsed = False
+    for segment in text.split(";"):
+        stripped = re.sub(r"(?i)^\s*rows?\s*:?\s*", "", segment).strip()
+        if not re.fullmatch(r"\d+(?:\s*-\s*\d+)?(?:\s*,\s*\d+(?:\s*-\s*\d+)?)*", stripped):
+            continue
+        parsed = True
+        for token in re.split(r"\s*,\s*", stripped):
+            if "-" in token:
+                start, end = (int(part.strip()) for part in token.split("-", 1))
+                lo, hi = sorted((start, end))
+                refs.update(range(lo, hi + 1))
+            else:
+                refs.add(int(token))
+    return refs, parsed
 
 
 
@@ -444,6 +457,24 @@ def is_process_question(question: Any, rows_affected: Any, marker_rows: set[int]
     text = normalize_contiguous(question).lower() if not is_blank(question) else ""
     refs, _ = parse_affected_rows(rows_affected)
     return text.startswith("process:") or bool(refs & marker_rows)
+
+
+def unit_key(who: Any) -> str:
+    """The name a bidder unit is followed by: Who without parentheticals, case-folded."""
+    name = re.sub(r"\([^()]*\)", " ", "" if is_blank(who) else normalize_contiguous(who))
+    return re.sub(r"\s+", " ", name).strip(" .,;:").casefold()
+
+
+def first_target_step(records: list[dict[str, Any]]) -> int:
+    """Index of the target's first sale step (D5) in one process's rows, else len(records): its first Target
+    interest or Target sale decision row, or its first round-1 Round opened row, whatever that row's Who."""
+    def event(record: dict[str, Any]) -> str:
+        return "" if is_blank(record.get("Event")) else normalize_contiguous(record.get("Event"))
+
+    return next((index for index, record in enumerate(records)
+                 if event(record) in {"Target interest", "Target sale decision"}
+                 or (event(record) == "Round opened" and as_integer_or_text(record.get("Round")) == 1)),
+                len(records))
 
 
 def is_cohort(record: dict[str, Any]) -> bool:
@@ -708,6 +739,17 @@ class LeanChecker:
                 f"{diligence!r}, {financing!r}, {regulatory!r}, {record['Exclusivity']!r}.",
                 "Conditions",
             )
+        if (level == "Unclear" and (fully_supported or silent_formal) and record["Exclusivity"] != "Required"
+                and not stated_heavy_trigger and not is_cohort(record)):
+            # E12 takes None before Light and Unclear; a silent Formal bid with no H trigger meets it.
+            issue(
+                "warning",
+                "conditions.none_expected",
+                "Conditions is Unclear, but E12 gives None: no H trigger, Exclusivity not Required, and Due diligence, "
+                "Financing and Regulatory meet None's tests (a Formal bid may be silent on them); found "
+                f"{record['Formality']!r}, {diligence!r}, {financing!r}, {regulatory!r}, {record['Exclusivity']!r}.",
+                "Conditions",
+            )
         if level == "Light" and diligence not in {"Complete", "Incomplete"} and record["Exclusivity"] != "Required":
             # A warning: E12's "only documentation remains" route can be read with diligence Not stated.
             issue(
@@ -766,26 +808,65 @@ class LeanChecker:
                     column="Event",
                 )
 
-        exited: dict[tuple[Any, str], Any] = {}
+        def numbered_round(record: dict[str, Any]) -> int | None:
+            return None if record["Round"] == "post" else as_integer(record["Round"])
+
+        def day(record: dict[str, Any]) -> dt.date | None:
+            return as_date(record["Date to"]) or as_date(record["Sort date"])
+
+        # E14: a bidder asked to bid by a due date that has not bid by then exits at the due date.
+        due_days: dict[tuple[Any, Any], set[dt.date]] = defaultdict(set)
+        for _, record in rows:
+            if record["Event"] == "Deadline" and numbered_round(record) is not None and day(record):
+                due_days[(as_integer(record["Process"]), numbered_round(record))].add(day(record))
+        for excel_row, record in rows:
+            key = (as_integer(record["Process"]), numbered_round(record))
+            exit_day = day(record)
+            if record["Event"] == "Did not submit" and exit_day and due_days.get(key) and exit_day not in due_days[key]:
+                self.add(
+                    "warning",
+                    "exit.did_not_submit_date",
+                    f"Did not submit is dated {exit_day:%m/%d/%Y}, but no Deadline row of Process {key[0]} Round "
+                    f"{key[1]} falls on that day; a bidder asked to bid by a due date that has not bid by then exits "
+                    "at the due date (E14).",
+                    sheet=ws.title,
+                    row=excel_row,
+                    column="Date to",
+                )
+
+        exited: dict[tuple[Any, str], tuple[Any, Any, int | None]] = {}
         for excel_row, record in rows:
             key = (as_integer(record["Process"]), who(record))
             event = record["Event"]
             if not key[1]:
                 continue
             if event in EXIT_EVENTS:
-                exited[key] = record["#"]
-            elif event == "Re-entered":
-                exited.pop(key, None)
-            elif event in {"Bid", "Bid reaffirmed", "NDA signed", "Bidding group changed"} and key in exited:
-                self.add(
-                    "warning",
-                    "exit.activity_without_reentry",
-                    f"{record['Who']} left at #{exited.pop(key)}, and this {event} row follows in the same process "
-                    "with no Re-entered between them; add Re-entered if the bidder came back, or review the exit (E14).",
-                    sheet=ws.title,
-                    row=excel_row,
-                    column="Event",
-                )
+                exited[key] = (record["#"], event, numbered_round(record))
+            elif event in {"Re-entered", "Bid", "Bid reaffirmed", "NDA signed", "Bidding group changed"} and key in exited:
+                number, exit_event, exit_round = exited.pop(key)
+                if (event in {"Re-entered", "Bid", "Bid reaffirmed"} and exit_event == "Did not submit"
+                        and exit_round is not None and numbered_round(record) == exit_round):
+                    self.add(
+                        "warning",
+                        "exit.late_bid_in_round",
+                        f"{record['Who']} did not submit at #{number}, and this {event} row follows in the same round. "
+                        "A late bid the target takes before the next round opens means the bidder never left: no exit "
+                        "or Re-entered row, and the deadline outcome is Extended (late bid accepted); a late bid it "
+                        "does not take leaves the exit, with no Re-entered row (E14).",
+                        sheet=ws.title,
+                        row=excel_row,
+                        column="Event",
+                    )
+                elif event != "Re-entered":
+                    self.add(
+                        "warning",
+                        "exit.activity_without_reentry",
+                        f"{record['Who']} left at #{number}, and this {event} row follows in the same process "
+                        "with no Re-entered between them; add Re-entered if the bidder came back, or review the exit (E14).",
+                        sheet=ws.title,
+                        row=excel_row,
+                        column="Event",
+                    )
 
     def check_same_as_and_round_zero(self, ws: Any, rows: list[tuple[int, dict[str, Any]]]) -> None:
         """Checks that compare ledger rows: 'Same as #n' (E10) and Round 0 (E6)."""
@@ -817,7 +898,10 @@ class LeanChecker:
             process = as_integer(record["Process"])
             if record["Event"] == "Round opened" and as_integer(record["Round"]) == 1 and record["Round"] != "post":
                 opened.add(process)
-            elif process in opened and as_integer(record["Round"]) == 0 and record["Round"] != "post":
+            elif (process in opened and as_integer(record["Round"]) == 0 and record["Round"] != "post"
+                  and record["Event"] not in EXIT_EVENTS):
+                # An exit row carries the round being left (E6), and the exits an opening causes follow its
+                # Round opened row (E8, E14 rule 1), so a round-0 bidder's exit may follow round 1's opening.
                 self.add("error", "round.zero_after_opening", f"Round 0 is only for rows before round 1 of Process {process} "
                          "opens (D1, E6); this row follows its Round opened row.", sheet=ws.title, row=excel_row, column="Round")
 
@@ -861,14 +945,30 @@ class LeanChecker:
                 if None not in key:
                     admissions[key] = normalize_contiguous(summary.cell(summary_row, 5).value).casefold()
 
-        def signer_is_live(signer: dict[str, Any]) -> bool:
-            who = normalize_contiguous(signer["Who"]).casefold()
+        # D1: On Merger agreement signed, Who is the signing acquirer, never the target.
+        target_names = {"target", "the target", "company", "the company"}
+        if "Deal facts" in self.wb:
+            facts_sheet = self.wb["Deal facts"]
+            for fact_row in nonempty_rows(facts_sheet, len(FACT_COLUMNS)):
+                if facts_sheet.cell(fact_row, 1).value == "Target" and unit_key(facts_sheet.cell(fact_row, 2).value):
+                    target_names.add(unit_key(facts_sheet.cell(fact_row, 2).value))
+
+        def signer_is_live(index: int) -> bool:
+            """Whether the signer on records[index] is a live whole-company bidder (D1, E1, E14). Its rows follow
+            derive_analysis.py: an Other-scope alternative does not end participation, but a unit whose every bid
+            row is an Other-scope bid is partial-only and outside the contest."""
+            signer = records[index]
+            who = unit_key(signer["Who"])
             process = as_integer(signer["Process"])
             if not who or process is None:
                 return False
+            own_bids = {record["Event"] for record in records
+                        if record["Event"] in BID_EVENTS and unit_key(record["Who"]) == who}
+            if own_bids == {"Other-scope bid"}:
+                return False
             name_pattern = re.compile(r"(?<!\w)" + re.escape(who) + r"(?!\w)")
             live = False
-            for prior in records[:-1]:
+            for prior in records[:index]:
                 if as_integer(prior["Process"]) != process:
                     continue
                 event = prior["Event"]
@@ -878,11 +978,11 @@ class LeanChecker:
                     included = admissions.get((process, as_integer(prior["Round"])), "")
                     if name_pattern.search(included):
                         live = True
-                if normalize_contiguous(prior["Who"]).casefold() != who:
+                if unit_key(prior["Who"]) != who:
                     continue
                 if event in {"NDA signed", "Bid", "Bid reaffirmed", "Re-entered"}:
                     live = True
-                elif event in EXIT_EVENTS | {"Bidding group changed", "Other-scope bid"}:
+                elif event in EXIT_EVENTS | {"Bidding group changed"}:
                     live = False
             return live
 
@@ -1015,15 +1115,6 @@ class LeanChecker:
                     row=excel_row,
                     column="Count",
                 )
-            if event == "Merger agreement signed":
-                # D1: Count follows the signer's current whole-company participation, not its bid history.
-                current_bidder = signer_is_live(record)
-                if current_bidder and as_integer(count) != 1:
-                    self.add("error", "ledger.count_signing", "A whole-company signing bidder has Count 1 (D1).",
-                             sheet=ws.title, row=excel_row, column="Count")
-                elif not current_bidder and not is_blank(count):
-                    self.add("error", "ledger.count_signing", "A signer outside the whole-company contest has blank Count (D1).",
-                             sheet=ws.title, row=excel_row, column="Count")
             if event in PROCESS_MARKERS and is_blank(count):
                 self.add(
                     "warning",
@@ -1355,6 +1446,22 @@ class LeanChecker:
                 )
             if sort_date:
                 previous_sort = (sort_date, excel_row)
+
+        for index, (excel_row, record) in enumerate(zip(rows, records)):
+            if record["Event"] != "Merger agreement signed":
+                continue
+            if unit_key(record["Who"]) in target_names:
+                self.add("warning", "ledger.signing_who",
+                         "On Merger agreement signed, Who is the signing acquirer, not the target (D1).",
+                         sheet=ws.title, row=excel_row, column="Who")
+            # D1: Count follows the signer's current whole-company participation, not its bid history.
+            current_bidder = signer_is_live(index)
+            if current_bidder and as_integer(record["Count"]) != 1:
+                self.add("error", "ledger.count_signing", "A whole-company signing bidder has Count 1 (D1).",
+                         sheet=ws.title, row=excel_row, column="Count")
+            elif not current_bidder and not is_blank(record["Count"]):
+                self.add("error", "ledger.count_signing", "A signer outside the whole-company contest has blank Count (D1).",
+                         sheet=ws.title, row=excel_row, column="Count")
 
         self.check_review_sequences(ws, list(zip(rows, records)))
         self.check_same_as_and_round_zero(ws, list(zip(rows, records)))
@@ -1760,11 +1867,16 @@ class LeanChecker:
                 f"{counted} Questions besides the process Question; raise at most {QUESTION_CAP} (F).",
                 sheet=ws.title,
             )
-        if len(ledger["processes"]) > 1 and process_question is None:
+        inferred_openings = [record.get("#") for record in ledger.get("records", [])
+                             if record.get("Event") == "Round opened" and record.get("Inferred") == "Y"]
+        reasons = (["the ledger has more than one process"] if len(ledger["processes"]) > 1 else []) + (
+            [f"a round opened by inference (#{', #'.join(str(n) for n in inferred_openings)})"] if inferred_openings else [])
+        if reasons and process_question is None:
+            because = " and ".join(reasons)
             self.add(
                 "warning",
                 "questions.process_missing",
-                "The ledger has more than one process, but no Question is recognisably the process Question "
+                f"{because[0].upper() + because[1:]}, but no Question is recognisably the process Question "
                 "(its Question begins 'Process:' or its Rows affected cites a Process terminated or restarted row) (F).",
                 sheet=ws.title,
             )
@@ -1829,12 +1941,7 @@ class LeanChecker:
             )
         elif starts_with_canonical(initiation, {"activist-influenced"}):
             ledger_rows = [record for record in ledger.get("records", []) if as_integer(record.get("Process")) == 1]
-            target_names = {"target", normalize_contiguous(values.get("Target")).casefold()}
-            first_target = next((i for i, record in enumerate(ledger_rows)
-                                 if record.get("Event") in {"Target interest", "Target sale decision"}
-                                 or (record.get("Event") == "Round opened" and
-                                     normalize_contiguous(record.get("Who")).casefold() in target_names)),
-                                len(ledger_rows))
+            first_target = first_target_step(ledger_rows)
             if not any(i < first_target and record.get("Event") == "Activist"
                        and str(record.get("Note") or "").startswith("Demands sale")
                        for i, record in enumerate(ledger_rows)):

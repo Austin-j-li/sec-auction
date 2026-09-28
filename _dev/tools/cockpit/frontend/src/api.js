@@ -64,6 +64,15 @@ export function activityQuery({ actor = '', slug = '', kind = '', before = '', l
 
 export const text = value => value == null ? '' : String(value);
 export const rowId = row => text(row?.id || row?.cells?.['#'] || row?.cells?.Q || row?.excel_row);
+// The id for a new Questions row: the first free R number when it copies a review item (R1, R2, …),
+// otherwise the first free Q number.
+export function nextQuestionId(rows, copied = null) {
+  const prefix = /^R\d+$/i.test(text(copied?.cells?.Q).trim()) ? 'R' : 'Q';
+  const used = new Set(rows.map(item => text(item.cells?.Q).trim().toUpperCase()));
+  let number = 1;
+  while (used.has(`${prefix}${number}`)) number++;
+  return `${prefix}${number}`;
+}
 export const count = (n, singular) => `${n} ${singular}${n === 1 ? '' : 's'}`;
 export const sheetRows = (deal, sheet) => sheet === 'Deal facts' ? deal.facts || [] : ({ 'Deal ledger': deal.ledger, Rounds: deal.rounds, Questions: deal.questions }[sheet]?.rows || []);
 export const sheetColumns = (deal, sheet) => sheet === 'Deal facts' ? ['Field', 'Value'] : ({ 'Deal ledger': deal.ledger, Rounds: deal.rounds, Questions: deal.questions }[sheet]?.columns || []);

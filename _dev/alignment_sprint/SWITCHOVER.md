@@ -18,6 +18,31 @@ Check that the root instruction matches the approved draft byte for byte and say
 
 Check disk space on both `/` and `~/work`; use `~/work/tmp` for scratch files. Confirm the existing unit files and drop-ins, the current live path, backup destination and external credential location without printing credentials. In the archived implementation, the accounts table stores account metadata; provider credentials live under `~/.config/sec-extraction/users` unless `COCKPIT_TOKEN_ROOT` overrides it. Retain the same Unix user and credential location. Neither the state-copy script nor this build copies or displays that external store.
 
+### Check the frontend before the outage
+
+The server serves the committed `_dev/tools/cockpit/dist/`; nothing is built during the outage. While the old app is still running, check in the deployment folder that the committed build matches its source:
+
+```bash
+mkdir -p ~/work/tmp
+cd ~/work/Projects/ledger-live/_dev/tools/cockpit/frontend
+npm ci
+npm run test
+npx vite build --outDir ~/work/tmp/ledger-dist-check --emptyOutDir
+diff -r ../dist ~/work/tmp/ledger-dist-check && echo "dist matches its source"
+rm -rf ~/work/tmp/ledger-dist-check
+```
+
+If `diff` reports a difference, stop: the approved commit's `dist/` does not match its source. `node_modules/` stays in the deployment folder, ignored by Git.
+
+### Prepare the Cloudflare Access settings
+
+On the public site the new server takes a reader's identity only from the signed token Cloudflare Access sends in `Cf-Access-Jwt-Assertion` (`_dev/tools/cockpit/access.py`). It verifies the RS256 signature against the team's published keys, the issuer, the audience tag and the expiry. It ignores the `Cf-Access-Authenticated-User-Email` header, which any local process could forge. Two values from the Cloudflare Zero Trust dashboard are needed; neither is a secret:
+
+- `COCKPIT_ACCESS_TEAM_DOMAIN`: the team domain, `https://<team>.cloudflareaccess.com`;
+- `COCKPIT_ACCESS_AUD`: the Application Audience (AUD) tag of the Access application that protects `lines.dealextract.org`.
+
+They go in the cockpit's deployment drop-in below. Without them, or if the key set cannot be fetched, nobody is signed in: the site stays readable through Access and no one can edit, run or publish. The server logs a warning at start when the public origin is set but these values are not. Check that the service's Python has the verification library: `/usr/bin/python3 -c "import jwcrypto"` (the VM's `python3-jwcrypto` package).
+
 ## Close submissions and drain the old worker
 
 First stop the cockpit server, so no new jobs can be submitted:
@@ -26,14 +51,14 @@ First stop the cockpit server, so no new jobs can be submitted:
 systemctl --user stop ledger-cockpit.service
 ```
 
-Leave the old worker running until every queued or active job has finished. Inspect the old database through a read-only SQLite connection and print only job IDs, kinds, states and runner PIDs:
+Leave the old worker running until every queued or active job has finished. Inspect the old database through a read-only SQLite connection and print only job IDs, kinds, states and runner PIDs. The query lists every job not in one of the worker's four final states (`completed`, `failed`, `timed_out`, `cancelled`), so an unexpected state shows up rather than hiding:
 
 ```bash
 python3 - <<'PY'
 import pathlib, sqlite3
 p = pathlib.Path.home() / 'work/Projects/sec-extraction/_dev/cockpit/state/workspace.sqlite3'
 with sqlite3.connect(p.as_uri() + '?mode=ro', uri=True) as db:
-    for row in db.execute("SELECT id, kind, state, pid FROM jobs WHERE state NOT IN ('completed','failed','cancelled') ORDER BY created_at"):
+    for row in db.execute("SELECT id, kind, state, pid FROM jobs WHERE state NOT IN ('completed','failed','timed_out','cancelled') ORDER BY created_at"):
         print(row)
 PY
 ```
@@ -71,22 +96,13 @@ python3 ~/work/Projects/ledger-live/_dev/tools/cockpit/fresh_state.py \
   ~/work/Projects/ledger-live/_dev/cockpit/state
 ```
 
-The destination `ledger-live/_dev/cockpit/state` must be absent. The script is read-only toward its source. It retains accounts, the four added deals and their filings; the nine repository catalog deals are already present with no workbook version. It omits instructions, default settings, jobs, activity, comments, runs, working copies and their review history. It refuses an existing destination.
+The destination `ledger-live/_dev/cockpit/state` must be absent. The script changes nothing in its source. With the old services stopped, no program has the old database open, and the script copies it byte for byte and checks it did not change meanwhile; SQLite never opens it, so no `-wal` or `-shm` file appears beside it. (If a program still had it open, the script would read it through a read-only SQLite connection instead.) It retains accounts, the four added deals and their filings; the nine repository catalog deals are already present with no workbook version. It omits instructions, default settings, jobs, activity, comments, runs, working copies and their review history, and hidden-deal marks: a deal hidden in the old app appears again and can be hidden again. It refuses an existing destination.
 
 Before starting the app, verify the fresh database has the same accounts and four added-deal rows and matching filing hashes, no old instruction/default setting, and no old work or jobs. Do not print account contents. Preserve the archived eight edited working copies: their judgments must be carried into Version 1 reviews by hand after Austin authorizes extractions.
 
-Build the frontend in the deployment folder:
-
-```bash
-cd ~/work/Projects/ledger-live/_dev/tools/cockpit/frontend
-npm ci
-npm run test
-npm run build
-```
-
 ## Point services at the approved deployment
 
-Keep existing unit files and unrelated drop-ins. Add a dedicated `40-version-1-deploy.conf` under each of `ledger-cockpit.service.d`, `ledger-worker.service.d` and `ledger-backup.service.d` in `~/.config/systemd/user/`. For the cockpit:
+Keep existing unit files and unrelated drop-ins, including the cockpit's `20-public-origin.conf`. Add a dedicated `40-version-1-deploy.conf` under each of `ledger-cockpit.service.d`, `ledger-worker.service.d` and `ledger-backup.service.d` in `~/.config/systemd/user/`. Reference copies are in the deployment folder under `_dev/tools/cockpit/deploy/`. The cockpit's sets the working directory, the server, `TMPDIR` and the two Access values:
 
 ```ini
 [Service]
@@ -94,33 +110,66 @@ WorkingDirectory=%h/work/Projects/ledger-live
 ExecStart=
 ExecStart=/usr/bin/python3 %h/work/Projects/ledger-live/_dev/tools/cockpit/server.py --port 8778
 Environment=TMPDIR=%h/work/tmp
+Environment=COCKPIT_ACCESS_TEAM_DOMAIN=
+Environment=COCKPIT_ACCESS_AUD=
 ```
 
-For the worker, use the same WorkingDirectory and TMPDIR, clear ExecStart, and set `ExecStart=/usr/bin/python3 %h/work/Projects/ledger-live/_dev/tools/cockpit/worker.py`. For the backup service, use the same WorkingDirectory, clear ExecStart, and set `ExecStart=/usr/bin/python3 %h/work/Projects/ledger-live/_dev/tools/cockpit/backup.py create`. Preserve its existing backup destination and timer schedule. The backup service needs no TMPDIR override.
+The worker's uses the same WorkingDirectory and TMPDIR, clears ExecStart, and sets `ExecStart=/usr/bin/python3 %h/work/Projects/ledger-live/_dev/tools/cockpit/worker.py`. The backup service's uses the same WorkingDirectory, clears ExecStart, and sets `ExecStart=/usr/bin/python3 %h/work/Projects/ledger-live/_dev/tools/cockpit/backup.py create`; it needs no TMPDIR override. Keep the timer schedule.
 
-This implements the archived `deploy/PROPOSED-tmpdir.md` fix for the cockpit and worker as part of the authorized switch-over. Create `~/work/tmp` first. Keep a copy of the installed drop-ins in the deployment record. If a file with that name already exists, inspect it instead of overwriting it blindly.
+The new backup job writes to `~/backups/ledger-live/` (the default of the new `backup.py`) and prunes only there. The old app's nightlies stay in `~/backups/ledger-cockpit/`, which the new job never touches; they remain for rollback until Austin decides to delete them.
+
+This implements the archived `deploy/PROPOSED-tmpdir.md` fix for the cockpit and worker as part of the authorized switch-over. Install the drop-ins without overwriting an existing file (`cp -n`; if one exists, inspect it instead), then fill in the two Access values in the installed cockpit drop-in, substituting the values prepared above for the placeholders. Keep a copy of the installed drop-ins in the deployment record.
 
 ```bash
 mkdir -p ~/work/tmp
+D=~/.config/systemd/user
+for unit in ledger-cockpit ledger-worker ledger-backup; do
+  mkdir -p $D/$unit.service.d
+  cp -n ~/work/Projects/ledger-live/_dev/tools/cockpit/deploy/$unit.service.d/40-version-1-deploy.conf $D/$unit.service.d/
+done
+sed -i -e 's|^Environment=COCKPIT_ACCESS_TEAM_DOMAIN=$|Environment=COCKPIT_ACCESS_TEAM_DOMAIN=TEAM_DOMAIN|' \
+       -e 's|^Environment=COCKPIT_ACCESS_AUD=$|Environment=COCKPIT_ACCESS_AUD=AUD_TAG|' $D/ledger-cockpit.service.d/40-version-1-deploy.conf
+grep '^Environment=COCKPIT_ACCESS' $D/ledger-cockpit.service.d/40-version-1-deploy.conf
 systemctl --user daemon-reload
 systemctl --user start ledger-worker.service ledger-cockpit.service ledger-backup.timer
 systemctl --user status ledger-cockpit.service ledger-worker.service ledger-backup.timer
 ```
 
-Verify the effective WorkingDirectory and ExecStart of all three services, and TMPDIR for cockpit and worker. Do not dump complete process environments. Confirm only the approved deployment supplies their Python code and frontend.
+Verify the effective WorkingDirectory and ExecStart of all three services, TMPDIR for cockpit and worker, and the two Access values for the cockpit (`systemctl --user show -p Environment ledger-cockpit`). Do not dump complete process environments. Confirm only the approved deployment supplies their Python code and frontend. The cockpit's log (`journalctl --user -u ledger-cockpit -n 50`) should show neither the start-up warning about missing Access settings nor a failed key-set fetch.
 
 ## Check the live site without submitting a run
 
-Under Austin's and Alex's existing sign-ins, check that the deal list contains thirteen deals and that a deal with no version opens with its filing. Check the instruction pages and Add Deal's seed search and lookup; an EDGAR lookup is allowed during the ordered deployment but is not an extraction. Confirm accounts appear connected without reconnecting or revealing tokens.
+Under Austin's and Alex's existing sign-ins, check that each is shown as signed in and may edit (the session at `/api/session` names them with `can_edit` true), that the deal list contains thirteen deals and that a deal with no version opens with its filing. From the VM, check that a forged email header gets no identity:
 
-Fresh state seeds the repository instruction as the first published version and default. At an approved deployment that is Version 1. Austin checks the text/hash, publication and default under his account. If it is already published and default, record that verification; do not create a duplicate publication just to change attribution. If Version 0 appears, stop: the deployed commit is wrong. Do not patch the live instruction file in place. If an explicitly approved alternative workflow requires manual publication, Austin publishes the approved Version 1 text and sets it as default under his account.
+```bash
+curl -s -H 'Host: lines.dealextract.org' -H 'Cf-Access-Authenticated-User-Email: junyu.li.24@ucl.ac.uk' http://127.0.0.1:8778/api/session
+```
+
+It must answer `"user":"unknown","can_edit":false`. Check the instruction pages and Add Deal's seed search and lookup; an EDGAR lookup is allowed during the ordered deployment but is not an extraction. Confirm accounts appear connected without reconnecting or revealing tokens. Deals hidden in the old app are shown again (fresh state carries no hidden marks); hide them again if wanted.
+
+Fresh state seeds the repository instruction as the first published version and default. At an approved deployment that is Version 1. Austin checks the text/hash, publication and default under his account. If it is already published and default, record that verification; do not create a duplicate publication just to change attribution.
+
+Open for Austin's decision: the seeded version is attributed to "System" (`instructions.py`, `_seed`), while BUILD_SPEC B5 says Austin publishes Version 1 under his account. This build leaves the seeding as it is until he chooses.
+
+If Version 0 appears, stop: the deployed commit is wrong. Do not patch the live instruction file in place, and do not submit anything. Recover as follows. Stop the new cockpit, worker and backup timer. Delete the new state folder `~/work/Projects/ledger-live/_dev/cockpit/state`; it holds only copies, and the old state is untouched. Move the deployment worktree to the approved commit (`git -C ~/work/Projects/ledger-live checkout --detach APPROVED_COMMIT`) and repeat the checks under "Prepare the approved commit". Then rebuild the fresh state with `fresh_state.py` as above, verify it, and start the three units again. If an explicitly approved alternative workflow requires manual publication, Austin publishes the approved Version 1 text and sets it as default under his account.
 
 The empty catalog cannot demonstrate ledger editing until a version exists. Use the isolated, hand-made Version 1 fixture checks from the build for editing, saving, the Review checker line and Q/R links; keep that fixture out of the real thirteen-deal state. On the real site, inspect the run form only, and stop before submission. Do not leave a queued extraction as a test: the worker can start it within seconds. Record live ledger editing and the real model path as untested until Austin authorizes a real extraction.
 
+## Export to the repository after the switch
+
+The state now lives in the deployment folder, which must never receive exported files. For a commit Austin requests, run the deployment's own export script, which reads that state by default, and write into the development clone with `--out-root`. Check the dry run first, then repeat with `--write`:
+
+```bash
+python3 -B ~/work/Projects/ledger-live/_dev/tools/cockpit/export_repo.py \
+  --out-root ~/work/Projects/sec-auction deal SLUG --version VERSION_ID
+```
+
+The same applies to `instruction NAME`. The script refuses to write into a checkout with a detached HEAD, which is how the deployment folder is left. Commit in `sec-auction` only when Austin asks.
+
 ## Roll back
 
-Close submissions again by stopping the new cockpit. Let any authorized new jobs and their runner processes finish, then stop the new worker and backup timer. Preserve the new deployment's state for diagnosis. Remove only the three `40-version-1-deploy.conf` files created by this switch-over, run `systemctl --user daemon-reload`, and start the old worker, cockpit and backup timer. The original units point back to the old checkout and untouched state. Verify their effective paths and the old site's operation. Any separately installed TMPDIR drop-in should be removed only if it was part of this deployment and is being rolled back. Keep unrelated public-origin drop-ins.
+Close submissions again by stopping the new cockpit. Let any authorized new jobs and their runner processes finish, then stop the new worker and backup timer. Preserve the new deployment's state for diagnosis. Remove only the three `40-version-1-deploy.conf` files created by this switch-over, run `systemctl --user daemon-reload`, and start the old worker, cockpit and backup timer. The original units point back to the old checkout and untouched state, and the old nightlies resume in `~/backups/ledger-cockpit/`. Verify their effective paths and the old site's operation. The old app reads the plain email header again (the security fix is part of Version 1 only). Any separately installed TMPDIR drop-in should be removed only if it was part of this deployment and is being rolled back. Keep unrelated public-origin drop-ins.
 
 ## One week after a clean switch-over
 
-After Austin confirms a week of clean operation, verify the archive branches and `~/backups/vm-checkouts-2026-09-27.tgz` are recoverable, the old state backup is intact, and no service, runner, worktree or agent uses either old folder. Then remove `~/work/Projects/sec-extraction`, `~/work/Projects/sec-extraction-v114` and any archived `dist.old` under those retired folders. Use Git worktree removal for a registered worktree. Keep the deployment worktree, development clone, backups and other projects. This cleanup is a later authorized action, not part of this build.
+After Austin confirms a week of clean operation, verify the archive branches and `~/backups/vm-checkouts-2026-09-27.tgz` are recoverable, the old state backup is intact, and no service, runner, worktree or agent uses either old folder. Then remove `~/work/Projects/sec-extraction`, `~/work/Projects/sec-extraction-v114` and any archived `dist.old` under those retired folders. Use Git worktree removal for a registered worktree. Keep the deployment worktree, development clone, backups and other projects. The old app's nightlies in `~/backups/ledger-cockpit/` are no longer pruned by anything; keep or delete them as Austin decides. This cleanup is a later authorized action, not part of this build.

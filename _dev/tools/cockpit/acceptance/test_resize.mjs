@@ -6,6 +6,7 @@ import { spawn } from 'node:child_process';
 import { once } from 'node:events';
 import { createInterface } from 'node:readline';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import playwright from '/home/uctpiaj/work/vm-browser/node_modules/playwright/index.mjs';
@@ -13,7 +14,7 @@ import playwright from '/home/uctpiaj/work/vm-browser/node_modules/playwright/in
 const here = dirname(fileURLToPath(import.meta.url));
 const repo = resolve(here, '../../../..');
 const dist = resolve(process.env.COCKPIT_TEST_DIST || resolve(repo, '_dev/tools/cockpit/dist'));
-const evidence = resolve(process.env.COCKPIT_RESIZE_EVIDENCE || '/tmp/cockpit-resize-acceptance');
+const evidence = resolve(process.env.COCKPIT_RESIZE_EVIDENCE || resolve(tmpdir(), 'cockpit-resize-acceptance'));
 const server = spawn('python3', [resolve(here, 'serve_fixture.py')], { cwd: repo, stdio: ['ignore', 'pipe', 'pipe'] });
 let stderr = '';
 server.stderr.setEncoding('utf8');

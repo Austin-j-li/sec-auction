@@ -15,7 +15,7 @@ from unittest.mock import patch
 
 from cockpit import server
 from cockpit.workspace import WorkspaceError
-from test_cockpit_workspace import fixture
+from test_cockpit_workspace import StubAccess, fixture
 
 SLUG = "alpha-deal"
 
@@ -155,6 +155,7 @@ class TraceHTTPTests(unittest.TestCase):
         self.root = Path(self.temp.name)
         self.cockpit, _ = fixture(self.root)
         self.httpd = server.make_server(0, self.cockpit, quiet=True)
+        self.httpd.RequestHandlerClass.access_verifier = StubAccess()  # the assertion header carries the email
         self.port = self.httpd.server_address[1]
         threading.Thread(target=self.httpd.serve_forever, daemon=True).start()
         self.env = patch.dict(os.environ, {"COCKPIT_PUBLIC_ORIGIN": "https://lines.dealextract.org"})
@@ -170,7 +171,7 @@ class TraceHTTPTests(unittest.TestCase):
         except urllib.error.HTTPError as exc: return exc.code, json.loads(exc.read())
 
     def user(self, email):
-        headers = {"Host": "lines.dealextract.org", "Cf-Access-Authenticated-User-Email": email}
+        headers = {"Host": "lines.dealextract.org", "Cf-Access-Jwt-Assertion": email}
         session = self.request("/api/session", headers=headers)[1]
         return {**headers, "Content-Type": "application/json", "Origin": "https://lines.dealextract.org", "X-Cockpit-CSRF": session["csrf_token"] or ""}
 

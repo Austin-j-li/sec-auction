@@ -81,6 +81,24 @@ class FreshStateTests(unittest.TestCase):
                                        if path.is_file() and not path.name.endswith("-shm")})
         self.assertEqual(self.conn.execute("SELECT count(*) FROM instructions").fetchone()[0], 1)
 
+    def test_closed_database_is_copied_without_leaving_sqlite_files_in_the_source(self) -> None:
+        self.conn.close()  # as after the old services stop: SQLite checkpoints and removes the -wal and -shm files
+        sidecars = [self.source / f"workspace.sqlite3{suffix}" for suffix in ("-wal", "-shm", "-journal")]
+        self.assertFalse(any(path.exists() for path in sidecars))
+        before = {str(path.relative_to(self.source)): digest(path) for path in self.source.rglob("*") if path.is_file()}
+        summary = fresh_state.create(self.source, self.base / "new-state")
+        self.assertEqual(summary, {"accounts": 2, "added_deals": 4, "filings": 4})
+        self.assertEqual(before, {str(path.relative_to(self.source)): digest(path) for path in self.source.rglob("*") if path.is_file()})
+        with sqlite3.connect(self.base / "new-state" / fresh_state.DATABASE) as copied:
+            self.assertEqual(copied.execute("SELECT synthetic_token FROM accounts WHERE user='alex'").fetchone()[0], SECRET[::-1])
+        # A database changed while it is copied is refused, and no destination appears.
+        real = fresh_state._signature
+        calls = iter((real(self.db), (0, 0, 0, 0)))
+        with patch.object(fresh_state, "_signature", lambda path: next(calls)), self.assertRaises(fresh_state.FreshStateError):
+            fresh_state.create(self.source, self.base / "changed")
+        self.assertFalse((self.base / "changed").exists())
+        self.assertEqual(list(self.base.glob(".fresh-state-*")), [])
+
     def test_app_reads_nine_catalog_and_four_added_deals_then_seeds_root_instruction(self) -> None:
         root = self.base / "repo"
         cockpit_dir = root / "_dev/cockpit"

@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import contextlib
+import io
 import tempfile
 import unittest
 from pathlib import Path
@@ -63,6 +65,21 @@ class ReviewListTests(unittest.TestCase):
                             for item in items))
         self.assertTrue(any(item["category"] == "type_unsplit_count" and item["row"] == 2
                             for item in items))
+
+    def test_output_is_never_written_into_the_data_folders_or_over_the_input(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            path = write(Path(tmp) / "alpha.xlsx", [bid(1, "Alpha", 10)], [rounds_line(1, "Enforced")])
+            original = path.read_bytes()
+            for output in (derive_analysis.PROJECT / "extraction" / "review.json",
+                           derive_analysis.PROJECT / "ref" / "sub" / "review.json", path):
+                with self.subTest(output=output), contextlib.redirect_stderr(io.StringIO()):
+                    with self.assertRaises(SystemExit) as raised:
+                        review_list.main([str(path), "--output", str(output)])
+                    self.assertEqual(raised.exception.code, 2)
+            self.assertEqual(path.read_bytes(), original)
+            self.assertFalse((derive_analysis.PROJECT / "extraction" / "review.json").exists())
+            self.assertEqual(review_list.main([str(path), "--output", str(Path(tmp) / "review.json")]), 0)
+            self.assertIn('"items"', (Path(tmp) / "review.json").read_text(encoding="utf-8"))
 
     def test_currency_and_exchange_ratio_are_price_basis_review_items(self) -> None:
         for currency in ("CHF per share", "AUD per share", "Canadian dollars per share"):

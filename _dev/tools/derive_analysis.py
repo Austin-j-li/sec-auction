@@ -183,9 +183,8 @@ def as_date(value: Any) -> dt.date | None:
 
 
 def unit_key(who: Any) -> str:
-    """The name a bidder unit is followed by: Who without parentheticals, case-folded."""
-    name = re.sub(r"\([^()]*\)", " ", text(who))
-    return re.sub(r"\s+", " ", name).strip(" .,;:").casefold()
+    """The name a bidder unit is followed by: Who without parentheticals, case-folded (shared with check_lean.py)."""
+    return check_lean.unit_key(who)
 
 
 def count_bounds(count: Any, note: Any) -> tuple[int | None, int | None, int | None, str]:
@@ -745,27 +744,21 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
     deal_rows = []
     for process in processes:
         s = screen.get(process, {})
-        # A partial-only candidate with no exit row may never have been in the whole-company contest, so its rows do
-        # not initiate it; where one would have come first, a reviewer decides.
-        target_names = {unit_key(fact(facts, "Target")), "target"}
-        initiating = [r for r in whole if row_round(r)[0] == process and
-                      (text(r.get("Event")) in INITIATION_EVENTS or
-                       text(r.get("Event")) == "Round opened" and row_round(r)[1] == 1
-                       and unit_key(r.get("Who")) in target_names)]
-        # D5: only a demand for sale before the target's first sale step makes the process activist-influenced.
-        # A target-side first step and a bidder's own Bid before round 1 make it mixed.
         process_rows = [r for r in whole if row_round(r)[0] == process]
         opening_index = next((i for i, r in enumerate(process_rows) if text(r.get("Event")) == "Round opened"
                               and row_round(r)[1] == 1), len(process_rows))
+        # A partial-only candidate with no exit row may never have been in the whole-company contest, so its rows do
+        # not initiate it; where one would have come first, a reviewer decides. The first round-1 Round opened row
+        # is the target's step whatever its Who, as check_lean.py reads it (D5).
+        initiating = [r for i, r in enumerate(process_rows)
+                      if text(r.get("Event")) in INITIATION_EVENTS or i == opening_index]
+        # D5: only a demand for sale before the target's first sale step makes the process activist-influenced.
+        # A target-side first step and a bidder's own Bid before round 1 make it mixed.
         preopening = process_rows[:opening_index]
         target_steps = [r for r in preopening if text(r.get("Event")) in {"Target interest", "Target sale decision"}]
         own_bids = [r for r in preopening if text(r.get("Event")) == "Bid"
                     and unit_key(r.get("Who")) not in scope_uncertain]
-        first_target_index = next((i for i, r in enumerate(process_rows)
-                                   if text(r.get("Event")) in {"Target interest", "Target sale decision"}
-                                   or (text(r.get("Event")) == "Round opened" and
-                                       unit_key(r.get("Who")) in target_names)),
-                                  opening_index)
+        first_target_index = check_lean.first_target_step(process_rows)
         activist = next((r for r in process_rows[:first_target_index] if text(r.get("Event")) == "Activist"
                          and text(r.get("Note")).startswith("Demands sale")), None)
         initiating = [activist] if activist else [r for r in initiating if text(r.get("Event")) != "Activist"]
@@ -829,12 +822,18 @@ def base_cols(deal: str, r: dict[str, Any], process: Any, rnd: Any) -> dict[str,
 
 # ---- output ------------------------------------------------------------------------------------
 
-def check_out(out: Path) -> None:
-    out = out.resolve()
+def check_outside_data(path: Path, option: str = "--out") -> None:
+    """Refuse an output path in or under extraction/, raw_filing/ or ref/."""
+    path = path.resolve()
     for part in FORBIDDEN_OUT:
         forbidden = (PROJECT / part).resolve()
-        if out == forbidden or forbidden in out.parents:
-            raise DeriveError(f"--out must not be under {PROJECT / part}/")
+        if path == forbidden or forbidden in path.parents:
+            raise DeriveError(f"{option} must not be under {PROJECT / part}/")
+
+
+def check_out(out: Path) -> None:
+    check_outside_data(out)
+    out = out.resolve()
     if out.exists() and (not out.is_dir() or any(out.iterdir())):
         raise DeriveError(f"--out {out} exists and is not an empty folder; choose a new one")
 

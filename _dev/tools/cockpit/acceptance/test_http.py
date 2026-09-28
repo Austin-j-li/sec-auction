@@ -6,6 +6,7 @@ No real filing, workbook, catalog, or working-state database is opened by this s
 
 from __future__ import annotations
 
+import base64
 import csv
 import datetime as dt
 import hashlib
@@ -27,7 +28,7 @@ TOOLS = Path(__file__).resolve().parents[2]
 if str(TOOLS) not in sys.path:
     sys.path.insert(0, str(TOOLS))
 
-from cockpit import data, server  # noqa: E402
+from cockpit import access, data, server  # noqa: E402
 import check_lean  # noqa: E402
 
 
@@ -159,6 +160,38 @@ class HttpFixture:
 
     def edit(self, payload, **kwargs):
         return self.post("/api/deal/synthetic/edit", payload, **kwargs)
+
+
+class AccessKeys:
+    """A local stand-in for a Cloudflare Access team: its own RSA key, the key set it publishes and signed tokens."""
+
+    TEAM = "https://synthetic-team.cloudflareaccess.com"
+    AUD = "synthetic-audience-tag"
+
+    def __init__(self, kid="synthetic-1"):
+        from jwcrypto import jwk
+        self.key = jwk.JWK.generate(kty="RSA", size=2048, kid=kid)
+        self.fetched = []
+
+    def fetch(self, url):
+        """The key set, as `access.Verifier` fetches it from the team domain."""
+        self.fetched.append(url)
+        return json.dumps({"keys": [self.key.export_public(as_dict=True)]})
+
+    def install(self, httpd):
+        """Verify this server's public requests against these keys; return the environment that enables it."""
+        httpd.RequestHandlerClass.access_verifier = access.Verifier(fetch=self.fetch)
+        return {access.TEAM_ENV: self.TEAM, access.AUD_ENV: self.AUD}
+
+    def token(self, email, key=None, alg="RS256", **claims):
+        """A token as Access issues it; a claim given as None is left out."""
+        from jwcrypto import jwt
+        now = int(time.time())
+        body = {"aud": [self.AUD], "email": email, "exp": now + 3 * 3600, "iat": now, "nbf": now, "iss": self.TEAM, "type": "app", **claims}
+        key = key or self.key
+        signed = jwt.JWT(header={"alg": alg, "kid": key.key_id}, claims={k: v for k, v in body.items() if v is not None})
+        signed.make_signed_token(key)
+        return signed.serialize()
 
 
 @pytest.fixture
@@ -521,6 +554,90 @@ def test_session_security_origin_csrf_and_path_boundaries(env, monkeypatch):
     assert unknown.status_code == 403 and missing.status_code == 403
     assert deal(http)["workspace"]["revision"] == 0
     # Synthetic request headers alone must not be reported as a real Cloudflare login test.
+
+
+AUSTIN, ALEX = "junyu.li.24@ucl.ac.uk", "a.gorbenko@ucl.ac.uk"
+
+
+def test_public_identity_needs_a_verified_access_token(env, monkeypatch):
+    """A local process can send any header; only a token signed by the team's key names a reader."""
+    http, _, _ = env
+    keys = AccessKeys()
+    public = {"Host": "lines.example.invalid", "Origin": "https://lines.example.invalid"}
+    session = lambda **headers: http.get("/api/session", headers={**public, **headers}).json()
+    reader = lambda token: (lambda s: (s["user"], s["can_edit"]))(session(**{"Cf-Access-Jwt-Assertion": token}))
+    monkeypatch.setenv("COCKPIT_PUBLIC_ORIGIN", "https://lines.example.invalid")
+    for name in (access.TEAM_ENV, access.AUD_ENV): monkeypatch.delenv(name, raising=False)
+    settings = keys.install(http.httpd)
+    # Public origin set but verification not configured: nobody is signed in, whatever the request carries.
+    assert reader(keys.token(AUSTIN)) == ("unknown", False)
+    for name, value in settings.items(): monkeypatch.setenv(name, value)
+
+    forged = session(**{"Cf-Access-Authenticated-User-Email": AUSTIN})
+    assert (forged["user"], forged["can_edit"], forged["csrf_token"]) == ("unknown", False, None)
+    initial = deal(http)
+    payload = {"revision": 0, "base_sha256": initial["workspace"]["base_sha256"], "reason": "Forged identity", "operations": [{"type": "update", "sheet": "Deal ledger", "uid": row(initial, "Deal ledger")["uid"], "values": {"Note": "Must not save"}}]}
+    csrf = http.session()["csrf_token"]  # even with the real CSRF token (the local route hands it out)
+    assert http.edit(payload, csrf=csrf, headers={**public, "Cf-Access-Authenticated-User-Email": AUSTIN}).status_code == 403
+    assert deal(http)["workspace"]["revision"] == 0
+
+    assert reader(keys.token(AUSTIN)) == ("austin", True)
+    assert reader(keys.token("  A.Gorbenko@UCL.ac.uk ")) == ("alex", True)
+    # A forged email header beside a valid token changes nothing.
+    alex = session(**{"Cf-Access-Jwt-Assertion": keys.token(ALEX), "Cf-Access-Authenticated-User-Email": AUSTIN})
+    assert (alex["user"], alex["can_edit"]) == ("alex", True)
+    payload["reason"] = "Signed-in edit"
+    saved = http.edit(payload, csrf=alex["csrf_token"], headers={**public, "Cf-Access-Jwt-Assertion": keys.token(ALEX)})
+    assert saved.status_code == 200, saved.text
+    assert deal(http)["workspace"]["revision"] == 1
+
+    now = int(time.time())
+    unsigned = lambda part: base64.urlsafe_b64encode(json.dumps(part).encode()).rstrip(b"=").decode()
+    rejected = {
+        "another team's key": keys.token(AUSTIN, key=AccessKeys().key),
+        "expired": keys.token(AUSTIN, exp=now - 3600),
+        "no expiry": keys.token(AUSTIN, exp=None),
+        "not yet valid": keys.token(AUSTIN, nbf=now + 3600),
+        "another application": keys.token(AUSTIN, aud=["another-audience-tag"]),
+        "another issuer": keys.token(AUSTIN, iss="https://other-team.cloudflareaccess.com"),
+        "no email": keys.token(None),
+        "not a reader": keys.token("intruder@example.invalid"),
+        "unsigned": unsigned({"alg": "none", "kid": "synthetic-1"}) + "." + unsigned({"aud": [keys.AUD], "email": AUSTIN, "exp": now + 60, "iss": keys.TEAM}) + ".",
+        "tampered": (lambda t: t.split(".")[0] + "." + unsigned({"aud": [keys.AUD], "email": AUSTIN, "exp": now + 60, "iss": keys.TEAM}) + "." + t.split(".")[2])(keys.token(ALEX)),
+        "not a token": "not-a-token",
+    }
+    assert {name: reader(token) for name, token in rejected.items()} == {name: ("unknown", False) for name in rejected}
+    assert keys.fetched == [keys.TEAM + "/cdn-cgi/access/certs"]  # one fetch; failures refetch at most once a minute
+
+    # Cloudflare rotates its keys: a token under a key the cached set lacks prompts one fresh fetch.
+    monkeypatch.setattr(access, "RETRY_AFTER", 0)
+    keys.key = AccessKeys(kid="synthetic-2").key
+    assert reader(keys.token(AUSTIN)) == ("austin", True)
+    assert len(keys.fetched) == 2
+    assert reader(keys.token(AUSTIN)) == ("austin", True) and len(keys.fetched) == 2
+
+
+def test_access_key_set_failures_fail_closed_and_are_rate_limited(monkeypatch):
+    keys, calls = AccessKeys(), []
+
+    def unreachable(url):
+        calls.append(url)
+        raise OSError("unreachable")
+
+    for name, value in {access.TEAM_ENV: keys.TEAM + "/", access.AUD_ENV: keys.AUD}.items(): monkeypatch.setenv(name, value)
+    verifier = access.Verifier(fetch=unreachable)
+    assert [verifier.email(keys.token(AUSTIN)) for _ in range(3)] == [None, None, None]
+    assert len(calls) == 1
+    verifier.fetch = keys.fetch
+    monkeypatch.setattr(access, "RETRY_AFTER", 0)
+    assert verifier.email(keys.token(AUSTIN)) == AUSTIN
+    monkeypatch.setenv(access.AUD_ENV, "")
+    assert verifier.email(keys.token(AUSTIN)) is None
+    monkeypatch.setenv(access.AUD_ENV, keys.AUD)
+    monkeypatch.setenv(access.TEAM_ENV, keys.TEAM.replace("https://", "http://"))
+    assert (access.settings(), verifier.email(keys.token(AUSTIN))) == (None, None)
+    monkeypatch.setenv(access.TEAM_ENV, keys.TEAM.removeprefix("https://"))
+    assert access.settings() == (keys.TEAM, keys.AUD)
 
 
 def test_catalog_allowlist_rejects_ref_and_symlink_escape(env):

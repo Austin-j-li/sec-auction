@@ -63,8 +63,8 @@ def build_valid_fixture(directory: Path) -> tuple[Path, Path]:
         {"#": 2, "When": "01/03/2020", "Who": "Alpha", "Type": "Strategic", "Event": "Bid", "Round": 1, "day": day(2020, 1, 3),
          "Price low": 10, "Price high": 10, "Formality": "Informal", "Conditions": "Unclear", "Count": 1, **BID_TERMS,
          "Note": "Preliminary bid before an NDA.", "q": 1},
-        {"#": 3, "When": "01/04/2020", "Who": "Target", "Event": "Merger agreement signed", "Round": 1, "day": day(2020, 1, 4),
-         "Note": "$10 per share, all cash.", "q": 2},
+        {"#": 3, "When": "01/04/2020", "Who": "Alpha", "Event": "Merger agreement signed", "Round": 1, "day": day(2020, 1, 4),
+         "Count": 1, "Note": "$10 per share, all cash.", "q": 2},
     ]
     for values in rows:
         record = dict(values)
@@ -554,6 +554,7 @@ class LeanCheckerTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             workbook, filing = build_valid_fixture(Path(tmp))
             set_ledger(workbook, 3, {"Event": "Other-scope bid", "Price low": None, "Price high": None})
+            set_ledger(workbook, 4, {"Count": None})  # a partial-only signer is outside the contest (D1, E1)
             report = check_lean.LeanChecker(workbook, filing).run()
             self.assertEqual(report["status"], "pass", report["issues"])
 
@@ -734,7 +735,7 @@ def build_examples_fixture(directory: Path) -> tuple[Path, Path]:
         {"Who": "7 other NDA signers", "Type": "Unknown", "Event": "Did not submit", "Round": 1, "Count": 7, "Exit reason": "Not stated",
          "Inferred": "Y", "When": "by 03/03/2021", "day": day(2021, 3, 3), "from": None, "q": 1, "Note": "Count: 14 signers less Parties A to G."},
         # Example 3: not invited into the stage when it opens.
-        exit_("Party D", "Dropped by target", day(2021, 3, 15), 8),
+        exit_("Party D", "Dropped by target", day(2021, 3, 15), 8, Note="not invited"),
         exit_("Party A", "Dropped by target", day(2021, 3, 15), 9),
         exit_("Party B", "Dropped by target", day(2021, 3, 15), 9),
         {"Who": "Target", "Event": "Round opened", "Round": 2, "day": day(2021, 3, 15), "q": 9, "Note": "Best and final offers due 03/29/2021."},
@@ -749,7 +750,8 @@ def build_examples_fixture(directory: Path) -> tuple[Path, Path]:
         {"Who": "Target", "Event": "Deadline", "Round": 2, "day": day(2021, 3, 29), "q": 9, "Note": "Final bids due."},
         # Example 5: a commitment-only revision; no price, not a price observation.
         bid("Party E", day(2021, 4, 2), None, 13, Round=2, **{"Stock %": "Not stated", "Due diligence": "Not stated"}, Note="Sponsor liability cap $40m proposed."),
-        {"Who": "Target", "Event": "Merger agreement signed", "Round": 2, "day": day(2021, 4, 9), "q": 14, "Note": "$29.00 per share in cash with Party E."},
+        {"Who": "Party E", "Type": "Financial", "Event": "Merger agreement signed", "Round": 2, "Count": 1, "day": day(2021, 4, 9), "q": 14,
+         "Note": "$29.00 per share in cash."},
         exit_("Party C", "Not selected at signing", day(2021, 4, 9), 14, round_=2),
         exit_("Party G", "Not selected at signing", day(2021, 4, 9), 14, round_=2),
     ]
@@ -1035,7 +1037,7 @@ class LeanCheckerRuleTests(unittest.TestCase):
     def test_no_mandatory_map_or_deadline_question(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             workbook, filing = build_no_question_fixture(Path(tmp))
-            set_ledger(workbook, 4, {"Event": "Deadline"})
+            set_ledger(workbook, 4, {"Who": "Target", "Event": "Deadline", "Count": None})
             set_rounds(workbook, {"Due dates": "01/04/2020", "Deadline outcome": "Enforced"})
             self.assertEqual(check(workbook, filing)["status"], "pass")
     def test_question_entry_is_at_most_60_words(self) -> None:
@@ -1096,6 +1098,164 @@ class LeanCheckerRuleTests(unittest.TestCase):
             workbook, filing = build_no_question_fixture(Path(tmp))
             set_ledger(workbook, 4, {"Round": 0})
             self.assertIn(("round.zero_after_opening", "error"), issue_set(workbook, filing))
+
+    def test_round_zero_exit_caused_by_the_round_one_opening_follows_it(self) -> None:
+        # E8 and E14 rule 1: a round-0 bidder not invited when round 1 opens is dropped at the opening; its exit
+        # follows the Round opened row on that day and keeps the round it leaves (E6).
+        with tempfile.TemporaryDirectory() as tmp:
+            workbook, filing = build_no_question_fixture(Path(tmp))
+            wb = check_lean.openpyxl.load_workbook(workbook)
+            wb["Deal ledger"].delete_rows(2, wb["Deal ledger"].max_row)
+            wb.save(workbook)
+            append_ledger(workbook, [
+                {"day": dt.date(2020, 1, 1), "Who": "Alpha", "Type": "Strategic", "Event": "Bid", "Round": 0, "Count": 1,
+                 "Price low": 9, "Price high": 9, "Formality": "Informal", "Conditions": "Unclear", **BID_TERMS},
+                {"day": dt.date(2020, 1, 1), "Who": "Beta", "Type": "Financial", "Event": "Bid", "Round": 0, "Count": 1,
+                 "Price low": 8, "Price high": 8, "Formality": "Informal", "Conditions": "Unclear", **BID_TERMS},
+                {"day": dt.date(2020, 1, 2), "Who": "Target", "Event": "Round opened", "Round": 1},
+                {"day": dt.date(2020, 1, 2), "Who": "Beta", "Type": "Financial", "Event": "Dropped by target", "Round": 0,
+                 "Count": 1, "Inferred": "Y", "When": "by 01/02/2020", "Exit reason": "Not stated", "Note": "Not invited.",
+                 "Date from": None},
+                {"day": dt.date(2020, 1, 3), "Who": "Alpha", "Type": "Strategic", "Event": "Bid", "Round": 1, "Count": 1,
+                 "Price low": 10, "Price high": 10, "Formality": "Informal", "Conditions": "Unclear", **BID_TERMS},
+                {"day": dt.date(2020, 1, 4), "Who": "Alpha", "Event": "Merger agreement signed", "Round": 1, "Count": 1},
+            ])
+            report = check(workbook, filing)
+            self.assertEqual(report["summary"]["errors"], 0, report["issues"])
+            set_ledger(workbook, 5, {"Event": "Contact", "Count": None, "Exit reason": None, "Inferred": None})
+            self.assertIn(("round.zero_after_opening", "error"), issue_set(workbook, filing))
+
+    def test_signing_count_with_an_other_scope_alternative_and_a_partial_only_signer(self) -> None:
+        other_scope = {"Type": "Strategic", "Event": "Other-scope bid", "Count": 1, "Formality": "Informal",
+                       "Conditions": "Unclear", **BID_TERMS, "Note": "Segment only, $50 million."}
+        cases = [
+            # An Other-scope alternative in the same communication leaves Alpha in the whole-company contest (E10, E1).
+            ([{"day": dt.date(2020, 1, 3), "Who": "Alpha", **other_scope, "Note": "Alternative to #2: segment only, $50m."}],
+             "Alpha", 1, False),
+            # The signer's Who may carry a parenthetical, as derive_analysis.py reads units.
+            ([], "Alpha (through Alpha Merger Sub)", 1, False),
+            ([], "Alpha", None, True),
+            # A party whose every bid is Other-scope is partial-only: blank Count.
+            ([{"day": dt.date(2020, 1, 3), "Who": "Gamma", "Type": "Strategic", "Event": "NDA signed", "Count": 1},
+              {"day": dt.date(2020, 1, 3), "Who": "Gamma", **other_scope}], "Gamma", None, False),
+            ([{"day": dt.date(2020, 1, 3), "Who": "Gamma", "Type": "Strategic", "Event": "NDA signed", "Count": 1},
+              {"day": dt.date(2020, 1, 3), "Who": "Gamma", **other_scope}], "Gamma", 1, True),
+        ]
+        for rows, signer, count, error in cases:
+            with self.subTest(signer=signer, count=count, rows=len(rows)), tempfile.TemporaryDirectory() as tmp:
+                workbook, filing = build_no_question_fixture(Path(tmp))
+                wb = check_lean.openpyxl.load_workbook(workbook)
+                wb["Deal ledger"].delete_rows(4, 1)
+                wb.save(workbook)
+                append_ledger(workbook, [dict(row) for row in rows] + [
+                    {"day": dt.date(2020, 1, 4), "Who": signer, "Event": "Merger agreement signed", "Count": count}])
+                self.assertEqual(("ledger.count_signing", "error") in issue_set(workbook, filing), error)
+
+    def test_signing_who_is_the_acquirer_not_the_target(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            workbook, filing = build_no_question_fixture(Path(tmp))
+            self.assertNotIn("ledger.signing_who", {c for c, _ in issue_set(workbook, filing)})
+            set_ledger(workbook, 4, {"Who": "Target", "Count": None})
+            self.assertIn(("ledger.signing_who", "warning"), issue_set(workbook, filing))
+            wb = check_lean.openpyxl.load_workbook(workbook)
+            wb["Deal facts"]["B2"] = "Acme Corp. (NASDAQ: ACME)"
+            wb.save(workbook)
+            set_ledger(workbook, 4, {"Who": "Acme Corp."})
+            self.assertIn(("ledger.signing_who", "warning"), issue_set(workbook, filing))
+
+    def test_a_silent_formal_bid_coded_unclear_is_a_warning(self) -> None:
+        silent = {"Formality": "Formal", "Conditions": "Unclear", "Due diligence": "Not stated"}
+        self.check_rule(silent, "conditions.none_expected", "warning")
+        self.check_rule({**silent, "Formality": "Informal"}, "conditions.none_expected", None)
+        self.check_rule({**silent, "Exclusivity": "Required", "Conditions": "Light"}, "conditions.none_expected", None)
+        self.check_rule({**silent, "Exclusivity": "Required"}, "conditions.none_expected", None)
+        self.check_rule({**silent, "Regulatory": "Concern"}, "conditions.none_expected", None)
+        self.check_rule({**silent, "Due diligence": "Incomplete"}, "conditions.none_expected", None)
+        self.check_rule({**silent, "Note": "H3: may not proceed unless the standstill is waived."},
+                        "conditions.none_expected", None)
+        self.check_rule({**silent, "Who": "Two financial bidders", "Count": 2}, "conditions.none_expected", None)
+        # An Informal bid whose every column meets None's test is also None (E12).
+        self.check_rule({"Conditions": "Unclear", "Due diligence": "Complete", "Financing": "Committed",
+                         "Regulatory": "No concern"}, "conditions.none_expected", "warning")
+
+    def test_initiation_takes_the_first_round_one_opening_as_the_target_step_whatever_its_who(self) -> None:
+        demand = {"Who": "Fund X", "Event": "Activist", "Round": 0, "Note": "Demands sale: sell now."}
+        opening = {"Who": "Banker Co", "Event": "Round opened", "Round": 1}
+        bid = {"Who": "Alpha", "Type": "Strategic", "Event": "Bid", "Round": 1, "Count": 1, "Price low": 10,
+               "Price high": 10, "Formality": "Informal", "Conditions": "Unclear", **BID_TERMS}
+        signing = {"Who": "Alpha", "Event": "Merger agreement signed", "Round": 1, "Count": 1}
+        cases = [([demand, opening, bid, signing], False),
+                 ([opening, {**demand, "Round": 1}, bid, signing], True),
+                 ([{**opening, "Who": "Acme"}, {**demand, "Round": 1}, bid, signing], True)]
+        for rows, error in cases:
+            with self.subTest(order=[row["Event"] for row in rows], who=rows[0]["Who"]), tempfile.TemporaryDirectory() as tmp:
+                workbook, filing = build_no_question_fixture(Path(tmp))
+                wb = check_lean.openpyxl.load_workbook(workbook)
+                wb["Deal ledger"].delete_rows(2, wb["Deal ledger"].max_row)
+                wb["Deal facts"]["B2"] = "Acme Corp. (NASDAQ: ACME)"
+                wb["Deal facts"]["B10"] = "activist-influenced"
+                wb.save(workbook)
+                append_ledger(workbook, [{"day": dt.date(2020, 1, n), **row} for n, row in enumerate(rows, 1)])
+                self.assertEqual(("initiation.activist_support", "error") in issue_set(workbook, filing), error)
+
+    def test_process_question_expected_for_a_round_opened_by_inference(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            workbook, filing = build_no_question_fixture(Path(tmp))
+            set_ledger(workbook, 2, {"Inferred": "Y", "When": "by 01/02/2020"})
+            found = [i for i in check(workbook, filing)["issues"] if i["code"] == "questions.process_missing"]
+            self.assertEqual([i["severity"] for i in found], ["warning"])
+            self.assertIn("round opened by inference (#1)", found[0]["message"])
+            add_questions(workbook, [question(1, "Process: one process; round 1 opening inferred from the first bid.", "#1")])
+            set_ledger(workbook, 2, {"Flag": "Q1"})
+            self.assertNotIn("questions.process_missing", {c for c, _ in issue_set(workbook, filing)})
+
+    def test_rows_affected_may_mix_ledger_rows_and_an_omitted_source_event(self) -> None:
+        parse = check_lean.parse_affected_rows
+        self.assertEqual(parse("Rows 2, 3; June 5, 2020 board meeting, omitted"), ({2, 3}, True))
+        self.assertEqual(parse("2; 4-5"), ({2, 4, 5}, True))
+        self.assertEqual(parse("Rows 1-3"), ({1, 2, 3}, True))
+        self.assertEqual(parse("#3; the omitted June 5 meeting"), ({3}, True))
+        self.assertEqual(parse("June 5, 2020 board meeting, omitted"), (set(), False))
+        with tempfile.TemporaryDirectory() as tmp:
+            workbook, filing = build_no_question_fixture(Path(tmp))
+            add_questions(workbook, [["R1", "Check the bid and the omitted meeting", "Kept", "p. 10",
+                                      "Row 2; June 5 board meeting, omitted", "—", None]])
+            self.assertIn(("questions.flag_mismatch", "warning"), issue_set(workbook, filing))
+            set_ledger(workbook, 3, {"Flag": "R1"})
+            self.assertFalse({c for c, _ in issue_set(workbook, filing)} & {"questions.flag_mismatch", "questions.reverse_link"})
+            set_ledger(workbook, 4, {"Flag": "R1"})
+            self.assertIn(("questions.reverse_link", "warning"), issue_set(workbook, filing))
+
+    def test_a_non_submitter_exits_at_the_due_date_and_an_accepted_late_bid_has_no_exit(self) -> None:
+        # Rulings of 28 September 2026, 1 (E14): a bidder that has not bid by a due date exits at the due date; a
+        # late bid the target takes before the next round opens means it never left.
+        def rows(exit_day: int, return_round: int) -> list[dict]:
+            beta = {"Who": "Beta", "Type": "Financial", "Count": 1}
+            return [{"day": dt.date(2020, 1, 4), **beta, "Event": "NDA signed"},
+                    {"day": dt.date(2020, 1, 5), "Who": "Target", "Event": "Deadline"},
+                    {"day": dt.date(2020, 1, exit_day), **beta, "Event": "Did not submit", "Exit reason": "Not stated",
+                     "Inferred": "Y", "When": f"by 01/{exit_day:02d}/2020", "Date from": None},
+                    *([{"day": dt.date(2020, 1, 7), "Who": "Target", "Event": "Round opened", "Round": 2}]
+                      if return_round == 2 else []),
+                    {"day": dt.date(2020, 1, 7), **beta, "Event": "Re-entered", "Round": return_round},
+                    {"day": dt.date(2020, 1, 7), **beta, "Event": "Bid", "Round": return_round, "Price low": 11,
+                     "Price high": 11, "Formality": "Informal", "Conditions": "Unclear", **BID_TERMS}]
+        cases = [((5, 1), {"exit.late_bid_in_round"}), ((5, 2), set()), ((6, 2), {"exit.did_not_submit_date"})]
+        for (exit_day, return_round), expected in cases:
+            with self.subTest(exit_day=exit_day, return_round=return_round), tempfile.TemporaryDirectory() as tmp:
+                workbook, filing = build_no_question_fixture(Path(tmp))
+                append_ledger(workbook, rows(exit_day, return_round))
+                found = issue_set(workbook, filing)
+                self.assertEqual({c for c, _ in found} & {"exit.late_bid_in_round", "exit.did_not_submit_date",
+                                                          "exit.activity_without_reentry"}, expected, found)
+                self.assertTrue(all(severity == "warning" for c, severity in found if c in expected), found)
+        with tempfile.TemporaryDirectory() as tmp:
+            # A bid with no Re-entered row in the same round gets the late-bid lead, not "add Re-entered".
+            workbook, filing = build_no_question_fixture(Path(tmp))
+            append_ledger(workbook, [row for row in rows(5, 1) if row["Event"] != "Re-entered"])
+            codes = {c for c, _ in issue_set(workbook, filing)}
+            self.assertIn("exit.late_bid_in_round", codes)
+            self.assertNotIn("exit.activity_without_reentry", codes)
 
     def test_same_as_points_to_an_earlier_bid_of_the_same_bidder(self) -> None:
         day = dt.date(2020, 1, 4)
