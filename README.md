@@ -6,22 +6,22 @@ A ledger workbook has four sheets, defined in the instruction:
 
 - **Deal ledger**: one row per substantive event in event order, plus process and round markers, each supported by a quotation from the filing;
 - **Rounds**: one line per bidding round, with who was admitted, due dates, bids received and how the round ended;
-- **Questions**: open coding questions, each with a recommended answer, the supporting page and the rows affected;
+- **Questions**: up to five open coding questions, each with a recommended answer, the supporting page and the rows affected, followed by Review items for human checking;
 - **Deal facts**: deal-level fields such as the parties, price, initiation, advisers and a short account of the process.
 
 ## Current status
 
-Version 0 as of 27 September 2026: the instruction is v0, `extraction/` is empty, and every deal is to be re-extracted. See [status](_dev/STATUS.md) for open research questions and pending work.
+Version 1, approved 28 September 2026: the instruction is Version 1, `extraction/` is empty, and every deal is to be re-extracted on Austin's command. See [status](_dev/STATUS.md) for pending work.
 
 ## Repository layout
 
 | Path | Contents |
 |---|---|
-| [`SEC_Deal_Ledger_Extraction_Instruction.md`](SEC_Deal_Ledger_Extraction_Instruction.md) | The extraction instruction, version 0. |
+| [`SEC_Deal_Ledger_Extraction_Instruction.md`](SEC_Deal_Ledger_Extraction_Instruction.md) | The extraction instruction, Version 1. |
 | [`raw_filing/`](raw_filing/) | The nine filings as fetched from EDGAR; [`MANIFEST.csv`](raw_filing/MANIFEST.csv) records each source link and SHA-256 hash. |
-| `extraction/` | Blind extractions under v0, one `<deal>.xlsx` per deal. |
+| `extraction/` | Blind extractions under Version 1, one `<deal>.xlsx` per deal. |
 | `ref/` | Alex's collection instructions, voice notes and hand-coded deals. For evaluation only. |
-| [`_dev/`](_dev/) | Status, the Alex-alignment audit, the cockpit app spec and the pipeline tools. |
+| [`_dev/`](_dev/) | Status, the alignment sprint's decision log and reviews, the cockpit app spec and source, and the pipeline tools. |
 
 The nine deals are Datalink, Kraton, Mac-Gray, Meredith, Penford, PetSmart, Providence & Worcester, sTec and Synacor.
 
@@ -37,7 +37,7 @@ Extractions are run only on Austin's command. Each run is isolated in a sandbox 
 
 ## Where to go next
 
-- [Status](_dev/STATUS.md): open research questions, settled rulings and pending work.
-- [Alex-alignment audit](_dev/ALEX_ALIGNMENT.md): where the v0 instruction departs from Alex's voice notes, with a work order.
-- [Cockpit app spec](_dev/COCKPIT_APP_SPEC.md): the shared extraction app on the VM.
+- [Status](_dev/STATUS.md): state, settled rulings and pending work.
+- [Decision log](_dev/alignment_sprint/DECISIONS.md): every ruling behind Version 1, with its source in Alex's notes; [change map](_dev/alignment_sprint/draft/CHANGE_MAP.md) links each clause to its ruling.
+- [Cockpit app spec](_dev/COCKPIT_APP_SPEC.md): the shared extraction app on the VM; its source is in `_dev/tools/cockpit`.
 - [Tools guide](_dev/tools/README.md): environment, mechanical checking, isolated runs, review helpers and analysis tables.

@@ -1,5 +1,7 @@
 # Alex's voice notes versus the current research conventions
 
+*Superseded by the alignment sprint's decision log ([DECISIONS.md](alignment_sprint/DECISIONS.md), 27–28 September 2026) and Version 1. Kept as the audit that started the sprint.*
+
 27 September 2026. Detailed reconciliation, not an instruction amendment or acceptance of any workbook. The audit was written against the instruction text that is now labelled v0 (identical except for its version line). Its run evidence comes from runs made before the v0 reset, cited by git reference; re-check each point against the v0 re-extractions.
 
 ## Verdict and scope

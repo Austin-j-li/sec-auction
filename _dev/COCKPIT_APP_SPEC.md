@@ -1,6 +1,6 @@
 # Ledger cockpit as a shared extraction app: specification
 
-Approved by Austin on 23 September 2026. Product specification for the shared extraction app. The app's source and state live on the VM; this checkout holds only the runner and checker it calls (`tools/sandbox/run_model.py`, `tools/check_lean.py`; see the [tools README](tools/README.md)).
+Approved by Austin on 23 September 2026. Product specification for the shared extraction app. The app's source is in `tools/cockpit` (Version 1 build); its state lives on the VM. It calls the runner and checker (`tools/sandbox/run_model.py`, `tools/check_lean.py`; see the [tools README](tools/README.md)).
 
 ## 1. Goal
 
@@ -189,7 +189,7 @@ An **Instructions** page lists every version: name (for example v0), status (pub
 - **Publish**: freezes the draft under a name and a required change note. Names must be unique and cannot be reused.
 - **Make default**: either user, logged in the activity feed and the Instructions page.
 - The editor shows a short reminder of AGENTS.md's rule for instruction changes: a change should be general (objective, work process, honesty about uncertainty, a repaired contradiction, a deletion), never a rule justified by one reviewed deal. It is advisory, not enforced.
-- v0 (27 September 2026) is the base version. The in-app store is authoritative for runs made in the app; the app never writes to the repository (§11).
+- Version 1 (approved 28 September 2026) is the base version seeded at the switch-over. The in-app store is authoritative for runs made in the app; the app never writes to the repository (§11).
 
 ## 10. Research integrity (unchanged guarantees, now enforced by the app)
 
