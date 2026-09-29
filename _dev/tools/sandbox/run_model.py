@@ -40,17 +40,19 @@ CLAUDE_TOKEN_FILE = Path(os.environ.get("SEC_CLAUDE_OAUTH_TOKEN_FILE")
 # Unset means the host login, ~/.codex/auth.json.
 CODEX_AUTH_FILE = Path(os.environ["SEC_CODEX_AUTH_FILE"]) if os.environ.get("SEC_CODEX_AUTH_FILE") else None
 # Models and effort levels each provider may be prepared with. The first model is the default.
-# "opus" is the Claude transport (Opus and Fable); "sol" is the Codex transport (Sol and Astra).
-MODELS = {"sol": ("gpt-6-sol", "gpt-6-astra", "gpt-5.6-sol"), "opus": ("claude-opus-5-5", "claude-fable-5-1", "claude-opus-5")}
+# "opus" is the Claude transport (Opus, Fable and Sonnet); "sol" is the Codex transport (Sol and Astra).
+MODELS = {"sol": ("gpt-6-sol", "gpt-6.1-sol", "gpt-6-astra", "gpt-5.6-sol"), "opus": ("claude-opus-5-5", "claude-fable-5-1", "claude-opus-5", "claude-sonnet-5-5")}
 # Codex's "ultra" level delegates to subagents automatically, so it is not offered.
 EFFORTS = {"sol": ("low", "medium", "high", "xhigh", "max"), "opus": ("low", "medium", "high", "xhigh", "max")}
 DEFAULT_EFFORT = {"sol": "xhigh", "opus": "medium"}  # Opus 5.5 at medium is the project's default extraction
 MODEL_DEFAULT_EFFORT = {"gpt-6-astra": "high"}
 # Claude Code settings for every Opus run. A classifier refusal fails the run instead of switching
 # models; the prompt-cache lifetime stays the subscription default; and the "user hasn't heard
-# from you" reminder never fires, since no one reads a sandboxed run while it works.
+# from you" reminder never fires, since no one reads a sandboxed run while it works. A response may
+# use the models' full 128K output: a CLI that predates a model caps it at 32K and ends the run.
 CLAUDE_ENV = {
     "CLAUDE_CODE_DISABLE_REFUSAL_FALLBACK": "1",
+    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "128000",
     "CLAUDE_CODE_PROMPT_CACHE_TTL": "1h",
     "CLAUDE_CODE_SILENT_TURN_REMINDER_TURNS": "1000000",
 }

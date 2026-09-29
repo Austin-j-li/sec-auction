@@ -187,6 +187,9 @@ class RunnerTests(unittest.TestCase):
             astra = self.prepare_fixture(root / "astra", extra=("--provider", "sol", "--model", "gpt-6-astra"))
             metadata = json.loads((astra / "metadata.json").read_text())
             self.assertEqual((metadata["model"], metadata["effort"]), ("gpt-6-astra", "high"))
+            sol61 = self.prepare_fixture(root / "sol61", extra=("--provider", "sol", "--model", "gpt-6.1-sol"))
+            metadata = json.loads((sol61 / "metadata.json").read_text())
+            self.assertEqual((metadata["model"], metadata["effort"]), ("gpt-6.1-sol", run_model.DEFAULT_EFFORT["sol"]))
 
     def test_revision_workbook_must_have_the_current_ledger_header(self):
         with tempfile.TemporaryDirectory() as tmp:

@@ -38,6 +38,7 @@ ENGINES = {
     "opus55": {"label": "Opus 5.5", "name": "Claude Opus 5.5", "provider": "opus", "model": "claude-opus-5-5", "account": "claude", "experimental": False, "note": None},
     "fable51": {"label": "Fable 5.1", "name": "Claude Fable 5.1", "provider": "opus", "model": "claude-fable-5-1", "account": "claude", "experimental": True, "note": FABLE_NOTE},
     "sol6": {"label": "GPT-6-Sol", "name": "GPT-6-Sol", "provider": "sol", "model": "gpt-6-sol", "account": "chatgpt", "experimental": False, "note": None},
+    "sol61": {"label": "GPT-6.1-Sol", "name": "GPT-6.1-Sol", "provider": "sol", "model": "gpt-6.1-sol", "account": "chatgpt", "experimental": False, "note": None},
     "astra6": {"label": "GPT-6-Astra", "name": "GPT-6-Astra", "provider": "sol", "model": "gpt-6-astra", "account": "chatgpt", "experimental": False, "note": None},
 }
 DEFAULT_ENGINE = "opus55"  # Austin, 26 Sep 2026: Opus 5.5 medium is the main extractor again.

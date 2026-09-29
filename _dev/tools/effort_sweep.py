@@ -48,6 +48,7 @@ MAX_CONSECUTIVE_RETRYABLE = 3
 PRICES = {
     "claude-opus-5-5": {"input": 4.0, "output": 20.0, "cache_read": 0.20, "cache_write_1h": 8.0, "cache_write_5m": 5.0},
     "claude-opus-5": {"input": 5.0, "output": 25.0, "cache_read": 0.50, "cache_write_1h": 10.0, "cache_write_5m": 6.25},
+    "claude-sonnet-5-5": {"input": 2.0, "output": 10.0, "cache_read": 0.20, "cache_write_1h": 4.0, "cache_write_5m": 2.50},
 }
 # A shell command that could reach the network from inside the sandbox (which shares the host network).
 NETWORK = re.compile(r"\b(curl|wget|urllib|requests\.|http\.client|socket\.|pip3? install)\b|https?://", re.I)

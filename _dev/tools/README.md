@@ -26,7 +26,7 @@ python3 _dev/tools/sandbox/run_model.py launch --provider opus --run-dir _dev/ru
 python3 _dev/tools/sandbox/run_model.py status --runs-dir _dev/runs
 ```
 
-The default is Claude Opus 5.5 (`claude-opus-5-5`) at medium effort. `--provider opus` also runs `claude-fable-5-1`; `--provider sol` runs `gpt-6-sol` by default (xhigh) or `gpt-6-astra` (high) through Codex. Efforts are `low` to `max`. The model, effort and time limit (default 90 minutes, 10–360 allowed) are recorded in `metadata.json`, and launch refuses metadata with a model or effort that is not allowed. Prepare calls no model; launch does. `--instruction` supplies another instruction file in place of the root one. `--filing-dir` takes `raw_filing/` (the default) or a deal folder the cockpit added under `_dev/cockpit/state/filings/`.
+The default is Claude Opus 5.5 (`claude-opus-5-5`) at medium effort. `--provider opus` also runs `claude-fable-5-1`; `--provider sol` runs `gpt-6-sol` by default (xhigh), `gpt-6.1-sol` (xhigh) or `gpt-6-astra` (high) through Codex. Efforts are `low` to `max`. The model, effort and time limit (default 90 minutes, 10–360 allowed) are recorded in `metadata.json`, and launch refuses metadata with a model or effort that is not allowed. Prepare calls no model; launch does. `--instruction` supplies another instruction file in place of the root one. `--filing-dir` takes `raw_filing/` (the default) or a deal folder the cockpit added under `_dev/cockpit/state/filings/`.
 
 Launch and worker startup check the prepared instruction, filing and prompt against their recorded SHA-256 hashes. A changed or missing input needs a newly prepared run directory.
 

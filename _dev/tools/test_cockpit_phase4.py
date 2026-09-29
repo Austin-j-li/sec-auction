@@ -181,7 +181,7 @@ class Phase4Tests(unittest.TestCase):
         self.assertEqual(runs.job_account({}), "claude")
         self.assertEqual(worker.engine_of({"engine": "sol6"})[0], "sol6")
         defaults = {e["id"]: e["default_effort"] for e in self.runs.account("austin")["engines"]}
-        self.assertEqual(defaults, {"astra6": "high", "opus55": "medium", "fable51": "medium", "sol6": "medium"})
+        self.assertEqual(defaults, {"astra6": "high", "opus55": "medium", "fable51": "medium", "sol6": "medium", "sol61": "medium"})
 
     def test_extract_checks_the_engines_account_and_freezes_the_instruction(self):
         with self.assertRaisesRegex(Conflict, "ChatGPT"):
@@ -200,7 +200,7 @@ class Phase4Tests(unittest.TestCase):
                          {"engine": "astra6", "engine_label": "GPT-6-Astra", "model": "gpt-6-astra", "provider": "sol", "account": "chatgpt", "effort": "high"})
         self.assertEqual(job["params"]["instruction"], {"id": draft["item"]["id"], "label": draft["item"]["label"], "name": None, "status": "draft", "sha256": draft["item"]["sha256"]})
         account = self.runs.account("austin")
-        self.assertEqual({engine["id"]: engine["connected"] for engine in account["engines"]}, {"opus55": False, "fable51": False, "sol6": True, "astra6": True})
+        self.assertEqual({engine["id"]: engine["connected"] for engine in account["engines"]}, {"opus55": False, "fable51": False, "sol6": True, "sol61": True, "astra6": True})
         self.assertTrue(account["chatgpt"]["connected"])
 
     def test_runs_under_distinct_instructions_use_the_version1_checker(self):
