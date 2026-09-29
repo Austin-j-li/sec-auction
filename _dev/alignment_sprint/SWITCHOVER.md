@@ -11,6 +11,11 @@ Run on Austin's order ("hard switch and get rid of the old version").
 - On Austin's order the old version was then deleted without the one-week wait: `~/work/Projects/sec-extraction`, `sec-extraction-v114`, `sec-extraction-archive` and the old nightlies in `~/backups/ledger-cockpit/`. Their Git history stays on GitLab (`vm-live-2026-09-26`, `vm-v114-2026-09-26`). **Rollback below is no longer possible.** `~/backups/vm-checkouts-2026-09-27.tgz` is kept for now as the only copy of the untracked `lesson/` notes.
 
 
+## Redeployment, 29 September 2026
+
+On Austin's order ("make sol 6.1 selectable in the cockpit webapp"): no queued or active jobs; the deployment worktree moved from `4dd04c1` to `9f0750e` (GPT-6.1-Sol engine, rebuilt `dist/`, docs); `ledger-cockpit` and `ledger-worker` restarted, backup timer untouched. The served page loads the new bundle and the deployed `ENGINES` lists `sol61`.
+
+
 This is a runbook for Austin's later order. None of these deployment steps was run during the build. Approval of the build and permission to switch the live app are separate from building it. Do not submit an extraction during the switch-over checks.
 
 ## Prepare the approved commit
