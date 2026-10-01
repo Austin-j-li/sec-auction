@@ -25,6 +25,6 @@ On 27 September 2026 Austin reset the project to Version 0 and deleted everythin
 - Outside the app, an agent changes the instruction only with Austin's approval and runs extractions only on his command. Building or testing tools does not authorize a real model run. Change the instruction only where the change is general (objective, work process, honesty about uncertainty, a repaired contradiction, a deletion); never add a rule justified by one reviewed deal.
 - Comparison runs must be isolated: one instruction and one filing per sandboxed session (`_dev/tools/sandbox/run_model.py`; usage in `_dev/tools/README.md`). Run the checker after the run, never where the extracting agent can see it. Revision mode is a separate, explicitly requested pass that may see the selected workbook and findings.
 - Checking is mechanical and offline. Delete run folders and other scaffolding once their results are recorded.
-- Commit and push finished work to GitLab (`origin`) at the end of each work session, on the current branch. Never force-push, rewrite pushed history, or commit secrets, caches or credentials.
+- Commit and push finished work to GitHub (`origin`, github.com/Austin-j-li/sec-auction, private) at the end of each work session, on the current branch. Never force-push, rewrite pushed history, or commit secrets, caches or credentials.
 
 This checkout is `~/work/Projects/sec-auction` on the VM, branch `extraction-v2` (Version 1 was built on `version-1`).

@@ -43,7 +43,7 @@ Alex asked to record procedural Formality and conditionality separately and rein
 
 ## Operational
 
-- **Where work happens:** on the VM, in `~/work/Projects/sec-auction`, branch `extraction-v2` (Version 1 was built on `version-1`). Commit and push finished work to GitLab at the end of each session. The laptop checkout and `local-recovery-2026-09-27` are retired.
+- **Where work happens:** on the VM, in `~/work/Projects/sec-auction`, branch `extraction-v2` (Version 1 was built on `version-1`). Commit and push finished work to GitHub (`origin`, private) at the end of each session; GitLab is retired. The laptop checkout and `local-recovery-2026-09-27` are retired.
 - **Live app:** unchanged since 26 September. Its uncommitted work is archived on branches `vm-live-2026-09-26` and `vm-v114-2026-09-26`; backups are in `~/backups/`. The old folders are deleted a week after a clean switch-over (evening ruling 7).
 - **Until the switch-over:** `tools/sandbox/run_model.py` runs the root instruction (now Version 1) and the checker enforces Version 1 only, so the live app's v1.14.1 ledgers are not checked by these tools.
 - **Leftovers:** two acceptance fixture servers started on 23 September from the live folder are still running (PIDs 2651214 and 2807890); stop them on Austin's word.
