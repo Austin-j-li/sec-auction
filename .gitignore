@@ -15,3 +15,5 @@ node_modules/
 coverage/
 playwright-report/
 test-results/
+# Worktrees that Remote Control threads create on the VM.
+.claude/worktrees/
