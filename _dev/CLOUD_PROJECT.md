@@ -27,7 +27,7 @@ Create it at claude.ai/code from the environment selector, then **New environmen
 
   `fetch_filing.py` needs this domain to download filings from EDGAR.
 - **Environment variables:** none. Values here are readable by anyone who uses the environment, so never put a token here.
-- **Setup script** (it runs before the clone, so it names the packages in [requirements.txt](tools/requirements.txt); keep the two in step):
+- **Setup script** (it may run before the clone exists, so it names the packages in [requirements.txt](tools/requirements.txt); keep the two in step):
 
   ```bash
   #!/bin/bash
