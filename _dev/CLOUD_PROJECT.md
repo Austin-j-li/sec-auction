@@ -41,8 +41,8 @@ Create it at claude.ai/code from the environment selector, then **New environmen
 2. **Name:** `sec-auction`. **Goal:** `Build and check the Version 1 deal-ledger pipeline for Austin and Alex's takeover-auction research.`
 3. **Context:** add the repository `Austin-j-li/sec-auction`. Add nothing else.
 4. Click **Create project**. If Claude posts **Setup recommendations**, switch off every routine and thread it suggests.
-5. **Project settings > Environment:** choose the `sec-auction` environment.
-6. **Project settings > General:** thread model Opus 5.5 at high effort, coordinator Opus 5.5 at low effort. Extraction runs choose their own model through the runner, so these settings do not change Version 1 results.
+5. **Project settings > Environment:** choose the `sec-auction` environment, and turn on **Use worktrees in local folders**.
+6. **Project settings > General:** thread model Opus 5.5 at medium effort, coordinator Opus 5.5 at low effort (both defaults). Extraction runs choose their own model through the runner, so these settings do not change Version 1 results.
 7. **Project settings > Memory > Project instructions:** paste the text below.
 
 ### Project instructions
