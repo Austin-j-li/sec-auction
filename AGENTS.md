@@ -25,6 +25,9 @@ On 27 September 2026 Austin reset the project to Version 0 and deleted everythin
 - Outside the app, an agent changes the instruction only with Austin's approval and runs extractions only on his command. Building or testing tools does not authorize a real model run. Change the instruction only where the change is general (objective, work process, honesty about uncertainty, a repaired contradiction, a deletion); never add a rule justified by one reviewed deal.
 - Comparison runs must be isolated: one instruction and one filing per sandboxed session (`_dev/tools/sandbox/run_model.py`; usage in `_dev/tools/README.md`). Run the checker after the run, never where the extracting agent can see it. Revision mode is a separate, explicitly requested pass that may see the selected workbook and findings.
 - Checking is mechanical and offline. Delete run folders and other scaffolding once their results are recorded.
-- Commit and push finished work to GitHub (`origin`, github.com/Austin-j-li/sec-auction, public) at the end of each work session, on the current branch. Never force-push, rewrite pushed history, or commit secrets, caches or credentials.
+- Commit and push finished work to GitHub (`origin`, github.com/Austin-j-li/sec-auction, public) before a session or thread ends. Work on your own branch and open a pull request into `extraction-v2`; Austin merges it. Do not push to `extraction-v2` directly. Never force-push, rewrite pushed history, or commit secrets, caches or credentials.
 
-This checkout is `~/work/Projects/sec-auction` on the VM, branch `extraction-v2` (Version 1 was built on `version-1`).
+## Where work happens
+- **Development:** the Claude Code project "sec-auction" at claude.ai/code. Each cloud thread starts from a clean clone of `extraction-v2` and keeps only what it pushes. Version 1 was built on `version-1`.
+- **The VM** (`condenser-vm`, checkout `~/work/Projects/sec-auction`): the live cockpit, paid extraction runs through the sandbox runner, Codex (Astra and Sol), and the cockpit backups. A cloud thread cannot reach the VM. For a task that needs it, ask for a thread on the VM through Remote Control ("Work locally" in the project).
+- **The Mac checkout** (`~/Projects/sec-auction`) is retired.

@@ -1,0 +1,57 @@
+{
+ "seed": 5617,
+ "mapping": {
+  "stec": {
+   "A": {
+    "arm": "sonnet-5-5-high",
+    "run": "/home/uctpiaj/work/Projects/sec-auction/_dev/runs/sonnet55/stec-sonnet-5-5-high-r1",
+    "cost_usd": 1.7922810000000002,
+    "elapsed_seconds": 647.524,
+    "checker_status": "fail",
+    "checker_issues": 6
+   },
+   "B": {
+    "arm": "sonnet-5-5-xhigh",
+    "run": "/home/uctpiaj/work/Projects/sec-auction/_dev/runs/sonnet55/stec-sonnet-5-5-xhigh-r1",
+    "cost_usd": 3.6195542000000005,
+    "elapsed_seconds": 1178.573,
+    "checker_status": "pass_with_warnings",
+    "checker_issues": 7
+   },
+   "C": {
+    "arm": "opus-5-5-medium",
+    "run": "/home/uctpiaj/work/Projects/sec-auction/_dev/runs/packet/stec-opus-5-5-medium-r1",
+    "cost_usd": 2.8828959999999997,
+    "elapsed_seconds": 673.515,
+    "checker_status": "pass_with_warnings",
+    "checker_issues": 5
+   }
+  },
+  "imprivata": {
+   "A": {
+    "arm": "sonnet-5-5-xhigh",
+    "run": "/home/uctpiaj/work/Projects/sec-auction/_dev/runs/sonnet55/imprivata-sonnet-5-5-xhigh-r1",
+    "cost_usd": 3.211995199999999,
+    "elapsed_seconds": 1048.277,
+    "checker_status": "pass_with_warnings",
+    "checker_issues": 11
+   },
+   "B": {
+    "arm": "sonnet-5-5-high",
+    "run": "/home/uctpiaj/work/Projects/sec-auction/_dev/runs/sonnet55/imprivata-sonnet-5-5-high-r1",
+    "cost_usd": 1.4203669999999997,
+    "elapsed_seconds": 526.073,
+    "checker_status": "fail",
+    "checker_issues": 5
+   },
+   "C": {
+    "arm": "opus-5-5-medium",
+    "run": "/home/uctpiaj/work/Projects/sec-auction/_dev/runs/packet/imprivata-opus-5-5-medium-r1",
+    "cost_usd": 2.4722098000000003,
+    "elapsed_seconds": 590.585,
+    "checker_status": "pass_with_warnings",
+    "checker_issues": 7
+   }
+  }
+ }
+}

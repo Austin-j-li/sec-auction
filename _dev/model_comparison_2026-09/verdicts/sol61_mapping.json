@@ -1,0 +1,57 @@
+{
+ "seed": 20260929,
+ "mapping": {
+  "stec": {
+   "A": {
+    "arm": "opus-5-5-medium",
+    "run": "/home/uctpiaj/work/Projects/sec-auction/_dev/runs/packet/stec-opus-5-5-medium-r1",
+    "cost_usd": 2.8828959999999997,
+    "elapsed_seconds": 673.515,
+    "checker_status": "pass_with_warnings",
+    "checker_issues": 5
+   },
+   "B": {
+    "arm": "gpt-6-1-sol-xhigh",
+    "run": "/home/uctpiaj/work/Projects/sec-auction/_dev/runs/sol61/stec-gpt-6-1-sol-xhigh-r1",
+    "cost_usd": null,
+    "elapsed_seconds": 1102.728,
+    "checker_status": "pass_with_warnings",
+    "checker_issues": 2
+   },
+   "C": {
+    "arm": "gpt-6-1-sol-high",
+    "run": "/home/uctpiaj/work/Projects/sec-auction/_dev/runs/sol61/stec-gpt-6-1-sol-high-r1",
+    "cost_usd": null,
+    "elapsed_seconds": 857.381,
+    "checker_status": "pass_with_warnings",
+    "checker_issues": 3
+   }
+  },
+  "imprivata": {
+   "A": {
+    "arm": "opus-5-5-medium",
+    "run": "/home/uctpiaj/work/Projects/sec-auction/_dev/runs/packet/imprivata-opus-5-5-medium-r1",
+    "cost_usd": 2.4722098000000003,
+    "elapsed_seconds": 590.585,
+    "checker_status": "pass_with_warnings",
+    "checker_issues": 7
+   },
+   "B": {
+    "arm": "gpt-6-1-sol-high",
+    "run": "/home/uctpiaj/work/Projects/sec-auction/_dev/runs/sol61/imprivata-gpt-6-1-sol-high-r1",
+    "cost_usd": null,
+    "elapsed_seconds": 974.658,
+    "checker_status": "pass_with_warnings",
+    "checker_issues": 1
+   },
+   "C": {
+    "arm": "gpt-6-1-sol-xhigh",
+    "run": "/home/uctpiaj/work/Projects/sec-auction/_dev/runs/sol61/imprivata-gpt-6-1-sol-xhigh-r1",
+    "cost_usd": null,
+    "elapsed_seconds": 1415.073,
+    "checker_status": "pass_with_warnings",
+    "checker_issues": 1
+   }
+  }
+ }
+}
