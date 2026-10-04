@@ -1,5 +1,8 @@
 # Version 1 switch-over
 
+This file records the original fresh-state cutover. For subsequent cloud deployments, use [CLOUD_DEPLOYMENT.md](../CLOUD_DEPLOYMENT.md).
+Do not repeat the state reset for a routine release. Austin's current no-tests rule overrides historical test commands below.
+
 ## Deployment record, 28 September 2026
 
 Run on Austin's order ("hard switch and get rid of the old version").

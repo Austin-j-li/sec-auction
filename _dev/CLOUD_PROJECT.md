@@ -6,7 +6,8 @@ Development of sec-auction happens in one Claude Code project at claude.ai/code 
 
 - **Project conversation:** Austin sends tasks there. Claude starts a thread for each task and tracks it in the **Overview** pane.
 - **Cloud threads:** each thread is a fresh clone of `extraction-v2` on an Anthropic machine. It works on its own branch and opens a pull request. Austin merges. Nothing outside git survives the thread.
-- **VM threads:** for a task that needs the VM (Codex, paid runs, the live cockpit), choose **Work locally** in the project. The thread then runs on the VM through Remote Control, with the VM's files, tools and logins.
+- **VM access from cloud threads:** use the installed `arc` client and protected credential for `arc.dealextract.org`. Deployment stays in the cloud task. Follow [CLOUD_DEPLOYMENT.md](CLOUD_DEPLOYMENT.md).
+- **VM threads:** Remote Control through **Work locally** remains optional.
 - **What every thread reads:** [AGENTS.md](../AGENTS.md), [CLAUDE.md](../CLAUDE.md), the project instructions below and, in cloud threads, project memory.
 
 ## 1. GitHub
@@ -19,21 +20,16 @@ Development of sec-auction happens in one Claude Code project at claude.ai/code 
 Create it at claude.ai/code from the environment selector, then **New environment**.
 
 - **Name:** `sec-auction`
-- **Network access:** **Custom**. Check **Also include default list of common package managers**. Allowed domains:
+- **Network access:** Full, as configured on 4 October 2026.
+- **Protected API credential:** Condenser and Myriad, host `arc.dealextract.org`.
+- **Setup script:** preserve the pinned project dependencies and the shared research setup.
+  The shared setup installs `/usr/local/bin/arc` and `/usr/local/bin/claude-gpt`.
+  It also installs the research tools under `/opt/claude-research`.
+- **Credentials:** reuse the protected ARC credential. Never copy it to the setup script or plain variables.
+- **Deployment:** no Cloudflare token is needed for an ordinary release of the VM app.
 
-  ```text
-  www.sec.gov
-  ```
-
-  `fetch_filing.py` needs this domain to download filings from EDGAR.
-- **Environment variables:** none. Values here are readable by anyone who uses the environment, so never put a token here.
-- **Setup script** (it may run before the clone exists, so it names the packages in [requirements.txt](tools/requirements.txt); keep the two in step):
-
-  ```bash
-  #!/bin/bash
-  python3 -m pip install --break-system-packages openpyxl==3.1.5 beautifulsoup4==4.15.0 lxml==5.2.1 \
-    || python3 -m pip install openpyxl==3.1.5 beautifulsoup4==4.15.0 lxml==5.2.1
-  ```
+Setup changes apply to new cloud sessions. Existing sessions with ARC access can use the deployment route directly.
+Verify access from the actual project environment with `arc health` and the commands in [CLOUD_DEPLOYMENT.md](CLOUD_DEPLOYMENT.md).
 
 ## 3. The project
 
@@ -58,12 +54,16 @@ Checks
 - Verify a change by running the tool on real files, for example check_lean.py on a real workbook and filing. Report what you ran and what you saw. Do not write or run tests.
 
 What needs Austin's word first
-- Any paid model run: run_model.py launch, effort_sweep.py run, codex exec or claude -p. Launch only the runs he names.
+- Paid extraction runs: run_model.py launch, effort_sweep.py run, or direct extraction calls. Launch only the runs Austin names.
+- GPT advice and development delegation follow Austin's shared GPT policy.
 - Any change to SEC_Deal_Ledger_Extraction_Instruction.md.
-- Anything that touches the live cockpit or its deployment folder on the VM.
+- A release of the live cockpit requires a deployment request. That request covers the release steps in the same cloud task.
+- Follow _dev/CLOUD_DEPLOYMENT.md. Do not request another approval for the same release.
 
 Where things run
-- Cloud threads cannot reach the VM. Paid runs, Codex (Astra and Sol) and the cockpit live on the VM. When a task needs them, stop and ask Austin for a "Work locally" thread on the VM.
+- Cloud threads reach the VM through arc exec condenser and the protected credential for arc.dealextract.org.
+- Keep requested deployments in the same cloud task. Work locally is optional.
+- Use claude-gpt for GPT help under Austin's shared GPT policy. Paid extraction runs retain their separate authorization rule.
 - Extraction must stay blind. Never put Alex's hand-coded answers from ref/, or codings from reviews and comparisons, into project memory or into the instructions.
 
 When something is missing
@@ -73,7 +73,7 @@ Reports
 - Write for Austin in the plain style of CLAUDE.md. Start with what changed for the deal ledger.
 ```
 
-## 4. Remote Control on the VM
+## 4. Optional Remote Control on the VM
 
 The VM runs `claude remote-control` as the user service `sec-auction-remote.service`, in `~/work/Projects/sec-auction`, with `--spawn worktree`. Each VM thread gets its own git worktree, so threads do not overwrite each other or the checkout. The live deployment folder `~/work/Projects/ledger-live` is not part of it.
 
