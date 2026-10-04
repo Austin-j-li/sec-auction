@@ -20,6 +20,7 @@ Development of sec-auction happens in one Claude Code project at claude.ai/code 
 Create it at claude.ai/code from the environment selector, then **New environment**.
 
 - **Name:** `sec-auction`
+- **Environment ID:** `env_01SohAnkv8aZfd2kKUSq2mjV`, verified by a fresh cloud session on 4 October 2026.
 - **Network access:** Full, as configured on 4 October 2026.
 - **Protected API credential:** Condenser and Myriad, host `arc.dealextract.org`.
 - **Setup script:** preserve the pinned project dependencies and the shared research setup.

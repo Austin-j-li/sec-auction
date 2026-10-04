@@ -13,6 +13,7 @@ Use the existing protected ARC connection to Condenser. A separate “Work local
 - Live checkout: `/home/uctpiaj/work/Projects/ledger-live`.
 - Services: `ledger-cockpit.service`, `ledger-worker.service`, `ledger-backup.timer`.
 - State: `/home/uctpiaj/work/Projects/ledger-live/_dev/cockpit/state`.
+- Database: `workspace.sqlite3` inside that state folder; use Python's `sqlite3` module with `mode=ro` for inspection.
 - Backups: `/home/uctpiaj/backups/ledger-live`.
 
 A request to deploy or publish authorizes the release steps in that task. Do not request a second approval for the same release.
@@ -130,3 +131,12 @@ The selected desktop project has the `sec-auction` environment and `Austin-j-li/
 Its protected credential list includes `arc.dealextract.org`.
 The VM services were active at inspection, with live commit `9f0750e`.
 No release was requested as part of this connection setup.
+
+A fresh Claude cloud session verified the route at 15:38–15:41 Europe/London on 4 October 2026.
+Environment: `env_01SohAnkv8aZfd2kKUSq2mjV` (`sec-auction`).
+Session: `session_01GBXD3zfth8eu3vFfo6xdc4`.
+It reached Condenser through `arc`, read this guide, and confirmed the live checkout and Git metadata were writable by `uctpiaj`.
+The checkout was clean. All three services were active. The unfinished-job count was zero.
+The unsigned session response reported `user: unknown` and `can_edit: false`.
+The project coordinator saved the route to memory and sent it to existing threads.
+This verifies cloud access and the release workflow instructions. No deployment or recovery operation ran during setup.
