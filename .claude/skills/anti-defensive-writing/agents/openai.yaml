@@ -1,0 +1,7 @@
+interface:
+  display_name: "Anti-Defensive Writing · Custom"
+  short_description: "Direct prose with precise claims and academic voice"
+  default_prompt: "Use $anti-defensive-writing to draft or revise this prose with direct claims and precise scope."
+
+policy:
+  allow_implicit_invocation: false
