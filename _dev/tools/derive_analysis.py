@@ -867,11 +867,6 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
         initiating = [r for i, r in enumerate(process_rows)
                       if text(r.get("Event")) in INITIATION_EVENTS or i == target_opening]
         # D5: only a demand for sale before the target's first sale step makes the process activist-influenced.
-        # A target-side first step and a bidder's own Bid before round 1 make it mixed.
-        preopening = process_rows[:opening_index]
-        target_steps = [r for r in preopening if text(r.get("Event")) in {"Target interest", "Target sale decision"}]
-        own_bids = [r for r in preopening if text(r.get("Event")) == "Bid"
-                    and unit_key(r.get("Who")) not in scope_uncertain]
         first_target_index = check_lean.first_target_step(process_rows)
         activist = next((r for r in process_rows[:first_target_index] if text(r.get("Event")) == "Activist"
                          and text(r.get("Note")).startswith("Demands sale")), None)
@@ -880,7 +875,13 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
         if initiating and initiating[0] is not first:
             note_review(initiating[0], f"process {process}: the first initiating row belongs to a partial-only candidate with no exit row; "
                         "initiation_first_event uses " + (f"#{cell(first.get('#'))} {text(first.get('Event'))}" if first else "no row"))
-        derived = ("activist-influenced" if activist else "mixed" if target_steps and own_bids
+        # D5 (8 October ruling): mixed where the target moved first, by Target interest or Target sale decision, and a
+        # bidder's own Bid followed, all before round 1. A bidder that moved first makes the process bidder-led.
+        preopening = process_rows[:opening_index]
+        start = next((i for i, r in enumerate(preopening) if r is first), None)
+        own_bids = [] if start is None or text(first.get("Event")) not in {"Target interest", "Target sale decision"} else [
+            r for r in preopening[start + 1:] if text(r.get("Event")) == "Bid" and unit_key(r.get("Who")) not in scope_uncertain]
+        derived = ("activist-influenced" if activist else "mixed" if own_bids
                    else INITIATION_EVENTS.get(text(first.get("Event")), "target-led") if first else "")
         check = ""
         if process == 1:
