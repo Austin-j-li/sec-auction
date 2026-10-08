@@ -9,10 +9,7 @@ _dev/**/state/
 _dev/**/*.xdg/
 .credentials.json
 auth.json
-# Frontend dependencies and local test output stay in the development clone.
+# Frontend dependencies stay in the development clone.
 node_modules/
-coverage/
-playwright-report/
-test-results/
 # Worktrees that Remote Control threads create on the VM.
 .claude/worktrees/

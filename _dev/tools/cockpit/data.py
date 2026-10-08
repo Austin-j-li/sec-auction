@@ -2,7 +2,8 @@
 
 Nothing here writes a file. Workbooks are read from an in-memory copy of their
 bytes, filings are parsed in memory, and the mechanical checker runs in-process
-with its report kept only in a cache. The cockpit never reads ``ref/``.
+with its report kept only in a cache. Of ``ref/``, the cockpit reads only the
+identifying columns of ``seed.csv`` (deals.py).
 
 The quote locator reproduces both filing renderings that ``check_lean`` accepts
 (``soup.get_text(" ")`` and ``soup.get_text("")``, each normalized with

@@ -321,14 +321,14 @@ def prune(dest: Path, keep_days: int, now: dt.datetime | None = None) -> list[Pa
     return removed
 
 
-def create(repo_root: Path = REPO, dest: Path = DEFAULT_DEST, keep_days: int | None = 14, now: dt.datetime | None = None) -> Path:
+def create(repo_root: Path = REPO, dest: Path = DEFAULT_DEST, keep_days: int | None = 14) -> Path:
     repo_root = Path(repo_root).resolve()
     state = repo_root / STATE
     if not (state / DB).is_file():
         raise BackupError(f"no workspace database at {state / DB}")
     if not dest.exists():
         dest.mkdir(mode=0o700, parents=True)
-    now = now or dt.datetime.now(dt.timezone.utc)
+    now = dt.datetime.now(dt.timezone.utc)
     while (dest / now.strftime(STAMP)).exists():  # two backups in one second: the later takes the next free stamp
         now += dt.timedelta(seconds=1)
     stamp = now.strftime(STAMP)
@@ -385,7 +385,7 @@ def services_active() -> list[str]:
     return [name for name, status in zip(SERVICES, states) if status in ("active", "activating", "reloading", "deactivating")]
 
 
-def restore(backup: Path, target: Path, replace: bool = False, repo_root: Path = REPO, now: dt.datetime | None = None) -> Path:
+def restore(backup: Path, target: Path, replace: bool = False, repo_root: Path = REPO) -> Path:
     backup, target = Path(backup).resolve(), Path(target).absolute()
     manifest = verify(backup)
     live = {(Path(repo_root) / STATE).resolve(), Path(manifest.get("state") or "/nonexistent").resolve()}
@@ -396,7 +396,7 @@ def restore(backup: Path, target: Path, replace: bool = False, repo_root: Path =
     occupied = target.exists() and (not target.is_dir() or any(target.iterdir()))
     if occupied and not replace:
         raise BackupError(f"{target} is not empty; restore into a new directory or pass --replace")
-    stamp = (now or dt.datetime.now(dt.timezone.utc)).strftime(STAMP)
+    stamp = dt.datetime.now(dt.timezone.utc).strftime(STAMP)
     building = target.with_name(f".{target.name}.restoring-{stamp}")
     if building.exists():
         shutil.rmtree(building)
