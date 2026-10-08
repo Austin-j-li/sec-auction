@@ -10,7 +10,7 @@ The app seeds its instruction table from the repository instruction when a fresh
 
 Open a deal and use the filing pane, search or printed page links to inspect evidence. A located quotation helps navigate; it does not establish that the row is accurate or that the ledger is complete. Stage edits in the Deal ledger, Rounds, Questions and Deal facts tabs, then save them with a reason. Process and Round can be changed across selected events in one save. A referenced event needs a replacement or its references cleared before deletion.
 
-The Review tab shows the current mechanical check and row review marks. The checker reports format and consistency problems; a clean report is not research acceptance. Comments, history, comparisons and attribution remain in the state database. Export Excel adds a Source sheet with recorded provenance; select **Four sheets only (checker format)** for a file to pass to the checker.
+The Review tab shows the current mechanical check, the must-flag list and row review marks. The must-flag list is `review_list.py`'s queue of cells Alex asked a person to look at; each ledger item links to its row. The checker reports format and consistency problems; a clean report is not research acceptance. Comments, history, comparisons and attribution remain in the state database. Export Excel adds a Source sheet with recorded provenance; select **Four sheets only (checker format)** for a file to pass to the checker.
 
 ## Runs and instructions
 
