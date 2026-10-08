@@ -46,9 +46,9 @@ MODELS = {"sol": ("gpt-6-sol", "gpt-6.1-sol", "gpt-6-astra", "gpt-5.6-sol"), "op
 EFFORTS = {"sol": ("low", "medium", "high", "xhigh", "max"), "opus": ("low", "medium", "high", "xhigh", "max")}
 DEFAULT_EFFORT = {"sol": "xhigh", "opus": "medium"}  # Opus 5.5 at medium is the project's default extraction
 MODEL_DEFAULT_EFFORT = {"gpt-6-astra": "high"}
-# Codex service tier per model. "priority" is the Fast tier in the model list (about 2x speed,
-# more plan usage); Austin, 8 Oct 2026. Other models use the account default (standard).
-SERVICE_TIER = {"gpt-6.1-sol": "priority"}
+# Codex service tier per model. Austin, 8 Oct 2026: Sol always runs on the Fast tier, "priority"
+# in the model list (more plan usage). Astra uses the account default (standard).
+SERVICE_TIER = {model: "priority" for model in MODELS["sol"] if model.endswith("-sol")}
 # Claude Code settings for every Opus run. A classifier refusal fails the run instead of switching
 # models; the prompt-cache lifetime stays the subscription default; and the "user hasn't heard
 # from you" reminder never fires, since no one reads a sandboxed run while it works. A response may
