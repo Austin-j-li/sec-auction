@@ -38,7 +38,7 @@ MAX_JSON = 1024 * 1024
 
 class Handler(BaseHTTPRequestHandler):
     cockpit: data.Cockpit = data.default()
-    access_verifier = access.Verifier()  # shared by all servers in the process; tests replace it per server
+    access_verifier = access.Verifier()  # shared by all servers in the process
     server_version = "LedgerCockpit/2"
     quiet = False
     csrf_token = secrets.token_urlsafe(32)
@@ -274,7 +274,7 @@ def _warm(cockpit: data.Cockpit) -> None:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Editable ledger review cockpit")
     parser.add_argument("--port", type=int, default=int(os.environ.get("COCKPIT_PORT") or DEFAULT_PORT))
-    parser.add_argument("--repo-root", type=Path, default=data.REPO_ROOT, help="repository root (fixture/testing)")
+    parser.add_argument("--repo-root", type=Path, default=data.REPO_ROOT, help="repository root (default: this checkout)")
     parser.add_argument("--no-warm", action="store_true")
     args = parser.parse_args(argv)
     cockpit = data.Cockpit(args.repo_root)

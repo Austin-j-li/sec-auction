@@ -25,7 +25,7 @@ import sys
 import threading
 import time
 import urllib.request
-from time import time as wall_clock  # kept apart from the monotonic clock tests replace
+from time import time as wall_clock  # token times are wall-clock times, kept apart from the monotonic clock
 from typing import Any, Callable
 
 try:

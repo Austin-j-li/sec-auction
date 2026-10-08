@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
-    "build": "vite build",
-    "test": "vitest run"
+    "build": "vite build"
   },
   "dependencies": {
     "@fluentui/react-components": "9.72.3",
@@ -17,7 +16,6 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "4.7.0",
-    "vite": "6.3.6",
-    "vitest": "3.2.4"
+    "vite": "6.3.6"
   }
 }

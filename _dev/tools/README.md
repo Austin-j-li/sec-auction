@@ -73,10 +73,6 @@ python3 _dev/tools/fetch_filing.py --list <name>
 
 `make_seed.py` rebuilds `ref/seed.csv` from Alex's workbook using identifying fields only. Do not run it merely to tidy the repository.
 
-## Tests
+## Checking a change
 
-```bash
-cd _dev/tools && python3 -m pytest -q
-```
-
-The tests use synthetic fixtures and mocks. Runner tests build commands but never launch a model.
+The repository has no tests. After a change, run the changed tool on real inputs and read the output. For example, run `check_lean.py` on a real workbook and its filing, `derive_analysis.py` and `review_list.py` on real workbooks, or open a deal in the cockpit. Real model runs still need Austin's command.

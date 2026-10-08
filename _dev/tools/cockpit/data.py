@@ -12,8 +12,7 @@ highlighted.
 
 NFC normalization runs per text node here but over the whole text in the
 checker, so a combining mark that starts a new text node could compose
-differently. None of the real filings hits this; the tests compare the two
-renderings with the checker's directly.
+differently. None of the real filings hits this.
 """
 
 from __future__ import annotations
