@@ -939,6 +939,17 @@ details[open] > summary .caret,
 .mechanical-content > p.checker-lines { color: var(--ink-2); }
 .block-label { margin-bottom: var(--sp-1); font-size: var(--fs-12); line-height: var(--lh-12); font-weight: var(--fw-medium); color: var(--ink-3); }
 .mechanical-content .block-label { margin-top: var(--sp-3); }
+.flag-group + .flag-group { margin-top: var(--sp-2); }
+.flag-list > li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--sp-3);
+  padding: 4px 0;
+  border-bottom: var(--hairline);
+}
+.flag-location { color: var(--ink-3); }
+.flag-detail { flex: 1 1 16rem; min-width: 0; color: var(--ink); overflow-wrap: anywhere; }
 .documents { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-1) var(--sp-3); margin-bottom: var(--sp-5); }
 .finding { border-top: var(--hairline); }
 .finding:last-child { border-bottom: var(--hairline); }

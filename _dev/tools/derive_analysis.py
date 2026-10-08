@@ -44,6 +44,12 @@ DESCRIPTIVE_ONLY = {"meredith"}
 
 WHOLE_BIDS = {"Bid", "Bid reaffirmed"}
 ENTRY_EVENTS = {"NDA signed", "Bid", "Bid reaffirmed"}
+# A party's own contact row: after the cohort entries, it marks a new entrant, not a cohort member (E3).
+CONTACT_EVENTS = {"Contact", "Bidder interest", "Target interest"}
+# Entries whose unit takes back exactly what it added when it exits with the same inexact count.
+OWN_ENTRIES = {"entry", "re-entry", "entry (late contact)"}
+# A cohort Note's "less X" or "excluding X" clause names parties outside the cohort.
+COHORT_EXCLUSION_RE = re.compile(r"\b(?:less|excluding|except|other than|not including)\b[^;.]*", re.IGNORECASE)
 FINAL = {"Announced as final", "Inferred final"}
 # One class per due date. Longest labels first for prefix matching.
 DEADLINE_CLASSES = {
@@ -91,7 +97,7 @@ SWITCHES = [
     {"id": "count_ranges", "source": "D22; Alex Q1 / Decision 3",
      "question": "How estimation uses counts that are ranges or bounds.",
      "variants": {"bounds": "live_lo, live_hi (and count_lo, count_hi)",
-                  "presumed ordinary sequence": "live_point (a named party first seen bidding after cohort entries is presumed a member; approximately N is N)",
+                  "presumed ordinary sequence": "live_point (a party first seen bidding after cohort entries is presumed a member unless its own contact row follows them and no cohort Note names it or cites its row; approximately N is N)",
                   "one bound": "live_lo or live_hi alone"}},
     {"id": "unclear", "source": "D22",
      "question": "How Unclear and Not stated values are treated.",
@@ -203,6 +209,25 @@ def unit_key(who: Any) -> str:
     return check_lean.unit_key(who)
 
 
+def cohort_includes(note: Any, key: str, number: int | None) -> bool:
+    """Whether an entry-cohort Note counts this unit inside the cohort (E3): it names the unit or cites its row
+    outside a "less ..." clause. A list after the plural also names it: "Parties E and F" names party e."""
+    inside = COHORT_EXCLUSION_RE.sub(" ", text(note)).casefold()
+    if number is not None and "#" in inside and number in check_lean.parse_affected_rows(inside)[0]:
+        return True
+    if re.search(rf"(?<!\w){re.escape(key)}(?!\w)", inside):
+        return True
+    m = re.fullmatch(r"(.+?)\s+(\w{1,3})", key)
+    if not m:
+        return False
+    base, label = m.groups()
+    plural = base[:-1] + "ies" if base.endswith("y") else base + "s"
+    for found in re.finditer(rf"(?<!\w){re.escape(plural)}\s+(\w{{1,3}}(?:\s*(?:,|&|\band\b)\s*\w{{1,3}})+)", inside):
+        if label in re.split(r"\s*(?:,|&|\band\b)\s*", found.group(1)):
+            return True
+    return False
+
+
 def leading_figure(value: str) -> int | None:
     """The whole number at the start of value, in digits or words ("ten", "twenty-five"); else None."""
     m = re.match(r"\s*(?:(\d+)|([a-z]+)(?:-([a-z]+))?)\b", value.casefold())
@@ -223,14 +248,14 @@ def count_bounds(count: Any, note: Any) -> tuple[int | None, int | None, int | N
     if exact is not None and exact > 0:
         return exact, exact, exact, "exact"
     note = text(note)
-    found = re.search(r"\bCount:\s*", note, re.IGNORECASE)
+    found = re.search(r"\bCount:\s*[\"\u201c\u2018']?", note, re.IGNORECASE)
     if not found:
         return 1, None, None, "unknown (no Count: prefix)"
     if (m := check_lean.COUNT_RANGE_RE.search(note)):
         lo, hi = (int(n) for n in re.findall(r"\d+", m.group(0)))
         return lo, hi, None, "range"
     if (m := check_lean.COUNT_QUALIFIER_RE.search(note)):
-        word = re.sub(r"(?i)^Count:\s*", "", m.group(0)).casefold()
+        word = re.sub(r"(?i)^Count:\s*[\"\u201c\u2018']?", "", m.group(0)).casefold()
         n = leading_figure(note[m.end():])
         if n is None and word != "several":
             return 1, None, None, "unknown (unparsed Count: prefix)"
@@ -474,31 +499,58 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
         rounds[key] = line
 
     # Participation: E14's formula, per process, as bounds and a presumed point.
-    participation, live_at = [], {}
-    state = defaultdict(lambda: {"lo": 0, "hi": 0, "point": 0, "hi_open": False, "point_open": False})
+    participation, live_at, changed = [], {}, set()
+    # hi_open and point_open hold what leaves a bound unknown: the key of a unit's own entry, or "" for any other row.
+    state = defaultdict(lambda: {"lo": 0, "hi": 0, "point": 0, "hi_open": set(), "point_open": set()})
     status: dict[tuple[Any, str], str] = {}
     cohort_seen: set[Any] = set()
+    cohort_notes: dict[Any, list[Any]] = defaultdict(list)
+    last_cohort_at: dict[Any, int] = {}
+    entered: dict[tuple[Any, str], tuple[int, int | None, int | None]] = {}
     closed: set[Any] = set()
     open_units: dict[Any, dict[str, int]] = defaultdict(dict)
+    # A round's opening state: live at its Round opened row, plus same-day exits from the round before and
+    # same-day re-entries into it, wherever the ledger places those rows.
+    openings: dict[tuple[Any, Any], dict[str, Any]] = {}
+    opened_on: dict[Any, tuple[tuple[Any, Any], dt.date | None]] = {}
 
-    def apply(process: Any, d_lo: int | None, d_hi: int | None, d_point: int | None) -> None:
+    def apply(s: dict[str, Any], d_lo: int | None, d_hi: int | None, d_point: int | None, unit: str = "") -> None:
         """Add a signed change in live units; None is unbounded (d_lo below, d_hi above) or unknown."""
-        s = state[process]
         s["lo"] = 0 if d_lo is None else max(0, s["lo"] + d_lo)
-        s["hi_open"] |= d_hi is None
+        if d_hi is None:
+            s["hi_open"].add(unit)
         s["hi"] = max(0, s["hi"] + (d_hi or 0))
-        s["point_open"] |= d_point is None
+        if d_point is None:
+            s["point_open"].add(unit)
         s["point"] += d_point or 0
 
-    def live(process: Any) -> tuple[int | None, int | None, int | None]:
-        s = state[process]
+    def take_back(s: dict[str, Any], unit: str, added: tuple[int, int | None, int | None]) -> None:
+        """Remove exactly what a unit's own entry added; its exit repeats the entry's inexact count."""
+        a_lo, a_hi, a_point = added
+        s["lo"] = max(0, s["lo"] - a_lo)
+        if a_hi is None:
+            s["hi_open"].discard(unit)
+        s["hi"] = max(0, s["hi"] - (a_hi or 0))
+        if a_point is None:
+            s["point_open"].discard(unit)
+        s["point"] -= a_point or 0
+
+    def live_of(s: dict[str, Any]) -> tuple[int | None, int | None, int | None]:
         return s["lo"], None if s["hi_open"] else s["hi"], None if s["point_open"] else max(0, s["point"])
 
-    for r in whole:
+    def live(process: Any) -> tuple[int | None, int | None, int | None]:
+        return live_of(state[process])
+
+    def at_opening(event: str, row_round: Any, opening_round: Any) -> bool:
+        return (isinstance(row_round, int) and isinstance(opening_round, int)
+                and (event in check_lean.EXIT_EVENTS and row_round < opening_round
+                     or event == "Re-entered" and row_round == opening_round))
+
+    for position, r in enumerate(whole):
         process, rnd = row_round(r)
         event, key = text(r.get("Event")), unit_key(r.get("Who"))
         lo, hi, point, kind = count_bounds(r.get("Count"), r.get("Note"))
-        change, delta, extra = "", None, {}
+        change, delta, extra, own = "", None, {}, None
         prior = status.get((process, key))
         if event in ENTRY_EVENTS or event == "Re-entered":
             if event == "Re-entered":
@@ -518,26 +570,57 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
                 change, delta = "entry", (lo, hi, point)
                 status[(process, key)] = "live"
             else:
-                # A party first seen bidding after cohort entries may be one of those cohorts' members (E3).
-                change, delta = "entry (membership uncertain)", (0, hi, 0)
+                # A party first seen bidding after cohort entries may be one of those cohorts' members (E3). A cohort
+                # Note that names it settles that; its own contact row after the cohorts makes it a new entrant.
+                contact = next((c for c in whole[last_cohort_at[process] + 1:position]
+                                if text(c.get("Event")) in CONTACT_EVENTS and unit_key(c.get("Who")) == key
+                                and row_round(c)[0] == process), None)
+                if any(cohort_includes(note, key, check_lean.as_integer(r.get("#"))) for note in cohort_notes[process]):
+                    change, delta = "entry (cohort member)", (0, 0, 0)
+                elif contact is not None:
+                    change, delta = "entry (late contact)", (lo, hi, point)
+                    note_review(r, f"first seen bidding after cohort entries; its own {text(contact.get('Event'))} row "
+                                f"#{cell(contact.get('#'))} follows them and no cohort Note names it: counted as a new entrant (E3)")
+                else:
+                    change, delta = "entry (membership uncertain)", (0, hi, 0)
+                    if (lo, hi) == (1, 1):
+                        note_review(r, "first seen bidding after cohort entries, and no cohort Note names it or cites its row: "
+                                    "live_point presumes it a member (E3), live_hi allows a new entrant")
                 status[(process, key)] = "live"
-            if change.startswith("entry") and (lo, hi) != (1, 1):
+            if change in OWN_ENTRIES:
+                entered[(process, key)] = (lo, hi, point)
+            if change.startswith("entry") and change != "entry (cohort member)" and (lo, hi) != (1, 1):
                 cohort_seen.add(process)
+                cohort_notes[process].append(r.get("Note"))
+                last_cohort_at[process] = position
             if change:
                 open_units[process][key] = r.get("#")
         elif event in check_lean.EXIT_EVENTS or (event == "Merger agreement signed"
                                                 and check_lean.as_integer(r.get("Count")) == 1):
-            if event == "Merger agreement signed" and prior is None:
+            signing = event == "Merger agreement signed"
+            if signing and prior is None:
                 note_review(r, "the signing party has no recorded entry")
             if prior in ("exited", "won"):
                 note_review(r, ("an exit after this unit's signing" if prior == "won" else "a second exit for this unit")
                             + " with no Re-entered row; not subtracted again")
+            elif prior is None and process not in cohort_seen:
+                # No entry of its own and no earlier cohort to belong to: it was never counted, so nothing is subtracted.
+                if not signing:
+                    note_review(r, "exit of a Who with no recorded entry and no earlier cohort entry in its process; not subtracted")
+                change = "win (no recorded entry)" if signing else "exit (no recorded entry)"
+                status[(process, key)] = "won" if signing else "exited"
             else:
-                if prior is None and event != "Merger agreement signed":
+                if prior is None and not signing:
                     note_review(r, "exit of a Who with no recorded entry (a residual or members of an earlier cohort); subtracted")
-                change, delta = ("win" if event == "Merger agreement signed" else "exit"), (lo, hi, point)
-                status[(process, key)] = "won" if event == "Merger agreement signed" else "exited"
+                change, delta = ("win" if signing else "exit"), (lo, hi, point)
+                status[(process, key)] = "won" if signing else "exited"
                 open_units[process].pop(key, None)
+                own = entered.pop((process, key), None)
+                if own is not None and own == (lo, hi, point) and (lo != hi or point is None):
+                    # The same inexact count as its own entry ("several"): the whole unit leaves.
+                    change += " (takes back its entry)"
+                else:
+                    own = None
             if event in check_lean.EXIT_EVENTS:
                 # Inferred = Y marks an inferred event (Part B), so on an exit it is an inferred exit.
                 inference = "inferred exit" if text(r.get("Inferred")) == "Y" else ""
@@ -554,12 +637,16 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
             else:
                 change, delta = "group change", (-1, 1, None)
                 note_review(r, "group change whose units before and after cannot be read from the Note; live counts widened by one each way")
+            if prior is None:
+                # E4: this row counts the resulting unit, so its later bids are not new entries.
+                status[(process, key)] = "live"
+                open_units[process][key] = r.get("#")
         elif event in ("Process terminated", "Process restarted"):
             target = process if event == "Process terminated" else (process - 1 if isinstance(process, int) else None)
             if target is not None and target not in closed:
                 closed.add(target)
                 before = live(target)
-                state[target].update(lo=0, hi=0, point=0, hi_open=False, point_open=False)
+                state[target].update(lo=0, hi=0, point=0, hi_open=set(), point_open=set())
                 for k in list(open_units[target]):
                     status[(target, k)] = "exited"
                 open_units[target].clear()
@@ -569,15 +656,28 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
                 participation.append({**base_cols(deal, r, process, rnd), "change": "process closure", "count_kind": kind,
                                       "count_lo": lo, "count_hi": hi, "count_point": point, "live_lo": 0, "live_hi": 0, "live_point": 0,
                                       "note": f"closes process {target}; live before: {before}"})
+            live_at[id(r)] = live(process)
             continue
         elif event == "Round opened":
             change, (lo, hi, point, kind) = "round opening", (None, None, None, "")
         if delta is not None:
-            if change in ("exit", "win"):
+            if own is not None:
+                delta = (-own[0], None if own[1] is None else -own[1], None if own[2] is None else -own[2])
+            elif change in ("exit", "win"):
                 lo_, hi_, point_ = delta
                 delta = (None if hi_ is None else -hi_, -(lo_ or 0), None if point_ is None else -point_)
-            apply(process, *delta)
+            targets = [state[process]]
+            opening = opened_on.get(process)
+            if opening and as_date(r.get("Sort date")) == opening[1] and at_opening(event, rnd, opening[0][1]):
+                targets.append(openings[opening[0]])
+            for s in targets:
+                if own is not None:
+                    take_back(s, key, own)
+                else:
+                    apply(s, *delta, unit=key if change in OWN_ENTRIES else "")
         if change:
+            if event != "Round opened":
+                changed.add(id(r))
             live_lo, live_hi, live_point = live(process)
             participation.append({
                 **base_cols(deal, r, process, rnd), "change": change, "inferred": text(r.get("Inferred")), **extra,
@@ -585,6 +685,10 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
                 **(dict(zip(("delta_lo", "delta_hi", "delta_point"), delta)) if delta else {}),
                 "live_lo": live_lo, "live_hi": live_hi, "live_point": live_point, "note": text(r.get("Note"))})
         live_at[id(r)] = live(process)
+        if event == "Round opened":
+            s = state[process]
+            openings[(process, rnd)] = {**s, "hi_open": set(s["hi_open"]), "point_open": set(s["point_open"])}
+            opened_on[process] = ((process, rnd), as_date(r.get("Sort date")))
         if kind == "range":
             note_review(r, "the Note gives a numeric Count range, which the ledger does not create (B, E3): read as bounds")
         if kind.startswith("unknown (") and (event in ENTRY_EVENTS | check_lean.EXIT_EVENTS | {"Re-entered"}):
@@ -663,7 +767,9 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
             **{c.lower().replace(" ", "_"): text(r.get(c)) for c in ("Due diligence", "Financing", "Regulatory", "Antitrust", "Exclusivity")},
             "inferred": text(r.get("Inferred")), "flag": text(r.get("Flag")), "same_offer_of": same_offer_of,
             "same_price_revision": same,
-            "price_obs__same_price_as_new": 1 if usable else 0, "price_obs__same_price_as_terms": 1 if usable and not same else 0,
+            # L253: the price a Same-offer row copies is not a new price observation under either variant.
+            "price_obs__same_price_as_new": 1 if usable and same_offer_of is None else 0,
+            "price_obs__same_price_as_terms": 1 if usable and same_offer_of is None and not same else 0,
             "round_finality": finality, "T0": t0,
             "T1": reading(t0, level != "Heavy"),
             "T1u": reading(t0, level in ("None", "Light")),
@@ -676,40 +782,15 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
     # Rounds.
     deadline_log, round_rows = [], []
     deadline_rows = Counter(row_round(r) for r in whole if text(r.get("Event")) == "Deadline")
-    exit_deltas = {p["row"]: (p.get("delta_lo"), p.get("delta_hi"), p.get("delta_point"))
-                   for p in participation if p.get("change") == "exit"}
-
-    def after_boundary_exit(live_before: tuple[int | None, int | None, int | None],
-                            delta: tuple[int | None, int | None, int | None]) -> tuple[int | None, int | None, int | None]:
-        lo, hi, point = live_before
-        d_lo, d_hi, d_point = delta
-        return (0 if d_lo is None else max(0, (lo or 0) + d_lo),
-                None if hi is None or d_hi is None else max(0, hi + d_hi),
-                None if point is None or d_point is None else max(0, point + d_point))
-
-    opening_live = {}
-    for opening_index, opening in enumerate(whole):
-        if text(opening.get("Event")) != "Round opened":
-            continue
-        process, rnd = row_round(opening)
-        opening_day = as_date(opening.get("Sort date"))
-        after = live_at.get(id(opening))
-        for later in whole[opening_index + 1:]:
-            if (as_date(later.get("Sort date")) != opening_day
-                    or row_round(later)[0] != process):
-                continue
-            previous_round = row_round(later)[1]
-            if (text(later.get("Event")) in check_lean.EXIT_EVENTS
-                    and isinstance(rnd, int) and isinstance(previous_round, int)
-                    and previous_round < rnd):
-                delta = exit_deltas.get(cell(later.get("#")))
-                if after is not None and delta is not None:
-                    after = after_boundary_exit(after, delta)
-        opening_live[(process, rnd)] = after
-    max_hi = defaultdict(int)
+    opening_live = {key: live_of(s) for key, s in openings.items()}
+    # The most live units at any point in a round: its opening state, then the state after each row that changes a
+    # count. A row placed before a same-day exit at the opening would overstate it, and other rows change nothing.
+    max_hi = defaultdict(int, {key: live[1] for key, live in opening_live.items()})
     for r in whole:
-        hi_now = live_at.get(id(r), (None, None, None))[1]
         key = row_round(r)
+        if key in opening_live and id(r) not in changed:
+            continue
+        hi_now = live_at.get(id(r), (None, None, None))[1]
         max_hi[key] = None if hi_now is None or max_hi[key] is None else max(max_hi[key], hi_now)
     for (process, rnd), line in rounds.items():
         values = split_outcomes(line.get("Deadline outcome"))

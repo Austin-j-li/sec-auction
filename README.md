@@ -11,7 +11,7 @@ A ledger workbook has four sheets, defined in the instruction:
 
 ## Current status
 
-Version 1, approved 28 September 2026: the instruction is Version 1, `extraction/` is empty, and every deal is to be re-extracted on Austin's command. See [status](_dev/STATUS.md) for pending work.
+Version 1, approved 28 September 2026: the instruction is Version 1, the cockpit holds one Version 1 run for each of the 13 deals, and `extraction/` is empty. See [status](_dev/STATUS.md) for pending work.
 
 ## Repository layout
 

@@ -1,4 +1,4 @@
-// Excel download links: pure functions shared by the deal page and its tests.
+// Excel download links: pure functions shared by the deal page.
 // The working copy and a past revision ("rev:N", from History) download with a Source sheet (EDGAR links and
 // provenance) unless asked for their four sheets; the server names them {slug}-working-r{N}.xlsx. A version
 // downloads as its stored bytes unless asked for the Source sheet.

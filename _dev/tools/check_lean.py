@@ -270,13 +270,14 @@ COHORT_WHO_RE = re.compile(
 )
 SAME_AS_RE = re.compile(r"^\s*Same as #\s*(\d+)\b\.?\s*", re.IGNORECASE)
 HEAVY_TRIGGER_RE = re.compile(r"^H[123]:")
+# The filing's own words may stand in quotation marks: Count: "several parties".
 COUNT_QUALIFIER_RE = re.compile(
-    r"\bCount:\s*(?:at least|more than|over|at most|up to|fewer than|less than|approximately|about|"
+    r"\bCount:\s*[\"\u201c\u2018']?(?:at least|more than|over|at most|up to|fewer than|less than|approximately|about|"
     r"around|nearly|some|several)\b",
     re.IGNORECASE,
 )
-COUNT_UNKNOWN_RE = re.compile(r"\bCount:\s*(?:unknown|not stated)\b", re.IGNORECASE)
-COUNT_RANGE_RE = re.compile(r"\bCount:\s*\d+\s*(?:[-\u2013\u2014]|to)\s*\d+", re.IGNORECASE)
+COUNT_UNKNOWN_RE = re.compile(r"\bCount:\s*[\"\u201c\u2018']?(?:unknown|not stated)\b", re.IGNORECASE)
+COUNT_RANGE_RE = re.compile(r"\bCount:\s*[\"\u201c\u2018']?\d+\s*(?:[-\u2013\u2014]|to)\s*\d+", re.IGNORECASE)
 QUESTION_CAP = 5
 QUESTION_WORDS = 60
 
@@ -1664,6 +1665,19 @@ class LeanChecker:
                                 f"Outcome {position} is Extended, but the ledger has no Deadline set or Deadline revised "
                                 f"row in this round on or after that deadline ({day:%m/%d/%Y}); record the new due date "
                                 "or review the outcome (E9).",
+                                sheet=ws.title,
+                                row=excel_row,
+                                column="Deadline outcome",
+                            )
+                        elif (part in ("Passed without action", "Enforced") and day
+                              and any(new_day >= day for new_day in new_dates)
+                              and any(later and later > day for later in reached[position:])):
+                            self.add(
+                                "warning",
+                                "rounds.new_date_not_extended",
+                                f"Outcome {position} is {part}, but the ledger sets a later due date in this round on or "
+                                f"after that deadline ({day:%m/%d/%Y}) and reaches it; check whether the outcome is "
+                                "Extended (E9, item 1).",
                                 sheet=ws.title,
                                 row=excel_row,
                                 column="Deadline outcome",

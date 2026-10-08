@@ -1,16 +1,16 @@
 # Ledger cockpit on the Version 1 build
 
-This is the cockpit bundled with the Version 1 candidate. It remains a build artifact until Austin approves the switch-over in `_dev/alignment_sprint/SWITCHOVER.md`; the current public service keeps its existing checkout and state until then.
+This is the cockpit of the Version 1 build. Austin approved the switch-over on 28 September 2026 (`_dev/alignment_sprint/SWITCHOVER.md`). The live service runs from its own deployment worktree and state.
 
 The catalog contains nine deals with verified filing metadata and no workbook version. A fresh state keeps the four deals added in the earlier app, their filings and Austin's and Alex's account records. All thirteen deals initially show **No extraction yet**. A deal's first successful run becomes its immutable base version and opens an editable working copy. Runs made later become selectable versions without replacing the working copy. Earlier runs, revisions, comments and instruction versions stay in the archived state.
 
-The app seeds its instruction table from the repository instruction when a fresh state first starts. In this build that file says Version 0; at the approved switch-over the deployed file will be Version 1. The checker and editor choices use the Version 1 ledger format only. The **Questions** sheet accepts Q ids for extraction questions and R ids for review items. A linked R item can be renamed; its references update with it. Remove its references before deleting it.
+The app seeds its instruction table from the repository instruction when a fresh state first starts. That file is Version 1. The checker and editor choices use the Version 1 ledger format only. The **Questions** sheet accepts Q ids for extraction questions and R ids for review items. A linked R item can be renamed; its references update with it. Remove its references before deleting it.
 
 ## Reviewing a deal
 
 Open a deal and use the filing pane, search or printed page links to inspect evidence. A located quotation helps navigate; it does not establish that the row is accurate or that the ledger is complete. Stage edits in the Deal ledger, Rounds, Questions and Deal facts tabs, then save them with a reason. Process and Round can be changed across selected events in one save. A referenced event needs a replacement or its references cleared before deletion.
 
-The Review tab shows the current mechanical check and row review marks. The checker reports format and consistency problems; a clean report is not research acceptance. Comments, history, comparisons and attribution remain in the state database. Export Excel adds a Source sheet with recorded provenance; select **Four sheets only (checker format)** for a file to pass to the checker.
+The Review tab shows the current mechanical check, the must-flag list and row review marks. The must-flag list is `review_list.py`'s queue of cells Alex asked a person to look at; each ledger item links to its row. The checker reports format and consistency problems; a clean report is not research acceptance. Comments, history, comparisons and attribution remain in the state database. Export Excel adds a Source sheet with recorded provenance; select **Four sheets only (checker format)** for a file to pass to the checker.
 
 ## Runs and instructions
 

@@ -12,7 +12,7 @@ sandbox. Runner processes live in their own session, so they survive a worker re
 restarted worker reattaches to them by pid.
 
     python3 _dev/tools/cockpit/worker.py            # run forever
-    python3 _dev/tools/cockpit/worker.py --once     # one pass (tests)
+    python3 _dev/tools/cockpit/worker.py --once     # one pass
 """
 from __future__ import annotations
 

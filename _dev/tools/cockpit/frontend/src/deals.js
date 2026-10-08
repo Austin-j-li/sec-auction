@@ -1,4 +1,4 @@
-// Add deal and hide deal helpers: pure functions shared by the pages and their tests.
+// Add deal and hide deal helpers: pure functions shared by the pages.
 
 import { dayLabel, displayName } from './trace';
 
