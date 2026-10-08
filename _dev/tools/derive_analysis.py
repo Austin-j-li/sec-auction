@@ -97,7 +97,7 @@ SWITCHES = [
     {"id": "count_ranges", "source": "D22; Alex Q1 / Decision 3",
      "question": "How estimation uses counts that are ranges or bounds.",
      "variants": {"bounds": "live_lo, live_hi (and count_lo, count_hi)",
-                  "presumed ordinary sequence": "live_point (a party first seen bidding after cohort entries is presumed a member unless its own contact row follows them; approximately N is N)",
+                  "presumed ordinary sequence": "live_point (a party first seen bidding after cohort entries is presumed a member unless its own contact row follows them and no cohort Note names it or cites its row; approximately N is N)",
                   "one bound": "live_lo or live_hi alone"}},
     {"id": "unclear", "source": "D22",
      "question": "How Unclear and Not stated values are treated.",
@@ -499,7 +499,7 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
         rounds[key] = line
 
     # Participation: E14's formula, per process, as bounds and a presumed point.
-    participation, live_at = [], {}
+    participation, live_at, changed = [], {}, set()
     # hi_open and point_open hold what leaves a bound unknown: the key of a unit's own entry, or "" for any other row.
     state = defaultdict(lambda: {"lo": 0, "hi": 0, "point": 0, "hi_open": set(), "point_open": set()})
     status: dict[tuple[Any, str], str] = {}
@@ -656,6 +656,7 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
                 participation.append({**base_cols(deal, r, process, rnd), "change": "process closure", "count_kind": kind,
                                       "count_lo": lo, "count_hi": hi, "count_point": point, "live_lo": 0, "live_hi": 0, "live_point": 0,
                                       "note": f"closes process {target}; live before: {before}"})
+            live_at[id(r)] = live(process)
             continue
         elif event == "Round opened":
             change, (lo, hi, point, kind) = "round opening", (None, None, None, "")
@@ -675,6 +676,8 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
                 else:
                     apply(s, *delta, unit=key if change in OWN_ENTRIES else "")
         if change:
+            if event != "Round opened":
+                changed.add(id(r))
             live_lo, live_hi, live_point = live(process)
             participation.append({
                 **base_cols(deal, r, process, rnd), "change": change, "inferred": text(r.get("Inferred")), **extra,
@@ -780,10 +783,14 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
     deadline_log, round_rows = [], []
     deadline_rows = Counter(row_round(r) for r in whole if text(r.get("Event")) == "Deadline")
     opening_live = {key: live_of(s) for key, s in openings.items()}
-    max_hi = defaultdict(int)
+    # The most live units at any point in a round: its opening state, then the state after each row that changes a
+    # count. A row placed before a same-day exit at the opening would overstate it, and other rows change nothing.
+    max_hi = defaultdict(int, {key: live[1] for key, live in opening_live.items()})
     for r in whole:
-        hi_now = live_at.get(id(r), (None, None, None))[1]
         key = row_round(r)
+        if key in opening_live and id(r) not in changed:
+            continue
+        hi_now = live_at.get(id(r), (None, None, None))[1]
         max_hi[key] = None if hi_now is None or max_hi[key] is None else max(max_hi[key], hi_now)
     for (process, rnd), line in rounds.items():
         values = split_outcomes(line.get("Deadline outcome"))
