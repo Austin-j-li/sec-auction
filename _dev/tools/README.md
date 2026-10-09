@@ -1,6 +1,6 @@
 # Pipeline tools
 
-Run commands from the repository root. Read [AGENTS.md](../../AGENTS.md) first. The checker and analysis tools enforce Version 1 only, using the current 29-column Deal ledger. The root instruction is Version 1 (approved 28 September 2026); `_dev/alignment_sprint/draft/` keeps the approved text beside its change map. A workbook with any other ledger header is an error, not a fallback. Extractions, model experiments and workbook revisions need Austin's explicit instruction; these examples do not authorize a run.
+Run commands from the repository root. Read [AGENTS.md](../../AGENTS.md) first. The checker and analysis tools enforce Version 1 only, using the current 29-column Deal ledger. The root instruction is Version 1 (approved 28 September 2026; D5 amended 8 October 2026); `_dev/alignment_sprint/draft/` keeps the 28 September text beside its change map. A workbook with any other ledger header is an error, not a fallback. Extractions, model experiments and workbook revisions need Austin's explicit instruction; these examples do not authorize a run.
 
 ## Environment
 
