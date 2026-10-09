@@ -270,13 +270,14 @@ COHORT_WHO_RE = re.compile(
 )
 SAME_AS_RE = re.compile(r"^\s*Same as #\s*(\d+)\b\.?\s*", re.IGNORECASE)
 HEAVY_TRIGGER_RE = re.compile(r"^H[123]:")
+# The filing's own words may stand in quotation marks: Count: "several parties".
 COUNT_QUALIFIER_RE = re.compile(
-    r"\bCount:\s*(?:at least|more than|over|at most|up to|fewer than|less than|approximately|about|"
+    r"\bCount:\s*[\"\u201c\u2018']?(?:at least|more than|over|at most|up to|fewer than|less than|approximately|about|"
     r"around|nearly|some|several)\b",
     re.IGNORECASE,
 )
-COUNT_UNKNOWN_RE = re.compile(r"\bCount:\s*(?:unknown|not stated)\b", re.IGNORECASE)
-COUNT_RANGE_RE = re.compile(r"\bCount:\s*\d+\s*(?:[-\u2013\u2014]|to)\s*\d+", re.IGNORECASE)
+COUNT_UNKNOWN_RE = re.compile(r"\bCount:\s*[\"\u201c\u2018']?(?:unknown|not stated)\b", re.IGNORECASE)
+COUNT_RANGE_RE = re.compile(r"\bCount:\s*[\"\u201c\u2018']?\d+\s*(?:[-\u2013\u2014]|to)\s*\d+", re.IGNORECASE)
 QUESTION_CAP = 5
 QUESTION_WORDS = 60
 
@@ -928,6 +929,21 @@ class LeanChecker:
             if problem:
                 self.add("error", "ledger.same_as", f"'Same as #{match.group(1)}' must point to an earlier bid row with the "
                          f"same Who (E10); {problem}.", sheet=ws.title, row=excel_row, column="Note")
+                continue
+            # E10 (L253): a return to an older price is a revision. The latest stated price of this bidder before this
+            # row should be the price it copies.
+            price = (record["Price low"], record["Price high"])
+            later = [(as_integer(r["#"]), (r["Price low"], r["Price high"])) for _, r in rows
+                     if r["Event"] in BID_EVENTS and who(r) == who(record) and as_integer(r["#"]) is not None
+                     and int(match.group(1)) < as_integer(r["#"]) < number
+                     and not (is_blank(r["Price low"]) and is_blank(r["Price high"]))]
+            latest = max(later, default=None)
+            if latest and latest[1] != price:
+                self.add("warning", "ledger.same_as_after_revision",
+                         f"'Same as #{match.group(1)}' follows #{latest[0]}, a different price from this bidder. "
+                         "A return to an older price is a revision (E10): make it a Bid row without 'Same as', "
+                         "or check that the offer of #" + match.group(1) + " still stood.",
+                         sheet=ws.title, row=excel_row, column="Note")
 
         opened: set[int] = set()
         for excel_row, record in rows:
@@ -1664,6 +1680,19 @@ class LeanChecker:
                                 f"Outcome {position} is Extended, but the ledger has no Deadline set or Deadline revised "
                                 f"row in this round on or after that deadline ({day:%m/%d/%Y}); record the new due date "
                                 "or review the outcome (E9).",
+                                sheet=ws.title,
+                                row=excel_row,
+                                column="Deadline outcome",
+                            )
+                        elif (part in ("Passed without action", "Enforced") and day
+                              and any(new_day >= day for new_day in new_dates)
+                              and any(later and later > day for later in reached[position:])):
+                            self.add(
+                                "warning",
+                                "rounds.new_date_not_extended",
+                                f"Outcome {position} is {part}, but the ledger sets a later due date in this round on or "
+                                f"after that deadline ({day:%m/%d/%Y}) and reaches it; check whether the outcome is "
+                                "Extended (E9, item 1).",
                                 sheet=ws.title,
                                 row=excel_row,
                                 column="Deadline outcome",

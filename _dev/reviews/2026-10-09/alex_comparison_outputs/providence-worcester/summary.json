@@ -1,0 +1,71 @@
+{
+  "note": "Review aid only: never a target for the instruction, and never shown to an extraction run.",
+  "deal": "providence-worcester",
+  "deal_number": "2994881020",
+  "workbook": "/home/uctpiaj/work/Projects/ledger-live/_dev/cockpit/state/versions/providence-worcester/opus55-medium-20260928-1420-8091a7/providence-worcester.xlsx",
+  "workbook_sha256": "8091a71d0d48f5f46cfdf7f890997512d575631d85176ea7308a7639f25a38f1",
+  "ledger_schema": "Version 1",
+  "alex_file": "/home/uctpiaj/work/Projects/sec-auction-review-20261009/ref/deal_details_Alex_2026.xlsx",
+  "alex_sha256": "b0bd73ddc016028974fcddb18b164d370efd7b776734b814a99d96d7f923b00a",
+  "deal_has_alex_corrections": true,
+  "alex_rows": 36,
+  "alex_labelled_bids": 14,
+  "aligned": 13,
+  "alignment": {
+    "bidder (part of name), price, date": 2,
+    "bidder, price, date": 11,
+    "unaligned": 1
+  },
+  "readings": {
+    "T0": {
+      "agree": 11,
+      "compared": 13,
+      "missing": 0
+    },
+    "T1": {
+      "agree": 13,
+      "compared": 13,
+      "missing": 0
+    },
+    "T1u": {
+      "agree": 11,
+      "compared": 13,
+      "missing": 0
+    },
+    "T2": {
+      "agree": 11,
+      "compared": 13,
+      "missing": 0
+    },
+    "T3": {
+      "agree": 11,
+      "compared": 13,
+      "missing": 0
+    }
+  },
+  "all_cash": {
+    "agree": 3,
+    "compared": 3,
+    "missing": 10
+  },
+  "per_share": {
+    "upfront": 11,
+    "package": 2,
+    "differs": 0
+  },
+  "bid_note_codes": {
+    "agree": 25,
+    "unaligned": 6,
+    "not compared": 1,
+    "disagree": 1,
+    "exit, other label or reason": 2,
+    "event agrees, round finality differs": 1
+  },
+  "provenance": {
+    "Alex: red comments only (coding as Chicago)": 11,
+    "Alex: red-font correction": 10,
+    "Alex: whole row in red (added or rewritten)": 8,
+    "Chicago coding": 7
+  },
+  "labelled_bids_with_red_bid_type": 3
+}

@@ -9,7 +9,7 @@ This project turns the "Background of the Merger" section of an SEC merger filin
 - Do not use the web. Do not identify anonymous bidders from outside knowledge.
 
 ## Layout
-- `SEC_Deal_Ledger_Extraction_Instruction.md`: the instruction, Version 1 (approved 28 September 2026). Agents edit it only with Austin's approval.
+- `SEC_Deal_Ledger_Extraction_Instruction.md`: the instruction, Version 1 (approved 28 September 2026; D5 amended 8 October 2026). Agents edit it only with Austin's approval.
 - `raw_filing/`: filings to extract, fetched from EDGAR by `_dev/tools/fetch_filing.py`. `MANIFEST.csv` records each file's source link and SHA-256.
 - `extraction/`: blind extractions under Version 1, one `<deal>.xlsx` per deal. Empty until Austin orders the re-extraction. Preserve raw outputs; a revision is a separate, authorized pass.
 - `ref/`: Alex's collection instructions, voice notes and hand-coded deals. For evaluation only. `seed.csv` (built by `_dev/tools/make_seed.py`) lists each deal's filing link and holds no answers.
@@ -21,7 +21,7 @@ On 27 September 2026 Austin reset the project to Version 0 and deleted everythin
 ## If you are asked to work on the pipeline itself
 - Read `_dev/STATUS.md` first.
 - For engineering, pick models by task: Astra for hard design and review (strong but expensive, sometimes erratic), Sol for well-specified implementation, Opus 5.5 or Fable 5.1 for design, implementation and integration. Opus 5.5 at medium effort is the default extraction model; Sol, Astra and Fable are used only when named.
-- The cockpit is the shared extraction app on the VM (spec `_dev/COCKPIT_APP_SPEC.md`). Its source is in `_dev/tools/cockpit`; the running deployment is a separate folder on the VM, changed only by the switch-over runbook (`_dev/alignment_sprint/SWITCHOVER.md`) on Austin's order. In it, Austin and Alex may each add deals, start extractions on their own subscription and publish instruction versions. The app records the browser account for each action; that attribution alone does not prove who clicked. An app version reaches the repository only through the VM's export script on Austin's request.
+- The cockpit is the shared extraction app on the VM (spec `_dev/COCKPIT_APP_SPEC.md`). Its source is in `_dev/tools/cockpit`; the running deployment is a separate folder on the VM, updated from the same cloud task through ARC on Austin's deployment order. Follow `_dev/CLOUD_DEPLOYMENT.md` for releases. `_dev/alignment_sprint/SWITCHOVER.md` records the original fresh-state cutover. In it, Austin and Alex may each add deals, start extractions on their own subscription and publish instruction versions. The app records the browser account for each action; that attribution alone does not prove who clicked. An app version reaches the repository only through the VM's export script on Austin's request.
 - Outside the app, an agent changes the instruction only with Austin's approval and runs extractions only on his command. Building or testing tools does not authorize a real model run. Change the instruction only where the change is general (objective, work process, honesty about uncertainty, a repaired contradiction, a deletion); never add a rule justified by one reviewed deal.
 - Comparison runs must be isolated: one instruction and one filing per sandboxed session (`_dev/tools/sandbox/run_model.py`; usage in `_dev/tools/README.md`). Run the checker after the run, never where the extracting agent can see it. Revision mode is a separate, explicitly requested pass that may see the selected workbook and findings.
 - Checking is mechanical and offline. Delete run folders and other scaffolding once their results are recorded.
@@ -29,5 +29,5 @@ On 27 September 2026 Austin reset the project to Version 0 and deleted everythin
 
 ## Where work happens
 - **Development:** the Claude Code project "sec-auction" at claude.ai/code. Each cloud thread starts from a clean clone of `extraction-v2` and keeps only what it pushes. Version 1 was built on `version-1`.
-- **The VM** (`condenser-vm`, checkout `~/work/Projects/sec-auction`): the live cockpit, paid extraction runs through the sandbox runner, Codex (Astra and Sol), and the cockpit backups. A cloud thread cannot reach the VM. For a task that needs it, ask for a thread on the VM through Remote Control ("Work locally" in the project).
+- **The VM** (`condenser-vm`, checkout `~/work/Projects/sec-auction`): the live cockpit, paid extraction runs through the sandbox runner, Codex (Astra and Sol), and the cockpit backups. Cloud threads reach the VM through the installed `arc` client and the protected credential for `arc.dealextract.org`. Use `arc exec condenser` for deployment commands. Follow `_dev/CLOUD_DEPLOYMENT.md`. Remote Control ("Work locally") remains optional.
 - **The Mac checkout** (`~/Projects/sec-auction`) is retired.

@@ -1,0 +1,65 @@
+{
+  "note": "Review aid only: never a target for the instruction, and never shown to an extraction run.",
+  "deal": "datalink",
+  "deal_number": "3032635020",
+  "workbook": "/home/uctpiaj/work/Projects/ledger-live/_dev/cockpit/state/versions/datalink/opus55-medium-20260928-1531-b29df5/datalink.xlsx",
+  "workbook_sha256": "b29df5338c821289c5ea824af63660a6767f7e874b9b918060f53ca4cc5627d2",
+  "ledger_schema": "Version 1",
+  "alex_file": "/home/uctpiaj/work/Projects/sec-auction-review-20261009/ref/deal_details_Alex_2026.xlsx",
+  "alex_sha256": "b0bd73ddc016028974fcddb18b164d370efd7b776734b814a99d96d7f923b00a",
+  "deal_has_alex_corrections": false,
+  "alex_rows": 52,
+  "alex_labelled_bids": 21,
+  "aligned": 15,
+  "alignment": {
+    "bidder, price, date": 15,
+    "unaligned": 6
+  },
+  "readings": {
+    "T0": {
+      "agree": 14,
+      "compared": 15,
+      "missing": 0
+    },
+    "T1": {
+      "agree": 12,
+      "compared": 15,
+      "missing": 0
+    },
+    "T1u": {
+      "agree": 6,
+      "compared": 15,
+      "missing": 0
+    },
+    "T2": {
+      "agree": 14,
+      "compared": 15,
+      "missing": 0
+    },
+    "T3": {
+      "agree": 14,
+      "compared": 15,
+      "missing": 0
+    }
+  },
+  "all_cash": {
+    "agree": 2,
+    "compared": 2,
+    "missing": 13
+  },
+  "per_share": {
+    "upfront": 15,
+    "package": 0,
+    "differs": 0
+  },
+  "bid_note_codes": {
+    "agree": 20,
+    "unaligned": 28,
+    "exit, other label or reason": 3,
+    "disagree": 1
+  },
+  "provenance": {
+    "Chicago coding (deal has no corrections)": 52
+  },
+  "labelled_bids_with_red_bid_type": 0
+}

@@ -19,8 +19,11 @@ import derive_analysis
 CATEGORIES = (
     "unknown_type", "qualified_count", "type_unsplit_count", "inferred_exit",
     "unexplained_exit", "deadline_outcome", "partial_only", "non_per_share_price",
-    "non_dollar_price", "round_opened", "multi_process",
+    "non_dollar_price", "round_opened", "multi_process", "conditions_unclear", "none_on_silence",
+    "initiation_differs",
 )
+# E12's condition columns that a Conditions None reading rests on.
+CONDITION_COLUMNS = ("Due diligence", "Financing", "Regulatory")
 NON_DOLLAR_RE = re.compile(
     r"\b(?:EUR|GBP|CAD|CNY|JPY|CHF|AUD|NZD|MXN|INR|BRL|SEK|NOK|DKK|HKD|SGD|ZAR|KRW|TWD|ILS|"
     r"euros?|pounds?|francs?|yen|yuan|rupees?|Canadian dollars?|Australian dollars?|"
@@ -76,6 +79,13 @@ def build_review_list(ledger: dict[str, Any], disabled: set[str] | None = None) 
         if event == "Round opened":
             key = (check_lean.as_integer_or_text(r.get("Process")), check_lean.as_integer_or_text(r.get("Round")))
             add("round_opened", "Deal ledger", number, who, f"Round trigger: {round_triggers.get(key, '(missing)')}")
+        # E12 on Formal whole-company bids, where Conditions decides the T1 and T1u readings.
+        if event in derive_analysis.WHOLE_BIDS and r.get("Formality") == "Formal":
+            if r.get("Conditions") == "Unclear":
+                add("conditions_unclear", "Deal ledger", number, who, "Formal bid with Conditions Unclear")
+            elif r.get("Conditions") == "None" and all(r.get(c) == "Not stated" for c in CONDITION_COLUMNS):
+                add("none_on_silence", "Deal ledger", number, who,
+                    "Formal bid with Conditions None, but Due diligence, Financing and Regulatory are all Not stated")
 
     # Currency and price basis: one deal-level item each, from Deal facts and the bid rows' Notes.
     units = derive_analysis.text(facts.get("Currency and units of bid prices"))
@@ -97,6 +107,12 @@ def build_review_list(ledger: dict[str, Any], disabled: set[str] | None = None) 
     processes.discard(None)
     if len(processes) > 1:
         add("multi_process", "Deal facts", "Number of processes", "", f"{len(processes)} processes")
+    if "initiation_differs" not in disabled:
+        for line in derive_analysis.derive(ledger, "")["deal"]:
+            if line["initiation_check"] == "differs":
+                add("initiation_differs", "Deal facts", "Initiation", "",
+                    f"Initiation is {line['initiation_recorded']!r}, but D5's rule gives {line['initiation_first_event']} "
+                    f"from {line['initiation_first_row']}")
     return items
 
 

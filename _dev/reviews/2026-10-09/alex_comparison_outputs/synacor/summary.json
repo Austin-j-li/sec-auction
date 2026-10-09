@@ -1,0 +1,65 @@
+{
+  "note": "Review aid only: never a target for the instruction, and never shown to an extraction run.",
+  "deal": "synacor",
+  "deal_number": "3697458020",
+  "workbook": "/home/uctpiaj/work/Projects/ledger-live/_dev/cockpit/state/versions/synacor/opus55-medium-20260928-1448-ae0ad0/synacor.xlsx",
+  "workbook_sha256": "ae0ad086e3c859a6b7d84f9af18304c696c3b7513f85cf90090f76e326484cd2",
+  "ledger_schema": "Version 1",
+  "alex_file": "/home/uctpiaj/work/Projects/sec-auction-review-20261009/ref/deal_details_Alex_2026.xlsx",
+  "alex_sha256": "b0bd73ddc016028974fcddb18b164d370efd7b776734b814a99d96d7f923b00a",
+  "deal_has_alex_corrections": false,
+  "alex_rows": 29,
+  "alex_labelled_bids": 11,
+  "aligned": 9,
+  "alignment": {
+    "bidder, price, date": 9,
+    "unaligned": 2
+  },
+  "readings": {
+    "T0": {
+      "agree": 9,
+      "compared": 9,
+      "missing": 0
+    },
+    "T1": {
+      "agree": 8,
+      "compared": 9,
+      "missing": 0
+    },
+    "T1u": {
+      "agree": 8,
+      "compared": 9,
+      "missing": 0
+    },
+    "T2": {
+      "agree": 9,
+      "compared": 9,
+      "missing": 0
+    },
+    "T3": {
+      "agree": 9,
+      "compared": 9,
+      "missing": 0
+    }
+  },
+  "all_cash": {
+    "agree": 5,
+    "compared": 5,
+    "missing": 4
+  },
+  "per_share": {
+    "upfront": 6,
+    "package": 0,
+    "differs": 0
+  },
+  "bid_note_codes": {
+    "agree": 14,
+    "unaligned": 13,
+    "not compared": 1,
+    "disagree": 1
+  },
+  "provenance": {
+    "Chicago coding (deal has no corrections)": 29
+  },
+  "labelled_bids_with_red_bid_type": 0
+}

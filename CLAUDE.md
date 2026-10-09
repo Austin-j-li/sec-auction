@@ -31,11 +31,10 @@ Large, custom, throwaway artifacts are fine. Do not avoid them only because they
 
 ## Tests
 
-Do not write tests. This rule applies to all agents, subagents, and skills.
-- Do not write or extend a test of any type: unit, smoke, integration, or end-to-end.
-- Do not add test files, test fixtures, or test frameworks.
-- Do not run a test suite to verify a change.
-- Do not delete or change existing tests unless Austin asks.
+The repository has no tests, and it gets none. Austin removed all of them on 8 Oct 2026. This rule applies to all agents, subagents, and skills.
+- Do not write a test of any type: unit, integration, smoke, or end-to-end.
+- Do not add test files, test fixtures, test frameworks, or test scripts.
+- After you write or change code, run the pipeline on real inputs instead.
 
 To verify a change, use the program as a consumer:
 1. Run the program through its real interface, such as the CLI, the GUI, or the web page.
@@ -61,3 +60,10 @@ Astra (GPT-6 Astra through Codex, usually xhigh) is a useful reviewer, but it te
 4. Give Austin a verdict, not Astra's raw list.
 
 Close stdin when you call Codex (`codex exec ... < /dev/null`), or it waits for input. Codex is installed only on the VM.
+
+## Cloud deployment
+
+Deploy requested website releases from the same cloud task through `arc exec condenser`.
+Read `_dev/CLOUD_DEPLOYMENT.md` first. The protected ARC connection already supplies VM access.
+Do not require a separate "Work locally" task or a Cloudflare API token for an ordinary app release.
+Keep the existing pull request, research, extraction, and instruction approval rules.

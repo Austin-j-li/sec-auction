@@ -1,6 +1,6 @@
 # Pipeline tools
 
-Run commands from the repository root. Read [AGENTS.md](../../AGENTS.md) first. The checker and analysis tools enforce Version 1 only, using the current 29-column Deal ledger. The root instruction is Version 1 (approved 28 September 2026); `_dev/alignment_sprint/draft/` keeps the approved text beside its change map. A workbook with any other ledger header is an error, not a fallback. Extractions, model experiments and workbook revisions need Austin's explicit instruction; these examples do not authorize a run.
+Run commands from the repository root. Read [AGENTS.md](../../AGENTS.md) first. The checker and analysis tools enforce Version 1 only, using the current 29-column Deal ledger. The root instruction is Version 1 (approved 28 September 2026; D5 amended 8 October 2026); `_dev/alignment_sprint/draft/` keeps the 28 September text beside its change map. A workbook with any other ledger header is an error, not a fallback. Extractions, model experiments and workbook revisions need Austin's explicit instruction; these examples do not authorize a run.
 
 ## Environment
 
@@ -60,7 +60,7 @@ python3 _dev/tools/compare_alex.py <ledger.xlsx> --out <new dir> [--deal <deal>]
 
 `findings_text.py` turns a checker report into numbered findings for a revision pass, errors first; warnings stay review leads. `diff_workbooks.py` compares two Version 1 workbooks sheet by sheet and keeps cell types, so a number changed into text shows. `derive_analysis.py` turns a Version 1 ledger into estimation tables (bids, other-scope bids, rounds, participation, deal) with the T0–T3 Formality readings side by side and every open research choice listed as a switch with no default; it writes only into a new or empty folder outside `extraction/`, `raw_filing/` and `ref/`. `compare_alex.py` sets a ledger beside Alex's hand coding as a review aid; it reads `ref/`, so never run it where an extraction can see the output.
 
-`review_list.py` builds a review queue from workbook cells without changing the ledger. Repeat `--disable` to omit categories: `unknown_type`, `qualified_count`, `type_unsplit_count`, `inferred_exit`, `unexplained_exit`, `deadline_outcome`, `partial_only`, `non_per_share_price`, `non_dollar_price`, `round_opened`, `multi_process`. The queue is a set of review leads, not a source-accuracy verdict. Like `derive_analysis.py`, it refuses an `--output` under `extraction/`, `raw_filing/` or `ref/`, or over the input workbook.
+`review_list.py` builds a review queue from workbook cells without changing the ledger. Repeat `--disable` to omit categories: `unknown_type`, `qualified_count`, `type_unsplit_count`, `inferred_exit`, `unexplained_exit`, `deadline_outcome`, `partial_only`, `non_per_share_price`, `non_dollar_price`, `round_opened`, `multi_process`, `conditions_unclear`, `none_on_silence`, `initiation_differs`. The last three cover Formal bids with Conditions Unclear, Formal bids with Conditions None where Due diligence, Financing and Regulatory are all Not stated, and an Initiation value that differs from D5's rule. The cockpit shows the same queue in each deal's Review tab. The queue is a set of review leads, not a source-accuracy verdict. Like `derive_analysis.py`, it refuses an `--output` under `extraction/`, `raw_filing/` or `ref/`, or over the input workbook.
 
 ## Filing inputs
 
@@ -73,10 +73,6 @@ python3 _dev/tools/fetch_filing.py --list <name>
 
 `make_seed.py` rebuilds `ref/seed.csv` from Alex's workbook using identifying fields only. Do not run it merely to tidy the repository.
 
-## Tests
+## Checking a change
 
-```bash
-cd _dev/tools && python3 -m pytest -q
-```
-
-The tests use synthetic fixtures and mocks. Runner tests build commands but never launch a model.
+The repository has no tests. After a change, run the changed tool on real inputs and read the output. For example, run `check_lean.py` on a real workbook and its filing, `derive_analysis.py` and `review_list.py` on real workbooks, or open a deal in the cockpit. Real model runs still need Austin's command.

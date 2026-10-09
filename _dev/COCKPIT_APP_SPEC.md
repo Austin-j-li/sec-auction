@@ -36,7 +36,7 @@ The research guarantees stay as they are: blind, isolated extraction; immutable 
 ## 4. Architecture
 
 ```
-browser ──Cloudflare Access──▶ server.py (HTTP, SQLite, no model or network calls in requests)
+browser ──Cloudflare Access──▶ server.py (HTTP, SQLite, Access key check; no model or EDGAR calls)
                                    │ enqueue job rows
                                    ▼
                            worker.py  (new systemd user service)
@@ -46,14 +46,14 @@ browser ──Cloudflare Access──▶ server.py (HTTP, SQLite, no model or ne
                              └─ import result as immutable version
 ```
 
-- **Server** keeps its current rule: request handling makes no remote calls. Anything slow or external is a job.
-- **Worker** (`ledger-worker.service`) claims jobs from SQLite, one transaction per state change, and survives restarts: on start it marks jobs whose process is gone as `failed: worker_restart`.
+- **Server** makes no model or EDGAR call in a request. Its only remote call is the Cloudflare Access key-set fetch (5-second timeout, at most once a minute). Anything slow or external is a job.
+- **Worker** (`ledger-worker.service`) claims jobs from SQLite, one transaction per state change, and survives restarts. On start it fails a job cut off while preparing (`worker_restart`) and finishes jobs cut off while checking or importing. A run whose process is gone is imported from its recorded outcome; with no outcome, it fails as `worker_restart`.
 - **Store**: the ignored `_dev/cockpit/state/` directory, alongside `workspace.sqlite3`:
   - `filings/<deal>/<file>` plus a manifest row per filing (source URL, document, fetched time, bytes, SHA-256), as in `raw_filing/MANIFEST.csv`;
   - `instructions/<sha256>.md` (content-addressed);
-  - `versions/<deal>/<version-id>/` with `workbook.xlsx`, `check.json` and the run receipts (`metadata.json`, `command.json`, `status.json`, `provider-results.json`);
-  - `secrets/` for credentials (§5).
-- **Backups**: a nightly job copies the SQLite database (online backup API) and the store to `~/backups/ledger-cockpit/`, keeping 14 days. The database is the only copy of working revisions and comments.
+  - `versions/<deal>/<version-id>/` with `<deal>.xlsx`, `check.json` and the run receipts (`metadata.json`, `command.json`, `status.json`, `provider-results.json`);
+  - no credentials; they are kept apart from the store (§5).
+- **Backups**: a nightly job copies the SQLite database (online backup API) and the store to `~/backups/ledger-live/`, keeping 14 days. The database is the only copy of working revisions and comments.
 - **Capacity**: the VM has 64 CPUs and 125 GB RAM. A run is mostly waiting on the model, so the cap is set by subscription limits, not the machine: at most 4 concurrent runs overall and 2 per user, with the rest queued.
 
 ## 5. Accounts: "Connect your Claude / ChatGPT account"
@@ -73,7 +73,7 @@ A **Settings → Accounts** page lists, per user: Claude (not connected / connec
 
 ### 5.3 Credential handling
 
-- Encrypted at rest (a key file readable only by the service user, outside the repository), never returned to the browser, never logged.
+- Stored unencrypted under `COCKPIT_TOKEN_ROOT` (default `~/.config/sec-extraction/users/<user>/`), outside the repository and the store, in files only the service user can read (mode 600). Never returned to the browser, never logged.
 - Every run records `account: austin|alex` and the provider, so a version always says whose plan paid for it.
 - An engine whose provider the starting user has not connected is disabled in the Run dialog, with a link to Settings.
 - Disconnect deletes the stored credential. The page also tells the user where to revoke it on claude.ai or chatgpt.com.

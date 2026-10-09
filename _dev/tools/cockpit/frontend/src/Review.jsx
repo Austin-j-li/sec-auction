@@ -68,6 +68,63 @@ function MechanicalPanel({ deal }) {
   </details>;
 }
 
+// Alex's must-flag list (voice notes ¶169–187): what each review_list.py category asks a person to check.
+const FLAG_CATEGORIES = {
+  unknown_type: ['Unknown type on a winner or Formal bidder', '175–176'],
+  qualified_count: ['Count qualified or unsized in the Note', '177'],
+  type_unsplit_count: ['Count that does not split bidder types', '177'],
+  inferred_exit: ['Inferred exit', '178'],
+  unexplained_exit: ['Exit with no stated reason', '178'],
+  deadline_outcome: ['Deadline outcome', '174'],
+  partial_only: ['Only partial bids', '184'],
+  non_per_share_price: ['Price not per share', '185'],
+  non_dollar_price: ['Currency not dollars', '185'],
+  round_opened: ['Round start', '173'],
+  multi_process: ['More than one process', '186'],
+  conditions_unclear: ['Formal bid with Conditions Unclear', '179'],
+  none_on_silence: ['Formal bid with Conditions None on silent columns', '179'],
+  initiation_differs: ['Initiation differs from D5', '38–39, 68'],
+};
+
+function MustFlagPanel({ deal, onJumpRow }) {
+  const queue = deal.review_queue;
+  if (!queue) return null;
+  const items = queue.items || [];
+  const groups = (queue.categories || Object.keys(FLAG_CATEGORIES))
+    .map(category => [category, items.filter(item => item.category === category)])
+    .filter(([, list]) => list.length);
+  const ledgerRows = new Map((deal.ledger?.rows || []).map(row => [rowId(row), row]));
+  return <details className="mechanical-panel must-flag-panel">
+    <summary>
+      <CaretRightIcon size={16} className="caret" aria-hidden="true"/>
+      <span className="summary-title">Must-flag list</span>
+      <span className="summary-meta mono">{queue.error ? 'not available' : `${count(items.length, 'item')} · ${groups.length} of ${Object.keys(FLAG_CATEGORIES).length} checks`}</span>
+    </summary>
+    <div className="mechanical-content">
+      <p className="fine-print">Cells Alex asked a person to look at (voice notes ¶169–187). The list is read from the workbook cells; it does not check them against the filing.</p>
+      {queue.error && <Message type="warning" title="The must-flag list could not be built for this version." detail={queue.error}/>}
+      {!queue.error && !groups.length && <p>No must-flag items in this version.</p>}
+      {groups.map(([category, list]) => {
+        const [label, paragraphs] = FLAG_CATEGORIES[category] || [category, ''];
+        return <section key={category} className="flag-group">
+          <h4 className="block-label">{label}{paragraphs ? ` · ¶${paragraphs}` : ''} <span className="mono">({list.length})</span></h4>
+          <ul className="flag-list">
+            {list.map((item, i) => {
+              const row = item.sheet === 'Deal ledger' ? ledgerRows.get(text(item.row)) : null;
+              return <li key={i}>
+                {row?.uid && onJumpRow
+                  ? <Button appearance="subtle" className="link-button" onClick={() => onJumpRow(row.uid)}><span className="mono">#{rowId(row)}</span>&nbsp;{row.cells?.Event}</Button>
+                  : <span className="flag-location mono">{[item.sheet, item.row].filter(Boolean).join(' · ')}</span>}
+                <span className="flag-detail">{[item.who, item.detail].filter(Boolean).join(' · ')}</span>
+              </li>;
+            })}
+          </ul>
+        </section>;
+      })}
+    </div>
+  </details>;
+}
+
 function Finding({ finding, open, editable, dirty, onToggle, onEdit, onFindEvidence, trace }) {
   const judgment = finding.judgment || 'unreviewed';
   const openThreads = trace?.counts?.[finding.id]?.open || 0;
@@ -143,7 +200,7 @@ function Finding({ finding, open, editable, dirty, onToggle, onEdit, onFindEvide
   </article>;
 }
 
-export function ReviewTab({ deal, editable, open, onToggle, onEdit, dirtyFor, onFindEvidence, onOpenDocument, trace }) {
+export function ReviewTab({ deal, editable, open, onToggle, onEdit, dirtyFor, onFindEvidence, onOpenDocument, onJumpRow, trace }) {
   const findings = deal.findings || [], documents = deal.documents || [];
   return <div className="review-tab paper-column">
     <div className="section-head">
@@ -152,6 +209,7 @@ export function ReviewTab({ deal, editable, open, onToggle, onEdit, dirtyFor, on
     </div>
     <p className="section-note">A finding is a recorded candidate or judgment. Deciding it here does not edit the workbook; a correction needs a separate data edit and verification.</p>
     <MechanicalPanel deal={deal}/>
+    <MustFlagPanel deal={deal} onJumpRow={onJumpRow}/>
     {documents.length > 0 && <div className="documents">
       <span className="reference-label">Recorded documents</span>
       {documents.map(item => <Button key={item.id} appearance="subtle" className="link-button" icon={<FileTextIcon size={16}/>} onClick={() => onOpenDocument(item)}>{item.label}</Button>)}

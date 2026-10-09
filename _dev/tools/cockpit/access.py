@@ -25,8 +25,8 @@ import sys
 import threading
 import time
 import urllib.request
-from time import time as wall_clock  # kept apart from the monotonic clock tests replace
-from typing import Any, Callable
+from time import time as wall_clock  # token times are wall-clock times, kept apart from the monotonic clock
+from typing import Any
 
 try:
     from jwcrypto import jwk, jwt
@@ -58,8 +58,7 @@ def fetch_keys(url: str) -> str:
 class Verifier:
     """Verifies Access tokens against the team's key set, which it caches. Shared by the request threads."""
 
-    def __init__(self, fetch: Callable[[str], str] = fetch_keys):
-        self.fetch = fetch
+    def __init__(self):
         self.settings = settings()
         self.configured = self.settings is not None and jwt is not None
         self.lock = threading.Lock()
@@ -75,7 +74,7 @@ class Verifier:
                 self.attempted = now
                 url = self.settings[0] + "/cdn-cgi/access/certs"
                 try:
-                    self.keyset = jwk.JWKSet.from_json(self.fetch(url))
+                    self.keyset = jwk.JWKSet.from_json(fetch_keys(url))
                 except Exception as exc:  # noqa: BLE001 - keep the last good set, if any
                     sys.stderr.write(f"cloudflare access: fetching the key set from {url} failed: {type(exc).__name__}: {exc}\n")
             if self.keyset is None:

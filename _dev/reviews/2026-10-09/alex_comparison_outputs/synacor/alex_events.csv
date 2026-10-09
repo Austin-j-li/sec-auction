@@ -1,0 +1,30 @@
+deal,alex_row,bidder_id,bidder_name,alex_date,bid_note,provenance,red_cells,expected,status,ledger_row,ledger_who,ledger_event,ledger_exit_reason,ledger_round,round_finality,date_gap_days
+synacor,589,1,Company A,2018-01-10,NDA,Chicago coding (deal has no corrections),,NDA signed,agree,2,Company A,NDA signed,,0,,0
+synacor,590,2,Company A,2018-02-06,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,3,Company A,Bid,,0,,0
+synacor,591,3,Company A,2018-04-25,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,4,Company A,Bid,,0,,0
+synacor,592,4,Company A,2018-06-20,Drop,Chicago coding (deal has no corrections),,Withdrew,agree,8,Company A,Withdrew,Other stated reason,1,Not final,0
+synacor,593,5,Company B,2018-10-15,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+synacor,594,6,Company B,2019-03-15,Drop,Chicago coding (deal has no corrections),,Withdrew,unaligned,,,,,,,
+synacor,595,7,Company C,2019-03-15,NDA,Chicago coding (deal has no corrections),,NDA signed,agree,14,Company C,NDA signed,,0,,0
+synacor,596,8,Company E,2019-07-30,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+synacor,597,9,Company C,2019-08-13,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,15,Company C,Bid,,0,,0
+synacor,598,10,Company C,2019-10-15,Drop,Chicago coding (deal has no corrections),,Withdrew,agree,20,Company C,Withdrew,Not stated,1,Not final,0
+synacor,599,11,Company E,2020-07-13,NA,Chicago coding (deal has no corrections),,(no event: an unlabelled row),not compared,,,,,,,
+synacor,600,12,Company G,2020-08-15,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+synacor,601,13,Company H,2020-08-15,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+synacor,602,14,11 parties,2020-08-15,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+synacor,603,15,CLP,2020-09-08,NDA,Chicago coding (deal has no corrections),,NDA signed,agree,27,CLP,NDA signed,,1,Not final,0
+synacor,604,16,Company E,2020-09-10,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,28,Company E,Bid,,1,Not final,0
+synacor,605,17,Company G,2020-09-14,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,unaligned,,,,,,,
+synacor,606,18,CLP,2020-09-17,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,33,CLP,Bid,,1,Not final,0
+synacor,607,19,11 parties,2020-09-17,Drop,Chicago coding (deal has no corrections),,Withdrew,unaligned,,,,,,,
+synacor,608,20,Company E,2020-09-18,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,36,Company E,Bid,,1,Not final,0
+synacor,609,21,Company H,2020-11-02,Drop,Chicago coding (deal has no corrections),,Withdrew,unaligned,,,,,,,
+synacor,610,22,Company I,2020-11-19,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+synacor,611,23,Company E,2020-12-04,Drop,Chicago coding (deal has no corrections),,Withdrew,agree,46,Company E,Withdrew,Other stated reason,3,Not final,10
+synacor,612,24,Company I,2020-12-29,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,unaligned,,,,,,,
+synacor,613,25,Company G,2020-12-30,Drop,Chicago coding (deal has no corrections),,Withdrew,unaligned,,,,,,,
+synacor,614,26,CLP,2021-01-04,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,51,CLP,Bid,,3,Not final,0
+synacor,615,27,CLP,2021-01-08,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,54,CLP,Bid,,3,Not final,2
+synacor,616,28,CLP,2021-02-10,Executed,Chicago coding (deal has no corrections),,Merger agreement signed,disagree,61,CLP,Bid,,4,Inferred final,0
+synacor,617,29,Company I,2021-02-10,Drop,Chicago coding (deal has no corrections),,Withdrew,unaligned,,,,,,,

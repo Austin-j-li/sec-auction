@@ -2,7 +2,8 @@
 
 Nothing here writes a file. Workbooks are read from an in-memory copy of their
 bytes, filings are parsed in memory, and the mechanical checker runs in-process
-with its report kept only in a cache. The cockpit never reads ``ref/``.
+with its report kept only in a cache. Of ``ref/``, the cockpit reads only the
+identifying columns of ``seed.csv`` (deals.py).
 
 The quote locator reproduces both filing renderings that ``check_lean`` accepts
 (``soup.get_text(" ")`` and ``soup.get_text("")``, each normalized with
@@ -12,8 +13,7 @@ highlighted.
 
 NFC normalization runs per text node here but over the whole text in the
 checker, so a combining mark that starts a new text node could compose
-differently. None of the real filings hits this; the tests compare the two
-renderings with the checker's directly.
+differently. None of the real filings hits this.
 """
 
 from __future__ import annotations
@@ -36,6 +36,8 @@ if str(TOOLS_DIR) not in sys.path:
     sys.path.insert(0, str(TOOLS_DIR))
 
 import check_lean  # noqa: E402
+import derive_analysis  # noqa: E402
+import review_list  # noqa: E402
 import openpyxl  # noqa: E402
 from openpyxl.utils.exceptions import InvalidFileException  # noqa: E402
 from bs4 import BeautifulSoup, CData, NavigableString, Tag  # noqa: E402
@@ -1034,7 +1036,23 @@ def build_deal_payload(
         },
         "background_block": filing.background_block,
         "pages_reliable": filing.pages_reliable,
+        "review_queue": review_queue(tables),
     }
+
+
+def review_queue(tables: dict[str, tuple[list[str], list[tuple[int, list[Any]]]]]) -> dict[str, Any]:
+    """Alex's must-flag list for the workbook as shown: review_list.py's queue, read from the cells."""
+
+    def records(sheet: str) -> list[dict[str, Any]]:
+        columns, body = tables.get(sheet, ([], []))
+        return [{column: value for column, value in zip(columns, values) if column} for _, values in body]
+
+    facts = {derive_analysis.text(record.get("Field")): record.get("Value") for record in records(FACTS_SHEET)}
+    try:
+        items = review_list.build_review_list({"ledger": records(LEDGER_SHEET), "rounds": records(ROUNDS_SHEET), "facts": facts})
+    except Exception as exc:  # a review aid never blocks the deal page; the panel shows why it is empty
+        return {"categories": list(review_list.CATEGORIES), "items": [], "error": _reason(exc)}
+    return {"categories": list(review_list.CATEGORIES), "items": items, "error": None}
 
 
 _DEFAULT: Cockpit | None = None
