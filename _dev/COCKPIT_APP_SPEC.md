@@ -20,7 +20,7 @@ The research guarantees stay as they are: blind, isolated extraction; immutable 
 | Who may extract | Austin and Alex, each on their own initiative. |
 | Deal sources | Search `ref/seed.csv` by name, or paste any EDGAR filing or index link. |
 | Re-extraction of an edited deal | Adds a new read-only version. The working copy keeps its edits and base; changing its base is a separate, deliberate action. |
-| Engines | Claude Opus 5.5 (default, medium), Claude Fable 5.1, GPT-6-Sol and GPT-6-Astra (high by default when chosen), at every effort the runner allows. Claude engines use the starting user's Claude plan; GPT engines use the starting user's ChatGPT plan. |
+| Engines | Claude Opus 5.5 (default, medium), Claude Fable 5.1, GPT-6.1-Sol (always on the Codex Fast, priority, tier) and GPT-6-Astra (high by default when chosen), at every effort the runner allows. Claude engines use the starting user's Claude plan; GPT engines use the starting user's ChatGPT plan. |
 | Instructions | Editable in the app as new versions. Either user may publish a version and make it the default. Drafts may be run: the exact text is frozen under its hash and the version is labelled "draft instruction". |
 | Version labels | Every extraction version states its engine, effort, instruction, who ran it and when (§6.3). |
 | Trace | Recommended design in §8: threaded comments, a per-deal "since your last visit" digest, and last-changed-by on hover. No email, no live notifications. |
@@ -66,7 +66,7 @@ A **Settings → Accounts** page lists, per user: Claude (not connected / connec
 - Fallback if the pseudo-terminal flow proves unreliable: the page explains how to run `claude setup-token` once on any computer and has a box to paste the token.
 - Runs pass the token as the runner already does, through an inherited pipe (`CLAUDE_CODE_OAUTH_TOKEN_FILE_DESCRIPTOR`), never in a command line, the sandbox environment or the run directory. The runner's `SEC_CLAUDE_OAUTH_TOKEN_FILE` becomes a per-user path.
 
-### 5.2 ChatGPT (GPT-6-Sol, GPT-6-Astra)
+### 5.2 ChatGPT (GPT-6.1-Sol, GPT-6-Astra)
 
 - The worker runs `codex login --device-auth` with a per-user `CODEX_HOME`. The page shows the verification link and code; the user approves in their own ChatGPT account; the worker waits for completion.
 - Refresh tokens rotate. The runner mounts the user's Codex login read-only and refuses a run with under seven hours of access-token life, because a refresh inside the sandbox cannot be written back. Per-user credentials keep that rule. The worker refreshes a user's credential outside the sandbox, under a per-user lock and never during that user's GPT run, when less than 24 hours remain.
@@ -84,7 +84,7 @@ A **Settings → Accounts** page lists, per user: Claude (not connected / connec
 
 Opened from a deal's toolbar (**Extract**) or right after adding a deal.
 
-- **Engine**: Claude Opus 5.5 (default), Claude Fable 5.1 (marked *experimental*), GPT-6-Sol, GPT-6-Astra. Selecting Fable shows: "Fable's safety filter often blocks runs partway (6 of 11 test prompts); a blocked run fails and must be restarted."
+- **Engine**: Claude Opus 5.5 (default), Claude Fable 5.1 (marked *experimental*), GPT-6.1-Sol, GPT-6-Astra. Selecting GPT-6.1-Sol shows one line: it runs on the Fast (priority) tier, about twice as fast, and uses more of the ChatGPT plan. Selecting Fable shows: "Fable's safety filter often blocks runs partway (6 of 11 test prompts); a blocked run fails and must be restarted."
 - **Effort**: `low`, `medium`, `high`, `xhigh`, `max`, restricted to what the engine supports; default `medium`, except Astra defaults to `high` when selected. `ultra` is not offered because it delegates to subagents, which breaks isolation.
 - **Instruction**: the default published version, preselected. The list shows published versions, then drafts, each marked.
 - **Time limit**: default 90 minutes (runner range 10–360).
@@ -197,7 +197,7 @@ An **Instructions** page lists every version: name (for example v0), status (pub
 - The checker runs only after the provider exits, outside the sandbox.
 - Every version records the full provenance in §6.3. Two versions are comparable only if their instruction hashes are the same, and the Compare view says when they are not.
 - Revision mode (an agent seeing a workbook and findings) is **not** offered in the app. It stays a separate, explicitly requested step.
-- The runner's model allow-list is Opus 5.5, Fable 5.1, GPT-6-Sol and GPT-6-Astra. Each addition gets the same checks (the served model must match the requested one; refusal fallback is disabled for Claude).
+- The cockpit's engine list is Opus 5.5, Fable 5.1, GPT-6.1-Sol and GPT-6-Astra. Each addition gets the same checks (the served model must match the requested one; refusal fallback is disabled for Claude).
 
 ## 11. Repository export
 
