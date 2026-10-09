@@ -50,7 +50,7 @@ CONTACT_EVENTS = {"Contact", "Bidder interest", "Target interest"}
 # Entries whose unit takes back exactly what it added when it exits with the same inexact count.
 OWN_ENTRIES = {"entry", "re-entry", "entry (late contact)"}
 # A cohort Note's "less X" or "excluding X" clause names parties outside the cohort.
-COHORT_EXCLUSION_RE = re.compile(r"\b(?:less|excluding|except|other than|not including)\b[^;.]*", re.IGNORECASE)
+COHORT_EXCLUSION_RE = re.compile(r"\b(?:less|excluding|except|other than|not including)\b\s*([^;.]*)", re.IGNORECASE)
 FINAL = {"Announced as final", "Inferred final"}
 # One class per due date. Longest labels first for prefix matching.
 DEADLINE_CLASSES = {
@@ -112,7 +112,8 @@ SWITCHES = [
      "variants": {"new observation": "price_obs__same_price_as_new", "change of terms only": "price_obs__same_price_as_terms"}},
     {"id": "same_offer_restatements", "source": "E10 (R1); questionnaire 3.3(b)",
      "question": "Whether a Same-offer row (the bidder says its offer stands or confirms it by documents) is kept as a bid observation.",
-     "variants": {"kept": "every bids.csv row", "dropped": "bids.csv rows with same_offer_of blank"}},
+     "variants": {"kept": "every bids.csv row",
+                  "dropped": "bids.csv rows with same_offer_of blank or returns_to_older_price 1 (a revision, L253)"}},
     {"id": "inferred_exits", "source": "D22; Alex Decision 3b",
      "question": "Whether inferred exits enter as dropouts or as censoring.",
      "variants": {"dropout": "exit__inferred_as_dropout",
@@ -128,7 +129,7 @@ BID_COLUMNS = [
     "count", "count_lo", "count_hi", "price_low", "price_high", "upfront_price_kind", "cvr_earnout", "cvr_value", "package_low",
     "package_high", "package_basis",
     "stock_pct", "stock_kind", "stock_lo", "stock_hi", "all_cash", "formality", "conditions", "due_diligence", "financing",
-    "regulatory", "antitrust", "exclusivity", "inferred", "flag", "same_offer_of", "same_price_revision",
+    "regulatory", "antitrust", "exclusivity", "inferred", "flag", "same_offer_of", "returns_to_older_price", "same_price_revision",
     "price_obs__same_price_as_new", "price_obs__same_price_as_terms", "round_finality", "T0", "T1", "T1u", "T2", "T3",
     "live_lo", "live_hi", "live_point", "note",
 ]
@@ -260,9 +261,12 @@ def count_bounds(count: Any, note: Any) -> tuple[int | None, int | None, int | N
         n = leading_figure(note[m.end():])
         if n is None and word != "several":
             return 1, None, None, "unknown (unparsed Count: prefix)"
-        # "Count: several parties ... less X and Y": the qualifier bounds the total, not the residual this row counts.
-        if COHORT_EXCLUSION_RE.search(re.split(r"[;.]", note[m.end():], maxsplit=1)[0]):
-            return 1, None, None, f"residual of a qualified total ({word})"
+        # "Count: several parties ... less X and Y": the qualifier bounds the total, and the total may include every
+        # named party, so the residual this row counts is at least the total's minimum less the names, and can be empty.
+        if (excluded := COHORT_EXCLUSION_RE.search(re.split(r"[;.]", note[m.end():], maxsplit=1)[0])):
+            total_lo, total_hi, _ = COUNT_QUALIFIER_BOUNDS[word](n)
+            names = [x for x in re.split(r"\s*(?:,|&|\band\b)\s*", excluded.group(1).strip()) if x]
+            return max(0, total_lo - len(names)), total_hi, None, f"residual of a qualified total ({word})"
         return COUNT_QUALIFIER_BOUNDS[word](n) + (word,)
     if check_lean.COUNT_UNKNOWN_RE.search(note):
         return 1, None, None, "unknown"
@@ -698,7 +702,8 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
         if kind.startswith("unknown (") and (event in ENTRY_EVENTS | check_lean.EXIT_EVENTS | {"Re-entered"}):
             note_review(r, f"Count is blank and the Note gives no parseable 'Count: ...' ({kind})")
         if kind.startswith("residual of a qualified total") and (event in ENTRY_EVENTS | check_lean.EXIT_EVENTS | {"Re-entered"}):
-            note_review(r, "the Count qualifier bounds a total less named parties, so the residual's size is unknown: read as at least 1")
+            note_review(r, f"the Count qualifier bounds a total less named parties it may include, so the residual's size is "
+                        f"unknown: read as at least {lo}" + (" (it may be empty)" if lo == 0 else ""))
     for process, units in open_units.items():
         end_lo, end_hi, end_point = live(process)
         if process not in closed and end_point != 0:
@@ -782,6 +787,7 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
             "all_cash": all_cash(r), "formality": formality, "conditions": level,
             **{c.lower().replace(" ", "_"): text(r.get(c)) for c in ("Due diligence", "Financing", "Regulatory", "Antitrust", "Exclusivity")},
             "inferred": text(r.get("Inferred")), "flag": text(r.get("Flag")), "same_offer_of": same_offer_of,
+            "returns_to_older_price": int(returns_to_older),
             "same_price_revision": same,
             # L253: the price a Same-offer row copies is not a new price observation under either variant, unless the
             # row returns to that price after a different one.
