@@ -44,5 +44,5 @@ Alex asked to record procedural Formality and conditionality separately and rein
 ## Operational
 
 - **Where work happens:** the Claude Code project "sec-auction" at claude.ai/code. Its threads start from `extraction-v2`, work on their own branches and open pull requests; Austin merges them. Project setup: [CLOUD_PROJECT.md](CLOUD_PROJECT.md). GitLab, the laptop checkout and `local-recovery-2026-09-27` are retired.
-- **The VM** (`~/work/Projects/sec-auction`) keeps the live cockpit, paid extraction runs, Codex and the backups. Project threads reach it only through Remote Control (`sec-auction-remote.service` on the VM).
+- **The VM** (`~/work/Projects/sec-auction`) keeps the live cockpit, paid extraction runs, Codex and the backups. Cloud threads reach it through the protected ARC connection (`arc exec condenser`). Deployment stays in the same cloud task; follow [CLOUD_DEPLOYMENT.md](CLOUD_DEPLOYMENT.md). Remote Control remains optional.
 - **Comparison runs:** the 28–29 September runs are recorded in [model_comparison_2026-09](model_comparison_2026-09/README.md). Their run folders are deleted.

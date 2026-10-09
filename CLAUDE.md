@@ -60,3 +60,10 @@ Astra (GPT-6 Astra through Codex, usually xhigh) is a useful reviewer, but it te
 4. Give Austin a verdict, not Astra's raw list.
 
 Close stdin when you call Codex (`codex exec ... < /dev/null`), or it waits for input. Codex is installed only on the VM.
+
+## Cloud deployment
+
+Deploy requested website releases from the same cloud task through `arc exec condenser`.
+Read `_dev/CLOUD_DEPLOYMENT.md` first. The protected ARC connection already supplies VM access.
+Do not require a separate "Work locally" task or a Cloudflare API token for an ordinary app release.
+Keep the existing pull request, research, extraction, and instruction approval rules.
