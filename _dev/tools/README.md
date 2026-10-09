@@ -10,6 +10,8 @@ The isolated runner needs Linux bubblewrap and a standalone Codex or native Clau
 
 Opus runs use a long-lived subscription token made once with `claude setup-token` and saved to `~/.config/sec-extraction/claude-oauth-token` (mode 600); `SEC_CLAUDE_OAUTH_TOKEN_FILE` names another file. The token reaches the sandbox through an inherited pipe, never a command line, environment variable or file in the run. The host's own Claude login is never shared, because a refresh inside the read-only sandbox would log the host out. Codex runs bind `~/.codex/auth.json`, or the file `SEC_CODEX_AUTH_FILE` names, read-only, and refuse a login within 7 hours of expiry.
 
+The sandbox has no network of its own. Its one route out is HTTPS to the provider's API hosts: `netbridge.py`, inside, passes connections to an allowlist proxy in the runner, outside. Opus runs reach `api.anthropic.com`; Codex runs reach `chatgpt.com` and `api.openai.com`. A run cannot reach the cockpit or any other service on the host. Each proxy request, allowed or refused, goes to `network.jsonl` in the run directory. The runner needs `/usr/bin/python3` for the bridge.
+
 ## Mechanical checking
 
 ```bash

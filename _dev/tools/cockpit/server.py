@@ -107,6 +107,10 @@ class Handler(BaseHTTPRequestHandler):
             if path == "/api/session":
                 actor, can_edit = self._identity()
                 return self._json({"user": actor, "can_edit": can_edit, "csrf_token": self.csrf_token if can_edit else None})
+            if path.startswith("/api/") and self._identity()[0] == "unknown":
+                # Without a verified reader nothing past the session is served, so a process on this host
+                # (a sandboxed run included) cannot read the deals (Austin, 9 October 2026).
+                return self._json({"error": "sign in to read the cockpit"}, 401)
             if path == "/api/deals":
                 actor, _ = self._identity()
                 deals = self.cockpit.list_deals()
