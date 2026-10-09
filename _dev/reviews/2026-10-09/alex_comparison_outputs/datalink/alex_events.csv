@@ -1,0 +1,53 @@
+deal,alex_row,bidder_id,bidder_name,alex_date,bid_note,provenance,red_cells,expected,status,ledger_row,ledger_who,ledger_event,ledger_exit_reason,ledger_round,round_finality,date_gap_days
+datalink,2822,1,Party A,2016-01-19,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,1,Party A,Bid,,0,,0
+datalink,2823,2,Party A,2016-02-04,NDA,Chicago coding (deal has no corrections),,NDA signed,agree,6,Party A,NDA signed,,0,,0
+datalink,2824,3,Party A,2016-03-29,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,7,Party A,Bid,,0,,0
+datalink,2825,4,Party A,2016-04-12,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,8,Party A,Bid,,0,,0
+datalink,2826,5,Party A,2016-04-20,Drop,Chicago coding (deal has no corrections),,Withdrew,unaligned,,,,,,,
+datalink,2827,6,Insight,2016-06-06,NDA,Chicago coding (deal has no corrections),,NDA signed,agree,15,Insight,NDA signed,,1,Not final,0
+datalink,2828,7,Party A,2016-06-06,NDA,Chicago coding (deal has no corrections),,NDA signed,agree,16,Party A,NDA signed,,1,Not final,0
+datalink,2829,8,Party B,2016-06-06,NDA,Chicago coding (deal has no corrections),,NDA signed,agree,17,Party B,NDA signed,,1,Not final,0
+datalink,2830,9,Unnamed strategic acquirer 1,2016-06-06,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+datalink,2831,10,Unnamed strategic acquirer 2,2016-06-06,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+datalink,2832,11,Unnamed strategic acquirer 3,2016-06-06,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+datalink,2833,12,Unnamed strategic acquirer 4,2016-06-06,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+datalink,2834,13,Unnamed strategic acquirer 5,2016-06-06,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+datalink,2835,14,Unnamed strategic acquirer 6,2016-06-06,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+datalink,2836,15,Unnamed strategic acquirer 7,2016-06-06,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+datalink,2837,16,Party C,2016-06-06,NDA,Chicago coding (deal has no corrections),,NDA signed,agree,21,Party C,NDA signed,,1,Not final,0
+datalink,2838,17,Unnamed financial acquirer 1,2016-06-06,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+datalink,2839,18,Unnamed financial acquirer 2,2016-06-06,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+datalink,2840,19,Unnamed financial acquirer 3,2016-06-06,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+datalink,2841,20,Unnamed financial acquirer 4,2016-06-06,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+datalink,2842,21,Unnamed financial acquirer 5,2016-06-06,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+datalink,2843,22,Unnamed financial acquirer 6,2016-06-06,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+datalink,2844,23,Unnamed financial acquirer 7,2016-06-06,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+datalink,2845,24,Unnamed financial acquirer 8,2016-06-06,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+datalink,2846,25,Unnamed financial acquirer 9,2016-06-06,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+datalink,2847,26,Unnamed financial acquirer 10,2016-06-06,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+datalink,2848,27,Unnamed financial acquirer 11,2016-06-06,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+datalink,2849,28,Unnamed financial acquirer 12,2016-06-06,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+datalink,2850,29,Insight,2016-07-18,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,26,Insight,Bid,,1,Not final,0
+datalink,2851,30,Party B,2016-07-18,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,27,Party B,Bid,,1,Not final,0
+datalink,2852,31,Party C,2016-07-21,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,31,Party C,Bid,,1,Not final,0
+datalink,2853,32,Party A,2016-07-18,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,unaligned,,,,,,,
+datalink,2854,33,Unnamed strategic acquirer 1,2016-07-18,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,unaligned,,,,,,,
+datalink,2855,34,Unnamed financial acquirer 1,2016-07-21,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,unaligned,,,,,,,
+datalink,2856,35,Unnamed financial acquirer 2,2016-07-21,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,unaligned,,,,,,,
+datalink,2857,36,Unnamed financial acquirer 3,2016-07-21,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,unaligned,,,,,,,
+datalink,2858,37,Unnamed financial acquirer 4,2016-07-21,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,unaligned,,,,,,,
+datalink,2859,38,Party A,2016-07-27,Drop,Chicago coding (deal has no corrections),,Withdrew,"exit, other label or reason",35,Party A,Dropped by target,Not stated,1,Not final,0
+datalink,2860,39,5-7 strategic acquirers,2016-07-27,Drop,Chicago coding (deal has no corrections),,Withdrew,"exit, other label or reason",29,5 other strategic NDA signers,Did not submit,Not stated,1,Not final,9
+datalink,2861,40,10-12 financial acquieres,2016-07-27,Drop,Chicago coding (deal has no corrections),,Withdrew,unaligned,,,,,,,
+datalink,2862,41,Party B,2016-08-30,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,39,Party B,Bid,,2,Announced as final,0
+datalink,2863,42,Party C,2016-08-30,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,40,Party C,Bid,,2,Announced as final,0
+datalink,2864,43,Insight,2016-08-31,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,42,Insight,Bid,,2,Announced as final,0
+datalink,2865,44,The other 2 parties invited to submit final bids,2016-09-01,Drop,Chicago coding (deal has no corrections),,Withdrew,unaligned,,,,,,,
+datalink,2866,45,Party C,2016-09-01,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,48,Party C,Bid,,2,Announced as final,0
+datalink,2867,46,Insight,2016-09-01,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,50,Insight,Bid,,2,Announced as final,0
+datalink,2868,47,Party C,2016-10-04,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,61,Party C,Bid,,3,Not final,0
+datalink,2869,48,Party C,2016-10-20,Drop,Chicago coding (deal has no corrections),,Withdrew,"exit, other label or reason",70,Party C,Dropped by target,Lower offer than rivals,3,Not final,6
+datalink,2870,49,Insight,2016-10-26,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,71,Insight,Bid reaffirmed,,4,Inferred final,0
+datalink,2871,50,Insight,2016-11-01,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,74,Insight,Bid,,4,Inferred final,0
+datalink,2872,51,Insight,2016-11-01,Executed,Chicago coding (deal has no corrections),,Merger agreement signed,disagree,76,Insight,Bid,,4,Inferred final,1
+datalink,2873,52,Party B,2016-11-06,Drop,Chicago coding (deal has no corrections),,Withdrew,agree,68,Party B,Withdrew,Other stated reason,3,Not final,13

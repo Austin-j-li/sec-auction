@@ -1,0 +1,68 @@
+{
+  "note": "Review aid only: never a target for the instruction, and never shown to an extraction run.",
+  "deal": "petsmart",
+  "deal_number": "2665787020",
+  "workbook": "/home/uctpiaj/work/Projects/ledger-live/_dev/cockpit/state/versions/petsmart/opus55-medium-20260928-1430-afdd33/petsmart.xlsx",
+  "workbook_sha256": "afdd33b1a4e62a182ebc7510d612d9a81cc402f89e2f73a8e5937c72e8231340",
+  "ledger_schema": "Version 1",
+  "alex_file": "/home/uctpiaj/work/Projects/sec-auction-review-20261009/ref/deal_details_Alex_2026.xlsx",
+  "alex_sha256": "b0bd73ddc016028974fcddb18b164d370efd7b776734b814a99d96d7f923b00a",
+  "deal_has_alex_corrections": true,
+  "alex_rows": 53,
+  "alex_labelled_bids": 13,
+  "aligned": 12,
+  "alignment": {
+    "bidder, price, date": 9,
+    "price and date only": 3,
+    "unaligned": 1
+  },
+  "readings": {
+    "T0": {
+      "agree": 11,
+      "compared": 12,
+      "missing": 0
+    },
+    "T1": {
+      "agree": 11,
+      "compared": 12,
+      "missing": 0
+    },
+    "T1u": {
+      "agree": 11,
+      "compared": 12,
+      "missing": 0
+    },
+    "T2": {
+      "agree": 12,
+      "compared": 12,
+      "missing": 0
+    },
+    "T3": {
+      "agree": 11,
+      "compared": 12,
+      "missing": 0
+    }
+  },
+  "all_cash": {
+    "agree": 5,
+    "compared": 5,
+    "missing": 7
+  },
+  "per_share": {
+    "upfront": 9,
+    "package": 0,
+    "differs": 1
+  },
+  "bid_note_codes": {
+    "agree": 23,
+    "unaligned": 28,
+    "exit, other label or reason": 2
+  },
+  "provenance": {
+    "Alex: red comments only (coding as Chicago)": 3,
+    "Alex: red-font correction": 3,
+    "Alex: whole row in red (added or rewritten)": 15,
+    "Chicago coding": 32
+  },
+  "labelled_bids_with_red_bid_type": 1
+}

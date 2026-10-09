@@ -1,0 +1,36 @@
+deal,alex_row,bidder_id,bidder_name,alex_date,bid_note,provenance,red_cells,expected,status,ledger_row,ledger_who,ledger_event,ledger_exit_reason,ledger_round,round_finality,date_gap_days
+kraton,96,1,"DL Chemical Co., Ltd.",2021-06-03,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+kraton,97,2,Party A,2021-06-30,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+kraton,98,3,Party C,2021-06-30,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+kraton,99,4,Party D,2021-06-30,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+kraton,100,5,Party E,2021-06-30,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+kraton,101,6,Party G,2021-06-30,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+kraton,102,7,Party H,2021-06-30,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+kraton,103,8,Party I,2021-06-30,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+kraton,104,9,Party J,2021-06-30,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+kraton,105,10,Party K,2021-06-30,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+kraton,106,11,Party E,2021-06-18,Drop,Chicago coding (deal has no corrections),,Withdrew,unaligned,,,,,,,
+kraton,107,12,Party D,2021-06-23,Drop,Chicago coding (deal has no corrections),,Withdrew,unaligned,,,,,,,
+kraton,108,13,Party A,2021-07-02,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,unaligned,,,,,,,
+kraton,109,14,Party H,2021-07-02,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,12,Party H,Bid,,1,Not final,0
+kraton,110,15,"DL Chemical Co., Ltd.",2021-07-02,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,13,Parent,Bid,,1,Not final,0
+kraton,111,16,Party I,2021-07-02,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,14,Party I,Bid,,1,Not final,0
+kraton,112,17,Party K,2021-07-02,Drop,Chicago coding (deal has no corrections),,Withdrew,unaligned,,,,,,,
+kraton,113,18,Party C,2021-07-02,Drop,Chicago coding (deal has no corrections),,Withdrew,unaligned,,,,,,,
+kraton,114,19,Financial acquirer,2021-07-06,NDA,Chicago coding (deal has no corrections),,NDA signed,unaligned,,,,,,,
+kraton,115,20,Party A,2021-07-19,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,28,Party A,Bid,,2,Not final,0
+kraton,116,21,Party H,2021-07-19,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,29,Party H,Bid,,2,Not final,0
+kraton,117,22,"DL Chemical Co., Ltd.",2021-07-19,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,30,Parent,Bid,,2,Not final,0
+kraton,118,23,Party I,2021-07-19,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,31,Party I,Bid,,2,Not final,0
+kraton,119,24,Party J,2021-07-19,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,33,Party J,Bid,,2,Not final,0
+kraton,120,25,Party I,2021-07-20,Drop,Chicago coding (deal has no corrections),,Withdrew,"exit, other label or reason",37,Party I,Dropped by target,Would not improve earlier offer,2,Not final,0
+kraton,121,26,Party J,2021-07-20,Drop,Chicago coding (deal has no corrections),,Withdrew,"exit, other label or reason",38,Party J,Dropped by target,Not stated,2,Not final,0
+kraton,122,27,Party G,2021-08-04,Drop,Chicago coding (deal has no corrections),,Withdrew,unaligned,,,,,,,
+kraton,123,28,Party H,2021-08-20,Drop,Chicago coding (deal has no corrections),,Withdrew,agree,40,Party H,Withdrew,Value below earlier offer,3,Announced as final,0
+kraton,124,29,"DL Chemical Co., Ltd.",2021-09-15,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,43,Parent,Bid,,3,Announced as final,0
+kraton,125,30,Party A,2021-09-14,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,45,Party A,Bid,,3,Announced as final,3
+kraton,126,31,"DL Chemical Co., Ltd.",2021-09-20,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,49,Parent,Bid,,3,Announced as final,0
+kraton,127,32,Party A,2021-09-21,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,51,Party A,Bid,,3,Announced as final,0
+kraton,128,33,Party A,2021-09-24,NA,Chicago coding (deal has no corrections),,Bid or Bid reaffirmed,agree,53,Party A,Bid,,3,Announced as final,0
+kraton,129,34,"DL Chemical Co., Ltd.",2021-09-27,Executed,Chicago coding (deal has no corrections),,Merger agreement signed,unaligned,,,,,,,
+kraton,130,35,Financial acquirer,2021-09-27,Drop,Chicago coding (deal has no corrections),,Withdrew,unaligned,,,,,,,
