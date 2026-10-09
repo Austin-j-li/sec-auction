@@ -1,0 +1,67 @@
+{
+  "note": "Review aid only: never a target for the instruction, and never shown to an extraction run.",
+  "deal": "penford",
+  "deal_number": "2685880020",
+  "workbook": "/home/uctpiaj/work/Projects/ledger-live/_dev/cockpit/state/versions/penford/opus55-medium-20260928-1430-b704c0/penford.xlsx",
+  "workbook_sha256": "b704c0f175373cb200f4b66075ed3b33f6b9ab383fe362af53cf2bf433ff075d",
+  "ledger_schema": "Version 1",
+  "alex_file": "/home/uctpiaj/work/Projects/sec-auction-review-20261009/ref/deal_details_Alex_2026.xlsx",
+  "alex_sha256": "b0bd73ddc016028974fcddb18b164d370efd7b776734b814a99d96d7f923b00a",
+  "deal_has_alex_corrections": true,
+  "alex_rows": 25,
+  "alex_labelled_bids": 9,
+  "aligned": 8,
+  "alignment": {
+    "bidder, price, date": 8,
+    "unaligned": 1
+  },
+  "readings": {
+    "T0": {
+      "agree": 8,
+      "compared": 8,
+      "missing": 0
+    },
+    "T1": {
+      "agree": 8,
+      "compared": 8,
+      "missing": 0
+    },
+    "T1u": {
+      "agree": 7,
+      "compared": 8,
+      "missing": 0
+    },
+    "T2": {
+      "agree": 8,
+      "compared": 8,
+      "missing": 0
+    },
+    "T3": {
+      "agree": 8,
+      "compared": 8,
+      "missing": 0
+    }
+  },
+  "all_cash": {
+    "agree": 1,
+    "compared": 1,
+    "missing": 7
+  },
+  "per_share": {
+    "upfront": 8,
+    "package": 0,
+    "differs": 0
+  },
+  "bid_note_codes": {
+    "unaligned": 5,
+    "agree": 17,
+    "exit, other label or reason": 3
+  },
+  "provenance": {
+    "Alex: red comments only (coding as Chicago)": 2,
+    "Alex: red-font correction": 2,
+    "Alex: whole row in red (added or rewritten)": 5,
+    "Chicago coding": 16
+  },
+  "labelled_bids_with_red_bid_type": 1
+}
