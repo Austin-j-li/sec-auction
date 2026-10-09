@@ -22,6 +22,8 @@ INDEX_URL = re.compile(r"^https://www\.sec\.gov/Archives/edgar/data/\d+/[\d-]+-i
 SUFFIXES = {"INC", "CORP", "CO", "LTD", "PLC", "LP", "LLC", "NV", "SA", "CL", "A", "B", "OLD", "NEW"}
 # Short names already in use that the slug rule would not produce.
 SLUG_OVERRIDES = {"PROVIDENCE & WORCESTER RR CO": "providence-worcester"}
+# Deals dropped from the project. Austin dropped Meredith on 9 October 2026.
+DROPPED = {"meredith"}
 
 
 def slug(name):
@@ -81,6 +83,7 @@ def main():
     names = [row["deal"] for row in out]
     assert len(names) == len(set(names)), "short names are not unique"
 
+    out = [row for row in out if row["deal"] not in DROPPED]
     out.sort(key=lambda row: row["deal"])
     with open(SEED, "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=FIELDS)

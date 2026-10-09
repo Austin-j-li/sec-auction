@@ -39,8 +39,9 @@ import check_lean
 TOOL_VERSION = "Version 1"
 PROJECT = Path(__file__).resolve().parents[2]
 FORBIDDEN_OUT = ("extraction", "raw_filing", "ref")
-# Settled: Alex keeps Meredith for descriptive work only.
-DESCRIPTIVE_ONLY = {"meredith"}
+# Deals kept for descriptive work only. Meredith was the one such deal; Austin
+# dropped it from the project on 9 October 2026.
+DESCRIPTIVE_ONLY: set[str] = set()
 
 WHOLE_BIDS = {"Bid", "Bid reaffirmed"}
 ENTRY_EVENTS = {"NDA signed", "Bid", "Bid reaffirmed"}
