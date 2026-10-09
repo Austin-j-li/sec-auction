@@ -127,7 +127,7 @@ function ChatGPTSection({ session, account, canWrite, onAccount, alive }) {
   }
   return <section className="settings-section" aria-labelledby="chatgpt-account-head">
     <div className="section-head"><h2 id="chatgpt-account-head">ChatGPT account</h2></div>
-    <p className="section-note">GPT-6-Sol, GPT-6.1-Sol and GPT-6-Astra runs you start use your own ChatGPT plan, through a login saved on the cockpit server. It is never used for anyone else’s runs.</p>
+    <p className="section-note">GPT-6.1-Sol and GPT-6-Astra runs you start use your own ChatGPT plan, through a login saved on the cockpit server. It is never used for anyone else’s runs.</p>
     {!canWrite && <p className="settings-line">Sign in with edit access to connect a ChatGPT account.</p>}
     <dl className="settings-status">
       <div><dt>Status</dt><dd>{chatgpt.connected
