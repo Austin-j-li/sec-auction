@@ -89,6 +89,7 @@ export function ExtractDialog({ user, account, accountError, instructions, instr
   const missing = [...new Set(unavailable.map(item => item.account))]
     .map(name => `${unavailable.filter(item => item.account === name).map(item => item.label).join(' and ')}: ${connectHint({ account: name })}.`).join(' ');
   const warning = engine?.id === 'fable51' ? FABLE_WARNING : engine?.experimental ? engine.note : '';
+  const info = !engine?.experimental && engine?.note ? engine.note : '';
   const notice = extractNotice(working, instruction);
   function chooseEngine(id) {
     const next = engines.find(item => item.id === id);
@@ -132,6 +133,7 @@ export function ExtractDialog({ user, account, accountError, instructions, instr
           </Select>
         </Field>
         {warning && <p className="extract-warning tone-warning"><WarningIcon size={16} aria-hidden="true"/><span>{warning}</span></p>}
+        {info && <p className="extract-info">{info}</p>}
         <Field label="Effort">
           <Select value={effortFor(engine, effort)} onChange={(_, data) => setEffort(data.value)}>
             {engine.efforts.map(value => <option key={value} value={value}>{value}</option>)}
