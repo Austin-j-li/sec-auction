@@ -259,6 +259,9 @@ def count_bounds(count: Any, note: Any) -> tuple[int | None, int | None, int | N
         n = leading_figure(note[m.end():])
         if n is None and word != "several":
             return 1, None, None, "unknown (unparsed Count: prefix)"
+        # "Count: several parties ... less X and Y": the qualifier bounds the total, not the residual this row counts.
+        if COHORT_EXCLUSION_RE.search(re.split(r"[;.]", note[m.end():], maxsplit=1)[0]):
+            return 1, None, None, f"residual of a qualified total ({word})"
         return COUNT_QUALIFIER_BOUNDS[word](n) + (word,)
     if check_lean.COUNT_UNKNOWN_RE.search(note):
         return 1, None, None, "unknown"
@@ -693,6 +696,8 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
             note_review(r, "the Note gives a numeric Count range, which the ledger does not create (B, E3): read as bounds")
         if kind.startswith("unknown (") and (event in ENTRY_EVENTS | check_lean.EXIT_EVENTS | {"Re-entered"}):
             note_review(r, f"Count is blank and the Note gives no parseable 'Count: ...' ({kind})")
+        if kind.startswith("residual of a qualified total") and (event in ENTRY_EVENTS | check_lean.EXIT_EVENTS | {"Re-entered"}):
+            note_review(r, "the Count qualifier bounds a total less named parties, so the residual's size is unknown: read as at least 1")
     for process, units in open_units.items():
         end_lo, end_hi, end_point = live(process)
         if process not in closed and end_point != 0:
@@ -701,7 +706,7 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
                            f"(bounds {end_lo}-{end_hi if end_hi is not None else 'open'}): open at the filing cutoff, or an exit is missing. Open under their own names: {names}"})
 
     # Bids.
-    bids, previous, bid_rows = [], {}, {}
+    bids, previous, bid_rows, last_priced = [], {}, {}, {}
     for r in whole:
         event = text(r.get("Event"))
         if event not in WHOLE_BIDS:
@@ -713,17 +718,27 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
         # A Same-offer row (E10: "Same as #n") copies #n's price; it is a restatement, never a same-price revision.
         same_as = check_lean.SAME_AS_RE.match(text(r.get("Note")))
         same_offer_of = int(same_as.group(1)) if same_as else None
+        # E10 (L253): a return to an older price is a revision, so a "Same as #n" row after a different stated price
+        # of this bidder is a price observation.
+        returns_to_older = False
         if same_offer_of is not None:
             source, number_here = bid_rows.get(same_offer_of), check_lean.as_integer(r.get("#"))
+            between = last_priced.get((process, key))
             if source is None or unit_key(source.get("Who")) != key or number_here is None or same_offer_of >= number_here:
                 note_review(r, f"'Same as #{same_offer_of}' does not point to an earlier whole-company bid row of this bidder (E10)")
             elif (number(source.get("Price low")), number(source.get("Price high"))) != (low, high):
                 note_review(r, f"a Same-offer row whose prices differ from #{same_offer_of}'s (E10 copies the price)")
+            elif between and between[0] > same_offer_of and between[1:] != (low, high):
+                returns_to_older = True
+                note_review(r, f"'Same as #{same_offer_of}' follows #{between[0]} at a different price: a return to an older "
+                            "price is a revision (E10, L253), so the row is counted as a price observation")
         same = ""
         prior = previous.get((process, key))
         if event == "Bid" and same_offer_of is None and prior and (low, high) != (None, None) and (low, high, cvr) == prior:
             same = "Y"
         previous[(process, key)] = (low, high, cvr)
+        if (low, high) != (None, None) and check_lean.as_integer(r.get("#")) is not None:
+            last_priced[(process, key)] = (check_lean.as_integer(r.get("#")), low, high)
         if check_lean.as_integer(r.get("#")) is not None:
             bid_rows[check_lean.as_integer(r.get("#"))] = r
         # P1: a blank or invalid price is no price observation under either variant (H4).
@@ -767,9 +782,10 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
             **{c.lower().replace(" ", "_"): text(r.get(c)) for c in ("Due diligence", "Financing", "Regulatory", "Antitrust", "Exclusivity")},
             "inferred": text(r.get("Inferred")), "flag": text(r.get("Flag")), "same_offer_of": same_offer_of,
             "same_price_revision": same,
-            # L253: the price a Same-offer row copies is not a new price observation under either variant.
-            "price_obs__same_price_as_new": 1 if usable and same_offer_of is None else 0,
-            "price_obs__same_price_as_terms": 1 if usable and same_offer_of is None and not same else 0,
+            # L253: the price a Same-offer row copies is not a new price observation under either variant, unless the
+            # row returns to that price after a different one.
+            "price_obs__same_price_as_new": 1 if usable and (same_offer_of is None or returns_to_older) else 0,
+            "price_obs__same_price_as_terms": 1 if usable and (same_offer_of is None or returns_to_older) and not same else 0,
             "round_finality": finality, "T0": t0,
             "T1": reading(t0, level != "Heavy"),
             "T1u": reading(t0, level in ("None", "Light")),

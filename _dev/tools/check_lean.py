@@ -929,6 +929,21 @@ class LeanChecker:
             if problem:
                 self.add("error", "ledger.same_as", f"'Same as #{match.group(1)}' must point to an earlier bid row with the "
                          f"same Who (E10); {problem}.", sheet=ws.title, row=excel_row, column="Note")
+                continue
+            # E10 (L253): a return to an older price is a revision. The latest stated price of this bidder before this
+            # row should be the price it copies.
+            price = (record["Price low"], record["Price high"])
+            later = [(as_integer(r["#"]), (r["Price low"], r["Price high"])) for _, r in rows
+                     if r["Event"] in BID_EVENTS and who(r) == who(record) and as_integer(r["#"]) is not None
+                     and int(match.group(1)) < as_integer(r["#"]) < number
+                     and not (is_blank(r["Price low"]) and is_blank(r["Price high"]))]
+            latest = max(later, default=None)
+            if latest and latest[1] != price:
+                self.add("warning", "ledger.same_as_after_revision",
+                         f"'Same as #{match.group(1)}' follows #{latest[0]}, a different price from this bidder. "
+                         "A return to an older price is a revision (E10): make it a Bid row without 'Same as', "
+                         "or check that the offer of #" + match.group(1) + " still stood.",
+                         sheet=ws.title, row=excel_row, column="Note")
 
         opened: set[int] = set()
         for excel_row, record in rows:
