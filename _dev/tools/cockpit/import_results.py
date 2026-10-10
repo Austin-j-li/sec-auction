@@ -1,4 +1,4 @@
-"""Build a pending nine-deal catalog from the repository filing manifest.
+"""Build a pending catalog of the filed deals from the repository filing manifest.
 
 No historical workbook, receipt or review packet is an input. The resulting deals
 receive their first base only after a successful cockpit run.
@@ -14,7 +14,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 DEALS = (
-    "datalink", "kraton", "mac-gray", "meredith", "penford", "petsmart",
+    "datalink", "kraton", "mac-gray", "penford", "petsmart",
     "providence-worcester", "stec", "synacor",
 )
 NAMES = {"mac-gray": "Mac-Gray", "petsmart": "PetSmart", "stec": "sTec",
@@ -39,7 +39,7 @@ def manifest(root: Path) -> dict[str, dict[str, str]]:
         rows = list(csv.DictReader(stream))
     found = {row["deal"]: row for row in rows}
     if len(found) != len(rows) or set(found) != set(DEALS):
-        raise CatalogError("filing manifest must contain exactly the nine catalog deals")
+        raise CatalogError("filing manifest must contain exactly the catalog deals")
     for slug, row in found.items():
         filename = row.get("file", "")
         if not filename or Path(filename).name != filename or ".." in filename:

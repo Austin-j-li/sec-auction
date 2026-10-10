@@ -52,23 +52,6 @@
       "findings": [],
       "documents": []
     },
-    "meredith": {
-      "name": "Meredith",
-      "filing": {
-        "file": "meredith_2021-11-08_DEFM14A.htm",
-        "deal": "meredith",
-        "form_type": "DEFM14A",
-        "date_filed": "2021-11-08",
-        "source_url": "https://www.sec.gov/Archives/edgar/data/65011/0001193125-21-323133.txt",
-        "document": "d379619ddefm14a.htm",
-        "fetched_utc": "2026-09-20T23:32:18Z",
-        "bytes": "2709877",
-        "sha256": "d6783298bccf365153f3951c6054f04df7a925493a03ef9f9057f740b0b6728b"
-      },
-      "versions": [],
-      "findings": [],
-      "documents": []
-    },
     "penford": {
       "name": "Penford",
       "filing": {

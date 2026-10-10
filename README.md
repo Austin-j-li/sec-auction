@@ -11,19 +11,19 @@ A ledger workbook has four sheets, defined in the instruction:
 
 ## Current status
 
-Version 1, approved 28 September 2026: the instruction is Version 1, the cockpit holds one Version 1 run for each of the 13 deals, and `extraction/` is empty. See [status](_dev/STATUS.md) for pending work.
+Version 1, approved 28 September 2026: the instruction is Version 1, the cockpit holds 13 Version 1 runs, one for each deal (the next release leaves 12 on the deal list), and `extraction/` is empty. See [status](_dev/STATUS.md) for pending work.
 
 ## Repository layout
 
 | Path | Contents |
 |---|---|
 | [`SEC_Deal_Ledger_Extraction_Instruction.md`](SEC_Deal_Ledger_Extraction_Instruction.md) | The extraction instruction, Version 1. |
-| [`raw_filing/`](raw_filing/) | The nine filings as fetched from EDGAR; [`MANIFEST.csv`](raw_filing/MANIFEST.csv) records each source link and SHA-256 hash. |
+| [`raw_filing/`](raw_filing/) | The eight filings as fetched from EDGAR; [`MANIFEST.csv`](raw_filing/MANIFEST.csv) records each source link and SHA-256 hash. |
 | `extraction/` | Blind extractions under Version 1, one `<deal>.xlsx` per deal. |
 | `ref/` | Alex's collection instructions, voice notes and hand-coded deals. For evaluation only. |
 | [`_dev/`](_dev/) | Status, the alignment sprint's decision log and reviews, the cockpit app spec and source, and the pipeline tools. |
 
-The nine deals are Datalink, Kraton, Mac-Gray, Meredith, Penford, PetSmart, Providence & Worcester, sTec and Synacor.
+The eight deals are Datalink, Kraton, Mac-Gray, Penford, PetSmart, Providence & Worcester, sTec and Synacor. Austin dropped Meredith from the project on 9 October 2026.
 
 ## Extracting a deal
 

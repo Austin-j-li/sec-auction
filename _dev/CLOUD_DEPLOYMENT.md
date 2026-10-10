@@ -119,6 +119,7 @@ Verify service state and browser behavior after recovery. Report the failed rele
 - Inspect the cockpit, worker, and backup timer states.
 - Read `http://127.0.0.1:8778/api/session` through ARC.
 - An unsigned request must report `user: unknown` and `can_edit: false`.
+- An unsigned request to `http://127.0.0.1:8778/api/deals` must return 401.
 - Open https://lines.dealextract.org through the browser.
 - Check the requested behavior with real app inputs in the authenticated session.
 - A Cloudflare login page proves only that the access gate responds.

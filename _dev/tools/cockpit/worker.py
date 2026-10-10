@@ -343,7 +343,7 @@ class Worker:
         destination = self.repo / "_dev/cockpit/state/versions" / job["slug"] / version_id
         destination.mkdir(parents=True, exist_ok=True)
         shutil.copy2(workbook, destination / f"{job['slug']}.xlsx")
-        for name in ("metadata.json", "command.json", "status.json", "validation.json", "provider-results.json", "prompt.txt", "check.json"):
+        for name in ("metadata.json", "command.json", "status.json", "validation.json", "provider-results.json", "network.jsonl", "prompt.txt", "check.json"):
             if (run_dir / name).is_file():
                 shutil.copy2(run_dir / name, destination / name)
         frozen = params.get("instruction")
@@ -372,7 +372,7 @@ class Worker:
             return
         destination = self.repo / "_dev/cockpit/state/jobs" / job["id"]
         destination.mkdir(parents=True, exist_ok=True)
-        for name in ("metadata.json", "command.json", "status.json", "validation.json", "provider-results.json", "stderr.log", "cockpit-worker.log"):
+        for name in ("metadata.json", "command.json", "status.json", "validation.json", "provider-results.json", "network.jsonl", "stderr.log", "cockpit-worker.log"):
             if (run_dir / name).is_file():
                 shutil.copy2(run_dir / name, destination / name)
         shutil.rmtree(run_dir, ignore_errors=True)

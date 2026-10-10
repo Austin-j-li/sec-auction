@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 import shutil
 import signal
+import socket
 import subprocess
 import sys
 import tempfile
@@ -58,7 +59,21 @@ CLAUDE_ENV = {
     "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "128000",
     "CLAUDE_CODE_PROMPT_CACHE_TTL": "1h",
     "CLAUDE_CODE_SILENT_TURN_REMINDER_TURNS": "1000000",
+    # No telemetry, error reports or update checks: the sandbox reaches only the model API (below).
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
 }
+# The sandbox has no network of its own (bwrap unshares it). Its one route out is HTTPS to the
+# provider's API hosts: netbridge.py, inside, relays 127.0.0.1:PROXY_PORT to a Unix socket, where
+# AllowlistProxy, outside, opens a CONNECT tunnel only to these hosts on port 443. A run therefore
+# cannot reach the cockpit or another service on the host, or send data anywhere else (Austin,
+# 9 October 2026). Codex's login host auth.openai.com stays out, so a sandboxed Codex cannot refresh
+# the read-only login (see CODEX_TOKEN_MARGIN_HOURS).
+NETWORK_HOSTS = {"opus": ("api.anthropic.com",), "sol": ("chatgpt.com", "api.openai.com")}
+PROXY_PORT = 3128
+PROXY_SOCKET = "/run/sec-net.sock"
+NETBRIDGE = BASE / "netbridge.py"
+NETBRIDGE_SANDBOX = "/opt/sec-netbridge.py"
+SANDBOX_PYTHON = "/usr/bin/python3"
 # Codex features switched off for every Sol run. By default `codex exec` offers the account's
 # ChatGPT app connectors (mail, GitLab, site deploys, a remote shell), web browsing, image
 # generation and subagents; a sandboxed extraction gets shell commands and file patches only.
@@ -356,7 +371,8 @@ def prepare(args: argparse.Namespace) -> None:
         "runner_sha256": sha256(Path(__file__)),
         "python_version": sys.version,
         "library_versions": library_versions(),
-        "sandbox": "bubblewrap fresh home/state/tmp; one instruction; one filing; one output directory",
+        "sandbox": ("bubblewrap fresh home/state/tmp; no network except HTTPS to the provider's API hosts "
+                    "through an allowlist proxy; one instruction; one filing; one output directory"),
     }
     write_json(run_dir / "metadata.json", metadata)
     print(json.dumps(metadata, sort_keys=True))
@@ -381,7 +397,7 @@ def bwrap_base(run_dir: Path, provider: str, state: Path, scratch: Path) -> list
     work = str(WORK)
 
     command = [
-        "bwrap", "--unshare-all", "--share-net", "--die-with-parent", "--new-session", "--clearenv",
+        "bwrap", "--unshare-all", "--die-with-parent", "--new-session", "--clearenv",
         "--ro-bind", "/usr", "/usr",
         "--symlink", "usr/bin", "/bin",
         "--symlink", "usr/sbin", "/sbin",
@@ -409,7 +425,12 @@ def bwrap_base(run_dir: Path, provider: str, state: Path, scratch: Path) -> list
         "--setenv", "TMPDIR", "/tmp",
         "--ro-bind", str(PYLIB_HOST), str(PYLIB),
         "--setenv", "PYTHONPATH", str(PYLIB),
+        "--ro-bind", str(NETBRIDGE), NETBRIDGE_SANDBOX,
+        "--bind", str(scratch / "net.sock"), PROXY_SOCKET,
     ]
+    proxy = f"http://127.0.0.1:{PROXY_PORT}"
+    for name in ("HTTPS_PROXY", "https_proxy", "HTTP_PROXY", "http_proxy"):
+        command += ["--setenv", name, proxy]
     for certs in ["/etc/ca-certificates", "/etc/pki", "/etc/crypto-policies"]:  # Debian and Red Hat layouts
         if Path(certs).exists():
             command += ["--ro-bind", certs, certs]
@@ -442,6 +463,90 @@ def bwrap_base(run_dir: Path, provider: str, state: Path, scratch: Path) -> list
             command += ["--setenv", name, value]
     command += ["--chdir", work]
     return command
+
+
+def _relay(source: socket.socket, sink: socket.socket) -> None:
+    """Copy bytes one way until the source closes, then pass the close on."""
+    try:
+        while data := source.recv(65536):
+            sink.sendall(data)
+    except OSError:
+        pass
+    with contextlib.suppress(OSError):
+        sink.shutdown(socket.SHUT_WR)
+
+
+class AllowlistProxy:
+    """Outside the sandbox: HTTPS CONNECT tunnels to the provider's API hosts on port 443, and nothing else.
+
+    It listens on a Unix socket that only the sandbox's netbridge.py reaches. Each request, allowed
+    or refused, is logged to network.jsonl in the run directory.
+    """
+
+    def __init__(self, path: Path, hosts: tuple[str, ...], log: Path):
+        self.hosts, self.log, self.lock = frozenset(hosts), log, threading.Lock()
+        self.server = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+        self.server.bind(str(path))
+        self.server.listen(64)
+        threading.Thread(target=self._accept, daemon=True).start()
+
+    def close(self) -> None:
+        with contextlib.suppress(OSError):
+            self.server.close()
+
+    def _accept(self) -> None:
+        while True:
+            try:
+                client, _ = self.server.accept()
+            except OSError:
+                return
+            threading.Thread(target=self._serve, args=(client,), daemon=True).start()
+
+    def _record(self, request: str, allowed: bool) -> None:
+        with self.lock, self.log.open("a", encoding="utf-8") as stream:
+            stream.write(json.dumps({"at": now_iso(), "request": request[:200], "allowed": allowed}) + "\n")
+
+    def _refuse(self, client: socket.socket, status: bytes) -> None:
+        with contextlib.suppress(OSError):
+            client.sendall(b"HTTP/1.1 " + status + b"\r\nContent-Length: 0\r\nConnection: close\r\n\r\n")
+
+    def _serve(self, client: socket.socket) -> None:
+        with client:
+            client.settimeout(30)
+            head = b""
+            try:
+                while b"\r\n\r\n" not in head and len(head) < 8192:
+                    data = client.recv(4096)
+                    if not data:
+                        return
+                    head += data
+            except OSError:
+                return
+            header, _, rest = head.partition(b"\r\n\r\n")
+            line = header.split(b"\r\n", 1)[0].decode("latin-1")
+            parts = line.split()
+            host, _, port = parts[1].rpartition(":") if len(parts) == 3 else ("", "", "")
+            allowed = parts[0] == "CONNECT" and port == "443" and host.lower() in self.hosts if parts else False
+            self._record(line, allowed)
+            if not allowed:
+                return self._refuse(client, b"403 Forbidden")
+            try:
+                upstream = socket.create_connection((host, 443), timeout=30)
+            except OSError:
+                return self._refuse(client, b"502 Bad Gateway")
+            with upstream:
+                client.settimeout(None)
+                upstream.settimeout(None)
+                try:
+                    client.sendall(b"HTTP/1.1 200 Connection established\r\n\r\n")
+                    if rest:
+                        upstream.sendall(rest)
+                except OSError:
+                    return
+                back = threading.Thread(target=_relay, args=(upstream, client), daemon=True)
+                back.start()
+                _relay(client, upstream)
+                back.join()
 
 
 def provider_command(run_dir: Path, provider: str, metadata: dict,
@@ -556,6 +661,8 @@ def codex_token_hours_left(auth: Path) -> float | None:
 def preflight(provider: str) -> Path:
     if not shutil.which("bwrap"):
         raise SystemExit("bubblewrap (bwrap) is required")
+    if not Path(SANDBOX_PYTHON).is_file():
+        raise SystemExit(f"{SANDBOX_PYTHON} is required: it runs the sandbox's network bridge")
     binary = CODEX_BIN if provider == "sol" else CLAUDE_BIN
     if not binary.is_file() or not os.access(binary, os.X_OK):
         raise SystemExit(f"provider executable not found: {binary}; set SEC_CODEX_BIN or SEC_CLAUDE_BIN")
@@ -646,7 +753,17 @@ def run_worker(args: argparse.Namespace, state: Path, scratch: Path) -> int:
         if cache.is_file():
             shutil.copy2(cache, state / "models_cache.json")
 
+    proxy = AllowlistProxy(scratch / "net.sock", NETWORK_HOSTS[args.provider], run_dir / "network.jsonl")
+    try:
+        return _run_in_sandbox(args, run_dir, metadata, binary, state, scratch)
+    finally:
+        proxy.close()
+
+
+def _run_in_sandbox(args: argparse.Namespace, run_dir: Path, metadata: dict, binary: Path,
+                           state: Path, scratch: Path) -> int:
     base = bwrap_base(run_dir, args.provider, state, scratch)
+    bridge = [SANDBOX_PYTHON, "-I", "-S", NETBRIDGE_SANDBOX, PROXY_SOCKET, str(PROXY_PORT)]
     started = time.monotonic()
     deadline = started + metadata["timeout_seconds"]
     started_at = now_iso()
@@ -659,6 +776,7 @@ def run_worker(args: argparse.Namespace, state: Path, scratch: Path) -> int:
                                 "not in argv, environment or run directory" if args.provider == "opus" else
                                 "read-only external credential bind; no credential copied to run directory"),
         "runtime_state": "temporary directory outside the run; removed after worker completion",
+        "network": {"allowed_hosts": list(NETWORK_HOSTS[args.provider]), "port": 443, "log": "network.jsonl"},
         "provider_binary": str(binary),
         "provider_binary_sha256": sha256(binary),
         "runner_sha256": sha256(Path(__file__)),
@@ -679,7 +797,7 @@ def run_worker(args: argparse.Namespace, state: Path, scratch: Path) -> int:
         write_json(run_dir / "command.json", record)
         with claude_token(args.provider) as (token_args, token_fds):
             exit_code, timed_out, client_pid = run_provider(
-                base + token_args + provider_argv, run_dir, started_at, max(deadline - time.monotonic(), 1), token_fds)
+                base + token_args + bridge + provider_argv, run_dir, started_at, max(deadline - time.monotonic(), 1), token_fds)
         if _PROVIDER["cancelled"] or timed_out or exit_code != 0 or args.provider != "opus" or not unfinished(run_dir, metadata):
             break
         # A clean end of turn with the deliverable still owed is a progress report, not a finished

@@ -80,7 +80,7 @@ def verify(root: Path) -> dict:
     started = time.monotonic()
     catalog = json.loads((root / "_dev/cockpit/catalog.json").read_text())
     if catalog.get("schema_version") != 1 or set(catalog.get("deals", {})) != set(imp.DEALS):
-        raise RuntimeError("Catalog must contain exactly nine deals")
+        raise RuntimeError("Catalog must contain exactly the filed deals")
     filings = imp.manifest(root)
     cockpit = data.Cockpit(root)
     if not cockpit.workspace.available:
