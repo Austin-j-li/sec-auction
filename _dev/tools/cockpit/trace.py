@@ -254,8 +254,9 @@ class Trace:
                     clauses.append(f"{column}=?"); params.append(value)
             if not slug:
                 # A deal dropped from the catalog (Meredith, 9 October 2026) keeps its rows but leaves the feed.
+                # Instruction events belong to no deal (slug ""), so they stay.
                 listed = [*catalog, *(row["slug"] for row in self.workspace.cockpit.deals.added())]
-                clauses.append(f"a.slug IN ({','.join('?' * len(listed))})"); params.extend(listed)
+                clauses.append(f"(a.slug='' OR a.slug IN ({','.join('?' * len(listed))}))"); params.extend(listed)
             if before is not None:
                 clauses.append("a.id<?"); params.append(before)
             where = f"WHERE {' AND '.join(clauses)}" if clauses else ""
