@@ -529,6 +529,7 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
     # same-day re-entries into it, wherever the ledger places those rows.
     openings: dict[tuple[Any, Any], dict[str, Any]] = {}
     opened_on: dict[Any, tuple[tuple[Any, Any], dt.date | None]] = {}
+    opening_reentries: set[tuple[Any, Any, Any]] = set()
 
     def apply(s: dict[str, Any], d_lo: int | None, d_hi: int | None, d_point: int | None, unit: str = "") -> None:
         """Add a signed change in live units; None is unbounded (d_lo below, d_hi above) or unknown."""
@@ -679,6 +680,7 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
                 # so the changes of each process sum to its live counts.
                 restart = f" (a Process restarted row of process {process})" if target != process else ""
                 participation.append({**base_cols(deal, r, target, rnd if target == process else ""), "change": "process closure",
+                                      "inferred": text(r.get("Inferred")),
                                       "count_kind": kind, "count_lo": lo, "count_hi": hi, "count_point": point,
                                       "delta_lo": -before[0], "delta_hi": None if before[1] is None else -before[1],
                                       "delta_point": None if before[2] is None else -before[2],
@@ -698,6 +700,8 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
             opening = opened_on.get(process)
             if opening and as_date(r.get("Sort date")) == opening[1] and at_opening(event, rnd, opening[0][1]):
                 targets.append(openings[opening[0]])
+                if event == "Re-entered":
+                    opening_reentries.add((process, rnd, cell(r.get("#"))))
             for s in targets:
                 if own is not None:
                     take_back(s, key, own)
@@ -836,8 +840,8 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
         hi_now = live_at.get(id(r), (None, None, None))[1]
         max_hi[key] = None if hi_now is None or max_hi[key] is None else max(max_hi[key], hi_now)
     # Who was in counts the bidders admitted to a round or entering it (D3): the units live at its opening, plus each
-    # entry and re-entry after its Round opened row. A unit that leaves and re-enters within the round counts twice, so
-    # this is an upper bound. It differs from live_max_hi, the most units present at one time.
+    # entry and re-entry not already included in that opening. A unit that later leaves and re-enters counts twice,
+    # so this is an upper bound. It differs from live_max_hi, the most units present at one time.
     admitted_most: dict[tuple[Any, Any], int | None] = {key: live[1] for key, live in opening_live.items()}
     opened_rounds = set()
     for record in participation:
@@ -845,6 +849,8 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
         if record["change"] == "round opening":
             opened_rounds.add(key)
         elif key in opened_rounds and (record["change"].startswith("entry") or record["change"] == "re-entry"):
+            if (*key, record["row"]) in opening_reentries:
+                continue
             added = record.get("delta_hi")
             admitted_most[key] = None if added is None or admitted_most[key] is None else admitted_most[key] + added
     for (process, rnd), line in rounds.items():

@@ -1049,7 +1049,8 @@ def review_queue(tables: dict[str, tuple[list[str], list[tuple[int, list[Any]]]]
 
     facts = {derive_analysis.text(record.get("Field")): record.get("Value") for record in records(FACTS_SHEET)}
     try:
-        items = review_list.build_review_list({"ledger": records(LEDGER_SHEET), "rounds": records(ROUNDS_SHEET), "facts": facts})
+        items = review_list.build_review_list({"ledger": records(LEDGER_SHEET), "rounds": records(ROUNDS_SHEET),
+                                              "questions": records(QUESTIONS_SHEET), "facts": facts})
     except Exception as exc:  # a review aid never blocks the deal page; the panel shows why it is empty
         return {"categories": list(review_list.CATEGORIES), "items": [], "error": _reason(exc)}
     return {"categories": list(review_list.CATEGORIES), "items": items, "error": None}
