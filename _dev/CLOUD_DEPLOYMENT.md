@@ -104,6 +104,12 @@ A unique destination keeps older backups outside this command's retention pass.
 Never use `git clean`, forced checkout, state reset, or credential replacement for a routine release.
 Do not overwrite unit files or their Access settings. An ordinary code release needs no service reconfiguration.
 
+## Parallel extraction limits
+
+The default limits are four extractions in total and two per user. Set `COCKPIT_PARALLEL_TOTAL` and `COCKPIT_PARALLEL_PER_USER` to change those limits. Each value must be an integer from 1 to 32. The per-user value must not exceed the total.
+
+Set identical values for the cockpit and worker services. The worker enforces these limits. The cockpit displays the per-user limit. Use a separate service drop-in for an authorized batch; preserve the existing unit and Access settings. Record the previous values and restore them after all batch jobs end. Provider limits can still delay or reject requests.
+
 ## Failure and recovery
 
 Keep a release record on the VM so a fresh cloud task can recover it.

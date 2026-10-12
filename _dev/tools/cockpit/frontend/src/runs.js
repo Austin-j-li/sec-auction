@@ -48,7 +48,7 @@ export const stateTone = state => ACTIVE_STATES.has(state) ? 'warning' : STATE_T
 
 // Which plan a run used: "Claude plan" or "ChatGPT plan", from the job's recorded account (Claude before phase 4).
 export const planName = account => account === 'chatgpt' ? 'ChatGPT plan' : 'Claude plan';
-export const jobEngineLabel = job => text(job?.params?.engine_label) || 'Opus 5.5';
+export const jobEngineLabel = job => `${text(job?.params?.engine_label) || 'Opus 5.5'}${job?.params?.service_tier === 'priority' ? ' · Fast' : ''}`;
 export const jobInstructionLabel = job => text(job?.params?.instruction?.label) || 'instruction not recorded';
 
 // The failed or cancelled outcome of a run, in words. Null for a run that has not failed.

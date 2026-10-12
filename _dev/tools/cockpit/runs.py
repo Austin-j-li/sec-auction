@@ -49,7 +49,19 @@ ACTIVE = ("queued", "preparing", "running", "checking", "importing")
 CONNECT_ACTIVE = ("queued", "waiting_for_code", "completing")
 CHATGPT_CONNECT_ACTIVE = ("queued", "waiting_for_approval")
 TOKEN_RE = re.compile(r"sk-ant-oat\d\d-[A-Za-z0-9_-]{20,}")
-CAPS = {"total": 4, "per_user": 2}
+
+
+def parallel_limit(name: str, default: int) -> int:
+    value = int(os.environ.get(name, str(default)))
+    if not 1 <= value <= 32:
+        raise ValueError(f"{name} must be between 1 and 32")
+    return value
+
+
+CAPS = {"total": parallel_limit("COCKPIT_PARALLEL_TOTAL", 4),
+        "per_user": parallel_limit("COCKPIT_PARALLEL_PER_USER", 2)}
+if CAPS["per_user"] > CAPS["total"]:
+    raise ValueError("COCKPIT_PARALLEL_PER_USER must not exceed COCKPIT_PARALLEL_TOTAL")
 
 
 def ensure_schema(conn: sqlite3.Connection) -> None:
@@ -202,7 +214,7 @@ class Runs:
                        for ident, engine in ENGINES.items()]
             return {"user": user, "claude": {"connected": connected, "connected_at": found[0]["connected_at"] if connected else None,
                                               "expires_at": found[0]["expires_at"] if connected else None, "plan_usage": plan}, "connect": connect,
-                    "chatgpt": gpt, "chatgpt_connect": gpt_connect, "engines": engines}
+                    "chatgpt": gpt, "chatgpt_connect": gpt_connect, "engines": engines, "parallel_limits": dict(CAPS)}
         finally:
             if conn: conn.close()
 
@@ -315,12 +327,17 @@ class Runs:
                 effort, minutes = request.get("effort", DEFAULT_EFFORT[engine_id]), request.get("timeout_minutes", 90)
                 if effort not in EFFORTS: raise WorkspaceError("invalid effort")
                 if type(minutes) is not int or not 10 <= minutes <= 360: raise WorkspaceError("time limit must be 10 to 360 minutes")
+                service_tier = request.get("service_tier")
+                if service_tier not in (None, "priority") or (service_tier and engine["account"] != "chatgpt"):
+                    raise WorkspaceError("Fast service applies only to ChatGPT engines")
+                if engine_id == "sol61":
+                    service_tier = "priority"
                 if engine["account"] == "claude" and (not conn.execute("SELECT 1 FROM accounts WHERE user=? AND provider='claude'", (user,)).fetchone() or not token_path(user).is_file()):
                     raise Conflict("connect your Claude account in Settings first")
                 if engine["account"] == "chatgpt" and (not conn.execute("SELECT 1 FROM accounts WHERE user=? AND provider='chatgpt'", (user,)).fetchone() or not (codex_home(user) / "auth.json").is_file()):
                     raise Conflict("connect your ChatGPT account in Settings first")
                 params = {"engine": engine_id, "engine_label": engine["label"], "model": engine["model"], "provider": engine["provider"], "account": engine["account"],
-                          "effort": effort, "timeout_minutes": minutes, "instruction": instruction}
+                          "effort": effort, "timeout_minutes": minutes, "instruction": instruction, "service_tier": service_tier}
                 conn.execute("INSERT INTO jobs (id, kind, slug, actor, created_at, state, params) VALUES (?, 'extract', ?, ?, ?, 'queued', ?)", (uuid.uuid4().hex, slug, user, _now(), json.dumps(params)))
             elif action == "cancel":
                 job = conn.execute("SELECT * FROM jobs WHERE id=? AND slug=? AND kind='extract'", (request.get("job_id"), slug)).fetchone()
