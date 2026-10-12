@@ -191,6 +191,8 @@ Part B permits evidence from the offer through the next bid, exclusivity change,
 
 Decide whether the variable represents the condition **at submission**, the later best description of that same offer, or everything learned before the next event. An expected future diligence completion must not silently become achieved completion at the original bid date. Conversely, silence on a price revision does not economically prove that a previously reported condition disappeared. Retain source timing when assessing these cases.
 
+**Decided 12 October 2026: at submission.** The condition columns describe the bid as it stood at its communication. Passages in the window are evidence of that state, and a later change goes in the Note (decision log, rulings of 12 October, 1).
+
 ### Exclusivity and contingent value
 
 Exclusivity should remain a separate field and must not alone downgrade Formality; that is explicit Alex guidance. Required versus Requested and separate process-request events are additional mechanics. Likewise, Kraton's cash earnout stays separate from cash upfront consideration. The extension from that example to all contingent securities, maximum payouts and performance-vesting equity options is a normalization choice, not something his cash example fully decides. A Mac-Gray raw row represents contingent equity options as Stock %=0 plus a CVR/earnout value; its instrument description must remain visible if this convention is retained.

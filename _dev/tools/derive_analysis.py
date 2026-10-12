@@ -7,9 +7,10 @@ The tool is mechanical: it never corrects the ledger, and every research choice 
 switch with no default, emitted as side-by-side columns. It writes only into the --out folder, which
 must be new or empty, and never under `extraction/`, `raw_filing/` or `ref/`.
 
-Outputs: bids.csv, other_scope.csv, rounds.csv, participation.csv, deal.csv and manifest.json. The
-manifest's "review" list holds what a person should look at: disagreements with the Rounds sheet,
-partial-only parties, counts that cannot be parsed, and the like.
+Outputs: bids.csv, other_scope.csv, rounds.csv, participation.csv, deal.csv, questions.csv and
+manifest.json. The manifest records the code that made them (commit and file hashes). Its "review"
+list holds what a person should look at: disagreements with the Rounds sheet, partial-only parties,
+counts that cannot be parsed, and the like.
 
 The workbook must have the Version 1 29-column Deal ledger; any other header is an error. An exit's
 Inferred = Y is an inferred exit, and Initiation is derived by D5's rule and checked against Deal
@@ -27,6 +28,7 @@ import hashlib
 import json
 import math
 import re
+import subprocess
 import sys
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -75,6 +77,9 @@ INITIATION_EVENTS = {"Target interest": "target-led", "Target sale decision": "t
                      "Bidder interest": "bidder-led", "Bid": "bidder-led", "Activist": "activist-influenced"}
 # P1: what the two price cells give, from validated values only.
 USABLE_PRICE_KINDS = {"point", "range", "lower_bound", "upper_bound"}
+# T2 (ruling of 12 October 2026): a bid expressed as a range or a one-sided bound is Informal (Alex, CI p.7); a blank
+# price says nothing about that, so it keeps T0. An invalid price cell is not read as a single price.
+T2_FORMAL_PRICE_KINDS = {"point", "not_available"}
 # E13 leaves a Stock % range to the Note ("Part stock", the range in the Note); a percentage range read there.
 NOTE_STOCK_RANGE_RE = re.compile(r"(\d+(?:\.\d+)?)\s*%?\s*(?:[-–]|to)\s*(\d+(?:\.\d+)?)\s*%")
 NUMBER_WORDS = {word: n for n, word in enumerate(
@@ -96,9 +101,11 @@ COUNT_QUALIFIER_BOUNDS = {
 
 SWITCHES = [
     {"id": "count_ranges", "source": "D22; Alex Q1 / Decision 3",
-     "question": "How estimation uses counts that are ranges or bounds.",
+     "question": "How estimation uses counts that are ranges or bounds. Under every variant, a party first seen bidding after "
+                 "cohort entries counts inside the cohort (E3), unless its own contact row follows them and no cohort Note "
+                 "names it or cites its row.",
      "variants": {"bounds": "live_lo, live_hi (and count_lo, count_hi)",
-                  "presumed ordinary sequence": "live_point (a party first seen bidding after cohort entries is presumed a member unless its own contact row follows them and no cohort Note names it or cites its row; approximately N is N)",
+                  "presumed ordinary sequence": "live_point (approximately N is N)",
                   "one bound": "live_lo or live_hi alone"}},
     {"id": "unclear", "source": "D22",
      "question": "How Unclear and Not stated values are treated.",
@@ -133,20 +140,21 @@ BID_COLUMNS = [
     "price_obs__same_price_as_new", "price_obs__same_price_as_terms", "round_finality", "T0", "T1", "T1u", "T2", "T3",
     "live_lo", "live_hi", "live_point", "note",
 ]
-OTHER_COLUMNS = ["deal", "process", "round", "row", "when", "sort_date", "who", "type", "event", "reason", "count",
-                 "price_low", "price_high", "stock_pct", "formality", "conditions", "note"]
+OTHER_COLUMNS = ["deal", "process", "round", "row", "when", "sort_date", "date_from", "date_to", "who", "type", "event",
+                 "reason", "count", "price_low", "price_high", "stock_pct", "formality", "conditions", "flag", "note"]
 ROUND_COLUMNS = [
     "deal", "process", "round", "opened", "how_opened", "finality", "who_was_in", "who_was_in_count",
     "due_dates", "due_dates_reached", "deadline_outcome", "deadline_values", "deadline_classes",
     "deadline_rows", "bids_received", "bids_received_count", "bidders_bid_lo", "bidders_bid_hi", "bidders_bid",
-    "bids_received_check", "live_open_lo", "live_open_hi", "live_open_point", "live_max_hi", "how_it_ended",
+    "bids_received_check", "live_open_lo", "live_open_hi", "live_open_point", "live_max_hi", "admitted_hi", "how_it_ended",
 ]
 PARTICIPATION_COLUMNS = [
     "deal", "process", "round", "row", "when", "sort_date", "date_from", "date_to", "who", "unit", "type", "event",
     "change", "inferred", "exit_inferred", "exit_actor", "exit_reason", "alex_drop_code", "exit__inferred_as_dropout",
     "exit__inferred_as_censoring", "count_kind", "count_lo", "count_hi", "count_point", "delta_lo", "delta_hi",
-    "delta_point", "live_lo", "live_hi", "live_point", "note",
+    "delta_point", "live_lo", "live_hi", "live_point", "flag", "note",
 ]
+QUESTION_COLUMNS = ["deal"] + [re.sub(r"\W+", "_", c.casefold()).strip("_") for c in check_lean.QUESTION_COLUMNS]
 DEAL_COLUMNS = [
     "deal", "process", "target", "acquirer", "acquirer_type", "agreed_price", "merger_signed", "merger_announced",
     "filing", "background_pages", "number_of_processes", "earlier_approaches", "currency_units", "auction_screen",
@@ -155,7 +163,7 @@ DEAL_COLUMNS = [
     "initiation_check",
     "merger_of_equals_rows",
 ]
-MANIFEST_KEYS = ("tool", "tool_version", "generated_at", "deal", "input", "ledger_schema", "checker_version", "readings",
+MANIFEST_KEYS = ("tool", "tool_version", "code", "generated_at", "deal", "input", "ledger_schema", "checker_version", "readings",
                  "switches", "deadline_outcomes", "outputs", "review", "warnings")
 
 
@@ -590,10 +598,10 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
                     note_review(r, f"first seen bidding after cohort entries; its own {text(contact.get('Event'))} row "
                                 f"#{cell(contact.get('#'))} follows them and no cohort Note names it: counted as a new entrant (E3)")
                 else:
-                    change, delta = "entry (membership uncertain)", (0, hi, 0)
-                    if (lo, hi) == (1, 1):
-                        note_review(r, "first seen bidding after cohort entries, and no cohort Note names it or cites its row: "
-                                    "live_point presumes it a member (E3), live_hi allows a new entrant")
+                    # E3: a party that may belong to an earlier total counts inside it, in every bound (12 October 2026).
+                    change, delta = "entry (presumed cohort member)", (0, 0, 0)
+                    note_review(r, "first seen bidding after cohort entries, and no cohort Note names it or cites its row: "
+                                "counted inside the cohort (E3)")
                 status[(process, key)] = "live"
             if change in OWN_ENTRIES:
                 entered[(process, key)] = (lo, hi, point)
@@ -659,11 +667,23 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
                     status[(target, k)] = "exited"
                 open_units[target].clear()
                 recorded = check_lean.as_integer(r.get("Count"))
-                if recorded is not None and before[2] is not None and recorded != before[2]:
+                if recorded is None and kind == "unknown (no Count: prefix)":
+                    # A marker that closes no participation leaves Count blank (column 20): it records nothing closed.
+                    lo, hi, point, kind = None, None, None, "blank"
+                    if before[2] != 0:
+                        open_now = before[2] if before[2] is not None else "an unknown number of"
+                        note_review(r, f"closure Count is blank, but the ledger leaves {open_now} unit(s) open in process {target}")
+                elif recorded is not None and before[2] is not None and recorded != before[2]:
                     note_review(r, f"closure Count {recorded} differs from the {before[2]} units the ledger leaves open in process {target}")
-                participation.append({**base_cols(deal, r, process, rnd), "change": "process closure", "count_kind": kind,
-                                      "count_lo": lo, "count_hi": hi, "count_point": point, "live_lo": 0, "live_hi": 0, "live_point": 0,
-                                      "note": f"closes process {target}; live before: {before}"})
+                # The closure takes the closed process's live counts to zero. Its row carries that process and the change,
+                # so the changes of each process sum to its live counts.
+                restart = f" (a Process restarted row of process {process})" if target != process else ""
+                participation.append({**base_cols(deal, r, target, rnd if target == process else ""), "change": "process closure",
+                                      "count_kind": kind, "count_lo": lo, "count_hi": hi, "count_point": point,
+                                      "delta_lo": -before[0], "delta_hi": None if before[1] is None else -before[1],
+                                      "delta_point": None if before[2] is None else -before[2],
+                                      "live_lo": 0, "live_hi": 0, "live_point": 0, "flag": text(r.get("Flag")),
+                                      "note": f"closes process {target}{restart}; live before: {before}"})
             live_at[id(r)] = live(process)
             continue
         elif event == "Round opened":
@@ -691,7 +711,8 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
                 **base_cols(deal, r, process, rnd), "change": change, "inferred": text(r.get("Inferred")), **extra,
                 "count_kind": kind, "count_lo": lo, "count_hi": hi, "count_point": point,
                 **(dict(zip(("delta_lo", "delta_hi", "delta_point"), delta)) if delta else {}),
-                "live_lo": live_lo, "live_hi": live_hi, "live_point": live_point, "note": text(r.get("Note"))})
+                "live_lo": live_lo, "live_hi": live_hi, "live_point": live_point, "flag": text(r.get("Flag")),
+                "note": text(r.get("Note"))})
         live_at[id(r)] = live(process)
         if event == "Round opened":
             s = state[process]
@@ -775,9 +796,8 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
         if basis_issue:
             note_review(r, basis_issue)
         for column in invalid:
-            note_review(r, f"{column} {r.get(column)!r} is not a positive number: no point price for T2 and no package; "
-                        "price_low/price_high show the cell as read")
-        point_price = valid_price(r.get("Price low")) is not None and valid_price(r.get("Price low")) == valid_price(r.get("Price high"))
+            note_review(r, f"{column} {r.get(column)!r} is not a positive number: T2 reads it as not a single price, and there "
+                        "is no package; price_low/price_high show the cell as read")
         live_lo, live_hi, live_point = live_at.get(id(r), (None, None, None))
         bids.append({
             **base_cols(deal, r, process, rnd), "count": cell(r.get("Count")), "count_lo": lo, "count_hi": hi,
@@ -796,9 +816,9 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
             "round_finality": finality, "T0": t0,
             "T1": reading(t0, level != "Heavy"),
             "T1u": reading(t0, level in ("None", "Light")),
-            # Two present, valid and equal prices make a point price; a blank or invalid cell does not (an unsplittable
-            # package leaves both blank, E13). Round 0, post and a round with no Rounds line are not final.
-            "T2": reading(t0, point_price),
+            # T2 removes Formal from a range, a one-sided bound or an invalid price; a blank price (no stated price, or an
+            # unsplittable package, E13) keeps T0. Round 0, post and a round with no Rounds line are not final.
+            "T2": reading(t0, price_kind in T2_FORMAL_PRICE_KINDS),
             "T3": reading(t0, finality in FINAL and isinstance(rnd, int) and rnd >= 1),
             "live_lo": live_lo, "live_hi": live_hi, "live_point": live_point, "note": text(r.get("Note"))})
 
@@ -815,6 +835,18 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
             continue
         hi_now = live_at.get(id(r), (None, None, None))[1]
         max_hi[key] = None if hi_now is None or max_hi[key] is None else max(max_hi[key], hi_now)
+    # Who was in counts the bidders admitted to a round or entering it (D3): the units live at its opening, plus each
+    # entry and re-entry after its Round opened row. A unit that leaves and re-enters within the round counts twice, so
+    # this is an upper bound. It differs from live_max_hi, the most units present at one time.
+    admitted_most: dict[tuple[Any, Any], int | None] = {key: live[1] for key, live in opening_live.items()}
+    opened_rounds = set()
+    for record in participation:
+        key = (record["process"], record["round"])
+        if record["change"] == "round opening":
+            opened_rounds.add(key)
+        elif key in opened_rounds and (record["change"].startswith("entry") or record["change"] == "re-entry"):
+            added = record.get("delta_hi")
+            admitted_most[key] = None if added is None or admitted_most[key] is None else admitted_most[key] + added
     for (process, rnd), line in rounds.items():
         values = split_outcomes(line.get("Deadline outcome"))
         classes = []
@@ -852,8 +884,10 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
             note_review(line, f"process {process} round {rnd}: Bids received says {received}; the ledger's whole-company bid rows give {bid_lo}-{bid_hi if bid_hi is not None else 'open'}", "Rounds")
         admitted = leading_integer(line.get("Who was in"))
         open_lo, open_hi, open_point = opening_live.get((process, rnd)) or (None, None, None)
-        if admitted is not None and max_hi.get((process, rnd)) is not None and admitted > max_hi[(process, rnd)]:
-            note_review(line, f"process {process} round {rnd}: Who was in says {admitted}, more than the ledger's live units at any point in the round (at most {max_hi[(process, rnd)]})", "Rounds")
+        admitted_hi = admitted_most.get((process, rnd))
+        if admitted is not None and admitted_hi is not None and admitted > admitted_hi:
+            note_review(line, f"process {process} round {rnd}: Who was in says {admitted}, more than the bidders the ledger admits to "
+                        f"the round or enters in it (at most {admitted_hi}); D3 counts admitted bidders, not contacts", "Rounds")
         round_rows.append({
             "deal": deal, "process": process, "round": rnd, "opened": cell(as_date(line.get("Opened"))),
             "how_opened": text(line.get("How opened")), "finality": text(line.get("Finality")),
@@ -865,7 +899,7 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
             "bids_received_count": received, "bidders_bid_lo": bid_lo, "bidders_bid_hi": bid_hi,
             "bidders_bid": "; ".join(sorted(units)), "bids_received_check": check,
             "live_open_lo": open_lo, "live_open_hi": open_hi, "live_open_point": open_point,
-            "live_max_hi": max_hi.get((process, rnd)), "how_it_ended": text(line.get("How it ended"))})
+            "live_max_hi": max_hi.get((process, rnd)), "admitted_hi": admitted_hi, "how_it_ended": text(line.get("How it ended"))})
     ledger_rounds = {row_round(r) for r in whole if isinstance(row_round(r)[1], int) and row_round(r)[1] >= 1}
     for key in sorted(ledger_rounds - set(rounds), key=str):
         review.append({"sheet": "Rounds", "row": "", "who": "", "issue": f"process {key[0]} round {key[1]} has ledger rows but no Rounds line"})
@@ -940,9 +974,13 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
     others = [{**base_cols(deal, r, *row_round(r)), "reason": reason, "count": cell(r.get("Count")),
                "price_low": number(r.get("Price low")), "price_high": number(r.get("Price high")),
                "stock_pct": cell(r.get("Stock %")), "formality": text(r.get("Formality")),
-               "conditions": text(r.get("Conditions")), "note": text(r.get("Note"))} for r, reason in other_scope]
+               "conditions": text(r.get("Conditions")), "flag": text(r.get("Flag")), "note": text(r.get("Note"))}
+              for r, reason in other_scope]
+    # The Questions sheet as it stands: the open source questions a reviewer answers (H1 traceability).
+    questions = [{"deal": deal, **dict(zip(QUESTION_COLUMNS[1:], (text(q.get(c)) for c in check_lean.QUESTION_COLUMNS)))}
+                 for q in ledger["questions"]]
     return {"bids": bids, "other_scope": others, "rounds": round_rows, "participation": participation,
-            "deal": deal_rows, "deadline_outcomes": deadline_log, "review": review, "warnings": warnings}
+            "deal": deal_rows, "questions": questions, "deadline_outcomes": deadline_log, "review": review, "warnings": warnings}
 
 
 def row_round(r: dict[str, Any]) -> tuple[Any, Any]:
@@ -997,6 +1035,18 @@ def manifest_complete(manifest: dict[str, Any]) -> list[str]:
     return missing
 
 
+def code_identity() -> dict[str, Any]:
+    """The code that made the outputs: the checkout's commit, where git can read it, and the two tools' file hashes,
+    which also show a local change the commit does not."""
+    try:
+        done = subprocess.run(["git", "-C", str(PROJECT), "rev-parse", "HEAD"], capture_output=True, text=True, timeout=10)
+        commit = done.stdout.strip() if done.returncode == 0 else None
+    except (OSError, subprocess.SubprocessError):
+        commit = None
+    return {"git_commit": commit, "derive_analysis_sha256": sha256(Path(__file__).resolve()),
+            "check_lean_sha256": sha256(Path(check_lean.__file__).resolve())}
+
+
 def known_deals() -> set[str]:
     """Deal slugs of the seed, to read a slug from a file name."""
     known = set(DESCRIPTIVE_ONLY)
@@ -1039,12 +1089,12 @@ def run(workbook: Path, out: Path, deal: str | None = None) -> dict[str, Any]:
     out.mkdir(parents=True, exist_ok=True)
     tables = {"bids.csv": (BID_COLUMNS, result["bids"]), "other_scope.csv": (OTHER_COLUMNS, result["other_scope"]),
               "rounds.csv": (ROUND_COLUMNS, result["rounds"]), "participation.csv": (PARTICIPATION_COLUMNS, result["participation"]),
-              "deal.csv": (DEAL_COLUMNS, result["deal"])}
+              "deal.csv": (DEAL_COLUMNS, result["deal"]), "questions.csv": (QUESTION_COLUMNS, result["questions"])}
     for name, (columns, rows) in tables.items():
         write_csv(out / name, columns, rows)
     kind = "five-sheet cockpit download" if ledger["source"] is not None else "four-sheet workbook"
     manifest = {
-        "tool": "derive_analysis.py", "tool_version": TOOL_VERSION,
+        "tool": "derive_analysis.py", "tool_version": TOOL_VERSION, "code": code_identity(),
         "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"), "deal": deal,
         "input": {"path": str(workbook), "sha256": sha256(workbook), "kind": kind, "sheets": ledger["sheets"],
                   "source_sheet": ledger["source"]},
