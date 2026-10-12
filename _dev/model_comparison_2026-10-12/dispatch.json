@@ -1,0 +1,61 @@
+{
+  "dispatch_started_at": "2026-10-12T16:10:12.996280+00:00",
+  "dispatch_ended_at": "2026-10-12T16:10:13.623788+00:00",
+  "concurrency": 9,
+  "results": [
+    {
+      "id": "penford-opus-5-5-xhigh-r1",
+      "returncode": 0,
+      "result": "{\"provider\": \"opus\", \"run_dir\": \"/home/uctpiaj/work/Projects/sec-auction/_dev/runs/model_comparison_2026-10-12/penford-opus-5-5-xhigh-r1\", \"worker_pid\": 191056}",
+      "error": ""
+    },
+    {
+      "id": "penford-gpt-6-astra-xhigh-r1",
+      "returncode": 0,
+      "result": "{\"provider\": \"sol\", \"run_dir\": \"/home/uctpiaj/work/Projects/sec-auction/_dev/runs/model_comparison_2026-10-12/penford-gpt-6-astra-xhigh-r1\", \"worker_pid\": 190992}",
+      "error": ""
+    },
+    {
+      "id": "medivation-gpt-6.1-sol-xhigh-r1",
+      "returncode": 0,
+      "result": "{\"provider\": \"sol\", \"run_dir\": \"/home/uctpiaj/work/Projects/sec-auction/_dev/runs/model_comparison_2026-10-12/medivation-gpt-6.1-sol-xhigh-r1\", \"worker_pid\": 190996}",
+      "error": ""
+    },
+    {
+      "id": "synacor-opus-5-5-xhigh-r1",
+      "returncode": 0,
+      "result": "{\"provider\": \"opus\", \"run_dir\": \"/home/uctpiaj/work/Projects/sec-auction/_dev/runs/model_comparison_2026-10-12/synacor-opus-5-5-xhigh-r1\", \"worker_pid\": 190993}",
+      "error": ""
+    },
+    {
+      "id": "medivation-gpt-6-astra-xhigh-r1",
+      "returncode": 0,
+      "result": "{\"provider\": \"sol\", \"run_dir\": \"/home/uctpiaj/work/Projects/sec-auction/_dev/runs/model_comparison_2026-10-12/medivation-gpt-6-astra-xhigh-r1\", \"worker_pid\": 190997}",
+      "error": ""
+    },
+    {
+      "id": "synacor-gpt-6.1-sol-xhigh-r1",
+      "returncode": 0,
+      "result": "{\"provider\": \"sol\", \"run_dir\": \"/home/uctpiaj/work/Projects/sec-auction/_dev/runs/model_comparison_2026-10-12/synacor-gpt-6.1-sol-xhigh-r1\", \"worker_pid\": 190995}",
+      "error": ""
+    },
+    {
+      "id": "synacor-gpt-6-astra-xhigh-r1",
+      "returncode": 0,
+      "result": "{\"provider\": \"sol\", \"run_dir\": \"/home/uctpiaj/work/Projects/sec-auction/_dev/runs/model_comparison_2026-10-12/synacor-gpt-6-astra-xhigh-r1\", \"worker_pid\": 191063}",
+      "error": ""
+    },
+    {
+      "id": "penford-gpt-6.1-sol-xhigh-r1",
+      "returncode": 0,
+      "result": "{\"provider\": \"sol\", \"run_dir\": \"/home/uctpiaj/work/Projects/sec-auction/_dev/runs/model_comparison_2026-10-12/penford-gpt-6.1-sol-xhigh-r1\", \"worker_pid\": 190998}",
+      "error": ""
+    },
+    {
+      "id": "medivation-opus-5-5-xhigh-r1",
+      "returncode": 0,
+      "result": "{\"provider\": \"opus\", \"run_dir\": \"/home/uctpiaj/work/Projects/sec-auction/_dev/runs/model_comparison_2026-10-12/medivation-opus-5-5-xhigh-r1\", \"worker_pid\": 190994}",
+      "error": ""
+    }
+  ]
+}

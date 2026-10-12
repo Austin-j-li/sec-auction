@@ -32,6 +32,11 @@ The default is Claude Opus 5.5 (`claude-opus-5-5`) at medium effort. `--provider
 
 Launch and worker startup check the prepared instruction, filing and prompt against their recorded SHA-256 hashes. A changed or missing input needs a newly prepared run directory.
 
+For a Codex run, `prepare --service-tier priority` explicitly requests Fast service, including for Astra.
+The metadata records the effective tier. The launch command uses that record.
+Without this option, Sol keeps its priority default and Astra keeps its account default.
+The option does not apply to Claude. A command receipt proves the request, not the service the provider actually delivered.
+
 Revision is a separate mode: pass both `--revise-from <workbook>` and `--report <findings.md>`. The workbook must be a four-sheet Version 1 workbook. A revision deliberately shows the agent that workbook and the findings, so it is never a blind extraction.
 
 Every Opus run sees only the Bash, Read and Write tools and sets the variables in `CLAUDE_ENV`: a refusal fails the run instead of switching models, the prompt cache keeps the subscription lifetime, and the "user hasn't heard from you" reminder never fires. If a run ends while its deliverable is still owed, the worker resumes the same session at most twice (`MAX_CONTINUATIONS`) with a short message naming the deliverable. Sol runs disable connectors, web, image generation and subagents. Pin the Claude binary with `SEC_CLAUDE_BIN` for comparisons, because the installed CLI updates itself.
@@ -49,6 +54,9 @@ python3 _dev/tools/effort_sweep.py summarize --packet <packet dir>
 ```
 
 `plan` writes a seeded, interleaved run order. `run` pins the provider binaries, instruction and runner by hash, launches each cell as an ordinary run, runs the checker outside the sandbox, copies receipts, workbook and compressed event log into the packet, and stops after three provider or worker failures in a row (`--retry-failed` runs those cells again). It can be restarted. `summarize` reports cost, tokens, time, checker counts, ledger size and agreement between replicates per arm.
+
+Add `plan --service-tier priority` to request Fast service for every Codex arm in a comparison.
+The plan records each arm's tier. The sweep checks that the prepared metadata matches it.
 
 ## Review and analysis helpers
 

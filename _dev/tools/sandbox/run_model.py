@@ -306,6 +306,10 @@ def prepare(args: argparse.Namespace) -> None:
     if model not in MODELS[args.provider] or effort not in EFFORTS[args.provider]:
         raise SystemExit(f"{args.provider} runs one of {', '.join(MODELS[args.provider])} "
                          f"at effort {', '.join(EFFORTS[args.provider])}")
+    service_tier = getattr(args, "service_tier", None)
+    if service_tier is not None and (args.provider != "sol" or service_tier != "priority"):
+        raise SystemExit("--service-tier priority applies only to Codex runs")
+    service_tier = service_tier or SERVICE_TIER.get(model)
     timeout = TIMEOUT_SECONDS if args.timeout_minutes is None else args.timeout_minutes * 60
     if not TIMEOUT_BOUNDS[0] <= timeout <= TIMEOUT_BOUNDS[1]:
         raise SystemExit("--timeout-minutes must be between 10 and 360")
@@ -367,6 +371,7 @@ def prepare(args: argparse.Namespace) -> None:
         "report_sha256": sha256(input_dir / REPORT_NAME) if args.revise_from else None,
         "model": model,
         "effort": effort,
+        "service_tier": service_tier,
         "timeout_seconds": timeout,
         "runner_sha256": sha256(Path(__file__)),
         "python_version": sys.version,
@@ -561,7 +566,7 @@ def provider_command(run_dir: Path, provider: str, metadata: dict,
     if provider == "sol":
         codex = CODEX_SANDBOX / "bin/codex"
         disabled = [part for feature in CODEX_DISABLED_FEATURES for part in ("--disable", feature)]
-        tier = SERVICE_TIER.get(model)
+        tier = metadata.get("service_tier", SERVICE_TIER.get(model))
         fast = ["-c", f'service_tier="{tier}"', "--enable", "fast_mode"] if tier else []
         return [
             str(codex), "exec", "--ephemeral", "--ignore-user-config", "--ignore-rules",
@@ -709,6 +714,9 @@ def prepared_metadata(run_dir: Path, provider: str) -> dict:
         raise SystemExit("prepared instruction name does not match the runner")
     if metadata.get("model") not in MODELS[provider] or metadata.get("effort") not in EFFORTS[provider]:
         raise SystemExit("prepared model or effort is not allowed for this provider; prepare a new run directory")
+    tier = metadata.get("service_tier")
+    if tier not in (None, "priority") or (provider != "sol" and tier is not None):
+        raise SystemExit("prepared service tier is not allowed for this provider; prepare a new run directory")
     timeout = metadata.get("timeout_seconds")
     if type(timeout) is not int or not TIMEOUT_BOUNDS[0] <= timeout <= TIMEOUT_BOUNDS[1]:
         raise SystemExit("prepared timeout_seconds is missing or out of range; prepare a new run directory")
@@ -994,6 +1002,7 @@ def parser() -> argparse.ArgumentParser:
     p.add_argument("--instruction", help="candidate instruction file to test (default: the working instruction)")
     p.add_argument("--model", help="model to run (default: claude-opus-5-5 for opus, gpt-6-sol for sol)")
     p.add_argument("--effort", help="effort: low, medium, high, xhigh or max (default: Claude medium, Astra high, other Codex models xhigh)")
+    p.add_argument("--service-tier", choices=["priority"], help="request Fast service for this Codex run")
     p.add_argument("--timeout-minutes", type=int, help="wall-clock limit for the run, 10-360 (default: 90)")
     p.add_argument("--revise-from", help="finished workbook to revise (revision pass)")
     p.add_argument("--report", help="checker findings in plain text, required with --revise-from")
