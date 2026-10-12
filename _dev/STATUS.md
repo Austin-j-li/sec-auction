@@ -25,7 +25,7 @@ The decision log is the full record. The rulings most often misread:
 - **Time limits:** a time limit on an offer (an expiry, or a demand to sign or announce by a date) never triggers H3; the Note gives it (9 October 2026).
 - **Not invited:** a bidder left out of a stage exits when it opens, unless the target did not tell it it was out and asks it for an offer before the stage ends (rulings 7, 8).
 - **Commitment-only changes:** a change in the bidder's commitment is a Bid row. Without a newly stated price, the price cells stay blank. Target termination fees go in dated Notes.
-- **Same offer and conditions:** copy an offer when the bidder says it stands, or when, after definitive negotiation begins, the bidder confirms it by its own revised draft of the merger agreement (F2, which replaced "only when the bidder says it stands"). A return to an older price is a revision, not a Same offer (9 October 2026). The evidence window for conditions runs to the bidder's next bid, exclusivity, exit, signing or process-only request, and includes forecasts. "Not begun" uses the NDA test.
+- **Same offer and conditions:** copy an offer when the bidder says it stands, or when, after definitive negotiation begins, the bidder confirms it by its own revised draft of the merger agreement (F2, which replaced "only when the bidder says it stands"). A return to an older price is a revision, not a Same offer (9 October 2026). The evidence window for conditions runs to the bidder's next bid, exclusivity, exit, signing or process-only request, and includes forecasts. The columns describe the bid as it stood at its communication; a later change in the window goes in the Note (12 October 2026). "Not begun" uses the NDA test.
 
 ## Choices for estimation (not blockers)
 
@@ -35,7 +35,7 @@ Alex asked to record procedural Formality and conditionality separately and rein
   - T0: recorded Formality
   - T1: Formal and not Heavy
   - T1u: Formal with None/Light conditions only
-  - T2: Formal with a single price
+  - T2: Formal unless the price is a range or a one-sided bound (a bid with no stated price keeps T0; 12 October 2026)
   - T3: Formal in a final round
 
   Compare them as robustness checks. Do not choose by best fit to hand-coded deals.
