@@ -1,0 +1,22 @@
+{
+  "preview_only": true,
+  "id": "dd0243dc6154413d93d7051aa096bf48",
+  "state": "queued",
+  "params": {
+    "engine": "astra6",
+    "engine_label": "GPT-6-Astra",
+    "model": "gpt-6-astra",
+    "provider": "sol",
+    "account": "chatgpt",
+    "effort": "xhigh",
+    "timeout_minutes": 90,
+    "instruction": {
+      "id": "e77059e96146",
+      "label": "v1.1",
+      "name": "v1.1",
+      "status": "published",
+      "sha256": "e6e1e2f3b53378bdb6770762d33fe9b84090c2ae27301d5bf725e0c3f629eb13"
+    },
+    "service_tier": "priority"
+  }
+}

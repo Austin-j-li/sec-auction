@@ -10,6 +10,8 @@ Version 1, 28 September 2026. This is the only status record. Records from befor
 
 ## Open
 
+- **Fast parallel batch support, prepared 12 October:** the proposed release adds an Astra Fast checkbox and configurable concurrency limits. Defaults stay at four total and two per user. The live cockpit still uses `a8ecea3`; no extraction or replacement started for this batch. See the [release packet](cockpit_fast_parallel_2026-10-12/README.md) for the checks and proposed deployment.
+
 - **Cockpit corrections:** the workbook cells changed by the rulings of 9 and 12 October still wait for review in the cockpit; each ruling's Effect in the [decision log](alignment_sprint/DECISIONS.md) names its rows. Pepco round 1 "Who was in" (8 contacted; 5 signed an NDA) waits for its question Q1.
 - **Questions for Alex:** none (decision log).
 - **Filing readings left open** ([round map](alignment_sprint/draft/ROUND_MAP.md)): Datalink A's March 29 proposal as a range or CVR (W51), Synacor H on November 2, PetSmart Bidder 3's exit, Kraton's post-publicity signer, Datalink A and the July 18 due date. The rules give no single answer; no rule was added for them.

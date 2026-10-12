@@ -32,6 +32,10 @@ The default is Claude Opus 5.5 (`claude-opus-5-5`) at medium effort. `--provider
 
 Launch and worker startup check the prepared instruction, filing and prompt against their recorded SHA-256 hashes. A changed or missing input needs a newly prepared run directory.
 
+Use `prepare --service-tier priority` to request Fast service for an Astra run. The cockpit offers the same choice through its Astra **Fast service** checkbox. Sol keeps Fast service as its default. The job parameters and runner metadata record the requested tier. The provider command passes that tier and enables Fast mode. These records prove the request, not the tier the provider ultimately delivers.
+
+The cockpit limits concurrent runs to four in total and two per user by default. A release can configure higher limits through the environment variables in [CLOUD_DEPLOYMENT.md](../CLOUD_DEPLOYMENT.md#parallel-extraction-limits). Extra jobs wait in the queue.
+
 Revision is a separate mode: pass both `--revise-from <workbook>` and `--report <findings.md>`. The workbook must be a four-sheet Version 1 workbook. A revision deliberately shows the agent that workbook and the findings, so it is never a blind extraction.
 
 Every Opus run sees only the Bash, Read and Write tools and sets the variables in `CLAUDE_ENV`: a refusal fails the run instead of switching models, the prompt cache keeps the subscription lifetime, and the "user hasn't heard from you" reminder never fires. If a run ends while its deliverable is still owed, the worker resumes the same session at most twice (`MAX_CONTINUATIONS`) with a short message naming the deliverable. Sol runs disable connectors, web, image generation and subagents. Pin the Claude binary with `SEC_CLAUDE_BIN` for comparisons, because the installed CLI updates itself.
