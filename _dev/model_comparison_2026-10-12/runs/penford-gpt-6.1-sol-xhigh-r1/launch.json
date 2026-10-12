@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "/usr/bin/python3",
+    "/home/uctpiaj/work/Projects/sec-auction/_dev/tools/sandbox/run_model.py",
+    "worker",
+    "--provider",
+    "sol",
+    "--run-dir",
+    "/home/uctpiaj/work/Projects/sec-auction/_dev/runs/model_comparison_2026-10-12/penford-gpt-6.1-sol-xhigh-r1"
+  ],
+  "launched_at": "2026-10-12T16:10:13.358650+00:00",
+  "launcher_pid": 190998
+}

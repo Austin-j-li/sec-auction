@@ -1,0 +1,1392 @@
+{
+  "Deal ledger": {
+    "columns": [
+      "#",
+      "When",
+      "Who",
+      "Type",
+      "Event",
+      "Process",
+      "Round",
+      "Price low",
+      "Price high",
+      "Stock %",
+      "CVR/earnout",
+      "CVR/earnout value",
+      "Formality",
+      "Conditions",
+      "Due diligence",
+      "Financing",
+      "Regulatory",
+      "Antitrust",
+      "Exclusivity",
+      "Count",
+      "Exit reason",
+      "Inferred",
+      "Note",
+      "Quote and page",
+      "Flag",
+      "Reviewer note",
+      "Sort date",
+      "Date from",
+      "Date to"
+    ],
+    "rows": [
+      {
+        "excel_row": 2,
+        "values": [
+          1,
+          "04/15/2016",
+          "Sanofi",
+          "Unknown",
+          "Bid",
+          1,
+          0,
+          52.5,
+          52.5,
+          "Not stated",
+          null,
+          null,
+          "Informal",
+          "Unclear",
+          "Not begun",
+          "Not stated",
+          "Not stated",
+          null,
+          "Not stated",
+          1,
+          null,
+          null,
+          "First contact; non-binding letter dated 04/13/2016, received 04/15/2016. Board rejected the proposal 04/29/2016. Also p. 22.",
+          "“setting forth a non-binding proposal to acquire Medivation for $52.50 per share.” (p. 21)",
+          "R1",
+          null,
+          "2016-04-15T00:00:00",
+          "2016-04-15T00:00:00",
+          "2016-04-15T00:00:00"
+        ]
+      },
+      {
+        "excel_row": 3,
+        "values": [
+          2,
+          "04/20/2016",
+          "Pfizer",
+          "Strategic",
+          "Bidder interest",
+          1,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          "Transaction interest expressed 05/02/2016 after attempted 04/20 contact. Advisers: Centerview and Guggenheim (financial), Ropes & Gray (legal). Also p. 19; Also p. 23.",
+          "“attempted to contact Dr. Hung by phone and by email to propose a discussion” (p. 22)",
+          "R2",
+          null,
+          "2016-04-20T00:00:00",
+          "2016-04-20T00:00:00",
+          "2016-04-20T00:00:00"
+        ]
+      },
+      {
+        "excel_row": 4,
+        "values": [
+          3,
+          "04/28/2016",
+          "Sanofi",
+          "Unknown",
+          "Bid announced",
+          1,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "Public disclosure of #1.",
+          "“Sanofi’s proposal was publicly announced on April 28, 2016” (p. 22)",
+          null,
+          null,
+          "2016-04-28T00:00:00",
+          "2016-04-28T00:00:00",
+          "2016-04-28T00:00:00"
+        ]
+      },
+      {
+        "excel_row": 5,
+        "values": [
+          4,
+          "05/11/2016",
+          "J.P. Morgan Securities LLC",
+          null,
+          "Adviser",
+          1,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "Target financial adviser; first shown acting when Centerview contacted it about Pfizer’s interest.",
+          "“J.P. Morgan Securities LLC (“J.P. Morgan”) and Evercore Group L.L.C. (“Evercore”), financial advisors to Medivation” (p. 22)",
+          null,
+          null,
+          "2016-05-11T00:00:00",
+          "2016-05-11T00:00:00",
+          "2016-05-11T00:00:00"
+        ]
+      },
+      {
+        "excel_row": 6,
+        "values": [
+          5,
+          "05/11/2016",
+          "Evercore Group L.L.C.",
+          null,
+          "Adviser",
+          1,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "Target financial adviser; first shown acting when Centerview contacted it about Pfizer’s interest.",
+          "“J.P. Morgan Securities LLC (“J.P. Morgan”) and Evercore Group L.L.C. (“Evercore”), financial advisors to Medivation” (p. 22)",
+          null,
+          null,
+          "2016-05-11T00:00:00",
+          "2016-05-11T00:00:00",
+          "2016-05-11T00:00:00"
+        ]
+      },
+      {
+        "excel_row": 7,
+        "values": [
+          6,
+          "06/28/2016",
+          "Medivation",
+          null,
+          "Round opened",
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "Initial confidential sale stage; Pfizer outreach dated 06/28/2016. Several parties’ confidentiality agreements announced 07/05/2016.",
+          "“representatives of J.P. Morgan and Evercore contacted Mr. Giordano to discuss providing Pfizer with certain confidential information” (p. 22)",
+          "R3",
+          null,
+          "2016-06-28T00:00:00",
+          "2016-06-28T00:00:00",
+          "2016-06-28T00:00:00"
+        ]
+      },
+      {
+        "excel_row": 8,
+        "values": [
+          7,
+          "06/29/2016",
+          "Pfizer",
+          "Strategic",
+          "NDA signed",
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          "Invited to the sale process; limited data room access 07/07/2016 and management presentation 07/14/2016. Also p. 23.",
+          "“On June 29, 2016, Pfizer executed a confidentiality and standstill agreement with Medivation” (p. 22)",
+          "R3; R4",
+          null,
+          "2016-06-29T00:00:00",
+          "2016-06-29T00:00:00",
+          "2016-06-29T00:00:00"
+        ]
+      },
+      {
+        "excel_row": 9,
+        "values": [
+          8,
+          "by 07/05/2016",
+          "Sanofi",
+          "Unknown",
+          "NDA signed",
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          "Consent solicitation to replace Medivation’s board filed 05/25/2016; Sanofi agreed to withdraw it by the announcement.",
+          "“it had entered into confidentiality agreements with several parties, including Sanofi” (p. 22)",
+          "R1; R3",
+          null,
+          "2016-06-29T00:00:00",
+          null,
+          "2016-07-05T00:00:00"
+        ]
+      },
+      {
+        "excel_row": 10,
+        "values": [
+          9,
+          "by 07/05/2016",
+          "Other NDA signers",
+          "Unknown",
+          "NDA signed",
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "Count: several parties less Pfizer and Sanofi; exact residual unreported.",
+          "“it had entered into confidentiality agreements with several parties, including Sanofi” (p. 22)",
+          "R3; R5",
+          null,
+          "2016-06-29T00:00:00",
+          null,
+          "2016-07-05T00:00:00"
+        ]
+      },
+      {
+        "excel_row": 11,
+        "values": [
+          10,
+          "07/05/2016",
+          "Medivation",
+          null,
+          "Sale process announced",
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "Sanofi also agreed to withdraw its consent solicitation.",
+          "“On July 5, 2016, Medivation issued a press release announcing that it had entered into confidentiality agreements with several parties, including Sanofi” (p. 22)",
+          null,
+          null,
+          "2016-07-05T00:00:00",
+          "2016-07-05T00:00:00",
+          "2016-07-05T00:00:00"
+        ]
+      },
+      {
+        "excel_row": 12,
+        "values": [
+          11,
+          "07/14/2016",
+          "Cooley LLP",
+          null,
+          "Adviser",
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "Target legal adviser; first shown acting at the management presentation to Pfizer.",
+          "“at the offices of Cooley LLP (“Cooley”), a legal advisor to Medivation” (p. 23)",
+          null,
+          null,
+          "2016-07-14T00:00:00",
+          "2016-07-14T00:00:00",
+          "2016-07-14T00:00:00"
+        ]
+      },
+      {
+        "excel_row": 13,
+        "values": [
+          12,
+          "07/19/2016",
+          "Medivation",
+          null,
+          "Deadline set",
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "Pfizer’s preliminary proposal due 08/08/2016; labelled non-binding. A limited number might subsequently receive further discussions and diligence materials.",
+          "“requesting that Pfizer submit a written, non-binding preliminary proposal for an acquisition of Medivation on August 8, 2016.” (p. 23)",
+          null,
+          null,
+          "2016-07-19T00:00:00",
+          "2016-07-19T00:00:00",
+          "2016-07-19T00:00:00"
+        ]
+      },
+      {
+        "excel_row": 14,
+        "values": [
+          13,
+          "08/08/2016",
+          "Medivation",
+          null,
+          "Deadline",
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "Preliminary proposal due; Pfizer responded that day; subsequent stage opened 08/10/2016.",
+          "“requesting that Pfizer submit a written, non-binding preliminary proposal for an acquisition of Medivation on August 8, 2016.” (p. 23)",
+          "R6",
+          null,
+          "2016-08-08T00:00:00",
+          "2016-08-08T00:00:00",
+          "2016-08-08T00:00:00"
+        ]
+      },
+      {
+        "excel_row": 15,
+        "values": [
+          14,
+          "08/08/2016",
+          "Pfizer",
+          "Strategic",
+          "Bid",
+          1,
+          1,
+          65,
+          65,
+          0,
+          null,
+          null,
+          "Informal",
+          "Unclear",
+          "Incomplete",
+          "Committed",
+          "Not stated",
+          null,
+          "Not stated",
+          1,
+          null,
+          null,
+          "Non-binding preliminary proposal, subject to satisfactory diligence and other conditions. No financing condition; expected diligence completion and definitive signing in approximately one week.",
+          "“to acquire Medivation for cash consideration of $65.00 per Share.” (p. 23)",
+          null,
+          null,
+          "2016-08-08T00:00:00",
+          "2016-08-08T00:00:00",
+          "2016-08-08T00:00:00"
+        ]
+      },
+      {
+        "excel_row": 16,
+        "values": [
+          15,
+          "by 08/08/2016",
+          "Other NDA signers",
+          "Unknown",
+          "Did not submit",
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "Not stated",
+          "Y",
+          "Count: several parties less Pfizer and Sanofi; exact residual unreported. No offer or individually traceable advancement reported. Also p. 23.",
+          "“it had entered into confidentiality agreements with several parties, including Sanofi” (p. 22)",
+          "R5",
+          null,
+          "2016-08-08T00:00:00",
+          null,
+          "2016-08-08T00:00:00"
+        ]
+      },
+      {
+        "excel_row": 17,
+        "values": [
+          16,
+          "08/10/2016",
+          "Medivation",
+          null,
+          "Round opened",
+          1,
+          2,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "Further diligence stage for Pfizer and several other interested parties; first offer request followed 08/14/2016.",
+          "“On August 10, 2016, Medivation notified Pfizer that it was inviting Pfizer to a subsequent round of the potential sale process” (p. 23)",
+          "R6; Q1",
+          null,
+          "2016-08-10T00:00:00",
+          "2016-08-10T00:00:00",
+          "2016-08-10T00:00:00"
+        ]
+      },
+      {
+        "excel_row": 18,
+        "values": [
+          17,
+          "by 08/10/2016",
+          "Sanofi",
+          "Unknown",
+          "Dropped by target",
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          "Not stated",
+          "Y",
+          "not invited; Sanofi is not identified among the subsequent-stage participants. Last named participation was its confidentiality agreement. Also p. 22.",
+          "“it was inviting Pfizer to a subsequent round of the potential sale process, together with several other interested parties.” (p. 23)",
+          "R7",
+          null,
+          "2016-08-10T00:00:00",
+          null,
+          "2016-08-10T00:00:00"
+        ]
+      },
+      {
+        "excel_row": 19,
+        "values": [
+          18,
+          "08/10/2016",
+          "Pfizer",
+          "Strategic",
+          "Other material event",
+          1,
+          2,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          "Admit to further diligence; expanded data room access and target merger-agreement draft supplied 08/11/2016.",
+          "“it was inviting Pfizer to a subsequent round of the potential sale process, together with several other interested parties.” (p. 23)",
+          "R6",
+          null,
+          "2016-08-10T00:00:00",
+          "2016-08-10T00:00:00",
+          "2016-08-10T00:00:00"
+        ]
+      },
+      {
+        "excel_row": 20,
+        "values": [
+          19,
+          "08/10/2016",
+          "Other August 10 invitees",
+          "Unknown",
+          "Other material event",
+          1,
+          2,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "Admit. Count: several other interested parties; identities and overlap with earlier NDA signers unreported.",
+          "“it was inviting Pfizer to a subsequent round of the potential sale process, together with several other interested parties.” (p. 23)",
+          "R5; R6",
+          null,
+          "2016-08-10T00:00:00",
+          "2016-08-10T00:00:00",
+          "2016-08-10T00:00:00"
+        ]
+      },
+      {
+        "excel_row": 21,
+        "values": [
+          20,
+          "08/14/2016",
+          "Medivation",
+          null,
+          "Deadline set",
+          1,
+          2,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "Definitive proposal due 08/19/2016; requested markup due 08/18/2016. Pfizer’s counsel delivered the markup 08/18/2016. Also p. 24.",
+          "“requesting that Pfizer provide to Medivation a mark-up of the Merger Agreement on August 18, 2016 and a definitive proposal to acquire Medivation on August 19, 2016.” (p. 23)",
+          "Q1; R8",
+          null,
+          "2016-08-14T00:00:00",
+          "2016-08-14T00:00:00",
+          "2016-08-14T00:00:00"
+        ]
+      },
+      {
+        "excel_row": 22,
+        "values": [
+          21,
+          "08/18/2016",
+          "Wachtell, Lipton, Rosen & Katz",
+          null,
+          "Adviser",
+          1,
+          2,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "Target legal adviser; first shown acting when Pfizer’s counsel supplied a revised merger agreement.",
+          "“Wachtell, Lipton, Rosen & Katz (“Wachtell Lipton”), a legal advisor to Medivation” (p. 24)",
+          null,
+          null,
+          "2016-08-18T00:00:00",
+          "2016-08-18T00:00:00",
+          "2016-08-18T00:00:00"
+        ]
+      },
+      {
+        "excel_row": 23,
+        "values": [
+          22,
+          "08/19/2016",
+          "Medivation",
+          null,
+          "Deadline",
+          1,
+          2,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "Definitive proposal due; Pfizer responded that day. Also p. 24.",
+          "“a definitive proposal to acquire Medivation on August 19, 2016.” (p. 23)",
+          "R8",
+          null,
+          "2016-08-19T00:00:00",
+          "2016-08-19T00:00:00",
+          "2016-08-19T00:00:00"
+        ]
+      },
+      {
+        "excel_row": 24,
+        "values": [
+          23,
+          "08/19/2016",
+          "Pfizer",
+          "Strategic",
+          "Bid",
+          1,
+          2,
+          77,
+          77,
+          0,
+          null,
+          null,
+          "Formal",
+          "None",
+          "Not stated",
+          "Not stated",
+          "Not stated",
+          null,
+          "Not stated",
+          1,
+          null,
+          null,
+          "Revises #14; responds to the request for price and documents, with markup submitted 08/18/2016. Final agreement terms negotiated 08/19–08/20/2016. Also p. 23.",
+          "“On August 19, 2016, Pfizer submitted a revised written proposal to acquire Medivation for cash consideration of $77.00 per Share.” (p. 24)",
+          "R8; R13",
+          null,
+          "2016-08-19T00:00:00",
+          "2016-08-19T00:00:00",
+          "2016-08-19T00:00:00"
+        ]
+      },
+      {
+        "excel_row": 25,
+        "values": [
+          24,
+          "08/19/2016",
+          "Medivation",
+          null,
+          "Round opened",
+          1,
+          3,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "Pfizer asked for best and final offer; due afternoon 08/20/2016. Final agreement terms negotiated 08/19–08/20/2016.",
+          "“informed Mr. Giordano that Pfizer should submit its “best and final” offer on Saturday, August 20, 2016.” (p. 24)",
+          "Q1; R9",
+          null,
+          "2016-08-19T00:00:00",
+          "2016-08-19T00:00:00",
+          "2016-08-19T00:00:00"
+        ]
+      },
+      {
+        "excel_row": 26,
+        "values": [
+          25,
+          "by 08/19/2016",
+          "Other August 10 invitees",
+          "Unknown",
+          "Dropped by target",
+          1,
+          2,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "Not stated",
+          "Y",
+          "Count: several other interested parties. not invited; only Pfizer is identified in the best-and-final request. Also p. 23.",
+          "“informed Mr. Giordano that Pfizer should submit its “best and final” offer on Saturday, August 20, 2016.” (p. 24)",
+          "R5; Q1; R9",
+          null,
+          "2016-08-19T00:00:00",
+          null,
+          "2016-08-19T00:00:00"
+        ]
+      },
+      {
+        "excel_row": 27,
+        "values": [
+          26,
+          "08/20/2016",
+          "Medivation",
+          null,
+          "Deadline",
+          1,
+          3,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "Best and final proposal due that afternoon; Pfizer responded and the agreement was signed that day.",
+          "“Following a written request by J.P. Morgan and Evercore to provide Pfizer’s “best and final” proposal by the afternoon of August 20, 2016” (p. 24)",
+          "Q1; R9; R12",
+          null,
+          "2016-08-20T00:00:00",
+          "2016-08-20T00:00:00",
+          "2016-08-20T00:00:00"
+        ]
+      },
+      {
+        "excel_row": 28,
+        "values": [
+          27,
+          "08/20/2016",
+          "Pfizer",
+          "Strategic",
+          "Bid",
+          1,
+          3,
+          81.5,
+          81.5,
+          0,
+          null,
+          null,
+          "Formal",
+          "None",
+          "Not stated",
+          "Not stated",
+          "Not stated",
+          null,
+          "Not stated",
+          1,
+          null,
+          null,
+          "Revises #23; best and final. Ref: $67.16 closing share price on 08/19/2016.",
+          "“Pfizer communicated a “best and final” proposal to acquire Medivation for cash consideration of $81.50 per Share on August 20, 2016.” (p. 24)",
+          "Q1; R10; R13",
+          null,
+          "2016-08-20T00:00:00",
+          "2016-08-20T00:00:00",
+          "2016-08-20T00:00:00"
+        ]
+      },
+      {
+        "excel_row": 29,
+        "values": [
+          28,
+          "08/20/2016",
+          "Pfizer",
+          "Strategic",
+          "Merger agreement signed",
+          1,
+          3,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          "$81.50/share cash; Montreal, Inc. is Pfizer’s acquisition subsidiary. Target termination fee $510m. At filing: available funds include cash on hand; no financing commitments. Also p. 9; Also p. 21; Also p. 39.",
+          "“Pfizer, Purchaser and Medivation each executed the Merger Agreement on the afternoon of Saturday, August 20, 2016.” (p. 24)",
+          "Q1; R10; R11; R12; R13",
+          null,
+          "2016-08-20T00:00:00",
+          "2016-08-20T00:00:00",
+          "2016-08-20T00:00:00"
+        ]
+      },
+      {
+        "excel_row": 30,
+        "values": [
+          29,
+          "08/22/2016",
+          "Medivation",
+          null,
+          "Merger announced",
+          1,
+          "post",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "Joint public announcement of the Pfizer transaction.",
+          "“On Monday, August 22, 2016, Pfizer and Medivation issued a joint press release announcing the proposed transaction.” (p. 24)",
+          null,
+          null,
+          "2016-08-22T00:00:00",
+          "2016-08-22T00:00:00",
+          "2016-08-22T00:00:00"
+        ]
+      }
+    ]
+  },
+  "Rounds": {
+    "columns": [
+      "Process",
+      "Round",
+      "Opened",
+      "How opened",
+      "Who was in",
+      "Due dates",
+      "Deadline outcome",
+      "Finality",
+      "Bids received",
+      "How it ended"
+    ],
+    "rows": [
+      {
+        "excel_row": 2,
+        "values": [
+          1,
+          1,
+          "2016-06-28T00:00:00",
+          "Latest dated sale contact before the first NDA: target advisers approach Pfizer about confidential information; wider outreach is undated.",
+          "1 Strategic: Pfizer; 1 Unknown: Sanofi; other NDA signers, Unknown, number unreported. Total described as “several parties”.",
+          "08/08/2016",
+          "Enforced",
+          "Not final",
+          "1 reported: Pfizer.",
+          "Pfizer advanced; Sanofi dropped at the 08/10 stage opening. Untraced NDA signers closed 08/08. Later unnamed invitees cannot be matched by identity or exact count."
+        ]
+      },
+      {
+        "excel_row": 3,
+        "values": [
+          1,
+          2,
+          "2016-08-10T00:00:00",
+          "Target admits Pfizer and several other interested parties to a subsequent stage of further diligence.",
+          "1 Strategic: Pfizer; “several other interested parties”, Unknown, admitted 08/10; exact number and earlier identities unreported.",
+          "08/19/2016",
+          "Enforced",
+          "Not final",
+          "1 reported: Pfizer.",
+          "Pfizer invited to best and final; unnamed other invitees not identified in that request and closed at the 08/19 opening."
+        ]
+      },
+      {
+        "excel_row": 4,
+        "values": [
+          1,
+          3,
+          "2016-08-19T00:00:00",
+          "After Pfizer’s revised offer, target first expressly requests best and final, due the next afternoon.",
+          "1 Strategic: Pfizer.",
+          "08/20/2016",
+          "Enforced",
+          "Announced as final",
+          "1: Pfizer.",
+          "Signing on 08/20/2016."
+        ]
+      }
+    ]
+  },
+  "Questions": {
+    "columns": [
+      "Q",
+      "Question",
+      "Recommended answer",
+      "Why, with page",
+      "Rows affected",
+      "What changes if answered differently",
+      "Reviewer note"
+    ],
+    "rows": [
+      {
+        "excel_row": 2,
+        "values": [
+          "R1",
+          "Review Sanofi rejection and continued participation.",
+          "One participation; retain rejection in the bid Note.",
+          "Bid received p. 21; rejection and subsequent NDA p. 22.",
+          "#1; #8",
+          "Rows #1 and #8 would require an intervening exit and re-entry.",
+          null
+        ]
+      },
+      {
+        "excel_row": 3,
+        "values": [
+          "R2",
+          "Review Pfizer’s first contact and supporting pages.",
+          "First attempted contact 04/20; Strategic; advisers recorded.",
+          "Contact and financial advisers p. 22; business p. 19; legal counsel p. 23.",
+          "#2",
+          "—",
+          null
+        ]
+      },
+      {
+        "excel_row": 4,
+        "values": [
+          "R3",
+          "Review initial round boundary with undated wider outreach.",
+          "Round 1 opens 06/28, the latest dated sale step before the first NDA.",
+          "Outreach, 06/29 NDA and several-party announcement p. 22.",
+          "#6; #7; #8; #9",
+          "Rows #6–#9 could have different initial-stage timing.",
+          null
+        ]
+      },
+      {
+        "excel_row": 5,
+        "values": [
+          "R4",
+          "Review supporting date for Pfizer’s management presentation.",
+          "Attach 07/14 presentation to NDA/admission Note.",
+          "NDA and initial data access p. 22; presentation p. 23.",
+          "#7",
+          "—",
+          null
+        ]
+      },
+      {
+        "excel_row": 6,
+        "values": [
+          "R5",
+          "Review untraced NDA cohort and later unnamed invitees.",
+          "Do not equate cohorts; apply inferred closure and record subsequent admission separately.",
+          "Several NDA signers p. 22; 08/08 deadline and several later invitees p. 23.",
+          "#9; #15; #19; #25",
+          "Rows #15 and #19 could represent uninterrupted participation.",
+          null
+        ]
+      },
+      {
+        "excel_row": 7,
+        "values": [
+          "R6",
+          "Review initial deadline and subsequent selection.",
+          "Enforced; the 08/10 invitation opens round 2.",
+          "08/08 proposal and 08/10 stage admission p. 23.",
+          "#13; #16; #18; #19",
+          "Rows #16–#19 would remain in round 1.",
+          null
+        ]
+      },
+      {
+        "excel_row": 8,
+        "values": [
+          "Q1",
+          "Does “definitive proposal” make round 2 final?",
+          "No; the explicit best-and-final request opens round 3.",
+          "08/14 wording p. 23; first explicit final request p. 24.",
+          "#16; #20; #24; #25; #26; #27; #28",
+          "Rows #24–#28 merge into round 2; #25’s exit label may change.",
+          null
+        ]
+      },
+      {
+        "excel_row": 9,
+        "values": [
+          "R7",
+          "Review Sanofi’s inferred stage exclusion and identity.",
+          "Drop by 08/10; no identification among subsequent invitees.",
+          "Last named participation p. 22; subsequent invitation p. 23.",
+          "#17",
+          "Row #17 moves if Sanofi is identified in the later cohort.",
+          null
+        ]
+      },
+      {
+        "excel_row": 10,
+        "values": [
+          "R8",
+          "Review document and proposal dates across pages.",
+          "08/18 is a document date; 08/19 is the bid deadline; $77 proposal is Formal.",
+          "Request p. 23; delivery and priced response p. 24.",
+          "#20; #22; #23",
+          "—",
+          null
+        ]
+      },
+      {
+        "excel_row": 11,
+        "values": [
+          "R9",
+          "Review best-and-final opening and unnamed-party exclusion.",
+          "Round 3 opens 08/19; only Pfizer is identified as invited.",
+          "Earlier several-party stage p. 23; final request p. 24.",
+          "#24; #25; #26",
+          "Rows #24–#26 change if further final-stage invitees are identified.",
+          null
+        ]
+      },
+      {
+        "excel_row": 12,
+        "values": [
+          "R10",
+          "Review final-price validation and unavailable fairness opinion.",
+          "$81.50 cash matches agreement description; fairness comparison unavailable.",
+          "Final offer/signing p. 24; agreement consideration pp. 9, 26. Supplied filing contains no fairness opinion.",
+          "#27; #28",
+          "—",
+          null
+        ]
+      },
+      {
+        "excel_row": 13,
+        "values": [
+          "R11",
+          "Review acquisition-shell identity and termination-fee support.",
+          "One Pfizer bidder unit; $510 million target fee at signing.",
+          "Signing p. 24; Montreal identity p. 9; termination fee p. 39.",
+          "#28",
+          "—",
+          null
+        ]
+      },
+      {
+        "excel_row": 14,
+        "values": [
+          "R12",
+          "Review target approval on the final bid deadline.",
+          "Approval ends the final round at signing; no additional stage.",
+          "Board approved after the 08/20 final offer, p. 24.",
+          "#26; #28",
+          "—",
+          null
+        ]
+      },
+      {
+        "excel_row": 15,
+        "values": [
+          "R13",
+          "Review financing evidence windows.",
+          "Later bids: Not stated; filing-date funding is retained at signing.",
+          "08/08 financing assurance p. 23; later bids p. 24; filing-date sources and absent commitments p. 21.",
+          "#23; #27; #28",
+          "Rows #23 and #27 would change Financing and possibly Conditions.",
+          null
+        ]
+      }
+    ]
+  },
+  "Deal facts": {
+    "columns": [
+      "Field",
+      "Value"
+    ],
+    "rows": [
+      {
+        "excel_row": 2,
+        "values": [
+          "Target",
+          "Medivation, Inc."
+        ]
+      },
+      {
+        "excel_row": 3,
+        "values": [
+          "Acquirer",
+          "Pfizer Inc., through its wholly-owned subsidiary Montreal, Inc."
+        ]
+      },
+      {
+        "excel_row": 4,
+        "values": [
+          "Acquirer type",
+          "Strategic — research-based global biopharmaceutical company (pp. 19–20)."
+        ]
+      },
+      {
+        "excel_row": 5,
+        "values": [
+          "Agreed price and consideration",
+          "$81.50 per share in cash, without interest, subject to required tax withholding (pp. 9, 24, 26)."
+        ]
+      },
+      {
+        "excel_row": 6,
+        "values": [
+          "Merger agreement signed",
+          "08/20/2016 (p. 24)."
+        ]
+      },
+      {
+        "excel_row": 7,
+        "values": [
+          "Merger announced",
+          "08/22/2016 (p. 24)."
+        ]
+      },
+      {
+        "excel_row": 8,
+        "values": [
+          "Filing type and date",
+          "Schedule TO-T; Offer to Purchase, Exhibit (a)(1)(A), dated 08/30/2016 (cover; p. 21)."
+        ]
+      },
+      {
+        "excel_row": 9,
+        "values": [
+          "Background pages",
+          "21–24."
+        ]
+      },
+      {
+        "excel_row": 10,
+        "values": [
+          "Initiation",
+          "bidder-led — Sanofi proposal received 04/15/2016 precedes the target’s reported sale steps (pp. 21–22)."
+        ]
+      },
+      {
+        "excel_row": 11,
+        "values": [
+          "Number of processes",
+          1
+        ]
+      },
+      {
+        "excel_row": 12,
+        "values": [
+          "Earlier approaches",
+          "None reported"
+        ]
+      },
+      {
+        "excel_row": 13,
+        "values": [
+          "Auction screen",
+          "Met (process 1): several parties; Pfizer and Sanofi identified as confidentiality-agreement counterparties (p. 22)."
+        ]
+      },
+      {
+        "excel_row": 14,
+        "values": [
+          "Whole-company bids",
+          "Yes"
+        ]
+      },
+      {
+        "excel_row": 15,
+        "values": [
+          "Currency and units of bid prices",
+          "US dollars per common share."
+        ]
+      },
+      {
+        "excel_row": 16,
+        "values": [
+          "Target financial advisers",
+          "J.P. Morgan Securities LLC; Evercore Group L.L.C. (p. 22)."
+        ]
+      },
+      {
+        "excel_row": 17,
+        "values": [
+          "Target legal advisers",
+          "Cooley LLP (p. 23); Wachtell, Lipton, Rosen & Katz (p. 24)."
+        ]
+      },
+      {
+        "excel_row": 18,
+        "values": [
+          "Account",
+          "Sanofi initiated the reported process with a non-binding $52.50-per-share proposal received on April 15, 2016, which Medivation rejected while Sanofi continued pursuing the company. Pfizer approached Medivation in April and signed a confidentiality agreement on June 29, and Medivation announced confidentiality agreements with several parties on July 5. Pfizer submitted a $65.00-per-share cash proposal on August 8 and was invited with several other interested parties to further diligence on August 10. After supplying a merger-agreement markup, Pfizer offered $77.00 per share in cash on August 19 and was asked for its best and final offer. Pfizer offered $81.50 per share in cash on August 20, the parties signed that afternoon, and the transaction was announced on August 22. The filing does not identify the other subsequent-stage bidders or report their offers, so their exact numbers and continuity remain unreported."
+        ]
+      }
+    ]
+  }
+}

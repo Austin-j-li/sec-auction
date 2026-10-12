@@ -1,0 +1,13 @@
+{
+  "bytes": 24141,
+  "exists": true,
+  "path": "/home/uctpiaj/work/Projects/sec-auction/_dev/runs/model_comparison_2026-10-12/penford-gpt-6.1-sol-xhigh-r1/extraction/penford.xlsx",
+  "sha256": "c3316cf8067c4a7c0d590b70cd3b82a39857fc379dc46794cd3096bc00877404",
+  "sheet_names": [
+    "Deal ledger",
+    "Rounds",
+    "Questions",
+    "Deal facts"
+  ],
+  "valid_xlsx": true
+}

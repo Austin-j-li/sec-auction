@@ -1,0 +1,63 @@
+{
+  "checker": "lean-mechanical",
+  "checker_revision": "Checks the Version 1 ledger rules.",
+  "checker_version": "Version 1",
+  "filing": "/home/uctpiaj/work/Projects/sec-auction/_dev/cockpit/state/filings/medivation/medivation_2016-08-30_SCTO-T.htm",
+  "issues": [
+    {
+      "basis": "mechanical",
+      "code": "rounds.new_date_not_extended",
+      "column": "Deadline outcome",
+      "message": "Outcome 1 is Passed without action, but the ledger sets a later due date in this round on or after that deadline (08/19/2016) and reaches it; check whether the outcome is Extended (E9, item 1).",
+      "row": 3,
+      "severity": "warning",
+      "sheet": "Rounds"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.length",
+      "column": null,
+      "message": "Question entry has 103 words across its fields; the limit is 60 (D4).",
+      "row": 2,
+      "severity": "warning",
+      "sheet": "Questions"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.length",
+      "column": null,
+      "message": "Question entry has 95 words across its fields; the limit is 60 (D4).",
+      "row": 3,
+      "severity": "warning",
+      "sheet": "Questions"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.length",
+      "column": null,
+      "message": "Question entry has 72 words across its fields; the limit is 60 (D4).",
+      "row": 4,
+      "severity": "warning",
+      "sheet": "Questions"
+    },
+    {
+      "basis": "mechanical",
+      "code": "facts.account_sentences",
+      "column": "Value",
+      "message": "Account appears to have 7 sentences; the instruction asks for five or six.",
+      "row": 18,
+      "severity": "warning",
+      "sheet": "Deal facts"
+    }
+  ],
+  "ledger_schema": "Version 1",
+  "scope_note": "Mechanical checks only. Quote occurrence proves source occurrence, not semantic support. No bidder-population arithmetic or substantive extraction grading is performed.",
+  "status": "pass_with_warnings",
+  "summary": {
+    "errors": 0,
+    "information": 0,
+    "total_issues": 5,
+    "warnings": 5
+  },
+  "workbook": "/home/uctpiaj/work/Projects/sec-auction/_dev/runs/model_comparison_2026-10-12/medivation-opus-5-5-xhigh-r1/extraction/medivation.xlsx"
+}
