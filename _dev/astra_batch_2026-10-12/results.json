@@ -1,0 +1,596 @@
+{
+  "summary": {
+    "completed": 12,
+    "working_copies_replaced": 12,
+    "mechanical_errors": 0,
+    "mechanical_warnings": 12,
+    "ledger_rows": 712,
+    "originals_preserved": 12,
+    "warning_codes": {
+      "ledger.exclusivity_duplicate": 1,
+      "rounds.new_date_not_extended": 1,
+      "ledger.count_marker": 7,
+      "bid.one_sided_price": 3
+    },
+    "final_job_ended_at": "2026-10-12T19:35:48+00:00",
+    "final_replacement_at": "2026-10-12T19:36:05+00:00"
+  },
+  "deals": [
+    {
+      "deal": "datalink",
+      "job_id": "d67819992fb14f41abb4d4cdafb64962",
+      "state": "completed",
+      "version_id": "astra6-xhigh-20261012-1924-268f0b",
+      "model": "gpt-6-astra",
+      "effort": "xhigh",
+      "service_tier_requested": "priority",
+      "instruction_sha256": "e6e1e2f3b53378bdb6770762d33fe9b84090c2ae27301d5bf725e0c3f629eb13",
+      "filing_sha256": "437e0e7a76ea1326ddfcc81c2b287b2b15354752ae1bab6798b02a014ff7d4d3",
+      "workbook_sha256": "268f0bc4a09084df0bdf5ec1560f34ef21b37c69cf57d3ed49c90197112b7d68",
+      "workbook_hash_matches": true,
+      "working_revision": 1,
+      "working_base_matches": true,
+      "replaced_at": "2026-10-12T19:35:47+00:00",
+      "old_originals": [
+        {
+          "id": "opus55-medium-20260928-1531-b29df5",
+          "file_exists": true,
+          "hash_matches": true
+        }
+      ],
+      "rows": {
+        "Deal ledger": 85,
+        "Rounds": 5,
+        "Questions": 22,
+        "Deal facts": 17
+      },
+      "started_at": "2026-10-12T19:24:55+00:00",
+      "ended_at": "2026-10-12T19:34:57+00:00",
+      "elapsed_seconds": 600.464,
+      "checker": {
+        "errors": 0,
+        "warnings": 1,
+        "checker_version": "Version 1",
+        "ledger_schema": "Version 1"
+      },
+      "usage": {
+        "cost_usd": null,
+        "tokens": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 1202944,
+          "input_tokens": 1309693,
+          "output_tokens": 29849,
+          "reasoning_output_tokens": 10304
+        }
+      }
+    },
+    {
+      "deal": "kraton",
+      "job_id": "f0efbfe10ea945a2a5ac4bd0d005bc7a",
+      "state": "completed",
+      "version_id": "astra6-xhigh-20261012-1925-4a3221",
+      "model": "gpt-6-astra",
+      "effort": "xhigh",
+      "service_tier_requested": "priority",
+      "instruction_sha256": "e6e1e2f3b53378bdb6770762d33fe9b84090c2ae27301d5bf725e0c3f629eb13",
+      "filing_sha256": "c0d2abbd80aa02fe55c8c1cc11f9d0a0e4a92bdde3045654cce11997781ae322",
+      "workbook_sha256": "4a3221c58ed7e9e39da3980a8165059436d164d130d13d4c6cd8ddce2c23947b",
+      "workbook_hash_matches": true,
+      "working_revision": 1,
+      "working_base_matches": true,
+      "replaced_at": "2026-10-12T19:34:35+00:00",
+      "old_originals": [
+        {
+          "id": "opus55-medium-20260928-1438-a1abe0",
+          "file_exists": true,
+          "hash_matches": true
+        }
+      ],
+      "rows": {
+        "Deal ledger": 71,
+        "Rounds": 3,
+        "Questions": 20,
+        "Deal facts": 17
+      },
+      "started_at": "2026-10-12T19:25:03+00:00",
+      "ended_at": "2026-10-12T19:34:24+00:00",
+      "elapsed_seconds": 557.637,
+      "checker": {
+        "errors": 0,
+        "warnings": 0,
+        "checker_version": "Version 1",
+        "ledger_schema": "Version 1"
+      },
+      "usage": {
+        "cost_usd": null,
+        "tokens": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 843648,
+          "input_tokens": 940008,
+          "output_tokens": 29540,
+          "reasoning_output_tokens": 12411
+        }
+      }
+    },
+    {
+      "deal": "mac-gray",
+      "job_id": "dd889f015a0b4f7cbee5d1400a221644",
+      "state": "completed",
+      "version_id": "astra6-xhigh-20261012-1925-be592e",
+      "model": "gpt-6-astra",
+      "effort": "xhigh",
+      "service_tier_requested": "priority",
+      "instruction_sha256": "e6e1e2f3b53378bdb6770762d33fe9b84090c2ae27301d5bf725e0c3f629eb13",
+      "filing_sha256": "e6ea7bd00cfc389c28e5139a3d23aafcc684f7b65ff54d699f3c5be11bbc4301",
+      "workbook_sha256": "be592e59e34953180f5fdcad7c7b83764940da12014656e78d645a9ceebcfa3c",
+      "workbook_hash_matches": true,
+      "working_revision": 1,
+      "working_base_matches": true,
+      "replaced_at": "2026-10-12T19:32:23+00:00",
+      "old_originals": [
+        {
+          "id": "opus55-medium-20260928-1420-10355a",
+          "file_exists": true,
+          "hash_matches": true
+        }
+      ],
+      "rows": {
+        "Deal ledger": 59,
+        "Rounds": 3,
+        "Questions": 15,
+        "Deal facts": 17
+      },
+      "started_at": "2026-10-12T19:25:05+00:00",
+      "ended_at": "2026-10-12T19:32:02+00:00",
+      "elapsed_seconds": 414.62,
+      "checker": {
+        "errors": 0,
+        "warnings": 0,
+        "checker_version": "Version 1",
+        "ledger_schema": "Version 1"
+      },
+      "usage": {
+        "cost_usd": null,
+        "tokens": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 922368,
+          "input_tokens": 1021794,
+          "output_tokens": 22069,
+          "reasoning_output_tokens": 7363
+        }
+      }
+    },
+    {
+      "deal": "penford",
+      "job_id": "910117b125844769be859b1a423fd489",
+      "state": "completed",
+      "version_id": "astra6-xhigh-20261012-1925-b061ce",
+      "model": "gpt-6-astra",
+      "effort": "xhigh",
+      "service_tier_requested": "priority",
+      "instruction_sha256": "e6e1e2f3b53378bdb6770762d33fe9b84090c2ae27301d5bf725e0c3f629eb13",
+      "filing_sha256": "5bd50713b2ce136b9b80d28360b6281d6890d0d95b35cfe36a3eacd288bb53aa",
+      "workbook_sha256": "b061ce16c574c2ddccfd2802656276ab56a898c01a4789ce6bb7c591ff50db35",
+      "workbook_hash_matches": true,
+      "working_revision": 1,
+      "working_base_matches": true,
+      "replaced_at": "2026-10-12T19:32:26+00:00",
+      "old_originals": [
+        {
+          "id": "opus55-medium-20260928-1430-b704c0",
+          "file_exists": true,
+          "hash_matches": true
+        }
+      ],
+      "rows": {
+        "Deal ledger": 47,
+        "Rounds": 2,
+        "Questions": 14,
+        "Deal facts": 17
+      },
+      "started_at": "2026-10-12T19:25:06+00:00",
+      "ended_at": "2026-10-12T19:32:05+00:00",
+      "elapsed_seconds": 417.686,
+      "checker": {
+        "errors": 0,
+        "warnings": 0,
+        "checker_version": "Version 1",
+        "ledger_schema": "Version 1"
+      },
+      "usage": {
+        "cost_usd": null,
+        "tokens": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 1007488,
+          "input_tokens": 1126367,
+          "output_tokens": 21021,
+          "reasoning_output_tokens": 8094
+        }
+      }
+    },
+    {
+      "deal": "petsmart",
+      "job_id": "f68a8d6801bb43ce99e348a0b267bf3c",
+      "state": "completed",
+      "version_id": "astra6-xhigh-20261012-1925-2629b0",
+      "model": "gpt-6-astra",
+      "effort": "xhigh",
+      "service_tier_requested": "priority",
+      "instruction_sha256": "e6e1e2f3b53378bdb6770762d33fe9b84090c2ae27301d5bf725e0c3f629eb13",
+      "filing_sha256": "52c93afa5897d1878441e76050f3c9607972624ea1e4105c29be815f4bf04ca9",
+      "workbook_sha256": "2629b0819139e2ae75b5a62780b804936390b9a6a753693362103eb77ad8213d",
+      "workbook_hash_matches": true,
+      "working_revision": 1,
+      "working_base_matches": true,
+      "replaced_at": "2026-10-12T19:35:50+00:00",
+      "old_originals": [
+        {
+          "id": "opus55-medium-20260928-1430-afdd33",
+          "file_exists": true,
+          "hash_matches": true
+        }
+      ],
+      "rows": {
+        "Deal ledger": 62,
+        "Rounds": 2,
+        "Questions": 20,
+        "Deal facts": 17
+      },
+      "started_at": "2026-10-12T19:25:08+00:00",
+      "ended_at": "2026-10-12T19:35:00+00:00",
+      "elapsed_seconds": 590.346,
+      "checker": {
+        "errors": 0,
+        "warnings": 1,
+        "checker_version": "Version 1",
+        "ledger_schema": "Version 1"
+      },
+      "usage": {
+        "cost_usd": null,
+        "tokens": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 850432,
+          "input_tokens": 925776,
+          "output_tokens": 27512,
+          "reasoning_output_tokens": 11331
+        }
+      }
+    },
+    {
+      "deal": "providence-worcester",
+      "job_id": "4bd6f1d72516458885a1e292551c2f4e",
+      "state": "completed",
+      "version_id": "astra6-xhigh-20261012-1925-7b32a2",
+      "model": "gpt-6-astra",
+      "effort": "xhigh",
+      "service_tier_requested": "priority",
+      "instruction_sha256": "e6e1e2f3b53378bdb6770762d33fe9b84090c2ae27301d5bf725e0c3f629eb13",
+      "filing_sha256": "32d7a2738c95c29fa98fccc6a874a5e2acbfd0b7fc87a1f3e9145c60f627378a",
+      "workbook_sha256": "7b32a24e9b90437982f99cf3b912a78a08085ab6c5ac8c2406c018ac321ed76f",
+      "workbook_hash_matches": true,
+      "working_revision": 1,
+      "working_base_matches": true,
+      "replaced_at": "2026-10-12T19:35:53+00:00",
+      "old_originals": [
+        {
+          "id": "opus55-medium-20260928-1420-8091a7",
+          "file_exists": true,
+          "hash_matches": true
+        }
+      ],
+      "rows": {
+        "Deal ledger": 64,
+        "Rounds": 3,
+        "Questions": 20,
+        "Deal facts": 17
+      },
+      "started_at": "2026-10-12T19:25:08+00:00",
+      "ended_at": "2026-10-12T19:35:26+00:00",
+      "elapsed_seconds": 614.771,
+      "checker": {
+        "errors": 0,
+        "warnings": 0,
+        "checker_version": "Version 1",
+        "ledger_schema": "Version 1"
+      },
+      "usage": {
+        "cost_usd": null,
+        "tokens": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 885248,
+          "input_tokens": 974908,
+          "output_tokens": 30720,
+          "reasoning_output_tokens": 14028
+        }
+      }
+    },
+    {
+      "deal": "stec",
+      "job_id": "29340f5b543d478397befd17cbe17f07",
+      "state": "completed",
+      "version_id": "astra6-xhigh-20261012-1925-9f7f5a",
+      "model": "gpt-6-astra",
+      "effort": "xhigh",
+      "service_tier_requested": "priority",
+      "instruction_sha256": "e6e1e2f3b53378bdb6770762d33fe9b84090c2ae27301d5bf725e0c3f629eb13",
+      "filing_sha256": "b29adcd8c221c55b48593b339bbe768552a21e1fa8836e2f355d6ffe9b86f36b",
+      "workbook_sha256": "9f7f5a059cd75bce63297c1fd11c6e2c8b5fb31ae681928cc8d2f744c0d92875",
+      "workbook_hash_matches": true,
+      "working_revision": 1,
+      "working_base_matches": true,
+      "replaced_at": "2026-10-12T19:33:41+00:00",
+      "old_originals": [
+        {
+          "id": "opus55-medium-20260928-1448-468449",
+          "file_exists": true,
+          "hash_matches": true
+        }
+      ],
+      "rows": {
+        "Deal ledger": 65,
+        "Rounds": 3,
+        "Questions": 19,
+        "Deal facts": 17
+      },
+      "started_at": "2026-10-12T19:25:09+00:00",
+      "ended_at": "2026-10-12T19:32:19+00:00",
+      "elapsed_seconds": 427.34,
+      "checker": {
+        "errors": 0,
+        "warnings": 2,
+        "checker_version": "Version 1",
+        "ledger_schema": "Version 1"
+      },
+      "usage": {
+        "cost_usd": null,
+        "tokens": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 721664,
+          "input_tokens": 814723,
+          "output_tokens": 22542,
+          "reasoning_output_tokens": 8229
+        }
+      }
+    },
+    {
+      "deal": "synacor",
+      "job_id": "03ca5f4701c74ec68ab80c72df79903b",
+      "state": "completed",
+      "version_id": "astra6-xhigh-20261012-1925-aaf0f2",
+      "model": "gpt-6-astra",
+      "effort": "xhigh",
+      "service_tier_requested": "priority",
+      "instruction_sha256": "e6e1e2f3b53378bdb6770762d33fe9b84090c2ae27301d5bf725e0c3f629eb13",
+      "filing_sha256": "2ea05ceef8c7315f7bf81743a70f67a2574e545cb303e48152efd6803b749b0e",
+      "workbook_sha256": "aaf0f2e7f873e9cbce868dc519e9226b56a2f250911cfa57198d9c48e98ecb7b",
+      "workbook_hash_matches": true,
+      "working_revision": 1,
+      "working_base_matches": true,
+      "replaced_at": "2026-10-12T19:33:44+00:00",
+      "old_originals": [
+        {
+          "id": "opus55-medium-20260928-1448-ae0ad0",
+          "file_exists": true,
+          "hash_matches": true
+        }
+      ],
+      "rows": {
+        "Deal ledger": 72,
+        "Rounds": 6,
+        "Questions": 23,
+        "Deal facts": 17
+      },
+      "started_at": "2026-10-12T19:25:11+00:00",
+      "ended_at": "2026-10-12T19:33:07+00:00",
+      "elapsed_seconds": 473.676,
+      "checker": {
+        "errors": 0,
+        "warnings": 2,
+        "checker_version": "Version 1",
+        "ledger_schema": "Version 1"
+      },
+      "usage": {
+        "cost_usd": null,
+        "tokens": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 729216,
+          "input_tokens": 823199,
+          "output_tokens": 26614,
+          "reasoning_output_tokens": 9992
+        }
+      }
+    },
+    {
+      "deal": "medivation",
+      "job_id": "fdba1ef9312643f4bcaf2f19a5093bf8",
+      "state": "completed",
+      "version_id": "astra6-xhigh-20261012-1925-626887",
+      "model": "gpt-6-astra",
+      "effort": "xhigh",
+      "service_tier_requested": "priority",
+      "instruction_sha256": "e6e1e2f3b53378bdb6770762d33fe9b84090c2ae27301d5bf725e0c3f629eb13",
+      "filing_sha256": "0aaf9d1a20d8935780bc3e1150e6226a40ede50501e46754061fd2cf2ba9d51e",
+      "workbook_sha256": "62688700acee9f778a7d0f1992ef0bb6af51e41fef7f4632d553d86ee87ac820",
+      "workbook_hash_matches": true,
+      "working_revision": 1,
+      "working_base_matches": true,
+      "replaced_at": "2026-10-12T19:32:09+00:00",
+      "old_originals": [
+        {
+          "id": "opus55-medium-20260928-1531-4031a4",
+          "file_exists": true,
+          "hash_matches": true
+        }
+      ],
+      "rows": {
+        "Deal ledger": 30,
+        "Rounds": 2,
+        "Questions": 14,
+        "Deal facts": 17
+      },
+      "started_at": "2026-10-12T19:25:12+00:00",
+      "ended_at": "2026-10-12T19:31:41+00:00",
+      "elapsed_seconds": 388.299,
+      "checker": {
+        "errors": 0,
+        "warnings": 0,
+        "checker_version": "Version 1",
+        "ledger_schema": "Version 1"
+      },
+      "usage": {
+        "cost_usd": null,
+        "tokens": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 681088,
+          "input_tokens": 748649,
+          "output_tokens": 20245,
+          "reasoning_output_tokens": 9094
+        }
+      }
+    },
+    {
+      "deal": "zep",
+      "job_id": "b12f1e77e12f45e2a2c97c6ce7d815ad",
+      "state": "completed",
+      "version_id": "astra6-xhigh-20261012-1925-85ac88",
+      "model": "gpt-6-astra",
+      "effort": "xhigh",
+      "service_tier_requested": "priority",
+      "instruction_sha256": "e6e1e2f3b53378bdb6770762d33fe9b84090c2ae27301d5bf725e0c3f629eb13",
+      "filing_sha256": "f97de83a2878866d6be5e25ab36bfaa8acf8e352e564137d1b05c313d1b81bb6",
+      "workbook_sha256": "85ac88194be73755ba5991c7fb6b3ca50ab6b3b73190c8d1bbdb98ffe98d2e5b",
+      "workbook_hash_matches": true,
+      "working_revision": 1,
+      "working_base_matches": true,
+      "replaced_at": "2026-10-12T19:35:55+00:00",
+      "old_originals": [
+        {
+          "id": "opus55-medium-20260928-1537-b8400a",
+          "file_exists": true,
+          "hash_matches": true
+        }
+      ],
+      "rows": {
+        "Deal ledger": 56,
+        "Rounds": 5,
+        "Questions": 20,
+        "Deal facts": 17
+      },
+      "started_at": "2026-10-12T19:25:12+00:00",
+      "ended_at": "2026-10-12T19:35:21+00:00",
+      "elapsed_seconds": 606.399,
+      "checker": {
+        "errors": 0,
+        "warnings": 3,
+        "checker_version": "Version 1",
+        "ledger_schema": "Version 1"
+      },
+      "usage": {
+        "cost_usd": null,
+        "tokens": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 713984,
+          "input_tokens": 889656,
+          "output_tokens": 31783,
+          "reasoning_output_tokens": 15737
+        }
+      }
+    },
+    {
+      "deal": "pepco-holdings",
+      "job_id": "0e69d7907815456e8e28423bcefa29d5",
+      "state": "completed",
+      "version_id": "astra6-xhigh-20261012-1925-a070bf",
+      "model": "gpt-6-astra",
+      "effort": "xhigh",
+      "service_tier_requested": "priority",
+      "instruction_sha256": "e6e1e2f3b53378bdb6770762d33fe9b84090c2ae27301d5bf725e0c3f629eb13",
+      "filing_sha256": "287975017be1fa4987f0057a139101d26dc14a69a49a4b49a58d5e9b9690bad0",
+      "workbook_sha256": "a070bfe822821ce28c75bdabb1835c1729702dc57e026067f850b28ae31290cc",
+      "workbook_hash_matches": true,
+      "working_revision": 1,
+      "working_base_matches": true,
+      "replaced_at": "2026-10-12T19:33:47+00:00",
+      "old_originals": [
+        {
+          "id": "opus55-medium-20260928-1541-c4166b",
+          "file_exists": true,
+          "hash_matches": true
+        }
+      ],
+      "rows": {
+        "Deal ledger": 49,
+        "Rounds": 2,
+        "Questions": 16,
+        "Deal facts": 17
+      },
+      "started_at": "2026-10-12T19:25:14+00:00",
+      "ended_at": "2026-10-12T19:32:36+00:00",
+      "elapsed_seconds": 437.667,
+      "checker": {
+        "errors": 0,
+        "warnings": 2,
+        "checker_version": "Version 1",
+        "ledger_schema": "Version 1"
+      },
+      "usage": {
+        "cost_usd": null,
+        "tokens": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 771584,
+          "input_tokens": 860192,
+          "output_tokens": 22352,
+          "reasoning_output_tokens": 9962
+        }
+      }
+    },
+    {
+      "deal": "imprivata",
+      "job_id": "c28c184e48744acfa945bf4063679e41",
+      "state": "completed",
+      "version_id": "astra6-xhigh-20261012-1925-0a0fd0",
+      "model": "gpt-6-astra",
+      "effort": "xhigh",
+      "service_tier_requested": "priority",
+      "instruction_sha256": "e6e1e2f3b53378bdb6770762d33fe9b84090c2ae27301d5bf725e0c3f629eb13",
+      "filing_sha256": "c6e0661982bb95f9bd4397393cd84c74ab34c5d278890a28c926652fdc283910",
+      "workbook_sha256": "0a0fd0afe8d9077dd62d2e4d083f7838d3337edebfe9fd0b4fcabba22860defa",
+      "workbook_hash_matches": true,
+      "working_revision": 1,
+      "working_base_matches": true,
+      "replaced_at": "2026-10-12T19:36:05+00:00",
+      "old_originals": [
+        {
+          "id": "opus55-medium-20260928-1546-e652a1",
+          "file_exists": true,
+          "hash_matches": true
+        }
+      ],
+      "rows": {
+        "Deal ledger": 52,
+        "Rounds": 3,
+        "Questions": 21,
+        "Deal facts": 17
+      },
+      "started_at": "2026-10-12T19:25:15+00:00",
+      "ended_at": "2026-10-12T19:35:48+00:00",
+      "elapsed_seconds": 630.235,
+      "checker": {
+        "errors": 0,
+        "warnings": 1,
+        "checker_version": "Version 1",
+        "ledger_schema": "Version 1"
+      },
+      "usage": {
+        "cost_usd": null,
+        "tokens": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 831616,
+          "input_tokens": 925226,
+          "output_tokens": 29538,
+          "reasoning_output_tokens": 14169
+        }
+      }
+    }
+  ]
+}

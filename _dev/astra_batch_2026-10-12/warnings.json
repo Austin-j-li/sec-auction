@@ -1,0 +1,122 @@
+[
+  {
+    "deal": "datalink",
+    "severity": "warning",
+    "code": "ledger.exclusivity_duplicate",
+    "sheet": "Deal ledger",
+    "row": 80,
+    "column": "Event",
+    "message": "Exclusivity changed has the same Who and Sort date as bid row #78, which codes an exclusivity request; if this row repeats the bid's own request, remove it (E10); a grant, execution or extension is its own event.",
+    "basis": "mechanical"
+  },
+  {
+    "deal": "petsmart",
+    "severity": "warning",
+    "code": "rounds.new_date_not_extended",
+    "sheet": "Rounds",
+    "row": 3,
+    "column": "Deadline outcome",
+    "message": "Outcome 1 is Passed without action, but the ledger sets a later due date in this round on or after that deadline (12/10/2014) and reaches it; check whether the outcome is Extended (E9, item 1).",
+    "basis": "mechanical"
+  },
+  {
+    "deal": "stec",
+    "severity": "warning",
+    "code": "ledger.count_marker",
+    "sheet": "Deal ledger",
+    "row": 6,
+    "column": "Count",
+    "message": "Count is blank on a Process restarted row; it holds the number of open participations the marker closes, and stays blank only when it closes none (E5).",
+    "basis": "mechanical"
+  },
+  {
+    "deal": "stec",
+    "severity": "warning",
+    "code": "bid.one_sided_price",
+    "sheet": "Deal ledger",
+    "row": 27,
+    "column": "Note",
+    "message": "Only one price endpoint is filled, but the Note does not visibly identify a floor or ceiling.",
+    "basis": "mechanical"
+  },
+  {
+    "deal": "synacor",
+    "severity": "warning",
+    "code": "ledger.count_marker",
+    "sheet": "Deal ledger",
+    "row": 14,
+    "column": "Count",
+    "message": "Count is blank on a Process restarted row; it holds the number of open participations the marker closes, and stays blank only when it closes none (E5).",
+    "basis": "mechanical"
+  },
+  {
+    "deal": "synacor",
+    "severity": "warning",
+    "code": "ledger.count_marker",
+    "sheet": "Deal ledger",
+    "row": 22,
+    "column": "Count",
+    "message": "Count is blank on a Process restarted row; it holds the number of open participations the marker closes, and stays blank only when it closes none (E5).",
+    "basis": "mechanical"
+  },
+  {
+    "deal": "zep",
+    "severity": "warning",
+    "code": "ledger.count_marker",
+    "sheet": "Deal ledger",
+    "row": 4,
+    "column": "Count",
+    "message": "Count is blank on a Process terminated row; it holds the number of open participations the marker closes, and stays blank only when it closes none (E5).",
+    "basis": "mechanical"
+  },
+  {
+    "deal": "zep",
+    "severity": "warning",
+    "code": "ledger.count_marker",
+    "sheet": "Deal ledger",
+    "row": 5,
+    "column": "Count",
+    "message": "Count is blank on a Process restarted row; it holds the number of open participations the marker closes, and stays blank only when it closes none (E5).",
+    "basis": "mechanical"
+  },
+  {
+    "deal": "zep",
+    "severity": "warning",
+    "code": "ledger.count_marker",
+    "sheet": "Deal ledger",
+    "row": 32,
+    "column": "Count",
+    "message": "Count is blank on a Process restarted row; it holds the number of open participations the marker closes, and stays blank only when it closes none (E5).",
+    "basis": "mechanical"
+  },
+  {
+    "deal": "pepco-holdings",
+    "severity": "warning",
+    "code": "bid.one_sided_price",
+    "sheet": "Deal ledger",
+    "row": 22,
+    "column": "Note",
+    "message": "Only one price endpoint is filled, but the Note does not visibly identify a floor or ceiling.",
+    "basis": "mechanical"
+  },
+  {
+    "deal": "pepco-holdings",
+    "severity": "warning",
+    "code": "bid.one_sided_price",
+    "sheet": "Deal ledger",
+    "row": 23,
+    "column": "Note",
+    "message": "Only one price endpoint is filled, but the Note does not visibly identify a floor or ceiling.",
+    "basis": "mechanical"
+  },
+  {
+    "deal": "imprivata",
+    "severity": "warning",
+    "code": "ledger.count_marker",
+    "sheet": "Deal ledger",
+    "row": 3,
+    "column": "Count",
+    "message": "Count is blank on a Process restarted row; it holds the number of open participations the marker closes, and stays blank only when it closes none (E5).",
+    "basis": "mechanical"
+  }
+]
