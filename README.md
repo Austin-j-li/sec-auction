@@ -11,7 +11,13 @@ A ledger workbook has four sheets, defined in the instruction:
 
 ## Current status
 
-Version 1, approved 28 September 2026: the instruction is Version 1 (amended 8, 9 and 12 October 2026; v1.1 in the cockpit), the cockpit holds 13 Version 1 runs, one for each deal, and lists 12 deals (Meredith left the list on 10 October 2026), and `extraction/` is empty. See [status](_dev/STATUS.md) for pending work.
+Version 1, approved 28 September 2026.
+
+- **Instruction:** Version 1, amended 8, 9 and 12 October 2026. The cockpit names the current text v1.1.
+- **Deals:** `raw_filing/` holds eight filings: Datalink, Kraton, Mac-Gray, Penford, PetSmart, Providence & Worcester, sTec and Synacor. The cockpit lists 12 deals: these eight, and Medivation, Zep, Pepco Holdings and Imprivata, which were added through the app. Austin dropped Meredith from the project on 9 October 2026.
+- **Extractions:** in the cockpit, each listed deal has a 28 September Opus 5.5 original and a 12 October GPT-6-Astra xhigh original. The Astra original is the working copy. `extraction/` is empty.
+
+See [status](_dev/STATUS.md) for pending work.
 
 ## Repository layout
 
@@ -19,11 +25,9 @@ Version 1, approved 28 September 2026: the instruction is Version 1 (amended 8, 
 |---|---|
 | [`SEC_Deal_Ledger_Extraction_Instruction.md`](SEC_Deal_Ledger_Extraction_Instruction.md) | The extraction instruction, Version 1. |
 | [`raw_filing/`](raw_filing/) | The eight filings as fetched from EDGAR; [`MANIFEST.csv`](raw_filing/MANIFEST.csv) records each source link and SHA-256 hash. |
-| `extraction/` | Blind extractions under Version 1, one `<deal>.xlsx` per deal. |
+| `extraction/` | Blind extractions under Version 1, one `<deal>.xlsx` per deal. Empty: the workbooks stay in the cockpit until Austin orders an export. |
 | `ref/` | Alex's collection instructions, voice notes and hand-coded deals. For evaluation only. |
-| [`_dev/`](_dev/) | Status, the alignment sprint's decision log and reviews, the cockpit app spec and source, and the pipeline tools. |
-
-The eight deals are Datalink, Kraton, Mac-Gray, Penford, PetSmart, Providence & Worcester, sTec and Synacor. Austin dropped Meredith from the project on 9 October 2026.
+| [`_dev/`](_dev/) | Status, the alignment sprint's decision log and records, the dated run and review records, the cockpit app spec and source, and the pipeline tools. |
 
 ## Extracting a deal
 

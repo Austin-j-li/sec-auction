@@ -47,7 +47,6 @@ import argparse
 import datetime as dt
 import json
 import math
-import os
 import re
 import sys
 import unicodedata
@@ -143,9 +142,8 @@ FACT_FIELDS = [
     "Account",
 ]
 ACCOUNT_FIELDS = {"Account", "Account (five or six plain sentences)"}
-AUCTION_SCREEN_FIELDS = {"Auction screen", "Auction screen (E1)"}
 EARLIER_APPROACHES_FIELDS = {
-    "Earlier approaches", "Earlier approaches (E5)",
+    "Earlier approaches",
     "Earlier approaches (E5; “None reported” if none)",  # the field as D5 prints it
 }
 WHOLE_COMPANY_FIELDS = {
@@ -154,7 +152,6 @@ WHOLE_COMPANY_FIELDS = {
 }
 FACT_FIELD_OPTIONS = [{field} for field in FACT_FIELDS]
 FACT_FIELD_OPTIONS[10] = EARLIER_APPROACHES_FIELDS
-FACT_FIELD_OPTIONS[11] = AUCTION_SCREEN_FIELDS
 FACT_FIELD_OPTIONS[12] = WHOLE_COMPANY_FIELDS
 FACT_FIELD_OPTIONS[16] = ACCOUNT_FIELDS
 
@@ -723,7 +720,7 @@ class LeanChecker:
                         column,
                     )
             if is_blank(record["Note"]):
-                issue("warning", "bid.other_scope_note", "Other-scope bid row has no Note; give the amount, units and scope there (D1).", "Note")
+                issue("warning", "bid.other_scope_note", "Other-scope bid row has no Note; give the amount, units and scope there (D2).", "Note")
 
         if record["Antitrust"] == "Y" and record["Regulatory"] != "Concern":
             issue(
@@ -736,7 +733,7 @@ class LeanChecker:
         if as_integer(record["Count"]) == 1:
             for column in TERM_COLUMNS:
                 if record[column] == "Varies":
-                    issue("error", "bid.varies_single", f"{column} is Varies on a row for one bidder; Varies is for cohort rows whose members differ or for which the filing reports the term for only some members (E12).", column)
+                    issue("error", "bid.varies_single", f"{column} is Varies on a row for one bidder; Varies is for cohort rows whose members differ or for which the filing reports the term for only some members (D1).", column)
 
         level = record["Conditions"]
         diligence, financing, regulatory = record["Due diligence"], record["Financing"], record["Regulatory"]
@@ -952,16 +949,15 @@ class LeanChecker:
                 opened.add(process)
             elif (process in opened and as_integer(record["Round"]) == 0 and record["Round"] != "post"
                   and record["Event"] not in EXIT_EVENTS):
-                # An exit row carries the round being left (E6), and the exits an opening causes follow its
+                # An exit row carries the round being left (E8), and the exits an opening causes follow its
                 # Round opened row (E8, E14 rule 1), so a round-0 bidder's exit may follow round 1's opening.
                 self.add("error", "round.zero_after_opening", f"Round 0 is only for rows before round 1 of Process {process} "
                          "opens (D1, E6); this row follows its Round opened row.", sheet=ws.title, row=excel_row, column="Round")
 
     def check_ledger(self) -> dict[str, Any]:
         ws = self.wb["Deal ledger"]
-        ledger_columns = LEDGER_COLUMNS
-        schema_ok = self.check_schema(ws, ledger_columns)
-        self.check_presentation(ws, len(ledger_columns))
+        schema_ok = self.check_schema(ws, LEDGER_COLUMNS)
+        self.check_presentation(ws, len(LEDGER_COLUMNS))
         if not schema_ok:
             return {
                 "rows": [],
@@ -974,8 +970,8 @@ class LeanChecker:
                 "processes": set(),
             }
 
-        columns = {name: index + 1 for index, name in enumerate(ledger_columns)}
-        rows = nonempty_rows(ws, len(ledger_columns))
+        columns = {name: index + 1 for index, name in enumerate(LEDGER_COLUMNS)}
+        rows = nonempty_rows(ws, len(LEDGER_COLUMNS))
         records: list[dict[str, Any]] = []
         by_number: dict[int, int] = {}
         round_rows: dict[tuple[int, int], list[int]] = defaultdict(list)
@@ -998,7 +994,7 @@ class LeanChecker:
             return ws.cell(row, columns[column]).value
 
         for ordinal, excel_row in enumerate(rows, start=1):
-            record = {name: value(excel_row, name) for name in ledger_columns}
+            record = {name: value(excel_row, name) for name in LEDGER_COLUMNS}
             records.append(record)
             row_number = as_integer(record["#"])
             if row_number != ordinal:
@@ -1151,8 +1147,8 @@ class LeanChecker:
                     self.add(
                         "error",
                         "ledger.count_bidder",
-                        f"Count is required on {event} rows unless the filing's figure is qualified, with the Note "
-                        "beginning 'Count: more than ten' (E3, E4).",
+                        f"Count is required on {event} rows unless the filing's figure is qualified, with the Count "
+                        "basis in the Note as 'Count: more than ten' (E3, E4).",
                         sheet=ws.title,
                         row=excel_row,
                         column="Count",
@@ -1922,10 +1918,9 @@ class LeanChecker:
             return
 
         rows = nonempty_rows(ws, len(FACT_COLUMNS))
-        field_options = FACT_FIELD_OPTIONS
         actual_fields = [ws.cell(row, 1).value for row in rows]
-        fields_match = len(actual_fields) == len(field_options) and all(
-            actual in allowed for actual, allowed in zip(actual_fields, field_options, strict=True)
+        fields_match = len(actual_fields) == len(FACT_FIELD_OPTIONS) and all(
+            actual in allowed for actual, allowed in zip(actual_fields, FACT_FIELD_OPTIONS, strict=True)
         )
         if not fields_match:
             self.add(
@@ -1993,8 +1988,7 @@ class LeanChecker:
                 row=self._fact_row(rows, ws, "Number of processes"),
                 column="Value",
             )
-        auction_field = next((field for field in AUCTION_SCREEN_FIELDS if field in values), None)
-        auction = normalize_contiguous(values.get(auction_field)) if auction_field else ""
+        auction = normalize_contiguous(values["Auction screen"]) if "Auction screen" in values else ""
         if auction and (re.match(r"^(Met|Not met)(?:\b|:)", auction) is None or re.search(r"\b\d+\b", auction) is None
                         or re.search(r"\b(?:Uncertain|count unknown)\b", auction, re.IGNORECASE)):
             self.add(
@@ -2003,7 +1997,7 @@ class LeanChecker:
                 "Auction screen entries start with Met or Not met and give the number of parties (E1), "
                 "for example 'Met (process 1): 3 parties'.",
                 sheet=ws.title,
-                row=self._fact_row(rows, ws, auction_field),
+                row=self._fact_row(rows, ws, "Auction screen"),
                 column="Value",
             )
         whole_company_field = next((field for field in WHOLE_COMPANY_FIELDS if field in values), None)
@@ -2088,7 +2082,6 @@ class LeanChecker:
             "summary": {
                 "errors": counts["error"],
                 "warnings": counts["warning"],
-                "information": counts["info"],
                 "total_issues": len(self.issues),
             },
             "issues": [{**issue, "basis": "mechanical"} for issue in self.issues],

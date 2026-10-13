@@ -13,10 +13,7 @@
         "fetched_utc": "2026-09-21T22:16:19Z",
         "bytes": "1382197",
         "sha256": "437e0e7a76ea1326ddfcc81c2b287b2b15354752ae1bab6798b02a014ff7d4d3"
-      },
-      "versions": [],
-      "findings": [],
-      "documents": []
+      }
     },
     "kraton": {
       "name": "Kraton",
@@ -30,10 +27,7 @@
         "fetched_utc": "2026-09-20T23:32:18Z",
         "bytes": "1467260",
         "sha256": "c0d2abbd80aa02fe55c8c1cc11f9d0a0e4a92bdde3045654cce11997781ae322"
-      },
-      "versions": [],
-      "findings": [],
-      "documents": []
+      }
     },
     "mac-gray": {
       "name": "Mac-Gray",
@@ -47,10 +41,7 @@
         "fetched_utc": "2026-09-20T10:22:49Z",
         "bytes": "1279957",
         "sha256": "e6ea7bd00cfc389c28e5139a3d23aafcc684f7b65ff54d699f3c5be11bbc4301"
-      },
-      "versions": [],
-      "findings": [],
-      "documents": []
+      }
     },
     "penford": {
       "name": "Penford",
@@ -64,10 +55,7 @@
         "fetched_utc": "2026-09-20T10:22:50Z",
         "bytes": "1301510",
         "sha256": "5bd50713b2ce136b9b80d28360b6281d6890d0d95b35cfe36a3eacd288bb53aa"
-      },
-      "versions": [],
-      "findings": [],
-      "documents": []
+      }
     },
     "petsmart": {
       "name": "PetSmart",
@@ -81,10 +69,7 @@
         "fetched_utc": "2026-09-20T10:22:49Z",
         "bytes": "1641964",
         "sha256": "52c93afa5897d1878441e76050f3c9607972624ea1e4105c29be815f4bf04ca9"
-      },
-      "versions": [],
-      "findings": [],
-      "documents": []
+      }
     },
     "providence-worcester": {
       "name": "Providence & Worcester",
@@ -98,10 +83,7 @@
         "fetched_utc": "2026-09-20T10:22:50Z",
         "bytes": "1218389",
         "sha256": "32d7a2738c95c29fa98fccc6a874a5e2acbfd0b7fc87a1f3e9145c60f627378a"
-      },
-      "versions": [],
-      "findings": [],
-      "documents": []
+      }
     },
     "stec": {
       "name": "sTec",
@@ -115,10 +97,7 @@
         "fetched_utc": "2026-09-20T10:22:51Z",
         "bytes": "1376551",
         "sha256": "b29adcd8c221c55b48593b339bbe768552a21e1fa8836e2f355d6ffe9b86f36b"
-      },
-      "versions": [],
-      "findings": [],
-      "documents": []
+      }
     },
     "synacor": {
       "name": "Synacor",
@@ -132,10 +111,7 @@
         "fetched_utc": "2026-09-20T23:32:40Z",
         "bytes": "517155",
         "sha256": "2ea05ceef8c7315f7bf81743a70f67a2574e545cb303e48152efd6803b749b0e"
-      },
-      "versions": [],
-      "findings": [],
-      "documents": []
+      }
     }
   }
 }

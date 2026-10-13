@@ -12,6 +12,8 @@ Use the existing protected ARC connection to Condenser. A separate “Work local
 - Source checkout: `/home/uctpiaj/work/Projects/sec-auction`.
 - Live checkout: `/home/uctpiaj/work/Projects/ledger-live`.
 - Services: `ledger-cockpit.service`, `ledger-worker.service`, `ledger-backup.timer`.
+- Unit files: the tracked copies in `_dev/tools/cockpit/deploy/` are the installed units. They start in the live checkout. The cockpit and worker units set `TMPDIR`.
+- Access drop-in: `~/.config/systemd/user/ledger-cockpit.service.d/30-access.conf` exists only on the VM. It sets the Cloudflare Access team domain, the audience tag and `COCKPIT_REQUIRE_ACCESS=1`. It is not tracked, because the repository is public.
 - State: `/home/uctpiaj/work/Projects/ledger-live/_dev/cockpit/state`.
 - Database: `workspace.sqlite3` inside that state folder; use Python's `sqlite3` module with `mode=ro` for inspection.
 - Backups: `/home/uctpiaj/backups/ledger-live`.
@@ -36,7 +38,7 @@ arc exec condenser 'hostname; id -un; git -C /home/uctpiaj/work/Projects/ledger-
 
 An existing cloud session with `arc` can use this route immediately.
 If the client or protected credential is absent, use a fresh session in the `sec-auction` environment.
-Do not ask Austin to switch to “Work locally” merely because old repository text says cloud sessions cannot reach the VM.
+Do not ask Austin to switch to “Work locally” for a release.
 Report the exact access error if the protected connection fails. Never print a credential to diagnose it.
 
 ## Prepare the release
@@ -65,7 +67,7 @@ Do not submit a second release when the first command's outcome is unknown.
 
 ## Apply the release
 
-These steps update the existing Version 1 app. Do not repeat the historical fresh-state switch-over or delete earlier data.
+These steps update the existing Version 1 app. Do not repeat the fresh-state switch-over of 28 September 2026 or delete earlier data.
 
 1. Run the release in one remote shell with `set -euo pipefail`.
 2. Hold a VM lock for the whole release: `exec 9>/home/uctpiaj/work/sec-auction-deploy.lock; flock -n 9`.
@@ -102,7 +104,7 @@ The command prints the completed backup directory. It also checks SQLite integri
 A unique destination keeps older backups outside this command's retention pass.
 
 Never use `git clean`, forced checkout, state reset, or credential replacement for a routine release.
-Do not overwrite unit files or their Access settings. An ordinary code release needs no service reconfiguration.
+Do not overwrite the installed unit files or the Access drop-in. An ordinary code release needs no service reconfiguration.
 
 ## Parallel extraction limits
 

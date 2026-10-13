@@ -50,7 +50,6 @@ RUNNER = Path(os.environ.get("COCKPIT_RUNNER") or HERE.parent / "sandbox/run_mod
 CHECKER = HERE.parent / "check_lean.py"
 CLAUDE = os.environ.get("COCKPIT_CLAUDE_BIN") or shutil.which("claude") or "claude"
 CODEX = os.environ.get("COCKPIT_CODEX_BIN") or shutil.which("codex") or "codex"
-INSTRUCTION = REPO / "SEC_Deal_Ledger_Extraction_Instruction.md"
 LINK_RE = re.compile(r"https://claude\.com/cai/oauth/authorize\S+")
 ANSI_RE = re.compile(r"\x1b\[[0-9;?]*[A-Za-z]|\x1b\][^\x07]*\x07|\x1b[()][A-Za-z0-9]|\x1b[=>]")
 CLAUDE_ERROR_RE = re.compile(r"(OAuth error:.*?)(?:Press Enter|$)", re.S)
@@ -63,7 +62,7 @@ DEVICE_CODE_RE = re.compile(r"\b[A-Z0-9]{4}-[A-Z0-9]{4,6}\b")
 REFRESH_BELOW_HOURS = 24
 RUN_MARGIN_HOURS = 7
 REFRESH_INTERVAL = 3600
-REFRESH_COMMAND = ["exec", "--ephemeral", "--skip-git-repo-check", "-s", "read-only", "-m", "gpt-6-sol",
+REFRESH_COMMAND = ["exec", "--ephemeral", "--skip-git-repo-check", "-s", "read-only", "-m", "gpt-6.1-sol",
                    "-c", 'model_reasoning_effort="low"', "Reply with OK."]
 TERMINAL = {"completed", "failed", "timed_out", "cancelled"}
 
@@ -72,15 +71,9 @@ def log(message: str) -> None:
     print(f"{_now()} {message}", flush=True)
 
 
-def instruction_version(path: Path = INSTRUCTION) -> str | None:
-    found = re.search(r"\bv(\d+\.\d+(?:\.\d+)?)\b", path.read_text(encoding="utf-8")[:600])
-    return f"v{found.group(1)}" if found else None
-
-
 def engine_of(params: dict[str, Any]) -> tuple[str, dict[str, Any]]:
-    """The job's engine; jobs queued before phase 4 are Opus 5.5."""
-    ident = params.get("engine") if params.get("engine") in runs.ENGINES else runs.LEGACY_ENGINE
-    return ident, runs.ENGINES[ident]
+    """The job's engine: its id and its entry."""
+    return params["engine"], runs.ENGINES[params["engine"]]
 
 
 def alive(pid: int | None, run_dir: str | None) -> bool:
@@ -103,7 +96,6 @@ class Worker:
         self.repo = repo
         self.children: dict[str, subprocess.Popen] = {}
         self.signalled: set[str] = set()
-        self.connects: dict[str, threading.Thread] = {}
         self.lookup_lock = threading.Lock()
         self.pruned = 0.0
         # ChatGPT login refreshes, per user: the running thread and the last attempt's time and outcome.
@@ -194,10 +186,8 @@ class Worker:
             if job["cancel_requested"]:
                 self.update(job["id"], state="cancelled", ended_at=_now())
                 continue
-            thread = threading.Thread(target=self.sign_in, args=(job["id"], job["actor"]), daemon=True)
             self.update(job["id"], started_at=_now())
-            self.connects[job["id"]] = thread
-            thread.start()
+            threading.Thread(target=self.sign_in, args=(job["id"], job["actor"]), daemon=True).start()
         for job in self.jobs("kind='connect_chatgpt' AND state='queued' AND started_at IS NULL"):
             if job["cancel_requested"]:
                 self.update(job["id"], state="cancelled", ended_at=_now())
@@ -246,18 +236,14 @@ class Worker:
             self.fail(job, "not_connected", f"No {'Claude' if engine['account'] == 'claude' else 'ChatGPT'} account is connected for this user.")
             return False
         try:
-            _, filing, _ = self.cockpit.resolve(job["slug"])
+            filing, _ = self.cockpit.resolve(job["slug"])
         except data.DealNotFound:
             self.fail(job, "unknown_deal", "The deal's filing is not available.")
             return False
-        frozen = params.get("instruction")
-        if frozen:  # the exact text the run was requested with, checked against its hash
-            instruction = self.cockpit.instructions.path(frozen["sha256"])
-            if not instruction.is_file() or hashlib.sha256(instruction.read_bytes()).hexdigest() != frozen["sha256"]:
-                self.fail(job, "instruction_missing", f"The stored instruction {frozen['sha256'][:7]} is missing or altered.")
-                return False
-        else:  # every job since phase 4 freezes its instruction; never fall back to the repository's text
-            self.fail(job, "instruction_missing", "The job names no instruction version.")
+        frozen = params["instruction"]  # the exact text the run was requested with, checked against its hash
+        instruction = self.cockpit.instructions.path(frozen["sha256"])
+        if not instruction.is_file() or hashlib.sha256(instruction.read_bytes()).hexdigest() != frozen["sha256"]:
+            self.fail(job, "instruction_missing", f"The stored instruction {frozen['sha256'][:7]} is missing or altered.")
             return False
         run_dir = self.repo / "_dev/runs" / f"cockpit-{job['id']}"
         conn = self.connect()
@@ -308,7 +294,7 @@ class Worker:
             return
         self.update(job["id"], state="checking")
         workbook = run_dir / "extraction" / f"{job['slug']}.xlsx"
-        _, filing, _ = self.cockpit.resolve(job["slug"])
+        filing, _ = self.cockpit.resolve(job["slug"])
         check_path = run_dir / "check.json"
         check = subprocess.run([sys.executable, str(CHECKER), "--workbook", str(workbook), "--filing", str(filing), "--output", str(check_path)],
                                cwd=self.repo, capture_output=True, text=True)
@@ -319,9 +305,8 @@ class Worker:
             return
         report = json.loads(check_path.read_text())
         summary = report.get("summary") or {}
-        # Which checker, under which schema's rules, made these counts: shown beside them (the receipt keeps the rest).
-        checker = {"errors": summary.get("errors", 0), "warnings": summary.get("warnings", 0),
-                   "checker_version": report.get("checker_version"), "ledger_schema": report.get("ledger_schema")}
+        # Which checker made these counts: shown beside them (the receipt keeps the rest).
+        checker = {"errors": summary.get("errors", 0), "warnings": summary.get("warnings", 0), "checker_version": report.get("checker_version")}
         result["checker"] = checker
         self.update(job["id"], state="importing", result=json.dumps(result))
         version_id = self.import_version(job, run_dir, workbook, status, checker)
@@ -331,8 +316,7 @@ class Worker:
 
     def describe(self, job: sqlite3.Row, what: str) -> str:
         params = json.loads(job["params"])
-        instruction = (params.get("instruction") or {}).get("label") or instruction_version() or "instruction"
-        return f"{engine_of(params)[1]['label']} · {params.get('effort')} · {instruction} {what}"
+        return f"{engine_of(params)[1]['label']} · {params.get('effort')} · {params['instruction']['label']} {what}"
 
     def import_version(self, job: sqlite3.Row, run_dir: Path, workbook: Path, status: dict[str, Any], checker: dict[str, Any]) -> str:
         metadata = json.loads((run_dir / "metadata.json").read_text())
@@ -347,21 +331,19 @@ class Worker:
         for name in ("metadata.json", "command.json", "status.json", "validation.json", "provider-results.json", "network.jsonl", "prompt.txt", "check.json"):
             if (run_dir / name).is_file():
                 shutil.copy2(run_dir / name, destination / name)
-        frozen = params.get("instruction")
-        if frozen and frozen["sha256"] != metadata["instruction_sha256"]:
+        frozen = params["instruction"]
+        if frozen["sha256"] != metadata["instruction_sha256"]:
             raise RuntimeError("the run's instruction hash differs from the one it was requested with")
-        version = frozen["name"] if frozen else instruction_version()
-        shown = frozen["label"] if frozen else version or "instruction " + metadata["instruction_sha256"][:7]
         name = runs.NAMES.get(job["actor"], job["actor"])
         speed = " · Fast" if metadata.get("service_tier") == "priority" else ""
-        label = f"{engine['label']}{speed} · {metadata['effort']} · {shown} — {name}, {started:%-d %b %H:%M}"
+        label = f"{engine['label']}{speed} · {metadata['effort']} · {frozen['label']} — {name}, {started:%-d %b %H:%M}"
         conn = self.connect()
         try:  # the version row and the job's completion land together; a retry after a crash replaces the row
             conn.execute("INSERT OR REPLACE INTO versions (slug, id, label, path, sha256, kind, engine, model, effort, instruction_version, instruction_sha256, filing_sha256, started_by, started_at, finished_at, receipts, checker, instruction_id) VALUES (?,?,?,?,?,'raw',?,?,?,?,?,?,?,?,?,?,?,?)",
                          (job["slug"], version_id, label, str((destination / f"{job['slug']}.xlsx").relative_to(self.repo)), digest, engine["label"],
-                          metadata["model"], metadata["effort"], version, metadata["instruction_sha256"], metadata["filing_sha256"], job["actor"],
+                          metadata["model"], metadata["effort"], frozen["name"], metadata["instruction_sha256"], metadata["filing_sha256"], job["actor"],
                           status.get("started_at") or job["started_at"], status.get("ended_at") or _now(), str(destination.relative_to(self.repo)), json.dumps(checker),
-                          frozen["id"] if frozen else None))
+                          frozen["id"]))
             conn.execute("INSERT OR IGNORE INTO deal_bases (slug, version_id) VALUES (?,?)", (job["slug"], version_id))
             conn.execute("UPDATE jobs SET state='completed', version_id=?, ended_at=? WHERE id=?", (version_id, _now(), job["id"]))
             conn.commit()
@@ -501,7 +483,6 @@ class Worker:
                     except OSError:
                         pass
             shutil.rmtree(home, ignore_errors=True)
-            self.connects.pop(job_id, None)
 
 
     # ---- ChatGPT sign-in and refresh --------------------------------------------------

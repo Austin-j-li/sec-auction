@@ -1,6 +1,6 @@
 # Ledger cockpit as a shared extraction app: specification
 
-Approved by Austin on 23 September 2026. Product specification for the shared extraction app. The app's source is in `tools/cockpit` (Version 1 build); its state lives on the VM. It calls the runner and checker (`tools/sandbox/run_model.py`, `tools/check_lean.py`; see the [tools README](tools/README.md)).
+Approved by Austin on 23 September 2026, and amended since to follow the app. Product specification for the shared extraction app. The app's source is in `tools/cockpit` (Version 1 build); its state lives on the VM. It calls the runner and checker (`tools/sandbox/run_model.py`, `tools/check_lean.py`; see the [tools README](tools/README.md)).
 
 ## 1. Goal
 
@@ -13,14 +13,14 @@ Austin and Alex each log in with their own identity and, without a terminal or a
 
 The research guarantees stay as they are: blind, isolated extraction; immutable originals; offline checking after the run; attributed, restorable edits.
 
-## 2. Decisions taken (23 September)
+## 2. Decisions (23 September 2026, as amended)
 
 | Topic | Decision |
 |---|---|
 | Who may extract | Austin and Alex, each on their own initiative. |
 | Deal sources | Search `ref/seed.csv` by name, or paste any EDGAR filing or index link. |
 | Re-extraction of an edited deal | Adds a new read-only version. The working copy keeps its edits and base; changing its base is a separate, deliberate action. |
-| Engines | Claude Opus 5.5 (default, medium), Claude Fable 5.1, GPT-6.1-Sol (always on the Codex Fast, priority, tier) and GPT-6-Astra (high by default when chosen), at every effort the runner allows. Claude engines use the starting user's Claude plan; GPT engines use the starting user's ChatGPT plan. |
+| Engines | Claude Opus 5.5 (default, medium), Claude Fable 5.1, GPT-6.1-Sol (always on the Codex Fast, priority, tier) and GPT-6-Astra (high by default when chosen; Fast service is optional), at every effort the runner allows. Claude engines use the starting user's Claude plan; GPT engines use the starting user's ChatGPT plan. |
 | Instructions | Editable in the app as new versions. Either user may publish a version and make it the default. Drafts may be run: the exact text is frozen under its hash and the version is labelled "draft instruction". |
 | Version labels | Every extraction version states its engine, effort, instruction, who ran it and when (§6.3). |
 | Trace | Recommended design in §8: threaded comments, a per-deal "since your last visit" digest, and last-changed-by on hover. No email, no live notifications. |
@@ -39,7 +39,7 @@ The research guarantees stay as they are: blind, isolated extraction; immutable 
 browser ──Cloudflare Access──▶ server.py (HTTP, SQLite, Access key check; no model or EDGAR calls)
                                    │ enqueue job rows
                                    ▼
-                           worker.py  (new systemd user service)
+                           worker.py  (systemd user service)
                              ├─ EDGAR fetch (SEC user agent, ≤4 req/s)
                              ├─ run_model.py prepare / launch  (bubblewrap sandbox)
                              ├─ check_lean.py  (outside the sandbox)
@@ -54,7 +54,7 @@ browser ──Cloudflare Access──▶ server.py (HTTP, SQLite, Access key che
   - `versions/<deal>/<version-id>/` with `<deal>.xlsx`, `check.json` and the run receipts (`metadata.json`, `command.json`, `status.json`, `provider-results.json`);
   - no credentials; they are kept apart from the store (§5).
 - **Backups**: a nightly job copies the SQLite database (online backup API) and the store to `~/backups/ledger-live/`, keeping 14 days. The database is the only copy of working revisions and comments.
-- **Capacity**: the VM has 64 CPUs and 125 GB RAM. A run is mostly waiting on the model, so the cap is set by subscription limits, not the machine: at most 4 concurrent runs overall and 2 per user, with the rest queued.
+- **Capacity**: the VM has 64 CPUs and 125 GB RAM. A run is mostly waiting on the model, so the cap is set by subscription limits, not the machine. The default is at most 4 concurrent runs overall and 2 per user, with the rest queued. A release can change both limits ([CLOUD_DEPLOYMENT.md](CLOUD_DEPLOYMENT.md#parallel-extraction-limits)).
 
 ## 5. Accounts: "Connect your Claude / ChatGPT account"
 
@@ -84,11 +84,12 @@ A **Settings → Accounts** page lists, per user: Claude (not connected / connec
 
 Opened from a deal's toolbar (**Extract**) or right after adding a deal.
 
-- **Engine**: Claude Opus 5.5 (default), Claude Fable 5.1 (marked *experimental*), GPT-6.1-Sol, GPT-6-Astra. Selecting GPT-6.1-Sol shows one line: it runs on the Fast (priority) tier, about twice as fast, and uses more of the ChatGPT plan. Selecting Fable shows: "Fable's safety filter often blocks runs partway (6 of 11 test prompts); a blocked run fails and must be restarted."
+- **Engine**: Claude Opus 5.5 (default), Claude Fable 5.1 (marked *experimental*), GPT-6.1-Sol, GPT-6-Astra. Selecting GPT-6.1-Sol shows one line: it runs on the Fast (priority) tier, about twice as fast, and uses more of the ChatGPT plan. For GPT-6-Astra, the dialog shows a **Fast service** checkbox. It is off by default, and Fast service uses more of the ChatGPT plan. Selecting Fable shows: "Fable's safety filter often blocks runs partway (6 of 11 test prompts); a blocked run fails and must be restarted."
 - **Effort**: `low`, `medium`, `high`, `xhigh`, `max`, restricted to what the engine supports; default `medium`, except Astra defaults to `high` when selected. `ultra` is not offered because it delegates to subagents, which breaks isolation.
 - **Instruction**: the default published version, preselected. The list shows published versions, then drafts, each marked.
 - **Time limit**: default 90 minutes (runner range 10–360).
-- A one-line summary before the button, for example: "Opus 5.5 · medium · v0 · on Alex's Claude plan · usually 10–15 minutes."
+- A one-line summary before the button, for example: "Opus 5.5 · medium · v1.1 · on Alex's Claude plan · usually 10–15 minutes."
+- One line states the account's per-user limit: "Up to 2 runs at once on your account. Extra runs wait."
 
 ### 6.2 Job lifecycle
 
@@ -98,7 +99,7 @@ Opened from a deal's toolbar (**Extract**) or right after adding a deal.
 - *running*: `launch`. The runner's continuation logic (at most two resumes) is unchanged.
 - *checking*: `check_lean.py` against the workbook and filing, outside the sandbox.
 - *importing*: copy the workbook and receipts into the store, create the version and emit an activity event. A failed run creates no version, but its job record, failure reason and receipts are kept.
-- New failure reason `usage_limit`, when the provider reports a plan limit, so the page says "Alex's Claude plan hit its usage limit; try again after *time*" instead of a generic error.
+- Failure reason `usage_limit`, when the provider reports a plan limit, so the page says "Alex's Claude plan hit its usage limit; try again after *time*" instead of a generic error.
 - **Cancel** stops a queued or running job, killing its process group.
 - The run folder under `_dev/runs/` is deleted after import, as the tools README already requires.
 
@@ -108,7 +109,7 @@ Each completed run adds an immutable version:
 
 ```
 id:         <engine>-<effort>-<yyyymmdd-hhmm>-<short hash>
-label:      Opus 5.5 · medium · v0 — Alex, 23 Sep 14:05
+label:      Opus 5.5 · medium · v1.1 — Alex, 12 Oct 16:05
 kind:       raw
 engine, model, effort, instruction {id, name or "draft", sha256},
 filing sha256, runner sha256, CLI version, account, started_by,
@@ -123,8 +124,8 @@ checker errors and warnings
 ### 6.4 Working copy and re-extraction
 
 - The first version of a new deal becomes its working copy's base automatically.
-- A later version never touches the working copy. To use it, **Rebase working copy** (with a reason) creates a new revision whose content is the chosen version. The previous working state stays in History and remains restorable.
-- **Compare**: the Changes tab gains "compare any two versions", including the working copy, reusing its event-identity diff.
+- A later version never touches the working copy. To use it, **Use as working-copy base…** (with a reason) creates a new revision whose content is the chosen version. The previous working state stays in History and remains restorable.
+- **Compare**: the Changes tab compares any two versions, including the working copy, with its event-identity diff.
 
 ## 7. Adding deals
 
@@ -132,8 +133,8 @@ checker errors and warnings
 
 ### 7.1 Search the seed
 
-- Type-ahead over `target_name` and `deal` in `ref/seed.csv` (391 rows), showing form type, filing date and status. Rows already in the cockpit show "Open".
-- Rows marked `review` (17 of them) show the reason, and the user picks the correct filing from the EDGAR index (§7.2) instead of an automatic choice.
+- Type-ahead over `target_name` and `deal` in `ref/seed.csv` (389 rows), showing form type, filing date and status. Rows already in the cockpit show "Open".
+- Rows marked `review` (21 of them) show the reason, and the user picks the correct filing from the EDGAR index (§7.2) instead of an automatic choice.
 - Behind the scenes the server reads only the seed's identifying columns (deal, name, form, date, index URL), never any other `ref/` file.
 
 ### 7.2 Paste a link
@@ -161,10 +162,10 @@ Principle: the other person's work should be easy to find when you look, but not
 
 ### 8.2 Comments
 
-- Threads can be attached to an event, round, question, deal fact, finding, or the whole deal.
+- Threads can be attached to an event, round, question, deal fact, or the whole deal.
 - A comment has an author, a time and text. Replies are one level deep. A thread can be **resolved** or reopened, and the thread records who did it.
 - Comments are never overwritten. Editing your own comment keeps the previous text, shown as "edited". Deleting leaves "comment deleted by Alex".
-- The existing single notes on row review and finding judgment become each object's first comment, with their original author and time. Review *status* stays a field, and each change to it is recorded as a thread event ("Austin marked reviewed").
+- A row review mark holds a status only. A reviewer writes a note as a comment on the row. The deal's review status stays a field, and each change to it goes to the activity feed ("Marked reviewed at revision 12").
 - Comments follow event identities through inserts and moves, as references already do. A comment on a deleted event stays visible on the deal thread with "event removed in revision N".
 - The row list shows a count only for open threads.
 
@@ -181,7 +182,7 @@ Email, browser notifications, live co-editing cursors and per-comment unread cou
 
 ## 9. Instructions
 
-An **Instructions** page lists every version: name (for example v0), status (published or draft), author, date, parent, a note, and which one is the default.
+An **Instructions** page lists every version: name (for example v1.1), status (published or draft), author, date, parent, a note, and which one is the default.
 
 - **Published versions** are frozen. Their text can never change.
 - **New draft from…** copies any version into an editor (Markdown, with a side-by-side diff against the parent). Saving a draft records the author and time; drafts keep a history of their own edits.
@@ -203,10 +204,10 @@ An **Instructions** page lists every version: name (for example v0), status (pub
 
 An admin-only script, not a button, writes a chosen instruction version or deal version into `SEC_Deal_Ledger_Extraction_Instruction.md`, `raw_filing/` and `extraction/` for a commit Austin requests.
 
-## 12. Defaults (approved 23 September)
+## 12. Defaults (23 September 2026, as amended)
 
 1. Identities stay Cloudflare Access emails: `junyu.li.24@ucl.ac.uk` → Austin, `a.gorbenko@ucl.ac.uk` → Alex.
-2. Run caps: 4 concurrent overall, 2 per user.
+2. Run caps: 4 concurrent overall and 2 per user by default (§4).
 3. Backups: nightly, local to the VM, 14 days. Nothing is copied off the VM.
 4. A new deal's first completed version becomes its working-copy base automatically.
 5. Versions and deals can be hidden, never deleted.

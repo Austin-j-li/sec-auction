@@ -6,8 +6,6 @@ __pycache__/
 _dev/runs/
 # Agent state and credential mount points never belong in a research snapshot.
 _dev/**/state/
-_dev/**/*.xdg/
-.credentials.json
 auth.json
 # Frontend dependencies stay in the development clone.
 node_modules/

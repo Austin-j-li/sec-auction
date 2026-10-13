@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Plan, run and summarise an effort sweep: the same filings extracted by several arms.
 
-An arm is a provider, model and effort level (opus:claude-opus-5-5:medium, sol:gpt-6-sol:high).
+An arm is a provider, model and effort level (opus:claude-opus-5-5:medium, sol:gpt-6.1-sol:high).
 Every cell is an ordinary isolated run, prepared and launched through sandbox/run_model.py with
 one instruction and one filing. The provider binaries, the instruction and the runner are pinned
 for the whole sweep. The checker runs afterwards, outside the sandbox. Each finished run's
@@ -14,7 +14,6 @@ from __future__ import annotations
 import argparse
 from collections import Counter
 import csv
-import datetime as dt
 import gzip
 import json
 import os
@@ -38,24 +37,19 @@ INSTRUCTION = PROJECT / run_model.INSTRUCTION_NAME
 BINARY_ENV = {"opus": "SEC_CLAUDE_BIN", "sol": "SEC_CODEX_BIN"}
 RECEIPT_FILES = ("metadata.json", "prompt.txt", "launch.json", "command.json", "status.json",
                  "validation.json", "provider-results.json", "stderr.log", "launcher.log")
-FINISHED = ("completed", "failed", "timed_out")
+FINISHED = ("completed", "failed", "timed_out", "cancelled")
 # Failures of the provider or worker rather than of the extraction; they can be retried, and a
 # run of them (a usage limit, an outage, expired credentials) stops the sweep.
-RETRYABLE = ("provider_exit", "provider_error", "worker_error")
+RETRYABLE = ("provider_exit", "provider_error", "worker_error", "usage_limit")
 MAX_CONSECUTIVE_RETRYABLE = 3
 # List prices per million tokens, used to reprice every Claude cell by one formula. Codex reports
 # no cost, and a GPT subscription price per token is not published, so Sol cells are not priced.
 PRICES = {
     "claude-opus-5-5": {"input": 4.0, "output": 20.0, "cache_read": 0.20, "cache_write_1h": 8.0, "cache_write_5m": 5.0},
-    "claude-opus-5": {"input": 5.0, "output": 25.0, "cache_read": 0.50, "cache_write_1h": 10.0, "cache_write_5m": 6.25},
-    "claude-sonnet-5-5": {"input": 2.0, "output": 10.0, "cache_read": 0.20, "cache_write_1h": 4.0, "cache_write_5m": 2.50},
 }
-# A shell command that could reach the network from inside the sandbox (which shares the host network).
+# A shell command that tries to reach the network. The sandbox reaches only the provider's API hosts, so a
+# match shows an attempt.
 NETWORK = re.compile(r"\b(curl|wget|urllib|requests\.|http\.client|socket\.|pip3? install)\b|https?://", re.I)
-
-
-def now_iso() -> str:
-    return dt.datetime.now(dt.timezone.utc).isoformat()
 
 
 def read_json(path: Path):
@@ -90,8 +84,8 @@ def plan(args: argparse.Namespace) -> None:
     packet = Path(args.packet)
     if (packet / "plan.json").exists():
         raise SystemExit(f"refusing to overwrite {packet / 'plan.json'}")
-    manifest = filings(getattr(args, "filing_dir", None) or ())
-    instruction = Path(args.instruction).resolve() if getattr(args, "instruction", None) else None
+    manifest = filings(args.filing_dir or ())
+    instruction = Path(args.instruction).resolve() if args.instruction else None
     if instruction and not instruction.is_file():
         raise SystemExit(f"instruction is missing: {instruction}")
     deals = args.deals.split(",")
@@ -120,7 +114,7 @@ def plan(args: argparse.Namespace) -> None:
                           **arm, "replicate": replicate, "timeout_minutes": args.timeout_minutes})
     packet.mkdir(parents=True, exist_ok=True)
     run_model.write_json(packet / "plan.json", {
-        "created_at": now_iso(), "deals": deals, "arms": arms, "replicates": args.replicates,
+        "created_at": run_model.now_iso(), "deals": deals, "arms": arms, "replicates": args.replicates,
         "seed": args.seed, "cells": cells,
         "instruction": {"path": str(instruction), "sha256": run_model.sha256(instruction)} if instruction else None,
     })
@@ -161,7 +155,7 @@ def pin_sweep(packet: Path, providers, instruction=INSTRUCTION) -> dict:
     for binary in now["binaries"].values():
         binary["version"] = subprocess.run([binary["path"], "--version"], capture_output=True, text=True,
                                            check=True).stdout.strip()
-    pin = {**now, "recorded_at": now_iso()}
+    pin = {**now, "recorded_at": run_model.now_iso()}
     run_model.write_json(recorded, pin)
     return pin
 
@@ -228,7 +222,7 @@ def record(cell: dict, run_dir: Path, packet: Path, pin: dict) -> dict:
         "mismatches": cell_mismatches(cell, run_dir, pin),
         **(audit_events(events) if events.is_file() else {"network_commands": [], "web_or_delegation": []}),
         "workbook_sha256": None, "check_summary": None, "checker_version": None, "ledger_schema": None,
-        "recorded_at": now_iso(),
+        "recorded_at": run_model.now_iso(),
     }
     if status.get("workbook_valid_xlsx"):
         shutil.copy2(workbook, dest / workbook.name)
@@ -311,7 +305,7 @@ def run(args: argparse.Namespace) -> None:
                                      f"move it aside and run again")
                 run_command(pin, "launch", "--provider", cell["provider"], "--run-dir", str(run_dir))
             active[cell["id"]] = (cell, run_dir)
-            print(f"{now_iso()} started {cell['id']}", flush=True)
+            print(f"{run_model.now_iso()} started {cell['id']}", flush=True)
         time.sleep(args.poll)
         for cell_id, (cell, run_dir) in list(active.items()):
             status_path = run_dir / "status.json"
@@ -325,7 +319,7 @@ def run(args: argparse.Namespace) -> None:
                     raise SystemExit(f"worker for {cell_id} exited without a final status; inspect {run_dir}")
             receipt = record(cell, run_dir, packet, pin)
             del active[cell_id]
-            print(f"{now_iso()} finished {cell_id}: {receipt['state']} {receipt['failure_reason'] or ''} "
+            print(f"{run_model.now_iso()} finished {cell_id}: {receipt['state']} {receipt['failure_reason'] or ''} "
                   f"checker={receipt['check_summary']}", flush=True)
             consecutive_retryable = consecutive_retryable + 1 if receipt["failure_reason"] in RETRYABLE else 0
             if consecutive_retryable >= MAX_CONSECUTIVE_RETRYABLE:
@@ -415,7 +409,6 @@ def multiset_jaccard(a: list, b: list) -> float:
 
 def summarize(args: argparse.Namespace) -> None:
     packet = Path(args.packet)
-    grades = read_json(packet / "grades.json") if (packet / "grades.json").exists() else {}
     retried = Counter(read_json(path)["cell"]["arm"] for path in (packet / "retried").glob("*/receipt.json"))
     rows = []
     for receipt_path in sorted((packet / "runs").glob("*/receipt.json")):
@@ -442,7 +435,6 @@ def summarize(args: argparse.Namespace) -> None:
             "checker_version": receipt.get("checker_version"), "ledger_schema": receipt.get("ledger_schema"),
             "checker_errors": (receipt["check_summary"] or {}).get("errors"),
             "checker_warnings": (receipt["check_summary"] or {}).get("warnings"),
-            "score": (grades.get(cell["id"]) or {}).get("score"),
         }
         if receipt["state"] == "completed" and (folder / f"{cell['deal']}.xlsx").is_file():
             row.update(ledger_stats(folder / f"{cell['deal']}.xlsx"))
@@ -476,7 +468,7 @@ def summarize(args: argparse.Namespace) -> None:
             "continuations": sum(row.get("continuations") or 0 for row in cells),
             "total_spend_repriced": round(sum(priced), 2) if priced else None,
             "spend_per_completed": round(sum(priced) / len(done), 3) if priced and done else None,
-            **{f"mean_{key}": mean(key) for key in ("score", "cost_repriced", "cost_reported", "output_tokens",
+            **{f"mean_{key}": mean(key) for key in ("cost_repriced", "cost_reported", "output_tokens",
                                                    "thinking_tokens", "turns", "api_seconds", "elapsed_seconds",
                                                    "checker_errors", "checker_warnings", "events", "note_words_mean",
                                                    "note_words_max", "questions_counted")},
@@ -493,9 +485,9 @@ def summarize(args: argparse.Namespace) -> None:
             "mean_event_gap": round(statistics.mean(abs((a.get("events") or 0) - (b.get("events") or 0))
                                                     for a, b in pairs), 2) if pairs else None,
         }
-    summary = {"generated_at": now_iso(), "runs": rows, "by_arm": by_arm}
+    summary = {"generated_at": run_model.now_iso(), "runs": rows, "by_arm": by_arm}
     run_model.write_json(packet / "summary.json", summary)
-    columns = ["completed", "mean_score", "spend_per_completed", "mean_output_tokens", "mean_thinking_tokens",
+    columns = ["completed", "spend_per_completed", "mean_output_tokens", "mean_thinking_tokens",
                "mean_elapsed_seconds", "mean_checker_errors", "mean_checker_warnings", "mean_events",
                "mean_note_words_mean", "max_note_words", "mean_questions_counted",
                "mean_bid_jaccard", "same_round_count_share", "continuations"]

@@ -1,10 +1,10 @@
 [Unit]
-Description=Ledger cockpit nightly backup (sec-extraction): workspace database and file store
+Description=Ledger cockpit nightly backup (sec-auction, ledger-live worktree): workspace database and file store
 
 [Service]
 Type=oneshot
-WorkingDirectory=%h/work/Projects/sec-extraction
-ExecStart=/usr/bin/python3 _dev/tools/cockpit/backup.py create
+WorkingDirectory=%h/work/Projects/ledger-live
+ExecStart=/usr/bin/python3 %h/work/Projects/ledger-live/_dev/tools/cockpit/backup.py create
 Environment=PYTHONUSERBASE=%h/work/.local
 Environment=PYTHONUNBUFFERED=1
 Environment=PYTHONDONTWRITEBYTECODE=1

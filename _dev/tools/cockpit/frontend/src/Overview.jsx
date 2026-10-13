@@ -98,7 +98,7 @@ export default function Overview({ deals, onOpen, onAdd, onUnhide }) {
               <CheckLine check={item.check}/>
             </td>
             <td>
-              <span className={`status-text${item.deal_review?.edited_since && item.deal_review.status === 'reviewed' ? ' tone-warning' : ''}`}>{item.deal_review ? reviewText(item.deal_review) : item.review_status || 'unreviewed'}</span>
+              <span className={`status-text${item.deal_review?.edited_since && item.deal_review.status === 'reviewed' ? ' tone-warning' : ''}`}>{item.deal_review ? reviewText(item.deal_review) : item.review_status}</span>
               {reviewByline(item.deal_review) && <small>{reviewByline(item.deal_review)}</small>}
               {item.error && <small className="tone-error">{item.error}</small>}
             </td>

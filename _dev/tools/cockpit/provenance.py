@@ -1,10 +1,10 @@
 """The cockpit's Excel download, with the filing's EDGAR links and the run's provenance on a Source sheet.
 
 The sheet is added here, on download, and never by the model or by `Workspace.export`, which
-`export_repo.py` and `verify_catalog.py` share and which keeps producing the four-sheet workbook the
-checker accepts. A workbook with a Source sheet fails the checker's sheet rule by design; the
-four-sheet file is one option away. Links come from the filing's records and hashes from receipts
-(the manifest, the catalog, the versions table); a value that is not recorded says so.
+`export_repo.py` shares and which keeps producing the four-sheet workbook the checker accepts.
+A workbook with a Source sheet fails the checker's sheet rule by design; the four-sheet file is
+one option away. Links come from the filing's records and hashes from receipts (the manifest,
+the catalog, the versions table); a value that is not recorded says so.
 """
 from __future__ import annotations
 
@@ -106,7 +106,7 @@ def rows(cockpit: data.Cockpit, slug: str, item: dict[str, Any], base: dict[str,
          revision: int | None, review: dict[str, Any] | None, past: bool = False) -> list[tuple[str, str, bool]]:
     """(field, value, is a link) for the Source sheet; revision and review are None for a raw version, and
     `past` marks a past revision ("rev:N") rather than the working copy's latest."""
-    _, _, entry = cockpit.resolve(slug)
+    _, entry = cockpit.resolve(slug)
     index, submission = links(cockpit, slug, item, entry)
     facts = [record["values"] for record in state["sheets"][data.FACTS_SHEET]["rows"]]
     pages = next((data.display_value(_decode(values.get("Value"))) for values in facts if data.display_value(_decode(values.get("Field"))) == "Background pages"), "")
@@ -127,7 +127,7 @@ def rows(cockpit: data.Cockpit, slug: str, item: dict[str, Any], base: dict[str,
         ("Background pages", pages or NOT_RECORDED, False),
         ("Filing SHA-256", entry.get("sha256") or NOT_RECORDED, False),
         ("Instruction", instruction or NOT_RECORDED, False),
-        ("Instruction SHA-256", cockpit.workspace._instruction_hash(base) or NOT_RECORDED, False),
+        ("Instruction SHA-256", base.get("instruction_sha256") or NOT_RECORDED, False),
         ("Version ID" if revision is None else f"Version ID (base of revision {revision})" if past else "Version ID (working-copy base)", base.get("id") or NOT_RECORDED, False),
         ("Raw workbook SHA-256", base.get("sha256") or NOT_RECORDED, False),
         ("Working revision", revision_text, False),

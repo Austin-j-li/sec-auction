@@ -1,7 +1,7 @@
 import { text } from './api';
 import { displayName, shortTime } from './trace';
 
-// Pure helpers for instruction versions (phase 4): ordering, labels, validation and a line diff.
+// Pure helpers for instruction versions: ordering, labels, validation and a line diff.
 
 export const REMINDER = 'A change should be general — the objective, the work process, honesty about uncertainty, a repaired contradiction or a deletion — never a rule justified by one reviewed deal (AGENTS.md).';
 export const NAME_MAX = 40;
