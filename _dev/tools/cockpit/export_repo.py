@@ -14,8 +14,7 @@ An instruction export writes a published version's stored text into
 SEC_Deal_Ledger_Extraction_Instruction.md, after checking the text against its hash.
 A deal export writes a version's workbook (or the working copy, rendered by the same
 code as the cockpit's download) to extraction/<slug>.xlsx; for a deal added in the
-cockpit it also writes the filing to raw_filing/ and its MANIFEST.csv row. Paths that
-either checkout's catalog.json references as immutable originals are never overwritten.
+cockpit it also writes the filing to raw_filing/ and its MANIFEST.csv row.
 
 Without --write nothing is written: each target is printed with its current SHA-256
 (or "new") and the SHA-256 it would get. The script never commits, and never calls a
@@ -28,7 +27,6 @@ import csv
 import datetime as dt
 import hashlib
 import io
-import json
 import sys
 from pathlib import Path
 from typing import Any
@@ -49,21 +47,6 @@ class Refused(Exception):
 
 def _sha(content: bytes) -> str:
     return hashlib.sha256(content).hexdigest()
-
-
-def catalog_paths(value: Any) -> set[str]:
-    """Every "path" that catalog.json references, anywhere in it."""
-    found: set[str] = set()
-    if isinstance(value, dict):
-        for key, item in value.items():
-            if key == "path" and isinstance(item, str):
-                found.add(Path(item).as_posix())
-            else:
-                found |= catalog_paths(item)
-    elif isinstance(value, list):
-        for item in value:
-            found |= catalog_paths(item)
-    return found
 
 
 def _utc(stamp: str) -> str:
@@ -153,19 +136,7 @@ def deal_plan(cockpit: data.Cockpit, slug: str, version: str, out_root: Path | N
 # ---- output --------------------------------------------------------------------------
 
 
-def check_targets(cockpit: data.Cockpit, plan: list[tuple[str, bytes]], out_root: Path | None = None) -> None:
-    protected = catalog_paths(cockpit.workspace.catalog()) if cockpit.workspace.available else set()
-    target_catalog = (out_root or cockpit.workspace.root) / "_dev/cockpit/catalog.json"
-    if target_catalog.is_file():
-        protected |= catalog_paths(json.loads(target_catalog.read_text(encoding="utf-8")))
-    for relative, _ in plan:
-        if relative in protected:
-            raise Refused(f"{relative} is an immutable original referenced by _dev/cockpit/catalog.json; "
-                          "it is not overwritten. Changing it needs a separate, requested edit of the catalog.")
-
-
 def run(cockpit: data.Cockpit, plan: list[tuple[str, bytes]], write: bool, out_root: Path | None = None) -> list[str]:
-    check_targets(cockpit, plan, out_root)
     root = out_root or cockpit.workspace.root
     lines = []
     for relative, content in plan:

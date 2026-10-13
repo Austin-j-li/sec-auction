@@ -32,7 +32,6 @@ SEED_COLUMNS = ("deal", "target_name", "form_type", "date_filed", "index_url", "
 LOOKUP_TTL = dt.timedelta(hours=24)
 FORMS = ("DEFM14A", "PREM14A", "SC TO-T")
 DATE_RE = re.compile(r"\d{4}-\d{2}-\d{2}")
-LOOKUP_ACTIVE = ("queued", "running")
 
 
 def ensure_schema(conn: sqlite3.Connection) -> None:

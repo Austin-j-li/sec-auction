@@ -24,7 +24,7 @@ export default function ActivityPage({ deals, onOpenDeal, onOpenInstructions }) 
     try {
       const data = await json(activityQuery({ ...filters, before, limit: PAGE }));
       if (token !== serial.current) return;
-      const list = Array.isArray(data) ? data : data?.items || [];
+      const list = data?.items || [];
       setItems(current => before ? [...current, ...list] : list);
       setMore(list.length === PAGE);
     } catch (err) {
@@ -40,11 +40,10 @@ export default function ActivityPage({ deals, onOpenDeal, onOpenInstructions }) 
     if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault(); onOpenDeal(slug, version);
   }
-  // Instruction events are account-wide (slug ""): they link to the Instructions page, at the version when the feed names it.
-  const instructionHref = item => `/instructions${item.instruction_id ? `?id=${encodeURIComponent(item.instruction_id)}` : ''}`;
-  function onInstructionClick(event, item) {
+  // Instruction events are account-wide (slug ""): they link to the Instructions page.
+  function onInstructionClick(event) {
     if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-    event.preventDefault(); onOpenInstructions(item.instruction_id || null);
+    event.preventDefault(); onOpenInstructions();
   }
   // A finished extraction links to the version it produced (when the feed names it).
   const versionHref = item => `/deal/${item.slug}?version=${encodeURIComponent(item.version_id)}`;
@@ -78,7 +77,7 @@ export default function ActivityPage({ deals, onOpenDeal, onOpenInstructions }) 
             <td>{displayName(item.actor)}</td>
             <td>{item.slug
               ? <a className="deal-link" href={`/deal/${item.slug}`} onClick={event => onLinkClick(event, item.slug)}>{item.name || names.get(item.slug) || item.slug}</a>
-              : INSTRUCTION_KINDS.has(item.kind) ? <a className="deal-link" href={instructionHref(item)} onClick={event => onInstructionClick(event, item)}>Instructions</a>
+              : INSTRUCTION_KINDS.has(item.kind) ? <a className="deal-link" href="/instructions" onClick={onInstructionClick}>Instructions</a>
               : <span className="tone-muted">All deals</span>}</td>
             <td>{KIND_LABELS[item.kind] || item.kind}{item.revision != null && <small className="mono">Revision {item.revision}</small>}</td>
             <td className="activity-detail">

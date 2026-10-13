@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import { Button, Field, Select } from '@fluentui/react-components';
-import { ArrowClockwiseIcon, CaretRightIcon, ChatCircleIcon, DownloadSimpleIcon, FileTextIcon, MinusIcon, PlusIcon } from '@phosphor-icons/react';
+import { ArrowClockwiseIcon, CaretRightIcon, DownloadSimpleIcon, MinusIcon, PlusIcon } from '@phosphor-icons/react';
 import Comments from './Comments';
 import { count, rowId, text } from './api';
 import { exportLinks } from './downloads';
 import { Dot, Empty, Loading, Message, SeverityGlyph } from './ui';
-import { fieldLabel } from './Records';
 import { importCheckText, liveCheckText } from './runs';
 
 function labelStatus(value) { return text(value).replaceAll('_', ' '); }
@@ -15,9 +14,8 @@ export function friendlyDate(value) {
   return Number.isNaN(d.getTime()) ? text(value) : d.toLocaleString();
 }
 
-const JUDGMENT_TONE = { unreviewed: 'muted', supported: 'success', rejected: 'error', deferred: 'warning' };
 const VERDICT_TONE = { pass: 'success', pass_with_warnings: 'warning', fail: 'error' };
-const CHANGE_TYPE = { update: 'Update', insert: 'Insert', delete: 'Delete', move: 'Move', restore: 'Restore', review: 'Review', finding: 'Finding' };
+const CHANGE_TYPE = { update: 'Update', insert: 'Insert', delete: 'Delete', move: 'Move', restore: 'Restore', review: 'Review' };
 
 function IssueRow({ issue, location }) {
   return <li className={`issue ${issue.severity || 'info'}`}>
@@ -125,101 +123,10 @@ function MustFlagPanel({ deal, onJumpRow }) {
   </details>;
 }
 
-function Finding({ finding, open, editable, dirty, onToggle, onEdit, onFindEvidence, trace }) {
-  const judgment = finding.judgment || 'unreviewed';
-  const openThreads = trace?.counts?.[finding.id]?.open || 0;
-  const decision = finding.recorded_decision, correction = finding.recorded_correction;
-  return <article className="finding">
-    <button className="finding-title" onClick={onToggle} aria-expanded={open}>
-      <span className="finding-heading">
-        <strong>{finding.title || finding.id}</strong>
-        <small>{[finding.source_label || finding.source_version, finding.rule].filter(Boolean).join(' · ')}{' · '}<span className="mono">{finding.id}</span></small>
-      </span>
-      {openThreads > 0 && <span className="thread-mark mono" title={count(openThreads, 'open thread')}><ChatCircleIcon size={12} aria-hidden="true"/>{openThreads}<span className="sr-only"> open threads</span></span>}
-      <span className={`finding-state mono tone-${JUDGMENT_TONE[judgment] || 'muted'}`}><Dot tone={JUDGMENT_TONE[judgment] || 'muted'}/>{judgment}</span>
-      <CaretRightIcon size={16} className="caret" aria-hidden="true"/>
-    </button>
-    {open && <div className="finding-body">
-      <p>{finding.detail}</p>
-      {finding.proposed_change && <div className="labelled">
-        <h4 className="block-label">Recorded proposal</h4>
-        <p>{finding.proposed_change}</p>
-      </div>}
-      {decision && <div className="labelled">
-        <h4 className="block-label">Prior decision by {decision.actor}{decision.at && <> · <span className="mono">{decision.at}</span></>}</h4>
-        <p>{decision.decision}</p>
-      </div>}
-      {correction && <div className="labelled">
-        <h4 className="block-label">Prior correction{correction.actor ? ` by ${correction.actor}` : ''}</h4>
-        <p className="meta-line">{[correction.status && labelStatus(correction.status), correction.version, correction.source_document].filter(Boolean).join(' · ')}</p>
-        {correction.scope && <p>{correction.scope}</p>}
-        {correction.qualification && <p>{correction.qualification}</p>}
-      </div>}
-      {finding.needs_recheck && <Message type="warning" title="This finding needs rechecking against the displayed version."/>}
-      {finding.evidence?.length > 0 && <div className="finding-evidence labelled">
-        <h4 className="block-label">Recorded evidence</h4>
-        {finding.evidence.map((evidence, index) => <figure key={index}>
-          <blockquote><mark className="quote-mark">{evidence.quote}</mark></blockquote>
-          <figcaption>
-            <cite className="mono">{evidence.page ? `p. ${evidence.page}` : 'Page not recorded'}</cite>
-            {evidence.quote && <Button appearance="subtle" className="link-button" onClick={() => onFindEvidence(evidence)}>Find quote in filing</Button>}
-          </figcaption>
-        </figure>)}
-      </div>}
-      {finding.source_rows?.length > 0 && <div className="source-rows labelled">
-        <h4 className="block-label">Source row references</h4>
-        <p><span className="mono">{finding.source_rows.join(', ')}</span> · These refer to {finding.source_label || finding.source_version || 'the recorded source version'}.</p>
-      </div>}
-      <div className="decision-grid">
-        <Field label={fieldLabel('Finding judgment', null, dirty.has('judgment'))} className={dirty.has('judgment') ? 'is-dirty' : ''}>
-          <Select value={judgment} disabled={!editable} onChange={(_, data) => onEdit(finding.id, 'judgment', data.value)}>
-            <option value="unreviewed">Unreviewed</option>
-            <option value="supported">Supported</option>
-            <option value="rejected">Rejected</option>
-            <option value="deferred">Deferred</option>
-          </Select>
-        </Field>
-        <Field label={fieldLabel('Correction implementation', null, dirty.has('implementation'))} className={dirty.has('implementation') ? 'is-dirty' : ''}>
-          <Select value={finding.implementation || 'unassessed'} disabled={!editable} onChange={(_, data) => onEdit(finding.id, 'implementation', data.value)}>
-            <option value="unassessed">Not assessed</option>
-            <option value="not_applied">Not applied</option>
-            <option value="applied">Applied</option>
-          </Select>
-        </Field>
-        <Field label={fieldLabel('Verification', null, dirty.has('verification'))} className={dirty.has('verification') ? 'is-dirty' : ''}>
-          <Select value={finding.verification || 'unchecked'} disabled={!editable} onChange={(_, data) => onEdit(finding.id, 'verification', data.value)}>
-            <option value="unchecked">Unchecked</option>
-            <option value="verified">Verified</option>
-          </Select>
-        </Field>
-      </div>
-      {finding.actor && <p className="audit-line mono">Last decision by {finding.actor}{finding.at ? ` · ${friendlyDate(finding.at)}` : ''}</p>}
-      {finding.carried_over && <p className="audit-line mono">Judgment carried over from {finding.carried_over.from_base} at revision {finding.carried_over.revision}; implementation and verification reset</p>}
-      {trace && <Comments trace={trace} target={{ kind: 'finding', uid: finding.id }}/>}
-    </div>}
-  </article>;
-}
-
-export function ReviewTab({ deal, editable, open, onToggle, onEdit, dirtyFor, onFindEvidence, onOpenDocument, onJumpRow, trace }) {
-  const findings = deal.findings || [], documents = deal.documents || [];
+export function ReviewTab({ deal, onJumpRow, trace }) {
   return <div className="review-tab paper-column">
-    <div className="section-head">
-      <h2>Review findings</h2>
-      <span className="head-count mono">{count(findings.length, 'recorded finding')}</span>
-    </div>
-    <p className="section-note">A finding is a recorded candidate or judgment. Deciding it here does not edit the workbook; a correction needs a separate data edit and verification.</p>
     <MechanicalPanel deal={deal}/>
     <MustFlagPanel deal={deal} onJumpRow={onJumpRow}/>
-    {documents.length > 0 && <div className="documents">
-      <span className="reference-label">Recorded documents</span>
-      {documents.map(item => <Button key={item.id} appearance="subtle" className="link-button" icon={<FileTextIcon size={16}/>} onClick={() => onOpenDocument(item)}>{item.label}</Button>)}
-    </div>}
-    {findings.length
-      ? <div className="finding-list">
-          {findings.map(finding => <Finding key={finding.id} finding={finding} open={open === finding.id} editable={editable} dirty={dirtyFor(finding.id)}
-            onToggle={() => onToggle(open === finding.id ? null : finding.id)} onEdit={onEdit} onFindEvidence={onFindEvidence} trace={trace}/>)}
-        </div>
-      : <Empty>No recorded findings for this version.</Empty>}
     {trace && <div className="discussion"><Comments trace={trace} target={{ kind: 'deal' }} heading="Discussion"/></div>}
   </div>;
 }
@@ -335,12 +242,4 @@ export function HistoryTab({ data, loading, editable, onRestore, lastSaved, focu
       </details>}
     </article>)}
   </div>;
-}
-
-// Recorded documents read as text; only lines that look like typed tables are set in mono.
-export function DocumentText({ value }) {
-  const lines = text(value).split('\n');
-  return <pre className="document-text">
-    {lines.map((line, i) => <span key={i} className={/\S {2,}\S|\t|\|/.test(line) ? 'mono' : undefined}>{line}{i < lines.length - 1 ? '\n' : ''}</span>)}
-  </pre>;
 }
