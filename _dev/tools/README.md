@@ -52,7 +52,7 @@ SEC_CLAUDE_BIN=<pinned claude> SEC_CODEX_BIN=<pinned codex> python3 _dev/tools/e
 python3 _dev/tools/effort_sweep.py summarize --packet <packet dir>
 ```
 
-`plan` writes a seeded, interleaved run order. `run` pins the provider binaries, instruction and runner by hash, launches each cell as an ordinary run, runs the checker outside the sandbox, copies receipts, workbook and compressed event log into the packet, and stops after three provider or worker failures in a row (`--retry-failed` runs those cells again). It can be restarted. `summarize` reports cost, tokens, time, checker counts, ledger size and agreement between replicates per arm.
+`plan` writes a seeded, interleaved run order. `run` pins the provider binaries, instruction and runner by hash, launches each cell as an ordinary run, runs the checker outside the sandbox, copies receipts, workbook and compressed event log into the packet, and stops after three provider or worker failures in a row, usage limits included (`--retry-failed` runs those cells again). It can be restarted. `summarize` reports cost, tokens, time, checker counts, ledger size and agreement between replicates per arm.
 
 ## Review and analysis helpers
 
