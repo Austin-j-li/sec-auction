@@ -41,8 +41,8 @@ CLAUDE_TOKEN_FILE = Path(os.environ.get("SEC_CLAUDE_OAUTH_TOKEN_FILE")
 # Unset means the host login, ~/.codex/auth.json.
 CODEX_AUTH_FILE = Path(os.environ["SEC_CODEX_AUTH_FILE"]) if os.environ.get("SEC_CODEX_AUTH_FILE") else None
 # Models and effort levels each provider may be prepared with. The first model is the default.
-# "opus" is the Claude transport (Opus, Fable and Sonnet); "sol" is the Codex transport (Sol and Astra).
-MODELS = {"sol": ("gpt-6-sol", "gpt-6.1-sol", "gpt-6-astra", "gpt-5.6-sol"), "opus": ("claude-opus-5-5", "claude-fable-5-1", "claude-opus-5", "claude-sonnet-5-5")}
+# "opus" is the Claude transport (Opus and Fable); "sol" is the Codex transport (Sol and Astra).
+MODELS = {"sol": ("gpt-6.1-sol", "gpt-6-astra"), "opus": ("claude-opus-5-5", "claude-fable-5-1")}
 # Codex's "ultra" level delegates to subagents automatically, so it is not offered.
 EFFORTS = {"sol": ("low", "medium", "high", "xhigh", "max"), "opus": ("low", "medium", "high", "xhigh", "max")}
 DEFAULT_EFFORT = {"sol": "xhigh", "opus": "medium"}  # Opus 5.5 at medium is the project's default extraction
@@ -77,7 +77,7 @@ SANDBOX_PYTHON = "/usr/bin/python3"
 # Codex features switched off for every Sol run. By default `codex exec` offers the account's
 # ChatGPT app connectors (mail, GitLab, site deploys, a remote shell), web browsing, image
 # generation and subagents; a sandboxed extraction gets shell commands and file patches only.
-# Code mode stays on because GPT-6-Sol calls every tool through it.
+# Code mode stays on because Sol calls every tool through it.
 CODEX_DISABLED_FEATURES = (
     "apps", "plugins", "remote_plugin", "plugin_sharing", "browser_use", "browser_use_external",
     "browser_use_full_cdp_access", "in_app_browser", "computer_use", "image_generation", "multi_agent",
@@ -92,7 +92,6 @@ MAX_CONTINUATIONS = 2  # Opus 5.5 can end a turn with a progress report before s
 SHEETS = ["Deal ledger", "Rounds", "Questions", "Deal facts"]
 CODEX_SANDBOX = Path("/opt/codex")
 CLAUDE_SANDBOX = Path("/opt/claude")
-MINIFORGE = HOME_HOST / "miniforge3"  # Ubuntu laptop; absent on the VM, where system Python is used
 import openpyxl as _openpyxl
 PYLIB_HOST = Path(_openpyxl.__file__).resolve().parents[1]  # site-packages that holds openpyxl
 PYLIB = Path("/opt/pylib")
@@ -306,7 +305,7 @@ def prepare(args: argparse.Namespace) -> None:
     if model not in MODELS[args.provider] or effort not in EFFORTS[args.provider]:
         raise SystemExit(f"{args.provider} runs one of {', '.join(MODELS[args.provider])} "
                          f"at effort {', '.join(EFFORTS[args.provider])}")
-    service_tier = getattr(args, "service_tier", None)
+    service_tier = args.service_tier
     if service_tier is not None and (args.provider != "sol" or service_tier != "priority"):
         raise SystemExit("--service-tier priority applies only to Codex runs")
     service_tier = service_tier or SERVICE_TIER.get(model)
@@ -439,10 +438,7 @@ def bwrap_base(run_dir: Path, provider: str, state: Path, scratch: Path) -> list
     for certs in ["/etc/ca-certificates", "/etc/pki", "/etc/crypto-policies"]:  # Debian and Red Hat layouts
         if Path(certs).exists():
             command += ["--ro-bind", certs, certs]
-    if MINIFORGE.is_dir():
-        command += ["--ro-bind", str(MINIFORGE), str(MINIFORGE), "--setenv", "PATH", f"{MINIFORGE}/bin:/usr/bin:/bin"]
-    else:
-        command += ["--setenv", "PATH", "/usr/bin:/bin"]
+    command += ["--setenv", "PATH", "/usr/bin:/bin"]
     report = run_dir / "input" / REPORT_NAME
     if metadata.get("mode") == "revise":
         if not report.is_file():
@@ -566,7 +562,7 @@ def provider_command(run_dir: Path, provider: str, metadata: dict,
     if provider == "sol":
         codex = CODEX_SANDBOX / "bin/codex"
         disabled = [part for feature in CODEX_DISABLED_FEATURES for part in ("--disable", feature)]
-        tier = metadata.get("service_tier", SERVICE_TIER.get(model))
+        tier = metadata["service_tier"]
         fast = ["-c", f'service_tier="{tier}"', "--enable", "fast_mode"] if tier else []
         return [
             str(codex), "exec", "--ephemeral", "--ignore-user-config", "--ignore-rules",
@@ -613,11 +609,9 @@ def validate_workbook(run_dir: Path) -> dict[str, object]:
         result["error"] = "expected workbook missing"
         return result
     try:
-        from openpyxl import load_workbook
-
         result["bytes"] = workbook.stat().st_size
         result["sha256"] = sha256(workbook)
-        opened = load_workbook(workbook, read_only=True, data_only=False)
+        opened = _openpyxl.load_workbook(workbook, read_only=True, data_only=False)
         try:
             # Read-only worksheets are lazy: opening the ZIP alone misses broken sheet XML.
             for sheet in opened:
@@ -693,12 +687,7 @@ def preflight(provider: str) -> Path:
 
 
 def prepared_metadata(run_dir: Path, provider: str) -> dict:
-    """Verify the prepared bytes before launch and again inside the worker.
-
-    Old extraction metadata already records all necessary hashes. Old revisions
-    lacking the report hash must be prepared again; silently trusting them would
-    leave a model-visible input outside the integrity check.
-    """
+    """Verify the prepared bytes before launch and again inside the worker."""
     path = run_dir / "metadata.json"
     if not path.is_file():
         raise SystemExit(f"run is not prepared: {run_dir}")
@@ -724,7 +713,7 @@ def prepared_metadata(run_dir: Path, provider: str) -> dict:
         name = metadata.get(key)
         if not isinstance(name, str) or name in ("", ".", "..") or Path(name).name != name:
             raise SystemExit(f"prepared {key} must be a bare filename")
-    mode = metadata.get("mode", "extract")
+    mode = metadata.get("mode")
     if mode not in ("extract", "revise"):
         raise SystemExit(f"unknown prepared mode: {mode}")
     filing = run_dir / "input" / "raw_filing" / metadata["filing_name"]
@@ -1000,8 +989,8 @@ def parser() -> argparse.ArgumentParser:
     p.add_argument("--filing", required=True)
     p.add_argument("--filing-dir", help="folder holding the filing: raw_filing/ (default) or a cockpit deal folder in _dev/cockpit/state/filings/")
     p.add_argument("--instruction", help="candidate instruction file to test (default: the working instruction)")
-    p.add_argument("--model", help="model to run (default: claude-opus-5-5 for opus, gpt-6-sol for sol)")
-    p.add_argument("--effort", help="effort: low, medium, high, xhigh or max (default: Claude medium, Astra high, other Codex models xhigh)")
+    p.add_argument("--model", help="model to run (default: claude-opus-5-5 for opus, gpt-6.1-sol for sol)")
+    p.add_argument("--effort", help="effort: low, medium, high, xhigh or max (default: Claude medium, Astra high, Sol xhigh)")
     p.add_argument("--service-tier", choices=["priority"], help="request Fast service for this Codex run")
     p.add_argument("--timeout-minutes", type=int, help="wall-clock limit for the run, 10-360 (default: 90)")
     p.add_argument("--revise-from", help="finished workbook to revise (revision pass)")

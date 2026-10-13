@@ -41,9 +41,6 @@ import check_lean
 TOOL_VERSION = "Version 1"
 PROJECT = Path(__file__).resolve().parents[2]
 FORBIDDEN_OUT = ("extraction", "raw_filing", "ref")
-# Deals kept for descriptive work only. Meredith was the one such deal; Austin
-# dropped it from the project on 9 October 2026.
-DESCRIPTIVE_ONLY: set[str] = set()
 
 WHOLE_BIDS = {"Bid", "Bid reaffirmed"}
 ENTRY_EVENTS = {"NDA signed", "Bid", "Bid reaffirmed"}
@@ -64,8 +61,8 @@ DEADLINE_CLASSES = {
     "Unclear": "missing",
 }
 EXIT_ACTOR = {"Dropped by target": "target", "Withdrew": "bidder", "Did not submit": "bidder", "Not selected at signing": "target"}
-# Alex's drop codes (audit D §3.3). The audit pairs DropM and DropBelowM with the two market-price
-# reasons without saying which is which, so both codes are given for either reason.
+# Alex's drop codes fit the exit reasons (DECISIONS.md, evening rulings of 27 September 2026, ruling 4). No
+# ruling pairs DropM and DropBelowM with one market-price reason each, so both codes are given for either reason.
 MARKET_CODES = "DropM|DropBelowM"
 WITHDREW_CODES = {
     "Value below market price": MARKET_CODES,
@@ -74,8 +71,8 @@ WITHDREW_CODES = {
     "Value at earlier offer": "DropAtInf",
 }
 INITIATION_EVENTS = {"Target interest": "target-led", "Target sale decision": "target-led",
-                     "Bidder interest": "bidder-led", "Bid": "bidder-led", "Activist": "activist-influenced"}
-# P1: what the two price cells give, from validated values only.
+                     "Bidder interest": "bidder-led", "Bid": "bidder-led"}
+# What the two price cells give, from validated values only.
 USABLE_PRICE_KINDS = {"point", "range", "lower_bound", "upper_bound"}
 # T2 (ruling of 12 October 2026): a bid expressed as a range or a one-sided bound is Informal (Alex, CI p.7); a blank
 # price says nothing about that, so it keeps T0. An invalid price cell is not read as a single price.
@@ -100,32 +97,32 @@ COUNT_QUALIFIER_BOUNDS = {
 }
 
 SWITCHES = [
-    {"id": "count_ranges", "source": "D22; Alex Q1 / Decision 3",
+    {"id": "count_ranges", "source": "open research choice; instruction Part B and E3; DECISIONS.md, rulings of 12 October 2026, ruling 3",
      "question": "How estimation uses counts that are ranges or bounds. Under every variant, a party first seen bidding after "
                  "cohort entries counts inside the cohort (E3), unless its own contact row follows them and no cohort Note "
                  "names it or cites its row.",
      "variants": {"bounds": "live_lo, live_hi (and count_lo, count_hi)",
                   "presumed ordinary sequence": "live_point (approximately N is N)",
                   "one bound": "live_lo or live_hi alone"}},
-    {"id": "unclear", "source": "D22",
+    {"id": "unclear", "source": "open research choice; instruction D1, E9 and E12",
      "question": "How Unclear and Not stated values are treated.",
      "variants": {"missing": "Formality Unclear is missing under every reading; deadline Unclear has class missing",
                   "Conditions Unclear as not Heavy": "T1", "Conditions Unclear as Heavy": "T1u"}},
-    {"id": "formality_reading", "source": "D22; Alex Decision 3b",
+    {"id": "formality_reading", "source": "open research choice; instruction E11 and E12; DECISIONS.md, rulings of 12 October 2026, ruling 4",
      "question": "Which Formality reading is primary.",
      "variants": {"T0": "T0", "T1": "T1", "T1u": "T1u", "T2": "T2", "T3": "T3"}},
-    {"id": "same_price_revisions", "source": "D22; D13; Alex Decision 3b; P1",
+    {"id": "same_price_revisions", "source": "open research choice; instruction E10 (Revisions)",
      "question": "Whether a same-price revision of terms is a new price observation.",
      "variants": {"new observation": "price_obs__same_price_as_new", "change of terms only": "price_obs__same_price_as_terms"}},
-    {"id": "same_offer_restatements", "source": "E10 (R1); questionnaire 3.3(b)",
+    {"id": "same_offer_restatements", "source": "open research choice; instruction E10 (Same offer); DECISIONS.md, F2 and rulings of 9 October 2026, ruling 2",
      "question": "Whether a Same-offer row (the bidder says its offer stands or confirms it by documents) is kept as a bid observation.",
      "variants": {"kept": "every bids.csv row",
                   "dropped": "bids.csv rows with same_offer_of blank or returns_to_older_price 1 (a revision, L253)"}},
-    {"id": "inferred_exits", "source": "D22; Alex Decision 3b",
+    {"id": "inferred_exits", "source": "open research choice; instruction Part B and E14",
      "question": "Whether inferred exits enter as dropouts or as censoring.",
      "variants": {"dropout": "exit__inferred_as_dropout",
                   "censoring": "exit__inferred_as_censoring"}},
-    {"id": "estimation_price", "source": "audit D §4; spec §7.10",
+    {"id": "estimation_price", "source": "open research choice; instruction E13",
      "question": "Upfront or package (upfront + CVR/earnout value) as the estimation price.",
      "variants": {"upfront": "price_low, price_high", "package": "package_low, package_high, compared only within one package_basis"}},
 ]
@@ -159,7 +156,7 @@ DEAL_COLUMNS = [
     "deal", "process", "target", "acquirer", "acquirer_type", "agreed_price", "merger_signed", "merger_announced",
     "filing", "background_pages", "number_of_processes", "earlier_approaches", "currency_units", "auction_screen",
     "auction_status", "auction_count_lo", "auction_count_hi", "auction_met", "whole_company_bids", "whole_company",
-    "descriptive_only", "estimation_sample", "initiation_recorded", "initiation_first_event", "initiation_first_row",
+    "estimation_sample", "initiation_recorded", "initiation_first_event", "initiation_first_row",
     "initiation_check",
     "merger_of_equals_rows",
 ]
@@ -291,8 +288,6 @@ def stock_bounds(value: Any, note: Any = None) -> tuple[str, float | None, float
     if (n := number(value)) is not None:
         return "exact", n, n
     raw = text(value)
-    if (m := check_lean.STOCK_RANGE_RE.fullmatch(raw)):
-        return "range (not a Version 1 value)", float(m.group(1)), float(m.group(2))
     if raw == "Part stock" and (m := NOTE_STOCK_RANGE_RE.search(text(note))):
         lo, hi = float(m.group(1)), float(m.group(2))
         if 0 <= lo <= hi <= 100:
@@ -307,11 +302,7 @@ def all_cash(record: dict[str, Any]) -> int | None:
         return None
     if isinstance(stock, (int, float)):
         return 1 if stock == 0 else 0 if 0 < stock <= 100 else None
-    value = str(stock).strip()
-    if value == "Part stock":
-        return 0
-    match = check_lean.STOCK_RANGE_RE.fullmatch(value)
-    return 0 if match and float(match.group(2)) > 0 else None
+    return 0 if str(stock).strip() == "Part stock" else None
 
 
 def valid_price(value: Any) -> float | None:
@@ -322,7 +313,7 @@ def valid_price(value: Any) -> float | None:
 
 
 def upfront_price_kind(record: dict[str, Any]) -> str:
-    """P1: what Price low and Price high give, from validated values only. A point needs two valid equal prices, a
+    """What Price low and Price high give, from validated values only. A point needs two valid equal prices, a
     range two valid ordered unequal ones; a filled cell that is not a valid price, or a reversed range, is invalid."""
     cells = [record.get("Price low"), record.get("Price high")]
     filled = [not check_lean.is_blank(c) for c in cells]
@@ -346,8 +337,6 @@ def package_basis(record: dict[str, Any], low: float | None, high: float | None,
         return "missing: a price cell is not a valid price", None
     if upfront_price_kind(record) == "invalid":
         return "missing: the price range is reversed", None
-    if marker == "Varies":
-        return "missing: CVR/earnout Varies on a cohort row (amounts in the Note)", None
     if marker == "Y" and cvr is None:
         return "missing: CVR/earnout marked without a value", None
     if cvr is None:
@@ -436,7 +425,7 @@ def fact(facts: dict[str, Any], options: set[str] | str) -> str:
 
 
 def auction_screen(value: str) -> dict[int, dict[str, Any]]:
-    """Per process: status (Met or Not met; E1 has no Uncertain) and the supported count as bounds."""
+    """Per process: status (Met or Not met, E1) and the supported count as bounds."""
     marks = list(re.finditer(r"\b(Met|Not met)\b\s*(?:\(\s*process\s*(\d+)\s*\))?\s*:?", value, re.IGNORECASE))
     out: dict[int, dict[str, Any]] = {}
     for i, m in enumerate(marks):
@@ -459,7 +448,7 @@ def auction_screen(value: str) -> dict[int, dict[str, Any]]:
 # ---- derivation --------------------------------------------------------------------------------
 
 def reading(t0: str, formal_if: bool) -> str:
-    """Formal where T0 is Formal and the reading's test holds, otherwise Informal; missing only where T0 is (§7.10)."""
+    """Formal where T0 is Formal and the reading's test holds, otherwise Informal; missing only where T0 is."""
     if not t0:
         return ""
     return "Formal" if t0 == "Formal" and formal_if else "Informal"
@@ -772,15 +761,13 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
             last_priced[(process, key)] = (check_lean.as_integer(r.get("#")), low, high)
         if check_lean.as_integer(r.get("#")) is not None:
             bid_rows[check_lean.as_integer(r.get("#"))] = r
-        # P1: a blank or invalid price is no price observation under either variant (H4).
+        # A blank or invalid price is no price observation under either variant.
         price_kind = upfront_price_kind(r)
         usable = price_kind in USABLE_PRICE_KINDS
         if price_kind == "invalid" and not any(not check_lean.is_blank(r.get(c)) and valid_price(r.get(c)) is None
                                                for c in ("Price low", "Price high")):
             note_review(r, "Price low is above Price high (a reversed range): upfront_price_kind invalid, no price observation")
         kind, s_lo, s_hi = stock_bounds(r.get("Stock %"), r.get("Note"))
-        if kind == "range (not a Version 1 value)":
-            note_review(r, "Stock % holds a range; E13 records Part stock with the range in the Note: read as bounds")
         lo, hi, point, _ = count_bounds(r.get("Count"), r.get("Note"))
         formality, level = text(r.get("Formality")), text(r.get("Conditions"))
         t0 = formality if formality in ("Formal", "Informal") else ""
@@ -793,7 +780,7 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
         # Package = upfront + CVR/earnout value; missing where a CVR is marked but its value is not given. package_basis
         # says what the sum is, so packages on different bases are not read as comparable (E13).
         # A price cell the checker rejects gives no package (price_low/high still show the cell as read).
-        cvr_unvalued = text(r.get("CVR/earnout")) in {"Y", "Varies"} and cvr is None
+        cvr_unvalued = text(r.get("CVR/earnout")) == "Y" and cvr is None
         invalid = [c for c in ("Price low", "Price high") if not check_lean.is_blank(r.get(c)) and valid_price(r.get(c)) is None]
         package = (lambda p: None if p is None or cvr_unvalued or invalid or price_kind == "invalid" else p + (cvr or 0))
         basis, basis_issue = package_basis(r, low, high, cvr)
@@ -912,7 +899,7 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
 
     # Deal facts, per process.
     facts = ledger["facts"]
-    screen = auction_screen(fact(facts, check_lean.AUCTION_SCREEN_FIELDS))
+    screen = auction_screen(fact(facts, "Auction screen"))
     whole_bids = fact(facts, check_lean.WHOLE_COMPANY_FIELDS)
     processes = sorted({p for p, _ in rounds} | {row_round(r)[0] for r in whole} | set(screen), key=str)
     moe = [r for r in rows if re.search(r"merger of equals", text(r.get("Note")), re.IGNORECASE)]
@@ -933,7 +920,8 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
         first_target_index = check_lean.first_target_step(process_rows)
         activist = next((r for r in process_rows[:first_target_index] if text(r.get("Event")) == "Activist"
                          and text(r.get("Note")).startswith("Demands sale")), None)
-        initiating = [activist] if activist else [r for r in initiating if text(r.get("Event")) != "Activist"]
+        if activist:
+            initiating = [activist]
         first = next((r for r in initiating if unit_key(r.get("Who")) not in scope_uncertain), None)
         if initiating and initiating[0] is not first:
             note_review(initiating[0], f"process {process}: the first initiating row belongs to a partial-only candidate with no exit row; "
@@ -957,7 +945,6 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
                                f"#{cell(first.get('#'))} {text(first.get('Event'))} in process 1"})
         met = {"Met": 1, "Not met": 0}.get(s.get("status"))
         whole_flag = 1 if whole_bids.startswith("Yes") else 0 if whole_bids.startswith("No") else None
-        descriptive = 1 if deal in DESCRIPTIVE_ONLY else 0
         deal_rows.append({
             "deal": deal, "process": process, "target": fact(facts, "Target"), "acquirer": fact(facts, "Acquirer"),
             "acquirer_type": fact(facts, "Acquirer type"), "agreed_price": fact(facts, "Agreed price and consideration"),
@@ -968,8 +955,8 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
             "currency_units": fact(facts, "Currency and units of bid prices"),
             "auction_screen": s.get("text", ""), "auction_status": s.get("status", ""),
             "auction_count_lo": s.get("lo"), "auction_count_hi": s.get("hi"), "auction_met": met,
-            "whole_company_bids": whole_bids, "whole_company": whole_flag, "descriptive_only": descriptive,
-            "estimation_sample": None if met is None or whole_flag is None else int(met == 1 and whole_flag == 1 and not descriptive),
+            "whole_company_bids": whole_bids, "whole_company": whole_flag,
+            "estimation_sample": None if met is None or whole_flag is None else int(met == 1 and whole_flag == 1),
             "initiation_recorded": recorded_initiation, "initiation_first_event": derived,
             "initiation_first_row": f"#{cell(first.get('#'))} {text(first.get('Event'))}" if first else "",
             "initiation_check": check,
@@ -982,7 +969,7 @@ def derive(ledger: dict[str, Any], deal: str) -> dict[str, Any]:
                "stock_pct": cell(r.get("Stock %")), "formality": text(r.get("Formality")),
                "conditions": text(r.get("Conditions")), "flag": text(r.get("Flag")), "note": text(r.get("Note"))}
               for r, reason in other_scope]
-    # The Questions sheet as it stands: the open source questions a reviewer answers (H1 traceability).
+    # The Questions sheet as it stands: the open source questions a reviewer answers.
     questions = [{"deal": deal, **dict(zip(QUESTION_COLUMNS[1:], (text(q.get(c)) for c in check_lean.QUESTION_COLUMNS)))}
                  for q in ledger["questions"]]
     return {"bids": bids, "other_scope": others, "rounds": round_rows, "participation": participation,
@@ -1055,13 +1042,11 @@ def code_identity() -> dict[str, Any]:
 
 def known_deals() -> set[str]:
     """Deal slugs of the seed, to read a slug from a file name."""
-    known = set(DESCRIPTIVE_ONLY)
     try:
         with (PROJECT / "ref/seed.csv").open(newline="", encoding="utf-8") as handle:
-            known |= {row["deal"] for row in csv.DictReader(handle) if row.get("deal")}
+            return {row["deal"] for row in csv.DictReader(handle) if row.get("deal")}
     except (OSError, KeyError):
-        pass
-    return known
+        return set()
 
 
 def deal_from_name(workbook: Path, source: dict[str, Any] | None, known: set[str]) -> tuple[str, str | None]:
