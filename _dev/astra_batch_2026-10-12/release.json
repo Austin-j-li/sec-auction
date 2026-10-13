@@ -1,0 +1,48 @@
+{
+  "release_commit": "357bef89a494c8f009aa621db45cf547dd986448",
+  "previous_commit": "a8ecea3d35e57a8c1f6201753f82022318da2ecb",
+  "backup": {
+    "backup": "/home/uctpiaj/backups/ledger-live/releases/20261012-192326Z-before-357bef8/20261012-192356Z",
+    "git_head": "a8ecea3d35e57a8c1f6201753f82022318da2ecb",
+    "integrity": [
+      "ok"
+    ],
+    "deal_count": 12
+  },
+  "completed_at_utc": "2026-10-12T19:23:58Z",
+  "route": "Direct VM access, authorized after the ARC credential was unavailable",
+  "temporary_parallel_limits": {
+    "total": 12,
+    "per_user": 12
+  },
+  "previous_parallel_limits": {
+    "total": 4,
+    "per_user": 2
+  },
+  "unsigned_access": {
+    "user": "unknown",
+    "can_edit": false,
+    "deals_http_status": 401
+  },
+  "listed_deals": 12,
+  "instruction": {
+    "id": "e77059e96146",
+    "label": "v1.1",
+    "sha256": "e6e1e2f3b53378bdb6770762d33fe9b84090c2ae27301d5bf725e0c3f629eb13"
+  },
+  "run_settings": {
+    "model": "gpt-6-astra",
+    "effort": "xhigh",
+    "service_tier": "priority",
+    "timeout_minutes": 90
+  },
+  "start_span_seconds": 20,
+  "first_start_utc": "2026-10-12T19:24:55+00:00",
+  "last_start_utc": "2026-10-12T19:25:15+00:00",
+  "parallel_limits_restored_at": "2026-10-12T19:36:29Z",
+  "post_batch_backup": "/home/uctpiaj/backups/ledger-live/releases/20261012-1936Z-after-astra-batch/20261012-193652Z",
+  "final_parallel_limits": {
+    "total": 4,
+    "per_user": 2
+  }
+}

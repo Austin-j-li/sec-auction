@@ -75,6 +75,7 @@ export function ExtractDialog({ user, account, accountError, instructions, instr
   const engines = accountEngines(account);
   const [engineId, setEngineId] = useState(null);
   const [effort, setEffort] = useState(DEFAULT_EFFORT);
+  const [fast, setFast] = useState(false);
   const [instructionId, setInstructionId] = useState(null);
   const [timeout, setTimeoutMinutes] = useState(String(DEFAULT_TIMEOUT));
   const engine = pickEngine(engines, engineId);
@@ -99,7 +100,9 @@ export function ExtractDialog({ user, account, accountError, instructions, instr
   function submit(event) {
     event.preventDefault();
     if (!timeoutOk || !engine) return;
-    onStart({ engine: engine.id, effort: effortFor(engine, effort), timeout_minutes: Number(timeout), ...(instruction ? { instruction_id: instruction.id } : {}) });
+    onStart({ engine: engine.id, effort: effortFor(engine, effort), timeout_minutes: Number(timeout),
+      service_tier: engine.id === 'sol61' || (engine.id === 'astra6' && fast) ? 'priority' : null,
+      ...(instruction ? { instruction_id: instruction.id } : {}) });
   }
   return <div className="modal-backdrop" role="presentation">
     <div className="modal extract-modal" ref={dialogRef} role="dialog" aria-modal="true" aria-label="Start an extraction">
@@ -134,6 +137,9 @@ export function ExtractDialog({ user, account, accountError, instructions, instr
         </Field>
         {warning && <p className="extract-warning tone-warning"><WarningIcon size={16} aria-hidden="true"/><span>{warning}</span></p>}
         {info && <p className="extract-info">{info}</p>}
+        {engine.id === 'astra6' && <Field label="Service" hint="Fast service uses more of your ChatGPT plan.">
+          <Checkbox label="Fast service" checked={fast} onChange={(_, data) => setFast(Boolean(data.checked))}/>
+        </Field>}
         <Field label="Effort">
           <Select value={effortFor(engine, effort)} onChange={(_, data) => setEffort(data.value)}>
             {engine.efforts.map(value => <option key={value} value={value}>{value}</option>)}
@@ -149,6 +155,8 @@ export function ExtractDialog({ user, account, accountError, instructions, instr
           <Input className="mono" type="number" min={TIMEOUT_RANGE[0]} max={TIMEOUT_RANGE[1]} step={1} value={timeout} onChange={(_, data) => setTimeoutMinutes(data.value)}/>
         </Field>
         <p className="extract-summary mono">{runSummary(effortFor(engine, effort), user, engine, instruction?.label || (instructionsError ? 'default instruction' : '…'))}</p>
+        {(engine.id === 'sol61' || (engine.id === 'astra6' && fast)) && <p className="extract-info">Fast service requested</p>}
+        {account.parallel_limits && <p className="extract-info">Up to {account.parallel_limits.per_user} runs at once on your account. Extra runs wait.</p>}
         {usage && <p className="extract-usage mono">{accountLabel(engine.account)} plan usage · {usage}</p>}
         {error && <p className="run-failure tone-error" role="alert">{error}</p>}
         <div className="modal-actions">

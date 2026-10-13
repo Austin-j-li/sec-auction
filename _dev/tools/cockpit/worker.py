@@ -3,7 +3,7 @@
 
 Runs as `ledger-worker.service`. It polls the jobs table in the workspace database,
 fetches filings from EDGAR for "add deal" lookups (one at a time, at SEC's pace),
-starts `run_model.py` for queued extractions (at most 4 at once, 2 per user) with the
+starts `run_model.py` for queued extractions (by default 4 at once, 2 per user) with the
 chosen engine, the frozen instruction text and the starting user's own credential, checks
 each finished workbook outside the sandbox and imports it as an immutable version. Claude
 connect jobs drive `claude setup-token` in a pseudo-terminal; ChatGPT connect jobs drive
@@ -268,9 +268,10 @@ class Worker:
             conn.close()
         if not claimed:
             return False
+        tier_args = ["--service-tier", params["service_tier"]] if params.get("service_tier") else []
         prepare = subprocess.run([sys.executable, str(RUNNER), "prepare", "--provider", engine["provider"], "--run-dir", str(run_dir),
                                   "--deal", job["slug"], "--filing", filing.name, "--filing-dir", str(filing.parent), "--model", engine["model"],
-                                  "--effort", params["effort"], "--timeout-minutes", str(params["timeout_minutes"]), "--instruction", str(instruction)],
+                                  "--effort", params["effort"], "--timeout-minutes", str(params["timeout_minutes"]), "--instruction", str(instruction), *tier_args],
                                  cwd=self.repo, capture_output=True, text=True)
         if prepare.returncode != 0:
             self.fail(self.job(job["id"]), "prepare_failed", (prepare.stderr or prepare.stdout).strip()[-500:])
@@ -352,7 +353,8 @@ class Worker:
         version = frozen["name"] if frozen else instruction_version()
         shown = frozen["label"] if frozen else version or "instruction " + metadata["instruction_sha256"][:7]
         name = runs.NAMES.get(job["actor"], job["actor"])
-        label = f"{engine['label']} · {metadata['effort']} · {shown} — {name}, {started:%-d %b %H:%M}"
+        speed = " · Fast" if metadata.get("service_tier") == "priority" else ""
+        label = f"{engine['label']}{speed} · {metadata['effort']} · {shown} — {name}, {started:%-d %b %H:%M}"
         conn = self.connect()
         try:  # the version row and the job's completion land together; a retry after a crash replaces the row
             conn.execute("INSERT OR REPLACE INTO versions (slug, id, label, path, sha256, kind, engine, model, effort, instruction_version, instruction_sha256, filing_sha256, started_by, started_at, finished_at, receipts, checker, instruction_id) VALUES (?,?,?,?,?,'raw',?,?,?,?,?,?,?,?,?,?,?,?)",

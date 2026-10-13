@@ -32,10 +32,9 @@ The default is Claude Opus 5.5 (`claude-opus-5-5`) at medium effort. `--provider
 
 Launch and worker startup check the prepared instruction, filing and prompt against their recorded SHA-256 hashes. A changed or missing input needs a newly prepared run directory.
 
-For a Codex run, `prepare --service-tier priority` explicitly requests Fast service, including for Astra.
-The metadata records the effective tier. The launch command uses that record.
-Without this option, Sol keeps its priority default and Astra keeps its account default.
-The option does not apply to Claude. A command receipt proves the request, not the service the provider actually delivered.
+Use `prepare --service-tier priority` to request Fast service for an Astra run. The cockpit offers the same choice through its Astra **Fast service** checkbox. Sol keeps Fast service as its default. The job parameters and runner metadata record the requested tier. The provider command passes that tier and enables Fast mode. These records prove the request, not the tier the provider ultimately delivers.
+
+The cockpit limits concurrent runs to four in total and two per user by default. A release can configure higher limits through the environment variables in [CLOUD_DEPLOYMENT.md](../CLOUD_DEPLOYMENT.md#parallel-extraction-limits). Extra jobs wait in the queue.
 
 Revision is a separate mode: pass both `--revise-from <workbook>` and `--report <findings.md>`. The workbook must be a four-sheet Version 1 workbook. A revision deliberately shows the agent that workbook and the findings, so it is never a blind extraction.
 
