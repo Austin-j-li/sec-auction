@@ -1,6 +1,6 @@
 # Lane D audit: output, work process, and voice-note coverage
 
-Auditor D, 27 September 2026. Sources read in full: the v0 instruction (`SEC_Deal_Ledger_Extraction_Instruction.md`, cited by section and line, "L"), Alex's voice notes (V¶), his collection instructions (CI p.N), `_dev/STATUS.md`. Consulted for mechanics: `_dev/tools/check_lean.py`, `_dev/tools/derive_analysis.py`. Filings opened: sTec, Meredith, Synacor (text searches only). Not read: `_dev/ALEX_ALIGNMENT.md`, `extraction/`, `ref/`, git history.
+Auditor D, 27 September 2026. Sources read in full: the v0 instruction (`SEC_Deal_Ledger_Extraction_Instruction.md`, cited by section and line, "L"), Alex's voice notes (V¶), his collection instructions (CI p.N), `_dev/STATUS.md`. Consulted for mechanics: `_dev/tools/check_lean.py`, `_dev/tools/derive_analysis.py`. Filings opened: sTec, Meredith, Synacor (text searches only). Not read: `_dev/alignment_sprint/evidence/ALEX_ALIGNMENT.md`, `extraction/`, `ref/`, git history.
 
 Settled rulings in STATUS are not reopened. Where an item touches Meredith or sTec, the fix is general and the ruling stands.
 

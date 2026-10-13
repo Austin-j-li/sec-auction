@@ -14,7 +14,7 @@
 | Workbook comparison | [WORKBOOK_CHECK](draft/WORKBOOK_CHECK.md): all 321 relevant event rows and all 123 Formal/Informal rows in Alex's nine deal ranges; differences, agreements, missing events and unavailable fields are distinguished. |
 | Tools | Version 1 checker and editor choices; Q/R validation; updated count, condition, deadline and formality checks; analysis updates; eleven independently switchable review-queue categories; filing index links. Tests accompany these changes. |
 | Cockpit | Restored the VM archive's app, adapted it to the current tools, rebuilt the frontend, and removed old rules selection. Pending catalog deals, mixed initiation, R links/save/rename/delete and checker labels work. A deal's first successful imported run becomes a persisted base, including when runs finish out of order. |
-| Fresh state | [`fresh_state.py`](../tools/cockpit/fresh_state.py) reads the source through a read-only SQLite backup, retains account metadata and added deals with verified filings, and publishes into an absent destination. Old work, instructions/defaults, comments and jobs do not carry over. External provider credentials retain their existing location. |
+| Fresh state | fresh_state.py (deleted 13 October 2026) reads the source through a read-only SQLite backup, retains account metadata and added deals with verified filings, and publishes into an absent destination. Old work, instructions/defaults, comments and jobs do not carry over. External provider credentials retain their existing location. |
 | Later deployment | [SWITCHOVER](SWITCHOVER.md) covers a separate approved deployment worktree, job/runner drain, backup/archive, fresh state, frontend, service drop-ins, TMPDIR, smoke checks and rollback. No step was executed. |
 | Check evidence | [CHECK_REPORT](draft/CHECK_REPORT.md) records instruction checks, the hand-made workbook, independent reviews, suites, copied-state rehearsal and operational boundaries. |
 
@@ -228,7 +228,7 @@ A five-lane re-review (`VERSION1_REREVIEW.md`) and Austin's rulings 6 and 7 (DEC
 - **Tests.** Full Python tree 377 passed, 284 subtests. vitest 79 passed. The core browser suite passed 63 checks, and the trace suite 14. `git diff --check` is clean. New tool tests fail on the code at `8cc64cc`.
 - **Skipped, as the fix list says.**
   - The `fresh_state.py` rewrite: the re-review offered it as a simplification, not a defect; the current script passes its tests and the 27 September copied-state rehearsal.
-  - Deleting the catalog `filing` blocks and `verify_catalog.py`: marked optional by the re-review; both still pass.
+  - Deleting the catalog `filing` blocks and `verify_catalog.py` (deleted 13 October 2026): marked optional by the re-review; both still pass.
   - Changing how derive computes `opening_live`: deferred by the fix list; its tests pass unchanged.
   - A rule for Kraton's mistyped “July 19, 2020”: a rule for one filing's typo would be a one-deal patch.
 

@@ -59,7 +59,7 @@ Astra (GPT-6 Astra through Codex, usually xhigh) is a useful reviewer, but it te
 3. Apply only the findings that hold, and trim the wording.
 4. Give Austin a verdict, not Astra's raw list.
 
-Close stdin when you call Codex (`codex exec ... < /dev/null`), or it waits for input. Codex is installed only on the VM.
+Close stdin when you call Codex (`codex exec ... < /dev/null`), or it waits for input. Codex is installed only on the VM. From a cloud thread, use `claude-gpt`; it runs Codex on the VM.
 
 ## Cloud deployment
 

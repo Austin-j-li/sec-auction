@@ -1,6 +1,6 @@
 # Alex's voice notes versus the current research conventions
 
-*Superseded by the alignment sprint's decision log ([DECISIONS.md](alignment_sprint/DECISIONS.md), 27–28 September 2026) and Version 1. Kept as the audit that started the sprint.*
+*Superseded by the alignment sprint's decision log ([DECISIONS.md](../DECISIONS.md), 27–28 September 2026) and Version 1. Kept as the audit that started the sprint.*
 
 27 September 2026. Detailed reconciliation, not an instruction amendment or acceptance of any workbook. The audit was written against the instruction text that is now labelled v0 (identical except for its version line). Its run evidence comes from runs made before the v0 reset, cited by git reference; re-check each point against the v0 re-extractions.
 
@@ -10,7 +10,7 @@
 
 Much of the instruction does agree with him. Separate formality and conditionality, preservation of substantive bid revisions, cohort reconciliation, distinct contact/NDA events, cash earnout separation, and distinct signing/announcement events are substantial improvements. They still need filing review; agreement in the rulebook is not evidence of flawless execution.
 
-This audit reads all 187 direct body paragraphs of the [voice document](../ref/alex_voice_notes_2026-08.docx), the complete [v0 instruction](../SEC_Deal_Ledger_Extraction_Instruction.md), the nine-page [older collection instructions](../ref/CollectionInstructions_Alex_2026.pdf), and the [current status](STATUS.md). Three independent review lanes covered rounds/processes, bid terms/review flags, and participants/prices. Selected consequential examples were checked against the recovered filing text and saved runs. This is **not** a complete row-by-row audit of every deal, a new extraction, or a live VM check.
+This audit reads all 187 direct body paragraphs of the [voice document](../../../ref/alex_voice_notes_2026-08.docx), the complete v0 instruction, the nine-page [older collection instructions](../../../ref/CollectionInstructions_Alex_2026.pdf), and the status record of that day. Three independent review lanes covered rounds/processes, bid terms/review flags, and participants/prices. Selected consequential examples were checked against the recovered filing text and saved runs. This is **not** a complete row-by-row audit of every deal, a new extraction, or a live VM check.
 
 The saved run comparisons refer to the 27 September 10:55:33 UTC snapshot (git `9b4f178:_dev/recovery/2026-09-27-cockpit/INDEX.json`). Four original deals have no run under this text in that snapshot. Existing working-copy edits and newer raw versions must not be conflated.
 
@@ -356,4 +356,4 @@ Selected raw-run checks are reproducible in these unmodified snapshot files:
 - Synacor pre-reset run (git `9b4f178:_dev/recovery/2026-09-27-cockpit/raw/deal__synacor_version_opus55-medium-20260926-2028-342883.json`): July 2020 process boundary; no new October 27 process.
 - PetSmart older working copy (git `9b4f178:_dev/recovery/2026-09-27-cockpit/raw/deal__petsmart.json`): August 19 round 1 opening; not a run under this text.
 
-Filing checks use the printed filing pages: Kraton pp.35–37; Mac-Gray pp.33–36; P&W pp.30–31; sTec pp.24–25 and 29–30; Datalink pp.27–29 and 32; PetSmart p.23. The snapshot's `filing__<deal>.json` preserves paragraph blocks and page labels; original filings remain in [raw_filing](../raw_filing). Penford's October 14 confirmation was checked against its dated paragraph in the original filing. The older collection PDF's page 8 was also visually inspected to verify the “Alex's addition” attribution of the informal-final and DropTarget instructions.
+Filing checks use the printed filing pages: Kraton pp.35–37; Mac-Gray pp.33–36; P&W pp.30–31; sTec pp.24–25 and 29–30; Datalink pp.27–29 and 32; PetSmart p.23. The snapshot's `filing__<deal>.json` preserves paragraph blocks and page labels; original filings remain in [raw_filing](../../../raw_filing). Penford's October 14 confirmation was checked against its dated paragraph in the original filing. The older collection PDF's page 8 was also visually inspected to verify the “Alex's addition” attribution of the informal-final and DropTarget instructions.

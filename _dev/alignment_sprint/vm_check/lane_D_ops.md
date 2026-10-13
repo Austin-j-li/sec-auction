@@ -7,7 +7,7 @@
 1. **v0's ledger header is the same as v1.14.1's** (the 29 columns match exactly). So the v0 checker does **not** reject v1.14 or v1.14.1 ledgers. It checks them under v0 rules. For v1.14.1 run workbooks that is correct: on all five 26 Sep runs, checker 1.8 and the v0 checker gave the same error and warning counts. For the two 24 Sep v1.14-draft runs it silently gives the wrong result (Mac-Gray: 1 error under v1.14 rules, 12 under v0). v1.13.2 ledgers (22 columns) get a `schema.columns` error and then 26–110 follow-on errors, not a clean refusal.
 2. **All 13 working copies and all 9 catalog bases are v1.13.2.** The cockpit has 12 run versions: 5 under v1.14.1, 2 under the v1.14 draft (`f9595d74`), and 5 under v1.13.2 (the four added deals and PetSmart).
 3. **The VM's current tools can already check v0 runs correctly.** Checker 1.8 treats an instruction hash it doesn't know as v1.14.1, and v1.14.1 rules are v0 rules. Publishing v0 in the app is enough for v0 extractions, with no code deploy. Only the labels would be off ("checker 1.8, v1.14.1 rules").
-4. **The laptop branch deletes what the app runs on:** the cockpit source, `_dev/cockpit/catalog.json`, `extraction/*.xlsx` (the nine catalog bases), `_dev/reviews/2026-09-22-opus55-reextraction` (the bases' receipts) and `deploy/ledger-backup.{service,timer}`. Checking the laptop branch out in the live folder would delete the running app and every working copy's base.
+4. **The laptop branch deletes what the app runs on:** the cockpit source, `_dev/cockpit/catalog.json`, `extraction/*.xlsx` (the nine catalog bases), _dev/reviews/2026-09-22-opus55-reextraction (not in the repository since the 27 September 2026 reset) (the bases' receipts) and `deploy/ledger-backup.{service,timer}`. Checking the laptop branch out in the live folder would delete the running app and every working copy's base.
 5. **`ae03c85` is not the VM state.** It was partly rebuilt from transcripts. 80 files differ from the VM tree. `check_lean.py` is identical. `compare_alex.py` (163 changed lines), `cockpit/data.py` (72), `run_model.py`, `server.py`, `worker.py` and `runs.py` all differ, and `provenance.py`, `bulk.js`, `choices.js`, `downloads.js` and the service units exist only on the VM. Treat the VM tree as the true record and ae03c85's cockpit files as superseded.
 6. **The four added deals' filings** (Medivation, Zep, Pepco Holdings, Imprivata) exist only in the VM's `_dev/cockpit/state/filings/`. The laptop's `raw_filing/MANIFEST.csv` doesn't list them.
 7. **The VM repository's own instruction file is still v1.13.2** (`513c8e3e`). v1.14.1 lives only in the app's instruction store.
@@ -30,7 +30,7 @@ Each step gives: what to do, where, who authorizes it, and the risk.
    - `git commit`
    - `git push -u origin vm-live-2026-09-26`
 
-   Leave out `_dev/tools/cockpit/dist.old/` and `lesson/` (Austin called `lesson/` stale). Decide on the root `HANDOFF.md`; committing it is harmless.
+   Leave out _dev/tools/cockpit/dist.old/ and `lesson/` (Austin called `lesson/` stale). Decide on the root `HANDOFF.md`; committing it is harmless.
    Before committing:
    - Run `git status --ignored` and confirm `.claude/`, `_dev/cockpit/state/` and `_dev/runs/` are ignored. `.claude/` is absent from the status output, but check it; don't assume.
    - Grep the staged files for tokens.
@@ -88,7 +88,7 @@ Each step gives: what to do, where, who authorizes it, and the risk.
 | `cockpit/data.py:927` `report_schema` | `ledger_schema` | removed | Schema label for fatal checks fails |
 | `cockpit/worker.py:316–318` finish | `rules_for_instruction`, then `--rules` | both removed | **Every run fails at the check step after the paid extraction**, whatever its instruction (STATUS listed only `--rules`) |
 | `cockpit/deals.py:240`, `provenance.py:76` | `fetch_filing.index_link` | removed | **Add Deal and the provenance download fail** (STATUS missed this) |
-| `cockpit/verify_catalog.py:140` | `LeanChecker(base, filing)` | same signature | Runs, but v1.13.2 bases now fail `schema.columns` |
+| cockpit/verify_catalog.py:140 (deleted 13 October 2026) | `LeanChecker(base, filing)` | same signature | Runs, but v1.13.2 bases now fail `schema.columns` |
 | `cockpit/backup.py:271` | reads `CHECKER_VERSION` with a regex | `"v0"` | Fine |
 | `cockpit/worker.py:272` prepare | `run_model --model` always passed | Sol default changed | Fine: the cockpit always names the model. Only manual CLI use without `--model` changes, from Astra to Sol (STATUS listed this) |
 | `run_model --revise-from` | schema detector | refuses non-v0 | Cockpit doesn't use it. Fine |
