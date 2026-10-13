@@ -1,0 +1,13 @@
+{
+  "bytes": 21756,
+  "exists": true,
+  "path": "/home/uctpiaj/work/Projects/sec-auction/_dev/runs/model_comparison_2026-10-12/penford-opus-5-5-xhigh-r1/extraction/penford.xlsx",
+  "sha256": "f6afebb1ff586d5051f0b4ab739aba6933b488259d4ef0e84247539317a14c53",
+  "sheet_names": [
+    "Deal ledger",
+    "Rounds",
+    "Questions",
+    "Deal facts"
+  ],
+  "valid_xlsx": true
+}

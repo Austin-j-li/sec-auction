@@ -1,0 +1,17 @@
+{
+  "synacor": {
+    "A": "synacor-opus-5-5-xhigh-r1",
+    "B": "synacor-gpt-6.1-sol-xhigh-r1",
+    "C": "synacor-gpt-6-astra-xhigh-r1"
+  },
+  "penford": {
+    "A": "penford-gpt-6-astra-xhigh-r1",
+    "B": "penford-gpt-6.1-sol-xhigh-r1",
+    "C": "penford-opus-5-5-xhigh-r1"
+  },
+  "medivation": {
+    "A": "medivation-gpt-6.1-sol-xhigh-r1",
+    "B": "medivation-gpt-6-astra-xhigh-r1",
+    "C": "medivation-opus-5-5-xhigh-r1"
+  }
+}

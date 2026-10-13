@@ -1,0 +1,188 @@
+{
+  "recorded_at": "2026-10-12T16:12:56.630102+00:00",
+  "base_commit": "58675c97fc9bc3018bd7bea21e7691ae484fc8bd",
+  "runner_sha256": "5c2bc2b26eba396a010776f272280e92ccf49367cd4ef2cafd3e6633c9d7a9d7",
+  "sweep_sha256": "557d71a69bd8d58ecca9e312432e02d78316755eb21c08ed074222b0c68c307b",
+  "protocol_sha256": "76856b0a40fd46ac8c21c9cec230e7e6e9ce7fb3b0df79415a4993bbe05f0eb8",
+  "started_first": "2026-10-12T16:10:13.605523+00:00",
+  "started_last": "2026-10-12T16:10:13.866541+00:00",
+  "start_span_seconds": 0.261018,
+  "settings": [
+    {
+      "id": "penford-opus-5-5-xhigh-r1",
+      "service_tier": null,
+      "started_at": "2026-10-12T16:10:13.807085+00:00",
+      "command_keys": [
+        "continuation_argv",
+        "credential_delivery",
+        "network",
+        "provider",
+        "provider_argv",
+        "provider_binary",
+        "provider_binary_sha256",
+        "provider_environment",
+        "runner_sha256",
+        "runtime_state",
+        "started_at"
+      ],
+      "runner_sha256": "5c2bc2b26eba396a010776f272280e92ccf49367cd4ef2cafd3e6633c9d7a9d7",
+      "provider_binary_sha256": "0298068b686e7fdbaf9402a7a587bb7f49c0b0e084de09f69145a0719207640c"
+    },
+    {
+      "id": "penford-gpt-6-astra-xhigh-r1",
+      "service_tier": "priority",
+      "started_at": "2026-10-12T16:10:13.605523+00:00",
+      "command_keys": [
+        "continuation_argv",
+        "credential_delivery",
+        "network",
+        "provider",
+        "provider_argv",
+        "provider_binary",
+        "provider_binary_sha256",
+        "runner_sha256",
+        "runtime_state",
+        "started_at"
+      ],
+      "runner_sha256": "5c2bc2b26eba396a010776f272280e92ccf49367cd4ef2cafd3e6633c9d7a9d7",
+      "provider_binary_sha256": "1748767b230ebfc3d4ab7e4e254920d0c0ad9691fd8c11f190e7d44511a4a92e"
+    },
+    {
+      "id": "medivation-gpt-6.1-sol-xhigh-r1",
+      "service_tier": "priority",
+      "started_at": "2026-10-12T16:10:13.828647+00:00",
+      "command_keys": [
+        "continuation_argv",
+        "credential_delivery",
+        "network",
+        "provider",
+        "provider_argv",
+        "provider_binary",
+        "provider_binary_sha256",
+        "runner_sha256",
+        "runtime_state",
+        "started_at"
+      ],
+      "runner_sha256": "5c2bc2b26eba396a010776f272280e92ccf49367cd4ef2cafd3e6633c9d7a9d7",
+      "provider_binary_sha256": "1748767b230ebfc3d4ab7e4e254920d0c0ad9691fd8c11f190e7d44511a4a92e"
+    },
+    {
+      "id": "synacor-opus-5-5-xhigh-r1",
+      "service_tier": null,
+      "started_at": "2026-10-12T16:10:13.776232+00:00",
+      "command_keys": [
+        "continuation_argv",
+        "credential_delivery",
+        "network",
+        "provider",
+        "provider_argv",
+        "provider_binary",
+        "provider_binary_sha256",
+        "provider_environment",
+        "runner_sha256",
+        "runtime_state",
+        "started_at"
+      ],
+      "runner_sha256": "5c2bc2b26eba396a010776f272280e92ccf49367cd4ef2cafd3e6633c9d7a9d7",
+      "provider_binary_sha256": "0298068b686e7fdbaf9402a7a587bb7f49c0b0e084de09f69145a0719207640c"
+    },
+    {
+      "id": "medivation-gpt-6-astra-xhigh-r1",
+      "service_tier": "priority",
+      "started_at": "2026-10-12T16:10:13.783828+00:00",
+      "command_keys": [
+        "continuation_argv",
+        "credential_delivery",
+        "network",
+        "provider",
+        "provider_argv",
+        "provider_binary",
+        "provider_binary_sha256",
+        "runner_sha256",
+        "runtime_state",
+        "started_at"
+      ],
+      "runner_sha256": "5c2bc2b26eba396a010776f272280e92ccf49367cd4ef2cafd3e6633c9d7a9d7",
+      "provider_binary_sha256": "1748767b230ebfc3d4ab7e4e254920d0c0ad9691fd8c11f190e7d44511a4a92e"
+    },
+    {
+      "id": "synacor-gpt-6.1-sol-xhigh-r1",
+      "service_tier": "priority",
+      "started_at": "2026-10-12T16:10:13.806604+00:00",
+      "command_keys": [
+        "continuation_argv",
+        "credential_delivery",
+        "network",
+        "provider",
+        "provider_argv",
+        "provider_binary",
+        "provider_binary_sha256",
+        "runner_sha256",
+        "runtime_state",
+        "started_at"
+      ],
+      "runner_sha256": "5c2bc2b26eba396a010776f272280e92ccf49367cd4ef2cafd3e6633c9d7a9d7",
+      "provider_binary_sha256": "1748767b230ebfc3d4ab7e4e254920d0c0ad9691fd8c11f190e7d44511a4a92e"
+    },
+    {
+      "id": "synacor-gpt-6-astra-xhigh-r1",
+      "service_tier": "priority",
+      "started_at": "2026-10-12T16:10:13.866541+00:00",
+      "command_keys": [
+        "continuation_argv",
+        "credential_delivery",
+        "network",
+        "provider",
+        "provider_argv",
+        "provider_binary",
+        "provider_binary_sha256",
+        "runner_sha256",
+        "runtime_state",
+        "started_at"
+      ],
+      "runner_sha256": "5c2bc2b26eba396a010776f272280e92ccf49367cd4ef2cafd3e6633c9d7a9d7",
+      "provider_binary_sha256": "1748767b230ebfc3d4ab7e4e254920d0c0ad9691fd8c11f190e7d44511a4a92e"
+    },
+    {
+      "id": "penford-gpt-6.1-sol-xhigh-r1",
+      "service_tier": "priority",
+      "started_at": "2026-10-12T16:10:13.830952+00:00",
+      "command_keys": [
+        "continuation_argv",
+        "credential_delivery",
+        "network",
+        "provider",
+        "provider_argv",
+        "provider_binary",
+        "provider_binary_sha256",
+        "runner_sha256",
+        "runtime_state",
+        "started_at"
+      ],
+      "runner_sha256": "5c2bc2b26eba396a010776f272280e92ccf49367cd4ef2cafd3e6633c9d7a9d7",
+      "provider_binary_sha256": "1748767b230ebfc3d4ab7e4e254920d0c0ad9691fd8c11f190e7d44511a4a92e"
+    },
+    {
+      "id": "medivation-opus-5-5-xhigh-r1",
+      "service_tier": null,
+      "started_at": "2026-10-12T16:10:13.712434+00:00",
+      "command_keys": [
+        "continuation_argv",
+        "credential_delivery",
+        "network",
+        "provider",
+        "provider_argv",
+        "provider_binary",
+        "provider_binary_sha256",
+        "provider_environment",
+        "runner_sha256",
+        "runtime_state",
+        "started_at"
+      ],
+      "runner_sha256": "5c2bc2b26eba396a010776f272280e92ccf49367cd4ef2cafd3e6633c9d7a9d7",
+      "provider_binary_sha256": "0298068b686e7fdbaf9402a7a587bb7f49c0b0e084de09f69145a0719207640c"
+    }
+  ],
+  "fast_setting_source": "https://developers.openai.com/api/docs/changelog",
+  "fast_setting_note": "Official changelog: priority requests use Fast mode. Command receipts establish requested priority, not independently verified service delivery."
+}

@@ -1,0 +1,13 @@
+{
+  "bytes": 27994,
+  "exists": true,
+  "path": "/home/uctpiaj/work/Projects/sec-auction/_dev/runs/model_comparison_2026-10-12/synacor-gpt-6.1-sol-xhigh-r1/extraction/synacor.xlsx",
+  "sha256": "04dbedd84654a892c621cc28481e9dcdaa1fc94e584d735aa0f06a9fe2ffb6e9",
+  "sheet_names": [
+    "Deal ledger",
+    "Rounds",
+    "Questions",
+    "Deal facts"
+  ],
+  "valid_xlsx": true
+}

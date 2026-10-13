@@ -1,0 +1,17 @@
+{
+  "binaries": {
+    "opus": {
+      "path": "/home/uctpiaj/work/agent-homes/claude-native-20260905-222709/versions/2.1.288",
+      "sha256": "0298068b686e7fdbaf9402a7a587bb7f49c0b0e084de09f69145a0719207640c",
+      "version": "2.1.288 (Claude Code)"
+    },
+    "sol": {
+      "path": "/home/uctpiaj/work/agent-homes/.codex-20260905-222709/packages/standalone/releases/0.159.2-x86_64-unknown-linux-musl/bin/codex",
+      "sha256": "1748767b230ebfc3d4ab7e4e254920d0c0ad9691fd8c11f190e7d44511a4a92e",
+      "version": "codex-cli 0.159.2"
+    }
+  },
+  "instruction_sha256": "e6e1e2f3b53378bdb6770762d33fe9b84090c2ae27301d5bf725e0c3f629eb13",
+  "recorded_at": "2026-10-12T16:10:02.764740+00:00",
+  "runner_sha256": "5c2bc2b26eba396a010776f272280e92ccf49367cd4ef2cafd3e6633c9d7a9d7"
+}

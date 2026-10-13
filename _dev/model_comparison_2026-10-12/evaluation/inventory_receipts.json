@@ -1,0 +1,17 @@
+{
+  "medivation": {
+    "sha256": "db332ba4c8910bdcf27c34c14db6be41e3f9fc455de6376eccd79fcb06ab11ae",
+    "recorded_at": "2026-10-12T16:17:36.019779+00:00",
+    "candidate_access": "none; author completion received before any candidate was provided"
+  },
+  "penford": {
+    "sha256": "cb9108136126b8afdc041e5a65f5170fcaf22fcddde67b4233fc8fff8a8ff6bc",
+    "recorded_at": "2026-10-12T16:18:26.536134+00:00",
+    "candidate_access": "none; author completion received before any candidate was provided"
+  },
+  "synacor": {
+    "sha256": "0315c0e5ce4945ed537abcfd1d47cb8a3bb03fb51c449d82c332aab5878e5a76",
+    "recorded_at": "2026-10-12T16:19:12.708189+00:00",
+    "candidate_access": "none; author completion received before any candidate was provided"
+  }
+}

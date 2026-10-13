@@ -1,0 +1,531 @@
+{
+  "recorded_at": "2026-10-12T16:48:14.345786+00:00",
+  "scope": "Original outputs, command receipts, compressed logs, schema presentation, and real analytical exports. No model retries or workbook revisions.",
+  "runs": [
+    {
+      "id": "medivation-gpt-6-astra-xhigh-r1",
+      "state": "completed",
+      "receipt_mismatches": [],
+      "workbook_matches_original": true,
+      "workbook_matches_receipt": true,
+      "analysis_input_matches_workbook": true,
+      "instruction_matches_current": true,
+      "runner_matches_current": true,
+      "filing_sha256": "0aaf9d1a20d8935780bc3e1150e6226a40ede50501e46754061fd2cf2ba9d51e",
+      "prompt_matches_record": true,
+      "events_match_original": true,
+      "network_matches_original": true,
+      "network_requests": [
+        {
+          "request": "CONNECT chatgpt.com:443 HTTP/1.1",
+          "allowed": true,
+          "count": 20
+        },
+        {
+          "request": "CONNECT ab.chatgpt.com:443 HTTP/1.1",
+          "allowed": false,
+          "count": 9
+        }
+      ],
+      "web_or_delegation": [],
+      "network_commands": [],
+      "analysis_incomplete": [],
+      "analysis_review_items": 5,
+      "sheets": [
+        {
+          "name": "Deal ledger",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:AC30",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        },
+        {
+          "name": "Rounds",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:J4",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        },
+        {
+          "name": "Questions",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:G15",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        },
+        {
+          "name": "Deal facts",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:B18",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        }
+      ]
+    },
+    {
+      "id": "medivation-gpt-6.1-sol-xhigh-r1",
+      "state": "completed",
+      "receipt_mismatches": [],
+      "workbook_matches_original": true,
+      "workbook_matches_receipt": true,
+      "analysis_input_matches_workbook": true,
+      "instruction_matches_current": true,
+      "runner_matches_current": true,
+      "filing_sha256": "0aaf9d1a20d8935780bc3e1150e6226a40ede50501e46754061fd2cf2ba9d51e",
+      "prompt_matches_record": true,
+      "events_match_original": true,
+      "network_matches_original": true,
+      "network_requests": [
+        {
+          "request": "CONNECT chatgpt.com:443 HTTP/1.1",
+          "allowed": true,
+          "count": 23
+        },
+        {
+          "request": "CONNECT ab.chatgpt.com:443 HTTP/1.1",
+          "allowed": false,
+          "count": 10
+        }
+      ],
+      "web_or_delegation": [],
+      "network_commands": [],
+      "analysis_incomplete": [],
+      "analysis_review_items": 5,
+      "sheets": [
+        {
+          "name": "Deal ledger",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:AC29",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        },
+        {
+          "name": "Rounds",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:J4",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        },
+        {
+          "name": "Questions",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:G13",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        },
+        {
+          "name": "Deal facts",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:B18",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        }
+      ]
+    },
+    {
+      "id": "medivation-opus-5-5-xhigh-r1",
+      "state": "completed",
+      "receipt_mismatches": [],
+      "workbook_matches_original": true,
+      "workbook_matches_receipt": true,
+      "analysis_input_matches_workbook": true,
+      "instruction_matches_current": true,
+      "runner_matches_current": true,
+      "filing_sha256": "0aaf9d1a20d8935780bc3e1150e6226a40ede50501e46754061fd2cf2ba9d51e",
+      "prompt_matches_record": true,
+      "events_match_original": true,
+      "network_matches_original": true,
+      "network_requests": [
+        {
+          "request": "CONNECT api.anthropic.com:443 HTTP/1.1",
+          "allowed": true,
+          "count": 3
+        }
+      ],
+      "web_or_delegation": [],
+      "network_commands": [],
+      "analysis_incomplete": [],
+      "analysis_review_items": 2,
+      "sheets": [
+        {
+          "name": "Deal ledger",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:AC27",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        },
+        {
+          "name": "Rounds",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:J3",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        },
+        {
+          "name": "Questions",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:G10",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        },
+        {
+          "name": "Deal facts",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:B18",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        }
+      ]
+    },
+    {
+      "id": "penford-gpt-6-astra-xhigh-r1",
+      "state": "completed",
+      "receipt_mismatches": [],
+      "workbook_matches_original": true,
+      "workbook_matches_receipt": true,
+      "analysis_input_matches_workbook": true,
+      "instruction_matches_current": true,
+      "runner_matches_current": true,
+      "filing_sha256": "5bd50713b2ce136b9b80d28360b6281d6890d0d95b35cfe36a3eacd288bb53aa",
+      "prompt_matches_record": true,
+      "events_match_original": true,
+      "network_matches_original": true,
+      "network_requests": [
+        {
+          "request": "CONNECT chatgpt.com:443 HTTP/1.1",
+          "allowed": true,
+          "count": 31
+        },
+        {
+          "request": "CONNECT ab.chatgpt.com:443 HTTP/1.1",
+          "allowed": false,
+          "count": 11
+        }
+      ],
+      "web_or_delegation": [],
+      "network_commands": [],
+      "analysis_incomplete": [],
+      "analysis_review_items": 0,
+      "sheets": [
+        {
+          "name": "Deal ledger",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:AC47",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        },
+        {
+          "name": "Rounds",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:J3",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        },
+        {
+          "name": "Questions",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:G16",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        },
+        {
+          "name": "Deal facts",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:B18",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        }
+      ]
+    },
+    {
+      "id": "penford-gpt-6.1-sol-xhigh-r1",
+      "state": "completed",
+      "receipt_mismatches": [],
+      "workbook_matches_original": true,
+      "workbook_matches_receipt": true,
+      "analysis_input_matches_workbook": true,
+      "instruction_matches_current": true,
+      "runner_matches_current": true,
+      "filing_sha256": "5bd50713b2ce136b9b80d28360b6281d6890d0d95b35cfe36a3eacd288bb53aa",
+      "prompt_matches_record": true,
+      "events_match_original": true,
+      "network_matches_original": true,
+      "network_requests": [
+        {
+          "request": "CONNECT chatgpt.com:443 HTTP/1.1",
+          "allowed": true,
+          "count": 29
+        },
+        {
+          "request": "CONNECT ab.chatgpt.com:443 HTTP/1.1",
+          "allowed": false,
+          "count": 14
+        }
+      ],
+      "web_or_delegation": [],
+      "network_commands": [],
+      "analysis_incomplete": [],
+      "analysis_review_items": 0,
+      "sheets": [
+        {
+          "name": "Deal ledger",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:AC52",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        },
+        {
+          "name": "Rounds",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:J3",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        },
+        {
+          "name": "Questions",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:G21",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        },
+        {
+          "name": "Deal facts",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:B18",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        }
+      ]
+    },
+    {
+      "id": "penford-opus-5-5-xhigh-r1",
+      "state": "completed",
+      "receipt_mismatches": [],
+      "workbook_matches_original": true,
+      "workbook_matches_receipt": true,
+      "analysis_input_matches_workbook": true,
+      "instruction_matches_current": true,
+      "runner_matches_current": true,
+      "filing_sha256": "5bd50713b2ce136b9b80d28360b6281d6890d0d95b35cfe36a3eacd288bb53aa",
+      "prompt_matches_record": true,
+      "events_match_original": true,
+      "network_matches_original": true,
+      "network_requests": [
+        {
+          "request": "CONNECT api.anthropic.com:443 HTTP/1.1",
+          "allowed": true,
+          "count": 3
+        }
+      ],
+      "web_or_delegation": [],
+      "network_commands": [],
+      "analysis_incomplete": [],
+      "analysis_review_items": 0,
+      "sheets": [
+        {
+          "name": "Deal ledger",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:AC44",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        },
+        {
+          "name": "Rounds",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:J3",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        },
+        {
+          "name": "Questions",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:G13",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        },
+        {
+          "name": "Deal facts",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:B18",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        }
+      ]
+    },
+    {
+      "id": "synacor-gpt-6-astra-xhigh-r1",
+      "state": "completed",
+      "receipt_mismatches": [],
+      "workbook_matches_original": true,
+      "workbook_matches_receipt": true,
+      "analysis_input_matches_workbook": true,
+      "instruction_matches_current": true,
+      "runner_matches_current": true,
+      "filing_sha256": "2ea05ceef8c7315f7bf81743a70f67a2574e545cb303e48152efd6803b749b0e",
+      "prompt_matches_record": true,
+      "events_match_original": true,
+      "network_matches_original": true,
+      "network_requests": [
+        {
+          "request": "CONNECT chatgpt.com:443 HTTP/1.1",
+          "allowed": true,
+          "count": 27
+        },
+        {
+          "request": "CONNECT ab.chatgpt.com:443 HTTP/1.1",
+          "allowed": false,
+          "count": 15
+        }
+      ],
+      "web_or_delegation": [],
+      "network_commands": [],
+      "analysis_incomplete": [],
+      "analysis_review_items": 5,
+      "sheets": [
+        {
+          "name": "Deal ledger",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:AC74",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        },
+        {
+          "name": "Rounds",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:J8",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        },
+        {
+          "name": "Questions",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:G26",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        },
+        {
+          "name": "Deal facts",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:B18",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        }
+      ]
+    },
+    {
+      "id": "synacor-gpt-6.1-sol-xhigh-r1",
+      "state": "completed",
+      "receipt_mismatches": [],
+      "workbook_matches_original": true,
+      "workbook_matches_receipt": true,
+      "analysis_input_matches_workbook": true,
+      "instruction_matches_current": true,
+      "runner_matches_current": true,
+      "filing_sha256": "2ea05ceef8c7315f7bf81743a70f67a2574e545cb303e48152efd6803b749b0e",
+      "prompt_matches_record": true,
+      "events_match_original": true,
+      "network_matches_original": true,
+      "network_requests": [
+        {
+          "request": "CONNECT chatgpt.com:443 HTTP/1.1",
+          "allowed": true,
+          "count": 30
+        },
+        {
+          "request": "CONNECT ab.chatgpt.com:443 HTTP/1.1",
+          "allowed": false,
+          "count": 15
+        }
+      ],
+      "web_or_delegation": [],
+      "network_commands": [],
+      "analysis_incomplete": [],
+      "analysis_review_items": 5,
+      "sheets": [
+        {
+          "name": "Deal ledger",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:AC77",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        },
+        {
+          "name": "Rounds",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:J8",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        },
+        {
+          "name": "Questions",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:G26",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        },
+        {
+          "name": "Deal facts",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:B18",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        }
+      ]
+    },
+    {
+      "id": "synacor-opus-5-5-xhigh-r1",
+      "state": "completed",
+      "receipt_mismatches": [],
+      "workbook_matches_original": true,
+      "workbook_matches_receipt": true,
+      "analysis_input_matches_workbook": true,
+      "instruction_matches_current": true,
+      "runner_matches_current": true,
+      "filing_sha256": "2ea05ceef8c7315f7bf81743a70f67a2574e545cb303e48152efd6803b749b0e",
+      "prompt_matches_record": true,
+      "events_match_original": true,
+      "network_matches_original": true,
+      "network_requests": [
+        {
+          "request": "CONNECT api.anthropic.com:443 HTTP/1.1",
+          "allowed": true,
+          "count": 3
+        }
+      ],
+      "web_or_delegation": [],
+      "network_commands": [],
+      "analysis_incomplete": [],
+      "analysis_review_items": 3,
+      "sheets": [
+        {
+          "name": "Deal ledger",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:AC66",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        },
+        {
+          "name": "Rounds",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:J7",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        },
+        {
+          "name": "Questions",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:G14",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        },
+        {
+          "name": "Deal facts",
+          "freeze_panes": "A2",
+          "auto_filter": "A1:B18",
+          "merged_ranges": 0,
+          "formula_cells": 0
+        }
+      ]
+    }
+  ]
+}
