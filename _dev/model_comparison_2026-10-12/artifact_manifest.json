@@ -1,0 +1,1111 @@
+{
+  "recorded_at": "2026-10-12T16:56:22.156755+00:00",
+  "scope": "Every packet file except this manifest. Original output hashes also appear in each receipt.",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 18628,
+      "sha256": "91525a508dd413fef594467f710cd908f054b0265c1f1099ab7a9eab581af8de"
+    },
+    {
+      "path": "adjudicated_findings.json",
+      "bytes": 11639,
+      "sha256": "7f83b3ce7ecf16ec0c3464c92efe9104cffebaa9d24339fb995af04d09012b59"
+    },
+    {
+      "path": "analysis/medivation-gpt-6-astra-xhigh-r1/bids.csv",
+      "bytes": 2272,
+      "sha256": "5986bde35b3405dd2a14485b6c1116df56506d2c063e78127c88148f4cb8f4b1"
+    },
+    {
+      "path": "analysis/medivation-gpt-6-astra-xhigh-r1/deal.csv",
+      "bytes": 1140,
+      "sha256": "43536791373a0b94edb7627396c2c598b0fca2d008e49cc54b05cf4db58faadc"
+    },
+    {
+      "path": "analysis/medivation-gpt-6-astra-xhigh-r1/manifest.json",
+      "bytes": 5552,
+      "sha256": "70f63d291ede1cbd64eec35ae75a05c57ea67d9de60e97242783ef33a90309d1"
+    },
+    {
+      "path": "analysis/medivation-gpt-6-astra-xhigh-r1/other_scope.csv",
+      "bytes": 147,
+      "sha256": "80aad1fc09cb6a176fa35ef5164aff354a80b332c237a44dcbfb3e2d4d3e8af5"
+    },
+    {
+      "path": "analysis/medivation-gpt-6-astra-xhigh-r1/participation.csv",
+      "bytes": 3337,
+      "sha256": "5f6adfb09f1df758d9d1d68349e95fae696843ad2a69fb5aeb3e42a18e0e3527"
+    },
+    {
+      "path": "analysis/medivation-gpt-6-astra-xhigh-r1/questions.csv",
+      "bytes": 3587,
+      "sha256": "036d8558f72c848c6f696183633f7cc4f3a102c208bb88c6aba28d98e7ffc6b8"
+    },
+    {
+      "path": "analysis/medivation-gpt-6-astra-xhigh-r1/rounds.csv",
+      "bytes": 1678,
+      "sha256": "c4a667209797d62b3d8c711825ffdc2000fc4efbbb6ad5c673d8752eebb6462c"
+    },
+    {
+      "path": "analysis/medivation-gpt-6.1-sol-xhigh-r1/bids.csv",
+      "bytes": 2180,
+      "sha256": "1342115a58c178ac242ae5b59a6a15aa4baad574aa5bf06c813f0fe8165a77e9"
+    },
+    {
+      "path": "analysis/medivation-gpt-6.1-sol-xhigh-r1/deal.csv",
+      "bytes": 1222,
+      "sha256": "e3d09d059c1bd95cf6628e6ec11d6d395bca2e76c9dac88b43909084b23d2417"
+    },
+    {
+      "path": "analysis/medivation-gpt-6.1-sol-xhigh-r1/manifest.json",
+      "bytes": 5557,
+      "sha256": "252fe443144f058e46ca44288f6df875236e4f8521d663921f8c5eb0ecf26757"
+    },
+    {
+      "path": "analysis/medivation-gpt-6.1-sol-xhigh-r1/other_scope.csv",
+      "bytes": 147,
+      "sha256": "80aad1fc09cb6a176fa35ef5164aff354a80b332c237a44dcbfb3e2d4d3e8af5"
+    },
+    {
+      "path": "analysis/medivation-gpt-6.1-sol-xhigh-r1/participation.csv",
+      "bytes": 3254,
+      "sha256": "808a4e9fdc039584e57436fa9b9ef81ea3992c17f77dde5b097a932acda4d9cd"
+    },
+    {
+      "path": "analysis/medivation-gpt-6.1-sol-xhigh-r1/questions.csv",
+      "bytes": 4280,
+      "sha256": "dea3d4881cee13165f5b76e30365b5d340a58fde9de5c386eea3f0412d68af1c"
+    },
+    {
+      "path": "analysis/medivation-gpt-6.1-sol-xhigh-r1/rounds.csv",
+      "bytes": 2037,
+      "sha256": "0fc1dca97df9c0f6d2f7cea4efed734c5d318161cbd30d4b2fbdfeda6ef1c5e5"
+    },
+    {
+      "path": "analysis/medivation-opus-5-5-xhigh-r1/bids.csv",
+      "bytes": 2306,
+      "sha256": "59f43a14dc19e6b27f11abff8b2960fed5f791efee1f0de068c0c630bec22047"
+    },
+    {
+      "path": "analysis/medivation-opus-5-5-xhigh-r1/deal.csv",
+      "bytes": 1178,
+      "sha256": "0c62fe5a99334abc7e5926f6682c563b5bf0ccd36ab4cf5e5b185c7785420f46"
+    },
+    {
+      "path": "analysis/medivation-opus-5-5-xhigh-r1/manifest.json",
+      "bytes": 4848,
+      "sha256": "f24f3bb4af1b0132111ce8be89d790f78f43c1dcc447dfc3673fb56052450324"
+    },
+    {
+      "path": "analysis/medivation-opus-5-5-xhigh-r1/other_scope.csv",
+      "bytes": 147,
+      "sha256": "80aad1fc09cb6a176fa35ef5164aff354a80b332c237a44dcbfb3e2d4d3e8af5"
+    },
+    {
+      "path": "analysis/medivation-opus-5-5-xhigh-r1/participation.csv",
+      "bytes": 2729,
+      "sha256": "15d8c7c107bba0bb1e9e65592d469d9c8348ba48de092e1c2aee30a03bd69bf6"
+    },
+    {
+      "path": "analysis/medivation-opus-5-5-xhigh-r1/questions.csv",
+      "bytes": 3419,
+      "sha256": "b28b785542655acf7af4c75799d1d2a5d7d5794bdc1a3dd31b6b1bbfd3ddcb9d"
+    },
+    {
+      "path": "analysis/medivation-opus-5-5-xhigh-r1/rounds.csv",
+      "bytes": 1574,
+      "sha256": "d4c600e2e965c97bb25a0bc6745b4615f63e6aed54ab8a89f7c193a450880289"
+    },
+    {
+      "path": "analysis/penford-gpt-6-astra-xhigh-r1/bids.csv",
+      "bytes": 5114,
+      "sha256": "f8b22379a6612abdd1f496bc35f22bc8613a15ab7ee93e36320fe99c0d4b052b"
+    },
+    {
+      "path": "analysis/penford-gpt-6-astra-xhigh-r1/deal.csv",
+      "bytes": 1546,
+      "sha256": "01165b410b5cfdd2560507e08eabefb669a1ee320f06be48f96032cc408316a9"
+    },
+    {
+      "path": "analysis/penford-gpt-6-astra-xhigh-r1/manifest.json",
+      "bytes": 4221,
+      "sha256": "dab059cf39c3975d20f7a0213d7654d4c5a0e383b9edf3003d5ffce4447d96aa"
+    },
+    {
+      "path": "analysis/penford-gpt-6-astra-xhigh-r1/other_scope.csv",
+      "bytes": 147,
+      "sha256": "80aad1fc09cb6a176fa35ef5164aff354a80b332c237a44dcbfb3e2d4d3e8af5"
+    },
+    {
+      "path": "analysis/penford-gpt-6-astra-xhigh-r1/participation.csv",
+      "bytes": 3586,
+      "sha256": "8e97e81c72540a9f3538b1e681e1f7bd7e6e370f10b90482c0ccd31c39cd4844"
+    },
+    {
+      "path": "analysis/penford-gpt-6-astra-xhigh-r1/questions.csv",
+      "bytes": 3738,
+      "sha256": "9008bca2692b6230a5516e720fb35f9e9c7af8c304d3f78c0072f9ef9a1ba761"
+    },
+    {
+      "path": "analysis/penford-gpt-6-astra-xhigh-r1/rounds.csv",
+      "bytes": 1364,
+      "sha256": "ee8cf48bd80efd428b2d38fc595101ebae6257fd8c22c83462b399d78e8a7ac5"
+    },
+    {
+      "path": "analysis/penford-gpt-6.1-sol-xhigh-r1/bids.csv",
+      "bytes": 4742,
+      "sha256": "a1ad6fc2b0ace23dd54f39c1bb116b25d2e7d490c6af75610abd9c5c07375090"
+    },
+    {
+      "path": "analysis/penford-gpt-6.1-sol-xhigh-r1/deal.csv",
+      "bytes": 1704,
+      "sha256": "b4c24285e1d6ad4c0f8ca290d4ee2d20e99e7495787e8fb6be32342fa0c9533c"
+    },
+    {
+      "path": "analysis/penford-gpt-6.1-sol-xhigh-r1/manifest.json",
+      "bytes": 4221,
+      "sha256": "67e30dead9b3849f51941152cf46cb451a46d66a54642911ca36d390d11759bf"
+    },
+    {
+      "path": "analysis/penford-gpt-6.1-sol-xhigh-r1/other_scope.csv",
+      "bytes": 147,
+      "sha256": "80aad1fc09cb6a176fa35ef5164aff354a80b332c237a44dcbfb3e2d4d3e8af5"
+    },
+    {
+      "path": "analysis/penford-gpt-6.1-sol-xhigh-r1/participation.csv",
+      "bytes": 3266,
+      "sha256": "0b50eceb7e990f0c7b34b82db05b71dc861308bb10bb775e5d026dfabb84d370"
+    },
+    {
+      "path": "analysis/penford-gpt-6.1-sol-xhigh-r1/questions.csv",
+      "bytes": 4930,
+      "sha256": "df77d69dc0c41edc572cfdfe875c15f215d2d3561c1310932ab4f1fe053c57b5"
+    },
+    {
+      "path": "analysis/penford-gpt-6.1-sol-xhigh-r1/rounds.csv",
+      "bytes": 1418,
+      "sha256": "481f8d1fc0022bc360a49491f8336c2c6442472b7ae484e7137360a75621b7d9"
+    },
+    {
+      "path": "analysis/penford-opus-5-5-xhigh-r1/bids.csv",
+      "bytes": 5285,
+      "sha256": "329d6d4769141d1665c732db0c8b7cae9da73f5654a19eb8cf38484558475fec"
+    },
+    {
+      "path": "analysis/penford-opus-5-5-xhigh-r1/deal.csv",
+      "bytes": 1281,
+      "sha256": "9dee80387de86248a57ea3cdf0f038bae03d3405d39de2bd9be683135fd59d7d"
+    },
+    {
+      "path": "analysis/penford-opus-5-5-xhigh-r1/manifest.json",
+      "bytes": 4218,
+      "sha256": "3c0c896e5729309f1b605583b8f78f7b9f7df396f6fa4a9f01f41318e8f54026"
+    },
+    {
+      "path": "analysis/penford-opus-5-5-xhigh-r1/other_scope.csv",
+      "bytes": 147,
+      "sha256": "80aad1fc09cb6a176fa35ef5164aff354a80b332c237a44dcbfb3e2d4d3e8af5"
+    },
+    {
+      "path": "analysis/penford-opus-5-5-xhigh-r1/participation.csv",
+      "bytes": 3443,
+      "sha256": "0a8e632bb335209856a156240c8fa4ed8c2e93c6ba8b2ffc34f9711845b3ecae"
+    },
+    {
+      "path": "analysis/penford-opus-5-5-xhigh-r1/questions.csv",
+      "bytes": 3942,
+      "sha256": "e2fe0a05605405cfb801882b936c84f19317a404df253ceb5905a19cd0c6bc03"
+    },
+    {
+      "path": "analysis/penford-opus-5-5-xhigh-r1/rounds.csv",
+      "bytes": 1591,
+      "sha256": "a0ff3d0960ade2925096f9850b0b45df041a8ab033e5a329db2f4b24d6202825"
+    },
+    {
+      "path": "analysis/synacor-gpt-6-astra-xhigh-r1/bids.csv",
+      "bytes": 5937,
+      "sha256": "310d018f42c13686e740d5a629817de6fa2520716cd6f2d90605173e004dec87"
+    },
+    {
+      "path": "analysis/synacor-gpt-6-astra-xhigh-r1/deal.csv",
+      "bytes": 3907,
+      "sha256": "c0e27fe233cbffacf1114979b23c5e7b65ba001358c4ae3c6ddbf6d8fa0501fe"
+    },
+    {
+      "path": "analysis/synacor-gpt-6-astra-xhigh-r1/manifest.json",
+      "bytes": 6354,
+      "sha256": "20a0c61f9d23a2c257744884580e3316f9b7d60fc8282bd4ec200577ebde5d21"
+    },
+    {
+      "path": "analysis/synacor-gpt-6-astra-xhigh-r1/other_scope.csv",
+      "bytes": 2913,
+      "sha256": "507cea83c32e664278ce75cb3dcbb1fbb92b37e1f955b06c8ae4c1d1680aeae4"
+    },
+    {
+      "path": "analysis/synacor-gpt-6-astra-xhigh-r1/participation.csv",
+      "bytes": 6515,
+      "sha256": "7f83a7c8a9df690df7efdf9c23ae72e967527ccca7058346e169e681e72234b1"
+    },
+    {
+      "path": "analysis/synacor-gpt-6-astra-xhigh-r1/questions.csv",
+      "bytes": 5836,
+      "sha256": "19876d7c70def2f7531aef6a4e5eb40db5d8dc8c07ba0b104b8cd02371bf0ac3"
+    },
+    {
+      "path": "analysis/synacor-gpt-6-astra-xhigh-r1/rounds.csv",
+      "bytes": 3581,
+      "sha256": "7b3c237804e590cbe88bc1f20d324c799e8610052e2dcf4ac610d010c4abf855"
+    },
+    {
+      "path": "analysis/synacor-gpt-6.1-sol-xhigh-r1/bids.csv",
+      "bytes": 5575,
+      "sha256": "cf93cb64e168788ca96b92e26637def34685f630e526bb53c7103dd27ab784b9"
+    },
+    {
+      "path": "analysis/synacor-gpt-6.1-sol-xhigh-r1/deal.csv",
+      "bytes": 2978,
+      "sha256": "17be3e7853651f56823d6624c80fd7c38418d3d3febabf91acde2938982ccba5"
+    },
+    {
+      "path": "analysis/synacor-gpt-6.1-sol-xhigh-r1/manifest.json",
+      "bytes": 6352,
+      "sha256": "21e732c5b9c8fc7af47b07cc1dab9e5a3e6e7476b487710f32eb804da70c86e0"
+    },
+    {
+      "path": "analysis/synacor-gpt-6.1-sol-xhigh-r1/other_scope.csv",
+      "bytes": 2601,
+      "sha256": "a1b48c3caf9e7616ea7b31e8538e7c187748318b724df0dd1c3f672451f3e2ef"
+    },
+    {
+      "path": "analysis/synacor-gpt-6.1-sol-xhigh-r1/participation.csv",
+      "bytes": 5830,
+      "sha256": "2b22ab747ad345694d3447f92f7baa1a2bb9d813a3fca94df1b5898187f91d94"
+    },
+    {
+      "path": "analysis/synacor-gpt-6.1-sol-xhigh-r1/questions.csv",
+      "bytes": 4613,
+      "sha256": "36cb785e9642a08702f8318a3430ab577585814f8c1e3d9b86716613abe0ff6e"
+    },
+    {
+      "path": "analysis/synacor-gpt-6.1-sol-xhigh-r1/rounds.csv",
+      "bytes": 3300,
+      "sha256": "390338e6f0e232e5e011aefa34c4981b4b129661d133297458fde4af83769aa4"
+    },
+    {
+      "path": "analysis/synacor-opus-5-5-xhigh-r1/bids.csv",
+      "bytes": 5643,
+      "sha256": "1e86f0a74156a1b624bda19a54d746bf6c44fe9e4795eae9e25b8181300ba2d5"
+    },
+    {
+      "path": "analysis/synacor-opus-5-5-xhigh-r1/deal.csv",
+      "bytes": 2751,
+      "sha256": "b7c5c9290737d1cbe92c208c9de125fd20ebff9c48a24dbf58d156689c383131"
+    },
+    {
+      "path": "analysis/synacor-opus-5-5-xhigh-r1/manifest.json",
+      "bytes": 5777,
+      "sha256": "7dd6a8334290b4ee8daf8b6ae715797e4885d64ed97ddfc3477449555ba58446"
+    },
+    {
+      "path": "analysis/synacor-opus-5-5-xhigh-r1/other_scope.csv",
+      "bytes": 2063,
+      "sha256": "0078e7bcf1e1799bc9b49c73c0ca1c53dad155be0356edd29f48f9e53998e560"
+    },
+    {
+      "path": "analysis/synacor-opus-5-5-xhigh-r1/participation.csv",
+      "bytes": 5854,
+      "sha256": "2ce90db39c041c7b38f41df1565205e8728eb6dbf0c15e6d4b411d8755364975"
+    },
+    {
+      "path": "analysis/synacor-opus-5-5-xhigh-r1/questions.csv",
+      "bytes": 4301,
+      "sha256": "698506ebf97becd197af690fee09f5181f46fcd29f74c33b4e9902d196ccec73"
+    },
+    {
+      "path": "analysis/synacor-opus-5-5-xhigh-r1/rounds.csv",
+      "bytes": 2794,
+      "sha256": "90f546a3a3b0bad0187260b46574a7041ba1fb65e04c60d59cc3bc320a7a6801"
+    },
+    {
+      "path": "cleanup_receipt.json",
+      "bytes": 387,
+      "sha256": "5a05cff3f1e02414d293ebcf4b5f4ebde42229f270aae8d6414900a1fff5eead"
+    },
+    {
+      "path": "data_storage.json",
+      "bytes": 551,
+      "sha256": "49451ce5a40f90cf24a581f3fbf52744a565a0ecdbc8d0aed669bdd8262072ab"
+    },
+    {
+      "path": "dispatch.json",
+      "bytes": 2775,
+      "sha256": "42ef7691820787275de9138517c9a45c55427b529243214bfe80d8180bb9b0f2"
+    },
+    {
+      "path": "evaluation/PROTOCOL.md",
+      "bytes": 3905,
+      "sha256": "76856b0a40fd46ac8c21c9cec230e7e6e9ce7fb3b0df79415a4993bbe05f0eb8"
+    },
+    {
+      "path": "evaluation/analysis_diagnostics.md",
+      "bytes": 8093,
+      "sha256": "fe1f161d62d06f8279b3b05659740d0829593c31f29b2964f897560124c17055"
+    },
+    {
+      "path": "evaluation/candidates/medivation/A.json",
+      "bytes": 36629,
+      "sha256": "354d227f5fa6ee0a337fe08fcfa0e82782b249d47b993cf35627c239ec0493a3"
+    },
+    {
+      "path": "evaluation/candidates/medivation/B.json",
+      "bytes": 36673,
+      "sha256": "0b73d912134d5c41eaffac40da4288458814b68a1268938a30bdc3fafe67a8cf"
+    },
+    {
+      "path": "evaluation/candidates/medivation/C.json",
+      "bytes": 34594,
+      "sha256": "eb4e3a02f0da76a822d067c26cb08a6f1f7cbc649f23388495b98dfa2179137d"
+    },
+    {
+      "path": "evaluation/candidates/penford/A.json",
+      "bytes": 53467,
+      "sha256": "26bcedf400f0872a93cf8f764620af9ca2a8994ff744db8ff53d48853e615588"
+    },
+    {
+      "path": "evaluation/candidates/penford/B.json",
+      "bytes": 59051,
+      "sha256": "503632a21771d4674ba2c0d53db856e66d9da4e8df2ed057062b7804df518dca"
+    },
+    {
+      "path": "evaluation/candidates/penford/C.json",
+      "bytes": 51864,
+      "sha256": "649e15d1fa15523954f341f147b4a0449925f57140364cacd76d9f8a67572620"
+    },
+    {
+      "path": "evaluation/candidates/synacor/A.json",
+      "bytes": 73884,
+      "sha256": "80feec0b70ee62974c3bc83102451e7eefa500d805ccf6d17124f203c957ff36"
+    },
+    {
+      "path": "evaluation/candidates/synacor/B.json",
+      "bytes": 79259,
+      "sha256": "655ebb1fc3238062e8eba7c1480050f439f0cb239a6511f7fed6682df25246b9"
+    },
+    {
+      "path": "evaluation/candidates/synacor/C.json",
+      "bytes": 82417,
+      "sha256": "4967aa641579ccaacb19f56b4b58a8b5d58f195d2eda3192c2fea26752a22785"
+    },
+    {
+      "path": "evaluation/financing_adjudication.md",
+      "bytes": 7086,
+      "sha256": "d8d8a8c7ecbbece57f1b22f9af3009ac524d6995b1659e9bb746ab86a2ec3c8f"
+    },
+    {
+      "path": "evaluation/inventory_receipts.json",
+      "bytes": 756,
+      "sha256": "985175a2748016c7689803eab6d38cb66bc92c5b23eacb84b8487609054d78cc"
+    },
+    {
+      "path": "evaluation/medivation_candidate_review.md",
+      "bytes": 20057,
+      "sha256": "73bfc4ca9506f957f5f25466606dc75bcd334243a9a1d8d713408892a66b2b2b"
+    },
+    {
+      "path": "evaluation/medivation_source_inventory.md",
+      "bytes": 33388,
+      "sha256": "db332ba4c8910bdcf27c34c14db6be41e3f9fc455de6376eccd79fcb06ab11ae"
+    },
+    {
+      "path": "evaluation/penford_candidate_review.md",
+      "bytes": 13864,
+      "sha256": "9163725fa83efb542d6f47cdf37430a10b7392571ae2bbcf981f8989dbc49868"
+    },
+    {
+      "path": "evaluation/penford_final_review.md",
+      "bytes": 18917,
+      "sha256": "45912559c5615b9dbf44552baf647e37c27ae0d77535e376c1f78cb3f8927af5"
+    },
+    {
+      "path": "evaluation/penford_source_inventory.md",
+      "bytes": 33950,
+      "sha256": "cb9108136126b8afdc041e5a65f5170fcaf22fcddde67b4233fc8fff8a8ff6bc"
+    },
+    {
+      "path": "evaluation/price_adjudication.md",
+      "bytes": 3091,
+      "sha256": "b389eb25ebc35710d0b179ad26b7cb9399f516b2ce6b18c2b1669a6becd20eea"
+    },
+    {
+      "path": "evaluation/review_handoffs.json",
+      "bytes": 2554,
+      "sha256": "c6eb958d56d3c53a28753329bf9804503e20c97cc1559b721b5df91fe2277632"
+    },
+    {
+      "path": "evaluation/synacor_candidate_review.md",
+      "bytes": 30122,
+      "sha256": "c6dde2d502a4450bdd914af484fbf50e42b4b30171ac4d9fcd44467f4694555e"
+    },
+    {
+      "path": "evaluation/synacor_source_inventory.md",
+      "bytes": 40892,
+      "sha256": "0315c0e5ce4945ed537abcfd1d47cb8a3bb03fb51c449d82c332aab5878e5a76"
+    },
+    {
+      "path": "execution_context.json",
+      "bytes": 6502,
+      "sha256": "84cb4aa31497c5c22da05d7fb05d62d0b56dee30c360bcf4580f4e438edfa0e0"
+    },
+    {
+      "path": "identity_map.json",
+      "bytes": 432,
+      "sha256": "527b4d445b346235ae251cf4c3fd94368e29cbb8aa39fc62e00f6baab89925db"
+    },
+    {
+      "path": "instruction.md",
+      "bytes": 54206,
+      "sha256": "e6e1e2f3b53378bdb6770762d33fe9b84090c2ae27301d5bf725e0c3f629eb13"
+    },
+    {
+      "path": "metrics.json",
+      "bytes": 9276,
+      "sha256": "1f2f0df4af196043275967eea4bb5dc223cea4dac146e9f645a06fceb375b042"
+    },
+    {
+      "path": "operational_audit.json",
+      "bytes": 15060,
+      "sha256": "73f884b77c086b5df448b883eca1106462bf5d3db7fc8ce33416edcc172fc2e7"
+    },
+    {
+      "path": "pin.json",
+      "bytes": 781,
+      "sha256": "8a4afdaf7611f636068e8c4f5d432715cd3cd8964f96c4b41b7836c851bad5f8"
+    },
+    {
+      "path": "plan.json",
+      "bytes": 4154,
+      "sha256": "d6557e97a22a909db92c6395e0cf060f5d2c7140c1f8a3beade587d39a4d8449"
+    },
+    {
+      "path": "privacy_audit.json",
+      "bytes": 302,
+      "sha256": "2c1fc7a7c0a81d762153b5b0a3b14c937c7930cf9c7061b534f1dd21f6fec769"
+    },
+    {
+      "path": "runner-change.patch",
+      "bytes": 6665,
+      "sha256": "ea97bb144cdb26f869f62b8fbbdcce76389d4dc7ec977f7f50e112ea6b639930"
+    },
+    {
+      "path": "runs/medivation-gpt-6-astra-xhigh-r1/check.json",
+      "bytes": 765,
+      "sha256": "c79b6187330a38a64b6ef82de9330e28c2c5ce75a095ea27018c856f6f5e0d92"
+    },
+    {
+      "path": "runs/medivation-gpt-6-astra-xhigh-r1/command.json",
+      "bytes": 2271,
+      "sha256": "23042892bd780b90110e5b4915629984636bf7e68efc0e808a043acf206af89a"
+    },
+    {
+      "path": "runs/medivation-gpt-6-astra-xhigh-r1/events.jsonl.gz",
+      "bytes": 62454,
+      "sha256": "a2075e9ac507037ae9a512c4bd496418525cde5430d68a6138c717f4e0fac89d"
+    },
+    {
+      "path": "runs/medivation-gpt-6-astra-xhigh-r1/launch.json",
+      "bytes": 378,
+      "sha256": "eb1b37970707e912e1b0e57b743a2cdddade4d5133dd37bd08fff9dc2bb87b1e"
+    },
+    {
+      "path": "runs/medivation-gpt-6-astra-xhigh-r1/launcher.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runs/medivation-gpt-6-astra-xhigh-r1/medivation.xlsx",
+      "bytes": 18359,
+      "sha256": "a789bb043bfd64315d522063b3d05234ef03c8539b6af761376f26f21eebabf5"
+    },
+    {
+      "path": "runs/medivation-gpt-6-astra-xhigh-r1/metadata.json",
+      "bytes": 1329,
+      "sha256": "b9ba73d7d8834f0ae3cba787d809aa84d2de577f873da931a0de7eae5d512c72"
+    },
+    {
+      "path": "runs/medivation-gpt-6-astra-xhigh-r1/network.jsonl.gz",
+      "bytes": 350,
+      "sha256": "5cc10f1e2d513459553a5ed5569d36dea253883f625d190cb0cf52373b74c83d"
+    },
+    {
+      "path": "runs/medivation-gpt-6-astra-xhigh-r1/prompt.txt",
+      "bytes": 240,
+      "sha256": "6c3bd016978461af07ac7e524bea4c6f0f22f71ba6ae9c2ca0769986a41c721a"
+    },
+    {
+      "path": "runs/medivation-gpt-6-astra-xhigh-r1/receipt.json",
+      "bytes": 861,
+      "sha256": "61258b1a37f53ec41e668ebd83fcd7f11e26d82b54da39bd5c3e95e969216ff7"
+    },
+    {
+      "path": "runs/medivation-gpt-6-astra-xhigh-r1/status.json",
+      "bytes": 609,
+      "sha256": "46fc805a96112ce9ce9046dc2f0158d2a65b7ba7116d1cbba59adda0c1f4717e"
+    },
+    {
+      "path": "runs/medivation-gpt-6-astra-xhigh-r1/stderr.log",
+      "bytes": 39,
+      "sha256": "1aa26269eb1cc57f86b235a03cda53c004edb5b1e9fc99d4da4f00843293d721"
+    },
+    {
+      "path": "runs/medivation-gpt-6-astra-xhigh-r1/validation.json",
+      "bytes": 382,
+      "sha256": "ec0f7df08e62536693f614282eb76c0605cdd283e4bce9b65d7744f9211cf3d5"
+    },
+    {
+      "path": "runs/medivation-gpt-6.1-sol-xhigh-r1/check.json",
+      "bytes": 765,
+      "sha256": "252022b0c9d54c4eb0b96bfcc7b587a88baf6226c8a572ce617e9308274ab597"
+    },
+    {
+      "path": "runs/medivation-gpt-6.1-sol-xhigh-r1/command.json",
+      "bytes": 2271,
+      "sha256": "639932034ec1dcdbaba86715fec016ea130a279d971252c39ddf9c5ec702d690"
+    },
+    {
+      "path": "runs/medivation-gpt-6.1-sol-xhigh-r1/events.jsonl.gz",
+      "bytes": 82080,
+      "sha256": "27132e41e42c93b2522eeef33f4322bb4e992189a37a1497267631197d074977"
+    },
+    {
+      "path": "runs/medivation-gpt-6.1-sol-xhigh-r1/launch.json",
+      "bytes": 378,
+      "sha256": "2886c640e9acf36fad07c924ccdeda2f34e1d9e9048c427c2266a17cd7e48238"
+    },
+    {
+      "path": "runs/medivation-gpt-6.1-sol-xhigh-r1/launcher.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runs/medivation-gpt-6.1-sol-xhigh-r1/medivation.xlsx",
+      "bytes": 18764,
+      "sha256": "9aa11b650635d26b9ef10fbfb019ea204e8c8134c123a66cbcdc0db64d0e2368"
+    },
+    {
+      "path": "runs/medivation-gpt-6.1-sol-xhigh-r1/metadata.json",
+      "bytes": 1329,
+      "sha256": "be6e3749958883b5743bb96ff7b32382aa8dced92e600bf78e325c6464e4a7c7"
+    },
+    {
+      "path": "runs/medivation-gpt-6.1-sol-xhigh-r1/network.jsonl.gz",
+      "bytes": 384,
+      "sha256": "4de05e59acf5fbf08354afcb6f32fd6ed25f9d2ba4fb9da88e19f16fa92ce92d"
+    },
+    {
+      "path": "runs/medivation-gpt-6.1-sol-xhigh-r1/prompt.txt",
+      "bytes": 240,
+      "sha256": "6c3bd016978461af07ac7e524bea4c6f0f22f71ba6ae9c2ca0769986a41c721a"
+    },
+    {
+      "path": "runs/medivation-gpt-6.1-sol-xhigh-r1/receipt.json",
+      "bytes": 861,
+      "sha256": "6e7cde9fefda6dbe07b311a49d5787e4d76b094b04cc20d4b9f72bbf12412ab0"
+    },
+    {
+      "path": "runs/medivation-gpt-6.1-sol-xhigh-r1/status.json",
+      "bytes": 609,
+      "sha256": "9dcd29b9cee16da52a91044156f7f2dc3e174ed0e85114f1de3446c819c0696b"
+    },
+    {
+      "path": "runs/medivation-gpt-6.1-sol-xhigh-r1/stderr.log",
+      "bytes": 39,
+      "sha256": "1aa26269eb1cc57f86b235a03cda53c004edb5b1e9fc99d4da4f00843293d721"
+    },
+    {
+      "path": "runs/medivation-gpt-6.1-sol-xhigh-r1/validation.json",
+      "bytes": 382,
+      "sha256": "d6f6db489aa1fb0218d3abf33f2ef7ec32a20553a9213fc9040cf314a1232ec0"
+    },
+    {
+      "path": "runs/medivation-opus-5-5-xhigh-r1/check.json",
+      "bytes": 2240,
+      "sha256": "b344ead7723cb6a14c4c75f77d731289ffbe2e9cfdd56ae96fcb0bf5a1241472"
+    },
+    {
+      "path": "runs/medivation-opus-5-5-xhigh-r1/command.json",
+      "bytes": 1796,
+      "sha256": "f62e97a5fb43508507216f033eecfc84da74c24569d1bca779c588370f27c0fd"
+    },
+    {
+      "path": "runs/medivation-opus-5-5-xhigh-r1/events.jsonl.gz",
+      "bytes": 361726,
+      "sha256": "28c6c6573694c5a346532849ddeed30b641d59f2a5459617484bc760b929cc86"
+    },
+    {
+      "path": "runs/medivation-opus-5-5-xhigh-r1/launch.json",
+      "bytes": 376,
+      "sha256": "30a30a2962078864335a257112c85e291eb02e5fea7e89e21845fd0f13beffe6"
+    },
+    {
+      "path": "runs/medivation-opus-5-5-xhigh-r1/launcher.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runs/medivation-opus-5-5-xhigh-r1/medivation.xlsx",
+      "bytes": 16865,
+      "sha256": "121e1058ea1e452047db4d05aaa1ad90d2b16b0acab57fff5cfcd8c826c62550"
+    },
+    {
+      "path": "runs/medivation-opus-5-5-xhigh-r1/metadata.json",
+      "bytes": 1328,
+      "sha256": "8c9cd0b496aa76690ed64275495c7f416f9f91960ba70b7e77070474164c0e3b"
+    },
+    {
+      "path": "runs/medivation-opus-5-5-xhigh-r1/network.jsonl.gz",
+      "bytes": 161,
+      "sha256": "aa9f5c8ae9c8a3b68a9825e400cdc017657c2978ff0f765825d41157b16f0c00"
+    },
+    {
+      "path": "runs/medivation-opus-5-5-xhigh-r1/prompt.txt",
+      "bytes": 240,
+      "sha256": "6c3bd016978461af07ac7e524bea4c6f0f22f71ba6ae9c2ca0769986a41c721a"
+    },
+    {
+      "path": "runs/medivation-opus-5-5-xhigh-r1/provider-results.json",
+      "bytes": 5149,
+      "sha256": "556d51e73ebc30a64b76c0fc6ea4fad3e31bb7a6f5a3c11c42b28846fb80a1d0"
+    },
+    {
+      "path": "runs/medivation-opus-5-5-xhigh-r1/receipt.json",
+      "bytes": 854,
+      "sha256": "8617f4ca6719c1e27a09e3c2cd4a9b523729a4f592db9ef1c76a9af9ac5476c8"
+    },
+    {
+      "path": "runs/medivation-opus-5-5-xhigh-r1/status.json",
+      "bytes": 1634,
+      "sha256": "cc54f7872dd75cac5e47a686265ab3612f61791b482ff7b7ed776a7a04d34860"
+    },
+    {
+      "path": "runs/medivation-opus-5-5-xhigh-r1/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runs/medivation-opus-5-5-xhigh-r1/validation.json",
+      "bytes": 379,
+      "sha256": "ff97a07093e6e5935164df300030f814b646023e4dade9efbfbaa9e95ac38155"
+    },
+    {
+      "path": "runs/penford-gpt-6-astra-xhigh-r1/check.json",
+      "bytes": 730,
+      "sha256": "3a7cac5076143d61710b72bb2ccbb12e9c3ef4881f12bf7a2b4028613fbded72"
+    },
+    {
+      "path": "runs/penford-gpt-6-astra-xhigh-r1/command.json",
+      "bytes": 2268,
+      "sha256": "820ff78a32aefda5b2632eb7c9f7e8b0cd892f37965ceb398aaac8123311a6bc"
+    },
+    {
+      "path": "runs/penford-gpt-6-astra-xhigh-r1/events.jsonl.gz",
+      "bytes": 353363,
+      "sha256": "dc53707fb7fbb37c4deabd5d8f5516183695e9b7d042d3934bedcbe849d5a2ca"
+    },
+    {
+      "path": "runs/penford-gpt-6-astra-xhigh-r1/launch.json",
+      "bytes": 375,
+      "sha256": "e1cacb94845eb09762726cb173b29de6f21196c508e3dc07220a4760180384fa"
+    },
+    {
+      "path": "runs/penford-gpt-6-astra-xhigh-r1/launcher.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runs/penford-gpt-6-astra-xhigh-r1/metadata.json",
+      "bytes": 1321,
+      "sha256": "76a009fcc4c19a5d2edadbc7aad38a88af65d8272c8dfd1c2bd23d8097ab8737"
+    },
+    {
+      "path": "runs/penford-gpt-6-astra-xhigh-r1/network.jsonl.gz",
+      "bytes": 449,
+      "sha256": "73328c0454075ec34050ff86236df07b3f228dab9085a3363f8d7e0e92fb5ff6"
+    },
+    {
+      "path": "runs/penford-gpt-6-astra-xhigh-r1/penford.xlsx",
+      "bytes": 22568,
+      "sha256": "6dbd7da5dbec91778debd8114801a93f5a228cc7862c6da2ac39a7785c09ee74"
+    },
+    {
+      "path": "runs/penford-gpt-6-astra-xhigh-r1/prompt.txt",
+      "bytes": 237,
+      "sha256": "bbaad82152ca1d44d150868001fc0a6d22ef8f1eeecd1026c34559968930442b"
+    },
+    {
+      "path": "runs/penford-gpt-6-astra-xhigh-r1/receipt.json",
+      "bytes": 754,
+      "sha256": "25d102b1fd6fe988495b81d37980f536a12334071198b35d6a8dc043c7ba45dc"
+    },
+    {
+      "path": "runs/penford-gpt-6-astra-xhigh-r1/status.json",
+      "bytes": 612,
+      "sha256": "c20b356ecd2da8c4d5a3dd4b56dcf7df2f4e01e111f3fd251bf6f2718037b331"
+    },
+    {
+      "path": "runs/penford-gpt-6-astra-xhigh-r1/stderr.log",
+      "bytes": 39,
+      "sha256": "1aa26269eb1cc57f86b235a03cda53c004edb5b1e9fc99d4da4f00843293d721"
+    },
+    {
+      "path": "runs/penford-gpt-6-astra-xhigh-r1/validation.json",
+      "bytes": 376,
+      "sha256": "8e5b3684c283415f9423a12bb0f48c64b699e7d721ec11e08155123becaa6219"
+    },
+    {
+      "path": "runs/penford-gpt-6.1-sol-xhigh-r1/check.json",
+      "bytes": 1038,
+      "sha256": "c524ceae251936a031e41c6a30fa66d424941870cf471f27a712db202b93599c"
+    },
+    {
+      "path": "runs/penford-gpt-6.1-sol-xhigh-r1/command.json",
+      "bytes": 2268,
+      "sha256": "78e631cb2a6ee7e460556c714fee056e49f805033eb2993ad4bd89ab577ea652"
+    },
+    {
+      "path": "runs/penford-gpt-6.1-sol-xhigh-r1/events.jsonl.gz",
+      "bytes": 86654,
+      "sha256": "13697d09d937b089dcb798ebd8208060ee9d7f912b16df52d281d76b4345f536"
+    },
+    {
+      "path": "runs/penford-gpt-6.1-sol-xhigh-r1/launch.json",
+      "bytes": 375,
+      "sha256": "ad64aa2c24e02c0ff4507483546af2e7697e9757886e4b564f0a2e82bbfaad71"
+    },
+    {
+      "path": "runs/penford-gpt-6.1-sol-xhigh-r1/launcher.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runs/penford-gpt-6.1-sol-xhigh-r1/metadata.json",
+      "bytes": 1321,
+      "sha256": "3e48214afcaddb4357b32ab213d8cfa22988cfe853dee417c7fdcbf0f0ca3c96"
+    },
+    {
+      "path": "runs/penford-gpt-6.1-sol-xhigh-r1/network.jsonl.gz",
+      "bytes": 451,
+      "sha256": "fb8f991d4e631d0299baef73072a0d19e75943f087f099ef4f6a499eef8df235"
+    },
+    {
+      "path": "runs/penford-gpt-6.1-sol-xhigh-r1/penford.xlsx",
+      "bytes": 24141,
+      "sha256": "c3316cf8067c4a7c0d590b70cd3b82a39857fc379dc46794cd3096bc00877404"
+    },
+    {
+      "path": "runs/penford-gpt-6.1-sol-xhigh-r1/prompt.txt",
+      "bytes": 237,
+      "sha256": "bbaad82152ca1d44d150868001fc0a6d22ef8f1eeecd1026c34559968930442b"
+    },
+    {
+      "path": "runs/penford-gpt-6.1-sol-xhigh-r1/receipt.json",
+      "bytes": 754,
+      "sha256": "eb3a73271ff8f076606d10bc570e6c79cd55a2c02694b78ea52d842891a2b8e1"
+    },
+    {
+      "path": "runs/penford-gpt-6.1-sol-xhigh-r1/status.json",
+      "bytes": 611,
+      "sha256": "42cd3ee80453af587d9e6d2a83d77559eff6a09e1bd908d296da72ad49deefb4"
+    },
+    {
+      "path": "runs/penford-gpt-6.1-sol-xhigh-r1/stderr.log",
+      "bytes": 39,
+      "sha256": "1aa26269eb1cc57f86b235a03cda53c004edb5b1e9fc99d4da4f00843293d721"
+    },
+    {
+      "path": "runs/penford-gpt-6.1-sol-xhigh-r1/validation.json",
+      "bytes": 376,
+      "sha256": "33b96d7483eddf841b57b4da5e886bf4b60fbac7a11df723899f4b52a5ed8440"
+    },
+    {
+      "path": "runs/penford-opus-5-5-xhigh-r1/check.json",
+      "bytes": 1261,
+      "sha256": "115e9c12106976595638e2dcd46706814000d43694e8dac71cf78ce0e330ac5d"
+    },
+    {
+      "path": "runs/penford-opus-5-5-xhigh-r1/command.json",
+      "bytes": 1793,
+      "sha256": "14c5bd5713ad3bc45884fed16fb4a441977f605a3c740aeef5e1f3da0d0a8b57"
+    },
+    {
+      "path": "runs/penford-opus-5-5-xhigh-r1/events.jsonl.gz",
+      "bytes": 414376,
+      "sha256": "43127fc9591a9fcd058ddc359e9b44ed96cef388779261a687017563d8bbd087"
+    },
+    {
+      "path": "runs/penford-opus-5-5-xhigh-r1/launch.json",
+      "bytes": 373,
+      "sha256": "7479da707b9dce1ddf094addbd3e6a05866b7923eb509c5712039603fb94d947"
+    },
+    {
+      "path": "runs/penford-opus-5-5-xhigh-r1/launcher.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runs/penford-opus-5-5-xhigh-r1/metadata.json",
+      "bytes": 1320,
+      "sha256": "5f92f7ab5a9b798048db843ffa50d556e17e634988050744c4b7dcfc0bf72afd"
+    },
+    {
+      "path": "runs/penford-opus-5-5-xhigh-r1/network.jsonl.gz",
+      "bytes": 159,
+      "sha256": "0e4e3cae597cb318ec712991f5bc5fcdc68e2b1401bc54bbeeef352a2d903fab"
+    },
+    {
+      "path": "runs/penford-opus-5-5-xhigh-r1/penford.xlsx",
+      "bytes": 21756,
+      "sha256": "f6afebb1ff586d5051f0b4ab739aba6933b488259d4ef0e84247539317a14c53"
+    },
+    {
+      "path": "runs/penford-opus-5-5-xhigh-r1/prompt.txt",
+      "bytes": 237,
+      "sha256": "bbaad82152ca1d44d150868001fc0a6d22ef8f1eeecd1026c34559968930442b"
+    },
+    {
+      "path": "runs/penford-opus-5-5-xhigh-r1/provider-results.json",
+      "bytes": 5452,
+      "sha256": "bddd0cb0a78a58f86636a89786756191b29556d70bd938720bbaef2d59c53e0b"
+    },
+    {
+      "path": "runs/penford-opus-5-5-xhigh-r1/receipt.json",
+      "bytes": 747,
+      "sha256": "54ac3e2cfe3f968f67144b8c697ddcbe3aeff1a670d6136d7f0450c923f82650"
+    },
+    {
+      "path": "runs/penford-opus-5-5-xhigh-r1/status.json",
+      "bytes": 1638,
+      "sha256": "265ff509d4856ad9d08d881bfcd9d073e61e5f0072601a96122fa27b26b3b3cc"
+    },
+    {
+      "path": "runs/penford-opus-5-5-xhigh-r1/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runs/penford-opus-5-5-xhigh-r1/validation.json",
+      "bytes": 373,
+      "sha256": "809f0e6030bc0c8854cc6a410881d656e3c36954c888554866e9c4ce35e3cdca"
+    },
+    {
+      "path": "runs/synacor-gpt-6-astra-xhigh-r1/check.json",
+      "bytes": 1447,
+      "sha256": "e998eb0d0a230078fae4fc99f25a3a53f044f0fa27155aa9cec540e54ba3857e"
+    },
+    {
+      "path": "runs/synacor-gpt-6-astra-xhigh-r1/command.json",
+      "bytes": 2268,
+      "sha256": "130f91b27134923cc333b99adf7730ffc9494592b0b81e609816afd670398f84"
+    },
+    {
+      "path": "runs/synacor-gpt-6-astra-xhigh-r1/events.jsonl.gz",
+      "bytes": 73547,
+      "sha256": "753dd6477f68c1b2f39d9948eaa66067aa89561aa7ce9f37e44844e56ddc467e"
+    },
+    {
+      "path": "runs/synacor-gpt-6-astra-xhigh-r1/launch.json",
+      "bytes": 375,
+      "sha256": "4d86ff4172181191dfa588975acfd30a35ebc51498b5805d136062b6445c253a"
+    },
+    {
+      "path": "runs/synacor-gpt-6-astra-xhigh-r1/launcher.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runs/synacor-gpt-6-astra-xhigh-r1/metadata.json",
+      "bytes": 1320,
+      "sha256": "bc796d8fdc492b4b0c3c7386c19a86c8b28c963d02b5ce3dbe4edaf23cf26bf5"
+    },
+    {
+      "path": "runs/synacor-gpt-6-astra-xhigh-r1/network.jsonl.gz",
+      "bytes": 444,
+      "sha256": "a20b2ff5992d0709f684afbeebd2a89fadcd95532336aae2694fec31da7972c0"
+    },
+    {
+      "path": "runs/synacor-gpt-6-astra-xhigh-r1/prompt.txt",
+      "bytes": 237,
+      "sha256": "16138707e81ac7be2ebdfcbbbc652779c1740b1aa0f280b2de630015c3711e37"
+    },
+    {
+      "path": "runs/synacor-gpt-6-astra-xhigh-r1/receipt.json",
+      "bytes": 753,
+      "sha256": "e6588abe69eda798e0c5c3617ab04a6190d1a76e0e55cdd53609c7b355e64c25"
+    },
+    {
+      "path": "runs/synacor-gpt-6-astra-xhigh-r1/status.json",
+      "bytes": 610,
+      "sha256": "12fb8bcb8e9f9cae9ed591b9e10a7107684973ab3dda2f1240ca80ebc1ac05fa"
+    },
+    {
+      "path": "runs/synacor-gpt-6-astra-xhigh-r1/stderr.log",
+      "bytes": 39,
+      "sha256": "1aa26269eb1cc57f86b235a03cda53c004edb5b1e9fc99d4da4f00843293d721"
+    },
+    {
+      "path": "runs/synacor-gpt-6-astra-xhigh-r1/synacor.xlsx",
+      "bytes": 29748,
+      "sha256": "56873cf849964d3bcb31ad5c80a31916aaf2fb8cd834701c424bacdd2313eb46"
+    },
+    {
+      "path": "runs/synacor-gpt-6-astra-xhigh-r1/validation.json",
+      "bytes": 376,
+      "sha256": "83f4573d60f7d7e2aa486acb9042a8ed2ccffc17eff205490117ba610fac3497"
+    },
+    {
+      "path": "runs/synacor-gpt-6.1-sol-xhigh-r1/check.json",
+      "bytes": 1447,
+      "sha256": "ebdfc4facf8fa3f51e19472a3c3ca06199a89fc62939b0c44536d800960a420e"
+    },
+    {
+      "path": "runs/synacor-gpt-6.1-sol-xhigh-r1/command.json",
+      "bytes": 2268,
+      "sha256": "2c349512f624afdd921164a21ca750080db180aca55c04ede7184905aef9bc25"
+    },
+    {
+      "path": "runs/synacor-gpt-6.1-sol-xhigh-r1/events.jsonl.gz",
+      "bytes": 102360,
+      "sha256": "75ceaeb6721bd8991e818b277e3e1722f64d525eba7d7f85dec09ec4c8dddb89"
+    },
+    {
+      "path": "runs/synacor-gpt-6.1-sol-xhigh-r1/launch.json",
+      "bytes": 375,
+      "sha256": "f230c23781f2067ce771dcfe0dfc4580a8b8941c7b5340f8ab7ddf75b14794a0"
+    },
+    {
+      "path": "runs/synacor-gpt-6.1-sol-xhigh-r1/launcher.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runs/synacor-gpt-6.1-sol-xhigh-r1/metadata.json",
+      "bytes": 1320,
+      "sha256": "8eb696b89950e4f56ec938bdcf2c9904a3833390a8f8b6617cf694cbff1763ce"
+    },
+    {
+      "path": "runs/synacor-gpt-6.1-sol-xhigh-r1/network.jsonl.gz",
+      "bytes": 479,
+      "sha256": "5277abd9f13edd47de15558e3bccee4e4afba763a0ab6914cdc51da106a5b8cd"
+    },
+    {
+      "path": "runs/synacor-gpt-6.1-sol-xhigh-r1/prompt.txt",
+      "bytes": 237,
+      "sha256": "16138707e81ac7be2ebdfcbbbc652779c1740b1aa0f280b2de630015c3711e37"
+    },
+    {
+      "path": "runs/synacor-gpt-6.1-sol-xhigh-r1/receipt.json",
+      "bytes": 753,
+      "sha256": "992eb9e46109bc11c807bd426bf764c9ca66253c012577ce61ea0dd6e01be8e9"
+    },
+    {
+      "path": "runs/synacor-gpt-6.1-sol-xhigh-r1/status.json",
+      "bytes": 612,
+      "sha256": "8049b73069e1fa33cef7a679a75e81189852826198ca7486207c498cee4c8ad8"
+    },
+    {
+      "path": "runs/synacor-gpt-6.1-sol-xhigh-r1/stderr.log",
+      "bytes": 39,
+      "sha256": "1aa26269eb1cc57f86b235a03cda53c004edb5b1e9fc99d4da4f00843293d721"
+    },
+    {
+      "path": "runs/synacor-gpt-6.1-sol-xhigh-r1/synacor.xlsx",
+      "bytes": 27994,
+      "sha256": "04dbedd84654a892c621cc28481e9dcdaa1fc94e584d735aa0f06a9fe2ffb6e9"
+    },
+    {
+      "path": "runs/synacor-gpt-6.1-sol-xhigh-r1/validation.json",
+      "bytes": 376,
+      "sha256": "54a714bb8494ebd4a89a5dd6d861ab2cc107614be8a56399fc27d542d00c91e8"
+    },
+    {
+      "path": "runs/synacor-opus-5-5-xhigh-r1/check.json",
+      "bytes": 1963,
+      "sha256": "3170d526417d68778baf8c95e2efbb527ec0374ab8b897d191d27ef5caeff12f"
+    },
+    {
+      "path": "runs/synacor-opus-5-5-xhigh-r1/command.json",
+      "bytes": 1793,
+      "sha256": "e0234e64391aedb593c8ceb583bce9fa69e33c554c7d77851b2bfd1e67e6f2f1"
+    },
+    {
+      "path": "runs/synacor-opus-5-5-xhigh-r1/events.jsonl.gz",
+      "bytes": 809247,
+      "sha256": "a53c4d5c93fb31bb6a37befc7184ac002e08b4c464e6907003c494098e8dfd35"
+    },
+    {
+      "path": "runs/synacor-opus-5-5-xhigh-r1/launch.json",
+      "bytes": 373,
+      "sha256": "78daaccebd9496d502935c6c21bbdcb592704abf952cb0a6fa7cd54935eb1655"
+    },
+    {
+      "path": "runs/synacor-opus-5-5-xhigh-r1/launcher.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runs/synacor-opus-5-5-xhigh-r1/metadata.json",
+      "bytes": 1319,
+      "sha256": "16373e39ed387b625ad9739c8dd1ca82d5a22496bf40458af0cbe0d2f8e15d52"
+    },
+    {
+      "path": "runs/synacor-opus-5-5-xhigh-r1/network.jsonl.gz",
+      "bytes": 160,
+      "sha256": "550f67aec8f74869998c0b14e4d09f5ed0cb7623e8056ee2dee870e6526d175b"
+    },
+    {
+      "path": "runs/synacor-opus-5-5-xhigh-r1/prompt.txt",
+      "bytes": 237,
+      "sha256": "16138707e81ac7be2ebdfcbbbc652779c1740b1aa0f280b2de630015c3711e37"
+    },
+    {
+      "path": "runs/synacor-opus-5-5-xhigh-r1/provider-results.json",
+      "bytes": 5168,
+      "sha256": "4bce42a5be4f077752213f349b69416158fce3c3e4efc7b800effe1f1b1eb75f"
+    },
+    {
+      "path": "runs/synacor-opus-5-5-xhigh-r1/receipt.json",
+      "bytes": 746,
+      "sha256": "6251c602b5bf31e39310fcf4a6831045af8f6b365fcaa1693de818333f8bfeb1"
+    },
+    {
+      "path": "runs/synacor-opus-5-5-xhigh-r1/status.json",
+      "bytes": 1646,
+      "sha256": "4a590f06b80eb6278b683ce6c9541193e444ab2f1d8985fcd8a9263e04121203"
+    },
+    {
+      "path": "runs/synacor-opus-5-5-xhigh-r1/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runs/synacor-opus-5-5-xhigh-r1/synacor.xlsx",
+      "bytes": 26453,
+      "sha256": "5cd2163cedc00152d42e25d9c6c8b08c7ee4035e5463e9f93fc350d74e3374bd"
+    },
+    {
+      "path": "runs/synacor-opus-5-5-xhigh-r1/validation.json",
+      "bytes": 373,
+      "sha256": "15af6429b4de1dd1067764fc73d2aabc909360e831018b7b48e2a09a13d323b4"
+    },
+    {
+      "path": "selection.json",
+      "bytes": 641,
+      "sha256": "0faf8de2a628817bd3e9758d465b5593b4012db813f58b49869ea6cf7df0e99c"
+    },
+    {
+      "path": "source_receipts.json",
+      "bytes": 1554,
+      "sha256": "b0718318a629307b032bce551e850c7cce2ba336da06de2b9fcba812d4bd2547"
+    }
+  ]
+}

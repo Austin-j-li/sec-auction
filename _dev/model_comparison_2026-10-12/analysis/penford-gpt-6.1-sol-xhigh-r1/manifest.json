@@ -1,0 +1,134 @@
+{
+  "tool": "derive_analysis.py",
+  "tool_version": "Version 1",
+  "code": {
+    "git_commit": "cb7bfba4f11624cd2984c86fd4d4f93a60574dd5",
+    "derive_analysis_sha256": "283adc70c37347c83626ec14afb0d699c73c3d52879c6c98c802d01c44f00206",
+    "check_lean_sha256": "f5614ffcfcd64061b0282340ff3d55136532720634d18a0cf3fe33d880ce1bbe"
+  },
+  "generated_at": "2026-10-12T16:23:54+00:00",
+  "deal": "penford",
+  "input": {
+    "path": "/home/uctpiaj/work/Projects/sec-auction/_dev/model_comparison_2026-10-12/runs/penford-gpt-6.1-sol-xhigh-r1/penford.xlsx",
+    "sha256": "c3316cf8067c4a7c0d590b70cd3b82a39857fc379dc46794cd3096bc00877404",
+    "kind": "four-sheet workbook",
+    "sheets": [
+      "Deal ledger",
+      "Rounds",
+      "Questions",
+      "Deal facts"
+    ],
+    "source_sheet": null
+  },
+  "ledger_schema": "Version 1",
+  "checker_version": "Version 1",
+  "readings": {
+    "computed": [
+      "T0",
+      "T1",
+      "T1u",
+      "T2",
+      "T3"
+    ],
+    "all_cash_from": "Stock %",
+    "package": "Price + CVR/earnout value; package_basis says what each sum is (E13)",
+    "default": null
+  },
+  "switches": [
+    {
+      "id": "count_ranges",
+      "source": "D22; Alex Q1 / Decision 3",
+      "question": "How estimation uses counts that are ranges or bounds. Under every variant, a party first seen bidding after cohort entries counts inside the cohort (E3), unless its own contact row follows them and no cohort Note names it or cites its row.",
+      "variants": {
+        "bounds": "live_lo, live_hi (and count_lo, count_hi)",
+        "presumed ordinary sequence": "live_point (approximately N is N)",
+        "one bound": "live_lo or live_hi alone"
+      }
+    },
+    {
+      "id": "unclear",
+      "source": "D22",
+      "question": "How Unclear and Not stated values are treated.",
+      "variants": {
+        "missing": "Formality Unclear is missing under every reading; deadline Unclear has class missing",
+        "Conditions Unclear as not Heavy": "T1",
+        "Conditions Unclear as Heavy": "T1u"
+      }
+    },
+    {
+      "id": "formality_reading",
+      "source": "D22; Alex Decision 3b",
+      "question": "Which Formality reading is primary.",
+      "variants": {
+        "T0": "T0",
+        "T1": "T1",
+        "T1u": "T1u",
+        "T2": "T2",
+        "T3": "T3"
+      }
+    },
+    {
+      "id": "same_price_revisions",
+      "source": "D22; D13; Alex Decision 3b; P1",
+      "question": "Whether a same-price revision of terms is a new price observation.",
+      "variants": {
+        "new observation": "price_obs__same_price_as_new",
+        "change of terms only": "price_obs__same_price_as_terms"
+      }
+    },
+    {
+      "id": "same_offer_restatements",
+      "source": "E10 (R1); questionnaire 3.3(b)",
+      "question": "Whether a Same-offer row (the bidder says its offer stands or confirms it by documents) is kept as a bid observation.",
+      "variants": {
+        "kept": "every bids.csv row",
+        "dropped": "bids.csv rows with same_offer_of blank or returns_to_older_price 1 (a revision, L253)"
+      }
+    },
+    {
+      "id": "inferred_exits",
+      "source": "D22; Alex Decision 3b",
+      "question": "Whether inferred exits enter as dropouts or as censoring.",
+      "variants": {
+        "dropout": "exit__inferred_as_dropout",
+        "censoring": "exit__inferred_as_censoring"
+      }
+    },
+    {
+      "id": "estimation_price",
+      "source": "audit D §4; spec §7.10",
+      "question": "Upfront or package (upfront + CVR/earnout value) as the estimation price.",
+      "variants": {
+        "upfront": "price_low, price_high",
+        "package": "package_low, package_high, compared only within one package_basis"
+      }
+    }
+  ],
+  "deadline_outcomes": [
+    {
+      "process": 1,
+      "round": 1,
+      "position": 1,
+      "value": "No deadline stated",
+      "class": "no deadline"
+    },
+    {
+      "process": 1,
+      "round": 2,
+      "position": 1,
+      "value": "No deadline stated",
+      "class": "no deadline"
+    }
+  ],
+  "outputs": {
+    "bids.csv": 10,
+    "other_scope.csv": 0,
+    "rounds.csv": 2,
+    "participation.csv": 10,
+    "deal.csv": 1,
+    "questions.csv": 20
+  },
+  "review": [],
+  "warnings": [],
+  "incomplete": []
+}

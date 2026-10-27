@@ -1,0 +1,17 @@
+{
+  "checker": "lean-mechanical",
+  "checker_revision": "Checks the Version 1 ledger rules.",
+  "checker_version": "Version 1",
+  "filing": "/home/uctpiaj/work/Projects/sec-auction/_dev/cockpit/state/filings/medivation/medivation_2016-08-30_SCTO-T.htm",
+  "issues": [],
+  "ledger_schema": "Version 1",
+  "scope_note": "Mechanical checks only. Quote occurrence proves source occurrence, not semantic support. No bidder-population arithmetic or substantive extraction grading is performed.",
+  "status": "pass",
+  "summary": {
+    "errors": 0,
+    "information": 0,
+    "total_issues": 0,
+    "warnings": 0
+  },
+  "workbook": "/home/uctpiaj/work/Projects/sec-auction/_dev/runs/model_comparison_2026-10-12/medivation-gpt-6.1-sol-xhigh-r1/extraction/medivation.xlsx"
+}

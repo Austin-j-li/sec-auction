@@ -1,0 +1,323 @@
+{
+  "recorded_at": "2026-10-12T16:48:14.345106+00:00",
+  "completed_receipts": 9,
+  "models": [
+    {
+      "model": "gpt-6-astra",
+      "completed": 3,
+      "mean_minutes": 10.905872222222222,
+      "median_minutes": 10.3746,
+      "total_checker_errors": 0,
+      "total_checker_warnings": 2
+    },
+    {
+      "model": "gpt-6.1-sol",
+      "completed": 3,
+      "mean_minutes": 12.682933333333333,
+      "median_minutes": 13.429733333333333,
+      "total_checker_errors": 0,
+      "total_checker_warnings": 3
+    },
+    {
+      "model": "claude-opus-5-5",
+      "completed": 3,
+      "mean_minutes": 22.77862222222222,
+      "median_minutes": 17.55405,
+      "total_checker_errors": 0,
+      "total_checker_warnings": 11
+    }
+  ],
+  "runs": [
+    {
+      "id": "medivation-gpt-6-astra-xhigh-r1",
+      "deal": "medivation",
+      "model": "gpt-6-astra",
+      "effort": "xhigh",
+      "requested_service_tier": "priority",
+      "priority_argument_present": true,
+      "state": "completed",
+      "elapsed_minutes": 8.039,
+      "elapsed_seconds": 482.352,
+      "checker_errors": 0,
+      "checker_warnings": 0,
+      "continuations": 0,
+      "workbook_sha256": "a789bb043bfd64315d522063b3d05234ef03c8539b6af761376f26f21eebabf5",
+      "mismatches": [],
+      "usage": {
+        "cost_usd": null,
+        "tokens": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 376320,
+          "input_tokens": 443124,
+          "output_tokens": 18844,
+          "reasoning_output_tokens": 9002
+        }
+      },
+      "served_models": null,
+      "ledger_rows": 29,
+      "bid_rows": 4,
+      "other_scope_rows": 0,
+      "round_rows": 3,
+      "question_rows": 14
+    },
+    {
+      "id": "medivation-gpt-6.1-sol-xhigh-r1",
+      "deal": "medivation",
+      "model": "gpt-6.1-sol",
+      "effort": "xhigh",
+      "requested_service_tier": "priority",
+      "priority_argument_present": true,
+      "state": "completed",
+      "elapsed_minutes": 9.906,
+      "elapsed_seconds": 594.37,
+      "checker_errors": 0,
+      "checker_warnings": 0,
+      "continuations": 0,
+      "workbook_sha256": "9aa11b650635d26b9ef10fbfb019ea204e8c8134c123a66cbcdc0db64d0e2368",
+      "mismatches": [],
+      "usage": {
+        "cost_usd": null,
+        "tokens": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 617984,
+          "input_tokens": 705217,
+          "output_tokens": 21463,
+          "reasoning_output_tokens": 10314
+        }
+      },
+      "served_models": null,
+      "ledger_rows": 28,
+      "bid_rows": 4,
+      "other_scope_rows": 0,
+      "round_rows": 3,
+      "question_rows": 12
+    },
+    {
+      "id": "medivation-opus-5-5-xhigh-r1",
+      "deal": "medivation",
+      "model": "claude-opus-5-5",
+      "effort": "xhigh",
+      "requested_service_tier": null,
+      "priority_argument_present": false,
+      "state": "completed",
+      "elapsed_minutes": 13.833,
+      "elapsed_seconds": 830.003,
+      "checker_errors": 0,
+      "checker_warnings": 5,
+      "continuations": 0,
+      "workbook_sha256": "121e1058ea1e452047db4d05aaa1ad90d2b16b0acab57fff5cfcd8c826c62550",
+      "mismatches": [],
+      "usage": {
+        "cost_usd": 3.6253198,
+        "tokens": {
+          "cache_creation_input_tokens": 174655,
+          "cache_read_input_tokens": 1769939,
+          "input_tokens": 48,
+          "output_tokens": 93695
+        }
+      },
+      "served_models": [
+        "claude-opus-5-5"
+      ],
+      "ledger_rows": 26,
+      "bid_rows": 4,
+      "other_scope_rows": 0,
+      "round_rows": 2,
+      "question_rows": 9
+    },
+    {
+      "id": "penford-gpt-6-astra-xhigh-r1",
+      "deal": "penford",
+      "model": "gpt-6-astra",
+      "effort": "xhigh",
+      "requested_service_tier": "priority",
+      "priority_argument_present": true,
+      "state": "completed",
+      "elapsed_minutes": 10.375,
+      "elapsed_seconds": 622.476,
+      "checker_errors": 0,
+      "checker_warnings": 0,
+      "continuations": 0,
+      "workbook_sha256": "6dbd7da5dbec91778debd8114801a93f5a228cc7862c6da2ac39a7785c09ee74",
+      "mismatches": [],
+      "usage": {
+        "cost_usd": null,
+        "tokens": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 1232000,
+          "input_tokens": 1340619,
+          "output_tokens": 25251,
+          "reasoning_output_tokens": 11119
+        }
+      },
+      "served_models": null,
+      "ledger_rows": 46,
+      "bid_rows": 10,
+      "other_scope_rows": 0,
+      "round_rows": 2,
+      "question_rows": 15
+    },
+    {
+      "id": "penford-gpt-6.1-sol-xhigh-r1",
+      "deal": "penford",
+      "model": "gpt-6.1-sol",
+      "effort": "xhigh",
+      "requested_service_tier": "priority",
+      "priority_argument_present": true,
+      "state": "completed",
+      "elapsed_minutes": 13.43,
+      "elapsed_seconds": 805.784,
+      "checker_errors": 0,
+      "checker_warnings": 1,
+      "continuations": 0,
+      "workbook_sha256": "c3316cf8067c4a7c0d590b70cd3b82a39857fc379dc46794cd3096bc00877404",
+      "mismatches": [],
+      "usage": {
+        "cost_usd": null,
+        "tokens": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 966400,
+          "input_tokens": 1071370,
+          "output_tokens": 28661,
+          "reasoning_output_tokens": 13638
+        }
+      },
+      "served_models": null,
+      "ledger_rows": 51,
+      "bid_rows": 10,
+      "other_scope_rows": 0,
+      "round_rows": 2,
+      "question_rows": 20
+    },
+    {
+      "id": "penford-opus-5-5-xhigh-r1",
+      "deal": "penford",
+      "model": "claude-opus-5-5",
+      "effort": "xhigh",
+      "requested_service_tier": null,
+      "priority_argument_present": false,
+      "state": "completed",
+      "elapsed_minutes": 17.554,
+      "elapsed_seconds": 1053.243,
+      "checker_errors": 0,
+      "checker_warnings": 2,
+      "continuations": 0,
+      "workbook_sha256": "f6afebb1ff586d5051f0b4ab739aba6933b488259d4ef0e84247539317a14c53",
+      "mismatches": [],
+      "usage": {
+        "cost_usd": 4.3072878,
+        "tokens": {
+          "cache_creation_input_tokens": 191023,
+          "cache_read_input_tokens": 1880919,
+          "input_tokens": 50,
+          "output_tokens": 120136
+        }
+      },
+      "served_models": [
+        "claude-opus-5-5"
+      ],
+      "ledger_rows": 43,
+      "bid_rows": 10,
+      "other_scope_rows": 0,
+      "round_rows": 2,
+      "question_rows": 12
+    },
+    {
+      "id": "synacor-gpt-6-astra-xhigh-r1",
+      "deal": "synacor",
+      "model": "gpt-6-astra",
+      "effort": "xhigh",
+      "requested_service_tier": "priority",
+      "priority_argument_present": true,
+      "state": "completed",
+      "elapsed_minutes": 14.304,
+      "elapsed_seconds": 858.229,
+      "checker_errors": 0,
+      "checker_warnings": 2,
+      "continuations": 0,
+      "workbook_sha256": "56873cf849964d3bcb31ad5c80a31916aaf2fb8cd834701c424bacdd2313eb46",
+      "mismatches": [],
+      "usage": {
+        "cost_usd": null,
+        "tokens": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 787584,
+          "input_tokens": 885450,
+          "output_tokens": 33605,
+          "reasoning_output_tokens": 14395
+        }
+      },
+      "served_models": null,
+      "ledger_rows": 73,
+      "bid_rows": 13,
+      "other_scope_rows": 9,
+      "round_rows": 7,
+      "question_rows": 25
+    },
+    {
+      "id": "synacor-gpt-6.1-sol-xhigh-r1",
+      "deal": "synacor",
+      "model": "gpt-6.1-sol",
+      "effort": "xhigh",
+      "requested_service_tier": "priority",
+      "priority_argument_present": true,
+      "state": "completed",
+      "elapsed_minutes": 14.713,
+      "elapsed_seconds": 882.774,
+      "checker_errors": 0,
+      "checker_warnings": 2,
+      "continuations": 0,
+      "workbook_sha256": "04dbedd84654a892c621cc28481e9dcdaa1fc94e584d735aa0f06a9fe2ffb6e9",
+      "mismatches": [],
+      "usage": {
+        "cost_usd": null,
+        "tokens": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 1096320,
+          "input_tokens": 1202624,
+          "output_tokens": 36142,
+          "reasoning_output_tokens": 18545
+        }
+      },
+      "served_models": null,
+      "ledger_rows": 76,
+      "bid_rows": 13,
+      "other_scope_rows": 9,
+      "round_rows": 7,
+      "question_rows": 25
+    },
+    {
+      "id": "synacor-opus-5-5-xhigh-r1",
+      "deal": "synacor",
+      "model": "claude-opus-5-5",
+      "effort": "xhigh",
+      "requested_service_tier": null,
+      "priority_argument_present": false,
+      "state": "completed",
+      "elapsed_minutes": 36.948,
+      "elapsed_seconds": 2216.906,
+      "checker_errors": 0,
+      "checker_warnings": 4,
+      "continuations": 0,
+      "workbook_sha256": "5cd2163cedc00152d42e25d9c6c8b08c7ee4035e5463e9f93fc350d74e3374bd",
+      "mismatches": [],
+      "usage": {
+        "cost_usd": 7.477569400000001,
+        "tokens": {
+          "cache_creation_input_tokens": 225767,
+          "cache_read_input_tokens": 3112467,
+          "input_tokens": 60,
+          "output_tokens": 252435
+        }
+      },
+      "served_models": [
+        "claude-opus-5-5"
+      ],
+      "ledger_rows": 65,
+      "bid_rows": 12,
+      "other_scope_rows": 6,
+      "round_rows": 6,
+      "question_rows": 13
+    }
+  ]
+}

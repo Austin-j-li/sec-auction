@@ -1,0 +1,28 @@
+{
+  "deal": "penford",
+  "effort": "xhigh",
+  "expected_output": "penford.xlsx",
+  "filing_name": "penford_2014-12-29_DEFM14A.htm",
+  "filing_sha256": "5bd50713b2ce136b9b80d28360b6281d6890d0d95b35cfe36a3eacd288bb53aa",
+  "instruction_name": "SEC_Deal_Ledger_Extraction_Instruction.md",
+  "instruction_sha256": "e6e1e2f3b53378bdb6770762d33fe9b84090c2ae27301d5bf725e0c3f629eb13",
+  "instruction_source": "/home/uctpiaj/work/Projects/sec-auction/SEC_Deal_Ledger_Extraction_Instruction.md",
+  "library_versions": {
+    "beautifulsoup4": "4.15.0",
+    "lxml": "5.2.1",
+    "openpyxl": "3.1.5"
+  },
+  "mode": "extract",
+  "model": "gpt-6.1-sol",
+  "prepared_at": "2026-10-12T16:10:03.149599+00:00",
+  "prompt_sha256": "bbaad82152ca1d44d150868001fc0a6d22ef8f1eeecd1026c34559968930442b",
+  "provider": "sol",
+  "python_version": "3.12.13 (main, Apr 16 2026, 00:00:00) [GCC 14.3.1 20251022 (Red Hat 14.3.1-4)]",
+  "report_sha256": null,
+  "revised_from_ledger_schema": null,
+  "revised_from_sha256": null,
+  "runner_sha256": "5c2bc2b26eba396a010776f272280e92ccf49367cd4ef2cafd3e6633c9d7a9d7",
+  "sandbox": "bubblewrap fresh home/state/tmp; no network except HTTPS to the provider's API hosts through an allowlist proxy; one instruction; one filing; one output directory",
+  "service_tier": "priority",
+  "timeout_seconds": 5400
+}

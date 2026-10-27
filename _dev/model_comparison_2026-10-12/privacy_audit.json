@@ -1,0 +1,6 @@
+{
+  "recorded_at": "2026-10-12T16:56:22.156755+00:00",
+  "files_scanned": 220,
+  "potential_secret_matches": [],
+  "scope": "Known credential patterns in packet text, decompressed event/network logs, and workbook XML. This is a bounded scan, not a proof that every possible secret format is absent."
+}
