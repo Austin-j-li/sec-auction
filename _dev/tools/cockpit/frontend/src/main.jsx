@@ -14,12 +14,12 @@ import InstructionsPage from './Instructions';
 import { ExtractDialog, RunBadge, RunsTab } from './Runs';
 import AddDealDialog from './AddDeal';
 import { compact, LedgerTab, SheetTab } from './Records';
-import { ChangesTab, DocumentText, friendlyDate, HistoryTab, ReviewTab } from './Review';
+import { ChangesTab, friendlyDate, HistoryTab, ReviewTab } from './Review';
 import { Dot, Loading, Message } from './ui';
 import { cockpitTheme } from './theme';
 import { commentAction, compareQuery, count, dealVisibility, jobAction, json, markSeen, markSeenOnLeave, nextQuestionId, recordValues, rowId, saveDeal, setDealReview, sheetColumns, sheetRows, text, versionAction } from './api';
-import { countThreads, DEAL_KINDS, displayName, EDIT_KINDS, INSTRUCTION_KINDS, knownUser, RUN_KINDS, VERSION_KINDS } from './trace';
-import { isActive, isImported, orderVersions, rebaseLines, versionOptionLabel } from './runs';
+import { countThreads, DEAL_KINDS, displayName, EDIT_KINDS, knownUser, RUN_KINDS, VERSION_KINDS } from './trace';
+import { isActive, orderVersions, rebaseLines, versionOptionLabel } from './runs';
 import { hiddenLine, REVIEW_STATUSES, reviewByline } from './deals';
 import { exportLinks } from './downloads';
 import { bulkChanges, bulkReason, bulkValues, eventList, stageBulk, stagedCount, updateToExtend, withoutBulkRow } from './bulk';
@@ -40,7 +40,6 @@ function routeFromLocation() {
   const page = Object.keys(PAGES).find(key => new RegExp(`^${PAGES[key]}/?$`).test(location.pathname));
   return { slug: null, page: page || 'overview' };
 }
-const instructionsPath = id => `/instructions${id ? `?id=${encodeURIComponent(id)}` : ''}`;
 function clone(value) { return structuredClone(value); }
 function confirmLoss() { return window.confirm('You have unsaved edits. Discard them and leave this view?'); }
 function failure(title, err) { return { title, detail: err?.message || text(err) }; }
@@ -64,7 +63,6 @@ function App() {
   const [tab, setTab] = useState('ledger');
   const [version, setVersion] = useState('working');
   const [mobilePane, setMobilePane] = useState('workspace');
-  const [filingSearchRequest, setFilingSearchRequest] = useState(null);
   const [filingScrollRequest, setFilingScrollRequest] = useState(0);
   const [historyData, setHistoryData] = useState(null);
   const [changesData, setChangesData] = useState(null);
@@ -72,11 +70,6 @@ function App() {
   const [conflict, setConflict] = useState(false);
   const [deletePrompt, setDeletePrompt] = useState(null);
   const [bulkPrompt, setBulkPrompt] = useState(null);
-  const [findingOpen, setFindingOpen] = useState(null);
-  const [documentOpen, setDocumentOpen] = useState(null);
-  const [documentData, setDocumentData] = useState(null);
-  const [documentError, setDocumentError] = useState('');
-  const [docLoading, setDocLoading] = useState(false);
   const [threads, setThreads] = useState(null);
   const [threadsError, setThreadsError] = useState('');
   const [news, setNews] = useState(null);
@@ -110,12 +103,11 @@ function App() {
   const filingCache = useRef(new Map());
   const loadedSlug = useRef(null);
   const reviewTouched = useRef(new Map());
-  const findingBase = useRef(new Map());
   const dirty = ops.length > 0;
   const unsaved = dirty || pageDirty;
   const editable = Boolean(session.can_edit && deal?.workspace?.editable && saveState !== 'saving' && !versionLoading);
   const slug = route.slug;
-  const modalOpen = Boolean(deletePrompt || bulkPrompt || documentOpen || rebasePrompt || extract || addDeal || hidePrompt);
+  const modalOpen = Boolean(deletePrompt || bulkPrompt || rebasePrompt || extract || addDeal || hidePrompt);
   pendingRef.current = Boolean(deal?.pending);
   sessionRef.current = session;
   slugRef.current = slug;
@@ -154,7 +146,7 @@ function App() {
     modalReturnFocus.current = document.activeElement;
     (modalRef.current?.querySelector('[data-autofocus]') || modalRef.current?.querySelector('button'))?.focus();
     const onKeyDown = event => {
-      if (event.key === 'Escape') { event.preventDefault(); setDeletePrompt(null); setBulkPrompt(null); setDocumentOpen(null); setRebasePrompt(current => current?.busy ? current : null); setExtract(current => current?.busy ? current : null); setAddDeal(false); setHidePrompt(current => current?.busy ? current : null); return; }
+      if (event.key === 'Escape') { event.preventDefault(); setDeletePrompt(null); setBulkPrompt(null); setRebasePrompt(current => current?.busy ? current : null); setExtract(current => current?.busy ? current : null); setAddDeal(false); setHidePrompt(current => current?.busy ? current : null); return; }
       if (event.key !== 'Tab' || !modalRef.current) return;
       const focusables = [...modalRef.current.querySelectorAll('button:not(:disabled), input:not(:disabled), select:not(:disabled), textarea:not(:disabled), a[href]')];
       if (!focusables.length) return;
@@ -164,7 +156,7 @@ function App() {
     window.addEventListener('keydown', onKeyDown);
     return () => { window.removeEventListener('keydown', onKeyDown); modalReturnFocus.current?.focus?.(); };
   }, [modalOpen]);
-  useEffect(() => { if (!ops.length) { reviewTouched.current = new Map(); findingBase.current = new Map(); } }, [ops.length]);
+  useEffect(() => { if (!ops.length) reviewTouched.current = new Map(); }, [ops.length]);
 
   // Which fields carry a staged value, by sheet and record: drives the per-field "edited" marker.
   const dirtyFields = useMemo(() => {
@@ -179,11 +171,6 @@ function App() {
   }, [ops]);
   const dirtyFor = useCallback((sheet, uid) => dirtyFields.get(`${sheet}|${uid}`) || NO_FIELDS, [dirtyFields]);
   const reviewDirty = useCallback(uid => (ops.some(op => op.type === 'review' && op.uid === uid) && reviewTouched.current.get(uid)) || NO_FIELDS, [ops]);
-  // A finding field is edited when its staged value differs from the value loaded before the first edit.
-  const findingDirty = useCallback(id => {
-    const base = findingBase.current.get(id), op = ops.find(item => item.type === 'finding' && item.id === id);
-    return base && op ? new Set(Object.keys(base).filter(field => op[field] !== base[field])) : NO_FIELDS;
-  }, [ops]);
 
   function navigate(path) {
     if (saveState === 'saving') return;
@@ -195,7 +182,7 @@ function App() {
     const token = ++routeSerial.current;
     // A version switch keeps the current deal (and the filing pane) mounted; only the workspace waits.
     const sameDeal = Boolean(currentSlug) && loadedSlug.current === currentSlug;
-    setError(null); setConflict(false); setOps([]); setSaveState(''); setHistoryData(null); setChangesData(null); setFindingOpen(null); setDocumentOpen(null); setCompare(null); setRebasePrompt(null); setHidePrompt(null); setBulkPrompt(null);
+    setError(null); setConflict(false); setOps([]); setSaveState(''); setHistoryData(null); setChangesData(null); setCompare(null); setRebasePrompt(null); setHidePrompt(null); setBulkPrompt(null);
     if (sameDeal) setVersionLoading(true);
     else { setLoading(true); setDeal(null); loadedSlug.current = null; }
     try {
@@ -358,17 +345,13 @@ function App() {
     if (target?.kind === 'row' && sheetRows(deal, target.sheet).some(row => row.uid === target.uid)) {
       if (target.sheet === 'Deal ledger') selectRow(target.uid);
       else { selectOther(target.sheet, target.uid); setTab(SHEET_TABS[target.sheet]); }
-    } else {
-      if (target?.kind === 'finding') setFindingOpen(target.uid);
-      setTab('review');
-    }
+    } else setTab('review');
     setMobilePane('workspace');
   }
   function openRuns() { setTab('runs'); setMobilePane('workspace'); }
   function openActivityItem(item) {
     if (DEAL_KINDS.has(item.kind)) return;
-    if (INSTRUCTION_KINDS.has(item.kind)) navigate(instructionsPath(item.instruction_id));
-    else if (EDIT_KINDS.has(item.kind)) openRevision(item.revision);
+    if (EDIT_KINDS.has(item.kind)) openRevision(item.revision);
     else if (RUN_KINDS.has(item.kind) || VERSION_KINDS.has(item.kind)) {
       // An extraction item opens the version it produced when the feed names it; otherwise the Runs tab.
       if (item.kind !== 'extraction_failed' && item.version_id && deal?.versions?.some(v => v.id === item.version_id)) switchVersion(item.version_id);
@@ -471,7 +454,7 @@ function App() {
       setError(failure('The deal could not be unhidden.', err));
     }
   }
-  // The rebase dialog first lists what stops applying (row marks, finding decisions, threads), read from the server.
+  // The rebase dialog first lists what stops applying (row marks, threads), read from the server.
   function openRebase(item) {
     setRebasePrompt({ version: item, reason: '', busy: false, error: '', preview: null, previewError: '' });
     json(`/api/deal/${encodeURIComponent(slug)}/rebase?to=${encodeURIComponent(item.id)}`)
@@ -582,7 +565,6 @@ function App() {
     if (!reason.trim()) setReason(bulkReason(values, uids.length));
     setBulkPrompt(null); setSaveState('');
   }
-  // Review notes became comments (phase 1): the review operation carries only the status and an empty note.
   function setReview(uid, status) {
     const previous = deal.row_review?.[uid] || { status: 'unreviewed' };
     const touched = new Set(reviewTouched.current.get(uid) || []);
@@ -591,24 +573,7 @@ function App() {
     setDeal(current => { const next = clone(current); next.row_review = { ...next.row_review, [uid]: { ...(next.row_review?.[uid] || {}), status } }; return next; });
     setOps(previousOps => {
       const next = clone(previousOps), existing = next.find(op => op.type === 'review' && op.uid === uid);
-      if (existing) Object.assign(existing, { status, note: '' }); else next.push({ type: 'review', uid, status, note: '' });
-      return next;
-    });
-    setSaveState('');
-  }
-  function setFinding(id, field, value) {
-    if (!findingBase.current.has(id)) {
-      const finding = deal.findings.find(item => item.id === id);
-      findingBase.current.set(id, { judgment: finding.judgment || 'unreviewed', implementation: finding.implementation || 'unassessed', verification: finding.verification || 'unchecked' });
-    }
-    setDeal(current => { const next = clone(current), finding = next.findings?.find(item => item.id === id); if (finding) finding[field] = value; return next; });
-    setOps(previous => {
-      const next = clone(previous), existing = next.find(op => op.type === 'finding' && op.id === id);
-      if (existing) existing[field] = value;
-      else {
-        const finding = deal.findings.find(item => item.id === id);
-        next.push({ type: 'finding', id, judgment: finding.judgment || 'unreviewed', implementation: finding.implementation || 'unassessed', verification: finding.verification || 'unchecked', note: '', [field]: value });
-      }
+      if (existing) existing.status = status; else next.push({ type: 'review', uid, status });
       return next;
     });
     setSaveState('');
@@ -656,12 +621,6 @@ function App() {
       setConflict(err.status === 409); setSaveState('error');
     }
   }
-  async function openDocument(item) {
-    setDocumentOpen(item); setDocumentData(null); setDocumentError(''); setDocLoading(true);
-    try { setDocumentData(await json(`/api/document/${slug}/${encodeURIComponent(item.id)}`)); }
-    catch (err) { setDocumentError(err.message); }
-    finally { setDocLoading(false); }
-  }
   function chooseQuote(selection) {
     if (!editable) return;
     const row = deal.ledger?.rows?.find(item => item.uid === selectedUid);
@@ -672,12 +631,6 @@ function App() {
   }
   function showRowEvidence(uid) { selectRow(uid); setFilingScrollRequest(value => value + 1); setMobilePane('filing'); }
   function openQuestion(uid) { setSelectedBySheet(current => ({ ...current, Questions: uid })); setTab('questions'); setMobilePane('workspace'); }
-  function findEvidence(evidence) {
-    const quote = text(evidence.quote).replace(/\s+/g, ' ').trim();
-    if (!quote) return;
-    setFilingSearchRequest({ text: quote.replace(/^[^\p{L}\p{N}]+/u, '').slice(0, 32), page: evidence.page, nonce: Date.now() });
-    setMobilePane('filing');
-  }
 
   if (!slug) {
     const activity = route.page === 'activity', settings = route.page === 'settings', instructions = route.page === 'instructions';
@@ -688,7 +641,7 @@ function App() {
         {error && !settings && !instructions && <Message type="error" title={error.title} detail={error.detail}/>}
         {settings ? <SettingsPage session={session}/>
           : instructions ? <InstructionsPage session={session} onDirtyChange={setPageDirty}/>
-          : activity ? <ActivityPage deals={deals} onOpenDeal={(s, v) => navigate(`/deal/${s}${v ? `?version=${encodeURIComponent(v)}` : ''}`)} onOpenInstructions={id => navigate(instructionsPath(id))}/>
+          : activity ? <ActivityPage deals={deals} onOpenDeal={(s, v) => navigate(`/deal/${s}${v ? `?version=${encodeURIComponent(v)}` : ''}`)} onOpenInstructions={() => navigate('/instructions')}/>
           : deals && <Overview deals={deals} onOpen={s => navigate(`/deal/${s}`)} onAdd={session.can_edit && knownUser(session.user) ? () => setAddDeal(true) : null}
             onUnhide={session.can_edit && knownUser(session.user) ? unhideListed : null}/>}
       </main>
@@ -701,8 +654,8 @@ function App() {
   const ledgerRows = deal?.ledger?.rows || [];
   const selected = ledgerRows.find(row => row.uid === selectedUid);
   const baseLabel = deal?.versions?.find(item => item.id === deal.workspace?.base_version)?.label || deal?.workspace?.base_version || 'base';
-  const orderedVersions = orderVersions(deal?.versions, { baseId, showHidden, selected: version });
-  const allVersions = orderVersions(deal?.versions, { baseId, showHidden: true });
+  const orderedVersions = orderVersions(deal?.versions, { showHidden, selected: version });
+  const allVersions = orderVersions(deal?.versions, { showHidden: true });
   const compareState = deal && {
     from: compareFrom, to: compareTo, isDefault: compareDefault,
     options: [...allVersions.working, ...allVersions.originals].map(item => ({ id: item.id, label: item.id === 'working' ? 'Working copy' : versionOptionLabel(item) }))
@@ -794,7 +747,7 @@ function App() {
               {deal.deal_review.status === 'reviewed' && deal.deal_review.edited_since && <span className="tone-warning">at revision {deal.deal_review.revision}; edited since</span>}
             </label>}
             {versionActions && !shownVersion.hidden && <Button appearance="secondary" icon={<ArrowsClockwiseIcon size={16}/>} disabled={versionBusy} onClick={() => openRebase(shownVersion)}>Use as working-copy base…</Button>}
-            {versionActions && isImported(shownVersion) && <Button appearance="secondary" icon={shownVersion.hidden ? <EyeIcon size={16}/> : <EyeSlashIcon size={16}/>} disabled={versionBusy} onClick={() => setVersionHidden(shownVersion, !shownVersion.hidden)}>{shownVersion.hidden ? 'Unhide' : 'Hide'}</Button>}
+            {versionActions && <Button appearance="secondary" icon={shownVersion.hidden ? <EyeIcon size={16}/> : <EyeSlashIcon size={16}/>} disabled={versionBusy} onClick={() => setVersionHidden(shownVersion, !shownVersion.hidden)}>{shownVersion.hidden ? 'Unhide' : 'Hide'}</Button>}
             <RunBadge jobs={jobs} onOpen={openRuns}/>
             {canRun && !deal.hidden && <Button appearance="secondary" className="extract-button" icon={<PlayIcon size={16}/>} onClick={openExtract}>Extract</Button>}
             <span className="export-group">
@@ -827,7 +780,7 @@ function App() {
         </div>
         <SplitPane className="workbench" name="Filing and workspace" storageKey="workbench" collapsible defaultSize={width => width * 0.47} minStart={280} minEnd={400}>
           <div className={`filing-column ${mobilePane === 'filing' ? 'mobile-active' : ''}`}>
-            <Filing filing={filing} loading={filingLoading} error={filingError} deal={deal} selectedUid={selectedUid} scrollRequest={filingScrollRequest} searchRequest={filingSearchRequest} onSelectRow={selectRow} onQuoteSelection={editable ? chooseQuote : null}/>
+            <Filing filing={filing} loading={filingLoading} error={filingError} deal={deal} selectedUid={selectedUid} scrollRequest={filingScrollRequest} onSelectRow={selectRow} onQuoteSelection={editable ? chooseQuote : null}/>
           </div>
           {deal.pending ? <section className={`workspace-column ${mobilePane === 'workspace' ? 'mobile-active' : ''}`} aria-label="Deal workspace">
             <div className="workspace-scroll">
@@ -843,7 +796,7 @@ function App() {
             {news?.slug === slug && <WhatsNew news={news} onMarkRead={() => setSeen('read')} onMarkUnread={() => setSeen('unread')} onOpenItem={openActivityItem}/>}
             <TabScroller activeTab={tab}>
               {TABS.map(([key, label]) => {
-                const tabCount = ['ledger', 'rounds', 'questions'].includes(key) ? sheetRows(deal, SHEETS[key]).length : key === 'review' && deal.findings?.length > 0 ? deal.findings.length : key === 'runs' && jobsActive ? jobs.filter(isActive).length : null;
+                const tabCount = ['ledger', 'rounds', 'questions'].includes(key) ? sheetRows(deal, SHEETS[key]).length : key === 'runs' && jobsActive ? jobs.filter(isActive).length : null;
                 return <button key={key} id={`tab-${key}`} role="tab" aria-selected={tab === key} aria-controls="workspace-panel" tabIndex={tab === key ? 0 : -1} className={tab === key ? 'active' : ''} onClick={() => setTab(key)}>
                   {label}{tabCount != null && <span className="tab-count mono">{tabCount}</span>}
                 </button>;
@@ -854,7 +807,7 @@ function App() {
               {!versionLoading && <>
                 {tab === 'ledger' && <LedgerTab deal={deal} selectedUid={selectedUid} onSelect={selectRow} onShowFiling={showRowEvidence} onOpenQuestion={openQuestion} onStep={stepRow} onAdd={addRow} onMove={moveRow} onDelete={requestDelete} onEdit={editValue} onReview={setReview} onBulk={uids => setBulkPrompt({ uids, process: '', round: '' })} editable={editable} selection={selected} dirtyFor={dirtyFor} reviewDirty={reviewDirty} trace={trace}/>}
                 {['rounds', 'questions', 'facts'].includes(tab) && <SheetTab deal={deal} sheet={SHEETS[tab]} selectedUid={selectedBySheet[SHEETS[tab]]} onSelect={selectOther} onAdd={addRow} onMove={moveRow} onDelete={requestDelete} onEdit={editValue} editable={editable} onJumpRow={selectRow} dirtyFor={dirtyFor} trace={trace}/>}
-                {tab === 'review' && <ReviewTab deal={deal} editable={editable} open={findingOpen} onToggle={setFindingOpen} onEdit={setFinding} dirtyFor={findingDirty} onFindEvidence={findEvidence} onOpenDocument={openDocument} onJumpRow={selectRow} trace={trace}/>}
+                {tab === 'review' && <ReviewTab deal={deal} onJumpRow={selectRow} trace={trace}/>}
                 {tab === 'changes' && <ChangesTab data={changesData} loading={auxLoading} compare={compareState} onCompare={setCompare}/>}
                 {tab === 'history' && <HistoryTab data={historyData} loading={auxLoading} editable={editable} onRestore={restore} lastSaved={lastSaved} focus={focusRevision}
                   slug={slug} onCompareRevision={revision => { setCompare({ from: `rev:${revision}`, to: 'working' }); setTab('changes'); }}/>}
@@ -956,17 +909,6 @@ function App() {
     {extract && <ExtractDialog user={session.user} account={extract.account} accountError={extract.accountError} instructions={extract.instructions} instructionsError={extract.instructionsError} busy={extract.busy} error={extract.error} dialogRef={modalRef}
       working={deal && !deal.pending ? deal.workspace : null}
       onStart={startExtract} onClose={() => setExtract(null)} onSettings={() => { setExtract(null); navigate('/settings'); }}/>}
-    {documentOpen && <div className="modal-backdrop" role="presentation">
-      <div className="modal document-modal" ref={modalRef} role="dialog" aria-modal="true" aria-label="Recorded document">
-        <div className="modal-head">
-          <h2>{documentData?.title || documentOpen.label}</h2>
-          <Button appearance="subtle" className="icon-button" onClick={() => setDocumentOpen(null)} aria-label="Close" icon={<XIcon size={16}/>}/>
-        </div>
-        {docLoading ? <Loading label="Loading document"/>
-          : documentError ? <Message type="error" title="The document could not be loaded." detail={documentError}/>
-          : <DocumentText value={documentData?.text}/>}
-      </div>
-    </div>}
   </>;
 }
 

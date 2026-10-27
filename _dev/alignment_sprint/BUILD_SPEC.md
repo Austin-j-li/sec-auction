@@ -92,7 +92,7 @@ List every adapter change in `CHANGE_MAP.md` under a heading of its own.
 
 ### B3. A fresh starting state
 
-The app restarts on a fresh state (DECISIONS.md, evening ruling 7). Write a script (for example `_dev/tools/cockpit/fresh_state.py`) that builds a new state directory from an old one. The script reads the old state and never modifies it.
+The app restarts on a fresh state (DECISIONS.md, evening ruling 7). Write a script (for example _dev/tools/cockpit/fresh_state.py (deleted 13 October 2026)) that builds a new state directory from an old one. The script reads the old state and never modifies it.
 
 The new state keeps:
 
@@ -141,7 +141,7 @@ Write `_dev/alignment_sprint/SWITCHOVER.md` for Austin. Nobody runs it before hi
   - build the frontend.
 - **Services:**
   - point the units at the deploy worktree with drop-ins;
-  - add the TMPDIR fix proposed in `_dev/tools/cockpit/deploy/PROPOSED-tmpdir.md` (on the archive branch);
+  - add the TMPDIR fix proposed in _dev/tools/cockpit/deploy/PROPOSED-tmpdir.md (deleted 13 October 2026) (on the archive branch);
   - reload systemd and start the services and the timer.
 - **Smoke test:** the checks of B4, against the live site.
 - **In the app:** Austin publishes Version 1 and makes it the default, under his account.

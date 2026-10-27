@@ -3,13 +3,14 @@
 
     python3 _dev/tools/diff_workbooks.py before.xlsx after.xlsx [--by-quote] [--include-source]
 
-Rows are matched in order (difflib), so an inserted row shows as one added row,
-not as every later row changing. For a changed row only the changed cells are
-printed, under the column heading from the sheet's first row.
+Rows are matched by key (Event, Who and Sort date on the Deal ledger), and rows
+with the same key in order, so an inserted row shows as one added row, not as
+every later row changing. --by-quote also pairs unmatched ledger rows by their
+quotation. For a changed row only the changed cells are printed, under the
+column heading from the sheet's first row.
 """
 import argparse
 from collections import Counter
-import sys
 
 import openpyxl
 
@@ -36,7 +37,7 @@ KEYS = {"Deal ledger": ("Event", "Who", "Sort date"), "Rounds": ("Process", "Rou
         "Questions": ("Q",), "Deal facts": ("Field",)}
 
 
-def records(ws, by_quote=False):
+def records(ws):
     table = rows(ws)
     if not table:
         return [], {}

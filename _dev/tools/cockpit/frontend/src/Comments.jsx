@@ -5,10 +5,10 @@ import { count, text } from './api';
 import { displayName, shortTime, threadContext, threadsFor } from './trace';
 import { Message } from './ui';
 
-// Threads on one target (a row, a finding, or the whole deal). Each action posts at once; nothing goes through the unsaved-edits dock.
+// Threads on one target (a row or the whole deal). Each action posts at once; nothing goes through the unsaved-edits dock.
 
 const excerpt = (value, length = 90) => { const s = text(value).replace(/\s+/g, ' ').trim(); return s.length > length ? `${s.slice(0, length - 1)}…` : s; };
-const apiTarget = target => target.kind === 'deal' ? { kind: 'deal' } : target.kind === 'finding' ? { kind: 'finding', uid: target.uid } : { kind: 'row', sheet: target.sheet, uid: target.uid };
+const apiTarget = target => target.kind === 'deal' ? { kind: 'deal' } : { kind: 'row', sheet: target.sheet, uid: target.uid };
 
 function Draft({ label, initial = '', submitLabel, busy, onSubmit, onCancel }) {
   const [body, setBody] = useState(initial);

@@ -15,7 +15,7 @@
   - the staleness-cleanse folder;
   - the filings of the four deals added in the app.
 
-  The laptop's own `_dev/recovery/GAP.md` already names these gaps, so nothing was lost without anyone knowing. None of it is on GitLab yet.
+  The laptop's own _dev/recovery/GAP.md (not in the repository since the 27 September 2026 reset) already names these gaps, so nothing was lost without anyone knowing. None of it is on GitLab yet.
 - **The live app runs from that uncommitted checkout.** The worker starts the checker and runner fresh for each job. Any file change there takes effect on the next request or job, without a restart.
 
 ## 2. Decisions: the VM's rulings against today's sprint

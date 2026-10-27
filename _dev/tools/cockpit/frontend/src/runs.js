@@ -1,7 +1,7 @@
 import { count, text } from './api';
 import { displayName, shortTime } from './trace';
 
-// Pure helpers for accounts, extraction runs and versions (phase 2).
+// Pure helpers for accounts, extraction runs and versions.
 
 export const EFFORTS = ['low', 'medium', 'high', 'xhigh', 'max'];
 export const DEFAULT_EFFORT = 'medium';
@@ -21,12 +21,9 @@ export const STATE_LABELS = {
 };
 export const STATE_TONES = { completed: 'success', failed: 'error', timed_out: 'error', cancelled: 'muted' };
 
-// The engines the signed-in person may choose, from GET /api/account. Before phase 4 the server sends none:
-// then Opus 5.5 alone, available when the Claude account is connected. "ultra" is never offered.
+// The engines the signed-in person may choose, from GET /api/account. "ultra" is never offered.
 export function accountEngines(account) {
-  const list = Array.isArray(account?.engines) && account.engines.length ? account.engines
-    : [{ ...DEFAULT_ENGINE, connected: Boolean(account?.claude?.connected) }];
-  return list.map(engine => {
+  return (account?.engines || []).map(engine => {
     const efforts = (engine.efforts?.length ? engine.efforts : EFFORTS).filter(effort => effort !== 'ultra');
     const preferred = ENGINE_EFFORT[engine.id] || DEFAULT_EFFORT;
     const fallback = efforts.includes(preferred) ? preferred : efforts[0];
@@ -46,10 +43,10 @@ export const connectHint = engine => `connect your ${accountLabel(engine?.accoun
 export const isActive = job => ACTIVE_STATES.has(job?.state);
 export const stateTone = state => ACTIVE_STATES.has(state) ? 'warning' : STATE_TONES[state] || 'muted';
 
-// Which plan a run used: "Claude plan" or "ChatGPT plan", from the job's recorded account (Claude before phase 4).
+// Which plan a run used: "Claude plan" or "ChatGPT plan", from the job's recorded account.
 export const planName = account => account === 'chatgpt' ? 'ChatGPT plan' : 'Claude plan';
-export const jobEngineLabel = job => `${text(job?.params?.engine_label) || 'Opus 5.5'}${job?.params?.service_tier === 'priority' ? ' · Fast' : ''}`;
-export const jobInstructionLabel = job => text(job?.params?.instruction?.label) || 'instruction not recorded';
+export const jobEngineLabel = job => `${text(job?.params?.engine_label)}${job?.params?.service_tier === 'priority' ? ' · Fast' : ''}`;
+export const jobInstructionLabel = job => text(job?.params?.instruction?.label);
 
 // The failed or cancelled outcome of a run, in words. Null for a run that has not failed.
 export function failureText(job) {
@@ -118,16 +115,14 @@ function percent(value) {
   if (!Number.isFinite(value)) return null;
   return `${Math.round(value <= 1 ? value * 100 : value)}%`;
 }
-// "5-hour: 10% · weekly: 29% · as of 23 Sep 14:05". Accepts the account's normalised record
-// ({at, five_hour: {utilization}, seven_day: {…}}) or a raw rate_limit_info ({unifiedWindows: {…}}).
-export function planUsageText(plan, at) {
+// "5-hour: 10% · weekly: 29% · as of 23 Sep 14:05", from the account's record
+// ({at, five_hour: {utilization}, seven_day: {…}}).
+export function planUsageText(plan) {
   if (!plan || typeof plan !== 'object') return '';
-  const windows = plan.unifiedWindows || plan;
-  const five = percent(windows.five_hour?.utilization), week = percent(windows.seven_day?.utilization);
+  const five = percent(plan.five_hour?.utilization), week = percent(plan.seven_day?.utilization);
   const parts = [five && `5-hour: ${five}`, week && `weekly: ${week}`].filter(Boolean);
   if (!parts.length) return '';
-  const when = plan.at || at;
-  if (when) parts.push(`as of ${shortTime(when)}`);
+  if (plan.at) parts.push(`as of ${shortTime(plan.at)}`);
   return parts.join(' · ');
 }
 
@@ -151,25 +146,13 @@ export function validTimeout(value) {
   return Number.isInteger(n) && n >= TIMEOUT_RANGE[0] && n <= TIMEOUT_RANGE[1];
 }
 
-// Versions produced by a cockpit run carry who started them and when; catalog versions do not.
-export const isImported = version => Boolean(version?.imported ?? version?.started_at);
-
-// The version dropdown: the working copy first, then originals newest first by started_at, catalog versions last
-// (in catalog order). Hidden versions are left out unless asked for, or unless one is the version on screen.
-export function orderVersions(versions, { baseId = null, showHidden = false, selected = null } = {}) {
-  // When the server marks the base (is_base), trust it for every version; otherwise match the workspace base id.
-  const reported = (versions || []).some(version => version?.is_base != null);
-  const list = (versions || []).map((version, index) => ({ ...version, index, hidden: Boolean(version.hidden),
-    is_base: version.kind !== 'working' && (reported ? Boolean(version.is_base) : Boolean(baseId) && version.id === baseId) }));
+// The version dropdown: the working copy first, then originals newest first by started_at.
+// Hidden versions are left out unless asked for, or unless one is the version on screen.
+export function orderVersions(versions, { showHidden = false, selected = null } = {}) {
+  const list = (versions || []).map((version, index) => ({ ...version, index, hidden: Boolean(version.hidden), is_base: Boolean(version.is_base) }));
   const working = list.filter(version => version.kind === 'working' || version.id === 'working');
   const originals = list.filter(version => !working.includes(version) && (showHidden || !version.hidden || version.id === selected));
-  originals.sort((a, b) => {
-    const ta = time(a.started_at), tb = time(b.started_at);
-    if (ta != null && tb != null) return tb - ta || a.index - b.index;
-    if (ta != null) return -1;
-    if (tb != null) return 1;
-    return a.index - b.index;
-  });
+  originals.sort((a, b) => time(b.started_at) - time(a.started_at) || a.index - b.index);
   return { working, originals, hiddenCount: list.filter(version => version.hidden).length };
 }
 
@@ -186,17 +169,15 @@ export const checkerLabel = checker => checker?.checker_version ? `checker ${che
 export function liveCheckText(check) {
   return `Live check: ${checkerLabel(check) || 'checker version unknown'}`;
 }
-// "At import: checker 1.6, 1 error, 16 warnings", or "At import: not recorded".
+// "At import: checker 1.6, 1 error, 16 warnings".
 export function importCheckText(checker) {
-  if (!checker) return 'At import: not recorded';
-  return `At import: ${[checkerLabel(checker) || 'checker version not recorded', count(checker.errors ?? 0, 'error'), count(checker.warnings ?? 0, 'warning')].join(', ')}`;
+  return `At import: ${[checkerLabel(checker), count(checker.errors, 'error'), count(checker.warnings, 'warning')].join(', ')}`;
 }
 
 // The Extract dialog's one line when the run's instruction differs from the working copy's.
 export function extractNotice(workspace, instruction) {
   if (!workspace || !instruction) return '';
-  const known = workspace.base_instruction_sha256 && instruction.sha256;
-  if (known ? workspace.base_instruction_sha256 === instruction.sha256 : text(workspace.base_instruction_version) === text(instruction.name)) return '';
+  if (workspace.base_instruction_sha256 === instruction.sha256) return '';
   const under = workspace.base_instruction_version || 'another instruction';
   const revision = workspace.revision ? ` (revision ${workspace.revision})` : '';
   return `The working copy${revision} is under ${under}. This run becomes a separate version and is not merged into it; using it as the base replaces the working copy.`;
@@ -205,15 +186,13 @@ export function extractNotice(workspace, instruction) {
 // The rebase dialog's list of what stops applying, from GET /api/deal/<slug>/rebase?to=<id>.
 export function rebaseLines(preview) {
   if (!preview?.stops_applying) return [];
-  const { revisions, edits, row_marks: marks, finding_decisions: findings, row_threads: threads } = preview.stops_applying;
-  const current = preview.current || {}, target = preview.target || {};
-  const revision = current.revision ?? 0;
+  const { revisions, edits, row_marks: marks, row_threads: threads } = preview.stops_applying;
+  const revision = preview.current.revision;
   const agree = (n, one, many) => n === 1 ? one : many;
   const lines = [];
   lines.push(revisions ? `${count(revisions, 'revision')} saved on the current base (${count(edits || 0, 'edit')} to its rows) ${agree(revisions, 'stops', 'stop')} applying. ${agree(revisions, 'It stays', 'They stay')} in History; restoring revision ${revision}, not revision 0, brings ${agree(revisions, 'it', 'them')} back.`
     : 'No revisions have been saved on the current base.');
   if (marks?.total) lines.push(`${count(marks.total, 'row mark')} ${agree(marks.total, 'stops', 'stop')} applying (${[marks.reviewed && `${marks.reviewed} reviewed`, marks.needs_decision && `${marks.needs_decision} needs decision`, marks.unreviewed && `${marks.unreviewed} unreviewed`].filter(Boolean).join(', ')}).`);
-  if (findings?.total) lines.push(`${count(findings.judgments_kept, 'finding judgment')} ${agree(findings.judgments_kept, 'carries', 'carry')} over${findings.reset ? `; the implementation and verification of ${findings.reset} reset` : ''}${findings.total > findings.judgments_kept ? `; ${findings.total - findings.judgments_kept} unjudged decision${findings.total - findings.judgments_kept === 1 ? '' : 's'} stop applying` : ''}.`);
   if (threads?.total) lines.push(`${count(threads.total, 'row thread')} (${threads.open} open) ${agree(threads.total, 'stays', 'stay')} with the old rows and ${agree(threads.total, 'reads', 'read')} “on an earlier base (revision ${revision})”.`);
   if (preview.deal_review?.actor && preview.deal_review.status !== 'unreviewed') lines.push(`The deal’s review status stays, marked as edited since revision ${preview.deal_review.revision}.`);
   return lines;

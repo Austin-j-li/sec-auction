@@ -11,7 +11,7 @@ deployment"):
     COCKPIT_ACCESS_TEAM_DOMAIN  the Zero Trust team domain, https://<team>.cloudflareaccess.com
     COCKPIT_ACCESS_AUD          the Access application's Application Audience (AUD) tag
 
-Without both, no public request is signed in: the site stays readable through Access, and nobody can edit.
+Without both, no public request is signed in: every read except `/api/session` returns 401, and nobody can edit.
 Both are read once, when the verifier is made (at server start). jwcrypto checks the signature and the iss, aud,
 exp and nbf claims, with a minute of clock skew allowed. The key set is fetched from
 `<team domain>/cdn-cgi/access/certs` on first use and kept; a token whose key id the cached set lacks (as after

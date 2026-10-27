@@ -70,11 +70,11 @@ Legend: **A** = Austin decides; **M** = mechanical fix under existing rulings; *
 - **Count-note parsing:** derive's `count_bounds` misses six qualifiers and number words ("Count: more than ten" returns unknown). Parse through the checker's regex.
 - **E: `access.py`:** let `jwcrypto` check iss/aud/exp; one cached key set, refetched only on an unknown key (at most once a minute).
 - **E: `export_repo.py`:** require `--out-root` with `--write`; drop the Git detached-HEAD probe.
-- **E: `fresh_state.py`:** take a `backup.py` backup folder as input; stage into a `.partial-` folder and rename; keep the filing hash checks.
+- **E: `fresh_state.py` (deleted 13 October 2026):** take a `backup.py` backup folder as input; stage into a `.partial-` folder and rename; keep the filing hash checks.
 - **E: `deal_bases` table:** delete it. The first version by rowid is the first import, and versions are never deleted.
 - **E: `review_list.py`:** one deal-level currency/units item instead of one per bid row; drop `--output`.
 - **E: SWITCHOVER:** check the frontend build once at approval; at switch-over, confirm only that `dist/` is clean in git.
-- **E, optional:** drop the catalog `filing` blocks and `verify_catalog.py`. They duplicate MANIFEST.csv now that the catalog holds no versions.
+- **E, optional:** drop the catalog `filing` blocks and `verify_catalog.py` (deleted 13 October 2026). They duplicate MANIFEST.csv now that the catalog holds no versions.
 
 ## 5. Stale or contradictory records
 

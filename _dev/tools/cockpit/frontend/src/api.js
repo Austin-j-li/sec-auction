@@ -40,17 +40,17 @@ export function markSeenOnLeave(slug, session, activityId) {
   try { return fetch(dealPath(slug, 'seen'), { method: 'POST', keepalive: true, headers: writeHeaders(session), body: JSON.stringify({ activity_id: activityId }) }).catch(() => {}); }
   catch { return Promise.resolve(); }
 }
-// Phase 2. Claude account: {action: connect | code | cancel | token | disconnect, ...}; the response is GET /api/account.
+// Claude account: {action: connect | code | cancel | token | disconnect, ...}; the response is GET /api/account.
 export function accountAction(session, action) { return post('/api/account/claude', session, action); }
 // Extraction jobs: {action: 'extract', engine, effort, timeout_minutes, instruction_id} or {action: 'cancel', job_id}; the response is the jobs list.
 export function jobAction(slug, session, action) { return post(dealPath(slug, 'jobs'), session, action); }
 // Imported versions: {action: 'hide' | 'unhide', version_id}.
 export function versionAction(slug, session, action) { return post(dealPath(slug, 'versions'), session, action); }
-// Phase 3. Add a deal: {action: 'lookup', url, seed_deal?} -> {lookup}; {action: 'add', lookup_id, document, slug, name} -> {slug}.
+// Add a deal: {action: 'lookup', url, seed_deal?} -> {lookup}; {action: 'add', lookup_id, document, slug, name} -> {slug}.
 export function dealsAction(session, action) { return post('/api/deals', session, action); }
-// Phase 5. Hide a deal for both users: {action: 'hide' | 'unhide'} -> {slug, hidden, hidden_by, hidden_at}.
+// Hide a deal for both users: {action: 'hide' | 'unhide'} -> {slug, hidden, hidden_by, hidden_at}.
 export function dealVisibility(slug, session, action) { return post(`/api/deals/${encodeURIComponent(slug)}/visibility`, session, { action }); }
-// Phase 4. ChatGPT account: {action: connect | cancel (job_id) | disconnect}; the response is GET /api/account.
+// ChatGPT account: {action: connect | cancel (job_id) | disconnect}; the response is GET /api/account.
 export function chatgptAction(session, action) { return post('/api/account/chatgpt', session, action); }
 // Instruction versions: {action: 'draft', from} | {action: 'save', id, text, base_sha256} | {action: 'publish', id, name, note}
 // return the detail payload; {action: 'default', id} returns the list payload.

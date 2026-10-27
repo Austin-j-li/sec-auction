@@ -30,7 +30,7 @@ QREF = re.compile(r"(?<![\w])[QR][1-9][0-9]*\b")
 SAFE_ID = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.-]*\Z")
 # A past working revision, read only: "rev:0" is the catalog's starting base, "rev:N" the snapshot saved as revision N.
 REV_ID = re.compile(r"rev:(0|[1-9][0-9]*)\Z")
-VERSION_FIELDS = ("id", "label", "instruction_version", "kind", "sha256", "review_status", "engine", "effort", "started_by", "started_at", "hidden", "checker")
+VERSION_FIELDS = ("id", "label", "instruction_version", "kind", "sha256", "engine", "effort", "started_by", "started_at", "hidden", "checker")
 
 class WorkspaceError(ValueError):
     status = 400
@@ -75,14 +75,6 @@ def _now() -> str:
     return dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
 
 
-def add_column(conn: sqlite3.Connection, table: str, column: str, kind: str) -> None:
-    """Add a column once; two connections migrating a fresh database at the same moment must not fail."""
-    if column in {row[1] for row in conn.execute(f"PRAGMA table_info({table})")}: return
-    try: conn.execute(f"ALTER TABLE {table} ADD COLUMN {column} {kind}")
-    except sqlite3.OperationalError as exc:
-        if "duplicate column name" not in str(exc): raise
-
-
 def _hash(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -105,19 +97,6 @@ def record_label(sheet: str, previous: dict[str, Any] | None, current: dict[str,
     return f"Deal fact {values.get('Field') or '?'}"
 
 
-def _engine(version: dict[str, Any]) -> dict[str, Any]:
-    """Engine and effort for catalog versions, read from labels such as "Opus 5.5 medium extraction"."""
-    if version.get("engine"):
-        return {}
-    found = re.match(r"(Opus \d(?:\.\d)?) (low|medium|high|xhigh|max)\b", version.get("label") or "")
-    return {"engine": found.group(1), "effort": found.group(2)} if found else {}
-
-
-def _carries(decision: dict[str, Any] | None) -> bool:
-    """A finding decision that a rebase carries over: one with a judgment or a note."""
-    return bool(decision) and (decision.get("judgment", "unreviewed") != "unreviewed" or bool((decision.get("note") or "").strip()))
-
-
 COMPARE_KEYS = {data.LEDGER_SHEET: ("#",), data.ROUNDS_SHEET: ("Process", "Round"), data.QUESTIONS_SHEET: ("Q",), data.FACTS_SHEET: ("Field",)}
 
 
@@ -128,11 +107,6 @@ class Workspace:
         self.catalog_path = self.root / "_dev/cockpit/catalog.json"
         self.db_path = self.root / "_dev/cockpit/state/workspace.sqlite3"
         self._checks: dict[str, tuple[tuple, dict[str, Any]]] = {}  # slug -> (key, check of its working revision)
-        self._receipts: dict[tuple[str, int], Any] = {}
-
-    @property
-    def available(self) -> bool:
-        return self.catalog_path.is_file()
 
     def catalog(self) -> dict[str, Any]:
         try:
@@ -156,19 +130,18 @@ class Workspace:
             if not added:
                 raise data.DealNotFound("unknown deal")
             return {"name": added[0]["name"], "added": added[0], "versions": imported, "pending": not imported,
-                    "default_base": first_import or (imported[0]["id"] if imported else None), "findings": [], "documents": []}
+                    "default_base": first_import or (imported[0]["id"] if imported else None)}
         if not isinstance(item, dict):
             raise data.DealNotFound("unknown deal")
-        versions = [*item.get("versions", []), *imported]
-        return {**item, "versions": versions,
-                "default_base": item.get("default_base") or first_import or (versions[0]["id"] if versions else None),
-                "pending": not versions}
+        return {**item, "versions": imported,
+                "default_base": first_import or (imported[0]["id"] if imported else None),
+                "pending": not imported}
 
     def _first_import(self, slug: str) -> str | None:
         conn = self._connect()
         try:
             row = conn.execute("SELECT version_id FROM deal_bases WHERE slug=?", (slug,)).fetchone() if conn else None
-        except sqlite3.OperationalError:  # a synthetic root with no runs yet
+        except sqlite3.OperationalError:
             row = None
         finally:
             if conn: conn.close()
@@ -270,7 +243,7 @@ class Workspace:
                  "values": {col: value for col, value in zip(columns, values) if col}}
                 for excel_row, values in body]}
         wb.close()
-        return {"sheets": sheets, "findings": {}, "row_review": {}, "reference_warnings": []}
+        return {"sheets": sheets, "row_review": {}, "reference_warnings": []}
 
     def _state(self, slug: str, item: dict[str, Any], conn: sqlite3.Connection | None, revision: int | None = None) -> tuple[dict[str, Any], sqlite3.Row | None, dict[str, Any]]:
         row = self._latest(conn, slug, revision)
@@ -344,7 +317,7 @@ class Workspace:
         return out.getvalue()
 
     def _payload(self, slug: str, item: dict[str, Any], state: dict[str, Any], row: sqlite3.Row | None, base: dict[str, Any], selected: str, working_row: sqlite3.Row | None = None) -> dict[str, Any]:
-        _, filing_path, entry = self.cockpit.resolve(slug)
+        filing_path, entry = self.cockpit.resolve(slug)
         filing = self.cockpit.filing(filing_path)
         if row is None:
             source_path = self._path(base["path"])
@@ -374,49 +347,20 @@ class Workspace:
         working_base = base if selected == "working" else self.working_base(slug, item)
         # The working copy's latest revision, also while an original is shown: a rebase from that view saves against it.
         latest = row if selected == "working" else working_row
-        payload["versions"] = [{"id": "working", "label": "Working copy", "instruction_version": working_base.get("instruction_version"), "kind": "working", "sha256": working_base["sha256"], "review_status": "in_review" if latest else working_base.get("review_status", "unreviewed")}] + [
-            {**{key: version.get(key) for key in VERSION_FIELDS}, **_engine(version), "is_base": version.get("id") == working_base["id"], "checker": self.import_check(slug, version)}
+        payload["versions"] = [{"id": "working", "label": "Working copy", "instruction_version": working_base.get("instruction_version"), "kind": "working", "sha256": working_base["sha256"]}] + [
+            {**{key: version.get(key) for key in VERSION_FIELDS}, "is_base": version.get("id") == working_base["id"], "checker": self.import_check(version)}
             for version in item.get("versions", [])]
         payload["workspace"] = {"revision": latest["revision"] if latest else 0, "base_version": working_base["id"], "base_sha256": working_base["sha256"], "updated_at": latest["at"] if latest else None, "updated_by": latest["actor"] if latest else None, "editable": selected == "working", "selected_version": selected}
         payload["workspace"]["reference_warnings"] = state.get("reference_warnings", [])
-        # What the Extract dialog compares a new run with: the working copy's instruction and columns (its base's).
-        payload["workspace"].update({
-            "base_ledger_schema": check_lean.CHECKER_VERSION,
-            "base_instruction_version": working_base.get("instruction_version"), "base_instruction_sha256": self._instruction_hash(working_base)})
-        payload["findings"] = [dict(finding, **state["findings"].get(finding["id"], {})) for finding in item.get("findings", [])]
-        payload["documents"] = [{key: doc.get(key) for key in ("id", "label", "source_version", "kind")} for doc in item.get("documents", [])]
+        # What the Extract dialog compares a new run with: the working copy's instruction (its base's).
+        payload["workspace"].update({"base_instruction_version": working_base.get("instruction_version"), "base_instruction_sha256": working_base["instruction_sha256"]})
         payload["row_review"] = state["row_review"]
         payload["choices"] = check_lean.choice_lists()
         return payload
 
-    def import_check(self, slug: str, version: dict[str, Any]) -> dict[str, Any] | None:
-        """The check summary stored with a run, or its immutable receipt."""
-        stored = version.get("checker") if isinstance(version.get("checker"), dict) else {}
-        if stored.get("checker_version"):
-            return {key: stored.get(key) for key in ("checker_version", "ledger_schema", "errors", "warnings")}
-        receipt = None
-        if isinstance(version.get("receipts"), str) and version["receipts"]:
-            receipt = self._receipt(f"{version['receipts']}/check.json")
-        counts = receipt.get("summary") if receipt and isinstance(receipt.get("summary"), dict) else stored
-        if not receipt and "errors" not in stored:
-            return None
-        return {"checker_version": receipt.get("checker_version") if receipt else None, "ledger_schema": receipt.get("ledger_schema") if receipt else None,
-                "errors": counts.get("errors", 0), "warnings": counts.get("warnings", 0)}
-
-    def _receipt(self, relative: str) -> dict[str, Any] | None:
-        """A stored JSON receipt, cached by modification time; None if it is missing or unreadable."""
-        try:
-            path = self._path(relative)
-            key = (str(path), path.stat().st_mtime_ns)
-        except (WorkspaceError, OSError):
-            return None
-        if key not in self._receipts:
-            try:
-                value = json.loads(path.read_text(encoding="utf-8"))
-            except (OSError, ValueError):
-                return None
-            self._receipts[key] = value if isinstance(value, dict) else None
-        return self._receipts[key]
+    def import_check(self, version: dict[str, Any]) -> dict[str, Any]:
+        """The check summary stored with a run."""
+        return {key: version["checker"].get(key) for key in ("checker_version", "errors", "warnings")}
 
     def pending_payload(self, slug: str, item: dict[str, Any]) -> dict[str, Any]:
         """A catalog or added deal before its first run: filing only, nothing editable."""
@@ -425,14 +369,14 @@ class Workspace:
         if not isinstance(filing_entry, dict):
             raise WorkspaceError("pending deal has no filing metadata")
         empty = {"columns": [], "rows": []}
-        _, filing_path, _ = self.cockpit.resolve(slug)
+        filing_path, _ = self.cockpit.resolve(slug)
         filing = self.cockpit.filing(filing_path)
-        return {"slug": slug, "name": item["name"], "pending": True, "ledger_schema": None,
+        return {"slug": slug, "name": item["name"], "pending": True,
                 "filing": {key: filing_entry.get(key, "") for key in ("file", "form_type", "date_filed", "source_url")},
                 "added": {key: added.get(key) for key in ("added_by", "added_at", "source_kind", "seed_deal", "index_url", "document")} if added else None,
                 "facts": [], "ledger": empty, "rounds": empty, "questions": empty,
                 "check": {"status": "pending", "summary": {}, "scope_note": "", "checker_version": None, "other_issues": []},
-                "background_block": filing.background_block, "pages_reliable": filing.pages_reliable, "versions": [], "findings": [], "documents": [], "row_review": {}, "choices": {},
+                "background_block": filing.background_block, "pages_reliable": filing.pages_reliable, "versions": [], "row_review": {}, "choices": {},
                 "workspace": {"revision": 0, "base_version": None, "base_sha256": None, "updated_at": None, "updated_by": None,
                               "editable": False, "selected_version": "working", "reference_warnings": []}}
 
@@ -450,26 +394,13 @@ class Workspace:
             elif SAFE_ID.fullmatch(version or ""):
                 base = self.version(item, version)
                 state = self._base_state(slug, item, base)
-                working_state, working_row, _ = self._state(slug, item, conn)
-                state["findings"] = copy.deepcopy(working_state["findings"])
+                _, working_row, _ = self._state(slug, item, conn)
                 row = None
             else:
                 raise Missing("unknown version")
             return self._payload(slug, item, state, row, base, version, working_row)
         finally:
             if conn: conn.close()
-
-    def document(self, slug: str, ident: str) -> dict[str, str]:
-        item = self.item(slug)
-        if not SAFE_ID.fullmatch(ident or ""):
-            raise Missing("unknown document")
-        doc = next((d for d in item.get("documents", []) if d.get("id") == ident), None)
-        if not doc:
-            raise Missing("unknown document")
-        path = self._path(doc.get("path"))
-        if not path.is_file() or path.suffix.lower() not in (".md", ".txt"):
-            raise Missing("document unavailable")
-        return {"title": doc.get("label", ident), "text": path.read_text(encoding="utf-8")}
 
     def export(self, slug: str, version: str = "working") -> bytes:
         item = self.item(slug)
@@ -539,9 +470,8 @@ class Workspace:
                 match = available.pop(key(record), None)
                 record["uid"] = match or f"right-{record['uid']}"
         for part in (before, after):
-            part["findings"], part["row_review"] = {}, {}
-        hashes = (self._instruction_hash(before_base), self._instruction_hash(after_base))
-        same = hashes[0] == hashes[1] if all(hashes) else None
+            part["row_review"] = {}
+        same = before_base["instruction_sha256"] == after_base["instruction_sha256"]
         return {"from_label": before_label, "to_label": after_label, "same_instruction": same, "changes": self._diff(before, after)}
 
     def _past(self, slug: str, item: dict[str, Any], conn: sqlite3.Connection | None, ident: str) -> tuple[dict[str, Any], dict[str, Any], str]:
@@ -559,7 +489,7 @@ class Workspace:
         """What stops applying if the working copy is rebased onto a version, with counts. Nothing is saved.
 
         A rebase replaces the rows, so every row mark and row thread stays with the old base (both come back with
-        a restore of the pre-rebase revision). Finding judgments carry over; implementation and verification reset."""
+        a restore of the pre-rebase revision)."""
         item = self.item(slug)
         if not isinstance(ident, str) or not SAFE_ID.fullmatch(ident): raise WorkspaceError("invalid target_version")
         target = self.version(item, ident)
@@ -588,15 +518,8 @@ class Workspace:
             marks["total"] += 1
             status = (mark or {}).get("status")
             if status in marks: marks[status] += 1
-        kept = {key: decision for key, decision in state["findings"].items() if _carries(decision)}
-        reset = sum(1 for decision in kept.values() if decision.get("implementation") != "unassessed" or decision.get("verification") != "unchecked")
-
-        def describe(version: dict[str, Any]) -> dict[str, Any]:
-            return {"id": version["id"], "label": version.get("label", version["id"]), "instruction_version": version.get("instruction_version"),
-                    "ledger_schema": check_lean.CHECKER_VERSION}
-        return {"current": {**describe(base), "revision": row["revision"] if row else 0}, "target": describe(target), "deal_review": review,
-                "stops_applying": {"revisions": revisions, "edits": len(edits), "row_marks": marks, "row_threads": threads,
-                                   "finding_decisions": {"total": len(state["findings"]), "judgments_kept": len(kept), "reset": reset}}}
+        return {"current": {"revision": row["revision"] if row else 0}, "deal_review": review,
+                "stops_applying": {"revisions": revisions, "edits": len(edits), "row_marks": marks, "row_threads": threads}}
 
     def earlier_bases(self, slug: str, item: dict[str, Any], conn: sqlite3.Connection | None, uids: set[str]) -> dict[str, int]:
         """For rows gone from the working copy: the last revision that held each one, where the revision after it
@@ -625,19 +548,6 @@ class Workspace:
                 found.update(dict.fromkeys(remaining & {record["uid"] for part in initial["sheets"].values() for record in part["rows"]}, 0))
         return found
 
-    def _instruction_hash(self, version: dict[str, Any]) -> str | None:
-        """A version's instruction hash; catalog versions name a published instruction instead."""
-        if version.get("instruction_sha256") or not version.get("instruction_version"):
-            return version.get("instruction_sha256")
-        conn = self._connect()
-        try:
-            row = conn.execute("SELECT sha256 FROM instructions WHERE status='published' AND name=?", (version["instruction_version"],)).fetchone() if conn else None
-        except sqlite3.OperationalError:
-            row = None
-        finally:
-            if conn: conn.close()
-        return row["sha256"] if row else None
-
     def _diff(self, before: dict[str, Any], after: dict[str, Any]) -> list[dict[str, Any]]:
         changes = []
         for sheet in SHEETS:
@@ -659,14 +569,11 @@ class Workspace:
             new_order = [r["uid"] for r in after["sheets"][sheet]["rows"] if r["uid"] in old]
             if old_order != new_order:
                 changes.append({"sheet": sheet, "uid": None, "record_label": f"{sheet} order", "field": "order", "before": [{"uid": uid, "label": record_label(sheet, old[uid], None)} for uid in old_order], "after": [{"uid": uid, "label": record_label(sheet, None, new[uid])} for uid in new_order], "type": "move"})
-        for key in ("findings", "row_review"):
-            for uid in before[key].keys() | after[key].keys():
-                if before[key].get(uid) != after[key].get(uid):
-                    if key == "findings":
-                        row_label = f"Finding {uid}"
-                    else:
-                        row_label = next((record_label(sheet, next((r for r in before["sheets"][sheet]["rows"] if r["uid"] == uid), None), next((r for r in after["sheets"][sheet]["rows"] if r["uid"] == uid), None)) for sheet in SHEETS if any(r["uid"] == uid for r in before["sheets"][sheet]["rows"] + after["sheets"][sheet]["rows"])), f"Row {uid}")
-                    changes.append({"sheet": key, "uid": uid, "record_label": row_label, "field": None, "before": before[key].get(uid), "after": after[key].get(uid), "type": "decision"})
+        marks_before, marks_after = before["row_review"], after["row_review"]
+        for uid in marks_before.keys() | marks_after.keys():
+            if marks_before.get(uid) != marks_after.get(uid):
+                row_label = next((record_label(sheet, next((r for r in before["sheets"][sheet]["rows"] if r["uid"] == uid), None), next((r for r in after["sheets"][sheet]["rows"] if r["uid"] == uid), None)) for sheet in SHEETS if any(r["uid"] == uid for r in before["sheets"][sheet]["rows"] + after["sheets"][sheet]["rows"])), f"Row {uid}")
+                changes.append({"sheet": "row_review", "uid": uid, "record_label": row_label, "field": None, "before": marks_before.get(uid), "after": marks_after.get(uid), "type": "decision"})
         return changes
 
     def _coerce(self, sheet: str, field: str, value: Any) -> Any:
@@ -768,7 +675,7 @@ class Workspace:
         for i, row in enumerate(ledger, 1): row["values"]["#"] = i
         state["reference_warnings"] = warnings
 
-    def _apply(self, state: dict[str, Any], item: dict[str, Any], op: dict[str, Any], actor: str, deleted: dict[str, str | None]) -> str | None:
+    def _apply(self, state: dict[str, Any], op: dict[str, Any], actor: str, deleted: dict[str, str | None]) -> str | None:
         typ = op.get("type")
         if typ == "restore": raise WorkspaceError("restore must be the only operation")
         if typ in ("update", "insert", "delete", "move"):
@@ -820,23 +727,11 @@ class Workspace:
                     rows.remove(row)
                 state["row_review"].pop(uid, None)
             return
-        if typ == "finding":
-            ident = op.get("id")
-            if ident not in {f.get("id") for f in item.get("findings", [])}: raise WorkspaceError("unknown finding")
-            judgment, implementation, verification = op.get("judgment"), op.get("implementation"), op.get("verification")
-            if judgment not in ("unreviewed", "supported", "rejected", "deferred") or implementation not in ("unassessed", "not_applied", "applied") or verification not in ("unchecked", "verified"):
-                raise WorkspaceError("invalid finding decision")
-            note = op.get("note", "")
-            if not isinstance(note, str) or len(note) > 100000: raise WorkspaceError("invalid note")
-            state["findings"][ident] = {"judgment": judgment, "implementation": implementation, "verification": verification, "note": note, "actor": actor, "at": _now()}
-            return
         if typ == "review":
             uid = op.get("uid")
             if not any(uid == r["uid"] for part in state["sheets"].values() for r in part["rows"]): raise WorkspaceError("unknown row uid")
             if op.get("status") not in ("unreviewed", "reviewed", "needs_decision"): raise WorkspaceError("invalid review status")
-            note = op.get("note", "")
-            if not isinstance(note, str) or len(note) > 100000: raise WorkspaceError("invalid note")
-            state["row_review"][uid] = {"status": op["status"], "note": note, "actor": actor, "at": _now()}
+            state["row_review"][uid] = {"status": op["status"], "actor": actor, "at": _now()}
             return
         if typ == "bulk_update":
             # One operation, however many rows: each row changes as under its own update, so the diff, history,
@@ -944,14 +839,8 @@ class Workspace:
                 target_version = self.version(item, ident)
                 if target_version.get("hidden"): raise WorkspaceError("a hidden version cannot become the base")
                 if target_version["id"] == base["id"]: raise WorkspaceError("that version is already the base")
-                previous, findings = base, current["findings"]
                 base = target_version
                 current = self._base_state(slug, item, base)
-                # A finding is a case-level judgment, so it holds on the new base; whether its correction is applied
-                # and verified was a fact about the old base's rows, so those two reset.
-                current["findings"] = {key: {**decision, "implementation": "unassessed", "verification": "unchecked",
-                                             "carried_over": {"revision": revision + 1, "from_base": previous["id"], "actor": actor}}
-                                       for key, decision in findings.items() if _carries(decision)}
             else:
                 client_uids: dict[str, str] = {}
                 old_ledger = {int(r["values"].get("#")): r["uid"] for r in current["sheets"][data.LEDGER_SHEET]["rows"] if str(r["values"].get("#", "")).isdigit()}
@@ -968,7 +857,7 @@ class Workspace:
                             raise WorkspaceError("invalid or duplicate client_uid")
                     if op.get("sheet") == data.LEDGER_SHEET and op.get("type") in ("insert", "delete", "move"):
                         structural = True
-                    created = self._apply(current, item, op, actor, deleted)
+                    created = self._apply(current, op, actor, deleted)
                     if created is not None and "client_uid" in op:
                         client_uids[op["client_uid"]] = created
                 if structural:

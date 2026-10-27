@@ -4,7 +4,7 @@ import { ArrowDownIcon, ArrowUpIcon, MagnifyingGlassIcon, WarningCircleIcon, War
 import { filingRanges, segments, text } from './api';
 import { Message } from './ui';
 
-export default function Filing({ filing, loading, error, deal, selectedUid, scrollRequest, searchRequest, onSelectRow, onQuoteSelection }) {
+export default function Filing({ filing, loading, error, deal, selectedUid, scrollRequest, onSelectRow, onQuoteSelection }) {
   const pane = useRef(null);
   const [query, setQuery] = useState('');
   const [activeMatch, setActiveMatch] = useState(0);
@@ -44,17 +44,6 @@ export default function Filing({ filing, loading, error, deal, selectedUid, scro
   }, [matches, needle]);
 
   useEffect(() => setActiveMatch(0), [query]);
-  useEffect(() => {
-    if (!searchRequest) return;
-    setQuery(searchRequest.text || '');
-    if (searchRequest.page) setPage(text(searchRequest.page).replace(/^p(?:p)?\.\s*/i, ''));
-  }, [searchRequest]);
-  useEffect(() => {
-    if (!searchRequest?.page || !filing || matches.length) return;
-    const requested = text(searchRequest.page).match(/\d+/)?.[0];
-    const found = [...pageMap].find(([, number]) => number === requested);
-    if (found) pane.current?.querySelector(`[data-block="${found[0]}"]`)?.scrollIntoView({ block: 'start' });
-  }, [searchRequest, filing, matches.length, pageMap]);
   useEffect(() => {
     if (!matches.length || !pane.current) return;
     const target = pane.current.querySelector(`[data-search-index="${Math.min(activeMatch, matches.length - 1)}"]`);

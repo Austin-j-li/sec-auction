@@ -1,6 +1,6 @@
 import { count, text } from './api';
 
-// Pure helpers for attribution, comments and "since your last visit" (phase 1, trace).
+// Pure helpers for attribution, comments and "since your last visit".
 
 const NAMES = { austin: 'Austin', alex: 'Alex', local: 'Local' };
 const INITIALS = { austin: 'AL', alex: 'AG', local: 'LO' };
@@ -14,7 +14,6 @@ export const DEAL_KINDS = new Set(['hide_deal', 'unhide_deal', 'deal_review']);
 // Account-wide instruction events (slug ""): they open the Instructions page, not a deal.
 export const INSTRUCTION_KINDS = new Set(['instruction_draft', 'instruction_published', 'instruction_default']);
 export const COMMENT_KINDS = new Set(['comment', 'reply']);
-export const THREAD_KINDS = new Set(['comment', 'reply', 'resolve', 'reopen', 'comment_edit', 'comment_delete']);
 export const KIND_LABELS = { revision: 'Revision', restore: 'Restore', comment: 'Comment', reply: 'Reply', resolve: 'Resolved', reopen: 'Reopened', comment_edit: 'Comment edited', comment_delete: 'Comment deleted',
   extraction: 'Extraction', extraction_failed: 'Extraction failed', rebase: 'Rebase', hide: 'Version hidden', unhide: 'Version unhidden', deal_added: 'Deal added', hide_deal: 'Deal hidden', unhide_deal: 'Deal unhidden', deal_review: 'Review status',
   instruction_draft: 'Instruction draft', instruction_published: 'Instruction published', instruction_default: 'Default instruction' };

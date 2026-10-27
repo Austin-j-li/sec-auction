@@ -17,20 +17,18 @@ import uuid
 from pathlib import Path
 from typing import Any
 
-from cockpit.workspace import SAFE_ID, Conflict, Missing, Workspace, WorkspaceError, _now, add_column
+from cockpit.workspace import SAFE_ID, Conflict, Missing, Workspace, WorkspaceError, _now
 
 SCHEMA = (
     "CREATE TABLE IF NOT EXISTS jobs (id TEXT PRIMARY KEY, kind TEXT NOT NULL, slug TEXT, actor TEXT NOT NULL, created_at TEXT NOT NULL, state TEXT NOT NULL, params TEXT NOT NULL, cancel_requested INTEGER NOT NULL DEFAULT 0, input TEXT, pid INTEGER, run_dir TEXT, started_at TEXT, ended_at TEXT, failure_reason TEXT, error TEXT, result TEXT, version_id TEXT, cancelled_by TEXT)",
     "CREATE INDEX IF NOT EXISTS jobs_state ON jobs (state, created_at)",
     "CREATE TABLE IF NOT EXISTS accounts (user TEXT NOT NULL, provider TEXT NOT NULL, connected_at TEXT NOT NULL, expires_at TEXT, PRIMARY KEY (user, provider))",
     "CREATE TABLE IF NOT EXISTS plan_usage (user TEXT NOT NULL, provider TEXT NOT NULL, at TEXT NOT NULL, info TEXT NOT NULL, PRIMARY KEY (user, provider))",
-    "CREATE TABLE IF NOT EXISTS versions (slug TEXT NOT NULL, id TEXT NOT NULL, label TEXT NOT NULL, path TEXT NOT NULL, sha256 TEXT NOT NULL, kind TEXT NOT NULL, engine TEXT NOT NULL, model TEXT NOT NULL, effort TEXT NOT NULL, instruction_version TEXT, instruction_sha256 TEXT NOT NULL, filing_sha256 TEXT NOT NULL, started_by TEXT NOT NULL, started_at TEXT NOT NULL, finished_at TEXT NOT NULL, receipts TEXT NOT NULL, checker TEXT NOT NULL, hidden INTEGER NOT NULL DEFAULT 0, hidden_by TEXT, hidden_at TEXT, PRIMARY KEY (slug, id))",
+    "CREATE TABLE IF NOT EXISTS versions (slug TEXT NOT NULL, id TEXT NOT NULL, label TEXT NOT NULL, path TEXT NOT NULL, sha256 TEXT NOT NULL, kind TEXT NOT NULL, engine TEXT NOT NULL, model TEXT NOT NULL, effort TEXT NOT NULL, instruction_version TEXT, instruction_sha256 TEXT NOT NULL, filing_sha256 TEXT NOT NULL, started_by TEXT NOT NULL, started_at TEXT NOT NULL, finished_at TEXT NOT NULL, receipts TEXT NOT NULL, checker TEXT NOT NULL, hidden INTEGER NOT NULL DEFAULT 0, hidden_by TEXT, hidden_at TEXT, instruction_id TEXT, PRIMARY KEY (slug, id))",
 )
 USERS = ("austin", "alex", "local")
 NAMES = {"austin": "Austin", "alex": "Alex", "local": "Local"}
 EFFORTS = ("low", "medium", "high", "xhigh", "max")
-MODEL = "claude-opus-5-5"
-ENGINE = "Opus 5.5"
 # Extraction engines. "provider" is the runner's transport: "opus" drives Claude Code, "sol" Codex.
 # "account" is whose plan pays: the starting user's Claude or ChatGPT subscription.
 FABLE_NOTE = "Fable's safety filter often blocks runs partway (6 of 11 test prompts); a blocked run fails and must be restarted."
@@ -43,7 +41,6 @@ ENGINES = {
     "astra6": {"label": "GPT-6-Astra", "name": "GPT-6-Astra", "provider": "sol", "model": "gpt-6-astra", "account": "chatgpt", "experimental": False, "note": None},
 }
 DEFAULT_ENGINE = "opus55"  # Austin, 26 Sep 2026: Opus 5.5 medium is the main extractor again.
-LEGACY_ENGINE = "opus55"  # Jobs recorded before engine selection existed remain Claude jobs.
 DEFAULT_EFFORT = {ident: "high" if ident == "astra6" else "medium" for ident in ENGINES}
 ACTIVE = ("queued", "preparing", "running", "checking", "importing")
 CONNECT_ACTIVE = ("queued", "waiting_for_code", "completing")
@@ -67,8 +64,6 @@ if CAPS["per_user"] > CAPS["total"]:
 def ensure_schema(conn: sqlite3.Connection) -> None:
     for statement in SCHEMA:
         conn.execute(statement)
-    add_column(conn, "jobs", "cancelled_by", "TEXT")
-    add_column(conn, "versions", "instruction_id", "TEXT")
     conn.commit()
 
 
@@ -113,9 +108,9 @@ def codex_login(auth: Path) -> dict[str, Any] | None:
             "hours_left": (expires - dt.datetime.now(dt.timezone.utc)).total_seconds() / 3600}
 
 
-def job_account(params: dict[str, Any] | None) -> str:
-    """Whose plan a job uses; jobs from before phase 4 are Opus 5.5 on Claude."""
-    return ENGINES.get((params or {}).get("engine"), ENGINES[LEGACY_ENGINE])["account"]
+def job_account(params: dict[str, Any]) -> str:
+    """Whose plan a job uses."""
+    return ENGINES[params["engine"]]["account"]
 
 
 def active_jobs_on(conn: sqlite3.Connection, user: str, account: str) -> bool:
@@ -139,10 +134,10 @@ def _rows(conn: sqlite3.Connection | None, query: str, params: tuple = ()) -> li
 def version_json(row: sqlite3.Row) -> dict[str, Any]:
     return {"id": row["id"], "label": row["label"], "path": row["path"], "sha256": row["sha256"], "kind": row["kind"],
             "instruction_version": row["instruction_version"], "instruction_sha256": row["instruction_sha256"],
-            "filing_sha256": row["filing_sha256"], "review_status": "unreviewed", "engine": row["engine"], "model": row["model"],
+            "filing_sha256": row["filing_sha256"], "engine": row["engine"], "model": row["model"],
             "effort": row["effort"], "started_by": row["started_by"], "started_at": row["started_at"], "finished_at": row["finished_at"],
             "receipts": row["receipts"], "checker": _json(row["checker"]), "hidden": bool(row["hidden"]),
-            "instruction_id": row["instruction_id"] if "instruction_id" in row.keys() else None}
+            "instruction_id": row["instruction_id"]}
 
 
 def imported_versions(workspace: Workspace, slug: str) -> list[dict[str, Any]]:
@@ -289,16 +284,6 @@ class Runs:
             jobs = [job_json(row) for row in _rows(conn, "SELECT * FROM jobs WHERE slug=? AND kind='extract' ORDER BY created_at DESC, rowid DESC LIMIT 30", (slug,))]
         finally:
             if conn: conn.close()
-        # Runs imported before the checker version was stored: read it from the version's receipt, never rewriting either.
-        versions = None
-        for job in jobs:
-            checker = (job["result"] or {}).get("checker")
-            if isinstance(checker, dict) and not checker.get("checker_version") and job["version_id"]:
-                if versions is None:
-                    versions = {version["id"]: version for version in imported_versions(self.workspace, slug)}
-                recorded = self.workspace.import_check(slug, versions[job["version_id"]]) if job["version_id"] in versions else None
-                if recorded:
-                    job["result"]["checker"] = {**checker, "checker_version": recorded["checker_version"], "ledger_schema": recorded["ledger_schema"]}
         return {"jobs": jobs}
 
     def active_jobs(self, slug: str) -> int:

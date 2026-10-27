@@ -11,15 +11,14 @@ import sqlite3
 import uuid
 from typing import Any
 
-from cockpit.workspace import SHEETS, Conflict, Missing, Workspace, WorkspaceError, _now, add_column, record_label
+from cockpit.workspace import SHEETS, Conflict, Missing, Workspace, WorkspaceError, _now, record_label
 
 SCHEMA = (
-    "CREATE TABLE IF NOT EXISTS threads (id TEXT PRIMARY KEY, slug TEXT NOT NULL, target_kind TEXT NOT NULL CHECK (target_kind IN ('deal','row','finding')), target_sheet TEXT, target_uid TEXT, target_label TEXT NOT NULL, created_by TEXT NOT NULL, created_at TEXT NOT NULL, resolved_by TEXT, resolved_at TEXT)",
+    "CREATE TABLE IF NOT EXISTS threads (id TEXT PRIMARY KEY, slug TEXT NOT NULL, target_kind TEXT NOT NULL CHECK (target_kind IN ('deal','row')), target_sheet TEXT, target_uid TEXT, target_label TEXT NOT NULL, created_by TEXT NOT NULL, created_at TEXT NOT NULL, resolved_by TEXT, resolved_at TEXT)",
     "CREATE TABLE IF NOT EXISTS comments (id TEXT PRIMARY KEY, thread_id TEXT NOT NULL REFERENCES threads(id), parent_id TEXT, actor TEXT NOT NULL, at TEXT NOT NULL, body TEXT NOT NULL, edited_at TEXT, deleted_by TEXT, deleted_at TEXT)",
     "CREATE TABLE IF NOT EXISTS comment_edits (comment_id TEXT NOT NULL, at TEXT NOT NULL, previous_body TEXT NOT NULL)",
     "CREATE TABLE IF NOT EXISTS activity (id INTEGER PRIMARY KEY AUTOINCREMENT, slug TEXT NOT NULL, at TEXT NOT NULL, actor TEXT NOT NULL, kind TEXT NOT NULL, revision INTEGER, thread_id TEXT, comment_id TEXT, summary TEXT NOT NULL, version_id TEXT)",
     "CREATE TABLE IF NOT EXISTS seen (user TEXT NOT NULL, slug TEXT NOT NULL, activity_id INTEGER NOT NULL, at TEXT NOT NULL, PRIMARY KEY (user, slug))",
-    "CREATE TABLE IF NOT EXISTS migrations (key TEXT PRIMARY KEY)",
     "CREATE TABLE IF NOT EXISTS deal_review (slug TEXT PRIMARY KEY, status TEXT NOT NULL, revision INTEGER NOT NULL, actor TEXT NOT NULL, at TEXT NOT NULL)",
     "CREATE INDEX IF NOT EXISTS activity_slug ON activity (slug, id)",
     "CREATE INDEX IF NOT EXISTS threads_slug ON threads (slug)",
@@ -28,7 +27,6 @@ SCHEMA = (
 EDIT_KINDS = ("revision", "restore", "rebase")
 RUN_KINDS = ("extraction", "extraction_failed")
 COMMENT_KINDS = ("comment", "reply")
-KINDS = EDIT_KINDS + COMMENT_KINDS + RUN_KINDS + ("resolve", "reopen", "comment_edit", "comment_delete", "hide", "unhide", "deal_added", "hide_deal", "unhide_deal", "deal_review")
 MAX_BODY = 20000
 # A deal's review status belongs to its working copy and records the revision it was set at,
 # so a later save shows that the working copy has changed since.
@@ -36,47 +34,10 @@ DEAL_STATUSES = {"unreviewed": "Unreviewed", "in_review": "In review", "reviewed
 
 
 def ensure_schema(conn: sqlite3.Connection) -> None:
-    """Create the trace tables and migrate legacy notes once. Called on every write connection."""
+    """Create the trace tables. Called on every write connection."""
     for statement in SCHEMA:
         conn.execute(statement)
-    add_column(conn, "activity", "version_id", "TEXT")
     conn.commit()
-    if conn.execute("SELECT 1 FROM migrations WHERE key='notes-v1'").fetchone():
-        return
-    conn.execute("BEGIN IMMEDIATE")
-    try:
-        if not conn.execute("SELECT 1 FROM migrations WHERE key='notes-v1'").fetchone():
-            _migrate_notes(conn)
-        conn.commit()
-    except Exception:
-        conn.rollback()
-        raise
-
-
-def _migrate_notes(conn: sqlite3.Connection) -> None:
-    latest = conn.execute("SELECT r.slug, r.snapshot FROM revisions r JOIN (SELECT slug, MAX(revision) AS revision FROM revisions GROUP BY slug) m ON r.slug=m.slug AND r.revision=m.revision").fetchall()
-    for row in latest:
-        slug, state = row[0], json.loads(row[1])
-        records = {r["uid"]: (sheet, r) for sheet in SHEETS for r in state["sheets"][sheet]["rows"]}
-        for kind, notes in (("row", state.get("row_review", {})), ("finding", state.get("findings", {}))):
-            for uid, entry in notes.items():
-                note = (entry or {}).get("note") or ""
-                if not note.strip():
-                    continue
-                key = f"note:{slug}:{kind}:{uid}"
-                if conn.execute("SELECT 1 FROM migrations WHERE key=?", (key,)).fetchone():
-                    continue
-                if kind == "row":
-                    sheet, record = records.get(uid, (None, None))
-                    label = record_label(sheet, record, record) if record else f"Row {uid}"
-                else:
-                    sheet, label = None, f"Finding {uid}"
-                actor, at = entry.get("actor") or "unknown", entry.get("at") or _now()
-                thread = _insert_thread(conn, slug, kind, sheet, uid, label, actor, at)
-                comment = _insert_comment(conn, thread, None, actor, at, note)
-                _activity(conn, slug, actor, "comment", summary=_summary(note), thread_id=thread, comment_id=comment, at=at)
-                conn.execute("INSERT INTO migrations VALUES (?)", (key,))
-    conn.execute("INSERT INTO migrations VALUES ('notes-v1')")
 
 
 def record_revision(conn: sqlite3.Connection, slug: str, actor: str, revision: int, reason: str, kind: str, at: str) -> None:
@@ -141,8 +102,6 @@ class Trace:
     # ---- reads ---------------------------------------------------------------
 
     def _seen(self, conn: sqlite3.Connection | None, user: str, slug: str) -> dict[str, Any] | None:
-        if user == "unknown":
-            return None
         found = _rows(conn, "SELECT activity_id, at FROM seen WHERE user=? AND slug=?", (user, slug))
         if not found:
             return None
@@ -175,10 +134,8 @@ class Trace:
         finally:
             if conn: conn.close()
 
-    def unseen(self, slug: str, user: str) -> dict[str, Any] | None:
+    def unseen(self, slug: str, user: str) -> dict[str, Any]:
         """The per-deal summary for GET /api/deals: other people's activity since the reader last looked."""
-        if user == "unknown":
-            return None
         conn = self.workspace._connect()
         try:
             seen = self._seen(conn, user, slug)
@@ -268,7 +225,7 @@ class Trace:
                     seen_cache[row["slug"]] = self._seen(conn, user, row["slug"])
                 seen = seen_cache[row["slug"]]
                 entry = {"id": row["id"], "at": row["at"], "actor": row["actor"], "kind": row["kind"], "summary": row["summary"], "revision": row["revision"], "thread_id": row["thread_id"], "comment_id": row["comment_id"], "version_id": row["version_id"],
-                         "unseen": user != "unknown" and row["actor"] != user and row["id"] > (seen["activity_id"] if seen else 0)}
+                         "unseen": row["actor"] != user and row["id"] > (seen["activity_id"] if seen else 0)}
                 if row["target_kind"]:
                     entry["target"] = self._target(row)
                 if account:
@@ -306,11 +263,6 @@ class Trace:
                 sheet = uid = None
                 if kind == "deal":
                     label = "Whole deal"
-                elif kind == "finding":
-                    uid = target.get("uid")
-                    finding = next((f for f in item.get("findings", []) if f.get("id") == uid), None)
-                    if finding is None: raise Missing("unknown finding")
-                    label = f"Finding {uid}" + (f" · {finding['title']}" if finding.get("title") else "")
                 elif kind == "row":
                     sheet, uid = target.get("sheet"), target.get("uid")
                     if sheet not in SHEETS: raise WorkspaceError("unknown sheet")

@@ -40,8 +40,7 @@ STATE = Path("_dev/cockpit/state")
 DB = "workspace.sqlite3"
 STORE = ("filings", "instructions", "versions", "jobs")
 SERVICES = ("ledger-cockpit", "ledger-worker")
-# Not the earlier app's ~/backups/ledger-cockpit/: pruning below removes every dated backup older than
-# --keep-days in its destination, and must never reach that app's nightlies (SWITCHOVER.md).
+# Pruning removes every dated backup older than --keep-days in this destination.
 DEFAULT_DEST = Path.home() / "backups/ledger-live"
 STAMP_RE = re.compile(r"\d{8}-\d{6}Z\Z")
 STAMP = "%Y%m%d-%H%M%SZ"
@@ -87,8 +86,6 @@ def _error(exc: BaseException) -> dict[str, str]:
 
 def slugs(cockpit: data.Cockpit) -> list[str]:
     """Catalog deals and deals added in the cockpit."""
-    if not cockpit.workspace.available:
-        return []
     return sorted(set(cockpit.workspace.catalog()["deals"]) | {row["slug"] for row in cockpit.deals.added()})
 
 
@@ -128,7 +125,7 @@ def _part(read) -> Any:
         return _error(exc)
 
 
-WORKING_KEYS = ("pending", "ledger", "rounds", "questions", "facts", "findings", "row_review", "versions")
+WORKING_KEYS = ("pending", "ledger", "rounds", "questions", "facts", "row_review", "versions")
 WORKSPACE_KEYS = ("revision", "base_version", "base_sha256", "updated_at", "updated_by")
 
 
@@ -206,11 +203,6 @@ def compare_snapshots(source: dict[str, Any], restored: dict[str, Any]) -> list[
         if source[part] != restored[part]:
             differences.append({"deal": None, "part": part, "detail": _differ(source[part], restored[part])})
     return differences
-
-
-def compare(source: data.Cockpit, restored: data.Cockpit) -> list[dict[str, Any]]:
-    """Differences between two cockpits' states, per deal and overall. Empty when they match."""
-    return compare_snapshots(snapshot(source), snapshot(restored))
 
 
 def table_rows(db: Path) -> dict[str, Any]:
@@ -426,23 +418,13 @@ def restore(backup: Path, target: Path, replace: bool = False, repo_root: Path =
 
 
 def stage_root(repo_root: Path, backup: Path, root: Path) -> data.Cockpit:
-    """A repository root holding the restored state and the checkout's other inputs.
-
-    Catalog workbooks are copied, not linked: the workspace refuses a path that resolves outside its root."""
+    """A repository root holding the restored state and the checkout's other inputs."""
     repo_root = Path(repo_root).resolve()
     for relative in INPUTS:
         source = repo_root / relative
         if source.exists():
             (root / relative).parent.mkdir(parents=True, exist_ok=True)
             (root / relative).symlink_to(source)
-    catalog = data.Cockpit(repo_root).workspace.catalog()
-    paths = {f"extraction/{slug}.xlsx" for slug in catalog["deals"]}
-    paths |= {version["path"] for item in catalog["deals"].values() if isinstance(item, dict) for version in item.get("versions", []) if isinstance(version.get("path"), str)}
-    for relative in sorted(paths):
-        source = (repo_root / relative).resolve()
-        if repo_root in source.parents and "ref" not in source.relative_to(repo_root).parts and source.is_file():
-            (root / relative).parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(source, root / relative)
     restore(backup, root / STATE, repo_root=repo_root)
     return data.Cockpit(root)
 

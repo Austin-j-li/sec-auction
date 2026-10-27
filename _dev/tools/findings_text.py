@@ -9,16 +9,14 @@ certain errors. Nothing is added from grading notes or other sources.
 import json
 import sys
 
-ORDER = {"error": 0, "warning": 1, "review": 2, "info": 3, "information": 3}
+ORDER = {"error": 0, "warning": 1}
 
 
 def main(report_path, out_path):
     with open(report_path, encoding="utf-8") as handle:
         report = json.load(handle)
     issues = sorted(report["issues"], key=lambda i: ORDER.get(i.get("severity"), 9))
-    checker = "Checker %s" % report["checker_version"] if report.get("checker_version") else "Checker version not recorded"
-    rules = "%s ledger rules" % report["ledger_schema"] if report.get("ledger_schema") else "ledger rules not recorded"
-    lines = ["# Checker findings (%s; %s)" % (checker, rules), "",
+    lines = ["# Checker findings (Checker %s; %s ledger rules)" % (report["checker_version"], report["ledger_schema"]), "",
              "%d finding(s). Numbered for reference in revision_notes.md." % len(issues), ""]
     for n, i in enumerate(issues, 1):
         where = i.get("sheet") or ""

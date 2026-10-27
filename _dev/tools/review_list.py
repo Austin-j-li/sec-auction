@@ -51,7 +51,7 @@ def build_review_list(ledger: dict[str, Any], disabled: set[str] | None = None) 
     bid_events = check_lean.BID_EVENTS
     all_bid_events = {r.get("Event") for r in rows if r.get("Event") in bid_events}
     partial_only = "Other-scope bid" in all_bid_events and (
-        derive_analysis.text(facts.get("Whole-company bids")).startswith("No")
+        derive_analysis.fact(facts, check_lean.WHOLE_COMPANY_FIELDS).startswith("No")
         or all_bid_events == {"Other-scope bid"})
     round_triggers = {(check_lean.as_integer_or_text(r.get("Process")), check_lean.as_integer_or_text(r.get("Round"))):
                       derive_analysis.text(r.get("How opened")) for r in ledger["rounds"]}

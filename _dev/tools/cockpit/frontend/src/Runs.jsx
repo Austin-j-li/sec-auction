@@ -70,7 +70,7 @@ export function RunsTab({ jobs, error, loading, canCancel, onCancel, onOpenVersi
 
 // Start an extraction: engine, effort, instruction and time limit. An engine whose account (Claude or ChatGPT) is not
 // connected is listed but disabled; with no usable engine at all the dialog explains and links to Settings.
-// working: the deal's workspace summary (its base's instruction and schema), for the line about the working copy.
+// working: the deal's workspace summary (its base's instruction), for the line about the working copy.
 export function ExtractDialog({ user, account, accountError, instructions, instructionsError, busy, error, onStart, onClose, onSettings, dialogRef, working = null }) {
   const engines = accountEngines(account);
   const [engineId, setEngineId] = useState(null);

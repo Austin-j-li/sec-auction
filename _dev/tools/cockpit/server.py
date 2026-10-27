@@ -28,7 +28,6 @@ DEFAULT_PORT = 8778
 READER_EMAILS = {"junyu.li.24@ucl.ac.uk": "austin", "a.gorbenko@ucl.ac.uk": "alex"}
 SLUG_PATH_RE = re.compile(r"/api/(deal|filing)/([^/]*)")
 DEAL_ACTION_RE = re.compile(r"/api/deal/([^/]*)/(history|changes|export|edit|comments|activity|seen|jobs|versions|compare|review|rebase)")
-DOCUMENT_RE = re.compile(r"/api/document/([^/]*)/([^/]*)")
 LOOKUP_RE = re.compile(r"/api/lookup/([0-9a-f]{32})")
 DEAL_VISIBILITY_RE = re.compile(r"/api/deals/([^/]*)/visibility")
 INSTRUCTION_RE = re.compile(r"/api/instructions/([0-9a-f]{12})")
@@ -37,7 +36,7 @@ MAX_JSON = 1024 * 1024
 
 
 class Handler(BaseHTTPRequestHandler):
-    cockpit: data.Cockpit = data.default()
+    cockpit: data.Cockpit
     access_verifier = access.Verifier()  # shared by all servers in the process
     server_version = "LedgerCockpit/2"
     csrf_token = secrets.token_urlsafe(32)
@@ -114,35 +113,27 @@ class Handler(BaseHTTPRequestHandler):
             if path == "/api/deals":
                 actor, _ = self._identity()
                 deals = self.cockpit.list_deals()
-                if self.cockpit.workspace.available and actor != "unknown":
-                    for deal in deals: deal["unseen"] = self.cockpit.trace.unseen(deal["slug"], actor)
-                if self.cockpit.workspace.available:
-                    for deal in deals: deal["active_jobs"] = self.cockpit.runs.active_jobs(deal["slug"])
-                    for deal in deals:
-                        if not deal.get("pending"): deal["deal_review"] = self.cockpit.trace.deal_review(deal["slug"])
+                for deal in deals: deal["unseen"] = self.cockpit.trace.unseen(deal["slug"], actor)
+                for deal in deals: deal["active_jobs"] = self.cockpit.runs.active_jobs(deal["slug"])
+                for deal in deals:
+                    if not deal.get("pending"): deal["deal_review"] = self.cockpit.trace.deal_review(deal["slug"])
                 return self._json(deals)
             if path == "/api/account":
                 actor, _ = self._identity()
-                if actor == "unknown": return self._json({"user": actor, "claude": {"connected": False}, "connect": None, "chatgpt": {"connected": False}, "chatgpt_connect": None, "engines": []})
                 return self._json(self.cockpit.runs.account(actor))
             if path == "/api/instructions":
-                if not self.cockpit.workspace.available: return self._json({"error": "workspace unavailable"}, 404)
                 return self._json(self.cockpit.instructions.list())
             match = INSTRUCTION_RE.fullmatch(path)
             if match:
-                if not self.cockpit.workspace.available: return self._json({"error": "workspace unavailable"}, 404)
                 seq = (query.get("seq") or [None])[0]
                 if seq is not None and not seq.isdigit(): return self._json({"error": "invalid seq"}, 400)
                 return self._json(self.cockpit.instructions.detail(match.group(1), int(seq) if seq else None))
             if path == "/api/seed":
-                if not self.cockpit.workspace.available: return self._json({"error": "workspace unavailable"}, 404)
                 return self._json(self.cockpit.deals.seed_search((query.get("q") or [""])[0][:100]))
             match = LOOKUP_RE.fullmatch(path)
             if match:
-                if not self.cockpit.workspace.available: return self._json({"error": "workspace unavailable"}, 404)
                 return self._json(self.cockpit.deals.lookup(match.group(1)))
             if path == "/api/activity":
-                if not self.cockpit.workspace.available: return self._json({"error": "workspace unavailable"}, 404)
                 actor, _ = self._identity()
                 one = lambda key: (query.get(key) or [None])[0] or None
                 try: before, limit = (int(one("before")) if one("before") else None), int(one("limit") or 100)
@@ -156,16 +147,15 @@ class Handler(BaseHTTPRequestHandler):
                     version = query.get("version", ["working"])[0]
                     payload = self.cockpit.deal(slug, version=version)
                     actor, _ = self._identity()
-                    if self.cockpit.workspace.available: payload.update(self._deal_extras(slug, actor, version))
-                    return self._json({**payload, "reader": actor})
+                    payload.update(self._deal_extras(slug, actor, version))
+                    return self._json(payload)
                 return self._json(self.cockpit.filing_payload(slug))
             match = DEAL_ACTION_RE.fullmatch(path)
             if match:
                 slug, action = unquote(match.group(1)), match.group(2)
-                if not self.cockpit.workspace.available: return self._json({"error": "workspace unavailable"}, 404)
                 if action == "history": return self._json(self.cockpit.workspace.history(slug))
                 if action == "changes": return self._json(self.cockpit.workspace.changes(slug))
-                if action in ("edit", "seen", "versions"): return self._not_allowed()
+                if action in ("edit", "seen", "versions", "review"): return self._not_allowed()
                 if action == "jobs": return self._json(self.cockpit.runs.jobs(slug))
                 if action == "compare":
                     workspace = self.cockpit.workspace
@@ -173,7 +163,6 @@ class Handler(BaseHTTPRequestHandler):
                     if left == "base": left = workspace.working_base(slug, workspace.item(slug))["id"]
                     return self._json(workspace.compare(slug, left, right))
                 if action == "comments": return self._json(self.cockpit.trace.comments(slug))
-                if action == "review": return self._json({"deal_review": self.cockpit.trace.deal_review(slug)})
                 if action == "rebase": return self._json(self.cockpit.workspace.rebase_preview(slug, (query.get("to") or [""])[0]))
                 if action == "activity":
                     actor, _ = self._identity()
@@ -186,10 +175,6 @@ class Handler(BaseHTTPRequestHandler):
                 content, name = provenance.download(self.cockpit, slug, version, source == "1" if source else None)
                 return self._send(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", Content_Disposition=f'attachment; filename="{name}"')
             if DEAL_VISIBILITY_RE.fullmatch(path): return self._not_allowed()
-            match = DOCUMENT_RE.fullmatch(path)
-            if match:
-                if not self.cockpit.workspace.available: return self._json({"error": "workspace unavailable"}, 404)
-                return self._json(self.cockpit.workspace.document(unquote(match.group(1)), unquote(match.group(2))))
             if path.startswith("/api/"): return self._json({"error": "not found"}, 404)
             if path.startswith("/assets/"):
                 relative = unquote(path.removeprefix("/assets/"))
@@ -220,7 +205,6 @@ class Handler(BaseHTTPRequestHandler):
         match = DEAL_ACTION_RE.fullmatch(path)
         visibility = DEAL_VISIBILITY_RE.fullmatch(path)
         if path not in ("/api/account/claude", "/api/account/chatgpt", "/api/deals", "/api/instructions") and not visibility and (not match or match.group(2) not in ("edit", "comments", "seen", "jobs", "versions", "review")): return self._not_allowed()
-        if not self.cockpit.workspace.available: return self._json({"error": "workspace unavailable"}, 404)
         actor, can_edit = self._identity()
         if not can_edit or not self._origin_ok() or not secrets.compare_digest(self.headers.get("X-Cockpit-CSRF") or "", self.csrf_token):
             return self._json({"error": "write authorization failed"}, 403)
@@ -243,7 +227,7 @@ class Handler(BaseHTTPRequestHandler):
             if action == "review": return self._json(self.cockpit.trace.set_deal_review(slug, body, actor))
             payload = self.cockpit.workspace.edit(slug, body, actor)
             payload.update(self._deal_extras(slug, actor))
-            return self._json({**payload, "reader": actor})
+            return self._json(payload)
         except (UnicodeDecodeError, json.JSONDecodeError): return self._json({"error": "invalid JSON"}, 400)
         except data.DealNotFound as exc: return self._json({"error": str(exc)}, 404)
         except WorkspaceError as exc: return self._json({"error": str(exc)}, exc.status)
@@ -259,10 +243,8 @@ class Handler(BaseHTTPRequestHandler):
         return self._json({"error": "method not allowed"}, 405)
 
 
-def make_server(port: int, cockpit: data.Cockpit | None = None) -> ThreadingHTTPServer:
-    handler = Handler
-    if cockpit is not None:
-        handler = type("BoundHandler", (Handler,), {"cockpit": cockpit, "csrf_token": secrets.token_urlsafe(32)})
+def make_server(port: int, cockpit: data.Cockpit) -> ThreadingHTTPServer:
+    handler = type("BoundHandler", (Handler,), {"cockpit": cockpit})
     server = ThreadingHTTPServer(("127.0.0.1", port), handler)
     server.daemon_threads = True
     return server
@@ -282,7 +264,7 @@ def main(argv: list[str] | None = None) -> int:
     cockpit = data.Cockpit(args.repo_root)
     if os.environ.get("COCKPIT_PUBLIC_ORIGIN") and not Handler.access_verifier.configured:
         print(f"warning: COCKPIT_PUBLIC_ORIGIN is set but {access.TEAM_ENV} and {access.AUD_ENV} are not (or jwcrypto is missing); "
-              "nobody can sign in on the public site, so it is read-only", file=sys.stderr, flush=True)
+              "nobody can sign in on the public site, so it serves only /api/session", file=sys.stderr, flush=True)
     httpd = make_server(args.port, cockpit)
     if not args.no_warm: threading.Thread(target=_warm, args=(cockpit,), daemon=True).start()
     print(f"ledger cockpit -> http://127.0.0.1:{args.port}", flush=True)

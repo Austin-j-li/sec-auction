@@ -1,6 +1,6 @@
 # Merged findings: v0 instruction against Alex's conventions
 
-27 September 2026. Four independent Opus 5.5 auditors (lanes A rounds/processes, B bids/Formality/conditions, C participants/exits, D output/work process plus a coverage sweep of V¶1–187) each read the full v0 instruction, the voice notes and the collection instructions, and checked examples against the filings. They did not read `_dev/ALEX_ALIGNMENT.md` (the earlier audit). Full reports with draft instruction text: `lane_A.md`, `lane_B.md`, `lane_C.md`, `lane_D.md` in this folder. Item IDs below (A1, B6, …) point into those files.
+27 September 2026. Four independent Opus 5.5 auditors (lanes A rounds/processes, B bids/Formality/conditions, C participants/exits, D output/work process plus a coverage sweep of V¶1–187) each read the full v0 instruction, the voice notes and the collection instructions, and checked examples against the filings. They did not read `_dev/alignment_sprint/evidence/ALEX_ALIGNMENT.md` (the earlier audit). Full reports with draft instruction text: `lane_A.md`, `lane_B.md`, `lane_C.md`, `lane_D.md` in this folder. Item IDs below (A1, B6, …) point into those files.
 
 64 raw items merge into 37 themes. Severity is the highest of the merged items. "Alex?" means the lanes think Alex must answer before adoption.
 

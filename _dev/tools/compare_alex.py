@@ -9,7 +9,7 @@ reaffirmed row by bidder, price (upfront, or upfront + CVR/earnout value) and ne
 aligned bids the output reports agreement of bid_type with each Formality reading of
 derive_analysis.py (T0, T1, T1u, T2, T3), of all_cash and of the per-share value. The ledger must be
 a Version 1 workbook. Every other coded row
-(bid_note) is checked against the ledger's Event and Exit reason through audit D §3.3's code map.
+(bid_note) is checked against the ledger's Event and Exit reason through the CODES map below.
 Each Alex row is marked as carrying his red-font correction or the earlier Chicago coding; only
 nine deals carry corrections.
 
@@ -215,14 +215,6 @@ def align(bids: list[dict[str, Any]], labelled: list[dict[str, Any]]) -> dict[in
         done[i] = (bids[j], labels[strength], basis, days)
         used.add(j)
     return done
-
-
-def final_code(code: str) -> tuple[set[str], bool] | None:
-    """The ledger events and required round finality for an Alex final-round code."""
-    if code.startswith("Final Round") and code in CODES:
-        events, final = CODES[code]
-        return events, bool(final)
-    return None
 
 
 def code_mapping(code: str) -> tuple[set[str], bool | None] | None:

@@ -1,9 +1,8 @@
 """Read-only data layer for the ledger review cockpit.
 
-Nothing here writes a file. Workbooks are read from an in-memory copy of their
-bytes, filings are parsed in memory, and the mechanical checker runs in-process
-with its report kept only in a cache. Of ``ref/``, the cockpit reads only the
-identifying columns of ``seed.csv`` (deals.py).
+Nothing here writes a file. Filings are parsed in memory, and the mechanical
+checker runs in-process with its report kept only in a cache. Of ``ref/``, the
+cockpit reads only the identifying columns of ``seed.csv`` (deals.py).
 
 The quote locator reproduces both filing renderings that ``check_lean`` accepts
 (``soup.get_text(" ")`` and ``soup.get_text("")``, each normalized with
@@ -19,11 +18,9 @@ differently. None of the real filings hits this.
 from __future__ import annotations
 
 import bisect
-import zipfile
 from array import array
 import csv
 import datetime as dt
-import io
 import re
 import sys
 import threading
@@ -38,8 +35,6 @@ if str(TOOLS_DIR) not in sys.path:
 import check_lean  # noqa: E402
 import derive_analysis  # noqa: E402
 import review_list  # noqa: E402
-import openpyxl  # noqa: E402
-from openpyxl.utils.exceptions import InvalidFileException  # noqa: E402
 from bs4 import BeautifulSoup, CData, NavigableString, Tag  # noqa: E402
 
 REPO_ROOT = TOOLS_DIR.parents[1]
@@ -94,7 +89,7 @@ class DealNotFound(LookupError):
 
 
 class DealUnavailable(LookupError):
-    """A known deal whose workbook or filing cannot be read right now."""
+    """A known deal whose filing cannot be read right now."""
 
 
 def visible(text: str) -> str:
@@ -575,42 +570,6 @@ def cited_pages(value: str | None) -> set[str]:
 
 
 # ---------------------------------------------------------------------------
-# Workbook reading
-
-
-def _sheet_table(wb: Any, name: str) -> tuple[list[str], list[tuple[int, list[Any]]]]:
-    if name not in wb.sheetnames:
-        return [], []
-    ws = wb[name]
-    rows = list(ws.iter_rows(values_only=True))
-    if not rows:
-        return [], []
-    header = list(rows[0])
-    while header and check_lean.is_blank(header[-1]):
-        header.pop()
-    columns = [display_value(value) for value in header]
-    body: list[tuple[int, list[Any]]] = []
-    for number, values in enumerate(rows[1:], start=2):
-        values = list(values)
-        if all(check_lean.is_blank(value) for value in values):
-            continue
-        values = (values + [None] * len(columns))[: len(columns)]
-        body.append((number, values))
-    return columns, body
-
-
-def read_workbook(path: Path) -> dict[str, tuple[list[str], list[tuple[int, list[Any]]]]]:
-    """Read every sheet from an in-memory copy; the file is never opened for writing."""
-
-    data = path.read_bytes()
-    wb = openpyxl.load_workbook(io.BytesIO(data), read_only=True, data_only=True)
-    try:
-        return {name: _sheet_table(wb, name) for name in (LEDGER_SHEET, ROUNDS_SHEET, QUESTIONS_SHEET, FACTS_SHEET)}
-    finally:
-        wb.close()
-
-
-# ---------------------------------------------------------------------------
 # Repository access with caches
 
 
@@ -630,8 +589,8 @@ def _reason(exc: BaseException) -> str:
     return f"{type(exc).__name__}: {message}"[:200]
 
 
-# What a missing, unreadable or corrupt input raises while it is loaded.
-READ_ERRORS = (OSError, zipfile.BadZipFile, InvalidFileException, KeyError, ValueError, EOFError)
+# What a missing, unreadable or corrupt filing raises while it is loaded.
+READ_ERRORS = (OSError, KeyError, ValueError, EOFError)
 
 
 class Cockpit:
@@ -639,14 +598,11 @@ class Cockpit:
 
     def __init__(self, repo_root: Path = REPO_ROOT) -> None:
         self.repo_root = Path(repo_root)
-        self.extraction_dir = self.repo_root / "extraction"
         self.filing_dir = self.repo_root / "raw_filing"
         self._lock = threading.Lock()
         self._path_locks: dict[str, threading.Lock] = {}
         self._filings: dict[Path, tuple[tuple[int, int], Filing]] = {}
-        self._workbooks: dict[Path, tuple[tuple[int, int], Any]] = {}
         self._checks: dict[tuple[Any, ...], dict[str, Any]] = {}
-        self._payloads: dict[str, tuple[tuple[Any, ...], dict[str, Any]]] = {}
         from cockpit.workspace import Workspace
         self.workspace = Workspace(self)
         from cockpit.trace import Trace  # imported here: trace builds on the workspace module
@@ -677,70 +633,40 @@ class Cockpit:
                     continue
                 if (self.filing_dir / name).is_file():
                     entries[deal] = row
-        if self.workspace.available:  # deals added in the cockpit keep their filings in the state folder
-            for row in self.deals.added():
-                path = self.deals.filing_path(row)
-                if row["slug"] not in entries and path.is_file():
-                    entries[row["slug"]] = {**{key: str(row[key]) for key in ("file", "form_type", "date_filed", "source_url", "document", "fetched_utc", "bytes", "sha256")},
-                                            "deal": row["slug"], "path": str(path)}
+        for row in self.deals.added():  # deals added in the cockpit keep their filings in the state folder
+            path = self.deals.filing_path(row)
+            if row["slug"] not in entries and path.is_file():
+                entries[row["slug"]] = {**{key: str(row[key]) for key in ("file", "form_type", "date_filed", "source_url", "document", "fetched_utc", "bytes", "sha256")},
+                                        "deal": row["slug"], "path": str(path)}
         return entries
 
     def catalog_deals(self) -> dict[str, dict[str, Any]]:
         """The deals catalog.json lists; none without a readable catalog (the workspace reports that)."""
 
         from cockpit.workspace import WorkspaceError  # imported here: the workspace builds on this module
-        if not self.workspace.available:
-            return {}
         try:
             deals = self.workspace.catalog()["deals"]
         except WorkspaceError:
             return {}
         return {slug: item for slug, item in deals.items() if SLUG_RE.fullmatch(slug) and isinstance(item, dict)}
 
-    def catalog_workbook(self, item: dict[str, Any]) -> Path | None:
-        """A catalog deal's workbook: the path of its starting base, wherever the catalog keeps it."""
-
-        from cockpit.workspace import WorkspaceError
-        base = next((v for v in item.get("versions") or [] if isinstance(v, dict) and v.get("id") == item.get("default_base")), None)
-        try:
-            return self.workspace._path(base.get("path")) if base else None
-        except WorkspaceError:
-            return None
-
     def slugs(self) -> list[str]:
-        """Catalog deals, found from catalog.json, and any other deal with a workbook in extraction/."""
+        """Catalog deals whose filing is in the manifest."""
 
         manifest = self.manifest()
-        found = {slug for slug in self.catalog_deals() if slug in manifest}
-        if self.extraction_dir.is_dir():
-            found |= {
-                path.stem
-                for path in self.extraction_dir.glob("*.xlsx")
-                if path.is_file() and SLUG_RE.fullmatch(path.stem) and path.stem in manifest
-            }
-        return sorted(found)
+        return sorted(slug for slug in self.catalog_deals() if slug in manifest)
 
-    def resolve(
-        self, slug: str, manifest: dict[str, dict[str, str]] | None = None
-    ) -> tuple[Path, Path, dict[str, str]]:
-        """Return (workbook, filing, manifest row) for a valid slug, else DealNotFound."""
+    def resolve(self, slug: str) -> tuple[Path, dict[str, str]]:
+        """Return (filing, manifest row) for a valid slug, else DealNotFound."""
 
         if not isinstance(slug, str) or not SLUG_RE.fullmatch(slug):
             raise DealNotFound(f"unknown deal {slug!r}")
-        if manifest is None:
-            manifest = self.manifest()
-        workbook = self.extraction_dir / f"{slug}.xlsx"
-        entry = manifest.get(slug)
-        if entry and entry.get("path"):  # an added deal: its workbooks are imported versions, read through the workspace
-            return None, Path(entry["path"]), entry
-        item = self.catalog_deals().get(slug)
-        if entry is not None and item is not None:
-            # A catalog deal is found from the catalog, not from extraction/<slug>.xlsx; the workspace
-            # checks its workbook's hash when it reads it.
-            return self.catalog_workbook(item) or workbook, self.filing_dir / entry["file"], entry
-        if entry is None or not workbook.is_file():
+        entry = self.manifest().get(slug)
+        if entry and entry.get("path"):  # an added deal: its filing is in the state folder
+            return Path(entry["path"]), entry
+        if entry is None or slug not in self.catalog_deals():
             raise DealNotFound(f"unknown deal {slug!r}")
-        return workbook, self.filing_dir / entry["file"], entry
+        return self.filing_dir / entry["file"], entry
 
     def filing(self, path: Path) -> Filing:
         with self._path_lock(str(path)):
@@ -751,16 +677,6 @@ class Cockpit:
             filing = Filing(path.read_bytes())
             self._filings[path] = (key, filing)
             return filing
-
-    def workbook(self, path: Path) -> Any:
-        with self._path_lock(str(path)):
-            key = _stat_key(path)
-            cached = self._workbooks.get(path)
-            if cached and cached[0] == key:
-                return cached[1]
-            tables = read_workbook(path)
-            self._workbooks[path] = (key, tables)
-            return tables
 
     def check(self, workbook_path: Path, filing_path: Path) -> dict[str, Any]:
         """The current checker's report, cached per file state."""
@@ -777,36 +693,15 @@ class Cockpit:
 
     # -- payloads ---------------------------------------------------------
 
-    def deal(self, slug: str, manifest: dict[str, dict[str, str]] | None = None, version: str = "working") -> dict[str, Any]:
-        """The /api/deal payload (without the reader). DealUnavailable if an input cannot be read."""
+    def deal(self, slug: str, version: str = "working") -> dict[str, Any]:
+        """The /api/deal payload (without the server's additions)."""
 
-        if self.workspace.available:
-            return self.workspace.deal(slug, version)
-
-        workbook_path, filing_path, entry = self.resolve(slug, manifest)
-        try:
-            filing = self.filing(filing_path)
-        except READ_ERRORS as exc:
-            raise DealUnavailable(f"{slug}: the filing could not be read ({_reason(exc)})") from exc
-        try:
-            tables = self.workbook(workbook_path)
-            report = self.check(workbook_path, filing_path)
-            key = (_stat_key(workbook_path), _stat_key(filing_path), id(filing), id(tables), id(report))
-        except READ_ERRORS as exc:
-            raise DealUnavailable(f"{slug}: the workbook could not be read ({_reason(exc)})") from exc
-        with self._lock:
-            cached = self._payloads.get(slug)
-        if cached and cached[0] == key:
-            return cached[1]
-        payload = build_deal_payload(slug, entry, tables, filing, report)
-        with self._lock:
-            self._payloads[slug] = (key, payload)
-        return payload
+        return self.workspace.deal(slug, version)
 
     def filing_payload(self, slug: str) -> dict[str, Any]:
         """The /api/filing payload: display blocks and page starts."""
 
-        _, filing_path, _ = self.resolve(slug)
+        filing_path, _ = self.resolve(slug)
         try:
             filing = self.filing(filing_path)
         except READ_ERRORS as exc:
@@ -818,16 +713,14 @@ class Cockpit:
 
         deals = []
         manifest = self.manifest()
-        added = self.deals.added() if self.workspace.available else []
+        added = self.deals.added()
         slugs = self.slugs()
         slugs += [row["slug"] for row in added if row["slug"] not in slugs and row["slug"] in manifest]
         pending = {}
-        if self.workspace.available:
-            for slug in slugs:
-                if slug in self.catalog_deals() or any(row["slug"] == slug for row in added):
-                    item = self.workspace.item(slug)
-                    if item.get("pending"):
-                        pending[slug] = item
+        for slug in slugs:
+            item = self.workspace.item(slug)
+            if item.get("pending"):
+                pending[slug] = item
         for slug in slugs:
             if slug in pending:
                 item = pending[slug]
@@ -839,7 +732,7 @@ class Cockpit:
                               "review_status": "no extraction yet"})
                 continue
             try:
-                payload = self.deal(slug, manifest)
+                payload = self.deal(slug)
             except DealNotFound:
                 continue
             except Exception as exc:  # one bad workbook must not hide the others
@@ -857,7 +750,7 @@ class Cockpit:
                         "check": {"status": "unreadable", "errors": 0, "warnings": 0},
                         "quotes_located": 0,
                         "quotes_total": 0,
-                        "error": str(exc) if isinstance(exc, DealUnavailable) else f"{slug}: {_reason(exc)}",
+                        "error": f"{slug}: {_reason(exc)}",
                     }
                 )
                 continue
@@ -880,18 +773,16 @@ class Cockpit:
                         "errors": summary.get("errors", 0),
                         "warnings": summary.get("warnings", 0),
                         "checker_version": payload["check"].get("checker_version"),
-                        "ledger_schema": payload.get("ledger_schema"),
                     },
                     "quotes_located": sum(1 for quote in quotes if quote["located"]),
                     "quotes_total": len(quotes),
-                    "name": self.workspace.item(slug).get("name", slug) if self.workspace.available else slug,
+                    "name": payload["name"],
                     "instruction_version": next((v.get("instruction_version") for v in payload.get("versions", []) if v.get("id") == payload.get("workspace", {}).get("base_version")), None),
-                    "review_status": next((v.get("review_status") for v in payload.get("versions", []) if v.get("id") == payload.get("workspace", {}).get("base_version")), None),
                     "working_revision": payload.get("workspace", {}).get("revision", 0),
                     "base_label": next((v.get("label") for v in payload.get("versions", []) if v.get("id") == payload.get("workspace", {}).get("base_version")), None),
                 }
             )
-        hidden = self.deals.hidden() if self.workspace.available else {}
+        hidden = self.deals.hidden()
         for entry in deals:
             entry.update(self.deals.visibility_of(entry["slug"], hidden))
         return deals
@@ -926,11 +817,6 @@ def page_hint(quote: dict[str, Any] | None, filing: Filing) -> str | None:
     if not cited or not found or cited.intersection(found):
         return None
     return f"page hint: quote found on p. {quote['found_page']}, cited p. {quote['cited_page']}"
-
-
-def report_schema(report: dict[str, Any]) -> str:
-    """The only supported ledger schema, including after a fatal workbook check."""
-    return report.get("ledger_schema") or check_lean.CHECKER_VERSION
 
 
 def build_deal_payload(
@@ -1016,7 +902,6 @@ def build_deal_payload(
     other = [issue for issue in report.get("issues", []) if id(issue) not in attached]
     return {
         "slug": slug,
-        "ledger_schema": report_schema(report),
         "filing": {
             "file": entry.get("file", ""),
             "form_type": entry.get("form_type", ""),
@@ -1054,13 +939,3 @@ def review_queue(tables: dict[str, tuple[list[str], list[tuple[int, list[Any]]]]
     except Exception as exc:  # a review aid never blocks the deal page; the panel shows why it is empty
         return {"categories": list(review_list.CATEGORIES), "items": [], "error": _reason(exc)}
     return {"categories": list(review_list.CATEGORIES), "items": items, "error": None}
-
-
-_DEFAULT: Cockpit | None = None
-
-
-def default() -> Cockpit:
-    global _DEFAULT
-    if _DEFAULT is None:
-        _DEFAULT = Cockpit()
-    return _DEFAULT

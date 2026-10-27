@@ -39,10 +39,7 @@ def ensure_schema(conn: sqlite3.Connection) -> None:
 
 def header_version(text: str) -> str | None:
     found = re.search(r"\bVersion\s+(\d+)\b", text[:600], re.I)
-    if found:
-        return f"Version {found.group(1)}"
-    found = re.search(r"\bv(\d+\.\d+(?:\.\d+)?)\b", text[:600])
-    return f"v{found.group(1)}" if found else None
+    return f"Version {found.group(1)}" if found else None
 
 
 def label(row: sqlite3.Row) -> str:
