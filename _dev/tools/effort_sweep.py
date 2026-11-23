@@ -37,7 +37,7 @@ RUNNER = Path(run_model.__file__).resolve()
 INSTRUCTION = PROJECT / run_model.INSTRUCTION_NAME
 BINARY_ENV = {"opus": "SEC_CLAUDE_BIN", "sol": "SEC_CODEX_BIN", "agy": "SEC_AGY_BIN"}
 RECEIPT_FILES = ("metadata.json", "prompt.txt", "launch.json", "command.json", "status.json",
-                 "validation.json", "provider-results.json", "stderr.log", "launcher.log")
+                 "validation.json", "provider-results.json", "stderr.log", "launcher.log", "network.jsonl")
 FINISHED = ("completed", "failed", "timed_out")
 # Failures of the provider or worker rather than of the extraction; they can be retried, and a
 # run of them (a usage limit, an outage, expired credentials) stops the sweep.
@@ -104,10 +104,15 @@ def plan(args: argparse.Namespace) -> None:
                 or effort not in run_model.allowed_efforts(provider, model)):
             unknown.append(spec)
             continue
+        requested_tier = getattr(args, "service_tier", None)
+        if provider != "sol":
+            service_tier = None
+        elif requested_tier == "standard":
+            service_tier = None
+        else:
+            service_tier = requested_tier or run_model.SERVICE_TIER.get(model)
         arms.append({"arm": f"{model.removeprefix('claude-')}-{effort}", "provider": provider,
-                     "model": model, "effort": effort,
-                     "service_tier": ((getattr(args, "service_tier", None) or run_model.SERVICE_TIER.get(model))
-                                      if provider == "sol" else None)})
+                     "model": model, "effort": effort, "service_tier": service_tier})
     if unknown or not arms:
         raise SystemExit(f"not an available deal or arm (provider:model:effort): {', '.join(unknown) or 'no arms'}")
     if not 10 <= args.timeout_minutes <= 360:
@@ -319,8 +324,13 @@ def run(args: argparse.Namespace) -> None:
                 if changed:
                     raise SystemExit(f"{', '.join(changed)} changed during the sweep; stopping before {cell['id']}")
                 if not (run_dir / "metadata.json").exists():
+                    tier_arg = (
+                        ("--service-tier", cell["service_tier"] or "standard")
+                        if cell["provider"] == "sol" and "service_tier" in cell
+                        else ()
+                    )
                     chosen = [*( ("--instruction", str(instruction)) if sweep.get("instruction") else ()),
-                              *( ("--service-tier", cell["service_tier"]) if cell.get("service_tier") else ()),
+                              *tier_arg,
                               *( ("--filing-dir", cell["filing_dir"]) if cell.get("filing_dir") else ())]
                     run_command(pin, "prepare", "--provider", cell["provider"], "--run-dir", str(run_dir),
                                 "--deal", cell["deal"], "--filing", cell["filing"], "--model", cell["model"],
@@ -534,7 +544,8 @@ def parser() -> argparse.ArgumentParser:
     p.add_argument("--filing-dir", action="append", help="added deal folder in _dev/cockpit/state/filings/ (repeatable)")
     p.add_argument("--instruction", help="instruction file to run (default: working instruction); pinned by hash")
     p.add_argument("--arms", nargs="+", required=True, help="provider:model:effort, e.g. opus:claude-opus-5-5:medium")
-    p.add_argument("--service-tier", choices=["priority"], help="request Fast service for every Codex arm")
+    p.add_argument("--service-tier", choices=["priority", "standard"],
+                   help="service tier for every Codex arm ('priority' for Fast, 'standard' for normal speed)")
     p.add_argument("--replicates", type=int, default=2)
     p.add_argument("--seed", type=int, required=True)
     p.add_argument("--timeout-minutes", type=int, default=run_model.TIMEOUT_SECONDS // 60)
