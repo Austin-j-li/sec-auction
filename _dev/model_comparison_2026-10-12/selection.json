@@ -1,0 +1,26 @@
+{
+  "selected_at": "2026-10-12T16:09:27.941690+00:00",
+  "method": "Uniform sample without replacement: random.Random(seed).sample(sorted(active_deals), 3). Seed from secrets.randbits(64). One draw; no replacement or redraw.",
+  "seed": 3947230645779240231,
+  "population": [
+    "datalink",
+    "imprivata",
+    "kraton",
+    "mac-gray",
+    "medivation",
+    "penford",
+    "pepco-holdings",
+    "petsmart",
+    "providence-worcester",
+    "stec",
+    "synacor",
+    "zep"
+  ],
+  "excluded_hidden_deals": [],
+  "selected": [
+    "synacor",
+    "penford",
+    "medivation"
+  ],
+  "base_commit": "58675c97fc9bc3018bd7bea21e7691ae484fc8bd"
+}

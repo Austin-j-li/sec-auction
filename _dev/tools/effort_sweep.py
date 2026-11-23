@@ -104,7 +104,9 @@ def plan(args: argparse.Namespace) -> None:
             unknown.append(spec)
             continue
         arms.append({"arm": f"{model.removeprefix('claude-')}-{effort}", "provider": provider,
-                     "model": model, "effort": effort})
+                     "model": model, "effort": effort,
+                     "service_tier": ((getattr(args, "service_tier", None) or run_model.SERVICE_TIER.get(model))
+                                      if provider == "sol" else None)})
     if unknown or not arms:
         raise SystemExit(f"not an available deal or arm (provider:model:effort): {', '.join(unknown) or 'no arms'}")
     if not 10 <= args.timeout_minutes <= 360:
@@ -174,6 +176,8 @@ def cell_mismatches(cell: dict, run_dir: Path, pin: dict) -> list[str]:
         "model": cell["model"], "effort": cell["effort"], "timeout_seconds": cell["timeout_minutes"] * 60,
         "instruction_sha256": pin["instruction_sha256"], "runner_sha256": pin["runner_sha256"],
     }
+    if "service_tier" in cell:
+        expected["service_tier"] = cell["service_tier"]
     problems = [f"metadata {key}" for key, value in expected.items() if metadata.get(key) != value]
     if (run_dir / "command.json").is_file():
         command = read_json(run_dir / "command.json")
@@ -301,6 +305,7 @@ def run(args: argparse.Namespace) -> None:
                     raise SystemExit(f"{', '.join(changed)} changed during the sweep; stopping before {cell['id']}")
                 if not (run_dir / "metadata.json").exists():
                     chosen = [*( ("--instruction", str(instruction)) if sweep.get("instruction") else ()),
+                              *( ("--service-tier", cell["service_tier"]) if cell.get("service_tier") else ()),
                               *( ("--filing-dir", cell["filing_dir"]) if cell.get("filing_dir") else ())]
                     run_command(pin, "prepare", "--provider", cell["provider"], "--run-dir", str(run_dir),
                                 "--deal", cell["deal"], "--filing", cell["filing"], "--model", cell["model"],
@@ -514,6 +519,7 @@ def parser() -> argparse.ArgumentParser:
     p.add_argument("--filing-dir", action="append", help="added deal folder in _dev/cockpit/state/filings/ (repeatable)")
     p.add_argument("--instruction", help="instruction file to run (default: working instruction); pinned by hash")
     p.add_argument("--arms", nargs="+", required=True, help="provider:model:effort, e.g. opus:claude-opus-5-5:medium")
+    p.add_argument("--service-tier", choices=["priority"], help="request Fast service for every Codex arm")
     p.add_argument("--replicates", type=int, default=2)
     p.add_argument("--seed", type=int, required=True)
     p.add_argument("--timeout-minutes", type=int, default=run_model.TIMEOUT_SECONDS // 60)

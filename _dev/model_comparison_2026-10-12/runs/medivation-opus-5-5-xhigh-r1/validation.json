@@ -1,0 +1,13 @@
+{
+  "bytes": 16865,
+  "exists": true,
+  "path": "/home/uctpiaj/work/Projects/sec-auction/_dev/runs/model_comparison_2026-10-12/medivation-opus-5-5-xhigh-r1/extraction/medivation.xlsx",
+  "sha256": "121e1058ea1e452047db4d05aaa1ad90d2b16b0acab57fff5cfcd8c826c62550",
+  "sheet_names": [
+    "Deal ledger",
+    "Rounds",
+    "Questions",
+    "Deal facts"
+  ],
+  "valid_xlsx": true
+}

@@ -1,0 +1,54 @@
+{
+  "checker": "lean-mechanical",
+  "checker_revision": "Checks the Version 1 ledger rules.",
+  "checker_version": "Version 1",
+  "filing": "/home/uctpiaj/work/Projects/sec-auction/raw_filing/synacor_2021-03-03_SCTO-T.htm",
+  "issues": [
+    {
+      "basis": "mechanical",
+      "code": "ledger.count_marker",
+      "column": "Count",
+      "message": "Count is blank on a Process restarted row; it holds the number of open participations the marker closes, and stays blank only when it closes none (E5).",
+      "row": 14,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "ledger.count_marker",
+      "column": "Count",
+      "message": "Count is blank on a Process restarted row; it holds the number of open participations the marker closes, and stays blank only when it closes none (E5).",
+      "row": 25,
+      "severity": "warning",
+      "sheet": "Deal ledger"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.length",
+      "column": null,
+      "message": "Question entry has 121 words across its fields; the limit is 60 (D4).",
+      "row": 2,
+      "severity": "warning",
+      "sheet": "Questions"
+    },
+    {
+      "basis": "mechanical",
+      "code": "questions.length",
+      "column": null,
+      "message": "Question entry has 83 words across its fields; the limit is 60 (D4).",
+      "row": 3,
+      "severity": "warning",
+      "sheet": "Questions"
+    }
+  ],
+  "ledger_schema": "Version 1",
+  "scope_note": "Mechanical checks only. Quote occurrence proves source occurrence, not semantic support. No bidder-population arithmetic or substantive extraction grading is performed.",
+  "status": "pass_with_warnings",
+  "summary": {
+    "errors": 0,
+    "information": 0,
+    "total_issues": 4,
+    "warnings": 4
+  },
+  "workbook": "/home/uctpiaj/work/Projects/sec-auction/_dev/runs/model_comparison_2026-10-12/synacor-opus-5-5-xhigh-r1/extraction/synacor.xlsx"
+}

@@ -1,0 +1,425 @@
+{
+  "recorded_at": "2026-10-12T16:55:49.423025+00:00",
+  "status": "Final",
+  "count_unit": "one root cause per affected model per deal; not one count per cell",
+  "findings": [
+    {
+      "id": "P1",
+      "deal": "penford",
+      "models": [
+        "gpt-6-astra",
+        "gpt-6.1-sol"
+      ],
+      "severity": "moderate",
+      "cause": "Final reaffirmation omits a financing condition reported before execution.",
+      "locations": {
+        "gpt-6-astra": [
+          "Deal ledger P43"
+        ],
+        "gpt-6.1-sol": [
+          "Deal ledger P48"
+        ]
+      },
+      "evidence": "evaluation/penford_final_review.md#p1--the-final-reaffirmation-omits-a-stated-financing-condition"
+    },
+    {
+      "id": "P2",
+      "deal": "penford",
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "severity": "major",
+      "cause": "Two inferred exits carry round 2 rather than the round left, round 1.",
+      "locations": {
+        "claude-opus-5-5": [
+          "Deal ledger G33",
+          "Deal ledger G34"
+        ]
+      },
+      "evidence": "evaluation/penford_final_review.md#p2--two-exits-carry-the-round-entered-instead-of-the-round-left"
+    },
+    {
+      "id": "P3",
+      "deal": "penford",
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "severity": "moderate",
+      "cause": "NDA effective date becomes an unsupported exact execution date.",
+      "locations": {
+        "claude-opus-5-5": [
+          "Deal ledger AB4",
+          "Deal ledger AC4"
+        ]
+      },
+      "evidence": "evaluation/penford_final_review.md#p3--an-effective-date-becomes-an-exact-nda-execution-date"
+    },
+    {
+      "id": "P4",
+      "deal": "penford",
+      "models": [
+        "gpt-6.1-sol",
+        "claude-opus-5-5"
+      ],
+      "severity": "minor",
+      "cause": "Price-feedback quote omits its negation; Notes retain the correct assessment.",
+      "locations": {
+        "gpt-6.1-sol": [
+          "Deal ledger X13"
+        ],
+        "claude-opus-5-5": [
+          "Deal ledger X12"
+        ]
+      },
+      "evidence": "evaluation/penford_final_review.md#p4--a-price-feedback-quotation-loses-its-negation"
+    },
+    {
+      "id": "P5",
+      "deal": "penford",
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "severity": "minor",
+      "cause": "Two Questions entries exceed the 60-word limit.",
+      "locations": {
+        "claude-opus-5-5": [
+          "Questions row 2",
+          "Questions row 6"
+        ]
+      },
+      "evidence": "evaluation/penford_final_review.md#p5--questions-entries-exceed-the-word-limit"
+    },
+    {
+      "id": "M1",
+      "deal": "medivation",
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "severity": "major",
+      "cause": "Unnamed cohort misses the required August 8 inferred closure.",
+      "locations": {
+        "claude-opus-5-5": [
+          "Deal ledger rows 10, 16, 22",
+          "Questions row 2"
+        ]
+      },
+      "evidence": "evaluation/medivation_candidate_review.md#c1--major-the-unnamed-cohort-skips-the-first-required-closure"
+    },
+    {
+      "id": "M3",
+      "deal": "medivation",
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "severity": "minor",
+      "cause": "Three Questions entries exceed the 60-word limit.",
+      "locations": {
+        "claude-opus-5-5": [
+          "Questions rows 2, 3, 4"
+        ]
+      },
+      "evidence": "evaluation/medivation_candidate_review.md"
+    },
+    {
+      "id": "S-B01",
+      "deal": "synacor",
+      "models": [
+        "gpt-6.1-sol"
+      ],
+      "severity": "major",
+      "cause": "Round 1 opens at early bilateral NDAs despite later multibuyer outreach, moving three offers out of round 0.",
+      "locations": {
+        "gpt-6.1-sol": [
+          "Deal ledger rows 3-8, 15-19",
+          "Rounds rows 2-3"
+        ]
+      },
+      "evidence": "evaluation/synacor_candidate_review.md"
+    },
+    {
+      "id": "S-B02",
+      "deal": "synacor",
+      "models": [
+        "gpt-6.1-sol"
+      ],
+      "severity": "moderate",
+      "cause": "Generic exit reasons lose the reported value comparison for A and invent a stated reason for C.",
+      "locations": {
+        "gpt-6.1-sol": [
+          "Deal ledger rows 9, 21"
+        ]
+      },
+      "evidence": "evaluation/synacor_candidate_review.md"
+    },
+    {
+      "id": "S-B03",
+      "deal": "synacor",
+      "models": [
+        "gpt-6.1-sol"
+      ],
+      "severity": "moderate",
+      "cause": "January 6 report date becomes an unsupported exact date of the prior $2.00 proposal.",
+      "locations": {
+        "gpt-6.1-sol": [
+          "Deal ledger row 66"
+        ]
+      },
+      "evidence": "evaluation/synacor_candidate_review.md"
+    },
+    {
+      "id": "S-A03",
+      "deal": "synacor",
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "severity": "major",
+      "cause": "Separate reverse-fee refusal and later stockholder-support condition collapse into one bid; the preceding target requirement is also omitted.",
+      "locations": {
+        "claude-opus-5-5": [
+          "Deal ledger row 63",
+          "omitted January 27 target requirement"
+        ]
+      },
+      "evidence": "evaluation/synacor_candidate_review.md"
+    },
+    {
+      "id": "S-A04",
+      "deal": "synacor",
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "severity": "moderate",
+      "cause": "January 21 document confirmation omits prospective financing evidence in its window. Later Committed classifications also lack a clear contemporaneous anchor.",
+      "locations": {
+        "claude-opus-5-5": [
+          "Deal ledger rows 61, 63, 64"
+        ]
+      },
+      "evidence": "evaluation/synacor_candidate_review.md"
+    },
+    {
+      "id": "S-A05",
+      "deal": "synacor",
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "severity": "moderate",
+      "cause": "Target acquisition of Company D becomes three unsupported merger-of-equals events.",
+      "locations": {
+        "claude-opus-5-5": [
+          "Deal ledger rows 22-24"
+        ]
+      },
+      "evidence": "evaluation/synacor_candidate_review.md"
+    },
+    {
+      "id": "S-A06",
+      "deal": "synacor",
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "severity": "moderate",
+      "cause": "Company A exit reason loses its comparison with the earlier offered value.",
+      "locations": {
+        "claude-opus-5-5": [
+          "Deal ledger row 9"
+        ]
+      },
+      "evidence": "evaluation/synacor_candidate_review.md"
+    },
+    {
+      "id": "S-A07",
+      "deal": "synacor",
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "severity": "moderate",
+      "cause": "Company H information request appears only in a round-marker Note, without the required substantive event row.",
+      "locations": {
+        "claude-opus-5-5": [
+          "Deal ledger row 48"
+        ]
+      },
+      "evidence": "evaluation/synacor_candidate_review.md"
+    },
+    {
+      "id": "S-A08",
+      "deal": "synacor",
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "severity": "moderate",
+      "cause": "December 18-21 outreach lacks the required review of a possible round boundary.",
+      "locations": {
+        "claude-opus-5-5": [
+          "Deal ledger row 52",
+          "Questions omission"
+        ]
+      },
+      "evidence": "evaluation/synacor_candidate_review.md"
+    },
+    {
+      "id": "S-D4",
+      "deal": "synacor",
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "severity": "minor",
+      "cause": "Two Questions entries exceed the 60-word limit; manager applies the same presentation rule used for the other deals.",
+      "locations": {
+        "claude-opus-5-5": [
+          "Questions rows 2-3"
+        ]
+      },
+      "evidence": "runs/synacor-opus-5-5-xhigh-r1/check.json"
+    }
+  ],
+  "adjudication_overrides": [
+    {
+      "original": "Medivation C2 Moderate",
+      "final_status": "unresolved; excluded from confirmed counts",
+      "reason": "The financing disclosure lacks a clear anchor within the final bid evidence window. A mandatory Contingent recode is not established.",
+      "evidence": "evaluation/financing_adjudication.md"
+    },
+    {
+      "original": "Synacor A-01 Major",
+      "final_status": "unresolved instruction interpretation; excluded from confirmed counts",
+      "reason": "Part B permits exact calculations. The percent revision expressly references the prior per-share range; E13 does not settle whether the outer products belong in the numeric cells.",
+      "evidence": "evaluation/price_adjudication.md"
+    },
+    {
+      "original": "Synacor A-02 cohort allocation",
+      "final_status": "excluded from confirmed counts",
+      "reason": "The mixed-scope NDA total does not establish a unique whole-company population or member mapping. No definite excess count is proved.",
+      "evidence": "evaluation/synacor_candidate_review.md"
+    },
+    {
+      "original": "Synacor source reviewer records no Minor findings",
+      "final_status": "manager adds one Minor D4 cause",
+      "reason": "Two Questions entries have 121 and 83 words. The final comparison applies the same 60-word rule used for Medivation and Penford.",
+      "evidence": "runs/synacor-opus-5-5-xhigh-r1/check.json"
+    }
+  ],
+  "separate_program_findings": [
+    {
+      "id": "D1",
+      "severity": "P1",
+      "cause": "Explicit target admissions in Other material event rows are ignored by participation derivation.",
+      "affected_outputs": [
+        "medivation-gpt-6-astra-xhigh-r1",
+        "medivation-gpt-6.1-sol-xhigh-r1"
+      ],
+      "counts_against_model": false,
+      "evidence": "evaluation/analysis_diagnostics.md"
+    }
+  ],
+  "financing_scope_note": "Synacor A-04 has a confirmed January omission. The exact February transition is unresolved; do not mandate one replacement code for all three rows or count it as another cause.",
+  "model_totals": {
+    "gpt-6-astra": {
+      "major": 0,
+      "moderate": 1,
+      "minor": 0
+    },
+    "gpt-6.1-sol": {
+      "major": 1,
+      "moderate": 3,
+      "minor": 1
+    },
+    "claude-opus-5-5": {
+      "major": 3,
+      "moderate": 6,
+      "minor": 4
+    }
+  },
+  "per_deal_counts": {
+    "medivation": {
+      "gpt-6-astra": {
+        "major": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "gpt-6.1-sol": {
+        "major": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "claude-opus-5-5": {
+        "major": 1,
+        "moderate": 0,
+        "minor": 1
+      }
+    },
+    "penford": {
+      "gpt-6-astra": {
+        "major": 0,
+        "moderate": 1,
+        "minor": 0
+      },
+      "gpt-6.1-sol": {
+        "major": 0,
+        "moderate": 1,
+        "minor": 1
+      },
+      "claude-opus-5-5": {
+        "major": 1,
+        "moderate": 1,
+        "minor": 2
+      }
+    },
+    "synacor": {
+      "gpt-6-astra": {
+        "major": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "gpt-6.1-sol": {
+        "major": 1,
+        "moderate": 2,
+        "minor": 0
+      },
+      "claude-opus-5-5": {
+        "major": 1,
+        "moderate": 5,
+        "minor": 1
+      }
+    }
+  },
+  "overall_rank": [
+    "gpt-6-astra",
+    "gpt-6.1-sol",
+    "claude-opus-5-5"
+  ],
+  "per_deal_rank": {
+    "medivation": [
+      [
+        "gpt-6-astra",
+        "gpt-6.1-sol"
+      ],
+      [
+        "claude-opus-5-5"
+      ]
+    ],
+    "penford": [
+      [
+        "gpt-6-astra"
+      ],
+      [
+        "gpt-6.1-sol"
+      ],
+      [
+        "claude-opus-5-5"
+      ]
+    ],
+    "synacor": [
+      [
+        "gpt-6-astra"
+      ],
+      [
+        "gpt-6.1-sol"
+      ],
+      [
+        "claude-opus-5-5"
+      ]
+    ]
+  }
+}

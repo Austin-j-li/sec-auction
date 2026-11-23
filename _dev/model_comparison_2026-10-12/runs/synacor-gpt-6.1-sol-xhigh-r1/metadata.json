@@ -1,0 +1,28 @@
+{
+  "deal": "synacor",
+  "effort": "xhigh",
+  "expected_output": "synacor.xlsx",
+  "filing_name": "synacor_2021-03-03_SCTO-T.htm",
+  "filing_sha256": "2ea05ceef8c7315f7bf81743a70f67a2574e545cb303e48152efd6803b749b0e",
+  "instruction_name": "SEC_Deal_Ledger_Extraction_Instruction.md",
+  "instruction_sha256": "e6e1e2f3b53378bdb6770762d33fe9b84090c2ae27301d5bf725e0c3f629eb13",
+  "instruction_source": "/home/uctpiaj/work/Projects/sec-auction/SEC_Deal_Ledger_Extraction_Instruction.md",
+  "library_versions": {
+    "beautifulsoup4": "4.15.0",
+    "lxml": "5.2.1",
+    "openpyxl": "3.1.5"
+  },
+  "mode": "extract",
+  "model": "gpt-6.1-sol",
+  "prepared_at": "2026-10-12T16:10:03.159683+00:00",
+  "prompt_sha256": "16138707e81ac7be2ebdfcbbbc652779c1740b1aa0f280b2de630015c3711e37",
+  "provider": "sol",
+  "python_version": "3.12.13 (main, Apr 16 2026, 00:00:00) [GCC 14.3.1 20251022 (Red Hat 14.3.1-4)]",
+  "report_sha256": null,
+  "revised_from_ledger_schema": null,
+  "revised_from_sha256": null,
+  "runner_sha256": "5c2bc2b26eba396a010776f272280e92ccf49367cd4ef2cafd3e6633c9d7a9d7",
+  "sandbox": "bubblewrap fresh home/state/tmp; no network except HTTPS to the provider's API hosts through an allowlist proxy; one instruction; one filing; one output directory",
+  "service_tier": "priority",
+  "timeout_seconds": 5400
+}

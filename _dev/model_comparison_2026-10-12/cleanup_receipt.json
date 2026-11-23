@@ -1,0 +1,8 @@
+{
+  "recorded_at": "2026-10-12T16:48:41.385264+00:00",
+  "removed_path": "/home/uctpiaj/work/Projects/sec-auction/_dev/runs/model_comparison_2026-10-12",
+  "files": 120,
+  "bytes": 14371663,
+  "basis": "All nine workers and clients ended. Original workbook hashes and retained logs matched before removal. The preserved comparison packet remains.",
+  "audit": "operational_audit.json"
+}

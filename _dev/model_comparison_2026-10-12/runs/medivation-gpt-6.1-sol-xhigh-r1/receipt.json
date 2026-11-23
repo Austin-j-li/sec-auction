@@ -1,0 +1,30 @@
+{
+  "cell": {
+    "arm": "gpt-6.1-sol-xhigh",
+    "deal": "medivation",
+    "effort": "xhigh",
+    "filing": "medivation_2016-08-30_SCTO-T.htm",
+    "filing_dir": "/home/uctpiaj/work/Projects/sec-auction/_dev/cockpit/state/filings/medivation",
+    "id": "medivation-gpt-6.1-sol-xhigh-r1",
+    "model": "gpt-6.1-sol",
+    "provider": "sol",
+    "replicate": 1,
+    "service_tier": "priority",
+    "timeout_minutes": 90
+  },
+  "check_summary": {
+    "errors": 0,
+    "information": 0,
+    "total_issues": 0,
+    "warnings": 0
+  },
+  "checker_version": "Version 1",
+  "failure_reason": null,
+  "ledger_schema": "Version 1",
+  "mismatches": [],
+  "network_commands": [],
+  "recorded_at": "2026-10-12T16:20:19.836243+00:00",
+  "state": "completed",
+  "web_or_delegation": [],
+  "workbook_sha256": "9aa11b650635d26b9ef10fbfb019ea204e8c8134c123a66cbcdc0db64d0e2368"
+}

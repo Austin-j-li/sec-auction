@@ -1,0 +1,41 @@
+{
+  "synacor": {
+    "file": "synacor_2021-03-03_SCTO-T.htm",
+    "deal": "synacor",
+    "form_type": "SC TO-T",
+    "date_filed": "2021-03-03",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1408278/0001193125-21-066447.txt",
+    "document": "d126264dex99a1a.htm",
+    "fetched_utc": "2026-09-20T23:32:40Z",
+    "bytes": "517155",
+    "sha256": "2ea05ceef8c7315f7bf81743a70f67a2574e545cb303e48152efd6803b749b0e"
+  },
+  "penford": {
+    "file": "penford_2014-12-29_DEFM14A.htm",
+    "deal": "penford",
+    "form_type": "DEFM14A",
+    "date_filed": "2014-12-29",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/739608/0001193125-14-455030.txt",
+    "document": "d834783ddefm14a.htm",
+    "fetched_utc": "2026-09-20T10:22:50Z",
+    "bytes": "1301510",
+    "sha256": "5bd50713b2ce136b9b80d28360b6281d6890d0d95b35cfe36a3eacd288bb53aa"
+  },
+  "medivation": {
+    "slug": "medivation",
+    "name": "Medivation",
+    "form_type": "SC TO-T",
+    "date_filed": "2016-08-30",
+    "file": "medivation_2016-08-30_SCTO-T.htm",
+    "source_kind": "seed",
+    "seed_deal": "medivation",
+    "index_url": "https://www.sec.gov/Archives/edgar/data/1011835/0001193125-16-696889-index.htm",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1011835/0001193125-16-696889.txt",
+    "document": "d249052dex99a1a.htm",
+    "fetched_utc": "2026-09-23T16:30:31+00:00",
+    "bytes": 405762,
+    "sha256": "0aaf9d1a20d8935780bc3e1150e6226a40ede50501e46754061fd2cf2ba9d51e",
+    "added_by": "austin",
+    "added_at": "2026-09-23T16:30:39+00:00"
+  }
+}

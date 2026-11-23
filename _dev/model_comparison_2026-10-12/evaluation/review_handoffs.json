@@ -1,0 +1,53 @@
+{
+  "recorded_at": "2026-10-12T16:24:07.569410+00:00",
+  "method": "Staged delivery of complete candidate cell dumps after source inventories were fixed. Full rankings wait for all three labels. Labels hide engine and timing metadata; cell content is unchanged.",
+  "handoffs": [
+    {
+      "deal": "medivation",
+      "labels": [
+        "A",
+        "B"
+      ],
+      "files": {
+        "A": "354d227f5fa6ee0a337fe08fcfa0e82782b249d47b993cf35627c239ec0493a3",
+        "B": "0b73d912134d5c41eaffac40da4288458814b68a1268938a30bdc3fafe67a8cf"
+      }
+    },
+    {
+      "deal": "penford",
+      "labels": [
+        "A"
+      ],
+      "files": {
+        "A": "26bcedf400f0872a93cf8f764620af9ca2a8994ff744db8ff53d48853e615588"
+      }
+    }
+  ],
+  "final_snapshot_at": "2026-10-12T16:56:22.156755+00:00",
+  "complete_candidate_sets": {
+    "medivation": {
+      "A": "354d227f5fa6ee0a337fe08fcfa0e82782b249d47b993cf35627c239ec0493a3",
+      "B": "0b73d912134d5c41eaffac40da4288458814b68a1268938a30bdc3fafe67a8cf",
+      "C": "eb4e3a02f0da76a822d067c26cb08a6f1f7cbc649f23388495b98dfa2179137d"
+    },
+    "penford": {
+      "A": "26bcedf400f0872a93cf8f764620af9ca2a8994ff744db8ff53d48853e615588",
+      "B": "503632a21771d4674ba2c0d53db856e66d9da4e8df2ed057062b7804df518dca",
+      "C": "649e15d1fa15523954f341f147b4a0449925f57140364cacd76d9f8a67572620"
+    },
+    "synacor": {
+      "A": "80feec0b70ee62974c3bc83102451e7eefa500d805ccf6d17124f203c957ff36",
+      "B": "655ebb1fc3238062e8eba7c1480050f439f0cb239a6511f7fed6682df25246b9",
+      "C": "4967aa641579ccaacb19f56b4b58a8b5d58f195d2eda3192c2fea26752a22785"
+    }
+  },
+  "final_reports": {
+    "medivation_candidate_review.md": "73bfc4ca9506f957f5f25466606dc75bcd334243a9a1d8d713408892a66b2b2b",
+    "penford_final_review.md": "45912559c5615b9dbf44552baf647e37c27ae0d77535e376c1f78cb3f8927af5",
+    "synacor_candidate_review.md": "c6dde2d502a4450bdd914af484fbf50e42b4b30171ac4d9fcd44467f4694555e",
+    "financing_adjudication.md": "d8d8a8c7ecbbece57f1b22f9af3009ac524d6995b1659e9bb746ab86a2ec3c8f",
+    "price_adjudication.md": "b389eb25ebc35710d0b179ad26b7cb9399f516b2ce6b18c2b1669a6becd20eea",
+    "analysis_diagnostics.md": "fe1f161d62d06f8279b3b05659740d0829593c31f29b2964f897560124c17055"
+  },
+  "reviewer_note": "All inventories preceded candidate access. Candidate delivery was staged. Exact later delivery times are not reconstructed. A replacement reviewer completed Penford after the original thread could not resume. Deal reviewers did not receive the identity map before final reports."
+}

@@ -1,0 +1,7 @@
+{
+  "medivation_source": "/mnt/rdss/austin/data/sec-auction/sec_filings/medivation_2016-08-30_SCTO-T.htm",
+  "receipt": "/mnt/rdss/austin/data/sec-auction/sec_filings/medivation_2016-08-30_SCTO-T.htm.receipt.json",
+  "project_alias": "/home/uctpiaj/work/Projects/sec-auction/_dev/cockpit/state/filings/medivation/medivation_2016-08-30_SCTO-T.htm",
+  "sha256": "0aaf9d1a20d8935780bc3e1150e6226a40ede50501e46754061fd2cf2ba9d51e",
+  "note": "Only the task-created local alias changed. The live source remains untouched. The byte hashes are identical."
+}

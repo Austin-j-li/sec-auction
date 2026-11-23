@@ -1,0 +1,29 @@
+{
+  "cell": {
+    "arm": "gpt-6.1-sol-xhigh",
+    "deal": "penford",
+    "effort": "xhigh",
+    "filing": "penford_2014-12-29_DEFM14A.htm",
+    "id": "penford-gpt-6.1-sol-xhigh-r1",
+    "model": "gpt-6.1-sol",
+    "provider": "sol",
+    "replicate": 1,
+    "service_tier": "priority",
+    "timeout_minutes": 90
+  },
+  "check_summary": {
+    "errors": 0,
+    "information": 0,
+    "total_issues": 1,
+    "warnings": 1
+  },
+  "checker_version": "Version 1",
+  "failure_reason": null,
+  "ledger_schema": "Version 1",
+  "mismatches": [],
+  "network_commands": [],
+  "recorded_at": "2026-10-12T16:23:50.500225+00:00",
+  "state": "completed",
+  "web_or_delegation": [],
+  "workbook_sha256": "c3316cf8067c4a7c0d590b70cd3b82a39857fc379dc46794cd3096bc00877404"
+}

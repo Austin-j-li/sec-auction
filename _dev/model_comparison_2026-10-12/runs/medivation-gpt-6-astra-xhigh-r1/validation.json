@@ -1,0 +1,13 @@
+{
+  "bytes": 18359,
+  "exists": true,
+  "path": "/home/uctpiaj/work/Projects/sec-auction/_dev/runs/model_comparison_2026-10-12/medivation-gpt-6-astra-xhigh-r1/extraction/medivation.xlsx",
+  "sha256": "a789bb043bfd64315d522063b3d05234ef03c8539b6af761376f26f21eebabf5",
+  "sheet_names": [
+    "Deal ledger",
+    "Rounds",
+    "Questions",
+    "Deal facts"
+  ],
+  "valid_xlsx": true
+}

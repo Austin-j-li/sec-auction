@@ -1,0 +1,28 @@
+{
+  "deal": "medivation",
+  "effort": "xhigh",
+  "expected_output": "medivation.xlsx",
+  "filing_name": "medivation_2016-08-30_SCTO-T.htm",
+  "filing_sha256": "0aaf9d1a20d8935780bc3e1150e6226a40ede50501e46754061fd2cf2ba9d51e",
+  "instruction_name": "SEC_Deal_Ledger_Extraction_Instruction.md",
+  "instruction_sha256": "e6e1e2f3b53378bdb6770762d33fe9b84090c2ae27301d5bf725e0c3f629eb13",
+  "instruction_source": "/home/uctpiaj/work/Projects/sec-auction/SEC_Deal_Ledger_Extraction_Instruction.md",
+  "library_versions": {
+    "beautifulsoup4": "4.15.0",
+    "lxml": "5.2.1",
+    "openpyxl": "3.1.5"
+  },
+  "mode": "extract",
+  "model": "gpt-6.1-sol",
+  "prepared_at": "2026-10-12T16:10:03.146902+00:00",
+  "prompt_sha256": "6c3bd016978461af07ac7e524bea4c6f0f22f71ba6ae9c2ca0769986a41c721a",
+  "provider": "sol",
+  "python_version": "3.12.13 (main, Apr 16 2026, 00:00:00) [GCC 14.3.1 20251022 (Red Hat 14.3.1-4)]",
+  "report_sha256": null,
+  "revised_from_ledger_schema": null,
+  "revised_from_sha256": null,
+  "runner_sha256": "5c2bc2b26eba396a010776f272280e92ccf49367cd4ef2cafd3e6633c9d7a9d7",
+  "sandbox": "bubblewrap fresh home/state/tmp; no network except HTTPS to the provider's API hosts through an allowlist proxy; one instruction; one filing; one output directory",
+  "service_tier": "priority",
+  "timeout_seconds": 5400
+}
