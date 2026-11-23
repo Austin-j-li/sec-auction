@@ -50,12 +50,15 @@ RUNNER = Path(os.environ.get("COCKPIT_RUNNER") or HERE.parent / "sandbox/run_mod
 CHECKER = HERE.parent / "check_lean.py"
 CLAUDE = os.environ.get("COCKPIT_CLAUDE_BIN") or shutil.which("claude") or "claude"
 CODEX = os.environ.get("COCKPIT_CODEX_BIN") or shutil.which("codex") or "codex"
+AGY = os.environ.get("COCKPIT_AGY_BIN") or shutil.which("agy") or "agy"
 INSTRUCTION = REPO / "SEC_Deal_Ledger_Extraction_Instruction.md"
 LINK_RE = re.compile(r"https://claude\.com/cai/oauth/authorize\S+")
+AGY_LINK_RE = re.compile(r"https://accounts\.google\.com/o/oauth2/auth\S+")
 ANSI_RE = re.compile(r"\x1b\[[0-9;?]*[A-Za-z]|\x1b\][^\x07]*\x07|\x1b[()][A-Za-z0-9]|\x1b[=>]")
 CLAUDE_ERROR_RE = re.compile(r"(OAuth error:.*?)(?:Press Enter|$)", re.S)
 CONNECT_TIMEOUT = 10 * 60
 CHATGPT_CONNECT_TIMEOUT = 15 * 60
+AGY_CONNECT_TIMEOUT = 10 * 60
 DEVICE_LINK_RE = re.compile(r"https://auth\.openai\.com/\S+")
 DEVICE_CODE_RE = re.compile(r"\b[A-Z0-9]{4}-[A-Z0-9]{4,6}\b")
 # A sandboxed run cannot write back a refreshed Codex login, so the runner refuses one within
@@ -63,7 +66,7 @@ DEVICE_CODE_RE = re.compile(r"\b[A-Z0-9]{4}-[A-Z0-9]{4,6}\b")
 REFRESH_BELOW_HOURS = 24
 RUN_MARGIN_HOURS = 7
 REFRESH_INTERVAL = 3600
-REFRESH_COMMAND = ["exec", "--ephemeral", "--skip-git-repo-check", "-s", "read-only", "-m", "gpt-6-sol",
+REFRESH_COMMAND = ["exec", "--ephemeral", "--skip-git-repo-check", "-s", "read-only", "-m", "gpt-6.2-sol",
                    "-c", 'model_reasoning_effort="low"', "Reply with OK."]
 TERMINAL = {"completed", "failed", "timed_out", "cancelled"}
 
@@ -149,6 +152,8 @@ class Worker:
             self.update(job["id"], state="failed", input=None, error="Interrupted by a server restart; connect again.", ended_at=_now())
         for job in self.jobs("kind='connect_chatgpt' AND (state='waiting_for_approval' OR (state='queued' AND started_at IS NOT NULL))"):
             self.update(job["id"], state="failed", error="Interrupted by a server restart; connect again.", ended_at=_now())
+        for job in self.jobs("kind='connect_antigravity' AND (state IN ('waiting_for_code','completing') OR (state='queued' AND started_at IS NOT NULL))"):
+            self.update(job["id"], state="failed", input=None, error="Interrupted by a server restart; connect again.", ended_at=_now())
         for job in self.jobs("kind='lookup' AND (state='running' OR (state='queued' AND started_at IS NOT NULL))"):
             self.update(job["id"], state="failed", error="Interrupted by a server restart; look the filing up again.", ended_at=_now())
 
@@ -204,6 +209,12 @@ class Worker:
                 continue
             self.update(job["id"], started_at=_now())
             threading.Thread(target=self.chatgpt_sign_in, args=(job["id"], job["actor"]), daemon=True).start()
+        for job in self.jobs("kind='connect_antigravity' AND state='queued' AND started_at IS NULL"):
+            if job["cancel_requested"]:
+                self.update(job["id"], state="cancelled", ended_at=_now())
+                continue
+            self.update(job["id"], started_at=_now())
+            threading.Thread(target=self.antigravity_sign_in, args=(job["id"], job["actor"]), daemon=True).start()
         self.refresh_logins()
         for job in self.jobs("kind='lookup' AND state='queued' AND started_at IS NULL"):
             self.update(job["id"], started_at=_now())
@@ -239,11 +250,18 @@ class Worker:
         if engine["account"] == "claude":
             credential = runs.token_path(job["actor"])
             environment = {**os.environ, "SEC_CLAUDE_OAUTH_TOKEN_FILE": str(credential)}
+            has_cred = credential.is_file()
+        elif engine["account"] == "antigravity":
+            credential = runs.antigravity_token_path(job["actor"])
+            environment = {**os.environ, "SEC_AGY_AUTH_FILE": str(credential)}
+            has_cred = runs.antigravity_login(credential) is not None
         else:
             credential = runs.codex_home(job["actor"]) / "auth.json"
             environment = {**os.environ, "SEC_CODEX_AUTH_FILE": str(credential)}
-        if not credential.is_file():
-            self.fail(job, "not_connected", f"No {'Claude' if engine['account'] == 'claude' else 'ChatGPT'} account is connected for this user.")
+            has_cred = credential.is_file()
+        if not has_cred:
+            account_name = {"claude": "Claude", "chatgpt": "ChatGPT", "antigravity": "Antigravity"}[engine["account"]]
+            self.fail(job, "not_connected", f"No {account_name} account is connected for this user.")
             return False
         try:
             _, filing, _ = self.cockpit.resolve(job["slug"])
@@ -332,7 +350,8 @@ class Worker:
     def describe(self, job: sqlite3.Row, what: str) -> str:
         params = json.loads(job["params"])
         instruction = (params.get("instruction") or {}).get("label") or instruction_version() or "instruction"
-        return f"{engine_of(params)[1]['label']} · {params.get('effort')} · {instruction} {what}"
+        label = params.get("engine_label") or engine_of(params)[1]["label"]
+        return f"{label} · {params.get('effort')} · {instruction} {what}"
 
     def import_version(self, job: sqlite3.Row, run_dir: Path, workbook: Path, status: dict[str, Any], checker: dict[str, Any]) -> str:
         metadata = json.loads((run_dir / "metadata.json").read_text())
@@ -571,6 +590,128 @@ class Worker:
                     os.killpg(process.pid, signal.SIGTERM)
                 except ProcessLookupError:
                     pass
+            shutil.rmtree(staging, ignore_errors=True)
+
+    # ---- Antigravity sign-in -------------------------------------------------------
+
+    def antigravity_sign_in(self, job_id: str, user: str) -> None:
+        """Drive `agy acp --login`: publish the Google OAuth URL, feed the pasted code/URL, save the token."""
+        staging = Path(tempfile.mkdtemp(prefix="cockpit-agy-signin-"))
+        master, slave = pty.openpty()
+        fcntl.ioctl(slave, termios.TIOCSWINSZ, struct.pack("HHHH", 50, 500, 0, 0))
+        process = None
+        try:
+            env = {
+                "HOME": str(staging),
+                "PATH": os.environ.get("PATH", ""),
+                "TERM": "xterm-256color",
+                "NO_COLOR": "1",
+                "BROWSER": "/bin/false",
+                "SSH_CONNECTION": "1 2 3 4",
+                "ANTIGRAVITY_REMOTE_OOB_AUTH": "1",
+            }
+            process = subprocess.Popen(
+                [AGY, "acp", "--login"],
+                stdin=slave, stdout=slave, stderr=slave, cwd=staging,
+                start_new_session=True, close_fds=True, env=env,
+            )
+            os.close(slave)
+            slave = -1
+            output = ""
+            deadline = time.monotonic() + AGY_CONNECT_TIMEOUT
+
+            def read(seconds: float) -> bool:
+                nonlocal output
+                ready, _, _ = select.select([master], [], [], seconds)
+                if not ready:
+                    return True
+                try:
+                    chunk = os.read(master, 65536)
+                except OSError:
+                    return False
+                if not chunk:
+                    return False
+                output = ANSI_RE.sub("", output + chunk.decode("utf-8", "replace"))
+                return True
+
+            link = None
+            while link is None:
+                if time.monotonic() > deadline or self.job(job_id)["cancel_requested"]:
+                    raise TimeoutError("cancelled" if self.job(job_id)["cancel_requested"] else "Antigravity did not offer a sign-in link.")
+                if not read(0.5) and process.poll() is not None:
+                    raise RuntimeError("Antigravity exited before offering a sign-in link.")
+                found = AGY_LINK_RE.search(output)
+                if found and "paste the authorization code" in output.lower():
+                    link = found.group(0)
+            self.update(job_id, state="waiting_for_code", result=json.dumps({"link": link}))
+            while True:
+                job = self.job(job_id)
+                if job["cancel_requested"]:
+                    raise TimeoutError("cancelled")
+                if job["input"]:
+                    code = job["input"]
+                    break
+                if time.monotonic() > deadline:
+                    raise TimeoutError("No authorization code was entered within ten minutes.")
+                read(1.0)
+            self.update(job_id, state="completing", input=None)
+            output_before = len(output)
+            os.write(master, code.encode())
+            read(0.5)
+            os.write(master, b"\r")
+            finish = time.monotonic() + 90
+            while process.poll() is None and time.monotonic() < finish:
+                read(0.5)
+            if process.poll() is None:
+                raise RuntimeError("Antigravity timed out while completing the sign-in.")
+            while read(0.1):
+                pass
+            token_file = staging / ".gemini/antigravity-cli/antigravity-oauth-token"
+            login = runs.antigravity_login(token_file)
+            if process.returncode != 0 or login is None:
+                after = output[output_before:].replace(code, "[code]")
+                lines = [ln.strip() for ln in after.splitlines() if ln.strip()]
+                detail = lines[-1][:240] if lines else f"exit {process.returncode}"
+                log(f"Antigravity sign-in {job_id} for {user} failed: {detail!r}")
+                raise RuntimeError(f"Antigravity sign-in did not complete ({detail}). Connect again and paste a fresh code or callback URL.")
+            dest = runs.antigravity_token_path(user)
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            os.chmod(dest.parent, 0o700)
+            tmp = dest.with_name(f".tmp-{job_id}")
+            descriptor = os.open(tmp, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
+            with os.fdopen(descriptor, "wb") as handle:
+                handle.write(token_file.read_bytes())
+            os.chmod(tmp, 0o600)
+            os.replace(tmp, dest)
+            conn = self.connect()
+            try:
+                conn.execute(
+                    "INSERT INTO accounts VALUES (?, 'antigravity', ?, ?) ON CONFLICT(user, provider) "
+                    "DO UPDATE SET connected_at=excluded.connected_at, expires_at=excluded.expires_at",
+                    (user, _now(), login["expires_at"]),
+                )
+                conn.execute("UPDATE jobs SET state='completed', ended_at=?, error=NULL WHERE id=?", (_now(), job_id))
+                conn.commit()
+            finally:
+                conn.close()
+            log(f"Antigravity account connected for {user}")
+        except TimeoutError as exc:
+            cancelled = str(exc) == "cancelled"
+            self.update(job_id, state="cancelled" if cancelled else "failed", input=None, error=None if cancelled else str(exc), ended_at=_now())
+        except Exception as exc:  # noqa: BLE001 - report every sign-in failure to the page
+            self.update(job_id, state="failed", input=None, error=str(exc) or type(exc).__name__, ended_at=_now())
+        finally:
+            if process and process.poll() is None:
+                try:
+                    os.killpg(process.pid, signal.SIGTERM)
+                except ProcessLookupError:
+                    pass
+            for descriptor in (master, slave):
+                if descriptor >= 0:
+                    try:
+                        os.close(descriptor)
+                    except OSError:
+                        pass
             shutil.rmtree(staging, ignore_errors=True)
 
     def chatgpt_users(self) -> list[str]:

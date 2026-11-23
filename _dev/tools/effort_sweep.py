@@ -35,7 +35,7 @@ from sandbox import run_model
 PROJECT = Path(__file__).resolve().parents[2]
 RUNNER = Path(run_model.__file__).resolve()
 INSTRUCTION = PROJECT / run_model.INSTRUCTION_NAME
-BINARY_ENV = {"opus": "SEC_CLAUDE_BIN", "sol": "SEC_CODEX_BIN"}
+BINARY_ENV = {"opus": "SEC_CLAUDE_BIN", "sol": "SEC_CODEX_BIN", "agy": "SEC_AGY_BIN"}
 RECEIPT_FILES = ("metadata.json", "prompt.txt", "launch.json", "command.json", "status.json",
                  "validation.json", "provider-results.json", "stderr.log", "launcher.log")
 FINISHED = ("completed", "failed", "timed_out")
@@ -100,7 +100,8 @@ def plan(args: argparse.Namespace) -> None:
     for spec in args.arms:
         provider, _, rest = spec.partition(":")
         model, _, effort = rest.rpartition(":")
-        if provider not in BINARY_ENV or model not in run_model.MODELS[provider] or effort not in run_model.EFFORTS[provider]:
+        if (provider not in BINARY_ENV or model not in run_model.MODELS[provider]
+                or effort not in run_model.allowed_efforts(provider, model)):
             unknown.append(spec)
             continue
         arms.append({"arm": f"{model.removeprefix('claude-')}-{effort}", "provider": provider,
@@ -187,7 +188,8 @@ def cell_mismatches(cell: dict, run_dir: Path, pin: dict) -> list[str]:
 def audit_events(events_path: Path) -> dict[str, list[str]]:
     """Shell commands that look able to reach the network, and any web or delegation tool use.
 
-    Claude reports tool calls as assistant tool_use blocks; Codex as completed items.
+    Claude reports tool calls as assistant tool_use blocks; Codex as completed items; Antigravity
+    as step_update events.
     """
     found: dict[str, list[str]] = {"network_commands": [], "web_or_delegation": []}
     for event in run_model.events(events_path):
@@ -207,6 +209,19 @@ def audit_events(events_path: Path) -> dict[str, list[str]]:
                 found["network_commands"].append(str(item.get("command"))[:500])
             elif item.get("type") in ("web_search", "collab_tool_call", "mcp_tool_call"):
                 found["web_or_delegation"].append(str(item.get("type")))
+        if event.get("event") == "step_update" and isinstance(event.get("step_update"), dict):
+            su = event["step_update"]
+            if su.get("subagent_info"):
+                found["web_or_delegation"].append("subagent_info")
+            if su.get("step_type") == "tool" and su.get("state") == "DONE":
+                tool_name = str(su.get("tool_name") or "")
+                tool_info = su.get("tool_info") if isinstance(su.get("tool_info"), dict) else {}
+                if tool_name == "run_command" and not tool_info.get("error"):
+                    command = str((tool_info.get("parameters") or {}).get("CommandLine", ""))
+                    if NETWORK.search(command):
+                        found["network_commands"].append(command[:500])
+                elif tool_name and tool_name not in run_model.AGY_ALLOWED_TOOLS and not tool_info.get("error"):
+                    found["web_or_delegation"].append(tool_name)
     return found
 
 

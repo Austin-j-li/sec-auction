@@ -3,7 +3,7 @@ import { Button, Checkbox, Field, Input, Select } from '@fluentui/react-componen
 import { StopIcon, WarningIcon, XIcon } from '@phosphor-icons/react';
 import { count } from './api';
 import { defaultInstructionId, instructionOptionLabel, orderInstructions } from './instructions';
-import { accountEngines, accountLabel, activeRunLabel, CANCELLABLE_STATES, checkerLabel, connectHint, DEFAULT_EFFORT, DEFAULT_TIMEOUT, effortFor, extractNotice, FABLE_WARNING, failureText, formatElapsed, isActive, jobElapsed, jobEngineLabel, jobInstructionLabel, pickEngine, planUsageText, runSummary, STATE_LABELS, stateTone, TIMEOUT_RANGE, usageText, validTimeout } from './runs';
+import { accountEngines, accountLabel, activeRunLabel, CANCELLABLE_STATES, checkerLabel, connectHint, DEFAULT_EFFORT, DEFAULT_TIMEOUT, effortFor, extractNotice, failureText, formatElapsed, GROUP_LABELS, isActive, jobElapsed, jobEngineLabel, jobInstructionLabel, pickEngine, planUsageText, runSummary, STATE_LABELS, stateTone, TIMEOUT_RANGE, usageText, validTimeout } from './runs';
 import { displayName, shortTime } from './trace';
 import { Dot, Empty, Loading, Message } from './ui';
 
@@ -68,17 +68,22 @@ export function RunsTab({ jobs, error, loading, canCancel, onCancel, onOpenVersi
   </div>;
 }
 
-// Start an extraction: engine, effort, instruction and time limit. An engine whose account (Claude or ChatGPT) is not
-// connected is listed but disabled; with no usable engine at all the dialog explains and links to Settings.
+// Start an extraction: engine, effort, instruction and time limit. An engine whose account (Claude, ChatGPT, or
+// Antigravity) is not connected is listed but disabled; with no usable engine at all the dialog explains and links
+// to Settings. Earlier GPT models stay tucked behind a toggle unless requested.
 // working: the deal's workspace summary (its base's instruction and schema), for the line about the working copy.
 export function ExtractDialog({ user, account, accountError, instructions, instructionsError, busy, error, onStart, onClose, onSettings, dialogRef, working = null }) {
   const engines = accountEngines(account);
   const [engineId, setEngineId] = useState(null);
   const [effort, setEffort] = useState(DEFAULT_EFFORT);
   const [fast, setFast] = useState(false);
+  const [showEarlier, setShowEarlier] = useState(false);
   const [instructionId, setInstructionId] = useState(null);
   const [timeout, setTimeoutMinutes] = useState(String(DEFAULT_TIMEOUT));
-  const engine = pickEngine(engines, engineId);
+  const currentEngines = engines.filter(item => !item.legacy);
+  const earlierEngines = engines.filter(item => item.legacy);
+  const visibleEngines = showEarlier ? engines : currentEngines;
+  const engine = pickEngine(visibleEngines, engineId);
   const items = orderInstructions(instructions?.items);
   const instruction = items.find(item => item.id === instructionId) || items.find(item => item.id === defaultInstructionId(instructions)) || items[0] || null;
   // Once the account arrives, settle on an engine and its default effort.
@@ -88,20 +93,34 @@ export function ExtractDialog({ user, account, accountError, instructions, instr
   const unavailable = engines.filter(item => !item.connected);
   const openSettings = event => { if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) { event.preventDefault(); onSettings(); } };
   const missing = [...new Set(unavailable.map(item => item.account))]
-    .map(name => `${unavailable.filter(item => item.account === name).map(item => item.label).join(' and ')}: ${connectHint({ account: name })}.`).join(' ');
-  const warning = engine?.id === 'fable51' ? FABLE_WARNING : engine?.experimental ? engine.note : '';
+    .map(name => `${accountLabel(name)}: ${connectHint({ account: name })}.`).join(' ');
+  const warning = engine?.experimental && engine?.note ? engine.note : '';
   const info = !engine?.experimental && engine?.note ? engine.note : '';
   const notice = extractNotice(working, instruction);
+  const fastRequested = Boolean(engine && (engine.fast_mode === 'always' || (engine.fast_mode === 'optional' && fast)));
+  const groups = ['claude', 'chatgpt', 'antigravity']
+    .map(key => ({ key, label: GROUP_LABELS[key] || key, items: currentEngines.filter(item => item.group === key) }))
+    .filter(group => group.items.length > 0);
   function chooseEngine(id) {
-    const next = engines.find(item => item.id === id);
+    const next = visibleEngines.find(item => item.id === id);
     if (!next?.connected) return;
     setEngineId(id); setEffort(current => effortFor(next, current));
+  }
+  function toggleEarlier(checked) {
+    setShowEarlier(checked);
+    if (!checked && engine?.legacy) {
+      const fallback = pickEngine(currentEngines);
+      if (fallback) {
+        setEngineId(fallback.id);
+        setEffort(current => effortFor(fallback, current));
+      }
+    }
   }
   function submit(event) {
     event.preventDefault();
     if (!timeoutOk || !engine) return;
     onStart({ engine: engine.id, effort: effortFor(engine, effort), timeout_minutes: Number(timeout),
-      service_tier: engine.id === 'sol61' || (engine.id === 'astra6' && fast) ? 'priority' : null,
+      service_tier: fastRequested ? 'priority' : null,
       ...(instruction ? { instruction_id: instruction.id } : {}) });
   }
   return <div className="modal-backdrop" role="presentation">
@@ -112,7 +131,7 @@ export function ExtractDialog({ user, account, accountError, instructions, instr
       </div>
       {!account && !accountError && <Loading label="Checking your accounts"/>}
       {accountError ? <>
-        <p>Extractions run on the Claude or ChatGPT plan of the person who starts them, and your account status could not be loaded.</p>
+        <p>Extractions run on the Claude, ChatGPT, or Google AI plan of the person who starts them, and your account status could not be loaded.</p>
         <p className="run-error mono">{accountError}</p>
         <div className="modal-actions">
           <Button appearance="secondary" onClick={onClose}>Close</Button>
@@ -120,11 +139,13 @@ export function ExtractDialog({ user, account, accountError, instructions, instr
         </div>
       </> : account && !engine ? <>
         <Field label="Engine" hint="Every engine needs a connected account.">
-          <Select value={engines[0]?.id || ''} disabled={engines.length === 0}>
-            {engines.map(item => <option key={item.id} value={item.id} disabled>{item.label}{item.experimental ? ' (experimental)' : ''} — {connectHint(item)}</option>)}
+          <Select value={currentEngines[0]?.id || ''} disabled={engines.length === 0}>
+            {groups.map(group => <optgroup key={group.key} label={group.label}>
+              {group.items.map(item => <option key={item.id} value={item.id} disabled>{item.label}{item.experimental ? ' (experimental)' : ''} — {connectHint(item)}</option>)}
+            </optgroup>)}
           </Select>
         </Field>
-        <p className="extract-explain">Extractions run on the Claude or ChatGPT plan of the person who starts them, and you have not connected an account yet.</p>
+        <p className="extract-explain">Extractions run on the Claude, ChatGPT, or Google AI plan of the person who starts them, and you have not connected an account yet.</p>
         <div className="modal-actions">
           <Button appearance="secondary" onClick={onClose}>Close</Button>
           <Button as="a" appearance="primary" href="/settings" onClick={openSettings}>Open settings</Button>
@@ -132,12 +153,18 @@ export function ExtractDialog({ user, account, accountError, instructions, instr
       </> : account && <form onSubmit={submit}>
         <Field label="Engine" hint={missing ? <>{missing} <a className="header-link" href="/settings" onClick={openSettings}>Open settings</a></> : undefined}>
           <Select value={engine.id} onChange={(_, data) => chooseEngine(data.value)}>
-            {engines.map(item => <option key={item.id} value={item.id} disabled={!item.connected}>{item.label}{item.experimental ? ' (experimental)' : ''}{item.connected ? '' : ` — ${connectHint(item)}`}</option>)}
+            {groups.map(group => <optgroup key={group.key} label={group.label}>
+              {group.items.map(item => <option key={item.id} value={item.id} disabled={!item.connected}>{item.label}{item.experimental ? ' (experimental)' : ''}{item.connected ? '' : ` — ${connectHint(item)}`}</option>)}
+            </optgroup>)}
+            {showEarlier && earlierEngines.length > 0 && <optgroup label="Earlier models">
+              {earlierEngines.map(item => <option key={item.id} value={item.id} disabled={!item.connected}>{item.label}{item.connected ? '' : ` — ${connectHint(item)}`}</option>)}
+            </optgroup>}
           </Select>
         </Field>
+        {earlierEngines.length > 0 && <Checkbox className="earlier-toggle" label={`Show earlier GPT models (${earlierEngines.map(item => item.label).join(', ')})`} checked={showEarlier} onChange={(_, data) => toggleEarlier(Boolean(data.checked))}/>}
         {warning && <p className="extract-warning tone-warning"><WarningIcon size={16} aria-hidden="true"/><span>{warning}</span></p>}
         {info && <p className="extract-info">{info}</p>}
-        {engine.id === 'astra6' && <Field label="Service" hint="Fast service uses more of your ChatGPT plan.">
+        {engine.fast_mode === 'optional' && <Field label="Service" hint="Fast service uses more of your ChatGPT plan.">
           <Checkbox label="Fast service" checked={fast} onChange={(_, data) => setFast(Boolean(data.checked))}/>
         </Field>}
         <Field label="Effort">
@@ -155,7 +182,7 @@ export function ExtractDialog({ user, account, accountError, instructions, instr
           <Input className="mono" type="number" min={TIMEOUT_RANGE[0]} max={TIMEOUT_RANGE[1]} step={1} value={timeout} onChange={(_, data) => setTimeoutMinutes(data.value)}/>
         </Field>
         <p className="extract-summary mono">{runSummary(effortFor(engine, effort), user, engine, instruction?.label || (instructionsError ? 'default instruction' : '…'))}</p>
-        {(engine.id === 'sol61' || (engine.id === 'astra6' && fast)) && <p className="extract-info">Fast service requested</p>}
+        {fastRequested && <p className="extract-info">Fast service requested</p>}
         {account.parallel_limits && <p className="extract-info">Up to {account.parallel_limits.per_user} runs at once on your account. Extra runs wait.</p>}
         {usage && <p className="extract-usage mono">{accountLabel(engine.account)} plan usage · {usage}</p>}
         {error && <p className="run-failure tone-error" role="alert">{error}</p>}

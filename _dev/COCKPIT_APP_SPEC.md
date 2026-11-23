@@ -7,7 +7,7 @@ Approved by Austin on 23 September 2026. Product specification for the shared ex
 Austin and Alex each log in with their own identity and, without a terminal or an agent conversation, can:
 
 1. add a deal by searching the seed list or pasting an EDGAR link;
-2. start an extraction on their own Claude or ChatGPT subscription, choosing the engine, effort and instruction version (default: Claude Opus 5.5, medium, the default instruction);
+2. start an extraction on their own Claude, ChatGPT, or Google AI (Antigravity) subscription, choosing the engine, effort and instruction version (default: Claude Opus 5.5, medium, the default instruction);
 3. edit instructions as new versions, never altering a frozen one;
 4. review and edit the shared working copy, and see what the other person changed or said, without being flooded.
 
@@ -20,7 +20,7 @@ The research guarantees stay as they are: blind, isolated extraction; immutable 
 | Who may extract | Austin and Alex, each on their own initiative. |
 | Deal sources | Search `ref/seed.csv` by name, or paste any EDGAR filing or index link. |
 | Re-extraction of an edited deal | Adds a new read-only version. The working copy keeps its edits and base; changing its base is a separate, deliberate action. |
-| Engines | Claude Opus 5.5 (default, medium), Claude Fable 5.1, GPT-6.1-Sol (always on the Codex Fast, priority, tier) and GPT-6-Astra (high by default when chosen), at every effort the runner allows. Claude engines use the starting user's Claude plan; GPT engines use the starting user's ChatGPT plan. |
+| Engines | Claude Opus 5.5 (default, medium), Claude Fable 5.2 (retiring Fable 5.1), GPT-6.2-Sol and GPT-6.1-Sol (always on the Codex Fast, priority, tier), GPT-6.2-Astra and GPT-6-Astra (high by default, Fast optional), Gemini 4 Neon (high by default), Gemini 4 Carbon (high by default, up to high), and Gemini 4 Hydrogen (high by default). GPT-6.1-Sol and GPT-6-Astra stay under an "Earlier models" toggle. Claude engines use the starting user's Claude plan; GPT engines use the starting user's ChatGPT plan; Gemini engines use the starting user's Google AI plan via Antigravity CLI (`agy`). |
 | Instructions | Editable in the app as new versions. Either user may publish a version and make it the default. Drafts may be run: the exact text is frozen under its hash and the version is labelled "draft instruction". |
 | Version labels | Every extraction version states its engine, effort, instruction, who ran it and when (§6.3). |
 | Trace | Recommended design in §8: threaded comments, a per-deal "since your last visit" digest, and last-changed-by on hover. No email, no live notifications. |
@@ -56,27 +56,32 @@ browser ──Cloudflare Access──▶ server.py (HTTP, SQLite, Access key che
 - **Backups**: a nightly job copies the SQLite database (online backup API) and the store to `~/backups/ledger-live/`, keeping 14 days. The database is the only copy of working revisions and comments.
 - **Capacity**: the VM has 64 CPUs and 125 GB RAM. A run is mostly waiting on the model, so the cap is set by subscription limits, not the machine: at most 4 concurrent runs overall and 2 per user, with the rest queued.
 
-## 5. Accounts: "Connect your Claude / ChatGPT account"
+## 5. Accounts: "Connect your Claude / ChatGPT / Antigravity account"
 
-A **Settings → Accounts** page lists, per user: Claude (not connected / connected, expires *date*) and ChatGPT (same), with Connect, Reconnect and Disconnect.
+A **Settings → Accounts** page lists, per user: Claude (not connected / connected, expires *date*), ChatGPT (same), and Antigravity (same, plus account email), with Connect, Reconnect and Disconnect.
 
-### 5.1 Claude (Opus 5.5, Fable 5.1)
+### 5.1 Claude (Opus 5.5, Fable 5.2)
 
 - The worker starts `claude setup-token` in a pseudo-terminal with a scratch home. The page shows the sign-in link; the user opens it, approves with their own claude.ai login and pastes back the code shown. The worker feeds the code in, captures the one-year token and stores it.
 - Fallback if the pseudo-terminal flow proves unreliable: the page explains how to run `claude setup-token` once on any computer and has a box to paste the token.
 - Runs pass the token as the runner already does, through an inherited pipe (`CLAUDE_CODE_OAUTH_TOKEN_FILE_DESCRIPTOR`), never in a command line, the sandbox environment or the run directory. The runner's `SEC_CLAUDE_OAUTH_TOKEN_FILE` becomes a per-user path.
 
-### 5.2 ChatGPT (GPT-6.1-Sol, GPT-6-Astra)
+### 5.2 ChatGPT (GPT-6.2-Sol, GPT-6.2-Astra, GPT-6.1-Sol, GPT-6-Astra)
 
 - The worker runs `codex login --device-auth` with a per-user `CODEX_HOME`. The page shows the verification link and code; the user approves in their own ChatGPT account; the worker waits for completion.
 - Refresh tokens rotate. The runner mounts the user's Codex login read-only and refuses a run with under seven hours of access-token life, because a refresh inside the sandbox cannot be written back. Per-user credentials keep that rule. The worker refreshes a user's credential outside the sandbox, under a per-user lock and never during that user's GPT run, when less than 24 hours remain.
 
-### 5.3 Credential handling
+### 5.3 Antigravity (Gemini 4 Neon, Carbon, Hydrogen)
+
+- The worker runs `agy acp --login` in a pseudo-terminal with a temporary home and OOB auth enabled. The page shows the Google OAuth link; the user signs in and pastes back the authorization code or callback URL. The worker saves the resulting `antigravity-oauth-token` under the user's credential folder (`SEC_AGY_AUTH_FILE`).
+- Each sandboxed extraction receives a copy of that file inside ephemeral state outside the run directory, so any OAuth token refresh during a run works without mutating the user's stored login.
+
+### 5.4 Credential handling
 
 - Stored unencrypted under `COCKPIT_TOKEN_ROOT` (default `~/.config/sec-extraction/users/<user>/`), outside the repository and the store, in files only the service user can read (mode 600). Never returned to the browser, never logged.
 - Every run records `account: austin|alex` and the provider, so a version always says whose plan paid for it.
 - An engine whose provider the starting user has not connected is disabled in the Run dialog, with a link to Settings.
-- Disconnect deletes the stored credential. The page also tells the user where to revoke it on claude.ai or chatgpt.com.
+- Disconnect deletes the stored credential. The page also tells the user where to revoke it on claude.ai, chatgpt.com, or myaccount.google.com/permissions.
 
 ## 6. Extractions
 
@@ -84,8 +89,8 @@ A **Settings → Accounts** page lists, per user: Claude (not connected / connec
 
 Opened from a deal's toolbar (**Extract**) or right after adding a deal.
 
-- **Engine**: Claude Opus 5.5 (default), Claude Fable 5.1 (marked *experimental*), GPT-6.1-Sol, GPT-6-Astra. Selecting GPT-6.1-Sol shows one line: it runs on the Fast (priority) tier, about twice as fast, and uses more of the ChatGPT plan. Selecting Fable shows: "Fable's safety filter often blocks runs partway (6 of 11 test prompts); a blocked run fails and must be restarted."
-- **Effort**: `low`, `medium`, `high`, `xhigh`, `max`, restricted to what the engine supports; default `medium`, except Astra defaults to `high` when selected. `ultra` is not offered because it delegates to subagents, which breaks isolation.
+- **Engine**: grouped by provider — Claude (`Opus 5.5` default, `Fable 5.2`), ChatGPT (`GPT-6.2-Sol`, `GPT-6.2-Astra`), and Antigravity (`Gemini 4 Neon`, `Gemini 4 Carbon`, `Gemini 4 Hydrogen`). A toggle reveals earlier GPT models (`GPT-6.1-Sol`, `GPT-6-Astra`). Selecting a `-Sol` model runs on the Fast (priority) tier; `-Astra` models show a **Fast service** checkbox.
+- **Effort**: restricted to what the engine supports (`low`–`max` for Claude and Codex; `low`–`xhigh` for Gemini 4 Neon and Hydrogen; `low`–`high` for Gemini 4 Carbon). Default `medium` for Claude and Sol, `high` for Astra and Gemini 4. `ultra` is not offered because it delegates to subagents, which breaks isolation.
 - **Instruction**: the default published version, preselected. The list shows published versions, then drafts, each marked.
 - **Time limit**: default 90 minutes (runner range 10–360).
 - A one-line summary before the button, for example: "Opus 5.5 · medium · v0 · on Alex's Claude plan · usually 10–15 minutes."
@@ -197,7 +202,7 @@ An **Instructions** page lists every version: name (for example v0), status (pub
 - The checker runs only after the provider exits, outside the sandbox.
 - Every version records the full provenance in §6.3. Two versions are comparable only if their instruction hashes are the same, and the Compare view says when they are not.
 - Revision mode (an agent seeing a workbook and findings) is **not** offered in the app. It stays a separate, explicitly requested step.
-- The cockpit's engine list is Opus 5.5, Fable 5.1, GPT-6.1-Sol and GPT-6-Astra. Each addition gets the same checks (the served model must match the requested one; refusal fallback is disabled for Claude).
+- The cockpit's engine list is Opus 5.5, Fable 5.2, GPT-6.2-Sol, GPT-6.2-Astra, Gemini 4 Neon, Gemini 4 Carbon, Gemini 4 Hydrogen, and (under Earlier models) GPT-6.1-Sol and GPT-6-Astra. Each addition gets the same checks (the served model must match the requested one; refusal fallback is disabled for Claude; Antigravity blocks web, browser, subagent, workflow, scheduling, and MCP tools via a read-only `PreToolUse` hook and post-run stream audit).
 
 ## 11. Repository export
 
@@ -211,4 +216,4 @@ An admin-only script, not a button, writes a chosen instruction version or deal 
 4. A new deal's first completed version becomes its working-copy base automatically.
 5. Versions and deals can be hidden, never deleted.
 6. The digest's session gap is 30 minutes.
-7. Fable 5.1 is offered as *experimental*. A safeguard block is recorded as `provider_refusal` and shown as "blocked by Fable's safety filter".
+7. Fable 5.1 is retired and replaced by Fable 5.2; any safeguard block across Fable models is recorded as `provider_refusal` and shown as "Blocked by Fable's safety filter".
