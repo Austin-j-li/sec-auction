@@ -12,6 +12,7 @@ import importlib.metadata
 import json
 import os
 from pathlib import Path
+import re
 import shutil
 import signal
 import socket
@@ -92,11 +93,18 @@ CLAUDE_ENV = {
 # cannot reach the cockpit or another service on the host, or send data anywhere else (Austin,
 # 9 October 2026). Codex's login host auth.openai.com stays out, so a sandboxed Codex cannot refresh
 # the read-only login (see CODEX_TOKEN_MARGIN_HOURS). Antigravity consumer OAuth access tokens expire
-# hourly, so oauth2.googleapis.com stays open while the token file is copied into ephemeral state.
+# hourly, so oauth2.googleapis.com stays open while the token file is copied into ephemeral state;
+# www.googleapis.com serves OAuth userinfo eligibility and aicode.googleapis.com serves the AI Code Gateway.
 NETWORK_HOSTS = {
     "opus": ("api.anthropic.com",),
     "sol": ("chatgpt.com", "api.openai.com"),
-    "agy": ("daily-cloudcode-pa.googleapis.com", "cloudcode-pa.googleapis.com", "oauth2.googleapis.com"),
+    "agy": (
+        "daily-cloudcode-pa.googleapis.com",
+        "cloudcode-pa.googleapis.com",
+        "aicode.googleapis.com",
+        "oauth2.googleapis.com",
+        "www.googleapis.com",
+    ),
 }
 PROXY_PORT = 3128
 PROXY_SOCKET = "/run/sec-net.sock"
@@ -133,7 +141,6 @@ AGY_ALLOWED_TOOLS = frozenset({
 })
 AGY_SETTINGS = {
     "disableSlashCommands": True,
-    "enableTelemetry": False,
     "enableTerminalSandbox": False,
     "allowNonWorkspaceAccess": False,
     "artifactReviewPolicy": "always-proceed",
@@ -474,9 +481,9 @@ def prepare(args: argparse.Namespace) -> None:
         raise SystemExit(f"{args.provider} runs one of {', '.join(MODELS[args.provider])} "
                          f"(effort {', '.join(efforts)} for {model})")
     service_tier = getattr(args, "service_tier", None)
-    if service_tier is not None and (args.provider != "sol" or service_tier != "priority"):
-        raise SystemExit("--service-tier priority applies only to Codex runs")
-    service_tier = service_tier or SERVICE_TIER.get(model)
+    if service_tier is not None and (args.provider != "sol" or service_tier not in ("priority", "standard")):
+        raise SystemExit("--service-tier priority or standard applies only to Codex runs")
+    service_tier = None if service_tier == "standard" else (service_tier or SERVICE_TIER.get(model))
     timeout = TIMEOUT_SECONDS if args.timeout_minutes is None else args.timeout_minutes * 60
     if not TIMEOUT_BOUNDS[0] <= timeout <= TIMEOUT_BOUNDS[1]:
         raise SystemExit("--timeout-minutes must be between 10 and 360")
@@ -773,13 +780,13 @@ def provider_command(run_dir: Path, provider: str, metadata: dict,
     if provider == "agy":
         model_slug = f"{model}-{effort}"
         command = [
-            str(AGY_SANDBOX), "--print", "--output-format", "stream-json",
+            str(AGY_SANDBOX), f"--print={prompt}", "--output-format", "stream-json",
             "--model", model_slug, "--disable-slash-commands",
             "--dangerously-skip-permissions", "--settings", AGY_SETTINGS_SANDBOX,
         ]
         if resume:
             command += ["--conversation", resume]
-        return command + [prompt]
+        return command
     command = [
         str(CLAUDE_SANDBOX), "--print", "--output-format", "stream-json", "--verbose",
         "--model", model, "--effort", effort, "--safe-mode",
@@ -1077,7 +1084,7 @@ def _run_in_sandbox(args: argparse.Namespace, run_dir: Path, metadata: dict, bin
     codex_limit = codex_usage_limit(run_dir) if args.provider == "sol" else None
     agy_limit = agy_usage_limit(run_dir) if args.provider == "agy" else None
     finished = validation.get("valid_xlsx") and validation.get("sheet_names") == SHEETS
-    expected_agy_model = f"{metadata['model']}-{metadata['effort']}".lower()
+    expected_agy_model = re.sub(r"[^a-z0-9]+", "-", f"{metadata['model']}-{metadata['effort']}".lower()).strip("-")
     if _PROVIDER["cancelled"]:
         outcome, failure_reason = "cancelled", "cancelled"
     elif timed_out:
@@ -1097,7 +1104,7 @@ def _run_in_sandbox(args: argparse.Namespace, run_dir: Path, metadata: dict, bin
     elif args.provider == "opus" and summary is not None and summary["served_models"] != [metadata["model"]]:
         outcome, failure_reason = "failed", "model_mismatch"
     elif (args.provider == "agy" and summary is not None and summary.get("served_models")
-          and [str(m).lower() for m in summary["served_models"]] != [expected_agy_model]):
+          and [re.sub(r"[^a-z0-9]+", "-", str(m).lower()).strip("-") for m in summary["served_models"]] != [expected_agy_model]):
         outcome, failure_reason = "failed", "model_mismatch"
     elif not validation.get("exists"):
         outcome, failure_reason = "failed", "workbook_missing"
@@ -1269,7 +1276,8 @@ def parser() -> argparse.ArgumentParser:
     p.add_argument("--instruction", help="candidate instruction file to test (default: the working instruction)")
     p.add_argument("--model", help="model to run (default: claude-opus-5-5 for opus, gpt-6.2-sol for sol, gemini-4-neon for agy)")
     p.add_argument("--effort", help="effort: low, medium, high, xhigh or max (model-dependent; default: Claude medium, Astra/Antigravity high, Sol xhigh)")
-    p.add_argument("--service-tier", choices=["priority"], help="request Fast service for this Codex run")
+    p.add_argument("--service-tier", choices=["priority", "standard"],
+                   help="service tier for this Codex run ('priority' for Fast, 'standard' for normal speed)")
     p.add_argument("--timeout-minutes", type=int, help="wall-clock limit for the run, 10-360 (default: 90)")
     p.add_argument("--revise-from", help="finished workbook to revise (revision pass)")
     p.add_argument("--report", help="checker findings in plain text, required with --revise-from")
