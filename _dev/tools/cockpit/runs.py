@@ -1,4 +1,4 @@
-"""Claude and ChatGPT accounts, extraction jobs and imported versions for the cockpit.
+"""Claude, ChatGPT, and Antigravity accounts, extraction jobs and imported versions for the cockpit.
 
 The HTTP server only reads and writes these rows; `worker.py` starts processes, runs
 the isolated extraction, checks and imports the result. Credentials live outside the
@@ -29,25 +29,32 @@ SCHEMA = (
 USERS = ("austin", "alex", "local")
 NAMES = {"austin": "Austin", "alex": "Alex", "local": "Local"}
 EFFORTS = ("low", "medium", "high", "xhigh", "max")
+AGY_EFFORTS = ("low", "medium", "high", "xhigh")
 MODEL = "claude-opus-5-5"
 ENGINE = "Opus 5.5"
-# Extraction engines. "provider" is the runner's transport: "opus" drives Claude Code, "sol" Codex.
-# "account" is whose plan pays: the starting user's Claude or ChatGPT subscription.
-FABLE_NOTE = "Fable's safety filter often blocks runs partway (6 of 11 test prompts); a blocked run fails and must be restarted."
-# Austin, 8 Oct 2026: GPT-6-Sol is no longer offered, and GPT-6.1-Sol runs on the Fast (priority) tier.
+# Extraction engines. "provider" is the runner's transport: "opus" drives Claude Code, "sol" Codex,
+# and "agy" Antigravity CLI. "account" is whose plan pays: Claude, ChatGPT, or Antigravity (Google AI).
+# Austin, 8 Oct 2026: GPT-6-Sol is no longer offered, and Sol runs on the Fast (priority) tier.
 SOL_FAST_NOTE = "Runs on the Fast (priority) tier: about twice as fast, and it uses more of your ChatGPT plan."
+CARBON_NOTE = "Requires a Google AI Ultra or Enterprise plan."
 ENGINES = {
-    "opus55": {"label": "Opus 5.5", "name": "Claude Opus 5.5", "provider": "opus", "model": "claude-opus-5-5", "account": "claude", "experimental": False, "note": None},
-    "fable51": {"label": "Fable 5.1", "name": "Claude Fable 5.1", "provider": "opus", "model": "claude-fable-5-1", "account": "claude", "experimental": True, "note": FABLE_NOTE},
-    "sol61": {"label": "GPT-6.1-Sol", "name": "GPT-6.1-Sol", "provider": "sol", "model": "gpt-6.1-sol", "account": "chatgpt", "experimental": False, "note": SOL_FAST_NOTE},
-    "astra6": {"label": "GPT-6-Astra", "name": "GPT-6-Astra", "provider": "sol", "model": "gpt-6-astra", "account": "chatgpt", "experimental": False, "note": None},
+    "opus55": {"label": "Opus 5.5", "name": "Claude Opus 5.5", "provider": "opus", "model": "claude-opus-5-5", "account": "claude", "group": "claude", "legacy": False, "fast_mode": None, "efforts": EFFORTS, "default_effort": "medium", "experimental": False, "note": None},
+    "fable52": {"label": "Fable 5.2", "name": "Claude Fable 5.2", "provider": "opus", "model": "claude-fable-5-2", "account": "claude", "group": "claude", "legacy": False, "fast_mode": None, "efforts": EFFORTS, "default_effort": "medium", "experimental": False, "note": None},
+    "sol62": {"label": "GPT-6.2-Sol", "name": "GPT-6.2-Sol", "provider": "sol", "model": "gpt-6.2-sol", "account": "chatgpt", "group": "chatgpt", "legacy": False, "fast_mode": "always", "efforts": EFFORTS, "default_effort": "medium", "experimental": False, "note": SOL_FAST_NOTE},
+    "astra62": {"label": "GPT-6.2-Astra", "name": "GPT-6.2-Astra", "provider": "sol", "model": "gpt-6.2-astra", "account": "chatgpt", "group": "chatgpt", "legacy": False, "fast_mode": "optional", "efforts": EFFORTS, "default_effort": "high", "experimental": False, "note": None},
+    "neon4": {"label": "Gemini 4 Neon", "name": "Gemini 4 Neon", "provider": "agy", "model": "gemini-4-neon", "account": "antigravity", "group": "antigravity", "legacy": False, "fast_mode": None, "efforts": AGY_EFFORTS, "default_effort": "high", "experimental": False, "note": None},
+    "carbon4": {"label": "Gemini 4 Carbon", "name": "Gemini 4 Carbon", "provider": "agy", "model": "gemini-4-carbon", "account": "antigravity", "group": "antigravity", "legacy": False, "fast_mode": None, "efforts": ("low", "medium", "high"), "default_effort": "high", "experimental": False, "note": CARBON_NOTE},
+    "hydrogen4": {"label": "Gemini 4 Hydrogen", "name": "Gemini 4 Hydrogen", "provider": "agy", "model": "gemini-4-hydrogen", "account": "antigravity", "group": "antigravity", "legacy": False, "fast_mode": None, "efforts": AGY_EFFORTS, "default_effort": "high", "experimental": False, "note": None},
+    "sol61": {"label": "GPT-6.1-Sol", "name": "GPT-6.1-Sol", "provider": "sol", "model": "gpt-6.1-sol", "account": "chatgpt", "group": "chatgpt", "legacy": True, "fast_mode": "always", "efforts": EFFORTS, "default_effort": "medium", "experimental": False, "note": SOL_FAST_NOTE},
+    "astra6": {"label": "GPT-6-Astra", "name": "GPT-6-Astra", "provider": "sol", "model": "gpt-6-astra", "account": "chatgpt", "group": "chatgpt", "legacy": True, "fast_mode": "optional", "efforts": EFFORTS, "default_effort": "high", "experimental": False, "note": None},
 }
 DEFAULT_ENGINE = "opus55"  # Austin, 26 Sep 2026: Opus 5.5 medium is the main extractor again.
 LEGACY_ENGINE = "opus55"  # Jobs recorded before engine selection existed remain Claude jobs.
-DEFAULT_EFFORT = {ident: "high" if ident == "astra6" else "medium" for ident in ENGINES}
+DEFAULT_EFFORT = {ident: engine["default_effort"] for ident, engine in ENGINES.items()}
 ACTIVE = ("queued", "preparing", "running", "checking", "importing")
 CONNECT_ACTIVE = ("queued", "waiting_for_code", "completing")
 CHATGPT_CONNECT_ACTIVE = ("queued", "waiting_for_approval")
+AGY_CONNECT_ACTIVE = ("queued", "waiting_for_code", "completing")
 TOKEN_RE = re.compile(r"sk-ant-oat\d\d-[A-Za-z0-9_-]{20,}")
 
 
@@ -98,6 +105,42 @@ def codex_home(user: str) -> Path:
     if user not in USERS:
         raise WorkspaceError("unknown user")
     return token_root() / user / "codex"
+
+
+def antigravity_home(user: str) -> Path:
+    """The user's own Antigravity folder, holding antigravity-oauth-token."""
+    if user not in USERS:
+        raise WorkspaceError("unknown user")
+    return token_root() / user / "antigravity"
+
+
+def antigravity_token_path(user: str) -> Path:
+    return antigravity_home(user) / "antigravity-oauth-token"
+
+
+def antigravity_login(auth: Path) -> dict[str, Any] | None:
+    """Metadata of a saved Antigravity OAuth token JSON; None if missing or incomplete."""
+    try:
+        document = json.loads(auth.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+    if not isinstance(document, dict):
+        return None
+    token = document.get("token")
+    if not isinstance(token, dict):
+        return None
+    if not any(isinstance(token.get(k), str) and token[k].strip() for k in ("refresh_token", "access_token")):
+        return None
+    email = document.get("id_token_email")
+    email = email.strip() if isinstance(email, str) and email.strip() else None
+    raw_expiry = token.get("expiry")
+    expires_at = None
+    if isinstance(raw_expiry, str) and raw_expiry.strip():
+        try:
+            expires_at = dt.datetime.fromisoformat(raw_expiry.strip()).isoformat(timespec="seconds")
+        except ValueError:
+            expires_at = raw_expiry.strip()
+    return {"email": email, "expires_at": expires_at, "has_refresh_token": bool(token.get("refresh_token"))}
 
 
 def codex_login(auth: Path) -> dict[str, Any] | None:
@@ -208,13 +251,24 @@ class Runs:
             if job and (job[0]["state"] != "completed" or (job[0]["ended_at"] or "") >= _minutes_ago(10)):
                 shown = _json(job[0]["result"]) or {}
                 gpt_connect = {"job_id": job[0]["id"], "state": job[0]["state"], "link": shown.get("link"), "code": shown.get("code"), "error": job[0]["error"]}
-            accounts = {"claude": connected, "chatgpt": gpt["connected"]}
-            engines = [{"id": ident, "label": engine["label"], "name": engine["name"], "account": engine["account"], "efforts": list(EFFORTS),
-                        "default_effort": DEFAULT_EFFORT[ident], "experimental": engine["experimental"], "note": engine["note"], "connected": accounts[engine["account"]]}
+            agy_rows = _rows(conn, "SELECT * FROM accounts WHERE user=? AND provider='antigravity'", (user,))
+            agy_login = antigravity_login(antigravity_token_path(user)) if user in USERS and agy_rows else None
+            agy = {"connected": bool(agy_login), "connected_at": agy_rows[0]["connected_at"] if agy_login else None,
+                   "expires_at": agy_login["expires_at"] if agy_login else None, "email": agy_login["email"] if agy_login else None}
+            job = _rows(conn, "SELECT * FROM jobs WHERE kind='connect_antigravity' AND actor=? ORDER BY created_at DESC, rowid DESC LIMIT 1", (user,))
+            agy_connect = None
+            if job and (job[0]["state"] != "completed" or (job[0]["ended_at"] or "") >= _minutes_ago(10)):
+                agy_connect = {"job_id": job[0]["id"], "state": job[0]["state"], "link": (_json(job[0]["result"]) or {}).get("link"), "error": job[0]["error"]}
+            accounts = {"claude": connected, "chatgpt": gpt["connected"], "antigravity": agy["connected"]}
+            engines = [{"id": ident, "label": engine["label"], "name": engine["name"], "account": engine["account"],
+                        "group": engine["group"], "legacy": engine["legacy"], "fast_mode": engine["fast_mode"],
+                        "efforts": list(engine["efforts"]), "default_effort": engine["default_effort"],
+                        "experimental": engine["experimental"], "note": engine["note"], "connected": accounts[engine["account"]]}
                        for ident, engine in ENGINES.items()]
             return {"user": user, "claude": {"connected": connected, "connected_at": found[0]["connected_at"] if connected else None,
                                               "expires_at": found[0]["expires_at"] if connected else None, "plan_usage": plan}, "connect": connect,
-                    "chatgpt": gpt, "chatgpt_connect": gpt_connect, "engines": engines, "parallel_limits": dict(CAPS)}
+                    "chatgpt": gpt, "chatgpt_connect": gpt_connect, "antigravity": agy, "antigravity_connect": agy_connect,
+                    "engines": engines, "parallel_limits": dict(CAPS)}
         finally:
             if conn: conn.close()
 
@@ -280,6 +334,37 @@ class Runs:
         self._transaction(run)
         return self.account(user)
 
+    def antigravity_action(self, user: str, request: dict[str, Any]) -> dict[str, Any]:
+        if user not in USERS:
+            raise WorkspaceError("unknown user")
+        action = request.get("action") if isinstance(request, dict) else None
+
+        def run(conn: sqlite3.Connection) -> None:
+            if action == "connect":
+                conn.execute("UPDATE jobs SET cancel_requested=1 WHERE kind='connect_antigravity' AND actor=? AND state IN ('queued','waiting_for_code','completing')", (user,))
+                conn.execute("INSERT INTO jobs (id, kind, slug, actor, created_at, state, params) VALUES (?, 'connect_antigravity', NULL, ?, ?, 'queued', '{}')", (uuid.uuid4().hex, user, _now()))
+            elif action in ("code", "cancel"):
+                job = conn.execute("SELECT * FROM jobs WHERE id=? AND kind='connect_antigravity' AND actor=?", (request.get("job_id"), user)).fetchone()
+                if job is None: raise Missing("unknown connect job")
+                if action == "cancel":
+                    if job["state"] not in AGY_CONNECT_ACTIVE: raise Conflict("connect is not in progress")
+                    conn.execute("UPDATE jobs SET cancel_requested=1 WHERE id=?", (job["id"],))
+                else:
+                    code = request.get("code")
+                    if job["state"] != "waiting_for_code": raise Conflict("not waiting for a code")
+                    if not isinstance(code, str) or not code.strip() or len(code) > 2000 or any(c in code for c in "\r\n\x00"):
+                        raise WorkspaceError("invalid authorization code or redirect URL")
+                    conn.execute("UPDATE jobs SET input=? WHERE id=?", (code.strip(), job["id"]))
+            elif action == "disconnect":
+                if active_jobs_on(conn, user, "antigravity"):
+                    raise Conflict("your Antigravity runs are still using this account; wait for them or cancel them first")
+                shutil.rmtree(antigravity_home(user), ignore_errors=True)
+                conn.execute("DELETE FROM accounts WHERE user=? AND provider='antigravity'", (user,))
+            else:
+                raise WorkspaceError("unknown account action")
+        self._transaction(run)
+        return self.account(user)
+
     # ---- jobs ------------------------------------------------------------------
 
     def jobs(self, slug: str) -> dict[str, Any]:
@@ -325,17 +410,19 @@ class Runs:
                 if engine_id not in ENGINES: raise WorkspaceError("unknown engine")
                 engine = ENGINES[engine_id]
                 effort, minutes = request.get("effort", DEFAULT_EFFORT[engine_id]), request.get("timeout_minutes", 90)
-                if effort not in EFFORTS: raise WorkspaceError("invalid effort")
+                if effort not in engine["efforts"]: raise WorkspaceError("invalid effort")
                 if type(minutes) is not int or not 10 <= minutes <= 360: raise WorkspaceError("time limit must be 10 to 360 minutes")
                 service_tier = request.get("service_tier")
-                if service_tier not in (None, "priority") or (service_tier and engine["account"] != "chatgpt"):
-                    raise WorkspaceError("Fast service applies only to ChatGPT engines")
-                if engine_id == "sol61":
+                if service_tier not in (None, "priority") or (service_tier and engine["fast_mode"] not in ("always", "optional")):
+                    raise WorkspaceError("Fast service applies only to supported ChatGPT engines")
+                if engine["fast_mode"] == "always":
                     service_tier = "priority"
                 if engine["account"] == "claude" and (not conn.execute("SELECT 1 FROM accounts WHERE user=? AND provider='claude'", (user,)).fetchone() or not token_path(user).is_file()):
                     raise Conflict("connect your Claude account in Settings first")
                 if engine["account"] == "chatgpt" and (not conn.execute("SELECT 1 FROM accounts WHERE user=? AND provider='chatgpt'", (user,)).fetchone() or not (codex_home(user) / "auth.json").is_file()):
                     raise Conflict("connect your ChatGPT account in Settings first")
+                if engine["account"] == "antigravity" and (not conn.execute("SELECT 1 FROM accounts WHERE user=? AND provider='antigravity'", (user,)).fetchone() or antigravity_login(antigravity_token_path(user)) is None):
+                    raise Conflict("connect your Antigravity account in Settings first")
                 params = {"engine": engine_id, "engine_label": engine["label"], "model": engine["model"], "provider": engine["provider"], "account": engine["account"],
                           "effort": effort, "timeout_minutes": minutes, "instruction": instruction, "service_tier": service_tier}
                 conn.execute("INSERT INTO jobs (id, kind, slug, actor, created_at, state, params) VALUES (?, 'extract', ?, ?, ?, 'queued', ?)", (uuid.uuid4().hex, slug, user, _now(), json.dumps(params)))

@@ -52,6 +52,8 @@ export function dealsAction(session, action) { return post('/api/deals', session
 export function dealVisibility(slug, session, action) { return post(`/api/deals/${encodeURIComponent(slug)}/visibility`, session, { action }); }
 // Phase 4. ChatGPT account: {action: connect | cancel (job_id) | disconnect}; the response is GET /api/account.
 export function chatgptAction(session, action) { return post('/api/account/chatgpt', session, action); }
+// Antigravity account: {action: connect | code | cancel | disconnect, ...}; the response is GET /api/account.
+export function antigravityAction(session, action) { return post('/api/account/antigravity', session, action); }
 // Instruction versions: {action: 'draft', from} | {action: 'save', id, text, base_sha256} | {action: 'publish', id, name, note}
 // return the detail payload; {action: 'default', id} returns the list payload.
 export function instructionsAction(session, action) { return post('/api/instructions', session, action); }

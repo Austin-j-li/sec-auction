@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Button, Field, Input } from '@fluentui/react-components';
 import { ArrowSquareOutIcon, CaretRightIcon } from '@phosphor-icons/react';
-import { accountAction, chatgptAction, json } from './api';
-import { CHATGPT_CONNECT_ACTIVE_STATES, CONNECT_ACTIVE_STATES, dateWithYear, planUsageText } from './runs';
+import { accountAction, antigravityAction, chatgptAction, json } from './api';
+import { AGY_CONNECT_ACTIVE_STATES, CHATGPT_CONNECT_ACTIVE_STATES, CONNECT_ACTIVE_STATES, dateWithYear, planUsageText } from './runs';
 import { displayName, knownUser, shortTime } from './trace';
 import { Dot, Loading } from './ui';
 
-// Settings: the signed-in person's Claude and ChatGPT accounts, which pay for the extractions they start.
+// Settings: the signed-in person's Claude, ChatGPT, and Antigravity accounts, which pay for the extractions they start.
 
 const POLL_MS = 2000;
 const CONNECT_STEPS = { queued: 'Starting the sign-in…', completing: 'Checking the code…' };
@@ -36,11 +36,12 @@ export default function SettingsPage({ session }) {
   const connect = account?.connect || null;
   const connecting = Boolean(connect && CONNECT_ACTIVE_STATES.has(connect.state));
   const gptConnecting = Boolean(account?.chatgpt_connect && CHATGPT_CONNECT_ACTIVE_STATES.has(account.chatgpt_connect.state));
+  const agyConnecting = Boolean(account?.antigravity_connect && AGY_CONNECT_ACTIVE_STATES.has(account.antigravity_connect.state));
   useEffect(() => {
-    if (!connecting && !gptConnecting) return;
+    if (!connecting && !gptConnecting && !agyConnecting) return;
     const timer = setInterval(refresh, POLL_MS);
     return () => clearInterval(timer);
-  }, [connecting, gptConnecting, refresh]);
+  }, [connecting, gptConnecting, agyConnecting, refresh]);
 
   async function act(action, after) {
     setBusy(true); setActionError('');
@@ -99,6 +100,7 @@ export default function SettingsPage({ session }) {
       </details>}
     </section>
     <ChatGPTSection session={session} account={account} canWrite={canWrite} onAccount={data => { setAccount(data || {}); setLoadError(''); }} alive={alive}/>
+    <AntigravitySection session={session} account={account} canWrite={canWrite} onAccount={data => { setAccount(data || {}); setLoadError(''); }} alive={alive}/>
   </>;
 }
 
@@ -127,7 +129,7 @@ function ChatGPTSection({ session, account, canWrite, onAccount, alive }) {
   }
   return <section className="settings-section" aria-labelledby="chatgpt-account-head">
     <div className="section-head"><h2 id="chatgpt-account-head">ChatGPT account</h2></div>
-    <p className="section-note">GPT-6.1-Sol and GPT-6-Astra runs you start use your own ChatGPT plan, through a login saved on the cockpit server. It is never used for anyone else’s runs.</p>
+    <p className="section-note">GPT-6.2-Sol, GPT-6.2-Astra, GPT-6.1-Sol, and GPT-6-Astra runs you start use your own ChatGPT plan, through a login saved on the cockpit server. It is never used for anyone else’s runs.</p>
     {!canWrite && <p className="settings-line">Sign in with edit access to connect a ChatGPT account.</p>}
     <dl className="settings-status">
       <div><dt>Status</dt><dd>{chatgpt.connected
@@ -186,6 +188,79 @@ function ConnectFlow({ connect, busy, code, onCode, onSubmit, onCancel, canWrite
         <span>Paste the code shown</span>
         <form className="settings-inline" onSubmit={event => { event.preventDefault(); if (code.trim()) onSubmit(); }}>
           <Field label="Code"><Input className="mono" autoComplete="off" value={code} disabled={busy} onChange={(_, data) => onCode(data.value)}/></Field>
+          <Button type="submit" appearance="primary" disabled={busy || !code.trim()}>Submit</Button>
+        </form>
+      </li>
+    </ol> : <p className="settings-line"><Dot tone="warning"/>{CONNECT_STEPS[connect.state] || 'Waiting for the sign-in link…'}</p>}
+    {connect.error && <p className="settings-error tone-error">{connect.error}</p>}
+    {canWrite && <Button appearance="secondary" disabled={busy} onClick={onCancel}>Cancel</Button>}
+  </div>;
+}
+
+// Antigravity: Google OAuth sign-in via `agy acp --login` whose token is kept for Gemini 4 runs.
+function AntigravitySection({ session, account, canWrite, onAccount, alive }) {
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState('');
+  const [code, setCode] = useState('');
+  const [disconnected, setDisconnected] = useState(false);
+  const agy = account?.antigravity || {};
+  const connect = account?.antigravity_connect || null;
+  const connecting = Boolean(connect && AGY_CONNECT_ACTIVE_STATES.has(connect.state));
+  async function act(action, after) {
+    setBusy(true); setError('');
+    try {
+      const data = await antigravityAction(session, action);
+      if (alive.current) { onAccount(data); after?.(); }
+    } catch (err) {
+      if (alive.current) setError(err.message);
+    } finally {
+      if (alive.current) setBusy(false);
+    }
+  }
+  function disconnect() {
+    if (!window.confirm('Disconnect your Antigravity account? The cockpit deletes its copy of your login, and Gemini 4 runs you start will not run until you connect again. To revoke access at Google as well, open myaccount.google.com/permissions.')) return;
+    act({ action: 'disconnect' }, () => setDisconnected(true));
+  }
+  return <section className="settings-section" aria-labelledby="antigravity-account-head">
+    <div className="section-head"><h2 id="antigravity-account-head">Antigravity account</h2></div>
+    <p className="section-note">Gemini 4 Neon, Gemini 4 Carbon, and Gemini 4 Hydrogen runs you start use your own Google AI plan through an Antigravity CLI login saved on the cockpit server. It is never used for anyone else’s runs.</p>
+    {!canWrite && <p className="settings-line">Sign in with edit access to connect an Antigravity account.</p>}
+    <dl className="settings-status">
+      <div><dt>Status</dt><dd>{agy.connected
+        ? <><Dot tone="success"/>Connected{agy.connected_at && <> since <span className="mono">{shortTime(agy.connected_at)}</span></>}</>
+        : <><Dot tone="muted"/>Not connected</>}</dd></div>
+      {agy.connected && agy.email && <div><dt>Account</dt><dd className="mono">{agy.email}</dd></div>}
+      {agy.connected && agy.expires_at && <div><dt>Access token</dt><dd className="mono">{shortTime(agy.expires_at)}</dd></div>}
+    </dl>
+    {agy.connected && <p className="settings-line">The server holds your refresh token so each isolated run refreshes access automatically while keeping your host login untouched.</p>}
+    {canWrite && !connecting && <div className="settings-actions">
+      <Button appearance={agy.connected ? 'secondary' : 'primary'} disabled={busy} onClick={() => act({ action: 'connect' }, () => { setCode(''); setDisconnected(false); })}>{agy.connected ? 'Reconnect Antigravity account' : 'Connect Antigravity account'}</Button>
+      {agy.connected && <Button appearance="secondary" className="danger-outline" disabled={busy} onClick={disconnect}>Disconnect</Button>}
+    </div>}
+    {disconnected && !agy.connected && <p className="settings-line">Disconnected. To revoke access at Google too, open myaccount.google.com/permissions.</p>}
+    {connect && <AntigravityConnectFlow connect={connect} busy={busy} code={code} onCode={setCode} canWrite={canWrite}
+      onSubmit={() => act({ action: 'code', job_id: connect.job_id, code: code.trim() }, () => setCode(''))}
+      onCancel={() => act({ action: 'cancel', job_id: connect.job_id })}/>}
+    {error && <p className="settings-error tone-error" role="alert">{error}</p>}
+  </section>;
+}
+
+function AntigravityConnectFlow({ connect, busy, code, onCode, onSubmit, onCancel, canWrite }) {
+  const active = AGY_CONNECT_ACTIVE_STATES.has(connect.state);
+  if (connect.state === 'completed') return <p className="settings-line tone-success">Antigravity account connected.</p>;
+  if (connect.state === 'cancelled') return <p className="settings-line">Connecting was cancelled.</p>;
+  if (connect.state === 'failed') return <p className="settings-error tone-error">Connecting failed{connect.error ? `: ${connect.error}` : '.'}</p>;
+  if (!active) return null;
+  return <div className="connect-flow" aria-live="polite">
+    {connect.state === 'waiting_for_code' && connect.link ? <ol>
+      <li>
+        <span>Open this link and sign in with your Google account</span>
+        <a className="connect-link mono" href={connect.link} target="_blank" rel="noopener noreferrer">{connect.link}<ArrowSquareOutIcon size={12} aria-hidden="true"/></a>
+      </li>
+      <li>
+        <span>Paste the authorization code or full redirect URL</span>
+        <form className="settings-inline" onSubmit={event => { event.preventDefault(); if (code.trim()) onSubmit(); }}>
+          <Field label="Code or URL"><Input className="mono" autoComplete="off" value={code} disabled={busy} onChange={(_, data) => onCode(data.value)}/></Field>
           <Button type="submit" appearance="primary" disabled={busy || !code.trim()}>Submit</Button>
         </form>
       </li>

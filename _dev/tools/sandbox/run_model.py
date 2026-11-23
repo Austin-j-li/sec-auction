@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prepare, launch, and monitor isolated extraction runs (Claude and Codex transports)."""
+"""Prepare, launch, and monitor isolated extraction runs (Claude, Codex, and Antigravity transports)."""
 
 from __future__ import annotations
 
@@ -31,6 +31,7 @@ INSTRUCTION_NAME = "SEC_Deal_Ledger_Extraction_Instruction.md"
 CODEX_BIN = Path(os.environ.get("SEC_CODEX_BIN") or shutil.which("codex") or "/missing/codex").resolve()
 CODEX_RELEASE = CODEX_BIN.parent.parent
 CLAUDE_BIN = Path(os.environ.get("SEC_CLAUDE_BIN") or shutil.which("claude") or "/missing/claude").resolve()
+AGY_BIN = Path(os.environ.get("SEC_AGY_BIN") or shutil.which("agy") or "/missing/agy").resolve()
 # A long-lived subscription token from `claude setup-token`, readable only by its owner. It reaches
 # the sandboxed CLI through an inherited pipe, never argv, environment or disk. The host login's
 # credentials file is never shared: a sandboxed refresh would rotate its refresh token, which the
@@ -40,13 +41,36 @@ CLAUDE_TOKEN_FILE = Path(os.environ.get("SEC_CLAUDE_OAUTH_TOKEN_FILE")
 # The Codex login bound read-only into a Sol run: the cockpit names each user's own login.
 # Unset means the host login, ~/.codex/auth.json.
 CODEX_AUTH_FILE = Path(os.environ["SEC_CODEX_AUTH_FILE"]) if os.environ.get("SEC_CODEX_AUTH_FILE") else None
+# The Antigravity OAuth token copied into ephemeral sandbox state for an agy run.
+# Unset means the host login, ~/.gemini/antigravity-cli/antigravity-oauth-token.
+AGY_AUTH_FILE = Path(os.environ["SEC_AGY_AUTH_FILE"]) if os.environ.get("SEC_AGY_AUTH_FILE") else None
 # Models and effort levels each provider may be prepared with. The first model is the default.
-# "opus" is the Claude transport (Opus, Fable and Sonnet); "sol" is the Codex transport (Sol and Astra).
-MODELS = {"sol": ("gpt-6-sol", "gpt-6.1-sol", "gpt-6-astra", "gpt-5.6-sol"), "opus": ("claude-opus-5-5", "claude-fable-5-1", "claude-opus-5", "claude-sonnet-5-5")}
+# "opus" is the Claude transport (Opus, Fable and Sonnet); "sol" is the Codex transport (Sol and Astra);
+# "agy" is the Antigravity CLI transport (Gemini 4 Neon, Carbon and Hydrogen).
+MODELS = {
+    "sol": ("gpt-6.2-sol", "gpt-6.2-astra", "gpt-6.1-sol", "gpt-6-astra", "gpt-6-sol", "gpt-5.6-sol"),
+    "opus": ("claude-opus-5-5", "claude-fable-5-2", "claude-opus-5", "claude-sonnet-5-5"),
+    "agy": ("gemini-4-neon", "gemini-4-carbon", "gemini-4-hydrogen"),
+}
 # Codex's "ultra" level delegates to subagents automatically, so it is not offered.
-EFFORTS = {"sol": ("low", "medium", "high", "xhigh", "max"), "opus": ("low", "medium", "high", "xhigh", "max")}
-DEFAULT_EFFORT = {"sol": "xhigh", "opus": "medium"}  # Opus 5.5 at medium is the project's default extraction
-MODEL_DEFAULT_EFFORT = {"gpt-6-astra": "high"}
+EFFORTS = {
+    "sol": ("low", "medium", "high", "xhigh", "max"),
+    "opus": ("low", "medium", "high", "xhigh", "max"),
+    "agy": ("low", "medium", "high", "xhigh"),
+}
+MODEL_EFFORTS = {
+    "gemini-4-neon": ("low", "medium", "high", "xhigh"),
+    "gemini-4-carbon": ("low", "medium", "high"),
+    "gemini-4-hydrogen": ("low", "medium", "high", "xhigh"),
+}
+DEFAULT_EFFORT = {"sol": "xhigh", "opus": "medium", "agy": "high"}  # Opus 5.5 at medium is the project's default extraction
+MODEL_DEFAULT_EFFORT = {
+    "gpt-6-astra": "high",
+    "gpt-6.2-astra": "high",
+    "gemini-4-neon": "high",
+    "gemini-4-carbon": "high",
+    "gemini-4-hydrogen": "high",
+}
 # Codex service tier per model. Austin, 8 Oct 2026: Sol always runs on the Fast tier, "priority"
 # in the model list (more plan usage). Astra uses the account default (standard).
 SERVICE_TIER = {model: "priority" for model in MODELS["sol"] if model.endswith("-sol")}
@@ -67,8 +91,13 @@ CLAUDE_ENV = {
 # AllowlistProxy, outside, opens a CONNECT tunnel only to these hosts on port 443. A run therefore
 # cannot reach the cockpit or another service on the host, or send data anywhere else (Austin,
 # 9 October 2026). Codex's login host auth.openai.com stays out, so a sandboxed Codex cannot refresh
-# the read-only login (see CODEX_TOKEN_MARGIN_HOURS).
-NETWORK_HOSTS = {"opus": ("api.anthropic.com",), "sol": ("chatgpt.com", "api.openai.com")}
+# the read-only login (see CODEX_TOKEN_MARGIN_HOURS). Antigravity consumer OAuth access tokens expire
+# hourly, so oauth2.googleapis.com stays open while the token file is copied into ephemeral state.
+NETWORK_HOSTS = {
+    "opus": ("api.anthropic.com",),
+    "sol": ("chatgpt.com", "api.openai.com"),
+    "agy": ("daily-cloudcode-pa.googleapis.com", "cloudcode-pa.googleapis.com", "oauth2.googleapis.com"),
+}
 PROXY_PORT = 3128
 PROXY_SOCKET = "/run/sec-net.sock"
 NETBRIDGE = BASE / "netbridge.py"
@@ -85,13 +114,31 @@ CODEX_DISABLED_FEATURES = (
     "mentions_v2", "workspace_dependencies", "hooks",
 )
 CODEX_TOKEN_MARGIN_HOURS = 7  # longer than the longest run, so a sandboxed Codex never refreshes its login
-# Fable 5.1's safeguard classifier ends a turn with "Fable 5.1's safeguards flagged this message …".
 SAFEGUARD_BLOCK = "safeguards flagged"
 CODEX_USAGE_LIMIT = "hit your usage limit"
-MAX_CONTINUATIONS = 2  # Opus 5.5 can end a turn with a progress report before saving the workbook
+AGY_USAGE_LIMIT_MARKERS = ("quota_exhausted", "resource_exhausted", "model_quota_exhausted", "quota exceeded", "usage limit")
+MAX_CONTINUATIONS = 2  # Opus 5.5 or Gemini can end a turn with a progress report before saving the workbook
 SHEETS = ["Deal ledger", "Rounds", "Questions", "Deal facts"]
 CODEX_SANDBOX = Path("/opt/codex")
 CLAUDE_SANDBOX = Path("/opt/claude")
+AGY_SANDBOX = Path("/opt/agy")
+AGY_HOOK = BASE / "agy_hook.py"
+AGY_HOOK_SANDBOX = "/opt/sec-agy-hook.py"
+AGY_SETTINGS_SANDBOX = "/opt/sec-agy-settings.json"
+AGY_ALLOWED_TOOLS = frozenset({
+    "view_file", "read_file", "view_file_outline", "view_code_item",
+    "list_dir", "find_by_name", "grep_search", "codebase_search",
+    "write_to_file", "write_file", "replace_file_content", "multi_replace_file_content", "edit_file",
+    "run_command", "command_status", "send_command_input", "manage_task",
+})
+AGY_SETTINGS = {
+    "disableSlashCommands": True,
+    "enableTelemetry": False,
+    "enableTerminalSandbox": False,
+    "allowNonWorkspaceAccess": False,
+    "artifactReviewPolicy": "always-proceed",
+    "permissions": {"deny": ["read_url(*)", "execute_url(*)", "mcp(*)"]},
+}
 MINIFORGE = HOME_HOST / "miniforge3"  # Ubuntu laptop; absent on the VM, where system Python is used
 import openpyxl as _openpyxl
 PYLIB_HOST = Path(_openpyxl.__file__).resolve().parents[1]  # site-packages that holds openpyxl
@@ -102,6 +149,11 @@ TIMEOUT_BOUNDS = (10 * 60, 6 * 60 * 60)
 RUNS = PROJECT / "_dev" / "runs"
 # The running provider's process group and whether SIGTERM asked the worker to cancel the run.
 _PROVIDER = {"pgid": None, "cancelled": False}
+
+
+def allowed_efforts(provider: str, model: str) -> tuple[str, ...]:
+    """Effort levels supported for this provider and model."""
+    return MODEL_EFFORTS.get(model, EFFORTS[provider])
 
 
 def now_iso() -> str:
@@ -153,11 +205,43 @@ def run_usage(events_path: Path) -> dict[str, object] | None:
     usage is summed over a run and its continuations; total_cost_usd is cumulative for the
     session, so the last one is the run's cost.
     Codex reports usage per "turn.completed" event and no cost; turns are summed.
+    Antigravity emits {"event": "result", "result": {"usage": ..., "num_turns": ...}}; across
+    --conversation continuations, a cumulative report replaces the earlier total while separate
+    invocations are summed.
     """
     totals: dict[str, float] = {}
     cost = None
     found = False
+    agy_prev_total: float | None = None
+    agy_prev_turns: float | None = None
     for event in events(events_path):
+        if event.get("event") == "result" and isinstance(event.get("result"), dict):
+            res = event["result"]
+            usage = res.get("usage")
+            if not isinstance(usage, dict):
+                continue
+            found = True
+            cur_total = usage.get("total_tokens")
+            cur_turns = res.get("num_turns")
+            cumulative = (
+                agy_prev_total is not None
+                and isinstance(cur_total, (int, float))
+                and cur_total >= agy_prev_total
+                and isinstance(cur_turns, (int, float))
+                and isinstance(agy_prev_turns, (int, float))
+                and cur_turns > agy_prev_turns
+            )
+            if cumulative:
+                totals = {k: v for k, v in usage.items() if k.endswith("_tokens") and isinstance(v, (int, float))}
+            else:
+                for key, value in usage.items():
+                    if key.endswith("_tokens") and isinstance(value, (int, float)):
+                        totals[key] = totals.get(key, 0) + value
+            if isinstance(cur_total, (int, float)):
+                agy_prev_total = cur_total
+            if isinstance(cur_turns, (int, float)):
+                agy_prev_turns = cur_turns
+            continue
         if event.get("type") not in ("result", "turn.completed"):
             continue
         usage = event.get("usage")
@@ -177,6 +261,88 @@ def run_usage(events_path: Path) -> dict[str, object] | None:
 def claude_results(events_path: Path) -> list[dict]:
     """The Claude CLI's result events, one per invocation."""
     return [event for event in events(events_path) if event.get("type") == "result"]
+
+
+def agy_results(events_path: Path) -> list[dict]:
+    """The Antigravity CLI's result payloads, one per invocation."""
+    return [event["result"] for event in events(events_path)
+            if event.get("event") == "result" and isinstance(event.get("result"), dict)]
+
+
+def agy_usage_limit(run_dir: Path) -> str | None:
+    """Any quota or usage-limit message from an Antigravity result event or stderr; None if absent."""
+    found: list[str] = []
+    if (run_dir / "events.jsonl").is_file():
+        for res in agy_results(run_dir / "events.jsonl"):
+            if res.get("error"):
+                found.extend(_strings(res["error"]))
+            if res.get("status") not in (None, "SUCCESS") and res.get("response"):
+                found.extend(_strings(res["response"]))
+    if (run_dir / "stderr.log").is_file():
+        found += (run_dir / "stderr.log").read_text(encoding="utf-8", errors="replace").splitlines()
+    for value in found:
+        lower = value.lower()
+        if any(marker in lower for marker in AGY_USAGE_LIMIT_MARKERS):
+            return " ".join(value.split())[:300]
+    return None
+
+
+def agy_summary(events_path: Path) -> dict[str, object] | None:
+    """What the Antigravity CLI reported about a run and its continuations; None if empty."""
+    init: dict | None = None
+    conversation_id: str | None = None
+    served_models: list[str] = []
+    results: list[dict] = []
+    subagents_spawned = 0
+    forbidden_tools: set[str] = set()
+    denied_tools: set[str] = set()
+    for event in events(events_path):
+        kind = event.get("event")
+        if kind == "init":
+            payload = event.get("init") if isinstance(event.get("init"), dict) else {}
+            if init is None:
+                init = payload
+                conversation_id = event.get("conversation_id")
+            model = payload.get("model")
+            if isinstance(model, str) and model and model not in served_models:
+                served_models.append(model)
+        elif kind == "step_update":
+            su = event.get("step_update") if isinstance(event.get("step_update"), dict) else {}
+            sub_info = su.get("subagent_info")
+            if isinstance(sub_info, dict) and sub_info:
+                subs = sub_info.get("subagents")
+                subagents_spawned += len(subs) if isinstance(subs, list) and subs else 1
+            if su.get("step_type") == "tool" and su.get("state") == "DONE":
+                tool_name = str(su.get("tool_name") or "")
+                if tool_name and tool_name not in AGY_ALLOWED_TOOLS:
+                    tool_info = su.get("tool_info") if isinstance(su.get("tool_info"), dict) else {}
+                    if tool_info.get("error"):
+                        denied_tools.add(tool_name)
+                    else:
+                        forbidden_tools.add(tool_name)
+        elif kind == "result" and isinstance(event.get("result"), dict):
+            results.append(event["result"])
+    if init is None and not results and not forbidden_tools and not subagents_spawned:
+        return None
+    init = init or {}
+    last = results[-1] if results else {}
+    last_usage = last.get("usage") if isinstance(last.get("usage"), dict) else {}
+    return {
+        "init_model": init.get("model"),
+        "served_models": served_models,
+        "conversation_id": last.get("conversation_id") or conversation_id,
+        "tools": init.get("tools"),
+        "permission_mode": init.get("permission_mode"),
+        "invocations": len(results),
+        "status": last.get("status"),
+        "error": last.get("error"),
+        "num_turns": last.get("num_turns"),
+        "duration_seconds": last.get("duration_seconds"),
+        "thinking_tokens": last_usage.get("thinking_tokens"),
+        "subagents_spawned": subagents_spawned,
+        "forbidden_tools": sorted(forbidden_tools),
+        "denied_tools": sorted(denied_tools),
+    }
 
 
 def codex_usage_limit(run_dir: Path) -> str | None:
@@ -303,9 +469,10 @@ def prepare(args: argparse.Namespace) -> None:
     revised_schema = revision_schema(Path(args.revise_from)) if args.revise_from else None
     model = args.model or MODELS[args.provider][0]
     effort = args.effort or MODEL_DEFAULT_EFFORT.get(model, DEFAULT_EFFORT[args.provider])
-    if model not in MODELS[args.provider] or effort not in EFFORTS[args.provider]:
+    efforts = allowed_efforts(args.provider, model) if model in MODELS[args.provider] else EFFORTS[args.provider]
+    if model not in MODELS[args.provider] or effort not in efforts:
         raise SystemExit(f"{args.provider} runs one of {', '.join(MODELS[args.provider])} "
-                         f"at effort {', '.join(EFFORTS[args.provider])}")
+                         f"(effort {', '.join(efforts)} for {model})")
     service_tier = getattr(args, "service_tier", None)
     if service_tier is not None and (args.provider != "sol" or service_tier != "priority"):
         raise SystemExit("--service-tier priority applies only to Codex runs")
@@ -436,6 +603,8 @@ def bwrap_base(run_dir: Path, provider: str, state: Path, scratch: Path) -> list
     proxy = f"http://127.0.0.1:{PROXY_PORT}"
     for name in ("HTTPS_PROXY", "https_proxy", "HTTP_PROXY", "http_proxy"):
         command += ["--setenv", name, proxy]
+    for name in ("NO_PROXY", "no_proxy"):
+        command += ["--setenv", name, "127.0.0.1,localhost,::1"]
     for certs in ["/etc/ca-certificates", "/etc/pki", "/etc/crypto-policies"]:  # Debian and Red Hat layouts
         if Path(certs).exists():
             command += ["--ro-bind", certs, certs]
@@ -458,6 +627,32 @@ def bwrap_base(run_dir: Path, provider: str, state: Path, scratch: Path) -> list
             "--ro-bind", str(CODEX_RELEASE), str(CODEX_SANDBOX),
             "--ro-bind", str(codex_auth_file()), str(SANDBOX_HOME / ".codex/auth.json"),
             "--setenv", "CODEX_HOME", str(SANDBOX_HOME / ".codex"),
+        ]
+    elif provider == "agy":
+        hooks_cfg = {
+            "sec-extraction-isolation": {
+                "PreToolUse": [{
+                    "matcher": "*",
+                    "hooks": [{
+                        "type": "command",
+                        "command": f"{SANDBOX_PYTHON} -I -S {AGY_HOOK_SANDBOX}",
+                        "timeout": 10,
+                    }],
+                }]
+            }
+        }
+        settings_cfg = {**AGY_SETTINGS, "trustedWorkspaces": [work]}
+        (scratch / "agy-hooks.json").write_text(json.dumps(hooks_cfg, indent=2) + "\n", encoding="utf-8")
+        (scratch / "agy-settings.json").write_text(json.dumps(settings_cfg, indent=2) + "\n", encoding="utf-8")
+        command += [
+            "--ro-bind", str(AGY_BIN), str(AGY_SANDBOX),
+            "--ro-bind", str(AGY_HOOK), AGY_HOOK_SANDBOX,
+            "--ro-bind", str(scratch / "agy-settings.json"), AGY_SETTINGS_SANDBOX,
+            "--dir", str(SANDBOX_HOME / ".gemini"),
+            "--dir", str(SANDBOX_HOME / ".gemini/config"),
+            "--ro-bind", str(scratch / "agy-hooks.json"), str(SANDBOX_HOME / ".gemini/config/hooks.json"),
+            "--dir", str(SANDBOX_HOME / ".gemini/antigravity-cli"),
+            "--bind", str(state), str(SANDBOX_HOME / ".gemini/antigravity-cli"),
         ]
     else:
         command += [
@@ -558,8 +753,8 @@ def provider_command(run_dir: Path, provider: str, metadata: dict,
                      prompt: str | None = None, resume: str | None = None) -> list[str]:
     """The provider's argv, built from the verified prepared model and effort.
 
-    A continuation resumes the Claude session with a new prompt; the session lives in the
-    temporary provider state, so it is deleted with it.
+    A continuation resumes the Claude or Antigravity session with a new prompt; the session lives
+    in the temporary provider state, so it is deleted with it.
     """
     prompt = prompt or (run_dir / "prompt.txt").read_text(encoding="utf-8").strip()
     model, effort = metadata["model"], metadata["effort"]
@@ -575,6 +770,16 @@ def provider_command(run_dir: Path, provider: str, metadata: dict,
             "-c", f'model_reasoning_effort="{effort}"', "-c", 'web_search="disabled"', *fast, *disabled,
             "-C", str(WORK), prompt,
         ]
+    if provider == "agy":
+        model_slug = f"{model}-{effort}"
+        command = [
+            str(AGY_SANDBOX), "--print", "--output-format", "stream-json",
+            "--model", model_slug, "--disable-slash-commands",
+            "--dangerously-skip-permissions", "--settings", AGY_SETTINGS_SANDBOX,
+        ]
+        if resume:
+            command += ["--conversation", resume]
+        return command + [prompt]
     command = [
         str(CLAUDE_SANDBOX), "--print", "--output-format", "stream-json", "--verbose",
         "--model", model, "--effort", effort, "--safe-mode",
@@ -653,6 +858,22 @@ def codex_auth_file() -> Path:
     return CODEX_AUTH_FILE or HOME_HOST / ".codex/auth.json"
 
 
+def agy_auth_file() -> Path:
+    return AGY_AUTH_FILE or HOME_HOST / ".gemini/antigravity-cli/antigravity-oauth-token"
+
+
+def agy_auth_valid(auth: Path) -> bool:
+    """True when `auth` is a readable Antigravity OAuth token JSON holding an access or refresh token."""
+    try:
+        doc = json.loads(auth.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return False
+    token = doc.get("token") if isinstance(doc, dict) else None
+    if not isinstance(token, dict):
+        return False
+    return any(isinstance(token.get(k), str) and token[k].strip() for k in ("refresh_token", "access_token"))
+
+
 def codex_token_hours_left(auth: Path) -> float | None:
     """Hours until the host Codex login's access token expires; None if it has no readable expiry."""
     try:
@@ -668,9 +889,9 @@ def preflight(provider: str) -> Path:
         raise SystemExit("bubblewrap (bwrap) is required")
     if not Path(SANDBOX_PYTHON).is_file():
         raise SystemExit(f"{SANDBOX_PYTHON} is required: it runs the sandbox's network bridge")
-    binary = CODEX_BIN if provider == "sol" else CLAUDE_BIN
+    binary = CODEX_BIN if provider == "sol" else AGY_BIN if provider == "agy" else CLAUDE_BIN
     if not binary.is_file() or not os.access(binary, os.X_OK):
-        raise SystemExit(f"provider executable not found: {binary}; set SEC_CODEX_BIN or SEC_CLAUDE_BIN")
+        raise SystemExit(f"provider executable not found: {binary}; set SEC_CODEX_BIN, SEC_CLAUDE_BIN, or SEC_AGY_BIN")
     if provider == "sol" and (binary.parent.name != "bin" or binary.name != "codex"):
         raise SystemExit("SEC_CODEX_BIN must resolve to a standalone release's bin/codex")
     if provider == "opus":
@@ -679,6 +900,17 @@ def preflight(provider: str) -> Path:
                              f"to {CLAUDE_TOKEN_FILE} (chmod 600), or set SEC_CLAUDE_OAUTH_TOKEN_FILE")
         if CLAUDE_TOKEN_FILE.stat().st_mode & 0o077:
             raise SystemExit(f"{CLAUDE_TOKEN_FILE} must be readable by its owner only (chmod 600)")
+        return binary
+    if provider == "agy":
+        if not AGY_HOOK.is_file():
+            raise SystemExit(f"Antigravity isolation hook missing: {AGY_HOOK}")
+        credential = agy_auth_file()
+        if not credential.is_file():
+            raise SystemExit(f"Antigravity credential file is missing: {credential}; sign in with `agy` or set SEC_AGY_AUTH_FILE")
+        if AGY_AUTH_FILE is not None and (credential.stat().st_mode & 0o077):
+            raise SystemExit(f"{credential} must be readable by its owner only (chmod 600)")
+        if not agy_auth_valid(credential):
+            raise SystemExit(f"Antigravity credential is invalid or incomplete: {credential}")
         return binary
     credential = codex_auth_file()
     if not credential.is_file():
@@ -712,7 +944,9 @@ def prepared_metadata(run_dir: Path, provider: str) -> dict:
         raise SystemExit(f"prepared provider is {metadata.get('provider')}, not {provider}")
     if metadata.get("instruction_name") != INSTRUCTION_NAME:
         raise SystemExit("prepared instruction name does not match the runner")
-    if metadata.get("model") not in MODELS[provider] or metadata.get("effort") not in EFFORTS[provider]:
+    model = metadata.get("model")
+    efforts = allowed_efforts(provider, model) if model in MODELS[provider] else EFFORTS[provider]
+    if model not in MODELS[provider] or metadata.get("effort") not in efforts:
         raise SystemExit("prepared model or effort is not allowed for this provider; prepare a new run directory")
     tier = metadata.get("service_tier")
     if tier not in (None, "priority") or (provider != "sol" and tier is not None):
@@ -760,6 +994,10 @@ def run_worker(args: argparse.Namespace, state: Path, scratch: Path) -> int:
         cache = HOME_HOST / ".codex/models_cache.json"
         if cache.is_file():
             shutil.copy2(cache, state / "models_cache.json")
+    elif args.provider == "agy":
+        token_copy = state / "antigravity-oauth-token"
+        shutil.copy2(agy_auth_file(), token_copy)
+        os.chmod(token_copy, 0o600)
 
     proxy = AllowlistProxy(scratch / "net.sock", NETWORK_HOSTS[args.provider], run_dir / "network.jsonl")
     try:
@@ -782,6 +1020,7 @@ def _run_in_sandbox(args: argparse.Namespace, run_dir: Path, metadata: dict, bin
         **({"provider_environment": CLAUDE_ENV} if args.provider == "opus" else {}),
         "credential_delivery": ("long-lived OAuth token through an inherited pipe (CLAUDE_CODE_OAUTH_TOKEN_FILE_DESCRIPTOR); "
                                 "not in argv, environment or run directory" if args.provider == "opus" else
+                                "per-run OAuth token copy in ephemeral state outside run directory" if args.provider == "agy" else
                                 "read-only external credential bind; no credential copied to run directory"),
         "runtime_state": "temporary directory outside the run; removed after worker completion",
         "network": {"allowed_hosts": list(NETWORK_HOSTS[args.provider]), "port": 443, "log": "network.jsonl"},
@@ -806,16 +1045,23 @@ def _run_in_sandbox(args: argparse.Namespace, run_dir: Path, metadata: dict, bin
         with claude_token(args.provider) as (token_args, token_fds):
             exit_code, timed_out, client_pid = run_provider(
                 base + token_args + bridge + provider_argv, run_dir, started_at, max(deadline - time.monotonic(), 1), token_fds)
-        if _PROVIDER["cancelled"] or timed_out or exit_code != 0 or args.provider != "opus" or not unfinished(run_dir, metadata):
+        if _PROVIDER["cancelled"] or timed_out or exit_code != 0 or args.provider not in ("opus", "agy") or not unfinished(run_dir, metadata):
             break
         # A clean end of turn with the deliverable still owed is a progress report, not a finished
         # task: resume the session and ask for the rest, a bounded number of times.
-        results = claude_results(stdout_path)
-        last = results[-1] if results else {}
-        if (last.get("subtype") != "success" or last.get("is_error")
-                or last.get("stop_reason") == "refusal" or not last.get("session_id")):
-            break
-        prompt, resume = continuation_prompt(metadata), last["session_id"]
+        if args.provider == "opus":
+            results = claude_results(stdout_path)
+            last = results[-1] if results else {}
+            if (last.get("subtype") != "success" or last.get("is_error")
+                    or last.get("stop_reason") == "refusal" or not last.get("session_id")):
+                break
+            prompt, resume = continuation_prompt(metadata), last["session_id"]
+        else:
+            results = agy_results(stdout_path)
+            last = results[-1] if results else {}
+            if last.get("status") != "SUCCESS" or not last.get("conversation_id"):
+                break
+            prompt, resume = continuation_prompt(metadata), last["conversation_id"]
 
     validation = validate_workbook(run_dir)
     write_json(run_dir / "validation.json", validation)
@@ -823,23 +1069,35 @@ def _run_in_sandbox(args: argparse.Namespace, run_dir: Path, metadata: dict, bin
     if args.provider == "opus":
         write_json(run_dir / "provider-results.json", claude_results(stdout_path))
         summary = claude_summary(stdout_path) or {}
+    elif args.provider == "agy":
+        write_json(run_dir / "provider-results.json", agy_results(stdout_path))
+        summary = agy_summary(stdout_path) or {}
     ended_at = now_iso()
     plan_usage, rejected = rate_limits(stdout_path) if args.provider == "opus" else (None, None)
     codex_limit = codex_usage_limit(run_dir) if args.provider == "sol" else None
+    agy_limit = agy_usage_limit(run_dir) if args.provider == "agy" else None
     finished = validation.get("valid_xlsx") and validation.get("sheet_names") == SHEETS
+    expected_agy_model = f"{metadata['model']}-{metadata['effort']}".lower()
     if _PROVIDER["cancelled"]:
         outcome, failure_reason = "cancelled", "cancelled"
     elif timed_out:
         outcome, failure_reason = "timed_out", "timeout"
-    elif summary and summary["refusal"]:
+    elif args.provider == "opus" and summary and summary.get("refusal"):
         outcome, failure_reason = "failed", "provider_refusal"
-    elif (rejected is not None or codex_limit) and not finished:
+    elif args.provider == "agy" and summary and (summary.get("forbidden_tools") or summary.get("subagents_spawned")):
+        outcome, failure_reason = "failed", "isolation_violation"
+    elif (rejected is not None or codex_limit or agy_limit) and not finished:
         outcome, failure_reason = "failed", "usage_limit"
     elif exit_code != 0:
         outcome, failure_reason = "failed", "provider_exit"
-    elif summary is not None and (summary.get("subtype") != "success" or summary.get("is_error")):
+    elif args.provider == "opus" and summary is not None and (summary.get("subtype") != "success" or summary.get("is_error")):
         outcome, failure_reason = "failed", "provider_error"
-    elif summary is not None and summary["served_models"] != [metadata["model"]]:
+    elif args.provider == "agy" and summary is not None and summary.get("status") != "SUCCESS":
+        outcome, failure_reason = "failed", "provider_error"
+    elif args.provider == "opus" and summary is not None and summary["served_models"] != [metadata["model"]]:
+        outcome, failure_reason = "failed", "model_mismatch"
+    elif (args.provider == "agy" and summary is not None and summary.get("served_models")
+          and [str(m).lower() for m in summary["served_models"]] != [expected_agy_model]):
         outcome, failure_reason = "failed", "model_mismatch"
     elif not validation.get("exists"):
         outcome, failure_reason = "failed", "workbook_missing"
@@ -868,10 +1126,19 @@ def _run_in_sandbox(args: argparse.Namespace, run_dir: Path, metadata: dict, bin
         "usage": run_usage(stdout_path),
         "plan_usage": plan_usage,
     }
-    if failure_reason == "usage_limit" and codex_limit:
-        result["usage_limit_message"] = codex_limit
+    if failure_reason == "usage_limit" and (codex_limit or agy_limit):
+        result["usage_limit_message"] = codex_limit or agy_limit
     if failure_reason == "usage_limit" and rejected is not None and isinstance(rejected.get("resetsAt"), (int, float)):
         result["usage_limit_resets_at"] = dt.datetime.fromtimestamp(rejected["resetsAt"], dt.timezone.utc).isoformat(timespec="seconds")
+    if failure_reason == "isolation_violation" and summary:
+        bits = []
+        if summary.get("forbidden_tools"):
+            bits.append(f"disallowed tools: {', '.join(summary['forbidden_tools'])}")
+        if summary.get("subagents_spawned"):
+            bits.append(f"subagents spawned: {summary['subagents_spawned']}")
+        result["error"] = "; ".join(bits)
+    elif failure_reason == "provider_error" and args.provider == "agy" and summary and summary.get("error"):
+        result["error"] = str(summary["error"])[:500]
     if summary is not None:
         result["provider"] = summary
     write_json(run_dir / "status.json", result)
@@ -994,25 +1261,25 @@ def parser() -> argparse.ArgumentParser:
     root = argparse.ArgumentParser()
     sub = root.add_subparsers(dest="command", required=True)
     p = sub.add_parser("prepare")
-    p.add_argument("--provider", choices=["sol", "opus"], default="opus", help="transport (default: opus, for Claude Opus 5.5)")
+    p.add_argument("--provider", choices=["sol", "opus", "agy"], default="opus", help="transport (default: opus, for Claude Opus 5.5)")
     p.add_argument("--run-dir", required=True)
     p.add_argument("--deal", required=True)
     p.add_argument("--filing", required=True)
     p.add_argument("--filing-dir", help="folder holding the filing: raw_filing/ (default) or a cockpit deal folder in _dev/cockpit/state/filings/")
     p.add_argument("--instruction", help="candidate instruction file to test (default: the working instruction)")
-    p.add_argument("--model", help="model to run (default: claude-opus-5-5 for opus, gpt-6-sol for sol)")
-    p.add_argument("--effort", help="effort: low, medium, high, xhigh or max (default: Claude medium, Astra high, other Codex models xhigh)")
+    p.add_argument("--model", help="model to run (default: claude-opus-5-5 for opus, gpt-6.2-sol for sol, gemini-4-neon for agy)")
+    p.add_argument("--effort", help="effort: low, medium, high, xhigh or max (model-dependent; default: Claude medium, Astra/Antigravity high, Sol xhigh)")
     p.add_argument("--service-tier", choices=["priority"], help="request Fast service for this Codex run")
     p.add_argument("--timeout-minutes", type=int, help="wall-clock limit for the run, 10-360 (default: 90)")
     p.add_argument("--revise-from", help="finished workbook to revise (revision pass)")
     p.add_argument("--report", help="checker findings in plain text, required with --revise-from")
     p.set_defaults(func=prepare)
     p = sub.add_parser("launch")
-    p.add_argument("--provider", choices=["sol", "opus"], required=True)
+    p.add_argument("--provider", choices=["sol", "opus", "agy"], required=True)
     p.add_argument("--run-dir", required=True)
     p.set_defaults(func=launch)
     p = sub.add_parser("worker")
-    p.add_argument("--provider", choices=["sol", "opus"], required=True)
+    p.add_argument("--provider", choices=["sol", "opus", "agy"], required=True)
     p.add_argument("--run-dir", required=True)
     p.set_defaults(func=worker)
     p = sub.add_parser("status")

@@ -123,7 +123,14 @@ class Handler(BaseHTTPRequestHandler):
                 return self._json(deals)
             if path == "/api/account":
                 actor, _ = self._identity()
-                if actor == "unknown": return self._json({"user": actor, "claude": {"connected": False}, "connect": None, "chatgpt": {"connected": False}, "chatgpt_connect": None, "engines": []})
+                if actor == "unknown":
+                    return self._json({
+                        "user": actor,
+                        "claude": {"connected": False}, "connect": None,
+                        "chatgpt": {"connected": False}, "chatgpt_connect": None,
+                        "antigravity": {"connected": False}, "antigravity_connect": None,
+                        "engines": [],
+                    })
                 return self._json(self.cockpit.runs.account(actor))
             if path == "/api/instructions":
                 if not self.cockpit.workspace.available: return self._json({"error": "workspace unavailable"}, 404)
@@ -219,7 +226,7 @@ class Handler(BaseHTTPRequestHandler):
         path = urlparse(self.path).path
         match = DEAL_ACTION_RE.fullmatch(path)
         visibility = DEAL_VISIBILITY_RE.fullmatch(path)
-        if path not in ("/api/account/claude", "/api/account/chatgpt", "/api/deals", "/api/instructions") and not visibility and (not match or match.group(2) not in ("edit", "comments", "seen", "jobs", "versions", "review")): return self._not_allowed()
+        if path not in ("/api/account/claude", "/api/account/chatgpt", "/api/account/antigravity", "/api/deals", "/api/instructions") and not visibility and (not match or match.group(2) not in ("edit", "comments", "seen", "jobs", "versions", "review")): return self._not_allowed()
         if not self.cockpit.workspace.available: return self._json({"error": "workspace unavailable"}, 404)
         actor, can_edit = self._identity()
         if not can_edit or not self._origin_ok() or not secrets.compare_digest(self.headers.get("X-Cockpit-CSRF") or "", self.csrf_token):
@@ -233,6 +240,7 @@ class Handler(BaseHTTPRequestHandler):
             if path == "/api/deals": return self._json(self.cockpit.deals.request(actor, body))
             if path == "/api/instructions": return self._json(self.cockpit.instructions.request(actor, body))
             if path == "/api/account/chatgpt": return self._json(self.cockpit.runs.chatgpt_action(actor, body))
+            if path == "/api/account/antigravity": return self._json(self.cockpit.runs.antigravity_action(actor, body))
             if visibility: return self._json(self.cockpit.deals.visibility(unquote(visibility.group(1)), actor, body))
             if match is None: return self._json(self.cockpit.runs.account_action(actor, body))
             slug, action = unquote(match.group(1)), match.group(2)

@@ -6,15 +6,17 @@ import { displayName, shortTime } from './trace';
 export const EFFORTS = ['low', 'medium', 'high', 'xhigh', 'max'];
 export const DEFAULT_EFFORT = 'medium';
 export const FABLE_WARNING = 'Fable’s safety filter often blocks runs partway (6 of 11 test prompts); a blocked run fails and must be restarted.';
-const ACCOUNT_NAMES = { claude: 'Claude', chatgpt: 'ChatGPT' };
-export const DEFAULT_ENGINE = { id: 'opus55', label: 'Opus 5.5', account: 'claude', efforts: EFFORTS, default_effort: DEFAULT_EFFORT };
-const ENGINE_EFFORT = { astra6: 'high' };  // Astra's own default when chosen explicitly.
+const ACCOUNT_NAMES = { claude: 'Claude', chatgpt: 'ChatGPT', antigravity: 'Antigravity' };
+export const GROUP_LABELS = { claude: 'Claude', chatgpt: 'ChatGPT', antigravity: 'Antigravity' };
+export const DEFAULT_ENGINE = { id: 'opus55', label: 'Opus 5.5', account: 'claude', group: 'claude', legacy: false, fast_mode: null, efforts: EFFORTS, default_effort: DEFAULT_EFFORT };
+const ENGINE_EFFORT = { astra62: 'high', astra6: 'high', neon4: 'high', carbon4: 'high', hydrogen4: 'high' };
 export const DEFAULT_TIMEOUT = 90;
 export const TIMEOUT_RANGE = [10, 360];
 export const ACTIVE_STATES = new Set(['queued', 'preparing', 'running', 'checking', 'importing']);
 export const CANCELLABLE_STATES = new Set(['queued', 'preparing', 'running']);
 export const CONNECT_ACTIVE_STATES = new Set(['queued', 'waiting_for_code', 'completing']);
 export const CHATGPT_CONNECT_ACTIVE_STATES = new Set(['queued', 'waiting_for_approval']);
+export const AGY_CONNECT_ACTIVE_STATES = new Set(['queued', 'waiting_for_code', 'completing']);
 export const STATE_LABELS = {
   queued: 'Queued', preparing: 'Preparing', running: 'Running', checking: 'Checking', importing: 'Importing',
   completed: 'Completed', failed: 'Failed', timed_out: 'Timed out', cancelled: 'Cancelled',
@@ -30,7 +32,16 @@ export function accountEngines(account) {
     const efforts = (engine.efforts?.length ? engine.efforts : EFFORTS).filter(effort => effort !== 'ultra');
     const preferred = ENGINE_EFFORT[engine.id] || DEFAULT_EFFORT;
     const fallback = efforts.includes(preferred) ? preferred : efforts[0];
-    return { ...engine, label: engine.label || engine.id, efforts, default_effort: efforts.includes(engine.default_effort) ? engine.default_effort : fallback, connected: Boolean(engine.connected) };
+    return {
+      ...engine,
+      label: engine.label || engine.id,
+      group: engine.group || engine.account || 'claude',
+      legacy: Boolean(engine.legacy),
+      fast_mode: engine.fast_mode || null,
+      efforts,
+      default_effort: efforts.includes(engine.default_effort) ? engine.default_effort : fallback,
+      connected: Boolean(engine.connected),
+    };
   });
 }
 // Preselect Opus 5.5 when usable, else the first connected engine; preserve an explicit selection.
@@ -46,8 +57,8 @@ export const connectHint = engine => `connect your ${accountLabel(engine?.accoun
 export const isActive = job => ACTIVE_STATES.has(job?.state);
 export const stateTone = state => ACTIVE_STATES.has(state) ? 'warning' : STATE_TONES[state] || 'muted';
 
-// Which plan a run used: "Claude plan" or "ChatGPT plan", from the job's recorded account (Claude before phase 4).
-export const planName = account => account === 'chatgpt' ? 'ChatGPT plan' : 'Claude plan';
+// Which plan a run used: "Claude plan", "ChatGPT plan", or "Google AI plan".
+export const planName = account => account === 'chatgpt' ? 'ChatGPT plan' : account === 'antigravity' ? 'Google AI plan' : 'Claude plan';
 export const jobEngineLabel = job => `${text(job?.params?.engine_label) || 'Opus 5.5'}${job?.params?.service_tier === 'priority' ? ' · Fast' : ''}`;
 export const jobInstructionLabel = job => text(job?.params?.instruction?.label) || 'instruction not recorded';
 
@@ -61,11 +72,12 @@ export function failureText(job) {
       const resets = job.result?.usage_limit_resets_at, message = text(job.result?.usage_limit_message).trim();
       return `${name}’s ${planName(account)} hit its usage limit${resets ? `; it resets ${shortTime(resets)}` : ''}${message ? `. ${message}` : ''}`;
     }
-    case 'provider_refusal': return job.params?.engine === 'fable51' ? 'Blocked by Fable’s safety filter' : 'The model refused';
-    case 'login_expired': return `${name}’s ChatGPT login has expired; reconnect in Settings`;
+    case 'provider_refusal': return String(job.params?.engine || '').startsWith('fable') ? 'Blocked by Fable’s safety filter' : 'The model refused';
+    case 'isolation_violation': return 'Stopped: the run tried to use a disallowed tool';
+    case 'login_expired': return `${name}’s ${accountLabel(account || 'chatgpt')} login has expired; reconnect in Settings`;
     case 'timeout':
     case 'timed_out': return 'Ran past the time limit';
-    case 'not_connected': return `No ${account === 'chatgpt' ? 'ChatGPT' : 'Claude'} account connected`;
+    case 'not_connected': return `No ${accountLabel(account || 'claude')} account connected`;
     case 'cancelled': return `Cancelled by ${displayName(job.cancelled_by || job.actor)}`;
     case 'worker_restart': return 'Interrupted by a server restart';
     default: return `Failed (${reason})`;
@@ -106,7 +118,10 @@ export function activeRunLabel(jobs, now = Date.now()) {
 // "1.2 M tokens · $3.40" from a runner usage record ({tokens: {...}, cost_usd}); '' when absent.
 export function usageText(usage) {
   if (!usage || typeof usage !== 'object') return '';
-  const tokens = Object.values(usage.tokens || {}).filter(Number.isFinite).reduce((sum, n) => sum + n, 0);
+  const raw = usage.tokens || {};
+  const tokens = Number.isFinite(raw.total_tokens)
+    ? raw.total_tokens
+    : Object.values(raw).filter(Number.isFinite).reduce((sum, n) => sum + n, 0);
   const parts = [];
   if (tokens > 0) parts.push(tokens >= 1e6 ? `${(tokens / 1e6).toFixed(1)} M tokens` : tokens >= 1e3 ? `${Math.round(tokens / 1e3)} k tokens` : `${tokens} tokens`);
   if (Number.isFinite(usage.cost_usd)) parts.push(`$${usage.cost_usd.toFixed(2)}`);
